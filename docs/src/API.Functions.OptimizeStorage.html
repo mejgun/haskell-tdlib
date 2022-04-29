@@ -41,7 +41,7 @@
 </span><a href="API.Functions.OptimizeStorage.html#immunity_delay"><span class="hs-identifier hs-var hs-var">immunity_delay</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="count"><span class="annot"><span class="annottext">OptimizeStorage -&gt; Maybe Int
 </span><a href="API.Functions.OptimizeStorage.html#count"><span class="hs-identifier hs-var hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="ttl"><span class="annot"><span class="annottext">OptimizeStorage -&gt; Maybe Int
 </span><a href="API.Functions.OptimizeStorage.html#ttl"><span class="hs-identifier hs-var hs-var">ttl</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="size"><span class="annot"><span class="annottext">OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#size"><span class="hs-identifier hs-var hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679530920"><span id="local-6989586621679530922"><span class="annot"><span class="annottext">OptimizeStorage -&gt; OptimizeStorage -&gt; Bool
+</span><a href="API.Functions.OptimizeStorage.html#size"><span class="hs-identifier hs-var hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679530926"><span id="local-6989586621679530928"><span class="annot"><span class="annottext">OptimizeStorage -&gt; OptimizeStorage -&gt; Bool
 (OptimizeStorage -&gt; OptimizeStorage -&gt; Bool)
 -&gt; (OptimizeStorage -&gt; OptimizeStorage -&gt; Bool)
 -&gt; Eq OptimizeStorage
@@ -52,27 +52,27 @@ $c/= :: OptimizeStorage -&gt; OptimizeStorage -&gt; Bool
 $c== :: OptimizeStorage -&gt; OptimizeStorage -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679530914"><span id="local-6989586621679530917"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span> </span><span id="local-6989586621679530912"><span class="annot"><span class="annottext">show :: OptimizeStorage -&gt; String
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679530920"><span id="local-6989586621679530923"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679530918"><span class="annot"><span class="annottext">show :: OptimizeStorage -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_limit :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#chat_limit"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530910"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530910"><span class="hs-identifier hs-var">chat_limit</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">return_deleted_file_statistics :: OptimizeStorage -&gt; Maybe Bool
-</span><a href="API.Functions.OptimizeStorage.html#return_deleted_file_statistics"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530909"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679530909"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_chat_ids :: OptimizeStorage -&gt; Maybe [Int]
-</span><a href="API.Functions.OptimizeStorage.html#exclude_chat_ids"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530908"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530908"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_ids :: OptimizeStorage -&gt; Maybe [Int]
-</span><a href="API.Functions.OptimizeStorage.html#chat_ids"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530907"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530907"><span class="hs-identifier hs-var">chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_types :: OptimizeStorage -&gt; Maybe [FileType]
-</span><a href="API.Functions.OptimizeStorage.html#file_types"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530906"><span class="annot"><span class="annottext">Maybe [FileType]
-</span><a href="#local-6989586621679530906"><span class="hs-identifier hs-var">file_types</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">immunity_delay :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#immunity_delay"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530905"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530905"><span class="hs-identifier hs-var">immunity_delay</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">count :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#count"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530904"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530904"><span class="hs-identifier hs-var">count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#ttl"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530903"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530903"><span class="hs-identifier hs-var">ttl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#size"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530902"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530902"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.OptimizeStorage.html#chat_limit"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530916"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530916"><span class="hs-identifier hs-var">chat_limit</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">return_deleted_file_statistics :: OptimizeStorage -&gt; Maybe Bool
+</span><a href="API.Functions.OptimizeStorage.html#return_deleted_file_statistics"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530915"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679530915"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_chat_ids :: OptimizeStorage -&gt; Maybe [Int]
+</span><a href="API.Functions.OptimizeStorage.html#exclude_chat_ids"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530914"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679530914"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_ids :: OptimizeStorage -&gt; Maybe [Int]
+</span><a href="API.Functions.OptimizeStorage.html#chat_ids"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530913"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679530913"><span class="hs-identifier hs-var">chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_types :: OptimizeStorage -&gt; Maybe [FileType]
+</span><a href="API.Functions.OptimizeStorage.html#file_types"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530912"><span class="annot"><span class="annottext">Maybe [FileType]
+</span><a href="#local-6989586621679530912"><span class="hs-identifier hs-var">file_types</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">immunity_delay :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#immunity_delay"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530911"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530911"><span class="hs-identifier hs-var">immunity_delay</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">count :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#count"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530910"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530910"><span class="hs-identifier hs-var">count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#ttl"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530909"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530909"><span class="hs-identifier hs-var">ttl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#size"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679530908"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530908"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;OptimizeStorage&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -81,46 +81,46 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530910"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679530916"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;return_deleted_file_statistics&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679530909"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
+</span><a href="#local-6989586621679530915"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;exclude_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530908"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
+</span><a href="#local-6989586621679530914"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530907"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [FileType] -&gt; String
+</span><a href="#local-6989586621679530913"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [FileType] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file_types&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [FileType]
-</span><a href="#local-6989586621679530906"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679530912"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;immunity_delay&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530905"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679530911"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530904"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679530910"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ttl&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530903"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679530909"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530902"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679530908"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span id="local-6989586621679530970"><span class="annot"><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679530970"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679530970"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-41"></span><span id="local-6989586621679530976"><span class="annot"><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679530976"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679530976"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-42"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679530899"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679530899"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679530898"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679530898"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679530899"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679530905"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679530905"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679530904"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679530904"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679530905"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -128,7 +128,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679530898"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679530904"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-43"></span><span class="annot"><a href="API.Functions.OptimizeStorage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -139,8 +139,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.Functions.OptimizeStorage.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-47"></span><span class="annot"><a href="API.Functions.OptimizeStorage.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679530897"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679530897"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span class="annot"><a href="API.Functions.OptimizeStorage.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679530903"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679530903"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -154,33 +154,33 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679530897"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679530903"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-48"></span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679530887"><span id="local-6989586621679530889"><span id="local-6989586621679530891"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span> </span><span id="local-6989586621679530885"><span class="annot"><span class="annottext">toJSON :: OptimizeStorage -&gt; Value
+</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679530893"><span id="local-6989586621679530895"><span id="local-6989586621679530897"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-51"></span><span> </span><span id="local-6989586621679530891"><span class="annot"><span class="annottext">toJSON :: OptimizeStorage -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_limit :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#chat_limit"><span class="hs-identifier hs-var">chat_limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530883"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530883"><span class="hs-identifier hs-var">chat_limit</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">return_deleted_file_statistics :: OptimizeStorage -&gt; Maybe Bool
-</span><a href="API.Functions.OptimizeStorage.html#return_deleted_file_statistics"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530882"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679530882"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_chat_ids :: OptimizeStorage -&gt; Maybe [Int]
-</span><a href="API.Functions.OptimizeStorage.html#exclude_chat_ids"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530881"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530881"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_ids :: OptimizeStorage -&gt; Maybe [Int]
-</span><a href="API.Functions.OptimizeStorage.html#chat_ids"><span class="hs-identifier hs-var">chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530880"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530880"><span class="hs-identifier hs-var">chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_types :: OptimizeStorage -&gt; Maybe [FileType]
-</span><a href="API.Functions.OptimizeStorage.html#file_types"><span class="hs-identifier hs-var">file_types</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530879"><span class="annot"><span class="annottext">Maybe [FileType]
-</span><a href="#local-6989586621679530879"><span class="hs-identifier hs-var">file_types</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">immunity_delay :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#immunity_delay"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530878"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530878"><span class="hs-identifier hs-var">immunity_delay</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">count :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530877"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530877"><span class="hs-identifier hs-var">count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#ttl"><span class="hs-identifier hs-var">ttl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530876"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530876"><span class="hs-identifier hs-var">ttl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: OptimizeStorage -&gt; Maybe Int
-</span><a href="API.Functions.OptimizeStorage.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530875"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530875"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.OptimizeStorage.html#chat_limit"><span class="hs-identifier hs-var">chat_limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530889"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530889"><span class="hs-identifier hs-var">chat_limit</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">return_deleted_file_statistics :: OptimizeStorage -&gt; Maybe Bool
+</span><a href="API.Functions.OptimizeStorage.html#return_deleted_file_statistics"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530888"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679530888"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_chat_ids :: OptimizeStorage -&gt; Maybe [Int]
+</span><a href="API.Functions.OptimizeStorage.html#exclude_chat_ids"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530887"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679530887"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_ids :: OptimizeStorage -&gt; Maybe [Int]
+</span><a href="API.Functions.OptimizeStorage.html#chat_ids"><span class="hs-identifier hs-var">chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530886"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679530886"><span class="hs-identifier hs-var">chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_types :: OptimizeStorage -&gt; Maybe [FileType]
+</span><a href="API.Functions.OptimizeStorage.html#file_types"><span class="hs-identifier hs-var">file_types</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530885"><span class="annot"><span class="annottext">Maybe [FileType]
+</span><a href="#local-6989586621679530885"><span class="hs-identifier hs-var">file_types</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">immunity_delay :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#immunity_delay"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530884"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530884"><span class="hs-identifier hs-var">immunity_delay</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">count :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530883"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530883"><span class="hs-identifier hs-var">count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#ttl"><span class="hs-identifier hs-var">ttl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530882"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530882"><span class="hs-identifier hs-var">ttl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: OptimizeStorage -&gt; Maybe Int
+</span><a href="API.Functions.OptimizeStorage.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679530881"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530881"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-52"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -191,65 +191,65 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;chat_limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530883"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530889"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;return_deleted_file_statistics&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679530882"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530888"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530881"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530887"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530880"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530886"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;file_types&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [FileType] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [FileType]
-</span><a href="#local-6989586621679530879"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530885"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;immunity_delay&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530878"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530884"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530877"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530883"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;ttl&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530876"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679530882"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530875"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679530881"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679530869"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span> </span><span id="local-6989586621679530867"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser OptimizeStorage
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679530865"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679530865"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679530863"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530863"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>  </span><span id="local-6989586621679530862"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679530862"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530863"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679530875"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span> </span><span id="local-6989586621679530873"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser OptimizeStorage
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679530871"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679530871"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679530869"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679530869"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>  </span><span id="local-6989586621679530868"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679530868"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679530869"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-57"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679530862"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679530868"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-58"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;optimizeStorage&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptimizeStorage
-</span><a href="#local-6989586621679530860"><span class="hs-identifier hs-var">parseOptimizeStorage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679530865"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679530866"><span class="hs-identifier hs-var">parseOptimizeStorage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679530871"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-59"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser OptimizeStorage
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-60"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679530860"><span class="hs-identifier hs-type">parseOptimizeStorage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span><span>
-</span><span id="line-62"></span><span>   </span><span id="local-6989586621679530860"><span class="annot"><span class="annottext">parseOptimizeStorage :: Value -&gt; Parser OptimizeStorage
-</span><a href="#local-6989586621679530860"><span class="hs-identifier hs-var hs-var">parseOptimizeStorage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679530866"><span class="hs-identifier hs-type">parseOptimizeStorage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span><span>
+</span><span id="line-62"></span><span>   </span><span id="local-6989586621679530866"><span class="annot"><span class="annottext">parseOptimizeStorage :: Value -&gt; Parser OptimizeStorage
+</span><a href="#local-6989586621679530866"><span class="hs-identifier hs-var hs-var">parseOptimizeStorage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser OptimizeStorage)
 -&gt; Value
 -&gt; Parser OptimizeStorage
@@ -261,13 +261,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser OptimizeStorage
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679530858"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-63"></span><span>    </span><span id="local-6989586621679530857"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530857"><span class="hs-identifier hs-var">chat_limit</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679530864"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-63"></span><span>    </span><span id="local-6989586621679530863"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530863"><span class="hs-identifier hs-var">chat_limit</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_limit&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -275,39 +275,39 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_limit&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-64"></span><span>    </span><span id="local-6989586621679530854"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679530854"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-64"></span><span>    </span><span id="local-6989586621679530860"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679530860"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;return_deleted_file_statistics&quot;</span></span><span>
-</span><span id="line-65"></span><span>    </span><span id="local-6989586621679530853"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530853"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679530859"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679530859"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_chat_ids&quot;</span></span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679530852"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530852"><span class="hs-identifier hs-var">chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621679530858"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_ids&quot;</span></span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621679530851"><span class="annot"><span class="annottext">Maybe [FileType]
-</span><a href="#local-6989586621679530851"><span class="hs-identifier hs-var">file_types</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [FileType])
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679530857"><span class="annot"><span class="annottext">Maybe [FileType]
+</span><a href="#local-6989586621679530857"><span class="hs-identifier hs-var">file_types</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [FileType])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;file_types&quot;</span></span><span>
-</span><span id="line-68"></span><span>    </span><span id="local-6989586621679530850"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530850"><span class="hs-identifier hs-var">immunity_delay</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679530856"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530856"><span class="hs-identifier hs-var">immunity_delay</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;immunity_delay&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -315,15 +315,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;immunity_delay&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-69"></span><span>    </span><span id="local-6989586621679530849"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530849"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679530855"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530855"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;count&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -331,15 +331,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-70"></span><span>    </span><span id="local-6989586621679530848"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530848"><span class="hs-identifier hs-var">ttl</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-70"></span><span>    </span><span id="local-6989586621679530854"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530854"><span class="hs-identifier hs-var">ttl</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;ttl&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -347,15 +347,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;ttl&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-71"></span><span>    </span><span id="local-6989586621679530847"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530847"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679530853"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679530853"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -363,7 +363,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679530864"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -384,23 +384,23 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; OptimizeStorage
 </span><a href="API.Functions.OptimizeStorage.html#OptimizeStorage"><span class="hs-identifier hs-type">OptimizeStorage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_limit :: Maybe Int
 </span><a href="API.Functions.OptimizeStorage.html#chat_limit"><span class="hs-identifier hs-var">chat_limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530857"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">return_deleted_file_statistics :: Maybe Bool
+</span><a href="#local-6989586621679530863"><span class="hs-identifier hs-var">chat_limit</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">return_deleted_file_statistics :: Maybe Bool
 </span><a href="API.Functions.OptimizeStorage.html#return_deleted_file_statistics"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679530854"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_chat_ids :: Maybe [Int]
+</span><a href="#local-6989586621679530860"><span class="hs-identifier hs-var">return_deleted_file_statistics</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_chat_ids :: Maybe [Int]
 </span><a href="API.Functions.OptimizeStorage.html#exclude_chat_ids"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530853"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_ids :: Maybe [Int]
+</span><a href="#local-6989586621679530859"><span class="hs-identifier hs-var">exclude_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_ids :: Maybe [Int]
 </span><a href="API.Functions.OptimizeStorage.html#chat_ids"><span class="hs-identifier hs-var">chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679530852"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_types :: Maybe [FileType]
+</span><a href="#local-6989586621679530858"><span class="hs-identifier hs-var">chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_types :: Maybe [FileType]
 </span><a href="API.Functions.OptimizeStorage.html#file_types"><span class="hs-identifier hs-var">file_types</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [FileType]
-</span><a href="#local-6989586621679530851"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">immunity_delay :: Maybe Int
+</span><a href="#local-6989586621679530857"><span class="hs-identifier hs-var">file_types</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">immunity_delay :: Maybe Int
 </span><a href="API.Functions.OptimizeStorage.html#immunity_delay"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530850"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">count :: Maybe Int
+</span><a href="#local-6989586621679530856"><span class="hs-identifier hs-var">immunity_delay</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">count :: Maybe Int
 </span><a href="API.Functions.OptimizeStorage.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530849"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: Maybe Int
+</span><a href="#local-6989586621679530855"><span class="hs-identifier hs-var">count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: Maybe Int
 </span><a href="API.Functions.OptimizeStorage.html#ttl"><span class="hs-identifier hs-var">ttl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530848"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: Maybe Int
+</span><a href="#local-6989586621679530854"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: Maybe Int
 </span><a href="API.Functions.OptimizeStorage.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679530847"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679530853"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-73"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser OptimizeStorage
 forall a. Monoid a =&gt; a

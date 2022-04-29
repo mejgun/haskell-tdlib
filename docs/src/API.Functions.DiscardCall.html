@@ -28,7 +28,7 @@
 </span><a href="API.Functions.DiscardCall.html#is_video"><span class="hs-identifier hs-var hs-var">is_video</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="duration"><span class="annot"><span class="annottext">DiscardCall -&gt; Maybe Int
 </span><a href="API.Functions.DiscardCall.html#duration"><span class="hs-identifier hs-var hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="is_disconnected"><span class="annot"><span class="annottext">DiscardCall -&gt; Maybe Bool
 </span><a href="API.Functions.DiscardCall.html#is_disconnected"><span class="hs-identifier hs-var hs-var">is_disconnected</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="call_id"><span class="annot"><span class="annottext">DiscardCall -&gt; Maybe Int
-</span><a href="API.Functions.DiscardCall.html#call_id"><span class="hs-identifier hs-var hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679514695"><span id="local-6989586621679514697"><span class="annot"><span class="annottext">DiscardCall -&gt; DiscardCall -&gt; Bool
+</span><a href="API.Functions.DiscardCall.html#call_id"><span class="hs-identifier hs-var hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679514701"><span id="local-6989586621679514703"><span class="annot"><span class="annottext">DiscardCall -&gt; DiscardCall -&gt; Bool
 (DiscardCall -&gt; DiscardCall -&gt; Bool)
 -&gt; (DiscardCall -&gt; DiscardCall -&gt; Bool) -&gt; Eq DiscardCall
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -38,19 +38,19 @@ $c/= :: DiscardCall -&gt; DiscardCall -&gt; Bool
 $c== :: DiscardCall -&gt; DiscardCall -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514689"><span id="local-6989586621679514692"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span> </span><span id="local-6989586621679514687"><span class="annot"><span class="annottext">show :: DiscardCall -&gt; String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514695"><span id="local-6989586621679514698"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span> </span><span id="local-6989586621679514693"><span class="annot"><span class="annottext">show :: DiscardCall -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">connection_id :: DiscardCall -&gt; Maybe Int
-</span><a href="API.Functions.DiscardCall.html#connection_id"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514685"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514685"><span class="hs-identifier hs-var">connection_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_video :: DiscardCall -&gt; Maybe Bool
-</span><a href="API.Functions.DiscardCall.html#is_video"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514684"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514684"><span class="hs-identifier hs-var">is_video</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: DiscardCall -&gt; Maybe Int
-</span><a href="API.Functions.DiscardCall.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514683"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514683"><span class="hs-identifier hs-var">duration</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_disconnected :: DiscardCall -&gt; Maybe Bool
-</span><a href="API.Functions.DiscardCall.html#is_disconnected"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514682"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514682"><span class="hs-identifier hs-var">is_disconnected</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: DiscardCall -&gt; Maybe Int
-</span><a href="API.Functions.DiscardCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514681"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514681"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.DiscardCall.html#connection_id"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514691"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514691"><span class="hs-identifier hs-var">connection_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_video :: DiscardCall -&gt; Maybe Bool
+</span><a href="API.Functions.DiscardCall.html#is_video"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514690"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679514690"><span class="hs-identifier hs-var">is_video</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: DiscardCall -&gt; Maybe Int
+</span><a href="API.Functions.DiscardCall.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514689"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514689"><span class="hs-identifier hs-var">duration</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_disconnected :: DiscardCall -&gt; Maybe Bool
+</span><a href="API.Functions.DiscardCall.html#is_disconnected"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514688"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679514688"><span class="hs-identifier hs-var">is_disconnected</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: DiscardCall -&gt; Maybe Int
+</span><a href="API.Functions.DiscardCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514687"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514687"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-30"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;DiscardCall&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -59,30 +59,30 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;connection_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514685"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679514691"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_video&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514684"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679514690"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514683"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679514689"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_disconnected&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514682"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679514688"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514681"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679514687"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span id="local-6989586621679514741"><span class="annot"><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679514741"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679514741"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-32"></span><span id="local-6989586621679514747"><span class="annot"><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679514747"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679514747"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-33"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679514678"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679514678"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679514677"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679514677"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679514678"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679514684"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679514684"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679514683"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679514683"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679514684"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -90,7 +90,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679514677"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679514683"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-34"></span><span class="annot"><a href="API.Functions.DiscardCall.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -101,8 +101,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.Functions.DiscardCall.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-38"></span><span class="annot"><a href="API.Functions.DiscardCall.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679514676"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679514676"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-38"></span><span class="annot"><a href="API.Functions.DiscardCall.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679514682"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679514682"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -116,25 +116,25 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679514676"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679514682"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-39"></span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514666"><span id="local-6989586621679514668"><span id="local-6989586621679514670"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span> </span><span id="local-6989586621679514664"><span class="annot"><span class="annottext">toJSON :: DiscardCall -&gt; Value
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514672"><span id="local-6989586621679514674"><span id="local-6989586621679514676"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span> </span><span id="local-6989586621679514670"><span class="annot"><span class="annottext">toJSON :: DiscardCall -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">connection_id :: DiscardCall -&gt; Maybe Int
-</span><a href="API.Functions.DiscardCall.html#connection_id"><span class="hs-identifier hs-var">connection_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514662"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514662"><span class="hs-identifier hs-var">connection_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_video :: DiscardCall -&gt; Maybe Bool
-</span><a href="API.Functions.DiscardCall.html#is_video"><span class="hs-identifier hs-var">is_video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514661"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514661"><span class="hs-identifier hs-var">is_video</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: DiscardCall -&gt; Maybe Int
-</span><a href="API.Functions.DiscardCall.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514660"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514660"><span class="hs-identifier hs-var">duration</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_disconnected :: DiscardCall -&gt; Maybe Bool
-</span><a href="API.Functions.DiscardCall.html#is_disconnected"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514659"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514659"><span class="hs-identifier hs-var">is_disconnected</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: DiscardCall -&gt; Maybe Int
-</span><a href="API.Functions.DiscardCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514658"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514658"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.DiscardCall.html#connection_id"><span class="hs-identifier hs-var">connection_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514668"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514668"><span class="hs-identifier hs-var">connection_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_video :: DiscardCall -&gt; Maybe Bool
+</span><a href="API.Functions.DiscardCall.html#is_video"><span class="hs-identifier hs-var">is_video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514667"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679514667"><span class="hs-identifier hs-var">is_video</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: DiscardCall -&gt; Maybe Int
+</span><a href="API.Functions.DiscardCall.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514666"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514666"><span class="hs-identifier hs-var">duration</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_disconnected :: DiscardCall -&gt; Maybe Bool
+</span><a href="API.Functions.DiscardCall.html#is_disconnected"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514665"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679514665"><span class="hs-identifier hs-var">is_disconnected</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: DiscardCall -&gt; Maybe Int
+</span><a href="API.Functions.DiscardCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514664"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514664"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-43"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -145,62 +145,62 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;connection_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514662"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679514668"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_video&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514661"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679514667"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514660"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679514666"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_disconnected&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514659"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679514665"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514658"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679514664"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514652"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-46"></span><span> </span><span id="local-6989586621679514650"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DiscardCall
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679514648"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679514648"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679514646"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514646"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-47"></span><span>  </span><span id="local-6989586621679514645"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679514645"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514646"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-45"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514658"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-46"></span><span> </span><span id="local-6989586621679514656"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DiscardCall
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679514654"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679514654"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679514652"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679514652"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>  </span><span id="local-6989586621679514651"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679514651"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679514652"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-48"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679514645"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679514651"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-49"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;discardCall&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DiscardCall
-</span><a href="#local-6989586621679514643"><span class="hs-identifier hs-var">parseDiscardCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679514648"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679514649"><span class="hs-identifier hs-var">parseDiscardCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679514654"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-50"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DiscardCall
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-51"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679514643"><span class="hs-identifier hs-type">parseDiscardCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span><span>
-</span><span id="line-53"></span><span>   </span><span id="local-6989586621679514643"><span class="annot"><span class="annottext">parseDiscardCall :: Value -&gt; Parser DiscardCall
-</span><a href="#local-6989586621679514643"><span class="hs-identifier hs-var hs-var">parseDiscardCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679514649"><span class="hs-identifier hs-type">parseDiscardCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span><span>
+</span><span id="line-53"></span><span>   </span><span id="local-6989586621679514649"><span class="annot"><span class="annottext">parseDiscardCall :: Value -&gt; Parser DiscardCall
+</span><a href="#local-6989586621679514649"><span class="hs-identifier hs-var hs-var">parseDiscardCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DiscardCall) -&gt; Value -&gt; Parser DiscardCall
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;DiscardCall&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DiscardCall) -&gt; Value -&gt; Parser DiscardCall)
 -&gt; (Object -&gt; Parser DiscardCall) -&gt; Value -&gt; Parser DiscardCall
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679514641"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-54"></span><span>    </span><span id="local-6989586621679514640"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514640"><span class="hs-identifier hs-var">connection_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679514647"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679514646"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514646"><span class="hs-identifier hs-var">connection_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;connection_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -208,21 +208,21 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;connection_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-55"></span><span>    </span><span id="local-6989586621679514637"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514637"><span class="hs-identifier hs-var">is_video</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679514643"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679514643"><span class="hs-identifier hs-var">is_video</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_video&quot;</span></span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679514636"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514636"><span class="hs-identifier hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679514642"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514642"><span class="hs-identifier hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;duration&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -230,21 +230,21 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-57"></span><span>    </span><span id="local-6989586621679514635"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514635"><span class="hs-identifier hs-var">is_disconnected</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-57"></span><span>    </span><span id="local-6989586621679514641"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">is_disconnected</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_disconnected&quot;</span></span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679514634"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514634"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-58"></span><span>    </span><span id="local-6989586621679514640"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679514640"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;call_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -252,7 +252,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679514647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;call_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -269,15 +269,15 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; DiscardCall
 </span><a href="API.Functions.DiscardCall.html#DiscardCall"><span class="hs-identifier hs-type">DiscardCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">connection_id :: Maybe Int
 </span><a href="API.Functions.DiscardCall.html#connection_id"><span class="hs-identifier hs-var">connection_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514640"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_video :: Maybe Bool
+</span><a href="#local-6989586621679514646"><span class="hs-identifier hs-var">connection_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_video :: Maybe Bool
 </span><a href="API.Functions.DiscardCall.html#is_video"><span class="hs-identifier hs-var">is_video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514637"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: Maybe Int
+</span><a href="#local-6989586621679514643"><span class="hs-identifier hs-var">is_video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: Maybe Int
 </span><a href="API.Functions.DiscardCall.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514636"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_disconnected :: Maybe Bool
+</span><a href="#local-6989586621679514642"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_disconnected :: Maybe Bool
 </span><a href="API.Functions.DiscardCall.html#is_disconnected"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514635"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: Maybe Int
+</span><a href="#local-6989586621679514641"><span class="hs-identifier hs-var">is_disconnected</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: Maybe Int
 </span><a href="API.Functions.DiscardCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514634"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679514640"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-60"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser DiscardCall
 forall a. Monoid a =&gt; a

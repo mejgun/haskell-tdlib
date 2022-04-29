@@ -48,7 +48,7 @@ sendWExtra c d = do
   enc :: String -> B.ByteString
   enc xtr = do
     BL.toStrict $ A.encode (addExtra d xtr)
-  addExtra :: (A.ToJSON a) => a -> String -> H.HashMap T.Text A.Value
+  addExtra :: (A.ToJSON a) => a -> String -> H.HashMap T.Text A.Value 
   addExtra d s = do
     let A.Object t = A.toJSON d
     H.insert (T.pack "@extra") (A.String (T.pack s)) t

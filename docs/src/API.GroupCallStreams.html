@@ -17,7 +17,7 @@
 </span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="GroupCallStreams"><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-var">GroupCallStreams</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-18"></span><span>
 </span><span id="line-19"></span><span> </span><span id="GroupCallStreams"><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-var">GroupCallStreams</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="streams"><span class="annot"><span class="annottext">GroupCallStreams -&gt; Maybe [GroupCallStream]
-</span><a href="API.GroupCallStreams.html#streams"><span class="hs-identifier hs-var hs-var">streams</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.GroupCallStream.html#GroupCallStream"><span class="hs-identifier hs-type">GroupCallStream.GroupCallStream</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679547101"><span id="local-6989586621679547103"><span class="annot"><span class="annottext">GroupCallStreams -&gt; GroupCallStreams -&gt; Bool
+</span><a href="API.GroupCallStreams.html#streams"><span class="hs-identifier hs-var hs-var">streams</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.GroupCallStream.html#GroupCallStream"><span class="hs-identifier hs-type">GroupCallStream.GroupCallStream</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679547107"><span id="local-6989586621679547109"><span class="annot"><span class="annottext">GroupCallStreams -&gt; GroupCallStreams -&gt; Bool
 (GroupCallStreams -&gt; GroupCallStreams -&gt; Bool)
 -&gt; (GroupCallStreams -&gt; GroupCallStreams -&gt; Bool)
 -&gt; Eq GroupCallStreams
@@ -28,11 +28,11 @@ $c/= :: GroupCallStreams -&gt; GroupCallStreams -&gt; Bool
 $c== :: GroupCallStreams -&gt; GroupCallStreams -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679547095"><span id="local-6989586621679547098"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679547093"><span class="annot"><span class="annottext">show :: GroupCallStreams -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679547101"><span id="local-6989586621679547104"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679547099"><span class="annot"><span class="annottext">show :: GroupCallStreams -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">streams :: GroupCallStreams -&gt; Maybe [GroupCallStream]
-</span><a href="API.GroupCallStreams.html#streams"><span class="hs-identifier hs-var">streams</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679547091"><span class="annot"><span class="annottext">Maybe [GroupCallStream]
-</span><a href="#local-6989586621679547091"><span class="hs-identifier hs-var">streams</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.GroupCallStreams.html#streams"><span class="hs-identifier hs-var">streams</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679547097"><span class="annot"><span class="annottext">Maybe [GroupCallStream]
+</span><a href="#local-6989586621679547097"><span class="hs-identifier hs-var">streams</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GroupCallStreams&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -41,14 +41,14 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.GroupCallStreams.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;streams&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [GroupCallStream]
-</span><a href="#local-6989586621679547091"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679547097"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span id="local-6989586621679547139"><span class="annot"><a href="API.GroupCallStreams.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679547139"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679547139"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-25"></span><span id="local-6989586621679547145"><span class="annot"><a href="API.GroupCallStreams.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679547145"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679547145"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-26"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.GroupCallStreams.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679547088"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679547088"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679547087"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679547087"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679547088"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.GroupCallStreams.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679547094"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679547094"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679547093"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679547093"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679547094"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -56,7 +56,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679547087"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679547093"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-27"></span><span class="annot"><a href="API.GroupCallStreams.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -67,8 +67,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.GroupCallStreams.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-31"></span><span class="annot"><a href="API.GroupCallStreams.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679547086"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679547086"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span class="annot"><a href="API.GroupCallStreams.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679547092"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679547092"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -82,17 +82,17 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679547086"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679547092"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-32"></span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679547076"><span id="local-6989586621679547078"><span id="local-6989586621679547080"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span> </span><span id="local-6989586621679547074"><span class="annot"><span class="annottext">toJSON :: GroupCallStreams -&gt; Value
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679547082"><span id="local-6989586621679547084"><span id="local-6989586621679547086"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span> </span><span id="local-6989586621679547080"><span class="annot"><span class="annottext">toJSON :: GroupCallStreams -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">streams :: GroupCallStreams -&gt; Maybe [GroupCallStream]
-</span><a href="API.GroupCallStreams.html#streams"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679547072"><span class="annot"><span class="annottext">Maybe [GroupCallStream]
-</span><a href="#local-6989586621679547072"><span class="hs-identifier hs-var">streams</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.GroupCallStreams.html#streams"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679547078"><span class="annot"><span class="annottext">Maybe [GroupCallStream]
+</span><a href="#local-6989586621679547078"><span class="hs-identifier hs-var">streams</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -103,33 +103,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;streams&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [GroupCallStream] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [GroupCallStream]
-</span><a href="#local-6989586621679547072"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679547078"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679547066"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span> </span><span id="local-6989586621679547064"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GroupCallStreams
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679547062"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679547062"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679547060"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679547060"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-40"></span><span>  </span><span id="local-6989586621679547059"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679547059"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679547060"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679547072"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span> </span><span id="local-6989586621679547070"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GroupCallStreams
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679547068"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679547068"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679547066"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679547066"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>  </span><span id="local-6989586621679547065"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679547065"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679547066"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-41"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679547059"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679547065"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;groupCallStreams&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GroupCallStreams
-</span><a href="#local-6989586621679547057"><span class="hs-identifier hs-var">parseGroupCallStreams</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679547062"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679547063"><span class="hs-identifier hs-var">parseGroupCallStreams</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679547068"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GroupCallStreams
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>   </span><span class="annot"><a href="#local-6989586621679547057"><span class="hs-identifier hs-type">parseGroupCallStreams</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span><span>
-</span><span id="line-46"></span><span>   </span><span id="local-6989586621679547057"><span class="annot"><span class="annottext">parseGroupCallStreams :: Value -&gt; Parser GroupCallStreams
-</span><a href="#local-6989586621679547057"><span class="hs-identifier hs-var hs-var">parseGroupCallStreams</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>   </span><span class="annot"><a href="#local-6989586621679547063"><span class="hs-identifier hs-type">parseGroupCallStreams</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span><span>
+</span><span id="line-46"></span><span>   </span><span id="local-6989586621679547063"><span class="annot"><span class="annottext">parseGroupCallStreams :: Value -&gt; Parser GroupCallStreams
+</span><a href="#local-6989586621679547063"><span class="hs-identifier hs-var hs-var">parseGroupCallStreams</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GroupCallStreams)
 -&gt; Value
 -&gt; Parser GroupCallStreams
@@ -141,11 +141,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GroupCallStreams
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679547055"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679547055"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-47"></span><span>    </span><span id="local-6989586621679547054"><span class="annot"><span class="annottext">Maybe [GroupCallStream]
-</span><a href="#local-6989586621679547054"><span class="hs-identifier hs-var">streams</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679547055"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [GroupCallStream])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679547061"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679547061"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679547060"><span class="annot"><span class="annottext">Maybe [GroupCallStream]
+</span><a href="#local-6989586621679547060"><span class="hs-identifier hs-var">streams</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679547061"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [GroupCallStream])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;streams&quot;</span></span><span>
@@ -157,7 +157,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GroupCallStreams :: Maybe [GroupCallStream] -&gt; GroupCallStreams
 </span><a href="API.GroupCallStreams.html#GroupCallStreams"><span class="hs-identifier hs-type">GroupCallStreams</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">streams :: Maybe [GroupCallStream]
 </span><a href="API.GroupCallStreams.html#streams"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [GroupCallStream]
-</span><a href="#local-6989586621679547054"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679547060"><span class="hs-identifier hs-var">streams</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-49"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GroupCallStreams
 forall a. Monoid a =&gt; a

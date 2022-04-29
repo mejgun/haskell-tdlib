@@ -17,7 +17,7 @@
 </span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="MessageStatistics"><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-var">MessageStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-18"></span><span>
 </span><span id="line-19"></span><span> </span><span id="MessageStatistics"><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-var">MessageStatistics</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="message_interaction_graph"><span class="annot"><span class="annottext">MessageStatistics -&gt; Maybe StatisticalGraph
-</span><a href="API.MessageStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.StatisticalGraph.html#StatisticalGraph"><span class="hs-identifier hs-type">StatisticalGraph.StatisticalGraph</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679573696"><span id="local-6989586621679573698"><span class="annot"><span class="annottext">MessageStatistics -&gt; MessageStatistics -&gt; Bool
+</span><a href="API.MessageStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.StatisticalGraph.html#StatisticalGraph"><span class="hs-identifier hs-type">StatisticalGraph.StatisticalGraph</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679573702"><span id="local-6989586621679573704"><span class="annot"><span class="annottext">MessageStatistics -&gt; MessageStatistics -&gt; Bool
 (MessageStatistics -&gt; MessageStatistics -&gt; Bool)
 -&gt; (MessageStatistics -&gt; MessageStatistics -&gt; Bool)
 -&gt; Eq MessageStatistics
@@ -28,11 +28,11 @@ $c/= :: MessageStatistics -&gt; MessageStatistics -&gt; Bool
 $c== :: MessageStatistics -&gt; MessageStatistics -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679573690"><span id="local-6989586621679573693"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679573688"><span class="annot"><span class="annottext">show :: MessageStatistics -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679573696"><span id="local-6989586621679573699"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679573694"><span class="annot"><span class="annottext">show :: MessageStatistics -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_interaction_graph :: MessageStatistics -&gt; Maybe StatisticalGraph
-</span><a href="API.MessageStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679573686"><span class="annot"><span class="annottext">Maybe StatisticalGraph
-</span><a href="#local-6989586621679573686"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.MessageStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679573692"><span class="annot"><span class="annottext">Maybe StatisticalGraph
+</span><a href="#local-6989586621679573692"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MessageStatistics&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -41,14 +41,14 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.MessageStatistics.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_interaction_graph&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe StatisticalGraph
-</span><a href="#local-6989586621679573686"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679573692"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span id="local-6989586621679573734"><span class="annot"><a href="API.MessageStatistics.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679573734"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679573734"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-25"></span><span id="local-6989586621679573740"><span class="annot"><a href="API.MessageStatistics.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679573740"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679573740"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-26"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.MessageStatistics.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679573683"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679573683"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679573682"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679573682"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679573683"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.MessageStatistics.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679573689"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679573689"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679573688"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679573688"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679573689"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -56,7 +56,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679573682"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679573688"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-27"></span><span class="annot"><a href="API.MessageStatistics.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -67,8 +67,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.MessageStatistics.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-31"></span><span class="annot"><a href="API.MessageStatistics.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679573681"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679573681"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span class="annot"><a href="API.MessageStatistics.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679573687"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679573687"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -82,17 +82,17 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679573681"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679573687"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-32"></span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679573671"><span id="local-6989586621679573673"><span id="local-6989586621679573675"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span> </span><span id="local-6989586621679573669"><span class="annot"><span class="annottext">toJSON :: MessageStatistics -&gt; Value
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679573677"><span id="local-6989586621679573679"><span id="local-6989586621679573681"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span> </span><span id="local-6989586621679573675"><span class="annot"><span class="annottext">toJSON :: MessageStatistics -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_interaction_graph :: MessageStatistics -&gt; Maybe StatisticalGraph
-</span><a href="API.MessageStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679573667"><span class="annot"><span class="annottext">Maybe StatisticalGraph
-</span><a href="#local-6989586621679573667"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.MessageStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679573673"><span class="annot"><span class="annottext">Maybe StatisticalGraph
+</span><a href="#local-6989586621679573673"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -103,33 +103,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;message_interaction_graph&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe StatisticalGraph -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe StatisticalGraph
-</span><a href="#local-6989586621679573667"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679573673"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679573661"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span> </span><span id="local-6989586621679573659"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageStatistics
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679573657"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679573657"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679573655"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679573655"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-40"></span><span>  </span><span id="local-6989586621679573654"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679573654"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679573655"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679573667"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span> </span><span id="local-6989586621679573665"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageStatistics
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679573663"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679573663"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679573661"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679573661"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>  </span><span id="local-6989586621679573660"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679573660"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679573661"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-41"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679573654"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679573660"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageStatistics&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageStatistics
-</span><a href="#local-6989586621679573652"><span class="hs-identifier hs-var">parseMessageStatistics</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679573657"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679573658"><span class="hs-identifier hs-var">parseMessageStatistics</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679573663"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser MessageStatistics
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>   </span><span class="annot"><a href="#local-6989586621679573652"><span class="hs-identifier hs-type">parseMessageStatistics</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span><span>
-</span><span id="line-46"></span><span>   </span><span id="local-6989586621679573652"><span class="annot"><span class="annottext">parseMessageStatistics :: Value -&gt; Parser MessageStatistics
-</span><a href="#local-6989586621679573652"><span class="hs-identifier hs-var hs-var">parseMessageStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>   </span><span class="annot"><a href="#local-6989586621679573658"><span class="hs-identifier hs-type">parseMessageStatistics</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span><span>
+</span><span id="line-46"></span><span>   </span><span id="local-6989586621679573658"><span class="annot"><span class="annottext">parseMessageStatistics :: Value -&gt; Parser MessageStatistics
+</span><a href="#local-6989586621679573658"><span class="hs-identifier hs-var hs-var">parseMessageStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageStatistics)
 -&gt; Value
 -&gt; Parser MessageStatistics
@@ -141,11 +141,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser MessageStatistics
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679573650"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679573650"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-47"></span><span>    </span><span id="local-6989586621679573649"><span class="annot"><span class="annottext">Maybe StatisticalGraph
-</span><a href="#local-6989586621679573649"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679573650"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticalGraph)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679573656"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679573656"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679573655"><span class="annot"><span class="annottext">Maybe StatisticalGraph
+</span><a href="#local-6989586621679573655"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679573656"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticalGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_interaction_graph&quot;</span></span><span>
@@ -157,7 +157,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MessageStatistics :: Maybe StatisticalGraph -&gt; MessageStatistics
 </span><a href="API.MessageStatistics.html#MessageStatistics"><span class="hs-identifier hs-type">MessageStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_interaction_graph :: Maybe StatisticalGraph
 </span><a href="API.MessageStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe StatisticalGraph
-</span><a href="#local-6989586621679573649"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679573655"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-49"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser MessageStatistics
 forall a. Monoid a =&gt; a

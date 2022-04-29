@@ -26,7 +26,7 @@
 </span><a href="API.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var hs-var">timeout</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="next_type"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="API.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var hs-var">next_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType.AuthenticationCodeType</span></a></span><span class="hs-special">,</span><span> </span><span id="_type"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="API.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType.AuthenticationCodeType</span></a></span><span class="hs-special">,</span><span> </span><span id="phone_number"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe String
-</span><a href="API.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679496807"><span id="local-6989586621679496809"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
+</span><a href="API.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679496813"><span id="local-6989586621679496815"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
 (AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool)
 -&gt; (AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool)
 -&gt; Eq AuthenticationCodeInfo
@@ -37,17 +37,17 @@ $c/= :: AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
 $c== :: AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496801"><span id="local-6989586621679496804"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span> </span><span id="local-6989586621679496799"><span class="annot"><span class="annottext">show :: AuthenticationCodeInfo -&gt; String
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496807"><span id="local-6989586621679496810"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679496805"><span class="annot"><span class="annottext">show :: AuthenticationCodeInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">timeout :: AuthenticationCodeInfo -&gt; Maybe Int
-</span><a href="API.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496797"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679496797"><span class="hs-identifier hs-var">timeout</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
-</span><a href="API.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496796"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496796"><span class="hs-identifier hs-var">next_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
-</span><a href="API.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496795"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496795"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
-</span><a href="API.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496794"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679496794"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496803"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679496803"><span class="hs-identifier hs-var">timeout</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><a href="API.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496802"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496802"><span class="hs-identifier hs-var">next_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><a href="API.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496801"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496801"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
+</span><a href="API.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496800"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496800"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;AuthenticationCodeInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -56,26 +56,26 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;timeout&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679496797"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
+</span><a href="#local-6989586621679496803"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;next_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496796"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
+</span><a href="#local-6989586621679496802"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496795"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679496801"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679496794"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679496800"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span id="local-6989586621679496852"><span class="annot"><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679496852"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679496852"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-31"></span><span id="local-6989586621679496858"><span class="annot"><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679496858"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679496858"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-32"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679496791"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679496791"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679496790"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679496790"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679496791"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679496797"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679496797"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679496796"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679496796"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679496797"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -83,7 +83,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679496790"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679496796"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-33"></span><span class="annot"><a href="API.AuthenticationCodeInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -94,8 +94,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.AuthenticationCodeInfo.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-37"></span><span class="annot"><a href="API.AuthenticationCodeInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679496789"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679496789"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-37"></span><span class="annot"><a href="API.AuthenticationCodeInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679496795"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679496795"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -109,23 +109,23 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679496789"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679496795"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-38"></span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496779"><span id="local-6989586621679496781"><span id="local-6989586621679496783"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span> </span><span id="local-6989586621679496777"><span class="annot"><span class="annottext">toJSON :: AuthenticationCodeInfo -&gt; Value
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496785"><span id="local-6989586621679496787"><span id="local-6989586621679496789"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span> </span><span id="local-6989586621679496783"><span class="annot"><span class="annottext">toJSON :: AuthenticationCodeInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">timeout :: AuthenticationCodeInfo -&gt; Maybe Int
-</span><a href="API.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var">timeout</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496775"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679496775"><span class="hs-identifier hs-var">timeout</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
-</span><a href="API.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var">next_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496774"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496774"><span class="hs-identifier hs-var">next_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
-</span><a href="API.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496773"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496773"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
-</span><a href="API.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496772"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679496772"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var">timeout</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496781"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679496781"><span class="hs-identifier hs-var">timeout</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><a href="API.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var">next_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496780"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496780"><span class="hs-identifier hs-var">next_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><a href="API.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496779"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496779"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
+</span><a href="API.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496778"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496778"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -136,45 +136,45 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;timeout&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679496775"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496781"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;next_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AuthenticationCodeType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496774"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496780"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AuthenticationCodeType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496773"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496779"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679496772"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679496778"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496766"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span> </span><span id="local-6989586621679496764"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthenticationCodeInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679496762"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679496762"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679496760"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496760"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>  </span><span id="local-6989586621679496759"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679496759"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496760"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496772"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span> </span><span id="local-6989586621679496770"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthenticationCodeInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679496768"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679496768"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679496766"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496766"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>  </span><span id="local-6989586621679496765"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679496765"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496766"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-47"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679496759"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679496765"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-48"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;authenticationCodeInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthenticationCodeInfo
-</span><a href="#local-6989586621679496757"><span class="hs-identifier hs-var">parseAuthenticationCodeInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679496762"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679496763"><span class="hs-identifier hs-var">parseAuthenticationCodeInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679496768"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AuthenticationCodeInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-50"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span>   </span><span class="annot"><a href="#local-6989586621679496757"><span class="hs-identifier hs-type">parseAuthenticationCodeInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
-</span><span id="line-52"></span><span>   </span><span id="local-6989586621679496757"><span class="annot"><span class="annottext">parseAuthenticationCodeInfo :: Value -&gt; Parser AuthenticationCodeInfo
-</span><a href="#local-6989586621679496757"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-51"></span><span>   </span><span class="annot"><a href="#local-6989586621679496763"><span class="hs-identifier hs-type">parseAuthenticationCodeInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
+</span><span id="line-52"></span><span>   </span><span id="local-6989586621679496763"><span class="annot"><span class="annottext">parseAuthenticationCodeInfo :: Value -&gt; Parser AuthenticationCodeInfo
+</span><a href="#local-6989586621679496763"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthenticationCodeInfo)
 -&gt; Value
 -&gt; Parser AuthenticationCodeInfo
@@ -186,13 +186,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthenticationCodeInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679496755"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-53"></span><span>    </span><span id="local-6989586621679496754"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679496754"><span class="hs-identifier hs-var">timeout</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679496761"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496761"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679496760"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679496760"><span class="hs-identifier hs-var">timeout</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679496761"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;timeout&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -200,25 +200,25 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679496761"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;timeout&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-54"></span><span>    </span><span id="local-6989586621679496751"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496751"><span class="hs-identifier hs-var">next_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AuthenticationCodeType)
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679496757"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496757"><span class="hs-identifier hs-var">next_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496761"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AuthenticationCodeType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;next_type&quot;</span></span><span>
-</span><span id="line-55"></span><span>    </span><span id="local-6989586621679496750"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496750"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AuthenticationCodeType)
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679496756"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496756"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496761"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AuthenticationCodeType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679496749"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679496749"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679496755"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496761"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;phone_number&quot;</span></span><span>
@@ -234,13 +234,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; AuthenticationCodeInfo
 </span><a href="API.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">timeout :: Maybe Int
 </span><a href="API.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var">timeout</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679496754"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_type :: Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496760"><span class="hs-identifier hs-var">timeout</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_type :: Maybe AuthenticationCodeType
 </span><a href="API.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var">next_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496751"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe AuthenticationCodeType
+</span><a href="#local-6989586621679496757"><span class="hs-identifier hs-var">next_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe AuthenticationCodeType
 </span><a href="API.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
-</span><a href="#local-6989586621679496750"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: Maybe String
+</span><a href="#local-6989586621679496756"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: Maybe String
 </span><a href="API.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679496749"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679496755"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-58"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser AuthenticationCodeInfo
 forall a. Monoid a =&gt; a

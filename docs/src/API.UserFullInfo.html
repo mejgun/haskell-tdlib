@@ -45,7 +45,7 @@
 </span><a href="API.UserFullInfo.html#supports_video_calls"><span class="hs-identifier hs-var hs-var">supports_video_calls</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_be_called"><span class="annot"><span class="annottext">UserFullInfo -&gt; Maybe Bool
 </span><a href="API.UserFullInfo.html#can_be_called"><span class="hs-identifier hs-var hs-var">can_be_called</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="is_blocked"><span class="annot"><span class="annottext">UserFullInfo -&gt; Maybe Bool
 </span><a href="API.UserFullInfo.html#is_blocked"><span class="hs-identifier hs-var hs-var">is_blocked</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="photo"><span class="annot"><span class="annottext">UserFullInfo -&gt; Maybe ChatPhoto
-</span><a href="API.UserFullInfo.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.ChatPhoto.html#ChatPhoto"><span class="hs-identifier hs-type">ChatPhoto.ChatPhoto</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679581292"><span id="local-6989586621679581294"><span class="annot"><span class="annottext">UserFullInfo -&gt; UserFullInfo -&gt; Bool
+</span><a href="API.UserFullInfo.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.ChatPhoto.html#ChatPhoto"><span class="hs-identifier hs-type">ChatPhoto.ChatPhoto</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679581298"><span id="local-6989586621679581300"><span class="annot"><span class="annottext">UserFullInfo -&gt; UserFullInfo -&gt; Bool
 (UserFullInfo -&gt; UserFullInfo -&gt; Bool)
 -&gt; (UserFullInfo -&gt; UserFullInfo -&gt; Bool) -&gt; Eq UserFullInfo
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -55,29 +55,29 @@ $c/= :: UserFullInfo -&gt; UserFullInfo -&gt; Bool
 $c== :: UserFullInfo -&gt; UserFullInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581286"><span id="local-6989586621679581289"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span> </span><span id="local-6989586621679581284"><span class="annot"><span class="annottext">show :: UserFullInfo -&gt; String
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581292"><span id="local-6989586621679581295"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span> </span><span id="local-6989586621679581290"><span class="annot"><span class="annottext">show :: UserFullInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bot_info :: UserFullInfo -&gt; Maybe BotInfo
-</span><a href="API.UserFullInfo.html#bot_info"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581282"><span class="annot"><span class="annottext">Maybe BotInfo
-</span><a href="#local-6989586621679581282"><span class="hs-identifier hs-var">bot_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_in_common_count :: UserFullInfo -&gt; Maybe Int
-</span><a href="API.UserFullInfo.html#group_in_common_count"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581281"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679581281"><span class="hs-identifier hs-var">group_in_common_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bio :: UserFullInfo -&gt; Maybe String
-</span><a href="API.UserFullInfo.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581280"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679581280"><span class="hs-identifier hs-var">bio</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_phone_number_privacy_exception :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#need_phone_number_privacy_exception"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581279"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581279"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_forwards :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#has_private_forwards"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581278"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581278"><span class="hs-identifier hs-var">has_private_forwards</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_calls :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#has_private_calls"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581277"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581277"><span class="hs-identifier hs-var">has_private_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_video_calls :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#supports_video_calls"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581276"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581276"><span class="hs-identifier hs-var">supports_video_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_called :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#can_be_called"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581275"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581275"><span class="hs-identifier hs-var">can_be_called</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blocked :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#is_blocked"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581274"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581274"><span class="hs-identifier hs-var">is_blocked</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: UserFullInfo -&gt; Maybe ChatPhoto
-</span><a href="API.UserFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581273"><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679581273"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.UserFullInfo.html#bot_info"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581288"><span class="annot"><span class="annottext">Maybe BotInfo
+</span><a href="#local-6989586621679581288"><span class="hs-identifier hs-var">bot_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_in_common_count :: UserFullInfo -&gt; Maybe Int
+</span><a href="API.UserFullInfo.html#group_in_common_count"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581287"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581287"><span class="hs-identifier hs-var">group_in_common_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bio :: UserFullInfo -&gt; Maybe String
+</span><a href="API.UserFullInfo.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581286"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679581286"><span class="hs-identifier hs-var">bio</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_phone_number_privacy_exception :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#need_phone_number_privacy_exception"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581285"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581285"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_forwards :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#has_private_forwards"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581284"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581284"><span class="hs-identifier hs-var">has_private_forwards</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_calls :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#has_private_calls"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581283"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581283"><span class="hs-identifier hs-var">has_private_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_video_calls :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#supports_video_calls"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581282"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581282"><span class="hs-identifier hs-var">supports_video_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_called :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#can_be_called"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581281"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581281"><span class="hs-identifier hs-var">can_be_called</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blocked :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#is_blocked"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581280"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581280"><span class="hs-identifier hs-var">is_blocked</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: UserFullInfo -&gt; Maybe ChatPhoto
+</span><a href="API.UserFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581279"><span class="annot"><span class="annottext">Maybe ChatPhoto
+</span><a href="#local-6989586621679581279"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserFullInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -86,50 +86,50 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;bot_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotInfo
-</span><a href="#local-6989586621679581282"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679581288"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;group_in_common_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679581281"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679581287"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;bio&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679581280"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679581286"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;need_phone_number_privacy_exception&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581279"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679581285"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;has_private_forwards&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581278"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679581284"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;has_private_calls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581277"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679581283"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_video_calls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581276"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679581282"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;can_be_called&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581275"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679581281"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_blocked&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581274"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatPhoto -&gt; String
+</span><a href="#local-6989586621679581280"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatPhoto -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679581273"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679581279"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span id="local-6989586621679581343"><span class="annot"><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679581343"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679581343"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-44"></span><span id="local-6989586621679581349"><span class="annot"><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679581349"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679581349"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-45"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679581270"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679581270"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679581269"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679581269"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679581270"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679581276"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679581276"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679581275"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679581275"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679581276"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -137,7 +137,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679581269"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679581275"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-46"></span><span class="annot"><a href="API.UserFullInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -148,8 +148,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.UserFullInfo.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-50"></span><span class="annot"><a href="API.UserFullInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679581268"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679581268"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span class="annot"><a href="API.UserFullInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679581274"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679581274"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -163,35 +163,35 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679581268"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679581274"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-51"></span><span>
 </span><span id="line-52"></span><span>
-</span><span id="line-53"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581258"><span id="local-6989586621679581260"><span id="local-6989586621679581262"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-54"></span><span> </span><span id="local-6989586621679581256"><span class="annot"><span class="annottext">toJSON :: UserFullInfo -&gt; Value
+</span><span id="line-53"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581264"><span id="local-6989586621679581266"><span id="local-6989586621679581268"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-54"></span><span> </span><span id="local-6989586621679581262"><span class="annot"><span class="annottext">toJSON :: UserFullInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bot_info :: UserFullInfo -&gt; Maybe BotInfo
-</span><a href="API.UserFullInfo.html#bot_info"><span class="hs-identifier hs-var">bot_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581254"><span class="annot"><span class="annottext">Maybe BotInfo
-</span><a href="#local-6989586621679581254"><span class="hs-identifier hs-var">bot_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_in_common_count :: UserFullInfo -&gt; Maybe Int
-</span><a href="API.UserFullInfo.html#group_in_common_count"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581253"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679581253"><span class="hs-identifier hs-var">group_in_common_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bio :: UserFullInfo -&gt; Maybe String
-</span><a href="API.UserFullInfo.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581252"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679581252"><span class="hs-identifier hs-var">bio</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_phone_number_privacy_exception :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#need_phone_number_privacy_exception"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581251"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581251"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_forwards :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#has_private_forwards"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581250"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581250"><span class="hs-identifier hs-var">has_private_forwards</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_calls :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#has_private_calls"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581249"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581249"><span class="hs-identifier hs-var">has_private_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_video_calls :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#supports_video_calls"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581248"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581248"><span class="hs-identifier hs-var">supports_video_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_called :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#can_be_called"><span class="hs-identifier hs-var">can_be_called</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581247"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581247"><span class="hs-identifier hs-var">can_be_called</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blocked :: UserFullInfo -&gt; Maybe Bool
-</span><a href="API.UserFullInfo.html#is_blocked"><span class="hs-identifier hs-var">is_blocked</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581246"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581246"><span class="hs-identifier hs-var">is_blocked</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: UserFullInfo -&gt; Maybe ChatPhoto
-</span><a href="API.UserFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581245"><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679581245"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.UserFullInfo.html#bot_info"><span class="hs-identifier hs-var">bot_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581260"><span class="annot"><span class="annottext">Maybe BotInfo
+</span><a href="#local-6989586621679581260"><span class="hs-identifier hs-var">bot_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_in_common_count :: UserFullInfo -&gt; Maybe Int
+</span><a href="API.UserFullInfo.html#group_in_common_count"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581259"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581259"><span class="hs-identifier hs-var">group_in_common_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bio :: UserFullInfo -&gt; Maybe String
+</span><a href="API.UserFullInfo.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581258"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679581258"><span class="hs-identifier hs-var">bio</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_phone_number_privacy_exception :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#need_phone_number_privacy_exception"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581257"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581257"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_forwards :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#has_private_forwards"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581256"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581256"><span class="hs-identifier hs-var">has_private_forwards</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_calls :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#has_private_calls"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581255"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581255"><span class="hs-identifier hs-var">has_private_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_video_calls :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#supports_video_calls"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581254"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581254"><span class="hs-identifier hs-var">supports_video_calls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_called :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#can_be_called"><span class="hs-identifier hs-var">can_be_called</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581253"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581253"><span class="hs-identifier hs-var">can_be_called</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blocked :: UserFullInfo -&gt; Maybe Bool
+</span><a href="API.UserFullInfo.html#is_blocked"><span class="hs-identifier hs-var">is_blocked</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581252"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581252"><span class="hs-identifier hs-var">is_blocked</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: UserFullInfo -&gt; Maybe ChatPhoto
+</span><a href="API.UserFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581251"><span class="annot"><span class="annottext">Maybe ChatPhoto
+</span><a href="#local-6989586621679581251"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-55"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -202,88 +202,88 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;bot_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BotInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotInfo
-</span><a href="#local-6989586621679581254"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581260"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_in_common_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679581253"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581259"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bio&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679581252"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581258"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;need_phone_number_privacy_exception&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581251"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581257"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;has_private_forwards&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581250"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581256"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;has_private_calls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581249"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581255"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_video_calls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581248"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581254"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;can_be_called&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581247"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581253"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_blocked&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581246"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679581252"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatPhoto -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679581245"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679581251"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581239"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span> </span><span id="local-6989586621679581237"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UserFullInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679581235"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679581235"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679581233"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581233"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679581232"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679581232"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581233"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581245"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-58"></span><span> </span><span id="local-6989586621679581243"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UserFullInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679581241"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679581241"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679581239"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581239"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679581238"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679581238"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581239"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-60"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679581232"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679581238"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-61"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userFullInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserFullInfo
-</span><a href="#local-6989586621679581230"><span class="hs-identifier hs-var">parseUserFullInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679581235"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679581236"><span class="hs-identifier hs-var">parseUserFullInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679581241"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-62"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser UserFullInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-63"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-64"></span><span>   </span><span class="annot"><a href="#local-6989586621679581230"><span class="hs-identifier hs-type">parseUserFullInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span><span>
-</span><span id="line-65"></span><span>   </span><span id="local-6989586621679581230"><span class="annot"><span class="annottext">parseUserFullInfo :: Value -&gt; Parser UserFullInfo
-</span><a href="#local-6989586621679581230"><span class="hs-identifier hs-var hs-var">parseUserFullInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-64"></span><span>   </span><span class="annot"><a href="#local-6989586621679581236"><span class="hs-identifier hs-type">parseUserFullInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span><span>
+</span><span id="line-65"></span><span>   </span><span id="local-6989586621679581236"><span class="annot"><span class="annottext">parseUserFullInfo :: Value -&gt; Parser UserFullInfo
+</span><a href="#local-6989586621679581236"><span class="hs-identifier hs-var hs-var">parseUserFullInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserFullInfo) -&gt; Value -&gt; Parser UserFullInfo
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserFullInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser UserFullInfo) -&gt; Value -&gt; Parser UserFullInfo)
 -&gt; (Object -&gt; Parser UserFullInfo) -&gt; Value -&gt; Parser UserFullInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581228"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679581227"><span class="annot"><span class="annottext">Maybe BotInfo
-</span><a href="#local-6989586621679581227"><span class="hs-identifier hs-var">bot_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BotInfo)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581234"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621679581233"><span class="annot"><span class="annottext">Maybe BotInfo
+</span><a href="#local-6989586621679581233"><span class="hs-identifier hs-var">bot_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BotInfo)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bot_info&quot;</span></span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621679581225"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679581225"><span class="hs-identifier hs-var">group_in_common_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679581231"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581231"><span class="hs-identifier hs-var">group_in_common_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_in_common_count&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -291,55 +291,55 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_in_common_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-68"></span><span>    </span><span id="local-6989586621679581223"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679581223"><span class="hs-identifier hs-var">bio</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679581229"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679581229"><span class="hs-identifier hs-var">bio</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bio&quot;</span></span><span>
-</span><span id="line-69"></span><span>    </span><span id="local-6989586621679581222"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581222"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679581228"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;need_phone_number_privacy_exception&quot;</span></span><span>
-</span><span id="line-70"></span><span>    </span><span id="local-6989586621679581221"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581221"><span class="hs-identifier hs-var">has_private_forwards</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-70"></span><span>    </span><span id="local-6989586621679581227"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581227"><span class="hs-identifier hs-var">has_private_forwards</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;has_private_forwards&quot;</span></span><span>
-</span><span id="line-71"></span><span>    </span><span id="local-6989586621679581220"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581220"><span class="hs-identifier hs-var">has_private_calls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679581226"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581226"><span class="hs-identifier hs-var">has_private_calls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;has_private_calls&quot;</span></span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679581219"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581219"><span class="hs-identifier hs-var">supports_video_calls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679581225"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581225"><span class="hs-identifier hs-var">supports_video_calls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_video_calls&quot;</span></span><span>
-</span><span id="line-73"></span><span>    </span><span id="local-6989586621679581218"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581218"><span class="hs-identifier hs-var">can_be_called</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679581224"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581224"><span class="hs-identifier hs-var">can_be_called</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;can_be_called&quot;</span></span><span>
-</span><span id="line-74"></span><span>    </span><span id="local-6989586621679581217"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581217"><span class="hs-identifier hs-var">is_blocked</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679581223"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679581223"><span class="hs-identifier hs-var">is_blocked</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_blocked&quot;</span></span><span>
-</span><span id="line-75"></span><span>    </span><span id="local-6989586621679581216"><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679581216"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatPhoto)
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679581222"><span class="annot"><span class="annottext">Maybe ChatPhoto
+</span><a href="#local-6989586621679581222"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581234"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatPhoto)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span>
@@ -361,25 +361,25 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; UserFullInfo
 </span><a href="API.UserFullInfo.html#UserFullInfo"><span class="hs-identifier hs-type">UserFullInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bot_info :: Maybe BotInfo
 </span><a href="API.UserFullInfo.html#bot_info"><span class="hs-identifier hs-var">bot_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BotInfo
-</span><a href="#local-6989586621679581227"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_in_common_count :: Maybe Int
+</span><a href="#local-6989586621679581233"><span class="hs-identifier hs-var">bot_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_in_common_count :: Maybe Int
 </span><a href="API.UserFullInfo.html#group_in_common_count"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679581225"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bio :: Maybe String
+</span><a href="#local-6989586621679581231"><span class="hs-identifier hs-var">group_in_common_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bio :: Maybe String
 </span><a href="API.UserFullInfo.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679581223"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_phone_number_privacy_exception :: Maybe Bool
+</span><a href="#local-6989586621679581229"><span class="hs-identifier hs-var">bio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_phone_number_privacy_exception :: Maybe Bool
 </span><a href="API.UserFullInfo.html#need_phone_number_privacy_exception"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581222"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_forwards :: Maybe Bool
+</span><a href="#local-6989586621679581228"><span class="hs-identifier hs-var">need_phone_number_privacy_exception</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_forwards :: Maybe Bool
 </span><a href="API.UserFullInfo.html#has_private_forwards"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581221"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_calls :: Maybe Bool
+</span><a href="#local-6989586621679581227"><span class="hs-identifier hs-var">has_private_forwards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_private_calls :: Maybe Bool
 </span><a href="API.UserFullInfo.html#has_private_calls"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581220"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_video_calls :: Maybe Bool
+</span><a href="#local-6989586621679581226"><span class="hs-identifier hs-var">has_private_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_video_calls :: Maybe Bool
 </span><a href="API.UserFullInfo.html#supports_video_calls"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581219"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_called :: Maybe Bool
+</span><a href="#local-6989586621679581225"><span class="hs-identifier hs-var">supports_video_calls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_called :: Maybe Bool
 </span><a href="API.UserFullInfo.html#can_be_called"><span class="hs-identifier hs-var">can_be_called</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581218"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blocked :: Maybe Bool
+</span><a href="#local-6989586621679581224"><span class="hs-identifier hs-var">can_be_called</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blocked :: Maybe Bool
 </span><a href="API.UserFullInfo.html#is_blocked"><span class="hs-identifier hs-var">is_blocked</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679581217"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe ChatPhoto
+</span><a href="#local-6989586621679581223"><span class="hs-identifier hs-var">is_blocked</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe ChatPhoto
 </span><a href="API.UserFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679581216"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679581222"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-77"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser UserFullInfo
 forall a. Monoid a =&gt; a

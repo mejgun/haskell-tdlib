@@ -31,7 +31,7 @@
 </span><span id="line-30"></span><span> </span><span class="hs-comment">-- __end_point__ The end point of the curve</span><span>
 </span><span id="line-31"></span><span> </span><span id="VectorPathCommandCubicBezierCurve"><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommandCubicBezierCurve"><span class="hs-identifier hs-var">VectorPathCommandCubicBezierCurve</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="end_point"><span class="annot"><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Point.html#Point"><span class="hs-identifier hs-type">Point.Point</span></a></span><span class="hs-special">,</span><span> </span><span id="end_control_point"><span class="annot"><span class="annottext">VectorPathCommand -&gt; Maybe Point
 </span><a href="API.VectorPathCommand.html#end_control_point"><span class="hs-identifier hs-var hs-var">end_control_point</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Point.html#Point"><span class="hs-identifier hs-type">Point.Point</span></a></span><span class="hs-special">,</span><span> </span><span id="start_control_point"><span class="annot"><span class="annottext">VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#start_control_point"><span class="hs-identifier hs-var hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Point.html#Point"><span class="hs-identifier hs-type">Point.Point</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679582632"><span id="local-6989586621679582634"><span class="annot"><span class="annottext">VectorPathCommand -&gt; VectorPathCommand -&gt; Bool
+</span><a href="API.VectorPathCommand.html#start_control_point"><span class="hs-identifier hs-var hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Point.html#Point"><span class="hs-identifier hs-type">Point.Point</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679582638"><span id="local-6989586621679582640"><span class="annot"><span class="annottext">VectorPathCommand -&gt; VectorPathCommand -&gt; Bool
 (VectorPathCommand -&gt; VectorPathCommand -&gt; Bool)
 -&gt; (VectorPathCommand -&gt; VectorPathCommand -&gt; Bool)
 -&gt; Eq VectorPathCommand
@@ -42,11 +42,11 @@ $c/= :: VectorPathCommand -&gt; VectorPathCommand -&gt; Bool
 $c== :: VectorPathCommand -&gt; VectorPathCommand -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679582626"><span id="local-6989586621679582629"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span> </span><span id="local-6989586621679582624"><span class="annot"><span class="annottext">show :: VectorPathCommand -&gt; String
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679582632"><span id="local-6989586621679582635"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span> </span><span id="local-6989586621679582630"><span class="annot"><span class="annottext">show :: VectorPathCommand -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommandLine"><span class="hs-identifier hs-type">VectorPathCommandLine</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">end_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582622"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582622"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582628"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582628"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;VectorPathCommandLine&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -55,15 +55,15 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;end_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582622"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679582628"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span><span>
 </span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommandCubicBezierCurve"><span class="hs-identifier hs-type">VectorPathCommandCubicBezierCurve</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">end_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582619"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582619"><span class="hs-identifier hs-var">end_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">end_control_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#end_control_point"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582618"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582618"><span class="hs-identifier hs-var">end_control_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_control_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#start_control_point"><span class="hs-identifier hs-var">start_control_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582617"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582617"><span class="hs-identifier hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582625"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582625"><span class="hs-identifier hs-var">end_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">end_control_point :: VectorPathCommand -&gt; Maybe Point
+</span><a href="API.VectorPathCommand.html#end_control_point"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582624"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582624"><span class="hs-identifier hs-var">end_control_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_control_point :: VectorPathCommand -&gt; Maybe Point
+</span><a href="API.VectorPathCommand.html#start_control_point"><span class="hs-identifier hs-var">start_control_point</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679582623"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582623"><span class="hs-identifier hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;VectorPathCommandCubicBezierCurve&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -72,22 +72,22 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;end_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582619"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Point -&gt; String
+</span><a href="#local-6989586621679582625"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Point -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;end_control_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582618"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Point -&gt; String
+</span><a href="#local-6989586621679582624"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Point -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;start_control_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582617"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679582623"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span id="local-6989586621679582673"><span class="annot"><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679582673"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679582673"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-40"></span><span id="local-6989586621679582679"><span class="annot"><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679582679"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679582679"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-41"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679582616"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679582616"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679582615"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679582615"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679582616"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679582622"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679582622"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679582621"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679582621"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679582622"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -95,7 +95,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679582615"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679582621"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-42"></span><span class="annot"><a href="API.VectorPathCommand.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -106,8 +106,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.VectorPathCommand.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-46"></span><span class="annot"><a href="API.VectorPathCommand.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679582614"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679582614"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span class="annot"><a href="API.VectorPathCommand.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679582620"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679582620"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -121,17 +121,17 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679582614"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679582620"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-47"></span><span>
 </span><span id="line-48"></span><span>
-</span><span id="line-49"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679582604"><span id="local-6989586621679582606"><span id="local-6989586621679582608"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-50"></span><span> </span><span id="local-6989586621679582602"><span class="annot"><span class="annottext">toJSON :: VectorPathCommand -&gt; Value
+</span><span id="line-49"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679582610"><span id="local-6989586621679582612"><span id="local-6989586621679582614"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-50"></span><span> </span><span id="local-6989586621679582608"><span class="annot"><span class="annottext">toJSON :: VectorPathCommand -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommandLine"><span class="hs-identifier hs-type">VectorPathCommandLine</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">end_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582600"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582600"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582606"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582606"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-51"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -142,15 +142,15 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;end_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Point -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582600"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679582606"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-52"></span><span>
 </span><span id="line-53"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommandCubicBezierCurve"><span class="hs-identifier hs-type">VectorPathCommandCubicBezierCurve</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">end_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582596"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582596"><span class="hs-identifier hs-var">end_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">end_control_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#end_control_point"><span class="hs-identifier hs-var">end_control_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582595"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582595"><span class="hs-identifier hs-var">end_control_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_control_point :: VectorPathCommand -&gt; Maybe Point
-</span><a href="API.VectorPathCommand.html#start_control_point"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582594"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582594"><span class="hs-identifier hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582602"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582602"><span class="hs-identifier hs-var">end_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">end_control_point :: VectorPathCommand -&gt; Maybe Point
+</span><a href="API.VectorPathCommand.html#end_control_point"><span class="hs-identifier hs-var">end_control_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582601"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582601"><span class="hs-identifier hs-var">end_control_point</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_control_point :: VectorPathCommand -&gt; Maybe Point
+</span><a href="API.VectorPathCommand.html#start_control_point"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679582600"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582600"><span class="hs-identifier hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-54"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -161,45 +161,45 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;end_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Point -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582596"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679582602"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;end_control_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Point -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582595"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679582601"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;start_control_point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Point -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582594"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679582600"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-55"></span><span>
-</span><span id="line-56"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679582591"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-57"></span><span> </span><span id="local-6989586621679582589"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser VectorPathCommand
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679582587"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679582587"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679582585"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582585"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-58"></span><span>  </span><span id="local-6989586621679582584"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679582584"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582585"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-56"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679582597"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-57"></span><span> </span><span id="local-6989586621679582595"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser VectorPathCommand
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679582593"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679582593"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679582591"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582591"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-58"></span><span>  </span><span id="local-6989586621679582590"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679582590"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582591"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-59"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679582584"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679582590"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-60"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;vectorPathCommandLine&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser VectorPathCommand
-</span><a href="#local-6989586621679582582"><span class="hs-identifier hs-var">parseVectorPathCommandLine</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679582587"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679582588"><span class="hs-identifier hs-var">parseVectorPathCommandLine</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679582593"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-61"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;vectorPathCommandCubicBezierCurve&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser VectorPathCommand
-</span><a href="#local-6989586621679582581"><span class="hs-identifier hs-var">parseVectorPathCommandCubicBezierCurve</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679582587"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679582587"><span class="hs-identifier hs-var">parseVectorPathCommandCubicBezierCurve</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679582593"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-62"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser VectorPathCommand
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-63"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-64"></span><span>   </span><span class="annot"><a href="#local-6989586621679582582"><span class="hs-identifier hs-type">parseVectorPathCommandLine</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span><span>
-</span><span id="line-65"></span><span>   </span><span id="local-6989586621679582582"><span class="annot"><span class="annottext">parseVectorPathCommandLine :: Value -&gt; Parser VectorPathCommand
-</span><a href="#local-6989586621679582582"><span class="hs-identifier hs-var hs-var">parseVectorPathCommandLine</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-64"></span><span>   </span><span class="annot"><a href="#local-6989586621679582588"><span class="hs-identifier hs-type">parseVectorPathCommandLine</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span><span>
+</span><span id="line-65"></span><span>   </span><span id="local-6989586621679582588"><span class="annot"><span class="annottext">parseVectorPathCommandLine :: Value -&gt; Parser VectorPathCommand
+</span><a href="#local-6989586621679582588"><span class="hs-identifier hs-var hs-var">parseVectorPathCommandLine</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser VectorPathCommand)
 -&gt; Value
 -&gt; Parser VectorPathCommand
@@ -211,11 +211,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser VectorPathCommand
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679582579"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582579"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679582578"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582578"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582579"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679582585"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582585"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621679582584"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582584"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582585"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;end_point&quot;</span></span><span>
@@ -227,11 +227,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">VectorPathCommandLine :: Maybe Point -&gt; VectorPathCommand
 </span><a href="API.VectorPathCommand.html#VectorPathCommandLine"><span class="hs-identifier hs-type">VectorPathCommandLine</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">end_point :: Maybe Point
 </span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582578"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679582584"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-68"></span><span>
-</span><span id="line-69"></span><span>   </span><span class="annot"><a href="#local-6989586621679582581"><span class="hs-identifier hs-type">parseVectorPathCommandCubicBezierCurve</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span><span>
-</span><span id="line-70"></span><span>   </span><span id="local-6989586621679582581"><span class="annot"><span class="annottext">parseVectorPathCommandCubicBezierCurve :: Value -&gt; Parser VectorPathCommand
-</span><a href="#local-6989586621679582581"><span class="hs-identifier hs-var hs-var">parseVectorPathCommandCubicBezierCurve</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-69"></span><span>   </span><span class="annot"><a href="#local-6989586621679582587"><span class="hs-identifier hs-type">parseVectorPathCommandCubicBezierCurve</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.VectorPathCommand.html#VectorPathCommand"><span class="hs-identifier hs-type">VectorPathCommand</span></a></span><span>
+</span><span id="line-70"></span><span>   </span><span id="local-6989586621679582587"><span class="annot"><span class="annottext">parseVectorPathCommandCubicBezierCurve :: Value -&gt; Parser VectorPathCommand
+</span><a href="#local-6989586621679582587"><span class="hs-identifier hs-var hs-var">parseVectorPathCommandCubicBezierCurve</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser VectorPathCommand)
 -&gt; Value
 -&gt; Parser VectorPathCommand
@@ -243,23 +243,23 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser VectorPathCommand
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679582576"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582576"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-71"></span><span>    </span><span id="local-6989586621679582575"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582575"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582576"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679582582"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582582"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679582581"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582581"><span class="hs-identifier hs-var">end_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582582"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;end_point&quot;</span></span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679582574"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582574"><span class="hs-identifier hs-var">end_control_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582576"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679582580"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582580"><span class="hs-identifier hs-var">end_control_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582582"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;end_control_point&quot;</span></span><span>
-</span><span id="line-73"></span><span>    </span><span id="local-6989586621679582573"><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582573"><span class="hs-identifier hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679582576"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679582579"><span class="annot"><span class="annottext">Maybe Point
+</span><a href="#local-6989586621679582579"><span class="hs-identifier hs-var">start_control_point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679582582"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Point)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;start_control_point&quot;</span></span><span>
@@ -271,11 +271,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">VectorPathCommandCubicBezierCurve :: Maybe Point -&gt; Maybe Point -&gt; Maybe Point -&gt; VectorPathCommand
 </span><a href="API.VectorPathCommand.html#VectorPathCommandCubicBezierCurve"><span class="hs-identifier hs-type">VectorPathCommandCubicBezierCurve</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">end_point :: Maybe Point
 </span><a href="API.VectorPathCommand.html#end_point"><span class="hs-identifier hs-var">end_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582575"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">end_control_point :: Maybe Point
+</span><a href="#local-6989586621679582581"><span class="hs-identifier hs-var">end_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">end_control_point :: Maybe Point
 </span><a href="API.VectorPathCommand.html#end_control_point"><span class="hs-identifier hs-var">end_control_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582574"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_control_point :: Maybe Point
+</span><a href="#local-6989586621679582580"><span class="hs-identifier hs-var">end_control_point</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_control_point :: Maybe Point
 </span><a href="API.VectorPathCommand.html#start_control_point"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Point
-</span><a href="#local-6989586621679582573"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679582579"><span class="hs-identifier hs-var">start_control_point</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-75"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser VectorPathCommand
 forall a. Monoid a =&gt; a
