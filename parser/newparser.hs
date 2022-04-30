@@ -14,13 +14,37 @@ data Entry = Entry
     comments :: [T.Text],
     args :: [Entry]
   }
+  deriving (Show)
 
 main :: IO ()
 main = do
   l <- TIO.readFile "td_api.tl"
   let [dat, funcs] = T.splitOn "---functions---" l
-  let a = map (T.strip . T.dropAround (== '\n') . T.strip) $ T.splitOn "\n//@description" dat
-  print a
+  let a = splitToItems funcs
+  print $ itemToEntry $ a !! 3
+
+splitToItems :: T.Text -> [T.Text]
+splitToItems =
+  filter (/= "")
+    . map (T.strip . T.dropAround (== '\n') . T.strip)
+    . T.splitOn "\n//@description"
+
+itemToEntry :: T.Text -> Entry
+itemToEntry x = do
+  let splited = filter (/= "") . map T.strip $ T.splitOn "\n" x
+  let comments = head splited : map (T.dropWhile (== '/')) (filter (T.isPrefixOf "//") splited)
+  let [dat] = filter (not . T.isPrefixOf "//") $tail splited
+  let (a, name) = T.breakOn "=" dat
+  let (constr, rest) = T.breakOn " " a
+  Entry
+    { comments = takeWhile (not . T.isPrefixOf "@") comments,
+      name = myStrip name,
+      constructor = myStrip constr,
+      args = []
+    }
+
+myStrip :: T.Text -> T.Text
+myStrip = T.strip . T.dropAround (== '=') . T.dropAround (== ';') . T.strip
 
 -- -- | convert "chatPhoto small:file big:file = ChatPhoto;" to
 -- -- map["ChatPhoto"]=[("chatPhoto", "small:file big:file")]
