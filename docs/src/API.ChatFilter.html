@@ -54,7 +54,7 @@
 </span><a href="API.ChatFilter.html#included_chat_ids"><span class="hs-identifier hs-var hs-var">included_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="pinned_chat_ids"><span class="annot"><span class="annottext">ChatFilter -&gt; Maybe [Int]
 </span><a href="API.ChatFilter.html#pinned_chat_ids"><span class="hs-identifier hs-var hs-var">pinned_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="icon_name"><span class="annot"><span class="annottext">ChatFilter -&gt; Maybe String
 </span><a href="API.ChatFilter.html#icon_name"><span class="hs-identifier hs-var hs-var">icon_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="title"><span class="annot"><span class="annottext">ChatFilter -&gt; Maybe String
-</span><a href="API.ChatFilter.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679500419"><span id="local-6989586621679500421"><span class="annot"><span class="annottext">ChatFilter -&gt; ChatFilter -&gt; Bool
+</span><a href="API.ChatFilter.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679496201"><span id="local-6989586621679496203"><span class="annot"><span class="annottext">ChatFilter -&gt; ChatFilter -&gt; Bool
 (ChatFilter -&gt; ChatFilter -&gt; Bool)
 -&gt; (ChatFilter -&gt; ChatFilter -&gt; Bool) -&gt; Eq ChatFilter
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -64,35 +64,35 @@ $c/= :: ChatFilter -&gt; ChatFilter -&gt; Bool
 $c== :: ChatFilter -&gt; ChatFilter -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679500413"><span id="local-6989586621679500416"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span> </span><span id="local-6989586621679500411"><span class="annot"><span class="annottext">show :: ChatFilter -&gt; String
+</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496195"><span id="local-6989586621679496198"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-47"></span><span> </span><span id="local-6989586621679496193"><span class="annot"><span class="annottext">show :: ChatFilter -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">include_channels :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_channels"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500409"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500409"><span class="hs-identifier hs-var">include_channels</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_groups :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_groups"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500408"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500408"><span class="hs-identifier hs-var">include_groups</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_bots :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_bots"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500407"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500407"><span class="hs-identifier hs-var">include_bots</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_non_contacts :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_non_contacts"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500406"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500406"><span class="hs-identifier hs-var">include_non_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_contacts :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_contacts"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500405"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500405"><span class="hs-identifier hs-var">include_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_archived :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#exclude_archived"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500404"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500404"><span class="hs-identifier hs-var">exclude_archived</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_read :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#exclude_read"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500403"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500403"><span class="hs-identifier hs-var">exclude_read</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_muted :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#exclude_muted"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500402"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500402"><span class="hs-identifier hs-var">exclude_muted</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">excluded_chat_ids :: ChatFilter -&gt; Maybe [Int]
-</span><a href="API.ChatFilter.html#excluded_chat_ids"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500401"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500401"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">included_chat_ids :: ChatFilter -&gt; Maybe [Int]
-</span><a href="API.ChatFilter.html#included_chat_ids"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500400"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500400"><span class="hs-identifier hs-var">included_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pinned_chat_ids :: ChatFilter -&gt; Maybe [Int]
-</span><a href="API.ChatFilter.html#pinned_chat_ids"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500399"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500399"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_name :: ChatFilter -&gt; Maybe String
-</span><a href="API.ChatFilter.html#icon_name"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500398"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500398"><span class="hs-identifier hs-var">icon_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: ChatFilter -&gt; Maybe String
-</span><a href="API.ChatFilter.html#title"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679500397"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500397"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ChatFilter.html#include_channels"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496191"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496191"><span class="hs-identifier hs-var">include_channels</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_groups :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_groups"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496190"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496190"><span class="hs-identifier hs-var">include_groups</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_bots :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_bots"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496189"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496189"><span class="hs-identifier hs-var">include_bots</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_non_contacts :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_non_contacts"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496188"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496188"><span class="hs-identifier hs-var">include_non_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_contacts :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_contacts"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496187"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496187"><span class="hs-identifier hs-var">include_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_archived :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#exclude_archived"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496186"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496186"><span class="hs-identifier hs-var">exclude_archived</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_read :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#exclude_read"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496185"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496185"><span class="hs-identifier hs-var">exclude_read</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_muted :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#exclude_muted"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496184"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496184"><span class="hs-identifier hs-var">exclude_muted</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">excluded_chat_ids :: ChatFilter -&gt; Maybe [Int]
+</span><a href="API.ChatFilter.html#excluded_chat_ids"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496183"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496183"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">included_chat_ids :: ChatFilter -&gt; Maybe [Int]
+</span><a href="API.ChatFilter.html#included_chat_ids"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496182"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496182"><span class="hs-identifier hs-var">included_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pinned_chat_ids :: ChatFilter -&gt; Maybe [Int]
+</span><a href="API.ChatFilter.html#pinned_chat_ids"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496181"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496181"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_name :: ChatFilter -&gt; Maybe String
+</span><a href="API.ChatFilter.html#icon_name"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496180"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496180"><span class="hs-identifier hs-var">icon_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: ChatFilter -&gt; Maybe String
+</span><a href="API.ChatFilter.html#title"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679496179"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496179"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-48"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChatFilter&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -101,62 +101,62 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;include_channels&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500409"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679496191"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;include_groups&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500408"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679496190"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;include_bots&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500407"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679496189"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;include_non_contacts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500406"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679496188"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;include_contacts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500405"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679496187"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;exclude_archived&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500404"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679496186"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;exclude_read&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500403"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679496185"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;exclude_muted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500402"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
+</span><a href="#local-6989586621679496184"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;excluded_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500401"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
+</span><a href="#local-6989586621679496183"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;included_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500400"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
+</span><a href="#local-6989586621679496182"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;pinned_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500399"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679496181"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;icon_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500398"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679496180"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500397"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679496179"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span id="local-6989586621679500469"><span class="annot"><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679500469"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679500469"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-50"></span><span id="local-6989586621679496251"><span class="annot"><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679496251"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679496251"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-51"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679500394"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679500394"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679500393"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679500393"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679500394"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679496176"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679496176"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679496175"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679496175"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679496176"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -164,7 +164,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679500393"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679496175"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-52"></span><span class="annot"><a href="API.ChatFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -175,8 +175,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.ChatFilter.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-56"></span><span class="annot"><a href="API.ChatFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679500392"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679500392"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-56"></span><span class="annot"><a href="API.ChatFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679496174"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679496174"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -190,41 +190,41 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679500392"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679496174"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-57"></span><span>
 </span><span id="line-58"></span><span>
-</span><span id="line-59"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679500382"><span id="local-6989586621679500384"><span id="local-6989586621679500386"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-60"></span><span> </span><span id="local-6989586621679500380"><span class="annot"><span class="annottext">toJSON :: ChatFilter -&gt; Value
+</span><span id="line-59"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496164"><span id="local-6989586621679496166"><span id="local-6989586621679496168"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-60"></span><span> </span><span id="local-6989586621679496162"><span class="annot"><span class="annottext">toJSON :: ChatFilter -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">include_channels :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_channels"><span class="hs-identifier hs-var">include_channels</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500378"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500378"><span class="hs-identifier hs-var">include_channels</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_groups :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_groups"><span class="hs-identifier hs-var">include_groups</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500377"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500377"><span class="hs-identifier hs-var">include_groups</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_bots :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_bots"><span class="hs-identifier hs-var">include_bots</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500376"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500376"><span class="hs-identifier hs-var">include_bots</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_non_contacts :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_non_contacts"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500375"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500375"><span class="hs-identifier hs-var">include_non_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_contacts :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#include_contacts"><span class="hs-identifier hs-var">include_contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500374"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500374"><span class="hs-identifier hs-var">include_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_archived :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#exclude_archived"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500373"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500373"><span class="hs-identifier hs-var">exclude_archived</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_read :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#exclude_read"><span class="hs-identifier hs-var">exclude_read</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500372"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500372"><span class="hs-identifier hs-var">exclude_read</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_muted :: ChatFilter -&gt; Maybe Bool
-</span><a href="API.ChatFilter.html#exclude_muted"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500371"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500371"><span class="hs-identifier hs-var">exclude_muted</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">excluded_chat_ids :: ChatFilter -&gt; Maybe [Int]
-</span><a href="API.ChatFilter.html#excluded_chat_ids"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500370"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500370"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">included_chat_ids :: ChatFilter -&gt; Maybe [Int]
-</span><a href="API.ChatFilter.html#included_chat_ids"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500369"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500369"><span class="hs-identifier hs-var">included_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pinned_chat_ids :: ChatFilter -&gt; Maybe [Int]
-</span><a href="API.ChatFilter.html#pinned_chat_ids"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500368"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500368"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_name :: ChatFilter -&gt; Maybe String
-</span><a href="API.ChatFilter.html#icon_name"><span class="hs-identifier hs-var">icon_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500367"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500367"><span class="hs-identifier hs-var">icon_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: ChatFilter -&gt; Maybe String
-</span><a href="API.ChatFilter.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679500366"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500366"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ChatFilter.html#include_channels"><span class="hs-identifier hs-var">include_channels</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496160"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496160"><span class="hs-identifier hs-var">include_channels</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_groups :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_groups"><span class="hs-identifier hs-var">include_groups</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496159"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496159"><span class="hs-identifier hs-var">include_groups</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_bots :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_bots"><span class="hs-identifier hs-var">include_bots</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496158"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496158"><span class="hs-identifier hs-var">include_bots</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_non_contacts :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_non_contacts"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496157"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496157"><span class="hs-identifier hs-var">include_non_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_contacts :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#include_contacts"><span class="hs-identifier hs-var">include_contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496156"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496156"><span class="hs-identifier hs-var">include_contacts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_archived :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#exclude_archived"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496155"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496155"><span class="hs-identifier hs-var">exclude_archived</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_read :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#exclude_read"><span class="hs-identifier hs-var">exclude_read</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496154"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496154"><span class="hs-identifier hs-var">exclude_read</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_muted :: ChatFilter -&gt; Maybe Bool
+</span><a href="API.ChatFilter.html#exclude_muted"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496153"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496153"><span class="hs-identifier hs-var">exclude_muted</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">excluded_chat_ids :: ChatFilter -&gt; Maybe [Int]
+</span><a href="API.ChatFilter.html#excluded_chat_ids"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496152"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496152"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">included_chat_ids :: ChatFilter -&gt; Maybe [Int]
+</span><a href="API.ChatFilter.html#included_chat_ids"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496151"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496151"><span class="hs-identifier hs-var">included_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pinned_chat_ids :: ChatFilter -&gt; Maybe [Int]
+</span><a href="API.ChatFilter.html#pinned_chat_ids"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496150"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496150"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_name :: ChatFilter -&gt; Maybe String
+</span><a href="API.ChatFilter.html#icon_name"><span class="hs-identifier hs-var">icon_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496149"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496149"><span class="hs-identifier hs-var">icon_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: ChatFilter -&gt; Maybe String
+</span><a href="API.ChatFilter.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679496148"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496148"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-61"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -235,164 +235,164 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;include_channels&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500378"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496160"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_groups&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500377"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496159"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_bots&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500376"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496158"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_non_contacts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500375"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496157"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_contacts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500374"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496156"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_archived&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500373"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496155"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_read&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500372"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496154"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_muted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500371"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496153"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;excluded_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500370"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496152"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;included_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500369"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496151"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;pinned_chat_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500368"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496150"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;icon_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500367"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679496149"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500366"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679496148"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-62"></span><span>
-</span><span id="line-63"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679500360"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-64"></span><span> </span><span id="local-6989586621679500358"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatFilter
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679500356"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679500356"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679500354"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500354"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-65"></span><span>  </span><span id="local-6989586621679500353"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679500353"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500354"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-63"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679496142"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-64"></span><span> </span><span id="local-6989586621679496140"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatFilter
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679496138"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679496138"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679496136"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496136"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-65"></span><span>  </span><span id="local-6989586621679496135"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679496135"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496136"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-66"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679500353"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679496135"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-67"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chatFilter&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatFilter
-</span><a href="#local-6989586621679500351"><span class="hs-identifier hs-var">parseChatFilter</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679500356"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679496133"><span class="hs-identifier hs-var">parseChatFilter</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679496138"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-68"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatFilter
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-69"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-70"></span><span>   </span><span class="annot"><a href="#local-6989586621679500351"><span class="hs-identifier hs-type">parseChatFilter</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span><span>
-</span><span id="line-71"></span><span>   </span><span id="local-6989586621679500351"><span class="annot"><span class="annottext">parseChatFilter :: Value -&gt; Parser ChatFilter
-</span><a href="#local-6989586621679500351"><span class="hs-identifier hs-var hs-var">parseChatFilter</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-70"></span><span>   </span><span class="annot"><a href="#local-6989586621679496133"><span class="hs-identifier hs-type">parseChatFilter</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span><span>
+</span><span id="line-71"></span><span>   </span><span id="local-6989586621679496133"><span class="annot"><span class="annottext">parseChatFilter :: Value -&gt; Parser ChatFilter
+</span><a href="#local-6989586621679496133"><span class="hs-identifier hs-var hs-var">parseChatFilter</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatFilter) -&gt; Value -&gt; Parser ChatFilter
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChatFilter&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ChatFilter) -&gt; Value -&gt; Parser ChatFilter)
 -&gt; (Object -&gt; Parser ChatFilter) -&gt; Value -&gt; Parser ChatFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679500349"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679500348"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500348"><span class="hs-identifier hs-var">include_channels</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679496131"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679496130"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496130"><span class="hs-identifier hs-var">include_channels</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_channels&quot;</span></span><span>
-</span><span id="line-73"></span><span>    </span><span id="local-6989586621679500346"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500346"><span class="hs-identifier hs-var">include_groups</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679496128"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496128"><span class="hs-identifier hs-var">include_groups</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_groups&quot;</span></span><span>
-</span><span id="line-74"></span><span>    </span><span id="local-6989586621679500345"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500345"><span class="hs-identifier hs-var">include_bots</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679496127"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496127"><span class="hs-identifier hs-var">include_bots</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_bots&quot;</span></span><span>
-</span><span id="line-75"></span><span>    </span><span id="local-6989586621679500344"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500344"><span class="hs-identifier hs-var">include_non_contacts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679496126"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496126"><span class="hs-identifier hs-var">include_non_contacts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_non_contacts&quot;</span></span><span>
-</span><span id="line-76"></span><span>    </span><span id="local-6989586621679500343"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500343"><span class="hs-identifier hs-var">include_contacts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-76"></span><span>    </span><span id="local-6989586621679496125"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496125"><span class="hs-identifier hs-var">include_contacts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;include_contacts&quot;</span></span><span>
-</span><span id="line-77"></span><span>    </span><span id="local-6989586621679500342"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500342"><span class="hs-identifier hs-var">exclude_archived</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-77"></span><span>    </span><span id="local-6989586621679496124"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496124"><span class="hs-identifier hs-var">exclude_archived</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_archived&quot;</span></span><span>
-</span><span id="line-78"></span><span>    </span><span id="local-6989586621679500341"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500341"><span class="hs-identifier hs-var">exclude_read</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-78"></span><span>    </span><span id="local-6989586621679496123"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496123"><span class="hs-identifier hs-var">exclude_read</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_read&quot;</span></span><span>
-</span><span id="line-79"></span><span>    </span><span id="local-6989586621679500340"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500340"><span class="hs-identifier hs-var">exclude_muted</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-79"></span><span>    </span><span id="local-6989586621679496122"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679496122"><span class="hs-identifier hs-var">exclude_muted</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exclude_muted&quot;</span></span><span>
-</span><span id="line-80"></span><span>    </span><span id="local-6989586621679500339"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500339"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span id="line-80"></span><span>    </span><span id="local-6989586621679496121"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496121"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;excluded_chat_ids&quot;</span></span><span>
-</span><span id="line-81"></span><span>    </span><span id="local-6989586621679500338"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500338"><span class="hs-identifier hs-var">included_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span id="line-81"></span><span>    </span><span id="local-6989586621679496120"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496120"><span class="hs-identifier hs-var">included_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;included_chat_ids&quot;</span></span><span>
-</span><span id="line-82"></span><span>    </span><span id="local-6989586621679500337"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500337"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span id="line-82"></span><span>    </span><span id="local-6989586621679496119"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679496119"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;pinned_chat_ids&quot;</span></span><span>
-</span><span id="line-83"></span><span>    </span><span id="local-6989586621679500336"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500336"><span class="hs-identifier hs-var">icon_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-83"></span><span>    </span><span id="local-6989586621679496118"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496118"><span class="hs-identifier hs-var">icon_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;icon_name&quot;</span></span><span>
-</span><span id="line-84"></span><span>    </span><span id="local-6989586621679500335"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500335"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679500349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-84"></span><span>    </span><span id="local-6989586621679496117"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679496117"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679496131"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span>
@@ -417,31 +417,31 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ChatFilter
 </span><a href="API.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">include_channels :: Maybe Bool
 </span><a href="API.ChatFilter.html#include_channels"><span class="hs-identifier hs-var">include_channels</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500348"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_groups :: Maybe Bool
+</span><a href="#local-6989586621679496130"><span class="hs-identifier hs-var">include_channels</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_groups :: Maybe Bool
 </span><a href="API.ChatFilter.html#include_groups"><span class="hs-identifier hs-var">include_groups</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500346"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_bots :: Maybe Bool
+</span><a href="#local-6989586621679496128"><span class="hs-identifier hs-var">include_groups</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_bots :: Maybe Bool
 </span><a href="API.ChatFilter.html#include_bots"><span class="hs-identifier hs-var">include_bots</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500345"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_non_contacts :: Maybe Bool
+</span><a href="#local-6989586621679496127"><span class="hs-identifier hs-var">include_bots</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_non_contacts :: Maybe Bool
 </span><a href="API.ChatFilter.html#include_non_contacts"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500344"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_contacts :: Maybe Bool
+</span><a href="#local-6989586621679496126"><span class="hs-identifier hs-var">include_non_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">include_contacts :: Maybe Bool
 </span><a href="API.ChatFilter.html#include_contacts"><span class="hs-identifier hs-var">include_contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500343"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_archived :: Maybe Bool
+</span><a href="#local-6989586621679496125"><span class="hs-identifier hs-var">include_contacts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_archived :: Maybe Bool
 </span><a href="API.ChatFilter.html#exclude_archived"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500342"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_read :: Maybe Bool
+</span><a href="#local-6989586621679496124"><span class="hs-identifier hs-var">exclude_archived</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_read :: Maybe Bool
 </span><a href="API.ChatFilter.html#exclude_read"><span class="hs-identifier hs-var">exclude_read</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500341"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_muted :: Maybe Bool
+</span><a href="#local-6989586621679496123"><span class="hs-identifier hs-var">exclude_read</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exclude_muted :: Maybe Bool
 </span><a href="API.ChatFilter.html#exclude_muted"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679500340"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">excluded_chat_ids :: Maybe [Int]
+</span><a href="#local-6989586621679496122"><span class="hs-identifier hs-var">exclude_muted</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">excluded_chat_ids :: Maybe [Int]
 </span><a href="API.ChatFilter.html#excluded_chat_ids"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500339"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">included_chat_ids :: Maybe [Int]
+</span><a href="#local-6989586621679496121"><span class="hs-identifier hs-var">excluded_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">included_chat_ids :: Maybe [Int]
 </span><a href="API.ChatFilter.html#included_chat_ids"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500338"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pinned_chat_ids :: Maybe [Int]
+</span><a href="#local-6989586621679496120"><span class="hs-identifier hs-var">included_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pinned_chat_ids :: Maybe [Int]
 </span><a href="API.ChatFilter.html#pinned_chat_ids"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679500337"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_name :: Maybe String
+</span><a href="#local-6989586621679496119"><span class="hs-identifier hs-var">pinned_chat_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_name :: Maybe String
 </span><a href="API.ChatFilter.html#icon_name"><span class="hs-identifier hs-var">icon_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500336"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
+</span><a href="#local-6989586621679496118"><span class="hs-identifier hs-var">icon_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
 </span><a href="API.ChatFilter.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679500335"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679496117"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-86"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ChatFilter
 forall a. Monoid a =&gt; a

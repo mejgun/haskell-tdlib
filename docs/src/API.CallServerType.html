@@ -34,7 +34,7 @@
 </span><a href="API.CallServerType.html#supports_stun"><span class="hs-identifier hs-var hs-var">supports_stun</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="supports_turn"><span class="annot"><span class="annottext">CallServerType -&gt; Maybe Bool
 </span><a href="API.CallServerType.html#supports_turn"><span class="hs-identifier hs-var hs-var">supports_turn</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="password"><span class="annot"><span class="annottext">CallServerType -&gt; Maybe String
 </span><a href="API.CallServerType.html#password"><span class="hs-identifier hs-var hs-var">password</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="username"><span class="annot"><span class="annottext">CallServerType -&gt; Maybe String
-</span><a href="API.CallServerType.html#username"><span class="hs-identifier hs-var hs-var">username</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679498875"><span id="local-6989586621679498877"><span class="annot"><span class="annottext">CallServerType -&gt; CallServerType -&gt; Bool
+</span><a href="API.CallServerType.html#username"><span class="hs-identifier hs-var hs-var">username</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679494657"><span id="local-6989586621679494659"><span class="annot"><span class="annottext">CallServerType -&gt; CallServerType -&gt; Bool
 (CallServerType -&gt; CallServerType -&gt; Bool)
 -&gt; (CallServerType -&gt; CallServerType -&gt; Bool) -&gt; Eq CallServerType
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -44,11 +44,11 @@ $c/= :: CallServerType -&gt; CallServerType -&gt; Bool
 $c== :: CallServerType -&gt; CallServerType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679498869"><span id="local-6989586621679498872"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span> </span><span id="local-6989586621679498867"><span class="annot"><span class="annottext">show :: CallServerType -&gt; String
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494651"><span id="local-6989586621679494654"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span> </span><span id="local-6989586621679494649"><span class="annot"><span class="annottext">show :: CallServerType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerTypeTelegramReflector"><span class="hs-identifier hs-type">CallServerTypeTelegramReflector</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">peer_tag :: CallServerType -&gt; Maybe String
-</span><a href="API.CallServerType.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498865"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498865"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallServerType.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494647"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494647"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CallServerTypeTelegramReflector&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -57,17 +57,17 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;peer_tag&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498865"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679494647"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerTypeWebrtc"><span class="hs-identifier hs-type">CallServerTypeWebrtc</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">supports_stun :: CallServerType -&gt; Maybe Bool
-</span><a href="API.CallServerType.html#supports_stun"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498862"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498862"><span class="hs-identifier hs-var">supports_stun</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_turn :: CallServerType -&gt; Maybe Bool
-</span><a href="API.CallServerType.html#supports_turn"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498861"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498861"><span class="hs-identifier hs-var">supports_turn</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: CallServerType -&gt; Maybe String
-</span><a href="API.CallServerType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498860"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498860"><span class="hs-identifier hs-var">password</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: CallServerType -&gt; Maybe String
-</span><a href="API.CallServerType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498859"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498859"><span class="hs-identifier hs-var">username</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallServerType.html#supports_stun"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494644"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494644"><span class="hs-identifier hs-var">supports_stun</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_turn :: CallServerType -&gt; Maybe Bool
+</span><a href="API.CallServerType.html#supports_turn"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494643"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494643"><span class="hs-identifier hs-var">supports_turn</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: CallServerType -&gt; Maybe String
+</span><a href="API.CallServerType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494642"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494642"><span class="hs-identifier hs-var">password</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: CallServerType -&gt; Maybe String
+</span><a href="API.CallServerType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494641"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494641"><span class="hs-identifier hs-var">username</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CallServerTypeWebrtc&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -76,26 +76,26 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_stun&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498862"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679494644"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_turn&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498861"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679494643"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498860"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679494642"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498859"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679494641"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span id="local-6989586621679498918"><span class="annot"><a href="API.CallServerType.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679498918"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679498918"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-41"></span><span id="local-6989586621679494700"><span class="annot"><a href="API.CallServerType.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679494700"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679494700"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-42"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679498858"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679498858"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679498857"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679498857"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679498858"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679494640"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679494640"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679494639"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679494639"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679494640"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -103,7 +103,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679498857"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679494639"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-43"></span><span class="annot"><a href="API.CallServerType.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -114,8 +114,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.CallServerType.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-47"></span><span class="annot"><a href="API.CallServerType.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679498856"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679498856"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span class="annot"><a href="API.CallServerType.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679494638"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679494638"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -129,17 +129,17 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679498856"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679494638"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-48"></span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679498846"><span id="local-6989586621679498848"><span id="local-6989586621679498850"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span> </span><span id="local-6989586621679498844"><span class="annot"><span class="annottext">toJSON :: CallServerType -&gt; Value
+</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494628"><span id="local-6989586621679494630"><span id="local-6989586621679494632"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-51"></span><span> </span><span id="local-6989586621679494626"><span class="annot"><span class="annottext">toJSON :: CallServerType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerTypeTelegramReflector"><span class="hs-identifier hs-type">CallServerTypeTelegramReflector</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">peer_tag :: CallServerType -&gt; Maybe String
-</span><a href="API.CallServerType.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679498842"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498842"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallServerType.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494624"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494624"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-52"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -150,17 +150,17 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;peer_tag&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498842"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679494624"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-53"></span><span>
 </span><span id="line-54"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerTypeWebrtc"><span class="hs-identifier hs-type">CallServerTypeWebrtc</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">supports_stun :: CallServerType -&gt; Maybe Bool
-</span><a href="API.CallServerType.html#supports_stun"><span class="hs-identifier hs-var">supports_stun</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679498838"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498838"><span class="hs-identifier hs-var">supports_stun</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_turn :: CallServerType -&gt; Maybe Bool
-</span><a href="API.CallServerType.html#supports_turn"><span class="hs-identifier hs-var">supports_turn</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679498837"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498837"><span class="hs-identifier hs-var">supports_turn</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: CallServerType -&gt; Maybe String
-</span><a href="API.CallServerType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679498836"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498836"><span class="hs-identifier hs-var">password</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: CallServerType -&gt; Maybe String
-</span><a href="API.CallServerType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679498835"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498835"><span class="hs-identifier hs-var">username</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallServerType.html#supports_stun"><span class="hs-identifier hs-var">supports_stun</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494620"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494620"><span class="hs-identifier hs-var">supports_stun</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_turn :: CallServerType -&gt; Maybe Bool
+</span><a href="API.CallServerType.html#supports_turn"><span class="hs-identifier hs-var">supports_turn</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494619"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494619"><span class="hs-identifier hs-var">supports_turn</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: CallServerType -&gt; Maybe String
+</span><a href="API.CallServerType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494618"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494618"><span class="hs-identifier hs-var">password</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: CallServerType -&gt; Maybe String
+</span><a href="API.CallServerType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494617"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494617"><span class="hs-identifier hs-var">username</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-55"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -171,49 +171,49 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;supports_stun&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498838"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679494620"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_turn&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498837"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679494619"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498836"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679494618"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498835"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679494617"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679498832"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span> </span><span id="local-6989586621679498830"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallServerType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679498828"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679498828"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679498826"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498826"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679498825"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679498825"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498826"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494614"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-58"></span><span> </span><span id="local-6989586621679494612"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallServerType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679494610"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679494610"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679494608"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494608"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679494607"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679494607"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494608"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-60"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679498825"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679494607"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-61"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;callServerTypeTelegramReflector&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallServerType
-</span><a href="#local-6989586621679498823"><span class="hs-identifier hs-var">parseCallServerTypeTelegramReflector</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679498828"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679494605"><span class="hs-identifier hs-var">parseCallServerTypeTelegramReflector</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679494610"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-62"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;callServerTypeWebrtc&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallServerType
-</span><a href="#local-6989586621679498822"><span class="hs-identifier hs-var">parseCallServerTypeWebrtc</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679498828"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679494604"><span class="hs-identifier hs-var">parseCallServerTypeWebrtc</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679494610"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-63"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CallServerType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-64"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-65"></span><span>   </span><span class="annot"><a href="#local-6989586621679498823"><span class="hs-identifier hs-type">parseCallServerTypeTelegramReflector</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span><span>
-</span><span id="line-66"></span><span>   </span><span id="local-6989586621679498823"><span class="annot"><span class="annottext">parseCallServerTypeTelegramReflector :: Value -&gt; Parser CallServerType
-</span><a href="#local-6989586621679498823"><span class="hs-identifier hs-var hs-var">parseCallServerTypeTelegramReflector</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-65"></span><span>   </span><span class="annot"><a href="#local-6989586621679494605"><span class="hs-identifier hs-type">parseCallServerTypeTelegramReflector</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span><span>
+</span><span id="line-66"></span><span>   </span><span id="local-6989586621679494605"><span class="annot"><span class="annottext">parseCallServerTypeTelegramReflector :: Value -&gt; Parser CallServerType
+</span><a href="#local-6989586621679494605"><span class="hs-identifier hs-var hs-var">parseCallServerTypeTelegramReflector</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallServerType)
 -&gt; Value
 -&gt; Parser CallServerType
@@ -225,11 +225,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallServerType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679498820"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498820"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621679498819"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498819"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498820"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679494602"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494602"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679494601"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494601"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494602"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;peer_tag&quot;</span></span><span>
@@ -241,11 +241,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallServerTypeTelegramReflector :: Maybe String -&gt; CallServerType
 </span><a href="API.CallServerType.html#CallServerTypeTelegramReflector"><span class="hs-identifier hs-type">CallServerTypeTelegramReflector</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">peer_tag :: Maybe String
 </span><a href="API.CallServerType.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498819"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679494601"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-69"></span><span>
-</span><span id="line-70"></span><span>   </span><span class="annot"><a href="#local-6989586621679498822"><span class="hs-identifier hs-type">parseCallServerTypeWebrtc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span><span>
-</span><span id="line-71"></span><span>   </span><span id="local-6989586621679498822"><span class="annot"><span class="annottext">parseCallServerTypeWebrtc :: Value -&gt; Parser CallServerType
-</span><a href="#local-6989586621679498822"><span class="hs-identifier hs-var hs-var">parseCallServerTypeWebrtc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-70"></span><span>   </span><span class="annot"><a href="#local-6989586621679494604"><span class="hs-identifier hs-type">parseCallServerTypeWebrtc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallServerType.html#CallServerType"><span class="hs-identifier hs-type">CallServerType</span></a></span><span>
+</span><span id="line-71"></span><span>   </span><span id="local-6989586621679494604"><span class="annot"><span class="annottext">parseCallServerTypeWebrtc :: Value -&gt; Parser CallServerType
+</span><a href="#local-6989586621679494604"><span class="hs-identifier hs-var hs-var">parseCallServerTypeWebrtc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallServerType)
 -&gt; Value
 -&gt; Parser CallServerType
@@ -257,29 +257,29 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallServerType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679498817"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498817"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679498816"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498816"><span class="hs-identifier hs-var">supports_stun</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498817"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679494599"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494599"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679494598"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494598"><span class="hs-identifier hs-var">supports_stun</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_stun&quot;</span></span><span>
-</span><span id="line-73"></span><span>    </span><span id="local-6989586621679498815"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498815"><span class="hs-identifier hs-var">supports_turn</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498817"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679494597"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494597"><span class="hs-identifier hs-var">supports_turn</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_turn&quot;</span></span><span>
-</span><span id="line-74"></span><span>    </span><span id="local-6989586621679498814"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498814"><span class="hs-identifier hs-var">password</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498817"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679494596"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494596"><span class="hs-identifier hs-var">password</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;password&quot;</span></span><span>
-</span><span id="line-75"></span><span>    </span><span id="local-6989586621679498813"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498813"><span class="hs-identifier hs-var">username</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679498817"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679494595"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494595"><span class="hs-identifier hs-var">username</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;username&quot;</span></span><span>
@@ -292,13 +292,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe Bool -&gt; Maybe String -&gt; Maybe String -&gt; CallServerType
 </span><a href="API.CallServerType.html#CallServerTypeWebrtc"><span class="hs-identifier hs-type">CallServerTypeWebrtc</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">supports_stun :: Maybe Bool
 </span><a href="API.CallServerType.html#supports_stun"><span class="hs-identifier hs-var">supports_stun</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498816"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_turn :: Maybe Bool
+</span><a href="#local-6989586621679494598"><span class="hs-identifier hs-var">supports_stun</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_turn :: Maybe Bool
 </span><a href="API.CallServerType.html#supports_turn"><span class="hs-identifier hs-var">supports_turn</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679498815"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: Maybe String
+</span><a href="#local-6989586621679494597"><span class="hs-identifier hs-var">supports_turn</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: Maybe String
 </span><a href="API.CallServerType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498814"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: Maybe String
+</span><a href="#local-6989586621679494596"><span class="hs-identifier hs-var">password</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: Maybe String
 </span><a href="API.CallServerType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679498813"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679494595"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-77"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser CallServerType
 forall a. Monoid a =&gt; a

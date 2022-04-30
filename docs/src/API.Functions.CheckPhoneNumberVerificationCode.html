@@ -16,7 +16,7 @@
 </span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="CheckPhoneNumberVerificationCode"><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-var">CheckPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-17"></span><span>
 </span><span id="line-18"></span><span> </span><span id="CheckPhoneNumberVerificationCode"><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-var">CheckPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="code"><span class="annot"><span class="annottext">CheckPhoneNumberVerificationCode -&gt; Maybe String
-</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679510184"><span id="local-6989586621679510186"><span class="annot"><span class="annottext">CheckPhoneNumberVerificationCode
+</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679505966"><span id="local-6989586621679505968"><span class="annot"><span class="annottext">CheckPhoneNumberVerificationCode
 -&gt; CheckPhoneNumberVerificationCode -&gt; Bool
 (CheckPhoneNumberVerificationCode
  -&gt; CheckPhoneNumberVerificationCode -&gt; Bool)
@@ -34,11 +34,11 @@ $c== :: CheckPhoneNumberVerificationCode
 -&gt; CheckPhoneNumberVerificationCode -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679510178"><span id="local-6989586621679510181"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679510176"><span class="annot"><span class="annottext">show :: CheckPhoneNumberVerificationCode -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679505960"><span id="local-6989586621679505963"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679505958"><span class="annot"><span class="annottext">show :: CheckPhoneNumberVerificationCode -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: CheckPhoneNumberVerificationCode -&gt; Maybe String
-</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679510174"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679510174"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679505956"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679505956"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CheckPhoneNumberVerificationCode&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -47,14 +47,14 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679510174"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679505956"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span id="local-6989586621679510222"><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679510222"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679510222"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-24"></span><span id="local-6989586621679506004"><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679506004"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679506004"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-25"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679510171"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679510171"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679510170"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679510170"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679510171"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679505953"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679505953"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679505952"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679505952"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679505953"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -62,7 +62,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679510170"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679505952"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-26"></span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -73,8 +73,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-30"></span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679510169"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679510169"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-30"></span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679505951"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679505951"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -88,17 +88,17 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679510169"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679505951"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-31"></span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679510159"><span id="local-6989586621679510161"><span id="local-6989586621679510163"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span> </span><span id="local-6989586621679510157"><span class="annot"><span class="annottext">toJSON :: CheckPhoneNumberVerificationCode -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679505941"><span id="local-6989586621679505943"><span id="local-6989586621679505945"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span> </span><span id="local-6989586621679505939"><span class="annot"><span class="annottext">toJSON :: CheckPhoneNumberVerificationCode -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: CheckPhoneNumberVerificationCode -&gt; Maybe String
-</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679510155"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679510155"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679505937"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679505937"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -109,33 +109,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679510155"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679505937"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679510149"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span> </span><span id="local-6989586621679510147"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckPhoneNumberVerificationCode
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679510145"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679510145"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679510143"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679510143"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>  </span><span id="local-6989586621679510142"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679510142"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679510143"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679505931"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679505929"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckPhoneNumberVerificationCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679505927"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679505927"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679505925"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679505925"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679505924"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679505924"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679505925"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-40"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679510142"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679505924"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-41"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;checkPhoneNumberVerificationCode&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckPhoneNumberVerificationCode
-</span><a href="#local-6989586621679510140"><span class="hs-identifier hs-var">parseCheckPhoneNumberVerificationCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679510145"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679505922"><span class="hs-identifier hs-var">parseCheckPhoneNumberVerificationCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505927"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckPhoneNumberVerificationCode
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-43"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679510140"><span class="hs-identifier hs-type">parseCheckPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span><span>
-</span><span id="line-45"></span><span>   </span><span id="local-6989586621679510140"><span class="annot"><span class="annottext">parseCheckPhoneNumberVerificationCode :: Value -&gt; Parser CheckPhoneNumberVerificationCode
-</span><a href="#local-6989586621679510140"><span class="hs-identifier hs-var hs-var">parseCheckPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679505922"><span class="hs-identifier hs-type">parseCheckPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span><span>
+</span><span id="line-45"></span><span>   </span><span id="local-6989586621679505922"><span class="annot"><span class="annottext">parseCheckPhoneNumberVerificationCode :: Value -&gt; Parser CheckPhoneNumberVerificationCode
+</span><a href="#local-6989586621679505922"><span class="hs-identifier hs-var hs-var">parseCheckPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckPhoneNumberVerificationCode)
 -&gt; Value
 -&gt; Parser CheckPhoneNumberVerificationCode
@@ -147,11 +147,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckPhoneNumberVerificationCode
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679510138"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679510138"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>    </span><span id="local-6989586621679510137"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679510137"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679510138"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679505920"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679505920"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679505919"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679505919"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679505920"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;code&quot;</span></span><span>
@@ -166,7 +166,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckPhoneNumberVerificationCode :: Maybe String -&gt; CheckPhoneNumberVerificationCode
 </span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#CheckPhoneNumberVerificationCode"><span class="hs-identifier hs-type">CheckPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: Maybe String
 </span><a href="API.Functions.CheckPhoneNumberVerificationCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679510137"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679505919"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-48"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser CheckPhoneNumberVerificationCode
 forall a. Monoid a =&gt; a

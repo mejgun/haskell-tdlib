@@ -22,7 +22,7 @@
 </span><span id="line-22"></span><span> </span><span id="RemoveAllFilesFromDownloads"><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-var">RemoveAllFilesFromDownloads</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="delete_from_cache"><span class="annot"><span class="annottext">RemoveAllFilesFromDownloads -&gt; Maybe Bool
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#delete_from_cache"><span class="hs-identifier hs-var hs-var">delete_from_cache</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="only_completed"><span class="annot"><span class="annottext">RemoveAllFilesFromDownloads -&gt; Maybe Bool
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_completed"><span class="hs-identifier hs-var hs-var">only_completed</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="only_active"><span class="annot"><span class="annottext">RemoveAllFilesFromDownloads -&gt; Maybe Bool
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_active"><span class="hs-identifier hs-var hs-var">only_active</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679532344"><span id="local-6989586621679532346"><span class="annot"><span class="annottext">RemoveAllFilesFromDownloads -&gt; RemoveAllFilesFromDownloads -&gt; Bool
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_active"><span class="hs-identifier hs-var hs-var">only_active</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679527624"><span id="local-6989586621679527626"><span class="annot"><span class="annottext">RemoveAllFilesFromDownloads -&gt; RemoveAllFilesFromDownloads -&gt; Bool
 (RemoveAllFilesFromDownloads
  -&gt; RemoveAllFilesFromDownloads -&gt; Bool)
 -&gt; (RemoveAllFilesFromDownloads
@@ -35,15 +35,15 @@ $c/= :: RemoveAllFilesFromDownloads -&gt; RemoveAllFilesFromDownloads -&gt; Bool
 $c== :: RemoveAllFilesFromDownloads -&gt; RemoveAllFilesFromDownloads -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679532338"><span id="local-6989586621679532341"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679532336"><span class="annot"><span class="annottext">show :: RemoveAllFilesFromDownloads -&gt; String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679527618"><span id="local-6989586621679527621"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679527616"><span class="annot"><span class="annottext">show :: RemoveAllFilesFromDownloads -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">delete_from_cache :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#delete_from_cache"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679532334"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532334"><span class="hs-identifier hs-var">delete_from_cache</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_completed :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_completed"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679532333"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532333"><span class="hs-identifier hs-var">only_completed</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_active :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_active"><span class="hs-identifier hs-var">only_active</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679532332"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532332"><span class="hs-identifier hs-var">only_active</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#delete_from_cache"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679527614"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527614"><span class="hs-identifier hs-var">delete_from_cache</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_completed :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_completed"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679527613"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527613"><span class="hs-identifier hs-var">only_completed</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_active :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_active"><span class="hs-identifier hs-var">only_active</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679527612"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527612"><span class="hs-identifier hs-var">only_active</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;RemoveAllFilesFromDownloads&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -52,22 +52,22 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;delete_from_cache&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532334"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679527614"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;only_completed&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532333"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679527613"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;only_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532332"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679527612"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span id="local-6989586621679532384"><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679532384"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679532384"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-28"></span><span id="local-6989586621679527664"><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679527664"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679527664"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-29"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679532329"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679532329"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679532328"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679532328"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679532329"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679527609"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679527609"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679527608"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679527608"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679527609"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -75,7 +75,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679532328"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679527608"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-30"></span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -86,8 +86,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-34"></span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679532327"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679532327"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-34"></span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679527607"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679527607"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -101,21 +101,21 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679532327"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679527607"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679532317"><span id="local-6989586621679532319"><span id="local-6989586621679532321"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span> </span><span id="local-6989586621679532315"><span class="annot"><span class="annottext">toJSON :: RemoveAllFilesFromDownloads -&gt; Value
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679527597"><span id="local-6989586621679527599"><span id="local-6989586621679527601"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679527595"><span class="annot"><span class="annottext">toJSON :: RemoveAllFilesFromDownloads -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">delete_from_cache :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#delete_from_cache"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679532313"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532313"><span class="hs-identifier hs-var">delete_from_cache</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_completed :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_completed"><span class="hs-identifier hs-var">only_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679532312"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532312"><span class="hs-identifier hs-var">only_completed</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_active :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
-</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_active"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679532311"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532311"><span class="hs-identifier hs-var">only_active</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#delete_from_cache"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679527593"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527593"><span class="hs-identifier hs-var">delete_from_cache</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_completed :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_completed"><span class="hs-identifier hs-var">only_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679527592"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527592"><span class="hs-identifier hs-var">only_completed</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_active :: RemoveAllFilesFromDownloads -&gt; Maybe Bool
+</span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_active"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679527591"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527591"><span class="hs-identifier hs-var">only_active</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -126,41 +126,41 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;delete_from_cache&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532313"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679527593"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;only_completed&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532312"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679527592"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;only_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532311"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679527591"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679532305"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span> </span><span id="local-6989586621679532303"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RemoveAllFilesFromDownloads
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679532301"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679532301"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679532299"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679532299"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679532298"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679532298"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679532299"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679527585"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span> </span><span id="local-6989586621679527583"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RemoveAllFilesFromDownloads
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679527581"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679527581"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679527579"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679527579"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679527578"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679527578"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679527579"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679532298"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679527578"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-45"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;removeAllFilesFromDownloads&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser RemoveAllFilesFromDownloads
-</span><a href="#local-6989586621679532296"><span class="hs-identifier hs-var">parseRemoveAllFilesFromDownloads</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679532301"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679527576"><span class="hs-identifier hs-var">parseRemoveAllFilesFromDownloads</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679527581"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser RemoveAllFilesFromDownloads
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-47"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679532296"><span class="hs-identifier hs-type">parseRemoveAllFilesFromDownloads</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span><span>
-</span><span id="line-49"></span><span>   </span><span id="local-6989586621679532296"><span class="annot"><span class="annottext">parseRemoveAllFilesFromDownloads :: Value -&gt; Parser RemoveAllFilesFromDownloads
-</span><a href="#local-6989586621679532296"><span class="hs-identifier hs-var hs-var">parseRemoveAllFilesFromDownloads</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679527576"><span class="hs-identifier hs-type">parseRemoveAllFilesFromDownloads</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span><span>
+</span><span id="line-49"></span><span>   </span><span id="local-6989586621679527576"><span class="annot"><span class="annottext">parseRemoveAllFilesFromDownloads :: Value -&gt; Parser RemoveAllFilesFromDownloads
+</span><a href="#local-6989586621679527576"><span class="hs-identifier hs-var hs-var">parseRemoveAllFilesFromDownloads</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser RemoveAllFilesFromDownloads)
 -&gt; Value
 -&gt; Parser RemoveAllFilesFromDownloads
@@ -172,23 +172,23 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser RemoveAllFilesFromDownloads
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679532294"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679532294"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>    </span><span id="local-6989586621679532293"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532293"><span class="hs-identifier hs-var">delete_from_cache</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679532294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679527574"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679527574"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679527573"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527573"><span class="hs-identifier hs-var">delete_from_cache</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679527574"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;delete_from_cache&quot;</span></span><span>
-</span><span id="line-51"></span><span>    </span><span id="local-6989586621679532291"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532291"><span class="hs-identifier hs-var">only_completed</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679532294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679527571"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527571"><span class="hs-identifier hs-var">only_completed</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679527574"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;only_completed&quot;</span></span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679532290"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532290"><span class="hs-identifier hs-var">only_active</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679532294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679527570"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679527570"><span class="hs-identifier hs-var">only_active</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679527574"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;only_active&quot;</span></span><span>
@@ -202,11 +202,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe Bool -&gt; Maybe Bool -&gt; RemoveAllFilesFromDownloads
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#RemoveAllFilesFromDownloads"><span class="hs-identifier hs-type">RemoveAllFilesFromDownloads</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">delete_from_cache :: Maybe Bool
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#delete_from_cache"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532293"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_completed :: Maybe Bool
+</span><a href="#local-6989586621679527573"><span class="hs-identifier hs-var">delete_from_cache</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_completed :: Maybe Bool
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_completed"><span class="hs-identifier hs-var">only_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532291"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_active :: Maybe Bool
+</span><a href="#local-6989586621679527571"><span class="hs-identifier hs-var">only_completed</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">only_active :: Maybe Bool
 </span><a href="API.Functions.RemoveAllFilesFromDownloads.html#only_active"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679532290"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679527570"><span class="hs-identifier hs-var">only_active</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-54"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser RemoveAllFilesFromDownloads
 forall a. Monoid a =&gt; a

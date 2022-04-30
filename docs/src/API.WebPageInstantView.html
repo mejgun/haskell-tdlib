@@ -33,7 +33,7 @@
 </span><a href="API.WebPageInstantView.html#is_rtl"><span class="hs-identifier hs-var hs-var">is_rtl</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="version"><span class="annot"><span class="annottext">WebPageInstantView -&gt; Maybe Int
 </span><a href="API.WebPageInstantView.html#version"><span class="hs-identifier hs-var hs-var">version</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="view_count"><span class="annot"><span class="annottext">WebPageInstantView -&gt; Maybe Int
 </span><a href="API.WebPageInstantView.html#view_count"><span class="hs-identifier hs-var hs-var">view_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="page_blocks"><span class="annot"><span class="annottext">WebPageInstantView -&gt; Maybe [PageBlock]
-</span><a href="API.WebPageInstantView.html#page_blocks"><span class="hs-identifier hs-var hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PageBlock.html#PageBlock"><span class="hs-identifier hs-type">PageBlock.PageBlock</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679588402"><span id="local-6989586621679588404"><span class="annot"><span class="annottext">WebPageInstantView -&gt; WebPageInstantView -&gt; Bool
+</span><a href="API.WebPageInstantView.html#page_blocks"><span class="hs-identifier hs-var hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PageBlock.html#PageBlock"><span class="hs-identifier hs-type">PageBlock.PageBlock</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679583056"><span id="local-6989586621679583058"><span class="annot"><span class="annottext">WebPageInstantView -&gt; WebPageInstantView -&gt; Bool
 (WebPageInstantView -&gt; WebPageInstantView -&gt; Bool)
 -&gt; (WebPageInstantView -&gt; WebPageInstantView -&gt; Bool)
 -&gt; Eq WebPageInstantView
@@ -44,21 +44,21 @@ $c/= :: WebPageInstantView -&gt; WebPageInstantView -&gt; Bool
 $c== :: WebPageInstantView -&gt; WebPageInstantView -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679588396"><span id="local-6989586621679588399"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span> </span><span id="local-6989586621679588394"><span class="annot"><span class="annottext">show :: WebPageInstantView -&gt; String
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679583050"><span id="local-6989586621679583053"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span> </span><span id="local-6989586621679583048"><span class="annot"><span class="annottext">show :: WebPageInstantView -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">feedback_link :: WebPageInstantView -&gt; Maybe InternalLinkType
-</span><a href="API.WebPageInstantView.html#feedback_link"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679588392"><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679588392"><span class="hs-identifier hs-var">feedback_link</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_full :: WebPageInstantView -&gt; Maybe Bool
-</span><a href="API.WebPageInstantView.html#is_full"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679588391"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588391"><span class="hs-identifier hs-var">is_full</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_rtl :: WebPageInstantView -&gt; Maybe Bool
-</span><a href="API.WebPageInstantView.html#is_rtl"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679588390"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588390"><span class="hs-identifier hs-var">is_rtl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">version :: WebPageInstantView -&gt; Maybe Int
-</span><a href="API.WebPageInstantView.html#version"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679588389"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588389"><span class="hs-identifier hs-var">version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">view_count :: WebPageInstantView -&gt; Maybe Int
-</span><a href="API.WebPageInstantView.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679588388"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588388"><span class="hs-identifier hs-var">view_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">page_blocks :: WebPageInstantView -&gt; Maybe [PageBlock]
-</span><a href="API.WebPageInstantView.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679588387"><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679588387"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.WebPageInstantView.html#feedback_link"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679583046"><span class="annot"><span class="annottext">Maybe InternalLinkType
+</span><a href="#local-6989586621679583046"><span class="hs-identifier hs-var">feedback_link</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_full :: WebPageInstantView -&gt; Maybe Bool
+</span><a href="API.WebPageInstantView.html#is_full"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679583045"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679583045"><span class="hs-identifier hs-var">is_full</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_rtl :: WebPageInstantView -&gt; Maybe Bool
+</span><a href="API.WebPageInstantView.html#is_rtl"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679583044"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679583044"><span class="hs-identifier hs-var">is_rtl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">version :: WebPageInstantView -&gt; Maybe Int
+</span><a href="API.WebPageInstantView.html#version"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679583043"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679583043"><span class="hs-identifier hs-var">version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">view_count :: WebPageInstantView -&gt; Maybe Int
+</span><a href="API.WebPageInstantView.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679583042"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679583042"><span class="hs-identifier hs-var">view_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">page_blocks :: WebPageInstantView -&gt; Maybe [PageBlock]
+</span><a href="API.WebPageInstantView.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679583041"><span class="annot"><span class="annottext">Maybe [PageBlock]
+</span><a href="#local-6989586621679583041"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;WebPageInstantView&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -67,34 +67,34 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;feedback_link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679588392"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679583046"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_full&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588391"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="#local-6989586621679583045"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_rtl&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588390"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679583044"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588389"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679583043"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;view_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588388"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [PageBlock] -&gt; String
+</span><a href="#local-6989586621679583042"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [PageBlock] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;page_blocks&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679588387"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679583041"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span id="local-6989586621679588449"><span class="annot"><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679588449"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679588449"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-36"></span><span id="local-6989586621679583103"><span class="annot"><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679583103"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679583103"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-37"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679588384"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679588384"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679588383"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679588383"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679588384"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679583038"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679583038"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679583037"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679583037"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679583038"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -102,7 +102,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679588383"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679583037"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-38"></span><span class="annot"><a href="API.WebPageInstantView.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -113,8 +113,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.WebPageInstantView.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-42"></span><span class="annot"><a href="API.WebPageInstantView.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679588382"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679588382"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span class="annot"><a href="API.WebPageInstantView.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679583036"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679583036"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -128,27 +128,27 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679588382"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679583036"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-43"></span><span>
 </span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679588372"><span id="local-6989586621679588374"><span id="local-6989586621679588376"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-46"></span><span> </span><span id="local-6989586621679588370"><span class="annot"><span class="annottext">toJSON :: WebPageInstantView -&gt; Value
+</span><span id="line-45"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679583026"><span id="local-6989586621679583028"><span id="local-6989586621679583030"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-46"></span><span> </span><span id="local-6989586621679583024"><span class="annot"><span class="annottext">toJSON :: WebPageInstantView -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">feedback_link :: WebPageInstantView -&gt; Maybe InternalLinkType
-</span><a href="API.WebPageInstantView.html#feedback_link"><span class="hs-identifier hs-var">feedback_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679588368"><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679588368"><span class="hs-identifier hs-var">feedback_link</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_full :: WebPageInstantView -&gt; Maybe Bool
-</span><a href="API.WebPageInstantView.html#is_full"><span class="hs-identifier hs-var">is_full</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679588367"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588367"><span class="hs-identifier hs-var">is_full</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_rtl :: WebPageInstantView -&gt; Maybe Bool
-</span><a href="API.WebPageInstantView.html#is_rtl"><span class="hs-identifier hs-var">is_rtl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679588366"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588366"><span class="hs-identifier hs-var">is_rtl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">version :: WebPageInstantView -&gt; Maybe Int
-</span><a href="API.WebPageInstantView.html#version"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679588365"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588365"><span class="hs-identifier hs-var">version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">view_count :: WebPageInstantView -&gt; Maybe Int
-</span><a href="API.WebPageInstantView.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679588364"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588364"><span class="hs-identifier hs-var">view_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">page_blocks :: WebPageInstantView -&gt; Maybe [PageBlock]
-</span><a href="API.WebPageInstantView.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679588363"><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679588363"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.WebPageInstantView.html#feedback_link"><span class="hs-identifier hs-var">feedback_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679583022"><span class="annot"><span class="annottext">Maybe InternalLinkType
+</span><a href="#local-6989586621679583022"><span class="hs-identifier hs-var">feedback_link</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_full :: WebPageInstantView -&gt; Maybe Bool
+</span><a href="API.WebPageInstantView.html#is_full"><span class="hs-identifier hs-var">is_full</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679583021"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679583021"><span class="hs-identifier hs-var">is_full</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_rtl :: WebPageInstantView -&gt; Maybe Bool
+</span><a href="API.WebPageInstantView.html#is_rtl"><span class="hs-identifier hs-var">is_rtl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679583020"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679583020"><span class="hs-identifier hs-var">is_rtl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">version :: WebPageInstantView -&gt; Maybe Int
+</span><a href="API.WebPageInstantView.html#version"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679583019"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679583019"><span class="hs-identifier hs-var">version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">view_count :: WebPageInstantView -&gt; Maybe Int
+</span><a href="API.WebPageInstantView.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679583018"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679583018"><span class="hs-identifier hs-var">view_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">page_blocks :: WebPageInstantView -&gt; Maybe [PageBlock]
+</span><a href="API.WebPageInstantView.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679583017"><span class="annot"><span class="annottext">Maybe [PageBlock]
+</span><a href="#local-6989586621679583017"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-47"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -159,53 +159,53 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;feedback_link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InternalLinkType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679588368"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679583022"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_full&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588367"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679583021"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_rtl&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588366"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679583020"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588365"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679583019"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;view_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588364"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679583018"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;page_blocks&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PageBlock] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679588363"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679583017"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-48"></span><span>
-</span><span id="line-49"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679588357"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-50"></span><span> </span><span id="local-6989586621679588355"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser WebPageInstantView
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679588353"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679588353"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679588351"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588351"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-51"></span><span>  </span><span id="local-6989586621679588350"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679588350"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588351"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-49"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679583011"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-50"></span><span> </span><span id="local-6989586621679583009"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser WebPageInstantView
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679583007"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679583007"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679583005"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679583005"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-51"></span><span>  </span><span id="local-6989586621679583004"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679583004"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679583005"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-52"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679588350"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679583004"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-53"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;webPageInstantView&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser WebPageInstantView
-</span><a href="#local-6989586621679588348"><span class="hs-identifier hs-var">parseWebPageInstantView</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679588353"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679583002"><span class="hs-identifier hs-var">parseWebPageInstantView</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679583007"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-54"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser WebPageInstantView
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-55"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-56"></span><span>   </span><span class="annot"><a href="#local-6989586621679588348"><span class="hs-identifier hs-type">parseWebPageInstantView</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span><span>
-</span><span id="line-57"></span><span>   </span><span id="local-6989586621679588348"><span class="annot"><span class="annottext">parseWebPageInstantView :: Value -&gt; Parser WebPageInstantView
-</span><a href="#local-6989586621679588348"><span class="hs-identifier hs-var hs-var">parseWebPageInstantView</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-56"></span><span>   </span><span class="annot"><a href="#local-6989586621679583002"><span class="hs-identifier hs-type">parseWebPageInstantView</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span><span>
+</span><span id="line-57"></span><span>   </span><span id="local-6989586621679583002"><span class="annot"><span class="annottext">parseWebPageInstantView :: Value -&gt; Parser WebPageInstantView
+</span><a href="#local-6989586621679583002"><span class="hs-identifier hs-var hs-var">parseWebPageInstantView</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser WebPageInstantView)
 -&gt; Value
 -&gt; Parser WebPageInstantView
@@ -217,31 +217,31 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser WebPageInstantView
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679588346"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679588345"><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679588345"><span class="hs-identifier hs-var">feedback_link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InternalLinkType)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679583000"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-58"></span><span>    </span><span id="local-6989586621679582999"><span class="annot"><span class="annottext">Maybe InternalLinkType
+</span><a href="#local-6989586621679582999"><span class="hs-identifier hs-var">feedback_link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InternalLinkType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;feedback_link&quot;</span></span><span>
-</span><span id="line-59"></span><span>    </span><span id="local-6989586621679588343"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588343"><span class="hs-identifier hs-var">is_full</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-59"></span><span>    </span><span id="local-6989586621679582997"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679582997"><span class="hs-identifier hs-var">is_full</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_full&quot;</span></span><span>
-</span><span id="line-60"></span><span>    </span><span id="local-6989586621679588342"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588342"><span class="hs-identifier hs-var">is_rtl</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-60"></span><span>    </span><span id="local-6989586621679582996"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679582996"><span class="hs-identifier hs-var">is_rtl</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_rtl&quot;</span></span><span>
-</span><span id="line-61"></span><span>    </span><span id="local-6989586621679588341"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588341"><span class="hs-identifier hs-var">version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-61"></span><span>    </span><span id="local-6989586621679582995"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679582995"><span class="hs-identifier hs-var">version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;version&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -249,15 +249,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;version&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-62"></span><span>    </span><span id="local-6989586621679588339"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588339"><span class="hs-identifier hs-var">view_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-62"></span><span>    </span><span id="local-6989586621679582993"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679582993"><span class="hs-identifier hs-var">view_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;view_count&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -265,13 +265,13 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;view_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-63"></span><span>    </span><span id="local-6989586621679588338"><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679588338"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679588346"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PageBlock])
+</span><span id="line-63"></span><span>    </span><span id="local-6989586621679582992"><span class="annot"><span class="annottext">Maybe [PageBlock]
+</span><a href="#local-6989586621679582992"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679583000"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PageBlock])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;page_blocks&quot;</span></span><span>
@@ -289,17 +289,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; WebPageInstantView
 </span><a href="API.WebPageInstantView.html#WebPageInstantView"><span class="hs-identifier hs-type">WebPageInstantView</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">feedback_link :: Maybe InternalLinkType
 </span><a href="API.WebPageInstantView.html#feedback_link"><span class="hs-identifier hs-var">feedback_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679588345"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_full :: Maybe Bool
+</span><a href="#local-6989586621679582999"><span class="hs-identifier hs-var">feedback_link</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_full :: Maybe Bool
 </span><a href="API.WebPageInstantView.html#is_full"><span class="hs-identifier hs-var">is_full</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588343"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_rtl :: Maybe Bool
+</span><a href="#local-6989586621679582997"><span class="hs-identifier hs-var">is_full</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_rtl :: Maybe Bool
 </span><a href="API.WebPageInstantView.html#is_rtl"><span class="hs-identifier hs-var">is_rtl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679588342"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">version :: Maybe Int
+</span><a href="#local-6989586621679582996"><span class="hs-identifier hs-var">is_rtl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">version :: Maybe Int
 </span><a href="API.WebPageInstantView.html#version"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588341"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">view_count :: Maybe Int
+</span><a href="#local-6989586621679582995"><span class="hs-identifier hs-var">version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">view_count :: Maybe Int
 </span><a href="API.WebPageInstantView.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679588339"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">page_blocks :: Maybe [PageBlock]
+</span><a href="#local-6989586621679582993"><span class="hs-identifier hs-var">view_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">page_blocks :: Maybe [PageBlock]
 </span><a href="API.WebPageInstantView.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679588338"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679582992"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-65"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser WebPageInstantView
 forall a. Monoid a =&gt; a

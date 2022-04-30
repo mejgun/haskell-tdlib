@@ -4019,33 +4019,6 @@ instance GHC.Show.Show API.Functions.CreateVideoChat.CreateVideoChat
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.CreateVideoChat.CreateVideoChat
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.CreateVideoChat.CreateVideoChat
 
-module API.Functions.CreateVoiceChat
-
--- | Creates a voice chat (a group call bound to a chat). Available only
---   for basic groups, supergroups and channels; requires
---   can_manage_voice_chats rights
---   
---   <b>chat_id</b> Chat identifier, in which the voice chat will be
---   created
---   
---   <b>title</b> Group call title; if empty, chat title will be used
---   
---   <b>start_date</b> Point in time (Unix timestamp) when the group call
---   is supposed to be started by an administrator; 0 to start the voice
---   chat immediately. The date must be at least 10 seconds and at most 8
---   days in the future
-data CreateVoiceChat
-CreateVoiceChat :: Maybe Int -> Maybe String -> Maybe Int -> CreateVoiceChat
-[start_date] :: CreateVoiceChat -> Maybe Int
-[title] :: CreateVoiceChat -> Maybe String
-[chat_id] :: CreateVoiceChat -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.CreateVoiceChat.CreateVoiceChat
-instance GHC.Show.Show API.Functions.CreateVoiceChat.CreateVoiceChat
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.CreateVoiceChat.CreateVoiceChat
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.CreateVoiceChat.CreateVoiceChat
-
 module API.Functions.DeleteAccount
 
 -- | Deletes the account of the current user, deleting all information
@@ -4186,26 +4159,6 @@ instance GHC.Classes.Eq API.Functions.DeleteChatMessagesByDate.DeleteChatMessage
 instance GHC.Show.Show API.Functions.DeleteChatMessagesByDate.DeleteChatMessagesByDate
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.DeleteChatMessagesByDate.DeleteChatMessagesByDate
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.DeleteChatMessagesByDate.DeleteChatMessagesByDate
-
-module API.Functions.DeleteChatMessagesFromUser
-
--- | Deletes all messages sent by the specified user to a chat. Supported
---   only for supergroups; requires can_delete_messages administrator
---   privileges
---   
---   <b>chat_id</b> Chat identifier
---   
---   <b>user_id</b> User identifier
-data DeleteChatMessagesFromUser
-DeleteChatMessagesFromUser :: Maybe Int -> Maybe Int -> DeleteChatMessagesFromUser
-[user_id] :: DeleteChatMessagesFromUser -> Maybe Int
-[chat_id] :: DeleteChatMessagesFromUser -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.DeleteChatMessagesFromUser.DeleteChatMessagesFromUser
-instance GHC.Show.Show API.Functions.DeleteChatMessagesFromUser.DeleteChatMessagesFromUser
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.DeleteChatMessagesFromUser.DeleteChatMessagesFromUser
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.DeleteChatMessagesFromUser.DeleteChatMessagesFromUser
 
 module API.Functions.DeleteChatReplyMarkup
 
@@ -4417,21 +4370,6 @@ instance GHC.Classes.Eq API.Functions.DiscardCall.DiscardCall
 instance GHC.Show.Show API.Functions.DiscardCall.DiscardCall
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.DiscardCall.DiscardCall
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.DiscardCall.DiscardCall
-
-module API.Functions.DiscardGroupCall
-
--- | Discards a group call. Requires groupCall.can_be_managed
---   
---   <b>group_call_id</b> Group call identifier
-data DiscardGroupCall
-DiscardGroupCall :: Maybe Int -> DiscardGroupCall
-[group_call_id] :: DiscardGroupCall -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.DiscardGroupCall.DiscardGroupCall
-instance GHC.Show.Show API.Functions.DiscardGroupCall.DiscardGroupCall
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.DiscardGroupCall.DiscardGroupCall
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.DiscardGroupCall.DiscardGroupCall
 
 module API.Functions.DisconnectAllWebsites
 
@@ -5326,22 +5264,6 @@ instance GHC.Classes.Eq API.Functions.GetChatSponsoredMessage.GetChatSponsoredMe
 instance GHC.Show.Show API.Functions.GetChatSponsoredMessage.GetChatSponsoredMessage
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.GetChatSponsoredMessage.GetChatSponsoredMessage
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.GetChatSponsoredMessage.GetChatSponsoredMessage
-
-module API.Functions.GetChatSponsoredMessages
-
--- | Returns sponsored messages to be shown in a chat; for channel chats
---   only
---   
---   <b>chat_id</b> Identifier of the chat
-data GetChatSponsoredMessages
-GetChatSponsoredMessages :: Maybe Int -> GetChatSponsoredMessages
-[chat_id] :: GetChatSponsoredMessages -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.GetChatSponsoredMessages.GetChatSponsoredMessages
-instance GHC.Show.Show API.Functions.GetChatSponsoredMessages.GetChatSponsoredMessages
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.GetChatSponsoredMessages.GetChatSponsoredMessages
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.GetChatSponsoredMessages.GetChatSponsoredMessages
 
 module API.Functions.GetChatStatistics
 
@@ -7188,22 +7110,6 @@ instance GHC.Classes.Eq API.Functions.GetVideoChatRtmpUrl.GetVideoChatRtmpUrl
 instance GHC.Show.Show API.Functions.GetVideoChatRtmpUrl.GetVideoChatRtmpUrl
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.GetVideoChatRtmpUrl.GetVideoChatRtmpUrl
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.GetVideoChatRtmpUrl.GetVideoChatRtmpUrl
-
-module API.Functions.GetVoiceChatAvailableParticipants
-
--- | Returns list of participant identifiers, which can be used to join
---   voice chats in a chat
---   
---   <b>chat_id</b> Chat identifier
-data GetVoiceChatAvailableParticipants
-GetVoiceChatAvailableParticipants :: Maybe Int -> GetVoiceChatAvailableParticipants
-[chat_id] :: GetVoiceChatAvailableParticipants -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.GetVoiceChatAvailableParticipants.GetVoiceChatAvailableParticipants
-instance GHC.Show.Show API.Functions.GetVoiceChatAvailableParticipants.GetVoiceChatAvailableParticipants
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.GetVoiceChatAvailableParticipants.GetVoiceChatAvailableParticipants
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.GetVoiceChatAvailableParticipants.GetVoiceChatAvailableParticipants
 
 module API.Functions.GetWebPageInstantView
 
@@ -9133,32 +9039,6 @@ instance GHC.Show.Show API.Functions.SetChatMessageTtl.SetChatMessageTtl
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.SetChatMessageTtl.SetChatMessageTtl
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.SetChatMessageTtl.SetChatMessageTtl
 
-module API.Functions.SetChatMessageTtlSetting
-
--- | Changes the message TTL setting (sets a new self-destruct timer) in a
---   chat. Requires can_delete_messages administrator right in basic
---   groups, supergroups and channels
---   
---   <ul>
---   <li>Message TTL setting of a chat with the current user (Saved
---   Messages) and the chat 777000 (Telegram) can't be changed</li>
---   </ul>
---   
---   <b>chat_id</b> Chat identifier
---   
---   <b>ttl</b> New TTL value, in seconds; must be one of 0, 86400, 7 *
---   86400, or 31 * 86400 unless the chat is secret
-data SetChatMessageTtlSetting
-SetChatMessageTtlSetting :: Maybe Int -> Maybe Int -> SetChatMessageTtlSetting
-[ttl] :: SetChatMessageTtlSetting -> Maybe Int
-[chat_id] :: SetChatMessageTtlSetting -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.SetChatMessageTtlSetting.SetChatMessageTtlSetting
-instance GHC.Show.Show API.Functions.SetChatMessageTtlSetting.SetChatMessageTtlSetting
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.SetChatMessageTtlSetting.SetChatMessageTtlSetting
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.SetChatMessageTtlSetting.SetChatMessageTtlSetting
-
 module API.Functions.SetChatNotificationSettings
 
 -- | Changes the notification settings of a chat. Notification settings of
@@ -10475,25 +10355,6 @@ instance GHC.Classes.Eq API.Functions.ViewMessages.ViewMessages
 instance GHC.Show.Show API.Functions.ViewMessages.ViewMessages
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.ViewMessages.ViewMessages
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.ViewMessages.ViewMessages
-
-module API.Functions.ViewSponsoredMessage
-
--- | Informs TDLib that a sponsored message was viewed by the user
---   
---   <b>chat_id</b> Identifier of the chat with the sponsored message
---   
---   <b>sponsored_message_id</b> The identifier of the sponsored message
---   being viewed
-data ViewSponsoredMessage
-ViewSponsoredMessage :: Maybe Int -> Maybe Int -> ViewSponsoredMessage
-[sponsored_message_id] :: ViewSponsoredMessage -> Maybe Int
-[chat_id] :: ViewSponsoredMessage -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.ViewSponsoredMessage.ViewSponsoredMessage
-instance GHC.Show.Show API.Functions.ViewSponsoredMessage.ViewSponsoredMessage
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.ViewSponsoredMessage.ViewSponsoredMessage
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.ViewSponsoredMessage.ViewSponsoredMessage
 
 module API.Functions.ViewTrendingStickerSets
 
@@ -13487,26 +13348,6 @@ instance GHC.Show.Show API.Functions.ToggleGroupCallParticipantIsHandRaised.Togg
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.ToggleGroupCallParticipantIsHandRaised.ToggleGroupCallParticipantIsHandRaised
 instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.ToggleGroupCallParticipantIsHandRaised.ToggleGroupCallParticipantIsHandRaised
 
-module API.Functions.SetVoiceChatDefaultParticipant
-
--- | Changes default participant identifier, which can be used to join
---   voice chats in a chat
---   
---   <b>chat_id</b> Chat identifier
---   
---   <b>default_participant_id</b> Default group call participant
---   identifier to join the voice chats
-data SetVoiceChatDefaultParticipant
-SetVoiceChatDefaultParticipant :: Maybe MessageSender -> Maybe Int -> SetVoiceChatDefaultParticipant
-[default_participant_id] :: SetVoiceChatDefaultParticipant -> Maybe MessageSender
-[chat_id] :: SetVoiceChatDefaultParticipant -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.Functions.SetVoiceChatDefaultParticipant.SetVoiceChatDefaultParticipant
-instance GHC.Show.Show API.Functions.SetVoiceChatDefaultParticipant.SetVoiceChatDefaultParticipant
-instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.SetVoiceChatDefaultParticipant.SetVoiceChatDefaultParticipant
-instance Data.Aeson.Types.FromJSON.FromJSON API.Functions.SetVoiceChatDefaultParticipant.SetVoiceChatDefaultParticipant
-
 module API.Functions.SetVideoChatDefaultParticipant
 
 -- | Changes default participant identifier, on whose behalf a video chat
@@ -15168,38 +15009,6 @@ instance GHC.Classes.Eq API.PasswordState.PasswordState
 instance GHC.Show.Show API.PasswordState.PasswordState
 instance Data.Aeson.Types.ToJSON.ToJSON API.PasswordState.PasswordState
 instance Data.Aeson.Types.FromJSON.FromJSON API.PasswordState.PasswordState
-
-module API.PaymentFormTheme
-
--- | Theme colors for a payment form
---   
---   <b>background_color</b> A color of the payment form background in the
---   RGB24 format
---   
---   <b>text_color</b> A color of text in the RGB24 format
---   
---   <b>hint_color</b> A color of hints in the RGB24 format
---   
---   <b>link_color</b> A color of links in the RGB24 format
---   
---   <b>button_color</b> A color of thebuttons in the RGB24 format
---   
---   <b>button_text_color</b> A color of text on the buttons in the RGB24
---   format
-data PaymentFormTheme
-PaymentFormTheme :: Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> PaymentFormTheme
-[button_text_color] :: PaymentFormTheme -> Maybe Int
-[button_color] :: PaymentFormTheme -> Maybe Int
-[link_color] :: PaymentFormTheme -> Maybe Int
-[hint_color] :: PaymentFormTheme -> Maybe Int
-[text_color] :: PaymentFormTheme -> Maybe Int
-[background_color] :: PaymentFormTheme -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.PaymentFormTheme.PaymentFormTheme
-instance GHC.Show.Show API.PaymentFormTheme.PaymentFormTheme
-instance Data.Aeson.Types.ToJSON.ToJSON API.PaymentFormTheme.PaymentFormTheme
-instance Data.Aeson.Types.FromJSON.FromJSON API.PaymentFormTheme.PaymentFormTheme
 
 module API.PaymentResult
 
@@ -18064,21 +17873,6 @@ instance GHC.Classes.Eq API.SponsoredMessage.SponsoredMessage
 instance GHC.Show.Show API.SponsoredMessage.SponsoredMessage
 instance Data.Aeson.Types.ToJSON.ToJSON API.SponsoredMessage.SponsoredMessage
 instance Data.Aeson.Types.FromJSON.FromJSON API.SponsoredMessage.SponsoredMessage
-
-module API.SponsoredMessages
-
--- | Contains a list of sponsored messages
---   
---   <b>messages</b> List of sponsored messages
-data SponsoredMessages
-SponsoredMessages :: Maybe [SponsoredMessage] -> SponsoredMessages
-[messages] :: SponsoredMessages -> Maybe [SponsoredMessage]
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.SponsoredMessages.SponsoredMessages
-instance GHC.Show.Show API.SponsoredMessages.SponsoredMessages
-instance Data.Aeson.Types.ToJSON.ToJSON API.SponsoredMessages.SponsoredMessages
-instance Data.Aeson.Types.FromJSON.FromJSON API.SponsoredMessages.SponsoredMessages
 
 module API.MessageStatistics
 
@@ -22932,30 +22726,6 @@ instance GHC.Classes.Eq API.VideoNote.VideoNote
 instance GHC.Show.Show API.VideoNote.VideoNote
 instance Data.Aeson.Types.ToJSON.ToJSON API.VideoNote.VideoNote
 instance Data.Aeson.Types.FromJSON.FromJSON API.VideoNote.VideoNote
-
-module API.VoiceChat
-
--- | Describes a voice chat
---   
---   <b>group_call_id</b> Group call identifier of an active voice chat; 0
---   if none. Full informationa about the voice chat can be received
---   through the method getGroupCall
---   
---   <b>has_participants</b> True, if the voice chat has participants
---   
---   <b>default_participant_id</b> Default group call participant
---   identifier to join the voice chat; may be null
-data VoiceChat
-VoiceChat :: Maybe MessageSender -> Maybe Bool -> Maybe Int -> VoiceChat
-[default_participant_id] :: VoiceChat -> Maybe MessageSender
-[has_participants] :: VoiceChat -> Maybe Bool
-[group_call_id] :: VoiceChat -> Maybe Int
-p :: Show a => String -> Maybe a -> String
-cc :: [String] -> String
-instance GHC.Classes.Eq API.VoiceChat.VoiceChat
-instance GHC.Show.Show API.VoiceChat.VoiceChat
-instance Data.Aeson.Types.ToJSON.ToJSON API.VoiceChat.VoiceChat
-instance Data.Aeson.Types.FromJSON.FromJSON API.VoiceChat.VoiceChat
 
 module API.PushMessageContent
 

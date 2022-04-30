@@ -17,7 +17,7 @@
 </span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="TMeUrls"><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-var">TMeUrls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-18"></span><span>
 </span><span id="line-19"></span><span> </span><span id="TMeUrls"><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-var">TMeUrls</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="urls"><span class="annot"><span class="annottext">TMeUrls -&gt; Maybe [TMeUrl]
-</span><a href="API.TMeUrls.html#urls"><span class="hs-identifier hs-var hs-var">urls</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.TMeUrl.html#TMeUrl"><span class="hs-identifier hs-type">TMeUrl.TMeUrl</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679576437"><span id="local-6989586621679576439"><span class="annot"><span class="annottext">TMeUrls -&gt; TMeUrls -&gt; Bool
+</span><a href="API.TMeUrls.html#urls"><span class="hs-identifier hs-var hs-var">urls</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.TMeUrl.html#TMeUrl"><span class="hs-identifier hs-type">TMeUrl.TMeUrl</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679571198"><span id="local-6989586621679571200"><span class="annot"><span class="annottext">TMeUrls -&gt; TMeUrls -&gt; Bool
 (TMeUrls -&gt; TMeUrls -&gt; Bool)
 -&gt; (TMeUrls -&gt; TMeUrls -&gt; Bool) -&gt; Eq TMeUrls
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -27,11 +27,11 @@ $c/= :: TMeUrls -&gt; TMeUrls -&gt; Bool
 $c== :: TMeUrls -&gt; TMeUrls -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679576431"><span id="local-6989586621679576434"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679576429"><span class="annot"><span class="annottext">show :: TMeUrls -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679571192"><span id="local-6989586621679571195"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679571190"><span class="annot"><span class="annottext">show :: TMeUrls -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">urls :: TMeUrls -&gt; Maybe [TMeUrl]
-</span><a href="API.TMeUrls.html#urls"><span class="hs-identifier hs-var">urls</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679576427"><span class="annot"><span class="annottext">Maybe [TMeUrl]
-</span><a href="#local-6989586621679576427"><span class="hs-identifier hs-var">urls</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TMeUrls.html#urls"><span class="hs-identifier hs-var">urls</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679571188"><span class="annot"><span class="annottext">Maybe [TMeUrl]
+</span><a href="#local-6989586621679571188"><span class="hs-identifier hs-var">urls</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;TMeUrls&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -40,14 +40,14 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.TMeUrls.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;urls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [TMeUrl]
-</span><a href="#local-6989586621679576427"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679571188"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span id="local-6989586621679576475"><span class="annot"><a href="API.TMeUrls.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679576475"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679576475"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-25"></span><span id="local-6989586621679571236"><span class="annot"><a href="API.TMeUrls.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679571236"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679571236"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-26"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.TMeUrls.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679576424"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679576424"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679576423"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679576423"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679576424"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.TMeUrls.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679571185"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679571185"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679571184"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679571184"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679571185"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -55,7 +55,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679576423"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679571184"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-27"></span><span class="annot"><a href="API.TMeUrls.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -66,8 +66,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.TMeUrls.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-31"></span><span class="annot"><a href="API.TMeUrls.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679576422"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679576422"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span class="annot"><a href="API.TMeUrls.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679571183"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679571183"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -81,17 +81,17 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679576422"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679571183"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-32"></span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679576412"><span id="local-6989586621679576414"><span id="local-6989586621679576416"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span> </span><span id="local-6989586621679576410"><span class="annot"><span class="annottext">toJSON :: TMeUrls -&gt; Value
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679571173"><span id="local-6989586621679571175"><span id="local-6989586621679571177"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span> </span><span id="local-6989586621679571171"><span class="annot"><span class="annottext">toJSON :: TMeUrls -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">urls :: TMeUrls -&gt; Maybe [TMeUrl]
-</span><a href="API.TMeUrls.html#urls"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679576408"><span class="annot"><span class="annottext">Maybe [TMeUrl]
-</span><a href="#local-6989586621679576408"><span class="hs-identifier hs-var">urls</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TMeUrls.html#urls"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679571169"><span class="annot"><span class="annottext">Maybe [TMeUrl]
+</span><a href="#local-6989586621679571169"><span class="hs-identifier hs-var">urls</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -102,43 +102,43 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;urls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [TMeUrl] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [TMeUrl]
-</span><a href="#local-6989586621679576408"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679571169"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679576402"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span> </span><span id="local-6989586621679576400"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TMeUrls
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679576398"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679576398"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679576396"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679576396"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-40"></span><span>  </span><span id="local-6989586621679576395"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679576395"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679576396"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679571163"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span> </span><span id="local-6989586621679571161"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TMeUrls
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679571159"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679571159"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679571157"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679571157"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>  </span><span id="local-6989586621679571156"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679571156"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679571157"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-41"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679576395"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679571156"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;tMeUrls&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TMeUrls
-</span><a href="#local-6989586621679576393"><span class="hs-identifier hs-var">parseTMeUrls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679576398"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679571154"><span class="hs-identifier hs-var">parseTMeUrls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679571159"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TMeUrls
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>   </span><span class="annot"><a href="#local-6989586621679576393"><span class="hs-identifier hs-type">parseTMeUrls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span><span>
-</span><span id="line-46"></span><span>   </span><span id="local-6989586621679576393"><span class="annot"><span class="annottext">parseTMeUrls :: Value -&gt; Parser TMeUrls
-</span><a href="#local-6989586621679576393"><span class="hs-identifier hs-var hs-var">parseTMeUrls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser TMeUrls) -&gt; Value -&gt; Parser TMeUrls
+</span><span id="line-45"></span><span>   </span><span class="annot"><a href="#local-6989586621679571154"><span class="hs-identifier hs-type">parseTMeUrls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span><span>
+</span><span id="line-46"></span><span>   </span><span id="local-6989586621679571154"><span class="annot"><span class="annottext">parseTMeUrls :: Value -&gt; Parser TMeUrls
+</span><a href="#local-6989586621679571154"><span class="hs-identifier hs-var hs-var">parseTMeUrls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser TMeUrls) -&gt; Value -&gt; Parser TMeUrls
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;TMeUrls&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TMeUrls) -&gt; Value -&gt; Parser TMeUrls)
 -&gt; (Object -&gt; Parser TMeUrls) -&gt; Value -&gt; Parser TMeUrls
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679576391"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679576391"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-47"></span><span>    </span><span id="local-6989586621679576390"><span class="annot"><span class="annottext">Maybe [TMeUrl]
-</span><a href="#local-6989586621679576390"><span class="hs-identifier hs-var">urls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679576391"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [TMeUrl])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679571152"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679571152"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679571151"><span class="annot"><span class="annottext">Maybe [TMeUrl]
+</span><a href="#local-6989586621679571151"><span class="hs-identifier hs-var">urls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679571152"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [TMeUrl])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;urls&quot;</span></span><span>
@@ -149,7 +149,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMeUrls :: Maybe [TMeUrl] -&gt; TMeUrls
 </span><a href="API.TMeUrls.html#TMeUrls"><span class="hs-identifier hs-type">TMeUrls</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">urls :: Maybe [TMeUrl]
 </span><a href="API.TMeUrls.html#urls"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [TMeUrl]
-</span><a href="#local-6989586621679576390"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679571151"><span class="hs-identifier hs-var">urls</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-49"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser TMeUrls
 forall a. Monoid a =&gt; a

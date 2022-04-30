@@ -22,7 +22,7 @@
 </span><span id="line-22"></span><span> </span><span id="DeleteMessages"><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-var">DeleteMessages</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="revoke"><span class="annot"><span class="annottext">DeleteMessages -&gt; Maybe Bool
 </span><a href="API.Functions.DeleteMessages.html#revoke"><span class="hs-identifier hs-var hs-var">revoke</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="message_ids"><span class="annot"><span class="annottext">DeleteMessages -&gt; Maybe [Int]
 </span><a href="API.Functions.DeleteMessages.html#message_ids"><span class="hs-identifier hs-var hs-var">message_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">DeleteMessages -&gt; Maybe Int
-</span><a href="API.Functions.DeleteMessages.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679514037"><span id="local-6989586621679514039"><span class="annot"><span class="annottext">DeleteMessages -&gt; DeleteMessages -&gt; Bool
+</span><a href="API.Functions.DeleteMessages.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679509611"><span id="local-6989586621679509613"><span class="annot"><span class="annottext">DeleteMessages -&gt; DeleteMessages -&gt; Bool
 (DeleteMessages -&gt; DeleteMessages -&gt; Bool)
 -&gt; (DeleteMessages -&gt; DeleteMessages -&gt; Bool) -&gt; Eq DeleteMessages
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -32,15 +32,15 @@ $c/= :: DeleteMessages -&gt; DeleteMessages -&gt; Bool
 $c== :: DeleteMessages -&gt; DeleteMessages -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514031"><span id="local-6989586621679514034"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679514029"><span class="annot"><span class="annottext">show :: DeleteMessages -&gt; String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679509605"><span id="local-6989586621679509608"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679509603"><span class="annot"><span class="annottext">show :: DeleteMessages -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">revoke :: DeleteMessages -&gt; Maybe Bool
-</span><a href="API.Functions.DeleteMessages.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514027"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514027"><span class="hs-identifier hs-var">revoke</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_ids :: DeleteMessages -&gt; Maybe [Int]
-</span><a href="API.Functions.DeleteMessages.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514026"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679514026"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: DeleteMessages -&gt; Maybe Int
-</span><a href="API.Functions.DeleteMessages.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679514025"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514025"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.DeleteMessages.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679509601"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679509601"><span class="hs-identifier hs-var">revoke</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_ids :: DeleteMessages -&gt; Maybe [Int]
+</span><a href="API.Functions.DeleteMessages.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679509600"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679509600"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: DeleteMessages -&gt; Maybe Int
+</span><a href="API.Functions.DeleteMessages.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679509599"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679509599"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;DeleteMessages&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -49,22 +49,22 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;revoke&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514027"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
+</span><a href="#local-6989586621679509601"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679514026"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679509600"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514025"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679509599"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span id="local-6989586621679514081"><span class="annot"><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679514081"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679514081"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-28"></span><span id="local-6989586621679509655"><span class="annot"><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679509655"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679509655"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-29"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679514022"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679514022"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679514021"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679514021"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679514022"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679509596"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679509596"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679509595"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679509595"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679509596"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -72,7 +72,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679514021"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679509595"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-30"></span><span class="annot"><a href="API.Functions.DeleteMessages.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -83,8 +83,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.Functions.DeleteMessages.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-34"></span><span class="annot"><a href="API.Functions.DeleteMessages.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679514020"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679514020"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-34"></span><span class="annot"><a href="API.Functions.DeleteMessages.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679509594"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679509594"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -98,21 +98,21 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679514020"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679509594"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679514010"><span id="local-6989586621679514012"><span id="local-6989586621679514014"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span> </span><span id="local-6989586621679514008"><span class="annot"><span class="annottext">toJSON :: DeleteMessages -&gt; Value
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679509584"><span id="local-6989586621679509586"><span id="local-6989586621679509588"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679509582"><span class="annot"><span class="annottext">toJSON :: DeleteMessages -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">revoke :: DeleteMessages -&gt; Maybe Bool
-</span><a href="API.Functions.DeleteMessages.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514006"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514006"><span class="hs-identifier hs-var">revoke</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_ids :: DeleteMessages -&gt; Maybe [Int]
-</span><a href="API.Functions.DeleteMessages.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514005"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679514005"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: DeleteMessages -&gt; Maybe Int
-</span><a href="API.Functions.DeleteMessages.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679514004"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514004"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.DeleteMessages.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679509580"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679509580"><span class="hs-identifier hs-var">revoke</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_ids :: DeleteMessages -&gt; Maybe [Int]
+</span><a href="API.Functions.DeleteMessages.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679509579"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679509579"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: DeleteMessages -&gt; Maybe Int
+</span><a href="API.Functions.DeleteMessages.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679509578"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679509578"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -123,41 +123,41 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;revoke&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679514006"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679509580"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679514005"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679509579"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679514004"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679509578"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679513998"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span> </span><span id="local-6989586621679513996"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeleteMessages
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679513994"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679513994"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679513992"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679513992"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679513991"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679513991"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679513992"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679509572"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span> </span><span id="local-6989586621679509570"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeleteMessages
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679509568"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679509568"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679509566"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679509566"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679509565"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679509565"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679509566"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679513991"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679509565"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-45"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;deleteMessages&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeleteMessages
-</span><a href="#local-6989586621679513989"><span class="hs-identifier hs-var">parseDeleteMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679513994"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679509563"><span class="hs-identifier hs-var">parseDeleteMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679509568"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeleteMessages
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-47"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679513989"><span class="hs-identifier hs-type">parseDeleteMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span><span>
-</span><span id="line-49"></span><span>   </span><span id="local-6989586621679513989"><span class="annot"><span class="annottext">parseDeleteMessages :: Value -&gt; Parser DeleteMessages
-</span><a href="#local-6989586621679513989"><span class="hs-identifier hs-var hs-var">parseDeleteMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679509563"><span class="hs-identifier hs-type">parseDeleteMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span><span>
+</span><span id="line-49"></span><span>   </span><span id="local-6989586621679509563"><span class="annot"><span class="annottext">parseDeleteMessages :: Value -&gt; Parser DeleteMessages
+</span><a href="#local-6989586621679509563"><span class="hs-identifier hs-var hs-var">parseDeleteMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeleteMessages)
 -&gt; Value
 -&gt; Parser DeleteMessages
@@ -169,25 +169,25 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser DeleteMessages
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679513987"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679513987"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>    </span><span id="local-6989586621679513986"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679513986"><span class="hs-identifier hs-var">revoke</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679513987"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679509561"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679509561"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679509560"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679509560"><span class="hs-identifier hs-var">revoke</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679509561"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;revoke&quot;</span></span><span>
-</span><span id="line-51"></span><span>    </span><span id="local-6989586621679513984"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679513984"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679513987"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679509558"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679509558"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679509561"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_ids&quot;</span></span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679513983"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679513983"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679509557"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679509557"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679513987"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679509561"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -195,7 +195,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679513987"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679509561"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -207,11 +207,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeleteMessages :: Maybe Bool -&gt; Maybe [Int] -&gt; Maybe Int -&gt; DeleteMessages
 </span><a href="API.Functions.DeleteMessages.html#DeleteMessages"><span class="hs-identifier hs-type">DeleteMessages</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">revoke :: Maybe Bool
 </span><a href="API.Functions.DeleteMessages.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679513986"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_ids :: Maybe [Int]
+</span><a href="#local-6989586621679509560"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_ids :: Maybe [Int]
 </span><a href="API.Functions.DeleteMessages.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679513984"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679509558"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.DeleteMessages.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679513983"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679509557"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-54"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser DeleteMessages
 forall a. Monoid a =&gt; a

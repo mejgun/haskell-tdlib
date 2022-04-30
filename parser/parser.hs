@@ -1,5 +1,6 @@
--- you do not need to read or use this script, unless you are going to contribute to the lib
 {-# LANGUAGE OverloadedStrings #-}
+
+-- you do not need to read or use this script, unless you are going to contribute to the lib
 
 import qualified Data.Map.Strict as Map
 import qualified Data.Set as Set

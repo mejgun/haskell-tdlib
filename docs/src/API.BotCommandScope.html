@@ -49,7 +49,7 @@
 </span><span id="line-48"></span><span> </span><span class="hs-comment">-- </span><span>
 </span><span id="line-49"></span><span> </span><span class="hs-comment">-- __user_id__ User identifier</span><span>
 </span><span id="line-50"></span><span> </span><span id="BotCommandScopeChatMember"><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeChatMember"><span class="hs-identifier hs-var">BotCommandScopeChatMember</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="user_id"><span class="annot"><span class="annottext">BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679498017"><span id="local-6989586621679498019"><span class="annot"><span class="annottext">BotCommandScope -&gt; BotCommandScope -&gt; Bool
+</span><a href="API.BotCommandScope.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679493799"><span id="local-6989586621679493801"><span class="annot"><span class="annottext">BotCommandScope -&gt; BotCommandScope -&gt; Bool
 (BotCommandScope -&gt; BotCommandScope -&gt; Bool)
 -&gt; (BotCommandScope -&gt; BotCommandScope -&gt; Bool)
 -&gt; Eq BotCommandScope
@@ -60,8 +60,8 @@ $c/= :: BotCommandScope -&gt; BotCommandScope -&gt; Bool
 $c== :: BotCommandScope -&gt; BotCommandScope -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679498011"><span id="local-6989586621679498014"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-53"></span><span> </span><span id="local-6989586621679498009"><span class="annot"><span class="annottext">show :: BotCommandScope -&gt; String
+</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679493793"><span id="local-6989586621679493796"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-53"></span><span> </span><span id="local-6989586621679493791"><span class="annot"><span class="annottext">show :: BotCommandScope -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeDefault"><span class="hs-identifier hs-type">BotCommandScopeDefault</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-54"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BotCommandScopeDefault&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -91,8 +91,8 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="API.BotCommandScope.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-64"></span><span>
 </span><span id="line-65"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeChat"><span class="hs-identifier hs-type">BotCommandScopeChat</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498006"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498006"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679493788"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493788"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-66"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BotCommandScopeChat&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -101,11 +101,11 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498006"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679493788"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-67"></span><span>
 </span><span id="line-68"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeChatAdministrators"><span class="hs-identifier hs-type">BotCommandScopeChatAdministrators</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498004"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498004"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679493786"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493786"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-69"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BotCommandScopeChatAdministrators&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -114,13 +114,13 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498004"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679493786"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-70"></span><span>
 </span><span id="line-71"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeChatMember"><span class="hs-identifier hs-type">BotCommandScopeChatMember</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498003"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498003"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679498002"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498002"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.BotCommandScope.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679493785"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493785"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
+</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679493784"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493784"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-72"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BotCommandScopeChatMember&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -129,18 +129,18 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498003"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679493785"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679498002"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679493784"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-73"></span><span>
-</span><span id="line-74"></span><span id="local-6989586621679498066"><span class="annot"><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679498066"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679498066"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-74"></span><span id="local-6989586621679493848"><span class="annot"><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679493848"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679493848"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-75"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679498001"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679498001"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679498000"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679498000"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679498001"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679493783"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679493783"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679493782"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679493782"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679493783"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -148,7 +148,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679498000"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679493782"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-76"></span><span class="annot"><a href="API.BotCommandScope.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -159,8 +159,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.BotCommandScope.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-80"></span><span class="annot"><a href="API.BotCommandScope.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679497999"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679497999"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-80"></span><span class="annot"><a href="API.BotCommandScope.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679493781"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679493781"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -174,14 +174,14 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679497999"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679493781"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-81"></span><span>
 </span><span id="line-82"></span><span>
-</span><span id="line-83"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679497989"><span id="local-6989586621679497991"><span id="local-6989586621679497993"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-84"></span><span> </span><span id="local-6989586621679497987"><span class="annot"><span class="annottext">toJSON :: BotCommandScope -&gt; Value
+</span><span id="line-83"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679493771"><span id="local-6989586621679493773"><span id="local-6989586621679493775"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-84"></span><span> </span><span id="local-6989586621679493769"><span class="annot"><span class="annottext">toJSON :: BotCommandScope -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeDefault"><span class="hs-identifier hs-type">BotCommandScopeDefault</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-85"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
@@ -219,8 +219,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;botCommandScopeAllChatAdministrators&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-95"></span><span>
 </span><span id="line-96"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeChat"><span class="hs-identifier hs-type">BotCommandScopeChat</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679497982"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497982"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679493764"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493764"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-97"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -231,11 +231,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497982"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679493764"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-98"></span><span>
 </span><span id="line-99"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeChatAdministrators"><span class="hs-identifier hs-type">BotCommandScopeChatAdministrators</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679497981"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497981"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679493763"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493763"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-100"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -246,13 +246,13 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497981"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679493763"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-101"></span><span>
 </span><span id="line-102"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScopeChatMember"><span class="hs-identifier hs-type">BotCommandScopeChatMember</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679497980"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497980"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
-</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679497979"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497979"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.BotCommandScope.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679493762"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493762"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: BotCommandScope -&gt; Maybe Int
+</span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679493761"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493761"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-103"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -263,61 +263,61 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497980"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679493762"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497979"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679493761"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-104"></span><span>
-</span><span id="line-105"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679497976"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-106"></span><span> </span><span id="local-6989586621679497974"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BotCommandScope
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679497972"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679497970"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497970"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-107"></span><span>  </span><span id="local-6989586621679497969"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679497969"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497970"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-105"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679493758"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-106"></span><span> </span><span id="local-6989586621679493756"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BotCommandScope
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679493754"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679493752"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493752"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-107"></span><span>  </span><span id="local-6989586621679493751"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679493751"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493752"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-108"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679497969"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679493751"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-109"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;botCommandScopeDefault&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497967"><span class="hs-identifier hs-var">parseBotCommandScopeDefault</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679493749"><span class="hs-identifier hs-var">parseBotCommandScopeDefault</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-110"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;botCommandScopeAllPrivateChats&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497966"><span class="hs-identifier hs-var">parseBotCommandScopeAllPrivateChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679493748"><span class="hs-identifier hs-var">parseBotCommandScopeAllPrivateChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-111"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;botCommandScopeAllGroupChats&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497965"><span class="hs-identifier hs-var">parseBotCommandScopeAllGroupChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679493747"><span class="hs-identifier hs-var">parseBotCommandScopeAllGroupChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-112"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;botCommandScopeAllChatAdministrators&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497964"><span class="hs-identifier hs-var">parseBotCommandScopeAllChatAdministrators</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679493746"><span class="hs-identifier hs-var">parseBotCommandScopeAllChatAdministrators</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-113"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;botCommandScopeChat&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497963"><span class="hs-identifier hs-var">parseBotCommandScopeChat</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679493745"><span class="hs-identifier hs-var">parseBotCommandScopeChat</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-114"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;botCommandScopeChatAdministrators&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497962"><span class="hs-identifier hs-var">parseBotCommandScopeChatAdministrators</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679493744"><span class="hs-identifier hs-var">parseBotCommandScopeChatAdministrators</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-115"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;botCommandScopeChatMember&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497961"><span class="hs-identifier hs-var">parseBotCommandScopeChatMember</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679497972"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679493743"><span class="hs-identifier hs-var">parseBotCommandScopeChatMember</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679493754"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-116"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser BotCommandScope
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-117"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-118"></span><span>   </span><span class="annot"><a href="#local-6989586621679497967"><span class="hs-identifier hs-type">parseBotCommandScopeDefault</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
-</span><span id="line-119"></span><span>   </span><span id="local-6989586621679497967"><span class="annot"><span class="annottext">parseBotCommandScopeDefault :: Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497967"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeDefault</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-118"></span><span>   </span><span class="annot"><a href="#local-6989586621679493749"><span class="hs-identifier hs-type">parseBotCommandScopeDefault</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
+</span><span id="line-119"></span><span>   </span><span id="local-6989586621679493749"><span class="annot"><span class="annottext">parseBotCommandScopeDefault :: Value -&gt; Parser BotCommandScope
+</span><a href="#local-6989586621679493749"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeDefault</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BotCommandScope)
 -&gt; Value
 -&gt; Parser BotCommandScope
@@ -329,8 +329,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BotCommandScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497959"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497959"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679493741"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493741"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-120"></span><span>    </span><span class="annot"><span class="annottext">BotCommandScope -&gt; Parser BotCommandScope
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BotCommandScope -&gt; Parser BotCommandScope)
@@ -339,9 +339,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotCommandScopeDefault :: BotCommandScope
 </span><a href="API.BotCommandScope.html#BotCommandScopeDefault"><span class="hs-identifier hs-type">BotCommandScopeDefault</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-121"></span><span>
-</span><span id="line-122"></span><span>   </span><span class="annot"><a href="#local-6989586621679497966"><span class="hs-identifier hs-type">parseBotCommandScopeAllPrivateChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
-</span><span id="line-123"></span><span>   </span><span id="local-6989586621679497966"><span class="annot"><span class="annottext">parseBotCommandScopeAllPrivateChats :: Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497966"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeAllPrivateChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-122"></span><span>   </span><span class="annot"><a href="#local-6989586621679493748"><span class="hs-identifier hs-type">parseBotCommandScopeAllPrivateChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
+</span><span id="line-123"></span><span>   </span><span id="local-6989586621679493748"><span class="annot"><span class="annottext">parseBotCommandScopeAllPrivateChats :: Value -&gt; Parser BotCommandScope
+</span><a href="#local-6989586621679493748"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeAllPrivateChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BotCommandScope)
 -&gt; Value
 -&gt; Parser BotCommandScope
@@ -353,8 +353,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BotCommandScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497958"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497958"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679493740"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493740"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-124"></span><span>    </span><span class="annot"><span class="annottext">BotCommandScope -&gt; Parser BotCommandScope
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BotCommandScope -&gt; Parser BotCommandScope)
@@ -363,9 +363,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotCommandScopeAllPrivateChats :: BotCommandScope
 </span><a href="API.BotCommandScope.html#BotCommandScopeAllPrivateChats"><span class="hs-identifier hs-type">BotCommandScopeAllPrivateChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-125"></span><span>
-</span><span id="line-126"></span><span>   </span><span class="annot"><a href="#local-6989586621679497965"><span class="hs-identifier hs-type">parseBotCommandScopeAllGroupChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
-</span><span id="line-127"></span><span>   </span><span id="local-6989586621679497965"><span class="annot"><span class="annottext">parseBotCommandScopeAllGroupChats :: Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497965"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeAllGroupChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-126"></span><span>   </span><span class="annot"><a href="#local-6989586621679493747"><span class="hs-identifier hs-type">parseBotCommandScopeAllGroupChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
+</span><span id="line-127"></span><span>   </span><span id="local-6989586621679493747"><span class="annot"><span class="annottext">parseBotCommandScopeAllGroupChats :: Value -&gt; Parser BotCommandScope
+</span><a href="#local-6989586621679493747"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeAllGroupChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BotCommandScope)
 -&gt; Value
 -&gt; Parser BotCommandScope
@@ -377,8 +377,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BotCommandScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497957"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497957"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679493739"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493739"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-128"></span><span>    </span><span class="annot"><span class="annottext">BotCommandScope -&gt; Parser BotCommandScope
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BotCommandScope -&gt; Parser BotCommandScope)
@@ -387,9 +387,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotCommandScopeAllGroupChats :: BotCommandScope
 </span><a href="API.BotCommandScope.html#BotCommandScopeAllGroupChats"><span class="hs-identifier hs-type">BotCommandScopeAllGroupChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-129"></span><span>
-</span><span id="line-130"></span><span>   </span><span class="annot"><a href="#local-6989586621679497964"><span class="hs-identifier hs-type">parseBotCommandScopeAllChatAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
-</span><span id="line-131"></span><span>   </span><span id="local-6989586621679497964"><span class="annot"><span class="annottext">parseBotCommandScopeAllChatAdministrators :: Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497964"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeAllChatAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-130"></span><span>   </span><span class="annot"><a href="#local-6989586621679493746"><span class="hs-identifier hs-type">parseBotCommandScopeAllChatAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
+</span><span id="line-131"></span><span>   </span><span id="local-6989586621679493746"><span class="annot"><span class="annottext">parseBotCommandScopeAllChatAdministrators :: Value -&gt; Parser BotCommandScope
+</span><a href="#local-6989586621679493746"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeAllChatAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BotCommandScope)
 -&gt; Value
 -&gt; Parser BotCommandScope
@@ -401,8 +401,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BotCommandScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497956"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497956"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679493738"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493738"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-132"></span><span>    </span><span class="annot"><span class="annottext">BotCommandScope -&gt; Parser BotCommandScope
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BotCommandScope -&gt; Parser BotCommandScope)
@@ -411,9 +411,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotCommandScopeAllChatAdministrators :: BotCommandScope
 </span><a href="API.BotCommandScope.html#BotCommandScopeAllChatAdministrators"><span class="hs-identifier hs-type">BotCommandScopeAllChatAdministrators</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-133"></span><span>
-</span><span id="line-134"></span><span>   </span><span class="annot"><a href="#local-6989586621679497963"><span class="hs-identifier hs-type">parseBotCommandScopeChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
-</span><span id="line-135"></span><span>   </span><span id="local-6989586621679497963"><span class="annot"><span class="annottext">parseBotCommandScopeChat :: Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497963"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-134"></span><span>   </span><span class="annot"><a href="#local-6989586621679493745"><span class="hs-identifier hs-type">parseBotCommandScopeChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
+</span><span id="line-135"></span><span>   </span><span id="local-6989586621679493745"><span class="annot"><span class="annottext">parseBotCommandScopeChat :: Value -&gt; Parser BotCommandScope
+</span><a href="#local-6989586621679493745"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BotCommandScope)
 -&gt; Value
 -&gt; Parser BotCommandScope
@@ -425,13 +425,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BotCommandScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497955"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497955"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-136"></span><span>    </span><span id="local-6989586621679497954"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497954"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679493737"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493737"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-136"></span><span>    </span><span id="local-6989586621679493736"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493736"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497955"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679493737"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -439,7 +439,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497955"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679493737"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -451,11 +451,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotCommandScopeChat :: Maybe Int -&gt; BotCommandScope
 </span><a href="API.BotCommandScope.html#BotCommandScopeChat"><span class="hs-identifier hs-type">BotCommandScopeChat</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497954"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679493736"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-138"></span><span>
-</span><span id="line-139"></span><span>   </span><span class="annot"><a href="#local-6989586621679497962"><span class="hs-identifier hs-type">parseBotCommandScopeChatAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
-</span><span id="line-140"></span><span>   </span><span id="local-6989586621679497962"><span class="annot"><span class="annottext">parseBotCommandScopeChatAdministrators :: Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497962"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeChatAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-139"></span><span>   </span><span class="annot"><a href="#local-6989586621679493744"><span class="hs-identifier hs-type">parseBotCommandScopeChatAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
+</span><span id="line-140"></span><span>   </span><span id="local-6989586621679493744"><span class="annot"><span class="annottext">parseBotCommandScopeChatAdministrators :: Value -&gt; Parser BotCommandScope
+</span><a href="#local-6989586621679493744"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeChatAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BotCommandScope)
 -&gt; Value
 -&gt; Parser BotCommandScope
@@ -467,13 +467,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BotCommandScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497951"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497951"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-141"></span><span>    </span><span id="local-6989586621679497950"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497950"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679493733"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493733"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-141"></span><span>    </span><span id="local-6989586621679493732"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493732"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497951"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679493733"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -481,7 +481,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497951"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679493733"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -493,11 +493,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotCommandScopeChatAdministrators :: Maybe Int -&gt; BotCommandScope
 </span><a href="API.BotCommandScope.html#BotCommandScopeChatAdministrators"><span class="hs-identifier hs-type">BotCommandScopeChatAdministrators</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497950"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679493732"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-143"></span><span>
-</span><span id="line-144"></span><span>   </span><span class="annot"><a href="#local-6989586621679497961"><span class="hs-identifier hs-type">parseBotCommandScopeChatMember</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
-</span><span id="line-145"></span><span>   </span><span id="local-6989586621679497961"><span class="annot"><span class="annottext">parseBotCommandScopeChatMember :: Value -&gt; Parser BotCommandScope
-</span><a href="#local-6989586621679497961"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeChatMember</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-144"></span><span>   </span><span class="annot"><a href="#local-6989586621679493743"><span class="hs-identifier hs-type">parseBotCommandScopeChatMember</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope</span></a></span><span>
+</span><span id="line-145"></span><span>   </span><span id="local-6989586621679493743"><span class="annot"><span class="annottext">parseBotCommandScopeChatMember :: Value -&gt; Parser BotCommandScope
+</span><a href="#local-6989586621679493743"><span class="hs-identifier hs-var hs-var">parseBotCommandScopeChatMember</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BotCommandScope)
 -&gt; Value
 -&gt; Parser BotCommandScope
@@ -509,13 +509,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BotCommandScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497949"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497949"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-146"></span><span>    </span><span id="local-6989586621679497948"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497948"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679493731"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679493731"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-146"></span><span>    </span><span id="local-6989586621679493730"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493730"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497949"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679493731"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -523,15 +523,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497949"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679493731"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-147"></span><span>    </span><span id="local-6989586621679497947"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497947"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-147"></span><span>    </span><span id="local-6989586621679493729"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679493729"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497949"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679493731"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -539,7 +539,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679497949"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679493731"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -551,9 +551,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotCommandScopeChatMember :: Maybe Int -&gt; Maybe Int -&gt; BotCommandScope
 </span><a href="API.BotCommandScope.html#BotCommandScopeChatMember"><span class="hs-identifier hs-type">BotCommandScopeChatMember</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_id :: Maybe Int
 </span><a href="API.BotCommandScope.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497948"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679493730"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.BotCommandScope.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679497947"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679493729"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-149"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser BotCommandScope
 forall a. Monoid a =&gt; a
