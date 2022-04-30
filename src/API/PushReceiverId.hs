@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data PushReceiverId =
 
 instance Show PushReceiverId where
  show PushReceiverId { _id=_id } =
-  "PushReceiverId" ++ cc [p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PushReceiverId" ++ U.cc [U.p "_id" _id ]
 
 instance T.ToJSON PushReceiverId where
  toJSON PushReceiverId { _id = _id } =

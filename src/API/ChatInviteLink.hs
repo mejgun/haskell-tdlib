@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -41,16 +41,7 @@ data ChatInviteLink =
 
 instance Show ChatInviteLink where
  show ChatInviteLink { is_revoked=is_revoked, is_primary=is_primary, creates_join_request=creates_join_request, pending_join_request_count=pending_join_request_count, member_count=member_count, member_limit=member_limit, expiration_date=expiration_date, edit_date=edit_date, date=date, creator_user_id=creator_user_id, name=name, invite_link=invite_link } =
-  "ChatInviteLink" ++ cc [p "is_revoked" is_revoked, p "is_primary" is_primary, p "creates_join_request" creates_join_request, p "pending_join_request_count" pending_join_request_count, p "member_count" member_count, p "member_limit" member_limit, p "expiration_date" expiration_date, p "edit_date" edit_date, p "date" date, p "creator_user_id" creator_user_id, p "name" name, p "invite_link" invite_link ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatInviteLink" ++ U.cc [U.p "is_revoked" is_revoked, U.p "is_primary" is_primary, U.p "creates_join_request" creates_join_request, U.p "pending_join_request_count" pending_join_request_count, U.p "member_count" member_count, U.p "member_limit" member_limit, U.p "expiration_date" expiration_date, U.p "edit_date" edit_date, U.p "date" date, U.p "creator_user_id" creator_user_id, U.p "name" name, U.p "invite_link" invite_link ]
 
 instance T.ToJSON ChatInviteLink where
  toJSON ChatInviteLink { is_revoked = is_revoked, is_primary = is_primary, creates_join_request = creates_join_request, pending_join_request_count = pending_join_request_count, member_count = member_count, member_limit = member_limit, expiration_date = expiration_date, edit_date = edit_date, date = date, creator_user_id = creator_user_id, name = name, invite_link = invite_link } =

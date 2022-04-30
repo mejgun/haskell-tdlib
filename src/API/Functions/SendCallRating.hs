@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.CallProblem as CallProblem
 
 -- |
@@ -26,16 +26,7 @@ data SendCallRating =
 
 instance Show SendCallRating where
  show SendCallRating { problems=problems, comment=comment, rating=rating, call_id=call_id } =
-  "SendCallRating" ++ cc [p "problems" problems, p "comment" comment, p "rating" rating, p "call_id" call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendCallRating" ++ U.cc [U.p "problems" problems, U.p "comment" comment, U.p "rating" rating, U.p "call_id" call_id ]
 
 instance T.ToJSON SendCallRating where
  toJSON SendCallRating { problems = problems, comment = comment, rating = rating, call_id = call_id } =

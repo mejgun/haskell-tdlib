@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data CountryInfo =
 
 instance Show CountryInfo where
  show CountryInfo { calling_codes=calling_codes, is_hidden=is_hidden, english_name=english_name, name=name, country_code=country_code } =
-  "CountryInfo" ++ cc [p "calling_codes" calling_codes, p "is_hidden" is_hidden, p "english_name" english_name, p "name" name, p "country_code" country_code ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CountryInfo" ++ U.cc [U.p "calling_codes" calling_codes, U.p "is_hidden" is_hidden, U.p "english_name" english_name, U.p "name" name, U.p "country_code" country_code ]
 
 instance T.ToJSON CountryInfo where
  toJSON CountryInfo { calling_codes = calling_codes, is_hidden = is_hidden, english_name = english_name, name = name, country_code = country_code } =

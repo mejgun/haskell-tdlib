@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -29,16 +29,7 @@ data ThemeParameters =
 
 instance Show ThemeParameters where
  show ThemeParameters { button_text_color=button_text_color, button_color=button_color, link_color=link_color, hint_color=hint_color, text_color=text_color, background_color=background_color } =
-  "ThemeParameters" ++ cc [p "button_text_color" button_text_color, p "button_color" button_color, p "link_color" link_color, p "hint_color" hint_color, p "text_color" text_color, p "background_color" background_color ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ThemeParameters" ++ U.cc [U.p "button_text_color" button_text_color, U.p "button_color" button_color, U.p "link_color" link_color, U.p "hint_color" hint_color, U.p "text_color" text_color, U.p "background_color" background_color ]
 
 instance T.ToJSON ThemeParameters where
  toJSON ThemeParameters { button_text_color = button_text_color, button_color = button_color, link_color = link_color, hint_color = hint_color, text_color = text_color, background_color = background_color } =

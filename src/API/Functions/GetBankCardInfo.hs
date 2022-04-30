@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GetBankCardInfo =
 
 instance Show GetBankCardInfo where
  show GetBankCardInfo { bank_card_number=bank_card_number } =
-  "GetBankCardInfo" ++ cc [p "bank_card_number" bank_card_number ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetBankCardInfo" ++ U.cc [U.p "bank_card_number" bank_card_number ]
 
 instance T.ToJSON GetBankCardInfo where
  toJSON GetBankCardInfo { bank_card_number = bank_card_number } =

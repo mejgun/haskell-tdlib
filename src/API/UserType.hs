@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -43,25 +43,16 @@ data UserType =
 
 instance Show UserType where
  show UserTypeRegular {  } =
-  "UserTypeRegular" ++ cc [ ]
+  "UserTypeRegular" ++ U.cc [ ]
 
  show UserTypeDeleted {  } =
-  "UserTypeDeleted" ++ cc [ ]
+  "UserTypeDeleted" ++ U.cc [ ]
 
  show UserTypeBot { can_be_added_to_attachment_menu=can_be_added_to_attachment_menu, need_location=need_location, inline_query_placeholder=inline_query_placeholder, is_inline=is_inline, can_read_all_group_messages=can_read_all_group_messages, can_join_groups=can_join_groups } =
-  "UserTypeBot" ++ cc [p "can_be_added_to_attachment_menu" can_be_added_to_attachment_menu, p "need_location" need_location, p "inline_query_placeholder" inline_query_placeholder, p "is_inline" is_inline, p "can_read_all_group_messages" can_read_all_group_messages, p "can_join_groups" can_join_groups ]
+  "UserTypeBot" ++ U.cc [U.p "can_be_added_to_attachment_menu" can_be_added_to_attachment_menu, U.p "need_location" need_location, U.p "inline_query_placeholder" inline_query_placeholder, U.p "is_inline" is_inline, U.p "can_read_all_group_messages" can_read_all_group_messages, U.p "can_join_groups" can_join_groups ]
 
  show UserTypeUnknown {  } =
-  "UserTypeUnknown" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UserTypeUnknown" ++ U.cc [ ]
 
 instance T.ToJSON UserType where
  toJSON UserTypeRegular {  } =

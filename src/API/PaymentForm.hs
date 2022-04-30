@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.SavedCredentials as SavedCredentials
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.PaymentsProviderStripe as PaymentsProviderStripe
@@ -41,16 +41,7 @@ data PaymentForm =
 
 instance Show PaymentForm where
  show PaymentForm { need_password=need_password, can_save_credentials=can_save_credentials, saved_credentials=saved_credentials, saved_order_info=saved_order_info, payments_provider=payments_provider, payments_provider_user_id=payments_provider_user_id, seller_bot_user_id=seller_bot_user_id, url=url, invoice=invoice, _id=_id } =
-  "PaymentForm" ++ cc [p "need_password" need_password, p "can_save_credentials" can_save_credentials, p "saved_credentials" saved_credentials, p "saved_order_info" saved_order_info, p "payments_provider" payments_provider, p "payments_provider_user_id" payments_provider_user_id, p "seller_bot_user_id" seller_bot_user_id, p "url" url, p "invoice" invoice, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PaymentForm" ++ U.cc [U.p "need_password" need_password, U.p "can_save_credentials" can_save_credentials, U.p "saved_credentials" saved_credentials, U.p "saved_order_info" saved_order_info, U.p "payments_provider" payments_provider, U.p "payments_provider_user_id" payments_provider_user_id, U.p "seller_bot_user_id" seller_bot_user_id, U.p "url" url, U.p "invoice" invoice, U.p "_id" _id ]
 
 instance T.ToJSON PaymentForm where
  toJSON PaymentForm { need_password = need_password, can_save_credentials = can_save_credentials, saved_credentials = saved_credentials, saved_order_info = saved_order_info, payments_provider = payments_provider, payments_provider_user_id = payments_provider_user_id, seller_bot_user_id = seller_bot_user_id, url = url, invoice = invoice, _id = _id } =

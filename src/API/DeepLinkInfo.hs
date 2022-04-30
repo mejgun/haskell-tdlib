@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -22,16 +22,7 @@ data DeepLinkInfo =
 
 instance Show DeepLinkInfo where
  show DeepLinkInfo { need_update_application=need_update_application, text=text } =
-  "DeepLinkInfo" ++ cc [p "need_update_application" need_update_application, p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DeepLinkInfo" ++ U.cc [U.p "need_update_application" need_update_application, U.p "text" text ]
 
 instance T.ToJSON DeepLinkInfo where
  toJSON DeepLinkInfo { need_update_application = need_update_application, text = text } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -22,16 +22,7 @@ data RemoveRecentSticker =
 
 instance Show RemoveRecentSticker where
  show RemoveRecentSticker { sticker=sticker, is_attached=is_attached } =
-  "RemoveRecentSticker" ++ cc [p "sticker" sticker, p "is_attached" is_attached ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RemoveRecentSticker" ++ U.cc [U.p "sticker" sticker, U.p "is_attached" is_attached ]
 
 instance T.ToJSON RemoveRecentSticker where
  toJSON RemoveRecentSticker { sticker = sticker, is_attached = is_attached } =

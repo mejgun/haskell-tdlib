@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PersonalDetails as PersonalDetails
 import {-# SOURCE #-} qualified API.InputIdentityDocument as InputIdentityDocument
 import {-# SOURCE #-} qualified API.Address as Address
@@ -97,52 +97,43 @@ data InputPassportElement =
 
 instance Show InputPassportElement where
  show InputPassportElementPersonalDetails { personal_details=personal_details } =
-  "InputPassportElementPersonalDetails" ++ cc [p "personal_details" personal_details ]
+  "InputPassportElementPersonalDetails" ++ U.cc [U.p "personal_details" personal_details ]
 
  show InputPassportElementPassport { passport=passport } =
-  "InputPassportElementPassport" ++ cc [p "passport" passport ]
+  "InputPassportElementPassport" ++ U.cc [U.p "passport" passport ]
 
  show InputPassportElementDriverLicense { driver_license=driver_license } =
-  "InputPassportElementDriverLicense" ++ cc [p "driver_license" driver_license ]
+  "InputPassportElementDriverLicense" ++ U.cc [U.p "driver_license" driver_license ]
 
  show InputPassportElementIdentityCard { identity_card=identity_card } =
-  "InputPassportElementIdentityCard" ++ cc [p "identity_card" identity_card ]
+  "InputPassportElementIdentityCard" ++ U.cc [U.p "identity_card" identity_card ]
 
  show InputPassportElementInternalPassport { internal_passport=internal_passport } =
-  "InputPassportElementInternalPassport" ++ cc [p "internal_passport" internal_passport ]
+  "InputPassportElementInternalPassport" ++ U.cc [U.p "internal_passport" internal_passport ]
 
  show InputPassportElementAddress { address=address } =
-  "InputPassportElementAddress" ++ cc [p "address" address ]
+  "InputPassportElementAddress" ++ U.cc [U.p "address" address ]
 
  show InputPassportElementUtilityBill { utility_bill=utility_bill } =
-  "InputPassportElementUtilityBill" ++ cc [p "utility_bill" utility_bill ]
+  "InputPassportElementUtilityBill" ++ U.cc [U.p "utility_bill" utility_bill ]
 
  show InputPassportElementBankStatement { bank_statement=bank_statement } =
-  "InputPassportElementBankStatement" ++ cc [p "bank_statement" bank_statement ]
+  "InputPassportElementBankStatement" ++ U.cc [U.p "bank_statement" bank_statement ]
 
  show InputPassportElementRentalAgreement { rental_agreement=rental_agreement } =
-  "InputPassportElementRentalAgreement" ++ cc [p "rental_agreement" rental_agreement ]
+  "InputPassportElementRentalAgreement" ++ U.cc [U.p "rental_agreement" rental_agreement ]
 
  show InputPassportElementPassportRegistration { passport_registration=passport_registration } =
-  "InputPassportElementPassportRegistration" ++ cc [p "passport_registration" passport_registration ]
+  "InputPassportElementPassportRegistration" ++ U.cc [U.p "passport_registration" passport_registration ]
 
  show InputPassportElementTemporaryRegistration { temporary_registration=temporary_registration } =
-  "InputPassportElementTemporaryRegistration" ++ cc [p "temporary_registration" temporary_registration ]
+  "InputPassportElementTemporaryRegistration" ++ U.cc [U.p "temporary_registration" temporary_registration ]
 
  show InputPassportElementPhoneNumber { phone_number=phone_number } =
-  "InputPassportElementPhoneNumber" ++ cc [p "phone_number" phone_number ]
+  "InputPassportElementPhoneNumber" ++ U.cc [U.p "phone_number" phone_number ]
 
  show InputPassportElementEmailAddress { email_address=email_address } =
-  "InputPassportElementEmailAddress" ++ cc [p "email_address" email_address ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputPassportElementEmailAddress" ++ U.cc [U.p "email_address" email_address ]
 
 instance T.ToJSON InputPassportElement where
  toJSON InputPassportElementPersonalDetails { personal_details = personal_details } =

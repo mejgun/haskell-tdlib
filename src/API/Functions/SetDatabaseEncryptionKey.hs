@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data SetDatabaseEncryptionKey =
 
 instance Show SetDatabaseEncryptionKey where
  show SetDatabaseEncryptionKey { new_encryption_key=new_encryption_key } =
-  "SetDatabaseEncryptionKey" ++ cc [p "new_encryption_key" new_encryption_key ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetDatabaseEncryptionKey" ++ U.cc [U.p "new_encryption_key" new_encryption_key ]
 
 instance T.ToJSON SetDatabaseEncryptionKey where
  toJSON SetDatabaseEncryptionKey { new_encryption_key = new_encryption_key } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,22 +27,13 @@ data PageBlockHorizontalAlignment =
 
 instance Show PageBlockHorizontalAlignment where
  show PageBlockHorizontalAlignmentLeft {  } =
-  "PageBlockHorizontalAlignmentLeft" ++ cc [ ]
+  "PageBlockHorizontalAlignmentLeft" ++ U.cc [ ]
 
  show PageBlockHorizontalAlignmentCenter {  } =
-  "PageBlockHorizontalAlignmentCenter" ++ cc [ ]
+  "PageBlockHorizontalAlignmentCenter" ++ U.cc [ ]
 
  show PageBlockHorizontalAlignmentRight {  } =
-  "PageBlockHorizontalAlignmentRight" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PageBlockHorizontalAlignmentRight" ++ U.cc [ ]
 
 instance T.ToJSON PageBlockHorizontalAlignment where
  toJSON PageBlockHorizontalAlignmentLeft {  } =

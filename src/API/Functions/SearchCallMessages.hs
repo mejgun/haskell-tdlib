@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data SearchCallMessages =
 
 instance Show SearchCallMessages where
  show SearchCallMessages { only_missed=only_missed, limit=limit, from_message_id=from_message_id } =
-  "SearchCallMessages" ++ cc [p "only_missed" only_missed, p "limit" limit, p "from_message_id" from_message_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SearchCallMessages" ++ U.cc [U.p "only_missed" only_missed, U.p "limit" limit, U.p "from_message_id" from_message_id ]
 
 instance T.ToJSON SearchCallMessages where
  toJSON SearchCallMessages { only_missed = only_missed, limit = limit, from_message_id = from_message_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -41,25 +41,16 @@ data InputCredentials =
 
 instance Show InputCredentials where
  show InputCredentialsSaved { saved_credentials_id=saved_credentials_id } =
-  "InputCredentialsSaved" ++ cc [p "saved_credentials_id" saved_credentials_id ]
+  "InputCredentialsSaved" ++ U.cc [U.p "saved_credentials_id" saved_credentials_id ]
 
  show InputCredentialsNew { allow_save=allow_save, _data=_data } =
-  "InputCredentialsNew" ++ cc [p "allow_save" allow_save, p "_data" _data ]
+  "InputCredentialsNew" ++ U.cc [U.p "allow_save" allow_save, U.p "_data" _data ]
 
  show InputCredentialsApplePay { _data=_data } =
-  "InputCredentialsApplePay" ++ cc [p "_data" _data ]
+  "InputCredentialsApplePay" ++ U.cc [U.p "_data" _data ]
 
  show InputCredentialsGooglePay { _data=_data } =
-  "InputCredentialsGooglePay" ++ cc [p "_data" _data ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputCredentialsGooglePay" ++ U.cc [U.p "_data" _data ]
 
 instance T.ToJSON InputCredentials where
  toJSON InputCredentialsSaved { saved_credentials_id = saved_credentials_id } =

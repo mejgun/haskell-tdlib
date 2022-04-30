@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BotCommandScope as BotCommandScope
 
 -- |
@@ -22,16 +22,7 @@ data DeleteCommands =
 
 instance Show DeleteCommands where
  show DeleteCommands { language_code=language_code, scope=scope } =
-  "DeleteCommands" ++ cc [p "language_code" language_code, p "scope" scope ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DeleteCommands" ++ U.cc [U.p "language_code" language_code, U.p "scope" scope ]
 
 instance T.ToJSON DeleteCommands where
  toJSON DeleteCommands { language_code = language_code, scope = scope } =

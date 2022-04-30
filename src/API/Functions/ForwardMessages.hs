@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
 
 -- |
@@ -32,16 +32,7 @@ data ForwardMessages =
 
 instance Show ForwardMessages where
  show ForwardMessages { only_preview=only_preview, remove_caption=remove_caption, send_copy=send_copy, options=options, message_ids=message_ids, from_chat_id=from_chat_id, chat_id=chat_id } =
-  "ForwardMessages" ++ cc [p "only_preview" only_preview, p "remove_caption" remove_caption, p "send_copy" send_copy, p "options" options, p "message_ids" message_ids, p "from_chat_id" from_chat_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ForwardMessages" ++ U.cc [U.p "only_preview" only_preview, U.p "remove_caption" remove_caption, U.p "send_copy" send_copy, U.p "options" options, U.p "message_ids" message_ids, U.p "from_chat_id" from_chat_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ForwardMessages where
  toJSON ForwardMessages { only_preview = only_preview, remove_caption = remove_caption, send_copy = send_copy, options = options, message_ids = message_ids, from_chat_id = from_chat_id, chat_id = chat_id } =

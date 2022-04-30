@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -25,16 +25,7 @@ data DeleteChatMessagesByDate =
 
 instance Show DeleteChatMessagesByDate where
  show DeleteChatMessagesByDate { revoke=revoke, max_date=max_date, min_date=min_date, chat_id=chat_id } =
-  "DeleteChatMessagesByDate" ++ cc [p "revoke" revoke, p "max_date" max_date, p "min_date" min_date, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DeleteChatMessagesByDate" ++ U.cc [U.p "revoke" revoke, U.p "max_date" max_date, U.p "min_date" min_date, U.p "chat_id" chat_id ]
 
 instance T.ToJSON DeleteChatMessagesByDate where
  toJSON DeleteChatMessagesByDate { revoke = revoke, max_date = max_date, min_date = min_date, chat_id = chat_id } =

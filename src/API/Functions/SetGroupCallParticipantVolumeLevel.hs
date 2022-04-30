@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -24,16 +24,7 @@ data SetGroupCallParticipantVolumeLevel =
 
 instance Show SetGroupCallParticipantVolumeLevel where
  show SetGroupCallParticipantVolumeLevel { volume_level=volume_level, participant_id=participant_id, group_call_id=group_call_id } =
-  "SetGroupCallParticipantVolumeLevel" ++ cc [p "volume_level" volume_level, p "participant_id" participant_id, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetGroupCallParticipantVolumeLevel" ++ U.cc [U.p "volume_level" volume_level, U.p "participant_id" participant_id, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON SetGroupCallParticipantVolumeLevel where
  toJSON SetGroupCallParticipantVolumeLevel { volume_level = volume_level, participant_id = participant_id, group_call_id = group_call_id } =

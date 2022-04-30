@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatMembersFilter as ChatMembersFilter
 
 -- |
@@ -26,16 +26,7 @@ data SearchChatMembers =
 
 instance Show SearchChatMembers where
  show SearchChatMembers { _filter=_filter, limit=limit, query=query, chat_id=chat_id } =
-  "SearchChatMembers" ++ cc [p "_filter" _filter, p "limit" limit, p "query" query, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SearchChatMembers" ++ U.cc [U.p "_filter" _filter, U.p "limit" limit, U.p "query" query, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SearchChatMembers where
  toJSON SearchChatMembers { _filter = _filter, limit = limit, query = query, chat_id = chat_id } =

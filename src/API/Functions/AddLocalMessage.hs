@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
@@ -29,16 +29,7 @@ data AddLocalMessage =
 
 instance Show AddLocalMessage where
  show AddLocalMessage { input_message_content=input_message_content, disable_notification=disable_notification, reply_to_message_id=reply_to_message_id, sender_id=sender_id, chat_id=chat_id } =
-  "AddLocalMessage" ++ cc [p "input_message_content" input_message_content, p "disable_notification" disable_notification, p "reply_to_message_id" reply_to_message_id, p "sender_id" sender_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AddLocalMessage" ++ U.cc [U.p "input_message_content" input_message_content, U.p "disable_notification" disable_notification, U.p "reply_to_message_id" reply_to_message_id, U.p "sender_id" sender_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON AddLocalMessage where
  toJSON AddLocalMessage { input_message_content = input_message_content, disable_notification = disable_notification, reply_to_message_id = reply_to_message_id, sender_id = sender_id, chat_id = chat_id } =

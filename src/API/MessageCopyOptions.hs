@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -24,16 +24,7 @@ data MessageCopyOptions =
 
 instance Show MessageCopyOptions where
  show MessageCopyOptions { new_caption=new_caption, replace_caption=replace_caption, send_copy=send_copy } =
-  "MessageCopyOptions" ++ cc [p "new_caption" new_caption, p "replace_caption" replace_caption, p "send_copy" send_copy ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageCopyOptions" ++ U.cc [U.p "new_caption" new_caption, U.p "replace_caption" replace_caption, U.p "send_copy" send_copy ]
 
 instance T.ToJSON MessageCopyOptions where
  toJSON MessageCopyOptions { new_caption = new_caption, replace_caption = replace_caption, send_copy = send_copy } =

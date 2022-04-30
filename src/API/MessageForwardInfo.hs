@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageForwardOrigin as MessageForwardOrigin
 
 -- |
@@ -28,16 +28,7 @@ data MessageForwardInfo =
 
 instance Show MessageForwardInfo where
  show MessageForwardInfo { from_message_id=from_message_id, from_chat_id=from_chat_id, public_service_announcement_type=public_service_announcement_type, date=date, origin=origin } =
-  "MessageForwardInfo" ++ cc [p "from_message_id" from_message_id, p "from_chat_id" from_chat_id, p "public_service_announcement_type" public_service_announcement_type, p "date" date, p "origin" origin ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageForwardInfo" ++ U.cc [U.p "from_message_id" from_message_id, U.p "from_chat_id" from_chat_id, U.p "public_service_announcement_type" public_service_announcement_type, U.p "date" date, U.p "origin" origin ]
 
 instance T.ToJSON MessageForwardInfo where
  toJSON MessageForwardInfo { from_message_id = from_message_id, from_chat_id = from_chat_id, public_service_announcement_type = public_service_announcement_type, date = date, origin = origin } =

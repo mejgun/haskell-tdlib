@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputInlineQueryResult as InputInlineQueryResult
 
 -- |
@@ -32,16 +32,7 @@ data AnswerInlineQuery =
 
 instance Show AnswerInlineQuery where
  show AnswerInlineQuery { switch_pm_parameter=switch_pm_parameter, switch_pm_text=switch_pm_text, next_offset=next_offset, cache_time=cache_time, results=results, is_personal=is_personal, inline_query_id=inline_query_id } =
-  "AnswerInlineQuery" ++ cc [p "switch_pm_parameter" switch_pm_parameter, p "switch_pm_text" switch_pm_text, p "next_offset" next_offset, p "cache_time" cache_time, p "results" results, p "is_personal" is_personal, p "inline_query_id" inline_query_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AnswerInlineQuery" ++ U.cc [U.p "switch_pm_parameter" switch_pm_parameter, U.p "switch_pm_text" switch_pm_text, U.p "next_offset" next_offset, U.p "cache_time" cache_time, U.p "results" results, U.p "is_personal" is_personal, U.p "inline_query_id" inline_query_id ]
 
 instance T.ToJSON AnswerInlineQuery where
  toJSON AnswerInlineQuery { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, next_offset = next_offset, cache_time = cache_time, results = results, is_personal = is_personal, inline_query_id = inline_query_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputPassportElement as InputPassportElement
 
 -- |
@@ -22,16 +22,7 @@ data SetPassportElement =
 
 instance Show SetPassportElement where
  show SetPassportElement { password=password, element=element } =
-  "SetPassportElement" ++ cc [p "password" password, p "element" element ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetPassportElement" ++ U.cc [U.p "password" password, U.p "element" element ]
 
 instance T.ToJSON SetPassportElement where
  toJSON SetPassportElement { password = password, element = element } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 
 -- |
@@ -24,16 +24,7 @@ data AnimatedChatPhoto =
 
 instance Show AnimatedChatPhoto where
  show AnimatedChatPhoto { main_frame_timestamp=main_frame_timestamp, file=file, _length=_length } =
-  "AnimatedChatPhoto" ++ cc [p "main_frame_timestamp" main_frame_timestamp, p "file" file, p "_length" _length ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AnimatedChatPhoto" ++ U.cc [U.p "main_frame_timestamp" main_frame_timestamp, U.p "file" file, U.p "_length" _length ]
 
 instance T.ToJSON AnimatedChatPhoto where
  toJSON AnimatedChatPhoto { main_frame_timestamp = main_frame_timestamp, file = file, _length = _length } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
@@ -25,16 +25,7 @@ data EditInlineMessageMedia =
 
 instance Show EditInlineMessageMedia where
  show EditInlineMessageMedia { input_message_content=input_message_content, reply_markup=reply_markup, inline_message_id=inline_message_id } =
-  "EditInlineMessageMedia" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "inline_message_id" inline_message_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "EditInlineMessageMedia" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "inline_message_id" inline_message_id ]
 
 instance T.ToJSON EditInlineMessageMedia where
  toJSON EditInlineMessageMedia { input_message_content = input_message_content, reply_markup = reply_markup, inline_message_id = inline_message_id } =

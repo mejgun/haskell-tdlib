@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Point as Point
 
 -- |
@@ -32,19 +32,10 @@ data VectorPathCommand =
 
 instance Show VectorPathCommand where
  show VectorPathCommandLine { end_point=end_point } =
-  "VectorPathCommandLine" ++ cc [p "end_point" end_point ]
+  "VectorPathCommandLine" ++ U.cc [U.p "end_point" end_point ]
 
  show VectorPathCommandCubicBezierCurve { end_point=end_point, end_control_point=end_control_point, start_control_point=start_control_point } =
-  "VectorPathCommandCubicBezierCurve" ++ cc [p "end_point" end_point, p "end_control_point" end_control_point, p "start_control_point" start_control_point ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "VectorPathCommandCubicBezierCurve" ++ U.cc [U.p "end_point" end_point, U.p "end_control_point" end_control_point, U.p "start_control_point" start_control_point ]
 
 instance T.ToJSON VectorPathCommand where
  toJSON VectorPathCommandLine { end_point = end_point } =

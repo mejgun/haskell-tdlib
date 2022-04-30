@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatAdministratorRights as ChatAdministratorRights
 
 -- |
@@ -20,16 +20,7 @@ data SetDefaultChannelAdministratorRights =
 
 instance Show SetDefaultChannelAdministratorRights where
  show SetDefaultChannelAdministratorRights { default_channel_administrator_rights=default_channel_administrator_rights } =
-  "SetDefaultChannelAdministratorRights" ++ cc [p "default_channel_administrator_rights" default_channel_administrator_rights ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetDefaultChannelAdministratorRights" ++ U.cc [U.p "default_channel_administrator_rights" default_channel_administrator_rights ]
 
 instance T.ToJSON SetDefaultChannelAdministratorRights where
  toJSON SetDefaultChannelAdministratorRights { default_channel_administrator_rights = default_channel_administrator_rights } =

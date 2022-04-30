@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
@@ -37,16 +37,7 @@ data SearchChatMessages =
 
 instance Show SearchChatMessages where
  show SearchChatMessages { message_thread_id=message_thread_id, _filter=_filter, limit=limit, offset=offset, from_message_id=from_message_id, sender_id=sender_id, query=query, chat_id=chat_id } =
-  "SearchChatMessages" ++ cc [p "message_thread_id" message_thread_id, p "_filter" _filter, p "limit" limit, p "offset" offset, p "from_message_id" from_message_id, p "sender_id" sender_id, p "query" query, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SearchChatMessages" ++ U.cc [U.p "message_thread_id" message_thread_id, U.p "_filter" _filter, U.p "limit" limit, U.p "offset" offset, U.p "from_message_id" from_message_id, U.p "sender_id" sender_id, U.p "query" query, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SearchChatMessages where
  toJSON SearchChatMessages { message_thread_id = message_thread_id, _filter = _filter, limit = limit, offset = offset, from_message_id = from_message_id, sender_id = sender_id, query = query, chat_id = chat_id } =

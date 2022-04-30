@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -30,16 +30,7 @@ data VideoNote =
 
 instance Show VideoNote where
  show VideoNote { video=video, thumbnail=thumbnail, minithumbnail=minithumbnail, _length=_length, duration=duration } =
-  "VideoNote" ++ cc [p "video" video, p "thumbnail" thumbnail, p "minithumbnail" minithumbnail, p "_length" _length, p "duration" duration ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "VideoNote" ++ U.cc [U.p "video" video, U.p "thumbnail" thumbnail, U.p "minithumbnail" minithumbnail, U.p "_length" _length, U.p "duration" duration ]
 
 instance T.ToJSON VideoNote where
  toJSON VideoNote { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, _length = _length, duration = duration } =

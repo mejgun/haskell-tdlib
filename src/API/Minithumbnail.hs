@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data Minithumbnail =
 
 instance Show Minithumbnail where
  show Minithumbnail { _data=_data, height=height, width=width } =
-  "Minithumbnail" ++ cc [p "_data" _data, p "height" height, p "width" width ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Minithumbnail" ++ U.cc [U.p "_data" _data, U.p "height" height, U.p "width" width ]
 
 instance T.ToJSON Minithumbnail where
  toJSON Minithumbnail { _data = _data, height = height, width = width } =

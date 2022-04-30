@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.ClosedVectorPath as ClosedVectorPath
@@ -37,16 +37,7 @@ data Sticker =
 
 instance Show Sticker where
  show Sticker { sticker=sticker, thumbnail=thumbnail, outline=outline, _type=_type, emoji=emoji, height=height, width=width, set_id=set_id } =
-  "Sticker" ++ cc [p "sticker" sticker, p "thumbnail" thumbnail, p "outline" outline, p "_type" _type, p "emoji" emoji, p "height" height, p "width" width, p "set_id" set_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Sticker" ++ U.cc [U.p "sticker" sticker, U.p "thumbnail" thumbnail, U.p "outline" outline, U.p "_type" _type, U.p "emoji" emoji, U.p "height" height, U.p "width" width, U.p "set_id" set_id ]
 
 instance T.ToJSON Sticker where
  toJSON Sticker { sticker = sticker, thumbnail = thumbnail, outline = outline, _type = _type, emoji = emoji, height = height, width = width, set_id = set_id } =

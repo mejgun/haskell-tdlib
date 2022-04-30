@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -47,28 +47,19 @@ data AuthenticationCodeType =
 
 instance Show AuthenticationCodeType where
  show AuthenticationCodeTypeTelegramMessage { _length=_length } =
-  "AuthenticationCodeTypeTelegramMessage" ++ cc [p "_length" _length ]
+  "AuthenticationCodeTypeTelegramMessage" ++ U.cc [U.p "_length" _length ]
 
  show AuthenticationCodeTypeSms { _length=_length } =
-  "AuthenticationCodeTypeSms" ++ cc [p "_length" _length ]
+  "AuthenticationCodeTypeSms" ++ U.cc [U.p "_length" _length ]
 
  show AuthenticationCodeTypeCall { _length=_length } =
-  "AuthenticationCodeTypeCall" ++ cc [p "_length" _length ]
+  "AuthenticationCodeTypeCall" ++ U.cc [U.p "_length" _length ]
 
  show AuthenticationCodeTypeFlashCall { pattern=pattern } =
-  "AuthenticationCodeTypeFlashCall" ++ cc [p "pattern" pattern ]
+  "AuthenticationCodeTypeFlashCall" ++ U.cc [U.p "pattern" pattern ]
 
  show AuthenticationCodeTypeMissedCall { _length=_length, phone_number_prefix=phone_number_prefix } =
-  "AuthenticationCodeTypeMissedCall" ++ cc [p "_length" _length, p "phone_number_prefix" phone_number_prefix ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AuthenticationCodeTypeMissedCall" ++ U.cc [U.p "_length" _length, U.p "phone_number_prefix" phone_number_prefix ]
 
 instance T.ToJSON AuthenticationCodeType where
  toJSON AuthenticationCodeTypeTelegramMessage { _length = _length } =

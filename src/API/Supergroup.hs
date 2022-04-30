@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 
 -- |
@@ -48,16 +48,7 @@ data Supergroup =
 
 instance Show Supergroup where
  show Supergroup { is_fake=is_fake, is_scam=is_scam, restriction_reason=restriction_reason, is_verified=is_verified, is_broadcast_group=is_broadcast_group, is_channel=is_channel, is_slow_mode_enabled=is_slow_mode_enabled, sign_messages=sign_messages, has_location=has_location, has_linked_chat=has_linked_chat, member_count=member_count, status=status, date=date, username=username, _id=_id } =
-  "Supergroup" ++ cc [p "is_fake" is_fake, p "is_scam" is_scam, p "restriction_reason" restriction_reason, p "is_verified" is_verified, p "is_broadcast_group" is_broadcast_group, p "is_channel" is_channel, p "is_slow_mode_enabled" is_slow_mode_enabled, p "sign_messages" sign_messages, p "has_location" has_location, p "has_linked_chat" has_linked_chat, p "member_count" member_count, p "status" status, p "date" date, p "username" username, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Supergroup" ++ U.cc [U.p "is_fake" is_fake, U.p "is_scam" is_scam, U.p "restriction_reason" restriction_reason, U.p "is_verified" is_verified, U.p "is_broadcast_group" is_broadcast_group, U.p "is_channel" is_channel, U.p "is_slow_mode_enabled" is_slow_mode_enabled, U.p "sign_messages" sign_messages, U.p "has_location" has_location, U.p "has_linked_chat" has_linked_chat, U.p "member_count" member_count, U.p "status" status, U.p "date" date, U.p "username" username, U.p "_id" _id ]
 
 instance T.ToJSON Supergroup where
  toJSON Supergroup { is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_verified = is_verified, is_broadcast_group = is_broadcast_group, is_channel = is_channel, is_slow_mode_enabled = is_slow_mode_enabled, sign_messages = sign_messages, has_location = has_location, has_linked_chat = has_linked_chat, member_count = member_count, status = status, date = date, username = username, _id = _id } =

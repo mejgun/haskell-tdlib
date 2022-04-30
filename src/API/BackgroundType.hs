@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 
 -- |
@@ -42,22 +42,13 @@ data BackgroundType =
 
 instance Show BackgroundType where
  show BackgroundTypeWallpaper { is_moving=is_moving, is_blurred=is_blurred } =
-  "BackgroundTypeWallpaper" ++ cc [p "is_moving" is_moving, p "is_blurred" is_blurred ]
+  "BackgroundTypeWallpaper" ++ U.cc [U.p "is_moving" is_moving, U.p "is_blurred" is_blurred ]
 
  show BackgroundTypePattern { is_moving=is_moving, is_inverted=is_inverted, intensity=intensity, fill=fill } =
-  "BackgroundTypePattern" ++ cc [p "is_moving" is_moving, p "is_inverted" is_inverted, p "intensity" intensity, p "fill" fill ]
+  "BackgroundTypePattern" ++ U.cc [U.p "is_moving" is_moving, U.p "is_inverted" is_inverted, U.p "intensity" intensity, U.p "fill" fill ]
 
  show BackgroundTypeFill { fill=fill } =
-  "BackgroundTypeFill" ++ cc [p "fill" fill ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BackgroundTypeFill" ++ U.cc [U.p "fill" fill ]
 
 instance T.ToJSON BackgroundType where
  toJSON BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data SetInlineGameScore =
 
 instance Show SetInlineGameScore where
  show SetInlineGameScore { force=force, score=score, user_id=user_id, edit_message=edit_message, inline_message_id=inline_message_id } =
-  "SetInlineGameScore" ++ cc [p "force" force, p "score" score, p "user_id" user_id, p "edit_message" edit_message, p "inline_message_id" inline_message_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetInlineGameScore" ++ U.cc [U.p "force" force, U.p "score" score, U.p "user_id" user_id, U.p "edit_message" edit_message, U.p "inline_message_id" inline_message_id ]
 
 instance T.ToJSON SetInlineGameScore where
  toJSON SetInlineGameScore { force = force, score = score, user_id = user_id, edit_message = edit_message, inline_message_id = inline_message_id } =

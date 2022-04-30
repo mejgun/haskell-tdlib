@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessagePosition as MessagePosition
 
 -- |
@@ -22,16 +22,7 @@ data MessagePositions =
 
 instance Show MessagePositions where
  show MessagePositions { positions=positions, total_count=total_count } =
-  "MessagePositions" ++ cc [p "positions" positions, p "total_count" total_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessagePositions" ++ U.cc [U.p "positions" positions, U.p "total_count" total_count ]
 
 instance T.ToJSON MessagePositions where
  toJSON MessagePositions { positions = positions, total_count = total_count } =

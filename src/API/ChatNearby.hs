@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ChatNearby =
 
 instance Show ChatNearby where
  show ChatNearby { distance=distance, chat_id=chat_id } =
-  "ChatNearby" ++ cc [p "distance" distance, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatNearby" ++ U.cc [U.p "distance" distance, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ChatNearby where
  toJSON ChatNearby { distance = distance, chat_id = chat_id } =

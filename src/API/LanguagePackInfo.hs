@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -43,16 +43,7 @@ data LanguagePackInfo =
 
 instance Show LanguagePackInfo where
  show LanguagePackInfo { translation_url=translation_url, local_string_count=local_string_count, translated_string_count=translated_string_count, total_string_count=total_string_count, is_installed=is_installed, is_beta=is_beta, is_rtl=is_rtl, is_official=is_official, plural_code=plural_code, native_name=native_name, name=name, base_language_pack_id=base_language_pack_id, _id=_id } =
-  "LanguagePackInfo" ++ cc [p "translation_url" translation_url, p "local_string_count" local_string_count, p "translated_string_count" translated_string_count, p "total_string_count" total_string_count, p "is_installed" is_installed, p "is_beta" is_beta, p "is_rtl" is_rtl, p "is_official" is_official, p "plural_code" plural_code, p "native_name" native_name, p "name" name, p "base_language_pack_id" base_language_pack_id, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "LanguagePackInfo" ++ U.cc [U.p "translation_url" translation_url, U.p "local_string_count" local_string_count, U.p "translated_string_count" translated_string_count, U.p "total_string_count" total_string_count, U.p "is_installed" is_installed, U.p "is_beta" is_beta, U.p "is_rtl" is_rtl, U.p "is_official" is_official, U.p "plural_code" plural_code, U.p "native_name" native_name, U.p "name" name, U.p "base_language_pack_id" base_language_pack_id, U.p "_id" _id ]
 
 instance T.ToJSON LanguagePackInfo where
  toJSON LanguagePackInfo { translation_url = translation_url, local_string_count = local_string_count, translated_string_count = translated_string_count, total_string_count = total_string_count, is_installed = is_installed, is_beta = is_beta, is_rtl = is_rtl, is_official = is_official, plural_code = plural_code, native_name = native_name, name = name, base_language_pack_id = base_language_pack_id, _id = _id } =

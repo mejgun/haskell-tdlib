@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data DisconnectWebsite =
 
 instance Show DisconnectWebsite where
  show DisconnectWebsite { website_id=website_id } =
-  "DisconnectWebsite" ++ cc [p "website_id" website_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DisconnectWebsite" ++ U.cc [U.p "website_id" website_id ]
 
 instance T.ToJSON DisconnectWebsite where
  toJSON DisconnectWebsite { website_id = website_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Document as Document
 
 -- |
@@ -138,64 +138,55 @@ data RichText =
 
 instance Show RichText where
  show RichTextPlain { _text=_text } =
-  "RichTextPlain" ++ cc [p "_text" _text ]
+  "RichTextPlain" ++ U.cc [U.p "_text" _text ]
 
  show RichTextBold { text=text } =
-  "RichTextBold" ++ cc [p "text" text ]
+  "RichTextBold" ++ U.cc [U.p "text" text ]
 
  show RichTextItalic { text=text } =
-  "RichTextItalic" ++ cc [p "text" text ]
+  "RichTextItalic" ++ U.cc [U.p "text" text ]
 
  show RichTextUnderline { text=text } =
-  "RichTextUnderline" ++ cc [p "text" text ]
+  "RichTextUnderline" ++ U.cc [U.p "text" text ]
 
  show RichTextStrikethrough { text=text } =
-  "RichTextStrikethrough" ++ cc [p "text" text ]
+  "RichTextStrikethrough" ++ U.cc [U.p "text" text ]
 
  show RichTextFixed { text=text } =
-  "RichTextFixed" ++ cc [p "text" text ]
+  "RichTextFixed" ++ U.cc [U.p "text" text ]
 
  show RichTextUrl { is_cached=is_cached, url=url, text=text } =
-  "RichTextUrl" ++ cc [p "is_cached" is_cached, p "url" url, p "text" text ]
+  "RichTextUrl" ++ U.cc [U.p "is_cached" is_cached, U.p "url" url, U.p "text" text ]
 
  show RichTextEmailAddress { email_address=email_address, text=text } =
-  "RichTextEmailAddress" ++ cc [p "email_address" email_address, p "text" text ]
+  "RichTextEmailAddress" ++ U.cc [U.p "email_address" email_address, U.p "text" text ]
 
  show RichTextSubscript { text=text } =
-  "RichTextSubscript" ++ cc [p "text" text ]
+  "RichTextSubscript" ++ U.cc [U.p "text" text ]
 
  show RichTextSuperscript { text=text } =
-  "RichTextSuperscript" ++ cc [p "text" text ]
+  "RichTextSuperscript" ++ U.cc [U.p "text" text ]
 
  show RichTextMarked { text=text } =
-  "RichTextMarked" ++ cc [p "text" text ]
+  "RichTextMarked" ++ U.cc [U.p "text" text ]
 
  show RichTextPhoneNumber { phone_number=phone_number, text=text } =
-  "RichTextPhoneNumber" ++ cc [p "phone_number" phone_number, p "text" text ]
+  "RichTextPhoneNumber" ++ U.cc [U.p "phone_number" phone_number, U.p "text" text ]
 
  show RichTextIcon { height=height, width=width, document=document } =
-  "RichTextIcon" ++ cc [p "height" height, p "width" width, p "document" document ]
+  "RichTextIcon" ++ U.cc [U.p "height" height, U.p "width" width, U.p "document" document ]
 
  show RichTextReference { url=url, anchor_name=anchor_name, text=text } =
-  "RichTextReference" ++ cc [p "url" url, p "anchor_name" anchor_name, p "text" text ]
+  "RichTextReference" ++ U.cc [U.p "url" url, U.p "anchor_name" anchor_name, U.p "text" text ]
 
  show RichTextAnchor { name=name } =
-  "RichTextAnchor" ++ cc [p "name" name ]
+  "RichTextAnchor" ++ U.cc [U.p "name" name ]
 
  show RichTextAnchorLink { url=url, anchor_name=anchor_name, text=text } =
-  "RichTextAnchorLink" ++ cc [p "url" url, p "anchor_name" anchor_name, p "text" text ]
+  "RichTextAnchorLink" ++ U.cc [U.p "url" url, U.p "anchor_name" anchor_name, U.p "text" text ]
 
  show RichTexts { texts=texts } =
-  "RichTexts" ++ cc [p "texts" texts ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RichTexts" ++ U.cc [U.p "texts" texts ]
 
 instance T.ToJSON RichText where
  toJSON RichTextPlain { _text = _text } =

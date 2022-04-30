@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GetLocalizationTargetInfo =
 
 instance Show GetLocalizationTargetInfo where
  show GetLocalizationTargetInfo { only_local=only_local } =
-  "GetLocalizationTargetInfo" ++ cc [p "only_local" only_local ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetLocalizationTargetInfo" ++ U.cc [U.p "only_local" only_local ]
 
 instance T.ToJSON GetLocalizationTargetInfo where
  toJSON GetLocalizationTargetInfo { only_local = only_local } =

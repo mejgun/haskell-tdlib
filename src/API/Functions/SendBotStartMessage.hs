@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data SendBotStartMessage =
 
 instance Show SendBotStartMessage where
  show SendBotStartMessage { parameter=parameter, chat_id=chat_id, bot_user_id=bot_user_id } =
-  "SendBotStartMessage" ++ cc [p "parameter" parameter, p "chat_id" chat_id, p "bot_user_id" bot_user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendBotStartMessage" ++ U.cc [U.p "parameter" parameter, U.p "chat_id" chat_id, U.p "bot_user_id" bot_user_id ]
 
 instance T.ToJSON SendBotStartMessage where
  toJSON SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id } =

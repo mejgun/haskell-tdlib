@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GetAttachmentMenuBot =
 
 instance Show GetAttachmentMenuBot where
  show GetAttachmentMenuBot { bot_user_id=bot_user_id } =
-  "GetAttachmentMenuBot" ++ cc [p "bot_user_id" bot_user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetAttachmentMenuBot" ++ U.cc [U.p "bot_user_id" bot_user_id ]
 
 instance T.ToJSON GetAttachmentMenuBot where
  toJSON GetAttachmentMenuBot { bot_user_id = bot_user_id } =

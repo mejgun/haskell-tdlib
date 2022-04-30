@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FileDownload as FileDownload
 import {-# SOURCE #-} qualified API.DownloadedFileCounts as DownloadedFileCounts
 
@@ -25,16 +25,7 @@ data FoundFileDownloads =
 
 instance Show FoundFileDownloads where
  show FoundFileDownloads { next_offset=next_offset, files=files, total_counts=total_counts } =
-  "FoundFileDownloads" ++ cc [p "next_offset" next_offset, p "files" files, p "total_counts" total_counts ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "FoundFileDownloads" ++ U.cc [U.p "next_offset" next_offset, U.p "files" files, U.p "total_counts" total_counts ]
 
 instance T.ToJSON FoundFileDownloads where
  toJSON FoundFileDownloads { next_offset = next_offset, files = files, total_counts = total_counts } =

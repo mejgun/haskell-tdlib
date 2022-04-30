@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -25,16 +25,7 @@ data PaymentsProviderStripe =
 
 instance Show PaymentsProviderStripe where
  show PaymentsProviderStripe { need_cardholder_name=need_cardholder_name, need_postal_code=need_postal_code, need_country=need_country, publishable_key=publishable_key } =
-  "PaymentsProviderStripe" ++ cc [p "need_cardholder_name" need_cardholder_name, p "need_postal_code" need_postal_code, p "need_country" need_country, p "publishable_key" publishable_key ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PaymentsProviderStripe" ++ U.cc [U.p "need_cardholder_name" need_cardholder_name, U.p "need_postal_code" need_postal_code, U.p "need_country" need_country, U.p "publishable_key" publishable_key ]
 
 instance T.ToJSON PaymentsProviderStripe where
  toJSON PaymentsProviderStripe { need_cardholder_name = need_cardholder_name, need_postal_code = need_postal_code, need_country = need_country, publishable_key = publishable_key } =

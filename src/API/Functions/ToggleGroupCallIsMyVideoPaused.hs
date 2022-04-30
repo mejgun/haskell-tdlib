@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleGroupCallIsMyVideoPaused =
 
 instance Show ToggleGroupCallIsMyVideoPaused where
  show ToggleGroupCallIsMyVideoPaused { is_my_video_paused=is_my_video_paused, group_call_id=group_call_id } =
-  "ToggleGroupCallIsMyVideoPaused" ++ cc [p "is_my_video_paused" is_my_video_paused, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleGroupCallIsMyVideoPaused" ++ U.cc [U.p "is_my_video_paused" is_my_video_paused, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON ToggleGroupCallIsMyVideoPaused where
  toJSON ToggleGroupCallIsMyVideoPaused { is_my_video_paused = is_my_video_paused, group_call_id = group_call_id } =

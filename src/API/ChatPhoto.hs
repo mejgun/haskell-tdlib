@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.AnimatedChatPhoto as AnimatedChatPhoto
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -30,16 +30,7 @@ data ChatPhoto =
 
 instance Show ChatPhoto where
  show ChatPhoto { animation=animation, sizes=sizes, minithumbnail=minithumbnail, added_date=added_date, _id=_id } =
-  "ChatPhoto" ++ cc [p "animation" animation, p "sizes" sizes, p "minithumbnail" minithumbnail, p "added_date" added_date, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatPhoto" ++ U.cc [U.p "animation" animation, U.p "sizes" sizes, U.p "minithumbnail" minithumbnail, U.p "added_date" added_date, U.p "_id" _id ]
 
 instance T.ToJSON ChatPhoto where
  toJSON ChatPhoto { animation = animation, sizes = sizes, minithumbnail = minithumbnail, added_date = added_date, _id = _id } =

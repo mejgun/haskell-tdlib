@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 
 -- |
@@ -22,16 +22,7 @@ data RemoveTopChat =
 
 instance Show RemoveTopChat where
  show RemoveTopChat { chat_id=chat_id, category=category } =
-  "RemoveTopChat" ++ cc [p "chat_id" chat_id, p "category" category ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RemoveTopChat" ++ U.cc [U.p "chat_id" chat_id, U.p "category" category ]
 
 instance T.ToJSON RemoveTopChat where
  toJSON RemoveTopChat { chat_id = chat_id, category = category } =

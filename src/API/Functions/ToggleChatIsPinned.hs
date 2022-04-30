@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 -- |
@@ -24,16 +24,7 @@ data ToggleChatIsPinned =
 
 instance Show ToggleChatIsPinned where
  show ToggleChatIsPinned { is_pinned=is_pinned, chat_id=chat_id, chat_list=chat_list } =
-  "ToggleChatIsPinned" ++ cc [p "is_pinned" is_pinned, p "chat_id" chat_id, p "chat_list" chat_list ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleChatIsPinned" ++ U.cc [U.p "is_pinned" is_pinned, U.p "chat_id" chat_id, U.p "chat_list" chat_list ]
 
 instance T.ToJSON ToggleChatIsPinned where
  toJSON ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id, chat_list = chat_list } =

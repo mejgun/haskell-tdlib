@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data Seconds =
 
 instance Show Seconds where
  show Seconds { seconds=seconds } =
-  "Seconds" ++ cc [p "seconds" seconds ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Seconds" ++ U.cc [U.p "seconds" seconds ]
 
 instance T.ToJSON Seconds where
  toJSON Seconds { seconds = seconds } =

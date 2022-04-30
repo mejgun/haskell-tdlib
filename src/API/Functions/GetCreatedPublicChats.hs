@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 
 -- |
@@ -20,16 +20,7 @@ data GetCreatedPublicChats =
 
 instance Show GetCreatedPublicChats where
  show GetCreatedPublicChats { _type=_type } =
-  "GetCreatedPublicChats" ++ cc [p "_type" _type ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetCreatedPublicChats" ++ U.cc [U.p "_type" _type ]
 
 instance T.ToJSON GetCreatedPublicChats where
  toJSON GetCreatedPublicChats { _type = _type } =

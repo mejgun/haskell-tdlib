@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GetInstalledStickerSets =
 
 instance Show GetInstalledStickerSets where
  show GetInstalledStickerSets { is_masks=is_masks } =
-  "GetInstalledStickerSets" ++ cc [p "is_masks" is_masks ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetInstalledStickerSets" ++ U.cc [U.p "is_masks" is_masks ]
 
 instance T.ToJSON GetInstalledStickerSets where
  toJSON GetInstalledStickerSets { is_masks = is_masks } =

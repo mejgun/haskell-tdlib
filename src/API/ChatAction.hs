@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -87,58 +87,49 @@ data ChatAction =
 
 instance Show ChatAction where
  show ChatActionTyping {  } =
-  "ChatActionTyping" ++ cc [ ]
+  "ChatActionTyping" ++ U.cc [ ]
 
  show ChatActionRecordingVideo {  } =
-  "ChatActionRecordingVideo" ++ cc [ ]
+  "ChatActionRecordingVideo" ++ U.cc [ ]
 
  show ChatActionUploadingVideo { progress=progress } =
-  "ChatActionUploadingVideo" ++ cc [p "progress" progress ]
+  "ChatActionUploadingVideo" ++ U.cc [U.p "progress" progress ]
 
  show ChatActionRecordingVoiceNote {  } =
-  "ChatActionRecordingVoiceNote" ++ cc [ ]
+  "ChatActionRecordingVoiceNote" ++ U.cc [ ]
 
  show ChatActionUploadingVoiceNote { progress=progress } =
-  "ChatActionUploadingVoiceNote" ++ cc [p "progress" progress ]
+  "ChatActionUploadingVoiceNote" ++ U.cc [U.p "progress" progress ]
 
  show ChatActionUploadingPhoto { progress=progress } =
-  "ChatActionUploadingPhoto" ++ cc [p "progress" progress ]
+  "ChatActionUploadingPhoto" ++ U.cc [U.p "progress" progress ]
 
  show ChatActionUploadingDocument { progress=progress } =
-  "ChatActionUploadingDocument" ++ cc [p "progress" progress ]
+  "ChatActionUploadingDocument" ++ U.cc [U.p "progress" progress ]
 
  show ChatActionChoosingSticker {  } =
-  "ChatActionChoosingSticker" ++ cc [ ]
+  "ChatActionChoosingSticker" ++ U.cc [ ]
 
  show ChatActionChoosingLocation {  } =
-  "ChatActionChoosingLocation" ++ cc [ ]
+  "ChatActionChoosingLocation" ++ U.cc [ ]
 
  show ChatActionChoosingContact {  } =
-  "ChatActionChoosingContact" ++ cc [ ]
+  "ChatActionChoosingContact" ++ U.cc [ ]
 
  show ChatActionStartPlayingGame {  } =
-  "ChatActionStartPlayingGame" ++ cc [ ]
+  "ChatActionStartPlayingGame" ++ U.cc [ ]
 
  show ChatActionRecordingVideoNote {  } =
-  "ChatActionRecordingVideoNote" ++ cc [ ]
+  "ChatActionRecordingVideoNote" ++ U.cc [ ]
 
  show ChatActionUploadingVideoNote { progress=progress } =
-  "ChatActionUploadingVideoNote" ++ cc [p "progress" progress ]
+  "ChatActionUploadingVideoNote" ++ U.cc [U.p "progress" progress ]
 
  show ChatActionWatchingAnimations { emoji=emoji } =
-  "ChatActionWatchingAnimations" ++ cc [p "emoji" emoji ]
+  "ChatActionWatchingAnimations" ++ U.cc [U.p "emoji" emoji ]
 
  show ChatActionCancel {  } =
-  "ChatActionCancel" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatActionCancel" ++ U.cc [ ]
 
 instance T.ToJSON ChatAction where
  toJSON ChatActionTyping {  } =

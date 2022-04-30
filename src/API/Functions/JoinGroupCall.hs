@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -32,16 +32,7 @@ data JoinGroupCall =
 
 instance Show JoinGroupCall where
  show JoinGroupCall { invite_hash=invite_hash, is_my_video_enabled=is_my_video_enabled, is_muted=is_muted, payload=payload, audio_source_id=audio_source_id, participant_id=participant_id, group_call_id=group_call_id } =
-  "JoinGroupCall" ++ cc [p "invite_hash" invite_hash, p "is_my_video_enabled" is_my_video_enabled, p "is_muted" is_muted, p "payload" payload, p "audio_source_id" audio_source_id, p "participant_id" participant_id, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "JoinGroupCall" ++ U.cc [U.p "invite_hash" invite_hash, U.p "is_my_video_enabled" is_my_video_enabled, U.p "is_muted" is_muted, U.p "payload" payload, U.p "audio_source_id" audio_source_id, U.p "participant_id" participant_id, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON JoinGroupCall where
  toJSON JoinGroupCall { invite_hash = invite_hash, is_my_video_enabled = is_my_video_enabled, is_muted = is_muted, payload = payload, audio_source_id = audio_source_id, participant_id = participant_id, group_call_id = group_call_id } =

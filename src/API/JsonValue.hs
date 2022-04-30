@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.JsonObjectMember as JsonObjectMember
 
 -- |
@@ -50,31 +50,22 @@ data JsonValue =
 
 instance Show JsonValue where
  show JsonValueNull {  } =
-  "JsonValueNull" ++ cc [ ]
+  "JsonValueNull" ++ U.cc [ ]
 
  show JsonValueBoolean { __value=__value } =
-  "JsonValueBoolean" ++ cc [p "__value" __value ]
+  "JsonValueBoolean" ++ U.cc [U.p "__value" __value ]
 
  show JsonValueNumber { _value=_value } =
-  "JsonValueNumber" ++ cc [p "_value" _value ]
+  "JsonValueNumber" ++ U.cc [U.p "_value" _value ]
 
  show JsonValueString { value=value } =
-  "JsonValueString" ++ cc [p "value" value ]
+  "JsonValueString" ++ U.cc [U.p "value" value ]
 
  show JsonValueArray { values=values } =
-  "JsonValueArray" ++ cc [p "values" values ]
+  "JsonValueArray" ++ U.cc [U.p "values" values ]
 
  show JsonValueObject { members=members } =
-  "JsonValueObject" ++ cc [p "members" members ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "JsonValueObject" ++ U.cc [U.p "members" members ]
 
 instance T.ToJSON JsonValue where
  toJSON JsonValueNull {  } =

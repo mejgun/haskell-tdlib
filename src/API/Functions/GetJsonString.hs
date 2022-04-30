@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 -- |
@@ -20,16 +20,7 @@ data GetJsonString =
 
 instance Show GetJsonString where
  show GetJsonString { json_value=json_value } =
-  "GetJsonString" ++ cc [p "json_value" json_value ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetJsonString" ++ U.cc [U.p "json_value" json_value ]
 
 instance T.ToJSON GetJsonString where
  toJSON GetJsonString { json_value = json_value } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 
 -- |
@@ -24,16 +24,7 @@ data GetChatMessageCalendar =
 
 instance Show GetChatMessageCalendar where
  show GetChatMessageCalendar { from_message_id=from_message_id, _filter=_filter, chat_id=chat_id } =
-  "GetChatMessageCalendar" ++ cc [p "from_message_id" from_message_id, p "_filter" _filter, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetChatMessageCalendar" ++ U.cc [U.p "from_message_id" from_message_id, U.p "_filter" _filter, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetChatMessageCalendar where
  toJSON GetChatMessageCalendar { from_message_id = from_message_id, _filter = _filter, chat_id = chat_id } =

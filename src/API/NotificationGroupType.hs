@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -31,25 +31,16 @@ data NotificationGroupType =
 
 instance Show NotificationGroupType where
  show NotificationGroupTypeMessages {  } =
-  "NotificationGroupTypeMessages" ++ cc [ ]
+  "NotificationGroupTypeMessages" ++ U.cc [ ]
 
  show NotificationGroupTypeMentions {  } =
-  "NotificationGroupTypeMentions" ++ cc [ ]
+  "NotificationGroupTypeMentions" ++ U.cc [ ]
 
  show NotificationGroupTypeSecretChat {  } =
-  "NotificationGroupTypeSecretChat" ++ cc [ ]
+  "NotificationGroupTypeSecretChat" ++ U.cc [ ]
 
  show NotificationGroupTypeCalls {  } =
-  "NotificationGroupTypeCalls" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "NotificationGroupTypeCalls" ++ U.cc [ ]
 
 instance T.ToJSON NotificationGroupType where
  toJSON NotificationGroupTypeMessages {  } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.KeyboardButton as KeyboardButton
 import {-# SOURCE #-} qualified API.InlineKeyboardButton as InlineKeyboardButton
 
@@ -51,25 +51,16 @@ data ReplyMarkup =
 
 instance Show ReplyMarkup where
  show ReplyMarkupRemoveKeyboard { is_personal=is_personal } =
-  "ReplyMarkupRemoveKeyboard" ++ cc [p "is_personal" is_personal ]
+  "ReplyMarkupRemoveKeyboard" ++ U.cc [U.p "is_personal" is_personal ]
 
  show ReplyMarkupForceReply { input_field_placeholder=input_field_placeholder, is_personal=is_personal } =
-  "ReplyMarkupForceReply" ++ cc [p "input_field_placeholder" input_field_placeholder, p "is_personal" is_personal ]
+  "ReplyMarkupForceReply" ++ U.cc [U.p "input_field_placeholder" input_field_placeholder, U.p "is_personal" is_personal ]
 
  show ReplyMarkupShowKeyboard { input_field_placeholder=input_field_placeholder, is_personal=is_personal, one_time=one_time, resize_keyboard=resize_keyboard, _rows=_rows } =
-  "ReplyMarkupShowKeyboard" ++ cc [p "input_field_placeholder" input_field_placeholder, p "is_personal" is_personal, p "one_time" one_time, p "resize_keyboard" resize_keyboard, p "_rows" _rows ]
+  "ReplyMarkupShowKeyboard" ++ U.cc [U.p "input_field_placeholder" input_field_placeholder, U.p "is_personal" is_personal, U.p "one_time" one_time, U.p "resize_keyboard" resize_keyboard, U.p "_rows" _rows ]
 
  show ReplyMarkupInlineKeyboard { rows=rows } =
-  "ReplyMarkupInlineKeyboard" ++ cc [p "rows" rows ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ReplyMarkupInlineKeyboard" ++ U.cc [U.p "rows" rows ]
 
 instance T.ToJSON ReplyMarkup where
  toJSON ReplyMarkupRemoveKeyboard { is_personal = is_personal } =

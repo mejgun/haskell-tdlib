@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -25,16 +25,7 @@ data ChatStatisticsAdministratorActionsInfo =
 
 instance Show ChatStatisticsAdministratorActionsInfo where
  show ChatStatisticsAdministratorActionsInfo { restricted_user_count=restricted_user_count, banned_user_count=banned_user_count, deleted_message_count=deleted_message_count, user_id=user_id } =
-  "ChatStatisticsAdministratorActionsInfo" ++ cc [p "restricted_user_count" restricted_user_count, p "banned_user_count" banned_user_count, p "deleted_message_count" deleted_message_count, p "user_id" user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatStatisticsAdministratorActionsInfo" ++ U.cc [U.p "restricted_user_count" restricted_user_count, U.p "banned_user_count" banned_user_count, U.p "deleted_message_count" deleted_message_count, U.p "user_id" user_id ]
 
 instance T.ToJSON ChatStatisticsAdministratorActionsInfo where
  toJSON ChatStatisticsAdministratorActionsInfo { restricted_user_count = restricted_user_count, banned_user_count = banned_user_count, deleted_message_count = deleted_message_count, user_id = user_id } =

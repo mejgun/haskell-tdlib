@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -33,19 +33,10 @@ data MessageSendingState =
 
 instance Show MessageSendingState where
  show MessageSendingStatePending {  } =
-  "MessageSendingStatePending" ++ cc [ ]
+  "MessageSendingStatePending" ++ U.cc [ ]
 
  show MessageSendingStateFailed { retry_after=retry_after, need_another_sender=need_another_sender, can_retry=can_retry, error_message=error_message, error_code=error_code } =
-  "MessageSendingStateFailed" ++ cc [p "retry_after" retry_after, p "need_another_sender" need_another_sender, p "can_retry" can_retry, p "error_message" error_message, p "error_code" error_code ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageSendingStateFailed" ++ U.cc [U.p "retry_after" retry_after, U.p "need_another_sender" need_another_sender, U.p "can_retry" can_retry, U.p "error_message" error_message, U.p "error_code" error_code ]
 
 instance T.ToJSON MessageSendingState where
  toJSON MessageSendingStatePending {  } =

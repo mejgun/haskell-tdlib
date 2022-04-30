@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FileType as FileType
 
 -- |
@@ -36,16 +36,7 @@ data OptimizeStorage =
 
 instance Show OptimizeStorage where
  show OptimizeStorage { chat_limit=chat_limit, return_deleted_file_statistics=return_deleted_file_statistics, exclude_chat_ids=exclude_chat_ids, chat_ids=chat_ids, file_types=file_types, immunity_delay=immunity_delay, count=count, ttl=ttl, size=size } =
-  "OptimizeStorage" ++ cc [p "chat_limit" chat_limit, p "return_deleted_file_statistics" return_deleted_file_statistics, p "exclude_chat_ids" exclude_chat_ids, p "chat_ids" chat_ids, p "file_types" file_types, p "immunity_delay" immunity_delay, p "count" count, p "ttl" ttl, p "size" size ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "OptimizeStorage" ++ U.cc [U.p "chat_limit" chat_limit, U.p "return_deleted_file_statistics" return_deleted_file_statistics, U.p "exclude_chat_ids" exclude_chat_ids, U.p "chat_ids" chat_ids, U.p "file_types" file_types, U.p "immunity_delay" immunity_delay, U.p "count" count, U.p "ttl" ttl, U.p "size" size ]
 
 instance T.ToJSON OptimizeStorage where
  toJSON OptimizeStorage { chat_limit = chat_limit, return_deleted_file_statistics = return_deleted_file_statistics, exclude_chat_ids = exclude_chat_ids, chat_ids = chat_ids, file_types = file_types, immunity_delay = immunity_delay, count = count, ttl = ttl, size = size } =

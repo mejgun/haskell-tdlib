@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.CallState as CallState
 
 -- |
@@ -28,16 +28,7 @@ data Call =
 
 instance Show Call where
  show Call { state=state, is_video=is_video, is_outgoing=is_outgoing, user_id=user_id, _id=_id } =
-  "Call" ++ cc [p "state" state, p "is_video" is_video, p "is_outgoing" is_outgoing, p "user_id" user_id, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Call" ++ U.cc [U.p "state" state, U.p "is_video" is_video, U.p "is_outgoing" is_outgoing, U.p "user_id" user_id, U.p "_id" _id ]
 
 instance T.ToJSON Call where
  toJSON Call { state = state, is_video = is_video, is_outgoing = is_outgoing, user_id = user_id, _id = _id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -31,25 +31,16 @@ data MaskPoint =
 
 instance Show MaskPoint where
  show MaskPointForehead {  } =
-  "MaskPointForehead" ++ cc [ ]
+  "MaskPointForehead" ++ U.cc [ ]
 
  show MaskPointEyes {  } =
-  "MaskPointEyes" ++ cc [ ]
+  "MaskPointEyes" ++ U.cc [ ]
 
  show MaskPointMouth {  } =
-  "MaskPointMouth" ++ cc [ ]
+  "MaskPointMouth" ++ U.cc [ ]
 
  show MaskPointChin {  } =
-  "MaskPointChin" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MaskPointChin" ++ U.cc [ ]
 
 instance T.ToJSON MaskPoint where
  toJSON MaskPointForehead {  } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputThumbnail as InputThumbnail
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -254,64 +254,55 @@ data InputMessageContent =
 
 instance Show InputMessageContent where
  show InputMessageText { clear_draft=clear_draft, disable_web_page_preview=disable_web_page_preview, text=text } =
-  "InputMessageText" ++ cc [p "clear_draft" clear_draft, p "disable_web_page_preview" disable_web_page_preview, p "text" text ]
+  "InputMessageText" ++ U.cc [U.p "clear_draft" clear_draft, U.p "disable_web_page_preview" disable_web_page_preview, U.p "text" text ]
 
  show InputMessageAnimation { caption=caption, height=height, width=width, duration=duration, added_sticker_file_ids=added_sticker_file_ids, thumbnail=thumbnail, animation=animation } =
-  "InputMessageAnimation" ++ cc [p "caption" caption, p "height" height, p "width" width, p "duration" duration, p "added_sticker_file_ids" added_sticker_file_ids, p "thumbnail" thumbnail, p "animation" animation ]
+  "InputMessageAnimation" ++ U.cc [U.p "caption" caption, U.p "height" height, U.p "width" width, U.p "duration" duration, U.p "added_sticker_file_ids" added_sticker_file_ids, U.p "thumbnail" thumbnail, U.p "animation" animation ]
 
  show InputMessageAudio { caption=caption, performer=performer, title=title, duration=duration, album_cover_thumbnail=album_cover_thumbnail, audio=audio } =
-  "InputMessageAudio" ++ cc [p "caption" caption, p "performer" performer, p "title" title, p "duration" duration, p "album_cover_thumbnail" album_cover_thumbnail, p "audio" audio ]
+  "InputMessageAudio" ++ U.cc [U.p "caption" caption, U.p "performer" performer, U.p "title" title, U.p "duration" duration, U.p "album_cover_thumbnail" album_cover_thumbnail, U.p "audio" audio ]
 
  show InputMessageDocument { caption=caption, disable_content_type_detection=disable_content_type_detection, thumbnail=thumbnail, document=document } =
-  "InputMessageDocument" ++ cc [p "caption" caption, p "disable_content_type_detection" disable_content_type_detection, p "thumbnail" thumbnail, p "document" document ]
+  "InputMessageDocument" ++ U.cc [U.p "caption" caption, U.p "disable_content_type_detection" disable_content_type_detection, U.p "thumbnail" thumbnail, U.p "document" document ]
 
  show InputMessagePhoto { ttl=ttl, caption=caption, height=height, width=width, added_sticker_file_ids=added_sticker_file_ids, thumbnail=thumbnail, photo=photo } =
-  "InputMessagePhoto" ++ cc [p "ttl" ttl, p "caption" caption, p "height" height, p "width" width, p "added_sticker_file_ids" added_sticker_file_ids, p "thumbnail" thumbnail, p "photo" photo ]
+  "InputMessagePhoto" ++ U.cc [U.p "ttl" ttl, U.p "caption" caption, U.p "height" height, U.p "width" width, U.p "added_sticker_file_ids" added_sticker_file_ids, U.p "thumbnail" thumbnail, U.p "photo" photo ]
 
  show InputMessageSticker { emoji=emoji, height=height, width=width, thumbnail=thumbnail, sticker=sticker } =
-  "InputMessageSticker" ++ cc [p "emoji" emoji, p "height" height, p "width" width, p "thumbnail" thumbnail, p "sticker" sticker ]
+  "InputMessageSticker" ++ U.cc [U.p "emoji" emoji, U.p "height" height, U.p "width" width, U.p "thumbnail" thumbnail, U.p "sticker" sticker ]
 
  show InputMessageVideo { ttl=ttl, caption=caption, supports_streaming=supports_streaming, height=height, width=width, duration=duration, added_sticker_file_ids=added_sticker_file_ids, thumbnail=thumbnail, video=video } =
-  "InputMessageVideo" ++ cc [p "ttl" ttl, p "caption" caption, p "supports_streaming" supports_streaming, p "height" height, p "width" width, p "duration" duration, p "added_sticker_file_ids" added_sticker_file_ids, p "thumbnail" thumbnail, p "video" video ]
+  "InputMessageVideo" ++ U.cc [U.p "ttl" ttl, U.p "caption" caption, U.p "supports_streaming" supports_streaming, U.p "height" height, U.p "width" width, U.p "duration" duration, U.p "added_sticker_file_ids" added_sticker_file_ids, U.p "thumbnail" thumbnail, U.p "video" video ]
 
  show InputMessageVideoNote { _length=_length, duration=duration, thumbnail=thumbnail, video_note=video_note } =
-  "InputMessageVideoNote" ++ cc [p "_length" _length, p "duration" duration, p "thumbnail" thumbnail, p "video_note" video_note ]
+  "InputMessageVideoNote" ++ U.cc [U.p "_length" _length, U.p "duration" duration, U.p "thumbnail" thumbnail, U.p "video_note" video_note ]
 
  show InputMessageVoiceNote { caption=caption, waveform=waveform, duration=duration, voice_note=voice_note } =
-  "InputMessageVoiceNote" ++ cc [p "caption" caption, p "waveform" waveform, p "duration" duration, p "voice_note" voice_note ]
+  "InputMessageVoiceNote" ++ U.cc [U.p "caption" caption, U.p "waveform" waveform, U.p "duration" duration, U.p "voice_note" voice_note ]
 
  show InputMessageLocation { proximity_alert_radius=proximity_alert_radius, heading=heading, live_period=live_period, location=location } =
-  "InputMessageLocation" ++ cc [p "proximity_alert_radius" proximity_alert_radius, p "heading" heading, p "live_period" live_period, p "location" location ]
+  "InputMessageLocation" ++ U.cc [U.p "proximity_alert_radius" proximity_alert_radius, U.p "heading" heading, U.p "live_period" live_period, U.p "location" location ]
 
  show InputMessageVenue { venue=venue } =
-  "InputMessageVenue" ++ cc [p "venue" venue ]
+  "InputMessageVenue" ++ U.cc [U.p "venue" venue ]
 
  show InputMessageContact { contact=contact } =
-  "InputMessageContact" ++ cc [p "contact" contact ]
+  "InputMessageContact" ++ U.cc [U.p "contact" contact ]
 
  show InputMessageDice { clear_draft=clear_draft, emoji=emoji } =
-  "InputMessageDice" ++ cc [p "clear_draft" clear_draft, p "emoji" emoji ]
+  "InputMessageDice" ++ U.cc [U.p "clear_draft" clear_draft, U.p "emoji" emoji ]
 
  show InputMessageGame { game_short_name=game_short_name, bot_user_id=bot_user_id } =
-  "InputMessageGame" ++ cc [p "game_short_name" game_short_name, p "bot_user_id" bot_user_id ]
+  "InputMessageGame" ++ U.cc [U.p "game_short_name" game_short_name, U.p "bot_user_id" bot_user_id ]
 
  show InputMessageInvoice { start_parameter=start_parameter, provider_data=provider_data, provider_token=provider_token, payload=payload, photo_height=photo_height, photo_width=photo_width, photo_size=photo_size, photo_url=photo_url, description=description, title=title, invoice=invoice } =
-  "InputMessageInvoice" ++ cc [p "start_parameter" start_parameter, p "provider_data" provider_data, p "provider_token" provider_token, p "payload" payload, p "photo_height" photo_height, p "photo_width" photo_width, p "photo_size" photo_size, p "photo_url" photo_url, p "description" description, p "title" title, p "invoice" invoice ]
+  "InputMessageInvoice" ++ U.cc [U.p "start_parameter" start_parameter, U.p "provider_data" provider_data, U.p "provider_token" provider_token, U.p "payload" payload, U.p "photo_height" photo_height, U.p "photo_width" photo_width, U.p "photo_size" photo_size, U.p "photo_url" photo_url, U.p "description" description, U.p "title" title, U.p "invoice" invoice ]
 
  show InputMessagePoll { is_closed=is_closed, close_date=close_date, open_period=open_period, _type=_type, is_anonymous=is_anonymous, options=options, question=question } =
-  "InputMessagePoll" ++ cc [p "is_closed" is_closed, p "close_date" close_date, p "open_period" open_period, p "_type" _type, p "is_anonymous" is_anonymous, p "options" options, p "question" question ]
+  "InputMessagePoll" ++ U.cc [U.p "is_closed" is_closed, U.p "close_date" close_date, U.p "open_period" open_period, U.p "_type" _type, U.p "is_anonymous" is_anonymous, U.p "options" options, U.p "question" question ]
 
  show InputMessageForwarded { copy_options=copy_options, in_game_share=in_game_share, message_id=message_id, from_chat_id=from_chat_id } =
-  "InputMessageForwarded" ++ cc [p "copy_options" copy_options, p "in_game_share" in_game_share, p "message_id" message_id, p "from_chat_id" from_chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputMessageForwarded" ++ U.cc [U.p "copy_options" copy_options, U.p "in_game_share" in_game_share, U.p "message_id" message_id, U.p "from_chat_id" from_chat_id ]
 
 instance T.ToJSON InputMessageContent where
  toJSON InputMessageText { clear_draft = clear_draft, disable_web_page_preview = disable_web_page_preview, text = text } =

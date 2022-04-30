@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleBotIsAddedToAttachmentMenu =
 
 instance Show ToggleBotIsAddedToAttachmentMenu where
  show ToggleBotIsAddedToAttachmentMenu { is_added=is_added, bot_user_id=bot_user_id } =
-  "ToggleBotIsAddedToAttachmentMenu" ++ cc [p "is_added" is_added, p "bot_user_id" bot_user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleBotIsAddedToAttachmentMenu" ++ U.cc [U.p "is_added" is_added, U.p "bot_user_id" bot_user_id ]
 
 instance T.ToJSON ToggleBotIsAddedToAttachmentMenu where
  toJSON ToggleBotIsAddedToAttachmentMenu { is_added = is_added, bot_user_id = bot_user_id } =

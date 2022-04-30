@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -43,31 +43,22 @@ data SuggestedAction =
 
 instance Show SuggestedAction where
  show SuggestedActionEnableArchiveAndMuteNewChats {  } =
-  "SuggestedActionEnableArchiveAndMuteNewChats" ++ cc [ ]
+  "SuggestedActionEnableArchiveAndMuteNewChats" ++ U.cc [ ]
 
  show SuggestedActionCheckPassword {  } =
-  "SuggestedActionCheckPassword" ++ cc [ ]
+  "SuggestedActionCheckPassword" ++ U.cc [ ]
 
  show SuggestedActionCheckPhoneNumber {  } =
-  "SuggestedActionCheckPhoneNumber" ++ cc [ ]
+  "SuggestedActionCheckPhoneNumber" ++ U.cc [ ]
 
  show SuggestedActionViewChecksHint {  } =
-  "SuggestedActionViewChecksHint" ++ cc [ ]
+  "SuggestedActionViewChecksHint" ++ U.cc [ ]
 
  show SuggestedActionConvertToBroadcastGroup { supergroup_id=supergroup_id } =
-  "SuggestedActionConvertToBroadcastGroup" ++ cc [p "supergroup_id" supergroup_id ]
+  "SuggestedActionConvertToBroadcastGroup" ++ U.cc [U.p "supergroup_id" supergroup_id ]
 
  show SuggestedActionSetPassword { authorization_delay=authorization_delay } =
-  "SuggestedActionSetPassword" ++ cc [p "authorization_delay" authorization_delay ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SuggestedActionSetPassword" ++ U.cc [U.p "authorization_delay" authorization_delay ]
 
 instance T.ToJSON SuggestedAction where
  toJSON SuggestedActionEnableArchiveAndMuteNewChats {  } =

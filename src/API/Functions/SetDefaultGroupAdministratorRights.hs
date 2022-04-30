@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatAdministratorRights as ChatAdministratorRights
 
 -- |
@@ -20,16 +20,7 @@ data SetDefaultGroupAdministratorRights =
 
 instance Show SetDefaultGroupAdministratorRights where
  show SetDefaultGroupAdministratorRights { default_group_administrator_rights=default_group_administrator_rights } =
-  "SetDefaultGroupAdministratorRights" ++ cc [p "default_group_administrator_rights" default_group_administrator_rights ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetDefaultGroupAdministratorRights" ++ U.cc [U.p "default_group_administrator_rights" default_group_administrator_rights ]
 
 instance T.ToJSON SetDefaultGroupAdministratorRights where
  toJSON SetDefaultGroupAdministratorRights { default_group_administrator_rights = default_group_administrator_rights } =

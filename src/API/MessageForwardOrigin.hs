@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -51,28 +51,19 @@ data MessageForwardOrigin =
 
 instance Show MessageForwardOrigin where
  show MessageForwardOriginUser { sender_user_id=sender_user_id } =
-  "MessageForwardOriginUser" ++ cc [p "sender_user_id" sender_user_id ]
+  "MessageForwardOriginUser" ++ U.cc [U.p "sender_user_id" sender_user_id ]
 
  show MessageForwardOriginChat { author_signature=author_signature, sender_chat_id=sender_chat_id } =
-  "MessageForwardOriginChat" ++ cc [p "author_signature" author_signature, p "sender_chat_id" sender_chat_id ]
+  "MessageForwardOriginChat" ++ U.cc [U.p "author_signature" author_signature, U.p "sender_chat_id" sender_chat_id ]
 
  show MessageForwardOriginHiddenUser { sender_name=sender_name } =
-  "MessageForwardOriginHiddenUser" ++ cc [p "sender_name" sender_name ]
+  "MessageForwardOriginHiddenUser" ++ U.cc [U.p "sender_name" sender_name ]
 
  show MessageForwardOriginChannel { author_signature=author_signature, message_id=message_id, chat_id=chat_id } =
-  "MessageForwardOriginChannel" ++ cc [p "author_signature" author_signature, p "message_id" message_id, p "chat_id" chat_id ]
+  "MessageForwardOriginChannel" ++ U.cc [U.p "author_signature" author_signature, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show MessageForwardOriginMessageImport { sender_name=sender_name } =
-  "MessageForwardOriginMessageImport" ++ cc [p "sender_name" sender_name ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageForwardOriginMessageImport" ++ U.cc [U.p "sender_name" sender_name ]
 
 instance T.ToJSON MessageForwardOrigin where
  toJSON MessageForwardOriginUser { sender_user_id = sender_user_id } =

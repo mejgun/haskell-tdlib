@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -31,16 +31,7 @@ data RemoteFile =
 
 instance Show RemoteFile where
  show RemoteFile { uploaded_size=uploaded_size, is_uploading_completed=is_uploading_completed, is_uploading_active=is_uploading_active, unique_id=unique_id, _id=_id } =
-  "RemoteFile" ++ cc [p "uploaded_size" uploaded_size, p "is_uploading_completed" is_uploading_completed, p "is_uploading_active" is_uploading_active, p "unique_id" unique_id, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RemoteFile" ++ U.cc [U.p "uploaded_size" uploaded_size, U.p "is_uploading_completed" is_uploading_completed, U.p "is_uploading_active" is_uploading_active, U.p "unique_id" unique_id, U.p "_id" _id ]
 
 instance T.ToJSON RemoteFile where
  toJSON RemoteFile { uploaded_size = uploaded_size, is_uploading_completed = is_uploading_completed, is_uploading_active = is_uploading_active, unique_id = unique_id, _id = _id } =

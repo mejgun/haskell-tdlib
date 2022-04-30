@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data DownloadFile =
 
 instance Show DownloadFile where
  show DownloadFile { synchronous=synchronous, limit=limit, offset=offset, priority=priority, file_id=file_id } =
-  "DownloadFile" ++ cc [p "synchronous" synchronous, p "limit" limit, p "offset" offset, p "priority" priority, p "file_id" file_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DownloadFile" ++ U.cc [U.p "synchronous" synchronous, U.p "limit" limit, U.p "offset" offset, U.p "priority" priority, U.p "file_id" file_id ]
 
 instance T.ToJSON DownloadFile where
  toJSON DownloadFile { synchronous = synchronous, limit = limit, offset = offset, priority = priority, file_id = file_id } =

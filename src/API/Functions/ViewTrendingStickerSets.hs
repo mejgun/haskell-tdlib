@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data ViewTrendingStickerSets =
 
 instance Show ViewTrendingStickerSets where
  show ViewTrendingStickerSets { sticker_set_ids=sticker_set_ids } =
-  "ViewTrendingStickerSets" ++ cc [p "sticker_set_ids" sticker_set_ids ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ViewTrendingStickerSets" ++ U.cc [U.p "sticker_set_ids" sticker_set_ids ]
 
 instance T.ToJSON ViewTrendingStickerSets where
  toJSON ViewTrendingStickerSets { sticker_set_ids = sticker_set_ids } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data SetSupergroupStickerSet =
 
 instance Show SetSupergroupStickerSet where
  show SetSupergroupStickerSet { sticker_set_id=sticker_set_id, supergroup_id=supergroup_id } =
-  "SetSupergroupStickerSet" ++ cc [p "sticker_set_id" sticker_set_id, p "supergroup_id" supergroup_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetSupergroupStickerSet" ++ U.cc [U.p "sticker_set_id" sticker_set_id, U.p "supergroup_id" supergroup_id ]
 
 instance T.ToJSON SetSupergroupStickerSet where
  toJSON SetSupergroupStickerSet { sticker_set_id = sticker_set_id, supergroup_id = supergroup_id } =

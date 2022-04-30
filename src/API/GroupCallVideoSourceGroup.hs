@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data GroupCallVideoSourceGroup =
 
 instance Show GroupCallVideoSourceGroup where
  show GroupCallVideoSourceGroup { source_ids=source_ids, semantics=semantics } =
-  "GroupCallVideoSourceGroup" ++ cc [p "source_ids" source_ids, p "semantics" semantics ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GroupCallVideoSourceGroup" ++ U.cc [U.p "source_ids" source_ids, U.p "semantics" semantics ]
 
 instance T.ToJSON GroupCallVideoSourceGroup where
  toJSON GroupCallVideoSourceGroup { source_ids = source_ids, semantics = semantics } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -47,16 +47,7 @@ data TdlibParameters =
 
 instance Show TdlibParameters where
  show TdlibParameters { ignore_file_names=ignore_file_names, enable_storage_optimizer=enable_storage_optimizer, application_version=application_version, system_version=system_version, device_model=device_model, system_language_code=system_language_code, api_hash=api_hash, api_id=api_id, use_secret_chats=use_secret_chats, use_message_database=use_message_database, use_chat_info_database=use_chat_info_database, use_file_database=use_file_database, files_directory=files_directory, database_directory=database_directory, use_test_dc=use_test_dc } =
-  "TdlibParameters" ++ cc [p "ignore_file_names" ignore_file_names, p "enable_storage_optimizer" enable_storage_optimizer, p "application_version" application_version, p "system_version" system_version, p "device_model" device_model, p "system_language_code" system_language_code, p "api_hash" api_hash, p "api_id" api_id, p "use_secret_chats" use_secret_chats, p "use_message_database" use_message_database, p "use_chat_info_database" use_chat_info_database, p "use_file_database" use_file_database, p "files_directory" files_directory, p "database_directory" database_directory, p "use_test_dc" use_test_dc ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TdlibParameters" ++ U.cc [U.p "ignore_file_names" ignore_file_names, U.p "enable_storage_optimizer" enable_storage_optimizer, U.p "application_version" application_version, U.p "system_version" system_version, U.p "device_model" device_model, U.p "system_language_code" system_language_code, U.p "api_hash" api_hash, U.p "api_id" api_id, U.p "use_secret_chats" use_secret_chats, U.p "use_message_database" use_message_database, U.p "use_chat_info_database" use_chat_info_database, U.p "use_file_database" use_file_database, U.p "files_directory" files_directory, U.p "database_directory" database_directory, U.p "use_test_dc" use_test_dc ]
 
 instance T.ToJSON TdlibParameters where
  toJSON TdlibParameters { ignore_file_names = ignore_file_names, enable_storage_optimizer = enable_storage_optimizer, application_version = application_version, system_version = system_version, device_model = device_model, system_language_code = system_language_code, api_hash = api_hash, api_id = api_id, use_secret_chats = use_secret_chats, use_message_database = use_message_database, use_chat_info_database = use_chat_info_database, use_file_database = use_file_database, files_directory = files_directory, database_directory = database_directory, use_test_dc = use_test_dc } =

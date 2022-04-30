@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data RemoveAllFilesFromDownloads =
 
 instance Show RemoveAllFilesFromDownloads where
  show RemoveAllFilesFromDownloads { delete_from_cache=delete_from_cache, only_completed=only_completed, only_active=only_active } =
-  "RemoveAllFilesFromDownloads" ++ cc [p "delete_from_cache" delete_from_cache, p "only_completed" only_completed, p "only_active" only_active ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RemoveAllFilesFromDownloads" ++ U.cc [U.p "delete_from_cache" delete_from_cache, U.p "only_completed" only_completed, U.p "only_active" only_active ]
 
 instance T.ToJSON RemoveAllFilesFromDownloads where
  toJSON RemoveAllFilesFromDownloads { delete_from_cache = delete_from_cache, only_completed = only_completed, only_active = only_active } =

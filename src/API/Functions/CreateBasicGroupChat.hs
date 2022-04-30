@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data CreateBasicGroupChat =
 
 instance Show CreateBasicGroupChat where
  show CreateBasicGroupChat { force=force, basic_group_id=basic_group_id } =
-  "CreateBasicGroupChat" ++ cc [p "force" force, p "basic_group_id" basic_group_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CreateBasicGroupChat" ++ U.cc [U.p "force" force, U.p "basic_group_id" basic_group_id ]
 
 instance T.ToJSON CreateBasicGroupChat where
  toJSON CreateBasicGroupChat { force = force, basic_group_id = basic_group_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data SearchPublicChat =
 
 instance Show SearchPublicChat where
  show SearchPublicChat { username=username } =
-  "SearchPublicChat" ++ cc [p "username" username ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SearchPublicChat" ++ U.cc [U.p "username" username ]
 
 instance T.ToJSON SearchPublicChat where
  toJSON SearchPublicChat { username = username } =

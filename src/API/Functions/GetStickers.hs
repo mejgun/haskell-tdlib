@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data GetStickers =
 
 instance Show GetStickers where
  show GetStickers { limit=limit, emoji=emoji } =
-  "GetStickers" ++ cc [p "limit" limit, p "emoji" emoji ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetStickers" ++ U.cc [U.p "limit" limit, U.p "emoji" emoji ]
 
 instance T.ToJSON GetStickers where
  toJSON GetStickers { limit = limit, emoji = emoji } =

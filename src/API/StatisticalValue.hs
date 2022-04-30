@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data StatisticalValue =
 
 instance Show StatisticalValue where
  show StatisticalValue { growth_rate_percentage=growth_rate_percentage, previous_value=previous_value, value=value } =
-  "StatisticalValue" ++ cc [p "growth_rate_percentage" growth_rate_percentage, p "previous_value" previous_value, p "value" value ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "StatisticalValue" ++ U.cc [U.p "growth_rate_percentage" growth_rate_percentage, U.p "previous_value" previous_value, U.p "value" value ]
 
 instance T.ToJSON StatisticalValue where
  toJSON StatisticalValue { growth_rate_percentage = growth_rate_percentage, previous_value = previous_value, value = value } =

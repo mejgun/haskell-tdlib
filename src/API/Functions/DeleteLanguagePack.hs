@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data DeleteLanguagePack =
 
 instance Show DeleteLanguagePack where
  show DeleteLanguagePack { language_pack_id=language_pack_id } =
-  "DeleteLanguagePack" ++ cc [p "language_pack_id" language_pack_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DeleteLanguagePack" ++ U.cc [U.p "language_pack_id" language_pack_id ]
 
 instance T.ToJSON DeleteLanguagePack where
  toJSON DeleteLanguagePack { language_pack_id = language_pack_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -25,16 +25,7 @@ data GetPassportAuthorizationForm =
 
 instance Show GetPassportAuthorizationForm where
  show GetPassportAuthorizationForm { nonce=nonce, public_key=public_key, scope=scope, bot_user_id=bot_user_id } =
-  "GetPassportAuthorizationForm" ++ cc [p "nonce" nonce, p "public_key" public_key, p "scope" scope, p "bot_user_id" bot_user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetPassportAuthorizationForm" ++ U.cc [U.p "nonce" nonce, U.p "public_key" public_key, U.p "scope" scope, U.p "bot_user_id" bot_user_id ]
 
 instance T.ToJSON GetPassportAuthorizationForm where
  toJSON GetPassportAuthorizationForm { nonce = nonce, public_key = public_key, scope = scope, bot_user_id = bot_user_id } =

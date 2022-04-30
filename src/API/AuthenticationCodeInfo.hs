@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCodeType
 
 -- |
@@ -26,16 +26,7 @@ data AuthenticationCodeInfo =
 
 instance Show AuthenticationCodeInfo where
  show AuthenticationCodeInfo { timeout=timeout, next_type=next_type, _type=_type, phone_number=phone_number } =
-  "AuthenticationCodeInfo" ++ cc [p "timeout" timeout, p "next_type" next_type, p "_type" _type, p "phone_number" phone_number ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AuthenticationCodeInfo" ++ U.cc [U.p "timeout" timeout, U.p "next_type" next_type, U.p "_type" _type, U.p "phone_number" phone_number ]
 
 instance T.ToJSON AuthenticationCodeInfo where
  toJSON AuthenticationCodeInfo { timeout = timeout, next_type = next_type, _type = _type, phone_number = phone_number } =

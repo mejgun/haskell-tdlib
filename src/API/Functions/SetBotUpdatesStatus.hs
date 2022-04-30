@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data SetBotUpdatesStatus =
 
 instance Show SetBotUpdatesStatus where
  show SetBotUpdatesStatus { error_message=error_message, pending_update_count=pending_update_count } =
-  "SetBotUpdatesStatus" ++ cc [p "error_message" error_message, p "pending_update_count" pending_update_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetBotUpdatesStatus" ++ U.cc [U.p "error_message" error_message, U.p "pending_update_count" pending_update_count ]
 
 instance T.ToJSON SetBotUpdatesStatus where
  toJSON SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.RichText as RichText
 
 -- |
@@ -22,16 +22,7 @@ data PageBlockCaption =
 
 instance Show PageBlockCaption where
  show PageBlockCaption { credit=credit, text=text } =
-  "PageBlockCaption" ++ cc [p "credit" credit, p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PageBlockCaption" ++ U.cc [U.p "credit" credit, U.p "text" text ]
 
 instance T.ToJSON PageBlockCaption where
  toJSON PageBlockCaption { credit = credit, text = text } =

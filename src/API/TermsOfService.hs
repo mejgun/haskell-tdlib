@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -24,16 +24,7 @@ data TermsOfService =
 
 instance Show TermsOfService where
  show TermsOfService { show_popup=show_popup, min_user_age=min_user_age, text=text } =
-  "TermsOfService" ++ cc [p "show_popup" show_popup, p "min_user_age" min_user_age, p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TermsOfService" ++ U.cc [U.p "show_popup" show_popup, U.p "min_user_age" min_user_age, U.p "text" text ]
 
 instance T.ToJSON TermsOfService where
  toJSON TermsOfService { show_popup = show_popup, min_user_age = min_user_age, text = text } =

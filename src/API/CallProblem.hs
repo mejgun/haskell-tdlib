@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -51,40 +51,31 @@ data CallProblem =
 
 instance Show CallProblem where
  show CallProblemEcho {  } =
-  "CallProblemEcho" ++ cc [ ]
+  "CallProblemEcho" ++ U.cc [ ]
 
  show CallProblemNoise {  } =
-  "CallProblemNoise" ++ cc [ ]
+  "CallProblemNoise" ++ U.cc [ ]
 
  show CallProblemInterruptions {  } =
-  "CallProblemInterruptions" ++ cc [ ]
+  "CallProblemInterruptions" ++ U.cc [ ]
 
  show CallProblemDistortedSpeech {  } =
-  "CallProblemDistortedSpeech" ++ cc [ ]
+  "CallProblemDistortedSpeech" ++ U.cc [ ]
 
  show CallProblemSilentLocal {  } =
-  "CallProblemSilentLocal" ++ cc [ ]
+  "CallProblemSilentLocal" ++ U.cc [ ]
 
  show CallProblemSilentRemote {  } =
-  "CallProblemSilentRemote" ++ cc [ ]
+  "CallProblemSilentRemote" ++ U.cc [ ]
 
  show CallProblemDropped {  } =
-  "CallProblemDropped" ++ cc [ ]
+  "CallProblemDropped" ++ U.cc [ ]
 
  show CallProblemDistortedVideo {  } =
-  "CallProblemDistortedVideo" ++ cc [ ]
+  "CallProblemDistortedVideo" ++ U.cc [ ]
 
  show CallProblemPixelatedVideo {  } =
-  "CallProblemPixelatedVideo" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CallProblemPixelatedVideo" ++ U.cc [ ]
 
 instance T.ToJSON CallProblem where
  toJSON CallProblemEcho {  } =

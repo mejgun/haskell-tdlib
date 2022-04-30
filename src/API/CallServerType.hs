@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -33,19 +33,10 @@ data CallServerType =
 
 instance Show CallServerType where
  show CallServerTypeTelegramReflector { peer_tag=peer_tag } =
-  "CallServerTypeTelegramReflector" ++ cc [p "peer_tag" peer_tag ]
+  "CallServerTypeTelegramReflector" ++ U.cc [U.p "peer_tag" peer_tag ]
 
  show CallServerTypeWebrtc { supports_stun=supports_stun, supports_turn=supports_turn, password=password, username=username } =
-  "CallServerTypeWebrtc" ++ cc [p "supports_stun" supports_stun, p "supports_turn" supports_turn, p "password" password, p "username" username ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CallServerTypeWebrtc" ++ U.cc [U.p "supports_stun" supports_stun, U.p "supports_turn" supports_turn, U.p "password" password, U.p "username" username ]
 
 instance T.ToJSON CallServerType where
  toJSON CallServerTypeTelegramReflector { peer_tag = peer_tag } =

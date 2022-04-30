@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data ClearAllDraftMessages =
 
 instance Show ClearAllDraftMessages where
  show ClearAllDraftMessages { exclude_secret_chats=exclude_secret_chats } =
-  "ClearAllDraftMessages" ++ cc [p "exclude_secret_chats" exclude_secret_chats ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ClearAllDraftMessages" ++ U.cc [U.p "exclude_secret_chats" exclude_secret_chats ]
 
 instance T.ToJSON ClearAllDraftMessages where
  toJSON ClearAllDraftMessages { exclude_secret_chats = exclude_secret_chats } =

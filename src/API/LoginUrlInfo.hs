@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,19 +35,10 @@ data LoginUrlInfo =
 
 instance Show LoginUrlInfo where
  show LoginUrlInfoOpen { skip_confirm=skip_confirm, url=url } =
-  "LoginUrlInfoOpen" ++ cc [p "skip_confirm" skip_confirm, p "url" url ]
+  "LoginUrlInfoOpen" ++ U.cc [U.p "skip_confirm" skip_confirm, U.p "url" url ]
 
  show LoginUrlInfoRequestConfirmation { request_write_access=request_write_access, bot_user_id=bot_user_id, domain=domain, url=url } =
-  "LoginUrlInfoRequestConfirmation" ++ cc [p "request_write_access" request_write_access, p "bot_user_id" bot_user_id, p "domain" domain, p "url" url ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "LoginUrlInfoRequestConfirmation" ++ U.cc [U.p "request_write_access" request_write_access, U.p "bot_user_id" bot_user_id, U.p "domain" domain, U.p "url" url ]
 
 instance T.ToJSON LoginUrlInfo where
  toJSON LoginUrlInfoOpen { skip_confirm = skip_confirm, url = url } =

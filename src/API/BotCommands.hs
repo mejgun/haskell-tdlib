@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 
 -- |
@@ -22,16 +22,7 @@ data BotCommands =
 
 instance Show BotCommands where
  show BotCommands { commands=commands, bot_user_id=bot_user_id } =
-  "BotCommands" ++ cc [p "commands" commands, p "bot_user_id" bot_user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BotCommands" ++ U.cc [U.p "commands" commands, U.p "bot_user_id" bot_user_id ]
 
 instance T.ToJSON BotCommands where
  toJSON BotCommands { commands = commands, bot_user_id = bot_user_id } =

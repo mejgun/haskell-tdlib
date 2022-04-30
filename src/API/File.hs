@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.RemoteFile as RemoteFile
 import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 
@@ -29,16 +29,7 @@ data File =
 
 instance Show File where
  show File { remote=remote, local=local, expected_size=expected_size, size=size, _id=_id } =
-  "File" ++ cc [p "remote" remote, p "local" local, p "expected_size" expected_size, p "size" size, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "File" ++ U.cc [U.p "remote" remote, U.p "local" local, U.p "expected_size" expected_size, U.p "size" size, U.p "_id" _id ]
 
 instance T.ToJSON File where
  toJSON File { remote = remote, local = local, expected_size = expected_size, size = size, _id = _id } =

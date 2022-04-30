@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatAdministratorRights as ChatAdministratorRights
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 
@@ -61,31 +61,22 @@ data ChatMemberStatus =
 
 instance Show ChatMemberStatus where
  show ChatMemberStatusCreator { is_member=is_member, is_anonymous=is_anonymous, custom_title=custom_title } =
-  "ChatMemberStatusCreator" ++ cc [p "is_member" is_member, p "is_anonymous" is_anonymous, p "custom_title" custom_title ]
+  "ChatMemberStatusCreator" ++ U.cc [U.p "is_member" is_member, U.p "is_anonymous" is_anonymous, U.p "custom_title" custom_title ]
 
  show ChatMemberStatusAdministrator { rights=rights, can_be_edited=can_be_edited, custom_title=custom_title } =
-  "ChatMemberStatusAdministrator" ++ cc [p "rights" rights, p "can_be_edited" can_be_edited, p "custom_title" custom_title ]
+  "ChatMemberStatusAdministrator" ++ U.cc [U.p "rights" rights, U.p "can_be_edited" can_be_edited, U.p "custom_title" custom_title ]
 
  show ChatMemberStatusMember {  } =
-  "ChatMemberStatusMember" ++ cc [ ]
+  "ChatMemberStatusMember" ++ U.cc [ ]
 
  show ChatMemberStatusRestricted { permissions=permissions, restricted_until_date=restricted_until_date, is_member=is_member } =
-  "ChatMemberStatusRestricted" ++ cc [p "permissions" permissions, p "restricted_until_date" restricted_until_date, p "is_member" is_member ]
+  "ChatMemberStatusRestricted" ++ U.cc [U.p "permissions" permissions, U.p "restricted_until_date" restricted_until_date, U.p "is_member" is_member ]
 
  show ChatMemberStatusLeft {  } =
-  "ChatMemberStatusLeft" ++ cc [ ]
+  "ChatMemberStatusLeft" ++ U.cc [ ]
 
  show ChatMemberStatusBanned { banned_until_date=banned_until_date } =
-  "ChatMemberStatusBanned" ++ cc [p "banned_until_date" banned_until_date ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatMemberStatusBanned" ++ U.cc [U.p "banned_until_date" banned_until_date ]
 
 instance T.ToJSON ChatMemberStatus where
  toJSON ChatMemberStatusCreator { is_member = is_member, is_anonymous = is_anonymous, custom_title = custom_title } =

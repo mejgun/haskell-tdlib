@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -83,64 +83,55 @@ data FileType =
 
 instance Show FileType where
  show FileTypeNone {  } =
-  "FileTypeNone" ++ cc [ ]
+  "FileTypeNone" ++ U.cc [ ]
 
  show FileTypeAnimation {  } =
-  "FileTypeAnimation" ++ cc [ ]
+  "FileTypeAnimation" ++ U.cc [ ]
 
  show FileTypeAudio {  } =
-  "FileTypeAudio" ++ cc [ ]
+  "FileTypeAudio" ++ U.cc [ ]
 
  show FileTypeDocument {  } =
-  "FileTypeDocument" ++ cc [ ]
+  "FileTypeDocument" ++ U.cc [ ]
 
  show FileTypeNotificationSound {  } =
-  "FileTypeNotificationSound" ++ cc [ ]
+  "FileTypeNotificationSound" ++ U.cc [ ]
 
  show FileTypePhoto {  } =
-  "FileTypePhoto" ++ cc [ ]
+  "FileTypePhoto" ++ U.cc [ ]
 
  show FileTypeProfilePhoto {  } =
-  "FileTypeProfilePhoto" ++ cc [ ]
+  "FileTypeProfilePhoto" ++ U.cc [ ]
 
  show FileTypeSecret {  } =
-  "FileTypeSecret" ++ cc [ ]
+  "FileTypeSecret" ++ U.cc [ ]
 
  show FileTypeSecretThumbnail {  } =
-  "FileTypeSecretThumbnail" ++ cc [ ]
+  "FileTypeSecretThumbnail" ++ U.cc [ ]
 
  show FileTypeSecure {  } =
-  "FileTypeSecure" ++ cc [ ]
+  "FileTypeSecure" ++ U.cc [ ]
 
  show FileTypeSticker {  } =
-  "FileTypeSticker" ++ cc [ ]
+  "FileTypeSticker" ++ U.cc [ ]
 
  show FileTypeThumbnail {  } =
-  "FileTypeThumbnail" ++ cc [ ]
+  "FileTypeThumbnail" ++ U.cc [ ]
 
  show FileTypeUnknown {  } =
-  "FileTypeUnknown" ++ cc [ ]
+  "FileTypeUnknown" ++ U.cc [ ]
 
  show FileTypeVideo {  } =
-  "FileTypeVideo" ++ cc [ ]
+  "FileTypeVideo" ++ U.cc [ ]
 
  show FileTypeVideoNote {  } =
-  "FileTypeVideoNote" ++ cc [ ]
+  "FileTypeVideoNote" ++ U.cc [ ]
 
  show FileTypeVoiceNote {  } =
-  "FileTypeVoiceNote" ++ cc [ ]
+  "FileTypeVoiceNote" ++ U.cc [ ]
 
  show FileTypeWallpaper {  } =
-  "FileTypeWallpaper" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "FileTypeWallpaper" ++ U.cc [ ]
 
 instance T.ToJSON FileType where
  toJSON FileTypeNone {  } =

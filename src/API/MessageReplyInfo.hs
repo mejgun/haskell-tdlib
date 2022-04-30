@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -28,16 +28,7 @@ data MessageReplyInfo =
 
 instance Show MessageReplyInfo where
  show MessageReplyInfo { last_message_id=last_message_id, last_read_outbox_message_id=last_read_outbox_message_id, last_read_inbox_message_id=last_read_inbox_message_id, recent_replier_ids=recent_replier_ids, reply_count=reply_count } =
-  "MessageReplyInfo" ++ cc [p "last_message_id" last_message_id, p "last_read_outbox_message_id" last_read_outbox_message_id, p "last_read_inbox_message_id" last_read_inbox_message_id, p "recent_replier_ids" recent_replier_ids, p "reply_count" reply_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageReplyInfo" ++ U.cc [U.p "last_message_id" last_message_id, U.p "last_read_outbox_message_id" last_read_outbox_message_id, U.p "last_read_inbox_message_id" last_read_inbox_message_id, U.p "recent_replier_ids" recent_replier_ids, U.p "reply_count" reply_count ]
 
 instance T.ToJSON MessageReplyInfo where
  toJSON MessageReplyInfo { last_message_id = last_message_id, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, recent_replier_ids = recent_replier_ids, reply_count = reply_count } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -28,19 +28,10 @@ data InputBackground =
 
 instance Show InputBackground where
  show InputBackgroundLocal { background=background } =
-  "InputBackgroundLocal" ++ cc [p "background" background ]
+  "InputBackgroundLocal" ++ U.cc [U.p "background" background ]
 
  show InputBackgroundRemote { background_id=background_id } =
-  "InputBackgroundRemote" ++ cc [p "background_id" background_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputBackgroundRemote" ++ U.cc [U.p "background_id" background_id ]
 
 instance T.ToJSON InputBackground where
  toJSON InputBackgroundLocal { background = background } =

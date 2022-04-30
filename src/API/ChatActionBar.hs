@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -55,34 +55,25 @@ data ChatActionBar =
 
 instance Show ChatActionBar where
  show ChatActionBarReportSpam { can_unarchive=can_unarchive } =
-  "ChatActionBarReportSpam" ++ cc [p "can_unarchive" can_unarchive ]
+  "ChatActionBarReportSpam" ++ U.cc [U.p "can_unarchive" can_unarchive ]
 
  show ChatActionBarReportUnrelatedLocation {  } =
-  "ChatActionBarReportUnrelatedLocation" ++ cc [ ]
+  "ChatActionBarReportUnrelatedLocation" ++ U.cc [ ]
 
  show ChatActionBarInviteMembers {  } =
-  "ChatActionBarInviteMembers" ++ cc [ ]
+  "ChatActionBarInviteMembers" ++ U.cc [ ]
 
  show ChatActionBarReportAddBlock { distance=distance, can_unarchive=can_unarchive } =
-  "ChatActionBarReportAddBlock" ++ cc [p "distance" distance, p "can_unarchive" can_unarchive ]
+  "ChatActionBarReportAddBlock" ++ U.cc [U.p "distance" distance, U.p "can_unarchive" can_unarchive ]
 
  show ChatActionBarAddContact {  } =
-  "ChatActionBarAddContact" ++ cc [ ]
+  "ChatActionBarAddContact" ++ U.cc [ ]
 
  show ChatActionBarSharePhoneNumber {  } =
-  "ChatActionBarSharePhoneNumber" ++ cc [ ]
+  "ChatActionBarSharePhoneNumber" ++ U.cc [ ]
 
  show ChatActionBarJoinRequest { request_date=request_date, is_channel=is_channel, title=title } =
-  "ChatActionBarJoinRequest" ++ cc [p "request_date" request_date, p "is_channel" is_channel, p "title" title ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatActionBarJoinRequest" ++ U.cc [U.p "request_date" request_date, U.p "is_channel" is_channel, U.p "title" title ]
 
 instance T.ToJSON ChatActionBar where
  toJSON ChatActionBarReportSpam { can_unarchive = can_unarchive } =

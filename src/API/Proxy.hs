@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
 -- |
@@ -30,16 +30,7 @@ data Proxy =
 
 instance Show Proxy where
  show Proxy { _type=_type, is_enabled=is_enabled, last_used_date=last_used_date, port=port, server=server, _id=_id } =
-  "Proxy" ++ cc [p "_type" _type, p "is_enabled" is_enabled, p "last_used_date" last_used_date, p "port" port, p "server" server, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Proxy" ++ U.cc [U.p "_type" _type, U.p "is_enabled" is_enabled, U.p "last_used_date" last_used_date, U.p "port" port, U.p "server" server, U.p "_id" _id ]
 
 instance T.ToJSON Proxy where
  toJSON Proxy { _type = _type, is_enabled = is_enabled, last_used_date = last_used_date, port = port, server = server, _id = _id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 import {-# SOURCE #-} qualified API.Document as Document
 
@@ -31,16 +31,7 @@ data Background =
 
 instance Show Background where
  show Background { _type=_type, document=document, name=name, is_dark=is_dark, is_default=is_default, _id=_id } =
-  "Background" ++ cc [p "_type" _type, p "document" document, p "name" name, p "is_dark" is_dark, p "is_default" is_default, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Background" ++ U.cc [U.p "_type" _type, U.p "document" document, U.p "name" name, U.p "is_dark" is_dark, U.p "is_default" is_default, U.p "_id" _id ]
 
 instance T.ToJSON Background where
  toJSON Background { _type = _type, document = document, name = name, is_dark = is_dark, is_default = is_default, _id = _id } =

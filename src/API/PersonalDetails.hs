@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Date as Date
 
 -- |
@@ -38,16 +38,7 @@ data PersonalDetails =
 
 instance Show PersonalDetails where
  show PersonalDetails { residence_country_code=residence_country_code, country_code=country_code, gender=gender, birthdate=birthdate, native_last_name=native_last_name, native_middle_name=native_middle_name, native_first_name=native_first_name, last_name=last_name, middle_name=middle_name, first_name=first_name } =
-  "PersonalDetails" ++ cc [p "residence_country_code" residence_country_code, p "country_code" country_code, p "gender" gender, p "birthdate" birthdate, p "native_last_name" native_last_name, p "native_middle_name" native_middle_name, p "native_first_name" native_first_name, p "last_name" last_name, p "middle_name" middle_name, p "first_name" first_name ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PersonalDetails" ++ U.cc [U.p "residence_country_code" residence_country_code, U.p "country_code" country_code, U.p "gender" gender, U.p "birthdate" birthdate, U.p "native_last_name" native_last_name, U.p "native_middle_name" native_middle_name, U.p "native_first_name" native_first_name, U.p "last_name" last_name, U.p "middle_name" middle_name, U.p "first_name" first_name ]
 
 instance T.ToJSON PersonalDetails where
  toJSON PersonalDetails { residence_country_code = residence_country_code, country_code = country_code, gender = gender, birthdate = birthdate, native_last_name = native_last_name, native_middle_name = native_middle_name, native_first_name = native_first_name, last_name = last_name, middle_name = middle_name, first_name = first_name } =

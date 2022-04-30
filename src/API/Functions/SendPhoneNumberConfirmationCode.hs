@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
 -- |
@@ -24,16 +24,7 @@ data SendPhoneNumberConfirmationCode =
 
 instance Show SendPhoneNumberConfirmationCode where
  show SendPhoneNumberConfirmationCode { settings=settings, phone_number=phone_number, hash=hash } =
-  "SendPhoneNumberConfirmationCode" ++ cc [p "settings" settings, p "phone_number" phone_number, p "hash" hash ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendPhoneNumberConfirmationCode" ++ U.cc [U.p "settings" settings, U.p "phone_number" phone_number, U.p "hash" hash ]
 
 instance T.ToJSON SendPhoneNumberConfirmationCode where
  toJSON SendPhoneNumberConfirmationCode { settings = settings, phone_number = phone_number, hash = hash } =

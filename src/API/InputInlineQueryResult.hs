@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Location as Location
 import {-# SOURCE #-} qualified API.Venue as Venue
@@ -262,49 +262,40 @@ data InputInlineQueryResult =
 
 instance Show InputInlineQueryResult where
  show InputInlineQueryResultAnimation { input_message_content=input_message_content, reply_markup=reply_markup, video_height=video_height, video_width=video_width, video_duration=video_duration, video_mime_type=video_mime_type, video_url=video_url, thumbnail_mime_type=thumbnail_mime_type, thumbnail_url=thumbnail_url, title=title, _id=_id } =
-  "InputInlineQueryResultAnimation" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "video_height" video_height, p "video_width" video_width, p "video_duration" video_duration, p "video_mime_type" video_mime_type, p "video_url" video_url, p "thumbnail_mime_type" thumbnail_mime_type, p "thumbnail_url" thumbnail_url, p "title" title, p "_id" _id ]
+  "InputInlineQueryResultAnimation" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "video_height" video_height, U.p "video_width" video_width, U.p "video_duration" video_duration, U.p "video_mime_type" video_mime_type, U.p "video_url" video_url, U.p "thumbnail_mime_type" thumbnail_mime_type, U.p "thumbnail_url" thumbnail_url, U.p "title" title, U.p "_id" _id ]
 
  show InputInlineQueryResultArticle { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, description=description, title=title, hide_url=hide_url, url=url, _id=_id } =
-  "InputInlineQueryResultArticle" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "description" description, p "title" title, p "hide_url" hide_url, p "url" url, p "_id" _id ]
+  "InputInlineQueryResultArticle" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "thumbnail_height" thumbnail_height, U.p "thumbnail_width" thumbnail_width, U.p "thumbnail_url" thumbnail_url, U.p "description" description, U.p "title" title, U.p "hide_url" hide_url, U.p "url" url, U.p "_id" _id ]
 
  show InputInlineQueryResultAudio { input_message_content=input_message_content, reply_markup=reply_markup, audio_duration=audio_duration, audio_url=audio_url, performer=performer, title=title, _id=_id } =
-  "InputInlineQueryResultAudio" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "audio_duration" audio_duration, p "audio_url" audio_url, p "performer" performer, p "title" title, p "_id" _id ]
+  "InputInlineQueryResultAudio" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "audio_duration" audio_duration, U.p "audio_url" audio_url, U.p "performer" performer, U.p "title" title, U.p "_id" _id ]
 
  show InputInlineQueryResultContact { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, contact=contact, _id=_id } =
-  "InputInlineQueryResultContact" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "contact" contact, p "_id" _id ]
+  "InputInlineQueryResultContact" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "thumbnail_height" thumbnail_height, U.p "thumbnail_width" thumbnail_width, U.p "thumbnail_url" thumbnail_url, U.p "contact" contact, U.p "_id" _id ]
 
  show InputInlineQueryResultDocument { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, mime_type=mime_type, document_url=document_url, description=description, title=title, _id=_id } =
-  "InputInlineQueryResultDocument" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "mime_type" mime_type, p "document_url" document_url, p "description" description, p "title" title, p "_id" _id ]
+  "InputInlineQueryResultDocument" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "thumbnail_height" thumbnail_height, U.p "thumbnail_width" thumbnail_width, U.p "thumbnail_url" thumbnail_url, U.p "mime_type" mime_type, U.p "document_url" document_url, U.p "description" description, U.p "title" title, U.p "_id" _id ]
 
  show InputInlineQueryResultGame { reply_markup=reply_markup, game_short_name=game_short_name, _id=_id } =
-  "InputInlineQueryResultGame" ++ cc [p "reply_markup" reply_markup, p "game_short_name" game_short_name, p "_id" _id ]
+  "InputInlineQueryResultGame" ++ U.cc [U.p "reply_markup" reply_markup, U.p "game_short_name" game_short_name, U.p "_id" _id ]
 
  show InputInlineQueryResultLocation { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, title=title, live_period=live_period, location=location, _id=_id } =
-  "InputInlineQueryResultLocation" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "title" title, p "live_period" live_period, p "location" location, p "_id" _id ]
+  "InputInlineQueryResultLocation" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "thumbnail_height" thumbnail_height, U.p "thumbnail_width" thumbnail_width, U.p "thumbnail_url" thumbnail_url, U.p "title" title, U.p "live_period" live_period, U.p "location" location, U.p "_id" _id ]
 
  show InputInlineQueryResultPhoto { input_message_content=input_message_content, reply_markup=reply_markup, photo_height=photo_height, photo_width=photo_width, photo_url=photo_url, thumbnail_url=thumbnail_url, description=description, title=title, _id=_id } =
-  "InputInlineQueryResultPhoto" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "photo_height" photo_height, p "photo_width" photo_width, p "photo_url" photo_url, p "thumbnail_url" thumbnail_url, p "description" description, p "title" title, p "_id" _id ]
+  "InputInlineQueryResultPhoto" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "photo_height" photo_height, U.p "photo_width" photo_width, U.p "photo_url" photo_url, U.p "thumbnail_url" thumbnail_url, U.p "description" description, U.p "title" title, U.p "_id" _id ]
 
  show InputInlineQueryResultSticker { input_message_content=input_message_content, reply_markup=reply_markup, sticker_height=sticker_height, sticker_width=sticker_width, sticker_url=sticker_url, thumbnail_url=thumbnail_url, _id=_id } =
-  "InputInlineQueryResultSticker" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "sticker_height" sticker_height, p "sticker_width" sticker_width, p "sticker_url" sticker_url, p "thumbnail_url" thumbnail_url, p "_id" _id ]
+  "InputInlineQueryResultSticker" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "sticker_height" sticker_height, U.p "sticker_width" sticker_width, U.p "sticker_url" sticker_url, U.p "thumbnail_url" thumbnail_url, U.p "_id" _id ]
 
  show InputInlineQueryResultVenue { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, venue=venue, _id=_id } =
-  "InputInlineQueryResultVenue" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "venue" venue, p "_id" _id ]
+  "InputInlineQueryResultVenue" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "thumbnail_height" thumbnail_height, U.p "thumbnail_width" thumbnail_width, U.p "thumbnail_url" thumbnail_url, U.p "venue" venue, U.p "_id" _id ]
 
  show InputInlineQueryResultVideo { input_message_content=input_message_content, reply_markup=reply_markup, video_duration=video_duration, video_height=video_height, video_width=video_width, mime_type=mime_type, video_url=video_url, thumbnail_url=thumbnail_url, description=description, title=title, _id=_id } =
-  "InputInlineQueryResultVideo" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "video_duration" video_duration, p "video_height" video_height, p "video_width" video_width, p "mime_type" mime_type, p "video_url" video_url, p "thumbnail_url" thumbnail_url, p "description" description, p "title" title, p "_id" _id ]
+  "InputInlineQueryResultVideo" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "video_duration" video_duration, U.p "video_height" video_height, U.p "video_width" video_width, U.p "mime_type" mime_type, U.p "video_url" video_url, U.p "thumbnail_url" thumbnail_url, U.p "description" description, U.p "title" title, U.p "_id" _id ]
 
  show InputInlineQueryResultVoiceNote { input_message_content=input_message_content, reply_markup=reply_markup, voice_note_duration=voice_note_duration, voice_note_url=voice_note_url, title=title, _id=_id } =
-  "InputInlineQueryResultVoiceNote" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "voice_note_duration" voice_note_duration, p "voice_note_url" voice_note_url, p "title" title, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputInlineQueryResultVoiceNote" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "voice_note_duration" voice_note_duration, U.p "voice_note_url" voice_note_url, U.p "title" title, U.p "_id" _id ]
 
 instance T.ToJSON InputInlineQueryResult where
  toJSON InputInlineQueryResultAnimation { input_message_content = input_message_content, reply_markup = reply_markup, video_height = video_height, video_width = video_width, video_duration = video_duration, video_mime_type = video_mime_type, video_url = video_url, thumbnail_mime_type = thumbnail_mime_type, thumbnail_url = thumbnail_url, title = title, _id = _id } =

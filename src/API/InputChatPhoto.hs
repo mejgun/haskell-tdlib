@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -36,22 +36,13 @@ data InputChatPhoto =
 
 instance Show InputChatPhoto where
  show InputChatPhotoPrevious { chat_photo_id=chat_photo_id } =
-  "InputChatPhotoPrevious" ++ cc [p "chat_photo_id" chat_photo_id ]
+  "InputChatPhotoPrevious" ++ U.cc [U.p "chat_photo_id" chat_photo_id ]
 
  show InputChatPhotoStatic { photo=photo } =
-  "InputChatPhotoStatic" ++ cc [p "photo" photo ]
+  "InputChatPhotoStatic" ++ U.cc [U.p "photo" photo ]
 
  show InputChatPhotoAnimation { main_frame_timestamp=main_frame_timestamp, animation=animation } =
-  "InputChatPhotoAnimation" ++ cc [p "main_frame_timestamp" main_frame_timestamp, p "animation" animation ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputChatPhotoAnimation" ++ U.cc [U.p "main_frame_timestamp" main_frame_timestamp, U.p "animation" animation ]
 
 instance T.ToJSON InputChatPhoto where
  toJSON InputChatPhotoPrevious { chat_photo_id = chat_photo_id } =

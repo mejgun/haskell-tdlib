@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data ChatStatisticsMessageSenderInfo =
 
 instance Show ChatStatisticsMessageSenderInfo where
  show ChatStatisticsMessageSenderInfo { average_character_count=average_character_count, sent_message_count=sent_message_count, user_id=user_id } =
-  "ChatStatisticsMessageSenderInfo" ++ cc [p "average_character_count" average_character_count, p "sent_message_count" sent_message_count, p "user_id" user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatStatisticsMessageSenderInfo" ++ U.cc [U.p "average_character_count" average_character_count, U.p "sent_message_count" sent_message_count, U.p "user_id" user_id ]
 
 instance T.ToJSON ChatStatisticsMessageSenderInfo where
  toJSON ChatStatisticsMessageSenderInfo { average_character_count = average_character_count, sent_message_count = sent_message_count, user_id = user_id } =

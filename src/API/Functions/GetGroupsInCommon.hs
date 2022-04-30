@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data GetGroupsInCommon =
 
 instance Show GetGroupsInCommon where
  show GetGroupsInCommon { limit=limit, offset_chat_id=offset_chat_id, user_id=user_id } =
-  "GetGroupsInCommon" ++ cc [p "limit" limit, p "offset_chat_id" offset_chat_id, p "user_id" user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetGroupsInCommon" ++ U.cc [U.p "limit" limit, U.p "offset_chat_id" offset_chat_id, U.p "user_id" user_id ]
 
 instance T.ToJSON GetGroupsInCommon where
  toJSON GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id } =

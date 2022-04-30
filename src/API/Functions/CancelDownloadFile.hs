@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data CancelDownloadFile =
 
 instance Show CancelDownloadFile where
  show CancelDownloadFile { only_if_pending=only_if_pending, file_id=file_id } =
-  "CancelDownloadFile" ++ cc [p "only_if_pending" only_if_pending, p "file_id" file_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CancelDownloadFile" ++ U.cc [U.p "only_if_pending" only_if_pending, U.p "file_id" file_id ]
 
 instance T.ToJSON CancelDownloadFile where
  toJSON CancelDownloadFile { only_if_pending = only_if_pending, file_id = file_id } =

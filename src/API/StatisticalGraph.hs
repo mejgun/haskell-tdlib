@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,22 +35,13 @@ data StatisticalGraph =
 
 instance Show StatisticalGraph where
  show StatisticalGraphData { zoom_token=zoom_token, json_data=json_data } =
-  "StatisticalGraphData" ++ cc [p "zoom_token" zoom_token, p "json_data" json_data ]
+  "StatisticalGraphData" ++ U.cc [U.p "zoom_token" zoom_token, U.p "json_data" json_data ]
 
  show StatisticalGraphAsync { token=token } =
-  "StatisticalGraphAsync" ++ cc [p "token" token ]
+  "StatisticalGraphAsync" ++ U.cc [U.p "token" token ]
 
  show StatisticalGraphError { error_message=error_message } =
-  "StatisticalGraphError" ++ cc [p "error_message" error_message ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "StatisticalGraphError" ++ U.cc [U.p "error_message" error_message ]
 
 instance T.ToJSON StatisticalGraph where
  toJSON StatisticalGraphData { zoom_token = zoom_token, json_data = json_data } =

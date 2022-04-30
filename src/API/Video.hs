@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -40,16 +40,7 @@ data Video =
 
 instance Show Video where
  show Video { video=video, thumbnail=thumbnail, minithumbnail=minithumbnail, supports_streaming=supports_streaming, has_stickers=has_stickers, mime_type=mime_type, file_name=file_name, height=height, width=width, duration=duration } =
-  "Video" ++ cc [p "video" video, p "thumbnail" thumbnail, p "minithumbnail" minithumbnail, p "supports_streaming" supports_streaming, p "has_stickers" has_stickers, p "mime_type" mime_type, p "file_name" file_name, p "height" height, p "width" width, p "duration" duration ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Video" ++ U.cc [U.p "video" video, U.p "thumbnail" thumbnail, U.p "minithumbnail" minithumbnail, U.p "supports_streaming" supports_streaming, U.p "has_stickers" has_stickers, U.p "mime_type" mime_type, U.p "file_name" file_name, U.p "height" height, U.p "width" width, U.p "duration" duration ]
 
 instance T.ToJSON Video where
  toJSON Video { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, supports_streaming = supports_streaming, has_stickers = has_stickers, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration } =

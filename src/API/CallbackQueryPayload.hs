@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,22 +35,13 @@ data CallbackQueryPayload =
 
 instance Show CallbackQueryPayload where
  show CallbackQueryPayloadData { _data=_data } =
-  "CallbackQueryPayloadData" ++ cc [p "_data" _data ]
+  "CallbackQueryPayloadData" ++ U.cc [U.p "_data" _data ]
 
  show CallbackQueryPayloadDataWithPassword { _data=_data, password=password } =
-  "CallbackQueryPayloadDataWithPassword" ++ cc [p "_data" _data, p "password" password ]
+  "CallbackQueryPayloadDataWithPassword" ++ U.cc [U.p "_data" _data, U.p "password" password ]
 
  show CallbackQueryPayloadGame { game_short_name=game_short_name } =
-  "CallbackQueryPayloadGame" ++ cc [p "game_short_name" game_short_name ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CallbackQueryPayloadGame" ++ U.cc [U.p "game_short_name" game_short_name ]
 
 instance T.ToJSON CallbackQueryPayload where
  toJSON CallbackQueryPayloadData { _data = _data } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data SetChatSlowModeDelay =
 
 instance Show SetChatSlowModeDelay where
  show SetChatSlowModeDelay { slow_mode_delay=slow_mode_delay, chat_id=chat_id } =
-  "SetChatSlowModeDelay" ++ cc [p "slow_mode_delay" slow_mode_delay, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetChatSlowModeDelay" ++ U.cc [U.p "slow_mode_delay" slow_mode_delay, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SetChatSlowModeDelay where
  toJSON SetChatSlowModeDelay { slow_mode_delay = slow_mode_delay, chat_id = chat_id } =

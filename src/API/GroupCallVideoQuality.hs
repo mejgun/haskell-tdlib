@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,22 +27,13 @@ data GroupCallVideoQuality =
 
 instance Show GroupCallVideoQuality where
  show GroupCallVideoQualityThumbnail {  } =
-  "GroupCallVideoQualityThumbnail" ++ cc [ ]
+  "GroupCallVideoQualityThumbnail" ++ U.cc [ ]
 
  show GroupCallVideoQualityMedium {  } =
-  "GroupCallVideoQualityMedium" ++ cc [ ]
+  "GroupCallVideoQualityMedium" ++ U.cc [ ]
 
  show GroupCallVideoQualityFull {  } =
-  "GroupCallVideoQualityFull" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GroupCallVideoQualityFull" ++ U.cc [ ]
 
 instance T.ToJSON GroupCallVideoQuality where
  toJSON GroupCallVideoQualityThumbnail {  } =

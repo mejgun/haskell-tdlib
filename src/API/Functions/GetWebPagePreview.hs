@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -20,16 +20,7 @@ data GetWebPagePreview =
 
 instance Show GetWebPagePreview where
  show GetWebPagePreview { text=text } =
-  "GetWebPagePreview" ++ cc [p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetWebPagePreview" ++ U.cc [U.p "text" text ]
 
 instance T.ToJSON GetWebPagePreview where
  toJSON GetWebPagePreview { text = text } =

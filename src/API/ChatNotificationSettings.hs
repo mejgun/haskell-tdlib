@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -37,16 +37,7 @@ data ChatNotificationSettings =
 
 instance Show ChatNotificationSettings where
  show ChatNotificationSettings { disable_mention_notifications=disable_mention_notifications, use_default_disable_mention_notifications=use_default_disable_mention_notifications, disable_pinned_message_notifications=disable_pinned_message_notifications, use_default_disable_pinned_message_notifications=use_default_disable_pinned_message_notifications, show_preview=show_preview, use_default_show_preview=use_default_show_preview, sound_id=sound_id, use_default_sound=use_default_sound, mute_for=mute_for, use_default_mute_for=use_default_mute_for } =
-  "ChatNotificationSettings" ++ cc [p "disable_mention_notifications" disable_mention_notifications, p "use_default_disable_mention_notifications" use_default_disable_mention_notifications, p "disable_pinned_message_notifications" disable_pinned_message_notifications, p "use_default_disable_pinned_message_notifications" use_default_disable_pinned_message_notifications, p "show_preview" show_preview, p "use_default_show_preview" use_default_show_preview, p "sound_id" sound_id, p "use_default_sound" use_default_sound, p "mute_for" mute_for, p "use_default_mute_for" use_default_mute_for ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatNotificationSettings" ++ U.cc [U.p "disable_mention_notifications" disable_mention_notifications, U.p "use_default_disable_mention_notifications" use_default_disable_mention_notifications, U.p "disable_pinned_message_notifications" disable_pinned_message_notifications, U.p "use_default_disable_pinned_message_notifications" use_default_disable_pinned_message_notifications, U.p "show_preview" show_preview, U.p "use_default_show_preview" use_default_show_preview, U.p "sound_id" sound_id, U.p "use_default_sound" use_default_sound, U.p "mute_for" mute_for, U.p "use_default_mute_for" use_default_mute_for ]
 
 instance T.ToJSON ChatNotificationSettings where
  toJSON ChatNotificationSettings { disable_mention_notifications = disable_mention_notifications, use_default_disable_mention_notifications = use_default_disable_mention_notifications, disable_pinned_message_notifications = disable_pinned_message_notifications, use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications, show_preview = show_preview, use_default_show_preview = use_default_show_preview, sound_id = sound_id, use_default_sound = use_default_sound, mute_for = mute_for, use_default_mute_for = use_default_mute_for } =

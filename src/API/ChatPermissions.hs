@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -33,16 +33,7 @@ data ChatPermissions =
 
 instance Show ChatPermissions where
  show ChatPermissions { can_pin_messages=can_pin_messages, can_invite_users=can_invite_users, can_change_info=can_change_info, can_add_web_page_previews=can_add_web_page_previews, can_send_other_messages=can_send_other_messages, can_send_polls=can_send_polls, can_send_media_messages=can_send_media_messages, can_send_messages=can_send_messages } =
-  "ChatPermissions" ++ cc [p "can_pin_messages" can_pin_messages, p "can_invite_users" can_invite_users, p "can_change_info" can_change_info, p "can_add_web_page_previews" can_add_web_page_previews, p "can_send_other_messages" can_send_other_messages, p "can_send_polls" can_send_polls, p "can_send_media_messages" can_send_media_messages, p "can_send_messages" can_send_messages ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatPermissions" ++ U.cc [U.p "can_pin_messages" can_pin_messages, U.p "can_invite_users" can_invite_users, U.p "can_change_info" can_change_info, U.p "can_add_web_page_previews" can_add_web_page_previews, U.p "can_send_other_messages" can_send_other_messages, U.p "can_send_polls" can_send_polls, U.p "can_send_media_messages" can_send_media_messages, U.p "can_send_messages" can_send_messages ]
 
 instance T.ToJSON ChatPermissions where
  toJSON ChatPermissions { can_pin_messages = can_pin_messages, can_invite_users = can_invite_users, can_change_info = can_change_info, can_add_web_page_previews = can_add_web_page_previews, can_send_other_messages = can_send_other_messages, can_send_polls = can_send_polls, can_send_media_messages = can_send_media_messages, can_send_messages = can_send_messages } =

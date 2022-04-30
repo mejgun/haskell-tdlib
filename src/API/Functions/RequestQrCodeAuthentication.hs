@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data RequestQrCodeAuthentication =
 
 instance Show RequestQrCodeAuthentication where
  show RequestQrCodeAuthentication { other_user_ids=other_user_ids } =
-  "RequestQrCodeAuthentication" ++ cc [p "other_user_ids" other_user_ids ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RequestQrCodeAuthentication" ++ U.cc [U.p "other_user_ids" other_user_ids ]
 
 instance T.ToJSON RequestQrCodeAuthentication where
  toJSON RequestQrCodeAuthentication { other_user_ids = other_user_ids } =

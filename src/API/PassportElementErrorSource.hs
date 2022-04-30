@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -57,40 +57,31 @@ data PassportElementErrorSource =
 
 instance Show PassportElementErrorSource where
  show PassportElementErrorSourceUnspecified {  } =
-  "PassportElementErrorSourceUnspecified" ++ cc [ ]
+  "PassportElementErrorSourceUnspecified" ++ U.cc [ ]
 
  show PassportElementErrorSourceDataField { field_name=field_name } =
-  "PassportElementErrorSourceDataField" ++ cc [p "field_name" field_name ]
+  "PassportElementErrorSourceDataField" ++ U.cc [U.p "field_name" field_name ]
 
  show PassportElementErrorSourceFrontSide {  } =
-  "PassportElementErrorSourceFrontSide" ++ cc [ ]
+  "PassportElementErrorSourceFrontSide" ++ U.cc [ ]
 
  show PassportElementErrorSourceReverseSide {  } =
-  "PassportElementErrorSourceReverseSide" ++ cc [ ]
+  "PassportElementErrorSourceReverseSide" ++ U.cc [ ]
 
  show PassportElementErrorSourceSelfie {  } =
-  "PassportElementErrorSourceSelfie" ++ cc [ ]
+  "PassportElementErrorSourceSelfie" ++ U.cc [ ]
 
  show PassportElementErrorSourceTranslationFile { file_index=file_index } =
-  "PassportElementErrorSourceTranslationFile" ++ cc [p "file_index" file_index ]
+  "PassportElementErrorSourceTranslationFile" ++ U.cc [U.p "file_index" file_index ]
 
  show PassportElementErrorSourceTranslationFiles {  } =
-  "PassportElementErrorSourceTranslationFiles" ++ cc [ ]
+  "PassportElementErrorSourceTranslationFiles" ++ U.cc [ ]
 
  show PassportElementErrorSourceFile { file_index=file_index } =
-  "PassportElementErrorSourceFile" ++ cc [p "file_index" file_index ]
+  "PassportElementErrorSourceFile" ++ U.cc [U.p "file_index" file_index ]
 
  show PassportElementErrorSourceFiles {  } =
-  "PassportElementErrorSourceFiles" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PassportElementErrorSourceFiles" ++ U.cc [ ]
 
 instance T.ToJSON PassportElementErrorSource where
  toJSON PassportElementErrorSourceUnspecified {  } =

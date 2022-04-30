@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.CountryInfo as CountryInfo
 
 -- |
@@ -24,16 +24,7 @@ data PhoneNumberInfo =
 
 instance Show PhoneNumberInfo where
  show PhoneNumberInfo { formatted_phone_number=formatted_phone_number, country_calling_code=country_calling_code, country=country } =
-  "PhoneNumberInfo" ++ cc [p "formatted_phone_number" formatted_phone_number, p "country_calling_code" country_calling_code, p "country" country ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PhoneNumberInfo" ++ U.cc [U.p "formatted_phone_number" formatted_phone_number, U.p "country_calling_code" country_calling_code, U.p "country" country ]
 
 instance T.ToJSON PhoneNumberInfo where
  toJSON PhoneNumberInfo { formatted_phone_number = formatted_phone_number, country_calling_code = country_calling_code, country = country } =

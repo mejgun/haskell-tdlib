@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -41,28 +41,19 @@ data KeyboardButtonType =
 
 instance Show KeyboardButtonType where
  show KeyboardButtonTypeText {  } =
-  "KeyboardButtonTypeText" ++ cc [ ]
+  "KeyboardButtonTypeText" ++ U.cc [ ]
 
  show KeyboardButtonTypeRequestPhoneNumber {  } =
-  "KeyboardButtonTypeRequestPhoneNumber" ++ cc [ ]
+  "KeyboardButtonTypeRequestPhoneNumber" ++ U.cc [ ]
 
  show KeyboardButtonTypeRequestLocation {  } =
-  "KeyboardButtonTypeRequestLocation" ++ cc [ ]
+  "KeyboardButtonTypeRequestLocation" ++ U.cc [ ]
 
  show KeyboardButtonTypeRequestPoll { force_quiz=force_quiz, force_regular=force_regular } =
-  "KeyboardButtonTypeRequestPoll" ++ cc [p "force_quiz" force_quiz, p "force_regular" force_regular ]
+  "KeyboardButtonTypeRequestPoll" ++ U.cc [U.p "force_quiz" force_quiz, U.p "force_regular" force_regular ]
 
  show KeyboardButtonTypeWebApp { url=url } =
-  "KeyboardButtonTypeWebApp" ++ cc [p "url" url ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "KeyboardButtonTypeWebApp" ++ U.cc [U.p "url" url ]
 
 instance T.ToJSON KeyboardButtonType where
  toJSON KeyboardButtonTypeText {  } =

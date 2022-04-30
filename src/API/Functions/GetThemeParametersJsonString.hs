@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ThemeParameters as ThemeParameters
 
 -- |
@@ -20,16 +20,7 @@ data GetThemeParametersJsonString =
 
 instance Show GetThemeParametersJsonString where
  show GetThemeParametersJsonString { theme=theme } =
-  "GetThemeParametersJsonString" ++ cc [p "theme" theme ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetThemeParametersJsonString" ++ U.cc [U.p "theme" theme ]
 
 instance T.ToJSON GetThemeParametersJsonString where
  toJSON GetThemeParametersJsonString { theme = theme } =

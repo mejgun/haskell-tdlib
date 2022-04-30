@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatPhotoInfo as ChatPhotoInfo
 import {-# SOURCE #-} qualified API.ChatType as ChatType
 
@@ -39,16 +39,7 @@ data ChatInviteLinkInfo =
 
 instance Show ChatInviteLinkInfo where
  show ChatInviteLinkInfo { is_public=is_public, creates_join_request=creates_join_request, member_user_ids=member_user_ids, member_count=member_count, description=description, photo=photo, title=title, _type=_type, accessible_for=accessible_for, chat_id=chat_id } =
-  "ChatInviteLinkInfo" ++ cc [p "is_public" is_public, p "creates_join_request" creates_join_request, p "member_user_ids" member_user_ids, p "member_count" member_count, p "description" description, p "photo" photo, p "title" title, p "_type" _type, p "accessible_for" accessible_for, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatInviteLinkInfo" ++ U.cc [U.p "is_public" is_public, U.p "creates_join_request" creates_join_request, U.p "member_user_ids" member_user_ids, U.p "member_count" member_count, U.p "description" description, U.p "photo" photo, U.p "title" title, U.p "_type" _type, U.p "accessible_for" accessible_for, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ChatInviteLinkInfo where
  toJSON ChatInviteLinkInfo { is_public = is_public, creates_join_request = creates_join_request, member_user_ids = member_user_ids, member_count = member_count, description = description, photo = photo, title = title, _type = _type, accessible_for = accessible_for, chat_id = chat_id } =

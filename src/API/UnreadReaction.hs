@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -24,16 +24,7 @@ data UnreadReaction =
 
 instance Show UnreadReaction where
  show UnreadReaction { is_big=is_big, sender_id=sender_id, reaction=reaction } =
-  "UnreadReaction" ++ cc [p "is_big" is_big, p "sender_id" sender_id, p "reaction" reaction ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UnreadReaction" ++ U.cc [U.p "is_big" is_big, U.p "sender_id" sender_id, U.p "reaction" reaction ]
 
 instance T.ToJSON UnreadReaction where
  toJSON UnreadReaction { is_big = is_big, sender_id = sender_id, reaction = reaction } =

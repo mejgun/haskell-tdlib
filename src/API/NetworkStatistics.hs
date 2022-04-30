@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsEntry
 
 -- |
@@ -22,16 +22,7 @@ data NetworkStatistics =
 
 instance Show NetworkStatistics where
  show NetworkStatistics { entries=entries, since_date=since_date } =
-  "NetworkStatistics" ++ cc [p "entries" entries, p "since_date" since_date ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "NetworkStatistics" ++ U.cc [U.p "entries" entries, U.p "since_date" since_date ]
 
 instance T.ToJSON NetworkStatistics where
  toJSON NetworkStatistics { entries = entries, since_date = since_date } =

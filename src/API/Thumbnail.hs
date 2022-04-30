@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.ThumbnailFormat as ThumbnailFormat
 
@@ -27,16 +27,7 @@ data Thumbnail =
 
 instance Show Thumbnail where
  show Thumbnail { file=file, height=height, width=width, format=format } =
-  "Thumbnail" ++ cc [p "file" file, p "height" height, p "width" width, p "format" format ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Thumbnail" ++ U.cc [U.p "file" file, U.p "height" height, U.p "width" width, U.p "format" format ]
 
 instance T.ToJSON Thumbnail where
  toJSON Thumbnail { file = file, height = height, width = width, format = format } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data PhoneNumberAuthenticationSettings =
 
 instance Show PhoneNumberAuthenticationSettings where
  show PhoneNumberAuthenticationSettings { authentication_tokens=authentication_tokens, allow_sms_retriever_api=allow_sms_retriever_api, is_current_phone_number=is_current_phone_number, allow_missed_call=allow_missed_call, allow_flash_call=allow_flash_call } =
-  "PhoneNumberAuthenticationSettings" ++ cc [p "authentication_tokens" authentication_tokens, p "allow_sms_retriever_api" allow_sms_retriever_api, p "is_current_phone_number" is_current_phone_number, p "allow_missed_call" allow_missed_call, p "allow_flash_call" allow_flash_call ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PhoneNumberAuthenticationSettings" ++ U.cc [U.p "authentication_tokens" authentication_tokens, U.p "allow_sms_retriever_api" allow_sms_retriever_api, U.p "is_current_phone_number" is_current_phone_number, U.p "allow_missed_call" allow_missed_call, U.p "allow_flash_call" allow_flash_call ]
 
 instance T.ToJSON PhoneNumberAuthenticationSettings where
  toJSON PhoneNumberAuthenticationSettings { authentication_tokens = authentication_tokens, allow_sms_retriever_api = allow_sms_retriever_api, is_current_phone_number = is_current_phone_number, allow_missed_call = allow_missed_call, allow_flash_call = allow_flash_call } =

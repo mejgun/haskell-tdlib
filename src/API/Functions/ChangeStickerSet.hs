@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data ChangeStickerSet =
 
 instance Show ChangeStickerSet where
  show ChangeStickerSet { is_archived=is_archived, is_installed=is_installed, set_id=set_id } =
-  "ChangeStickerSet" ++ cc [p "is_archived" is_archived, p "is_installed" is_installed, p "set_id" set_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChangeStickerSet" ++ U.cc [U.p "is_archived" is_archived, U.p "is_installed" is_installed, U.p "set_id" set_id ]
 
 instance T.ToJSON ChangeStickerSet where
  toJSON ChangeStickerSet { is_archived = is_archived, is_installed = is_installed, set_id = set_id } =

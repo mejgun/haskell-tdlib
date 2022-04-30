@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data SetFileGenerationProgress =
 
 instance Show SetFileGenerationProgress where
  show SetFileGenerationProgress { local_prefix_size=local_prefix_size, expected_size=expected_size, generation_id=generation_id } =
-  "SetFileGenerationProgress" ++ cc [p "local_prefix_size" local_prefix_size, p "expected_size" expected_size, p "generation_id" generation_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetFileGenerationProgress" ++ U.cc [U.p "local_prefix_size" local_prefix_size, U.p "expected_size" expected_size, U.p "generation_id" generation_id ]
 
 instance T.ToJSON SetFileGenerationProgress where
  toJSON SetFileGenerationProgress { local_prefix_size = local_prefix_size, expected_size = expected_size, generation_id = generation_id } =

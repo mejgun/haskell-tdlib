@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data Error =
 
 instance Show Error where
  show Error { message=message, code=code } =
-  "Error" ++ cc [p "message" message, p "code" code ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Error" ++ U.cc [U.p "message" message, U.p "code" code ]
 
 instance T.ToJSON Error where
  toJSON Error { message = message, code = code } =

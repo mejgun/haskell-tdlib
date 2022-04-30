@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -25,16 +25,7 @@ data ViewMessages =
 
 instance Show ViewMessages where
  show ViewMessages { force_read=force_read, message_ids=message_ids, message_thread_id=message_thread_id, chat_id=chat_id } =
-  "ViewMessages" ++ cc [p "force_read" force_read, p "message_ids" message_ids, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ViewMessages" ++ U.cc [U.p "force_read" force_read, U.p "message_ids" message_ids, U.p "message_thread_id" message_thread_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ViewMessages where
  toJSON ViewMessages { force_read = force_read, message_ids = message_ids, message_thread_id = message_thread_id, chat_id = chat_id } =

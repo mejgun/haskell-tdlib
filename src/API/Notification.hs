@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.NotificationType as NotificationType
 
 -- |
@@ -26,16 +26,7 @@ data Notification =
 
 instance Show Notification where
  show Notification { _type=_type, sound_id=sound_id, date=date, _id=_id } =
-  "Notification" ++ cc [p "_type" _type, p "sound_id" sound_id, p "date" date, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Notification" ++ U.cc [U.p "_type" _type, U.p "sound_id" sound_id, U.p "date" date, U.p "_id" _id ]
 
 instance T.ToJSON Notification where
  toJSON Notification { _type = _type, sound_id = sound_id, date = date, _id = _id } =

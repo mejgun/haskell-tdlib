@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Error as Error
 
 -- |
@@ -22,16 +22,7 @@ data FinishFileGeneration =
 
 instance Show FinishFileGeneration where
  show FinishFileGeneration { _error=_error, generation_id=generation_id } =
-  "FinishFileGeneration" ++ cc [p "_error" _error, p "generation_id" generation_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "FinishFileGeneration" ++ U.cc [U.p "_error" _error, U.p "generation_id" generation_id ]
 
 instance T.ToJSON FinishFileGeneration where
  toJSON FinishFileGeneration { _error = _error, generation_id = generation_id } =

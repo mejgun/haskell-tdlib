@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Emojis as Emojis
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.StickerType as StickerType
@@ -46,16 +46,7 @@ data StickerSet =
 
 instance Show StickerSet where
  show StickerSet { emojis=emojis, stickers=stickers, is_viewed=is_viewed, sticker_type=sticker_type, is_official=is_official, is_archived=is_archived, is_installed=is_installed, thumbnail_outline=thumbnail_outline, thumbnail=thumbnail, name=name, title=title, _id=_id } =
-  "StickerSet" ++ cc [p "emojis" emojis, p "stickers" stickers, p "is_viewed" is_viewed, p "sticker_type" sticker_type, p "is_official" is_official, p "is_archived" is_archived, p "is_installed" is_installed, p "thumbnail_outline" thumbnail_outline, p "thumbnail" thumbnail, p "name" name, p "title" title, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "StickerSet" ++ U.cc [U.p "emojis" emojis, U.p "stickers" stickers, U.p "is_viewed" is_viewed, U.p "sticker_type" sticker_type, U.p "is_official" is_official, U.p "is_archived" is_archived, U.p "is_installed" is_installed, U.p "thumbnail_outline" thumbnail_outline, U.p "thumbnail" thumbnail, U.p "name" name, U.p "title" title, U.p "_id" _id ]
 
 instance T.ToJSON StickerSet where
  toJSON StickerSet { emojis = emojis, stickers = stickers, is_viewed = is_viewed, sticker_type = sticker_type, is_official = is_official, is_archived = is_archived, is_installed = is_installed, thumbnail_outline = thumbnail_outline, thumbnail = thumbnail, name = name, title = title, _id = _id } =

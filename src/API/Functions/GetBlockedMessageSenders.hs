@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data GetBlockedMessageSenders =
 
 instance Show GetBlockedMessageSenders where
  show GetBlockedMessageSenders { limit=limit, offset=offset } =
-  "GetBlockedMessageSenders" ++ cc [p "limit" limit, p "offset" offset ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetBlockedMessageSenders" ++ U.cc [U.p "limit" limit, U.p "offset" offset ]
 
 instance T.ToJSON GetBlockedMessageSenders where
  toJSON GetBlockedMessageSenders { limit = limit, offset = offset } =

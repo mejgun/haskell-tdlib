@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data LabeledPricePart =
 
 instance Show LabeledPricePart where
  show LabeledPricePart { amount=amount, label=label } =
-  "LabeledPricePart" ++ cc [p "amount" amount, p "label" label ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "LabeledPricePart" ++ U.cc [U.p "amount" amount, U.p "label" label ]
 
 instance T.ToJSON LabeledPricePart where
  toJSON LabeledPricePart { amount = amount, label = label } =

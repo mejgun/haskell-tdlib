@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data SendCallSignalingData =
 
 instance Show SendCallSignalingData where
  show SendCallSignalingData { _data=_data, call_id=call_id } =
-  "SendCallSignalingData" ++ cc [p "_data" _data, p "call_id" call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendCallSignalingData" ++ U.cc [U.p "_data" _data, U.p "call_id" call_id ]
 
 instance T.ToJSON SendCallSignalingData where
  toJSON SendCallSignalingData { _data = _data, call_id = call_id } =

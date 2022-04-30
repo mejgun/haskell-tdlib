@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data PollOption =
 
 instance Show PollOption where
  show PollOption { is_being_chosen=is_being_chosen, is_chosen=is_chosen, vote_percentage=vote_percentage, voter_count=voter_count, text=text } =
-  "PollOption" ++ cc [p "is_being_chosen" is_being_chosen, p "is_chosen" is_chosen, p "vote_percentage" vote_percentage, p "voter_count" voter_count, p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PollOption" ++ U.cc [U.p "is_being_chosen" is_being_chosen, U.p "is_chosen" is_chosen, U.p "vote_percentage" vote_percentage, U.p "voter_count" voter_count, U.p "text" text ]
 
 instance T.ToJSON PollOption where
  toJSON PollOption { is_being_chosen = is_being_chosen, is_chosen = is_chosen, vote_percentage = vote_percentage, voter_count = voter_count, text = text } =

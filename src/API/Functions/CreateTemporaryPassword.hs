@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data CreateTemporaryPassword =
 
 instance Show CreateTemporaryPassword where
  show CreateTemporaryPassword { valid_for=valid_for, password=password } =
-  "CreateTemporaryPassword" ++ cc [p "valid_for" valid_for, p "password" password ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CreateTemporaryPassword" ++ U.cc [U.p "valid_for" valid_for, U.p "password" password ]
 
 instance T.ToJSON CreateTemporaryPassword where
  toJSON CreateTemporaryPassword { valid_for = valid_for, password = password } =

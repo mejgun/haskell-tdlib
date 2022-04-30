@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BotInfo as BotInfo
 import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
 
@@ -39,16 +39,7 @@ data UserFullInfo =
 
 instance Show UserFullInfo where
  show UserFullInfo { bot_info=bot_info, group_in_common_count=group_in_common_count, bio=bio, need_phone_number_privacy_exception=need_phone_number_privacy_exception, has_private_forwards=has_private_forwards, has_private_calls=has_private_calls, supports_video_calls=supports_video_calls, can_be_called=can_be_called, is_blocked=is_blocked, photo=photo } =
-  "UserFullInfo" ++ cc [p "bot_info" bot_info, p "group_in_common_count" group_in_common_count, p "bio" bio, p "need_phone_number_privacy_exception" need_phone_number_privacy_exception, p "has_private_forwards" has_private_forwards, p "has_private_calls" has_private_calls, p "supports_video_calls" supports_video_calls, p "can_be_called" can_be_called, p "is_blocked" is_blocked, p "photo" photo ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UserFullInfo" ++ U.cc [U.p "bot_info" bot_info, U.p "group_in_common_count" group_in_common_count, U.p "bio" bio, U.p "need_phone_number_privacy_exception" need_phone_number_privacy_exception, U.p "has_private_forwards" has_private_forwards, U.p "has_private_calls" has_private_calls, U.p "supports_video_calls" supports_video_calls, U.p "can_be_called" can_be_called, U.p "is_blocked" is_blocked, U.p "photo" photo ]
 
 instance T.ToJSON UserFullInfo where
  toJSON UserFullInfo { bot_info = bot_info, group_in_common_count = group_in_common_count, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_forwards = has_private_forwards, has_private_calls = has_private_calls, supports_video_calls = supports_video_calls, can_be_called = can_be_called, is_blocked = is_blocked, photo = photo } =

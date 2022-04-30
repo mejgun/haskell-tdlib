@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 
 -- |
@@ -22,16 +22,7 @@ data SetCustomLanguagePackString =
 
 instance Show SetCustomLanguagePackString where
  show SetCustomLanguagePackString { new_string=new_string, language_pack_id=language_pack_id } =
-  "SetCustomLanguagePackString" ++ cc [p "new_string" new_string, p "language_pack_id" language_pack_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetCustomLanguagePackString" ++ U.cc [U.p "new_string" new_string, U.p "language_pack_id" language_pack_id ]
 
 instance T.ToJSON SetCustomLanguagePackString where
  toJSON SetCustomLanguagePackString { new_string = new_string, language_pack_id = language_pack_id } =

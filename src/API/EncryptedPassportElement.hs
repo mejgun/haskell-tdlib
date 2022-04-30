@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
@@ -37,16 +37,7 @@ data EncryptedPassportElement =
 
 instance Show EncryptedPassportElement where
  show EncryptedPassportElement { hash=hash, value=value, files=files, translation=translation, selfie=selfie, reverse_side=reverse_side, front_side=front_side, _data=_data, _type=_type } =
-  "EncryptedPassportElement" ++ cc [p "hash" hash, p "value" value, p "files" files, p "translation" translation, p "selfie" selfie, p "reverse_side" reverse_side, p "front_side" front_side, p "_data" _data, p "_type" _type ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "EncryptedPassportElement" ++ U.cc [U.p "hash" hash, U.p "value" value, U.p "files" files, U.p "translation" translation, U.p "selfie" selfie, U.p "reverse_side" reverse_side, U.p "front_side" front_side, U.p "_data" _data, U.p "_type" _type ]
 
 instance T.ToJSON EncryptedPassportElement where
  toJSON EncryptedPassportElement { hash = hash, value = value, files = files, translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, _data = _data, _type = _type } =

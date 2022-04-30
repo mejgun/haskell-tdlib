@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ScopeNotificationSettings as ScopeNotificationSettings
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
@@ -23,16 +23,7 @@ data SetScopeNotificationSettings =
 
 instance Show SetScopeNotificationSettings where
  show SetScopeNotificationSettings { notification_settings=notification_settings, scope=scope } =
-  "SetScopeNotificationSettings" ++ cc [p "notification_settings" notification_settings, p "scope" scope ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetScopeNotificationSettings" ++ U.cc [U.p "notification_settings" notification_settings, U.p "scope" scope ]
 
 instance T.ToJSON SetScopeNotificationSettings where
  toJSON SetScopeNotificationSettings { notification_settings = notification_settings, scope = scope } =

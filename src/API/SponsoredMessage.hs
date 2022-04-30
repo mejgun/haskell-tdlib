@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageContent as MessageContent
 import {-# SOURCE #-} qualified API.InternalLinkType as InternalLinkType
 import {-# SOURCE #-} qualified API.ChatInviteLinkInfo as ChatInviteLinkInfo
@@ -30,16 +30,7 @@ data SponsoredMessage =
 
 instance Show SponsoredMessage where
  show SponsoredMessage { content=content, link=link, sponsor_chat_info=sponsor_chat_info, sponsor_chat_id=sponsor_chat_id, message_id=message_id } =
-  "SponsoredMessage" ++ cc [p "content" content, p "link" link, p "sponsor_chat_info" sponsor_chat_info, p "sponsor_chat_id" sponsor_chat_id, p "message_id" message_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SponsoredMessage" ++ U.cc [U.p "content" content, U.p "link" link, U.p "sponsor_chat_info" sponsor_chat_info, U.p "sponsor_chat_id" sponsor_chat_id, U.p "message_id" message_id ]
 
 instance T.ToJSON SponsoredMessage where
  toJSON SponsoredMessage { content = content, link = link, sponsor_chat_info = sponsor_chat_info, sponsor_chat_id = sponsor_chat_id, message_id = message_id } =

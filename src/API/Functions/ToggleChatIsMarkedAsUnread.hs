@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleChatIsMarkedAsUnread =
 
 instance Show ToggleChatIsMarkedAsUnread where
  show ToggleChatIsMarkedAsUnread { is_marked_as_unread=is_marked_as_unread, chat_id=chat_id } =
-  "ToggleChatIsMarkedAsUnread" ++ cc [p "is_marked_as_unread" is_marked_as_unread, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleChatIsMarkedAsUnread" ++ U.cc [U.p "is_marked_as_unread" is_marked_as_unread, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ToggleChatIsMarkedAsUnread where
  toJSON ToggleChatIsMarkedAsUnread { is_marked_as_unread = is_marked_as_unread, chat_id = chat_id } =

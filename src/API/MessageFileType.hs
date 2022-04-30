@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -31,22 +31,13 @@ data MessageFileType =
 
 instance Show MessageFileType where
  show MessageFileTypePrivate { name=name } =
-  "MessageFileTypePrivate" ++ cc [p "name" name ]
+  "MessageFileTypePrivate" ++ U.cc [U.p "name" name ]
 
  show MessageFileTypeGroup { title=title } =
-  "MessageFileTypeGroup" ++ cc [p "title" title ]
+  "MessageFileTypeGroup" ++ U.cc [U.p "title" title ]
 
  show MessageFileTypeUnknown {  } =
-  "MessageFileTypeUnknown" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageFileTypeUnknown" ++ U.cc [ ]
 
 instance T.ToJSON MessageFileType where
  toJSON MessageFileTypePrivate { name = name } =

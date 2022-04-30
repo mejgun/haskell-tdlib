@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data PaymentResult =
 
 instance Show PaymentResult where
  show PaymentResult { verification_url=verification_url, success=success } =
-  "PaymentResult" ++ cc [p "verification_url" verification_url, p "success" success ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PaymentResult" ++ U.cc [U.p "verification_url" verification_url, U.p "success" success ]
 
 instance T.ToJSON PaymentResult where
  toJSON PaymentResult { verification_url = verification_url, success = success } =

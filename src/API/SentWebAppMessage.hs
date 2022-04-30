@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data SentWebAppMessage =
 
 instance Show SentWebAppMessage where
  show SentWebAppMessage { inline_message_id=inline_message_id } =
-  "SentWebAppMessage" ++ cc [p "inline_message_id" inline_message_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SentWebAppMessage" ++ U.cc [U.p "inline_message_id" inline_message_id ]
 
 instance T.ToJSON SentWebAppMessage where
  toJSON SentWebAppMessage { inline_message_id = inline_message_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
@@ -34,16 +34,7 @@ data Game =
 
 instance Show Game where
  show Game { animation=animation, photo=photo, description=description, text=text, title=title, short_name=short_name, _id=_id } =
-  "Game" ++ cc [p "animation" animation, p "photo" photo, p "description" description, p "text" text, p "title" title, p "short_name" short_name, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Game" ++ U.cc [U.p "animation" animation, U.p "photo" photo, U.p "description" description, U.p "text" text, U.p "title" title, U.p "short_name" short_name, U.p "_id" _id ]
 
 instance T.ToJSON Game where
  toJSON Game { animation = animation, photo = photo, description = description, text = text, title = title, short_name = short_name, _id = _id } =

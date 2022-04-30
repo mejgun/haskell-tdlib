@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 
 -- |
@@ -28,16 +28,7 @@ data PhotoSize =
 
 instance Show PhotoSize where
  show PhotoSize { progressive_sizes=progressive_sizes, height=height, width=width, photo=photo, _type=_type } =
-  "PhotoSize" ++ cc [p "progressive_sizes" progressive_sizes, p "height" height, p "width" width, p "photo" photo, p "_type" _type ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PhotoSize" ++ U.cc [U.p "progressive_sizes" progressive_sizes, U.p "height" height, U.p "width" width, U.p "photo" photo, U.p "_type" _type ]
 
 instance T.ToJSON PhotoSize where
  toJSON PhotoSize { progressive_sizes = progressive_sizes, height = height, width = width, photo = photo, _type = _type } =

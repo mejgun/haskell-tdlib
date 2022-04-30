@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatStatisticsInviterInfo as ChatStatisticsInviterInfo
 import {-# SOURCE #-} qualified API.ChatStatisticsAdministratorActionsInfo as ChatStatisticsAdministratorActionsInfo
 import {-# SOURCE #-} qualified API.ChatStatisticsMessageSenderInfo as ChatStatisticsMessageSenderInfo
@@ -92,19 +92,10 @@ data ChatStatistics =
 
 instance Show ChatStatistics where
  show ChatStatisticsSupergroup { top_inviters=top_inviters, top_administrators=top_administrators, top_senders=top_senders, week_graph=week_graph, day_graph=day_graph, action_graph=action_graph, message_content_graph=message_content_graph, language_graph=language_graph, join_by_source_graph=join_by_source_graph, join_graph=join_graph, member_count_graph=member_count_graph, sender_count=sender_count, viewer_count=viewer_count, message_count=message_count, member_count=member_count, period=period } =
-  "ChatStatisticsSupergroup" ++ cc [p "top_inviters" top_inviters, p "top_administrators" top_administrators, p "top_senders" top_senders, p "week_graph" week_graph, p "day_graph" day_graph, p "action_graph" action_graph, p "message_content_graph" message_content_graph, p "language_graph" language_graph, p "join_by_source_graph" join_by_source_graph, p "join_graph" join_graph, p "member_count_graph" member_count_graph, p "sender_count" sender_count, p "viewer_count" viewer_count, p "message_count" message_count, p "member_count" member_count, p "period" period ]
+  "ChatStatisticsSupergroup" ++ U.cc [U.p "top_inviters" top_inviters, U.p "top_administrators" top_administrators, U.p "top_senders" top_senders, U.p "week_graph" week_graph, U.p "day_graph" day_graph, U.p "action_graph" action_graph, U.p "message_content_graph" message_content_graph, U.p "language_graph" language_graph, U.p "join_by_source_graph" join_by_source_graph, U.p "join_graph" join_graph, U.p "member_count_graph" member_count_graph, U.p "sender_count" sender_count, U.p "viewer_count" viewer_count, U.p "message_count" message_count, U.p "member_count" member_count, U.p "period" period ]
 
  show ChatStatisticsChannel { recent_message_interactions=recent_message_interactions, instant_view_interaction_graph=instant_view_interaction_graph, message_interaction_graph=message_interaction_graph, language_graph=language_graph, join_by_source_graph=join_by_source_graph, view_count_by_source_graph=view_count_by_source_graph, view_count_by_hour_graph=view_count_by_hour_graph, mute_graph=mute_graph, join_graph=join_graph, member_count_graph=member_count_graph, enabled_notifications_percentage=enabled_notifications_percentage, mean_share_count=mean_share_count, mean_view_count=mean_view_count, member_count=member_count, period=period } =
-  "ChatStatisticsChannel" ++ cc [p "recent_message_interactions" recent_message_interactions, p "instant_view_interaction_graph" instant_view_interaction_graph, p "message_interaction_graph" message_interaction_graph, p "language_graph" language_graph, p "join_by_source_graph" join_by_source_graph, p "view_count_by_source_graph" view_count_by_source_graph, p "view_count_by_hour_graph" view_count_by_hour_graph, p "mute_graph" mute_graph, p "join_graph" join_graph, p "member_count_graph" member_count_graph, p "enabled_notifications_percentage" enabled_notifications_percentage, p "mean_share_count" mean_share_count, p "mean_view_count" mean_view_count, p "member_count" member_count, p "period" period ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatStatisticsChannel" ++ U.cc [U.p "recent_message_interactions" recent_message_interactions, U.p "instant_view_interaction_graph" instant_view_interaction_graph, U.p "message_interaction_graph" message_interaction_graph, U.p "language_graph" language_graph, U.p "join_by_source_graph" join_by_source_graph, U.p "view_count_by_source_graph" view_count_by_source_graph, U.p "view_count_by_hour_graph" view_count_by_hour_graph, U.p "mute_graph" mute_graph, U.p "join_graph" join_graph, U.p "member_count_graph" member_count_graph, U.p "enabled_notifications_percentage" enabled_notifications_percentage, U.p "mean_share_count" mean_share_count, U.p "mean_view_count" mean_view_count, U.p "member_count" member_count, U.p "period" period ]
 
 instance T.ToJSON ChatStatistics where
  toJSON ChatStatisticsSupergroup { top_inviters = top_inviters, top_administrators = top_administrators, top_senders = top_senders, week_graph = week_graph, day_graph = day_graph, action_graph = action_graph, message_content_graph = message_content_graph, language_graph = language_graph, join_by_source_graph = join_by_source_graph, join_graph = join_graph, member_count_graph = member_count_graph, sender_count = sender_count, viewer_count = viewer_count, message_count = message_count, member_count = member_count, period = period } =

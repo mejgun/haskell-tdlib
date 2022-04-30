@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ThemeParameters as ThemeParameters
 
 -- |
@@ -30,16 +30,7 @@ data OpenWebApp =
 
 instance Show OpenWebApp where
  show OpenWebApp { reply_to_message_id=reply_to_message_id, theme=theme, url=url, bot_user_id=bot_user_id, chat_id=chat_id } =
-  "OpenWebApp" ++ cc [p "reply_to_message_id" reply_to_message_id, p "theme" theme, p "url" url, p "bot_user_id" bot_user_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "OpenWebApp" ++ U.cc [U.p "reply_to_message_id" reply_to_message_id, U.p "theme" theme, U.p "url" url, U.p "bot_user_id" bot_user_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON OpenWebApp where
  toJSON OpenWebApp { reply_to_message_id = reply_to_message_id, theme = theme, url = url, bot_user_id = bot_user_id, chat_id = chat_id } =

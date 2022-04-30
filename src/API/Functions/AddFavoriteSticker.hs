@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -20,16 +20,7 @@ data AddFavoriteSticker =
 
 instance Show AddFavoriteSticker where
  show AddFavoriteSticker { sticker=sticker } =
-  "AddFavoriteSticker" ++ cc [p "sticker" sticker ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AddFavoriteSticker" ++ U.cc [U.p "sticker" sticker ]
 
 instance T.ToJSON AddFavoriteSticker where
  toJSON AddFavoriteSticker { sticker = sticker } =

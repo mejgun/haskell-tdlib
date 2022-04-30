@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatEventLogFilters as ChatEventLogFilters
 
 -- |
@@ -30,16 +30,7 @@ data GetChatEventLog =
 
 instance Show GetChatEventLog where
  show GetChatEventLog { user_ids=user_ids, filters=filters, limit=limit, from_event_id=from_event_id, query=query, chat_id=chat_id } =
-  "GetChatEventLog" ++ cc [p "user_ids" user_ids, p "filters" filters, p "limit" limit, p "from_event_id" from_event_id, p "query" query, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetChatEventLog" ++ U.cc [U.p "user_ids" user_ids, U.p "filters" filters, U.p "limit" limit, U.p "from_event_id" from_event_id, U.p "query" query, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetChatEventLog where
  toJSON GetChatEventLog { user_ids = user_ids, filters = filters, limit = limit, from_event_id = from_event_id, query = query, chat_id = chat_id } =

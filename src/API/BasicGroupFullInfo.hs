@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BotCommands as BotCommands
 import {-# SOURCE #-} qualified API.ChatInviteLink as ChatInviteLink
 import {-# SOURCE #-} qualified API.ChatMember as ChatMember
@@ -33,16 +33,7 @@ data BasicGroupFullInfo =
 
 instance Show BasicGroupFullInfo where
  show BasicGroupFullInfo { bot_commands=bot_commands, invite_link=invite_link, members=members, creator_user_id=creator_user_id, description=description, photo=photo } =
-  "BasicGroupFullInfo" ++ cc [p "bot_commands" bot_commands, p "invite_link" invite_link, p "members" members, p "creator_user_id" creator_user_id, p "description" description, p "photo" photo ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BasicGroupFullInfo" ++ U.cc [U.p "bot_commands" bot_commands, U.p "invite_link" invite_link, U.p "members" members, U.p "creator_user_id" creator_user_id, U.p "description" description, U.p "photo" photo ]
 
 instance T.ToJSON BasicGroupFullInfo where
  toJSON BasicGroupFullInfo { bot_commands = bot_commands, invite_link = invite_link, members = members, creator_user_id = creator_user_id, description = description, photo = photo } =

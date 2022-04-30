@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 import {-# SOURCE #-} qualified API.Date as Date
 
@@ -31,16 +31,7 @@ data InputIdentityDocument =
 
 instance Show InputIdentityDocument where
  show InputIdentityDocument { translation=translation, selfie=selfie, reverse_side=reverse_side, front_side=front_side, expiry_date=expiry_date, number=number } =
-  "InputIdentityDocument" ++ cc [p "translation" translation, p "selfie" selfie, p "reverse_side" reverse_side, p "front_side" front_side, p "expiry_date" expiry_date, p "number" number ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputIdentityDocument" ++ U.cc [U.p "translation" translation, U.p "selfie" selfie, U.p "reverse_side" reverse_side, U.p "front_side" front_side, U.p "expiry_date" expiry_date, U.p "number" number ]
 
 instance T.ToJSON InputIdentityDocument where
  toJSON InputIdentityDocument { translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, expiry_date = expiry_date, number = number } =

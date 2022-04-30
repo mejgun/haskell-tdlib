@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,25 +35,16 @@ data CanTransferOwnershipResult =
 
 instance Show CanTransferOwnershipResult where
  show CanTransferOwnershipResultOk {  } =
-  "CanTransferOwnershipResultOk" ++ cc [ ]
+  "CanTransferOwnershipResultOk" ++ U.cc [ ]
 
  show CanTransferOwnershipResultPasswordNeeded {  } =
-  "CanTransferOwnershipResultPasswordNeeded" ++ cc [ ]
+  "CanTransferOwnershipResultPasswordNeeded" ++ U.cc [ ]
 
  show CanTransferOwnershipResultPasswordTooFresh { retry_after=retry_after } =
-  "CanTransferOwnershipResultPasswordTooFresh" ++ cc [p "retry_after" retry_after ]
+  "CanTransferOwnershipResultPasswordTooFresh" ++ U.cc [U.p "retry_after" retry_after ]
 
  show CanTransferOwnershipResultSessionTooFresh { retry_after=retry_after } =
-  "CanTransferOwnershipResultSessionTooFresh" ++ cc [p "retry_after" retry_after ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CanTransferOwnershipResultSessionTooFresh" ++ U.cc [U.p "retry_after" retry_after ]
 
 instance T.ToJSON CanTransferOwnershipResult where
  toJSON CanTransferOwnershipResultOk {  } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -43,31 +43,22 @@ data UserStatus =
 
 instance Show UserStatus where
  show UserStatusEmpty {  } =
-  "UserStatusEmpty" ++ cc [ ]
+  "UserStatusEmpty" ++ U.cc [ ]
 
  show UserStatusOnline { expires=expires } =
-  "UserStatusOnline" ++ cc [p "expires" expires ]
+  "UserStatusOnline" ++ U.cc [U.p "expires" expires ]
 
  show UserStatusOffline { was_online=was_online } =
-  "UserStatusOffline" ++ cc [p "was_online" was_online ]
+  "UserStatusOffline" ++ U.cc [U.p "was_online" was_online ]
 
  show UserStatusRecently {  } =
-  "UserStatusRecently" ++ cc [ ]
+  "UserStatusRecently" ++ U.cc [ ]
 
  show UserStatusLastWeek {  } =
-  "UserStatusLastWeek" ++ cc [ ]
+  "UserStatusLastWeek" ++ U.cc [ ]
 
  show UserStatusLastMonth {  } =
-  "UserStatusLastMonth" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UserStatusLastMonth" ++ U.cc [ ]
 
 instance T.ToJSON UserStatus where
  toJSON UserStatusEmpty {  } =

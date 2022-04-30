@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 
 -- |
@@ -20,16 +20,7 @@ data ConnectedWebsites =
 
 instance Show ConnectedWebsites where
  show ConnectedWebsites { websites=websites } =
-  "ConnectedWebsites" ++ cc [p "websites" websites ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ConnectedWebsites" ++ U.cc [U.p "websites" websites ]
 
 instance T.ToJSON ConnectedWebsites where
  toJSON ConnectedWebsites { websites = websites } =

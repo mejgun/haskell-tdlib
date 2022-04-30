@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -38,16 +38,7 @@ data Animation =
 
 instance Show Animation where
  show Animation { animation=animation, thumbnail=thumbnail, minithumbnail=minithumbnail, has_stickers=has_stickers, mime_type=mime_type, file_name=file_name, height=height, width=width, duration=duration } =
-  "Animation" ++ cc [p "animation" animation, p "thumbnail" thumbnail, p "minithumbnail" minithumbnail, p "has_stickers" has_stickers, p "mime_type" mime_type, p "file_name" file_name, p "height" height, p "width" width, p "duration" duration ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Animation" ++ U.cc [U.p "animation" animation, U.p "thumbnail" thumbnail, U.p "minithumbnail" minithumbnail, U.p "has_stickers" has_stickers, U.p "mime_type" mime_type, U.p "file_name" file_name, U.p "height" height, U.p "width" width, U.p "duration" duration ]
 
 instance T.ToJSON Animation where
  toJSON Animation { animation = animation, thumbnail = thumbnail, minithumbnail = minithumbnail, has_stickers = has_stickers, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration } =

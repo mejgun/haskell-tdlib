@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -43,34 +43,25 @@ data ThumbnailFormat =
 
 instance Show ThumbnailFormat where
  show ThumbnailFormatJpeg {  } =
-  "ThumbnailFormatJpeg" ++ cc [ ]
+  "ThumbnailFormatJpeg" ++ U.cc [ ]
 
  show ThumbnailFormatGif {  } =
-  "ThumbnailFormatGif" ++ cc [ ]
+  "ThumbnailFormatGif" ++ U.cc [ ]
 
  show ThumbnailFormatMpeg4 {  } =
-  "ThumbnailFormatMpeg4" ++ cc [ ]
+  "ThumbnailFormatMpeg4" ++ U.cc [ ]
 
  show ThumbnailFormatPng {  } =
-  "ThumbnailFormatPng" ++ cc [ ]
+  "ThumbnailFormatPng" ++ U.cc [ ]
 
  show ThumbnailFormatTgs {  } =
-  "ThumbnailFormatTgs" ++ cc [ ]
+  "ThumbnailFormatTgs" ++ U.cc [ ]
 
  show ThumbnailFormatWebm {  } =
-  "ThumbnailFormatWebm" ++ cc [ ]
+  "ThumbnailFormatWebm" ++ U.cc [ ]
 
  show ThumbnailFormatWebp {  } =
-  "ThumbnailFormatWebp" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ThumbnailFormatWebp" ++ U.cc [ ]
 
 instance T.ToJSON ThumbnailFormat where
  toJSON ThumbnailFormatJpeg {  } =

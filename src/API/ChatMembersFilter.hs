@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -45,34 +45,25 @@ data ChatMembersFilter =
 
 instance Show ChatMembersFilter where
  show ChatMembersFilterContacts {  } =
-  "ChatMembersFilterContacts" ++ cc [ ]
+  "ChatMembersFilterContacts" ++ U.cc [ ]
 
  show ChatMembersFilterAdministrators {  } =
-  "ChatMembersFilterAdministrators" ++ cc [ ]
+  "ChatMembersFilterAdministrators" ++ U.cc [ ]
 
  show ChatMembersFilterMembers {  } =
-  "ChatMembersFilterMembers" ++ cc [ ]
+  "ChatMembersFilterMembers" ++ U.cc [ ]
 
  show ChatMembersFilterMention { message_thread_id=message_thread_id } =
-  "ChatMembersFilterMention" ++ cc [p "message_thread_id" message_thread_id ]
+  "ChatMembersFilterMention" ++ U.cc [U.p "message_thread_id" message_thread_id ]
 
  show ChatMembersFilterRestricted {  } =
-  "ChatMembersFilterRestricted" ++ cc [ ]
+  "ChatMembersFilterRestricted" ++ U.cc [ ]
 
  show ChatMembersFilterBanned {  } =
-  "ChatMembersFilterBanned" ++ cc [ ]
+  "ChatMembersFilterBanned" ++ U.cc [ ]
 
  show ChatMembersFilterBots {  } =
-  "ChatMembersFilterBots" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatMembersFilterBots" ++ U.cc [ ]
 
 instance T.ToJSON ChatMembersFilter where
  toJSON ChatMembersFilterContacts {  } =

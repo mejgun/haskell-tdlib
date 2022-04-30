@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data WebAppInfo =
 
 instance Show WebAppInfo where
  show WebAppInfo { url=url, launch_id=launch_id } =
-  "WebAppInfo" ++ cc [p "url" url, p "launch_id" launch_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "WebAppInfo" ++ U.cc [U.p "url" url, U.p "launch_id" launch_id ]
 
 instance T.ToJSON WebAppInfo where
  toJSON WebAppInfo { url = url, launch_id = launch_id } =

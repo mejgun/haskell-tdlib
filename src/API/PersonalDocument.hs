@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 
 -- |
@@ -22,16 +22,7 @@ data PersonalDocument =
 
 instance Show PersonalDocument where
  show PersonalDocument { translation=translation, files=files } =
-  "PersonalDocument" ++ cc [p "translation" translation, p "files" files ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PersonalDocument" ++ U.cc [U.p "translation" translation, U.p "files" files ]
 
 instance T.ToJSON PersonalDocument where
  toJSON PersonalDocument { translation = translation, files = files } =

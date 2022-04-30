@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -67,52 +67,43 @@ data PassportElementType =
 
 instance Show PassportElementType where
  show PassportElementTypePersonalDetails {  } =
-  "PassportElementTypePersonalDetails" ++ cc [ ]
+  "PassportElementTypePersonalDetails" ++ U.cc [ ]
 
  show PassportElementTypePassport {  } =
-  "PassportElementTypePassport" ++ cc [ ]
+  "PassportElementTypePassport" ++ U.cc [ ]
 
  show PassportElementTypeDriverLicense {  } =
-  "PassportElementTypeDriverLicense" ++ cc [ ]
+  "PassportElementTypeDriverLicense" ++ U.cc [ ]
 
  show PassportElementTypeIdentityCard {  } =
-  "PassportElementTypeIdentityCard" ++ cc [ ]
+  "PassportElementTypeIdentityCard" ++ U.cc [ ]
 
  show PassportElementTypeInternalPassport {  } =
-  "PassportElementTypeInternalPassport" ++ cc [ ]
+  "PassportElementTypeInternalPassport" ++ U.cc [ ]
 
  show PassportElementTypeAddress {  } =
-  "PassportElementTypeAddress" ++ cc [ ]
+  "PassportElementTypeAddress" ++ U.cc [ ]
 
  show PassportElementTypeUtilityBill {  } =
-  "PassportElementTypeUtilityBill" ++ cc [ ]
+  "PassportElementTypeUtilityBill" ++ U.cc [ ]
 
  show PassportElementTypeBankStatement {  } =
-  "PassportElementTypeBankStatement" ++ cc [ ]
+  "PassportElementTypeBankStatement" ++ U.cc [ ]
 
  show PassportElementTypeRentalAgreement {  } =
-  "PassportElementTypeRentalAgreement" ++ cc [ ]
+  "PassportElementTypeRentalAgreement" ++ U.cc [ ]
 
  show PassportElementTypePassportRegistration {  } =
-  "PassportElementTypePassportRegistration" ++ cc [ ]
+  "PassportElementTypePassportRegistration" ++ U.cc [ ]
 
  show PassportElementTypeTemporaryRegistration {  } =
-  "PassportElementTypeTemporaryRegistration" ++ cc [ ]
+  "PassportElementTypeTemporaryRegistration" ++ U.cc [ ]
 
  show PassportElementTypePhoneNumber {  } =
-  "PassportElementTypePhoneNumber" ++ cc [ ]
+  "PassportElementTypePhoneNumber" ++ U.cc [ ]
 
  show PassportElementTypeEmailAddress {  } =
-  "PassportElementTypeEmailAddress" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PassportElementTypeEmailAddress" ++ U.cc [ ]
 
 instance T.ToJSON PassportElementType where
  toJSON PassportElementTypePersonalDetails {  } =

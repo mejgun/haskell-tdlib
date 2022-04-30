@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data GetFileDownloadedPrefixSize =
 
 instance Show GetFileDownloadedPrefixSize where
  show GetFileDownloadedPrefixSize { offset=offset, file_id=file_id } =
-  "GetFileDownloadedPrefixSize" ++ cc [p "offset" offset, p "file_id" file_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetFileDownloadedPrefixSize" ++ U.cc [U.p "offset" offset, U.p "file_id" file_id ]
 
 instance T.ToJSON GetFileDownloadedPrefixSize where
  toJSON GetFileDownloadedPrefixSize { offset = offset, file_id = file_id } =

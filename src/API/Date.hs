@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data Date =
 
 instance Show Date where
  show Date { year=year, month=month, day=day } =
-  "Date" ++ cc [p "year" year, p "month" month, p "day" day ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Date" ++ U.cc [U.p "year" year, U.p "month" month, U.p "day" day ]
 
 instance T.ToJSON Date where
  toJSON Date { year = year, month = month, day = day } =

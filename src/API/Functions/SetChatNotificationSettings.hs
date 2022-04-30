@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotificationSettings
 
 -- |
@@ -22,16 +22,7 @@ data SetChatNotificationSettings =
 
 instance Show SetChatNotificationSettings where
  show SetChatNotificationSettings { notification_settings=notification_settings, chat_id=chat_id } =
-  "SetChatNotificationSettings" ++ cc [p "notification_settings" notification_settings, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetChatNotificationSettings" ++ U.cc [U.p "notification_settings" notification_settings, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SetChatNotificationSettings where
  toJSON SetChatNotificationSettings { notification_settings = notification_settings, chat_id = chat_id } =

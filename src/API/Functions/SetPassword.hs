@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data SetPassword =
 
 instance Show SetPassword where
  show SetPassword { new_recovery_email_address=new_recovery_email_address, set_recovery_email_address=set_recovery_email_address, new_hint=new_hint, new_password=new_password, old_password=old_password } =
-  "SetPassword" ++ cc [p "new_recovery_email_address" new_recovery_email_address, p "set_recovery_email_address" set_recovery_email_address, p "new_hint" new_hint, p "new_password" new_password, p "old_password" old_password ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetPassword" ++ U.cc [U.p "new_recovery_email_address" new_recovery_email_address, U.p "set_recovery_email_address" set_recovery_email_address, U.p "new_hint" new_hint, U.p "new_password" new_password, U.p "old_password" old_password ]
 
 instance T.ToJSON SetPassword where
  toJSON SetPassword { new_recovery_email_address = new_recovery_email_address, set_recovery_email_address = set_recovery_email_address, new_hint = new_hint, new_password = new_password, old_password = old_password } =

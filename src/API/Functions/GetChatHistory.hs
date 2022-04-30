@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -29,16 +29,7 @@ data GetChatHistory =
 
 instance Show GetChatHistory where
  show GetChatHistory { only_local=only_local, limit=limit, offset=offset, from_message_id=from_message_id, chat_id=chat_id } =
-  "GetChatHistory" ++ cc [p "only_local" only_local, p "limit" limit, p "offset" offset, p "from_message_id" from_message_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetChatHistory" ++ U.cc [U.p "only_local" only_local, U.p "limit" limit, U.p "offset" offset, U.p "from_message_id" from_message_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetChatHistory where
  toJSON GetChatHistory { only_local = only_local, limit = limit, offset = offset, from_message_id = from_message_id, chat_id = chat_id } =

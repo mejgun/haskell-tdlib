@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data GetMessageEmbeddingCode =
 
 instance Show GetMessageEmbeddingCode where
  show GetMessageEmbeddingCode { for_album=for_album, message_id=message_id, chat_id=chat_id } =
-  "GetMessageEmbeddingCode" ++ cc [p "for_album" for_album, p "message_id" message_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetMessageEmbeddingCode" ++ U.cc [U.p "for_album" for_album, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetMessageEmbeddingCode where
  toJSON GetMessageEmbeddingCode { for_album = for_album, message_id = message_id, chat_id = chat_id } =

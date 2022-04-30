@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data StorageStatisticsFast =
 
 instance Show StorageStatisticsFast where
  show StorageStatisticsFast { log_size=log_size, language_pack_database_size=language_pack_database_size, database_size=database_size, file_count=file_count, files_size=files_size } =
-  "StorageStatisticsFast" ++ cc [p "log_size" log_size, p "language_pack_database_size" language_pack_database_size, p "database_size" database_size, p "file_count" file_count, p "files_size" files_size ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "StorageStatisticsFast" ++ U.cc [U.p "log_size" log_size, U.p "language_pack_database_size" language_pack_database_size, U.p "database_size" database_size, U.p "file_count" file_count, U.p "files_size" files_size ]
 
 instance T.ToJSON StorageStatisticsFast where
  toJSON StorageStatisticsFast { log_size = log_size, language_pack_database_size = language_pack_database_size, database_size = database_size, file_count = file_count, files_size = files_size } =

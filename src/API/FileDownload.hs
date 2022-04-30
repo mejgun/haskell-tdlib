@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Message as Message
 
 -- |
@@ -28,16 +28,7 @@ data FileDownload =
 
 instance Show FileDownload where
  show FileDownload { is_paused=is_paused, complete_date=complete_date, add_date=add_date, message=message, file_id=file_id } =
-  "FileDownload" ++ cc [p "is_paused" is_paused, p "complete_date" complete_date, p "add_date" add_date, p "message" message, p "file_id" file_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "FileDownload" ++ U.cc [U.p "is_paused" is_paused, U.p "complete_date" complete_date, U.p "add_date" add_date, U.p "message" message, U.p "file_id" file_id ]
 
 instance T.ToJSON FileDownload where
  toJSON FileDownload { is_paused = is_paused, complete_date = complete_date, add_date = add_date, message = message, file_id = file_id } =

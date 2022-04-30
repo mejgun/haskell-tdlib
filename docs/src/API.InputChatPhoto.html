@@ -6,7 +6,7 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.InputFile.html"><span class="hs-identifier">API.InputFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputFile</span></span><span>
 </span><span id="line-11"></span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
@@ -36,7 +36,7 @@
 </span><span id="line-34"></span><span> </span><span class="hs-comment">-- __main_frame_timestamp__ Timestamp of the frame, which will be used as static chat photo</span><span>
 </span><span id="line-35"></span><span> </span><span id="InputChatPhotoAnimation"><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoAnimation"><span class="hs-identifier hs-var">InputChatPhotoAnimation</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="main_frame_timestamp"><span class="annot"><span class="annottext">InputChatPhoto -&gt; Maybe Float
 </span><a href="API.InputChatPhoto.html#main_frame_timestamp"><span class="hs-identifier hs-var hs-var">main_frame_timestamp</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span class="hs-special">,</span><span> </span><span id="animation"><span class="annot"><span class="annottext">InputChatPhoto -&gt; Maybe InputFile
-</span><a href="API.InputChatPhoto.html#animation"><span class="hs-identifier hs-var hs-var">animation</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679544005"><span id="local-6989586621679544007"><span class="annot"><span class="annottext">InputChatPhoto -&gt; InputChatPhoto -&gt; Bool
+</span><a href="API.InputChatPhoto.html#animation"><span class="hs-identifier hs-var hs-var">animation</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679459632"><span id="local-6989586621679459634"><span class="annot"><span class="annottext">InputChatPhoto -&gt; InputChatPhoto -&gt; Bool
 (InputChatPhoto -&gt; InputChatPhoto -&gt; Bool)
 -&gt; (InputChatPhoto -&gt; InputChatPhoto -&gt; Bool) -&gt; Eq InputChatPhoto
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -46,104 +46,59 @@ $c/= :: InputChatPhoto -&gt; InputChatPhoto -&gt; Bool
 $c== :: InputChatPhoto -&gt; InputChatPhoto -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679543999"><span id="local-6989586621679544002"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span> </span><span id="local-6989586621679543997"><span class="annot"><span class="annottext">show :: InputChatPhoto -&gt; String
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679459626"><span id="local-6989586621679459629"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679459624"><span class="annot"><span class="annottext">show :: InputChatPhoto -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoPrevious"><span class="hs-identifier hs-type">InputChatPhotoPrevious</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_photo_id :: InputChatPhoto -&gt; Maybe Int
-</span><a href="API.InputChatPhoto.html#chat_photo_id"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679543995"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679543995"><span class="hs-identifier hs-var">chat_photo_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.InputChatPhoto.html#chat_photo_id"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679459622"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679459622"><span class="hs-identifier hs-var">chat_photo_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;InputChatPhotoPrevious&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
-</span><a href="API.InputChatPhoto.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.InputChatPhoto.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_photo_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679543995"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679459622"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
 </span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoStatic"><span class="hs-identifier hs-type">InputChatPhotoStatic</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photo :: InputChatPhoto -&gt; Maybe InputFile
-</span><a href="API.InputChatPhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679543992"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543992"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.InputChatPhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679459619"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679459619"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;InputChatPhotoStatic&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
-</span><a href="API.InputChatPhoto.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.InputChatPhoto.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543992"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679459619"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
 </span><span id="line-44"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoAnimation"><span class="hs-identifier hs-type">InputChatPhotoAnimation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">main_frame_timestamp :: InputChatPhoto -&gt; Maybe Float
-</span><a href="API.InputChatPhoto.html#main_frame_timestamp"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679543991"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679543991"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: InputChatPhoto -&gt; Maybe InputFile
-</span><a href="API.InputChatPhoto.html#animation"><span class="hs-identifier hs-var">animation</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679543990"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543990"><span class="hs-identifier hs-var">animation</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.InputChatPhoto.html#main_frame_timestamp"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679459618"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679459618"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: InputChatPhoto -&gt; Maybe InputFile
+</span><a href="API.InputChatPhoto.html#animation"><span class="hs-identifier hs-var">animation</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679459617"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679459617"><span class="hs-identifier hs-var">animation</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-45"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;InputChatPhotoAnimation&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
-</span><a href="API.InputChatPhoto.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Float -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Float -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.InputChatPhoto.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;main_frame_timestamp&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679543991"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
+</span><a href="#local-6989586621679459618"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.InputChatPhoto.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543990"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679459617"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span id="local-6989586621679544052"><span class="annot"><a href="API.InputChatPhoto.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679544052"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679544052"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
-</span><span id="line-48"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.InputChatPhoto.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679543989"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679543989"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679543988"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679543988"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679543989"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
-forall a. Show a =&gt; a -&gt; String
-</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679543988"><span class="hs-identifier hs-var">a</span></a></span><span>
-</span><span id="line-49"></span><span class="annot"><a href="API.InputChatPhoto.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
-</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;&quot;</span></span><span>
-</span><span id="line-50"></span><span>
-</span><span id="line-51"></span><span class="annot"><a href="API.InputChatPhoto.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-52"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
-</span><a href="API.InputChatPhoto.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-forall a. Monoid a =&gt; a
-</span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-53"></span><span class="annot"><a href="API.InputChatPhoto.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679543987"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679543987"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
-forall a. [a] -&gt; [[a]] -&gt; [a]
-</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
-forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
-</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
-</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
-forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
-forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
-</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679543987"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;}&quot;</span></span><span>
-</span><span id="line-54"></span><span>
-</span><span id="line-55"></span><span>
-</span><span id="line-56"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679543977"><span id="local-6989586621679543979"><span id="local-6989586621679543981"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-57"></span><span> </span><span id="local-6989586621679543975"><span class="annot"><span class="annottext">toJSON :: InputChatPhoto -&gt; Value
+</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679459610"><span id="local-6989586621679459612"><span id="local-6989586621679459614"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span> </span><span id="local-6989586621679459608"><span class="annot"><span class="annottext">toJSON :: InputChatPhoto -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoPrevious"><span class="hs-identifier hs-type">InputChatPhotoPrevious</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_photo_id :: InputChatPhoto -&gt; Maybe Int
-</span><a href="API.InputChatPhoto.html#chat_photo_id"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679543973"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679543973"><span class="hs-identifier hs-var">chat_photo_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-58"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.InputChatPhoto.html#chat_photo_id"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679459606"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679459606"><span class="hs-identifier hs-var">chat_photo_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-49"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -153,12 +108,12 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;chat_photo_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679543973"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-59"></span><span>
-</span><span id="line-60"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoStatic"><span class="hs-identifier hs-type">InputChatPhotoStatic</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photo :: InputChatPhoto -&gt; Maybe InputFile
-</span><a href="API.InputChatPhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679543969"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543969"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-61"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="#local-6989586621679459606"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoStatic"><span class="hs-identifier hs-type">InputChatPhotoStatic</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photo :: InputChatPhoto -&gt; Maybe InputFile
+</span><a href="API.InputChatPhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679459602"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679459602"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-52"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -168,14 +123,14 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543969"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-62"></span><span>
-</span><span id="line-63"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoAnimation"><span class="hs-identifier hs-type">InputChatPhotoAnimation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">main_frame_timestamp :: InputChatPhoto -&gt; Maybe Float
-</span><a href="API.InputChatPhoto.html#main_frame_timestamp"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679543968"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679543968"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: InputChatPhoto -&gt; Maybe InputFile
-</span><a href="API.InputChatPhoto.html#animation"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679543967"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543967"><span class="hs-identifier hs-var">animation</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-64"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="#local-6989586621679459602"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-53"></span><span>
+</span><span id="line-54"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhotoAnimation"><span class="hs-identifier hs-type">InputChatPhotoAnimation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">main_frame_timestamp :: InputChatPhoto -&gt; Maybe Float
+</span><a href="API.InputChatPhoto.html#main_frame_timestamp"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679459601"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679459601"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: InputChatPhoto -&gt; Maybe InputFile
+</span><a href="API.InputChatPhoto.html#animation"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679459600"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679459600"><span class="hs-identifier hs-var">animation</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-55"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -185,45 +140,45 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;main_frame_timestamp&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679543968"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679459601"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543967"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-65"></span><span>
-</span><span id="line-66"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679543964"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-67"></span><span> </span><span id="local-6989586621679543962"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser InputChatPhoto
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679543960"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679543960"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679543958"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543958"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-68"></span><span>  </span><span id="local-6989586621679543957"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679543957"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543958"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679459600"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-56"></span><span>
+</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679459597"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-58"></span><span> </span><span id="local-6989586621679459595"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser InputChatPhoto
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679459593"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679459593"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679459591"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459591"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679459590"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459590"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459591"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-69"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679543957"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-70"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-60"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459590"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-61"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;inputChatPhotoPrevious&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputChatPhoto
-</span><a href="#local-6989586621679543955"><span class="hs-identifier hs-var">parseInputChatPhotoPrevious</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679543960"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-71"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459588"><span class="hs-identifier hs-var">parseInputChatPhotoPrevious</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679459593"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-62"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;inputChatPhotoStatic&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputChatPhoto
-</span><a href="#local-6989586621679543954"><span class="hs-identifier hs-var">parseInputChatPhotoStatic</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679543960"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-72"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459587"><span class="hs-identifier hs-var">parseInputChatPhotoStatic</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679459593"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-63"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;inputChatPhotoAnimation&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputChatPhoto
-</span><a href="#local-6989586621679543953"><span class="hs-identifier hs-var">parseInputChatPhotoAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679543960"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-73"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459586"><span class="hs-identifier hs-var">parseInputChatPhotoAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679459593"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-64"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser InputChatPhoto
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-74"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-75"></span><span>   </span><span class="annot"><a href="#local-6989586621679543955"><span class="hs-identifier hs-type">parseInputChatPhotoPrevious</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span><span>
-</span><span id="line-76"></span><span>   </span><span id="local-6989586621679543955"><span class="annot"><span class="annottext">parseInputChatPhotoPrevious :: Value -&gt; Parser InputChatPhoto
-</span><a href="#local-6989586621679543955"><span class="hs-identifier hs-var hs-var">parseInputChatPhotoPrevious</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-65"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-66"></span><span>   </span><span class="annot"><a href="#local-6989586621679459588"><span class="hs-identifier hs-type">parseInputChatPhotoPrevious</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span><span>
+</span><span id="line-67"></span><span>   </span><span id="local-6989586621679459588"><span class="annot"><span class="annottext">parseInputChatPhotoPrevious :: Value -&gt; Parser InputChatPhoto
+</span><a href="#local-6989586621679459588"><span class="hs-identifier hs-var hs-var">parseInputChatPhotoPrevious</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser InputChatPhoto)
 -&gt; Value
 -&gt; Parser InputChatPhoto
@@ -235,13 +190,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser InputChatPhoto
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679543951"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543951"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-77"></span><span>    </span><span id="local-6989586621679543950"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679543950"><span class="hs-identifier hs-var">chat_photo_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679459584"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459584"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679459583"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679459583"><span class="hs-identifier hs-var">chat_photo_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543951"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679459584"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_photo_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -249,11 +204,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543951"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679459584"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_photo_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-78"></span><span>    </span><span class="annot"><span class="annottext">InputChatPhoto -&gt; Parser InputChatPhoto
+</span><span id="line-69"></span><span>    </span><span class="annot"><span class="annottext">InputChatPhoto -&gt; Parser InputChatPhoto
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputChatPhoto -&gt; Parser InputChatPhoto)
 -&gt; InputChatPhoto -&gt; Parser InputChatPhoto
@@ -261,11 +216,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputChatPhotoPrevious :: Maybe Int -&gt; InputChatPhoto
 </span><a href="API.InputChatPhoto.html#InputChatPhotoPrevious"><span class="hs-identifier hs-type">InputChatPhotoPrevious</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_photo_id :: Maybe Int
 </span><a href="API.InputChatPhoto.html#chat_photo_id"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679543950"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-79"></span><span>
-</span><span id="line-80"></span><span>   </span><span class="annot"><a href="#local-6989586621679543954"><span class="hs-identifier hs-type">parseInputChatPhotoStatic</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span><span>
-</span><span id="line-81"></span><span>   </span><span id="local-6989586621679543954"><span class="annot"><span class="annottext">parseInputChatPhotoStatic :: Value -&gt; Parser InputChatPhoto
-</span><a href="#local-6989586621679543954"><span class="hs-identifier hs-var hs-var">parseInputChatPhotoStatic</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459583"><span class="hs-identifier hs-var">chat_photo_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-70"></span><span>
+</span><span id="line-71"></span><span>   </span><span class="annot"><a href="#local-6989586621679459587"><span class="hs-identifier hs-type">parseInputChatPhotoStatic</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span><span>
+</span><span id="line-72"></span><span>   </span><span id="local-6989586621679459587"><span class="annot"><span class="annottext">parseInputChatPhotoStatic :: Value -&gt; Parser InputChatPhoto
+</span><a href="#local-6989586621679459587"><span class="hs-identifier hs-var hs-var">parseInputChatPhotoStatic</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser InputChatPhoto)
 -&gt; Value
 -&gt; Parser InputChatPhoto
@@ -277,15 +232,15 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser InputChatPhoto
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679543947"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543947"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-82"></span><span>    </span><span id="local-6989586621679543946"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543946"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543947"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputFile)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679459580"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459580"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679459579"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679459579"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459580"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span>
-</span><span id="line-83"></span><span>    </span><span class="annot"><span class="annottext">InputChatPhoto -&gt; Parser InputChatPhoto
+</span><span id="line-74"></span><span>    </span><span class="annot"><span class="annottext">InputChatPhoto -&gt; Parser InputChatPhoto
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputChatPhoto -&gt; Parser InputChatPhoto)
 -&gt; InputChatPhoto -&gt; Parser InputChatPhoto
@@ -293,11 +248,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputChatPhotoStatic :: Maybe InputFile -&gt; InputChatPhoto
 </span><a href="API.InputChatPhoto.html#InputChatPhotoStatic"><span class="hs-identifier hs-type">InputChatPhotoStatic</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe InputFile
 </span><a href="API.InputChatPhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543946"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-84"></span><span>
-</span><span id="line-85"></span><span>   </span><span class="annot"><a href="#local-6989586621679543953"><span class="hs-identifier hs-type">parseInputChatPhotoAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span><span>
-</span><span id="line-86"></span><span>   </span><span id="local-6989586621679543953"><span class="annot"><span class="annottext">parseInputChatPhotoAnimation :: Value -&gt; Parser InputChatPhoto
-</span><a href="#local-6989586621679543953"><span class="hs-identifier hs-var hs-var">parseInputChatPhotoAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459579"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-75"></span><span>
+</span><span id="line-76"></span><span>   </span><span class="annot"><a href="#local-6989586621679459586"><span class="hs-identifier hs-type">parseInputChatPhotoAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto</span></a></span><span>
+</span><span id="line-77"></span><span>   </span><span id="local-6989586621679459586"><span class="annot"><span class="annottext">parseInputChatPhotoAnimation :: Value -&gt; Parser InputChatPhoto
+</span><a href="#local-6989586621679459586"><span class="hs-identifier hs-var hs-var">parseInputChatPhotoAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser InputChatPhoto)
 -&gt; Value
 -&gt; Parser InputChatPhoto
@@ -309,21 +264,21 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser InputChatPhoto
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679543945"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543945"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-87"></span><span>    </span><span id="local-6989586621679543944"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679543944"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543945"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679459578"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459578"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-78"></span><span>    </span><span id="local-6989586621679459577"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679459577"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459578"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;main_frame_timestamp&quot;</span></span><span>
-</span><span id="line-88"></span><span>    </span><span id="local-6989586621679543943"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543943"><span class="hs-identifier hs-var">animation</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679543945"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputFile)
+</span><span id="line-79"></span><span>    </span><span id="local-6989586621679459576"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679459576"><span class="hs-identifier hs-var">animation</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459578"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;animation&quot;</span></span><span>
-</span><span id="line-89"></span><span>    </span><span class="annot"><span class="annottext">InputChatPhoto -&gt; Parser InputChatPhoto
+</span><span id="line-80"></span><span>    </span><span class="annot"><span class="annottext">InputChatPhoto -&gt; Parser InputChatPhoto
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputChatPhoto -&gt; Parser InputChatPhoto)
 -&gt; InputChatPhoto -&gt; Parser InputChatPhoto
@@ -331,11 +286,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputChatPhotoAnimation :: Maybe Float -&gt; Maybe InputFile -&gt; InputChatPhoto
 </span><a href="API.InputChatPhoto.html#InputChatPhotoAnimation"><span class="hs-identifier hs-type">InputChatPhotoAnimation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">main_frame_timestamp :: Maybe Float
 </span><a href="API.InputChatPhoto.html#main_frame_timestamp"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679543944"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: Maybe InputFile
+</span><a href="#local-6989586621679459577"><span class="hs-identifier hs-var">main_frame_timestamp</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: Maybe InputFile
 </span><a href="API.InputChatPhoto.html#animation"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679543943"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-90"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679459576"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-81"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser InputChatPhoto
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-91"></span></pre></body></html>
+</span><span id="line-82"></span></pre></body></html>

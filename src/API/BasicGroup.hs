@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 
 -- |
@@ -28,16 +28,7 @@ data BasicGroup =
 
 instance Show BasicGroup where
  show BasicGroup { upgraded_to_supergroup_id=upgraded_to_supergroup_id, is_active=is_active, status=status, member_count=member_count, _id=_id } =
-  "BasicGroup" ++ cc [p "upgraded_to_supergroup_id" upgraded_to_supergroup_id, p "is_active" is_active, p "status" status, p "member_count" member_count, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BasicGroup" ++ U.cc [U.p "upgraded_to_supergroup_id" upgraded_to_supergroup_id, U.p "is_active" is_active, U.p "status" status, U.p "member_count" member_count, U.p "_id" _id ]
 
 instance T.ToJSON BasicGroup where
  toJSON BasicGroup { upgraded_to_supergroup_id = upgraded_to_supergroup_id, is_active = is_active, status = status, member_count = member_count, _id = _id } =

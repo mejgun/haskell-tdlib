@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -37,25 +37,16 @@ data OptionValue =
 
 instance Show OptionValue where
  show OptionValueBoolean { __value=__value } =
-  "OptionValueBoolean" ++ cc [p "__value" __value ]
+  "OptionValueBoolean" ++ U.cc [U.p "__value" __value ]
 
  show OptionValueEmpty {  } =
-  "OptionValueEmpty" ++ cc [ ]
+  "OptionValueEmpty" ++ U.cc [ ]
 
  show OptionValueInteger { _value=_value } =
-  "OptionValueInteger" ++ cc [p "_value" _value ]
+  "OptionValueInteger" ++ U.cc [U.p "_value" _value ]
 
  show OptionValueString { value=value } =
-  "OptionValueString" ++ cc [p "value" value ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "OptionValueString" ++ U.cc [U.p "value" value ]
 
 instance T.ToJSON OptionValue where
  toJSON OptionValueBoolean { __value = __value } =

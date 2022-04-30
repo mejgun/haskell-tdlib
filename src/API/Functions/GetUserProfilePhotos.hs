@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data GetUserProfilePhotos =
 
 instance Show GetUserProfilePhotos where
  show GetUserProfilePhotos { limit=limit, offset=offset, user_id=user_id } =
-  "GetUserProfilePhotos" ++ cc [p "limit" limit, p "offset" offset, p "user_id" user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetUserProfilePhotos" ++ U.cc [U.p "limit" limit, U.p "offset" offset, U.p "user_id" user_id ]
 
 instance T.ToJSON GetUserProfilePhotos where
  toJSON GetUserProfilePhotos { limit = limit, offset = offset, user_id = user_id } =

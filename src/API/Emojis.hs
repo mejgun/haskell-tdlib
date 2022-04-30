@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data Emojis =
 
 instance Show Emojis where
  show Emojis { emojis=emojis } =
-  "Emojis" ++ cc [p "emojis" emojis ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Emojis" ++ U.cc [U.p "emojis" emojis ]
 
 instance T.ToJSON Emojis where
  toJSON Emojis { emojis = emojis } =

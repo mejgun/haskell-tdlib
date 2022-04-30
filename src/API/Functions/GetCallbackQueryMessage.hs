@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data GetCallbackQueryMessage =
 
 instance Show GetCallbackQueryMessage where
  show GetCallbackQueryMessage { callback_query_id=callback_query_id, message_id=message_id, chat_id=chat_id } =
-  "GetCallbackQueryMessage" ++ cc [p "callback_query_id" callback_query_id, p "message_id" message_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetCallbackQueryMessage" ++ U.cc [U.p "callback_query_id" callback_query_id, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetCallbackQueryMessage where
  toJSON GetCallbackQueryMessage { callback_query_id = callback_query_id, message_id = message_id, chat_id = chat_id } =

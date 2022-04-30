@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.PushMessageContent as PushMessageContent
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
@@ -48,25 +48,16 @@ data NotificationType =
 
 instance Show NotificationType where
  show NotificationTypeNewMessage { message=message } =
-  "NotificationTypeNewMessage" ++ cc [p "message" message ]
+  "NotificationTypeNewMessage" ++ U.cc [U.p "message" message ]
 
  show NotificationTypeNewSecretChat {  } =
-  "NotificationTypeNewSecretChat" ++ cc [ ]
+  "NotificationTypeNewSecretChat" ++ U.cc [ ]
 
  show NotificationTypeNewCall { call_id=call_id } =
-  "NotificationTypeNewCall" ++ cc [p "call_id" call_id ]
+  "NotificationTypeNewCall" ++ U.cc [U.p "call_id" call_id ]
 
  show NotificationTypeNewPushMessage { content=content, is_outgoing=is_outgoing, sender_name=sender_name, sender_id=sender_id, message_id=message_id } =
-  "NotificationTypeNewPushMessage" ++ cc [p "content" content, p "is_outgoing" is_outgoing, p "sender_name" sender_name, p "sender_id" sender_id, p "message_id" message_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "NotificationTypeNewPushMessage" ++ U.cc [U.p "content" content, U.p "is_outgoing" is_outgoing, U.p "sender_name" sender_name, U.p "sender_id" sender_id, U.p "message_id" message_id ]
 
 instance T.ToJSON NotificationType where
  toJSON NotificationTypeNewMessage { message = message } =

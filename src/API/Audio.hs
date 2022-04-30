@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -36,16 +36,7 @@ data Audio =
 
 instance Show Audio where
  show Audio { audio=audio, album_cover_thumbnail=album_cover_thumbnail, album_cover_minithumbnail=album_cover_minithumbnail, mime_type=mime_type, file_name=file_name, performer=performer, title=title, duration=duration } =
-  "Audio" ++ cc [p "audio" audio, p "album_cover_thumbnail" album_cover_thumbnail, p "album_cover_minithumbnail" album_cover_minithumbnail, p "mime_type" mime_type, p "file_name" file_name, p "performer" performer, p "title" title, p "duration" duration ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Audio" ++ U.cc [U.p "audio" audio, U.p "album_cover_thumbnail" album_cover_thumbnail, U.p "album_cover_minithumbnail" album_cover_minithumbnail, U.p "mime_type" mime_type, U.p "file_name" file_name, U.p "performer" performer, U.p "title" title, U.p "duration" duration ]
 
 instance T.ToJSON Audio where
  toJSON Audio { audio = audio, album_cover_thumbnail = album_cover_thumbnail, album_cover_minithumbnail = album_cover_minithumbnail, mime_type = mime_type, file_name = file_name, performer = performer, title = title, duration = duration } =

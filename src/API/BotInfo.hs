@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatAdministratorRights as ChatAdministratorRights
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 import {-# SOURCE #-} qualified API.BotMenuButton as BotMenuButton
@@ -32,16 +32,7 @@ data BotInfo =
 
 instance Show BotInfo where
  show BotInfo { default_channel_administrator_rights=default_channel_administrator_rights, default_group_administrator_rights=default_group_administrator_rights, commands=commands, menu_button=menu_button, description=description, share_text=share_text } =
-  "BotInfo" ++ cc [p "default_channel_administrator_rights" default_channel_administrator_rights, p "default_group_administrator_rights" default_group_administrator_rights, p "commands" commands, p "menu_button" menu_button, p "description" description, p "share_text" share_text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BotInfo" ++ U.cc [U.p "default_channel_administrator_rights" default_channel_administrator_rights, U.p "default_group_administrator_rights" default_group_administrator_rights, U.p "commands" commands, U.p "menu_button" menu_button, U.p "description" description, U.p "share_text" share_text ]
 
 instance T.ToJSON BotInfo where
  toJSON BotInfo { default_channel_administrator_rights = default_channel_administrator_rights, default_group_administrator_rights = default_group_administrator_rights, commands = commands, menu_button = menu_button, description = description, share_text = share_text } =

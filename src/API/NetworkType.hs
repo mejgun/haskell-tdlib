@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,28 +35,19 @@ data NetworkType =
 
 instance Show NetworkType where
  show NetworkTypeNone {  } =
-  "NetworkTypeNone" ++ cc [ ]
+  "NetworkTypeNone" ++ U.cc [ ]
 
  show NetworkTypeMobile {  } =
-  "NetworkTypeMobile" ++ cc [ ]
+  "NetworkTypeMobile" ++ U.cc [ ]
 
  show NetworkTypeMobileRoaming {  } =
-  "NetworkTypeMobileRoaming" ++ cc [ ]
+  "NetworkTypeMobileRoaming" ++ U.cc [ ]
 
  show NetworkTypeWiFi {  } =
-  "NetworkTypeWiFi" ++ cc [ ]
+  "NetworkTypeWiFi" ++ U.cc [ ]
 
  show NetworkTypeOther {  } =
-  "NetworkTypeOther" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "NetworkTypeOther" ++ U.cc [ ]
 
 instance T.ToJSON NetworkType where
  toJSON NetworkTypeNone {  } =

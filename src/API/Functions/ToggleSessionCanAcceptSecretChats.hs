@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleSessionCanAcceptSecretChats =
 
 instance Show ToggleSessionCanAcceptSecretChats where
  show ToggleSessionCanAcceptSecretChats { can_accept_secret_chats=can_accept_secret_chats, session_id=session_id } =
-  "ToggleSessionCanAcceptSecretChats" ++ cc [p "can_accept_secret_chats" can_accept_secret_chats, p "session_id" session_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleSessionCanAcceptSecretChats" ++ U.cc [U.p "can_accept_secret_chats" can_accept_secret_chats, U.p "session_id" session_id ]
 
 instance T.ToJSON ToggleSessionCanAcceptSecretChats where
  toJSON ToggleSessionCanAcceptSecretChats { can_accept_secret_chats = can_accept_secret_chats, session_id = session_id } =

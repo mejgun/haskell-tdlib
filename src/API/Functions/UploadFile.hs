@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FileType as FileType
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
@@ -25,16 +25,7 @@ data UploadFile =
 
 instance Show UploadFile where
  show UploadFile { priority=priority, file_type=file_type, file=file } =
-  "UploadFile" ++ cc [p "priority" priority, p "file_type" file_type, p "file" file ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UploadFile" ++ U.cc [U.p "priority" priority, U.p "file_type" file_type, U.p "file" file ]
 
 instance T.ToJSON UploadFile where
  toJSON UploadFile { priority = priority, file_type = file_type, file = file } =

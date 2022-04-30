@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
 
@@ -31,16 +31,7 @@ data SendMessageAlbum =
 
 instance Show SendMessageAlbum where
  show SendMessageAlbum { only_preview=only_preview, input_message_contents=input_message_contents, options=options, reply_to_message_id=reply_to_message_id, message_thread_id=message_thread_id, chat_id=chat_id } =
-  "SendMessageAlbum" ++ cc [p "only_preview" only_preview, p "input_message_contents" input_message_contents, p "options" options, p "reply_to_message_id" reply_to_message_id, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendMessageAlbum" ++ U.cc [U.p "only_preview" only_preview, U.p "input_message_contents" input_message_contents, U.p "options" options, U.p "reply_to_message_id" reply_to_message_id, U.p "message_thread_id" message_thread_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SendMessageAlbum where
  toJSON SendMessageAlbum { only_preview = only_preview, input_message_contents = input_message_contents, options = options, reply_to_message_id = reply_to_message_id, message_thread_id = message_thread_id, chat_id = chat_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FileType as FileType
 
 -- |
@@ -24,16 +24,7 @@ data GetRemoteFile =
 
 instance Show GetRemoteFile where
  show GetRemoteFile { file_type=file_type, remote_file_id=remote_file_id } =
-  "GetRemoteFile" ++ cc [p "file_type" file_type, p "remote_file_id" remote_file_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetRemoteFile" ++ U.cc [U.p "file_type" file_type, U.p "remote_file_id" remote_file_id ]
 
 instance T.ToJSON GetRemoteFile where
  toJSON GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id } =

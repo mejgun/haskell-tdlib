@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FileType as FileType
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
@@ -41,19 +41,10 @@ data NetworkStatisticsEntry =
 
 instance Show NetworkStatisticsEntry where
  show NetworkStatisticsEntryFile { received_bytes=received_bytes, sent_bytes=sent_bytes, network_type=network_type, file_type=file_type } =
-  "NetworkStatisticsEntryFile" ++ cc [p "received_bytes" received_bytes, p "sent_bytes" sent_bytes, p "network_type" network_type, p "file_type" file_type ]
+  "NetworkStatisticsEntryFile" ++ U.cc [U.p "received_bytes" received_bytes, U.p "sent_bytes" sent_bytes, U.p "network_type" network_type, U.p "file_type" file_type ]
 
  show NetworkStatisticsEntryCall { duration=duration, received_bytes=received_bytes, sent_bytes=sent_bytes, network_type=network_type } =
-  "NetworkStatisticsEntryCall" ++ cc [p "duration" duration, p "received_bytes" received_bytes, p "sent_bytes" sent_bytes, p "network_type" network_type ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "NetworkStatisticsEntryCall" ++ U.cc [U.p "duration" duration, U.p "received_bytes" received_bytes, U.p "sent_bytes" sent_bytes, U.p "network_type" network_type ]
 
 instance T.ToJSON NetworkStatisticsEntry where
  toJSON NetworkStatisticsEntryFile { received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type, file_type = file_type } =

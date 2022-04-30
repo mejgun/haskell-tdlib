@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data ReadFilePart =
 
 instance Show ReadFilePart where
  show ReadFilePart { count=count, offset=offset, file_id=file_id } =
-  "ReadFilePart" ++ cc [p "count" count, p "offset" offset, p "file_id" file_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ReadFilePart" ++ U.cc [U.p "count" count, U.p "offset" offset, U.p "file_id" file_id ]
 
 instance T.ToJSON ReadFilePart where
  toJSON ReadFilePart { count = count, offset = offset, file_id = file_id } =

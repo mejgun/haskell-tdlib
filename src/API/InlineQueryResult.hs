@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Location as Location
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
@@ -155,49 +155,40 @@ data InlineQueryResult =
 
 instance Show InlineQueryResult where
  show InlineQueryResultArticle { thumbnail=thumbnail, description=description, title=title, hide_url=hide_url, url=url, _id=_id } =
-  "InlineQueryResultArticle" ++ cc [p "thumbnail" thumbnail, p "description" description, p "title" title, p "hide_url" hide_url, p "url" url, p "_id" _id ]
+  "InlineQueryResultArticle" ++ U.cc [U.p "thumbnail" thumbnail, U.p "description" description, U.p "title" title, U.p "hide_url" hide_url, U.p "url" url, U.p "_id" _id ]
 
  show InlineQueryResultContact { thumbnail=thumbnail, contact=contact, _id=_id } =
-  "InlineQueryResultContact" ++ cc [p "thumbnail" thumbnail, p "contact" contact, p "_id" _id ]
+  "InlineQueryResultContact" ++ U.cc [U.p "thumbnail" thumbnail, U.p "contact" contact, U.p "_id" _id ]
 
  show InlineQueryResultLocation { thumbnail=thumbnail, title=title, location=location, _id=_id } =
-  "InlineQueryResultLocation" ++ cc [p "thumbnail" thumbnail, p "title" title, p "location" location, p "_id" _id ]
+  "InlineQueryResultLocation" ++ U.cc [U.p "thumbnail" thumbnail, U.p "title" title, U.p "location" location, U.p "_id" _id ]
 
  show InlineQueryResultVenue { thumbnail=thumbnail, venue=venue, _id=_id } =
-  "InlineQueryResultVenue" ++ cc [p "thumbnail" thumbnail, p "venue" venue, p "_id" _id ]
+  "InlineQueryResultVenue" ++ U.cc [U.p "thumbnail" thumbnail, U.p "venue" venue, U.p "_id" _id ]
 
  show InlineQueryResultGame { game=game, _id=_id } =
-  "InlineQueryResultGame" ++ cc [p "game" game, p "_id" _id ]
+  "InlineQueryResultGame" ++ U.cc [U.p "game" game, U.p "_id" _id ]
 
  show InlineQueryResultAnimation { title=title, animation=animation, _id=_id } =
-  "InlineQueryResultAnimation" ++ cc [p "title" title, p "animation" animation, p "_id" _id ]
+  "InlineQueryResultAnimation" ++ U.cc [U.p "title" title, U.p "animation" animation, U.p "_id" _id ]
 
  show InlineQueryResultAudio { audio=audio, _id=_id } =
-  "InlineQueryResultAudio" ++ cc [p "audio" audio, p "_id" _id ]
+  "InlineQueryResultAudio" ++ U.cc [U.p "audio" audio, U.p "_id" _id ]
 
  show InlineQueryResultDocument { description=description, title=title, document=document, _id=_id } =
-  "InlineQueryResultDocument" ++ cc [p "description" description, p "title" title, p "document" document, p "_id" _id ]
+  "InlineQueryResultDocument" ++ U.cc [U.p "description" description, U.p "title" title, U.p "document" document, U.p "_id" _id ]
 
  show InlineQueryResultPhoto { description=description, title=title, photo=photo, _id=_id } =
-  "InlineQueryResultPhoto" ++ cc [p "description" description, p "title" title, p "photo" photo, p "_id" _id ]
+  "InlineQueryResultPhoto" ++ U.cc [U.p "description" description, U.p "title" title, U.p "photo" photo, U.p "_id" _id ]
 
  show InlineQueryResultSticker { sticker=sticker, _id=_id } =
-  "InlineQueryResultSticker" ++ cc [p "sticker" sticker, p "_id" _id ]
+  "InlineQueryResultSticker" ++ U.cc [U.p "sticker" sticker, U.p "_id" _id ]
 
  show InlineQueryResultVideo { description=description, title=title, video=video, _id=_id } =
-  "InlineQueryResultVideo" ++ cc [p "description" description, p "title" title, p "video" video, p "_id" _id ]
+  "InlineQueryResultVideo" ++ U.cc [U.p "description" description, U.p "title" title, U.p "video" video, U.p "_id" _id ]
 
  show InlineQueryResultVoiceNote { title=title, voice_note=voice_note, _id=_id } =
-  "InlineQueryResultVoiceNote" ++ cc [p "title" title, p "voice_note" voice_note, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InlineQueryResultVoiceNote" ++ U.cc [U.p "title" title, U.p "voice_note" voice_note, U.p "_id" _id ]
 
 instance T.ToJSON InlineQueryResult where
  toJSON InlineQueryResultArticle { thumbnail = thumbnail, description = description, title = title, hide_url = hide_url, url = url, _id = _id } =

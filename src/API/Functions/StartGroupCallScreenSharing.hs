@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data StartGroupCallScreenSharing =
 
 instance Show StartGroupCallScreenSharing where
  show StartGroupCallScreenSharing { payload=payload, audio_source_id=audio_source_id, group_call_id=group_call_id } =
-  "StartGroupCallScreenSharing" ++ cc [p "payload" payload, p "audio_source_id" audio_source_id, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "StartGroupCallScreenSharing" ++ U.cc [U.p "payload" payload, U.p "audio_source_id" audio_source_id, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON StartGroupCallScreenSharing where
  toJSON StartGroupCallScreenSharing { payload = payload, audio_source_id = audio_source_id, group_call_id = group_call_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GetBackgrounds =
 
 instance Show GetBackgrounds where
  show GetBackgrounds { for_dark_theme=for_dark_theme } =
-  "GetBackgrounds" ++ cc [p "for_dark_theme" for_dark_theme ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetBackgrounds" ++ U.cc [U.p "for_dark_theme" for_dark_theme ]
 
 instance T.ToJSON GetBackgrounds where
  toJSON GetBackgrounds { for_dark_theme = for_dark_theme } =

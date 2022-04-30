@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.StorageStatisticsByFileType as StorageStatisticsByFileType
 
 -- |
@@ -26,16 +26,7 @@ data StorageStatisticsByChat =
 
 instance Show StorageStatisticsByChat where
  show StorageStatisticsByChat { by_file_type=by_file_type, count=count, size=size, chat_id=chat_id } =
-  "StorageStatisticsByChat" ++ cc [p "by_file_type" by_file_type, p "count" count, p "size" size, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "StorageStatisticsByChat" ++ U.cc [U.p "by_file_type" by_file_type, U.p "count" count, U.p "size" size, U.p "chat_id" chat_id ]
 
 instance T.ToJSON StorageStatisticsByChat where
  toJSON StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id } =

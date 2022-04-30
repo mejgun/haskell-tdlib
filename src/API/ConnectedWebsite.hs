@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,16 +35,7 @@ data ConnectedWebsite =
 
 instance Show ConnectedWebsite where
  show ConnectedWebsite { location=location, ip=ip, last_active_date=last_active_date, log_in_date=log_in_date, platform=platform, browser=browser, bot_user_id=bot_user_id, domain_name=domain_name, _id=_id } =
-  "ConnectedWebsite" ++ cc [p "location" location, p "ip" ip, p "last_active_date" last_active_date, p "log_in_date" log_in_date, p "platform" platform, p "browser" browser, p "bot_user_id" bot_user_id, p "domain_name" domain_name, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ConnectedWebsite" ++ U.cc [U.p "location" location, U.p "ip" ip, U.p "last_active_date" last_active_date, U.p "log_in_date" log_in_date, U.p "platform" platform, U.p "browser" browser, U.p "bot_user_id" bot_user_id, U.p "domain_name" domain_name, U.p "_id" _id ]
 
 instance T.ToJSON ConnectedWebsite where
  toJSON ConnectedWebsite { location = location, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, platform = platform, browser = browser, bot_user_id = bot_user_id, domain_name = domain_name, _id = _id } =

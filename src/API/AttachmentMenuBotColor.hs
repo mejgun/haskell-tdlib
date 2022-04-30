@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data AttachmentMenuBotColor =
 
 instance Show AttachmentMenuBotColor where
  show AttachmentMenuBotColor { dark_color=dark_color, light_color=light_color } =
-  "AttachmentMenuBotColor" ++ cc [p "dark_color" dark_color, p "light_color" light_color ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AttachmentMenuBotColor" ++ U.cc [U.p "dark_color" dark_color, U.p "light_color" light_color ]
 
 instance T.ToJSON AttachmentMenuBotColor where
  toJSON AttachmentMenuBotColor { dark_color = dark_color, light_color = light_color } =

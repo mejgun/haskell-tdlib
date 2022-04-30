@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatJoinRequest as ChatJoinRequest
 
 -- |
@@ -28,16 +28,7 @@ data GetChatJoinRequests =
 
 instance Show GetChatJoinRequests where
  show GetChatJoinRequests { limit=limit, offset_request=offset_request, query=query, invite_link=invite_link, chat_id=chat_id } =
-  "GetChatJoinRequests" ++ cc [p "limit" limit, p "offset_request" offset_request, p "query" query, p "invite_link" invite_link, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetChatJoinRequests" ++ U.cc [U.p "limit" limit, U.p "offset_request" offset_request, U.p "query" query, U.p "invite_link" invite_link, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetChatJoinRequests where
  toJSON GetChatJoinRequests { limit = limit, offset_request = offset_request, query = query, invite_link = invite_link, chat_id = chat_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ThemeSettings as ThemeSettings
 
 -- |
@@ -24,16 +24,7 @@ data ChatTheme =
 
 instance Show ChatTheme where
  show ChatTheme { dark_settings=dark_settings, light_settings=light_settings, name=name } =
-  "ChatTheme" ++ cc [p "dark_settings" dark_settings, p "light_settings" light_settings, p "name" name ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatTheme" ++ U.cc [U.p "dark_settings" dark_settings, U.p "light_settings" light_settings, U.p "name" name ]
 
 instance T.ToJSON ChatTheme where
  toJSON ChatTheme { dark_settings = dark_settings, light_settings = light_settings, name = name } =

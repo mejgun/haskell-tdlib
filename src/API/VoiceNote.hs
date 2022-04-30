@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 
 -- |
@@ -26,16 +26,7 @@ data VoiceNote =
 
 instance Show VoiceNote where
  show VoiceNote { voice=voice, mime_type=mime_type, waveform=waveform, duration=duration } =
-  "VoiceNote" ++ cc [p "voice" voice, p "mime_type" mime_type, p "waveform" waveform, p "duration" duration ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "VoiceNote" ++ U.cc [U.p "voice" voice, U.p "mime_type" mime_type, U.p "waveform" waveform, U.p "duration" duration ]
 
 instance T.ToJSON VoiceNote where
  toJSON VoiceNote { voice = voice, mime_type = mime_type, waveform = waveform, duration = duration } =

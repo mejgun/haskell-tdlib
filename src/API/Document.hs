@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -30,16 +30,7 @@ data Document =
 
 instance Show Document where
  show Document { document=document, thumbnail=thumbnail, minithumbnail=minithumbnail, mime_type=mime_type, file_name=file_name } =
-  "Document" ++ cc [p "document" document, p "thumbnail" thumbnail, p "minithumbnail" minithumbnail, p "mime_type" mime_type, p "file_name" file_name ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Document" ++ U.cc [U.p "document" document, U.p "thumbnail" thumbnail, U.p "minithumbnail" minithumbnail, U.p "mime_type" mime_type, U.p "file_name" file_name ]
 
 instance T.ToJSON Document where
  toJSON Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name } =

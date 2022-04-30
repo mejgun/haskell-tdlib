@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputInlineQueryResult as InputInlineQueryResult
 
 -- |
@@ -22,16 +22,7 @@ data AnswerWebAppQuery =
 
 instance Show AnswerWebAppQuery where
  show AnswerWebAppQuery { result=result, web_app_query_id=web_app_query_id } =
-  "AnswerWebAppQuery" ++ cc [p "result" result, p "web_app_query_id" web_app_query_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AnswerWebAppQuery" ++ U.cc [U.p "result" result, U.p "web_app_query_id" web_app_query_id ]
 
 instance T.ToJSON AnswerWebAppQuery where
  toJSON AnswerWebAppQuery { result = result, web_app_query_id = web_app_query_id } =

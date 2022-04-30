@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 
 -- |
@@ -22,16 +22,7 @@ data GetBackgroundUrl =
 
 instance Show GetBackgroundUrl where
  show GetBackgroundUrl { _type=_type, name=name } =
-  "GetBackgroundUrl" ++ cc [p "_type" _type, p "name" name ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetBackgroundUrl" ++ U.cc [U.p "_type" _type, U.p "name" name ]
 
 instance T.ToJSON GetBackgroundUrl where
  toJSON GetBackgroundUrl { _type = _type, name = name } =

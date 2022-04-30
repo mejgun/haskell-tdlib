@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -43,25 +43,16 @@ data ChatType =
 
 instance Show ChatType where
  show ChatTypePrivate { user_id=user_id } =
-  "ChatTypePrivate" ++ cc [p "user_id" user_id ]
+  "ChatTypePrivate" ++ U.cc [U.p "user_id" user_id ]
 
  show ChatTypeBasicGroup { basic_group_id=basic_group_id } =
-  "ChatTypeBasicGroup" ++ cc [p "basic_group_id" basic_group_id ]
+  "ChatTypeBasicGroup" ++ U.cc [U.p "basic_group_id" basic_group_id ]
 
  show ChatTypeSupergroup { is_channel=is_channel, supergroup_id=supergroup_id } =
-  "ChatTypeSupergroup" ++ cc [p "is_channel" is_channel, p "supergroup_id" supergroup_id ]
+  "ChatTypeSupergroup" ++ U.cc [U.p "is_channel" is_channel, U.p "supergroup_id" supergroup_id ]
 
  show ChatTypeSecret { user_id=user_id, secret_chat_id=secret_chat_id } =
-  "ChatTypeSecret" ++ cc [p "user_id" user_id, p "secret_chat_id" secret_chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatTypeSecret" ++ U.cc [U.p "user_id" user_id, U.p "secret_chat_id" secret_chat_id ]
 
 instance T.ToJSON ChatType where
  toJSON ChatTypePrivate { user_id = user_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 
 -- |
@@ -22,16 +22,7 @@ data ParseTextEntities =
 
 instance Show ParseTextEntities where
  show ParseTextEntities { parse_mode=parse_mode, text=text } =
-  "ParseTextEntities" ++ cc [p "parse_mode" parse_mode, p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ParseTextEntities" ++ U.cc [U.p "parse_mode" parse_mode, U.p "text" text ]
 
 instance T.ToJSON ParseTextEntities where
  toJSON ParseTextEntities { parse_mode = parse_mode, text = text } =

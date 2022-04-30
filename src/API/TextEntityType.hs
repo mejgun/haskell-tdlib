@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -99,70 +99,61 @@ data TextEntityType =
 
 instance Show TextEntityType where
  show TextEntityTypeMention {  } =
-  "TextEntityTypeMention" ++ cc [ ]
+  "TextEntityTypeMention" ++ U.cc [ ]
 
  show TextEntityTypeHashtag {  } =
-  "TextEntityTypeHashtag" ++ cc [ ]
+  "TextEntityTypeHashtag" ++ U.cc [ ]
 
  show TextEntityTypeCashtag {  } =
-  "TextEntityTypeCashtag" ++ cc [ ]
+  "TextEntityTypeCashtag" ++ U.cc [ ]
 
  show TextEntityTypeBotCommand {  } =
-  "TextEntityTypeBotCommand" ++ cc [ ]
+  "TextEntityTypeBotCommand" ++ U.cc [ ]
 
  show TextEntityTypeUrl {  } =
-  "TextEntityTypeUrl" ++ cc [ ]
+  "TextEntityTypeUrl" ++ U.cc [ ]
 
  show TextEntityTypeEmailAddress {  } =
-  "TextEntityTypeEmailAddress" ++ cc [ ]
+  "TextEntityTypeEmailAddress" ++ U.cc [ ]
 
  show TextEntityTypePhoneNumber {  } =
-  "TextEntityTypePhoneNumber" ++ cc [ ]
+  "TextEntityTypePhoneNumber" ++ U.cc [ ]
 
  show TextEntityTypeBankCardNumber {  } =
-  "TextEntityTypeBankCardNumber" ++ cc [ ]
+  "TextEntityTypeBankCardNumber" ++ U.cc [ ]
 
  show TextEntityTypeBold {  } =
-  "TextEntityTypeBold" ++ cc [ ]
+  "TextEntityTypeBold" ++ U.cc [ ]
 
  show TextEntityTypeItalic {  } =
-  "TextEntityTypeItalic" ++ cc [ ]
+  "TextEntityTypeItalic" ++ U.cc [ ]
 
  show TextEntityTypeUnderline {  } =
-  "TextEntityTypeUnderline" ++ cc [ ]
+  "TextEntityTypeUnderline" ++ U.cc [ ]
 
  show TextEntityTypeStrikethrough {  } =
-  "TextEntityTypeStrikethrough" ++ cc [ ]
+  "TextEntityTypeStrikethrough" ++ U.cc [ ]
 
  show TextEntityTypeSpoiler {  } =
-  "TextEntityTypeSpoiler" ++ cc [ ]
+  "TextEntityTypeSpoiler" ++ U.cc [ ]
 
  show TextEntityTypeCode {  } =
-  "TextEntityTypeCode" ++ cc [ ]
+  "TextEntityTypeCode" ++ U.cc [ ]
 
  show TextEntityTypePre {  } =
-  "TextEntityTypePre" ++ cc [ ]
+  "TextEntityTypePre" ++ U.cc [ ]
 
  show TextEntityTypePreCode { language=language } =
-  "TextEntityTypePreCode" ++ cc [p "language" language ]
+  "TextEntityTypePreCode" ++ U.cc [U.p "language" language ]
 
  show TextEntityTypeTextUrl { url=url } =
-  "TextEntityTypeTextUrl" ++ cc [p "url" url ]
+  "TextEntityTypeTextUrl" ++ U.cc [U.p "url" url ]
 
  show TextEntityTypeMentionName { user_id=user_id } =
-  "TextEntityTypeMentionName" ++ cc [p "user_id" user_id ]
+  "TextEntityTypeMentionName" ++ U.cc [U.p "user_id" user_id ]
 
  show TextEntityTypeMediaTimestamp { media_timestamp=media_timestamp } =
-  "TextEntityTypeMediaTimestamp" ++ cc [p "media_timestamp" media_timestamp ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TextEntityTypeMediaTimestamp" ++ U.cc [U.p "media_timestamp" media_timestamp ]
 
 instance T.ToJSON TextEntityType where
  toJSON TextEntityTypeMention {  } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data AnswerPreCheckoutQuery =
 
 instance Show AnswerPreCheckoutQuery where
  show AnswerPreCheckoutQuery { error_message=error_message, pre_checkout_query_id=pre_checkout_query_id } =
-  "AnswerPreCheckoutQuery" ++ cc [p "error_message" error_message, p "pre_checkout_query_id" pre_checkout_query_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AnswerPreCheckoutQuery" ++ U.cc [U.p "error_message" error_message, U.p "pre_checkout_query_id" pre_checkout_query_id ]
 
 instance T.ToJSON AnswerPreCheckoutQuery where
  toJSON AnswerPreCheckoutQuery { error_message = error_message, pre_checkout_query_id = pre_checkout_query_id } =

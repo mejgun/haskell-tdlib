@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PageBlockVerticalAlignment as PageBlockVerticalAlignment
 import {-# SOURCE #-} qualified API.PageBlockHorizontalAlignment as PageBlockHorizontalAlignment
 import {-# SOURCE #-} qualified API.RichText as RichText
@@ -32,16 +32,7 @@ data PageBlockTableCell =
 
 instance Show PageBlockTableCell where
  show PageBlockTableCell { valign=valign, align=align, rowspan=rowspan, colspan=colspan, is_header=is_header, text=text } =
-  "PageBlockTableCell" ++ cc [p "valign" valign, p "align" align, p "rowspan" rowspan, p "colspan" colspan, p "is_header" is_header, p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PageBlockTableCell" ++ U.cc [U.p "valign" valign, U.p "align" align, U.p "rowspan" rowspan, U.p "colspan" colspan, U.p "is_header" is_header, U.p "text" text ]
 
 instance T.ToJSON PageBlockTableCell where
  toJSON PageBlockTableCell { valign = valign, align = align, rowspan = rowspan, colspan = colspan, is_header = is_header, text = text } =

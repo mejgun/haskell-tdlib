@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GetRecentStickers =
 
 instance Show GetRecentStickers where
  show GetRecentStickers { is_attached=is_attached } =
-  "GetRecentStickers" ++ cc [p "is_attached" is_attached ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetRecentStickers" ++ U.cc [U.p "is_attached" is_attached ]
 
 instance T.ToJSON GetRecentStickers where
  toJSON GetRecentStickers { is_attached = is_attached } =

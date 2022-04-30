@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data AnswerCustomQuery =
 
 instance Show AnswerCustomQuery where
  show AnswerCustomQuery { _data=_data, custom_query_id=custom_query_id } =
-  "AnswerCustomQuery" ++ cc [p "_data" _data, p "custom_query_id" custom_query_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AnswerCustomQuery" ++ U.cc [U.p "_data" _data, U.p "custom_query_id" custom_query_id ]
 
 instance T.ToJSON AnswerCustomQuery where
  toJSON AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id } =

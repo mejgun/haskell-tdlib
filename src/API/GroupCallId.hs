@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GroupCallId =
 
 instance Show GroupCallId where
  show GroupCallId { _id=_id } =
-  "GroupCallId" ++ cc [p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GroupCallId" ++ U.cc [U.p "_id" _id ]
 
 instance T.ToJSON GroupCallId where
  toJSON GroupCallId { _id = _id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
 
 -- |
@@ -32,16 +32,7 @@ data SendInlineQueryResultMessage =
 
 instance Show SendInlineQueryResultMessage where
  show SendInlineQueryResultMessage { hide_via_bot=hide_via_bot, result_id=result_id, query_id=query_id, options=options, reply_to_message_id=reply_to_message_id, message_thread_id=message_thread_id, chat_id=chat_id } =
-  "SendInlineQueryResultMessage" ++ cc [p "hide_via_bot" hide_via_bot, p "result_id" result_id, p "query_id" query_id, p "options" options, p "reply_to_message_id" reply_to_message_id, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendInlineQueryResultMessage" ++ U.cc [U.p "hide_via_bot" hide_via_bot, U.p "result_id" result_id, U.p "query_id" query_id, U.p "options" options, U.p "reply_to_message_id" reply_to_message_id, U.p "message_thread_id" message_thread_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SendInlineQueryResultMessage where
  toJSON SendInlineQueryResultMessage { hide_via_bot = hide_via_bot, result_id = result_id, query_id = query_id, options = options, reply_to_message_id = reply_to_message_id, message_thread_id = message_thread_id, chat_id = chat_id } =

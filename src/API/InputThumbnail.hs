@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -24,16 +24,7 @@ data InputThumbnail =
 
 instance Show InputThumbnail where
  show InputThumbnail { height=height, width=width, thumbnail=thumbnail } =
-  "InputThumbnail" ++ cc [p "height" height, p "width" width, p "thumbnail" thumbnail ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputThumbnail" ++ U.cc [U.p "height" height, U.p "width" width, U.p "thumbnail" thumbnail ]
 
 instance T.ToJSON InputThumbnail where
  toJSON InputThumbnail { height = height, width = width, thumbnail = thumbnail } =

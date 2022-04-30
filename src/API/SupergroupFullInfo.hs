@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BotCommands as BotCommands
 import {-# SOURCE #-} qualified API.ChatInviteLink as ChatInviteLink
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
@@ -63,16 +63,7 @@ data SupergroupFullInfo =
 
 instance Show SupergroupFullInfo where
  show SupergroupFullInfo { upgraded_from_max_message_id=upgraded_from_max_message_id, upgraded_from_basic_group_id=upgraded_from_basic_group_id, bot_commands=bot_commands, invite_link=invite_link, location=location, sticker_set_id=sticker_set_id, is_all_history_available=is_all_history_available, can_get_statistics=can_get_statistics, can_set_location=can_set_location, can_set_sticker_set=can_set_sticker_set, can_set_username=can_set_username, can_get_members=can_get_members, slow_mode_delay_expires_in=slow_mode_delay_expires_in, slow_mode_delay=slow_mode_delay, linked_chat_id=linked_chat_id, banned_count=banned_count, restricted_count=restricted_count, administrator_count=administrator_count, member_count=member_count, description=description, photo=photo } =
-  "SupergroupFullInfo" ++ cc [p "upgraded_from_max_message_id" upgraded_from_max_message_id, p "upgraded_from_basic_group_id" upgraded_from_basic_group_id, p "bot_commands" bot_commands, p "invite_link" invite_link, p "location" location, p "sticker_set_id" sticker_set_id, p "is_all_history_available" is_all_history_available, p "can_get_statistics" can_get_statistics, p "can_set_location" can_set_location, p "can_set_sticker_set" can_set_sticker_set, p "can_set_username" can_set_username, p "can_get_members" can_get_members, p "slow_mode_delay_expires_in" slow_mode_delay_expires_in, p "slow_mode_delay" slow_mode_delay, p "linked_chat_id" linked_chat_id, p "banned_count" banned_count, p "restricted_count" restricted_count, p "administrator_count" administrator_count, p "member_count" member_count, p "description" description, p "photo" photo ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SupergroupFullInfo" ++ U.cc [U.p "upgraded_from_max_message_id" upgraded_from_max_message_id, U.p "upgraded_from_basic_group_id" upgraded_from_basic_group_id, U.p "bot_commands" bot_commands, U.p "invite_link" invite_link, U.p "location" location, U.p "sticker_set_id" sticker_set_id, U.p "is_all_history_available" is_all_history_available, U.p "can_get_statistics" can_get_statistics, U.p "can_set_location" can_set_location, U.p "can_set_sticker_set" can_set_sticker_set, U.p "can_set_username" can_set_username, U.p "can_get_members" can_get_members, U.p "slow_mode_delay_expires_in" slow_mode_delay_expires_in, U.p "slow_mode_delay" slow_mode_delay, U.p "linked_chat_id" linked_chat_id, U.p "banned_count" banned_count, U.p "restricted_count" restricted_count, U.p "administrator_count" administrator_count, U.p "member_count" member_count, U.p "description" description, U.p "photo" photo ]
 
 instance T.ToJSON SupergroupFullInfo where
  toJSON SupergroupFullInfo { upgraded_from_max_message_id = upgraded_from_max_message_id, upgraded_from_basic_group_id = upgraded_from_basic_group_id, bot_commands = bot_commands, invite_link = invite_link, location = location, sticker_set_id = sticker_set_id, is_all_history_available = is_all_history_available, can_get_statistics = can_get_statistics, can_set_location = can_set_location, can_set_sticker_set = can_set_sticker_set, can_set_username = can_set_username, can_get_members = can_get_members, slow_mode_delay_expires_in = slow_mode_delay_expires_in, slow_mode_delay = slow_mode_delay, linked_chat_id = linked_chat_id, banned_count = banned_count, restricted_count = restricted_count, administrator_count = administrator_count, member_count = member_count, description = description, photo = photo } =

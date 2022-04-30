@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data TranslateText =
 
 instance Show TranslateText where
  show TranslateText { to_language_code=to_language_code, from_language_code=from_language_code, text=text } =
-  "TranslateText" ++ cc [p "to_language_code" to_language_code, p "from_language_code" from_language_code, p "text" text ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TranslateText" ++ U.cc [U.p "to_language_code" to_language_code, U.p "from_language_code" from_language_code, U.p "text" text ]
 
 instance T.ToJSON TranslateText where
  toJSON TranslateText { to_language_code = to_language_code, from_language_code = from_language_code, text = text } =

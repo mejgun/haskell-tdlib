@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageReaction as MessageReaction
 import {-# SOURCE #-} qualified API.MessageReplyInfo as MessageReplyInfo
 
@@ -27,16 +27,7 @@ data MessageInteractionInfo =
 
 instance Show MessageInteractionInfo where
  show MessageInteractionInfo { reactions=reactions, reply_info=reply_info, forward_count=forward_count, view_count=view_count } =
-  "MessageInteractionInfo" ++ cc [p "reactions" reactions, p "reply_info" reply_info, p "forward_count" forward_count, p "view_count" view_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageInteractionInfo" ++ U.cc [U.p "reactions" reactions, U.p "reply_info" reply_info, U.p "forward_count" forward_count, U.p "view_count" view_count ]
 
 instance T.ToJSON MessageInteractionInfo where
  toJSON MessageInteractionInfo { reactions = reactions, reply_info = reply_info, forward_count = forward_count, view_count = view_count } =

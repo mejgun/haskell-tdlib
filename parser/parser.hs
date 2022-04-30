@@ -167,7 +167,7 @@ writeToFiles addr modName mp cmnts =
             "import Text.Read (readMaybe)\n\n",
             "import qualified Data.Aeson as A\n",
             "import qualified Data.Aeson.Types as T\n",
-            "import Data.List (intercalate)\n",
+            "import qualified Utils as U\n",
             (imports $ keys e),
             "\n",
             T.intercalate
@@ -240,22 +240,22 @@ writeToFiles addr modName mp cmnts =
                       T.intercalate ", " $ filter (/= " = ") $ map (\(x, _) -> T.concat [x, "=", x]) b,
                       " } =\n  \"",
                       toTitle a,
-                      "\" ++ cc [",
+                      "\" ++ U.cc [",
                       T.intercalate ", " $
                         filter (/= " = ") $
                           map
-                            (\(x, _) -> T.concat ["p \"", x, "\" ", x])
+                            (\(x, _) -> T.concat ["U.p \"", x, "\" ", x])
                             b,
                       " ]"
                     ]
               )
-              e,
-          "\n\np :: Show a => String -> Maybe a -> String\n",
-          "p b (Just a) = b ++ \" = \" ++ show a\n",
-          "p _ Nothing = \"\"\n",
-          "\ncc :: [String] -> String\n",
-          "cc [] = mempty\n",
-          "cc a = \" {\" ++ intercalate \", \" (filter (not . null) a) ++ \"}\"\n"
+              e
+              -- "\n\np :: Show a => String -> Maybe a -> String\n",
+              -- "p b (Just a) = b ++ \" = \" ++ show a\n",
+              -- "p _ Nothing = \"\"\n",
+              -- "\ncc :: [String] -> String\n",
+              -- "cc [] = mempty\n",
+              -- "cc a = \" {\" ++ intercalate \", \" (filter (not . null) a) ++ \"}\"\n"
         ]
     toJsonString :: T.Text -> [(T.Text, [(T.Text, T.Text)])] -> T.Text
     toJsonString m e =

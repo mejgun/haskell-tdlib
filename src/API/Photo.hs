@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
@@ -25,16 +25,7 @@ data Photo =
 
 instance Show Photo where
  show Photo { sizes=sizes, minithumbnail=minithumbnail, has_stickers=has_stickers } =
-  "Photo" ++ cc [p "sizes" sizes, p "minithumbnail" minithumbnail, p "has_stickers" has_stickers ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Photo" ++ U.cc [U.p "sizes" sizes, U.p "minithumbnail" minithumbnail, U.p "has_stickers" has_stickers ]
 
 instance T.ToJSON Photo where
  toJSON Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers } =

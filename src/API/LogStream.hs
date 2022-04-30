@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -33,22 +33,13 @@ data LogStream =
 
 instance Show LogStream where
  show LogStreamDefault {  } =
-  "LogStreamDefault" ++ cc [ ]
+  "LogStreamDefault" ++ U.cc [ ]
 
  show LogStreamFile { redirect_stderr=redirect_stderr, max_file_size=max_file_size, path=path } =
-  "LogStreamFile" ++ cc [p "redirect_stderr" redirect_stderr, p "max_file_size" max_file_size, p "path" path ]
+  "LogStreamFile" ++ U.cc [U.p "redirect_stderr" redirect_stderr, U.p "max_file_size" max_file_size, U.p "path" path ]
 
  show LogStreamEmpty {  } =
-  "LogStreamEmpty" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "LogStreamEmpty" ++ U.cc [ ]
 
 instance T.ToJSON LogStream where
  toJSON LogStreamDefault {  } =

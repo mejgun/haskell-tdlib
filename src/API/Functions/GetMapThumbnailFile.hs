@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Location as Location
 
 -- |
@@ -30,16 +30,7 @@ data GetMapThumbnailFile =
 
 instance Show GetMapThumbnailFile where
  show GetMapThumbnailFile { chat_id=chat_id, scale=scale, height=height, width=width, zoom=zoom, location=location } =
-  "GetMapThumbnailFile" ++ cc [p "chat_id" chat_id, p "scale" scale, p "height" height, p "width" width, p "zoom" zoom, p "location" location ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetMapThumbnailFile" ++ U.cc [U.p "chat_id" chat_id, U.p "scale" scale, U.p "height" height, U.p "width" width, U.p "zoom" zoom, U.p "location" location ]
 
 instance T.ToJSON GetMapThumbnailFile where
  toJSON GetMapThumbnailFile { chat_id = chat_id, scale = scale, height = height, width = width, zoom = zoom, location = location } =

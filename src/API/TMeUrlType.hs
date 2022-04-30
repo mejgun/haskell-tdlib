@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatInviteLinkInfo as ChatInviteLinkInfo
 
 -- |
@@ -40,25 +40,16 @@ data TMeUrlType =
 
 instance Show TMeUrlType where
  show TMeUrlTypeUser { user_id=user_id } =
-  "TMeUrlTypeUser" ++ cc [p "user_id" user_id ]
+  "TMeUrlTypeUser" ++ U.cc [U.p "user_id" user_id ]
 
  show TMeUrlTypeSupergroup { supergroup_id=supergroup_id } =
-  "TMeUrlTypeSupergroup" ++ cc [p "supergroup_id" supergroup_id ]
+  "TMeUrlTypeSupergroup" ++ U.cc [U.p "supergroup_id" supergroup_id ]
 
  show TMeUrlTypeChatInvite { info=info } =
-  "TMeUrlTypeChatInvite" ++ cc [p "info" info ]
+  "TMeUrlTypeChatInvite" ++ U.cc [U.p "info" info ]
 
  show TMeUrlTypeStickerSet { sticker_set_id=sticker_set_id } =
-  "TMeUrlTypeStickerSet" ++ cc [p "sticker_set_id" sticker_set_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TMeUrlTypeStickerSet" ++ U.cc [U.p "sticker_set_id" sticker_set_id ]
 
 instance T.ToJSON TMeUrlType where
  toJSON TMeUrlTypeUser { user_id = user_id } =

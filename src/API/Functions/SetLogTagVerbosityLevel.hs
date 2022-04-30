@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data SetLogTagVerbosityLevel =
 
 instance Show SetLogTagVerbosityLevel where
  show SetLogTagVerbosityLevel { new_verbosity_level=new_verbosity_level, tag=tag } =
-  "SetLogTagVerbosityLevel" ++ cc [p "new_verbosity_level" new_verbosity_level, p "tag" tag ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetLogTagVerbosityLevel" ++ U.cc [U.p "new_verbosity_level" new_verbosity_level, U.p "tag" tag ]
 
 instance T.ToJSON SetLogTagVerbosityLevel where
  toJSON SetLogTagVerbosityLevel { new_verbosity_level = new_verbosity_level, tag = tag } =

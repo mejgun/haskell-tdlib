@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 import {-# SOURCE #-} qualified API.VideoNote as VideoNote
 import {-# SOURCE #-} qualified API.Video as Video
@@ -68,16 +68,7 @@ data WebPage =
 
 instance Show WebPage where
  show WebPage { instant_view_version=instant_view_version, voice_note=voice_note, video_note=video_note, video=video, sticker=sticker, document=document, audio=audio, animation=animation, author=author, duration=duration, embed_height=embed_height, embed_width=embed_width, embed_type=embed_type, embed_url=embed_url, photo=photo, description=description, title=title, site_name=site_name, _type=_type, display_url=display_url, url=url } =
-  "WebPage" ++ cc [p "instant_view_version" instant_view_version, p "voice_note" voice_note, p "video_note" video_note, p "video" video, p "sticker" sticker, p "document" document, p "audio" audio, p "animation" animation, p "author" author, p "duration" duration, p "embed_height" embed_height, p "embed_width" embed_width, p "embed_type" embed_type, p "embed_url" embed_url, p "photo" photo, p "description" description, p "title" title, p "site_name" site_name, p "_type" _type, p "display_url" display_url, p "url" url ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "WebPage" ++ U.cc [U.p "instant_view_version" instant_view_version, U.p "voice_note" voice_note, U.p "video_note" video_note, U.p "video" video, U.p "sticker" sticker, U.p "document" document, U.p "audio" audio, U.p "animation" animation, U.p "author" author, U.p "duration" duration, U.p "embed_height" embed_height, U.p "embed_width" embed_width, U.p "embed_type" embed_type, U.p "embed_url" embed_url, U.p "photo" photo, U.p "description" description, U.p "title" title, U.p "site_name" site_name, U.p "_type" _type, U.p "display_url" display_url, U.p "url" url ]
 
 instance T.ToJSON WebPage where
  toJSON WebPage { instant_view_version = instant_view_version, voice_note = voice_note, video_note = video_note, video = video, sticker = sticker, document = document, audio = audio, animation = animation, author = author, duration = duration, embed_height = embed_height, embed_width = embed_width, embed_type = embed_type, embed_url = embed_url, photo = photo, description = description, title = title, site_name = site_name, _type = _type, display_url = display_url, url = url } =

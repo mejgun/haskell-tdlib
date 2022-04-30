@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data GetStickerSet =
 
 instance Show GetStickerSet where
  show GetStickerSet { set_id=set_id } =
-  "GetStickerSet" ++ cc [p "set_id" set_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetStickerSet" ++ U.cc [U.p "set_id" set_id ]
 
 instance T.ToJSON GetStickerSet where
  toJSON GetStickerSet { set_id = set_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -41,16 +41,7 @@ data ChatEventLogFilters =
 
 instance Show ChatEventLogFilters where
  show ChatEventLogFilters { video_chat_changes=video_chat_changes, invite_link_changes=invite_link_changes, setting_changes=setting_changes, info_changes=info_changes, member_restrictions=member_restrictions, member_promotions=member_promotions, member_invites=member_invites, member_leaves=member_leaves, member_joins=member_joins, message_pins=message_pins, message_deletions=message_deletions, message_edits=message_edits } =
-  "ChatEventLogFilters" ++ cc [p "video_chat_changes" video_chat_changes, p "invite_link_changes" invite_link_changes, p "setting_changes" setting_changes, p "info_changes" info_changes, p "member_restrictions" member_restrictions, p "member_promotions" member_promotions, p "member_invites" member_invites, p "member_leaves" member_leaves, p "member_joins" member_joins, p "message_pins" message_pins, p "message_deletions" message_deletions, p "message_edits" message_edits ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatEventLogFilters" ++ U.cc [U.p "video_chat_changes" video_chat_changes, U.p "invite_link_changes" invite_link_changes, U.p "setting_changes" setting_changes, U.p "info_changes" info_changes, U.p "member_restrictions" member_restrictions, U.p "member_promotions" member_promotions, U.p "member_invites" member_invites, U.p "member_leaves" member_leaves, U.p "member_joins" member_joins, U.p "message_pins" message_pins, U.p "message_deletions" message_deletions, U.p "message_edits" message_edits ]
 
 instance T.ToJSON ChatEventLogFilters where
  toJSON ChatEventLogFilters { video_chat_changes = video_chat_changes, invite_link_changes = invite_link_changes, setting_changes = setting_changes, info_changes = info_changes, member_restrictions = member_restrictions, member_promotions = member_promotions, member_invites = member_invites, member_leaves = member_leaves, member_joins = member_joins, message_pins = message_pins, message_deletions = message_deletions, message_edits = message_edits } =

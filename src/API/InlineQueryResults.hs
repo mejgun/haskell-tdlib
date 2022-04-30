@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InlineQueryResult as InlineQueryResult
 
 -- |
@@ -28,16 +28,7 @@ data InlineQueryResults =
 
 instance Show InlineQueryResults where
  show InlineQueryResults { switch_pm_parameter=switch_pm_parameter, switch_pm_text=switch_pm_text, results=results, next_offset=next_offset, inline_query_id=inline_query_id } =
-  "InlineQueryResults" ++ cc [p "switch_pm_parameter" switch_pm_parameter, p "switch_pm_text" switch_pm_text, p "results" results, p "next_offset" next_offset, p "inline_query_id" inline_query_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InlineQueryResults" ++ U.cc [U.p "switch_pm_parameter" switch_pm_parameter, U.p "switch_pm_text" switch_pm_text, U.p "results" results, U.p "next_offset" next_offset, U.p "inline_query_id" inline_query_id ]
 
 instance T.ToJSON InlineQueryResults where
  toJSON InlineQueryResults { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, results = results, next_offset = next_offset, inline_query_id = inline_query_id } =

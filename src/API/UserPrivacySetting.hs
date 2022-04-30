@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -47,37 +47,28 @@ data UserPrivacySetting =
 
 instance Show UserPrivacySetting where
  show UserPrivacySettingShowStatus {  } =
-  "UserPrivacySettingShowStatus" ++ cc [ ]
+  "UserPrivacySettingShowStatus" ++ U.cc [ ]
 
  show UserPrivacySettingShowProfilePhoto {  } =
-  "UserPrivacySettingShowProfilePhoto" ++ cc [ ]
+  "UserPrivacySettingShowProfilePhoto" ++ U.cc [ ]
 
  show UserPrivacySettingShowLinkInForwardedMessages {  } =
-  "UserPrivacySettingShowLinkInForwardedMessages" ++ cc [ ]
+  "UserPrivacySettingShowLinkInForwardedMessages" ++ U.cc [ ]
 
  show UserPrivacySettingShowPhoneNumber {  } =
-  "UserPrivacySettingShowPhoneNumber" ++ cc [ ]
+  "UserPrivacySettingShowPhoneNumber" ++ U.cc [ ]
 
  show UserPrivacySettingAllowChatInvites {  } =
-  "UserPrivacySettingAllowChatInvites" ++ cc [ ]
+  "UserPrivacySettingAllowChatInvites" ++ U.cc [ ]
 
  show UserPrivacySettingAllowCalls {  } =
-  "UserPrivacySettingAllowCalls" ++ cc [ ]
+  "UserPrivacySettingAllowCalls" ++ U.cc [ ]
 
  show UserPrivacySettingAllowPeerToPeerCalls {  } =
-  "UserPrivacySettingAllowPeerToPeerCalls" ++ cc [ ]
+  "UserPrivacySettingAllowPeerToPeerCalls" ++ U.cc [ ]
 
  show UserPrivacySettingAllowFindingByPhoneNumber {  } =
-  "UserPrivacySettingAllowFindingByPhoneNumber" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UserPrivacySettingAllowFindingByPhoneNumber" ++ U.cc [ ]
 
 instance T.ToJSON UserPrivacySetting where
  toJSON UserPrivacySettingShowStatus {  } =

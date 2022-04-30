@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.WebPage as WebPage
 import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Audio as Audio
@@ -431,166 +431,157 @@ data MessageContent =
 
 instance Show MessageContent where
  show MessageText { web_page=web_page, _text=_text } =
-  "MessageText" ++ cc [p "web_page" web_page, p "_text" _text ]
+  "MessageText" ++ U.cc [U.p "web_page" web_page, U.p "_text" _text ]
 
  show MessageAnimation { is_secret=is_secret, caption=caption, animation=animation } =
-  "MessageAnimation" ++ cc [p "is_secret" is_secret, p "caption" caption, p "animation" animation ]
+  "MessageAnimation" ++ U.cc [U.p "is_secret" is_secret, U.p "caption" caption, U.p "animation" animation ]
 
  show MessageAudio { caption=caption, audio=audio } =
-  "MessageAudio" ++ cc [p "caption" caption, p "audio" audio ]
+  "MessageAudio" ++ U.cc [U.p "caption" caption, U.p "audio" audio ]
 
  show MessageDocument { caption=caption, document=document } =
-  "MessageDocument" ++ cc [p "caption" caption, p "document" document ]
+  "MessageDocument" ++ U.cc [U.p "caption" caption, U.p "document" document ]
 
  show MessagePhoto { is_secret=is_secret, caption=caption, _photo=_photo } =
-  "MessagePhoto" ++ cc [p "is_secret" is_secret, p "caption" caption, p "_photo" _photo ]
+  "MessagePhoto" ++ U.cc [U.p "is_secret" is_secret, U.p "caption" caption, U.p "_photo" _photo ]
 
  show MessageExpiredPhoto {  } =
-  "MessageExpiredPhoto" ++ cc [ ]
+  "MessageExpiredPhoto" ++ U.cc [ ]
 
  show MessageSticker { sticker=sticker } =
-  "MessageSticker" ++ cc [p "sticker" sticker ]
+  "MessageSticker" ++ U.cc [U.p "sticker" sticker ]
 
  show MessageVideo { is_secret=is_secret, caption=caption, video=video } =
-  "MessageVideo" ++ cc [p "is_secret" is_secret, p "caption" caption, p "video" video ]
+  "MessageVideo" ++ U.cc [U.p "is_secret" is_secret, U.p "caption" caption, U.p "video" video ]
 
  show MessageExpiredVideo {  } =
-  "MessageExpiredVideo" ++ cc [ ]
+  "MessageExpiredVideo" ++ U.cc [ ]
 
  show MessageVideoNote { is_secret=is_secret, is_viewed=is_viewed, video_note=video_note } =
-  "MessageVideoNote" ++ cc [p "is_secret" is_secret, p "is_viewed" is_viewed, p "video_note" video_note ]
+  "MessageVideoNote" ++ U.cc [U.p "is_secret" is_secret, U.p "is_viewed" is_viewed, U.p "video_note" video_note ]
 
  show MessageVoiceNote { is_listened=is_listened, caption=caption, voice_note=voice_note } =
-  "MessageVoiceNote" ++ cc [p "is_listened" is_listened, p "caption" caption, p "voice_note" voice_note ]
+  "MessageVoiceNote" ++ U.cc [U.p "is_listened" is_listened, U.p "caption" caption, U.p "voice_note" voice_note ]
 
  show MessageLocation { proximity_alert_radius=proximity_alert_radius, heading=heading, expires_in=expires_in, live_period=live_period, location=location } =
-  "MessageLocation" ++ cc [p "proximity_alert_radius" proximity_alert_radius, p "heading" heading, p "expires_in" expires_in, p "live_period" live_period, p "location" location ]
+  "MessageLocation" ++ U.cc [U.p "proximity_alert_radius" proximity_alert_radius, U.p "heading" heading, U.p "expires_in" expires_in, U.p "live_period" live_period, U.p "location" location ]
 
  show MessageVenue { venue=venue } =
-  "MessageVenue" ++ cc [p "venue" venue ]
+  "MessageVenue" ++ U.cc [U.p "venue" venue ]
 
  show MessageContact { contact=contact } =
-  "MessageContact" ++ cc [p "contact" contact ]
+  "MessageContact" ++ U.cc [U.p "contact" contact ]
 
  show MessageAnimatedEmoji { emoji=emoji, animated_emoji=animated_emoji } =
-  "MessageAnimatedEmoji" ++ cc [p "emoji" emoji, p "animated_emoji" animated_emoji ]
+  "MessageAnimatedEmoji" ++ U.cc [U.p "emoji" emoji, U.p "animated_emoji" animated_emoji ]
 
  show MessageDice { success_animation_frame_number=success_animation_frame_number, value=value, emoji=emoji, final_state=final_state, initial_state=initial_state } =
-  "MessageDice" ++ cc [p "success_animation_frame_number" success_animation_frame_number, p "value" value, p "emoji" emoji, p "final_state" final_state, p "initial_state" initial_state ]
+  "MessageDice" ++ U.cc [U.p "success_animation_frame_number" success_animation_frame_number, U.p "value" value, U.p "emoji" emoji, U.p "final_state" final_state, U.p "initial_state" initial_state ]
 
  show MessageGame { game=game } =
-  "MessageGame" ++ cc [p "game" game ]
+  "MessageGame" ++ U.cc [U.p "game" game ]
 
  show MessagePoll { poll=poll } =
-  "MessagePoll" ++ cc [p "poll" poll ]
+  "MessagePoll" ++ U.cc [U.p "poll" poll ]
 
  show MessageInvoice { receipt_message_id=receipt_message_id, need_shipping_address=need_shipping_address, is_test=is_test, start_parameter=start_parameter, total_amount=total_amount, currency=currency, _photo=_photo, description=description, title=title } =
-  "MessageInvoice" ++ cc [p "receipt_message_id" receipt_message_id, p "need_shipping_address" need_shipping_address, p "is_test" is_test, p "start_parameter" start_parameter, p "total_amount" total_amount, p "currency" currency, p "_photo" _photo, p "description" description, p "title" title ]
+  "MessageInvoice" ++ U.cc [U.p "receipt_message_id" receipt_message_id, U.p "need_shipping_address" need_shipping_address, U.p "is_test" is_test, U.p "start_parameter" start_parameter, U.p "total_amount" total_amount, U.p "currency" currency, U.p "_photo" _photo, U.p "description" description, U.p "title" title ]
 
  show MessageCall { duration=duration, discard_reason=discard_reason, is_video=is_video } =
-  "MessageCall" ++ cc [p "duration" duration, p "discard_reason" discard_reason, p "is_video" is_video ]
+  "MessageCall" ++ U.cc [U.p "duration" duration, U.p "discard_reason" discard_reason, U.p "is_video" is_video ]
 
  show MessageVideoChatScheduled { start_date=start_date, group_call_id=group_call_id } =
-  "MessageVideoChatScheduled" ++ cc [p "start_date" start_date, p "group_call_id" group_call_id ]
+  "MessageVideoChatScheduled" ++ U.cc [U.p "start_date" start_date, U.p "group_call_id" group_call_id ]
 
  show MessageVideoChatStarted { group_call_id=group_call_id } =
-  "MessageVideoChatStarted" ++ cc [p "group_call_id" group_call_id ]
+  "MessageVideoChatStarted" ++ U.cc [U.p "group_call_id" group_call_id ]
 
  show MessageVideoChatEnded { duration=duration } =
-  "MessageVideoChatEnded" ++ cc [p "duration" duration ]
+  "MessageVideoChatEnded" ++ U.cc [U.p "duration" duration ]
 
  show MessageInviteVideoChatParticipants { user_ids=user_ids, group_call_id=group_call_id } =
-  "MessageInviteVideoChatParticipants" ++ cc [p "user_ids" user_ids, p "group_call_id" group_call_id ]
+  "MessageInviteVideoChatParticipants" ++ U.cc [U.p "user_ids" user_ids, U.p "group_call_id" group_call_id ]
 
  show MessageBasicGroupChatCreate { member_user_ids=member_user_ids, title=title } =
-  "MessageBasicGroupChatCreate" ++ cc [p "member_user_ids" member_user_ids, p "title" title ]
+  "MessageBasicGroupChatCreate" ++ U.cc [U.p "member_user_ids" member_user_ids, U.p "title" title ]
 
  show MessageSupergroupChatCreate { title=title } =
-  "MessageSupergroupChatCreate" ++ cc [p "title" title ]
+  "MessageSupergroupChatCreate" ++ U.cc [U.p "title" title ]
 
  show MessageChatChangeTitle { title=title } =
-  "MessageChatChangeTitle" ++ cc [p "title" title ]
+  "MessageChatChangeTitle" ++ U.cc [U.p "title" title ]
 
  show MessageChatChangePhoto { photo=photo } =
-  "MessageChatChangePhoto" ++ cc [p "photo" photo ]
+  "MessageChatChangePhoto" ++ U.cc [U.p "photo" photo ]
 
  show MessageChatDeletePhoto {  } =
-  "MessageChatDeletePhoto" ++ cc [ ]
+  "MessageChatDeletePhoto" ++ U.cc [ ]
 
  show MessageChatAddMembers { member_user_ids=member_user_ids } =
-  "MessageChatAddMembers" ++ cc [p "member_user_ids" member_user_ids ]
+  "MessageChatAddMembers" ++ U.cc [U.p "member_user_ids" member_user_ids ]
 
  show MessageChatJoinByLink {  } =
-  "MessageChatJoinByLink" ++ cc [ ]
+  "MessageChatJoinByLink" ++ U.cc [ ]
 
  show MessageChatJoinByRequest {  } =
-  "MessageChatJoinByRequest" ++ cc [ ]
+  "MessageChatJoinByRequest" ++ U.cc [ ]
 
  show MessageChatDeleteMember { user_id=user_id } =
-  "MessageChatDeleteMember" ++ cc [p "user_id" user_id ]
+  "MessageChatDeleteMember" ++ U.cc [U.p "user_id" user_id ]
 
  show MessageChatUpgradeTo { supergroup_id=supergroup_id } =
-  "MessageChatUpgradeTo" ++ cc [p "supergroup_id" supergroup_id ]
+  "MessageChatUpgradeTo" ++ U.cc [U.p "supergroup_id" supergroup_id ]
 
  show MessageChatUpgradeFrom { basic_group_id=basic_group_id, title=title } =
-  "MessageChatUpgradeFrom" ++ cc [p "basic_group_id" basic_group_id, p "title" title ]
+  "MessageChatUpgradeFrom" ++ U.cc [U.p "basic_group_id" basic_group_id, U.p "title" title ]
 
  show MessagePinMessage { message_id=message_id } =
-  "MessagePinMessage" ++ cc [p "message_id" message_id ]
+  "MessagePinMessage" ++ U.cc [U.p "message_id" message_id ]
 
  show MessageScreenshotTaken {  } =
-  "MessageScreenshotTaken" ++ cc [ ]
+  "MessageScreenshotTaken" ++ U.cc [ ]
 
  show MessageChatSetTheme { theme_name=theme_name } =
-  "MessageChatSetTheme" ++ cc [p "theme_name" theme_name ]
+  "MessageChatSetTheme" ++ U.cc [U.p "theme_name" theme_name ]
 
  show MessageChatSetTtl { ttl=ttl } =
-  "MessageChatSetTtl" ++ cc [p "ttl" ttl ]
+  "MessageChatSetTtl" ++ U.cc [U.p "ttl" ttl ]
 
  show MessageCustomServiceAction { text=text } =
-  "MessageCustomServiceAction" ++ cc [p "text" text ]
+  "MessageCustomServiceAction" ++ U.cc [U.p "text" text ]
 
  show MessageGameScore { score=score, game_id=game_id, game_message_id=game_message_id } =
-  "MessageGameScore" ++ cc [p "score" score, p "game_id" game_id, p "game_message_id" game_message_id ]
+  "MessageGameScore" ++ U.cc [U.p "score" score, U.p "game_id" game_id, U.p "game_message_id" game_message_id ]
 
  show MessagePaymentSuccessful { total_amount=total_amount, currency=currency, invoice_message_id=invoice_message_id, invoice_chat_id=invoice_chat_id } =
-  "MessagePaymentSuccessful" ++ cc [p "total_amount" total_amount, p "currency" currency, p "invoice_message_id" invoice_message_id, p "invoice_chat_id" invoice_chat_id ]
+  "MessagePaymentSuccessful" ++ U.cc [U.p "total_amount" total_amount, U.p "currency" currency, U.p "invoice_message_id" invoice_message_id, U.p "invoice_chat_id" invoice_chat_id ]
 
  show MessagePaymentSuccessfulBot { provider_payment_charge_id=provider_payment_charge_id, telegram_payment_charge_id=telegram_payment_charge_id, order_info=order_info, shipping_option_id=shipping_option_id, invoice_payload=invoice_payload, total_amount=total_amount, currency=currency } =
-  "MessagePaymentSuccessfulBot" ++ cc [p "provider_payment_charge_id" provider_payment_charge_id, p "telegram_payment_charge_id" telegram_payment_charge_id, p "order_info" order_info, p "shipping_option_id" shipping_option_id, p "invoice_payload" invoice_payload, p "total_amount" total_amount, p "currency" currency ]
+  "MessagePaymentSuccessfulBot" ++ U.cc [U.p "provider_payment_charge_id" provider_payment_charge_id, U.p "telegram_payment_charge_id" telegram_payment_charge_id, U.p "order_info" order_info, U.p "shipping_option_id" shipping_option_id, U.p "invoice_payload" invoice_payload, U.p "total_amount" total_amount, U.p "currency" currency ]
 
  show MessageContactRegistered {  } =
-  "MessageContactRegistered" ++ cc [ ]
+  "MessageContactRegistered" ++ U.cc [ ]
 
  show MessageWebsiteConnected { domain_name=domain_name } =
-  "MessageWebsiteConnected" ++ cc [p "domain_name" domain_name ]
+  "MessageWebsiteConnected" ++ U.cc [U.p "domain_name" domain_name ]
 
  show MessageWebAppDataSent { button_text=button_text } =
-  "MessageWebAppDataSent" ++ cc [p "button_text" button_text ]
+  "MessageWebAppDataSent" ++ U.cc [U.p "button_text" button_text ]
 
  show MessageWebAppDataReceived { _data=_data, button_text=button_text } =
-  "MessageWebAppDataReceived" ++ cc [p "_data" _data, p "button_text" button_text ]
+  "MessageWebAppDataReceived" ++ U.cc [U.p "_data" _data, U.p "button_text" button_text ]
 
  show MessagePassportDataSent { types=types } =
-  "MessagePassportDataSent" ++ cc [p "types" types ]
+  "MessagePassportDataSent" ++ U.cc [U.p "types" types ]
 
  show MessagePassportDataReceived { credentials=credentials, elements=elements } =
-  "MessagePassportDataReceived" ++ cc [p "credentials" credentials, p "elements" elements ]
+  "MessagePassportDataReceived" ++ U.cc [U.p "credentials" credentials, U.p "elements" elements ]
 
  show MessageProximityAlertTriggered { distance=distance, watcher_id=watcher_id, traveler_id=traveler_id } =
-  "MessageProximityAlertTriggered" ++ cc [p "distance" distance, p "watcher_id" watcher_id, p "traveler_id" traveler_id ]
+  "MessageProximityAlertTriggered" ++ U.cc [U.p "distance" distance, U.p "watcher_id" watcher_id, U.p "traveler_id" traveler_id ]
 
  show MessageUnsupported {  } =
-  "MessageUnsupported" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageUnsupported" ++ U.cc [ ]
 
 instance T.ToJSON MessageContent where
  toJSON MessageText { web_page = web_page, _text = _text } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -51,16 +51,7 @@ data Session =
 
 instance Show Session where
  show Session { region=region, country=country, ip=ip, last_active_date=last_active_date, log_in_date=log_in_date, system_version=system_version, platform=platform, device_model=device_model, is_official_application=is_official_application, application_version=application_version, application_name=application_name, api_id=api_id, can_accept_calls=can_accept_calls, can_accept_secret_chats=can_accept_secret_chats, is_password_pending=is_password_pending, is_current=is_current, _id=_id } =
-  "Session" ++ cc [p "region" region, p "country" country, p "ip" ip, p "last_active_date" last_active_date, p "log_in_date" log_in_date, p "system_version" system_version, p "platform" platform, p "device_model" device_model, p "is_official_application" is_official_application, p "application_version" application_version, p "application_name" application_name, p "api_id" api_id, p "can_accept_calls" can_accept_calls, p "can_accept_secret_chats" can_accept_secret_chats, p "is_password_pending" is_password_pending, p "is_current" is_current, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Session" ++ U.cc [U.p "region" region, U.p "country" country, U.p "ip" ip, U.p "last_active_date" last_active_date, U.p "log_in_date" log_in_date, U.p "system_version" system_version, U.p "platform" platform, U.p "device_model" device_model, U.p "is_official_application" is_official_application, U.p "application_version" application_version, U.p "application_name" application_name, U.p "api_id" api_id, U.p "can_accept_calls" can_accept_calls, U.p "can_accept_secret_chats" can_accept_secret_chats, U.p "is_password_pending" is_password_pending, U.p "is_current" is_current, U.p "_id" _id ]
 
 instance T.ToJSON Session where
  toJSON Session { region = region, country = country, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, system_version = system_version, platform = platform, device_model = device_model, is_official_application = is_official_application, application_version = application_version, application_name = application_name, api_id = api_id, can_accept_calls = can_accept_calls, can_accept_secret_chats = can_accept_secret_chats, is_password_pending = is_password_pending, is_current = is_current, _id = _id } =

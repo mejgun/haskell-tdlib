@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.DeviceToken as DeviceToken
 
 -- |
@@ -22,16 +22,7 @@ data RegisterDevice =
 
 instance Show RegisterDevice where
  show RegisterDevice { other_user_ids=other_user_ids, device_token=device_token } =
-  "RegisterDevice" ++ cc [p "other_user_ids" other_user_ids, p "device_token" device_token ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RegisterDevice" ++ U.cc [U.p "other_user_ids" other_user_ids, U.p "device_token" device_token ]
 
 instance T.ToJSON RegisterDevice where
  toJSON RegisterDevice { other_user_ids = other_user_ids, device_token = device_token } =

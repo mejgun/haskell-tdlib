@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,22 +27,13 @@ data CheckStickerSetNameResult =
 
 instance Show CheckStickerSetNameResult where
  show CheckStickerSetNameResultOk {  } =
-  "CheckStickerSetNameResultOk" ++ cc [ ]
+  "CheckStickerSetNameResultOk" ++ U.cc [ ]
 
  show CheckStickerSetNameResultNameInvalid {  } =
-  "CheckStickerSetNameResultNameInvalid" ++ cc [ ]
+  "CheckStickerSetNameResultNameInvalid" ++ U.cc [ ]
 
  show CheckStickerSetNameResultNameOccupied {  } =
-  "CheckStickerSetNameResultNameOccupied" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CheckStickerSetNameResultNameOccupied" ++ U.cc [ ]
 
 instance T.ToJSON CheckStickerSetNameResult where
  toJSON CheckStickerSetNameResultOk {  } =

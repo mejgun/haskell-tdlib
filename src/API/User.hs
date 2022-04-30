@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.UserType as UserType
 import {-# SOURCE #-} qualified API.ProfilePhoto as ProfilePhoto
 import {-# SOURCE #-} qualified API.UserStatus as UserStatus
@@ -54,16 +54,7 @@ data User =
 
 instance Show User where
  show User { language_code=language_code, _type=_type, have_access=have_access, is_fake=is_fake, is_scam=is_scam, restriction_reason=restriction_reason, is_support=is_support, is_verified=is_verified, is_mutual_contact=is_mutual_contact, is_contact=is_contact, profile_photo=profile_photo, status=status, phone_number=phone_number, username=username, last_name=last_name, first_name=first_name, _id=_id } =
-  "User" ++ cc [p "language_code" language_code, p "_type" _type, p "have_access" have_access, p "is_fake" is_fake, p "is_scam" is_scam, p "restriction_reason" restriction_reason, p "is_support" is_support, p "is_verified" is_verified, p "is_mutual_contact" is_mutual_contact, p "is_contact" is_contact, p "profile_photo" profile_photo, p "status" status, p "phone_number" phone_number, p "username" username, p "last_name" last_name, p "first_name" first_name, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "User" ++ U.cc [U.p "language_code" language_code, U.p "_type" _type, U.p "have_access" have_access, U.p "is_fake" is_fake, U.p "is_scam" is_scam, U.p "restriction_reason" restriction_reason, U.p "is_support" is_support, U.p "is_verified" is_verified, U.p "is_mutual_contact" is_mutual_contact, U.p "is_contact" is_contact, U.p "profile_photo" profile_photo, U.p "status" status, U.p "phone_number" phone_number, U.p "username" username, U.p "last_name" last_name, U.p "first_name" first_name, U.p "_id" _id ]
 
 instance T.ToJSON User where
  toJSON User { language_code = language_code, _type = _type, have_access = have_access, is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_support = is_support, is_verified = is_verified, is_mutual_contact = is_mutual_contact, is_contact = is_contact, profile_photo = profile_photo, status = status, phone_number = phone_number, username = username, last_name = last_name, first_name = first_name, _id = _id } =

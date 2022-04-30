@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.CallServer as CallServer
 import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 import {-# SOURCE #-} qualified API.CallDiscardReason as CallDiscardReason
@@ -69,31 +69,22 @@ data CallState =
 
 instance Show CallState where
  show CallStatePending { is_received=is_received, is_created=is_created } =
-  "CallStatePending" ++ cc [p "is_received" is_received, p "is_created" is_created ]
+  "CallStatePending" ++ U.cc [U.p "is_received" is_received, U.p "is_created" is_created ]
 
  show CallStateExchangingKeys {  } =
-  "CallStateExchangingKeys" ++ cc [ ]
+  "CallStateExchangingKeys" ++ U.cc [ ]
 
  show CallStateReady { allow_p2p=allow_p2p, emojis=emojis, encryption_key=encryption_key, config=config, servers=servers, protocol=protocol } =
-  "CallStateReady" ++ cc [p "allow_p2p" allow_p2p, p "emojis" emojis, p "encryption_key" encryption_key, p "config" config, p "servers" servers, p "protocol" protocol ]
+  "CallStateReady" ++ U.cc [U.p "allow_p2p" allow_p2p, U.p "emojis" emojis, U.p "encryption_key" encryption_key, U.p "config" config, U.p "servers" servers, U.p "protocol" protocol ]
 
  show CallStateHangingUp {  } =
-  "CallStateHangingUp" ++ cc [ ]
+  "CallStateHangingUp" ++ U.cc [ ]
 
  show CallStateDiscarded { need_log=need_log, need_debug_information=need_debug_information, need_rating=need_rating, reason=reason } =
-  "CallStateDiscarded" ++ cc [p "need_log" need_log, p "need_debug_information" need_debug_information, p "need_rating" need_rating, p "reason" reason ]
+  "CallStateDiscarded" ++ U.cc [U.p "need_log" need_log, U.p "need_debug_information" need_debug_information, U.p "need_rating" need_rating, U.p "reason" reason ]
 
  show CallStateError { _error=_error } =
-  "CallStateError" ++ cc [p "_error" _error ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CallStateError" ++ U.cc [U.p "_error" _error ]
 
 instance T.ToJSON CallState where
  toJSON CallStatePending { is_received = is_received, is_created = is_created } =

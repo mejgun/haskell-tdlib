@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -83,64 +83,55 @@ data SearchMessagesFilter =
 
 instance Show SearchMessagesFilter where
  show SearchMessagesFilterEmpty {  } =
-  "SearchMessagesFilterEmpty" ++ cc [ ]
+  "SearchMessagesFilterEmpty" ++ U.cc [ ]
 
  show SearchMessagesFilterAnimation {  } =
-  "SearchMessagesFilterAnimation" ++ cc [ ]
+  "SearchMessagesFilterAnimation" ++ U.cc [ ]
 
  show SearchMessagesFilterAudio {  } =
-  "SearchMessagesFilterAudio" ++ cc [ ]
+  "SearchMessagesFilterAudio" ++ U.cc [ ]
 
  show SearchMessagesFilterDocument {  } =
-  "SearchMessagesFilterDocument" ++ cc [ ]
+  "SearchMessagesFilterDocument" ++ U.cc [ ]
 
  show SearchMessagesFilterPhoto {  } =
-  "SearchMessagesFilterPhoto" ++ cc [ ]
+  "SearchMessagesFilterPhoto" ++ U.cc [ ]
 
  show SearchMessagesFilterVideo {  } =
-  "SearchMessagesFilterVideo" ++ cc [ ]
+  "SearchMessagesFilterVideo" ++ U.cc [ ]
 
  show SearchMessagesFilterVoiceNote {  } =
-  "SearchMessagesFilterVoiceNote" ++ cc [ ]
+  "SearchMessagesFilterVoiceNote" ++ U.cc [ ]
 
  show SearchMessagesFilterPhotoAndVideo {  } =
-  "SearchMessagesFilterPhotoAndVideo" ++ cc [ ]
+  "SearchMessagesFilterPhotoAndVideo" ++ U.cc [ ]
 
  show SearchMessagesFilterUrl {  } =
-  "SearchMessagesFilterUrl" ++ cc [ ]
+  "SearchMessagesFilterUrl" ++ U.cc [ ]
 
  show SearchMessagesFilterChatPhoto {  } =
-  "SearchMessagesFilterChatPhoto" ++ cc [ ]
+  "SearchMessagesFilterChatPhoto" ++ U.cc [ ]
 
  show SearchMessagesFilterVideoNote {  } =
-  "SearchMessagesFilterVideoNote" ++ cc [ ]
+  "SearchMessagesFilterVideoNote" ++ U.cc [ ]
 
  show SearchMessagesFilterVoiceAndVideoNote {  } =
-  "SearchMessagesFilterVoiceAndVideoNote" ++ cc [ ]
+  "SearchMessagesFilterVoiceAndVideoNote" ++ U.cc [ ]
 
  show SearchMessagesFilterMention {  } =
-  "SearchMessagesFilterMention" ++ cc [ ]
+  "SearchMessagesFilterMention" ++ U.cc [ ]
 
  show SearchMessagesFilterUnreadMention {  } =
-  "SearchMessagesFilterUnreadMention" ++ cc [ ]
+  "SearchMessagesFilterUnreadMention" ++ U.cc [ ]
 
  show SearchMessagesFilterUnreadReaction {  } =
-  "SearchMessagesFilterUnreadReaction" ++ cc [ ]
+  "SearchMessagesFilterUnreadReaction" ++ U.cc [ ]
 
  show SearchMessagesFilterFailedToSend {  } =
-  "SearchMessagesFilterFailedToSend" ++ cc [ ]
+  "SearchMessagesFilterFailedToSend" ++ U.cc [ ]
 
  show SearchMessagesFilterPinned {  } =
-  "SearchMessagesFilterPinned" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SearchMessagesFilterPinned" ++ U.cc [ ]
 
 instance T.ToJSON SearchMessagesFilter where
  toJSON SearchMessagesFilterEmpty {  } =

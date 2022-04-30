@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.AttachmentMenuBotColor as AttachmentMenuBotColor
 
@@ -37,16 +37,7 @@ data AttachmentMenuBot =
 
 instance Show AttachmentMenuBot where
  show AttachmentMenuBot { icon_color=icon_color, macos_icon=macos_icon, android_icon=android_icon, ios_animated_icon=ios_animated_icon, ios_static_icon=ios_static_icon, default_icon=default_icon, name_color=name_color, name=name, bot_user_id=bot_user_id } =
-  "AttachmentMenuBot" ++ cc [p "icon_color" icon_color, p "macos_icon" macos_icon, p "android_icon" android_icon, p "ios_animated_icon" ios_animated_icon, p "ios_static_icon" ios_static_icon, p "default_icon" default_icon, p "name_color" name_color, p "name" name, p "bot_user_id" bot_user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AttachmentMenuBot" ++ U.cc [U.p "icon_color" icon_color, U.p "macos_icon" macos_icon, U.p "android_icon" android_icon, U.p "ios_animated_icon" ios_animated_icon, U.p "ios_static_icon" ios_static_icon, U.p "default_icon" default_icon, U.p "name_color" name_color, U.p "name" name, U.p "bot_user_id" bot_user_id ]
 
 instance T.ToJSON AttachmentMenuBot where
  toJSON AttachmentMenuBot { icon_color = icon_color, macos_icon = macos_icon, android_icon = android_icon, ios_animated_icon = ios_animated_icon, ios_static_icon = ios_static_icon, default_icon = default_icon, name_color = name_color, name = name, bot_user_id = bot_user_id } =

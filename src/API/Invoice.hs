@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 
 -- |
@@ -42,16 +42,7 @@ data Invoice =
 
 instance Show Invoice where
  show Invoice { is_flexible=is_flexible, send_email_address_to_provider=send_email_address_to_provider, send_phone_number_to_provider=send_phone_number_to_provider, need_shipping_address=need_shipping_address, need_email_address=need_email_address, need_phone_number=need_phone_number, need_name=need_name, is_test=is_test, suggested_tip_amounts=suggested_tip_amounts, max_tip_amount=max_tip_amount, price_parts=price_parts, currency=currency } =
-  "Invoice" ++ cc [p "is_flexible" is_flexible, p "send_email_address_to_provider" send_email_address_to_provider, p "send_phone_number_to_provider" send_phone_number_to_provider, p "need_shipping_address" need_shipping_address, p "need_email_address" need_email_address, p "need_phone_number" need_phone_number, p "need_name" need_name, p "is_test" is_test, p "suggested_tip_amounts" suggested_tip_amounts, p "max_tip_amount" max_tip_amount, p "price_parts" price_parts, p "currency" currency ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Invoice" ++ U.cc [U.p "is_flexible" is_flexible, U.p "send_email_address_to_provider" send_email_address_to_provider, U.p "send_phone_number_to_provider" send_phone_number_to_provider, U.p "need_shipping_address" need_shipping_address, U.p "need_email_address" need_email_address, U.p "need_phone_number" need_phone_number, U.p "need_name" need_name, U.p "is_test" is_test, U.p "suggested_tip_amounts" suggested_tip_amounts, U.p "max_tip_amount" max_tip_amount, U.p "price_parts" price_parts, U.p "currency" currency ]
 
 instance T.ToJSON Invoice where
  toJSON Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, suggested_tip_amounts = suggested_tip_amounts, max_tip_amount = max_tip_amount, price_parts = price_parts, currency = currency } =

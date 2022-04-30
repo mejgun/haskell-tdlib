@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 import {-# SOURCE #-} qualified API.BotCommandScope as BotCommandScope
 
@@ -25,16 +25,7 @@ data SetCommands =
 
 instance Show SetCommands where
  show SetCommands { commands=commands, language_code=language_code, scope=scope } =
-  "SetCommands" ++ cc [p "commands" commands, p "language_code" language_code, p "scope" scope ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetCommands" ++ U.cc [U.p "commands" commands, U.p "language_code" language_code, U.p "scope" scope ]
 
 instance T.ToJSON SetCommands where
  toJSON SetCommands { commands = commands, language_code = language_code, scope = scope } =

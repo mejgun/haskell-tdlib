@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data ScopeNotificationSettings =
 
 instance Show ScopeNotificationSettings where
  show ScopeNotificationSettings { disable_mention_notifications=disable_mention_notifications, disable_pinned_message_notifications=disable_pinned_message_notifications, show_preview=show_preview, sound_id=sound_id, mute_for=mute_for } =
-  "ScopeNotificationSettings" ++ cc [p "disable_mention_notifications" disable_mention_notifications, p "disable_pinned_message_notifications" disable_pinned_message_notifications, p "show_preview" show_preview, p "sound_id" sound_id, p "mute_for" mute_for ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ScopeNotificationSettings" ++ U.cc [U.p "disable_mention_notifications" disable_mention_notifications, U.p "disable_pinned_message_notifications" disable_pinned_message_notifications, U.p "show_preview" show_preview, U.p "sound_id" sound_id, U.p "mute_for" mute_for ]
 
 instance T.ToJSON ScopeNotificationSettings where
  toJSON ScopeNotificationSettings { disable_mention_notifications = disable_mention_notifications, disable_pinned_message_notifications = disable_pinned_message_notifications, show_preview = show_preview, sound_id = sound_id, mute_for = mute_for } =

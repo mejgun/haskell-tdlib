@@ -6,7 +6,7 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.GroupCallVideoQuality.html"><span class="hs-identifier">API.GroupCallVideoQuality</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">GroupCallVideoQuality</span></span><span>
 </span><span id="line-11"></span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
@@ -29,7 +29,7 @@
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#channel_id"><span class="hs-identifier hs-var hs-var">channel_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="scale"><span class="annot"><span class="annottext">GetGroupCallStreamSegment -&gt; Maybe Int
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#scale"><span class="hs-identifier hs-var hs-var">scale</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="time_offset"><span class="annot"><span class="annottext">GetGroupCallStreamSegment -&gt; Maybe Int
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#time_offset"><span class="hs-identifier hs-var hs-var">time_offset</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="group_call_id"><span class="annot"><span class="annottext">GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#group_call_id"><span class="hs-identifier hs-var hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679542290"><span id="local-6989586621679542292"><span class="annot"><span class="annottext">GetGroupCallStreamSegment -&gt; GetGroupCallStreamSegment -&gt; Bool
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#group_call_id"><span class="hs-identifier hs-var hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679488637"><span id="local-6989586621679488639"><span class="annot"><span class="annottext">GetGroupCallStreamSegment -&gt; GetGroupCallStreamSegment -&gt; Bool
 (GetGroupCallStreamSegment -&gt; GetGroupCallStreamSegment -&gt; Bool)
 -&gt; (GetGroupCallStreamSegment -&gt; GetGroupCallStreamSegment -&gt; Bool)
 -&gt; Eq GetGroupCallStreamSegment
@@ -40,104 +40,59 @@ $c/= :: GetGroupCallStreamSegment -&gt; GetGroupCallStreamSegment -&gt; Bool
 $c== :: GetGroupCallStreamSegment -&gt; GetGroupCallStreamSegment -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679542284"><span id="local-6989586621679542287"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span> </span><span id="local-6989586621679542282"><span class="annot"><span class="annottext">show :: GetGroupCallStreamSegment -&gt; String
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679488631"><span id="local-6989586621679488634"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span> </span><span id="local-6989586621679488629"><span class="annot"><span class="annottext">show :: GetGroupCallStreamSegment -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">video_quality :: GetGroupCallStreamSegment -&gt; Maybe GroupCallVideoQuality
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#video_quality"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679542280"><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
-</span><a href="#local-6989586621679542280"><span class="hs-identifier hs-var">video_quality</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_id :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#channel_id"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679542279"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542279"><span class="hs-identifier hs-var">channel_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scale :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#scale"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679542278"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542278"><span class="hs-identifier hs-var">scale</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">time_offset :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#time_offset"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679542277"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542277"><span class="hs-identifier hs-var">time_offset</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679542276"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542276"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#video_quality"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679488627"><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
+</span><a href="#local-6989586621679488627"><span class="hs-identifier hs-var">video_quality</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_id :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#channel_id"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679488626"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488626"><span class="hs-identifier hs-var">channel_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scale :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#scale"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679488625"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488625"><span class="hs-identifier hs-var">scale</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">time_offset :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#time_offset"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679488624"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488624"><span class="hs-identifier hs-var">time_offset</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679488623"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488623"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-31"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetGroupCallStreamSegment&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe GroupCallVideoQuality -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe GroupCallVideoQuality -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;video_quality&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
-</span><a href="#local-6989586621679542280"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679488627"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;channel_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542279"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679488626"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;scale&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542278"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679488625"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;time_offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542277"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679488624"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542276"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679488623"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span id="local-6989586621679542336"><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679542336"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679542336"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
-</span><span id="line-34"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679542273"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679542273"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679542272"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679542272"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679542273"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
-forall a. Show a =&gt; a -&gt; String
-</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679542272"><span class="hs-identifier hs-var">a</span></a></span><span>
-</span><span id="line-35"></span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
-</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;&quot;</span></span><span>
-</span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-38"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-forall a. Monoid a =&gt; a
-</span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-39"></span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679542271"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679542271"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
-forall a. [a] -&gt; [[a]] -&gt; [a]
-</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
-forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
-</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
-</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
-forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
-forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
-</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679542271"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;}&quot;</span></span><span>
-</span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679542261"><span id="local-6989586621679542263"><span id="local-6989586621679542265"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-43"></span><span> </span><span id="local-6989586621679542259"><span class="annot"><span class="annottext">toJSON :: GetGroupCallStreamSegment -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679488614"><span id="local-6989586621679488616"><span id="local-6989586621679488618"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span> </span><span id="local-6989586621679488612"><span class="annot"><span class="annottext">toJSON :: GetGroupCallStreamSegment -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">video_quality :: GetGroupCallStreamSegment -&gt; Maybe GroupCallVideoQuality
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#video_quality"><span class="hs-identifier hs-var">video_quality</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679542257"><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
-</span><a href="#local-6989586621679542257"><span class="hs-identifier hs-var">video_quality</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_id :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#channel_id"><span class="hs-identifier hs-var">channel_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679542256"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542256"><span class="hs-identifier hs-var">channel_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scale :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#scale"><span class="hs-identifier hs-var">scale</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679542255"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542255"><span class="hs-identifier hs-var">scale</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">time_offset :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#time_offset"><span class="hs-identifier hs-var">time_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679542254"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542254"><span class="hs-identifier hs-var">time_offset</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: GetGroupCallStreamSegment -&gt; Maybe Int
-</span><a href="API.Functions.GetGroupCallStreamSegment.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679542253"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542253"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-44"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#video_quality"><span class="hs-identifier hs-var">video_quality</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488610"><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
+</span><a href="#local-6989586621679488610"><span class="hs-identifier hs-var">video_quality</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_id :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#channel_id"><span class="hs-identifier hs-var">channel_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488609"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488609"><span class="hs-identifier hs-var">channel_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scale :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#scale"><span class="hs-identifier hs-var">scale</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488608"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488608"><span class="hs-identifier hs-var">scale</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">time_offset :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#time_offset"><span class="hs-identifier hs-var">time_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488607"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488607"><span class="hs-identifier hs-var">time_offset</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: GetGroupCallStreamSegment -&gt; Maybe Int
+</span><a href="API.Functions.GetGroupCallStreamSegment.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488606"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488606"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -147,49 +102,49 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;video_quality&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe GroupCallVideoQuality -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
-</span><a href="#local-6989586621679542257"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679488610"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;channel_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542256"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679488609"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scale&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542255"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679488608"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;time_offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542254"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679488607"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542253"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679542247"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span> </span><span id="local-6989586621679542245"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetGroupCallStreamSegment
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679542243"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679542243"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679542241"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542241"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-48"></span><span>  </span><span id="local-6989586621679542240"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679542240"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542241"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679488606"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679488600"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679488598"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetGroupCallStreamSegment
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679488596"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679488596"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679488594"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488594"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679488593"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679488593"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488594"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-49"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679542240"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-50"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-40"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679488593"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-41"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;getGroupCallStreamSegment&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetGroupCallStreamSegment
-</span><a href="#local-6989586621679542238"><span class="hs-identifier hs-var">parseGetGroupCallStreamSegment</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679542243"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679488591"><span class="hs-identifier hs-var">parseGetGroupCallStreamSegment</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679488596"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetGroupCallStreamSegment
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-52"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-53"></span><span>   </span><span class="annot"><a href="#local-6989586621679542238"><span class="hs-identifier hs-type">parseGetGroupCallStreamSegment</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span><span>
-</span><span id="line-54"></span><span>   </span><span id="local-6989586621679542238"><span class="annot"><span class="annottext">parseGetGroupCallStreamSegment :: Value -&gt; Parser GetGroupCallStreamSegment
-</span><a href="#local-6989586621679542238"><span class="hs-identifier hs-var hs-var">parseGetGroupCallStreamSegment</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-43"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679488591"><span class="hs-identifier hs-type">parseGetGroupCallStreamSegment</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span><span>
+</span><span id="line-45"></span><span>   </span><span id="local-6989586621679488591"><span class="annot"><span class="annottext">parseGetGroupCallStreamSegment :: Value -&gt; Parser GetGroupCallStreamSegment
+</span><a href="#local-6989586621679488591"><span class="hs-identifier hs-var hs-var">parseGetGroupCallStreamSegment</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetGroupCallStreamSegment)
 -&gt; Value
 -&gt; Parser GetGroupCallStreamSegment
@@ -201,19 +156,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetGroupCallStreamSegment
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679542236"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-55"></span><span>    </span><span id="local-6989586621679542235"><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
-</span><a href="#local-6989586621679542235"><span class="hs-identifier hs-var">video_quality</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe GroupCallVideoQuality)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679488589"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679488588"><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
+</span><a href="#local-6989586621679488588"><span class="hs-identifier hs-var">video_quality</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe GroupCallVideoQuality)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;video_quality&quot;</span></span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679542233"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542233"><span class="hs-identifier hs-var">channel_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679488586"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488586"><span class="hs-identifier hs-var">channel_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;channel_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -221,15 +176,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;channel_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-57"></span><span>    </span><span id="local-6989586621679542231"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542231"><span class="hs-identifier hs-var">scale</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679488584"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488584"><span class="hs-identifier hs-var">scale</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scale&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -237,15 +192,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scale&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679542230"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542230"><span class="hs-identifier hs-var">time_offset</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679488583"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488583"><span class="hs-identifier hs-var">time_offset</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;time_offset&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -253,15 +208,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;time_offset&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-59"></span><span>    </span><span id="local-6989586621679542229"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542229"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679488582"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488582"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_call_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -269,11 +224,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679542236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679488589"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-60"></span><span>    </span><span class="annot"><span class="annottext">GetGroupCallStreamSegment -&gt; Parser GetGroupCallStreamSegment
+</span><span id="line-51"></span><span>    </span><span class="annot"><span class="annottext">GetGroupCallStreamSegment -&gt; Parser GetGroupCallStreamSegment
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetGroupCallStreamSegment -&gt; Parser GetGroupCallStreamSegment)
 -&gt; GetGroupCallStreamSegment -&gt; Parser GetGroupCallStreamSegment
@@ -286,17 +241,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; GetGroupCallStreamSegment
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#GetGroupCallStreamSegment"><span class="hs-identifier hs-type">GetGroupCallStreamSegment</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">video_quality :: Maybe GroupCallVideoQuality
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#video_quality"><span class="hs-identifier hs-var">video_quality</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe GroupCallVideoQuality
-</span><a href="#local-6989586621679542235"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_id :: Maybe Int
+</span><a href="#local-6989586621679488588"><span class="hs-identifier hs-var">video_quality</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_id :: Maybe Int
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#channel_id"><span class="hs-identifier hs-var">channel_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542233"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scale :: Maybe Int
+</span><a href="#local-6989586621679488586"><span class="hs-identifier hs-var">channel_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scale :: Maybe Int
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#scale"><span class="hs-identifier hs-var">scale</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542231"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">time_offset :: Maybe Int
+</span><a href="#local-6989586621679488584"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">time_offset :: Maybe Int
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#time_offset"><span class="hs-identifier hs-var">time_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542230"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: Maybe Int
+</span><a href="#local-6989586621679488583"><span class="hs-identifier hs-var">time_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: Maybe Int
 </span><a href="API.Functions.GetGroupCallStreamSegment.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679542229"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-61"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679488582"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-52"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GetGroupCallStreamSegment
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-62"></span></pre></body></html>
+</span><span id="line-53"></span></pre></body></html>

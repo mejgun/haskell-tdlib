@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -43,34 +43,25 @@ data TopChatCategory =
 
 instance Show TopChatCategory where
  show TopChatCategoryUsers {  } =
-  "TopChatCategoryUsers" ++ cc [ ]
+  "TopChatCategoryUsers" ++ U.cc [ ]
 
  show TopChatCategoryBots {  } =
-  "TopChatCategoryBots" ++ cc [ ]
+  "TopChatCategoryBots" ++ U.cc [ ]
 
  show TopChatCategoryGroups {  } =
-  "TopChatCategoryGroups" ++ cc [ ]
+  "TopChatCategoryGroups" ++ U.cc [ ]
 
  show TopChatCategoryChannels {  } =
-  "TopChatCategoryChannels" ++ cc [ ]
+  "TopChatCategoryChannels" ++ U.cc [ ]
 
  show TopChatCategoryInlineBots {  } =
-  "TopChatCategoryInlineBots" ++ cc [ ]
+  "TopChatCategoryInlineBots" ++ U.cc [ ]
 
  show TopChatCategoryCalls {  } =
-  "TopChatCategoryCalls" ++ cc [ ]
+  "TopChatCategoryCalls" ++ U.cc [ ]
 
  show TopChatCategoryForwardChats {  } =
-  "TopChatCategoryForwardChats" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TopChatCategoryForwardChats" ++ U.cc [ ]
 
 instance T.ToJSON TopChatCategory where
  toJSON TopChatCategoryUsers {  } =

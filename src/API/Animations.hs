@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Animation as Animation
 
 -- |
@@ -20,16 +20,7 @@ data Animations =
 
 instance Show Animations where
  show Animations { animations=animations } =
-  "Animations" ++ cc [p "animations" animations ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Animations" ++ U.cc [U.p "animations" animations ]
 
 instance T.ToJSON Animations where
  toJSON Animations { animations = animations } =

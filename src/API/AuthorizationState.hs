@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.AuthenticationCodeInfo as AuthenticationCodeInfo
 import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 
@@ -77,46 +77,37 @@ data AuthorizationState =
 
 instance Show AuthorizationState where
  show AuthorizationStateWaitTdlibParameters {  } =
-  "AuthorizationStateWaitTdlibParameters" ++ cc [ ]
+  "AuthorizationStateWaitTdlibParameters" ++ U.cc [ ]
 
  show AuthorizationStateWaitEncryptionKey { is_encrypted=is_encrypted } =
-  "AuthorizationStateWaitEncryptionKey" ++ cc [p "is_encrypted" is_encrypted ]
+  "AuthorizationStateWaitEncryptionKey" ++ U.cc [U.p "is_encrypted" is_encrypted ]
 
  show AuthorizationStateWaitPhoneNumber {  } =
-  "AuthorizationStateWaitPhoneNumber" ++ cc [ ]
+  "AuthorizationStateWaitPhoneNumber" ++ U.cc [ ]
 
  show AuthorizationStateWaitCode { code_info=code_info } =
-  "AuthorizationStateWaitCode" ++ cc [p "code_info" code_info ]
+  "AuthorizationStateWaitCode" ++ U.cc [U.p "code_info" code_info ]
 
  show AuthorizationStateWaitOtherDeviceConfirmation { link=link } =
-  "AuthorizationStateWaitOtherDeviceConfirmation" ++ cc [p "link" link ]
+  "AuthorizationStateWaitOtherDeviceConfirmation" ++ U.cc [U.p "link" link ]
 
  show AuthorizationStateWaitRegistration { terms_of_service=terms_of_service } =
-  "AuthorizationStateWaitRegistration" ++ cc [p "terms_of_service" terms_of_service ]
+  "AuthorizationStateWaitRegistration" ++ U.cc [U.p "terms_of_service" terms_of_service ]
 
  show AuthorizationStateWaitPassword { recovery_email_address_pattern=recovery_email_address_pattern, has_recovery_email_address=has_recovery_email_address, password_hint=password_hint } =
-  "AuthorizationStateWaitPassword" ++ cc [p "recovery_email_address_pattern" recovery_email_address_pattern, p "has_recovery_email_address" has_recovery_email_address, p "password_hint" password_hint ]
+  "AuthorizationStateWaitPassword" ++ U.cc [U.p "recovery_email_address_pattern" recovery_email_address_pattern, U.p "has_recovery_email_address" has_recovery_email_address, U.p "password_hint" password_hint ]
 
  show AuthorizationStateReady {  } =
-  "AuthorizationStateReady" ++ cc [ ]
+  "AuthorizationStateReady" ++ U.cc [ ]
 
  show AuthorizationStateLoggingOut {  } =
-  "AuthorizationStateLoggingOut" ++ cc [ ]
+  "AuthorizationStateLoggingOut" ++ U.cc [ ]
 
  show AuthorizationStateClosing {  } =
-  "AuthorizationStateClosing" ++ cc [ ]
+  "AuthorizationStateClosing" ++ U.cc [ ]
 
  show AuthorizationStateClosed {  } =
-  "AuthorizationStateClosed" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AuthorizationStateClosed" ++ U.cc [ ]
 
 instance T.ToJSON AuthorizationState where
  toJSON AuthorizationStateWaitTdlibParameters {  } =

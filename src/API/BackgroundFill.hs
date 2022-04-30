@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -37,22 +37,13 @@ data BackgroundFill =
 
 instance Show BackgroundFill where
  show BackgroundFillSolid { color=color } =
-  "BackgroundFillSolid" ++ cc [p "color" color ]
+  "BackgroundFillSolid" ++ U.cc [U.p "color" color ]
 
  show BackgroundFillGradient { rotation_angle=rotation_angle, bottom_color=bottom_color, top_color=top_color } =
-  "BackgroundFillGradient" ++ cc [p "rotation_angle" rotation_angle, p "bottom_color" bottom_color, p "top_color" top_color ]
+  "BackgroundFillGradient" ++ U.cc [U.p "rotation_angle" rotation_angle, U.p "bottom_color" bottom_color, U.p "top_color" top_color ]
 
  show BackgroundFillFreeformGradient { colors=colors } =
-  "BackgroundFillFreeformGradient" ++ cc [p "colors" colors ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BackgroundFillFreeformGradient" ++ U.cc [U.p "colors" colors ]
 
 instance T.ToJSON BackgroundFill where
  toJSON BackgroundFillSolid { color = color } =

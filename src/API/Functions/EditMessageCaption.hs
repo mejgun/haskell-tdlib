@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
@@ -27,16 +27,7 @@ data EditMessageCaption =
 
 instance Show EditMessageCaption where
  show EditMessageCaption { caption=caption, reply_markup=reply_markup, message_id=message_id, chat_id=chat_id } =
-  "EditMessageCaption" ++ cc [p "caption" caption, p "reply_markup" reply_markup, p "message_id" message_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "EditMessageCaption" ++ U.cc [U.p "caption" caption, U.p "reply_markup" reply_markup, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON EditMessageCaption where
  toJSON EditMessageCaption { caption = caption, reply_markup = reply_markup, message_id = message_id, chat_id = chat_id } =

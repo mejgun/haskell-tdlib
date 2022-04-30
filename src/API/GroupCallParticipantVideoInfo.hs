@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.GroupCallVideoSourceGroup as GroupCallVideoSourceGroup
 
 -- |
@@ -24,16 +24,7 @@ data GroupCallParticipantVideoInfo =
 
 instance Show GroupCallParticipantVideoInfo where
  show GroupCallParticipantVideoInfo { is_paused=is_paused, endpoint_id=endpoint_id, source_groups=source_groups } =
-  "GroupCallParticipantVideoInfo" ++ cc [p "is_paused" is_paused, p "endpoint_id" endpoint_id, p "source_groups" source_groups ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GroupCallParticipantVideoInfo" ++ U.cc [U.p "is_paused" is_paused, U.p "endpoint_id" endpoint_id, U.p "source_groups" source_groups ]
 
 instance T.ToJSON GroupCallParticipantVideoInfo where
  toJSON GroupCallParticipantVideoInfo { is_paused = is_paused, endpoint_id = endpoint_id, source_groups = source_groups } =

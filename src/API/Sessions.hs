@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Session as Session
 
 -- |
@@ -22,16 +22,7 @@ data Sessions =
 
 instance Show Sessions where
  show Sessions { inactive_session_ttl_days=inactive_session_ttl_days, sessions=sessions } =
-  "Sessions" ++ cc [p "inactive_session_ttl_days" inactive_session_ttl_days, p "sessions" sessions ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Sessions" ++ U.cc [U.p "inactive_session_ttl_days" inactive_session_ttl_days, U.p "sessions" sessions ]
 
 instance T.ToJSON Sessions where
  toJSON Sessions { inactive_session_ttl_days = inactive_session_ttl_days, sessions = sessions } =

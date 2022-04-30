@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ReportSupergroupSpam =
 
 instance Show ReportSupergroupSpam where
  show ReportSupergroupSpam { message_ids=message_ids, supergroup_id=supergroup_id } =
-  "ReportSupergroupSpam" ++ cc [p "message_ids" message_ids, p "supergroup_id" supergroup_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ReportSupergroupSpam" ++ U.cc [U.p "message_ids" message_ids, U.p "supergroup_id" supergroup_id ]
 
 instance T.ToJSON ReportSupergroupSpam where
  toJSON ReportSupergroupSpam { message_ids = message_ids, supergroup_id = supergroup_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -33,16 +33,7 @@ data LocalFile =
 
 instance Show LocalFile where
  show LocalFile { downloaded_size=downloaded_size, downloaded_prefix_size=downloaded_prefix_size, download_offset=download_offset, is_downloading_completed=is_downloading_completed, is_downloading_active=is_downloading_active, can_be_deleted=can_be_deleted, can_be_downloaded=can_be_downloaded, path=path } =
-  "LocalFile" ++ cc [p "downloaded_size" downloaded_size, p "downloaded_prefix_size" downloaded_prefix_size, p "download_offset" download_offset, p "is_downloading_completed" is_downloading_completed, p "is_downloading_active" is_downloading_active, p "can_be_deleted" can_be_deleted, p "can_be_downloaded" can_be_downloaded, p "path" path ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "LocalFile" ++ U.cc [U.p "downloaded_size" downloaded_size, U.p "downloaded_prefix_size" downloaded_prefix_size, U.p "download_offset" download_offset, U.p "is_downloading_completed" is_downloading_completed, U.p "is_downloading_active" is_downloading_active, U.p "can_be_deleted" can_be_deleted, U.p "can_be_downloaded" can_be_downloaded, U.p "path" path ]
 
 instance T.ToJSON LocalFile where
  toJSON LocalFile { downloaded_size = downloaded_size, downloaded_prefix_size = downloaded_prefix_size, download_offset = download_offset, is_downloading_completed = is_downloading_completed, is_downloading_active = is_downloading_active, can_be_deleted = can_be_deleted, can_be_downloaded = can_be_downloaded, path = path } =

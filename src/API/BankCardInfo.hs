@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BankCardActionOpenUrl as BankCardActionOpenUrl
 
 -- |
@@ -22,16 +22,7 @@ data BankCardInfo =
 
 instance Show BankCardInfo where
  show BankCardInfo { actions=actions, title=title } =
-  "BankCardInfo" ++ cc [p "actions" actions, p "title" title ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BankCardInfo" ++ U.cc [U.p "actions" actions, U.p "title" title ]
 
 instance T.ToJSON BankCardInfo where
  toJSON BankCardInfo { actions = actions, title = title } =

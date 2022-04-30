@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.StickerSetInfo as StickerSetInfo
 
 -- |
@@ -22,16 +22,7 @@ data StickerSets =
 
 instance Show StickerSets where
  show StickerSets { sets=sets, total_count=total_count } =
-  "StickerSets" ++ cc [p "sets" sets, p "total_count" total_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "StickerSets" ++ U.cc [U.p "sets" sets, U.p "total_count" total_count ]
 
 instance T.ToJSON StickerSets where
  toJSON StickerSets { sets = sets, total_count = total_count } =

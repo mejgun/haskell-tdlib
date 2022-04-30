@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
 -- |
@@ -22,16 +22,7 @@ data GetChatNotificationSettingsExceptions =
 
 instance Show GetChatNotificationSettingsExceptions where
  show GetChatNotificationSettingsExceptions { compare_sound=compare_sound, scope=scope } =
-  "GetChatNotificationSettingsExceptions" ++ cc [p "compare_sound" compare_sound, p "scope" scope ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetChatNotificationSettingsExceptions" ++ U.cc [U.p "compare_sound" compare_sound, U.p "scope" scope ]
 
 instance T.ToJSON GetChatNotificationSettingsExceptions where
  toJSON GetChatNotificationSettingsExceptions { compare_sound = compare_sound, scope = scope } =

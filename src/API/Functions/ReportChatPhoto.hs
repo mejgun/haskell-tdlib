@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatReportReason as ChatReportReason
 
 -- |
@@ -26,16 +26,7 @@ data ReportChatPhoto =
 
 instance Show ReportChatPhoto where
  show ReportChatPhoto { text=text, reason=reason, file_id=file_id, chat_id=chat_id } =
-  "ReportChatPhoto" ++ cc [p "text" text, p "reason" reason, p "file_id" file_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ReportChatPhoto" ++ U.cc [U.p "text" text, U.p "reason" reason, U.p "file_id" file_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ReportChatPhoto where
  toJSON ReportChatPhoto { text = text, reason = reason, file_id = file_id, chat_id = chat_id } =

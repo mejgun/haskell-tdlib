@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.LogStream as LogStream
 
 -- |
@@ -20,16 +20,7 @@ data SetLogStream =
 
 instance Show SetLogStream where
  show SetLogStream { log_stream=log_stream } =
-  "SetLogStream" ++ cc [p "log_stream" log_stream ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetLogStream" ++ U.cc [U.p "log_stream" log_stream ]
 
 instance T.ToJSON SetLogStream where
  toJSON SetLogStream { log_stream = log_stream } =

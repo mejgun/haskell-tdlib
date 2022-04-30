@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.AddedReaction as AddedReaction
 
 -- |
@@ -24,16 +24,7 @@ data AddedReactions =
 
 instance Show AddedReactions where
  show AddedReactions { next_offset=next_offset, reactions=reactions, total_count=total_count } =
-  "AddedReactions" ++ cc [p "next_offset" next_offset, p "reactions" reactions, p "total_count" total_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AddedReactions" ++ U.cc [U.p "next_offset" next_offset, U.p "reactions" reactions, U.p "total_count" total_count ]
 
 instance T.ToJSON AddedReactions where
  toJSON AddedReactions { next_offset = next_offset, reactions = reactions, total_count = total_count } =

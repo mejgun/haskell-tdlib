@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.CallServerType as CallServerType
 
 -- |
@@ -28,16 +28,7 @@ data CallServer =
 
 instance Show CallServer where
  show CallServer { _type=_type, port=port, ipv6_address=ipv6_address, ip_address=ip_address, _id=_id } =
-  "CallServer" ++ cc [p "_type" _type, p "port" port, p "ipv6_address" ipv6_address, p "ip_address" ip_address, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CallServer" ++ U.cc [U.p "_type" _type, U.p "port" port, U.p "ipv6_address" ipv6_address, U.p "ip_address" ip_address, U.p "_id" _id ]
 
 instance T.ToJSON CallServer where
  toJSON CallServer { _type = _type, port = port, ipv6_address = ipv6_address, ip_address = ip_address, _id = _id } =

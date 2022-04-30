@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data SearchHashtags =
 
 instance Show SearchHashtags where
  show SearchHashtags { limit=limit, prefix=prefix } =
-  "SearchHashtags" ++ cc [p "limit" limit, p "prefix" prefix ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SearchHashtags" ++ U.cc [U.p "limit" limit, U.p "prefix" prefix ]
 
 instance T.ToJSON SearchHashtags where
  toJSON SearchHashtags { limit = limit, prefix = prefix } =

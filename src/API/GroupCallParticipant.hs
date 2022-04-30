@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.GroupCallParticipantVideoInfo as GroupCallParticipantVideoInfo
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
@@ -55,16 +55,7 @@ data GroupCallParticipant =
 
 instance Show GroupCallParticipant where
  show GroupCallParticipant { order=order, volume_level=volume_level, can_unmute_self=can_unmute_self, is_muted_for_current_user=is_muted_for_current_user, is_muted_for_all_users=is_muted_for_all_users, can_be_unmuted_for_current_user=can_be_unmuted_for_current_user, can_be_muted_for_current_user=can_be_muted_for_current_user, can_be_unmuted_for_all_users=can_be_unmuted_for_all_users, can_be_muted_for_all_users=can_be_muted_for_all_users, is_hand_raised=is_hand_raised, is_speaking=is_speaking, is_current_user=is_current_user, bio=bio, screen_sharing_video_info=screen_sharing_video_info, video_info=video_info, screen_sharing_audio_source_id=screen_sharing_audio_source_id, audio_source_id=audio_source_id, participant_id=participant_id } =
-  "GroupCallParticipant" ++ cc [p "order" order, p "volume_level" volume_level, p "can_unmute_self" can_unmute_self, p "is_muted_for_current_user" is_muted_for_current_user, p "is_muted_for_all_users" is_muted_for_all_users, p "can_be_unmuted_for_current_user" can_be_unmuted_for_current_user, p "can_be_muted_for_current_user" can_be_muted_for_current_user, p "can_be_unmuted_for_all_users" can_be_unmuted_for_all_users, p "can_be_muted_for_all_users" can_be_muted_for_all_users, p "is_hand_raised" is_hand_raised, p "is_speaking" is_speaking, p "is_current_user" is_current_user, p "bio" bio, p "screen_sharing_video_info" screen_sharing_video_info, p "video_info" video_info, p "screen_sharing_audio_source_id" screen_sharing_audio_source_id, p "audio_source_id" audio_source_id, p "participant_id" participant_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GroupCallParticipant" ++ U.cc [U.p "order" order, U.p "volume_level" volume_level, U.p "can_unmute_self" can_unmute_self, U.p "is_muted_for_current_user" is_muted_for_current_user, U.p "is_muted_for_all_users" is_muted_for_all_users, U.p "can_be_unmuted_for_current_user" can_be_unmuted_for_current_user, U.p "can_be_muted_for_current_user" can_be_muted_for_current_user, U.p "can_be_unmuted_for_all_users" can_be_unmuted_for_all_users, U.p "can_be_muted_for_all_users" can_be_muted_for_all_users, U.p "is_hand_raised" is_hand_raised, U.p "is_speaking" is_speaking, U.p "is_current_user" is_current_user, U.p "bio" bio, U.p "screen_sharing_video_info" screen_sharing_video_info, U.p "video_info" video_info, U.p "screen_sharing_audio_source_id" screen_sharing_audio_source_id, U.p "audio_source_id" audio_source_id, U.p "participant_id" participant_id ]
 
 instance T.ToJSON GroupCallParticipant where
  toJSON GroupCallParticipant { order = order, volume_level = volume_level, can_unmute_self = can_unmute_self, is_muted_for_current_user = is_muted_for_current_user, is_muted_for_all_users = is_muted_for_all_users, can_be_unmuted_for_current_user = can_be_unmuted_for_current_user, can_be_muted_for_current_user = can_be_muted_for_current_user, can_be_unmuted_for_all_users = can_be_unmuted_for_all_users, can_be_muted_for_all_users = can_be_muted_for_all_users, is_hand_raised = is_hand_raised, is_speaking = is_speaking, is_current_user = is_current_user, bio = bio, screen_sharing_video_info = screen_sharing_video_info, video_info = video_info, screen_sharing_audio_source_id = screen_sharing_audio_source_id, audio_source_id = audio_source_id, participant_id = participant_id } =

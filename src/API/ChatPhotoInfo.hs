@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 import {-# SOURCE #-} qualified API.File as File
 
@@ -27,16 +27,7 @@ data ChatPhotoInfo =
 
 instance Show ChatPhotoInfo where
  show ChatPhotoInfo { has_animation=has_animation, minithumbnail=minithumbnail, big=big, small=small } =
-  "ChatPhotoInfo" ++ cc [p "has_animation" has_animation, p "minithumbnail" minithumbnail, p "big" big, p "small" small ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatPhotoInfo" ++ U.cc [U.p "has_animation" has_animation, U.p "minithumbnail" minithumbnail, U.p "big" big, U.p "small" small ]
 
 instance T.ToJSON ChatPhotoInfo where
  toJSON ChatPhotoInfo { has_animation = has_animation, minithumbnail = minithumbnail, big = big, small = small } =

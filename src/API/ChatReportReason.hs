@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -55,43 +55,34 @@ data ChatReportReason =
 
 instance Show ChatReportReason where
  show ChatReportReasonSpam {  } =
-  "ChatReportReasonSpam" ++ cc [ ]
+  "ChatReportReasonSpam" ++ U.cc [ ]
 
  show ChatReportReasonViolence {  } =
-  "ChatReportReasonViolence" ++ cc [ ]
+  "ChatReportReasonViolence" ++ U.cc [ ]
 
  show ChatReportReasonPornography {  } =
-  "ChatReportReasonPornography" ++ cc [ ]
+  "ChatReportReasonPornography" ++ U.cc [ ]
 
  show ChatReportReasonChildAbuse {  } =
-  "ChatReportReasonChildAbuse" ++ cc [ ]
+  "ChatReportReasonChildAbuse" ++ U.cc [ ]
 
  show ChatReportReasonCopyright {  } =
-  "ChatReportReasonCopyright" ++ cc [ ]
+  "ChatReportReasonCopyright" ++ U.cc [ ]
 
  show ChatReportReasonUnrelatedLocation {  } =
-  "ChatReportReasonUnrelatedLocation" ++ cc [ ]
+  "ChatReportReasonUnrelatedLocation" ++ U.cc [ ]
 
  show ChatReportReasonFake {  } =
-  "ChatReportReasonFake" ++ cc [ ]
+  "ChatReportReasonFake" ++ U.cc [ ]
 
  show ChatReportReasonIllegalDrugs {  } =
-  "ChatReportReasonIllegalDrugs" ++ cc [ ]
+  "ChatReportReasonIllegalDrugs" ++ U.cc [ ]
 
  show ChatReportReasonPersonalDetails {  } =
-  "ChatReportReasonPersonalDetails" ++ cc [ ]
+  "ChatReportReasonPersonalDetails" ++ U.cc [ ]
 
  show ChatReportReasonCustom {  } =
-  "ChatReportReasonCustom" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatReportReasonCustom" ++ U.cc [ ]
 
 instance T.ToJSON ChatReportReason where
  toJSON ChatReportReasonSpam {  } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data WriteGeneratedFilePart =
 
 instance Show WriteGeneratedFilePart where
  show WriteGeneratedFilePart { _data=_data, offset=offset, generation_id=generation_id } =
-  "WriteGeneratedFilePart" ++ cc [p "_data" _data, p "offset" offset, p "generation_id" generation_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "WriteGeneratedFilePart" ++ U.cc [U.p "_data" _data, U.p "offset" offset, U.p "generation_id" generation_id ]
 
 instance T.ToJSON WriteGeneratedFilePart where
  toJSON WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id } =

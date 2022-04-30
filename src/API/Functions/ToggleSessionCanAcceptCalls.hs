@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleSessionCanAcceptCalls =
 
 instance Show ToggleSessionCanAcceptCalls where
  show ToggleSessionCanAcceptCalls { can_accept_calls=can_accept_calls, session_id=session_id } =
-  "ToggleSessionCanAcceptCalls" ++ cc [p "can_accept_calls" can_accept_calls, p "session_id" session_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleSessionCanAcceptCalls" ++ U.cc [U.p "can_accept_calls" can_accept_calls, U.p "session_id" session_id ]
 
 instance T.ToJSON ToggleSessionCanAcceptCalls where
  toJSON ToggleSessionCanAcceptCalls { can_accept_calls = can_accept_calls, session_id = session_id } =

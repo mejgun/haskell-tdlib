@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -45,16 +45,7 @@ data ChatFilter =
 
 instance Show ChatFilter where
  show ChatFilter { include_channels=include_channels, include_groups=include_groups, include_bots=include_bots, include_non_contacts=include_non_contacts, include_contacts=include_contacts, exclude_archived=exclude_archived, exclude_read=exclude_read, exclude_muted=exclude_muted, excluded_chat_ids=excluded_chat_ids, included_chat_ids=included_chat_ids, pinned_chat_ids=pinned_chat_ids, icon_name=icon_name, title=title } =
-  "ChatFilter" ++ cc [p "include_channels" include_channels, p "include_groups" include_groups, p "include_bots" include_bots, p "include_non_contacts" include_non_contacts, p "include_contacts" include_contacts, p "exclude_archived" exclude_archived, p "exclude_read" exclude_read, p "exclude_muted" exclude_muted, p "excluded_chat_ids" excluded_chat_ids, p "included_chat_ids" included_chat_ids, p "pinned_chat_ids" pinned_chat_ids, p "icon_name" icon_name, p "title" title ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatFilter" ++ U.cc [U.p "include_channels" include_channels, U.p "include_groups" include_groups, U.p "include_bots" include_bots, U.p "include_non_contacts" include_non_contacts, U.p "include_contacts" include_contacts, U.p "exclude_archived" exclude_archived, U.p "exclude_read" exclude_read, U.p "exclude_muted" exclude_muted, U.p "excluded_chat_ids" excluded_chat_ids, U.p "included_chat_ids" included_chat_ids, U.p "pinned_chat_ids" pinned_chat_ids, U.p "icon_name" icon_name, U.p "title" title ]
 
 instance T.ToJSON ChatFilter where
  toJSON ChatFilter { include_channels = include_channels, include_groups = include_groups, include_bots = include_bots, include_non_contacts = include_non_contacts, include_contacts = include_contacts, exclude_archived = exclude_archived, exclude_read = exclude_read, exclude_muted = exclude_muted, excluded_chat_ids = excluded_chat_ids, included_chat_ids = included_chat_ids, pinned_chat_ids = pinned_chat_ids, icon_name = icon_name, title = title } =

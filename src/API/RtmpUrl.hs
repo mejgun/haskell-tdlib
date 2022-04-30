@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data RtmpUrl =
 
 instance Show RtmpUrl where
  show RtmpUrl { stream_key=stream_key, url=url } =
-  "RtmpUrl" ++ cc [p "stream_key" stream_key, p "url" url ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RtmpUrl" ++ U.cc [U.p "stream_key" stream_key, U.p "url" url ]
 
 instance T.ToJSON RtmpUrl where
  toJSON RtmpUrl { stream_key = stream_key, url = url } =

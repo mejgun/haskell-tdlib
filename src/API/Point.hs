@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data Point =
 
 instance Show Point where
  show Point { y=y, x=x } =
-  "Point" ++ cc [p "y" y, p "x" x ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Point" ++ U.cc [U.p "y" y, U.p "x" x ]
 
 instance T.ToJSON Point where
  toJSON Point { y = y, x = x } =

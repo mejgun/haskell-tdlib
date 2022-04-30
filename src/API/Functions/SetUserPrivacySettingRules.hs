@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.UserPrivacySettingRules as UserPrivacySettingRules
 import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 
@@ -23,16 +23,7 @@ data SetUserPrivacySettingRules =
 
 instance Show SetUserPrivacySettingRules where
  show SetUserPrivacySettingRules { rules=rules, setting=setting } =
-  "SetUserPrivacySettingRules" ++ cc [p "rules" rules, p "setting" setting ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetUserPrivacySettingRules" ++ U.cc [U.p "rules" rules, U.p "setting" setting ]
 
 instance T.ToJSON SetUserPrivacySettingRules where
  toJSON SetUserPrivacySettingRules { rules = rules, setting = setting } =

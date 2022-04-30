@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -29,16 +29,7 @@ data EditChatInviteLink =
 
 instance Show EditChatInviteLink where
  show EditChatInviteLink { creates_join_request=creates_join_request, member_limit=member_limit, expiration_date=expiration_date, name=name, invite_link=invite_link, chat_id=chat_id } =
-  "EditChatInviteLink" ++ cc [p "creates_join_request" creates_join_request, p "member_limit" member_limit, p "expiration_date" expiration_date, p "name" name, p "invite_link" invite_link, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "EditChatInviteLink" ++ U.cc [U.p "creates_join_request" creates_join_request, U.p "member_limit" member_limit, U.p "expiration_date" expiration_date, U.p "name" name, U.p "invite_link" invite_link, U.p "chat_id" chat_id ]
 
 instance T.ToJSON EditChatInviteLink where
  toJSON EditChatInviteLink { creates_join_request = creates_join_request, member_limit = member_limit, expiration_date = expiration_date, name = name, invite_link = invite_link, chat_id = chat_id } =

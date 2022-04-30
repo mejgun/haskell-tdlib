@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -29,16 +29,7 @@ data Address =
 
 instance Show Address where
  show Address { postal_code=postal_code, street_line2=street_line2, street_line1=street_line1, city=city, state=state, country_code=country_code } =
-  "Address" ++ cc [p "postal_code" postal_code, p "street_line2" street_line2, p "street_line1" street_line1, p "city" city, p "state" state, p "country_code" country_code ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Address" ++ U.cc [U.p "postal_code" postal_code, U.p "street_line2" street_line2, U.p "street_line1" street_line1, U.p "city" city, U.p "state" state, U.p "country_code" country_code ]
 
 instance T.ToJSON Address where
  toJSON Address { postal_code = postal_code, street_line2 = street_line2, street_line1 = street_line1, city = city, state = state, country_code = country_code } =

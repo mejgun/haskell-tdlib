@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data RecoveryEmailAddress =
 
 instance Show RecoveryEmailAddress where
  show RecoveryEmailAddress { recovery_email_address=recovery_email_address } =
-  "RecoveryEmailAddress" ++ cc [p "recovery_email_address" recovery_email_address ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RecoveryEmailAddress" ++ U.cc [U.p "recovery_email_address" recovery_email_address ]
 
 instance T.ToJSON RecoveryEmailAddress where
  toJSON RecoveryEmailAddress { recovery_email_address = recovery_email_address } =

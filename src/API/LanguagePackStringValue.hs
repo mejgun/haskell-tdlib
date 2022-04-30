@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -41,22 +41,13 @@ data LanguagePackStringValue =
 
 instance Show LanguagePackStringValue where
  show LanguagePackStringValueOrdinary { value=value } =
-  "LanguagePackStringValueOrdinary" ++ cc [p "value" value ]
+  "LanguagePackStringValueOrdinary" ++ U.cc [U.p "value" value ]
 
  show LanguagePackStringValuePluralized { other_value=other_value, many_value=many_value, few_value=few_value, two_value=two_value, one_value=one_value, zero_value=zero_value } =
-  "LanguagePackStringValuePluralized" ++ cc [p "other_value" other_value, p "many_value" many_value, p "few_value" few_value, p "two_value" two_value, p "one_value" one_value, p "zero_value" zero_value ]
+  "LanguagePackStringValuePluralized" ++ U.cc [U.p "other_value" other_value, U.p "many_value" many_value, U.p "few_value" few_value, U.p "two_value" two_value, U.p "one_value" one_value, U.p "zero_value" zero_value ]
 
  show LanguagePackStringValueDeleted {  } =
-  "LanguagePackStringValueDeleted" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "LanguagePackStringValueDeleted" ++ U.cc [ ]
 
 instance T.ToJSON LanguagePackStringValue where
  toJSON LanguagePackStringValueOrdinary { value = value } =

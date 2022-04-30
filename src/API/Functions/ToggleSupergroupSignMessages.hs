@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleSupergroupSignMessages =
 
 instance Show ToggleSupergroupSignMessages where
  show ToggleSupergroupSignMessages { sign_messages=sign_messages, supergroup_id=supergroup_id } =
-  "ToggleSupergroupSignMessages" ++ cc [p "sign_messages" sign_messages, p "supergroup_id" supergroup_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleSupergroupSignMessages" ++ U.cc [U.p "sign_messages" sign_messages, U.p "supergroup_id" supergroup_id ]
 
 instance T.ToJSON ToggleSupergroupSignMessages where
  toJSON ToggleSupergroupSignMessages { sign_messages = sign_messages, supergroup_id = supergroup_id } =

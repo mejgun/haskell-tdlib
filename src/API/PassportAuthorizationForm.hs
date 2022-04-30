@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredElement
 
 -- |
@@ -24,16 +24,7 @@ data PassportAuthorizationForm =
 
 instance Show PassportAuthorizationForm where
  show PassportAuthorizationForm { privacy_policy_url=privacy_policy_url, required_elements=required_elements, _id=_id } =
-  "PassportAuthorizationForm" ++ cc [p "privacy_policy_url" privacy_policy_url, p "required_elements" required_elements, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PassportAuthorizationForm" ++ U.cc [U.p "privacy_policy_url" privacy_policy_url, U.p "required_elements" required_elements, U.p "_id" _id ]
 
 instance T.ToJSON PassportAuthorizationForm where
  toJSON PassportAuthorizationForm { privacy_policy_url = privacy_policy_url, required_elements = required_elements, _id = _id } =

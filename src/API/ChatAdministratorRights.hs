@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -39,16 +39,7 @@ data ChatAdministratorRights =
 
 instance Show ChatAdministratorRights where
  show ChatAdministratorRights { is_anonymous=is_anonymous, can_manage_video_chats=can_manage_video_chats, can_promote_members=can_promote_members, can_pin_messages=can_pin_messages, can_restrict_members=can_restrict_members, can_invite_users=can_invite_users, can_delete_messages=can_delete_messages, can_edit_messages=can_edit_messages, can_post_messages=can_post_messages, can_change_info=can_change_info, can_manage_chat=can_manage_chat } =
-  "ChatAdministratorRights" ++ cc [p "is_anonymous" is_anonymous, p "can_manage_video_chats" can_manage_video_chats, p "can_promote_members" can_promote_members, p "can_pin_messages" can_pin_messages, p "can_restrict_members" can_restrict_members, p "can_invite_users" can_invite_users, p "can_delete_messages" can_delete_messages, p "can_edit_messages" can_edit_messages, p "can_post_messages" can_post_messages, p "can_change_info" can_change_info, p "can_manage_chat" can_manage_chat ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatAdministratorRights" ++ U.cc [U.p "is_anonymous" is_anonymous, U.p "can_manage_video_chats" can_manage_video_chats, U.p "can_promote_members" can_promote_members, U.p "can_pin_messages" can_pin_messages, U.p "can_restrict_members" can_restrict_members, U.p "can_invite_users" can_invite_users, U.p "can_delete_messages" can_delete_messages, U.p "can_edit_messages" can_edit_messages, U.p "can_post_messages" can_post_messages, U.p "can_change_info" can_change_info, U.p "can_manage_chat" can_manage_chat ]
 
 instance T.ToJSON ChatAdministratorRights where
  toJSON ChatAdministratorRights { is_anonymous = is_anonymous, can_manage_video_chats = can_manage_video_chats, can_promote_members = can_promote_members, can_pin_messages = can_pin_messages, can_restrict_members = can_restrict_members, can_invite_users = can_invite_users, can_delete_messages = can_delete_messages, can_edit_messages = can_edit_messages, can_post_messages = can_post_messages, can_change_info = can_change_info, can_manage_chat = can_manage_chat } =

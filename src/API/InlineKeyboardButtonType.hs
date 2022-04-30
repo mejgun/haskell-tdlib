@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -71,40 +71,31 @@ data InlineKeyboardButtonType =
 
 instance Show InlineKeyboardButtonType where
  show InlineKeyboardButtonTypeUrl { url=url } =
-  "InlineKeyboardButtonTypeUrl" ++ cc [p "url" url ]
+  "InlineKeyboardButtonTypeUrl" ++ U.cc [U.p "url" url ]
 
  show InlineKeyboardButtonTypeLoginUrl { forward_text=forward_text, _id=_id, url=url } =
-  "InlineKeyboardButtonTypeLoginUrl" ++ cc [p "forward_text" forward_text, p "_id" _id, p "url" url ]
+  "InlineKeyboardButtonTypeLoginUrl" ++ U.cc [U.p "forward_text" forward_text, U.p "_id" _id, U.p "url" url ]
 
  show InlineKeyboardButtonTypeWebApp { url=url } =
-  "InlineKeyboardButtonTypeWebApp" ++ cc [p "url" url ]
+  "InlineKeyboardButtonTypeWebApp" ++ U.cc [U.p "url" url ]
 
  show InlineKeyboardButtonTypeCallback { _data=_data } =
-  "InlineKeyboardButtonTypeCallback" ++ cc [p "_data" _data ]
+  "InlineKeyboardButtonTypeCallback" ++ U.cc [U.p "_data" _data ]
 
  show InlineKeyboardButtonTypeCallbackWithPassword { _data=_data } =
-  "InlineKeyboardButtonTypeCallbackWithPassword" ++ cc [p "_data" _data ]
+  "InlineKeyboardButtonTypeCallbackWithPassword" ++ U.cc [U.p "_data" _data ]
 
  show InlineKeyboardButtonTypeCallbackGame {  } =
-  "InlineKeyboardButtonTypeCallbackGame" ++ cc [ ]
+  "InlineKeyboardButtonTypeCallbackGame" ++ U.cc [ ]
 
  show InlineKeyboardButtonTypeSwitchInline { in_current_chat=in_current_chat, query=query } =
-  "InlineKeyboardButtonTypeSwitchInline" ++ cc [p "in_current_chat" in_current_chat, p "query" query ]
+  "InlineKeyboardButtonTypeSwitchInline" ++ U.cc [U.p "in_current_chat" in_current_chat, U.p "query" query ]
 
  show InlineKeyboardButtonTypeBuy {  } =
-  "InlineKeyboardButtonTypeBuy" ++ cc [ ]
+  "InlineKeyboardButtonTypeBuy" ++ U.cc [ ]
 
  show InlineKeyboardButtonTypeUser { user_id=user_id } =
-  "InlineKeyboardButtonTypeUser" ++ cc [p "user_id" user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InlineKeyboardButtonTypeUser" ++ U.cc [U.p "user_id" user_id ]
 
 instance T.ToJSON InlineKeyboardButtonType where
  toJSON InlineKeyboardButtonTypeUrl { url = url } =

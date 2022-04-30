@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ReorderInstalledStickerSets =
 
 instance Show ReorderInstalledStickerSets where
  show ReorderInstalledStickerSets { sticker_set_ids=sticker_set_ids, is_masks=is_masks } =
-  "ReorderInstalledStickerSets" ++ cc [p "sticker_set_ids" sticker_set_ids, p "is_masks" is_masks ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ReorderInstalledStickerSets" ++ U.cc [U.p "sticker_set_ids" sticker_set_ids, U.p "is_masks" is_masks ]
 
 instance T.ToJSON ReorderInstalledStickerSets where
  toJSON ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks } =

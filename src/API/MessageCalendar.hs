@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageCalendarDay as MessageCalendarDay
 
 -- |
@@ -22,16 +22,7 @@ data MessageCalendar =
 
 instance Show MessageCalendar where
  show MessageCalendar { days=days, total_count=total_count } =
-  "MessageCalendar" ++ cc [p "days" days, p "total_count" total_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageCalendar" ++ U.cc [U.p "days" days, U.p "total_count" total_count ]
 
 instance T.ToJSON MessageCalendar where
  toJSON MessageCalendar { days = days, total_count = total_count } =

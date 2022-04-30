@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 -- |
@@ -26,16 +26,7 @@ data PassportSuitableElement =
 
 instance Show PassportSuitableElement where
  show PassportSuitableElement { is_native_name_required=is_native_name_required, is_translation_required=is_translation_required, is_selfie_required=is_selfie_required, _type=_type } =
-  "PassportSuitableElement" ++ cc [p "is_native_name_required" is_native_name_required, p "is_translation_required" is_translation_required, p "is_selfie_required" is_selfie_required, p "_type" _type ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PassportSuitableElement" ++ U.cc [U.p "is_native_name_required" is_native_name_required, U.p "is_translation_required" is_translation_required, U.p "is_selfie_required" is_selfie_required, U.p "_type" _type ]
 
 instance T.ToJSON PassportSuitableElement where
  toJSON PassportSuitableElement { is_native_name_required = is_native_name_required, is_translation_required = is_translation_required, is_selfie_required = is_selfie_required, _type = _type } =

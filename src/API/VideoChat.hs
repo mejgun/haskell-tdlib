@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -24,16 +24,7 @@ data VideoChat =
 
 instance Show VideoChat where
  show VideoChat { default_participant_id=default_participant_id, has_participants=has_participants, group_call_id=group_call_id } =
-  "VideoChat" ++ cc [p "default_participant_id" default_participant_id, p "has_participants" has_participants, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "VideoChat" ++ U.cc [U.p "default_participant_id" default_participant_id, U.p "has_participants" has_participants, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON VideoChat where
  toJSON VideoChat { default_participant_id = default_participant_id, has_participants = has_participants, group_call_id = group_call_id } =

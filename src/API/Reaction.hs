@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 
 -- |
@@ -38,16 +38,7 @@ data Reaction =
 
 instance Show Reaction where
  show Reaction { center_animation=center_animation, around_animation=around_animation, effect_animation=effect_animation, activate_animation=activate_animation, select_animation=select_animation, appear_animation=appear_animation, static_icon=static_icon, is_active=is_active, title=title, reaction=reaction } =
-  "Reaction" ++ cc [p "center_animation" center_animation, p "around_animation" around_animation, p "effect_animation" effect_animation, p "activate_animation" activate_animation, p "select_animation" select_animation, p "appear_animation" appear_animation, p "static_icon" static_icon, p "is_active" is_active, p "title" title, p "reaction" reaction ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Reaction" ++ U.cc [U.p "center_animation" center_animation, U.p "around_animation" around_animation, U.p "effect_animation" effect_animation, U.p "activate_animation" activate_animation, U.p "select_animation" select_animation, U.p "appear_animation" appear_animation, U.p "static_icon" static_icon, U.p "is_active" is_active, U.p "title" title, U.p "reaction" reaction ]
 
 instance T.ToJSON Reaction where
  toJSON Reaction { center_animation = center_animation, around_animation = around_animation, effect_animation = effect_animation, activate_animation = activate_animation, select_animation = select_animation, appear_animation = appear_animation, static_icon = static_icon, is_active = is_active, title = title, reaction = reaction } =

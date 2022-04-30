@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.TextEntityType as TextEntityType
 
 -- |
@@ -24,16 +24,7 @@ data TextEntity =
 
 instance Show TextEntity where
  show TextEntity { _type=_type, _length=_length, offset=offset } =
-  "TextEntity" ++ cc [p "_type" _type, p "_length" _length, p "offset" offset ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TextEntity" ++ U.cc [U.p "_type" _type, U.p "_length" _length, U.p "offset" offset ]
 
 instance T.ToJSON TextEntity where
  toJSON TextEntity { _type = _type, _length = _length, offset = offset } =

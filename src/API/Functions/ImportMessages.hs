@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -24,16 +24,7 @@ data ImportMessages =
 
 instance Show ImportMessages where
  show ImportMessages { attached_files=attached_files, message_file=message_file, chat_id=chat_id } =
-  "ImportMessages" ++ cc [p "attached_files" attached_files, p "message_file" message_file, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ImportMessages" ++ U.cc [U.p "attached_files" attached_files, U.p "message_file" message_file, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ImportMessages where
  toJSON ImportMessages { attached_files = attached_files, message_file = message_file, chat_id = chat_id } =

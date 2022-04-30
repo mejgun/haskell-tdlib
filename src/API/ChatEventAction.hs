@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
@@ -270,118 +270,109 @@ data ChatEventAction =
 
 instance Show ChatEventAction where
  show ChatEventMessageEdited { new_message=new_message, old_message=old_message } =
-  "ChatEventMessageEdited" ++ cc [p "new_message" new_message, p "old_message" old_message ]
+  "ChatEventMessageEdited" ++ U.cc [U.p "new_message" new_message, U.p "old_message" old_message ]
 
  show ChatEventMessageDeleted { message=message } =
-  "ChatEventMessageDeleted" ++ cc [p "message" message ]
+  "ChatEventMessageDeleted" ++ U.cc [U.p "message" message ]
 
  show ChatEventMessagePinned { message=message } =
-  "ChatEventMessagePinned" ++ cc [p "message" message ]
+  "ChatEventMessagePinned" ++ U.cc [U.p "message" message ]
 
  show ChatEventMessageUnpinned { message=message } =
-  "ChatEventMessageUnpinned" ++ cc [p "message" message ]
+  "ChatEventMessageUnpinned" ++ U.cc [U.p "message" message ]
 
  show ChatEventPollStopped { message=message } =
-  "ChatEventPollStopped" ++ cc [p "message" message ]
+  "ChatEventPollStopped" ++ U.cc [U.p "message" message ]
 
  show ChatEventMemberJoined {  } =
-  "ChatEventMemberJoined" ++ cc [ ]
+  "ChatEventMemberJoined" ++ U.cc [ ]
 
  show ChatEventMemberJoinedByInviteLink { invite_link=invite_link } =
-  "ChatEventMemberJoinedByInviteLink" ++ cc [p "invite_link" invite_link ]
+  "ChatEventMemberJoinedByInviteLink" ++ U.cc [U.p "invite_link" invite_link ]
 
  show ChatEventMemberJoinedByRequest { invite_link=invite_link, approver_user_id=approver_user_id } =
-  "ChatEventMemberJoinedByRequest" ++ cc [p "invite_link" invite_link, p "approver_user_id" approver_user_id ]
+  "ChatEventMemberJoinedByRequest" ++ U.cc [U.p "invite_link" invite_link, U.p "approver_user_id" approver_user_id ]
 
  show ChatEventMemberInvited { status=status, user_id=user_id } =
-  "ChatEventMemberInvited" ++ cc [p "status" status, p "user_id" user_id ]
+  "ChatEventMemberInvited" ++ U.cc [U.p "status" status, U.p "user_id" user_id ]
 
  show ChatEventMemberLeft {  } =
-  "ChatEventMemberLeft" ++ cc [ ]
+  "ChatEventMemberLeft" ++ U.cc [ ]
 
  show ChatEventMemberPromoted { new_status=new_status, old_status=old_status, user_id=user_id } =
-  "ChatEventMemberPromoted" ++ cc [p "new_status" new_status, p "old_status" old_status, p "user_id" user_id ]
+  "ChatEventMemberPromoted" ++ U.cc [U.p "new_status" new_status, U.p "old_status" old_status, U.p "user_id" user_id ]
 
  show ChatEventMemberRestricted { new_status=new_status, old_status=old_status, member_id=member_id } =
-  "ChatEventMemberRestricted" ++ cc [p "new_status" new_status, p "old_status" old_status, p "member_id" member_id ]
+  "ChatEventMemberRestricted" ++ U.cc [U.p "new_status" new_status, U.p "old_status" old_status, U.p "member_id" member_id ]
 
  show ChatEventAvailableReactionsChanged { new_available_reactions=new_available_reactions, old_available_reactions=old_available_reactions } =
-  "ChatEventAvailableReactionsChanged" ++ cc [p "new_available_reactions" new_available_reactions, p "old_available_reactions" old_available_reactions ]
+  "ChatEventAvailableReactionsChanged" ++ U.cc [U.p "new_available_reactions" new_available_reactions, U.p "old_available_reactions" old_available_reactions ]
 
  show ChatEventDescriptionChanged { new_description=new_description, old_description=old_description } =
-  "ChatEventDescriptionChanged" ++ cc [p "new_description" new_description, p "old_description" old_description ]
+  "ChatEventDescriptionChanged" ++ U.cc [U.p "new_description" new_description, U.p "old_description" old_description ]
 
  show ChatEventLinkedChatChanged { new_linked_chat_id=new_linked_chat_id, old_linked_chat_id=old_linked_chat_id } =
-  "ChatEventLinkedChatChanged" ++ cc [p "new_linked_chat_id" new_linked_chat_id, p "old_linked_chat_id" old_linked_chat_id ]
+  "ChatEventLinkedChatChanged" ++ U.cc [U.p "new_linked_chat_id" new_linked_chat_id, U.p "old_linked_chat_id" old_linked_chat_id ]
 
  show ChatEventLocationChanged { new_location=new_location, old_location=old_location } =
-  "ChatEventLocationChanged" ++ cc [p "new_location" new_location, p "old_location" old_location ]
+  "ChatEventLocationChanged" ++ U.cc [U.p "new_location" new_location, U.p "old_location" old_location ]
 
  show ChatEventMessageTtlChanged { new_message_ttl=new_message_ttl, old_message_ttl=old_message_ttl } =
-  "ChatEventMessageTtlChanged" ++ cc [p "new_message_ttl" new_message_ttl, p "old_message_ttl" old_message_ttl ]
+  "ChatEventMessageTtlChanged" ++ U.cc [U.p "new_message_ttl" new_message_ttl, U.p "old_message_ttl" old_message_ttl ]
 
  show ChatEventPermissionsChanged { new_permissions=new_permissions, old_permissions=old_permissions } =
-  "ChatEventPermissionsChanged" ++ cc [p "new_permissions" new_permissions, p "old_permissions" old_permissions ]
+  "ChatEventPermissionsChanged" ++ U.cc [U.p "new_permissions" new_permissions, U.p "old_permissions" old_permissions ]
 
  show ChatEventPhotoChanged { new_photo=new_photo, old_photo=old_photo } =
-  "ChatEventPhotoChanged" ++ cc [p "new_photo" new_photo, p "old_photo" old_photo ]
+  "ChatEventPhotoChanged" ++ U.cc [U.p "new_photo" new_photo, U.p "old_photo" old_photo ]
 
  show ChatEventSlowModeDelayChanged { new_slow_mode_delay=new_slow_mode_delay, old_slow_mode_delay=old_slow_mode_delay } =
-  "ChatEventSlowModeDelayChanged" ++ cc [p "new_slow_mode_delay" new_slow_mode_delay, p "old_slow_mode_delay" old_slow_mode_delay ]
+  "ChatEventSlowModeDelayChanged" ++ U.cc [U.p "new_slow_mode_delay" new_slow_mode_delay, U.p "old_slow_mode_delay" old_slow_mode_delay ]
 
  show ChatEventStickerSetChanged { new_sticker_set_id=new_sticker_set_id, old_sticker_set_id=old_sticker_set_id } =
-  "ChatEventStickerSetChanged" ++ cc [p "new_sticker_set_id" new_sticker_set_id, p "old_sticker_set_id" old_sticker_set_id ]
+  "ChatEventStickerSetChanged" ++ U.cc [U.p "new_sticker_set_id" new_sticker_set_id, U.p "old_sticker_set_id" old_sticker_set_id ]
 
  show ChatEventTitleChanged { new_title=new_title, old_title=old_title } =
-  "ChatEventTitleChanged" ++ cc [p "new_title" new_title, p "old_title" old_title ]
+  "ChatEventTitleChanged" ++ U.cc [U.p "new_title" new_title, U.p "old_title" old_title ]
 
  show ChatEventUsernameChanged { new_username=new_username, old_username=old_username } =
-  "ChatEventUsernameChanged" ++ cc [p "new_username" new_username, p "old_username" old_username ]
+  "ChatEventUsernameChanged" ++ U.cc [U.p "new_username" new_username, U.p "old_username" old_username ]
 
  show ChatEventHasProtectedContentToggled { has_protected_content=has_protected_content } =
-  "ChatEventHasProtectedContentToggled" ++ cc [p "has_protected_content" has_protected_content ]
+  "ChatEventHasProtectedContentToggled" ++ U.cc [U.p "has_protected_content" has_protected_content ]
 
  show ChatEventInvitesToggled { can_invite_users=can_invite_users } =
-  "ChatEventInvitesToggled" ++ cc [p "can_invite_users" can_invite_users ]
+  "ChatEventInvitesToggled" ++ U.cc [U.p "can_invite_users" can_invite_users ]
 
  show ChatEventIsAllHistoryAvailableToggled { is_all_history_available=is_all_history_available } =
-  "ChatEventIsAllHistoryAvailableToggled" ++ cc [p "is_all_history_available" is_all_history_available ]
+  "ChatEventIsAllHistoryAvailableToggled" ++ U.cc [U.p "is_all_history_available" is_all_history_available ]
 
  show ChatEventSignMessagesToggled { sign_messages=sign_messages } =
-  "ChatEventSignMessagesToggled" ++ cc [p "sign_messages" sign_messages ]
+  "ChatEventSignMessagesToggled" ++ U.cc [U.p "sign_messages" sign_messages ]
 
  show ChatEventInviteLinkEdited { new_invite_link=new_invite_link, old_invite_link=old_invite_link } =
-  "ChatEventInviteLinkEdited" ++ cc [p "new_invite_link" new_invite_link, p "old_invite_link" old_invite_link ]
+  "ChatEventInviteLinkEdited" ++ U.cc [U.p "new_invite_link" new_invite_link, U.p "old_invite_link" old_invite_link ]
 
  show ChatEventInviteLinkRevoked { invite_link=invite_link } =
-  "ChatEventInviteLinkRevoked" ++ cc [p "invite_link" invite_link ]
+  "ChatEventInviteLinkRevoked" ++ U.cc [U.p "invite_link" invite_link ]
 
  show ChatEventInviteLinkDeleted { invite_link=invite_link } =
-  "ChatEventInviteLinkDeleted" ++ cc [p "invite_link" invite_link ]
+  "ChatEventInviteLinkDeleted" ++ U.cc [U.p "invite_link" invite_link ]
 
  show ChatEventVideoChatCreated { group_call_id=group_call_id } =
-  "ChatEventVideoChatCreated" ++ cc [p "group_call_id" group_call_id ]
+  "ChatEventVideoChatCreated" ++ U.cc [U.p "group_call_id" group_call_id ]
 
  show ChatEventVideoChatEnded { group_call_id=group_call_id } =
-  "ChatEventVideoChatEnded" ++ cc [p "group_call_id" group_call_id ]
+  "ChatEventVideoChatEnded" ++ U.cc [U.p "group_call_id" group_call_id ]
 
  show ChatEventVideoChatMuteNewParticipantsToggled { mute_new_participants=mute_new_participants } =
-  "ChatEventVideoChatMuteNewParticipantsToggled" ++ cc [p "mute_new_participants" mute_new_participants ]
+  "ChatEventVideoChatMuteNewParticipantsToggled" ++ U.cc [U.p "mute_new_participants" mute_new_participants ]
 
  show ChatEventVideoChatParticipantIsMutedToggled { is_muted=is_muted, participant_id=participant_id } =
-  "ChatEventVideoChatParticipantIsMutedToggled" ++ cc [p "is_muted" is_muted, p "participant_id" participant_id ]
+  "ChatEventVideoChatParticipantIsMutedToggled" ++ U.cc [U.p "is_muted" is_muted, U.p "participant_id" participant_id ]
 
  show ChatEventVideoChatParticipantVolumeLevelChanged { volume_level=volume_level, participant_id=participant_id } =
-  "ChatEventVideoChatParticipantVolumeLevelChanged" ++ cc [p "volume_level" volume_level, p "participant_id" participant_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatEventVideoChatParticipantVolumeLevelChanged" ++ U.cc [U.p "volume_level" volume_level, U.p "participant_id" participant_id ]
 
 instance T.ToJSON ChatEventAction where
  toJSON ChatEventMessageEdited { new_message = new_message, old_message = old_message } =

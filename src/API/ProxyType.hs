@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -39,22 +39,13 @@ data ProxyType =
 
 instance Show ProxyType where
  show ProxyTypeSocks5 { password=password, username=username } =
-  "ProxyTypeSocks5" ++ cc [p "password" password, p "username" username ]
+  "ProxyTypeSocks5" ++ U.cc [U.p "password" password, U.p "username" username ]
 
  show ProxyTypeHttp { http_only=http_only, password=password, username=username } =
-  "ProxyTypeHttp" ++ cc [p "http_only" http_only, p "password" password, p "username" username ]
+  "ProxyTypeHttp" ++ U.cc [U.p "http_only" http_only, U.p "password" password, U.p "username" username ]
 
  show ProxyTypeMtproto { secret=secret } =
-  "ProxyTypeMtproto" ++ cc [p "secret" secret ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ProxyTypeMtproto" ++ U.cc [U.p "secret" secret ]
 
 instance T.ToJSON ProxyType where
  toJSON ProxyTypeSocks5 { password = password, username = username } =

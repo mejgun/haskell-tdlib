@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Message as Message
 
 -- |
@@ -30,16 +30,7 @@ data MessageLinkInfo =
 
 instance Show MessageLinkInfo where
  show MessageLinkInfo { for_comment=for_comment, for_album=for_album, media_timestamp=media_timestamp, message=message, chat_id=chat_id, is_public=is_public } =
-  "MessageLinkInfo" ++ cc [p "for_comment" for_comment, p "for_album" for_album, p "media_timestamp" media_timestamp, p "message" message, p "chat_id" chat_id, p "is_public" is_public ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageLinkInfo" ++ U.cc [U.p "for_comment" for_comment, U.p "for_album" for_album, U.p "media_timestamp" media_timestamp, U.p "message" message, U.p "chat_id" chat_id, U.p "is_public" is_public ]
 
 instance T.ToJSON MessageLinkInfo where
  toJSON MessageLinkInfo { for_comment = for_comment, for_album = for_album, media_timestamp = media_timestamp, message = message, chat_id = chat_id, is_public = is_public } =

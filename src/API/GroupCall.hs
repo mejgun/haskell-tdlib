@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.GroupCallRecentSpeaker as GroupCallRecentSpeaker
 
 -- |
@@ -60,16 +60,7 @@ data GroupCall =
 
 instance Show GroupCall where
  show GroupCall { duration=duration, is_video_recorded=is_video_recorded, record_duration=record_duration, can_toggle_mute_new_participants=can_toggle_mute_new_participants, mute_new_participants=mute_new_participants, can_enable_video=can_enable_video, is_my_video_paused=is_my_video_paused, is_my_video_enabled=is_my_video_enabled, recent_speakers=recent_speakers, loaded_all_participants=loaded_all_participants, has_hidden_listeners=has_hidden_listeners, participant_count=participant_count, can_be_managed=can_be_managed, need_rejoin=need_rejoin, is_joined=is_joined, is_rtmp_stream=is_rtmp_stream, is_active=is_active, enabled_start_notification=enabled_start_notification, scheduled_start_date=scheduled_start_date, title=title, _id=_id } =
-  "GroupCall" ++ cc [p "duration" duration, p "is_video_recorded" is_video_recorded, p "record_duration" record_duration, p "can_toggle_mute_new_participants" can_toggle_mute_new_participants, p "mute_new_participants" mute_new_participants, p "can_enable_video" can_enable_video, p "is_my_video_paused" is_my_video_paused, p "is_my_video_enabled" is_my_video_enabled, p "recent_speakers" recent_speakers, p "loaded_all_participants" loaded_all_participants, p "has_hidden_listeners" has_hidden_listeners, p "participant_count" participant_count, p "can_be_managed" can_be_managed, p "need_rejoin" need_rejoin, p "is_joined" is_joined, p "is_rtmp_stream" is_rtmp_stream, p "is_active" is_active, p "enabled_start_notification" enabled_start_notification, p "scheduled_start_date" scheduled_start_date, p "title" title, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GroupCall" ++ U.cc [U.p "duration" duration, U.p "is_video_recorded" is_video_recorded, U.p "record_duration" record_duration, U.p "can_toggle_mute_new_participants" can_toggle_mute_new_participants, U.p "mute_new_participants" mute_new_participants, U.p "can_enable_video" can_enable_video, U.p "is_my_video_paused" is_my_video_paused, U.p "is_my_video_enabled" is_my_video_enabled, U.p "recent_speakers" recent_speakers, U.p "loaded_all_participants" loaded_all_participants, U.p "has_hidden_listeners" has_hidden_listeners, U.p "participant_count" participant_count, U.p "can_be_managed" can_be_managed, U.p "need_rejoin" need_rejoin, U.p "is_joined" is_joined, U.p "is_rtmp_stream" is_rtmp_stream, U.p "is_active" is_active, U.p "enabled_start_notification" enabled_start_notification, U.p "scheduled_start_date" scheduled_start_date, U.p "title" title, U.p "_id" _id ]
 
 instance T.ToJSON GroupCall where
  toJSON GroupCall { duration = duration, is_video_recorded = is_video_recorded, record_duration = record_duration, can_toggle_mute_new_participants = can_toggle_mute_new_participants, mute_new_participants = mute_new_participants, can_enable_video = can_enable_video, is_my_video_paused = is_my_video_paused, is_my_video_enabled = is_my_video_enabled, recent_speakers = recent_speakers, loaded_all_participants = loaded_all_participants, has_hidden_listeners = has_hidden_listeners, participant_count = participant_count, can_be_managed = can_be_managed, need_rejoin = need_rejoin, is_joined = is_joined, is_rtmp_stream = is_rtmp_stream, is_active = is_active, enabled_start_notification = enabled_start_notification, scheduled_start_date = scheduled_start_date, title = title, _id = _id } =

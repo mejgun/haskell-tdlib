@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -26,16 +26,7 @@ data BanChatMember =
 
 instance Show BanChatMember where
  show BanChatMember { revoke_messages=revoke_messages, banned_until_date=banned_until_date, member_id=member_id, chat_id=chat_id } =
-  "BanChatMember" ++ cc [p "revoke_messages" revoke_messages, p "banned_until_date" banned_until_date, p "member_id" member_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BanChatMember" ++ U.cc [U.p "revoke_messages" revoke_messages, U.p "banned_until_date" banned_until_date, U.p "member_id" member_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON BanChatMember where
  toJSON BanChatMember { revoke_messages = revoke_messages, banned_until_date = banned_until_date, member_id = member_id, chat_id = chat_id } =

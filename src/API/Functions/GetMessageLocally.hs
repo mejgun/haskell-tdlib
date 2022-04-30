@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data GetMessageLocally =
 
 instance Show GetMessageLocally where
  show GetMessageLocally { message_id=message_id, chat_id=chat_id } =
-  "GetMessageLocally" ++ cc [p "message_id" message_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetMessageLocally" ++ U.cc [U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetMessageLocally where
  toJSON GetMessageLocally { message_id = message_id, chat_id = chat_id } =

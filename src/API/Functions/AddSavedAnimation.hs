@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -20,16 +20,7 @@ data AddSavedAnimation =
 
 instance Show AddSavedAnimation where
  show AddSavedAnimation { animation=animation } =
-  "AddSavedAnimation" ++ cc [p "animation" animation ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AddSavedAnimation" ++ U.cc [U.p "animation" animation ]
 
 instance T.ToJSON AddSavedAnimation where
  toJSON AddSavedAnimation { animation = animation } =

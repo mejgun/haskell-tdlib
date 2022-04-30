@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatEventAction as ChatEventAction
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
@@ -27,16 +27,7 @@ data ChatEvent =
 
 instance Show ChatEvent where
  show ChatEvent { action=action, member_id=member_id, date=date, _id=_id } =
-  "ChatEvent" ++ cc [p "action" action, p "member_id" member_id, p "date" date, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatEvent" ++ U.cc [U.p "action" action, U.p "member_id" member_id, U.p "date" date, U.p "_id" _id ]
 
 instance T.ToJSON ChatEvent where
  toJSON ChatEvent { action = action, member_id = member_id, date = date, _id = _id } =

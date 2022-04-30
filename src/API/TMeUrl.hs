@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.TMeUrlType as TMeUrlType
 
 -- |
@@ -22,16 +22,7 @@ data TMeUrl =
 
 instance Show TMeUrl where
  show TMeUrl { _type=_type, url=url } =
-  "TMeUrl" ++ cc [p "_type" _type, p "url" url ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TMeUrl" ++ U.cc [U.p "_type" _type, U.p "url" url ]
 
 instance T.ToJSON TMeUrl where
  toJSON TMeUrl { _type = _type, url = url } =

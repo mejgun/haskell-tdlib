@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 
 -- |
@@ -30,16 +30,7 @@ data PasswordState =
 
 instance Show PasswordState where
  show PasswordState { pending_reset_date=pending_reset_date, recovery_email_address_code_info=recovery_email_address_code_info, has_passport_data=has_passport_data, has_recovery_email_address=has_recovery_email_address, password_hint=password_hint, has_password=has_password } =
-  "PasswordState" ++ cc [p "pending_reset_date" pending_reset_date, p "recovery_email_address_code_info" recovery_email_address_code_info, p "has_passport_data" has_passport_data, p "has_recovery_email_address" has_recovery_email_address, p "password_hint" password_hint, p "has_password" has_password ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PasswordState" ++ U.cc [U.p "pending_reset_date" pending_reset_date, U.p "recovery_email_address_code_info" recovery_email_address_code_info, U.p "has_passport_data" has_passport_data, U.p "has_recovery_email_address" has_recovery_email_address, U.p "password_hint" password_hint, U.p "has_password" has_password ]
 
 instance T.ToJSON PasswordState where
  toJSON PasswordState { pending_reset_date = pending_reset_date, recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password } =

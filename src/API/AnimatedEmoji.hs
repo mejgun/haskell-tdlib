@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 
@@ -25,16 +25,7 @@ data AnimatedEmoji =
 
 instance Show AnimatedEmoji where
  show AnimatedEmoji { sound=sound, fitzpatrick_type=fitzpatrick_type, sticker=sticker } =
-  "AnimatedEmoji" ++ cc [p "sound" sound, p "fitzpatrick_type" fitzpatrick_type, p "sticker" sticker ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AnimatedEmoji" ++ U.cc [U.p "sound" sound, U.p "fitzpatrick_type" fitzpatrick_type, U.p "sticker" sticker ]
 
 instance T.ToJSON AnimatedEmoji where
  toJSON AnimatedEmoji { sound = sound, fitzpatrick_type = fitzpatrick_type, sticker = sticker } =

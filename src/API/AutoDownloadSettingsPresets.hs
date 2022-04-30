@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
 -- |
@@ -24,16 +24,7 @@ data AutoDownloadSettingsPresets =
 
 instance Show AutoDownloadSettingsPresets where
  show AutoDownloadSettingsPresets { high=high, medium=medium, low=low } =
-  "AutoDownloadSettingsPresets" ++ cc [p "high" high, p "medium" medium, p "low" low ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AutoDownloadSettingsPresets" ++ U.cc [U.p "high" high, U.p "medium" medium, U.p "low" low ]
 
 instance T.ToJSON AutoDownloadSettingsPresets where
  toJSON AutoDownloadSettingsPresets { high = high, medium = medium, low = low } =

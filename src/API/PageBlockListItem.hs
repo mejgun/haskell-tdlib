@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 
 -- |
@@ -22,16 +22,7 @@ data PageBlockListItem =
 
 instance Show PageBlockListItem where
  show PageBlockListItem { page_blocks=page_blocks, label=label } =
-  "PageBlockListItem" ++ cc [p "page_blocks" page_blocks, p "label" label ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PageBlockListItem" ++ U.cc [U.p "page_blocks" page_blocks, U.p "label" label ]
 
 instance T.ToJSON PageBlockListItem where
  toJSON PageBlockListItem { page_blocks = page_blocks, label = label } =

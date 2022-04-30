@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -30,19 +30,10 @@ data PollType =
 
 instance Show PollType where
  show PollTypeRegular { allow_multiple_answers=allow_multiple_answers } =
-  "PollTypeRegular" ++ cc [p "allow_multiple_answers" allow_multiple_answers ]
+  "PollTypeRegular" ++ U.cc [U.p "allow_multiple_answers" allow_multiple_answers ]
 
  show PollTypeQuiz { explanation=explanation, correct_option_id=correct_option_id } =
-  "PollTypeQuiz" ++ cc [p "explanation" explanation, p "correct_option_id" correct_option_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PollTypeQuiz" ++ U.cc [U.p "explanation" explanation, U.p "correct_option_id" correct_option_id ]
 
 instance T.ToJSON PollType where
  toJSON PollTypeRegular { allow_multiple_answers = allow_multiple_answers } =

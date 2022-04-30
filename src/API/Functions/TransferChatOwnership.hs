@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data TransferChatOwnership =
 
 instance Show TransferChatOwnership where
  show TransferChatOwnership { password=password, user_id=user_id, chat_id=chat_id } =
-  "TransferChatOwnership" ++ cc [p "password" password, p "user_id" user_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TransferChatOwnership" ++ U.cc [U.p "password" password, U.p "user_id" user_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON TransferChatOwnership where
  toJSON TransferChatOwnership { password = password, user_id = user_id, chat_id = chat_id } =

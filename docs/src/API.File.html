@@ -6,7 +6,7 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.RemoteFile.html"><span class="hs-identifier">API.RemoteFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">RemoteFile</span></span><span>
 </span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.LocalFile.html"><span class="hs-identifier">API.LocalFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">LocalFile</span></span><span>
 </span><span id="line-12"></span><span>
@@ -30,7 +30,7 @@
 </span><a href="API.File.html#local"><span class="hs-identifier hs-var hs-var">local</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile.LocalFile</span></a></span><span class="hs-special">,</span><span> </span><span id="expected_size"><span class="annot"><span class="annottext">File -&gt; Maybe Int
 </span><a href="API.File.html#expected_size"><span class="hs-identifier hs-var hs-var">expected_size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="size"><span class="annot"><span class="annottext">File -&gt; Maybe Int
 </span><a href="API.File.html#size"><span class="hs-identifier hs-var hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">File -&gt; Maybe Int
-</span><a href="API.File.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679563721"><span id="local-6989586621679563723"><span class="annot"><span class="annottext">File -&gt; File -&gt; Bool
+</span><a href="API.File.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679504564"><span id="local-6989586621679504566"><span class="annot"><span class="annottext">File -&gt; File -&gt; Bool
 (File -&gt; File -&gt; Bool) -&gt; (File -&gt; File -&gt; Bool) -&gt; Eq File
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: File -&gt; File -&gt; Bool
@@ -39,104 +39,59 @@ $c/= :: File -&gt; File -&gt; Bool
 $c== :: File -&gt; File -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679563715"><span id="local-6989586621679563718"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span> </span><span id="local-6989586621679563713"><span class="annot"><span class="annottext">show :: File -&gt; String
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679504558"><span id="local-6989586621679504561"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span> </span><span id="local-6989586621679504556"><span class="annot"><span class="annottext">show :: File -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">remote :: File -&gt; Maybe RemoteFile
-</span><a href="API.File.html#remote"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679563711"><span class="annot"><span class="annottext">Maybe RemoteFile
-</span><a href="#local-6989586621679563711"><span class="hs-identifier hs-var">remote</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">local :: File -&gt; Maybe LocalFile
-</span><a href="API.File.html#local"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679563710"><span class="annot"><span class="annottext">Maybe LocalFile
-</span><a href="#local-6989586621679563710"><span class="hs-identifier hs-var">local</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expected_size :: File -&gt; Maybe Int
-</span><a href="API.File.html#expected_size"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679563709"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563709"><span class="hs-identifier hs-var">expected_size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: File -&gt; Maybe Int
-</span><a href="API.File.html#size"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679563708"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563708"><span class="hs-identifier hs-var">size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: File -&gt; Maybe Int
-</span><a href="API.File.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679563707"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563707"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.File.html#remote"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679504554"><span class="annot"><span class="annottext">Maybe RemoteFile
+</span><a href="#local-6989586621679504554"><span class="hs-identifier hs-var">remote</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">local :: File -&gt; Maybe LocalFile
+</span><a href="API.File.html#local"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679504553"><span class="annot"><span class="annottext">Maybe LocalFile
+</span><a href="#local-6989586621679504553"><span class="hs-identifier hs-var">local</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expected_size :: File -&gt; Maybe Int
+</span><a href="API.File.html#expected_size"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679504552"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504552"><span class="hs-identifier hs-var">expected_size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: File -&gt; Maybe Int
+</span><a href="API.File.html#size"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679504551"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504551"><span class="hs-identifier hs-var">size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: File -&gt; Maybe Int
+</span><a href="API.File.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679504550"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504550"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;File&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
-</span><a href="API.File.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe RemoteFile -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe RemoteFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.File.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;remote&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe RemoteFile
-</span><a href="#local-6989586621679563711"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe LocalFile -&gt; String
+</span><a href="#local-6989586621679504554"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe LocalFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.File.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;local&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe LocalFile
-</span><a href="#local-6989586621679563710"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679504553"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.File.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;expected_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563709"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679504552"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.File.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563708"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679504551"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.File.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563707"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679504550"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span id="local-6989586621679563767"><span class="annot"><a href="API.File.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679563767"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679563767"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
-</span><span id="line-35"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.File.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679563704"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679563704"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679563703"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679563703"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679563704"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
-forall a. Show a =&gt; a -&gt; String
-</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679563703"><span class="hs-identifier hs-var">a</span></a></span><span>
-</span><span id="line-36"></span><span class="annot"><a href="API.File.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
-</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;&quot;</span></span><span>
-</span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="annot"><a href="API.File.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-39"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
-</span><a href="API.File.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-forall a. Monoid a =&gt; a
-</span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-40"></span><span class="annot"><a href="API.File.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679563702"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679563702"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
-forall a. [a] -&gt; [[a]] -&gt; [a]
-</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
-forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
-</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
-</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
-forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
-forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
-</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679563702"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;}&quot;</span></span><span>
-</span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679563692"><span id="local-6989586621679563694"><span id="local-6989586621679563696"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span> </span><span id="local-6989586621679563690"><span class="annot"><span class="annottext">toJSON :: File -&gt; Value
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679504541"><span id="local-6989586621679504543"><span id="local-6989586621679504545"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span> </span><span id="local-6989586621679504539"><span class="annot"><span class="annottext">toJSON :: File -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">remote :: File -&gt; Maybe RemoteFile
-</span><a href="API.File.html#remote"><span class="hs-identifier hs-var">remote</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679563688"><span class="annot"><span class="annottext">Maybe RemoteFile
-</span><a href="#local-6989586621679563688"><span class="hs-identifier hs-var">remote</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">local :: File -&gt; Maybe LocalFile
-</span><a href="API.File.html#local"><span class="hs-identifier hs-var">local</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679563687"><span class="annot"><span class="annottext">Maybe LocalFile
-</span><a href="#local-6989586621679563687"><span class="hs-identifier hs-var">local</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expected_size :: File -&gt; Maybe Int
-</span><a href="API.File.html#expected_size"><span class="hs-identifier hs-var">expected_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679563686"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563686"><span class="hs-identifier hs-var">expected_size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: File -&gt; Maybe Int
-</span><a href="API.File.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679563685"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563685"><span class="hs-identifier hs-var">size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: File -&gt; Maybe Int
-</span><a href="API.File.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679563684"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563684"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-45"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.File.html#remote"><span class="hs-identifier hs-var">remote</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679504537"><span class="annot"><span class="annottext">Maybe RemoteFile
+</span><a href="#local-6989586621679504537"><span class="hs-identifier hs-var">remote</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">local :: File -&gt; Maybe LocalFile
+</span><a href="API.File.html#local"><span class="hs-identifier hs-var">local</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679504536"><span class="annot"><span class="annottext">Maybe LocalFile
+</span><a href="#local-6989586621679504536"><span class="hs-identifier hs-var">local</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expected_size :: File -&gt; Maybe Int
+</span><a href="API.File.html#expected_size"><span class="hs-identifier hs-var">expected_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679504535"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504535"><span class="hs-identifier hs-var">expected_size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: File -&gt; Maybe Int
+</span><a href="API.File.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679504534"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504534"><span class="hs-identifier hs-var">size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: File -&gt; Maybe Int
+</span><a href="API.File.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679504533"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504533"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -146,73 +101,73 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;remote&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe RemoteFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe RemoteFile
-</span><a href="#local-6989586621679563688"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679504537"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;local&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe LocalFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe LocalFile
-</span><a href="#local-6989586621679563687"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679504536"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;expected_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563686"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679504535"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563685"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679504534"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563684"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679563678"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span> </span><span id="local-6989586621679563676"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser File
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679563674"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679563674"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679563672"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563672"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-49"></span><span>  </span><span id="local-6989586621679563671"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679563671"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563672"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679504533"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679504527"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span> </span><span id="local-6989586621679504525"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser File
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679504523"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679504523"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679504521"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679504521"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>  </span><span id="local-6989586621679504520"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679504520"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679504521"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-50"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679563671"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-51"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-41"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679504520"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser File
-</span><a href="#local-6989586621679563669"><span class="hs-identifier hs-var">parseFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679563674"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-52"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679504518"><span class="hs-identifier hs-var">parseFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679504523"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser File
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-53"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679563669"><span class="hs-identifier hs-type">parseFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621679563669"><span class="annot"><span class="annottext">parseFile :: Value -&gt; Parser File
-</span><a href="#local-6989586621679563669"><span class="hs-identifier hs-var hs-var">parseFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser File) -&gt; Value -&gt; Parser File
+</span><span id="line-44"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span>   </span><span class="annot"><a href="#local-6989586621679504518"><span class="hs-identifier hs-type">parseFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span><span>
+</span><span id="line-46"></span><span>   </span><span id="local-6989586621679504518"><span class="annot"><span class="annottext">parseFile :: Value -&gt; Parser File
+</span><a href="#local-6989586621679504518"><span class="hs-identifier hs-var hs-var">parseFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser File) -&gt; Value -&gt; Parser File
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;File&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser File) -&gt; Value -&gt; Parser File)
 -&gt; (Object -&gt; Parser File) -&gt; Value -&gt; Parser File
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679563667"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679563666"><span class="annot"><span class="annottext">Maybe RemoteFile
-</span><a href="#local-6989586621679563666"><span class="hs-identifier hs-var">remote</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe RemoteFile)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679504516"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679504515"><span class="annot"><span class="annottext">Maybe RemoteFile
+</span><a href="#local-6989586621679504515"><span class="hs-identifier hs-var">remote</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe RemoteFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;remote&quot;</span></span><span>
-</span><span id="line-57"></span><span>    </span><span id="local-6989586621679563664"><span class="annot"><span class="annottext">Maybe LocalFile
-</span><a href="#local-6989586621679563664"><span class="hs-identifier hs-var">local</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe LocalFile)
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679504513"><span class="annot"><span class="annottext">Maybe LocalFile
+</span><a href="#local-6989586621679504513"><span class="hs-identifier hs-var">local</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe LocalFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;local&quot;</span></span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679563663"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563663"><span class="hs-identifier hs-var">expected_size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679504512"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504512"><span class="hs-identifier hs-var">expected_size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;expected_size&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -220,15 +175,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;expected_size&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-59"></span><span>    </span><span id="local-6989586621679563661"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563661"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679504510"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504510"><span class="hs-identifier hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -236,15 +191,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-60"></span><span>    </span><span id="local-6989586621679563660"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563660"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679504509"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679504509"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -252,11 +207,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679563667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679504516"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-61"></span><span>    </span><span class="annot"><span class="annottext">File -&gt; Parser File
+</span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">File -&gt; Parser File
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(File -&gt; Parser File) -&gt; File -&gt; Parser File
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -264,17 +219,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe LocalFile -&gt; Maybe Int -&gt; Maybe Int -&gt; Maybe Int -&gt; File
 </span><a href="API.File.html#File"><span class="hs-identifier hs-type">File</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">remote :: Maybe RemoteFile
 </span><a href="API.File.html#remote"><span class="hs-identifier hs-var">remote</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe RemoteFile
-</span><a href="#local-6989586621679563666"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">local :: Maybe LocalFile
+</span><a href="#local-6989586621679504515"><span class="hs-identifier hs-var">remote</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">local :: Maybe LocalFile
 </span><a href="API.File.html#local"><span class="hs-identifier hs-var">local</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe LocalFile
-</span><a href="#local-6989586621679563664"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expected_size :: Maybe Int
+</span><a href="#local-6989586621679504513"><span class="hs-identifier hs-var">local</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expected_size :: Maybe Int
 </span><a href="API.File.html#expected_size"><span class="hs-identifier hs-var">expected_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563663"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: Maybe Int
+</span><a href="#local-6989586621679504512"><span class="hs-identifier hs-var">expected_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: Maybe Int
 </span><a href="API.File.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563661"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="#local-6989586621679504510"><span class="hs-identifier hs-var">size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
 </span><a href="API.File.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679563660"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-62"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679504509"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-53"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser File
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-63"></span></pre></body></html>
+</span><span id="line-54"></span></pre></body></html>

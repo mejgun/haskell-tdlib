@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -29,16 +29,7 @@ data GetChatInviteLinks =
 
 instance Show GetChatInviteLinks where
  show GetChatInviteLinks { limit=limit, offset_invite_link=offset_invite_link, offset_date=offset_date, is_revoked=is_revoked, creator_user_id=creator_user_id, chat_id=chat_id } =
-  "GetChatInviteLinks" ++ cc [p "limit" limit, p "offset_invite_link" offset_invite_link, p "offset_date" offset_date, p "is_revoked" is_revoked, p "creator_user_id" creator_user_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetChatInviteLinks" ++ U.cc [U.p "limit" limit, U.p "offset_invite_link" offset_invite_link, U.p "offset_date" offset_date, U.p "is_revoked" is_revoked, U.p "creator_user_id" creator_user_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetChatInviteLinks where
  toJSON GetChatInviteLinks { limit = limit, offset_invite_link = offset_invite_link, offset_date = offset_date, is_revoked = is_revoked, creator_user_id = creator_user_id, chat_id = chat_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -33,16 +33,7 @@ data AutoDownloadSettings =
 
 instance Show AutoDownloadSettings where
  show AutoDownloadSettings { use_less_data_for_calls=use_less_data_for_calls, preload_next_audio=preload_next_audio, preload_large_videos=preload_large_videos, video_upload_bitrate=video_upload_bitrate, max_other_file_size=max_other_file_size, max_video_file_size=max_video_file_size, max_photo_file_size=max_photo_file_size, is_auto_download_enabled=is_auto_download_enabled } =
-  "AutoDownloadSettings" ++ cc [p "use_less_data_for_calls" use_less_data_for_calls, p "preload_next_audio" preload_next_audio, p "preload_large_videos" preload_large_videos, p "video_upload_bitrate" video_upload_bitrate, p "max_other_file_size" max_other_file_size, p "max_video_file_size" max_video_file_size, p "max_photo_file_size" max_photo_file_size, p "is_auto_download_enabled" is_auto_download_enabled ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AutoDownloadSettings" ++ U.cc [U.p "use_less_data_for_calls" use_less_data_for_calls, U.p "preload_next_audio" preload_next_audio, U.p "preload_large_videos" preload_large_videos, U.p "video_upload_bitrate" video_upload_bitrate, U.p "max_other_file_size" max_other_file_size, U.p "max_video_file_size" max_video_file_size, U.p "max_photo_file_size" max_photo_file_size, U.p "is_auto_download_enabled" is_auto_download_enabled ]
 
 instance T.ToJSON AutoDownloadSettings where
  toJSON AutoDownloadSettings { use_less_data_for_calls = use_less_data_for_calls, preload_next_audio = preload_next_audio, preload_large_videos = preload_large_videos, video_upload_bitrate = video_upload_bitrate, max_other_file_size = max_other_file_size, max_video_file_size = max_video_file_size, max_photo_file_size = max_photo_file_size, is_auto_download_enabled = is_auto_download_enabled } =

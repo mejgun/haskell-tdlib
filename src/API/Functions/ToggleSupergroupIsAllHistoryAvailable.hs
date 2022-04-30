@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleSupergroupIsAllHistoryAvailable =
 
 instance Show ToggleSupergroupIsAllHistoryAvailable where
  show ToggleSupergroupIsAllHistoryAvailable { is_all_history_available=is_all_history_available, supergroup_id=supergroup_id } =
-  "ToggleSupergroupIsAllHistoryAvailable" ++ cc [p "is_all_history_available" is_all_history_available, p "supergroup_id" supergroup_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleSupergroupIsAllHistoryAvailable" ++ U.cc [U.p "is_all_history_available" is_all_history_available, U.p "supergroup_id" supergroup_id ]
 
 instance T.ToJSON ToggleSupergroupIsAllHistoryAvailable where
  toJSON ToggleSupergroupIsAllHistoryAvailable { is_all_history_available = is_all_history_available, supergroup_id = supergroup_id } =

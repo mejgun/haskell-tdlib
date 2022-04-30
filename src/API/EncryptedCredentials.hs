@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data EncryptedCredentials =
 
 instance Show EncryptedCredentials where
  show EncryptedCredentials { secret=secret, hash=hash, _data=_data } =
-  "EncryptedCredentials" ++ cc [p "secret" secret, p "hash" hash, p "_data" _data ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "EncryptedCredentials" ++ U.cc [U.p "secret" secret, U.p "hash" hash, U.p "_data" _data ]
 
 instance T.ToJSON EncryptedCredentials where
  toJSON EncryptedCredentials { secret = secret, hash = hash, _data = _data } =

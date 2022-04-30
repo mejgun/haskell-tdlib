@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.MessageReplyInfo as MessageReplyInfo
@@ -32,16 +32,7 @@ data MessageThreadInfo =
 
 instance Show MessageThreadInfo where
  show MessageThreadInfo { draft_message=draft_message, messages=messages, unread_message_count=unread_message_count, reply_info=reply_info, message_thread_id=message_thread_id, chat_id=chat_id } =
-  "MessageThreadInfo" ++ cc [p "draft_message" draft_message, p "messages" messages, p "unread_message_count" unread_message_count, p "reply_info" reply_info, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageThreadInfo" ++ U.cc [U.p "draft_message" draft_message, U.p "messages" messages, U.p "unread_message_count" unread_message_count, U.p "reply_info" reply_info, U.p "message_thread_id" message_thread_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON MessageThreadInfo where
  toJSON MessageThreadInfo { draft_message = draft_message, messages = messages, unread_message_count = unread_message_count, reply_info = reply_info, message_thread_id = message_thread_id, chat_id = chat_id } =

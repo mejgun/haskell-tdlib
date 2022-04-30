@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 -- |
@@ -24,16 +24,7 @@ data SaveApplicationLogEvent =
 
 instance Show SaveApplicationLogEvent where
  show SaveApplicationLogEvent { _data=_data, chat_id=chat_id, _type=_type } =
-  "SaveApplicationLogEvent" ++ cc [p "_data" _data, p "chat_id" chat_id, p "_type" _type ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SaveApplicationLogEvent" ++ U.cc [U.p "_data" _data, U.p "chat_id" chat_id, U.p "_type" _type ]
 
 instance T.ToJSON SaveApplicationLogEvent where
  toJSON SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type } =

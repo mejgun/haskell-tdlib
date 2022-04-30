@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -55,37 +55,28 @@ data UserPrivacySettingRule =
 
 instance Show UserPrivacySettingRule where
  show UserPrivacySettingRuleAllowAll {  } =
-  "UserPrivacySettingRuleAllowAll" ++ cc [ ]
+  "UserPrivacySettingRuleAllowAll" ++ U.cc [ ]
 
  show UserPrivacySettingRuleAllowContacts {  } =
-  "UserPrivacySettingRuleAllowContacts" ++ cc [ ]
+  "UserPrivacySettingRuleAllowContacts" ++ U.cc [ ]
 
  show UserPrivacySettingRuleAllowUsers { user_ids=user_ids } =
-  "UserPrivacySettingRuleAllowUsers" ++ cc [p "user_ids" user_ids ]
+  "UserPrivacySettingRuleAllowUsers" ++ U.cc [U.p "user_ids" user_ids ]
 
  show UserPrivacySettingRuleAllowChatMembers { chat_ids=chat_ids } =
-  "UserPrivacySettingRuleAllowChatMembers" ++ cc [p "chat_ids" chat_ids ]
+  "UserPrivacySettingRuleAllowChatMembers" ++ U.cc [U.p "chat_ids" chat_ids ]
 
  show UserPrivacySettingRuleRestrictAll {  } =
-  "UserPrivacySettingRuleRestrictAll" ++ cc [ ]
+  "UserPrivacySettingRuleRestrictAll" ++ U.cc [ ]
 
  show UserPrivacySettingRuleRestrictContacts {  } =
-  "UserPrivacySettingRuleRestrictContacts" ++ cc [ ]
+  "UserPrivacySettingRuleRestrictContacts" ++ U.cc [ ]
 
  show UserPrivacySettingRuleRestrictUsers { user_ids=user_ids } =
-  "UserPrivacySettingRuleRestrictUsers" ++ cc [p "user_ids" user_ids ]
+  "UserPrivacySettingRuleRestrictUsers" ++ U.cc [U.p "user_ids" user_ids ]
 
  show UserPrivacySettingRuleRestrictChatMembers { chat_ids=chat_ids } =
-  "UserPrivacySettingRuleRestrictChatMembers" ++ cc [p "chat_ids" chat_ids ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UserPrivacySettingRuleRestrictChatMembers" ++ U.cc [U.p "chat_ids" chat_ids ]
 
 instance T.ToJSON UserPrivacySettingRule where
  toJSON UserPrivacySettingRuleAllowAll {  } =

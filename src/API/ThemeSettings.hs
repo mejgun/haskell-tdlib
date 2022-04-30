@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 import {-# SOURCE #-} qualified API.Background as Background
 
@@ -29,16 +29,7 @@ data ThemeSettings =
 
 instance Show ThemeSettings where
  show ThemeSettings { outgoing_message_accent_color=outgoing_message_accent_color, animate_outgoing_message_fill=animate_outgoing_message_fill, outgoing_message_fill=outgoing_message_fill, background=background, accent_color=accent_color } =
-  "ThemeSettings" ++ cc [p "outgoing_message_accent_color" outgoing_message_accent_color, p "animate_outgoing_message_fill" animate_outgoing_message_fill, p "outgoing_message_fill" outgoing_message_fill, p "background" background, p "accent_color" accent_color ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ThemeSettings" ++ U.cc [U.p "outgoing_message_accent_color" outgoing_message_accent_color, U.p "animate_outgoing_message_fill" animate_outgoing_message_fill, U.p "outgoing_message_fill" outgoing_message_fill, U.p "background" background, U.p "accent_color" accent_color ]
 
 instance T.ToJSON ThemeSettings where
  toJSON ThemeSettings { outgoing_message_accent_color = outgoing_message_accent_color, animate_outgoing_message_fill = animate_outgoing_message_fill, outgoing_message_fill = outgoing_message_fill, background = background, accent_color = accent_color } =

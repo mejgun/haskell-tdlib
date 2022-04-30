@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data DownloadedFileCounts =
 
 instance Show DownloadedFileCounts where
  show DownloadedFileCounts { completed_count=completed_count, paused_count=paused_count, active_count=active_count } =
-  "DownloadedFileCounts" ++ cc [p "completed_count" completed_count, p "paused_count" paused_count, p "active_count" active_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DownloadedFileCounts" ++ U.cc [U.p "completed_count" completed_count, U.p "paused_count" paused_count, U.p "active_count" active_count ]
 
 instance T.ToJSON DownloadedFileCounts where
  toJSON DownloadedFileCounts { completed_count = completed_count, paused_count = paused_count, active_count = active_count } =

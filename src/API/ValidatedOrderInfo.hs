@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 
 -- |
@@ -22,16 +22,7 @@ data ValidatedOrderInfo =
 
 instance Show ValidatedOrderInfo where
  show ValidatedOrderInfo { shipping_options=shipping_options, order_info_id=order_info_id } =
-  "ValidatedOrderInfo" ++ cc [p "shipping_options" shipping_options, p "order_info_id" order_info_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ValidatedOrderInfo" ++ U.cc [U.p "shipping_options" shipping_options, U.p "order_info_id" order_info_id ]
 
 instance T.ToJSON ValidatedOrderInfo where
  toJSON ValidatedOrderInfo { shipping_options = shipping_options, order_info_id = order_info_id } =

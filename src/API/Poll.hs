@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PollType as PollType
 import {-# SOURCE #-} qualified API.PollOption as PollOption
 
@@ -39,16 +39,7 @@ data Poll =
 
 instance Show Poll where
  show Poll { is_closed=is_closed, close_date=close_date, open_period=open_period, _type=_type, is_anonymous=is_anonymous, recent_voter_user_ids=recent_voter_user_ids, total_voter_count=total_voter_count, options=options, question=question, _id=_id } =
-  "Poll" ++ cc [p "is_closed" is_closed, p "close_date" close_date, p "open_period" open_period, p "_type" _type, p "is_anonymous" is_anonymous, p "recent_voter_user_ids" recent_voter_user_ids, p "total_voter_count" total_voter_count, p "options" options, p "question" question, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "Poll" ++ U.cc [U.p "is_closed" is_closed, U.p "close_date" close_date, U.p "open_period" open_period, U.p "_type" _type, U.p "is_anonymous" is_anonymous, U.p "recent_voter_user_ids" recent_voter_user_ids, U.p "total_voter_count" total_voter_count, U.p "options" options, U.p "question" question, U.p "_id" _id ]
 
 instance T.ToJSON Poll where
  toJSON Poll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id } =

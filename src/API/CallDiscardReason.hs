@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,28 +35,19 @@ data CallDiscardReason =
 
 instance Show CallDiscardReason where
  show CallDiscardReasonEmpty {  } =
-  "CallDiscardReasonEmpty" ++ cc [ ]
+  "CallDiscardReasonEmpty" ++ U.cc [ ]
 
  show CallDiscardReasonMissed {  } =
-  "CallDiscardReasonMissed" ++ cc [ ]
+  "CallDiscardReasonMissed" ++ U.cc [ ]
 
  show CallDiscardReasonDeclined {  } =
-  "CallDiscardReasonDeclined" ++ cc [ ]
+  "CallDiscardReasonDeclined" ++ U.cc [ ]
 
  show CallDiscardReasonDisconnected {  } =
-  "CallDiscardReasonDisconnected" ++ cc [ ]
+  "CallDiscardReasonDisconnected" ++ U.cc [ ]
 
  show CallDiscardReasonHungUp {  } =
-  "CallDiscardReasonHungUp" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CallDiscardReasonHungUp" ++ U.cc [ ]
 
 instance T.ToJSON CallDiscardReason where
  toJSON CallDiscardReasonEmpty {  } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Audio as Audio
 import {-# SOURCE #-} qualified API.Document as Document
@@ -241,97 +241,88 @@ data PushMessageContent =
 
 instance Show PushMessageContent where
  show PushMessageContentHidden { is_pinned=is_pinned } =
-  "PushMessageContentHidden" ++ cc [p "is_pinned" is_pinned ]
+  "PushMessageContentHidden" ++ U.cc [U.p "is_pinned" is_pinned ]
 
  show PushMessageContentAnimation { is_pinned=is_pinned, caption=caption, animation=animation } =
-  "PushMessageContentAnimation" ++ cc [p "is_pinned" is_pinned, p "caption" caption, p "animation" animation ]
+  "PushMessageContentAnimation" ++ U.cc [U.p "is_pinned" is_pinned, U.p "caption" caption, U.p "animation" animation ]
 
  show PushMessageContentAudio { is_pinned=is_pinned, audio=audio } =
-  "PushMessageContentAudio" ++ cc [p "is_pinned" is_pinned, p "audio" audio ]
+  "PushMessageContentAudio" ++ U.cc [U.p "is_pinned" is_pinned, U.p "audio" audio ]
 
  show PushMessageContentContact { is_pinned=is_pinned, name=name } =
-  "PushMessageContentContact" ++ cc [p "is_pinned" is_pinned, p "name" name ]
+  "PushMessageContentContact" ++ U.cc [U.p "is_pinned" is_pinned, U.p "name" name ]
 
  show PushMessageContentContactRegistered {  } =
-  "PushMessageContentContactRegistered" ++ cc [ ]
+  "PushMessageContentContactRegistered" ++ U.cc [ ]
 
  show PushMessageContentDocument { is_pinned=is_pinned, document=document } =
-  "PushMessageContentDocument" ++ cc [p "is_pinned" is_pinned, p "document" document ]
+  "PushMessageContentDocument" ++ U.cc [U.p "is_pinned" is_pinned, U.p "document" document ]
 
  show PushMessageContentGame { is_pinned=is_pinned, title=title } =
-  "PushMessageContentGame" ++ cc [p "is_pinned" is_pinned, p "title" title ]
+  "PushMessageContentGame" ++ U.cc [U.p "is_pinned" is_pinned, U.p "title" title ]
 
  show PushMessageContentGameScore { is_pinned=is_pinned, score=score, title=title } =
-  "PushMessageContentGameScore" ++ cc [p "is_pinned" is_pinned, p "score" score, p "title" title ]
+  "PushMessageContentGameScore" ++ U.cc [U.p "is_pinned" is_pinned, U.p "score" score, U.p "title" title ]
 
  show PushMessageContentInvoice { is_pinned=is_pinned, price=price } =
-  "PushMessageContentInvoice" ++ cc [p "is_pinned" is_pinned, p "price" price ]
+  "PushMessageContentInvoice" ++ U.cc [U.p "is_pinned" is_pinned, U.p "price" price ]
 
  show PushMessageContentLocation { is_pinned=is_pinned, is_live=is_live } =
-  "PushMessageContentLocation" ++ cc [p "is_pinned" is_pinned, p "is_live" is_live ]
+  "PushMessageContentLocation" ++ U.cc [U.p "is_pinned" is_pinned, U.p "is_live" is_live ]
 
  show PushMessageContentPhoto { is_pinned=is_pinned, is_secret=is_secret, caption=caption, photo=photo } =
-  "PushMessageContentPhoto" ++ cc [p "is_pinned" is_pinned, p "is_secret" is_secret, p "caption" caption, p "photo" photo ]
+  "PushMessageContentPhoto" ++ U.cc [U.p "is_pinned" is_pinned, U.p "is_secret" is_secret, U.p "caption" caption, U.p "photo" photo ]
 
  show PushMessageContentPoll { is_pinned=is_pinned, is_regular=is_regular, question=question } =
-  "PushMessageContentPoll" ++ cc [p "is_pinned" is_pinned, p "is_regular" is_regular, p "question" question ]
+  "PushMessageContentPoll" ++ U.cc [U.p "is_pinned" is_pinned, U.p "is_regular" is_regular, U.p "question" question ]
 
  show PushMessageContentScreenshotTaken {  } =
-  "PushMessageContentScreenshotTaken" ++ cc [ ]
+  "PushMessageContentScreenshotTaken" ++ U.cc [ ]
 
  show PushMessageContentSticker { is_pinned=is_pinned, emoji=emoji, sticker=sticker } =
-  "PushMessageContentSticker" ++ cc [p "is_pinned" is_pinned, p "emoji" emoji, p "sticker" sticker ]
+  "PushMessageContentSticker" ++ U.cc [U.p "is_pinned" is_pinned, U.p "emoji" emoji, U.p "sticker" sticker ]
 
  show PushMessageContentText { is_pinned=is_pinned, text=text } =
-  "PushMessageContentText" ++ cc [p "is_pinned" is_pinned, p "text" text ]
+  "PushMessageContentText" ++ U.cc [U.p "is_pinned" is_pinned, U.p "text" text ]
 
  show PushMessageContentVideo { is_pinned=is_pinned, is_secret=is_secret, caption=caption, video=video } =
-  "PushMessageContentVideo" ++ cc [p "is_pinned" is_pinned, p "is_secret" is_secret, p "caption" caption, p "video" video ]
+  "PushMessageContentVideo" ++ U.cc [U.p "is_pinned" is_pinned, U.p "is_secret" is_secret, U.p "caption" caption, U.p "video" video ]
 
  show PushMessageContentVideoNote { is_pinned=is_pinned, video_note=video_note } =
-  "PushMessageContentVideoNote" ++ cc [p "is_pinned" is_pinned, p "video_note" video_note ]
+  "PushMessageContentVideoNote" ++ U.cc [U.p "is_pinned" is_pinned, U.p "video_note" video_note ]
 
  show PushMessageContentVoiceNote { is_pinned=is_pinned, voice_note=voice_note } =
-  "PushMessageContentVoiceNote" ++ cc [p "is_pinned" is_pinned, p "voice_note" voice_note ]
+  "PushMessageContentVoiceNote" ++ U.cc [U.p "is_pinned" is_pinned, U.p "voice_note" voice_note ]
 
  show PushMessageContentBasicGroupChatCreate {  } =
-  "PushMessageContentBasicGroupChatCreate" ++ cc [ ]
+  "PushMessageContentBasicGroupChatCreate" ++ U.cc [ ]
 
  show PushMessageContentChatAddMembers { is_returned=is_returned, is_current_user=is_current_user, member_name=member_name } =
-  "PushMessageContentChatAddMembers" ++ cc [p "is_returned" is_returned, p "is_current_user" is_current_user, p "member_name" member_name ]
+  "PushMessageContentChatAddMembers" ++ U.cc [U.p "is_returned" is_returned, U.p "is_current_user" is_current_user, U.p "member_name" member_name ]
 
  show PushMessageContentChatChangePhoto {  } =
-  "PushMessageContentChatChangePhoto" ++ cc [ ]
+  "PushMessageContentChatChangePhoto" ++ U.cc [ ]
 
  show PushMessageContentChatChangeTitle { title=title } =
-  "PushMessageContentChatChangeTitle" ++ cc [p "title" title ]
+  "PushMessageContentChatChangeTitle" ++ U.cc [U.p "title" title ]
 
  show PushMessageContentChatSetTheme { theme_name=theme_name } =
-  "PushMessageContentChatSetTheme" ++ cc [p "theme_name" theme_name ]
+  "PushMessageContentChatSetTheme" ++ U.cc [U.p "theme_name" theme_name ]
 
  show PushMessageContentChatDeleteMember { is_left=is_left, is_current_user=is_current_user, member_name=member_name } =
-  "PushMessageContentChatDeleteMember" ++ cc [p "is_left" is_left, p "is_current_user" is_current_user, p "member_name" member_name ]
+  "PushMessageContentChatDeleteMember" ++ U.cc [U.p "is_left" is_left, U.p "is_current_user" is_current_user, U.p "member_name" member_name ]
 
  show PushMessageContentChatJoinByLink {  } =
-  "PushMessageContentChatJoinByLink" ++ cc [ ]
+  "PushMessageContentChatJoinByLink" ++ U.cc [ ]
 
  show PushMessageContentChatJoinByRequest {  } =
-  "PushMessageContentChatJoinByRequest" ++ cc [ ]
+  "PushMessageContentChatJoinByRequest" ++ U.cc [ ]
 
  show PushMessageContentMessageForwards { total_count=total_count } =
-  "PushMessageContentMessageForwards" ++ cc [p "total_count" total_count ]
+  "PushMessageContentMessageForwards" ++ U.cc [U.p "total_count" total_count ]
 
  show PushMessageContentMediaAlbum { has_documents=has_documents, has_audios=has_audios, has_videos=has_videos, has_photos=has_photos, total_count=total_count } =
-  "PushMessageContentMediaAlbum" ++ cc [p "has_documents" has_documents, p "has_audios" has_audios, p "has_videos" has_videos, p "has_photos" has_photos, p "total_count" total_count ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PushMessageContentMediaAlbum" ++ U.cc [U.p "has_documents" has_documents, U.p "has_audios" has_audios, U.p "has_videos" has_videos, U.p "has_photos" has_photos, U.p "total_count" total_count ]
 
 instance T.ToJSON PushMessageContent where
  toJSON PushMessageContentHidden { is_pinned = is_pinned } =

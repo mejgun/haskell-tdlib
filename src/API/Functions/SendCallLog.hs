@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -22,16 +22,7 @@ data SendCallLog =
 
 instance Show SendCallLog where
  show SendCallLog { log_file=log_file, call_id=call_id } =
-  "SendCallLog" ++ cc [p "log_file" log_file, p "call_id" call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendCallLog" ++ U.cc [U.p "log_file" log_file, U.p "call_id" call_id ]
 
 instance T.ToJSON SendCallLog where
  toJSON SendCallLog { log_file = log_file, call_id = call_id } =

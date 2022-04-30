@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MaskPoint as MaskPoint
 
 -- |
@@ -26,16 +26,7 @@ data MaskPosition =
 
 instance Show MaskPosition where
  show MaskPosition { scale=scale, y_shift=y_shift, x_shift=x_shift, point=point } =
-  "MaskPosition" ++ cc [p "scale" scale, p "y_shift" y_shift, p "x_shift" x_shift, p "point" point ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MaskPosition" ++ U.cc [U.p "scale" scale, U.p "y_shift" y_shift, U.p "x_shift" x_shift, U.p "point" point ]
 
 instance T.ToJSON MaskPosition where
  toJSON MaskPosition { scale = scale, y_shift = y_shift, x_shift = x_shift, point = point } =

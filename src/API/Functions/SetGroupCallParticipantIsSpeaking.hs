@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data SetGroupCallParticipantIsSpeaking =
 
 instance Show SetGroupCallParticipantIsSpeaking where
  show SetGroupCallParticipantIsSpeaking { is_speaking=is_speaking, audio_source=audio_source, group_call_id=group_call_id } =
-  "SetGroupCallParticipantIsSpeaking" ++ cc [p "is_speaking" is_speaking, p "audio_source" audio_source, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetGroupCallParticipantIsSpeaking" ++ U.cc [U.p "is_speaking" is_speaking, U.p "audio_source" audio_source, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON SetGroupCallParticipantIsSpeaking where
  toJSON SetGroupCallParticipantIsSpeaking { is_speaking = is_speaking, audio_source = audio_source, group_call_id = group_call_id } =

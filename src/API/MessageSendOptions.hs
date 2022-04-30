@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
 
 -- |
@@ -26,16 +26,7 @@ data MessageSendOptions =
 
 instance Show MessageSendOptions where
  show MessageSendOptions { scheduling_state=scheduling_state, protect_content=protect_content, from_background=from_background, disable_notification=disable_notification } =
-  "MessageSendOptions" ++ cc [p "scheduling_state" scheduling_state, p "protect_content" protect_content, p "from_background" from_background, p "disable_notification" disable_notification ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageSendOptions" ++ U.cc [U.p "scheduling_state" scheduling_state, U.p "protect_content" protect_content, U.p "from_background" from_background, U.p "disable_notification" disable_notification ]
 
 instance T.ToJSON MessageSendOptions where
  toJSON MessageSendOptions { scheduling_state = scheduling_state, protect_content = protect_content, from_background = from_background, disable_notification = disable_notification } =

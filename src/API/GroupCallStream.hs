@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data GroupCallStream =
 
 instance Show GroupCallStream where
  show GroupCallStream { time_offset=time_offset, scale=scale, channel_id=channel_id } =
-  "GroupCallStream" ++ cc [p "time_offset" time_offset, p "scale" scale, p "channel_id" channel_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GroupCallStream" ++ U.cc [U.p "time_offset" time_offset, U.p "scale" scale, U.p "channel_id" channel_id ]
 
 instance T.ToJSON GroupCallStream where
  toJSON GroupCallStream { time_offset = time_offset, scale = scale, channel_id = channel_id } =

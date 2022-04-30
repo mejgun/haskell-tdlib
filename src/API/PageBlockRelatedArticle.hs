@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Photo as Photo
 
 -- |
@@ -30,16 +30,7 @@ data PageBlockRelatedArticle =
 
 instance Show PageBlockRelatedArticle where
  show PageBlockRelatedArticle { publish_date=publish_date, author=author, photo=photo, description=description, title=title, url=url } =
-  "PageBlockRelatedArticle" ++ cc [p "publish_date" publish_date, p "author" author, p "photo" photo, p "description" description, p "title" title, p "url" url ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PageBlockRelatedArticle" ++ U.cc [U.p "publish_date" publish_date, U.p "author" author, U.p "photo" photo, U.p "description" description, U.p "title" title, U.p "url" url ]
 
 instance T.ToJSON PageBlockRelatedArticle where
  toJSON PageBlockRelatedArticle { publish_date = publish_date, author = author, photo = photo, description = description, title = title, url = url } =

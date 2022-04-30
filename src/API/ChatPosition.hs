@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatSource as ChatSource
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
@@ -27,16 +27,7 @@ data ChatPosition =
 
 instance Show ChatPosition where
  show ChatPosition { source=source, is_pinned=is_pinned, order=order, list=list } =
-  "ChatPosition" ++ cc [p "source" source, p "is_pinned" is_pinned, p "order" order, p "list" list ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatPosition" ++ U.cc [U.p "source" source, U.p "is_pinned" is_pinned, U.p "order" order, U.p "list" list ]
 
 instance T.ToJSON ChatPosition where
  toJSON ChatPosition { source = source, is_pinned = is_pinned, order = order, list = list } =

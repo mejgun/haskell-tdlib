@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data SetChatDiscussionGroup =
 
 instance Show SetChatDiscussionGroup where
  show SetChatDiscussionGroup { discussion_chat_id=discussion_chat_id, chat_id=chat_id } =
-  "SetChatDiscussionGroup" ++ cc [p "discussion_chat_id" discussion_chat_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetChatDiscussionGroup" ++ U.cc [U.p "discussion_chat_id" discussion_chat_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SetChatDiscussionGroup where
  toJSON SetChatDiscussionGroup { discussion_chat_id = discussion_chat_id, chat_id = chat_id } =

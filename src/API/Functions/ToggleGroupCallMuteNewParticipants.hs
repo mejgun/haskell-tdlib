@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleGroupCallMuteNewParticipants =
 
 instance Show ToggleGroupCallMuteNewParticipants where
  show ToggleGroupCallMuteNewParticipants { mute_new_participants=mute_new_participants, group_call_id=group_call_id } =
-  "ToggleGroupCallMuteNewParticipants" ++ cc [p "mute_new_participants" mute_new_participants, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleGroupCallMuteNewParticipants" ++ U.cc [U.p "mute_new_participants" mute_new_participants, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON ToggleGroupCallMuteNewParticipants where
  toJSON ToggleGroupCallMuteNewParticipants { mute_new_participants = mute_new_participants, group_call_id = group_call_id } =

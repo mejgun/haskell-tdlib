@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data RemoveBackground =
 
 instance Show RemoveBackground where
  show RemoveBackground { background_id=background_id } =
-  "RemoveBackground" ++ cc [p "background_id" background_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "RemoveBackground" ++ U.cc [U.p "background_id" background_id ]
 
 instance T.ToJSON RemoveBackground where
  toJSON RemoveBackground { background_id = background_id } =

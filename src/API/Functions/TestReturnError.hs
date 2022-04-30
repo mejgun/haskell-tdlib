@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Error as Error
 
 -- |
@@ -20,16 +20,7 @@ data TestReturnError =
 
 instance Show TestReturnError where
  show TestReturnError { _error=_error } =
-  "TestReturnError" ++ cc [p "_error" _error ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TestReturnError" ++ U.cc [U.p "_error" _error ]
 
 instance T.ToJSON TestReturnError where
  toJSON TestReturnError { _error = _error } =

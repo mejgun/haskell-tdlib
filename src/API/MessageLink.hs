@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data MessageLink =
 
 instance Show MessageLink where
  show MessageLink { is_public=is_public, link=link } =
-  "MessageLink" ++ cc [p "is_public" is_public, p "link" link ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "MessageLink" ++ U.cc [U.p "is_public" is_public, U.p "link" link ]
 
 instance T.ToJSON MessageLink where
  toJSON MessageLink { is_public = is_public, link = link } =

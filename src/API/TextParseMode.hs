@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -25,19 +25,10 @@ data TextParseMode =
 
 instance Show TextParseMode where
  show TextParseModeMarkdown { version=version } =
-  "TextParseModeMarkdown" ++ cc [p "version" version ]
+  "TextParseModeMarkdown" ++ U.cc [U.p "version" version ]
 
  show TextParseModeHTML {  } =
-  "TextParseModeHTML" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TextParseModeHTML" ++ U.cc [ ]
 
 instance T.ToJSON TextParseMode where
  toJSON TextParseModeMarkdown { version = version } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -22,16 +22,7 @@ data ToggleMessageSenderIsBlocked =
 
 instance Show ToggleMessageSenderIsBlocked where
  show ToggleMessageSenderIsBlocked { is_blocked=is_blocked, sender_id=sender_id } =
-  "ToggleMessageSenderIsBlocked" ++ cc [p "is_blocked" is_blocked, p "sender_id" sender_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleMessageSenderIsBlocked" ++ U.cc [U.p "is_blocked" is_blocked, U.p "sender_id" sender_id ]
 
 instance T.ToJSON ToggleMessageSenderIsBlocked where
  toJSON ToggleMessageSenderIsBlocked { is_blocked = is_blocked, sender_id = sender_id } =

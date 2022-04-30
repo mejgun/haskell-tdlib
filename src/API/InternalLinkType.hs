@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ChatAdministratorRights as ChatAdministratorRights
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
@@ -232,100 +232,91 @@ data InternalLinkType =
 
 instance Show InternalLinkType where
  show InternalLinkTypeActiveSessions {  } =
-  "InternalLinkTypeActiveSessions" ++ cc [ ]
+  "InternalLinkTypeActiveSessions" ++ U.cc [ ]
 
  show InternalLinkTypeAttachmentMenuBot { url=url, bot_username=bot_username, chat_link=chat_link } =
-  "InternalLinkTypeAttachmentMenuBot" ++ cc [p "url" url, p "bot_username" bot_username, p "chat_link" chat_link ]
+  "InternalLinkTypeAttachmentMenuBot" ++ U.cc [U.p "url" url, U.p "bot_username" bot_username, U.p "chat_link" chat_link ]
 
  show InternalLinkTypeAuthenticationCode { code=code } =
-  "InternalLinkTypeAuthenticationCode" ++ cc [p "code" code ]
+  "InternalLinkTypeAuthenticationCode" ++ U.cc [U.p "code" code ]
 
  show InternalLinkTypeBackground { background_name=background_name } =
-  "InternalLinkTypeBackground" ++ cc [p "background_name" background_name ]
+  "InternalLinkTypeBackground" ++ U.cc [U.p "background_name" background_name ]
 
  show InternalLinkTypeBotStart { start_parameter=start_parameter, bot_username=bot_username } =
-  "InternalLinkTypeBotStart" ++ cc [p "start_parameter" start_parameter, p "bot_username" bot_username ]
+  "InternalLinkTypeBotStart" ++ U.cc [U.p "start_parameter" start_parameter, U.p "bot_username" bot_username ]
 
  show InternalLinkTypeBotStartInGroup { administrator_rights=administrator_rights, start_parameter=start_parameter, bot_username=bot_username } =
-  "InternalLinkTypeBotStartInGroup" ++ cc [p "administrator_rights" administrator_rights, p "start_parameter" start_parameter, p "bot_username" bot_username ]
+  "InternalLinkTypeBotStartInGroup" ++ U.cc [U.p "administrator_rights" administrator_rights, U.p "start_parameter" start_parameter, U.p "bot_username" bot_username ]
 
  show InternalLinkTypeBotAddToChannel { administrator_rights=administrator_rights, bot_username=bot_username } =
-  "InternalLinkTypeBotAddToChannel" ++ cc [p "administrator_rights" administrator_rights, p "bot_username" bot_username ]
+  "InternalLinkTypeBotAddToChannel" ++ U.cc [U.p "administrator_rights" administrator_rights, U.p "bot_username" bot_username ]
 
  show InternalLinkTypeChangePhoneNumber {  } =
-  "InternalLinkTypeChangePhoneNumber" ++ cc [ ]
+  "InternalLinkTypeChangePhoneNumber" ++ U.cc [ ]
 
  show InternalLinkTypeChatInvite { invite_link=invite_link } =
-  "InternalLinkTypeChatInvite" ++ cc [p "invite_link" invite_link ]
+  "InternalLinkTypeChatInvite" ++ U.cc [U.p "invite_link" invite_link ]
 
  show InternalLinkTypeFilterSettings {  } =
-  "InternalLinkTypeFilterSettings" ++ cc [ ]
+  "InternalLinkTypeFilterSettings" ++ U.cc [ ]
 
  show InternalLinkTypeGame { game_short_name=game_short_name, bot_username=bot_username } =
-  "InternalLinkTypeGame" ++ cc [p "game_short_name" game_short_name, p "bot_username" bot_username ]
+  "InternalLinkTypeGame" ++ U.cc [U.p "game_short_name" game_short_name, U.p "bot_username" bot_username ]
 
  show InternalLinkTypeLanguagePack { language_pack_id=language_pack_id } =
-  "InternalLinkTypeLanguagePack" ++ cc [p "language_pack_id" language_pack_id ]
+  "InternalLinkTypeLanguagePack" ++ U.cc [U.p "language_pack_id" language_pack_id ]
 
  show InternalLinkTypeLanguageSettings {  } =
-  "InternalLinkTypeLanguageSettings" ++ cc [ ]
+  "InternalLinkTypeLanguageSettings" ++ U.cc [ ]
 
  show InternalLinkTypeMessage { url=url } =
-  "InternalLinkTypeMessage" ++ cc [p "url" url ]
+  "InternalLinkTypeMessage" ++ U.cc [U.p "url" url ]
 
  show InternalLinkTypeMessageDraft { contains_link=contains_link, text=text } =
-  "InternalLinkTypeMessageDraft" ++ cc [p "contains_link" contains_link, p "text" text ]
+  "InternalLinkTypeMessageDraft" ++ U.cc [U.p "contains_link" contains_link, U.p "text" text ]
 
  show InternalLinkTypePassportDataRequest { callback_url=callback_url, nonce=nonce, public_key=public_key, scope=scope, bot_user_id=bot_user_id } =
-  "InternalLinkTypePassportDataRequest" ++ cc [p "callback_url" callback_url, p "nonce" nonce, p "public_key" public_key, p "scope" scope, p "bot_user_id" bot_user_id ]
+  "InternalLinkTypePassportDataRequest" ++ U.cc [U.p "callback_url" callback_url, U.p "nonce" nonce, U.p "public_key" public_key, U.p "scope" scope, U.p "bot_user_id" bot_user_id ]
 
  show InternalLinkTypePhoneNumberConfirmation { phone_number=phone_number, hash=hash } =
-  "InternalLinkTypePhoneNumberConfirmation" ++ cc [p "phone_number" phone_number, p "hash" hash ]
+  "InternalLinkTypePhoneNumberConfirmation" ++ U.cc [U.p "phone_number" phone_number, U.p "hash" hash ]
 
  show InternalLinkTypePrivacyAndSecuritySettings {  } =
-  "InternalLinkTypePrivacyAndSecuritySettings" ++ cc [ ]
+  "InternalLinkTypePrivacyAndSecuritySettings" ++ U.cc [ ]
 
  show InternalLinkTypeProxy { _type=_type, port=port, server=server } =
-  "InternalLinkTypeProxy" ++ cc [p "_type" _type, p "port" port, p "server" server ]
+  "InternalLinkTypeProxy" ++ U.cc [U.p "_type" _type, U.p "port" port, U.p "server" server ]
 
  show InternalLinkTypePublicChat { chat_username=chat_username } =
-  "InternalLinkTypePublicChat" ++ cc [p "chat_username" chat_username ]
+  "InternalLinkTypePublicChat" ++ U.cc [U.p "chat_username" chat_username ]
 
  show InternalLinkTypeQrCodeAuthentication {  } =
-  "InternalLinkTypeQrCodeAuthentication" ++ cc [ ]
+  "InternalLinkTypeQrCodeAuthentication" ++ U.cc [ ]
 
  show InternalLinkTypeSettings {  } =
-  "InternalLinkTypeSettings" ++ cc [ ]
+  "InternalLinkTypeSettings" ++ U.cc [ ]
 
  show InternalLinkTypeStickerSet { sticker_set_name=sticker_set_name } =
-  "InternalLinkTypeStickerSet" ++ cc [p "sticker_set_name" sticker_set_name ]
+  "InternalLinkTypeStickerSet" ++ U.cc [U.p "sticker_set_name" sticker_set_name ]
 
  show InternalLinkTypeTheme { theme_name=theme_name } =
-  "InternalLinkTypeTheme" ++ cc [p "theme_name" theme_name ]
+  "InternalLinkTypeTheme" ++ U.cc [U.p "theme_name" theme_name ]
 
  show InternalLinkTypeThemeSettings {  } =
-  "InternalLinkTypeThemeSettings" ++ cc [ ]
+  "InternalLinkTypeThemeSettings" ++ U.cc [ ]
 
  show InternalLinkTypeUnknownDeepLink { link=link } =
-  "InternalLinkTypeUnknownDeepLink" ++ cc [p "link" link ]
+  "InternalLinkTypeUnknownDeepLink" ++ U.cc [U.p "link" link ]
 
  show InternalLinkTypeUnsupportedProxy {  } =
-  "InternalLinkTypeUnsupportedProxy" ++ cc [ ]
+  "InternalLinkTypeUnsupportedProxy" ++ U.cc [ ]
 
  show InternalLinkTypeUserPhoneNumber { phone_number=phone_number } =
-  "InternalLinkTypeUserPhoneNumber" ++ cc [p "phone_number" phone_number ]
+  "InternalLinkTypeUserPhoneNumber" ++ U.cc [U.p "phone_number" phone_number ]
 
  show InternalLinkTypeVideoChat { is_live_stream=is_live_stream, invite_hash=invite_hash, chat_username=chat_username } =
-  "InternalLinkTypeVideoChat" ++ cc [p "is_live_stream" is_live_stream, p "invite_hash" invite_hash, p "chat_username" chat_username ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InternalLinkTypeVideoChat" ++ U.cc [U.p "is_live_stream" is_live_stream, U.p "invite_hash" invite_hash, U.p "chat_username" chat_username ]
 
 instance T.ToJSON InternalLinkType where
  toJSON InternalLinkTypeActiveSessions {  } =

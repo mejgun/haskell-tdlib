@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.SecretChatState as SecretChatState
 
 -- |
@@ -32,16 +32,7 @@ data SecretChat =
 
 instance Show SecretChat where
  show SecretChat { layer=layer, key_hash=key_hash, is_outbound=is_outbound, state=state, user_id=user_id, _id=_id } =
-  "SecretChat" ++ cc [p "layer" layer, p "key_hash" key_hash, p "is_outbound" is_outbound, p "state" state, p "user_id" user_id, p "_id" _id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SecretChat" ++ U.cc [U.p "layer" layer, U.p "key_hash" key_hash, U.p "is_outbound" is_outbound, U.p "state" state, U.p "user_id" user_id, U.p "_id" _id ]
 
 instance T.ToJSON SecretChat where
  toJSON SecretChat { layer = layer, key_hash = key_hash, is_outbound = is_outbound, state = state, user_id = user_id, _id = _id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data CallProtocol =
 
 instance Show CallProtocol where
  show CallProtocol { library_versions=library_versions, max_layer=max_layer, min_layer=min_layer, udp_reflector=udp_reflector, udp_p2p=udp_p2p } =
-  "CallProtocol" ++ cc [p "library_versions" library_versions, p "max_layer" max_layer, p "min_layer" min_layer, p "udp_reflector" udp_reflector, p "udp_p2p" udp_p2p ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CallProtocol" ++ U.cc [U.p "library_versions" library_versions, U.p "max_layer" max_layer, U.p "min_layer" min_layer, U.p "udp_reflector" udp_reflector, U.p "udp_p2p" udp_p2p ]
 
 instance T.ToJSON CallProtocol where
  toJSON CallProtocol { library_versions = library_versions, max_layer = max_layer, min_layer = min_layer, udp_reflector = udp_reflector, udp_p2p = udp_p2p } =

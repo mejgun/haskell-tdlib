@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -25,16 +25,7 @@ data PinChatMessage =
 
 instance Show PinChatMessage where
  show PinChatMessage { only_for_self=only_for_self, disable_notification=disable_notification, message_id=message_id, chat_id=chat_id } =
-  "PinChatMessage" ++ cc [p "only_for_self" only_for_self, p "disable_notification" disable_notification, p "message_id" message_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PinChatMessage" ++ U.cc [U.p "only_for_self" only_for_self, U.p "disable_notification" disable_notification, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON PinChatMessage where
  toJSON PinChatMessage { only_for_self = only_for_self, disable_notification = disable_notification, message_id = message_id, chat_id = chat_id } =

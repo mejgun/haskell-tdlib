@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data ToggleChatHasProtectedContent =
 
 instance Show ToggleChatHasProtectedContent where
  show ToggleChatHasProtectedContent { has_protected_content=has_protected_content, chat_id=chat_id } =
-  "ToggleChatHasProtectedContent" ++ cc [p "has_protected_content" has_protected_content, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleChatHasProtectedContent" ++ U.cc [U.p "has_protected_content" has_protected_content, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ToggleChatHasProtectedContent where
  toJSON ToggleChatHasProtectedContent { has_protected_content = has_protected_content, chat_id = chat_id } =

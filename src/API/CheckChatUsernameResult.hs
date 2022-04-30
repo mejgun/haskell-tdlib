@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -35,28 +35,19 @@ data CheckChatUsernameResult =
 
 instance Show CheckChatUsernameResult where
  show CheckChatUsernameResultOk {  } =
-  "CheckChatUsernameResultOk" ++ cc [ ]
+  "CheckChatUsernameResultOk" ++ U.cc [ ]
 
  show CheckChatUsernameResultUsernameInvalid {  } =
-  "CheckChatUsernameResultUsernameInvalid" ++ cc [ ]
+  "CheckChatUsernameResultUsernameInvalid" ++ U.cc [ ]
 
  show CheckChatUsernameResultUsernameOccupied {  } =
-  "CheckChatUsernameResultUsernameOccupied" ++ cc [ ]
+  "CheckChatUsernameResultUsernameOccupied" ++ U.cc [ ]
 
  show CheckChatUsernameResultPublicChatsTooMuch {  } =
-  "CheckChatUsernameResultPublicChatsTooMuch" ++ cc [ ]
+  "CheckChatUsernameResultPublicChatsTooMuch" ++ U.cc [ ]
 
  show CheckChatUsernameResultPublicGroupsUnavailable {  } =
-  "CheckChatUsernameResultPublicGroupsUnavailable" ++ cc [ ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "CheckChatUsernameResultPublicGroupsUnavailable" ++ U.cc [ ]
 
 instance T.ToJSON CheckChatUsernameResult where
  toJSON CheckChatUsernameResultOk {  } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,19 +27,10 @@ data ChatSource =
 
 instance Show ChatSource where
  show ChatSourceMtprotoProxy {  } =
-  "ChatSourceMtprotoProxy" ++ cc [ ]
+  "ChatSourceMtprotoProxy" ++ U.cc [ ]
 
  show ChatSourcePublicServiceAnnouncement { text=text, _type=_type } =
-  "ChatSourcePublicServiceAnnouncement" ++ cc [p "text" text, p "_type" _type ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatSourcePublicServiceAnnouncement" ++ U.cc [U.p "text" text, U.p "_type" _type ]
 
 instance T.ToJSON ChatSource where
  toJSON ChatSourceMtprotoProxy {  } =

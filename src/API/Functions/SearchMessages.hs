@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
@@ -39,16 +39,7 @@ data SearchMessages =
 
 instance Show SearchMessages where
  show SearchMessages { max_date=max_date, min_date=min_date, _filter=_filter, limit=limit, offset_message_id=offset_message_id, offset_chat_id=offset_chat_id, offset_date=offset_date, query=query, chat_list=chat_list } =
-  "SearchMessages" ++ cc [p "max_date" max_date, p "min_date" min_date, p "_filter" _filter, p "limit" limit, p "offset_message_id" offset_message_id, p "offset_chat_id" offset_chat_id, p "offset_date" offset_date, p "query" query, p "chat_list" chat_list ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SearchMessages" ++ U.cc [U.p "max_date" max_date, U.p "min_date" min_date, U.p "_filter" _filter, U.p "limit" limit, U.p "offset_message_id" offset_message_id, U.p "offset_chat_id" offset_chat_id, U.p "offset_date" offset_date, U.p "query" query, U.p "chat_list" chat_list ]
 
 instance T.ToJSON SearchMessages where
  toJSON SearchMessages { max_date = max_date, min_date = min_date, _filter = _filter, limit = limit, offset_message_id = offset_message_id, offset_chat_id = offset_chat_id, offset_date = offset_date, query = query, chat_list = chat_list } =

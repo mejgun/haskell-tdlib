@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PageBlockListItem as PageBlockListItem
 import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Audio as Audio
@@ -277,100 +277,91 @@ data PageBlock =
 
 instance Show PageBlock where
  show PageBlockTitle { _title=_title } =
-  "PageBlockTitle" ++ cc [p "_title" _title ]
+  "PageBlockTitle" ++ U.cc [U.p "_title" _title ]
 
  show PageBlockSubtitle { subtitle=subtitle } =
-  "PageBlockSubtitle" ++ cc [p "subtitle" subtitle ]
+  "PageBlockSubtitle" ++ U.cc [U.p "subtitle" subtitle ]
 
  show PageBlockAuthorDate { publish_date=publish_date, _author=_author } =
-  "PageBlockAuthorDate" ++ cc [p "publish_date" publish_date, p "_author" _author ]
+  "PageBlockAuthorDate" ++ U.cc [U.p "publish_date" publish_date, U.p "_author" _author ]
 
  show PageBlockHeader { header=header } =
-  "PageBlockHeader" ++ cc [p "header" header ]
+  "PageBlockHeader" ++ U.cc [U.p "header" header ]
 
  show PageBlockSubheader { subheader=subheader } =
-  "PageBlockSubheader" ++ cc [p "subheader" subheader ]
+  "PageBlockSubheader" ++ U.cc [U.p "subheader" subheader ]
 
  show PageBlockKicker { kicker=kicker } =
-  "PageBlockKicker" ++ cc [p "kicker" kicker ]
+  "PageBlockKicker" ++ U.cc [U.p "kicker" kicker ]
 
  show PageBlockParagraph { text=text } =
-  "PageBlockParagraph" ++ cc [p "text" text ]
+  "PageBlockParagraph" ++ U.cc [U.p "text" text ]
 
  show PageBlockPreformatted { language=language, text=text } =
-  "PageBlockPreformatted" ++ cc [p "language" language, p "text" text ]
+  "PageBlockPreformatted" ++ U.cc [U.p "language" language, U.p "text" text ]
 
  show PageBlockFooter { footer=footer } =
-  "PageBlockFooter" ++ cc [p "footer" footer ]
+  "PageBlockFooter" ++ U.cc [U.p "footer" footer ]
 
  show PageBlockDivider {  } =
-  "PageBlockDivider" ++ cc [ ]
+  "PageBlockDivider" ++ U.cc [ ]
 
  show PageBlockAnchor { name=name } =
-  "PageBlockAnchor" ++ cc [p "name" name ]
+  "PageBlockAnchor" ++ U.cc [U.p "name" name ]
 
  show PageBlockList { items=items } =
-  "PageBlockList" ++ cc [p "items" items ]
+  "PageBlockList" ++ U.cc [U.p "items" items ]
 
  show PageBlockBlockQuote { credit=credit, text=text } =
-  "PageBlockBlockQuote" ++ cc [p "credit" credit, p "text" text ]
+  "PageBlockBlockQuote" ++ U.cc [U.p "credit" credit, U.p "text" text ]
 
  show PageBlockPullQuote { credit=credit, text=text } =
-  "PageBlockPullQuote" ++ cc [p "credit" credit, p "text" text ]
+  "PageBlockPullQuote" ++ U.cc [U.p "credit" credit, U.p "text" text ]
 
  show PageBlockAnimation { need_autoplay=need_autoplay, caption=caption, animation=animation } =
-  "PageBlockAnimation" ++ cc [p "need_autoplay" need_autoplay, p "caption" caption, p "animation" animation ]
+  "PageBlockAnimation" ++ U.cc [U.p "need_autoplay" need_autoplay, U.p "caption" caption, U.p "animation" animation ]
 
  show PageBlockAudio { caption=caption, audio=audio } =
-  "PageBlockAudio" ++ cc [p "caption" caption, p "audio" audio ]
+  "PageBlockAudio" ++ U.cc [U.p "caption" caption, U.p "audio" audio ]
 
  show PageBlockPhoto { url=url, caption=caption, _photo=_photo } =
-  "PageBlockPhoto" ++ cc [p "url" url, p "caption" caption, p "_photo" _photo ]
+  "PageBlockPhoto" ++ U.cc [U.p "url" url, U.p "caption" caption, U.p "_photo" _photo ]
 
  show PageBlockVideo { is_looped=is_looped, need_autoplay=need_autoplay, caption=caption, video=video } =
-  "PageBlockVideo" ++ cc [p "is_looped" is_looped, p "need_autoplay" need_autoplay, p "caption" caption, p "video" video ]
+  "PageBlockVideo" ++ U.cc [U.p "is_looped" is_looped, U.p "need_autoplay" need_autoplay, U.p "caption" caption, U.p "video" video ]
 
  show PageBlockVoiceNote { caption=caption, voice_note=voice_note } =
-  "PageBlockVoiceNote" ++ cc [p "caption" caption, p "voice_note" voice_note ]
+  "PageBlockVoiceNote" ++ U.cc [U.p "caption" caption, U.p "voice_note" voice_note ]
 
  show PageBlockCover { cover=cover } =
-  "PageBlockCover" ++ cc [p "cover" cover ]
+  "PageBlockCover" ++ U.cc [U.p "cover" cover ]
 
  show PageBlockEmbedded { allow_scrolling=allow_scrolling, is_full_width=is_full_width, caption=caption, height=height, width=width, poster_photo=poster_photo, html=html, url=url } =
-  "PageBlockEmbedded" ++ cc [p "allow_scrolling" allow_scrolling, p "is_full_width" is_full_width, p "caption" caption, p "height" height, p "width" width, p "poster_photo" poster_photo, p "html" html, p "url" url ]
+  "PageBlockEmbedded" ++ U.cc [U.p "allow_scrolling" allow_scrolling, U.p "is_full_width" is_full_width, U.p "caption" caption, U.p "height" height, U.p "width" width, U.p "poster_photo" poster_photo, U.p "html" html, U.p "url" url ]
 
  show PageBlockEmbeddedPost { caption=caption, page_blocks=page_blocks, date=date, author_photo=author_photo, author=author, url=url } =
-  "PageBlockEmbeddedPost" ++ cc [p "caption" caption, p "page_blocks" page_blocks, p "date" date, p "author_photo" author_photo, p "author" author, p "url" url ]
+  "PageBlockEmbeddedPost" ++ U.cc [U.p "caption" caption, U.p "page_blocks" page_blocks, U.p "date" date, U.p "author_photo" author_photo, U.p "author" author, U.p "url" url ]
 
  show PageBlockCollage { caption=caption, page_blocks=page_blocks } =
-  "PageBlockCollage" ++ cc [p "caption" caption, p "page_blocks" page_blocks ]
+  "PageBlockCollage" ++ U.cc [U.p "caption" caption, U.p "page_blocks" page_blocks ]
 
  show PageBlockSlideshow { caption=caption, page_blocks=page_blocks } =
-  "PageBlockSlideshow" ++ cc [p "caption" caption, p "page_blocks" page_blocks ]
+  "PageBlockSlideshow" ++ U.cc [U.p "caption" caption, U.p "page_blocks" page_blocks ]
 
  show PageBlockChatLink { username=username, photo=photo, title=title } =
-  "PageBlockChatLink" ++ cc [p "username" username, p "photo" photo, p "title" title ]
+  "PageBlockChatLink" ++ U.cc [U.p "username" username, U.p "photo" photo, U.p "title" title ]
 
  show PageBlockTable { is_striped=is_striped, is_bordered=is_bordered, cells=cells, _caption=_caption } =
-  "PageBlockTable" ++ cc [p "is_striped" is_striped, p "is_bordered" is_bordered, p "cells" cells, p "_caption" _caption ]
+  "PageBlockTable" ++ U.cc [U.p "is_striped" is_striped, U.p "is_bordered" is_bordered, U.p "cells" cells, U.p "_caption" _caption ]
 
  show PageBlockDetails { is_open=is_open, page_blocks=page_blocks, header=header } =
-  "PageBlockDetails" ++ cc [p "is_open" is_open, p "page_blocks" page_blocks, p "header" header ]
+  "PageBlockDetails" ++ U.cc [U.p "is_open" is_open, U.p "page_blocks" page_blocks, U.p "header" header ]
 
  show PageBlockRelatedArticles { articles=articles, header=header } =
-  "PageBlockRelatedArticles" ++ cc [p "articles" articles, p "header" header ]
+  "PageBlockRelatedArticles" ++ U.cc [U.p "articles" articles, U.p "header" header ]
 
  show PageBlockMap { caption=caption, height=height, width=width, zoom=zoom, location=location } =
-  "PageBlockMap" ++ cc [p "caption" caption, p "height" height, p "width" width, p "zoom" zoom, p "location" location ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PageBlockMap" ++ U.cc [U.p "caption" caption, U.p "height" height, U.p "width" width, U.p "zoom" zoom, U.p "location" location ]
 
 instance T.ToJSON PageBlock where
  toJSON PageBlockTitle { _title = _title } =

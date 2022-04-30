@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 import {-# SOURCE #-} qualified API.InputBackground as InputBackground
 
@@ -25,16 +25,7 @@ data SetBackground =
 
 instance Show SetBackground where
  show SetBackground { for_dark_theme=for_dark_theme, _type=_type, background=background } =
-  "SetBackground" ++ cc [p "for_dark_theme" for_dark_theme, p "_type" _type, p "background" background ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetBackground" ++ U.cc [U.p "for_dark_theme" for_dark_theme, U.p "_type" _type, U.p "background" background ]
 
 instance T.ToJSON SetBackground where
  toJSON SetBackground { for_dark_theme = for_dark_theme, _type = _type, background = background } =

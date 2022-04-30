@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.PassportElementError as PassportElementError
 import {-# SOURCE #-} qualified API.PassportElement as PassportElement
 
@@ -23,16 +23,7 @@ data PassportElementsWithErrors =
 
 instance Show PassportElementsWithErrors where
  show PassportElementsWithErrors { errors=errors, elements=elements } =
-  "PassportElementsWithErrors" ++ cc [p "errors" errors, p "elements" elements ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PassportElementsWithErrors" ++ U.cc [U.p "errors" errors, U.p "elements" elements ]
 
 instance T.ToJSON PassportElementsWithErrors where
  toJSON PassportElementsWithErrors { errors = errors, elements = elements } =

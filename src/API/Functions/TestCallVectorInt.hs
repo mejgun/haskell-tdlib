@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -19,16 +19,7 @@ data TestCallVectorInt =
 
 instance Show TestCallVectorInt where
  show TestCallVectorInt { x=x } =
-  "TestCallVectorInt" ++ cc [p "x" x ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "TestCallVectorInt" ++ U.cc [U.p "x" x ]
 
 instance T.ToJSON TestCallVectorInt where
  toJSON TestCallVectorInt { x = x } =

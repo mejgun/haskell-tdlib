@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -27,16 +27,7 @@ data AnswerCallbackQuery =
 
 instance Show AnswerCallbackQuery where
  show AnswerCallbackQuery { cache_time=cache_time, url=url, show_alert=show_alert, text=text, callback_query_id=callback_query_id } =
-  "AnswerCallbackQuery" ++ cc [p "cache_time" cache_time, p "url" url, p "show_alert" show_alert, p "text" text, p "callback_query_id" callback_query_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "AnswerCallbackQuery" ++ U.cc [U.p "cache_time" cache_time, U.p "url" url, U.p "show_alert" show_alert, U.p "text" text, U.p "callback_query_id" callback_query_id ]
 
 instance T.ToJSON AnswerCallbackQuery where
  toJSON AnswerCallbackQuery { cache_time = cache_time, url = url, show_alert = show_alert, text = text, callback_query_id = callback_query_id } =

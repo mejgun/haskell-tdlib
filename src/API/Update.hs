@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.AuthorizationState as AuthorizationState
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 import {-# SOURCE #-} qualified API.MessageInteractionInfo as MessageInteractionInfo
@@ -973,322 +973,313 @@ data Update =
 
 instance Show Update where
  show UpdateAuthorizationState { authorization_state=authorization_state } =
-  "UpdateAuthorizationState" ++ cc [p "authorization_state" authorization_state ]
+  "UpdateAuthorizationState" ++ U.cc [U.p "authorization_state" authorization_state ]
 
  show UpdateNewMessage { message=message } =
-  "UpdateNewMessage" ++ cc [p "message" message ]
+  "UpdateNewMessage" ++ U.cc [U.p "message" message ]
 
  show UpdateMessageSendAcknowledged { message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageSendAcknowledged" ++ cc [p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageSendAcknowledged" ++ U.cc [U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageSendSucceeded { old_message_id=old_message_id, message=message } =
-  "UpdateMessageSendSucceeded" ++ cc [p "old_message_id" old_message_id, p "message" message ]
+  "UpdateMessageSendSucceeded" ++ U.cc [U.p "old_message_id" old_message_id, U.p "message" message ]
 
  show UpdateMessageSendFailed { error_message=error_message, error_code=error_code, old_message_id=old_message_id, message=message } =
-  "UpdateMessageSendFailed" ++ cc [p "error_message" error_message, p "error_code" error_code, p "old_message_id" old_message_id, p "message" message ]
+  "UpdateMessageSendFailed" ++ U.cc [U.p "error_message" error_message, U.p "error_code" error_code, U.p "old_message_id" old_message_id, U.p "message" message ]
 
  show UpdateMessageContent { new_content=new_content, message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageContent" ++ cc [p "new_content" new_content, p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageContent" ++ U.cc [U.p "new_content" new_content, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageEdited { reply_markup=reply_markup, edit_date=edit_date, message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageEdited" ++ cc [p "reply_markup" reply_markup, p "edit_date" edit_date, p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageEdited" ++ U.cc [U.p "reply_markup" reply_markup, U.p "edit_date" edit_date, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageIsPinned { is_pinned=is_pinned, message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageIsPinned" ++ cc [p "is_pinned" is_pinned, p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageIsPinned" ++ U.cc [U.p "is_pinned" is_pinned, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageInteractionInfo { interaction_info=interaction_info, message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageInteractionInfo" ++ cc [p "interaction_info" interaction_info, p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageInteractionInfo" ++ U.cc [U.p "interaction_info" interaction_info, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageContentOpened { message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageContentOpened" ++ cc [p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageContentOpened" ++ U.cc [U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageMentionRead { unread_mention_count=unread_mention_count, message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageMentionRead" ++ cc [p "unread_mention_count" unread_mention_count, p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageMentionRead" ++ U.cc [U.p "unread_mention_count" unread_mention_count, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageUnreadReactions { unread_reaction_count=unread_reaction_count, unread_reactions=unread_reactions, message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageUnreadReactions" ++ cc [p "unread_reaction_count" unread_reaction_count, p "unread_reactions" unread_reactions, p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageUnreadReactions" ++ U.cc [U.p "unread_reaction_count" unread_reaction_count, U.p "unread_reactions" unread_reactions, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateMessageLiveLocationViewed { message_id=message_id, chat_id=chat_id } =
-  "UpdateMessageLiveLocationViewed" ++ cc [p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateMessageLiveLocationViewed" ++ U.cc [U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateNewChat { chat=chat } =
-  "UpdateNewChat" ++ cc [p "chat" chat ]
+  "UpdateNewChat" ++ U.cc [U.p "chat" chat ]
 
  show UpdateChatTitle { title=title, chat_id=chat_id } =
-  "UpdateChatTitle" ++ cc [p "title" title, p "chat_id" chat_id ]
+  "UpdateChatTitle" ++ U.cc [U.p "title" title, U.p "chat_id" chat_id ]
 
  show UpdateChatPhoto { photo=photo, chat_id=chat_id } =
-  "UpdateChatPhoto" ++ cc [p "photo" photo, p "chat_id" chat_id ]
+  "UpdateChatPhoto" ++ U.cc [U.p "photo" photo, U.p "chat_id" chat_id ]
 
  show UpdateChatPermissions { permissions=permissions, chat_id=chat_id } =
-  "UpdateChatPermissions" ++ cc [p "permissions" permissions, p "chat_id" chat_id ]
+  "UpdateChatPermissions" ++ U.cc [U.p "permissions" permissions, U.p "chat_id" chat_id ]
 
  show UpdateChatLastMessage { positions=positions, last_message=last_message, chat_id=chat_id } =
-  "UpdateChatLastMessage" ++ cc [p "positions" positions, p "last_message" last_message, p "chat_id" chat_id ]
+  "UpdateChatLastMessage" ++ U.cc [U.p "positions" positions, U.p "last_message" last_message, U.p "chat_id" chat_id ]
 
  show UpdateChatPosition { position=position, chat_id=chat_id } =
-  "UpdateChatPosition" ++ cc [p "position" position, p "chat_id" chat_id ]
+  "UpdateChatPosition" ++ U.cc [U.p "position" position, U.p "chat_id" chat_id ]
 
  show UpdateChatReadInbox { unread_count=unread_count, last_read_inbox_message_id=last_read_inbox_message_id, chat_id=chat_id } =
-  "UpdateChatReadInbox" ++ cc [p "unread_count" unread_count, p "last_read_inbox_message_id" last_read_inbox_message_id, p "chat_id" chat_id ]
+  "UpdateChatReadInbox" ++ U.cc [U.p "unread_count" unread_count, U.p "last_read_inbox_message_id" last_read_inbox_message_id, U.p "chat_id" chat_id ]
 
  show UpdateChatReadOutbox { last_read_outbox_message_id=last_read_outbox_message_id, chat_id=chat_id } =
-  "UpdateChatReadOutbox" ++ cc [p "last_read_outbox_message_id" last_read_outbox_message_id, p "chat_id" chat_id ]
+  "UpdateChatReadOutbox" ++ U.cc [U.p "last_read_outbox_message_id" last_read_outbox_message_id, U.p "chat_id" chat_id ]
 
  show UpdateChatActionBar { action_bar=action_bar, chat_id=chat_id } =
-  "UpdateChatActionBar" ++ cc [p "action_bar" action_bar, p "chat_id" chat_id ]
+  "UpdateChatActionBar" ++ U.cc [U.p "action_bar" action_bar, U.p "chat_id" chat_id ]
 
  show UpdateChatAvailableReactions { available_reactions=available_reactions, chat_id=chat_id } =
-  "UpdateChatAvailableReactions" ++ cc [p "available_reactions" available_reactions, p "chat_id" chat_id ]
+  "UpdateChatAvailableReactions" ++ U.cc [U.p "available_reactions" available_reactions, U.p "chat_id" chat_id ]
 
  show UpdateChatDraftMessage { positions=positions, draft_message=draft_message, chat_id=chat_id } =
-  "UpdateChatDraftMessage" ++ cc [p "positions" positions, p "draft_message" draft_message, p "chat_id" chat_id ]
+  "UpdateChatDraftMessage" ++ U.cc [U.p "positions" positions, U.p "draft_message" draft_message, U.p "chat_id" chat_id ]
 
  show UpdateChatMessageSender { message_sender_id=message_sender_id, chat_id=chat_id } =
-  "UpdateChatMessageSender" ++ cc [p "message_sender_id" message_sender_id, p "chat_id" chat_id ]
+  "UpdateChatMessageSender" ++ U.cc [U.p "message_sender_id" message_sender_id, U.p "chat_id" chat_id ]
 
  show UpdateChatMessageTtl { message_ttl=message_ttl, chat_id=chat_id } =
-  "UpdateChatMessageTtl" ++ cc [p "message_ttl" message_ttl, p "chat_id" chat_id ]
+  "UpdateChatMessageTtl" ++ U.cc [U.p "message_ttl" message_ttl, U.p "chat_id" chat_id ]
 
  show UpdateChatNotificationSettings { _notification_settings=_notification_settings, chat_id=chat_id } =
-  "UpdateChatNotificationSettings" ++ cc [p "_notification_settings" _notification_settings, p "chat_id" chat_id ]
+  "UpdateChatNotificationSettings" ++ U.cc [U.p "_notification_settings" _notification_settings, U.p "chat_id" chat_id ]
 
  show UpdateChatPendingJoinRequests { pending_join_requests=pending_join_requests, chat_id=chat_id } =
-  "UpdateChatPendingJoinRequests" ++ cc [p "pending_join_requests" pending_join_requests, p "chat_id" chat_id ]
+  "UpdateChatPendingJoinRequests" ++ U.cc [U.p "pending_join_requests" pending_join_requests, U.p "chat_id" chat_id ]
 
  show UpdateChatReplyMarkup { reply_markup_message_id=reply_markup_message_id, chat_id=chat_id } =
-  "UpdateChatReplyMarkup" ++ cc [p "reply_markup_message_id" reply_markup_message_id, p "chat_id" chat_id ]
+  "UpdateChatReplyMarkup" ++ U.cc [U.p "reply_markup_message_id" reply_markup_message_id, U.p "chat_id" chat_id ]
 
  show UpdateChatTheme { theme_name=theme_name, chat_id=chat_id } =
-  "UpdateChatTheme" ++ cc [p "theme_name" theme_name, p "chat_id" chat_id ]
+  "UpdateChatTheme" ++ U.cc [U.p "theme_name" theme_name, U.p "chat_id" chat_id ]
 
  show UpdateChatUnreadMentionCount { unread_mention_count=unread_mention_count, chat_id=chat_id } =
-  "UpdateChatUnreadMentionCount" ++ cc [p "unread_mention_count" unread_mention_count, p "chat_id" chat_id ]
+  "UpdateChatUnreadMentionCount" ++ U.cc [U.p "unread_mention_count" unread_mention_count, U.p "chat_id" chat_id ]
 
  show UpdateChatUnreadReactionCount { unread_reaction_count=unread_reaction_count, chat_id=chat_id } =
-  "UpdateChatUnreadReactionCount" ++ cc [p "unread_reaction_count" unread_reaction_count, p "chat_id" chat_id ]
+  "UpdateChatUnreadReactionCount" ++ U.cc [U.p "unread_reaction_count" unread_reaction_count, U.p "chat_id" chat_id ]
 
  show UpdateChatVideoChat { video_chat=video_chat, chat_id=chat_id } =
-  "UpdateChatVideoChat" ++ cc [p "video_chat" video_chat, p "chat_id" chat_id ]
+  "UpdateChatVideoChat" ++ U.cc [U.p "video_chat" video_chat, U.p "chat_id" chat_id ]
 
  show UpdateChatDefaultDisableNotification { default_disable_notification=default_disable_notification, chat_id=chat_id } =
-  "UpdateChatDefaultDisableNotification" ++ cc [p "default_disable_notification" default_disable_notification, p "chat_id" chat_id ]
+  "UpdateChatDefaultDisableNotification" ++ U.cc [U.p "default_disable_notification" default_disable_notification, U.p "chat_id" chat_id ]
 
  show UpdateChatHasProtectedContent { has_protected_content=has_protected_content, chat_id=chat_id } =
-  "UpdateChatHasProtectedContent" ++ cc [p "has_protected_content" has_protected_content, p "chat_id" chat_id ]
+  "UpdateChatHasProtectedContent" ++ U.cc [U.p "has_protected_content" has_protected_content, U.p "chat_id" chat_id ]
 
  show UpdateChatHasScheduledMessages { has_scheduled_messages=has_scheduled_messages, chat_id=chat_id } =
-  "UpdateChatHasScheduledMessages" ++ cc [p "has_scheduled_messages" has_scheduled_messages, p "chat_id" chat_id ]
+  "UpdateChatHasScheduledMessages" ++ U.cc [U.p "has_scheduled_messages" has_scheduled_messages, U.p "chat_id" chat_id ]
 
  show UpdateChatIsBlocked { is_blocked=is_blocked, chat_id=chat_id } =
-  "UpdateChatIsBlocked" ++ cc [p "is_blocked" is_blocked, p "chat_id" chat_id ]
+  "UpdateChatIsBlocked" ++ U.cc [U.p "is_blocked" is_blocked, U.p "chat_id" chat_id ]
 
  show UpdateChatIsMarkedAsUnread { is_marked_as_unread=is_marked_as_unread, chat_id=chat_id } =
-  "UpdateChatIsMarkedAsUnread" ++ cc [p "is_marked_as_unread" is_marked_as_unread, p "chat_id" chat_id ]
+  "UpdateChatIsMarkedAsUnread" ++ U.cc [U.p "is_marked_as_unread" is_marked_as_unread, U.p "chat_id" chat_id ]
 
  show UpdateChatFilters { chat_filters=chat_filters } =
-  "UpdateChatFilters" ++ cc [p "chat_filters" chat_filters ]
+  "UpdateChatFilters" ++ U.cc [U.p "chat_filters" chat_filters ]
 
  show UpdateChatOnlineMemberCount { online_member_count=online_member_count, chat_id=chat_id } =
-  "UpdateChatOnlineMemberCount" ++ cc [p "online_member_count" online_member_count, p "chat_id" chat_id ]
+  "UpdateChatOnlineMemberCount" ++ U.cc [U.p "online_member_count" online_member_count, U.p "chat_id" chat_id ]
 
  show UpdateScopeNotificationSettings { notification_settings=notification_settings, scope=scope } =
-  "UpdateScopeNotificationSettings" ++ cc [p "notification_settings" notification_settings, p "scope" scope ]
+  "UpdateScopeNotificationSettings" ++ U.cc [U.p "notification_settings" notification_settings, U.p "scope" scope ]
 
  show UpdateNotification { notification=notification, notification_group_id=notification_group_id } =
-  "UpdateNotification" ++ cc [p "notification" notification, p "notification_group_id" notification_group_id ]
+  "UpdateNotification" ++ U.cc [U.p "notification" notification, U.p "notification_group_id" notification_group_id ]
 
  show UpdateNotificationGroup { removed_notification_ids=removed_notification_ids, added_notifications=added_notifications, total_count=total_count, notification_sound_id=notification_sound_id, notification_settings_chat_id=notification_settings_chat_id, chat_id=chat_id, __type=__type, notification_group_id=notification_group_id } =
-  "UpdateNotificationGroup" ++ cc [p "removed_notification_ids" removed_notification_ids, p "added_notifications" added_notifications, p "total_count" total_count, p "notification_sound_id" notification_sound_id, p "notification_settings_chat_id" notification_settings_chat_id, p "chat_id" chat_id, p "__type" __type, p "notification_group_id" notification_group_id ]
+  "UpdateNotificationGroup" ++ U.cc [U.p "removed_notification_ids" removed_notification_ids, U.p "added_notifications" added_notifications, U.p "total_count" total_count, U.p "notification_sound_id" notification_sound_id, U.p "notification_settings_chat_id" notification_settings_chat_id, U.p "chat_id" chat_id, U.p "__type" __type, U.p "notification_group_id" notification_group_id ]
 
  show UpdateActiveNotifications { groups=groups } =
-  "UpdateActiveNotifications" ++ cc [p "groups" groups ]
+  "UpdateActiveNotifications" ++ U.cc [U.p "groups" groups ]
 
  show UpdateHavePendingNotifications { have_unreceived_notifications=have_unreceived_notifications, have_delayed_notifications=have_delayed_notifications } =
-  "UpdateHavePendingNotifications" ++ cc [p "have_unreceived_notifications" have_unreceived_notifications, p "have_delayed_notifications" have_delayed_notifications ]
+  "UpdateHavePendingNotifications" ++ U.cc [U.p "have_unreceived_notifications" have_unreceived_notifications, U.p "have_delayed_notifications" have_delayed_notifications ]
 
  show UpdateDeleteMessages { from_cache=from_cache, is_permanent=is_permanent, message_ids=message_ids, chat_id=chat_id } =
-  "UpdateDeleteMessages" ++ cc [p "from_cache" from_cache, p "is_permanent" is_permanent, p "message_ids" message_ids, p "chat_id" chat_id ]
+  "UpdateDeleteMessages" ++ U.cc [U.p "from_cache" from_cache, U.p "is_permanent" is_permanent, U.p "message_ids" message_ids, U.p "chat_id" chat_id ]
 
  show UpdateChatAction { action=action, sender_id=sender_id, message_thread_id=message_thread_id, chat_id=chat_id } =
-  "UpdateChatAction" ++ cc [p "action" action, p "sender_id" sender_id, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
+  "UpdateChatAction" ++ U.cc [U.p "action" action, U.p "sender_id" sender_id, U.p "message_thread_id" message_thread_id, U.p "chat_id" chat_id ]
 
  show UpdateUserStatus { status=status, user_id=user_id } =
-  "UpdateUserStatus" ++ cc [p "status" status, p "user_id" user_id ]
+  "UpdateUserStatus" ++ U.cc [U.p "status" status, U.p "user_id" user_id ]
 
  show UpdateUser { user=user } =
-  "UpdateUser" ++ cc [p "user" user ]
+  "UpdateUser" ++ U.cc [U.p "user" user ]
 
  show UpdateBasicGroup { basic_group=basic_group } =
-  "UpdateBasicGroup" ++ cc [p "basic_group" basic_group ]
+  "UpdateBasicGroup" ++ U.cc [U.p "basic_group" basic_group ]
 
  show UpdateSupergroup { supergroup=supergroup } =
-  "UpdateSupergroup" ++ cc [p "supergroup" supergroup ]
+  "UpdateSupergroup" ++ U.cc [U.p "supergroup" supergroup ]
 
  show UpdateSecretChat { secret_chat=secret_chat } =
-  "UpdateSecretChat" ++ cc [p "secret_chat" secret_chat ]
+  "UpdateSecretChat" ++ U.cc [U.p "secret_chat" secret_chat ]
 
  show UpdateUserFullInfo { user_full_info=user_full_info, user_id=user_id } =
-  "UpdateUserFullInfo" ++ cc [p "user_full_info" user_full_info, p "user_id" user_id ]
+  "UpdateUserFullInfo" ++ U.cc [U.p "user_full_info" user_full_info, U.p "user_id" user_id ]
 
  show UpdateBasicGroupFullInfo { basic_group_full_info=basic_group_full_info, basic_group_id=basic_group_id } =
-  "UpdateBasicGroupFullInfo" ++ cc [p "basic_group_full_info" basic_group_full_info, p "basic_group_id" basic_group_id ]
+  "UpdateBasicGroupFullInfo" ++ U.cc [U.p "basic_group_full_info" basic_group_full_info, U.p "basic_group_id" basic_group_id ]
 
  show UpdateSupergroupFullInfo { supergroup_full_info=supergroup_full_info, supergroup_id=supergroup_id } =
-  "UpdateSupergroupFullInfo" ++ cc [p "supergroup_full_info" supergroup_full_info, p "supergroup_id" supergroup_id ]
+  "UpdateSupergroupFullInfo" ++ U.cc [U.p "supergroup_full_info" supergroup_full_info, U.p "supergroup_id" supergroup_id ]
 
  show UpdateServiceNotification { content=content, _type=_type } =
-  "UpdateServiceNotification" ++ cc [p "content" content, p "_type" _type ]
+  "UpdateServiceNotification" ++ U.cc [U.p "content" content, U.p "_type" _type ]
 
  show UpdateFile { file=file } =
-  "UpdateFile" ++ cc [p "file" file ]
+  "UpdateFile" ++ U.cc [U.p "file" file ]
 
  show UpdateFileGenerationStart { conversion=conversion, destination_path=destination_path, original_path=original_path, generation_id=generation_id } =
-  "UpdateFileGenerationStart" ++ cc [p "conversion" conversion, p "destination_path" destination_path, p "original_path" original_path, p "generation_id" generation_id ]
+  "UpdateFileGenerationStart" ++ U.cc [U.p "conversion" conversion, U.p "destination_path" destination_path, U.p "original_path" original_path, U.p "generation_id" generation_id ]
 
  show UpdateFileGenerationStop { generation_id=generation_id } =
-  "UpdateFileGenerationStop" ++ cc [p "generation_id" generation_id ]
+  "UpdateFileGenerationStop" ++ U.cc [U.p "generation_id" generation_id ]
 
  show UpdateFileDownloads { downloaded_size=downloaded_size, total_count=total_count, total_size=total_size } =
-  "UpdateFileDownloads" ++ cc [p "downloaded_size" downloaded_size, p "total_count" total_count, p "total_size" total_size ]
+  "UpdateFileDownloads" ++ U.cc [U.p "downloaded_size" downloaded_size, U.p "total_count" total_count, U.p "total_size" total_size ]
 
  show UpdateFileAddedToDownloads { counts=counts, file_download=file_download } =
-  "UpdateFileAddedToDownloads" ++ cc [p "counts" counts, p "file_download" file_download ]
+  "UpdateFileAddedToDownloads" ++ U.cc [U.p "counts" counts, U.p "file_download" file_download ]
 
  show UpdateFileDownload { counts=counts, is_paused=is_paused, complete_date=complete_date, file_id=file_id } =
-  "UpdateFileDownload" ++ cc [p "counts" counts, p "is_paused" is_paused, p "complete_date" complete_date, p "file_id" file_id ]
+  "UpdateFileDownload" ++ U.cc [U.p "counts" counts, U.p "is_paused" is_paused, U.p "complete_date" complete_date, U.p "file_id" file_id ]
 
  show UpdateFileRemovedFromDownloads { counts=counts, file_id=file_id } =
-  "UpdateFileRemovedFromDownloads" ++ cc [p "counts" counts, p "file_id" file_id ]
+  "UpdateFileRemovedFromDownloads" ++ U.cc [U.p "counts" counts, U.p "file_id" file_id ]
 
  show UpdateCall { call=call } =
-  "UpdateCall" ++ cc [p "call" call ]
+  "UpdateCall" ++ U.cc [U.p "call" call ]
 
  show UpdateGroupCall { group_call=group_call } =
-  "UpdateGroupCall" ++ cc [p "group_call" group_call ]
+  "UpdateGroupCall" ++ U.cc [U.p "group_call" group_call ]
 
  show UpdateGroupCallParticipant { participant=participant, group_call_id=group_call_id } =
-  "UpdateGroupCallParticipant" ++ cc [p "participant" participant, p "group_call_id" group_call_id ]
+  "UpdateGroupCallParticipant" ++ U.cc [U.p "participant" participant, U.p "group_call_id" group_call_id ]
 
  show UpdateNewCallSignalingData { _data=_data, call_id=call_id } =
-  "UpdateNewCallSignalingData" ++ cc [p "_data" _data, p "call_id" call_id ]
+  "UpdateNewCallSignalingData" ++ U.cc [U.p "_data" _data, U.p "call_id" call_id ]
 
  show UpdateUserPrivacySettingRules { rules=rules, setting=setting } =
-  "UpdateUserPrivacySettingRules" ++ cc [p "rules" rules, p "setting" setting ]
+  "UpdateUserPrivacySettingRules" ++ U.cc [U.p "rules" rules, U.p "setting" setting ]
 
  show UpdateUnreadMessageCount { unread_unmuted_count=unread_unmuted_count, unread_count=unread_count, chat_list=chat_list } =
-  "UpdateUnreadMessageCount" ++ cc [p "unread_unmuted_count" unread_unmuted_count, p "unread_count" unread_count, p "chat_list" chat_list ]
+  "UpdateUnreadMessageCount" ++ U.cc [U.p "unread_unmuted_count" unread_unmuted_count, U.p "unread_count" unread_count, U.p "chat_list" chat_list ]
 
  show UpdateUnreadChatCount { marked_as_unread_unmuted_count=marked_as_unread_unmuted_count, marked_as_unread_count=marked_as_unread_count, unread_unmuted_count=unread_unmuted_count, unread_count=unread_count, total_count=total_count, chat_list=chat_list } =
-  "UpdateUnreadChatCount" ++ cc [p "marked_as_unread_unmuted_count" marked_as_unread_unmuted_count, p "marked_as_unread_count" marked_as_unread_count, p "unread_unmuted_count" unread_unmuted_count, p "unread_count" unread_count, p "total_count" total_count, p "chat_list" chat_list ]
+  "UpdateUnreadChatCount" ++ U.cc [U.p "marked_as_unread_unmuted_count" marked_as_unread_unmuted_count, U.p "marked_as_unread_count" marked_as_unread_count, U.p "unread_unmuted_count" unread_unmuted_count, U.p "unread_count" unread_count, U.p "total_count" total_count, U.p "chat_list" chat_list ]
 
  show UpdateOption { value=value, name=name } =
-  "UpdateOption" ++ cc [p "value" value, p "name" name ]
+  "UpdateOption" ++ U.cc [U.p "value" value, U.p "name" name ]
 
  show UpdateStickerSet { sticker_set=sticker_set } =
-  "UpdateStickerSet" ++ cc [p "sticker_set" sticker_set ]
+  "UpdateStickerSet" ++ U.cc [U.p "sticker_set" sticker_set ]
 
  show UpdateInstalledStickerSets { sticker_set_ids=sticker_set_ids, is_masks=is_masks } =
-  "UpdateInstalledStickerSets" ++ cc [p "sticker_set_ids" sticker_set_ids, p "is_masks" is_masks ]
+  "UpdateInstalledStickerSets" ++ U.cc [U.p "sticker_set_ids" sticker_set_ids, U.p "is_masks" is_masks ]
 
  show UpdateTrendingStickerSets { sticker_sets=sticker_sets } =
-  "UpdateTrendingStickerSets" ++ cc [p "sticker_sets" sticker_sets ]
+  "UpdateTrendingStickerSets" ++ U.cc [U.p "sticker_sets" sticker_sets ]
 
  show UpdateRecentStickers { sticker_ids=sticker_ids, is_attached=is_attached } =
-  "UpdateRecentStickers" ++ cc [p "sticker_ids" sticker_ids, p "is_attached" is_attached ]
+  "UpdateRecentStickers" ++ U.cc [U.p "sticker_ids" sticker_ids, U.p "is_attached" is_attached ]
 
  show UpdateFavoriteStickers { sticker_ids=sticker_ids } =
-  "UpdateFavoriteStickers" ++ cc [p "sticker_ids" sticker_ids ]
+  "UpdateFavoriteStickers" ++ U.cc [U.p "sticker_ids" sticker_ids ]
 
  show UpdateSavedAnimations { animation_ids=animation_ids } =
-  "UpdateSavedAnimations" ++ cc [p "animation_ids" animation_ids ]
+  "UpdateSavedAnimations" ++ U.cc [U.p "animation_ids" animation_ids ]
 
  show UpdateSavedNotificationSounds { notification_sound_ids=notification_sound_ids } =
-  "UpdateSavedNotificationSounds" ++ cc [p "notification_sound_ids" notification_sound_ids ]
+  "UpdateSavedNotificationSounds" ++ U.cc [U.p "notification_sound_ids" notification_sound_ids ]
 
  show UpdateSelectedBackground { background=background, for_dark_theme=for_dark_theme } =
-  "UpdateSelectedBackground" ++ cc [p "background" background, p "for_dark_theme" for_dark_theme ]
+  "UpdateSelectedBackground" ++ U.cc [U.p "background" background, U.p "for_dark_theme" for_dark_theme ]
 
  show UpdateChatThemes { chat_themes=chat_themes } =
-  "UpdateChatThemes" ++ cc [p "chat_themes" chat_themes ]
+  "UpdateChatThemes" ++ U.cc [U.p "chat_themes" chat_themes ]
 
  show UpdateLanguagePackStrings { strings=strings, language_pack_id=language_pack_id, localization_target=localization_target } =
-  "UpdateLanguagePackStrings" ++ cc [p "strings" strings, p "language_pack_id" language_pack_id, p "localization_target" localization_target ]
+  "UpdateLanguagePackStrings" ++ U.cc [U.p "strings" strings, U.p "language_pack_id" language_pack_id, U.p "localization_target" localization_target ]
 
  show UpdateConnectionState { state=state } =
-  "UpdateConnectionState" ++ cc [p "state" state ]
+  "UpdateConnectionState" ++ U.cc [U.p "state" state ]
 
  show UpdateTermsOfService { terms_of_service=terms_of_service, terms_of_service_id=terms_of_service_id } =
-  "UpdateTermsOfService" ++ cc [p "terms_of_service" terms_of_service, p "terms_of_service_id" terms_of_service_id ]
+  "UpdateTermsOfService" ++ U.cc [U.p "terms_of_service" terms_of_service, U.p "terms_of_service_id" terms_of_service_id ]
 
  show UpdateUsersNearby { users_nearby=users_nearby } =
-  "UpdateUsersNearby" ++ cc [p "users_nearby" users_nearby ]
+  "UpdateUsersNearby" ++ U.cc [U.p "users_nearby" users_nearby ]
 
  show UpdateAttachmentMenuBots { bots=bots } =
-  "UpdateAttachmentMenuBots" ++ cc [p "bots" bots ]
+  "UpdateAttachmentMenuBots" ++ U.cc [U.p "bots" bots ]
 
  show UpdateWebAppMessageSent { web_app_launch_id=web_app_launch_id } =
-  "UpdateWebAppMessageSent" ++ cc [p "web_app_launch_id" web_app_launch_id ]
+  "UpdateWebAppMessageSent" ++ U.cc [U.p "web_app_launch_id" web_app_launch_id ]
 
  show UpdateReactions { reactions=reactions } =
-  "UpdateReactions" ++ cc [p "reactions" reactions ]
+  "UpdateReactions" ++ U.cc [U.p "reactions" reactions ]
 
  show UpdateDiceEmojis { emojis=emojis } =
-  "UpdateDiceEmojis" ++ cc [p "emojis" emojis ]
+  "UpdateDiceEmojis" ++ U.cc [U.p "emojis" emojis ]
 
  show UpdateAnimatedEmojiMessageClicked { sticker=sticker, message_id=message_id, chat_id=chat_id } =
-  "UpdateAnimatedEmojiMessageClicked" ++ cc [p "sticker" sticker, p "message_id" message_id, p "chat_id" chat_id ]
+  "UpdateAnimatedEmojiMessageClicked" ++ U.cc [U.p "sticker" sticker, U.p "message_id" message_id, U.p "chat_id" chat_id ]
 
  show UpdateAnimationSearchParameters { emojis=emojis, provider=provider } =
-  "UpdateAnimationSearchParameters" ++ cc [p "emojis" emojis, p "provider" provider ]
+  "UpdateAnimationSearchParameters" ++ U.cc [U.p "emojis" emojis, U.p "provider" provider ]
 
  show UpdateSuggestedActions { removed_actions=removed_actions, added_actions=added_actions } =
-  "UpdateSuggestedActions" ++ cc [p "removed_actions" removed_actions, p "added_actions" added_actions ]
+  "UpdateSuggestedActions" ++ U.cc [U.p "removed_actions" removed_actions, U.p "added_actions" added_actions ]
 
  show UpdateNewInlineQuery { offset=offset, query=query, chat_type=chat_type, user_location=user_location, sender_user_id=sender_user_id, _id=_id } =
-  "UpdateNewInlineQuery" ++ cc [p "offset" offset, p "query" query, p "chat_type" chat_type, p "user_location" user_location, p "sender_user_id" sender_user_id, p "_id" _id ]
+  "UpdateNewInlineQuery" ++ U.cc [U.p "offset" offset, U.p "query" query, U.p "chat_type" chat_type, U.p "user_location" user_location, U.p "sender_user_id" sender_user_id, U.p "_id" _id ]
 
  show UpdateNewChosenInlineResult { inline_message_id=inline_message_id, result_id=result_id, query=query, user_location=user_location, sender_user_id=sender_user_id } =
-  "UpdateNewChosenInlineResult" ++ cc [p "inline_message_id" inline_message_id, p "result_id" result_id, p "query" query, p "user_location" user_location, p "sender_user_id" sender_user_id ]
+  "UpdateNewChosenInlineResult" ++ U.cc [U.p "inline_message_id" inline_message_id, U.p "result_id" result_id, U.p "query" query, U.p "user_location" user_location, U.p "sender_user_id" sender_user_id ]
 
  show UpdateNewCallbackQuery { payload=payload, chat_instance=chat_instance, message_id=message_id, chat_id=chat_id, sender_user_id=sender_user_id, _id=_id } =
-  "UpdateNewCallbackQuery" ++ cc [p "payload" payload, p "chat_instance" chat_instance, p "message_id" message_id, p "chat_id" chat_id, p "sender_user_id" sender_user_id, p "_id" _id ]
+  "UpdateNewCallbackQuery" ++ U.cc [U.p "payload" payload, U.p "chat_instance" chat_instance, U.p "message_id" message_id, U.p "chat_id" chat_id, U.p "sender_user_id" sender_user_id, U.p "_id" _id ]
 
  show UpdateNewInlineCallbackQuery { payload=payload, chat_instance=chat_instance, inline_message_id=inline_message_id, sender_user_id=sender_user_id, _id=_id } =
-  "UpdateNewInlineCallbackQuery" ++ cc [p "payload" payload, p "chat_instance" chat_instance, p "inline_message_id" inline_message_id, p "sender_user_id" sender_user_id, p "_id" _id ]
+  "UpdateNewInlineCallbackQuery" ++ U.cc [U.p "payload" payload, U.p "chat_instance" chat_instance, U.p "inline_message_id" inline_message_id, U.p "sender_user_id" sender_user_id, U.p "_id" _id ]
 
  show UpdateNewShippingQuery { shipping_address=shipping_address, invoice_payload=invoice_payload, sender_user_id=sender_user_id, _id=_id } =
-  "UpdateNewShippingQuery" ++ cc [p "shipping_address" shipping_address, p "invoice_payload" invoice_payload, p "sender_user_id" sender_user_id, p "_id" _id ]
+  "UpdateNewShippingQuery" ++ U.cc [U.p "shipping_address" shipping_address, U.p "invoice_payload" invoice_payload, U.p "sender_user_id" sender_user_id, U.p "_id" _id ]
 
  show UpdateNewPreCheckoutQuery { order_info=order_info, shipping_option_id=shipping_option_id, invoice_payload=invoice_payload, total_amount=total_amount, currency=currency, sender_user_id=sender_user_id, _id=_id } =
-  "UpdateNewPreCheckoutQuery" ++ cc [p "order_info" order_info, p "shipping_option_id" shipping_option_id, p "invoice_payload" invoice_payload, p "total_amount" total_amount, p "currency" currency, p "sender_user_id" sender_user_id, p "_id" _id ]
+  "UpdateNewPreCheckoutQuery" ++ U.cc [U.p "order_info" order_info, U.p "shipping_option_id" shipping_option_id, U.p "invoice_payload" invoice_payload, U.p "total_amount" total_amount, U.p "currency" currency, U.p "sender_user_id" sender_user_id, U.p "_id" _id ]
 
  show UpdateNewCustomEvent { event=event } =
-  "UpdateNewCustomEvent" ++ cc [p "event" event ]
+  "UpdateNewCustomEvent" ++ U.cc [U.p "event" event ]
 
  show UpdateNewCustomQuery { timeout=timeout, _data=_data, _id=_id } =
-  "UpdateNewCustomQuery" ++ cc [p "timeout" timeout, p "_data" _data, p "_id" _id ]
+  "UpdateNewCustomQuery" ++ U.cc [U.p "timeout" timeout, U.p "_data" _data, U.p "_id" _id ]
 
  show UpdatePoll { poll=poll } =
-  "UpdatePoll" ++ cc [p "poll" poll ]
+  "UpdatePoll" ++ U.cc [U.p "poll" poll ]
 
  show UpdatePollAnswer { option_ids=option_ids, user_id=user_id, poll_id=poll_id } =
-  "UpdatePollAnswer" ++ cc [p "option_ids" option_ids, p "user_id" user_id, p "poll_id" poll_id ]
+  "UpdatePollAnswer" ++ U.cc [U.p "option_ids" option_ids, U.p "user_id" user_id, U.p "poll_id" poll_id ]
 
  show UpdateChatMember { new_chat_member=new_chat_member, old_chat_member=old_chat_member, invite_link=invite_link, date=date, actor_user_id=actor_user_id, chat_id=chat_id } =
-  "UpdateChatMember" ++ cc [p "new_chat_member" new_chat_member, p "old_chat_member" old_chat_member, p "invite_link" invite_link, p "date" date, p "actor_user_id" actor_user_id, p "chat_id" chat_id ]
+  "UpdateChatMember" ++ U.cc [U.p "new_chat_member" new_chat_member, U.p "old_chat_member" old_chat_member, U.p "invite_link" invite_link, U.p "date" date, U.p "actor_user_id" actor_user_id, U.p "chat_id" chat_id ]
 
  show UpdateNewChatJoinRequest { invite_link=invite_link, request=request, chat_id=chat_id } =
-  "UpdateNewChatJoinRequest" ++ cc [p "invite_link" invite_link, p "request" request, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "UpdateNewChatJoinRequest" ++ U.cc [U.p "invite_link" invite_link, U.p "request" request, U.p "chat_id" chat_id ]
 
 instance T.ToJSON Update where
  toJSON UpdateAuthorizationState { authorization_state = authorization_state } =

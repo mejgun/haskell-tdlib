@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 
 -- |
@@ -36,19 +36,10 @@ data DiceStickers =
 
 instance Show DiceStickers where
  show DiceStickersRegular { sticker=sticker } =
-  "DiceStickersRegular" ++ cc [p "sticker" sticker ]
+  "DiceStickersRegular" ++ U.cc [U.p "sticker" sticker ]
 
  show DiceStickersSlotMachine { right_reel=right_reel, center_reel=center_reel, left_reel=left_reel, lever=lever, background=background } =
-  "DiceStickersSlotMachine" ++ cc [p "right_reel" right_reel, p "center_reel" center_reel, p "left_reel" left_reel, p "lever" lever, p "background" background ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DiceStickersSlotMachine" ++ U.cc [U.p "right_reel" right_reel, U.p "center_reel" center_reel, U.p "left_reel" left_reel, U.p "lever" lever, U.p "background" background ]
 
 instance T.ToJSON DiceStickers where
  toJSON DiceStickersRegular { sticker = sticker } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
@@ -32,16 +32,7 @@ data SendMessage =
 
 instance Show SendMessage where
  show SendMessage { input_message_content=input_message_content, reply_markup=reply_markup, options=options, reply_to_message_id=reply_to_message_id, message_thread_id=message_thread_id, chat_id=chat_id } =
-  "SendMessage" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "options" options, p "reply_to_message_id" reply_to_message_id, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SendMessage" ++ U.cc [U.p "input_message_content" input_message_content, U.p "reply_markup" reply_markup, U.p "options" options, U.p "reply_to_message_id" reply_to_message_id, U.p "message_thread_id" message_thread_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON SendMessage where
  toJSON SendMessage { input_message_content = input_message_content, reply_markup = reply_markup, options = options, reply_to_message_id = reply_to_message_id, message_thread_id = message_thread_id, chat_id = chat_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data GetSuggestedFileName =
 
 instance Show GetSuggestedFileName where
  show GetSuggestedFileName { directory=directory, file_id=file_id } =
-  "GetSuggestedFileName" ++ cc [p "directory" directory, p "file_id" file_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetSuggestedFileName" ++ U.cc [U.p "directory" directory, U.p "file_id" file_id ]
 
 instance T.ToJSON GetSuggestedFileName where
  toJSON GetSuggestedFileName { directory = directory, file_id = file_id } =

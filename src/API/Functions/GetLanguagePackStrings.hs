@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -21,16 +21,7 @@ data GetLanguagePackStrings =
 
 instance Show GetLanguagePackStrings where
  show GetLanguagePackStrings { keys=keys, language_pack_id=language_pack_id } =
-  "GetLanguagePackStrings" ++ cc [p "keys" keys, p "language_pack_id" language_pack_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetLanguagePackStrings" ++ U.cc [U.p "keys" keys, U.p "language_pack_id" language_pack_id ]
 
 instance T.ToJSON GetLanguagePackStrings where
  toJSON GetLanguagePackStrings { keys = keys, language_pack_id = language_pack_id } =

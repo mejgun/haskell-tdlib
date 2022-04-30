@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 -- |
@@ -22,16 +22,7 @@ data JsonObjectMember =
 
 instance Show JsonObjectMember where
  show JsonObjectMember { value=value, key=key } =
-  "JsonObjectMember" ++ cc [p "value" value, p "key" key ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "JsonObjectMember" ++ U.cc [U.p "value" value, U.p "key" key ]
 
 instance T.ToJSON JsonObjectMember where
  toJSON JsonObjectMember { value = value, key = key } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -51,34 +51,25 @@ data BotCommandScope =
 
 instance Show BotCommandScope where
  show BotCommandScopeDefault {  } =
-  "BotCommandScopeDefault" ++ cc [ ]
+  "BotCommandScopeDefault" ++ U.cc [ ]
 
  show BotCommandScopeAllPrivateChats {  } =
-  "BotCommandScopeAllPrivateChats" ++ cc [ ]
+  "BotCommandScopeAllPrivateChats" ++ U.cc [ ]
 
  show BotCommandScopeAllGroupChats {  } =
-  "BotCommandScopeAllGroupChats" ++ cc [ ]
+  "BotCommandScopeAllGroupChats" ++ U.cc [ ]
 
  show BotCommandScopeAllChatAdministrators {  } =
-  "BotCommandScopeAllChatAdministrators" ++ cc [ ]
+  "BotCommandScopeAllChatAdministrators" ++ U.cc [ ]
 
  show BotCommandScopeChat { chat_id=chat_id } =
-  "BotCommandScopeChat" ++ cc [p "chat_id" chat_id ]
+  "BotCommandScopeChat" ++ U.cc [U.p "chat_id" chat_id ]
 
  show BotCommandScopeChatAdministrators { chat_id=chat_id } =
-  "BotCommandScopeChatAdministrators" ++ cc [p "chat_id" chat_id ]
+  "BotCommandScopeChatAdministrators" ++ U.cc [U.p "chat_id" chat_id ]
 
  show BotCommandScopeChatMember { user_id=user_id, chat_id=chat_id } =
-  "BotCommandScopeChatMember" ++ cc [p "user_id" user_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "BotCommandScopeChatMember" ++ U.cc [U.p "user_id" user_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON BotCommandScope where
  toJSON BotCommandScopeDefault {  } =

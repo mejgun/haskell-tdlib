@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.SupergroupMembersFilter as SupergroupMembersFilter
 
 -- |
@@ -26,16 +26,7 @@ data GetSupergroupMembers =
 
 instance Show GetSupergroupMembers where
  show GetSupergroupMembers { limit=limit, offset=offset, _filter=_filter, supergroup_id=supergroup_id } =
-  "GetSupergroupMembers" ++ cc [p "limit" limit, p "offset" offset, p "_filter" _filter, p "supergroup_id" supergroup_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetSupergroupMembers" ++ U.cc [U.p "limit" limit, U.p "offset" offset, U.p "_filter" _filter, U.p "supergroup_id" supergroup_id ]
 
 instance T.ToJSON GetSupergroupMembers where
  toJSON GetSupergroupMembers { limit = limit, offset = offset, _filter = _filter, supergroup_id = supergroup_id } =

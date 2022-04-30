@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
 -- |
@@ -22,16 +22,7 @@ data EditInlineMessageReplyMarkup =
 
 instance Show EditInlineMessageReplyMarkup where
  show EditInlineMessageReplyMarkup { reply_markup=reply_markup, inline_message_id=inline_message_id } =
-  "EditInlineMessageReplyMarkup" ++ cc [p "reply_markup" reply_markup, p "inline_message_id" inline_message_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "EditInlineMessageReplyMarkup" ++ U.cc [U.p "reply_markup" reply_markup, U.p "inline_message_id" inline_message_id ]
 
 instance T.ToJSON EditInlineMessageReplyMarkup where
  toJSON EditInlineMessageReplyMarkup { reply_markup = reply_markup, inline_message_id = inline_message_id } =

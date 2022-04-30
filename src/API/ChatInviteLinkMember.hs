@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data ChatInviteLinkMember =
 
 instance Show ChatInviteLinkMember where
  show ChatInviteLinkMember { approver_user_id=approver_user_id, joined_chat_date=joined_chat_date, user_id=user_id } =
-  "ChatInviteLinkMember" ++ cc [p "approver_user_id" approver_user_id, p "joined_chat_date" joined_chat_date, p "user_id" user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ChatInviteLinkMember" ++ U.cc [U.p "approver_user_id" approver_user_id, U.p "joined_chat_date" joined_chat_date, U.p "user_id" user_id ]
 
 instance T.ToJSON ChatInviteLinkMember where
  toJSON ChatInviteLinkMember { approver_user_id = approver_user_id, joined_chat_date = joined_chat_date, user_id = user_id } =

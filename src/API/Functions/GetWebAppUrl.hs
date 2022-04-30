@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ThemeParameters as ThemeParameters
 
 -- |
@@ -24,16 +24,7 @@ data GetWebAppUrl =
 
 instance Show GetWebAppUrl where
  show GetWebAppUrl { theme=theme, url=url, bot_user_id=bot_user_id } =
-  "GetWebAppUrl" ++ cc [p "theme" theme, p "url" url, p "bot_user_id" bot_user_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetWebAppUrl" ++ U.cc [U.p "theme" theme, U.p "url" url, U.p "bot_user_id" bot_user_id ]
 
 instance T.ToJSON GetWebAppUrl where
  toJSON GetWebAppUrl { theme = theme, url = url, bot_user_id = bot_user_id } =

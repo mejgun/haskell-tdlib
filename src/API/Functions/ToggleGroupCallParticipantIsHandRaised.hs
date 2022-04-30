@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -24,16 +24,7 @@ data ToggleGroupCallParticipantIsHandRaised =
 
 instance Show ToggleGroupCallParticipantIsHandRaised where
  show ToggleGroupCallParticipantIsHandRaised { is_hand_raised=is_hand_raised, participant_id=participant_id, group_call_id=group_call_id } =
-  "ToggleGroupCallParticipantIsHandRaised" ++ cc [p "is_hand_raised" is_hand_raised, p "participant_id" participant_id, p "group_call_id" group_call_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ToggleGroupCallParticipantIsHandRaised" ++ U.cc [U.p "is_hand_raised" is_hand_raised, U.p "participant_id" participant_id, U.p "group_call_id" group_call_id ]
 
 instance T.ToJSON ToggleGroupCallParticipantIsHandRaised where
  toJSON ToggleGroupCallParticipantIsHandRaised { is_hand_raised = is_hand_raised, participant_id = participant_id, group_call_id = group_call_id } =

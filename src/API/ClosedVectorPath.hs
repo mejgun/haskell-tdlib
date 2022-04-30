@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.VectorPathCommand as VectorPathCommand
 
 -- |
@@ -20,16 +20,7 @@ data ClosedVectorPath =
 
 instance Show ClosedVectorPath where
  show ClosedVectorPath { commands=commands } =
-  "ClosedVectorPath" ++ cc [p "commands" commands ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ClosedVectorPath" ++ U.cc [U.p "commands" commands ]
 
 instance T.ToJSON ClosedVectorPath where
  toJSON ClosedVectorPath { commands = commands } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data GetStatisticalGraph =
 
 instance Show GetStatisticalGraph where
  show GetStatisticalGraph { x=x, token=token, chat_id=chat_id } =
-  "GetStatisticalGraph" ++ cc [p "x" x, p "token" token, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "GetStatisticalGraph" ++ U.cc [U.p "x" x, U.p "token" token, U.p "chat_id" chat_id ]
 
 instance T.ToJSON GetStatisticalGraph where
  toJSON GetStatisticalGraph { x = x, token = token, chat_id = chat_id } =

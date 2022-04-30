@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -45,25 +45,16 @@ data InputFile =
 
 instance Show InputFile where
  show InputFileId { __id=__id } =
-  "InputFileId" ++ cc [p "__id" __id ]
+  "InputFileId" ++ U.cc [U.p "__id" __id ]
 
  show InputFileRemote { _id=_id } =
-  "InputFileRemote" ++ cc [p "_id" _id ]
+  "InputFileRemote" ++ U.cc [U.p "_id" _id ]
 
  show InputFileLocal { path=path } =
-  "InputFileLocal" ++ cc [p "path" path ]
+  "InputFileLocal" ++ U.cc [U.p "path" path ]
 
  show InputFileGenerated { expected_size=expected_size, conversion=conversion, original_path=original_path } =
-  "InputFileGenerated" ++ cc [p "expected_size" expected_size, p "conversion" conversion, p "original_path" original_path ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "InputFileGenerated" ++ U.cc [U.p "expected_size" expected_size, U.p "conversion" conversion, U.p "original_path" original_path ]
 
 instance T.ToJSON InputFile where
  toJSON InputFileId { __id = __id } =

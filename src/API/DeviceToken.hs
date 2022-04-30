@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -93,46 +93,37 @@ data DeviceToken =
 
 instance Show DeviceToken where
  show DeviceTokenFirebaseCloudMessaging { encrypt=encrypt, token=token } =
-  "DeviceTokenFirebaseCloudMessaging" ++ cc [p "encrypt" encrypt, p "token" token ]
+  "DeviceTokenFirebaseCloudMessaging" ++ U.cc [U.p "encrypt" encrypt, U.p "token" token ]
 
  show DeviceTokenApplePush { is_app_sandbox=is_app_sandbox, device_token=device_token } =
-  "DeviceTokenApplePush" ++ cc [p "is_app_sandbox" is_app_sandbox, p "device_token" device_token ]
+  "DeviceTokenApplePush" ++ U.cc [U.p "is_app_sandbox" is_app_sandbox, U.p "device_token" device_token ]
 
  show DeviceTokenApplePushVoIP { encrypt=encrypt, is_app_sandbox=is_app_sandbox, device_token=device_token } =
-  "DeviceTokenApplePushVoIP" ++ cc [p "encrypt" encrypt, p "is_app_sandbox" is_app_sandbox, p "device_token" device_token ]
+  "DeviceTokenApplePushVoIP" ++ U.cc [U.p "encrypt" encrypt, U.p "is_app_sandbox" is_app_sandbox, U.p "device_token" device_token ]
 
  show DeviceTokenWindowsPush { access_token=access_token } =
-  "DeviceTokenWindowsPush" ++ cc [p "access_token" access_token ]
+  "DeviceTokenWindowsPush" ++ U.cc [U.p "access_token" access_token ]
 
  show DeviceTokenMicrosoftPush { channel_uri=channel_uri } =
-  "DeviceTokenMicrosoftPush" ++ cc [p "channel_uri" channel_uri ]
+  "DeviceTokenMicrosoftPush" ++ U.cc [U.p "channel_uri" channel_uri ]
 
  show DeviceTokenMicrosoftPushVoIP { channel_uri=channel_uri } =
-  "DeviceTokenMicrosoftPushVoIP" ++ cc [p "channel_uri" channel_uri ]
+  "DeviceTokenMicrosoftPushVoIP" ++ U.cc [U.p "channel_uri" channel_uri ]
 
  show DeviceTokenWebPush { auth_base64url=auth_base64url, p256dh_base64url=p256dh_base64url, endpoint=endpoint } =
-  "DeviceTokenWebPush" ++ cc [p "auth_base64url" auth_base64url, p "p256dh_base64url" p256dh_base64url, p "endpoint" endpoint ]
+  "DeviceTokenWebPush" ++ U.cc [U.p "auth_base64url" auth_base64url, U.p "p256dh_base64url" p256dh_base64url, U.p "endpoint" endpoint ]
 
  show DeviceTokenSimplePush { endpoint=endpoint } =
-  "DeviceTokenSimplePush" ++ cc [p "endpoint" endpoint ]
+  "DeviceTokenSimplePush" ++ U.cc [U.p "endpoint" endpoint ]
 
  show DeviceTokenUbuntuPush { token=token } =
-  "DeviceTokenUbuntuPush" ++ cc [p "token" token ]
+  "DeviceTokenUbuntuPush" ++ U.cc [U.p "token" token ]
 
  show DeviceTokenBlackBerryPush { token=token } =
-  "DeviceTokenBlackBerryPush" ++ cc [p "token" token ]
+  "DeviceTokenBlackBerryPush" ++ U.cc [U.p "token" token ]
 
  show DeviceTokenTizenPush { reg_id=reg_id } =
-  "DeviceTokenTizenPush" ++ cc [p "reg_id" reg_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DeviceTokenTizenPush" ++ U.cc [U.p "reg_id" reg_id ]
 
 instance T.ToJSON DeviceToken where
  toJSON DeviceTokenFirebaseCloudMessaging { encrypt = encrypt, token = token } =

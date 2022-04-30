@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.LanguagePackStringValue as LanguagePackStringValue
 
 -- |
@@ -22,16 +22,7 @@ data LanguagePackString =
 
 instance Show LanguagePackString where
  show LanguagePackString { value=value, key=key } =
-  "LanguagePackString" ++ cc [p "value" value, p "key" key ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "LanguagePackString" ++ U.cc [U.p "value" value, U.p "key" key ]
 
 instance T.ToJSON LanguagePackString where
  toJSON LanguagePackString { value = value, key = key } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data DeleteChatHistory =
 
 instance Show DeleteChatHistory where
  show DeleteChatHistory { revoke=revoke, remove_from_chat_list=remove_from_chat_list, chat_id=chat_id } =
-  "DeleteChatHistory" ++ cc [p "revoke" revoke, p "remove_from_chat_list" remove_from_chat_list, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "DeleteChatHistory" ++ U.cc [U.p "revoke" revoke, U.p "remove_from_chat_list" remove_from_chat_list, U.p "chat_id" chat_id ]
 
 instance T.ToJSON DeleteChatHistory where
  toJSON DeleteChatHistory { revoke = revoke, remove_from_chat_list = remove_from_chat_list, chat_id = chat_id } =

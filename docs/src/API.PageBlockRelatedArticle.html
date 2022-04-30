@@ -6,7 +6,7 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Photo.html"><span class="hs-identifier">API.Photo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Photo</span></span><span>
 </span><span id="line-11"></span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
@@ -32,7 +32,7 @@
 </span><a href="API.PageBlockRelatedArticle.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo.Photo</span></a></span><span class="hs-special">,</span><span> </span><span id="description"><span class="annot"><span class="annottext">PageBlockRelatedArticle -&gt; Maybe String
 </span><a href="API.PageBlockRelatedArticle.html#description"><span class="hs-identifier hs-var hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="title"><span class="annot"><span class="annottext">PageBlockRelatedArticle -&gt; Maybe String
 </span><a href="API.PageBlockRelatedArticle.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="url"><span class="annot"><span class="annottext">PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#url"><span class="hs-identifier hs-var hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679560783"><span id="local-6989586621679560785"><span class="annot"><span class="annottext">PageBlockRelatedArticle -&gt; PageBlockRelatedArticle -&gt; Bool
+</span><a href="API.PageBlockRelatedArticle.html#url"><span class="hs-identifier hs-var hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679450821"><span id="local-6989586621679450823"><span class="annot"><span class="annottext">PageBlockRelatedArticle -&gt; PageBlockRelatedArticle -&gt; Bool
 (PageBlockRelatedArticle -&gt; PageBlockRelatedArticle -&gt; Bool)
 -&gt; (PageBlockRelatedArticle -&gt; PageBlockRelatedArticle -&gt; Bool)
 -&gt; Eq PageBlockRelatedArticle
@@ -43,112 +43,67 @@ $c/= :: PageBlockRelatedArticle -&gt; PageBlockRelatedArticle -&gt; Bool
 $c== :: PageBlockRelatedArticle -&gt; PageBlockRelatedArticle -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679560777"><span id="local-6989586621679560780"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span> </span><span id="local-6989586621679560775"><span class="annot"><span class="annottext">show :: PageBlockRelatedArticle -&gt; String
+</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450815"><span id="local-6989586621679450818"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span> </span><span id="local-6989586621679450813"><span class="annot"><span class="annottext">show :: PageBlockRelatedArticle -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">publish_date :: PageBlockRelatedArticle -&gt; Maybe Int
-</span><a href="API.PageBlockRelatedArticle.html#publish_date"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679560773"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679560773"><span class="hs-identifier hs-var">publish_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#author"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679560772"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560772"><span class="hs-identifier hs-var">author</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: PageBlockRelatedArticle -&gt; Maybe Photo
-</span><a href="API.PageBlockRelatedArticle.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679560771"><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679560771"><span class="hs-identifier hs-var">photo</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#description"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679560770"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560770"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#title"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679560769"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560769"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#url"><span class="hs-identifier hs-var">url</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679560768"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560768"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.PageBlockRelatedArticle.html#publish_date"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679450811"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679450811"><span class="hs-identifier hs-var">publish_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#author"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679450810"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450810"><span class="hs-identifier hs-var">author</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: PageBlockRelatedArticle -&gt; Maybe Photo
+</span><a href="API.PageBlockRelatedArticle.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679450809"><span class="annot"><span class="annottext">Maybe Photo
+</span><a href="#local-6989586621679450809"><span class="hs-identifier hs-var">photo</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#description"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679450808"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450808"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#title"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679450807"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450807"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#url"><span class="hs-identifier hs-var">url</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679450806"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450806"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PageBlockRelatedArticle&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;publish_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679560773"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679450811"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;author&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560772"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Photo -&gt; String
+</span><a href="#local-6989586621679450810"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Photo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679560771"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679450809"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560770"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679450808"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560769"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679450807"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560768"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679450806"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span id="local-6989586621679560830"><span class="annot"><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679560830"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679560830"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
-</span><span id="line-36"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679560765"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679560765"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679560764"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679560764"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679560765"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
-forall a. Show a =&gt; a -&gt; String
-</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679560764"><span class="hs-identifier hs-var">a</span></a></span><span>
-</span><span id="line-37"></span><span class="annot"><a href="API.PageBlockRelatedArticle.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
-</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;&quot;</span></span><span>
-</span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="annot"><a href="API.PageBlockRelatedArticle.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-40"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
-</span><a href="API.PageBlockRelatedArticle.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-forall a. Monoid a =&gt; a
-</span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-41"></span><span class="annot"><a href="API.PageBlockRelatedArticle.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679560763"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679560763"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
-forall a. [a] -&gt; [[a]] -&gt; [a]
-</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
-forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
-</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
-</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
-forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
-forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
-</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679560763"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;}&quot;</span></span><span>
-</span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679560753"><span id="local-6989586621679560755"><span id="local-6989586621679560757"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span> </span><span id="local-6989586621679560751"><span class="annot"><span class="annottext">toJSON :: PageBlockRelatedArticle -&gt; Value
+</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450797"><span id="local-6989586621679450799"><span id="local-6989586621679450801"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-36"></span><span> </span><span id="local-6989586621679450795"><span class="annot"><span class="annottext">toJSON :: PageBlockRelatedArticle -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">publish_date :: PageBlockRelatedArticle -&gt; Maybe Int
-</span><a href="API.PageBlockRelatedArticle.html#publish_date"><span class="hs-identifier hs-var">publish_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679560749"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679560749"><span class="hs-identifier hs-var">publish_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#author"><span class="hs-identifier hs-var">author</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679560748"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560748"><span class="hs-identifier hs-var">author</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: PageBlockRelatedArticle -&gt; Maybe Photo
-</span><a href="API.PageBlockRelatedArticle.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679560747"><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679560747"><span class="hs-identifier hs-var">photo</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679560746"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560746"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679560745"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560745"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: PageBlockRelatedArticle -&gt; Maybe String
-</span><a href="API.PageBlockRelatedArticle.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679560744"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560744"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-46"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.PageBlockRelatedArticle.html#publish_date"><span class="hs-identifier hs-var">publish_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450793"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679450793"><span class="hs-identifier hs-var">publish_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#author"><span class="hs-identifier hs-var">author</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450792"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450792"><span class="hs-identifier hs-var">author</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: PageBlockRelatedArticle -&gt; Maybe Photo
+</span><a href="API.PageBlockRelatedArticle.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450791"><span class="annot"><span class="annottext">Maybe Photo
+</span><a href="#local-6989586621679450791"><span class="hs-identifier hs-var">photo</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450790"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450790"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450789"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450789"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: PageBlockRelatedArticle -&gt; Maybe String
+</span><a href="API.PageBlockRelatedArticle.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450788"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450788"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -158,53 +113,53 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;publish_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679560749"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679450793"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;author&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560748"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679450792"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Photo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679560747"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679450791"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560746"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679450790"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560745"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679450789"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560744"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679560738"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span> </span><span id="local-6989586621679560736"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PageBlockRelatedArticle
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679560734"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679560734"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679560732"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560732"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>  </span><span id="local-6989586621679560731"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679560731"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560732"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679450788"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-38"></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450782"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span> </span><span id="local-6989586621679450780"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PageBlockRelatedArticle
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679450778"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679450778"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679450776"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450776"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679450775"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679450775"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450776"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-51"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679560731"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-52"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679450775"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;pageBlockRelatedArticle&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockRelatedArticle
-</span><a href="#local-6989586621679560729"><span class="hs-identifier hs-var">parsePageBlockRelatedArticle</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679560734"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-53"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679450773"><span class="hs-identifier hs-var">parsePageBlockRelatedArticle</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450778"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockRelatedArticle
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-54"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span>   </span><span class="annot"><a href="#local-6989586621679560729"><span class="hs-identifier hs-type">parsePageBlockRelatedArticle</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span><span>
-</span><span id="line-56"></span><span>   </span><span id="local-6989586621679560729"><span class="annot"><span class="annottext">parsePageBlockRelatedArticle :: Value -&gt; Parser PageBlockRelatedArticle
-</span><a href="#local-6989586621679560729"><span class="hs-identifier hs-var hs-var">parsePageBlockRelatedArticle</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679450773"><span class="hs-identifier hs-type">parsePageBlockRelatedArticle</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span id="local-6989586621679450773"><span class="annot"><span class="annottext">parsePageBlockRelatedArticle :: Value -&gt; Parser PageBlockRelatedArticle
+</span><a href="#local-6989586621679450773"><span class="hs-identifier hs-var hs-var">parsePageBlockRelatedArticle</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PageBlockRelatedArticle)
 -&gt; Value
 -&gt; Parser PageBlockRelatedArticle
@@ -216,13 +171,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PageBlockRelatedArticle
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679560727"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-57"></span><span>    </span><span id="local-6989586621679560726"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679560726"><span class="hs-identifier hs-var">publish_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450771"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679450770"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679450770"><span class="hs-identifier hs-var">publish_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;publish_date&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -230,41 +185,41 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;publish_date&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679560723"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560723"><span class="hs-identifier hs-var">author</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679450767"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450767"><span class="hs-identifier hs-var">author</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;author&quot;</span></span><span>
-</span><span id="line-59"></span><span>    </span><span id="local-6989586621679560722"><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679560722"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Photo)
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679450766"><span class="annot"><span class="annottext">Maybe Photo
+</span><a href="#local-6989586621679450766"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Photo)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span>
-</span><span id="line-60"></span><span>    </span><span id="local-6989586621679560721"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560721"><span class="hs-identifier hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679450765"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450765"><span class="hs-identifier hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span>
-</span><span id="line-61"></span><span>    </span><span id="local-6989586621679560720"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560720"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679450764"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450764"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span>
-</span><span id="line-62"></span><span>    </span><span id="local-6989586621679560719"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560719"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679560727"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679450763"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679450763"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;url&quot;</span></span><span>
-</span><span id="line-63"></span><span>    </span><span class="annot"><span class="annottext">PageBlockRelatedArticle -&gt; Parser PageBlockRelatedArticle
+</span><span id="line-54"></span><span>    </span><span class="annot"><span class="annottext">PageBlockRelatedArticle -&gt; Parser PageBlockRelatedArticle
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PageBlockRelatedArticle -&gt; Parser PageBlockRelatedArticle)
 -&gt; PageBlockRelatedArticle -&gt; Parser PageBlockRelatedArticle
@@ -278,19 +233,19 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PageBlockRelatedArticle
 </span><a href="API.PageBlockRelatedArticle.html#PageBlockRelatedArticle"><span class="hs-identifier hs-type">PageBlockRelatedArticle</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">publish_date :: Maybe Int
 </span><a href="API.PageBlockRelatedArticle.html#publish_date"><span class="hs-identifier hs-var">publish_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679560726"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: Maybe String
+</span><a href="#local-6989586621679450770"><span class="hs-identifier hs-var">publish_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: Maybe String
 </span><a href="API.PageBlockRelatedArticle.html#author"><span class="hs-identifier hs-var">author</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560723"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe Photo
+</span><a href="#local-6989586621679450767"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe Photo
 </span><a href="API.PageBlockRelatedArticle.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679560722"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe String
+</span><a href="#local-6989586621679450766"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe String
 </span><a href="API.PageBlockRelatedArticle.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560721"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
+</span><a href="#local-6989586621679450765"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
 </span><a href="API.PageBlockRelatedArticle.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560720"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: Maybe String
+</span><a href="#local-6989586621679450764"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: Maybe String
 </span><a href="API.PageBlockRelatedArticle.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679560719"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-64"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450763"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-55"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockRelatedArticle
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-65"></span></pre></body></html>
+</span><span id="line-56"></span></pre></body></html>

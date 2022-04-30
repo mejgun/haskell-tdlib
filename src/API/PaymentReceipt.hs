@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Invoice as Invoice
@@ -43,16 +43,7 @@ data PaymentReceipt =
 
 instance Show PaymentReceipt where
  show PaymentReceipt { tip_amount=tip_amount, credentials_title=credentials_title, shipping_option=shipping_option, order_info=order_info, invoice=invoice, payments_provider_user_id=payments_provider_user_id, seller_bot_user_id=seller_bot_user_id, date=date, photo=photo, description=description, title=title } =
-  "PaymentReceipt" ++ cc [p "tip_amount" tip_amount, p "credentials_title" credentials_title, p "shipping_option" shipping_option, p "order_info" order_info, p "invoice" invoice, p "payments_provider_user_id" payments_provider_user_id, p "seller_bot_user_id" seller_bot_user_id, p "date" date, p "photo" photo, p "description" description, p "title" title ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "PaymentReceipt" ++ U.cc [U.p "tip_amount" tip_amount, U.p "credentials_title" credentials_title, U.p "shipping_option" shipping_option, U.p "order_info" order_info, U.p "invoice" invoice, U.p "payments_provider_user_id" payments_provider_user_id, U.p "seller_bot_user_id" seller_bot_user_id, U.p "date" date, U.p "photo" photo, U.p "description" description, U.p "title" title ]
 
 instance T.ToJSON PaymentReceipt where
  toJSON PaymentReceipt { tip_amount = tip_amount, credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, seller_bot_user_id = seller_bot_user_id, date = date, photo = photo, description = description, title = title } =

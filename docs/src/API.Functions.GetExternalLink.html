@@ -6,7 +6,7 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- </span><span>
@@ -19,7 +19,7 @@
 </span><span id="line-19"></span><span>
 </span><span id="line-20"></span><span> </span><span id="GetExternalLink"><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-var">GetExternalLink</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="allow_write_access"><span class="annot"><span class="annottext">GetExternalLink -&gt; Maybe Bool
 </span><a href="API.Functions.GetExternalLink.html#allow_write_access"><span class="hs-identifier hs-var hs-var">allow_write_access</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="link"><span class="annot"><span class="annottext">GetExternalLink -&gt; Maybe String
-</span><a href="API.Functions.GetExternalLink.html#link"><span class="hs-identifier hs-var hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679516068"><span id="local-6989586621679516070"><span class="annot"><span class="annottext">GetExternalLink -&gt; GetExternalLink -&gt; Bool
+</span><a href="API.Functions.GetExternalLink.html#link"><span class="hs-identifier hs-var hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679489463"><span id="local-6989586621679489465"><span class="annot"><span class="annottext">GetExternalLink -&gt; GetExternalLink -&gt; Bool
 (GetExternalLink -&gt; GetExternalLink -&gt; Bool)
 -&gt; (GetExternalLink -&gt; GetExternalLink -&gt; Bool)
 -&gt; Eq GetExternalLink
@@ -30,80 +30,35 @@ $c/= :: GetExternalLink -&gt; GetExternalLink -&gt; Bool
 $c== :: GetExternalLink -&gt; GetExternalLink -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679516062"><span id="local-6989586621679516065"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679516060"><span class="annot"><span class="annottext">show :: GetExternalLink -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679489457"><span id="local-6989586621679489460"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679489455"><span class="annot"><span class="annottext">show :: GetExternalLink -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_write_access :: GetExternalLink -&gt; Maybe Bool
-</span><a href="API.Functions.GetExternalLink.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679516058"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679516058"><span class="hs-identifier hs-var">allow_write_access</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">link :: GetExternalLink -&gt; Maybe String
-</span><a href="API.Functions.GetExternalLink.html#link"><span class="hs-identifier hs-var">link</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679516057"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679516057"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.GetExternalLink.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679489453"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679489453"><span class="hs-identifier hs-var">allow_write_access</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">link :: GetExternalLink -&gt; Maybe String
+</span><a href="API.Functions.GetExternalLink.html#link"><span class="hs-identifier hs-var">link</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679489452"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679489452"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetExternalLink&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
-</span><a href="API.Functions.GetExternalLink.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetExternalLink.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;allow_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679516058"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679489453"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetExternalLink.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679516057"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679489452"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span id="local-6989586621679516107"><span class="annot"><a href="API.Functions.GetExternalLink.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679516107"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679516107"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
-</span><span id="line-27"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.GetExternalLink.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679516054"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679516054"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679516053"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679516053"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679516054"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
-forall a. Show a =&gt; a -&gt; String
-</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679516053"><span class="hs-identifier hs-var">a</span></a></span><span>
-</span><span id="line-28"></span><span class="annot"><a href="API.Functions.GetExternalLink.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
-</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;&quot;</span></span><span>
-</span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="annot"><a href="API.Functions.GetExternalLink.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-31"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
-</span><a href="API.Functions.GetExternalLink.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-forall a. Monoid a =&gt; a
-</span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-32"></span><span class="annot"><a href="API.Functions.GetExternalLink.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679516052"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679516052"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
-forall a. [a] -&gt; [[a]] -&gt; [a]
-</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
-forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
-</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
-</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
-forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
-forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
-</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679516052"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
-forall a. [a] -&gt; [a] -&gt; [a]
-</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;}&quot;</span></span><span>
-</span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679516042"><span id="local-6989586621679516044"><span id="local-6989586621679516046"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span> </span><span id="local-6989586621679516040"><span class="annot"><span class="annottext">toJSON :: GetExternalLink -&gt; Value
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679489443"><span id="local-6989586621679489445"><span id="local-6989586621679489447"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679489441"><span class="annot"><span class="annottext">toJSON :: GetExternalLink -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_write_access :: GetExternalLink -&gt; Maybe Bool
-</span><a href="API.Functions.GetExternalLink.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679516038"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679516038"><span class="hs-identifier hs-var">allow_write_access</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">link :: GetExternalLink -&gt; Maybe String
-</span><a href="API.Functions.GetExternalLink.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679516037"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679516037"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.GetExternalLink.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679489439"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679489439"><span class="hs-identifier hs-var">allow_write_access</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">link :: GetExternalLink -&gt; Maybe String
+</span><a href="API.Functions.GetExternalLink.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679489438"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679489438"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -113,37 +68,37 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;allow_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679516038"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679489439"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679516037"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679516031"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span> </span><span id="local-6989586621679516029"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetExternalLink
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679516027"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679516027"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679516025"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679516025"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679516024"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679516024"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679516025"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679489438"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679489432"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span> </span><span id="local-6989586621679489430"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetExternalLink
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679489428"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679489428"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679489426"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679489426"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-32"></span><span>  </span><span id="local-6989586621679489425"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679489425"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679489426"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-42"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679516024"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679489425"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-34"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;getExternalLink&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetExternalLink
-</span><a href="#local-6989586621679516022"><span class="hs-identifier hs-var">parseGetExternalLink</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679516027"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-44"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679489423"><span class="hs-identifier hs-var">parseGetExternalLink</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679489428"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-35"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetExternalLink
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-45"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679516022"><span class="hs-identifier hs-type">parseGetExternalLink</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span><span>
-</span><span id="line-47"></span><span>   </span><span id="local-6989586621679516022"><span class="annot"><span class="annottext">parseGetExternalLink :: Value -&gt; Parser GetExternalLink
-</span><a href="#local-6989586621679516022"><span class="hs-identifier hs-var hs-var">parseGetExternalLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-36"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>   </span><span class="annot"><a href="#local-6989586621679489423"><span class="hs-identifier hs-type">parseGetExternalLink</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span><span>
+</span><span id="line-38"></span><span>   </span><span id="local-6989586621679489423"><span class="annot"><span class="annottext">parseGetExternalLink :: Value -&gt; Parser GetExternalLink
+</span><a href="#local-6989586621679489423"><span class="hs-identifier hs-var hs-var">parseGetExternalLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetExternalLink)
 -&gt; Value
 -&gt; Parser GetExternalLink
@@ -155,21 +110,21 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetExternalLink
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679516020"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679516020"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-48"></span><span>    </span><span id="local-6989586621679516019"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679516019"><span class="hs-identifier hs-var">allow_write_access</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679516020"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679489421"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679489421"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679489420"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679489420"><span class="hs-identifier hs-var">allow_write_access</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679489421"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;allow_write_access&quot;</span></span><span>
-</span><span id="line-49"></span><span>    </span><span id="local-6989586621679516017"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679516017"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679516020"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679489418"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679489418"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679489421"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;link&quot;</span></span><span>
-</span><span id="line-50"></span><span>    </span><span class="annot"><span class="annottext">GetExternalLink -&gt; Parser GetExternalLink
+</span><span id="line-41"></span><span>    </span><span class="annot"><span class="annottext">GetExternalLink -&gt; Parser GetExternalLink
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetExternalLink -&gt; Parser GetExternalLink)
 -&gt; GetExternalLink -&gt; Parser GetExternalLink
@@ -177,11 +132,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetExternalLink :: Maybe Bool -&gt; Maybe String -&gt; GetExternalLink
 </span><a href="API.Functions.GetExternalLink.html#GetExternalLink"><span class="hs-identifier hs-type">GetExternalLink</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_write_access :: Maybe Bool
 </span><a href="API.Functions.GetExternalLink.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679516019"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">link :: Maybe String
+</span><a href="#local-6989586621679489420"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">link :: Maybe String
 </span><a href="API.Functions.GetExternalLink.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679516017"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-51"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679489418"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-42"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GetExternalLink
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-52"></span></pre></body></html>
+</span><span id="line-43"></span></pre></body></html>

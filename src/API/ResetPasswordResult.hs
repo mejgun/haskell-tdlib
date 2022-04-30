@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -31,22 +31,13 @@ data ResetPasswordResult =
 
 instance Show ResetPasswordResult where
  show ResetPasswordResultOk {  } =
-  "ResetPasswordResultOk" ++ cc [ ]
+  "ResetPasswordResultOk" ++ U.cc [ ]
 
  show ResetPasswordResultPending { pending_reset_date=pending_reset_date } =
-  "ResetPasswordResultPending" ++ cc [p "pending_reset_date" pending_reset_date ]
+  "ResetPasswordResultPending" ++ U.cc [U.p "pending_reset_date" pending_reset_date ]
 
  show ResetPasswordResultDeclined { retry_date=retry_date } =
-  "ResetPasswordResultDeclined" ++ cc [p "retry_date" retry_date ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ResetPasswordResultDeclined" ++ U.cc [U.p "retry_date" retry_date ]
 
 instance T.ToJSON ResetPasswordResult where
  toJSON ResetPasswordResultOk {  } =

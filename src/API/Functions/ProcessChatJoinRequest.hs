@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 
 -- |
 -- 
@@ -23,16 +23,7 @@ data ProcessChatJoinRequest =
 
 instance Show ProcessChatJoinRequest where
  show ProcessChatJoinRequest { approve=approve, user_id=user_id, chat_id=chat_id } =
-  "ProcessChatJoinRequest" ++ cc [p "approve" approve, p "user_id" user_id, p "chat_id" chat_id ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "ProcessChatJoinRequest" ++ U.cc [U.p "approve" approve, U.p "user_id" user_id, U.p "chat_id" chat_id ]
 
 instance T.ToJSON ProcessChatJoinRequest where
  toJSON ProcessChatJoinRequest { approve = approve, user_id = user_id, chat_id = chat_id } =

@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import Data.List (intercalate)
+import qualified Utils as U
 import {-# SOURCE #-} qualified API.TdlibParameters as TdlibParameters
 
 -- |
@@ -20,16 +20,7 @@ data SetTdlibParameters =
 
 instance Show SetTdlibParameters where
  show SetTdlibParameters { parameters=parameters } =
-  "SetTdlibParameters" ++ cc [p "parameters" parameters ]
-
-p :: Show a => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
-p _ Nothing = ""
-
-cc :: [String] -> String
-cc [] = mempty
-cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
-
+  "SetTdlibParameters" ++ U.cc [U.p "parameters" parameters ]
 
 instance T.ToJSON SetTdlibParameters where
  toJSON SetTdlibParameters { parameters = parameters } =
