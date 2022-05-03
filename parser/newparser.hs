@@ -5,53 +5,53 @@
 
 module Main where
 
-import qualified Data.Text as T
-import qualified Data.Text.IO as TIO (readFile, writeFile)
+import Data.Char (isSpace)
+import qualified Data.List as L
+import qualified Data.List.Extra as LE
 import qualified Debug.Trace as Debug (trace, traceId)
 import Text.Printf (printf)
 
 data Entry
   = ClassComment
-      { name :: T.Text,
-        comment :: T.Text
+      { name :: String,
+        comment :: String
       }
-  | CommentStart T.Text
-  | Comment T.Text
+  | CommentStart String
+  | Comment String
   | ArgComment
-      { name :: T.Text,
-        comment :: T.Text
+      { name :: String,
+        comment :: String
       }
   | Item
-      { class_ :: T.Text,
-        constructor :: T.Text,
-        comments :: [T.Text],
+      { class_ :: String,
+        constructor :: String,
+        comments :: [String],
         args :: [Arg]
       }
   deriving (Show, Eq)
 
 data Arg = Arg
-  { key :: T.Text,
-    value :: T.Text,
-    comments_ :: [T.Text]
+  { key :: String,
+    value :: String,
+    comments_ :: [String]
   }
   deriving (Show, Eq)
 
 main :: IO ()
 main = do
-  l <- TIO.readFile "td_api.tl"
-  let [d, f] = T.splitOn "---functions---" l
-  let dat = filter (not . T.null) . map T.strip $ T.splitOn "\n" d
+  [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
+  let dat = filter (not . null) . map strip $ LE.splitOn "\n" d
   let a = filter (not . isJunk) $ foldl parse [] dat
   -- let b = foldr structureData (Nothing, []) a
   let (Nothing, Nothing, b) = foldl insertComments (Nothing, Nothing, []) a
-  mapM_ print b
-  writeData a
+  -- mapM_ print b
+  writeData b
 
 dataFile :: String
 dataFile = "TD/Reply/%s.hs"
 
 writeData :: [Entry] -> IO ()
-writeData [] = print "ok"
+writeData [] = print "done"
 writeData (h : t) = do
   case h of
     Item c _ _ _ -> do
@@ -66,8 +66,12 @@ writeData (h : t) = do
 
 formatDataItem :: Entry -> String
 formatDataItem (Item cl co cmnts args) =
-  concat
-    [ printf "module %s where\n" cl,
+  L.intercalate
+    "\n"
+    [ "-- GENERATED",
+      "{-# LANGUAGE OverloadedStrings #-}",
+      printf "module TD.Reply.%s where\n\n" cl,
+      "-- |",
       printf "he he %s " co,
       printf "he he %s " cl
     ]
@@ -135,24 +139,24 @@ structureData (Comment txt) (cur, acc) = undefined
 structureData (ArgComment txt txt') (cur, acc) = undefined
 -}
 
-parse :: [Entry] -> T.Text -> [Entry]
+parse :: [Entry] -> String -> [Entry]
 parse acc h
-  | T.isPrefixOf "//@class " h = do
-    let (name, rest) = T.breakOn " " $ strip "//@class " h
-    acc ++ [ClassComment {name = name, comment = strip " @description " rest}]
-  | T.isPrefixOf "//@description " h =
-    acc ++ [CommentStart (strip "//@description " h)]
-  | T.isPrefixOf "//@" h = do
-    let (name, rest) = T.breakOn " " $ strip "//@" h
-    acc ++ [ArgComment {name = name, comment = strip " " rest}]
-  | T.isPrefixOf "//-" h = do
-    acc ++ [Comment (strip "//-" h)]
-  | length (T.splitOn " = " h) == 2 = do
-    let (r, cl) = T.breakOn " = " h
-    let (constr, r2) = T.breakOn " " r
-    let a1 = case T.strip r2 of
+  | L.isPrefixOf "//@class " h = do
+    let (name, rest) = LE.breakOn " " $ myStripPrefix "//@class " h
+    acc ++ [ClassComment {name = name, comment = myStripPrefix " @description " rest}]
+  | L.isPrefixOf "//@description " h =
+    acc ++ [CommentStart (myStripPrefix "//@description " h)]
+  | L.isPrefixOf "//@" h = do
+    let (name, rest) = LE.breakOn " " $ myStripPrefix "//@" h
+    acc ++ [ArgComment {name = name, comment = myStripPrefix " " rest}]
+  | L.isPrefixOf "//-" h = do
+    acc ++ [Comment (myStripPrefix "//-" h)]
+  | length (LE.splitOn " = " h) == 2 = do
+    let (r, cl) = LE.breakOn " = " h
+    let (constr, r2) = LE.breakOn " " r
+    let a1 = case strip r2 of
           "" -> []
-          x -> map (T.breakOn ":") $ T.splitOn " " x
+          x -> map (LE.breakOn ":") $ LE.splitOn " " x
     acc
       ++ [ Item
              { class_ = myStrip cl,
@@ -172,21 +176,27 @@ parse acc h
          ]
   | otherwise = acc
 
-strip :: T.Text -> T.Text -> T.Text
-strip w t = do
-  case T.stripPrefix w t of
+dropAround :: (Char -> Bool) -> String -> String
+dropAround p = LE.dropWhile p . LE.dropWhileEnd p
+
+strip :: String -> String
+strip = LE.dropWhile isSpace . LE.dropWhileEnd isSpace
+
+myStripPrefix :: String -> String -> String
+myStripPrefix w t = do
+  case LE.stripPrefix w t of
     Nothing -> error $show t
     Just r -> r
 
-myStrip :: T.Text -> T.Text
+myStrip :: String -> String
 myStrip =
-  T.strip
-    . T.dropAround (== ':')
-    . T.strip
-    . T.dropAround (== '=')
-    . T.strip
-    . T.dropAround (== ';')
-    . T.strip
+  strip
+    . dropAround (== ':')
+    . strip
+    . dropAround (== '=')
+    . strip
+    . dropAround (== ';')
+    . strip
 
 isJunk :: Entry -> Bool
 isJunk (Item x _ _ _) =
@@ -210,29 +220,29 @@ isJunk _ = False
 -- let a = splitToItems funcs
 -- print $ itemToEntry $ a !! 3
 
--- getComments :: T.Text -> [T.Text]
--- getComments = map strip . filter (T.isPrefixOf "//") . map T.strip . T.splitOn "\n"
+-- getComments :: String -> [String]
+-- getComments = map strip . filter (L.isPrefixOf "//") . map strip . LE.splitOn "\n"
 -- where
 -- strip s = do
--- let Just r = T.stripPrefix "//" s
+-- let Just r = T.LE.stripPrefix "//" s
 -- r
 
 {-
-splitToItems :: T.Text -> [T.Text]
+splitToItems :: String -> [String]
 splitToItems =
   filter (/= "")
-    . map (T.strip . T.dropAround (== '\n') . T.strip)
-    . T.splitOn "\n//@description"
+    . map (strip . T.dropAround (== '\n') . strip)
+    . LE.splitOn "\n//@description"
 
-itemToEntry :: T.Text -> Entry
+itemToEntry :: String -> Entry
 itemToEntry x = do
-  let splited = filter (/= "") . map T.strip $ T.splitOn "\n" x
-  let comments = head splited : map (T.dropWhile (== '/')) (filter (T.isPrefixOf "//") splited)
-  let [dat] = filter (not . T.isPrefixOf "//") $ tail splited
-  let (a, name) = T.breakOn "=" dat
-  let (constr, rest) = T.breakOn " " a
+  let splited = filter (/= "") . map strip $ LE.splitOn "\n" x
+  let comments = head splited : map (T.dropWhile (== '/')) (filter (L.isPrefixOf "//") splited)
+  let [dat] = filter (not . L.isPrefixOf "//") $ tail splited
+  let (a, name) = LE.breakOn "=" dat
+  let (constr, rest) = LE.breakOn " " a
   Entry
-    { comments = takeWhile (not . T.isPrefixOf "@") comments,
+    { comments = takeWhile (not . L.isPrefixOf "@") comments,
       name = myStrip name,
       constructor = myStrip constr,
       args = []
@@ -244,8 +254,8 @@ itemToEntry x = do
 -- -- map["ChatPhoto"]=[("chatPhoto", "small:file big:file")]
 -- --
 -- -- map(data type name)=[(data type contructor), (string)]
--- -- toMap :: [T.Text] -> Map.Map T.Text [(T.Text, T.Text)]
--- toMap :: [T.Text] -> [Entry]
+-- -- toMap :: [String] -> Map.Map String [(String, String)]
+-- toMap :: [String] -> [Entry]
 -- toMap t =
 --   -- foldl (\acc (k, v) -> Map.insertWith (++) k [v] acc) Map.empty $
 --   -- map format t
@@ -253,7 +263,7 @@ itemToEntry x = do
 --   -- where
 --   -- format l = do
 --   do
---     let comments = filter (T.isPrefixOf "//") t
---     let (dat : _) = filter (== T.empty) . filter (not . T.isPrefixOf "//") $t
---     let (a, name) = T.breakOn "=" dat
---     let (constr, rest) = T.breakOn " " a
+--     let comments = filter (L.isPrefixOf "//") t
+--     let (dat : _) = filter (== T.empty) . filter (not . L.isPrefixOf "//") $t
+--     let (a, name) = LE.breakOn "=" dat
+--     let (constr, rest) = LE.breakOn " " a
