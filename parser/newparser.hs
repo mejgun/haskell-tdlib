@@ -36,18 +36,6 @@ data Arg = Arg
   }
   deriving (Show, Eq)
 
-data StructuredClass = SC
-  { classname :: T.Text,
-    classcomment :: T.Text,
-    items :: [StructuredItem]
-  }
-
-data StructuredItem = SI
-  { itemconstructor :: T.Text,
-    itemcomments :: [T.Text],
-    itemargs :: [Arg]
-  }
-
 main :: IO ()
 main = do
   l <- TIO.readFile "td_api.tl"
@@ -55,8 +43,8 @@ main = do
   let dat = filter (not . T.null) . map T.strip $ T.splitOn "\n" d
   let a = filter (not . isJunk) $ foldl parse [] dat
   -- let b = foldr structureData (Nothing, []) a
-  let b = foldl moveentries (Nothing, []) a
-  mapM_ print a
+  let (Nothing, Nothing, b) = foldl insertComments (Nothing, Nothing, []) a
+  mapM_ print b
   writeData a
 
 dataFile :: String
@@ -66,10 +54,6 @@ writeData :: [Entry] -> IO ()
 writeData [] = print "ok"
 writeData (h : t) = do
   case h of
-    -- ClassComment txt txt' -> _
-    -- CommentStart txt -> _
-    -- Comment txt -> _
-    -- ArgComment txt txt' -> _
     Item c _ _ _ -> do
       writeFile fileName fileContent
       writeData t
@@ -89,8 +73,30 @@ formatDataItem (Item cl co cmnts args) =
     ]
 formatDataItem _ = error "not item"
 
-moveentries :: (Maybe Entry, [Entry]) -> Entry -> (Maybe Entry, [Entry])
-moveentries q@(cur, acc) entry = do
+insertComments :: (Maybe Entry, Maybe Arg, [Entry]) -> Entry -> (Maybe Entry, Maybe Arg, [Entry])
+insertComments (Nothing, Nothing, acc) q@(ClassComment _ _) = (Nothing, Nothing, acc ++ [q])
+insertComments (Nothing, Nothing, acc) (CommentStart t) = (Just Item {comments = [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
+insertComments (Just item, Nothing, acc) (Comment t) = (Just Item {comments = comments item ++ [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
+insertComments (q@(Just _), Just arg, acc) (Comment t) = (q, Just Arg {comments_ = comments_ arg ++ [t], key = key arg, value = ""}, acc)
+insertComments (q@(Just _), Nothing, acc) (ArgComment n c) = (q, Just Arg {comments_ = [c], key = n, value = ""}, acc)
+insertComments (Just i, Just arg, acc) (ArgComment n c) = (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = ""}, acc)
+insertComments (Just i, a, acc) (Item cl con com arg) = do
+  let i1 = case a of
+        Nothing -> i
+        Just ar -> i {args = args i ++ [ar]}
+  let i2 = i1 {args = map (insertArgComment (args i1)) arg, constructor = con, class_ = cl, comments = comments i1}
+  (Nothing, Nothing, acc ++ [i2])
+  where
+    insertArgComment :: [Arg] -> Arg -> Arg
+    insertArgComment as a = do
+      case filter (\x -> key a == key x) as of
+        [] -> a
+        [arg'] -> a {comments_ = comments_ arg'}
+        _ -> error "parse error"
+insertComments _ _ = error "TL parse error"
+
+{-
+insertComments q@(cure, cura, acc) entry = do
   case entry of
     ClassComment txt txt' -> q
     CommentStart txt -> do
@@ -112,7 +118,7 @@ moveentries q@(cur, acc) entry = do
 -- case cur of
 -- Nothing -> _
 -- Just en -> _
-
+-}
 {-}
 structureData :: Entry -> (Maybe StructuredClass, [StructuredClass]) -> (Maybe StructuredClass, [StructuredClass])
 structureData (Item cl con com ar) (cur, acc) = do
