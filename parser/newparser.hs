@@ -5,10 +5,12 @@
 
 module Main where
 
+-- import qualified Debug.Trace as Debug (trace, traceId)
+
 import Data.Char (isSpace)
+import qualified Data.Char as C
 import qualified Data.List as L
 import qualified Data.List.Extra as LE
-import qualified Debug.Trace as Debug (trace, traceId)
 import Text.Printf (printf)
 
 data Entry
@@ -41,49 +43,96 @@ main :: IO ()
 main = do
   [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
   let dat = filter (not . null) . map strip $ LE.splitOn "\n" d
-  let a = filter (not . isJunk) $ foldl parse [] dat
+  let a = map fixConstructors . filter (not . isJunk) $ foldl parse [] dat
   -- let b = foldr structureData (Nothing, []) a
   let (Nothing, Nothing, b) = foldl insertComments (Nothing, Nothing, []) a
-  -- mapM_ print b
-  writeData b
+  let c = foldl groupDataItems [] b
+  mapM_ print c
+  writeData c
 
 dataFile :: String
 dataFile = "TD/Reply/%s.hs"
 
-writeData :: [Entry] -> IO ()
+writeData :: [(String, Maybe Entry, [Entry])] -> IO ()
 writeData [] = print "done"
-writeData (h : t) = do
-  case h of
-    Item c _ _ _ -> do
-      writeFile fileName fileContent
-      writeData t
-      where
-        fileName :: FilePath
-        fileName = printf dataFile c
-        fileContent :: String
-        fileContent = formatDataItem h
-    _ -> writeData t
+writeData (q@(n, com, is) : t) = do
+  -- case h of
+  --   Item c _ _ _ -> do
+  writeFile fileName fileContent
+  writeData t
+  where
+    fileName :: FilePath
+    fileName = printf dataFile n
+    fileContent :: String
+    fileContent = formatDataItem q
 
-formatDataItem :: Entry -> String
-formatDataItem (Item cl co cmnts args) =
+-- _ -> writeData t
+
+formatDataItem :: (String, Maybe Entry, [Entry]) -> String
+formatDataItem (n, cm, is) =
   L.intercalate
     "\n"
     [ "-- GENERATED",
-      "{-# LANGUAGE OverloadedStrings #-}",
-      printf "module TD.Reply.%s where\n\n" cl,
-      "-- |",
-      printf "he he %s " co,
-      printf "he he %s " cl
+      "{-# LANGUAGE OverloadedStrings #-}\n",
+      printf "module TD.Reply.%s where\n" n,
+      case cm of
+        Nothing -> ""
+        Just c -> do
+          printf "-- | %s" (comment c),
+      printf "data %s =" n,
+      L.intercalate
+        " |\n"
+        (map printDataType is)
     ]
-formatDataItem _ = error "not item"
+  where
+    printDataType :: Entry -> String
+    printDataType (Item cl con com arg) = do
+      L.concat
+        [ " -- |\n -- ",
+          L.intercalate "\n -- " com,
+          printf "\n %s" con,
+          case arg of
+            [] -> ""
+            x -> "\n  {" ++ L.intercalate "," (map printArg x) ++ "\n  }"
+        ]
+    printDataType _ = error "error"
+    printArg :: Arg -> String
+    printArg a =
+      "\n    -- |\n    -- "
+        ++ L.intercalate "\n    -- " (comments_ a)
+        ++ printf "\n    %s :: %s" (key a) (value a)
+
+-- formatDataItem _ = error "not item"
+
+groupDataItems :: [(String, Maybe Entry, [Entry])] -> Entry -> [(String, Maybe Entry, [Entry])]
+groupDataItems list q@(ClassComment n c) =
+  case filter (\(name, _, _) -> name == n) list of
+    [] -> list ++ [(n, Just q, [])]
+    _ -> error "grouping error"
+groupDataItems list q@(Item cl con com arg) = do
+  case filter (\(name, _, _) -> name == cl) list of
+    [] -> list ++ [(cl, Nothing, [q])]
+    [(x0, x1, x2)] -> (filter (\(name, _, _) -> name /= cl) list) ++ [(x0, x1, x2 ++ [q])]
+    _ -> error "grouping error"
+groupDataItems _ _ = error "grouping error"
+
+fixConstructors :: Entry -> Entry
+fixConstructors (Item cl c com arg) = Item {class_ = cl, constructor = toTitle c, comments = com, args = arg}
+fixConstructors q = q
 
 insertComments :: (Maybe Entry, Maybe Arg, [Entry]) -> Entry -> (Maybe Entry, Maybe Arg, [Entry])
-insertComments (Nothing, Nothing, acc) q@(ClassComment _ _) = (Nothing, Nothing, acc ++ [q])
-insertComments (Nothing, Nothing, acc) (CommentStart t) = (Just Item {comments = [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
-insertComments (Just item, Nothing, acc) (Comment t) = (Just Item {comments = comments item ++ [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
-insertComments (q@(Just _), Just arg, acc) (Comment t) = (q, Just Arg {comments_ = comments_ arg ++ [t], key = key arg, value = ""}, acc)
-insertComments (q@(Just _), Nothing, acc) (ArgComment n c) = (q, Just Arg {comments_ = [c], key = n, value = ""}, acc)
-insertComments (Just i, Just arg, acc) (ArgComment n c) = (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = ""}, acc)
+insertComments (Nothing, Nothing, acc) q@(ClassComment _ _) =
+  (Nothing, Nothing, acc ++ [q])
+insertComments (Nothing, Nothing, acc) (CommentStart t) =
+  (Just Item {comments = [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
+insertComments (Just item, Nothing, acc) (Comment t) =
+  (Just Item {comments = comments item ++ [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
+insertComments (q@(Just _), Just arg, acc) (Comment t) =
+  (q, Just Arg {comments_ = comments_ arg ++ [t], key = key arg, value = ""}, acc)
+insertComments (q@(Just _), Nothing, acc) (ArgComment n c) =
+  (q, Just Arg {comments_ = [c], key = n, value = ""}, acc)
+insertComments (Just i, Just arg, acc) (ArgComment n c) =
+  (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = ""}, acc)
 insertComments (Just i, a, acc) (Item cl con com arg) = do
   let i1 = case a of
         Nothing -> i
@@ -175,6 +224,10 @@ parse acc h
              }
          ]
   | otherwise = acc
+
+toTitle :: String -> String
+toTitle (x : xs) = C.toTitle x : xs
+toTitle "" = ""
 
 dropAround :: (Char -> Bool) -> String -> String
 dropAround p = LE.dropWhile p . LE.dropWhileEnd p
