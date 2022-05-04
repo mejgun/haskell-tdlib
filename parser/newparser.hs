@@ -43,38 +43,46 @@ main :: IO ()
 main = do
   [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
   let dat = filter (not . null) . map strip $ LE.splitOn "\n" d
-  let a = map fixConstructors . filter (not . isJunk) $ foldl parse [] dat
+  let a =
+        map fixConstructors
+          . filter (not . isJunk)
+          $ foldl parse [] dat
   -- let b = foldr structureData (Nothing, []) a
-  let (Nothing, Nothing, b) = foldl insertComments (Nothing, Nothing, []) a
-  let c = foldl groupDataItems [] b
-  mapM_ print c
-  writeData c
+  let (import', b) = foldl fixArgTypes ([], []) a
+  let imports = uniq import'
+  let (Nothing, Nothing, c) = foldl insertComments (Nothing, Nothing, []) b
+  let d = foldl groupDataItems [] c
+  mapM_ print imports
+  writeData imports d
 
 dataFile :: String
 dataFile = "TD/Reply/%s.hs"
 
-writeData :: [(String, Maybe Entry, [Entry])] -> IO ()
-writeData [] = print "done"
-writeData (q@(n, com, is) : t) = do
-  -- case h of
-  --   Item c _ _ _ -> do
+-- dataModule :: String
+-- dataModule = "TD.Reply."
+
+writeData :: [(String, String)] -> [(String, Maybe Entry, [Entry])] -> IO ()
+writeData _ [] = print "done"
+writeData imps (q@(n, com, is) : t) = do
   writeFile fileName fileContent
-  writeData t
+  writeData imps t
   where
     fileName :: FilePath
     fileName = printf dataFile n
     fileContent :: String
-    fileContent = formatDataItem q
+    fileContent = formatDataItem (filter (\i -> fst i == n) imps) q
 
--- _ -> writeData t
-
-formatDataItem :: (String, Maybe Entry, [Entry]) -> String
-formatDataItem (n, cm, is) =
+formatDataItem :: [(String, String)] -> (String, Maybe Entry, [Entry]) -> String
+formatDataItem imps (n, cm, is) =
   L.intercalate
     "\n"
     [ "-- GENERATED",
-      "{-# LANGUAGE OverloadedStrings #-}\n",
-      printf "module TD.Reply.%s where\n" n,
+      "{-# LANGUAGE OverloadedStrings #-}",
+      "",
+      printf "module TD.Reply.%s where" n,
+      "",
+      L.intercalate "\n" (map (\(_, a) -> printf "import qualified TD.Reply.%s as %s" a a) imps),
+      "",
       case cm of
         Nothing -> ""
         Just c -> do
@@ -88,7 +96,7 @@ formatDataItem (n, cm, is) =
     printDataType :: Entry -> String
     printDataType (Item cl con com arg) = do
       L.concat
-        [ " -- |\n -- ",
+        [ " -- | ",
           L.intercalate "\n -- " com,
           printf "\n %s" con,
           case arg of
@@ -98,7 +106,7 @@ formatDataItem (n, cm, is) =
     printDataType _ = error "error"
     printArg :: Arg -> String
     printArg a =
-      "\n    -- |\n    -- "
+      "\n    -- | "
         ++ L.intercalate "\n    -- " (comments_ a)
         ++ printf "\n    %s :: %s" (key a) (value a)
 
@@ -119,6 +127,37 @@ groupDataItems _ _ = error "grouping error"
 fixConstructors :: Entry -> Entry
 fixConstructors (Item cl c com arg) = Item {class_ = cl, constructor = toTitle c, comments = com, args = arg}
 fixConstructors q = q
+
+fixArgTypes :: ([(String, String)], [Entry]) -> Entry -> ([(String, String)], [Entry])
+fixArgTypes (imp, acc) i@(Item cl c com arg) = do
+  let (imports, newarg) = foldl fix ([], []) arg
+  (imp ++ zip (repeat cl) imports, acc ++ [i {args = newarg}])
+  where
+    fix :: ([String], [Arg]) -> Arg -> ([String], [Arg])
+    fix (i, a) r@(Arg _ v _) = do
+      let (addi, newv) = case replace v of
+            (False, p) -> ([], p)
+            (True, p) -> do
+              if LE.isPrefixOf "vector<" p
+                then do
+                  let m = dropAround (== '>') $ myStripPrefix "vector<" p
+                  case replace m of
+                    (False, w) -> ([], printf "[%s]" w)
+                    (True, w) -> let im = toTitle w in ([im], printf "[%s.%s]" w w)
+                else do
+                  let m = toTitle p
+                  ([m], printf "%s.%s" m m)
+      (i ++ addi, a ++ [r {value = newv}])
+    replace :: String -> (Bool, String)
+    replace "Bool" = (False, "Bool")
+    replace "int32" = (False, "Int")
+    replace "int53" = (False, "Int")
+    replace "int64" = (False, "Int")
+    replace "string" = (False, "String")
+    replace "bytes" = (False, "String")
+    replace "double" = (False, "Float")
+    replace p = (True, p)
+fixArgTypes (imp, acc) o = (imp, acc ++ [o])
 
 insertComments :: (Maybe Entry, Maybe Arg, [Entry]) -> Entry -> (Maybe Entry, Maybe Arg, [Entry])
 insertComments (Nothing, Nothing, acc) q@(ClassComment _ _) =
@@ -224,6 +263,9 @@ parse acc h
              }
          ]
   | otherwise = acc
+
+uniq :: (Eq a) => [a] -> [a]
+uniq = foldl (\acc i -> if elem i acc then acc else acc ++ [i]) []
 
 toTitle :: String -> String
 toTitle (x : xs) = C.toTitle x : xs
