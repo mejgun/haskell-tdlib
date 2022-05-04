@@ -43,23 +43,58 @@ main :: IO ()
 main = do
   [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
   let dat = filter (not . null) . map strip $ LE.splitOn "\n" d
-  let a =
+  let a0 =
         map fixConstructors
           . filter (not . isJunk)
           $ foldl parse [] dat
   -- let b = foldr structureData (Nothing, []) a
-  let (import', b) = foldl fixArgTypes ([], []) a
+  -- let a1 = foldl addGeneralResult [] a0
+  -- let a = fixArgsKeys a0 []
+  let (import', b) = foldl fixArgTypes ([], []) a0
   let imports = uniq import'
   let (Nothing, Nothing, c) = foldl insertComments (Nothing, Nothing, []) b
-  let d = foldl groupDataItems [] c
+  let c1 = foldl groupDataItems [] c
+  let d = map fixArgsKeys c1
   mapM_ print imports
   writeData imports d
+  writeGeneralResult d
 
 dataFile :: String
-dataFile = "TD/Reply/%s.hs"
+dataFile = "../src/TD/Reply/%s.hs"
 
--- dataModule :: String
--- dataModule = "TD.Reply."
+dataModule :: String
+dataModule = "TD.Reply"
+
+writeGeneralResult :: [(String, Maybe Entry, [Entry])] -> IO ()
+writeGeneralResult l =
+  writeFile (printf dataFile name) content
+  where
+    name :: String
+    name = "GeneralResult"
+    content =
+      L.intercalate
+        "\n"
+        [ "{-# LANGUAGE OverloadedStrings #-}",
+          "",
+          printf "module %s.%s where" dataModule name,
+          "",
+          L.intercalate "\n" (map (\(a, _, _) -> printf "import qualified %s.%s as %s" dataModule a a) l),
+          "",
+          "data GeneralResult",
+          " = " ++ L.intercalate "\n | " (map (\(a, _, _) -> printf "%s %s.%s" a a a) l),
+          "data ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show, Eq)",
+          "",
+          "instance T.FromJSON ResultWithExtra where",
+          "parseJSON v@(T.Object obj) = do",
+          "case (T.fromJSON v :: T.Result GeneralResult) of",
+          "  T.Success a -> return $ ResultWithExtra a e",
+          "  _           -> mempty",
+          "where",
+          " e :: Maybe String",
+          " e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of",
+          "   T.Success r -> r",
+          "   _           -> Nothing"
+        ]
 
 writeData :: [(String, String)] -> [(String, Maybe Entry, [Entry])] -> IO ()
 writeData _ [] = print "done"
@@ -76,21 +111,18 @@ formatDataItem :: [(String, String)] -> (String, Maybe Entry, [Entry]) -> String
 formatDataItem imps (n, cm, is) =
   L.intercalate
     "\n"
-    [ "-- GENERATED",
-      "{-# LANGUAGE OverloadedStrings #-}",
+    [ "{-# LANGUAGE OverloadedStrings #-}",
       "",
-      printf "module TD.Reply.%s where" n,
+      printf "module %s.%s where" dataModule n,
       "",
-      L.intercalate "\n" (map (\(_, a) -> printf "import qualified TD.Reply.%s as %s" a a) imps),
+      L.intercalate "\n" (map (\(_, a) -> printf "import qualified %s.%s as %s" dataModule a a) imps),
       "",
       case cm of
         Nothing -> ""
         Just c -> do
           printf "-- | %s" (comment c),
       printf "data %s =" n,
-      L.intercalate
-        " |\n"
-        (map printDataType is)
+      L.intercalate " |\n" (map printDataType is)
     ]
   where
     printDataType :: Entry -> String
@@ -110,7 +142,11 @@ formatDataItem imps (n, cm, is) =
         ++ L.intercalate "\n    -- " (comments_ a)
         ++ printf "\n    %s :: %s" (key a) (value a)
 
--- formatDataItem _ = error "not item"
+addGeneralResult :: [Entry] -> Entry -> [Entry]
+addGeneralResult acc q@(Item cl con com arg) =
+  let g = Item {constructor = cl, class_ = "GeneralResult", comments = [], args = []}
+   in if elem g acc then acc ++ [q] else acc ++ [q, g]
+addGeneralResult acc q = acc ++ [q]
 
 groupDataItems :: [(String, Maybe Entry, [Entry])] -> Entry -> [(String, Maybe Entry, [Entry])]
 groupDataItems list q@(ClassComment n c) =
@@ -128,6 +164,38 @@ fixConstructors :: Entry -> Entry
 fixConstructors (Item cl c com arg) = Item {class_ = cl, constructor = toTitle c, comments = com, args = arg}
 fixConstructors q = q
 
+fixArgsKeys :: (String, b, [Entry]) -> (String, b, [Entry])
+fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b, ll)
+  where
+    -- fixArgsKeys (q@(Item cl _ _ arg) : t) acc = fixArgsKeys t acc ++ [q {args = map fix arg}]
+
+    fixAll :: ([(String, String)], [Arg], [Entry]) -> Entry -> ([(String, String)], [Arg], [Entry])
+    fixAll (keys, ar, acc) q@(Item _ _ _ (h : t)) =
+      let (k, a) = fix keys h in fixAll (k, a : ar, acc) (q {args = t}) -- (k, acc ++ [q {args = a}])
+    fixAll (keys, ar, acc) q@(Item _ _ _ []) =
+      (keys, [], acc ++ [q {args = ar}]) -- (k, acc ++ [q {args = a}])
+    fixAll _ _ = error "could not be"
+    fix :: [(String, String)] -> Arg -> ([(String, String)], Arg)
+    fix keys (q@(Arg k v _))
+      | k `elem` ["type", "data", "id"] = let newk = add k in fix keys q {key = newk}
+      | (k, v) `elem` keys = (keys ++ [(k, v)], q)
+      | k `elem` (map fst keys) = let newk = add k in fix keys (q {key = newk})
+      | otherwise = (keys ++ [(k, v)], q)
+    add :: String -> String
+    add a = "_" ++ a
+
+-- filterSameClass :: [Entry] -> [Arg]
+-- filterSameClass acc =
+--   foldl
+--     ( \ak a -> case a of
+--         (Item c _ _ arg) -> if c == nm then ak ++ arg else ak
+--         _ -> ak
+--     )
+--     []
+--     acc
+
+-- fixArgsKeys (h : t) acc = fixArgsKeys t (acc ++ [h])
+
 fixArgTypes :: ([(String, String)], [Entry]) -> Entry -> ([(String, String)], [Entry])
 fixArgTypes (imp, acc) i@(Item cl c com arg) = do
   let (imports, newarg) = foldl fix ([], []) arg
@@ -143,7 +211,7 @@ fixArgTypes (imp, acc) i@(Item cl c com arg) = do
                   let m = dropAround (== '>') $ myStripPrefix "vector<" p
                   case replace m of
                     (False, w) -> ([], printf "[%s]" w)
-                    (True, w) -> let im = toTitle w in ([im], printf "[%s.%s]" w w)
+                    (True, w) -> let im = toTitle w in ([im], printf "[%s.%s]" im im)
                 else do
                   let m = toTitle p
                   ([m], printf "%s.%s" m m)
@@ -172,7 +240,10 @@ insertComments (q@(Just _), Nothing, acc) (ArgComment n c) =
   (q, Just Arg {comments_ = [c], key = n, value = ""}, acc)
 insertComments (Just i, Just arg, acc) (ArgComment n c) =
   (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = ""}, acc)
-insertComments (Just i, a, acc) (Item cl con com arg) = do
+insertComments (it, a, acc) q@(Item cl con com arg) = do
+  let i = case it of
+        Nothing -> q
+        Just i -> i
   let i1 = case a of
         Nothing -> i
         Just ar -> i {args = args i ++ [ar]}
