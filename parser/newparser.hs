@@ -39,6 +39,10 @@ data Arg = Arg
   }
   deriving (Show, Eq)
 
+type GroupedItems = (String, Maybe Entry, [Entry])
+
+type ImportRecord = (String, String)
+
 main :: IO ()
 main = do
   [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
@@ -59,15 +63,15 @@ main = do
   writeData imports d
   writeGeneralResult d
 
-dataFile :: String
-dataFile = "../src/TD/Reply/%s.hs"
+dataFileMask :: String
+dataFileMask = "../src/TD/Reply/%s.hs"
 
 dataModule :: String
 dataModule = "TD.Reply"
 
-writeGeneralResult :: [(String, Maybe Entry, [Entry])] -> IO ()
+writeGeneralResult :: [GroupedItems] -> IO ()
 writeGeneralResult l =
-  writeFile (printf dataFile name) content
+  writeFile (printf dataFileMask name) content
   where
     name :: String
     name = "GeneralResult"
@@ -96,18 +100,18 @@ writeGeneralResult l =
           "   _           -> Nothing"
         ]
 
-writeData :: [(String, String)] -> [(String, Maybe Entry, [Entry])] -> IO ()
+writeData :: [ImportRecord] -> [GroupedItems] -> IO ()
 writeData _ [] = print "done"
 writeData imps (q@(n, com, is) : t) = do
   writeFile fileName fileContent
   writeData imps t
   where
     fileName :: FilePath
-    fileName = printf dataFile n
+    fileName = printf dataFileMask n
     fileContent :: String
     fileContent = formatDataItem (filter (\i -> fst i == n) imps) q
 
-formatDataItem :: [(String, String)] -> (String, Maybe Entry, [Entry]) -> String
+formatDataItem :: [ImportRecord] -> GroupedItems -> String
 formatDataItem imps (n, cm, is) =
   L.intercalate
     "\n"
@@ -148,7 +152,7 @@ addGeneralResult acc q@(Item cl con com arg) =
    in if elem g acc then acc ++ [q] else acc ++ [q, g]
 addGeneralResult acc q = acc ++ [q]
 
-groupDataItems :: [(String, Maybe Entry, [Entry])] -> Entry -> [(String, Maybe Entry, [Entry])]
+groupDataItems :: [GroupedItems] -> Entry -> [GroupedItems]
 groupDataItems list q@(ClassComment n c) =
   case filter (\(name, _, _) -> name == n) list of
     [] -> list ++ [(n, Just q, [])]
@@ -196,7 +200,7 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
 
 -- fixArgsKeys (h : t) acc = fixArgsKeys t (acc ++ [h])
 
-fixArgTypes :: ([(String, String)], [Entry]) -> Entry -> ([(String, String)], [Entry])
+fixArgTypes :: ([ImportRecord], [Entry]) -> Entry -> ([ImportRecord], [Entry])
 fixArgTypes (imp, acc) i@(Item cl c com arg) = do
   let (imports, newarg) = foldl fix ([], []) arg
   (imp ++ zip (repeat cl) imports, acc ++ [i {args = newarg}])
