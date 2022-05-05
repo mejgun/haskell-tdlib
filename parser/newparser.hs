@@ -152,6 +152,9 @@ addGeneralResult acc q@(Item cl con com arg) =
    in if g `elem` acc then acc ++ [q] else acc ++ [q, g]
 addGeneralResult acc q = acc ++ [q]
 
+findRecursiions :: [ImportRecord] -> [ImportRecord]
+findRecursiions = undefined
+
 groupDataItems :: [GroupedItems] -> Entry -> [GroupedItems]
 groupDataItems list q@(ClassComment n c) =
   case filter (\(name, _, _) -> name == n) list of
@@ -209,17 +212,19 @@ fixArgTypes (imp, acc) i@(Item cl c com arg) = do
     fix (i, a) r@(Arg _ v _) = do
       let (addi, newv) = case replace v of
             (False, p) -> ([], p)
-            (True, p) -> do
-              if LE.isPrefixOf "vector<" p
-                then do
-                  let m = dropAround (== '>') $ myStripPrefix "vector<" p
-                  case replace m of
-                    (False, w) -> ([], printf "[%s]" w)
-                    (True, w) -> let im = toTitle w in ([im], printf "[%s.%s]" im im)
-                else do
-                  let m = toTitle p
-                  ([m], printf "%s.%s" m m)
+            (True, p) -> vectorCheck p
       (i ++ addi, a ++ [r {value = newv}])
+    vectorCheck :: String -> ([String], String)
+    vectorCheck p =
+      if LE.isPrefixOf "vector<" p
+        then
+          let m = dropAround (== '>') $ myStripPrefix "vector<" p
+           in case replace m of
+                (False, w) -> ([], printf "[%s]" w)
+                (True, w) -> let (im, m) = vectorCheck w in (im, printf "[%s]" m) -- toTitle w in ([im], printf "[%s.%s]" im im)
+        else
+          let m = toTitle p
+           in ([m], printf "%s.%s" m m)
     replace :: String -> (Bool, String)
     replace "Bool" = (False, "Bool")
     replace "int32" = (False, "Int")
@@ -228,7 +233,7 @@ fixArgTypes (imp, acc) i@(Item cl c com arg) = do
     replace "string" = (False, "String")
     replace "bytes" = (False, "String")
     replace "double" = (False, "Float")
-    replace p = (True, p)
+    replace x = (True, x)
 fixArgTypes (imp, acc) o = (imp, acc ++ [o])
 
 insertComments :: (Maybe Entry, Maybe Arg, [Entry]) -> Entry -> (Maybe Entry, Maybe Arg, [Entry])
