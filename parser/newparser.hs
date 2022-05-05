@@ -154,9 +154,9 @@ writeData imps recimps (q@(n, com, is) : t) = do
             ++ L.intercalate "\n    -- " (comments_ a)
             ++ printf "\n    %s :: %s" (key a) (value a)
 
-writeDataBoot :: [String] -> IO ()
+writeDataBoot :: [ImportRecord] -> IO ()
 writeDataBoot [] = print "done"
-writeDataBoot (h : t) = do
+writeDataBoot ((_, h) : t) = do
   writeFile fileName fileContent
   writeDataBoot t
   where
@@ -181,26 +181,32 @@ writeDataBoot (h : t) = do
 --    in if g `elem` acc then acc ++ [q] else acc ++ [q, g]
 -- addGeneralResult acc q = acc ++ [q]
 
-sortImports :: [ImportRecord] -> [String] -> ([ImportRecord], [ImportRecord])
+sortImports :: [ImportRecord] -> [ImportRecord] -> ([ImportRecord], [ImportRecord])
 sortImports all recs = do
   -- let a = filter (\(x, y) -> x /= y) all
-  let ok = filter (\(_, x) -> x `notElem` recs) all
-      re = filter (\(_, x) -> x `elem` recs) all
+  let ok = filter (`notElem` recs) all
+      re = filter (`elem` recs) all
   (uniq ok, uniq re)
 
-findRecursiions :: [ImportRecord] -> [String]
+findRecursiions :: [ImportRecord] -> [ImportRecord]
 findRecursiions m = foldl (findr m) [] m
   where
-    findr :: [ImportRecord] -> [String] -> ImportRecord -> [String]
-    findr list acc (i, b) = do
-      let a = take 1 $ filter (\x -> fst x == b) list
-      case a of
-        [] -> acc
-        [(x1, x2)] | x1 == b -> acc ++ [b]
-        [x] -> case findr (list L.\\ a) [] x of
-          [] -> acc
-          l -> acc ++ l
-        _ -> error "cannot be"
+    findr :: [ImportRecord] -> [ImportRecord] -> ImportRecord -> [ImportRecord]
+    findr list acc need@(_, x2) =
+      let a = filter (\(x, _) -> x == x2) list
+       in acc ++ concatMap (\item -> finditem (list L.\\ a) [] item need) a
+
+    finditem :: [ImportRecord] -> [ImportRecord] -> ImportRecord -> ImportRecord -> [ImportRecord]
+    finditem list acc cur@(i, b) need@(x, y)
+      | b == x = acc ++ [cur]
+      | otherwise =
+        let a = filter (\(x1, _) -> x1 == b) list
+         in acc ++ case a of
+              [] -> []
+              [(x1, x2)] | x1 == y -> [cur]
+              x -> case concatMap (\item -> finditem (list L.\\ a) [] item need) x of
+                [] -> []
+                x -> x ++ [cur]
 
 groupDataItems :: [GroupedItems] -> Entry -> [GroupedItems]
 groupDataItems list q@(ClassComment n c) =
