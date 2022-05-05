@@ -2,11 +2,12 @@
 
 module Main where
 
-import API.Functions.GetCurrentState
-import API.Functions.SetLogVerbosityLevel
-import API.GeneralResult
+-- import API.Functions.GetCurrentState
+-- import API.Functions.SetLogVerbosityLevel
+
 import Control.Monad (when)
-import TDLib
+import TD.Lib
+import TD.Reply.GeneralResult
 
 main :: IO ()
 main = do
@@ -14,10 +15,10 @@ main = do
   extra1 <-
     sendWExtra
       client
-      API.Functions.SetLogVerbosityLevel.SetLogVerbosityLevel
+      TD.Query.SetLogVerbosityLevel.SetLogVerbosityLevel
         { new_verbosity_level = Just 2
         }
-  extra2 <- sendWExtra client API.Functions.GetCurrentState.GetCurrentState
+  extra2 <- sendWExtra client TD.Query.GetCurrentState.GetCurrentState
   live client extra1 extra2
   destroy client
   where

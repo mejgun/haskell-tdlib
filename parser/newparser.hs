@@ -88,22 +88,45 @@ writeGeneralResult l =
           "",
           printf "module %s.%s where" dataModule name,
           "",
+          "import qualified Data.Aeson as A",
+          "import qualified Data.Aeson.Types as T",
           L.intercalate "\n" (map (\(a, _, _) -> printf "import qualified %s.%s as %s" dataModule a a) l),
           "",
           "data GeneralResult",
           " = " ++ L.intercalate "\n | " (map (\(a, _, _) -> printf "%s %s.%s" a a a) l),
-          "data ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show, Eq)",
+          "      deriving (Eq)",
+          "data ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Eq)",
           "",
           "instance T.FromJSON ResultWithExtra where",
-          "parseJSON v@(T.Object obj) = do",
-          "case (T.fromJSON v :: T.Result GeneralResult) of",
-          "  T.Success a -> return $ ResultWithExtra a e",
-          "  _           -> mempty",
-          "where",
-          " e :: Maybe String",
-          " e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of",
-          "   T.Success r -> r",
-          "   _           -> Nothing"
+          " parseJSON v@(T.Object obj) = do",
+          "  case (T.fromJSON v :: T.Result GeneralResult) of",
+          "   T.Success a -> return $ ResultWithExtra a e",
+          "   _           -> fail \"\"",
+          "  where",
+          "   e :: Maybe String",
+          "   e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of",
+          "     T.Success r -> r",
+          "     _           -> Nothing",
+          "",
+          "instance T.FromJSON GeneralResult where",
+          " parseJSON v@(T.Object obj) = do",
+          "  mconcat t",
+          "  where",
+          "   t =",
+          "     [",
+          L.intercalate
+            ",\n"
+            ( map
+                ( \(a, _, _) ->
+                    concat
+                      [ printf "      case (T.fromJSON v :: T.Result %s.%s) of\n" a a,
+                        printf "       T.Success a -> return $ %s a\n" a,
+                        printf "       _ -> fail \"\""
+                      ]
+                )
+                l
+            ),
+          "     ]"
         ]
 
 writeData :: [ImportRecord] -> [ImportRecord] -> [GroupedItems] -> IO ()
@@ -126,6 +149,8 @@ writeData imps recimps (q@(n, com, is) : t) = do
           "",
           printf "module %s.%s where" dataModule n,
           "",
+          "import qualified Data.Aeson as A",
+          "import qualified Data.Aeson.Types as T",
           L.intercalate "\n" (map (\(_, a) -> printf "import qualified %s.%s as %s" dataModule a a) ims),
           L.intercalate "\n" (map (\(_, a) -> printf "import {-# SOURCE #-} qualified %s.%s as %s" dataModule a a) recs),
           "",
@@ -134,7 +159,9 @@ writeData imps recimps (q@(n, com, is) : t) = do
             Just c -> do
               printf "-- | %s" (comment c),
           printf "data %s =" n,
-          L.intercalate " |\n" (map printDataType is)
+          L.intercalate " |\n" (map printDataType is),
+          "  deriving (Eq)",
+          printFromJson
         ]
       where
         printDataType :: Entry -> String
@@ -153,6 +180,47 @@ writeData imps recimps (q@(n, com, is) : t) = do
           "\n    -- | "
             ++ L.intercalate "\n    -- " (comments_ a)
             ++ printf "\n    %s :: %s" (key a) (value a)
+        printFromJson :: String
+        printFromJson =
+          L.intercalate
+            "\n"
+            ( [ printf "\ninstance T.FromJSON %s" n,
+                " where",
+                " parseJSON v@(T.Object obj) = do",
+                "  t <- obj A..: \"@type\" :: T.Parser String",
+                "  case t of"
+              ]
+                ++ map
+                  ( \x ->
+                      let i = constructor x
+                       in printf "   \"%s\" -> parse%s v" (toLower i) i
+                  )
+                  is
+                ++ [ "   _ -> fail \"\"",
+                     "  where"
+                   ]
+                ++ map printFromJsonItem is
+                ++ [" parseJSON _ = fail \"\""]
+            )
+        printFromJsonItem :: Entry -> String
+        printFromJsonItem (Item cl con com ar) =
+          L.intercalate
+            "\n"
+            ( [ printf "   parse%s :: A.Value -> T.Parser %s" con cl,
+                printf "   parse%s = A.withObject \"%s\" $ \\o -> do" con con
+              ]
+                ++ map printFromJsonArg ar
+                ++ [ printf
+                       "    return $ %s { %s }"
+                       con
+                       ( L.intercalate ", " (map (\x -> printf "%s = %s'" (key x) (key x)) ar)
+                       ),
+                     ""
+                   ]
+            )
+        printFromJsonItem _ = error "oops"
+        printFromJsonArg :: Arg -> String
+        printFromJsonArg (Arg k v _) = printf "    %s' <- o A..:? \"%s\"" k (dropAround (== '_') k)
 
 writeDataBoot :: [ImportRecord] -> IO ()
 writeDataBoot [] = print "done"
@@ -168,11 +236,13 @@ writeDataBoot ((_, h) : t) = do
         "\n"
         [ printf "module %s.%s where" dataModule h,
           "",
-          -- "import Data.Aeson.Types",
+          "import Data.Aeson.Types",
           "",
           printf "data %s" h,
-          ""
-          -- printf "instance Eq %s" h
+          "",
+          printf "instance Eq %s" h,
+          "",
+          printf "instance FromJSON %s" h
         ]
 
 -- addGeneralResult :: [Entry] -> Entry -> [Entry]
@@ -237,7 +307,9 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
     fixAll _ _ = error "could not be"
     fix :: [(String, String)] -> Arg -> ([(String, String)], Arg)
     fix keys q@(Arg k v _)
-      | k `elem` ["type", "data", "id"] = let newk = add k in fix keys q {key = newk}
+      | k `elem` ["type", "data", "id", "length", "error", "filter"] =
+        let newk = add k
+         in fix keys q {key = newk}
       | (k, v) `elem` keys = (keys ++ [(k, v)], q)
       | k `elem` map fst keys = let newk = add k in fix keys (q {key = newk})
       | otherwise = (keys ++ [(k, v)], q)
@@ -403,6 +475,10 @@ uniq = foldl (\acc i -> if i `elem` acc then acc else acc ++ [i]) []
 toTitle :: String -> String
 toTitle (x : xs) = C.toTitle x : xs
 toTitle "" = ""
+
+toLower :: String -> String
+toLower (x : xs) = C.toLower x : xs
+toLower "" = ""
 
 dropAround :: (Char -> Bool) -> String -> String
 dropAround p = LE.dropWhile p . LE.dropWhileEnd p
