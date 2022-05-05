@@ -149,7 +149,7 @@ formatDataItem imps (n, cm, is) =
 addGeneralResult :: [Entry] -> Entry -> [Entry]
 addGeneralResult acc q@(Item cl con com arg) =
   let g = Item {constructor = cl, class_ = "GeneralResult", comments = [], args = []}
-   in if elem g acc then acc ++ [q] else acc ++ [q, g]
+   in if g `elem` acc then acc ++ [q] else acc ++ [q, g]
 addGeneralResult acc q = acc ++ [q]
 
 groupDataItems :: [GroupedItems] -> Entry -> [GroupedItems]
@@ -160,7 +160,7 @@ groupDataItems list q@(ClassComment n c) =
 groupDataItems list q@(Item cl con com arg) = do
   case filter (\(name, _, _) -> name == cl) list of
     [] -> list ++ [(cl, Nothing, [q])]
-    [(x0, x1, x2)] -> (filter (\(name, _, _) -> name /= cl) list) ++ [(x0, x1, x2 ++ [q])]
+    [(x0, x1, x2)] -> filter (\(name, _, _) -> name /= cl) list ++ [(x0, x1, x2 ++ [q])]
     _ -> error "grouping error"
 groupDataItems _ _ = error "grouping error"
 
@@ -180,10 +180,10 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
       (keys, [], acc ++ [q {args = ar}]) -- (k, acc ++ [q {args = a}])
     fixAll _ _ = error "could not be"
     fix :: [(String, String)] -> Arg -> ([(String, String)], Arg)
-    fix keys (q@(Arg k v _))
+    fix keys q@(Arg k v _)
       | k `elem` ["type", "data", "id"] = let newk = add k in fix keys q {key = newk}
       | (k, v) `elem` keys = (keys ++ [(k, v)], q)
-      | k `elem` (map fst keys) = let newk = add k in fix keys (q {key = newk})
+      | k `elem` map fst keys = let newk = add k in fix keys (q {key = newk})
       | otherwise = (keys ++ [(k, v)], q)
     add :: String -> String
     add a = "_" ++ a
@@ -304,15 +304,15 @@ structureData (ArgComment txt txt') (cur, acc) = undefined
 
 parse :: [Entry] -> String -> [Entry]
 parse acc h
-  | L.isPrefixOf "//@class " h = do
+  | "//@class " `L.isPrefixOf` h = do
     let (name, rest) = LE.breakOn " " $ myStripPrefix "//@class " h
     acc ++ [ClassComment {name = name, comment = myStripPrefix " @description " rest}]
-  | L.isPrefixOf "//@description " h =
+  | "//@description " `L.isPrefixOf` h =
     acc ++ [CommentStart (myStripPrefix "//@description " h)]
-  | L.isPrefixOf "//@" h = do
+  | "//@" `L.isPrefixOf` h = do
     let (name, rest) = LE.breakOn " " $ myStripPrefix "//@" h
     acc ++ [ArgComment {name = name, comment = myStripPrefix " " rest}]
-  | L.isPrefixOf "//-" h = do
+  | "//-" `L.isPrefixOf` h = do
     acc ++ [Comment (myStripPrefix "//-" h)]
   | length (LE.splitOn " = " h) == 2 = do
     let (r, cl) = LE.breakOn " = " h
@@ -340,7 +340,7 @@ parse acc h
   | otherwise = acc
 
 uniq :: (Eq a) => [a] -> [a]
-uniq = foldl (\acc i -> if elem i acc then acc else acc ++ [i]) []
+uniq = foldl (\acc i -> if i `elem` acc then acc else acc ++ [i]) []
 
 toTitle :: String -> String
 toTitle (x : xs) = C.toTitle x : xs
