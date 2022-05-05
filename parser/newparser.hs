@@ -55,16 +55,22 @@ main = do
   -- let a1 = foldl addGeneralResult [] a0
   -- let a = fixArgsKeys a0 []
   let (import', b) = foldl fixArgTypes ([], []) a0
-  let imports = uniq import'
+  -- let imports = uniq import'
+  let recImports' = uniq . findRecursiions $ uniq import'
+  let (okImports, recurImports) = sortImports import' recImports'
   let (Nothing, Nothing, c) = foldl insertComments (Nothing, Nothing, []) b
   let c1 = foldl groupDataItems [] c
   let d = map fixArgsKeys c1
-  mapM_ print imports
-  writeData imports d
+  mapM_ print recurImports
+  writeData okImports recurImports d
   writeGeneralResult d
+  writeDataBoot recImports'
 
 dataFileMask :: String
 dataFileMask = "../src/TD/Reply/%s.hs"
+
+dataBootFileMask :: String
+dataBootFileMask = "../src/TD/Reply/%s.hs-boot"
 
 dataModule :: String
 dataModule = "TD.Reply"
@@ -100,60 +106,101 @@ writeGeneralResult l =
           "   _           -> Nothing"
         ]
 
-writeData :: [ImportRecord] -> [GroupedItems] -> IO ()
-writeData _ [] = print "done"
-writeData imps (q@(n, com, is) : t) = do
+writeData :: [ImportRecord] -> [ImportRecord] -> [GroupedItems] -> IO ()
+writeData _ _ [] = print "done"
+writeData imps recimps (q@(n, com, is) : t) = do
   writeFile fileName fileContent
-  writeData imps t
+  writeData imps recimps t
   where
     fileName :: FilePath
     fileName = printf dataFileMask n
+
     fileContent :: String
-    fileContent = formatDataItem (filter (\i -> fst i == n) imps) q
+    fileContent = formatDataItem (filter (\i -> fst i == n) imps) (filter (\i -> fst i == n) recimps) q
 
-formatDataItem :: [ImportRecord] -> GroupedItems -> String
-formatDataItem imps (n, cm, is) =
-  L.intercalate
-    "\n"
-    [ "{-# LANGUAGE OverloadedStrings #-}",
-      "",
-      printf "module %s.%s where" dataModule n,
-      "",
-      L.intercalate "\n" (map (\(_, a) -> printf "import qualified %s.%s as %s" dataModule a a) imps),
-      "",
-      case cm of
-        Nothing -> ""
-        Just c -> do
-          printf "-- | %s" (comment c),
-      printf "data %s =" n,
-      L.intercalate " |\n" (map printDataType is)
-    ]
-  where
-    printDataType :: Entry -> String
-    printDataType (Item cl con com arg) = do
-      L.concat
-        [ " -- | ",
-          L.intercalate "\n -- " com,
-          printf "\n %s" con,
-          case arg of
-            [] -> ""
-            x -> "\n  {" ++ L.intercalate "," (map printArg x) ++ "\n  }"
+    formatDataItem :: [ImportRecord] -> [ImportRecord] -> GroupedItems -> String
+    formatDataItem ims recs (n, cm, is) =
+      L.intercalate
+        "\n"
+        [ "{-# LANGUAGE OverloadedStrings #-}",
+          "",
+          printf "module %s.%s where" dataModule n,
+          "",
+          L.intercalate "\n" (map (\(_, a) -> printf "import qualified %s.%s as %s" dataModule a a) ims),
+          L.intercalate "\n" (map (\(_, a) -> printf "import {-# SOURCE #-} qualified %s.%s as %s" dataModule a a) recs),
+          "",
+          case cm of
+            Nothing -> ""
+            Just c -> do
+              printf "-- | %s" (comment c),
+          printf "data %s =" n,
+          L.intercalate " |\n" (map printDataType is)
         ]
-    printDataType _ = error "error"
-    printArg :: Arg -> String
-    printArg a =
-      "\n    -- | "
-        ++ L.intercalate "\n    -- " (comments_ a)
-        ++ printf "\n    %s :: %s" (key a) (value a)
+      where
+        printDataType :: Entry -> String
+        printDataType (Item cl con com arg) = do
+          L.concat
+            [ " -- | ",
+              L.intercalate "\n -- " com,
+              printf "\n %s" con,
+              case arg of
+                [] -> ""
+                x -> "\n  {" ++ L.intercalate "," (map printArg x) ++ "\n  }"
+            ]
+        printDataType _ = error "error"
+        printArg :: Arg -> String
+        printArg a =
+          "\n    -- | "
+            ++ L.intercalate "\n    -- " (comments_ a)
+            ++ printf "\n    %s :: %s" (key a) (value a)
 
-addGeneralResult :: [Entry] -> Entry -> [Entry]
-addGeneralResult acc q@(Item cl con com arg) =
-  let g = Item {constructor = cl, class_ = "GeneralResult", comments = [], args = []}
-   in if g `elem` acc then acc ++ [q] else acc ++ [q, g]
-addGeneralResult acc q = acc ++ [q]
+writeDataBoot :: [String] -> IO ()
+writeDataBoot [] = print "done"
+writeDataBoot (h : t) = do
+  writeFile fileName fileContent
+  writeDataBoot t
+  where
+    fileName :: FilePath
+    fileName = printf dataBootFileMask h
+    fileContent :: String
+    fileContent =
+      L.intercalate
+        "\n"
+        [ printf "module %s.%s where" dataModule h,
+          "",
+          -- "import Data.Aeson.Types",
+          "",
+          printf "data %s" h,
+          ""
+          -- printf "instance Eq %s" h
+        ]
 
-findRecursiions :: [ImportRecord] -> [ImportRecord]
-findRecursiions = undefined
+-- addGeneralResult :: [Entry] -> Entry -> [Entry]
+-- addGeneralResult acc q@(Item cl con com arg) =
+--   let g = Item {constructor = cl, class_ = "GeneralResult", comments = [], args = []}
+--    in if g `elem` acc then acc ++ [q] else acc ++ [q, g]
+-- addGeneralResult acc q = acc ++ [q]
+
+sortImports :: [ImportRecord] -> [String] -> ([ImportRecord], [ImportRecord])
+sortImports all recs = do
+  -- let a = filter (\(x, y) -> x /= y) all
+  let ok = filter (\(_, x) -> x `notElem` recs) all
+      re = filter (\(_, x) -> x `elem` recs) all
+  (uniq ok, uniq re)
+
+findRecursiions :: [ImportRecord] -> [String]
+findRecursiions m = foldl (findr m) [] m
+  where
+    findr :: [ImportRecord] -> [String] -> ImportRecord -> [String]
+    findr list acc (i, b) = do
+      let a = take 1 $ filter (\x -> fst x == b) list
+      case a of
+        [] -> acc
+        [(x1, x2)] | x1 == b -> acc ++ [b]
+        [x] -> case findr (list L.\\ a) [] x of
+          [] -> acc
+          l -> acc ++ l
+        _ -> error "cannot be"
 
 groupDataItems :: [GroupedItems] -> Entry -> [GroupedItems]
 groupDataItems list q@(ClassComment n c) =
@@ -224,7 +271,7 @@ fixArgTypes (imp, acc) i@(Item cl c com arg) = do
                 (True, w) -> let (im, m) = vectorCheck w in (im, printf "[%s]" m) -- toTitle w in ([im], printf "[%s.%s]" im im)
         else
           let m = toTitle p
-           in ([m], printf "%s.%s" m m)
+           in if cl == m then ([], m) else ([m], printf "%s.%s" m m)
     replace :: String -> (Bool, String)
     replace "Bool" = (False, "Bool")
     replace "int32" = (False, "Int")
