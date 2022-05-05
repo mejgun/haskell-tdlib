@@ -266,7 +266,7 @@ fixArgTypes (imp, acc) i@(Item cl c com arg) = do
       let (addi, newv) = case replace v of
             (False, p) -> ([], p)
             (True, p) -> vectorCheck p
-      (i ++ addi, a ++ [r {value = newv}])
+      (i ++ addi, a ++ [r {value = printf "Maybe %s" newv}])
     vectorCheck :: String -> ([String], String)
     vectorCheck p =
       if LE.isPrefixOf "vector<" p
