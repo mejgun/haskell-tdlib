@@ -51,29 +51,42 @@ main = do
         map fixConstructors
           . filter (not . isJunk)
           $ foldl parse [] dat
+  let fun = filter (not . null) . map strip $ LE.splitOn "\n" f
+  let f0 = map fixConstructors $ foldl parse [] fun
   -- let b = foldr structureData (Nothing, []) a
   -- let a1 = foldl addGeneralResult [] a0
   -- let a = fixArgsKeys a0 []
-  let (import', b) = foldl fixArgTypes ([], []) a0
+  let (import', b) = foldl (fixArgTypes True) ([], []) a0
+  let (importFun', f1) = foldl (fixArgTypes False) ([], []) f0
   -- let imports = uniq import'
   let recImports' = uniq . findRecursiions $ uniq import'
   let (okImports, recurImports) = sortImports import' recImports'
   let (Nothing, Nothing, c) = foldl insertComments (Nothing, Nothing, []) b
+  let (Nothing, Nothing, f2) = foldl insertComments (Nothing, Nothing, []) f1
   let c1 = foldl groupDataItems [] c
   let d = map fixArgsKeys c1
-  mapM_ print recurImports
+  let f3 = concatMap ((\(_, _, x) -> x) . fixArgsKeys . (\x -> ("a", "b", [x]))) f2
+  mapM_ print importFun'
+  mapM_ print f3
   writeData okImports recurImports d
+  writeFuncs importFun' f3
   writeGeneralResult d
   writeDataBoot recImports'
 
 dataFileMask :: String
 dataFileMask = "../src/TD/Reply/%s.hs"
 
+funcFileMask :: String
+funcFileMask = "../src/TD/Query/%s.hs"
+
 dataBootFileMask :: String
 dataBootFileMask = "../src/TD/Reply/%s.hs-boot"
 
 dataModule :: String
 dataModule = "TD.Reply"
+
+funcModule :: String
+funcModule = "TD.Query"
 
 writeGeneralResult :: [GroupedItems] -> IO ()
 writeGeneralResult l =
@@ -128,6 +141,45 @@ writeGeneralResult l =
             ),
           "     ]"
         ]
+
+writeFuncs :: [ImportRecord] -> [Entry] -> IO ()
+writeFuncs _ [] = print "done"
+writeFuncs imps (q@(Item cl con com arg) : t) = do
+  writeFile fileName fileContent
+  writeFuncs imps t
+  where
+    fileName :: FilePath
+    fileName = printf funcFileMask con
+
+    fileContent :: String
+    fileContent = formatFuncItem (filter (\(i, _) -> i == con) imps)
+
+    formatFuncItem :: [ImportRecord] -> String
+    formatFuncItem imp =
+      L.intercalate
+        "\n"
+        [ "{-# LANGUAGE OverloadedStrings #-}\n",
+          "",
+          printf "module %s.%s where" funcModule con,
+          L.intercalate "\n" (map (\(_, i) -> printf "import qualified %s.%s as %s" dataModule i i) imp),
+          "",
+          "-- |",
+          L.intercalate "\n" (map (printf "-- %s") com),
+          printf "data %s = %s" con con,
+          "  {",
+          L.intercalate ",\n" (map printDataType arg),
+          "  }",
+          "  deriving (Eq)"
+        ]
+      where
+        printDataType :: Arg -> String
+        printDataType (Arg k v com) = do
+          L.concat
+            [ "   -- | ",
+              L.intercalate "\n   -- " com,
+              printf "\n   %s :: %s" k v
+            ]
+writeFuncs _ _ = error "func write error"
 
 writeData :: [ImportRecord] -> [ImportRecord] -> [GroupedItems] -> IO ()
 writeData _ _ [] = print "done"
@@ -328,17 +380,17 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
 
 -- fixArgsKeys (h : t) acc = fixArgsKeys t (acc ++ [h])
 
-fixArgTypes :: ([ImportRecord], [Entry]) -> Entry -> ([ImportRecord], [Entry])
-fixArgTypes (imp, acc) i@(Item cl c com arg) = do
+fixArgTypes :: Bool -> ([ImportRecord], [Entry]) -> Entry -> ([ImportRecord], [Entry])
+fixArgTypes pr (imp, acc) i@(Item cl c com arg) =
   let (imports, newarg) = foldl fix ([], []) arg
-  (imp ++ zip (repeat cl) imports, acc ++ [i {args = newarg}])
+   in (imp ++ zip (repeat (if pr then cl else c)) imports, acc ++ [i {args = newarg}])
   where
     fix :: ([String], [Arg]) -> Arg -> ([String], [Arg])
-    fix (i, a) r@(Arg _ v _) = do
+    fix (i, a) r@(Arg _ v _) =
       let (addi, newv) = case replace v of
             (False, p) -> ([], p)
             (True, p) -> vectorCheck p
-      (i ++ addi, a ++ [r {value = printf "Maybe %s" newv}])
+       in (i ++ addi, a ++ [r {value = printf "Maybe %s" newv}])
     vectorCheck :: String -> ([String], String)
     vectorCheck p =
       if LE.isPrefixOf "vector<" p
@@ -349,7 +401,7 @@ fixArgTypes (imp, acc) i@(Item cl c com arg) = do
                 (True, w) -> let (im, m) = vectorCheck w in (im, printf "[%s]" m) -- toTitle w in ([im], printf "[%s.%s]" im im)
         else
           let m = toTitle p
-           in if cl == m then ([], m) else ([m], printf "%s.%s" m m)
+           in if (pr && cl == m) || (not pr && c == m) then ([], m) else ([m], printf "%s.%s" m m)
     replace :: String -> (Bool, String)
     replace "Bool" = (False, "Bool")
     replace "int32" = (False, "Int")
@@ -359,7 +411,7 @@ fixArgTypes (imp, acc) i@(Item cl c com arg) = do
     replace "bytes" = (False, "String")
     replace "double" = (False, "Float")
     replace x = (True, x)
-fixArgTypes (imp, acc) o = (imp, acc ++ [o])
+fixArgTypes _ (imp, acc) o = (imp, acc ++ [o])
 
 insertComments :: (Maybe Entry, Maybe Arg, [Entry]) -> Entry -> (Maybe Entry, Maybe Arg, [Entry])
 insertComments (Nothing, Nothing, acc) q@(ClassComment _ _) =
