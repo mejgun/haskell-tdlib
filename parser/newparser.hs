@@ -107,8 +107,8 @@ writeGeneralResult l =
           "",
           "data GeneralResult",
           " = " ++ L.intercalate "\n | " (map (\(a, _, _) -> printf "%s %s.%s" a a a) l),
-          "      deriving (Eq)",
-          "data ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Eq)",
+          "      deriving (Show, Eq)",
+          "data ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show, Eq)",
           "",
           "instance T.FromJSON ResultWithExtra where",
           " parseJSON v@(T.Object obj) = do",
@@ -161,6 +161,7 @@ writeFuncs imps (q@(Item cl con com arg) : t) = do
         [ "{-# LANGUAGE OverloadedStrings #-}\n",
           "",
           printf "module %s.%s where" funcModule con,
+          "import qualified Utils as U",
           "import qualified Data.Aeson as A",
           "import qualified Data.Aeson.Types as T",
           L.intercalate "\n" (map (\(_, i) -> printf "import qualified %s.%s as %s" dataModule i i) imp),
@@ -172,6 +173,9 @@ writeFuncs imps (q@(Item cl con com arg) : t) = do
           L.intercalate ",\n" (map printDataType arg),
           "  }",
           "  deriving (Eq)",
+          "",
+          printf "instance Show %s where" con,
+          printToShow q,
           "",
           printf "instance T.ToJSON %s where" con,
           printToJson q
@@ -186,10 +190,29 @@ writeFuncs imps (q@(Item cl con com arg) : t) = do
             ]
 writeFuncs _ _ = error "func write error"
 
-printToJson :: Entry -> String
-printToJson (Item cl con com arg) =
+printToShow :: Entry -> String
+printToShow (Item _ con _ arg) =
   L.intercalate
-    "\n"
+    "\n\n"
+    [ printf " show %s %s" con (if null arg then "" else "{" :: String),
+      L.intercalate
+        ",\n"
+        ( map (\(Arg x1 _ _) -> printf "   %s = %s" x1 x1) arg
+        ),
+      printf "   %s" (if null arg then "" else "}" :: String),
+      printf "   = \"%s\" ++ U.cc [" con,
+      L.intercalate
+        ",\n"
+        ( map (\(Arg x1 _ _) -> printf "   U.p \"%s\" %s" x1 x1) arg
+        ),
+      "  ]"
+    ]
+printToShow _ = error "not item"
+
+printToJson :: Entry -> String
+printToJson (Item _ con _ arg) =
+  L.intercalate
+    "\n\n"
     [ printf " toJSON %s %s" con (if null arg then "" else "{" :: String),
       L.intercalate
         ",\n"
@@ -226,6 +249,7 @@ writeData imps recimps (q@(n, com, is) : t) = do
           "",
           printf "module %s.%s where" dataModule n,
           "",
+          "import qualified Utils as U",
           "import qualified Data.Aeson as A",
           "import qualified Data.Aeson.Types as T",
           L.intercalate "\n" (map (\(_, a) -> printf "import qualified %s.%s as %s" dataModule a a) ims),
@@ -238,6 +262,9 @@ writeData imps recimps (q@(n, com, is) : t) = do
           printf "data %s =" n,
           L.intercalate " |\n" (map printDataType is),
           "  deriving (Eq)",
+          "",
+          printf "instance Show %s where" n,
+          L.intercalate "\n" (map printToShow is),
           printFromJson,
           printf "instance T.ToJSON %s where" n,
           L.intercalate "\n" (map printToJson is)
@@ -262,7 +289,7 @@ writeData imps recimps (q@(n, com, is) : t) = do
         printFromJson :: String
         printFromJson =
           L.intercalate
-            "\n"
+            "\n\n"
             ( [ printf "\ninstance T.FromJSON %s" n,
                 " where",
                 " parseJSON v@(T.Object obj) = do",
@@ -320,6 +347,8 @@ writeDataBoot ((_, h) : t) = do
           printf "data %s" h,
           "",
           printf "instance Eq %s" h,
+          "",
+          printf "instance Show %s" h,
           "",
           printf "instance FromJSON %s" h,
           "",
