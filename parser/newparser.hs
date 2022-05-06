@@ -161,6 +161,8 @@ writeFuncs imps (q@(Item cl con com arg) : t) = do
         [ "{-# LANGUAGE OverloadedStrings #-}\n",
           "",
           printf "module %s.%s where" funcModule con,
+          "import qualified Data.Aeson as A",
+          "import qualified Data.Aeson.Types as T",
           L.intercalate "\n" (map (\(_, i) -> printf "import qualified %s.%s as %s" dataModule i i) imp),
           "",
           "-- |",
@@ -169,7 +171,10 @@ writeFuncs imps (q@(Item cl con com arg) : t) = do
           "  {",
           L.intercalate ",\n" (map printDataType arg),
           "  }",
-          "  deriving (Eq)"
+          "  deriving (Eq)",
+          "",
+          printf "instance T.ToJSON %s where" con,
+          printToJson q
         ]
       where
         printDataType :: Arg -> String
@@ -180,6 +185,26 @@ writeFuncs imps (q@(Item cl con com arg) : t) = do
               printf "\n   %s :: %s" k v
             ]
 writeFuncs _ _ = error "func write error"
+
+printToJson :: Entry -> String
+printToJson (Item cl con com arg) =
+  L.intercalate
+    "\n"
+    [ printf " toJSON %s %s" con (if null arg then "" else "{" :: String),
+      L.intercalate
+        ",\n"
+        ( map (\(Arg x1 _ _) -> printf "   %s = %s" x1 x1) arg
+        ),
+      printf "   %s" (if null arg then "" else "}" :: String),
+      printf "   = A.object [",
+      printf "   \"@type\" A..= T.String \"%s\"%s" (toLower con) (if null arg then "" else "," :: String),
+      L.intercalate
+        ",\n"
+        ( map (\(Arg x1 _ _) -> printf "   \"%s\" A..= %s" (dropAround (== '_') x1) x1) arg
+        ),
+      "  ]"
+    ]
+printToJson _ = error "not item"
 
 writeData :: [ImportRecord] -> [ImportRecord] -> [GroupedItems] -> IO ()
 writeData _ _ [] = print "done"
@@ -213,7 +238,9 @@ writeData imps recimps (q@(n, com, is) : t) = do
           printf "data %s =" n,
           L.intercalate " |\n" (map printDataType is),
           "  deriving (Eq)",
-          printFromJson
+          printFromJson,
+          printf "instance T.ToJSON %s where" n,
+          L.intercalate "\n" (map printToJson is)
         ]
       where
         printDataType :: Entry -> String
@@ -288,13 +315,15 @@ writeDataBoot ((_, h) : t) = do
         "\n"
         [ printf "module %s.%s where" dataModule h,
           "",
-          "import Data.Aeson.Types",
+          "import Data.Aeson.Types ( FromJSON, ToJSON )",
           "",
           printf "data %s" h,
           "",
           printf "instance Eq %s" h,
           "",
-          printf "instance FromJSON %s" h
+          printf "instance FromJSON %s" h,
+          "",
+          printf "instance ToJSON %s" h
         ]
 
 -- addGeneralResult :: [Entry] -> Entry -> [Entry]

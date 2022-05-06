@@ -2,11 +2,10 @@
 
 module Main where
 
--- import API.Functions.GetCurrentState
--- import API.Functions.SetLogVerbosityLevel
-
 import Control.Monad (when)
 import TD.Lib
+import TD.Query.GetCurrentState
+import TD.Query.SetLogVerbosityLevel
 import TD.Reply.GeneralResult
 
 main :: IO ()
