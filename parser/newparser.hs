@@ -319,14 +319,15 @@ writeData imps recimps (q@(n, com, is) : t) = do
                 ++ [ printf
                        "    return $ %s { %s }"
                        con
-                       ( L.intercalate ", " (map (\x -> printf "%s = %s'" (key x) (key x)) ar)
+                       ( L.intercalate ", " (map (\x -> printf "%s = %s_" (key x) (key x)) ar)
                        ),
                      ""
                    ]
             )
         printFromJsonItem _ = error "oops"
         printFromJsonArg :: Arg -> String
-        printFromJsonArg (Arg k v _) = printf "    %s' <- o A..:? \"%s\"" k (dropAround (== '_') k)
+        printFromJsonArg (Arg k "Maybe Int" _) = printf "    %s_ <- mconcat [o A..:? \"%s\", U.rm <$> (o A..: \"%s\" :: T.Parser String)] :: T.Parser (Maybe Int)" k (dropAround (== '_') k) (dropAround (== '_') k)
+        printFromJsonArg (Arg k v _) = printf "    %s_ <- o A..:? \"%s\"" k (dropAround (== '_') k)
 
 writeDataBoot :: [ImportRecord] -> IO ()
 writeDataBoot [] = print "done"
@@ -681,3 +682,17 @@ itemToEntry x = do
 --     let (dat : _) = filter (== T.empty) . filter (not . L.isPrefixOf "//") $t
 --     let (a, name) = LE.breakOn "=" dat
 --     let (constr, rest) = LE.breakOn " " a
+
+{-
+     user_ids <-
+          mconcat
+            [ o A..:? "user_ids",
+              do
+                t0 <- o A..: "user_ids" :: T.Parser String
+                let t1 = read t0 :: [String]
+                let t2 = map read t1
+                return $ Just t2
+            ] ::
+            T.Parser (Maybe [Int])
+
+          -}
