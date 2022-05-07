@@ -4,7 +4,7 @@ module TD.Query.DeletePassportElement where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.PassportElementType as PassportElementType
+import qualified TD.Data.PassportElementType as PassportElementType
 import qualified Utils as U
 
 -- |

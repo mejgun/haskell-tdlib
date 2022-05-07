@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.OrderInfo.html"><span class="hs-identifier">TD.Reply.OrderInfo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">OrderInfo</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.OrderInfo.html"><span class="hs-identifier">TD.Data.OrderInfo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">OrderInfo</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -15,7 +15,7 @@
 </span><a href="TD.Query.ValidateOrderInfo.html#allow_save"><span class="hs-identifier hs-var hs-var">allow_save</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | The order information, provided by the user; pass null if empty</span><span>
 </span><span id="line-16"></span><span>    </span><span id="order_info"><span class="annot"><span class="annottext">ValidateOrderInfo -&gt; Maybe OrderInfo
-</span><a href="TD.Query.ValidateOrderInfo.html#order_info"><span class="hs-identifier hs-var hs-var">order_info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.OrderInfo.html#OrderInfo"><span class="hs-identifier hs-type">OrderInfo.OrderInfo</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#order_info"><span class="hs-identifier hs-var hs-var">order_info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.OrderInfo.html#OrderInfo"><span class="hs-identifier hs-type">OrderInfo.OrderInfo</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Message identifier</span><span>
 </span><span id="line-18"></span><span>    </span><span id="message_id"><span class="annot"><span class="annottext">ValidateOrderInfo -&gt; Maybe Int
 </span><a href="TD.Query.ValidateOrderInfo.html#message_id"><span class="hs-identifier hs-var hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
@@ -23,7 +23,7 @@
 </span><span id="line-20"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">ValidateOrderInfo -&gt; Maybe Int
 </span><a href="TD.Query.ValidateOrderInfo.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421837"><span id="local-6989586621679421839"><span class="annot"><span class="annottext">ValidateOrderInfo -&gt; ValidateOrderInfo -&gt; Bool
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679439402"><span id="local-6989586621679439404"><span class="annot"><span class="annottext">ValidateOrderInfo -&gt; ValidateOrderInfo -&gt; Bool
 (ValidateOrderInfo -&gt; ValidateOrderInfo -&gt; Bool)
 -&gt; (ValidateOrderInfo -&gt; ValidateOrderInfo -&gt; Bool)
 -&gt; Eq ValidateOrderInfo
@@ -34,22 +34,22 @@ $c/= :: ValidateOrderInfo -&gt; ValidateOrderInfo -&gt; Bool
 $c== :: ValidateOrderInfo -&gt; ValidateOrderInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421831"><span id="local-6989586621679421834"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ValidateOrderInfo.html#ValidateOrderInfo"><span class="hs-identifier hs-type">ValidateOrderInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679421829"><span class="annot"><span class="annottext">show :: ValidateOrderInfo -&gt; String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439396"><span id="local-6989586621679439399"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ValidateOrderInfo.html#ValidateOrderInfo"><span class="hs-identifier hs-type">ValidateOrderInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679439394"><span class="annot"><span class="annottext">show :: ValidateOrderInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><a href="TD.Query.ValidateOrderInfo.html#ValidateOrderInfo"><span class="hs-identifier hs-type">ValidateOrderInfo</span></a></span><span>
 </span><span id="line-27"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_save :: ValidateOrderInfo -&gt; Maybe Bool
-</span><a href="TD.Query.ValidateOrderInfo.html#allow_save"><span class="hs-identifier hs-var">allow_save</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421827"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421827"><span class="hs-identifier hs-var">allow_save</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#allow_save"><span class="hs-identifier hs-var">allow_save</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439392"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439392"><span class="hs-identifier hs-var">allow_save</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">order_info :: ValidateOrderInfo -&gt; Maybe OrderInfo
-</span><a href="TD.Query.ValidateOrderInfo.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421826"><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679421826"><span class="hs-identifier hs-var">order_info</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439391"><span class="annot"><span class="annottext">Maybe OrderInfo
+</span><a href="#local-6989586621679439391"><span class="hs-identifier hs-var">order_info</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">message_id :: ValidateOrderInfo -&gt; Maybe Int
-</span><a href="TD.Query.ValidateOrderInfo.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421825"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421825"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439390"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679439390"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: ValidateOrderInfo -&gt; Maybe Int
-</span><a href="TD.Query.ValidateOrderInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421824"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421824"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439389"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679439389"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ValidateOrderInfo&quot;</span></span><span>
@@ -61,40 +61,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;allow_save&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421827"><span class="hs-identifier hs-var">allow_save</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679439392"><span class="hs-identifier hs-var">allow_save</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe OrderInfo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;order_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679421826"><span class="hs-identifier hs-var">order_info</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679439391"><span class="hs-identifier hs-var">order_info</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421825"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679439390"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421824"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679439389"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-38"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421815"><span id="local-6989586621679421817"><span id="local-6989586621679421819"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ValidateOrderInfo.html#ValidateOrderInfo"><span class="hs-identifier hs-type">ValidateOrderInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679421813"><span class="annot"><span class="annottext">toJSON :: ValidateOrderInfo -&gt; Value
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439380"><span id="local-6989586621679439382"><span id="local-6989586621679439384"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ValidateOrderInfo.html#ValidateOrderInfo"><span class="hs-identifier hs-type">ValidateOrderInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679439378"><span class="annot"><span class="annottext">toJSON :: ValidateOrderInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-42"></span><span>    </span><span class="annot"><a href="TD.Query.ValidateOrderInfo.html#ValidateOrderInfo"><span class="hs-identifier hs-type">ValidateOrderInfo</span></a></span><span>
 </span><span id="line-43"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_save :: ValidateOrderInfo -&gt; Maybe Bool
-</span><a href="TD.Query.ValidateOrderInfo.html#allow_save"><span class="hs-identifier hs-var">allow_save</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421811"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421811"><span class="hs-identifier hs-var">allow_save</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#allow_save"><span class="hs-identifier hs-var">allow_save</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439376"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439376"><span class="hs-identifier hs-var">allow_save</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>        </span><span class="annot"><span class="annottext">order_info :: ValidateOrderInfo -&gt; Maybe OrderInfo
-</span><a href="TD.Query.ValidateOrderInfo.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421810"><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679421810"><span class="hs-identifier hs-var">order_info</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439375"><span class="annot"><span class="annottext">Maybe OrderInfo
+</span><a href="#local-6989586621679439375"><span class="hs-identifier hs-var">order_info</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">message_id :: ValidateOrderInfo -&gt; Maybe Int
-</span><a href="TD.Query.ValidateOrderInfo.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421809"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421809"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439374"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679439374"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: ValidateOrderInfo -&gt; Maybe Int
-</span><a href="TD.Query.ValidateOrderInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421808"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421808"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.ValidateOrderInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439373"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679439373"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-47"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -108,21 +108,21 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;allow_save&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421811"><span class="hs-identifier hs-var">allow_save</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679439376"><span class="hs-identifier hs-var">allow_save</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;order_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe OrderInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679421810"><span class="hs-identifier hs-var">order_info</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679439375"><span class="hs-identifier hs-var">order_info</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421809"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679439374"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421808"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679439373"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-54"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-55"></span></pre></body></html>

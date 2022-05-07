@@ -4,7 +4,7 @@ module TD.Query.SetMenuButton where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.BotMenuButton as BotMenuButton
+import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified Utils as U
 
 -- |

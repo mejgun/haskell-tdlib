@@ -4,7 +4,7 @@ module TD.Query.GetCallbackQueryAnswer where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.CallbackQueryPayload as CallbackQueryPayload
+import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
 import qualified Utils as U
 
 -- |

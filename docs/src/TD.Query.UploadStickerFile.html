@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.InputSticker.html"><span class="hs-identifier">TD.Reply.InputSticker</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputSticker</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputSticker.html"><span class="hs-identifier">TD.Data.InputSticker</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputSticker</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -12,12 +12,12 @@
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="UploadStickerFile"><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-var">UploadStickerFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="UploadStickerFile"><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-var">UploadStickerFile</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="sticker"><span class="annot"><span class="annottext">UploadStickerFile -&gt; Maybe InputSticker
-</span><a href="TD.Query.UploadStickerFile.html#sticker"><span class="hs-identifier hs-var hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.InputSticker.html#InputSticker"><span class="hs-identifier hs-type">InputSticker.InputSticker</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.UploadStickerFile.html#sticker"><span class="hs-identifier hs-var hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.InputSticker.html#InputSticker"><span class="hs-identifier hs-type">InputSticker.InputSticker</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-16"></span><span>    </span><span id="user_id"><span class="annot"><span class="annottext">UploadStickerFile -&gt; Maybe Int
 </span><a href="TD.Query.UploadStickerFile.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421891"><span id="local-6989586621679421893"><span class="annot"><span class="annottext">UploadStickerFile -&gt; UploadStickerFile -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414940"><span id="local-6989586621679414942"><span class="annot"><span class="annottext">UploadStickerFile -&gt; UploadStickerFile -&gt; Bool
 (UploadStickerFile -&gt; UploadStickerFile -&gt; Bool)
 -&gt; (UploadStickerFile -&gt; UploadStickerFile -&gt; Bool)
 -&gt; Eq UploadStickerFile
@@ -28,16 +28,16 @@ $c/= :: UploadStickerFile -&gt; UploadStickerFile -&gt; Bool
 $c== :: UploadStickerFile -&gt; UploadStickerFile -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421885"><span id="local-6989586621679421888"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-type">UploadStickerFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679421883"><span class="annot"><span class="annottext">show :: UploadStickerFile -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414934"><span id="local-6989586621679414937"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-type">UploadStickerFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679414932"><span class="annot"><span class="annottext">show :: UploadStickerFile -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-type">UploadStickerFile</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: UploadStickerFile -&gt; Maybe InputSticker
-</span><a href="TD.Query.UploadStickerFile.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421881"><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679421881"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.UploadStickerFile.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414930"><span class="annot"><span class="annottext">Maybe InputSticker
+</span><a href="#local-6989586621679414930"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">user_id :: UploadStickerFile -&gt; Maybe Int
-</span><a href="TD.Query.UploadStickerFile.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421880"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421880"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
+</span><a href="TD.Query.UploadStickerFile.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414929"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679414929"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UploadStickerFile&quot;</span></span><span>
@@ -49,24 +49,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679421881"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679414930"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421880"><span class="hs-identifier hs-var">user_id</span></a></span><span>
+</span><a href="#local-6989586621679414929"><span class="hs-identifier hs-var">user_id</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421871"><span id="local-6989586621679421873"><span id="local-6989586621679421875"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-type">UploadStickerFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679421869"><span class="annot"><span class="annottext">toJSON :: UploadStickerFile -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414920"><span id="local-6989586621679414922"><span id="local-6989586621679414924"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-type">UploadStickerFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679414918"><span class="annot"><span class="annottext">toJSON :: UploadStickerFile -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.UploadStickerFile.html#UploadStickerFile"><span class="hs-identifier hs-type">UploadStickerFile</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: UploadStickerFile -&gt; Maybe InputSticker
-</span><a href="TD.Query.UploadStickerFile.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421867"><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679421867"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.UploadStickerFile.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414916"><span class="annot"><span class="annottext">Maybe InputSticker
+</span><a href="#local-6989586621679414916"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">user_id :: UploadStickerFile -&gt; Maybe Int
-</span><a href="TD.Query.UploadStickerFile.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421866"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421866"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
+</span><a href="TD.Query.UploadStickerFile.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414915"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679414915"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputSticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679421867"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679414916"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421866"><span class="hs-identifier hs-var">user_id</span></a></span><span>
+</span><a href="#local-6989586621679414915"><span class="hs-identifier hs-var">user_id</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

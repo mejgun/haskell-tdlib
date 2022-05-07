@@ -4,8 +4,8 @@ module TD.Query.AddLocalMessage where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputMessageContent as InputMessageContent
-import qualified TD.Reply.MessageSender as MessageSender
+import qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
 -- |

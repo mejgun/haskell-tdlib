@@ -4,7 +4,7 @@ module TD.Query.SetTdlibParameters where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.TdlibParameters as TdlibParameters
+import qualified TD.Data.TdlibParameters as TdlibParameters
 import qualified Utils as U
 
 -- |

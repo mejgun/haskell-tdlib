@@ -4,7 +4,7 @@ module TD.Query.GetChatNotificationSettingsExceptions where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.NotificationSettingsScope as NotificationSettingsScope
+import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified Utils as U
 
 -- |

@@ -4,7 +4,7 @@ module TD.Query.RegisterDevice where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.DeviceToken as DeviceToken
+import qualified TD.Data.DeviceToken as DeviceToken
 import qualified Utils as U
 
 -- |

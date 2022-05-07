@@ -4,8 +4,8 @@ module TD.Query.SetAutoDownloadSettings where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.AutoDownloadSettings as AutoDownloadSettings
-import qualified TD.Reply.NetworkType as NetworkType
+import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
+import qualified TD.Data.NetworkType as NetworkType
 import qualified Utils as U
 
 -- |

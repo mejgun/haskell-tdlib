@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.SearchMessagesFilter.html"><span class="hs-identifier">TD.Reply.SearchMessagesFilter</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">SearchMessagesFilter</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html"><span class="hs-identifier">TD.Data.SearchMessagesFilter</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">SearchMessagesFilter</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -19,12 +19,12 @@
 </span><a href="TD.Query.GetChatSparseMessagePositions.html#from_message_id"><span class="hs-identifier hs-var hs-var">from_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
 </span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function</span><span>
 </span><span id="line-19"></span><span>    </span><span id="_filter"><span class="annot"><span class="annottext">GetChatSparseMessagePositions -&gt; Maybe SearchMessagesFilter
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#_filter"><span class="hs-identifier hs-var hs-var">_filter</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter.SearchMessagesFilter</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#_filter"><span class="hs-identifier hs-var hs-var">_filter</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter.SearchMessagesFilter</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Identifier of the chat in which to return information about message positions</span><span>
 </span><span id="line-21"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">GetChatSparseMessagePositions -&gt; Maybe Int
 </span><a href="TD.Query.GetChatSparseMessagePositions.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679438956"><span id="local-6989586621679438958"><span class="annot"><span class="annottext">GetChatSparseMessagePositions
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679404732"><span id="local-6989586621679404734"><span class="annot"><span class="annottext">GetChatSparseMessagePositions
 -&gt; GetChatSparseMessagePositions -&gt; Bool
 (GetChatSparseMessagePositions
  -&gt; GetChatSparseMessagePositions -&gt; Bool)
@@ -42,22 +42,22 @@ $c== :: GetChatSparseMessagePositions
 -&gt; GetChatSparseMessagePositions -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438950"><span id="local-6989586621679438953"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetChatSparseMessagePositions.html#GetChatSparseMessagePositions"><span class="hs-identifier hs-type">GetChatSparseMessagePositions</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679438948"><span class="annot"><span class="annottext">show :: GetChatSparseMessagePositions -&gt; String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404726"><span id="local-6989586621679404729"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetChatSparseMessagePositions.html#GetChatSparseMessagePositions"><span class="hs-identifier hs-type">GetChatSparseMessagePositions</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679404724"><span class="annot"><span class="annottext">show :: GetChatSparseMessagePositions -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Query.GetChatSparseMessagePositions.html#GetChatSparseMessagePositions"><span class="hs-identifier hs-type">GetChatSparseMessagePositions</span></a></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetChatSparseMessagePositions -&gt; Maybe Int
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438946"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438946"><span class="hs-identifier hs-var">limit</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404722"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404722"><span class="hs-identifier hs-var">limit</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">from_message_id :: GetChatSparseMessagePositions -&gt; Maybe Int
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#from_message_id"><span class="hs-identifier hs-var">from_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438945"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438945"><span class="hs-identifier hs-var">from_message_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#from_message_id"><span class="hs-identifier hs-var">from_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404721"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404721"><span class="hs-identifier hs-var">from_message_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">_filter :: GetChatSparseMessagePositions -&gt; Maybe SearchMessagesFilter
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438944"><span class="annot"><span class="annottext">Maybe SearchMessagesFilter
-</span><a href="#local-6989586621679438944"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404720"><span class="annot"><span class="annottext">Maybe SearchMessagesFilter
+</span><a href="#local-6989586621679404720"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: GetChatSparseMessagePositions -&gt; Maybe Int
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438943"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438943"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404719"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404719"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetChatSparseMessagePositions&quot;</span></span><span>
@@ -69,40 +69,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438946"><span class="hs-identifier hs-var">limit</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404722"><span class="hs-identifier hs-var">limit</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;from_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438945"><span class="hs-identifier hs-var">from_message_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404721"><span class="hs-identifier hs-var">from_message_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe SearchMessagesFilter -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_filter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe SearchMessagesFilter
-</span><a href="#local-6989586621679438944"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404720"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438943"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679404719"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438934"><span id="local-6989586621679438936"><span id="local-6989586621679438938"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetChatSparseMessagePositions.html#GetChatSparseMessagePositions"><span class="hs-identifier hs-type">GetChatSparseMessagePositions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>  </span><span id="local-6989586621679438932"><span class="annot"><span class="annottext">toJSON :: GetChatSparseMessagePositions -&gt; Value
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404710"><span id="local-6989586621679404712"><span id="local-6989586621679404714"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetChatSparseMessagePositions.html#GetChatSparseMessagePositions"><span class="hs-identifier hs-type">GetChatSparseMessagePositions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679404708"><span class="annot"><span class="annottext">toJSON :: GetChatSparseMessagePositions -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-43"></span><span>    </span><span class="annot"><a href="TD.Query.GetChatSparseMessagePositions.html#GetChatSparseMessagePositions"><span class="hs-identifier hs-type">GetChatSparseMessagePositions</span></a></span><span>
 </span><span id="line-44"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetChatSparseMessagePositions -&gt; Maybe Int
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438930"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438930"><span class="hs-identifier hs-var">limit</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404706"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404706"><span class="hs-identifier hs-var">limit</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">from_message_id :: GetChatSparseMessagePositions -&gt; Maybe Int
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#from_message_id"><span class="hs-identifier hs-var">from_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438929"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438929"><span class="hs-identifier hs-var">from_message_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#from_message_id"><span class="hs-identifier hs-var">from_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404705"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404705"><span class="hs-identifier hs-var">from_message_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">_filter :: GetChatSparseMessagePositions -&gt; Maybe SearchMessagesFilter
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438928"><span class="annot"><span class="annottext">Maybe SearchMessagesFilter
-</span><a href="#local-6989586621679438928"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404704"><span class="annot"><span class="annottext">Maybe SearchMessagesFilter
+</span><a href="#local-6989586621679404704"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: GetChatSparseMessagePositions -&gt; Maybe Int
-</span><a href="TD.Query.GetChatSparseMessagePositions.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438927"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438927"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.GetChatSparseMessagePositions.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404703"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404703"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-48"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -116,21 +116,21 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438930"><span class="hs-identifier hs-var">limit</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404706"><span class="hs-identifier hs-var">limit</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;from_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438929"><span class="hs-identifier hs-var">from_message_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404705"><span class="hs-identifier hs-var">from_message_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;filter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe SearchMessagesFilter -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe SearchMessagesFilter
-</span><a href="#local-6989586621679438928"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404704"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-54"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438927"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679404703"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-55"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-56"></span></pre></body></html>

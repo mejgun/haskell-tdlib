@@ -4,8 +4,8 @@ module TD.Query.EditMessageCaption where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.FormattedText as FormattedText
-import qualified TD.Reply.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified Utils as U
 
 -- |

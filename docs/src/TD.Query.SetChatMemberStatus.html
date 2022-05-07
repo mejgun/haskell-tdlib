@@ -4,8 +4,8 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.ChatMemberStatus.html"><span class="hs-identifier">TD.Reply.ChatMemberStatus</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatMemberStatus</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.MessageSender.html"><span class="hs-identifier">TD.Reply.MessageSender</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSender</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatMemberStatus.html"><span class="hs-identifier">TD.Data.ChatMemberStatus</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatMemberStatus</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.MessageSender.html"><span class="hs-identifier">TD.Data.MessageSender</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSender</span></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
@@ -13,15 +13,15 @@
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SetChatMemberStatus"><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-var">SetChatMemberStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetChatMemberStatus"><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-var">SetChatMemberStatus</span></a></span></span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-15"></span><span>    </span><span id="status"><span class="annot"><span class="annottext">SetChatMemberStatus -&gt; Maybe ChatMemberStatus
-</span><a href="TD.Query.SetChatMemberStatus.html#status"><span class="hs-identifier hs-var hs-var">status</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus.ChatMemberStatus</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#status"><span class="hs-identifier hs-var hs-var">status</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus.ChatMemberStatus</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-17"></span><span>    </span><span id="member_id"><span class="annot"><span class="annottext">SetChatMemberStatus -&gt; Maybe MessageSender
-</span><a href="TD.Query.SetChatMemberStatus.html#member_id"><span class="hs-identifier hs-var hs-var">member_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.MessageSender.html#MessageSender"><span class="hs-identifier hs-type">MessageSender.MessageSender</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#member_id"><span class="hs-identifier hs-var hs-var">member_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSender.html#MessageSender"><span class="hs-identifier hs-type">MessageSender.MessageSender</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Chat identifier @member_id Member identifier. Chats can be only banned and unbanned in supergroups and channels @status The new status of the member in the chat</span><span>
 </span><span id="line-19"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">SetChatMemberStatus -&gt; Maybe Int
 </span><a href="TD.Query.SetChatMemberStatus.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679426705"><span id="local-6989586621679426707"><span class="annot"><span class="annottext">SetChatMemberStatus -&gt; SetChatMemberStatus -&gt; Bool
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679431619"><span id="local-6989586621679431621"><span class="annot"><span class="annottext">SetChatMemberStatus -&gt; SetChatMemberStatus -&gt; Bool
 (SetChatMemberStatus -&gt; SetChatMemberStatus -&gt; Bool)
 -&gt; (SetChatMemberStatus -&gt; SetChatMemberStatus -&gt; Bool)
 -&gt; Eq SetChatMemberStatus
@@ -32,19 +32,19 @@ $c/= :: SetChatMemberStatus -&gt; SetChatMemberStatus -&gt; Bool
 $c== :: SetChatMemberStatus -&gt; SetChatMemberStatus -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426699"><span id="local-6989586621679426702"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-type">SetChatMemberStatus</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679426697"><span class="annot"><span class="annottext">show :: SetChatMemberStatus -&gt; String
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431613"><span id="local-6989586621679431616"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-type">SetChatMemberStatus</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>  </span><span id="local-6989586621679431611"><span class="annot"><span class="annottext">show :: SetChatMemberStatus -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-type">SetChatMemberStatus</span></a></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">status :: SetChatMemberStatus -&gt; Maybe ChatMemberStatus
-</span><a href="TD.Query.SetChatMemberStatus.html#status"><span class="hs-identifier hs-var">status</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426695"><span class="annot"><span class="annottext">Maybe ChatMemberStatus
-</span><a href="#local-6989586621679426695"><span class="hs-identifier hs-var">status</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#status"><span class="hs-identifier hs-var">status</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431609"><span class="annot"><span class="annottext">Maybe ChatMemberStatus
+</span><a href="#local-6989586621679431609"><span class="hs-identifier hs-var">status</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">member_id :: SetChatMemberStatus -&gt; Maybe MessageSender
-</span><a href="TD.Query.SetChatMemberStatus.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426694"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679426694"><span class="hs-identifier hs-var">member_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431608"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679431608"><span class="hs-identifier hs-var">member_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SetChatMemberStatus -&gt; Maybe Int
-</span><a href="TD.Query.SetChatMemberStatus.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426693"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426693"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431607"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431607"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-29"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-30"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetChatMemberStatus&quot;</span></span><span>
@@ -56,32 +56,32 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;status&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatMemberStatus
-</span><a href="#local-6989586621679426695"><span class="hs-identifier hs-var">status</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431609"><span class="hs-identifier hs-var">status</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSender -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;member_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679426694"><span class="hs-identifier hs-var">member_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431608"><span class="hs-identifier hs-var">member_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426693"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679431607"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-35"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426684"><span id="local-6989586621679426686"><span id="local-6989586621679426688"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-type">SetChatMemberStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span>  </span><span id="local-6989586621679426682"><span class="annot"><span class="annottext">toJSON :: SetChatMemberStatus -&gt; Value
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431598"><span id="local-6989586621679431600"><span id="local-6989586621679431602"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-type">SetChatMemberStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span>  </span><span id="local-6989586621679431596"><span class="annot"><span class="annottext">toJSON :: SetChatMemberStatus -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-39"></span><span>    </span><span class="annot"><a href="TD.Query.SetChatMemberStatus.html#SetChatMemberStatus"><span class="hs-identifier hs-type">SetChatMemberStatus</span></a></span><span>
 </span><span id="line-40"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">status :: SetChatMemberStatus -&gt; Maybe ChatMemberStatus
-</span><a href="TD.Query.SetChatMemberStatus.html#status"><span class="hs-identifier hs-var">status</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426680"><span class="annot"><span class="annottext">Maybe ChatMemberStatus
-</span><a href="#local-6989586621679426680"><span class="hs-identifier hs-var">status</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#status"><span class="hs-identifier hs-var">status</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431594"><span class="annot"><span class="annottext">Maybe ChatMemberStatus
+</span><a href="#local-6989586621679431594"><span class="hs-identifier hs-var">status</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">member_id :: SetChatMemberStatus -&gt; Maybe MessageSender
-</span><a href="TD.Query.SetChatMemberStatus.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426679"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679426679"><span class="hs-identifier hs-var">member_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431593"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679431593"><span class="hs-identifier hs-var">member_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SetChatMemberStatus -&gt; Maybe Int
-</span><a href="TD.Query.SetChatMemberStatus.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426678"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426678"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.SetChatMemberStatus.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431592"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431592"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-43"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-44"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -95,16 +95,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;status&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatMemberStatus -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatMemberStatus
-</span><a href="#local-6989586621679426680"><span class="hs-identifier hs-var">status</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431594"><span class="hs-identifier hs-var">status</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;member_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSender -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679426679"><span class="hs-identifier hs-var">member_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431593"><span class="hs-identifier hs-var">member_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426678"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679431592"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-49"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-50"></span></pre></body></html>

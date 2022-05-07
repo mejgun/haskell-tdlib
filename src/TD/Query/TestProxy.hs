@@ -4,7 +4,7 @@ module TD.Query.TestProxy where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ProxyType as ProxyType
+import qualified TD.Data.ProxyType as ProxyType
 import qualified Utils as U
 
 -- |

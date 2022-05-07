@@ -4,7 +4,7 @@ module TD.Query.GetGroupCallStreamSegment where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.GroupCallVideoQuality as GroupCallVideoQuality
+import qualified TD.Data.GroupCallVideoQuality as GroupCallVideoQuality
 import qualified Utils as U
 
 -- |

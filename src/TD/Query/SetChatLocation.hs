@@ -4,7 +4,7 @@ module TD.Query.SetChatLocation where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatLocation as ChatLocation
+import qualified TD.Data.ChatLocation as ChatLocation
 import qualified Utils as U
 
 -- |

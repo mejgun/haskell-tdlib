@@ -4,8 +4,8 @@ module TD.Query.EditMessageLiveLocation where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.Location as Location
-import qualified TD.Reply.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.Location as Location
+import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified Utils as U
 
 -- |

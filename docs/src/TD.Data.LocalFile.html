@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Data.LocalFile</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="LocalFile"><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-var">LocalFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Represents a local file</span><span>
+</span><span id="line-10"></span><span>  </span><span id="LocalFile"><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-var">LocalFile</span></a></span></span><span>
+</span><span id="line-11"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Total downloaded file size, in bytes. Can be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage</span><span>
+</span><span id="line-12"></span><span>    </span><span id="downloaded_size"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_size"><span class="hs-identifier hs-var hs-var">downloaded_size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-13"></span><span>    </span><span class="hs-comment">-- | If is_downloading_completed is false, then only some prefix of the file starting from download_offset is ready to be read. downloaded_prefix_size is the size of that prefix in bytes</span><span>
+</span><span id="line-14"></span><span>    </span><span id="downloaded_prefix_size"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_prefix_size"><span class="hs-identifier hs-var hs-var">downloaded_prefix_size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | Download will be started from this offset. downloaded_prefix_size is calculated from this offset</span><span>
+</span><span id="line-16"></span><span>    </span><span id="download_offset"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#download_offset"><span class="hs-identifier hs-var hs-var">download_offset</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | True, if the local copy is fully available</span><span>
+</span><span id="line-18"></span><span>    </span><span id="is_downloading_completed"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_completed"><span class="hs-identifier hs-var hs-var">is_downloading_completed</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | True, if the file is currently being downloaded (or a local copy is being generated by some other means)</span><span>
+</span><span id="line-20"></span><span>    </span><span id="is_downloading_active"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_active"><span class="hs-identifier hs-var hs-var">is_downloading_active</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | True, if the file can be deleted</span><span>
+</span><span id="line-22"></span><span>    </span><span id="can_be_deleted"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_deleted"><span class="hs-identifier hs-var hs-var">can_be_deleted</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- | True, if it is possible to download or generate the file</span><span>
+</span><span id="line-24"></span><span>    </span><span id="can_be_downloaded"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_downloaded"><span class="hs-identifier hs-var hs-var">can_be_downloaded</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-25"></span><span>    </span><span class="hs-comment">-- | Local path to the locally available file part; may be empty</span><span>
+</span><span id="line-26"></span><span>    </span><span id="path"><span class="annot"><span class="annottext">LocalFile -&gt; Maybe String
+</span><a href="TD.Data.LocalFile.html#path"><span class="hs-identifier hs-var hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-27"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412098"><span id="local-6989586621679412100"><span class="annot"><span class="annottext">LocalFile -&gt; LocalFile -&gt; Bool
+(LocalFile -&gt; LocalFile -&gt; Bool)
+-&gt; (LocalFile -&gt; LocalFile -&gt; Bool) -&gt; Eq LocalFile
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: LocalFile -&gt; LocalFile -&gt; Bool
+$c/= :: LocalFile -&gt; LocalFile -&gt; Bool
+== :: LocalFile -&gt; LocalFile -&gt; Bool
+$c== :: LocalFile -&gt; LocalFile -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412092"><span id="local-6989586621679412095"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679412090"><span class="annot"><span class="annottext">show :: LocalFile -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-32"></span><span>    </span><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile</span></a></span><span>
+</span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">downloaded_size :: LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_size"><span class="hs-identifier hs-var">downloaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412088"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412088"><span class="hs-identifier hs-var">downloaded_size</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">downloaded_prefix_size :: LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_prefix_size"><span class="hs-identifier hs-var">downloaded_prefix_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412087"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412087"><span class="hs-identifier hs-var">downloaded_prefix_size</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">download_offset :: LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#download_offset"><span class="hs-identifier hs-var">download_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412086"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412086"><span class="hs-identifier hs-var">download_offset</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">is_downloading_completed :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_completed"><span class="hs-identifier hs-var">is_downloading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412085"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412085"><span class="hs-identifier hs-var">is_downloading_completed</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">is_downloading_active :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_active"><span class="hs-identifier hs-var">is_downloading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412084"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412084"><span class="hs-identifier hs-var">is_downloading_active</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">can_be_deleted :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_deleted"><span class="hs-identifier hs-var">can_be_deleted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412083"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412083"><span class="hs-identifier hs-var">can_be_deleted</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">can_be_downloaded :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_downloaded"><span class="hs-identifier hs-var">can_be_downloaded</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412082"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412082"><span class="hs-identifier hs-var">can_be_downloaded</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">path :: LocalFile -&gt; Maybe String
+</span><a href="TD.Data.LocalFile.html#path"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412081"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412081"><span class="hs-identifier hs-var">path</span></a></span></span><span>
+</span><span id="line-41"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;LocalFile&quot;</span></span><span>
+</span><span id="line-43"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-44"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;downloaded_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412088"><span class="hs-identifier hs-var">downloaded_size</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;downloaded_prefix_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412087"><span class="hs-identifier hs-var">downloaded_prefix_size</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;download_offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412086"><span class="hs-identifier hs-var">download_offset</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;is_downloading_completed&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412085"><span class="hs-identifier hs-var">is_downloading_completed</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-48"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;is_downloading_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412084"><span class="hs-identifier hs-var">is_downloading_active</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-49"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;can_be_deleted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412083"><span class="hs-identifier hs-var">can_be_deleted</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-50"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;can_be_downloaded&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412082"><span class="hs-identifier hs-var">can_be_downloaded</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-51"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;path&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412081"><span class="hs-identifier hs-var">path</span></a></span><span>
+</span><span id="line-52"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-53"></span><span>
+</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412076"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span>  </span><span id="local-6989586621679412074"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser LocalFile
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679412072"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679412072"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679412070"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412070"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679412069"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412069"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412070"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412069"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-59"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;localFile&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LocalFile
+</span><a href="#local-6989586621679412067"><span class="hs-identifier hs-var">parseLocalFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412072"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-60"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser LocalFile
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-61"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-62"></span><span>      </span><span class="annot"><a href="#local-6989586621679412067"><span class="hs-identifier hs-type">parseLocalFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile</span></a></span><span>
+</span><span id="line-63"></span><span>      </span><span id="local-6989586621679412067"><span class="annot"><span class="annottext">parseLocalFile :: Value -&gt; Parser LocalFile
+</span><a href="#local-6989586621679412067"><span class="hs-identifier hs-var hs-var">parseLocalFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser LocalFile) -&gt; Value -&gt; Parser LocalFile
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;LocalFile&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser LocalFile) -&gt; Value -&gt; Parser LocalFile)
+-&gt; (Object -&gt; Parser LocalFile) -&gt; Value -&gt; Parser LocalFile
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412065"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-64"></span><span>        </span><span id="local-6989586621679412064"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412064"><span class="hs-identifier hs-var">downloaded_size_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;downloaded_size&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;downloaded_size&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-65"></span><span>        </span><span id="local-6989586621679412060"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412060"><span class="hs-identifier hs-var">downloaded_prefix_size_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;downloaded_prefix_size&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;downloaded_prefix_size&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-66"></span><span>        </span><span id="local-6989586621679412059"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412059"><span class="hs-identifier hs-var">download_offset_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;download_offset&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;download_offset&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-67"></span><span>        </span><span id="local-6989586621679412058"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412058"><span class="hs-identifier hs-var">is_downloading_completed_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_downloading_completed&quot;</span></span><span>
+</span><span id="line-68"></span><span>        </span><span id="local-6989586621679412057"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412057"><span class="hs-identifier hs-var">is_downloading_active_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_downloading_active&quot;</span></span><span>
+</span><span id="line-69"></span><span>        </span><span id="local-6989586621679412056"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412056"><span class="hs-identifier hs-var">can_be_deleted_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_be_deleted&quot;</span></span><span>
+</span><span id="line-70"></span><span>        </span><span id="local-6989586621679412055"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412055"><span class="hs-identifier hs-var">can_be_downloaded_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_be_downloaded&quot;</span></span><span>
+</span><span id="line-71"></span><span>        </span><span id="local-6989586621679412054"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412054"><span class="hs-identifier hs-var">path_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412065"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;path&quot;</span></span><span>
+</span><span id="line-72"></span><span>        </span><span class="annot"><span class="annottext">LocalFile -&gt; Parser LocalFile
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(LocalFile -&gt; Parser LocalFile) -&gt; LocalFile -&gt; Parser LocalFile
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">LocalFile :: Maybe Int
+-&gt; Maybe Int
+-&gt; Maybe Int
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe String
+-&gt; LocalFile
+</span><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">downloaded_size :: Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_size"><span class="hs-identifier hs-var">downloaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412064"><span class="hs-identifier hs-var">downloaded_size_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">downloaded_prefix_size :: Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_prefix_size"><span class="hs-identifier hs-var">downloaded_prefix_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412060"><span class="hs-identifier hs-var">downloaded_prefix_size_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">download_offset :: Maybe Int
+</span><a href="TD.Data.LocalFile.html#download_offset"><span class="hs-identifier hs-var">download_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412059"><span class="hs-identifier hs-var">download_offset_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_downloading_completed :: Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_completed"><span class="hs-identifier hs-var">is_downloading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412058"><span class="hs-identifier hs-var">is_downloading_completed_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_downloading_active :: Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_active"><span class="hs-identifier hs-var">is_downloading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412057"><span class="hs-identifier hs-var">is_downloading_active_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_deleted :: Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_deleted"><span class="hs-identifier hs-var">can_be_deleted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412056"><span class="hs-identifier hs-var">can_be_deleted_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_downloaded :: Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_downloaded"><span class="hs-identifier hs-var">can_be_downloaded</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412055"><span class="hs-identifier hs-var">can_be_downloaded_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">path :: Maybe String
+</span><a href="TD.Data.LocalFile.html#path"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412054"><span class="hs-identifier hs-var">path_</span></a></span><span class="hs-special">}</span><span>
+</span><span id="line-73"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser LocalFile
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-74"></span><span>
+</span><span id="line-75"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412047"><span id="local-6989586621679412049"><span id="local-6989586621679412051"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-76"></span><span>  </span><span id="local-6989586621679412045"><span class="annot"><span class="annottext">toJSON :: LocalFile -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-77"></span><span>    </span><span class="annot"><a href="TD.Data.LocalFile.html#LocalFile"><span class="hs-identifier hs-type">LocalFile</span></a></span><span>
+</span><span id="line-78"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">downloaded_size :: LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_size"><span class="hs-identifier hs-var">downloaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412043"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412043"><span class="hs-identifier hs-var">downloaded_size</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-79"></span><span>        </span><span class="annot"><span class="annottext">downloaded_prefix_size :: LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#downloaded_prefix_size"><span class="hs-identifier hs-var">downloaded_prefix_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412042"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412042"><span class="hs-identifier hs-var">downloaded_prefix_size</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-80"></span><span>        </span><span class="annot"><span class="annottext">download_offset :: LocalFile -&gt; Maybe Int
+</span><a href="TD.Data.LocalFile.html#download_offset"><span class="hs-identifier hs-var">download_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412041"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412041"><span class="hs-identifier hs-var">download_offset</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-81"></span><span>        </span><span class="annot"><span class="annottext">is_downloading_completed :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_completed"><span class="hs-identifier hs-var">is_downloading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412040"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412040"><span class="hs-identifier hs-var">is_downloading_completed</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-82"></span><span>        </span><span class="annot"><span class="annottext">is_downloading_active :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#is_downloading_active"><span class="hs-identifier hs-var">is_downloading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412039"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412039"><span class="hs-identifier hs-var">is_downloading_active</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-83"></span><span>        </span><span class="annot"><span class="annottext">can_be_deleted :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_deleted"><span class="hs-identifier hs-var">can_be_deleted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412038"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412038"><span class="hs-identifier hs-var">can_be_deleted</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-84"></span><span>        </span><span class="annot"><span class="annottext">can_be_downloaded :: LocalFile -&gt; Maybe Bool
+</span><a href="TD.Data.LocalFile.html#can_be_downloaded"><span class="hs-identifier hs-var">can_be_downloaded</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412037"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412037"><span class="hs-identifier hs-var">can_be_downloaded</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-85"></span><span>        </span><span class="annot"><span class="annottext">path :: LocalFile -&gt; Maybe String
+</span><a href="TD.Data.LocalFile.html#path"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412036"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412036"><span class="hs-identifier hs-var">path</span></a></span></span><span>
+</span><span id="line-86"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-87"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-88"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;localFile&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-89"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;downloaded_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412043"><span class="hs-identifier hs-var">downloaded_size</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-90"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;downloaded_prefix_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412042"><span class="hs-identifier hs-var">downloaded_prefix_size</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-91"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;download_offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412041"><span class="hs-identifier hs-var">download_offset</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-92"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_downloading_completed&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412040"><span class="hs-identifier hs-var">is_downloading_completed</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-93"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_downloading_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412039"><span class="hs-identifier hs-var">is_downloading_active</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-94"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_be_deleted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412038"><span class="hs-identifier hs-var">can_be_deleted</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-95"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_be_downloaded&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412037"><span class="hs-identifier hs-var">can_be_downloaded</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-96"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;path&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412036"><span class="hs-identifier hs-var">path</span></a></span><span>
+</span><span id="line-97"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-98"></span></pre></body></html>

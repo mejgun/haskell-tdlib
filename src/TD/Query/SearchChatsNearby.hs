@@ -4,7 +4,7 @@ module TD.Query.SearchChatsNearby where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.Location as Location
+import qualified TD.Data.Location as Location
 import qualified Utils as U
 
 -- |

@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.FileType.html"><span class="hs-identifier">TD.Reply.FileType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FileType</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.FileType.html"><span class="hs-identifier">TD.Data.FileType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FileType</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -13,12 +13,12 @@
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetRemoteFile"><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-var">GetRemoteFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetRemoteFile"><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-var">GetRemoteFile</span></a></span></span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-15"></span><span>    </span><span id="file_type"><span class="annot"><span class="annottext">GetRemoteFile -&gt; Maybe FileType
-</span><a href="TD.Query.GetRemoteFile.html#file_type"><span class="hs-identifier hs-var hs-var">file_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.FileType.html#FileType"><span class="hs-identifier hs-type">FileType.FileType</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetRemoteFile.html#file_type"><span class="hs-identifier hs-var hs-var">file_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.FileType.html#FileType"><span class="hs-identifier hs-type">FileType.FileType</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Remote identifier of the file to get @file_type File type; pass null if unknown</span><span>
 </span><span id="line-17"></span><span>    </span><span id="remote_file_id"><span class="annot"><span class="annottext">GetRemoteFile -&gt; Maybe String
 </span><a href="TD.Query.GetRemoteFile.html#remote_file_id"><span class="hs-identifier hs-var hs-var">remote_file_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434713"><span id="local-6989586621679434715"><span class="annot"><span class="annottext">GetRemoteFile -&gt; GetRemoteFile -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679418625"><span id="local-6989586621679418627"><span class="annot"><span class="annottext">GetRemoteFile -&gt; GetRemoteFile -&gt; Bool
 (GetRemoteFile -&gt; GetRemoteFile -&gt; Bool)
 -&gt; (GetRemoteFile -&gt; GetRemoteFile -&gt; Bool) -&gt; Eq GetRemoteFile
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -28,16 +28,16 @@ $c/= :: GetRemoteFile -&gt; GetRemoteFile -&gt; Bool
 $c== :: GetRemoteFile -&gt; GetRemoteFile -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434707"><span id="local-6989586621679434710"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-type">GetRemoteFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679434705"><span class="annot"><span class="annottext">show :: GetRemoteFile -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418619"><span id="local-6989586621679418622"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-type">GetRemoteFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679418617"><span class="annot"><span class="annottext">show :: GetRemoteFile -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-type">GetRemoteFile</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">file_type :: GetRemoteFile -&gt; Maybe FileType
-</span><a href="TD.Query.GetRemoteFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434703"><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679434703"><span class="hs-identifier hs-var">file_type</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetRemoteFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418615"><span class="annot"><span class="annottext">Maybe FileType
+</span><a href="#local-6989586621679418615"><span class="hs-identifier hs-var">file_type</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">remote_file_id :: GetRemoteFile -&gt; Maybe String
-</span><a href="TD.Query.GetRemoteFile.html#remote_file_id"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434702"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679434702"><span class="hs-identifier hs-var">remote_file_id</span></a></span></span><span>
+</span><a href="TD.Query.GetRemoteFile.html#remote_file_id"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418614"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679418614"><span class="hs-identifier hs-var">remote_file_id</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetRemoteFile&quot;</span></span><span>
@@ -49,24 +49,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679434703"><span class="hs-identifier hs-var">file_type</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679418615"><span class="hs-identifier hs-var">file_type</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;remote_file_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679434702"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span>
+</span><a href="#local-6989586621679418614"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434693"><span id="local-6989586621679434695"><span id="local-6989586621679434697"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-type">GetRemoteFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679434691"><span class="annot"><span class="annottext">toJSON :: GetRemoteFile -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418605"><span id="local-6989586621679418607"><span id="local-6989586621679418609"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-type">GetRemoteFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679418603"><span class="annot"><span class="annottext">toJSON :: GetRemoteFile -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.GetRemoteFile.html#GetRemoteFile"><span class="hs-identifier hs-type">GetRemoteFile</span></a></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">file_type :: GetRemoteFile -&gt; Maybe FileType
-</span><a href="TD.Query.GetRemoteFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434689"><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679434689"><span class="hs-identifier hs-var">file_type</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetRemoteFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418601"><span class="annot"><span class="annottext">Maybe FileType
+</span><a href="#local-6989586621679418601"><span class="hs-identifier hs-var">file_type</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">remote_file_id :: GetRemoteFile -&gt; Maybe String
-</span><a href="TD.Query.GetRemoteFile.html#remote_file_id"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434688"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679434688"><span class="hs-identifier hs-var">remote_file_id</span></a></span></span><span>
+</span><a href="TD.Query.GetRemoteFile.html#remote_file_id"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418600"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679418600"><span class="hs-identifier hs-var">remote_file_id</span></a></span></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;file_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FileType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679434689"><span class="hs-identifier hs-var">file_type</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679418601"><span class="hs-identifier hs-var">file_type</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;remote_file_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679434688"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span>
+</span><a href="#local-6989586621679418600"><span class="hs-identifier hs-var">remote_file_id</span></a></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span></pre></body></html>

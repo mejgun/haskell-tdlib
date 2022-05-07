@@ -4,7 +4,7 @@ module TD.Query.GetChatJoinRequests where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatJoinRequest as ChatJoinRequest
+import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
 import qualified Utils as U
 
 -- |

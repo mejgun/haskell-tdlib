@@ -4,7 +4,7 @@ module TD.Query.GetPaymentForm where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ThemeParameters as ThemeParameters
+import qualified TD.Data.ThemeParameters as ThemeParameters
 import qualified Utils as U
 
 -- |

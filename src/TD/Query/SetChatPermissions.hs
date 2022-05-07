@@ -4,7 +4,7 @@ module TD.Query.SetChatPermissions where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatPermissions as ChatPermissions
+import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified Utils as U
 
 -- |

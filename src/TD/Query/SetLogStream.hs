@@ -4,7 +4,7 @@ module TD.Query.SetLogStream where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.LogStream as LogStream
+import qualified TD.Data.LogStream as LogStream
 import qualified Utils as U
 
 -- |

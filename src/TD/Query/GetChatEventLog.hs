@@ -4,7 +4,7 @@ module TD.Query.GetChatEventLog where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatEventLogFilters as ChatEventLogFilters
+import qualified TD.Data.ChatEventLogFilters as ChatEventLogFilters
 import qualified Utils as U
 
 -- |

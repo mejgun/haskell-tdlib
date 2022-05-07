@@ -4,7 +4,7 @@ module TD.Query.ReportChat where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatReportReason as ChatReportReason
+import qualified TD.Data.ChatReportReason as ChatReportReason
 import qualified Utils as U
 
 -- |

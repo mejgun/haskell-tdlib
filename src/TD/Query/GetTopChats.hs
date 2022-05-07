@@ -4,7 +4,7 @@ module TD.Query.GetTopChats where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.TopChatCategory as TopChatCategory
+import qualified TD.Data.TopChatCategory as TopChatCategory
 import qualified Utils as U
 
 -- |

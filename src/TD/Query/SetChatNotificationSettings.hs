@@ -4,7 +4,7 @@ module TD.Query.SetChatNotificationSettings where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatNotificationSettings as ChatNotificationSettings
+import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified Utils as U
 
 -- |

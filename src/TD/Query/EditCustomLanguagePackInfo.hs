@@ -4,7 +4,7 @@ module TD.Query.EditCustomLanguagePackInfo where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.LanguagePackInfo as LanguagePackInfo
+import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified Utils as U
 
 -- |

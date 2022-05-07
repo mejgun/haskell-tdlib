@@ -4,7 +4,7 @@ module TD.Query.GetUserPrivacySettingRules where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.UserPrivacySetting as UserPrivacySetting
+import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified Utils as U
 
 -- |

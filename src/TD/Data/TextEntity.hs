@@ -1,0 +1,63 @@
+{-# LANGUAGE OverloadedStrings #-}
+
+module TD.Data.TextEntity where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as T
+import qualified TD.Data.TextEntityType as TextEntityType
+import qualified Utils as U
+
+data TextEntity = -- | Represents a part of the text that needs to be formatted in some unusual way @offset Offset of the entity, in UTF-16 code units @length Length of the entity, in UTF-16 code units @type Type of the entity
+  TextEntity
+  { -- |
+    _type :: Maybe TextEntityType.TextEntityType,
+    -- |
+    _length :: Maybe Int,
+    -- |
+    offset :: Maybe Int
+  }
+  deriving (Eq)
+
+instance Show TextEntity where
+  show
+    TextEntity
+      { _type = _type,
+        _length = _length,
+        offset = offset
+      } =
+      "TextEntity"
+        ++ U.cc
+          [ U.p "_type" _type,
+            U.p "_length" _length,
+            U.p "offset" offset
+          ]
+
+instance T.FromJSON TextEntity where
+  parseJSON v@(T.Object obj) = do
+    t <- obj A..: "@type" :: T.Parser String
+
+    case t of
+      "textEntity" -> parseTextEntity v
+      _ -> mempty
+    where
+      parseTextEntity :: A.Value -> T.Parser TextEntity
+      parseTextEntity = A.withObject "TextEntity" $ \o -> do
+        _type_ <- o A..:? "type"
+        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+        offset_ <- mconcat [o A..:? "offset", U.rm <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
+        return $ TextEntity {_type = _type_, _length = _length_, offset = offset_}
+  parseJSON _ = mempty
+
+instance T.ToJSON TextEntity where
+  toJSON
+    TextEntity
+      { _type = _type,
+        _length = _length,
+        offset = offset
+      } =
+      A.object
+        [ "@type" A..= T.String "textEntity",
+          "type" A..= _type,
+          "length" A..= _length,
+          "offset" A..= offset
+        ]

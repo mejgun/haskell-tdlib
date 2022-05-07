@@ -4,8 +4,8 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.AutoDownloadSettings.html"><span class="hs-identifier">TD.Reply.AutoDownloadSettings</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AutoDownloadSettings</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.NetworkType.html"><span class="hs-identifier">TD.Reply.NetworkType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">NetworkType</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.AutoDownloadSettings.html"><span class="hs-identifier">TD.Data.AutoDownloadSettings</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AutoDownloadSettings</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.NetworkType.html"><span class="hs-identifier">TD.Data.NetworkType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">NetworkType</span></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
@@ -13,12 +13,12 @@
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SetAutoDownloadSettings"><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-var">SetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetAutoDownloadSettings"><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-var">SetAutoDownloadSettings</span></a></span></span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-15"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; Maybe NetworkType
-</span><a href="TD.Query.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType.NetworkType</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType.NetworkType</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-17"></span><span>    </span><span id="settings"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; Maybe AutoDownloadSettings
-</span><a href="TD.Query.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.AutoDownloadSettings.html#AutoDownloadSettings"><span class="hs-identifier hs-type">AutoDownloadSettings.AutoDownloadSettings</span></a></span><span>
+</span><a href="TD.Query.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.AutoDownloadSettings.html#AutoDownloadSettings"><span class="hs-identifier hs-type">AutoDownloadSettings.AutoDownloadSettings</span></a></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679427225"><span id="local-6989586621679427227"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679435599"><span id="local-6989586621679435601"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
 (SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool)
 -&gt; (SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool)
 -&gt; Eq SetAutoDownloadSettings
@@ -29,16 +29,16 @@ $c/= :: SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
 $c== :: SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427219"><span id="local-6989586621679427222"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679427217"><span class="annot"><span class="annottext">show :: SetAutoDownloadSettings -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435593"><span id="local-6989586621679435596"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679435591"><span class="annot"><span class="annottext">show :: SetAutoDownloadSettings -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: SetAutoDownloadSettings -&gt; Maybe NetworkType
-</span><a href="TD.Query.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427215"><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679427215"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435589"><span class="annot"><span class="annottext">Maybe NetworkType
+</span><a href="#local-6989586621679435589"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">settings :: SetAutoDownloadSettings -&gt; Maybe AutoDownloadSettings
-</span><a href="TD.Query.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427214"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679427214"><span class="hs-identifier hs-var">settings</span></a></span></span><span>
+</span><a href="TD.Query.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435588"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
+</span><a href="#local-6989586621679435588"><span class="hs-identifier hs-var">settings</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetAutoDownloadSettings&quot;</span></span><span>
@@ -50,24 +50,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679427215"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679435589"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe AutoDownloadSettings -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679427214"><span class="hs-identifier hs-var">settings</span></a></span><span>
+</span><a href="#local-6989586621679435588"><span class="hs-identifier hs-var">settings</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427205"><span id="local-6989586621679427207"><span id="local-6989586621679427209"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679427203"><span class="annot"><span class="annottext">toJSON :: SetAutoDownloadSettings -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435579"><span id="local-6989586621679435581"><span id="local-6989586621679435583"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679435577"><span class="annot"><span class="annottext">toJSON :: SetAutoDownloadSettings -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: SetAutoDownloadSettings -&gt; Maybe NetworkType
-</span><a href="TD.Query.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427201"><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679427201"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435575"><span class="annot"><span class="annottext">Maybe NetworkType
+</span><a href="#local-6989586621679435575"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">settings :: SetAutoDownloadSettings -&gt; Maybe AutoDownloadSettings
-</span><a href="TD.Query.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427200"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679427200"><span class="hs-identifier hs-var">settings</span></a></span></span><span>
+</span><a href="TD.Query.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435574"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
+</span><a href="#local-6989586621679435574"><span class="hs-identifier hs-var">settings</span></a></span></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -81,11 +81,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NetworkType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679427201"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679435575"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AutoDownloadSettings -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679427200"><span class="hs-identifier hs-var">settings</span></a></span><span>
+</span><a href="#local-6989586621679435574"><span class="hs-identifier hs-var">settings</span></a></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span></pre></body></html>

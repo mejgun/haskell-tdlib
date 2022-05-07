@@ -4,7 +4,7 @@ module TD.Query.SetAccountTtl where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.AccountTtl as AccountTtl
+import qualified TD.Data.AccountTtl as AccountTtl
 import qualified Utils as U
 
 -- |

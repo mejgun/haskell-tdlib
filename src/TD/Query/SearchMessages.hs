@@ -4,8 +4,8 @@ module TD.Query.SearchMessages where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatList as ChatList
-import qualified TD.Reply.SearchMessagesFilter as SearchMessagesFilter
+import qualified TD.Data.ChatList as ChatList
+import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 import qualified Utils as U
 
 -- |

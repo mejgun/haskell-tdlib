@@ -4,7 +4,7 @@ module TD.Query.SetNetworkType where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.NetworkType as NetworkType
+import qualified TD.Data.NetworkType as NetworkType
 import qualified Utils as U
 
 -- |

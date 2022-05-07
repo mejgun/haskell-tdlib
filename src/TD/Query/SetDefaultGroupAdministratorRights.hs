@@ -4,7 +4,7 @@ module TD.Query.SetDefaultGroupAdministratorRights where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatAdministratorRights as ChatAdministratorRights
+import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified Utils as U
 
 -- |

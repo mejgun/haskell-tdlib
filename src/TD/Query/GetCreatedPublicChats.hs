@@ -4,7 +4,7 @@ module TD.Query.GetCreatedPublicChats where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.PublicChatType as PublicChatType
+import qualified TD.Data.PublicChatType as PublicChatType
 import qualified Utils as U
 
 -- |

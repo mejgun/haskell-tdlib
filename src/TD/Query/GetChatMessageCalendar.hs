@@ -4,7 +4,7 @@ module TD.Query.GetChatMessageCalendar where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.SearchMessagesFilter as SearchMessagesFilter
+import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 import qualified Utils as U
 
 -- |

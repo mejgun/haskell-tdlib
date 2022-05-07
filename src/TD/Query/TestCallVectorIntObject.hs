@@ -4,7 +4,7 @@ module TD.Query.TestCallVectorIntObject where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.TestInt as TestInt
+import qualified TD.Data.TestInt as TestInt
 import qualified Utils as U
 
 -- |

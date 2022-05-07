@@ -4,7 +4,7 @@ module TD.Query.AnswerShippingQuery where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ShippingOption as ShippingOption
+import qualified TD.Data.ShippingOption as ShippingOption
 import qualified Utils as U
 
 -- |

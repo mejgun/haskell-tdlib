@@ -4,7 +4,7 @@ module TD.Query.FinishFileGeneration where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.Error as Error
+import qualified TD.Data.Error as Error
 import qualified Utils as U
 
 -- |

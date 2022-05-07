@@ -74,16 +74,16 @@ main = do
   writeDataBoot recImports'
 
 dataFileMask :: String
-dataFileMask = "../src/TD/Reply/%s.hs"
+dataFileMask = "../src/TD/Data/%s.hs"
 
 funcFileMask :: String
 funcFileMask = "../src/TD/Query/%s.hs"
 
 dataBootFileMask :: String
-dataBootFileMask = "../src/TD/Reply/%s.hs-boot"
+dataBootFileMask = "../src/TD/Data/%s.hs-boot"
 
 dataModule :: String
-dataModule = "TD.Reply"
+dataModule = "TD.Data"
 
 funcModule :: String
 funcModule = "TD.Query"
@@ -114,7 +114,7 @@ writeGeneralResult l =
           " parseJSON v@(T.Object obj) = do",
           "  case (T.fromJSON v :: T.Result GeneralResult) of",
           "   T.Success a -> return $ ResultWithExtra a e",
-          "   _           -> fail \"\"",
+          "   _           -> mempty",
           "  where",
           "   e :: Maybe String",
           "   e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of",
@@ -134,7 +134,7 @@ writeGeneralResult l =
                     concat
                       [ printf "      case (T.fromJSON v :: T.Result %s.%s) of\n" a a,
                         printf "       T.Success a -> return $ %s a\n" a,
-                        printf "       _ -> fail \"\""
+                        printf "       _ -> mempty"
                       ]
                 )
                 l
@@ -302,11 +302,11 @@ writeData imps recimps (q@(n, com, is) : t) = do
                        in printf "   \"%s\" -> parse%s v" (toLower i) i
                   )
                   is
-                ++ [ "   _ -> fail \"\"",
+                ++ [ "   _ -> mempty",
                      "  where"
                    ]
                 ++ map printFromJsonItem is
-                ++ [" parseJSON _ = fail \"\""]
+                ++ [" parseJSON _ = mempty"]
             )
         printFromJsonItem :: Entry -> String
         printFromJsonItem (Item cl con com ar) =

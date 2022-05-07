@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.ChatLocation.html"><span class="hs-identifier">TD.Reply.ChatLocation</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatLocation</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatLocation.html"><span class="hs-identifier">TD.Data.ChatLocation</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatLocation</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -12,12 +12,12 @@
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="SetChatLocation"><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-var">SetChatLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetChatLocation"><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-var">SetChatLocation</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="location"><span class="annot"><span class="annottext">SetChatLocation -&gt; Maybe ChatLocation
-</span><a href="TD.Query.SetChatLocation.html#location"><span class="hs-identifier hs-var hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatLocation.html#ChatLocation"><span class="hs-identifier hs-type">ChatLocation.ChatLocation</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatLocation.html#location"><span class="hs-identifier hs-var hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ChatLocation.html#ChatLocation"><span class="hs-identifier hs-type">ChatLocation.ChatLocation</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-16"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">SetChatLocation -&gt; Maybe Int
 </span><a href="TD.Query.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679426759"><span id="local-6989586621679426761"><span class="annot"><span class="annottext">SetChatLocation -&gt; SetChatLocation -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428201"><span id="local-6989586621679428203"><span class="annot"><span class="annottext">SetChatLocation -&gt; SetChatLocation -&gt; Bool
 (SetChatLocation -&gt; SetChatLocation -&gt; Bool)
 -&gt; (SetChatLocation -&gt; SetChatLocation -&gt; Bool)
 -&gt; Eq SetChatLocation
@@ -28,16 +28,16 @@ $c/= :: SetChatLocation -&gt; SetChatLocation -&gt; Bool
 $c== :: SetChatLocation -&gt; SetChatLocation -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426753"><span id="local-6989586621679426756"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679426751"><span class="annot"><span class="annottext">show :: SetChatLocation -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428195"><span id="local-6989586621679428198"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679428193"><span class="annot"><span class="annottext">show :: SetChatLocation -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: SetChatLocation -&gt; Maybe ChatLocation
-</span><a href="TD.Query.SetChatLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426749"><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679426749"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428191"><span class="annot"><span class="annottext">Maybe ChatLocation
+</span><a href="#local-6989586621679428191"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SetChatLocation -&gt; Maybe Int
-</span><a href="TD.Query.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426748"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426748"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428190"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679428190"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetChatLocation&quot;</span></span><span>
@@ -49,24 +49,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;location&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679426749"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679428191"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426748"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679428190"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426739"><span id="local-6989586621679426741"><span id="local-6989586621679426743"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679426737"><span class="annot"><span class="annottext">toJSON :: SetChatLocation -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428181"><span id="local-6989586621679428183"><span id="local-6989586621679428185"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679428179"><span class="annot"><span class="annottext">toJSON :: SetChatLocation -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: SetChatLocation -&gt; Maybe ChatLocation
-</span><a href="TD.Query.SetChatLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426735"><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679426735"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428177"><span class="annot"><span class="annottext">Maybe ChatLocation
+</span><a href="#local-6989586621679428177"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SetChatLocation -&gt; Maybe Int
-</span><a href="TD.Query.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426734"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426734"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428176"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679428176"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;location&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatLocation -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679426735"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679428177"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679426734"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679428176"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

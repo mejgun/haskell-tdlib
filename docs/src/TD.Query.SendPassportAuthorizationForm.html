@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.PassportElementType.html"><span class="hs-identifier">TD.Reply.PassportElementType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PassportElementType</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.PassportElementType.html"><span class="hs-identifier">TD.Data.PassportElementType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PassportElementType</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -12,12 +12,12 @@
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="SendPassportAuthorizationForm"><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-var">SendPassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SendPassportAuthorizationForm"><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-var">SendPassportAuthorizationForm</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="types"><span class="annot"><span class="annottext">SendPassportAuthorizationForm -&gt; Maybe [PassportElementType]
-</span><a href="TD.Query.SendPassportAuthorizationForm.html#types"><span class="hs-identifier hs-var hs-var">types</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Reply.PassportElementType.html#PassportElementType"><span class="hs-identifier hs-type">PassportElementType.PassportElementType</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPassportAuthorizationForm.html#types"><span class="hs-identifier hs-var hs-var">types</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.PassportElementType.html#PassportElementType"><span class="hs-identifier hs-type">PassportElementType.PassportElementType</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | Authorization form identifier @types Types of Telegram Passport elements chosen by user to complete the authorization form</span><span>
 </span><span id="line-16"></span><span>    </span><span id="autorization_form_id"><span class="annot"><span class="annottext">SendPassportAuthorizationForm -&gt; Maybe Int
 </span><a href="TD.Query.SendPassportAuthorizationForm.html#autorization_form_id"><span class="hs-identifier hs-var hs-var">autorization_form_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679427655"><span id="local-6989586621679427657"><span class="annot"><span class="annottext">SendPassportAuthorizationForm
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406997"><span id="local-6989586621679406999"><span class="annot"><span class="annottext">SendPassportAuthorizationForm
 -&gt; SendPassportAuthorizationForm -&gt; Bool
 (SendPassportAuthorizationForm
  -&gt; SendPassportAuthorizationForm -&gt; Bool)
@@ -35,16 +35,16 @@ $c== :: SendPassportAuthorizationForm
 -&gt; SendPassportAuthorizationForm -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427649"><span id="local-6989586621679427652"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-type">SendPassportAuthorizationForm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679427647"><span class="annot"><span class="annottext">show :: SendPassportAuthorizationForm -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406991"><span id="local-6989586621679406994"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-type">SendPassportAuthorizationForm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679406989"><span class="annot"><span class="annottext">show :: SendPassportAuthorizationForm -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-type">SendPassportAuthorizationForm</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">types :: SendPassportAuthorizationForm -&gt; Maybe [PassportElementType]
-</span><a href="TD.Query.SendPassportAuthorizationForm.html#types"><span class="hs-identifier hs-var">types</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427645"><span class="annot"><span class="annottext">Maybe [PassportElementType]
-</span><a href="#local-6989586621679427645"><span class="hs-identifier hs-var">types</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPassportAuthorizationForm.html#types"><span class="hs-identifier hs-var">types</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406987"><span class="annot"><span class="annottext">Maybe [PassportElementType]
+</span><a href="#local-6989586621679406987"><span class="hs-identifier hs-var">types</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">autorization_form_id :: SendPassportAuthorizationForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPassportAuthorizationForm.html#autorization_form_id"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427644"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427644"><span class="hs-identifier hs-var">autorization_form_id</span></a></span></span><span>
+</span><a href="TD.Query.SendPassportAuthorizationForm.html#autorization_form_id"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406986"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406986"><span class="hs-identifier hs-var">autorization_form_id</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SendPassportAuthorizationForm&quot;</span></span><span>
@@ -56,24 +56,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;types&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PassportElementType]
-</span><a href="#local-6989586621679427645"><span class="hs-identifier hs-var">types</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679406987"><span class="hs-identifier hs-var">types</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;autorization_form_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427644"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span>
+</span><a href="#local-6989586621679406986"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427635"><span id="local-6989586621679427637"><span id="local-6989586621679427639"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-type">SendPassportAuthorizationForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679427633"><span class="annot"><span class="annottext">toJSON :: SendPassportAuthorizationForm -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406977"><span id="local-6989586621679406979"><span id="local-6989586621679406981"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-type">SendPassportAuthorizationForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679406975"><span class="annot"><span class="annottext">toJSON :: SendPassportAuthorizationForm -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.SendPassportAuthorizationForm.html#SendPassportAuthorizationForm"><span class="hs-identifier hs-type">SendPassportAuthorizationForm</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">types :: SendPassportAuthorizationForm -&gt; Maybe [PassportElementType]
-</span><a href="TD.Query.SendPassportAuthorizationForm.html#types"><span class="hs-identifier hs-var">types</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427631"><span class="annot"><span class="annottext">Maybe [PassportElementType]
-</span><a href="#local-6989586621679427631"><span class="hs-identifier hs-var">types</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPassportAuthorizationForm.html#types"><span class="hs-identifier hs-var">types</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406973"><span class="annot"><span class="annottext">Maybe [PassportElementType]
+</span><a href="#local-6989586621679406973"><span class="hs-identifier hs-var">types</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">autorization_form_id :: SendPassportAuthorizationForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPassportAuthorizationForm.html#autorization_form_id"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427630"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427630"><span class="hs-identifier hs-var">autorization_form_id</span></a></span></span><span>
+</span><a href="TD.Query.SendPassportAuthorizationForm.html#autorization_form_id"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406972"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406972"><span class="hs-identifier hs-var">autorization_form_id</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -87,11 +87,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;types&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PassportElementType] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PassportElementType]
-</span><a href="#local-6989586621679427631"><span class="hs-identifier hs-var">types</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679406973"><span class="hs-identifier hs-var">types</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;autorization_form_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427630"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span>
+</span><a href="#local-6989586621679406972"><span class="hs-identifier hs-var">autorization_form_id</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

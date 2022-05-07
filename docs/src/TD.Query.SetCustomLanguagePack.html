@@ -4,8 +4,8 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.LanguagePackInfo.html"><span class="hs-identifier">TD.Reply.LanguagePackInfo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">LanguagePackInfo</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.LanguagePackString.html"><span class="hs-identifier">TD.Reply.LanguagePackString</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">LanguagePackString</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.LanguagePackInfo.html"><span class="hs-identifier">TD.Data.LanguagePackInfo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">LanguagePackInfo</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.LanguagePackString.html"><span class="hs-identifier">TD.Data.LanguagePackString</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">LanguagePackString</span></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
@@ -13,12 +13,12 @@
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SetCustomLanguagePack"><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-var">SetCustomLanguagePack</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetCustomLanguagePack"><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-var">SetCustomLanguagePack</span></a></span></span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-15"></span><span>    </span><span id="strings"><span class="annot"><span class="annottext">SetCustomLanguagePack -&gt; Maybe [LanguagePackString]
-</span><a href="TD.Query.SetCustomLanguagePack.html#strings"><span class="hs-identifier hs-var hs-var">strings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Reply.LanguagePackString.html#LanguagePackString"><span class="hs-identifier hs-type">LanguagePackString.LanguagePackString</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetCustomLanguagePack.html#strings"><span class="hs-identifier hs-var hs-var">strings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.LanguagePackString.html#LanguagePackString"><span class="hs-identifier hs-type">LanguagePackString.LanguagePackString</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
 </span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-17"></span><span>    </span><span id="info"><span class="annot"><span class="annottext">SetCustomLanguagePack -&gt; Maybe LanguagePackInfo
-</span><a href="TD.Query.SetCustomLanguagePack.html#info"><span class="hs-identifier hs-var hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.LanguagePackInfo.html#LanguagePackInfo"><span class="hs-identifier hs-type">LanguagePackInfo.LanguagePackInfo</span></a></span><span>
+</span><a href="TD.Query.SetCustomLanguagePack.html#info"><span class="hs-identifier hs-var hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.LanguagePackInfo.html#LanguagePackInfo"><span class="hs-identifier hs-type">LanguagePackInfo.LanguagePackInfo</span></a></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679426182"><span id="local-6989586621679426184"><span class="annot"><span class="annottext">SetCustomLanguagePack -&gt; SetCustomLanguagePack -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412623"><span id="local-6989586621679412625"><span class="annot"><span class="annottext">SetCustomLanguagePack -&gt; SetCustomLanguagePack -&gt; Bool
 (SetCustomLanguagePack -&gt; SetCustomLanguagePack -&gt; Bool)
 -&gt; (SetCustomLanguagePack -&gt; SetCustomLanguagePack -&gt; Bool)
 -&gt; Eq SetCustomLanguagePack
@@ -29,16 +29,16 @@ $c/= :: SetCustomLanguagePack -&gt; SetCustomLanguagePack -&gt; Bool
 $c== :: SetCustomLanguagePack -&gt; SetCustomLanguagePack -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426176"><span id="local-6989586621679426179"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-type">SetCustomLanguagePack</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679426174"><span class="annot"><span class="annottext">show :: SetCustomLanguagePack -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412617"><span id="local-6989586621679412620"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-type">SetCustomLanguagePack</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679412615"><span class="annot"><span class="annottext">show :: SetCustomLanguagePack -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-type">SetCustomLanguagePack</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">strings :: SetCustomLanguagePack -&gt; Maybe [LanguagePackString]
-</span><a href="TD.Query.SetCustomLanguagePack.html#strings"><span class="hs-identifier hs-var">strings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426172"><span class="annot"><span class="annottext">Maybe [LanguagePackString]
-</span><a href="#local-6989586621679426172"><span class="hs-identifier hs-var">strings</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetCustomLanguagePack.html#strings"><span class="hs-identifier hs-var">strings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412613"><span class="annot"><span class="annottext">Maybe [LanguagePackString]
+</span><a href="#local-6989586621679412613"><span class="hs-identifier hs-var">strings</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">info :: SetCustomLanguagePack -&gt; Maybe LanguagePackInfo
-</span><a href="TD.Query.SetCustomLanguagePack.html#info"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426171"><span class="annot"><span class="annottext">Maybe LanguagePackInfo
-</span><a href="#local-6989586621679426171"><span class="hs-identifier hs-var">info</span></a></span></span><span>
+</span><a href="TD.Query.SetCustomLanguagePack.html#info"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412612"><span class="annot"><span class="annottext">Maybe LanguagePackInfo
+</span><a href="#local-6989586621679412612"><span class="hs-identifier hs-var">info</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetCustomLanguagePack&quot;</span></span><span>
@@ -50,24 +50,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;strings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [LanguagePackString]
-</span><a href="#local-6989586621679426172"><span class="hs-identifier hs-var">strings</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412613"><span class="hs-identifier hs-var">strings</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe LanguagePackInfo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe LanguagePackInfo
-</span><a href="#local-6989586621679426171"><span class="hs-identifier hs-var">info</span></a></span><span>
+</span><a href="#local-6989586621679412612"><span class="hs-identifier hs-var">info</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426162"><span id="local-6989586621679426164"><span id="local-6989586621679426166"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-type">SetCustomLanguagePack</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679426160"><span class="annot"><span class="annottext">toJSON :: SetCustomLanguagePack -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412603"><span id="local-6989586621679412605"><span id="local-6989586621679412607"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-type">SetCustomLanguagePack</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679412601"><span class="annot"><span class="annottext">toJSON :: SetCustomLanguagePack -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.SetCustomLanguagePack.html#SetCustomLanguagePack"><span class="hs-identifier hs-type">SetCustomLanguagePack</span></a></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">strings :: SetCustomLanguagePack -&gt; Maybe [LanguagePackString]
-</span><a href="TD.Query.SetCustomLanguagePack.html#strings"><span class="hs-identifier hs-var">strings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426158"><span class="annot"><span class="annottext">Maybe [LanguagePackString]
-</span><a href="#local-6989586621679426158"><span class="hs-identifier hs-var">strings</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetCustomLanguagePack.html#strings"><span class="hs-identifier hs-var">strings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412599"><span class="annot"><span class="annottext">Maybe [LanguagePackString]
+</span><a href="#local-6989586621679412599"><span class="hs-identifier hs-var">strings</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">info :: SetCustomLanguagePack -&gt; Maybe LanguagePackInfo
-</span><a href="TD.Query.SetCustomLanguagePack.html#info"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426157"><span class="annot"><span class="annottext">Maybe LanguagePackInfo
-</span><a href="#local-6989586621679426157"><span class="hs-identifier hs-var">info</span></a></span></span><span>
+</span><a href="TD.Query.SetCustomLanguagePack.html#info"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412598"><span class="annot"><span class="annottext">Maybe LanguagePackInfo
+</span><a href="#local-6989586621679412598"><span class="hs-identifier hs-var">info</span></a></span></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -81,11 +81,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;strings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [LanguagePackString] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [LanguagePackString]
-</span><a href="#local-6989586621679426158"><span class="hs-identifier hs-var">strings</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412599"><span class="hs-identifier hs-var">strings</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe LanguagePackInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe LanguagePackInfo
-</span><a href="#local-6989586621679426157"><span class="hs-identifier hs-var">info</span></a></span><span>
+</span><a href="#local-6989586621679412598"><span class="hs-identifier hs-var">info</span></a></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span></pre></body></html>

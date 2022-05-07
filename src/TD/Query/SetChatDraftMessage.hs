@@ -4,7 +4,7 @@ module TD.Query.SetChatDraftMessage where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.DraftMessage as DraftMessage
+import qualified TD.Data.DraftMessage as DraftMessage
 import qualified Utils as U
 
 -- |

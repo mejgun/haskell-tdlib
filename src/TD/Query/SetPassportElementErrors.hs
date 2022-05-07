@@ -4,7 +4,7 @@ module TD.Query.SetPassportElementErrors where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputPassportElementError as InputPassportElementError
+import qualified TD.Data.InputPassportElementError as InputPassportElementError
 import qualified Utils as U
 
 -- |

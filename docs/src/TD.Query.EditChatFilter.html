@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.ChatFilter.html"><span class="hs-identifier">TD.Reply.ChatFilter</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatFilter</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatFilter.html"><span class="hs-identifier">TD.Data.ChatFilter</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatFilter</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -12,12 +12,12 @@
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="EditChatFilter"><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-var">EditChatFilter</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="EditChatFilter"><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-var">EditChatFilter</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="_filter"><span class="annot"><span class="annottext">EditChatFilter -&gt; Maybe ChatFilter
-</span><a href="TD.Query.EditChatFilter.html#_filter"><span class="hs-identifier hs-var hs-var">_filter</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter.ChatFilter</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditChatFilter.html#_filter"><span class="hs-identifier hs-var hs-var">_filter</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ChatFilter.html#ChatFilter"><span class="hs-identifier hs-type">ChatFilter.ChatFilter</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-16"></span><span>    </span><span id="chat_filter_id"><span class="annot"><span class="annottext">EditChatFilter -&gt; Maybe Int
 </span><a href="TD.Query.EditChatFilter.html#chat_filter_id"><span class="hs-identifier hs-var hs-var">chat_filter_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679442141"><span id="local-6989586621679442143"><span class="annot"><span class="annottext">EditChatFilter -&gt; EditChatFilter -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430515"><span id="local-6989586621679430517"><span class="annot"><span class="annottext">EditChatFilter -&gt; EditChatFilter -&gt; Bool
 (EditChatFilter -&gt; EditChatFilter -&gt; Bool)
 -&gt; (EditChatFilter -&gt; EditChatFilter -&gt; Bool) -&gt; Eq EditChatFilter
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -27,16 +27,16 @@ $c/= :: EditChatFilter -&gt; EditChatFilter -&gt; Bool
 $c== :: EditChatFilter -&gt; EditChatFilter -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679442135"><span id="local-6989586621679442138"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-type">EditChatFilter</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679442133"><span class="annot"><span class="annottext">show :: EditChatFilter -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430509"><span id="local-6989586621679430512"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-type">EditChatFilter</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679430507"><span class="annot"><span class="annottext">show :: EditChatFilter -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-type">EditChatFilter</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_filter :: EditChatFilter -&gt; Maybe ChatFilter
-</span><a href="TD.Query.EditChatFilter.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442131"><span class="annot"><span class="annottext">Maybe ChatFilter
-</span><a href="#local-6989586621679442131"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditChatFilter.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430505"><span class="annot"><span class="annottext">Maybe ChatFilter
+</span><a href="#local-6989586621679430505"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">chat_filter_id :: EditChatFilter -&gt; Maybe Int
-</span><a href="TD.Query.EditChatFilter.html#chat_filter_id"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442130"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679442130"><span class="hs-identifier hs-var">chat_filter_id</span></a></span></span><span>
+</span><a href="TD.Query.EditChatFilter.html#chat_filter_id"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430504"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430504"><span class="hs-identifier hs-var">chat_filter_id</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;EditChatFilter&quot;</span></span><span>
@@ -48,24 +48,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_filter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatFilter
-</span><a href="#local-6989586621679442131"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430505"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_filter_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679442130"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span>
+</span><a href="#local-6989586621679430504"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679442121"><span id="local-6989586621679442123"><span id="local-6989586621679442125"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-type">EditChatFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679442119"><span class="annot"><span class="annottext">toJSON :: EditChatFilter -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430495"><span id="local-6989586621679430497"><span id="local-6989586621679430499"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-type">EditChatFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679430493"><span class="annot"><span class="annottext">toJSON :: EditChatFilter -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.EditChatFilter.html#EditChatFilter"><span class="hs-identifier hs-type">EditChatFilter</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_filter :: EditChatFilter -&gt; Maybe ChatFilter
-</span><a href="TD.Query.EditChatFilter.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442117"><span class="annot"><span class="annottext">Maybe ChatFilter
-</span><a href="#local-6989586621679442117"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditChatFilter.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430491"><span class="annot"><span class="annottext">Maybe ChatFilter
+</span><a href="#local-6989586621679430491"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">chat_filter_id :: EditChatFilter -&gt; Maybe Int
-</span><a href="TD.Query.EditChatFilter.html#chat_filter_id"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442116"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679442116"><span class="hs-identifier hs-var">chat_filter_id</span></a></span></span><span>
+</span><a href="TD.Query.EditChatFilter.html#chat_filter_id"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430490"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430490"><span class="hs-identifier hs-var">chat_filter_id</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -79,11 +79,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;filter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatFilter -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatFilter
-</span><a href="#local-6989586621679442117"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430491"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_filter_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679442116"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span>
+</span><a href="#local-6989586621679430490"><span class="hs-identifier hs-var">chat_filter_id</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

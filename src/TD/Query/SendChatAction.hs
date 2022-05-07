@@ -4,7 +4,7 @@ module TD.Query.SendChatAction where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatAction as ChatAction
+import qualified TD.Data.ChatAction as ChatAction
 import qualified Utils as U
 
 -- |

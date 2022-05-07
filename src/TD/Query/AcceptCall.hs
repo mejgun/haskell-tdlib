@@ -4,7 +4,7 @@ module TD.Query.AcceptCall where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.CallProtocol as CallProtocol
+import qualified TD.Data.CallProtocol as CallProtocol
 import qualified Utils as U
 
 -- |

@@ -20,7 +20,7 @@ import qualified Data.Time.Clock.System as Time
 import Foreign
 import Foreign.C.String
 import Foreign.C.Types
-import TD.Reply.GeneralResult as GeneralResult
+import TD.Data.GeneralResult as GeneralResult
 
 foreign import ccall "libtdjson td_json_client_create" c_create :: IO Client
 

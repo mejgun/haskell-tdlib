@@ -4,7 +4,7 @@ module TD.Query.SetChatMessageSender where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.MessageSender as MessageSender
+import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
 -- |

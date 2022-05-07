@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.InputCredentials.html"><span class="hs-identifier">TD.Reply.InputCredentials</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputCredentials</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputCredentials.html"><span class="hs-identifier">TD.Data.InputCredentials</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputCredentials</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -15,7 +15,7 @@
 </span><a href="TD.Query.SendPaymentForm.html#tip_amount"><span class="hs-identifier hs-var hs-var">tip_amount</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | The credentials chosen by user for payment @tip_amount Chosen by the user amount of tip in the smallest units of the currency</span><span>
 </span><span id="line-16"></span><span>    </span><span id="credentials"><span class="annot"><span class="annottext">SendPaymentForm -&gt; Maybe InputCredentials
-</span><a href="TD.Query.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var hs-var">credentials</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.InputCredentials.html#InputCredentials"><span class="hs-identifier hs-type">InputCredentials.InputCredentials</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var hs-var">credentials</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.InputCredentials.html#InputCredentials"><span class="hs-identifier hs-type">InputCredentials.InputCredentials</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-17"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-18"></span><span>    </span><span id="shipping_option_id"><span class="annot"><span class="annottext">SendPaymentForm -&gt; Maybe String
 </span><a href="TD.Query.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var hs-var">shipping_option_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
@@ -32,7 +32,7 @@
 </span><span id="line-26"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">SendPaymentForm -&gt; Maybe Int
 </span><a href="TD.Query.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679427598"><span id="local-6989586621679427600"><span class="annot"><span class="annottext">SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679415300"><span id="local-6989586621679415302"><span class="annot"><span class="annottext">SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
 (SendPaymentForm -&gt; SendPaymentForm -&gt; Bool)
 -&gt; (SendPaymentForm -&gt; SendPaymentForm -&gt; Bool)
 -&gt; Eq SendPaymentForm
@@ -43,31 +43,31 @@ $c/= :: SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
 $c== :: SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427592"><span id="local-6989586621679427595"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679427590"><span class="annot"><span class="annottext">show :: SendPaymentForm -&gt; String
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415294"><span id="local-6989586621679415297"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679415292"><span class="annot"><span class="annottext">show :: SendPaymentForm -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-32"></span><span>    </span><span class="annot"><a href="TD.Query.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span><span>
 </span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">tip_amount :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427588"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427588"><span class="hs-identifier hs-var">tip_amount</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415290"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415290"><span class="hs-identifier hs-var">tip_amount</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">credentials :: SendPaymentForm -&gt; Maybe InputCredentials
-</span><a href="TD.Query.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var">credentials</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427587"><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679427587"><span class="hs-identifier hs-var">credentials</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var">credentials</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415289"><span class="annot"><span class="annottext">Maybe InputCredentials
+</span><a href="#local-6989586621679415289"><span class="hs-identifier hs-var">credentials</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">shipping_option_id :: SendPaymentForm -&gt; Maybe String
-</span><a href="TD.Query.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427586"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427586"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415288"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415288"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">order_info_id :: SendPaymentForm -&gt; Maybe String
-</span><a href="TD.Query.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var">order_info_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427585"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427585"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var">order_info_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415287"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415287"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">payment_form_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#payment_form_id"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427584"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427584"><span class="hs-identifier hs-var">payment_form_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#payment_form_id"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415286"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415286"><span class="hs-identifier hs-var">payment_form_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">message_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427583"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427583"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415285"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415285"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427582"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427582"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415284"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415284"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-40"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SendPaymentForm&quot;</span></span><span>
@@ -79,64 +79,64 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;tip_amount&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427588"><span class="hs-identifier hs-var">tip_amount</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415290"><span class="hs-identifier hs-var">tip_amount</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe InputCredentials -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;credentials&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679427587"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415289"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;shipping_option_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427586"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415288"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;order_info_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427585"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415287"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;payment_form_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427584"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415286"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427583"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415285"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427582"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679415284"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-50"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427573"><span id="local-6989586621679427575"><span id="local-6989586621679427577"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-53"></span><span>  </span><span id="local-6989586621679427571"><span class="annot"><span class="annottext">toJSON :: SendPaymentForm -&gt; Value
+</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415275"><span id="local-6989586621679415277"><span id="local-6989586621679415279"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-53"></span><span>  </span><span id="local-6989586621679415273"><span class="annot"><span class="annottext">toJSON :: SendPaymentForm -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-54"></span><span>    </span><span class="annot"><a href="TD.Query.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span><span>
 </span><span id="line-55"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">tip_amount :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427569"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427569"><span class="hs-identifier hs-var">tip_amount</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415271"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415271"><span class="hs-identifier hs-var">tip_amount</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">credentials :: SendPaymentForm -&gt; Maybe InputCredentials
-</span><a href="TD.Query.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var">credentials</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427568"><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679427568"><span class="hs-identifier hs-var">credentials</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var">credentials</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415270"><span class="annot"><span class="annottext">Maybe InputCredentials
+</span><a href="#local-6989586621679415270"><span class="hs-identifier hs-var">credentials</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">shipping_option_id :: SendPaymentForm -&gt; Maybe String
-</span><a href="TD.Query.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427567"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427567"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415269"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415269"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">order_info_id :: SendPaymentForm -&gt; Maybe String
-</span><a href="TD.Query.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var">order_info_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427566"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427566"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var">order_info_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415268"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415268"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">payment_form_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#payment_form_id"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427565"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427565"><span class="hs-identifier hs-var">payment_form_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#payment_form_id"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415267"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415267"><span class="hs-identifier hs-var">payment_form_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>        </span><span class="annot"><span class="annottext">message_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427564"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427564"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415266"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415266"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-61"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="TD.Query.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427563"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427563"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
+</span><a href="TD.Query.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415265"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415265"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
 </span><span id="line-62"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-63"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -150,36 +150,36 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;tip_amount&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427569"><span class="hs-identifier hs-var">tip_amount</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415271"><span class="hs-identifier hs-var">tip_amount</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;credentials&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputCredentials -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679427568"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415270"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-67"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;shipping_option_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427567"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415269"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;order_info_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427566"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415268"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;payment_form_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427565"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415267"><span class="hs-identifier hs-var">payment_form_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427564"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415266"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427563"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
+</span><a href="#local-6989586621679415265"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
 </span><span id="line-72"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-73"></span></pre></body></html>

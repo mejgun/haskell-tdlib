@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.MessageSender.html"><span class="hs-identifier">TD.Reply.MessageSender</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSender</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.MessageSender.html"><span class="hs-identifier">TD.Data.MessageSender</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSender</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -27,12 +27,12 @@
 </span><a href="TD.Query.JoinGroupCall.html#audio_source_id"><span class="hs-identifier hs-var hs-var">audio_source_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
 </span><span id="line-23"></span><span>    </span><span class="hs-comment">-- | Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only</span><span>
 </span><span id="line-24"></span><span>    </span><span id="participant_id"><span class="annot"><span class="annottext">JoinGroupCall -&gt; Maybe MessageSender
-</span><a href="TD.Query.JoinGroupCall.html#participant_id"><span class="hs-identifier hs-var hs-var">participant_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.MessageSender.html#MessageSender"><span class="hs-identifier hs-type">MessageSender.MessageSender</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#participant_id"><span class="hs-identifier hs-var hs-var">participant_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSender.html#MessageSender"><span class="hs-identifier hs-type">MessageSender.MessageSender</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>    </span><span class="hs-comment">-- | Group call identifier</span><span>
 </span><span id="line-26"></span><span>    </span><span id="group_call_id"><span class="annot"><span class="annottext">JoinGroupCall -&gt; Maybe Int
 </span><a href="TD.Query.JoinGroupCall.html#group_call_id"><span class="hs-identifier hs-var hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679432699"><span id="local-6989586621679432701"><span class="annot"><span class="annottext">JoinGroupCall -&gt; JoinGroupCall -&gt; Bool
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409273"><span id="local-6989586621679409275"><span class="annot"><span class="annottext">JoinGroupCall -&gt; JoinGroupCall -&gt; Bool
 (JoinGroupCall -&gt; JoinGroupCall -&gt; Bool)
 -&gt; (JoinGroupCall -&gt; JoinGroupCall -&gt; Bool) -&gt; Eq JoinGroupCall
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -42,31 +42,31 @@ $c/= :: JoinGroupCall -&gt; JoinGroupCall -&gt; Bool
 $c== :: JoinGroupCall -&gt; JoinGroupCall -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679432693"><span id="local-6989586621679432696"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.JoinGroupCall.html#JoinGroupCall"><span class="hs-identifier hs-type">JoinGroupCall</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679432691"><span class="annot"><span class="annottext">show :: JoinGroupCall -&gt; String
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409267"><span id="local-6989586621679409270"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.JoinGroupCall.html#JoinGroupCall"><span class="hs-identifier hs-type">JoinGroupCall</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679409265"><span class="annot"><span class="annottext">show :: JoinGroupCall -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-32"></span><span>    </span><span class="annot"><a href="TD.Query.JoinGroupCall.html#JoinGroupCall"><span class="hs-identifier hs-type">JoinGroupCall</span></a></span><span>
 </span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">invite_hash :: JoinGroupCall -&gt; Maybe String
-</span><a href="TD.Query.JoinGroupCall.html#invite_hash"><span class="hs-identifier hs-var">invite_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432689"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432689"><span class="hs-identifier hs-var">invite_hash</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#invite_hash"><span class="hs-identifier hs-var">invite_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409263"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409263"><span class="hs-identifier hs-var">invite_hash</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">is_my_video_enabled :: JoinGroupCall -&gt; Maybe Bool
-</span><a href="TD.Query.JoinGroupCall.html#is_my_video_enabled"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432688"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432688"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#is_my_video_enabled"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409262"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409262"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">is_muted :: JoinGroupCall -&gt; Maybe Bool
-</span><a href="TD.Query.JoinGroupCall.html#is_muted"><span class="hs-identifier hs-var">is_muted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432687"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432687"><span class="hs-identifier hs-var">is_muted</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#is_muted"><span class="hs-identifier hs-var">is_muted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409261"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">is_muted</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">payload :: JoinGroupCall -&gt; Maybe String
-</span><a href="TD.Query.JoinGroupCall.html#payload"><span class="hs-identifier hs-var">payload</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432686"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432686"><span class="hs-identifier hs-var">payload</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#payload"><span class="hs-identifier hs-var">payload</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409260"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409260"><span class="hs-identifier hs-var">payload</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">audio_source_id :: JoinGroupCall -&gt; Maybe Int
-</span><a href="TD.Query.JoinGroupCall.html#audio_source_id"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432685"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432685"><span class="hs-identifier hs-var">audio_source_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#audio_source_id"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409259"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409259"><span class="hs-identifier hs-var">audio_source_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">participant_id :: JoinGroupCall -&gt; Maybe MessageSender
-</span><a href="TD.Query.JoinGroupCall.html#participant_id"><span class="hs-identifier hs-var">participant_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432684"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679432684"><span class="hs-identifier hs-var">participant_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#participant_id"><span class="hs-identifier hs-var">participant_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409258"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679409258"><span class="hs-identifier hs-var">participant_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">group_call_id :: JoinGroupCall -&gt; Maybe Int
-</span><a href="TD.Query.JoinGroupCall.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432683"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432683"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span>
+</span><a href="TD.Query.JoinGroupCall.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409257"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409257"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span>
 </span><span id="line-40"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;JoinGroupCall&quot;</span></span><span>
@@ -78,64 +78,64 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;invite_hash&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432689"><span class="hs-identifier hs-var">invite_hash</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409263"><span class="hs-identifier hs-var">invite_hash</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_my_video_enabled&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432688"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409262"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_muted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432687"><span class="hs-identifier hs-var">is_muted</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">is_muted</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;payload&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432686"><span class="hs-identifier hs-var">payload</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409260"><span class="hs-identifier hs-var">payload</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;audio_source_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432685"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409259"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSender -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;participant_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679432684"><span class="hs-identifier hs-var">participant_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409258"><span class="hs-identifier hs-var">participant_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432683"><span class="hs-identifier hs-var">group_call_id</span></a></span><span>
+</span><a href="#local-6989586621679409257"><span class="hs-identifier hs-var">group_call_id</span></a></span><span>
 </span><span id="line-50"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679432674"><span id="local-6989586621679432676"><span id="local-6989586621679432678"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.JoinGroupCall.html#JoinGroupCall"><span class="hs-identifier hs-type">JoinGroupCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-53"></span><span>  </span><span id="local-6989586621679432672"><span class="annot"><span class="annottext">toJSON :: JoinGroupCall -&gt; Value
+</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409248"><span id="local-6989586621679409250"><span id="local-6989586621679409252"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.JoinGroupCall.html#JoinGroupCall"><span class="hs-identifier hs-type">JoinGroupCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-53"></span><span>  </span><span id="local-6989586621679409246"><span class="annot"><span class="annottext">toJSON :: JoinGroupCall -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-54"></span><span>    </span><span class="annot"><a href="TD.Query.JoinGroupCall.html#JoinGroupCall"><span class="hs-identifier hs-type">JoinGroupCall</span></a></span><span>
 </span><span id="line-55"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">invite_hash :: JoinGroupCall -&gt; Maybe String
-</span><a href="TD.Query.JoinGroupCall.html#invite_hash"><span class="hs-identifier hs-var">invite_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432670"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432670"><span class="hs-identifier hs-var">invite_hash</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#invite_hash"><span class="hs-identifier hs-var">invite_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409244"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409244"><span class="hs-identifier hs-var">invite_hash</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">is_my_video_enabled :: JoinGroupCall -&gt; Maybe Bool
-</span><a href="TD.Query.JoinGroupCall.html#is_my_video_enabled"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432669"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432669"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#is_my_video_enabled"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409243"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409243"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">is_muted :: JoinGroupCall -&gt; Maybe Bool
-</span><a href="TD.Query.JoinGroupCall.html#is_muted"><span class="hs-identifier hs-var">is_muted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432668"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432668"><span class="hs-identifier hs-var">is_muted</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#is_muted"><span class="hs-identifier hs-var">is_muted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409242"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409242"><span class="hs-identifier hs-var">is_muted</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">payload :: JoinGroupCall -&gt; Maybe String
-</span><a href="TD.Query.JoinGroupCall.html#payload"><span class="hs-identifier hs-var">payload</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432667"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432667"><span class="hs-identifier hs-var">payload</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#payload"><span class="hs-identifier hs-var">payload</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409241"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409241"><span class="hs-identifier hs-var">payload</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">audio_source_id :: JoinGroupCall -&gt; Maybe Int
-</span><a href="TD.Query.JoinGroupCall.html#audio_source_id"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432666"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432666"><span class="hs-identifier hs-var">audio_source_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#audio_source_id"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409240"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409240"><span class="hs-identifier hs-var">audio_source_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>        </span><span class="annot"><span class="annottext">participant_id :: JoinGroupCall -&gt; Maybe MessageSender
-</span><a href="TD.Query.JoinGroupCall.html#participant_id"><span class="hs-identifier hs-var">participant_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432665"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679432665"><span class="hs-identifier hs-var">participant_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.JoinGroupCall.html#participant_id"><span class="hs-identifier hs-var">participant_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409239"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679409239"><span class="hs-identifier hs-var">participant_id</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-61"></span><span>        </span><span class="annot"><span class="annottext">group_call_id :: JoinGroupCall -&gt; Maybe Int
-</span><a href="TD.Query.JoinGroupCall.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432664"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432664"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span>
+</span><a href="TD.Query.JoinGroupCall.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409238"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409238"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span>
 </span><span id="line-62"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-63"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -149,36 +149,36 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;invite_hash&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432670"><span class="hs-identifier hs-var">invite_hash</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409244"><span class="hs-identifier hs-var">invite_hash</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_my_video_enabled&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432669"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409243"><span class="hs-identifier hs-var">is_my_video_enabled</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-67"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_muted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679432668"><span class="hs-identifier hs-var">is_muted</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409242"><span class="hs-identifier hs-var">is_muted</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;payload&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679432667"><span class="hs-identifier hs-var">payload</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409241"><span class="hs-identifier hs-var">payload</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;audio_source_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432666"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409240"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;participant_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSender -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679432665"><span class="hs-identifier hs-var">participant_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409239"><span class="hs-identifier hs-var">participant_id</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432664"><span class="hs-identifier hs-var">group_call_id</span></a></span><span>
+</span><a href="#local-6989586621679409238"><span class="hs-identifier hs-var">group_call_id</span></a></span><span>
 </span><span id="line-72"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-73"></span></pre></body></html>

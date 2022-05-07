@@ -4,8 +4,8 @@ module TD.Query.UploadFile where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.FileType as FileType
-import qualified TD.Reply.InputFile as InputFile
+import qualified TD.Data.FileType as FileType
+import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
 -- |

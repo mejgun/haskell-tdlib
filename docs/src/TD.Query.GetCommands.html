@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.BotCommandScope.html"><span class="hs-identifier">TD.Reply.BotCommandScope</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BotCommandScope</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.BotCommandScope.html"><span class="hs-identifier">TD.Data.BotCommandScope</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BotCommandScope</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -15,9 +15,9 @@
 </span><a href="TD.Query.GetCommands.html#language_code"><span class="hs-identifier hs-var hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | The scope to which the commands are relevant; pass null to get commands in the default bot command scope</span><span>
 </span><span id="line-16"></span><span>    </span><span id="scope"><span class="annot"><span class="annottext">GetCommands -&gt; Maybe BotCommandScope
-</span><a href="TD.Query.GetCommands.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope.BotCommandScope</span></a></span><span>
+</span><a href="TD.Query.GetCommands.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope.BotCommandScope</span></a></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679438749"><span id="local-6989586621679438751"><span class="annot"><span class="annottext">GetCommands -&gt; GetCommands -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434024"><span id="local-6989586621679434026"><span class="annot"><span class="annottext">GetCommands -&gt; GetCommands -&gt; Bool
 (GetCommands -&gt; GetCommands -&gt; Bool)
 -&gt; (GetCommands -&gt; GetCommands -&gt; Bool) -&gt; Eq GetCommands
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -27,16 +27,16 @@ $c/= :: GetCommands -&gt; GetCommands -&gt; Bool
 $c== :: GetCommands -&gt; GetCommands -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438743"><span id="local-6989586621679438746"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetCommands.html#GetCommands"><span class="hs-identifier hs-type">GetCommands</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679438741"><span class="annot"><span class="annottext">show :: GetCommands -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434018"><span id="local-6989586621679434021"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetCommands.html#GetCommands"><span class="hs-identifier hs-type">GetCommands</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679434016"><span class="annot"><span class="annottext">show :: GetCommands -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.GetCommands.html#GetCommands"><span class="hs-identifier hs-type">GetCommands</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">language_code :: GetCommands -&gt; Maybe String
-</span><a href="TD.Query.GetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438739"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438739"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434014"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679434014"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">scope :: GetCommands -&gt; Maybe BotCommandScope
-</span><a href="TD.Query.GetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438738"><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679438738"><span class="hs-identifier hs-var">scope</span></a></span></span><span>
+</span><a href="TD.Query.GetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434013"><span class="annot"><span class="annottext">Maybe BotCommandScope
+</span><a href="#local-6989586621679434013"><span class="hs-identifier hs-var">scope</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetCommands&quot;</span></span><span>
@@ -48,24 +48,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438739"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434014"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe BotCommandScope -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679438738"><span class="hs-identifier hs-var">scope</span></a></span><span>
+</span><a href="#local-6989586621679434013"><span class="hs-identifier hs-var">scope</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438729"><span id="local-6989586621679438731"><span id="local-6989586621679438733"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetCommands.html#GetCommands"><span class="hs-identifier hs-type">GetCommands</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679438727"><span class="annot"><span class="annottext">toJSON :: GetCommands -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434004"><span id="local-6989586621679434006"><span id="local-6989586621679434008"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetCommands.html#GetCommands"><span class="hs-identifier hs-type">GetCommands</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679434002"><span class="annot"><span class="annottext">toJSON :: GetCommands -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.GetCommands.html#GetCommands"><span class="hs-identifier hs-type">GetCommands</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">language_code :: GetCommands -&gt; Maybe String
-</span><a href="TD.Query.GetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438725"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438725"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434000"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679434000"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">scope :: GetCommands -&gt; Maybe BotCommandScope
-</span><a href="TD.Query.GetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438724"><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679438724"><span class="hs-identifier hs-var">scope</span></a></span></span><span>
+</span><a href="TD.Query.GetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433999"><span class="annot"><span class="annottext">Maybe BotCommandScope
+</span><a href="#local-6989586621679433999"><span class="hs-identifier hs-var">scope</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -79,11 +79,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438725"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434000"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BotCommandScope -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679438724"><span class="hs-identifier hs-var">scope</span></a></span><span>
+</span><a href="#local-6989586621679433999"><span class="hs-identifier hs-var">scope</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

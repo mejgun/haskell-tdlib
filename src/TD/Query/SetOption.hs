@@ -4,7 +4,7 @@ module TD.Query.SetOption where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.OptionValue as OptionValue
+import qualified TD.Data.OptionValue as OptionValue
 import qualified Utils as U
 
 -- |

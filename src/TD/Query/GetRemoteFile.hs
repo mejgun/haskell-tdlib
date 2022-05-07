@@ -4,7 +4,7 @@ module TD.Query.GetRemoteFile where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.FileType as FileType
+import qualified TD.Data.FileType as FileType
 import qualified Utils as U
 
 -- |

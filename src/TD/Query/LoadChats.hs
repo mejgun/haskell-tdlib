@@ -4,7 +4,7 @@ module TD.Query.LoadChats where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatList as ChatList
+import qualified TD.Data.ChatList as ChatList
 import qualified Utils as U
 
 -- |

@@ -4,8 +4,8 @@ module TD.Query.SetScopeNotificationSettings where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.NotificationSettingsScope as NotificationSettingsScope
-import qualified TD.Reply.ScopeNotificationSettings as ScopeNotificationSettings
+import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
+import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified Utils as U
 
 -- |

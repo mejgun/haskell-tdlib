@@ -4,7 +4,7 @@ module TD.Query.AddContact where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.Contact as Contact
+import qualified TD.Data.Contact as Contact
 import qualified Utils as U
 
 -- |

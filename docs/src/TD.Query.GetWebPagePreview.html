@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.FormattedText.html"><span class="hs-identifier">TD.Reply.FormattedText</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FormattedText</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.FormattedText.html"><span class="hs-identifier">TD.Data.FormattedText</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FormattedText</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -12,9 +12,9 @@
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="GetWebPagePreview"><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-var">GetWebPagePreview</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetWebPagePreview"><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-var">GetWebPagePreview</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="text"><span class="annot"><span class="annottext">GetWebPagePreview -&gt; Maybe FormattedText
-</span><a href="TD.Query.GetWebPagePreview.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span>
+</span><a href="TD.Query.GetWebPagePreview.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span>
 </span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679433054"><span id="local-6989586621679433056"><span class="annot"><span class="annottext">GetWebPagePreview -&gt; GetWebPagePreview -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679417768"><span id="local-6989586621679417770"><span class="annot"><span class="annottext">GetWebPagePreview -&gt; GetWebPagePreview -&gt; Bool
 (GetWebPagePreview -&gt; GetWebPagePreview -&gt; Bool)
 -&gt; (GetWebPagePreview -&gt; GetWebPagePreview -&gt; Bool)
 -&gt; Eq GetWebPagePreview
@@ -25,13 +25,13 @@ $c/= :: GetWebPagePreview -&gt; GetWebPagePreview -&gt; Bool
 $c== :: GetWebPagePreview -&gt; GetWebPagePreview -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433048"><span id="local-6989586621679433051"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-type">GetWebPagePreview</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679433046"><span class="annot"><span class="annottext">show :: GetWebPagePreview -&gt; String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417762"><span id="local-6989586621679417765"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-type">GetWebPagePreview</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679417760"><span class="annot"><span class="annottext">show :: GetWebPagePreview -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-type">GetWebPagePreview</span></a></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: GetWebPagePreview -&gt; Maybe FormattedText
-</span><a href="TD.Query.GetWebPagePreview.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433044"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679433044"><span class="hs-identifier hs-var">text</span></a></span></span><span>
+</span><a href="TD.Query.GetWebPagePreview.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417758"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679417758"><span class="hs-identifier hs-var">text</span></a></span></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetWebPagePreview&quot;</span></span><span>
@@ -43,16 +43,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679433044"><span class="hs-identifier hs-var">text</span></a></span><span>
+</span><a href="#local-6989586621679417758"><span class="hs-identifier hs-var">text</span></a></span><span>
 </span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433035"><span id="local-6989586621679433037"><span id="local-6989586621679433039"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-type">GetWebPagePreview</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679433033"><span class="annot"><span class="annottext">toJSON :: GetWebPagePreview -&gt; Value
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417749"><span id="local-6989586621679417751"><span id="local-6989586621679417753"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-type">GetWebPagePreview</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679417747"><span class="annot"><span class="annottext">toJSON :: GetWebPagePreview -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Query.GetWebPagePreview.html#GetWebPagePreview"><span class="hs-identifier hs-type">GetWebPagePreview</span></a></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: GetWebPagePreview -&gt; Maybe FormattedText
-</span><a href="TD.Query.GetWebPagePreview.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433031"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679433031"><span class="hs-identifier hs-var">text</span></a></span></span><span>
+</span><a href="TD.Query.GetWebPagePreview.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417745"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679417745"><span class="hs-identifier hs-var">text</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -66,6 +66,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679433031"><span class="hs-identifier hs-var">text</span></a></span><span>
+</span><a href="#local-6989586621679417745"><span class="hs-identifier hs-var">text</span></a></span><span>
 </span><span id="line-36"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span></pre></body></html>

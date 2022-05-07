@@ -4,7 +4,7 @@ module TD.Query.GetChatInviteLinkMembers where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatInviteLinkMember as ChatInviteLinkMember
+import qualified TD.Data.ChatInviteLinkMember as ChatInviteLinkMember
 import qualified Utils as U
 
 -- |

@@ -4,7 +4,7 @@ module TD.Query.EditMessageReplyMarkup where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified Utils as U
 
 -- |

@@ -4,7 +4,7 @@ module TD.Query.AddStickerToSet where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputSticker as InputSticker
+import qualified TD.Data.InputSticker as InputSticker
 import qualified Utils as U
 
 -- |

@@ -4,9 +4,9 @@ module TD.Query.SendMessage where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputMessageContent as InputMessageContent
-import qualified TD.Reply.MessageSendOptions as MessageSendOptions
-import qualified TD.Reply.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.MessageSendOptions as MessageSendOptions
+import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified Utils as U
 
 -- |

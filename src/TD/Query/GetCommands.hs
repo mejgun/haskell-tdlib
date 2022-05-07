@@ -4,7 +4,7 @@ module TD.Query.GetCommands where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.BotCommandScope as BotCommandScope
+import qualified TD.Data.BotCommandScope as BotCommandScope
 import qualified Utils as U
 
 -- |

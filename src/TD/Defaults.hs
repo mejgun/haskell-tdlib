@@ -3,7 +3,7 @@ module TD.Defaults where
 -- import qualified TD.Query.SendMessage     as SendMessage
 -- import qualified TD.Reply.FormattedText as FormattedText
 -- import qualified TD.Reply.InputMessageContent as InputMessageContent
-import qualified TD.Reply.TdlibParameters as TdlibParameters
+import qualified TD.Data.TdlibParameters as TdlibParameters
 
 defaultTdlibParameters :: TdlibParameters.TdlibParameters
 defaultTdlibParameters =

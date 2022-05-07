@@ -4,7 +4,7 @@ module TD.Query.SetPassportElement where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputPassportElement as InputPassportElement
+import qualified TD.Data.InputPassportElement as InputPassportElement
 import qualified Utils as U
 
 -- |

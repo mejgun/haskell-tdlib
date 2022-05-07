@@ -4,7 +4,7 @@ module TD.Query.GetBackgroundUrl where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.BackgroundType as BackgroundType
+import qualified TD.Data.BackgroundType as BackgroundType
 import qualified Utils as U
 
 -- |

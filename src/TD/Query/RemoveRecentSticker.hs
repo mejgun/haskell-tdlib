@@ -4,7 +4,7 @@ module TD.Query.RemoveRecentSticker where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputFile as InputFile
+import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
 -- |

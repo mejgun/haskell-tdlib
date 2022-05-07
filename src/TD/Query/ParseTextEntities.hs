@@ -4,7 +4,7 @@ module TD.Query.ParseTextEntities where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.TextParseMode as TextParseMode
+import qualified TD.Data.TextParseMode as TextParseMode
 import qualified Utils as U
 
 -- |

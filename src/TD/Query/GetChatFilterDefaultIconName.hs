@@ -4,7 +4,7 @@ module TD.Query.GetChatFilterDefaultIconName where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatFilter as ChatFilter
+import qualified TD.Data.ChatFilter as ChatFilter
 import qualified Utils as U
 
 -- |

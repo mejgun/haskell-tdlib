@@ -4,7 +4,7 @@ module TD.Query.SetProfilePhoto where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputChatPhoto as InputChatPhoto
+import qualified TD.Data.InputChatPhoto as InputChatPhoto
 import qualified Utils as U
 
 -- |

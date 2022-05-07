@@ -4,7 +4,7 @@ module TD.Query.SearchChatMembers where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.ChatMembersFilter as ChatMembersFilter
+import qualified TD.Data.ChatMembersFilter as ChatMembersFilter
 import qualified Utils as U
 
 -- |

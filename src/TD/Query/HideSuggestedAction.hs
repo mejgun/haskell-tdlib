@@ -4,7 +4,7 @@ module TD.Query.HideSuggestedAction where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.SuggestedAction as SuggestedAction
+import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified Utils as U
 
 -- |

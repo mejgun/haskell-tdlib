@@ -4,7 +4,7 @@ module TD.Query.AddNetworkStatistics where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.NetworkStatisticsEntry as NetworkStatisticsEntry
+import qualified TD.Data.NetworkStatisticsEntry as NetworkStatisticsEntry
 import qualified Utils as U
 
 -- |

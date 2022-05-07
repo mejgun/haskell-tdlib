@@ -4,7 +4,7 @@ module TD.Query.GetSupergroupMembers where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.SupergroupMembersFilter as SupergroupMembersFilter
+import qualified TD.Data.SupergroupMembersFilter as SupergroupMembersFilter
 import qualified Utils as U
 
 -- |

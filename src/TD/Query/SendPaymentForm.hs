@@ -4,7 +4,7 @@ module TD.Query.SendPaymentForm where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputCredentials as InputCredentials
+import qualified TD.Data.InputCredentials as InputCredentials
 import qualified Utils as U
 
 -- |

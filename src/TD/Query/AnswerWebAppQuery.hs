@@ -4,7 +4,7 @@ module TD.Query.AnswerWebAppQuery where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.InputInlineQueryResult as InputInlineQueryResult
+import qualified TD.Data.InputInlineQueryResult as InputInlineQueryResult
 import qualified Utils as U
 
 -- |

@@ -4,7 +4,7 @@ module TD.Query.GetMarkdownText where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.FormattedText as FormattedText
+import qualified TD.Data.FormattedText as FormattedText
 import qualified Utils as U
 
 -- |

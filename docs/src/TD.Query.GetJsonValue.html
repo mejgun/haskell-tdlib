@@ -13,7 +13,7 @@
 </span><span id="line-13"></span><span>    </span><span id="json"><span class="annot"><span class="annottext">GetJsonValue -&gt; Maybe String
 </span><a href="TD.Query.GetJsonValue.html#json"><span class="hs-identifier hs-var hs-var">json</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-15"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679437291"><span id="local-6989586621679437293"><span class="annot"><span class="annottext">GetJsonValue -&gt; GetJsonValue -&gt; Bool
+</span><span id="line-15"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679393828"><span id="local-6989586621679393830"><span class="annot"><span class="annottext">GetJsonValue -&gt; GetJsonValue -&gt; Bool
 (GetJsonValue -&gt; GetJsonValue -&gt; Bool)
 -&gt; (GetJsonValue -&gt; GetJsonValue -&gt; Bool) -&gt; Eq GetJsonValue
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -23,13 +23,13 @@ $c/= :: GetJsonValue -&gt; GetJsonValue -&gt; Bool
 $c== :: GetJsonValue -&gt; GetJsonValue -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437285"><span id="local-6989586621679437288"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetJsonValue.html#GetJsonValue"><span class="hs-identifier hs-type">GetJsonValue</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679437283"><span class="annot"><span class="annottext">show :: GetJsonValue -&gt; String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679393822"><span id="local-6989586621679393825"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetJsonValue.html#GetJsonValue"><span class="hs-identifier hs-type">GetJsonValue</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679393820"><span class="annot"><span class="annottext">show :: GetJsonValue -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-19"></span><span>    </span><span class="annot"><a href="TD.Query.GetJsonValue.html#GetJsonValue"><span class="hs-identifier hs-type">GetJsonValue</span></a></span><span>
 </span><span id="line-20"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">json :: GetJsonValue -&gt; Maybe String
-</span><a href="TD.Query.GetJsonValue.html#json"><span class="hs-identifier hs-var">json</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437281"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679437281"><span class="hs-identifier hs-var">json</span></a></span></span><span>
+</span><a href="TD.Query.GetJsonValue.html#json"><span class="hs-identifier hs-var">json</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679393818"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679393818"><span class="hs-identifier hs-var">json</span></a></span></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetJsonValue&quot;</span></span><span>
@@ -41,16 +41,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;json&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679437281"><span class="hs-identifier hs-var">json</span></a></span><span>
+</span><a href="#local-6989586621679393818"><span class="hs-identifier hs-var">json</span></a></span><span>
 </span><span id="line-25"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437272"><span id="local-6989586621679437274"><span id="local-6989586621679437276"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetJsonValue.html#GetJsonValue"><span class="hs-identifier hs-type">GetJsonValue</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>  </span><span id="local-6989586621679437270"><span class="annot"><span class="annottext">toJSON :: GetJsonValue -&gt; Value
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679393809"><span id="local-6989586621679393811"><span id="local-6989586621679393813"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetJsonValue.html#GetJsonValue"><span class="hs-identifier hs-type">GetJsonValue</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679393807"><span class="annot"><span class="annottext">toJSON :: GetJsonValue -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><a href="TD.Query.GetJsonValue.html#GetJsonValue"><span class="hs-identifier hs-type">GetJsonValue</span></a></span><span>
 </span><span id="line-30"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">json :: GetJsonValue -&gt; Maybe String
-</span><a href="TD.Query.GetJsonValue.html#json"><span class="hs-identifier hs-var">json</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437268"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679437268"><span class="hs-identifier hs-var">json</span></a></span></span><span>
+</span><a href="TD.Query.GetJsonValue.html#json"><span class="hs-identifier hs-var">json</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679393805"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679393805"><span class="hs-identifier hs-var">json</span></a></span></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -64,6 +64,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;json&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679437268"><span class="hs-identifier hs-var">json</span></a></span><span>
+</span><a href="#local-6989586621679393805"><span class="hs-identifier hs-var">json</span></a></span><span>
 </span><span id="line-35"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span></pre></body></html>

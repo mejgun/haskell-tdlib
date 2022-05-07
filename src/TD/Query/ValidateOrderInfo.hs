@@ -4,7 +4,7 @@ module TD.Query.ValidateOrderInfo where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.OrderInfo as OrderInfo
+import qualified TD.Data.OrderInfo as OrderInfo
 import qualified Utils as U
 
 -- |

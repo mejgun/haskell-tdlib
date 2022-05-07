@@ -4,7 +4,7 @@
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.InputSticker.html"><span class="hs-identifier">TD.Reply.InputSticker</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputSticker</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputSticker.html"><span class="hs-identifier">TD.Data.InputSticker</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputSticker</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
@@ -12,7 +12,7 @@
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="AddStickerToSet"><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-var">AddStickerToSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="AddStickerToSet"><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-var">AddStickerToSet</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="sticker"><span class="annot"><span class="annottext">AddStickerToSet -&gt; Maybe InputSticker
-</span><a href="TD.Query.AddStickerToSet.html#sticker"><span class="hs-identifier hs-var hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.InputSticker.html#InputSticker"><span class="hs-identifier hs-type">InputSticker.InputSticker</span></a></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.AddStickerToSet.html#sticker"><span class="hs-identifier hs-var hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.InputSticker.html#InputSticker"><span class="hs-identifier hs-type">InputSticker.InputSticker</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-16"></span><span>    </span><span id="name"><span class="annot"><span class="annottext">AddStickerToSet -&gt; Maybe String
 </span><a href="TD.Query.AddStickerToSet.html#name"><span class="hs-identifier hs-var hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
@@ -20,7 +20,7 @@
 </span><span id="line-18"></span><span>    </span><span id="user_id"><span class="annot"><span class="annottext">AddStickerToSet -&gt; Maybe Int
 </span><a href="TD.Query.AddStickerToSet.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446120"><span id="local-6989586621679446122"><span class="annot"><span class="annottext">AddStickerToSet -&gt; AddStickerToSet -&gt; Bool
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679415055"><span id="local-6989586621679415057"><span class="annot"><span class="annottext">AddStickerToSet -&gt; AddStickerToSet -&gt; Bool
 (AddStickerToSet -&gt; AddStickerToSet -&gt; Bool)
 -&gt; (AddStickerToSet -&gt; AddStickerToSet -&gt; Bool)
 -&gt; Eq AddStickerToSet
@@ -31,19 +31,19 @@ $c/= :: AddStickerToSet -&gt; AddStickerToSet -&gt; Bool
 $c== :: AddStickerToSet -&gt; AddStickerToSet -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446114"><span id="local-6989586621679446117"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-type">AddStickerToSet</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679446112"><span class="annot"><span class="annottext">show :: AddStickerToSet -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415049"><span id="local-6989586621679415052"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-type">AddStickerToSet</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679415047"><span class="annot"><span class="annottext">show :: AddStickerToSet -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-type">AddStickerToSet</span></a></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: AddStickerToSet -&gt; Maybe InputSticker
-</span><a href="TD.Query.AddStickerToSet.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446110"><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679446110"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.AddStickerToSet.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415045"><span class="annot"><span class="annottext">Maybe InputSticker
+</span><a href="#local-6989586621679415045"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">name :: AddStickerToSet -&gt; Maybe String
-</span><a href="TD.Query.AddStickerToSet.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446109"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446109"><span class="hs-identifier hs-var">name</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.AddStickerToSet.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415044"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415044"><span class="hs-identifier hs-var">name</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">user_id :: AddStickerToSet -&gt; Maybe Int
-</span><a href="TD.Query.AddStickerToSet.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446108"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679446108"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
+</span><a href="TD.Query.AddStickerToSet.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415043"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415043"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;AddStickerToSet&quot;</span></span><span>
@@ -55,32 +55,32 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679446110"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415045"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446109"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415044"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679446108"><span class="hs-identifier hs-var">user_id</span></a></span><span>
+</span><a href="#local-6989586621679415043"><span class="hs-identifier hs-var">user_id</span></a></span><span>
 </span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446099"><span id="local-6989586621679446101"><span id="local-6989586621679446103"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-type">AddStickerToSet</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>  </span><span id="local-6989586621679446097"><span class="annot"><span class="annottext">toJSON :: AddStickerToSet -&gt; Value
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415034"><span id="local-6989586621679415036"><span id="local-6989586621679415038"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-type">AddStickerToSet</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679415032"><span class="annot"><span class="annottext">toJSON :: AddStickerToSet -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-38"></span><span>    </span><span class="annot"><a href="TD.Query.AddStickerToSet.html#AddStickerToSet"><span class="hs-identifier hs-type">AddStickerToSet</span></a></span><span>
 </span><span id="line-39"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: AddStickerToSet -&gt; Maybe InputSticker
-</span><a href="TD.Query.AddStickerToSet.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446095"><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679446095"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.AddStickerToSet.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415030"><span class="annot"><span class="annottext">Maybe InputSticker
+</span><a href="#local-6989586621679415030"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">name :: AddStickerToSet -&gt; Maybe String
-</span><a href="TD.Query.AddStickerToSet.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446094"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446094"><span class="hs-identifier hs-var">name</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.AddStickerToSet.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415029"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415029"><span class="hs-identifier hs-var">name</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">user_id :: AddStickerToSet -&gt; Maybe Int
-</span><a href="TD.Query.AddStickerToSet.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446093"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679446093"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
+</span><a href="TD.Query.AddStickerToSet.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415028"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415028"><span class="hs-identifier hs-var">user_id</span></a></span></span><span>
 </span><span id="line-42"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -94,16 +94,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputSticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputSticker
-</span><a href="#local-6989586621679446095"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415030"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446094"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415029"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679446093"><span class="hs-identifier hs-var">user_id</span></a></span><span>
+</span><a href="#local-6989586621679415028"><span class="hs-identifier hs-var">user_id</span></a></span><span>
 </span><span id="line-48"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-49"></span></pre></body></html>

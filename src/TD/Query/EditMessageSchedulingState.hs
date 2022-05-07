@@ -4,7 +4,7 @@ module TD.Query.EditMessageSchedulingState where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Reply.MessageSchedulingState as MessageSchedulingState
+import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 import qualified Utils as U
 
 -- |

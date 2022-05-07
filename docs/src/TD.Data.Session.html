@@ -1,0 +1,638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Data.Session</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.SessionType.html"><span class="hs-identifier">TD.Data.SessionType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">SessionType</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="Session"><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-var">Session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order</span><span>
+</span><span id="line-11"></span><span>  </span><span id="Session"><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-var">Session</span></a></span></span><span>
+</span><span id="line-12"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span>    </span><span id="region"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#region"><span class="hs-identifier hs-var hs-var">region</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-14"></span><span>    </span><span class="hs-comment">-- | A two-letter country code for the country from which the session was created, based on the IP address @region Region code from which the session was created, based on the IP address</span><span>
+</span><span id="line-15"></span><span>    </span><span id="country"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#country"><span class="hs-identifier hs-var hs-var">country</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span id="ip"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#ip"><span class="hs-identifier hs-var hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Point in time (Unix timestamp) when the session was last used @ip IP address from which the session was created, in human-readable format</span><span>
+</span><span id="line-19"></span><span>    </span><span id="last_active_date"><span class="annot"><span class="annottext">Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#last_active_date"><span class="hs-identifier hs-var hs-var">last_active_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-21"></span><span>    </span><span id="log_in_date"><span class="annot"><span class="annottext">Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#log_in_date"><span class="hs-identifier hs-var hs-var">log_in_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-22"></span><span>    </span><span class="hs-comment">-- | Version of the operating system the application has been run or is running on, as provided by the application @log_in_date Point in time (Unix timestamp) when the user has logged in</span><span>
+</span><span id="line-23"></span><span>    </span><span id="system_version"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#system_version"><span class="hs-identifier hs-var hs-var">system_version</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-24"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-25"></span><span>    </span><span id="platform"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#platform"><span class="hs-identifier hs-var hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-26"></span><span>    </span><span class="hs-comment">-- | Model of the device the application has been run or is running on, as provided by the application @platform Operating system the application has been run or is running on, as provided by the application</span><span>
+</span><span id="line-27"></span><span>    </span><span id="device_model"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#device_model"><span class="hs-identifier hs-var hs-var">device_model</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-28"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-29"></span><span>    </span><span id="is_official_application"><span class="annot"><span class="annottext">Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_official_application"><span class="hs-identifier hs-var hs-var">is_official_application</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-30"></span><span>    </span><span class="hs-comment">-- | The version of the application, as provided by the application @is_official_application True, if the application is an official application or uses the api_id of an official application</span><span>
+</span><span id="line-31"></span><span>    </span><span id="application_version"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#application_version"><span class="hs-identifier hs-var hs-var">application_version</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-32"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-33"></span><span>    </span><span id="application_name"><span class="annot"><span class="annottext">Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#application_name"><span class="hs-identifier hs-var hs-var">application_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-34"></span><span>    </span><span class="hs-comment">-- | Telegram API identifier, as provided by the application @application_name Name of the application, as provided by the application</span><span>
+</span><span id="line-35"></span><span>    </span><span id="api_id"><span class="annot"><span class="annottext">Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#api_id"><span class="hs-identifier hs-var hs-var">api_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>    </span><span class="hs-comment">-- | Session type based on the system and application version, which can be used to display a corresponding icon</span><span>
+</span><span id="line-37"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">Session -&gt; Maybe SessionType
+</span><a href="TD.Data.Session.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType.SessionType</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-38"></span><span>    </span><span class="hs-comment">-- | True, if incoming calls can be accepted by the session</span><span>
+</span><span id="line-39"></span><span>    </span><span id="can_accept_calls"><span class="annot"><span class="annottext">Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_calls"><span class="hs-identifier hs-var hs-var">can_accept_calls</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>    </span><span class="hs-comment">-- | True, if incoming secret chats can be accepted by the session</span><span>
+</span><span id="line-41"></span><span>    </span><span id="can_accept_secret_chats"><span class="annot"><span class="annottext">Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_secret_chats"><span class="hs-identifier hs-var hs-var">can_accept_secret_chats</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-42"></span><span>    </span><span class="hs-comment">-- | True, if a password is needed to complete authorization of the session</span><span>
+</span><span id="line-43"></span><span>    </span><span id="is_password_pending"><span class="annot"><span class="annottext">Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_password_pending"><span class="hs-identifier hs-var hs-var">is_password_pending</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-44"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-45"></span><span>    </span><span id="is_current"><span class="annot"><span class="annottext">Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_current"><span class="hs-identifier hs-var hs-var">is_current</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>    </span><span class="hs-comment">-- | Session identifier @is_current True, if this session is the current session</span><span>
+</span><span id="line-47"></span><span>    </span><span id="_id"><span class="annot"><span class="annottext">Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-48"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-49"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679404041"><span id="local-6989586621679404043"><span class="annot"><span class="annottext">Session -&gt; Session -&gt; Bool
+(Session -&gt; Session -&gt; Bool)
+-&gt; (Session -&gt; Session -&gt; Bool) -&gt; Eq Session
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: Session -&gt; Session -&gt; Bool
+$c/= :: Session -&gt; Session -&gt; Bool
+== :: Session -&gt; Session -&gt; Bool
+$c== :: Session -&gt; Session -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404035"><span id="local-6989586621679404038"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-52"></span><span>  </span><span id="local-6989586621679404033"><span class="annot"><span class="annottext">show :: Session -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-53"></span><span>    </span><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span>
+</span><span id="line-54"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">region :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#region"><span class="hs-identifier hs-var">region</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404031"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404031"><span class="hs-identifier hs-var">region</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">country :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404030"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404030"><span class="hs-identifier hs-var">country</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">ip :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404029"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404029"><span class="hs-identifier hs-var">ip</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">last_active_date :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404028"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404028"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">log_in_date :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404027"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404027"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">system_version :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404026"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404026"><span class="hs-identifier hs-var">system_version</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-60"></span><span>        </span><span class="annot"><span class="annottext">platform :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404025"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404025"><span class="hs-identifier hs-var">platform</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-61"></span><span>        </span><span class="annot"><span class="annottext">device_model :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404024"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404024"><span class="hs-identifier hs-var">device_model</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">is_official_application :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_official_application"><span class="hs-identifier hs-var">is_official_application</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404023"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404023"><span class="hs-identifier hs-var">is_official_application</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">application_version :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404022"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404022"><span class="hs-identifier hs-var">application_version</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">application_name :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#application_name"><span class="hs-identifier hs-var">application_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404021"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404021"><span class="hs-identifier hs-var">application_name</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-65"></span><span>        </span><span class="annot"><span class="annottext">api_id :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404020"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404020"><span class="hs-identifier hs-var">api_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-66"></span><span>        </span><span class="annot"><span class="annottext">_type :: Session -&gt; Maybe SessionType
+</span><a href="TD.Data.Session.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404019"><span class="annot"><span class="annottext">Maybe SessionType
+</span><a href="#local-6989586621679404019"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-67"></span><span>        </span><span class="annot"><span class="annottext">can_accept_calls :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_calls"><span class="hs-identifier hs-var">can_accept_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404018"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404018"><span class="hs-identifier hs-var">can_accept_calls</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-68"></span><span>        </span><span class="annot"><span class="annottext">can_accept_secret_chats :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_secret_chats"><span class="hs-identifier hs-var">can_accept_secret_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404017"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404017"><span class="hs-identifier hs-var">can_accept_secret_chats</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-69"></span><span>        </span><span class="annot"><span class="annottext">is_password_pending :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_password_pending"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404016"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404016"><span class="hs-identifier hs-var">is_password_pending</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-70"></span><span>        </span><span class="annot"><span class="annottext">is_current :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_current"><span class="hs-identifier hs-var">is_current</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404015"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404015"><span class="hs-identifier hs-var">is_current</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-71"></span><span>        </span><span class="annot"><span class="annottext">_id :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404014"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404014"><span class="hs-identifier hs-var">_id</span></a></span></span><span>
+</span><span id="line-72"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-73"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Session&quot;</span></span><span>
+</span><span id="line-74"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-75"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;region&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404031"><span class="hs-identifier hs-var">region</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-76"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;country&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404030"><span class="hs-identifier hs-var">country</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-77"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ip&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404029"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-78"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;last_active_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404028"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-79"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;log_in_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404027"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-80"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;system_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404026"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-81"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;platform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404025"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-82"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;device_model&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404024"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-83"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;is_official_application&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404023"><span class="hs-identifier hs-var">is_official_application</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-84"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;application_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404022"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-85"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;application_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404021"><span class="hs-identifier hs-var">application_name</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-86"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404020"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-87"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe SessionType -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe SessionType
+</span><a href="#local-6989586621679404019"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-88"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;can_accept_calls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404018"><span class="hs-identifier hs-var">can_accept_calls</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-89"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;can_accept_secret_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404017"><span class="hs-identifier hs-var">can_accept_secret_chats</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-90"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;is_password_pending&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404016"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-91"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;is_current&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679404015"><span class="hs-identifier hs-var">is_current</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-92"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404014"><span class="hs-identifier hs-var">_id</span></a></span><span>
+</span><span id="line-93"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-94"></span><span>
+</span><span id="line-95"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404009"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-96"></span><span>  </span><span id="local-6989586621679404007"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Session
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679404005"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679404005"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679404003"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404003"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-97"></span><span>    </span><span id="local-6989586621679404002"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404002"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404003"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-98"></span><span>
+</span><span id="line-99"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404002"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-100"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;session&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Session
+</span><a href="#local-6989586621679404000"><span class="hs-identifier hs-var">parseSession</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679404005"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-101"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Session
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-102"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-103"></span><span>      </span><span class="annot"><a href="#local-6989586621679404000"><span class="hs-identifier hs-type">parseSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span>
+</span><span id="line-104"></span><span>      </span><span id="local-6989586621679404000"><span class="annot"><span class="annottext">parseSession :: Value -&gt; Parser Session
+</span><a href="#local-6989586621679404000"><span class="hs-identifier hs-var hs-var">parseSession</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Session) -&gt; Value -&gt; Parser Session
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Session&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Session) -&gt; Value -&gt; Parser Session)
+-&gt; (Object -&gt; Parser Session) -&gt; Value -&gt; Parser Session
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679403998"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-105"></span><span>        </span><span id="local-6989586621679403997"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403997"><span class="hs-identifier hs-var">region_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;region&quot;</span></span><span>
+</span><span id="line-106"></span><span>        </span><span id="local-6989586621679403995"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403995"><span class="hs-identifier hs-var">country_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;country&quot;</span></span><span>
+</span><span id="line-107"></span><span>        </span><span id="local-6989586621679403994"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403994"><span class="hs-identifier hs-var">ip_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;ip&quot;</span></span><span>
+</span><span id="line-108"></span><span>        </span><span id="local-6989586621679403993"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403993"><span class="hs-identifier hs-var">last_active_date_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;last_active_date&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;last_active_date&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-109"></span><span>        </span><span id="local-6989586621679403990"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403990"><span class="hs-identifier hs-var">log_in_date_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;log_in_date&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;log_in_date&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-110"></span><span>        </span><span id="local-6989586621679403989"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403989"><span class="hs-identifier hs-var">system_version_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;system_version&quot;</span></span><span>
+</span><span id="line-111"></span><span>        </span><span id="local-6989586621679403988"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403988"><span class="hs-identifier hs-var">platform_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;platform&quot;</span></span><span>
+</span><span id="line-112"></span><span>        </span><span id="local-6989586621679403987"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403987"><span class="hs-identifier hs-var">device_model_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;device_model&quot;</span></span><span>
+</span><span id="line-113"></span><span>        </span><span id="local-6989586621679403986"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403986"><span class="hs-identifier hs-var">is_official_application_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_official_application&quot;</span></span><span>
+</span><span id="line-114"></span><span>        </span><span id="local-6989586621679403985"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403985"><span class="hs-identifier hs-var">application_version_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;application_version&quot;</span></span><span>
+</span><span id="line-115"></span><span>        </span><span id="local-6989586621679403984"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403984"><span class="hs-identifier hs-var">application_name_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;application_name&quot;</span></span><span>
+</span><span id="line-116"></span><span>        </span><span id="local-6989586621679403983"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403983"><span class="hs-identifier hs-var">api_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-117"></span><span>        </span><span id="local-6989586621679403982"><span class="annot"><span class="annottext">Maybe SessionType
+</span><a href="#local-6989586621679403982"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe SessionType)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;type&quot;</span></span><span>
+</span><span id="line-118"></span><span>        </span><span id="local-6989586621679403981"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403981"><span class="hs-identifier hs-var">can_accept_calls_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_accept_calls&quot;</span></span><span>
+</span><span id="line-119"></span><span>        </span><span id="local-6989586621679403980"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403980"><span class="hs-identifier hs-var">can_accept_secret_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_accept_secret_chats&quot;</span></span><span>
+</span><span id="line-120"></span><span>        </span><span id="local-6989586621679403979"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403979"><span class="hs-identifier hs-var">is_password_pending_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_password_pending&quot;</span></span><span>
+</span><span id="line-121"></span><span>        </span><span id="local-6989586621679403978"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403978"><span class="hs-identifier hs-var">is_current_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_current&quot;</span></span><span>
+</span><span id="line-122"></span><span>        </span><span id="local-6989586621679403977"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403977"><span class="hs-identifier hs-var">_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403998"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-123"></span><span>        </span><span class="annot"><span class="annottext">Session -&gt; Parser Session
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Session -&gt; Parser Session) -&gt; Session -&gt; Parser Session
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Session :: Maybe String
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe Int
+-&gt; Maybe Int
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe Bool
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe Int
+-&gt; Maybe SessionType
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe Int
+-&gt; Session
+</span><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">region :: Maybe String
+</span><a href="TD.Data.Session.html#region"><span class="hs-identifier hs-var">region</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403997"><span class="hs-identifier hs-var">region_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">country :: Maybe String
+</span><a href="TD.Data.Session.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403995"><span class="hs-identifier hs-var">country_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: Maybe String
+</span><a href="TD.Data.Session.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403994"><span class="hs-identifier hs-var">ip_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">last_active_date :: Maybe Int
+</span><a href="TD.Data.Session.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403993"><span class="hs-identifier hs-var">last_active_date_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">log_in_date :: Maybe Int
+</span><a href="TD.Data.Session.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403990"><span class="hs-identifier hs-var">log_in_date_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_version :: Maybe String
+</span><a href="TD.Data.Session.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403989"><span class="hs-identifier hs-var">system_version_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">platform :: Maybe String
+</span><a href="TD.Data.Session.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403988"><span class="hs-identifier hs-var">platform_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_model :: Maybe String
+</span><a href="TD.Data.Session.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403987"><span class="hs-identifier hs-var">device_model_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_official_application :: Maybe Bool
+</span><a href="TD.Data.Session.html#is_official_application"><span class="hs-identifier hs-var">is_official_application</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403986"><span class="hs-identifier hs-var">is_official_application_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_version :: Maybe String
+</span><a href="TD.Data.Session.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403985"><span class="hs-identifier hs-var">application_version_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_name :: Maybe String
+</span><a href="TD.Data.Session.html#application_name"><span class="hs-identifier hs-var">application_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403984"><span class="hs-identifier hs-var">application_name_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_id :: Maybe Int
+</span><a href="TD.Data.Session.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403983"><span class="hs-identifier hs-var">api_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe SessionType
+</span><a href="TD.Data.Session.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe SessionType
+</span><a href="#local-6989586621679403982"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_accept_calls :: Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_calls"><span class="hs-identifier hs-var">can_accept_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403981"><span class="hs-identifier hs-var">can_accept_calls_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_accept_secret_chats :: Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_secret_chats"><span class="hs-identifier hs-var">can_accept_secret_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403980"><span class="hs-identifier hs-var">can_accept_secret_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_password_pending :: Maybe Bool
+</span><a href="TD.Data.Session.html#is_password_pending"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403979"><span class="hs-identifier hs-var">is_password_pending_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_current :: Maybe Bool
+</span><a href="TD.Data.Session.html#is_current"><span class="hs-identifier hs-var">is_current</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403978"><span class="hs-identifier hs-var">is_current_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="TD.Data.Session.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403977"><span class="hs-identifier hs-var">_id_</span></a></span><span class="hs-special">}</span><span>
+</span><span id="line-124"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser Session
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-125"></span><span>
+</span><span id="line-126"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679403970"><span id="local-6989586621679403972"><span id="local-6989586621679403974"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-127"></span><span>  </span><span id="local-6989586621679403968"><span class="annot"><span class="annottext">toJSON :: Session -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-128"></span><span>    </span><span class="annot"><a href="TD.Data.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span>
+</span><span id="line-129"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">region :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#region"><span class="hs-identifier hs-var">region</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403966"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403966"><span class="hs-identifier hs-var">region</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-130"></span><span>        </span><span class="annot"><span class="annottext">country :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403965"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403965"><span class="hs-identifier hs-var">country</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-131"></span><span>        </span><span class="annot"><span class="annottext">ip :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403964"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403964"><span class="hs-identifier hs-var">ip</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-132"></span><span>        </span><span class="annot"><span class="annottext">last_active_date :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403963"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403963"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-133"></span><span>        </span><span class="annot"><span class="annottext">log_in_date :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403962"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403962"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-134"></span><span>        </span><span class="annot"><span class="annottext">system_version :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403961"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403961"><span class="hs-identifier hs-var">system_version</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-135"></span><span>        </span><span class="annot"><span class="annottext">platform :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403960"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403960"><span class="hs-identifier hs-var">platform</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-136"></span><span>        </span><span class="annot"><span class="annottext">device_model :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403959"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403959"><span class="hs-identifier hs-var">device_model</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-137"></span><span>        </span><span class="annot"><span class="annottext">is_official_application :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_official_application"><span class="hs-identifier hs-var">is_official_application</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403958"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403958"><span class="hs-identifier hs-var">is_official_application</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-138"></span><span>        </span><span class="annot"><span class="annottext">application_version :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403957"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403957"><span class="hs-identifier hs-var">application_version</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-139"></span><span>        </span><span class="annot"><span class="annottext">application_name :: Session -&gt; Maybe String
+</span><a href="TD.Data.Session.html#application_name"><span class="hs-identifier hs-var">application_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403956"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403956"><span class="hs-identifier hs-var">application_name</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-140"></span><span>        </span><span class="annot"><span class="annottext">api_id :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403955"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403955"><span class="hs-identifier hs-var">api_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-141"></span><span>        </span><span class="annot"><span class="annottext">_type :: Session -&gt; Maybe SessionType
+</span><a href="TD.Data.Session.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403954"><span class="annot"><span class="annottext">Maybe SessionType
+</span><a href="#local-6989586621679403954"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-142"></span><span>        </span><span class="annot"><span class="annottext">can_accept_calls :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_calls"><span class="hs-identifier hs-var">can_accept_calls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403953"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403953"><span class="hs-identifier hs-var">can_accept_calls</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-143"></span><span>        </span><span class="annot"><span class="annottext">can_accept_secret_chats :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#can_accept_secret_chats"><span class="hs-identifier hs-var">can_accept_secret_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403952"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403952"><span class="hs-identifier hs-var">can_accept_secret_chats</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-144"></span><span>        </span><span class="annot"><span class="annottext">is_password_pending :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_password_pending"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403951"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403951"><span class="hs-identifier hs-var">is_password_pending</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-145"></span><span>        </span><span class="annot"><span class="annottext">is_current :: Session -&gt; Maybe Bool
+</span><a href="TD.Data.Session.html#is_current"><span class="hs-identifier hs-var">is_current</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403950"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403950"><span class="hs-identifier hs-var">is_current</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-146"></span><span>        </span><span class="annot"><span class="annottext">_id :: Session -&gt; Maybe Int
+</span><a href="TD.Data.Session.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403949"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403949"><span class="hs-identifier hs-var">_id</span></a></span></span><span>
+</span><span id="line-147"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-148"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-149"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;session&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-150"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;region&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403966"><span class="hs-identifier hs-var">region</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-151"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;country&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403965"><span class="hs-identifier hs-var">country</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-152"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;ip&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403964"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-153"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;last_active_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403963"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-154"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;log_in_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403962"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-155"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;system_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403961"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-156"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;platform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403960"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-157"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;device_model&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403959"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-158"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_official_application&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403958"><span class="hs-identifier hs-var">is_official_application</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-159"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;application_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403957"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-160"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;application_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679403956"><span class="hs-identifier hs-var">application_name</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-161"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403955"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-162"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe SessionType -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe SessionType
+</span><a href="#local-6989586621679403954"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-163"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_accept_calls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403953"><span class="hs-identifier hs-var">can_accept_calls</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-164"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;can_accept_secret_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403952"><span class="hs-identifier hs-var">can_accept_secret_chats</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-165"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_password_pending&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403951"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-166"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_current&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679403950"><span class="hs-identifier hs-var">is_current</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-167"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679403949"><span class="hs-identifier hs-var">_id</span></a></span><span>
+</span><span id="line-168"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-169"></span></pre></body></html>
