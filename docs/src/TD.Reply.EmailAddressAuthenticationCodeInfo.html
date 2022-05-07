@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Reply.EmailAddressAuthenticationCodeInfo</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="EmailAddressAuthenticationCodeInfo"><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-var">EmailAddressAuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Information about the email address authentication code that was sent @email_address_pattern Pattern of the email address to which an authentication code was sent @length Length of the code; 0 if unknown</span><span>
+</span><span id="line-10"></span><span>  </span><span id="EmailAddressAuthenticationCodeInfo"><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-var">EmailAddressAuthenticationCodeInfo</span></a></span></span><span>
+</span><span id="line-11"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span>    </span><span id="_length"><span class="annot"><span class="annottext">EmailAddressAuthenticationCodeInfo -&gt; Maybe Int
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#_length"><span class="hs-identifier hs-var hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-13"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span>    </span><span id="email_address_pattern"><span class="annot"><span class="annottext">EmailAddressAuthenticationCodeInfo -&gt; Maybe String
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#email_address_pattern"><span class="hs-identifier hs-var hs-var">email_address_pattern</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679399544"><span id="local-6989586621679399546"><span class="annot"><span class="annottext">EmailAddressAuthenticationCodeInfo
+-&gt; EmailAddressAuthenticationCodeInfo -&gt; Bool
+(EmailAddressAuthenticationCodeInfo
+ -&gt; EmailAddressAuthenticationCodeInfo -&gt; Bool)
+-&gt; (EmailAddressAuthenticationCodeInfo
+    -&gt; EmailAddressAuthenticationCodeInfo -&gt; Bool)
+-&gt; Eq EmailAddressAuthenticationCodeInfo
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: EmailAddressAuthenticationCodeInfo
+-&gt; EmailAddressAuthenticationCodeInfo -&gt; Bool
+$c/= :: EmailAddressAuthenticationCodeInfo
+-&gt; EmailAddressAuthenticationCodeInfo -&gt; Bool
+== :: EmailAddressAuthenticationCodeInfo
+-&gt; EmailAddressAuthenticationCodeInfo -&gt; Bool
+$c== :: EmailAddressAuthenticationCodeInfo
+-&gt; EmailAddressAuthenticationCodeInfo -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399538"><span id="local-6989586621679399541"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-type">EmailAddressAuthenticationCodeInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679399536"><span class="annot"><span class="annottext">show :: EmailAddressAuthenticationCodeInfo -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-type">EmailAddressAuthenticationCodeInfo</span></a></span><span>
+</span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: EmailAddressAuthenticationCodeInfo -&gt; Maybe Int
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399534"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399534"><span class="hs-identifier hs-var">_length</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-22"></span><span>        </span><span class="annot"><span class="annottext">email_address_pattern :: EmailAddressAuthenticationCodeInfo -&gt; Maybe String
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#email_address_pattern"><span class="hs-identifier hs-var">email_address_pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399533"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399533"><span class="hs-identifier hs-var">email_address_pattern</span></a></span></span><span>
+</span><span id="line-23"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-24"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;EmailAddressAuthenticationCodeInfo&quot;</span></span><span>
+</span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-26"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_length&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399534"><span class="hs-identifier hs-var">_length</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-27"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;email_address_pattern&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399533"><span class="hs-identifier hs-var">email_address_pattern</span></a></span><span>
+</span><span id="line-28"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399528"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-type">EmailAddressAuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679399526"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EmailAddressAuthenticationCodeInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679399524"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679399524"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679399522"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399522"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679399521"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399521"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399522"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399521"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-35"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;emailAddressAuthenticationCodeInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EmailAddressAuthenticationCodeInfo
+</span><a href="#local-6989586621679399519"><span class="hs-identifier hs-var">parseEmailAddressAuthenticationCodeInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399524"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-36"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser EmailAddressAuthenticationCodeInfo
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-37"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span>      </span><span class="annot"><a href="#local-6989586621679399519"><span class="hs-identifier hs-type">parseEmailAddressAuthenticationCodeInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-type">EmailAddressAuthenticationCodeInfo</span></a></span><span>
+</span><span id="line-39"></span><span>      </span><span id="local-6989586621679399519"><span class="annot"><span class="annottext">parseEmailAddressAuthenticationCodeInfo :: Value -&gt; Parser EmailAddressAuthenticationCodeInfo
+</span><a href="#local-6989586621679399519"><span class="hs-identifier hs-var hs-var">parseEmailAddressAuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser EmailAddressAuthenticationCodeInfo)
+-&gt; Value
+-&gt; Parser EmailAddressAuthenticationCodeInfo
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;EmailAddressAuthenticationCodeInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser EmailAddressAuthenticationCodeInfo)
+ -&gt; Value -&gt; Parser EmailAddressAuthenticationCodeInfo)
+-&gt; (Object -&gt; Parser EmailAddressAuthenticationCodeInfo)
+-&gt; Value
+-&gt; Parser EmailAddressAuthenticationCodeInfo
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399517"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399517"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>        </span><span id="local-6989586621679399516"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399516"><span class="hs-identifier hs-var">_length_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399517"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;length&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399517"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;length&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-41"></span><span>        </span><span id="local-6989586621679399512"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399512"><span class="hs-identifier hs-var">email_address_pattern_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399517"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;email_address_pattern&quot;</span></span><span>
+</span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">EmailAddressAuthenticationCodeInfo
+-&gt; Parser EmailAddressAuthenticationCodeInfo
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(EmailAddressAuthenticationCodeInfo
+ -&gt; Parser EmailAddressAuthenticationCodeInfo)
+-&gt; EmailAddressAuthenticationCodeInfo
+-&gt; Parser EmailAddressAuthenticationCodeInfo
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">EmailAddressAuthenticationCodeInfo :: Maybe Int -&gt; Maybe String -&gt; EmailAddressAuthenticationCodeInfo
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-type">EmailAddressAuthenticationCodeInfo</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">_length :: Maybe Int
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399516"><span class="hs-identifier hs-var">_length_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">email_address_pattern :: Maybe String
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#email_address_pattern"><span class="hs-identifier hs-var">email_address_pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399512"><span class="hs-identifier hs-var">email_address_pattern_</span></a></span><span class="hs-special">}</span><span>
+</span><span id="line-43"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser EmailAddressAuthenticationCodeInfo
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-44"></span><span>
+</span><span id="line-45"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399505"><span id="local-6989586621679399507"><span id="local-6989586621679399509"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-type">EmailAddressAuthenticationCodeInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-46"></span><span>  </span><span id="local-6989586621679399503"><span class="annot"><span class="annottext">toJSON :: EmailAddressAuthenticationCodeInfo -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-47"></span><span>    </span><span class="annot"><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#EmailAddressAuthenticationCodeInfo"><span class="hs-identifier hs-type">EmailAddressAuthenticationCodeInfo</span></a></span><span>
+</span><span id="line-48"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: EmailAddressAuthenticationCodeInfo -&gt; Maybe Int
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399501"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399501"><span class="hs-identifier hs-var">_length</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">email_address_pattern :: EmailAddressAuthenticationCodeInfo -&gt; Maybe String
+</span><a href="TD.Reply.EmailAddressAuthenticationCodeInfo.html#email_address_pattern"><span class="hs-identifier hs-var">email_address_pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399500"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399500"><span class="hs-identifier hs-var">email_address_pattern</span></a></span></span><span>
+</span><span id="line-50"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-51"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-52"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;emailAddressAuthenticationCodeInfo&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;length&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399501"><span class="hs-identifier hs-var">_length</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-54"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;email_address_pattern&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399500"><span class="hs-identifier hs-var">email_address_pattern</span></a></span><span>
+</span><span id="line-55"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-56"></span></pre></body></html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Reply.BotInfo</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.BotCommand.html"><span class="hs-identifier">TD.Reply.BotCommand</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BotCommand</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.BotMenuButton.html"><span class="hs-identifier">TD.Reply.BotMenuButton</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BotMenuButton</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.ChatAdministratorRights.html"><span class="hs-identifier">TD.Reply.ChatAdministratorRights</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatAdministratorRights</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="BotInfo"><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-var">BotInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains information about a bot</span><span>
+</span><span id="line-13"></span><span>  </span><span id="BotInfo"><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-var">BotInfo</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Default administrator rights for adding the bot to channels; may be null</span><span>
+</span><span id="line-15"></span><span>    </span><span id="default_channel_administrator_rights"><span class="annot"><span class="annottext">BotInfo -&gt; Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_channel_administrator_rights"><span class="hs-identifier hs-var hs-var">default_channel_administrator_rights</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatAdministratorRights.html#ChatAdministratorRights"><span class="hs-identifier hs-type">ChatAdministratorRights.ChatAdministratorRights</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Default administrator rights for adding the bot to basic group and supergroup chats; may be null</span><span>
+</span><span id="line-17"></span><span>    </span><span id="default_group_administrator_rights"><span class="annot"><span class="annottext">BotInfo -&gt; Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_group_administrator_rights"><span class="hs-identifier hs-var hs-var">default_group_administrator_rights</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatAdministratorRights.html#ChatAdministratorRights"><span class="hs-identifier hs-type">ChatAdministratorRights.ChatAdministratorRights</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | List of the bot commands</span><span>
+</span><span id="line-19"></span><span>    </span><span id="commands"><span class="annot"><span class="annottext">BotInfo -&gt; Maybe [BotCommand]
+</span><a href="TD.Reply.BotInfo.html#commands"><span class="hs-identifier hs-var hs-var">commands</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Reply.BotCommand.html#BotCommand"><span class="hs-identifier hs-type">BotCommand.BotCommand</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown</span><span>
+</span><span id="line-21"></span><span>    </span><span id="menu_button"><span class="annot"><span class="annottext">BotInfo -&gt; Maybe BotMenuButton
+</span><a href="TD.Reply.BotInfo.html#menu_button"><span class="hs-identifier hs-var hs-var">menu_button</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.BotMenuButton.html#BotMenuButton"><span class="hs-identifier hs-type">BotMenuButton.BotMenuButton</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-22"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-23"></span><span>    </span><span id="description"><span class="annot"><span class="annottext">BotInfo -&gt; Maybe String
+</span><a href="TD.Reply.BotInfo.html#description"><span class="hs-identifier hs-var hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-24"></span><span>    </span><span class="hs-comment">-- | The text that is shown on the bot's profile page and is sent together with the link when users share the bot</span><span>
+</span><span id="line-25"></span><span>    </span><span id="share_text"><span class="annot"><span class="annottext">BotInfo -&gt; Maybe String
+</span><a href="TD.Reply.BotInfo.html#share_text"><span class="hs-identifier hs-var hs-var">share_text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-26"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-27"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679410597"><span id="local-6989586621679410599"><span class="annot"><span class="annottext">BotInfo -&gt; BotInfo -&gt; Bool
+(BotInfo -&gt; BotInfo -&gt; Bool)
+-&gt; (BotInfo -&gt; BotInfo -&gt; Bool) -&gt; Eq BotInfo
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: BotInfo -&gt; BotInfo -&gt; Bool
+$c/= :: BotInfo -&gt; BotInfo -&gt; Bool
+== :: BotInfo -&gt; BotInfo -&gt; Bool
+$c== :: BotInfo -&gt; BotInfo -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410591"><span id="local-6989586621679410594"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-type">BotInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679410589"><span class="annot"><span class="annottext">show :: BotInfo -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-31"></span><span>    </span><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-type">BotInfo</span></a></span><span>
+</span><span id="line-32"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">default_channel_administrator_rights :: BotInfo -&gt; Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_channel_administrator_rights"><span class="hs-identifier hs-var">default_channel_administrator_rights</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410587"><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410587"><span class="hs-identifier hs-var">default_channel_administrator_rights</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">default_group_administrator_rights :: BotInfo -&gt; Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_group_administrator_rights"><span class="hs-identifier hs-var">default_group_administrator_rights</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410586"><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410586"><span class="hs-identifier hs-var">default_group_administrator_rights</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">commands :: BotInfo -&gt; Maybe [BotCommand]
+</span><a href="TD.Reply.BotInfo.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410585"><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679410585"><span class="hs-identifier hs-var">commands</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">menu_button :: BotInfo -&gt; Maybe BotMenuButton
+</span><a href="TD.Reply.BotInfo.html#menu_button"><span class="hs-identifier hs-var">menu_button</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410584"><span class="annot"><span class="annottext">Maybe BotMenuButton
+</span><a href="#local-6989586621679410584"><span class="hs-identifier hs-var">menu_button</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">description :: BotInfo -&gt; Maybe String
+</span><a href="TD.Reply.BotInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410583"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410583"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">share_text :: BotInfo -&gt; Maybe String
+</span><a href="TD.Reply.BotInfo.html#share_text"><span class="hs-identifier hs-var">share_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410582"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410582"><span class="hs-identifier hs-var">share_text</span></a></span></span><span>
+</span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;BotInfo&quot;</span></span><span>
+</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-41"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatAdministratorRights -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;default_channel_administrator_rights&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410587"><span class="hs-identifier hs-var">default_channel_administrator_rights</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-42"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatAdministratorRights -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;default_group_administrator_rights&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410586"><span class="hs-identifier hs-var">default_group_administrator_rights</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [BotCommand] -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;commands&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679410585"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe BotMenuButton -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;menu_button&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotMenuButton
+</span><a href="#local-6989586621679410584"><span class="hs-identifier hs-var">menu_button</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410583"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;share_text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410582"><span class="hs-identifier hs-var">share_text</span></a></span><span>
+</span><span id="line-47"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-48"></span><span>
+</span><span id="line-49"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410577"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-type">BotInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-50"></span><span>  </span><span id="local-6989586621679410575"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BotInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679410573"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679410573"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679410571"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410571"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679410570"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679410570"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410571"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-52"></span><span>
+</span><span id="line-53"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679410570"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-54"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;botInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BotInfo
+</span><a href="#local-6989586621679410568"><span class="hs-identifier hs-var">parseBotInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679410573"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-55"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser BotInfo
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-56"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-57"></span><span>      </span><span class="annot"><a href="#local-6989586621679410568"><span class="hs-identifier hs-type">parseBotInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-type">BotInfo</span></a></span><span>
+</span><span id="line-58"></span><span>      </span><span id="local-6989586621679410568"><span class="annot"><span class="annottext">parseBotInfo :: Value -&gt; Parser BotInfo
+</span><a href="#local-6989586621679410568"><span class="hs-identifier hs-var hs-var">parseBotInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser BotInfo) -&gt; Value -&gt; Parser BotInfo
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;BotInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser BotInfo) -&gt; Value -&gt; Parser BotInfo)
+-&gt; (Object -&gt; Parser BotInfo) -&gt; Value -&gt; Parser BotInfo
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679410566"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410566"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-59"></span><span>        </span><span id="local-6989586621679410565"><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410565"><span class="hs-identifier hs-var">default_channel_administrator_rights_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410566"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatAdministratorRights)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;default_channel_administrator_rights&quot;</span></span><span>
+</span><span id="line-60"></span><span>        </span><span id="local-6989586621679410563"><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410563"><span class="hs-identifier hs-var">default_group_administrator_rights_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410566"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatAdministratorRights)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;default_group_administrator_rights&quot;</span></span><span>
+</span><span id="line-61"></span><span>        </span><span id="local-6989586621679410562"><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679410562"><span class="hs-identifier hs-var">commands_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410566"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [BotCommand])
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;commands&quot;</span></span><span>
+</span><span id="line-62"></span><span>        </span><span id="local-6989586621679410561"><span class="annot"><span class="annottext">Maybe BotMenuButton
+</span><a href="#local-6989586621679410561"><span class="hs-identifier hs-var">menu_button_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410566"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BotMenuButton)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;menu_button&quot;</span></span><span>
+</span><span id="line-63"></span><span>        </span><span id="local-6989586621679410560"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410560"><span class="hs-identifier hs-var">description_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410566"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;description&quot;</span></span><span>
+</span><span id="line-64"></span><span>        </span><span id="local-6989586621679410559"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410559"><span class="hs-identifier hs-var">share_text_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410566"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;share_text&quot;</span></span><span>
+</span><span id="line-65"></span><span>        </span><span class="annot"><span class="annottext">BotInfo -&gt; Parser BotInfo
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BotInfo -&gt; Parser BotInfo) -&gt; BotInfo -&gt; Parser BotInfo
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BotInfo :: Maybe ChatAdministratorRights
+-&gt; Maybe ChatAdministratorRights
+-&gt; Maybe [BotCommand]
+-&gt; Maybe BotMenuButton
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; BotInfo
+</span><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-type">BotInfo</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">default_channel_administrator_rights :: Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_channel_administrator_rights"><span class="hs-identifier hs-var">default_channel_administrator_rights</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410565"><span class="hs-identifier hs-var">default_channel_administrator_rights_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">default_group_administrator_rights :: Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_group_administrator_rights"><span class="hs-identifier hs-var">default_group_administrator_rights</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410563"><span class="hs-identifier hs-var">default_group_administrator_rights_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">commands :: Maybe [BotCommand]
+</span><a href="TD.Reply.BotInfo.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679410562"><span class="hs-identifier hs-var">commands_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">menu_button :: Maybe BotMenuButton
+</span><a href="TD.Reply.BotInfo.html#menu_button"><span class="hs-identifier hs-var">menu_button</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BotMenuButton
+</span><a href="#local-6989586621679410561"><span class="hs-identifier hs-var">menu_button_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe String
+</span><a href="TD.Reply.BotInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410560"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">share_text :: Maybe String
+</span><a href="TD.Reply.BotInfo.html#share_text"><span class="hs-identifier hs-var">share_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410559"><span class="hs-identifier hs-var">share_text_</span></a></span><span class="hs-special">}</span><span>
+</span><span id="line-66"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser BotInfo
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-67"></span><span>
+</span><span id="line-68"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410552"><span id="local-6989586621679410554"><span id="local-6989586621679410556"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-type">BotInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-69"></span><span>  </span><span id="local-6989586621679410550"><span class="annot"><span class="annottext">toJSON :: BotInfo -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-70"></span><span>    </span><span class="annot"><a href="TD.Reply.BotInfo.html#BotInfo"><span class="hs-identifier hs-type">BotInfo</span></a></span><span>
+</span><span id="line-71"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">default_channel_administrator_rights :: BotInfo -&gt; Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_channel_administrator_rights"><span class="hs-identifier hs-var">default_channel_administrator_rights</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410548"><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410548"><span class="hs-identifier hs-var">default_channel_administrator_rights</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-72"></span><span>        </span><span class="annot"><span class="annottext">default_group_administrator_rights :: BotInfo -&gt; Maybe ChatAdministratorRights
+</span><a href="TD.Reply.BotInfo.html#default_group_administrator_rights"><span class="hs-identifier hs-var">default_group_administrator_rights</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410547"><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410547"><span class="hs-identifier hs-var">default_group_administrator_rights</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-73"></span><span>        </span><span class="annot"><span class="annottext">commands :: BotInfo -&gt; Maybe [BotCommand]
+</span><a href="TD.Reply.BotInfo.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410546"><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679410546"><span class="hs-identifier hs-var">commands</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-74"></span><span>        </span><span class="annot"><span class="annottext">menu_button :: BotInfo -&gt; Maybe BotMenuButton
+</span><a href="TD.Reply.BotInfo.html#menu_button"><span class="hs-identifier hs-var">menu_button</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410545"><span class="annot"><span class="annottext">Maybe BotMenuButton
+</span><a href="#local-6989586621679410545"><span class="hs-identifier hs-var">menu_button</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-75"></span><span>        </span><span class="annot"><span class="annottext">description :: BotInfo -&gt; Maybe String
+</span><a href="TD.Reply.BotInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410544"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410544"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-76"></span><span>        </span><span class="annot"><span class="annottext">share_text :: BotInfo -&gt; Maybe String
+</span><a href="TD.Reply.BotInfo.html#share_text"><span class="hs-identifier hs-var">share_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410543"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410543"><span class="hs-identifier hs-var">share_text</span></a></span></span><span>
+</span><span id="line-77"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-78"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-79"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;botInfo&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-80"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;default_channel_administrator_rights&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatAdministratorRights -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410548"><span class="hs-identifier hs-var">default_channel_administrator_rights</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-81"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;default_group_administrator_rights&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatAdministratorRights -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatAdministratorRights
+</span><a href="#local-6989586621679410547"><span class="hs-identifier hs-var">default_group_administrator_rights</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-82"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;commands&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [BotCommand] -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679410546"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-83"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;menu_button&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BotMenuButton -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotMenuButton
+</span><a href="#local-6989586621679410545"><span class="hs-identifier hs-var">menu_button</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-84"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410544"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-85"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;share_text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410543"><span class="hs-identifier hs-var">share_text</span></a></span><span>
+</span><span id="line-86"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-87"></span></pre></body></html>

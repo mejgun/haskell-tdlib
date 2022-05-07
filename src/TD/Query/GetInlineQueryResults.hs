@@ -1,0 +1,60 @@
+{-# LANGUAGE OverloadedStrings #-}
+
+module TD.Query.GetInlineQueryResults where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as T
+import qualified TD.Reply.Location as Location
+import qualified Utils as U
+
+-- |
+-- Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+data GetInlineQueryResults = GetInlineQueryResults
+  { -- | Offset of the first entry to return
+    offset :: Maybe String,
+    -- | Text of the query
+    query :: Maybe String,
+    -- | Location of the user; pass null if unknown or the bot doesn't need user's location
+    user_location :: Maybe Location.Location,
+    -- | Identifier of the chat where the query was sent
+    chat_id :: Maybe Int,
+    -- | The identifier of the target bot
+    bot_user_id :: Maybe Int
+  }
+  deriving (Eq)
+
+instance Show GetInlineQueryResults where
+  show
+    GetInlineQueryResults
+      { offset = offset,
+        query = query,
+        user_location = user_location,
+        chat_id = chat_id,
+        bot_user_id = bot_user_id
+      } =
+      "GetInlineQueryResults"
+        ++ U.cc
+          [ U.p "offset" offset,
+            U.p "query" query,
+            U.p "user_location" user_location,
+            U.p "chat_id" chat_id,
+            U.p "bot_user_id" bot_user_id
+          ]
+
+instance T.ToJSON GetInlineQueryResults where
+  toJSON
+    GetInlineQueryResults
+      { offset = offset,
+        query = query,
+        user_location = user_location,
+        chat_id = chat_id,
+        bot_user_id = bot_user_id
+      } =
+      A.object
+        [ "@type" A..= T.String "getInlineQueryResults",
+          "offset" A..= offset,
+          "query" A..= query,
+          "user_location" A..= user_location,
+          "chat_id" A..= chat_id,
+          "bot_user_id" A..= bot_user_id
+        ]

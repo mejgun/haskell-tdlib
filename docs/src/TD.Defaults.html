@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Defaults</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-comment">-- import qualified TD.Query.SendMessage     as SendMessage</span><span>
+</span><span id="line-4"></span><span class="hs-comment">-- import qualified TD.Reply.FormattedText as FormattedText</span><span>
+</span><span id="line-5"></span><span class="hs-comment">-- import qualified TD.Reply.InputMessageContent as InputMessageContent</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.TdlibParameters.html"><span class="hs-identifier">TD.Reply.TdlibParameters</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">TdlibParameters</span></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="annot"><a href="TD.Defaults.html#defaultTdlibParameters"><span class="hs-identifier hs-type">defaultTdlibParameters</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TD.Reply.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters.TdlibParameters</span></a></span><span>
+</span><span id="line-9"></span><span id="defaultTdlibParameters"><span class="annot"><span class="annottext">defaultTdlibParameters :: TdlibParameters
+</span><a href="TD.Defaults.html#defaultTdlibParameters"><span class="hs-identifier hs-var hs-var">defaultTdlibParameters</span></a></span></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-10"></span><span>  </span><span class="annot"><span class="annottext">TdlibParameters :: Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe Int
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe Bool
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe Bool
+-&gt; TdlibParameters
+</span><a href="TD.Reply.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters.TdlibParameters</span></a></span><span>
+</span><span id="line-11"></span><span>    </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ignore_file_names :: Maybe Bool
+</span><a href="TD.Reply.TdlibParameters.html#ignore_file_names"><span class="hs-identifier hs-var">TdlibParameters.ignore_file_names</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Maybe Bool
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">True</span></span><span class="hs-special">,</span><span>
+</span><span id="line-12"></span><span>      </span><span class="annot"><span class="annottext">enable_storage_optimizer :: Maybe Bool
+</span><a href="TD.Reply.TdlibParameters.html#enable_storage_optimizer"><span class="hs-identifier hs-var">TdlibParameters.enable_storage_optimizer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Maybe Bool
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">True</span></span><span class="hs-special">,</span><span>
+</span><span id="line-13"></span><span>      </span><span class="annot"><span class="annottext">application_version :: Maybe String
+</span><a href="TD.Reply.TdlibParameters.html#application_version"><span class="hs-identifier hs-var">TdlibParameters.application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;0.1.0.0&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-14"></span><span>      </span><span class="annot"><span class="annottext">system_version :: Maybe String
+</span><a href="TD.Reply.TdlibParameters.html#system_version"><span class="hs-identifier hs-var">TdlibParameters.system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Unknown&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-15"></span><span>      </span><span class="annot"><span class="annottext">device_model :: Maybe String
+</span><a href="TD.Reply.TdlibParameters.html#device_model"><span class="hs-identifier hs-var">TdlibParameters.device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Server&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-16"></span><span>      </span><span class="annot"><span class="annottext">system_language_code :: Maybe String
+</span><a href="TD.Reply.TdlibParameters.html#system_language_code"><span class="hs-identifier hs-var">TdlibParameters.system_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;en&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-17"></span><span>      </span><span class="annot"><span class="annottext">api_hash :: Maybe String
+</span><a href="TD.Reply.TdlibParameters.html#api_hash"><span class="hs-identifier hs-var">TdlibParameters.api_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;a3406de8d171bb422bb6ddf3bbd800e2&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-18"></span><span>      </span><span class="annot"><span class="annottext">api_id :: Maybe Int
+</span><a href="TD.Reply.TdlibParameters.html#api_id"><span class="hs-identifier hs-var">TdlibParameters.api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Maybe Int
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">94575</span></span><span class="hs-special">,</span><span>
+</span><span id="line-19"></span><span>      </span><span class="annot"><span class="annottext">use_secret_chats :: Maybe Bool
+</span><a href="TD.Reply.TdlibParameters.html#use_secret_chats"><span class="hs-identifier hs-var">TdlibParameters.use_secret_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Maybe Bool
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">False</span></span><span class="hs-special">,</span><span>
+</span><span id="line-20"></span><span>      </span><span class="annot"><span class="annottext">use_message_database :: Maybe Bool
+</span><a href="TD.Reply.TdlibParameters.html#use_message_database"><span class="hs-identifier hs-var">TdlibParameters.use_message_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Maybe Bool
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">False</span></span><span class="hs-special">,</span><span>
+</span><span id="line-21"></span><span>      </span><span class="annot"><span class="annottext">use_chat_info_database :: Maybe Bool
+</span><a href="TD.Reply.TdlibParameters.html#use_chat_info_database"><span class="hs-identifier hs-var">TdlibParameters.use_chat_info_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Maybe Bool
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">False</span></span><span class="hs-special">,</span><span>
+</span><span id="line-22"></span><span>      </span><span class="annot"><span class="annottext">use_file_database :: Maybe Bool
+</span><a href="TD.Reply.TdlibParameters.html#use_file_database"><span class="hs-identifier hs-var">TdlibParameters.use_file_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Maybe Bool
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">False</span></span><span class="hs-special">,</span><span>
+</span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">files_directory :: Maybe String
+</span><a href="TD.Reply.TdlibParameters.html#files_directory"><span class="hs-identifier hs-var">TdlibParameters.files_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;tdlib_files&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-24"></span><span>      </span><span class="annot"><span class="annottext">database_directory :: Maybe String
+</span><a href="TD.Reply.TdlibParameters.html#database_directory"><span class="hs-identifier hs-var">TdlibParameters.database_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;tdlib_db&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-25"></span><span>      </span><span class="annot"><span class="annottext">use_test_dc :: Maybe Bool
+</span><a href="TD.Reply.TdlibParameters.html#use_test_dc"><span class="hs-identifier hs-var">TdlibParameters.use_test_dc</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Maybe Bool
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">False</span></span><span>
+</span><span id="line-26"></span><span>    </span><span class="hs-special">}</span><span>
+</span><span id="line-27"></span></pre></body></html>

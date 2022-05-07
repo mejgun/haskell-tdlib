@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Reply.NotificationSound</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.File.html"><span class="hs-identifier">TD.Reply.File</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">File</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="NotificationSound"><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-var">NotificationSound</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Describes a notification sound in MP3 format</span><span>
+</span><span id="line-11"></span><span>  </span><span id="NotificationSound"><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-var">NotificationSound</span></a></span></span><span>
+</span><span id="line-12"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | File containing the sound</span><span>
+</span><span id="line-13"></span><span>    </span><span id="sound"><span class="annot"><span class="annottext">NotificationSound -&gt; Maybe File
+</span><a href="TD.Reply.NotificationSound.html#sound"><span class="hs-identifier hs-var hs-var">sound</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.File.html#File"><span class="hs-identifier hs-type">File.File</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-14"></span><span>    </span><span class="hs-comment">-- | Arbitrary data, defined while the sound was uploaded</span><span>
+</span><span id="line-15"></span><span>    </span><span id="_data"><span class="annot"><span class="annottext">NotificationSound -&gt; Maybe String
+</span><a href="TD.Reply.NotificationSound.html#_data"><span class="hs-identifier hs-var hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Title of the notification sound</span><span>
+</span><span id="line-17"></span><span>    </span><span id="title"><span class="annot"><span class="annottext">NotificationSound -&gt; Maybe String
+</span><a href="TD.Reply.NotificationSound.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Point in time (Unix timestamp) when the sound was created</span><span>
+</span><span id="line-19"></span><span>    </span><span id="date"><span class="annot"><span class="annottext">NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#date"><span class="hs-identifier hs-var hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Duration of the sound, in seconds</span><span>
+</span><span id="line-21"></span><span>    </span><span id="duration"><span class="annot"><span class="annottext">NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#duration"><span class="hs-identifier hs-var hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-22"></span><span>    </span><span class="hs-comment">-- | Unique identifier of the notification sound</span><span>
+</span><span id="line-23"></span><span>    </span><span id="_id"><span class="annot"><span class="annottext">NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-24"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-25"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679399118"><span id="local-6989586621679399120"><span class="annot"><span class="annottext">NotificationSound -&gt; NotificationSound -&gt; Bool
+(NotificationSound -&gt; NotificationSound -&gt; Bool)
+-&gt; (NotificationSound -&gt; NotificationSound -&gt; Bool)
+-&gt; Eq NotificationSound
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: NotificationSound -&gt; NotificationSound -&gt; Bool
+$c/= :: NotificationSound -&gt; NotificationSound -&gt; Bool
+== :: NotificationSound -&gt; NotificationSound -&gt; Bool
+$c== :: NotificationSound -&gt; NotificationSound -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-26"></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399112"><span id="local-6989586621679399115"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-type">NotificationSound</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679399110"><span class="annot"><span class="annottext">show :: NotificationSound -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-29"></span><span>    </span><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-type">NotificationSound</span></a></span><span>
+</span><span id="line-30"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sound :: NotificationSound -&gt; Maybe File
+</span><a href="TD.Reply.NotificationSound.html#sound"><span class="hs-identifier hs-var">sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399108"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679399108"><span class="hs-identifier hs-var">sound</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">_data :: NotificationSound -&gt; Maybe String
+</span><a href="TD.Reply.NotificationSound.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399107"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399107"><span class="hs-identifier hs-var">_data</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">title :: NotificationSound -&gt; Maybe String
+</span><a href="TD.Reply.NotificationSound.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399106"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399106"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">date :: NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399105"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399105"><span class="hs-identifier hs-var">date</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">duration :: NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399104"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399104"><span class="hs-identifier hs-var">duration</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">_id :: NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399103"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399103"><span class="hs-identifier hs-var">_id</span></a></span></span><span>
+</span><span id="line-36"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-37"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;NotificationSound&quot;</span></span><span>
+</span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-39"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe File -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679399108"><span class="hs-identifier hs-var">sound</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_data&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399107"><span class="hs-identifier hs-var">_data</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-41"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399106"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-42"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399105"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399104"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399103"><span class="hs-identifier hs-var">_id</span></a></span><span>
+</span><span id="line-45"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-46"></span><span>
+</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399098"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-type">NotificationSound</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span>  </span><span id="local-6989586621679399096"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationSound
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679399094"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679399094"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679399092"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399092"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679399091"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399091"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399092"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399091"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-52"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;notificationSound&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationSound
+</span><a href="#local-6989586621679399089"><span class="hs-identifier hs-var">parseNotificationSound</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399094"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-53"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser NotificationSound
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-54"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span>      </span><span class="annot"><a href="#local-6989586621679399089"><span class="hs-identifier hs-type">parseNotificationSound</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-type">NotificationSound</span></a></span><span>
+</span><span id="line-56"></span><span>      </span><span id="local-6989586621679399089"><span class="annot"><span class="annottext">parseNotificationSound :: Value -&gt; Parser NotificationSound
+</span><a href="#local-6989586621679399089"><span class="hs-identifier hs-var hs-var">parseNotificationSound</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser NotificationSound)
+-&gt; Value
+-&gt; Parser NotificationSound
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;NotificationSound&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationSound)
+ -&gt; Value -&gt; Parser NotificationSound)
+-&gt; (Object -&gt; Parser NotificationSound)
+-&gt; Value
+-&gt; Parser NotificationSound
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399087"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-57"></span><span>        </span><span id="local-6989586621679399086"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679399086"><span class="hs-identifier hs-var">sound_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;sound&quot;</span></span><span>
+</span><span id="line-58"></span><span>        </span><span id="local-6989586621679399084"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399084"><span class="hs-identifier hs-var">_data_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;data&quot;</span></span><span>
+</span><span id="line-59"></span><span>        </span><span id="local-6989586621679399083"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399083"><span class="hs-identifier hs-var">title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;title&quot;</span></span><span>
+</span><span id="line-60"></span><span>        </span><span id="local-6989586621679399082"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399082"><span class="hs-identifier hs-var">date_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;date&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-61"></span><span>        </span><span id="local-6989586621679399079"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399079"><span class="hs-identifier hs-var">duration_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;duration&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-62"></span><span>        </span><span id="local-6989586621679399078"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399078"><span class="hs-identifier hs-var">_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399087"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">NotificationSound -&gt; Parser NotificationSound
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationSound -&gt; Parser NotificationSound)
+-&gt; NotificationSound -&gt; Parser NotificationSound
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NotificationSound :: Maybe File
+-&gt; Maybe String
+-&gt; Maybe String
+-&gt; Maybe Int
+-&gt; Maybe Int
+-&gt; Maybe Int
+-&gt; NotificationSound
+</span><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-type">NotificationSound</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">sound :: Maybe File
+</span><a href="TD.Reply.NotificationSound.html#sound"><span class="hs-identifier hs-var">sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679399086"><span class="hs-identifier hs-var">sound_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_data :: Maybe String
+</span><a href="TD.Reply.NotificationSound.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399084"><span class="hs-identifier hs-var">_data_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
+</span><a href="TD.Reply.NotificationSound.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399083"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399082"><span class="hs-identifier hs-var">date_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399079"><span class="hs-identifier hs-var">duration_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399078"><span class="hs-identifier hs-var">_id_</span></a></span><span class="hs-special">}</span><span>
+</span><span id="line-64"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser NotificationSound
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-65"></span><span>
+</span><span id="line-66"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399071"><span id="local-6989586621679399073"><span id="local-6989586621679399075"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-type">NotificationSound</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-67"></span><span>  </span><span id="local-6989586621679399069"><span class="annot"><span class="annottext">toJSON :: NotificationSound -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-68"></span><span>    </span><span class="annot"><a href="TD.Reply.NotificationSound.html#NotificationSound"><span class="hs-identifier hs-type">NotificationSound</span></a></span><span>
+</span><span id="line-69"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sound :: NotificationSound -&gt; Maybe File
+</span><a href="TD.Reply.NotificationSound.html#sound"><span class="hs-identifier hs-var">sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399067"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679399067"><span class="hs-identifier hs-var">sound</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-70"></span><span>        </span><span class="annot"><span class="annottext">_data :: NotificationSound -&gt; Maybe String
+</span><a href="TD.Reply.NotificationSound.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399066"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399066"><span class="hs-identifier hs-var">_data</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-71"></span><span>        </span><span class="annot"><span class="annottext">title :: NotificationSound -&gt; Maybe String
+</span><a href="TD.Reply.NotificationSound.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399065"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399065"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-72"></span><span>        </span><span class="annot"><span class="annottext">date :: NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399064"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399064"><span class="hs-identifier hs-var">date</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-73"></span><span>        </span><span class="annot"><span class="annottext">duration :: NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399063"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399063"><span class="hs-identifier hs-var">duration</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-74"></span><span>        </span><span class="annot"><span class="annottext">_id :: NotificationSound -&gt; Maybe Int
+</span><a href="TD.Reply.NotificationSound.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399062"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399062"><span class="hs-identifier hs-var">_id</span></a></span></span><span>
+</span><span id="line-75"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-76"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-77"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;notificationSound&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-78"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679399067"><span class="hs-identifier hs-var">sound</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-79"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;data&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399066"><span class="hs-identifier hs-var">_data</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-80"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679399065"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-81"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399064"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-82"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399063"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-83"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399062"><span class="hs-identifier hs-var">_id</span></a></span><span>
+</span><span id="line-84"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-85"></span></pre></body></html>

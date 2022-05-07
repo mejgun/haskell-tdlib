@@ -1,0 +1,43 @@
+{-# LANGUAGE OverloadedStrings #-}
+
+module TD.Query.SetAuthenticationPhoneNumber where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as T
+import qualified TD.Reply.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
+import qualified Utils as U
+
+-- |
+-- Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
+-- or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+data SetAuthenticationPhoneNumber = SetAuthenticationPhoneNumber
+  { -- |
+    settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,
+    -- | The phone number of the user, in international format @settings Settings for the authentication of the user's phone number; pass null to use default settings
+    phone_number :: Maybe String
+  }
+  deriving (Eq)
+
+instance Show SetAuthenticationPhoneNumber where
+  show
+    SetAuthenticationPhoneNumber
+      { settings = settings,
+        phone_number = phone_number
+      } =
+      "SetAuthenticationPhoneNumber"
+        ++ U.cc
+          [ U.p "settings" settings,
+            U.p "phone_number" phone_number
+          ]
+
+instance T.ToJSON SetAuthenticationPhoneNumber where
+  toJSON
+    SetAuthenticationPhoneNumber
+      { settings = settings,
+        phone_number = phone_number
+      } =
+      A.object
+        [ "@type" A..= T.String "setAuthenticationPhoneNumber",
+          "settings" A..= settings,
+          "phone_number" A..= phone_number
+        ]

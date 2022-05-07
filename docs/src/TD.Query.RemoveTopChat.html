@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.RemoveTopChat</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.TopChatCategory.html"><span class="hs-identifier">TD.Reply.TopChatCategory</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">TopChatCategory</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled @category Category of frequently used chats @chat_id Chat identifier</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="RemoveTopChat"><span class="annot"><a href="TD.Query.RemoveTopChat.html#RemoveTopChat"><span class="hs-identifier hs-var">RemoveTopChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="RemoveTopChat"><span class="annot"><a href="TD.Query.RemoveTopChat.html#RemoveTopChat"><span class="hs-identifier hs-var">RemoveTopChat</span></a></span></span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">RemoveTopChat -&gt; Maybe Int
+</span><a href="TD.Query.RemoveTopChat.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>    </span><span id="category"><span class="annot"><span class="annottext">RemoveTopChat -&gt; Maybe TopChatCategory
+</span><a href="TD.Query.RemoveTopChat.html#category"><span class="hs-identifier hs-var hs-var">category</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory.TopChatCategory</span></a></span><span>
+</span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430696"><span id="local-6989586621679430698"><span class="annot"><span class="annottext">RemoveTopChat -&gt; RemoveTopChat -&gt; Bool
+(RemoveTopChat -&gt; RemoveTopChat -&gt; Bool)
+-&gt; (RemoveTopChat -&gt; RemoveTopChat -&gt; Bool) -&gt; Eq RemoveTopChat
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: RemoveTopChat -&gt; RemoveTopChat -&gt; Bool
+$c/= :: RemoveTopChat -&gt; RemoveTopChat -&gt; Bool
+== :: RemoveTopChat -&gt; RemoveTopChat -&gt; Bool
+$c== :: RemoveTopChat -&gt; RemoveTopChat -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430690"><span id="local-6989586621679430693"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.RemoveTopChat.html#RemoveTopChat"><span class="hs-identifier hs-type">RemoveTopChat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679430688"><span class="annot"><span class="annottext">show :: RemoveTopChat -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.RemoveTopChat.html#RemoveTopChat"><span class="hs-identifier hs-type">RemoveTopChat</span></a></span><span>
+</span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: RemoveTopChat -&gt; Maybe Int
+</span><a href="TD.Query.RemoveTopChat.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430686"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430686"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">category :: RemoveTopChat -&gt; Maybe TopChatCategory
+</span><a href="TD.Query.RemoveTopChat.html#category"><span class="hs-identifier hs-var">category</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430685"><span class="annot"><span class="annottext">Maybe TopChatCategory
+</span><a href="#local-6989586621679430685"><span class="hs-identifier hs-var">category</span></a></span></span><span>
+</span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;RemoveTopChat&quot;</span></span><span>
+</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-28"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430686"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe TopChatCategory -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;category&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe TopChatCategory
+</span><a href="#local-6989586621679430685"><span class="hs-identifier hs-var">category</span></a></span><span>
+</span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430676"><span id="local-6989586621679430678"><span id="local-6989586621679430680"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.RemoveTopChat.html#RemoveTopChat"><span class="hs-identifier hs-type">RemoveTopChat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679430674"><span class="annot"><span class="annottext">toJSON :: RemoveTopChat -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.RemoveTopChat.html#RemoveTopChat"><span class="hs-identifier hs-type">RemoveTopChat</span></a></span><span>
+</span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: RemoveTopChat -&gt; Maybe Int
+</span><a href="TD.Query.RemoveTopChat.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430672"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430672"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">category :: RemoveTopChat -&gt; Maybe TopChatCategory
+</span><a href="TD.Query.RemoveTopChat.html#category"><span class="hs-identifier hs-var">category</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430671"><span class="annot"><span class="annottext">Maybe TopChatCategory
+</span><a href="#local-6989586621679430671"><span class="hs-identifier hs-var">category</span></a></span></span><span>
+</span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-39"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;removeTopChat&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430672"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;category&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe TopChatCategory -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe TopChatCategory
+</span><a href="#local-6989586621679430671"><span class="hs-identifier hs-var">category</span></a></span><span>
+</span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-43"></span></pre></body></html>

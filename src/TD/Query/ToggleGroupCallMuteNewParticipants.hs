@@ -1,0 +1,41 @@
+{-# LANGUAGE OverloadedStrings #-}
+
+module TD.Query.ToggleGroupCallMuteNewParticipants where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as T
+import qualified Utils as U
+
+-- |
+-- Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
+data ToggleGroupCallMuteNewParticipants = ToggleGroupCallMuteNewParticipants
+  { -- |
+    mute_new_participants :: Maybe Bool,
+    -- | Group call identifier @mute_new_participants New value of the mute_new_participants setting
+    group_call_id :: Maybe Int
+  }
+  deriving (Eq)
+
+instance Show ToggleGroupCallMuteNewParticipants where
+  show
+    ToggleGroupCallMuteNewParticipants
+      { mute_new_participants = mute_new_participants,
+        group_call_id = group_call_id
+      } =
+      "ToggleGroupCallMuteNewParticipants"
+        ++ U.cc
+          [ U.p "mute_new_participants" mute_new_participants,
+            U.p "group_call_id" group_call_id
+          ]
+
+instance T.ToJSON ToggleGroupCallMuteNewParticipants where
+  toJSON
+    ToggleGroupCallMuteNewParticipants
+      { mute_new_participants = mute_new_participants,
+        group_call_id = group_call_id
+      } =
+      A.object
+        [ "@type" A..= T.String "toggleGroupCallMuteNewParticipants",
+          "mute_new_participants" A..= mute_new_participants,
+          "group_call_id" A..= group_call_id
+        ]

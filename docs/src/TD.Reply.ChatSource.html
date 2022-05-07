@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Reply.ChatSource</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-comment">-- | Describes a reason why an external chat is shown in a chat list</span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="ChatSource"><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSource"><span class="hs-identifier hs-var">ChatSource</span></a></span></span><span>
+</span><span id="line-11"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | The chat is sponsored by the user's MTProxy server</span><span>
+</span><span id="line-12"></span><span>    </span><span id="ChatSourceMtprotoProxy"><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSourceMtprotoProxy"><span class="hs-identifier hs-var">ChatSourceMtprotoProxy</span></a></span></span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The chat contains a public service announcement @type The type of the announcement @text The text of the announcement</span><span>
+</span><span id="line-14"></span><span>    </span><span id="ChatSourcePublicServiceAnnouncement"><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSourcePublicServiceAnnouncement"><span class="hs-identifier hs-var">ChatSourcePublicServiceAnnouncement</span></a></span></span><span>
+</span><span id="line-15"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>        </span><span id="text"><span class="annot"><span class="annottext">ChatSource -&gt; Maybe String
+</span><a href="TD.Reply.ChatSource.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-17"></span><span>        </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-18"></span><span>        </span><span id="_type"><span class="annot"><span class="annottext">ChatSource -&gt; Maybe String
+</span><a href="TD.Reply.ChatSource.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-19"></span><span>      </span><span class="hs-special">}</span><span>
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405013"><span id="local-6989586621679405015"><span class="annot"><span class="annottext">ChatSource -&gt; ChatSource -&gt; Bool
+(ChatSource -&gt; ChatSource -&gt; Bool)
+-&gt; (ChatSource -&gt; ChatSource -&gt; Bool) -&gt; Eq ChatSource
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ChatSource -&gt; ChatSource -&gt; Bool
+$c/= :: ChatSource -&gt; ChatSource -&gt; Bool
+== :: ChatSource -&gt; ChatSource -&gt; Bool
+$c== :: ChatSource -&gt; ChatSource -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405007"><span id="local-6989586621679405010"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSource"><span class="hs-identifier hs-type">ChatSource</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679405005"><span class="annot"><span class="annottext">show :: ChatSource -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">ChatSource
+</span><a href="TD.Reply.ChatSource.html#ChatSourceMtprotoProxy"><span class="hs-identifier hs-var">ChatSourceMtprotoProxy</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-24"></span><span>    </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ChatSourceMtprotoProxy&quot;</span></span><span>
+</span><span id="line-25"></span><span>      </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-26"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-27"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSourcePublicServiceAnnouncement"><span class="hs-identifier hs-type">ChatSourcePublicServiceAnnouncement</span></a></span><span>
+</span><span id="line-29"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: ChatSource -&gt; Maybe String
+</span><a href="TD.Reply.ChatSource.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405002"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405002"><span class="hs-identifier hs-var">text</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">_type :: ChatSource -&gt; Maybe String
+</span><a href="TD.Reply.ChatSource.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405001"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405001"><span class="hs-identifier hs-var">_type</span></a></span></span><span>
+</span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ChatSourcePublicServiceAnnouncement&quot;</span></span><span>
+</span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-34"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405002"><span class="hs-identifier hs-var">text</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405001"><span class="hs-identifier hs-var">_type</span></a></span><span>
+</span><span id="line-36"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404997"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSource"><span class="hs-identifier hs-type">ChatSource</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679404995"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatSource
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679404993"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679404993"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679404991"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404991"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679404990"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404990"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404991"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-41"></span><span>
+</span><span id="line-42"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404990"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;chatSourceMtprotoProxy&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatSource
+</span><a href="#local-6989586621679404988"><span class="hs-identifier hs-var">parseChatSourceMtprotoProxy</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679404993"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-44"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;chatSourcePublicServiceAnnouncement&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatSource
+</span><a href="#local-6989586621679404987"><span class="hs-identifier hs-var">parseChatSourcePublicServiceAnnouncement</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679404993"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser ChatSource
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-46"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679404988"><span class="hs-identifier hs-type">parseChatSourceMtprotoProxy</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSource"><span class="hs-identifier hs-type">ChatSource</span></a></span><span>
+</span><span id="line-48"></span><span>      </span><span id="local-6989586621679404988"><span class="annot"><span class="annottext">parseChatSourceMtprotoProxy :: Value -&gt; Parser ChatSource
+</span><a href="#local-6989586621679404988"><span class="hs-identifier hs-var hs-var">parseChatSourceMtprotoProxy</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser ChatSource) -&gt; Value -&gt; Parser ChatSource
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ChatSourceMtprotoProxy&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ChatSource) -&gt; Value -&gt; Parser ChatSource)
+-&gt; (Object -&gt; Parser ChatSource) -&gt; Value -&gt; Parser ChatSource
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679404985"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404985"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">ChatSource -&gt; Parser ChatSource
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatSource -&gt; Parser ChatSource)
+-&gt; ChatSource -&gt; Parser ChatSource
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatSourceMtprotoProxy :: ChatSource
+</span><a href="TD.Reply.ChatSource.html#ChatSourceMtprotoProxy"><span class="hs-identifier hs-type">ChatSourceMtprotoProxy</span></a></span><span> </span><span class="hs-special">{</span><span class="hs-special">}</span><span>
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span>      </span><span class="annot"><a href="#local-6989586621679404987"><span class="hs-identifier hs-type">parseChatSourcePublicServiceAnnouncement</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSource"><span class="hs-identifier hs-type">ChatSource</span></a></span><span>
+</span><span id="line-52"></span><span>      </span><span id="local-6989586621679404987"><span class="annot"><span class="annottext">parseChatSourcePublicServiceAnnouncement :: Value -&gt; Parser ChatSource
+</span><a href="#local-6989586621679404987"><span class="hs-identifier hs-var hs-var">parseChatSourcePublicServiceAnnouncement</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser ChatSource) -&gt; Value -&gt; Parser ChatSource
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ChatSourcePublicServiceAnnouncement&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ChatSource) -&gt; Value -&gt; Parser ChatSource)
+-&gt; (Object -&gt; Parser ChatSource) -&gt; Value -&gt; Parser ChatSource
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679404984"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404984"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679404983"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404983"><span class="hs-identifier hs-var">text_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404984"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;text&quot;</span></span><span>
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679404981"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404981"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404984"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;type&quot;</span></span><span>
+</span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">ChatSource -&gt; Parser ChatSource
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatSource -&gt; Parser ChatSource)
+-&gt; ChatSource -&gt; Parser ChatSource
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatSourcePublicServiceAnnouncement :: Maybe String -&gt; Maybe String -&gt; ChatSource
+</span><a href="TD.Reply.ChatSource.html#ChatSourcePublicServiceAnnouncement"><span class="hs-identifier hs-type">ChatSourcePublicServiceAnnouncement</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">text :: Maybe String
+</span><a href="TD.Reply.ChatSource.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404983"><span class="hs-identifier hs-var">text_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe String
+</span><a href="TD.Reply.ChatSource.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404981"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">}</span><span>
+</span><span id="line-56"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; Parser ChatSource
+forall (m :: * -&gt; *) a. MonadFail m =&gt; String -&gt; m a
+</span><span class="hs-identifier hs-var">fail</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404974"><span id="local-6989586621679404976"><span id="local-6989586621679404978"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSource"><span class="hs-identifier hs-type">ChatSource</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679404972"><span class="annot"><span class="annottext">toJSON :: ChatSource -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">ChatSource
+</span><a href="TD.Reply.ChatSource.html#ChatSourceMtprotoProxy"><span class="hs-identifier hs-var">ChatSourceMtprotoProxy</span></a></span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-60"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-61"></span><span>      </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;chatSourceMtprotoProxy&quot;</span></span><span>
+</span><span id="line-62"></span><span>      </span><span class="hs-special">]</span><span>
+</span><span id="line-63"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
+</span><span id="line-64"></span><span>    </span><span class="annot"><a href="TD.Reply.ChatSource.html#ChatSourcePublicServiceAnnouncement"><span class="hs-identifier hs-type">ChatSourcePublicServiceAnnouncement</span></a></span><span>
+</span><span id="line-65"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: ChatSource -&gt; Maybe String
+</span><a href="TD.Reply.ChatSource.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404967"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404967"><span class="hs-identifier hs-var">text</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-66"></span><span>        </span><span class="annot"><span class="annottext">_type :: ChatSource -&gt; Maybe String
+</span><a href="TD.Reply.ChatSource.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404966"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404966"><span class="hs-identifier hs-var">_type</span></a></span></span><span>
+</span><span id="line-67"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-68"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-69"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;chatSourcePublicServiceAnnouncement&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404967"><span class="hs-identifier hs-var">text</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404966"><span class="hs-identifier hs-var">_type</span></a></span><span>
+</span><span id="line-72"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-73"></span></pre></body></html>

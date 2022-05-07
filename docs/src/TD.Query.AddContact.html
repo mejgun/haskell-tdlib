@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.AddContact</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Reply.Contact.html"><span class="hs-identifier">TD.Reply.Contact</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Contact</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Adds a user to the contact list or edits an existing contact by their user identifier @contact The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="AddContact"><span class="annot"><a href="TD.Query.AddContact.html#AddContact"><span class="hs-identifier hs-var">AddContact</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="AddContact"><span class="annot"><a href="TD.Query.AddContact.html#AddContact"><span class="hs-identifier hs-var">AddContact</span></a></span></span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number</span><span>
+</span><span id="line-14"></span><span>    </span><span id="share_phone_number"><span class="annot"><span class="annottext">AddContact -&gt; Maybe Bool
+</span><a href="TD.Query.AddContact.html#share_phone_number"><span class="hs-identifier hs-var hs-var">share_phone_number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>    </span><span id="contact"><span class="annot"><span class="annottext">AddContact -&gt; Maybe Contact
+</span><a href="TD.Query.AddContact.html#contact"><span class="hs-identifier hs-var hs-var">contact</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Reply.Contact.html#Contact"><span class="hs-identifier hs-type">Contact.Contact</span></a></span><span>
+</span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446745"><span id="local-6989586621679446747"><span class="annot"><span class="annottext">AddContact -&gt; AddContact -&gt; Bool
+(AddContact -&gt; AddContact -&gt; Bool)
+-&gt; (AddContact -&gt; AddContact -&gt; Bool) -&gt; Eq AddContact
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: AddContact -&gt; AddContact -&gt; Bool
+$c/= :: AddContact -&gt; AddContact -&gt; Bool
+== :: AddContact -&gt; AddContact -&gt; Bool
+$c== :: AddContact -&gt; AddContact -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446739"><span id="local-6989586621679446742"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.AddContact.html#AddContact"><span class="hs-identifier hs-type">AddContact</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679446737"><span class="annot"><span class="annottext">show :: AddContact -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.AddContact.html#AddContact"><span class="hs-identifier hs-type">AddContact</span></a></span><span>
+</span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">share_phone_number :: AddContact -&gt; Maybe Bool
+</span><a href="TD.Query.AddContact.html#share_phone_number"><span class="hs-identifier hs-var">share_phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446735"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679446735"><span class="hs-identifier hs-var">share_phone_number</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">contact :: AddContact -&gt; Maybe Contact
+</span><a href="TD.Query.AddContact.html#contact"><span class="hs-identifier hs-var">contact</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446734"><span class="annot"><span class="annottext">Maybe Contact
+</span><a href="#local-6989586621679446734"><span class="hs-identifier hs-var">contact</span></a></span></span><span>
+</span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;AddContact&quot;</span></span><span>
+</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-28"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;share_phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679446735"><span class="hs-identifier hs-var">share_phone_number</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Contact -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;contact&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Contact
+</span><a href="#local-6989586621679446734"><span class="hs-identifier hs-var">contact</span></a></span><span>
+</span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446725"><span id="local-6989586621679446727"><span id="local-6989586621679446729"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.AddContact.html#AddContact"><span class="hs-identifier hs-type">AddContact</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679446723"><span class="annot"><span class="annottext">toJSON :: AddContact -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.AddContact.html#AddContact"><span class="hs-identifier hs-type">AddContact</span></a></span><span>
+</span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">share_phone_number :: AddContact -&gt; Maybe Bool
+</span><a href="TD.Query.AddContact.html#share_phone_number"><span class="hs-identifier hs-var">share_phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446721"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679446721"><span class="hs-identifier hs-var">share_phone_number</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">contact :: AddContact -&gt; Maybe Contact
+</span><a href="TD.Query.AddContact.html#contact"><span class="hs-identifier hs-var">contact</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446720"><span class="annot"><span class="annottext">Maybe Contact
+</span><a href="#local-6989586621679446720"><span class="hs-identifier hs-var">contact</span></a></span></span><span>
+</span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-39"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;addContact&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;share_phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679446721"><span class="hs-identifier hs-var">share_phone_number</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;contact&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Contact -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Contact
+</span><a href="#local-6989586621679446720"><span class="hs-identifier hs-var">contact</span></a></span><span>
+</span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-43"></span></pre></body></html>
