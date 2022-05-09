@@ -46,11 +46,11 @@ type ImportRecord = (String, String)
 main :: IO ()
 main = do
   [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
-  let dat = filter (not . null) . map strip $ LE.splitOn "\n" d
+  let dt = filter (not . null) . map strip $ LE.splitOn "\n" d
   let a0 =
         map fixConstructors
           . filter (not . isJunk)
-          $ foldl parse [] dat
+          $ foldl parse [] dt
   let fun = filter (not . null) . map strip $ LE.splitOn "\n" f
   let f0 = map fixConstructors $ foldl parse [] fun
   -- let b = foldr structureData (Nothing, []) a
@@ -64,13 +64,13 @@ main = do
   let (Nothing, Nothing, c) = foldl insertComments (Nothing, Nothing, []) b
   let (Nothing, Nothing, f2) = foldl insertComments (Nothing, Nothing, []) f1
   let c1 = foldl groupDataItems [] c
-  let d = map fixArgsKeys c1
-  let f3 = concatMap ((\(_, _, x) -> x) . fixArgsKeys . (\x -> ("a", "b", [x]))) f2
+  let dat = map fixArgsKeys c1
+  let f3 = concatMap ((\(_, _, x) -> x) . fixArgsKeys . (\x -> ("a", [], [x]))) f2
   mapM_ print importFun'
   mapM_ print f3
-  writeData okImports recurImports d
+  writeData okImports recurImports dat
   writeFuncs importFun' f3
-  writeGeneralResult d
+  writeGeneralResult dat
   writeDataBoot recImports'
 
 dataFileMask :: String
@@ -90,16 +90,16 @@ funcModule = "TD.Query"
 
 writeGeneralResult :: [GroupedItems] -> IO ()
 writeGeneralResult l =
-  writeFile (printf dataFileMask name) content
+  writeFile (printf dataFileMask modname) content
   where
-    name :: String
-    name = "GeneralResult"
+    modname :: String
+    modname = "GeneralResult"
     content =
       L.intercalate
         "\n"
         [ "{-# LANGUAGE OverloadedStrings #-}",
           "",
-          printf "module %s.%s where" dataModule name,
+          printf "module %s.%s where" dataModule modname,
           "",
           "import qualified Data.Aeson as A",
           "import qualified Data.Aeson.Types as T",
@@ -143,8 +143,8 @@ writeGeneralResult l =
         ]
 
 writeFuncs :: [ImportRecord] -> [Entry] -> IO ()
-writeFuncs _ [] = print "done"
-writeFuncs imps (q@(Item cl con com arg) : t) = do
+writeFuncs _ [] = putStrLn "done"
+writeFuncs imps (q@(Item _ con com arg) : t) = do
   writeFile fileName fileContent
   writeFuncs imps t
   where
@@ -182,10 +182,10 @@ writeFuncs imps (q@(Item cl con com arg) : t) = do
         ]
       where
         printDataType :: Arg -> String
-        printDataType (Arg k v com) = do
+        printDataType (Arg k v comms) = do
           L.concat
             [ "   -- | ",
-              L.intercalate "\n   -- " com,
+              L.intercalate "\n   -- " comms,
               printf "\n   %s :: %s" k v
             ]
 writeFuncs _ _ = error "func write error"
@@ -230,16 +230,16 @@ printToJson (Item _ con _ arg) =
 printToJson _ = error "not item"
 
 writeData :: [ImportRecord] -> [ImportRecord] -> [GroupedItems] -> IO ()
-writeData _ _ [] = print "done"
-writeData imps recimps (q@(n, com, is) : t) = do
+writeData _ _ [] = putStrLn "done"
+writeData imps recimps (q@(nam, _, _) : t) = do
   writeFile fileName fileContent
   writeData imps recimps t
   where
     fileName :: FilePath
-    fileName = printf dataFileMask n
+    fileName = printf dataFileMask nam
 
     fileContent :: String
-    fileContent = formatDataItem (filter (\i -> fst i == n) imps) (filter (\i -> fst i == n) recimps) q
+    fileContent = formatDataItem (filter (\i -> fst i == nam) imps) (filter (\i -> fst i == nam) recimps) q
 
     formatDataItem :: [ImportRecord] -> [ImportRecord] -> GroupedItems -> String
     formatDataItem ims recs (n, cm, is) =
@@ -271,7 +271,7 @@ writeData imps recimps (q@(n, com, is) : t) = do
         ]
       where
         printDataType :: Entry -> String
-        printDataType (Item cl con com arg) = do
+        printDataType (Item _ con com arg) = do
           L.concat
             [ " -- | ",
               L.intercalate "\n -- " com,
@@ -309,7 +309,7 @@ writeData imps recimps (q@(n, com, is) : t) = do
                 ++ [" parseJSON _ = mempty"]
             )
         printFromJsonItem :: Entry -> String
-        printFromJsonItem (Item cl con com ar) =
+        printFromJsonItem (Item cl con _ ar) =
           L.intercalate
             "\n"
             ( [ printf "   parse%s :: A.Value -> T.Parser %s" con cl,
@@ -327,10 +327,10 @@ writeData imps recimps (q@(n, com, is) : t) = do
         printFromJsonItem _ = error "oops"
         printFromJsonArg :: Arg -> String
         printFromJsonArg (Arg k "Maybe Int" _) = printf "    %s_ <- mconcat [o A..:? \"%s\", U.rm <$> (o A..: \"%s\" :: T.Parser String)] :: T.Parser (Maybe Int)" k (dropAround (== '_') k) (dropAround (== '_') k)
-        printFromJsonArg (Arg k v _) = printf "    %s_ <- o A..:? \"%s\"" k (dropAround (== '_') k)
+        printFromJsonArg (Arg k _ _) = printf "    %s_ <- o A..:? \"%s\"" k (dropAround (== '_') k)
 
 writeDataBoot :: [ImportRecord] -> IO ()
-writeDataBoot [] = print "done"
+writeDataBoot [] = putStrLn "done"
 writeDataBoot ((_, h) : t) = do
   writeFile fileName fileContent
   writeDataBoot t
@@ -363,10 +363,10 @@ writeDataBoot ((_, h) : t) = do
 -- addGeneralResult acc q = acc ++ [q]
 
 sortImports :: [ImportRecord] -> [ImportRecord] -> ([ImportRecord], [ImportRecord])
-sortImports all recs = do
+sortImports alli recs = do
   -- let a = filter (\(x, y) -> x /= y) all
-  let ok = filter (`notElem` recs) all
-      re = filter (`elem` recs) all
+  let ok = filter (`notElem` recs) alli
+      re = filter (`elem` recs) alli
   (uniq ok, uniq re)
 
 findRecursiions :: [ImportRecord] -> [ImportRecord]
@@ -378,26 +378,26 @@ findRecursiions m = foldl (findr m) [] m
        in acc ++ concatMap (\item -> finditem (list L.\\ a) [] item need) a
 
     finditem :: [ImportRecord] -> [ImportRecord] -> ImportRecord -> ImportRecord -> [ImportRecord]
-    finditem list acc cur@(i, b) need@(x, y)
+    finditem list acc cur@(_, b) need@(x, y)
       | b == x = acc ++ [cur]
       | otherwise =
         let a = filter (\(x1, _) -> x1 == b) list
          in acc ++ case a of
               [] -> []
-              [(x1, x2)] | x1 == y -> [cur]
-              x -> case concatMap (\item -> finditem (list L.\\ a) [] item need) x of
+              [(x1, _)] | x1 == y -> [cur]
+              z -> case concatMap (\item -> finditem (list L.\\ a) [] item need) z of
                 [] -> []
-                x -> x ++ [cur]
+                w -> w ++ [cur]
 
 groupDataItems :: [GroupedItems] -> Entry -> [GroupedItems]
-groupDataItems list q@(ClassComment n c) =
-  case filter (\(name, _, _) -> name == n) list of
+groupDataItems list q@(ClassComment n _) =
+  case filter (\(nam, _, _) -> nam == n) list of
     [] -> list ++ [(n, Just q, [])]
     _ -> error "grouping error"
-groupDataItems list q@(Item cl con com arg) = do
-  case filter (\(name, _, _) -> name == cl) list of
+groupDataItems list q@(Item cl _ _ _) = do
+  case filter (\(nam, _, _) -> nam == cl) list of
     [] -> list ++ [(cl, Nothing, [q])]
-    [(x0, x1, x2)] -> filter (\(name, _, _) -> name /= cl) list ++ [(x0, x1, x2 ++ [q])]
+    [(x0, x1, x2)] -> filter (\(nm, _, _) -> nm /= cl) list ++ [(x0, x1, x2 ++ [q])]
     _ -> error "grouping error"
 groupDataItems _ _ = error "grouping error"
 
@@ -440,16 +440,16 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
 -- fixArgsKeys (h : t) acc = fixArgsKeys t (acc ++ [h])
 
 fixArgTypes :: Bool -> ([ImportRecord], [Entry]) -> Entry -> ([ImportRecord], [Entry])
-fixArgTypes pr (imp, acc) i@(Item cl c com arg) =
+fixArgTypes pr (imp, acc) i@(Item cl c _ arg) =
   let (imports, newarg) = foldl fix ([], []) arg
    in (imp ++ zip (repeat (if pr then cl else c)) imports, acc ++ [i {args = newarg}])
   where
     fix :: ([String], [Arg]) -> Arg -> ([String], [Arg])
-    fix (i, a) r@(Arg _ v _) =
+    fix (ii, a) r@(Arg _ v _) =
       let (addi, newv) = case replace v of
             (False, p) -> ([], p)
             (True, p) -> vectorCheck p
-       in (i ++ addi, a ++ [r {value = printf "Maybe %s" newv}])
+       in (ii ++ addi, a ++ [r {value = printf "Maybe %s" newv}])
     vectorCheck :: String -> ([String], String)
     vectorCheck p =
       if LE.isPrefixOf "vector<" p
@@ -457,7 +457,7 @@ fixArgTypes pr (imp, acc) i@(Item cl c com arg) =
           let m = dropAround (== '>') $ myStripPrefix "vector<" p
            in case replace m of
                 (False, w) -> ([], printf "[%s]" w)
-                (True, w) -> let (im, m) = vectorCheck w in (im, printf "[%s]" m) -- toTitle w in ([im], printf "[%s.%s]" im im)
+                (True, w) -> let (im, mm) = vectorCheck w in (im, printf "[%s]" mm) -- toTitle w in ([im], printf "[%s.%s]" im im)
         else
           let m = toTitle p
            in if (pr && cl == m) || (not pr && c == m) then ([], m) else ([m], printf "%s.%s" m m)
@@ -485,10 +485,10 @@ insertComments (q@(Just _), Nothing, acc) (ArgComment n c) =
   (q, Just Arg {comments_ = [c], key = n, value = ""}, acc)
 insertComments (Just i, Just arg, acc) (ArgComment n c) =
   (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = ""}, acc)
-insertComments (it, a, acc) q@(Item cl con com arg) = do
+insertComments (it, a, acc) q@(Item cl con _ arg) = do
   let i = case it of
         Nothing -> q
-        Just i -> i
+        Just ii -> ii
   let i1 = case a of
         Nothing -> i
         Just ar -> i {args = args i ++ [ar]}
@@ -496,10 +496,10 @@ insertComments (it, a, acc) q@(Item cl con com arg) = do
   (Nothing, Nothing, acc ++ [i2])
   where
     insertArgComment :: [Arg] -> Arg -> Arg
-    insertArgComment as a = do
-      case filter (\x -> key a == key x) as of
-        [] -> a
-        [arg'] -> a {comments_ = comments_ arg'}
+    insertArgComment as aa = do
+      case filter (\x -> key aa == key x) as of
+        [] -> aa
+        [arg'] -> aa {comments_ = comments_ arg'}
         _ -> error "parse error"
 insertComments _ _ = error "TL parse error"
 
@@ -546,13 +546,13 @@ structureData (ArgComment txt txt') (cur, acc) = undefined
 parse :: [Entry] -> String -> [Entry]
 parse acc h
   | "//@class " `L.isPrefixOf` h = do
-    let (name, rest) = LE.breakOn " " $ myStripPrefix "//@class " h
-    acc ++ [ClassComment {name = name, comment = myStripPrefix " @description " rest}]
+    let (nam, rest) = LE.breakOn " " $ myStripPrefix "//@class " h
+    acc ++ [ClassComment {name = nam, comment = myStripPrefix " @description " rest}]
   | "//@description " `L.isPrefixOf` h =
     acc ++ [CommentStart (myStripPrefix "//@description " h)]
   | "//@" `L.isPrefixOf` h = do
-    let (name, rest) = LE.breakOn " " $ myStripPrefix "//@" h
-    acc ++ [ArgComment {name = name, comment = myStripPrefix " " rest}]
+    let (nam, rest) = LE.breakOn " " $ myStripPrefix "//@" h
+    acc ++ [ArgComment {name = nam, comment = myStripPrefix " " rest}]
   | "//-" `L.isPrefixOf` h = do
     acc ++ [Comment (myStripPrefix "//-" h)]
   | length (LE.splitOn " = " h) == 2 = do
