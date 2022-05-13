@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.UploadStickerFile where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data UploadStickerFile = UploadStickerFile
 instance Show UploadStickerFile where
   show
     UploadStickerFile
-      { sticker = sticker,
-        user_id = user_id
+      { sticker = sticker_,
+        user_id = user_id_
       } =
       "UploadStickerFile"
         ++ U.cc
-          [ U.p "sticker" sticker,
-            U.p "user_id" user_id
+          [ U.p "sticker" sticker_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON UploadStickerFile where
   toJSON
     UploadStickerFile
-      { sticker = sticker,
-        user_id = user_id
+      { sticker = sticker_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "uploadStickerFile",
-          "sticker" A..= sticker,
-          "user_id" A..= user_id
+          "sticker" A..= sticker_,
+          "user_id" A..= user_id_
         ]

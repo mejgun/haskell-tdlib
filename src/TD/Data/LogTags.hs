@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LogTags where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data LogTags = -- | Contains a list of available TDLib internal log tags @tags L
 instance Show LogTags where
   show
     LogTags
-      { tags = tags
+      { tags = tags_
       } =
       "LogTags"
         ++ U.cc
-          [ U.p "tags" tags
+          [ U.p "tags" tags_
           ]
 
 instance T.FromJSON LogTags where
@@ -40,9 +41,9 @@ instance T.FromJSON LogTags where
 instance T.ToJSON LogTags where
   toJSON
     LogTags
-      { tags = tags
+      { tags = tags_
       } =
       A.object
         [ "@type" A..= T.String "logTags",
-          "tags" A..= tags
+          "tags" A..= tags_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.Destroy where
 
 import qualified Data.Aeson as A

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetAutoDownloadSettings where
 
 import qualified Data.Aeson as A
@@ -21,23 +22,23 @@ data SetAutoDownloadSettings = SetAutoDownloadSettings
 instance Show SetAutoDownloadSettings where
   show
     SetAutoDownloadSettings
-      { _type = _type,
-        settings = settings
+      { _type = _type_,
+        settings = settings_
       } =
       "SetAutoDownloadSettings"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "settings" settings
+          [ U.p "_type" _type_,
+            U.p "settings" settings_
           ]
 
 instance T.ToJSON SetAutoDownloadSettings where
   toJSON
     SetAutoDownloadSettings
-      { _type = _type,
-        settings = settings
+      { _type = _type_,
+        settings = settings_
       } =
       A.object
         [ "@type" A..= T.String "setAutoDownloadSettings",
-          "type" A..= _type,
-          "settings" A..= settings
+          "type" A..= _type_,
+          "settings" A..= settings_
         ]

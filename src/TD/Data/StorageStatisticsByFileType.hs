@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StorageStatisticsByFileType where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data StorageStatisticsByFileType = -- | Contains the storage usage statistics fo
 instance Show StorageStatisticsByFileType where
   show
     StorageStatisticsByFileType
-      { count = count,
-        size = size,
-        file_type = file_type
+      { count = count_,
+        size = size_,
+        file_type = file_type_
       } =
       "StorageStatisticsByFileType"
         ++ U.cc
-          [ U.p "count" count,
-            U.p "size" size,
-            U.p "file_type" file_type
+          [ U.p "count" count_,
+            U.p "size" size_,
+            U.p "file_type" file_type_
           ]
 
 instance T.FromJSON StorageStatisticsByFileType where
@@ -51,13 +52,13 @@ instance T.FromJSON StorageStatisticsByFileType where
 instance T.ToJSON StorageStatisticsByFileType where
   toJSON
     StorageStatisticsByFileType
-      { count = count,
-        size = size,
-        file_type = file_type
+      { count = count_,
+        size = size_,
+        file_type = file_type_
       } =
       A.object
         [ "@type" A..= T.String "storageStatisticsByFileType",
-          "count" A..= count,
-          "size" A..= size,
-          "file_type" A..= file_type
+          "count" A..= count_,
+          "size" A..= size_,
+          "file_type" A..= file_type_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetSupergroupFullInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetSupergroupFullInfo = GetSupergroupFullInfo
 instance Show GetSupergroupFullInfo where
   show
     GetSupergroupFullInfo
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       "GetSupergroupFullInfo"
         ++ U.cc
-          [ U.p "supergroup_id" supergroup_id
+          [ U.p "supergroup_id" supergroup_id_
           ]
 
 instance T.ToJSON GetSupergroupFullInfo where
   toJSON
     GetSupergroupFullInfo
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "getSupergroupFullInfo",
-          "supergroup_id" A..= supergroup_id
+          "supergroup_id" A..= supergroup_id_
         ]

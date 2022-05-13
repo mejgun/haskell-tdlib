@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputThumbnail where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data InputThumbnail = -- | A thumbnail to be sent along with a file; must be in 
 instance Show InputThumbnail where
   show
     InputThumbnail
-      { height = height,
-        width = width,
-        thumbnail = thumbnail
+      { height = height_,
+        width = width_,
+        thumbnail = thumbnail_
       } =
       "InputThumbnail"
         ++ U.cc
-          [ U.p "height" height,
-            U.p "width" width,
-            U.p "thumbnail" thumbnail
+          [ U.p "height" height_,
+            U.p "width" width_,
+            U.p "thumbnail" thumbnail_
           ]
 
 instance T.FromJSON InputThumbnail where
@@ -51,13 +52,13 @@ instance T.FromJSON InputThumbnail where
 instance T.ToJSON InputThumbnail where
   toJSON
     InputThumbnail
-      { height = height,
-        width = width,
-        thumbnail = thumbnail
+      { height = height_,
+        width = width_,
+        thumbnail = thumbnail_
       } =
       A.object
         [ "@type" A..= T.String "inputThumbnail",
-          "height" A..= height,
-          "width" A..= width,
-          "thumbnail" A..= thumbnail
+          "height" A..= height_,
+          "width" A..= width_,
+          "thumbnail" A..= thumbnail_
         ]

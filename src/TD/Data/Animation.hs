@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Animation where
 
 import qualified Data.Aeson as A
@@ -35,27 +36,27 @@ data Animation = -- | Describes an animation file. The animation must be encoded
 instance Show Animation where
   show
     Animation
-      { animation = animation,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        has_stickers = has_stickers,
-        mime_type = mime_type,
-        file_name = file_name,
-        height = height,
-        width = width,
-        duration = duration
+      { animation = animation_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        has_stickers = has_stickers_,
+        mime_type = mime_type_,
+        file_name = file_name_,
+        height = height_,
+        width = width_,
+        duration = duration_
       } =
       "Animation"
         ++ U.cc
-          [ U.p "animation" animation,
-            U.p "thumbnail" thumbnail,
-            U.p "minithumbnail" minithumbnail,
-            U.p "has_stickers" has_stickers,
-            U.p "mime_type" mime_type,
-            U.p "file_name" file_name,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "duration" duration
+          [ U.p "animation" animation_,
+            U.p "thumbnail" thumbnail_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "has_stickers" has_stickers_,
+            U.p "mime_type" mime_type_,
+            U.p "file_name" file_name_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "duration" duration_
           ]
 
 instance T.FromJSON Animation where
@@ -83,25 +84,25 @@ instance T.FromJSON Animation where
 instance T.ToJSON Animation where
   toJSON
     Animation
-      { animation = animation,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        has_stickers = has_stickers,
-        mime_type = mime_type,
-        file_name = file_name,
-        height = height,
-        width = width,
-        duration = duration
+      { animation = animation_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        has_stickers = has_stickers_,
+        mime_type = mime_type_,
+        file_name = file_name_,
+        height = height_,
+        width = width_,
+        duration = duration_
       } =
       A.object
         [ "@type" A..= T.String "animation",
-          "animation" A..= animation,
-          "thumbnail" A..= thumbnail,
-          "minithumbnail" A..= minithumbnail,
-          "has_stickers" A..= has_stickers,
-          "mime_type" A..= mime_type,
-          "file_name" A..= file_name,
-          "height" A..= height,
-          "width" A..= width,
-          "duration" A..= duration
+          "animation" A..= animation_,
+          "thumbnail" A..= thumbnail_,
+          "minithumbnail" A..= minithumbnail_,
+          "has_stickers" A..= has_stickers_,
+          "mime_type" A..= mime_type_,
+          "file_name" A..= file_name_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "duration" A..= duration_
         ]

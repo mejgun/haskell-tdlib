@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TMeUrls where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data TMeUrls = -- | Contains a list of t.me URLs @urls List of URLs
 instance Show TMeUrls where
   show
     TMeUrls
-      { urls = urls
+      { urls = urls_
       } =
       "TMeUrls"
         ++ U.cc
-          [ U.p "urls" urls
+          [ U.p "urls" urls_
           ]
 
 instance T.FromJSON TMeUrls where
@@ -41,9 +42,9 @@ instance T.FromJSON TMeUrls where
 instance T.ToJSON TMeUrls where
   toJSON
     TMeUrls
-      { urls = urls
+      { urls = urls_
       } =
       A.object
         [ "@type" A..= T.String "tMeUrls",
-          "urls" A..= urls
+          "urls" A..= urls_
         ]

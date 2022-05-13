@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Error where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data Error = -- | An object of this type can be returned on every function call,
 instance Show Error where
   show
     Error
-      { message = message,
-        code = code
+      { message = message_,
+        code = code_
       } =
       "Error"
         ++ U.cc
-          [ U.p "message" message,
-            U.p "code" code
+          [ U.p "message" message_,
+            U.p "code" code_
           ]
 
 instance T.FromJSON Error where
@@ -45,11 +46,11 @@ instance T.FromJSON Error where
 instance T.ToJSON Error where
   toJSON
     Error
-      { message = message,
-        code = code
+      { message = message_,
+        code = code_
       } =
       A.object
         [ "@type" A..= T.String "error",
-          "message" A..= message,
-          "code" A..= code
+          "message" A..= message_,
+          "code" A..= code_
         ]

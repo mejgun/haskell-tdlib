@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TestBytes where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data TestBytes = -- | A simple object containing a sequence of bytes; for testin
 instance Show TestBytes where
   show
     TestBytes
-      { value = value
+      { value = value_
       } =
       "TestBytes"
         ++ U.cc
-          [ U.p "value" value
+          [ U.p "value" value_
           ]
 
 instance T.FromJSON TestBytes where
@@ -40,9 +41,9 @@ instance T.FromJSON TestBytes where
 instance T.ToJSON TestBytes where
   toJSON
     TestBytes
-      { value = value
+      { value = value_
       } =
       A.object
         [ "@type" A..= T.String "testBytes",
-          "value" A..= value
+          "value" A..= value_
         ]

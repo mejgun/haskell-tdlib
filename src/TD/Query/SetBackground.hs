@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetBackground where
 
 import qualified Data.Aeson as A
@@ -23,27 +24,27 @@ data SetBackground = SetBackground
 instance Show SetBackground where
   show
     SetBackground
-      { for_dark_theme = for_dark_theme,
-        _type = _type,
-        background = background
+      { for_dark_theme = for_dark_theme_,
+        _type = _type_,
+        background = background_
       } =
       "SetBackground"
         ++ U.cc
-          [ U.p "for_dark_theme" for_dark_theme,
-            U.p "_type" _type,
-            U.p "background" background
+          [ U.p "for_dark_theme" for_dark_theme_,
+            U.p "_type" _type_,
+            U.p "background" background_
           ]
 
 instance T.ToJSON SetBackground where
   toJSON
     SetBackground
-      { for_dark_theme = for_dark_theme,
-        _type = _type,
-        background = background
+      { for_dark_theme = for_dark_theme_,
+        _type = _type_,
+        background = background_
       } =
       A.object
         [ "@type" A..= T.String "setBackground",
-          "for_dark_theme" A..= for_dark_theme,
-          "type" A..= _type,
-          "background" A..= background
+          "for_dark_theme" A..= for_dark_theme_,
+          "type" A..= _type_,
+          "background" A..= background_
         ]

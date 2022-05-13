@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetAlarm where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SetAlarm = SetAlarm
 instance Show SetAlarm where
   show
     SetAlarm
-      { seconds = seconds
+      { seconds = seconds_
       } =
       "SetAlarm"
         ++ U.cc
-          [ U.p "seconds" seconds
+          [ U.p "seconds" seconds_
           ]
 
 instance T.ToJSON SetAlarm where
   toJSON
     SetAlarm
-      { seconds = seconds
+      { seconds = seconds_
       } =
       A.object
         [ "@type" A..= T.String "setAlarm",
-          "seconds" A..= seconds
+          "seconds" A..= seconds_
         ]

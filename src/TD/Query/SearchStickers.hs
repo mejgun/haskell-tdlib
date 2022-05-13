@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchStickers where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SearchStickers = SearchStickers
 instance Show SearchStickers where
   show
     SearchStickers
-      { limit = limit,
-        emoji = emoji
+      { limit = limit_,
+        emoji = emoji_
       } =
       "SearchStickers"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "emoji" emoji
+          [ U.p "limit" limit_,
+            U.p "emoji" emoji_
           ]
 
 instance T.ToJSON SearchStickers where
   toJSON
     SearchStickers
-      { limit = limit,
-        emoji = emoji
+      { limit = limit_,
+        emoji = emoji_
       } =
       A.object
         [ "@type" A..= T.String "searchStickers",
-          "limit" A..= limit,
-          "emoji" A..= emoji
+          "limit" A..= limit_,
+          "emoji" A..= emoji_
         ]

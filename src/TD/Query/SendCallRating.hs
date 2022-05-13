@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendCallRating where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data SendCallRating = SendCallRating
 instance Show SendCallRating where
   show
     SendCallRating
-      { problems = problems,
-        comment = comment,
-        rating = rating,
-        call_id = call_id
+      { problems = problems_,
+        comment = comment_,
+        rating = rating_,
+        call_id = call_id_
       } =
       "SendCallRating"
         ++ U.cc
-          [ U.p "problems" problems,
-            U.p "comment" comment,
-            U.p "rating" rating,
-            U.p "call_id" call_id
+          [ U.p "problems" problems_,
+            U.p "comment" comment_,
+            U.p "rating" rating_,
+            U.p "call_id" call_id_
           ]
 
 instance T.ToJSON SendCallRating where
   toJSON
     SendCallRating
-      { problems = problems,
-        comment = comment,
-        rating = rating,
-        call_id = call_id
+      { problems = problems_,
+        comment = comment_,
+        rating = rating_,
+        call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "sendCallRating",
-          "problems" A..= problems,
-          "comment" A..= comment,
-          "rating" A..= rating,
-          "call_id" A..= call_id
+          "problems" A..= problems_,
+          "comment" A..= comment_,
+          "rating" A..= rating_,
+          "call_id" A..= call_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RevokeGroupCallInviteLink where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RevokeGroupCallInviteLink = RevokeGroupCallInviteLink
 instance Show RevokeGroupCallInviteLink where
   show
     RevokeGroupCallInviteLink
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       "RevokeGroupCallInviteLink"
         ++ U.cc
-          [ U.p "group_call_id" group_call_id
+          [ U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON RevokeGroupCallInviteLink where
   toJSON
     RevokeGroupCallInviteLink
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "revokeGroupCallInviteLink",
-          "group_call_id" A..= group_call_id
+          "group_call_id" A..= group_call_id_
         ]

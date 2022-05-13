@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TerminateSession where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data TerminateSession = TerminateSession
 instance Show TerminateSession where
   show
     TerminateSession
-      { session_id = session_id
+      { session_id = session_id_
       } =
       "TerminateSession"
         ++ U.cc
-          [ U.p "session_id" session_id
+          [ U.p "session_id" session_id_
           ]
 
 instance T.ToJSON TerminateSession where
   toJSON
     TerminateSession
-      { session_id = session_id
+      { session_id = session_id_
       } =
       A.object
         [ "@type" A..= T.String "terminateSession",
-          "session_id" A..= session_id
+          "session_id" A..= session_id_
         ]

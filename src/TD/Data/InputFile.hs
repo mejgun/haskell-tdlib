@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputFile where
 
 import qualified Data.Aeson as A
@@ -38,39 +39,39 @@ data InputFile
 instance Show InputFile where
   show
     InputFileId
-      { _id = _id
+      { _id = _id_
       } =
       "InputFileId"
         ++ U.cc
-          [ U.p "_id" _id
+          [ U.p "_id" _id_
           ]
   show
     InputFileRemote
-      { __id = __id
+      { __id = __id_
       } =
       "InputFileRemote"
         ++ U.cc
-          [ U.p "__id" __id
+          [ U.p "__id" __id_
           ]
   show
     InputFileLocal
-      { path = path
+      { path = path_
       } =
       "InputFileLocal"
         ++ U.cc
-          [ U.p "path" path
+          [ U.p "path" path_
           ]
   show
     InputFileGenerated
-      { expected_size = expected_size,
-        conversion = conversion,
-        original_path = original_path
+      { expected_size = expected_size_,
+        conversion = conversion_,
+        original_path = original_path_
       } =
       "InputFileGenerated"
         ++ U.cc
-          [ U.p "expected_size" expected_size,
-            U.p "conversion" conversion,
-            U.p "original_path" original_path
+          [ U.p "expected_size" expected_size_,
+            U.p "conversion" conversion_,
+            U.p "original_path" original_path_
           ]
 
 instance T.FromJSON InputFile where
@@ -110,37 +111,37 @@ instance T.FromJSON InputFile where
 instance T.ToJSON InputFile where
   toJSON
     InputFileId
-      { _id = _id
+      { _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inputFileId",
-          "id" A..= _id
+          "id" A..= _id_
         ]
   toJSON
     InputFileRemote
-      { __id = __id
+      { __id = __id_
       } =
       A.object
         [ "@type" A..= T.String "inputFileRemote",
-          "id" A..= __id
+          "id" A..= __id_
         ]
   toJSON
     InputFileLocal
-      { path = path
+      { path = path_
       } =
       A.object
         [ "@type" A..= T.String "inputFileLocal",
-          "path" A..= path
+          "path" A..= path_
         ]
   toJSON
     InputFileGenerated
-      { expected_size = expected_size,
-        conversion = conversion,
-        original_path = original_path
+      { expected_size = expected_size_,
+        conversion = conversion_,
+        original_path = original_path_
       } =
       A.object
         [ "@type" A..= T.String "inputFileGenerated",
-          "expected_size" A..= expected_size,
-          "conversion" A..= conversion,
-          "original_path" A..= original_path
+          "expected_size" A..= expected_size_,
+          "conversion" A..= conversion_,
+          "original_path" A..= original_path_
         ]

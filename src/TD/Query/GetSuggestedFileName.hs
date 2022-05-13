@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetSuggestedFileName where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetSuggestedFileName = GetSuggestedFileName
 instance Show GetSuggestedFileName where
   show
     GetSuggestedFileName
-      { directory = directory,
-        file_id = file_id
+      { directory = directory_,
+        file_id = file_id_
       } =
       "GetSuggestedFileName"
         ++ U.cc
-          [ U.p "directory" directory,
-            U.p "file_id" file_id
+          [ U.p "directory" directory_,
+            U.p "file_id" file_id_
           ]
 
 instance T.ToJSON GetSuggestedFileName where
   toJSON
     GetSuggestedFileName
-      { directory = directory,
-        file_id = file_id
+      { directory = directory_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "getSuggestedFileName",
-          "directory" A..= directory,
-          "file_id" A..= file_id
+          "directory" A..= directory_,
+          "file_id" A..= file_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetInstalledStickerSets where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetInstalledStickerSets = GetInstalledStickerSets
 instance Show GetInstalledStickerSets where
   show
     GetInstalledStickerSets
-      { is_masks = is_masks
+      { is_masks = is_masks_
       } =
       "GetInstalledStickerSets"
         ++ U.cc
-          [ U.p "is_masks" is_masks
+          [ U.p "is_masks" is_masks_
           ]
 
 instance T.ToJSON GetInstalledStickerSets where
   toJSON
     GetInstalledStickerSets
-      { is_masks = is_masks
+      { is_masks = is_masks_
       } =
       A.object
         [ "@type" A..= T.String "getInstalledStickerSets",
-          "is_masks" A..= is_masks
+          "is_masks" A..= is_masks_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Users where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data Users = -- | Represents a list of users @total_count Approximate total numb
 instance Show Users where
   show
     Users
-      { user_ids = user_ids,
-        total_count = total_count
+      { user_ids = user_ids_,
+        total_count = total_count_
       } =
       "Users"
         ++ U.cc
-          [ U.p "user_ids" user_ids,
-            U.p "total_count" total_count
+          [ U.p "user_ids" user_ids_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON Users where
@@ -45,11 +46,11 @@ instance T.FromJSON Users where
 instance T.ToJSON Users where
   toJSON
     Users
-      { user_ids = user_ids,
-        total_count = total_count
+      { user_ids = user_ids_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "users",
-          "user_ids" A..= user_ids,
-          "total_count" A..= total_count
+          "user_ids" A..= user_ids_,
+          "total_count" A..= total_count_
         ]

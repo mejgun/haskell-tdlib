@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GeneralResult where
 
 import qualified Data.Aeson as A
@@ -680,9 +681,10 @@ instance T.FromJSON ResultWithExtra where
       e = case T.parse (\o -> o A..:? "@extra" :: T.Parser (Maybe String)) obj of
         T.Success r -> r
         _ -> Nothing
+  parseJSON _ = mempty
 
 instance T.FromJSON GeneralResult where
-  parseJSON v@(T.Object obj) = do
+  parseJSON v@(T.Object _) = do
     mconcat t
     where
       t =
@@ -1677,3 +1679,4 @@ instance T.FromJSON GeneralResult where
             T.Success a -> return $ TestVectorStringObject a
             _ -> mempty
         ]
+  parseJSON _ = mempty

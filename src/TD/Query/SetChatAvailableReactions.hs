@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatAvailableReactions where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SetChatAvailableReactions = SetChatAvailableReactions
 instance Show SetChatAvailableReactions where
   show
     SetChatAvailableReactions
-      { available_reactions = available_reactions,
-        chat_id = chat_id
+      { available_reactions = available_reactions_,
+        chat_id = chat_id_
       } =
       "SetChatAvailableReactions"
         ++ U.cc
-          [ U.p "available_reactions" available_reactions,
-            U.p "chat_id" chat_id
+          [ U.p "available_reactions" available_reactions_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatAvailableReactions where
   toJSON
     SetChatAvailableReactions
-      { available_reactions = available_reactions,
-        chat_id = chat_id
+      { available_reactions = available_reactions_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatAvailableReactions",
-          "available_reactions" A..= available_reactions,
-          "chat_id" A..= chat_id
+          "available_reactions" A..= available_reactions_,
+          "chat_id" A..= chat_id_
         ]

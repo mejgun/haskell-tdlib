@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PageBlockCaption where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data PageBlockCaption = -- | Contains a caption of an instant view web page bloc
 instance Show PageBlockCaption where
   show
     PageBlockCaption
-      { credit = credit,
-        text = text
+      { credit = credit_,
+        text = text_
       } =
       "PageBlockCaption"
         ++ U.cc
-          [ U.p "credit" credit,
-            U.p "text" text
+          [ U.p "credit" credit_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON PageBlockCaption where
@@ -46,11 +47,11 @@ instance T.FromJSON PageBlockCaption where
 instance T.ToJSON PageBlockCaption where
   toJSON
     PageBlockCaption
-      { credit = credit,
-        text = text
+      { credit = credit_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockCaption",
-          "credit" A..= credit,
-          "text" A..= text
+          "credit" A..= credit_,
+          "text" A..= text_
         ]

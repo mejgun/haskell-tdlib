@@ -879,7 +879,7 @@ executable haskell-tdlib-exe
       Paths_haskell_tdlib
   hs-source-dirs:
       app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -W -Wall -Werror
   build-depends:
       base >=4.7 && <5
     , haskell-tdlib

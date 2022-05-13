@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetBasicGroupFullInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetBasicGroupFullInfo = GetBasicGroupFullInfo
 instance Show GetBasicGroupFullInfo where
   show
     GetBasicGroupFullInfo
-      { basic_group_id = basic_group_id
+      { basic_group_id = basic_group_id_
       } =
       "GetBasicGroupFullInfo"
         ++ U.cc
-          [ U.p "basic_group_id" basic_group_id
+          [ U.p "basic_group_id" basic_group_id_
           ]
 
 instance T.ToJSON GetBasicGroupFullInfo where
   toJSON
     GetBasicGroupFullInfo
-      { basic_group_id = basic_group_id
+      { basic_group_id = basic_group_id_
       } =
       A.object
         [ "@type" A..= T.String "getBasicGroupFullInfo",
-          "basic_group_id" A..= basic_group_id
+          "basic_group_id" A..= basic_group_id_
         ]

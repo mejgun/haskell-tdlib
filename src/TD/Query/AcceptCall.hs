@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AcceptCall where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data AcceptCall = AcceptCall
 instance Show AcceptCall where
   show
     AcceptCall
-      { protocol = protocol,
-        call_id = call_id
+      { protocol = protocol_,
+        call_id = call_id_
       } =
       "AcceptCall"
         ++ U.cc
-          [ U.p "protocol" protocol,
-            U.p "call_id" call_id
+          [ U.p "protocol" protocol_,
+            U.p "call_id" call_id_
           ]
 
 instance T.ToJSON AcceptCall where
   toJSON
     AcceptCall
-      { protocol = protocol,
-        call_id = call_id
+      { protocol = protocol_,
+        call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "acceptCall",
-          "protocol" A..= protocol,
-          "call_id" A..= call_id
+          "protocol" A..= protocol_,
+          "call_id" A..= call_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TestVectorIntObject where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data TestVectorIntObject = -- | A simple object containing a vector of objects t
 instance Show TestVectorIntObject where
   show
     TestVectorIntObject
-      { value = value
+      { value = value_
       } =
       "TestVectorIntObject"
         ++ U.cc
-          [ U.p "value" value
+          [ U.p "value" value_
           ]
 
 instance T.FromJSON TestVectorIntObject where
@@ -41,9 +42,9 @@ instance T.FromJSON TestVectorIntObject where
 instance T.ToJSON TestVectorIntObject where
   toJSON
     TestVectorIntObject
-      { value = value
+      { value = value_
       } =
       A.object
         [ "@type" A..= T.String "testVectorIntObject",
-          "value" A..= value
+          "value" A..= value_
         ]

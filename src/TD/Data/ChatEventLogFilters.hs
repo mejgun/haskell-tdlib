@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatEventLogFilters where
 
 import qualified Data.Aeson as A
@@ -38,33 +39,33 @@ data ChatEventLogFilters = -- | Represents a set of filters used to obtain a cha
 instance Show ChatEventLogFilters where
   show
     ChatEventLogFilters
-      { video_chat_changes = video_chat_changes,
-        invite_link_changes = invite_link_changes,
-        setting_changes = setting_changes,
-        info_changes = info_changes,
-        member_restrictions = member_restrictions,
-        member_promotions = member_promotions,
-        member_invites = member_invites,
-        member_leaves = member_leaves,
-        member_joins = member_joins,
-        message_pins = message_pins,
-        message_deletions = message_deletions,
-        message_edits = message_edits
+      { video_chat_changes = video_chat_changes_,
+        invite_link_changes = invite_link_changes_,
+        setting_changes = setting_changes_,
+        info_changes = info_changes_,
+        member_restrictions = member_restrictions_,
+        member_promotions = member_promotions_,
+        member_invites = member_invites_,
+        member_leaves = member_leaves_,
+        member_joins = member_joins_,
+        message_pins = message_pins_,
+        message_deletions = message_deletions_,
+        message_edits = message_edits_
       } =
       "ChatEventLogFilters"
         ++ U.cc
-          [ U.p "video_chat_changes" video_chat_changes,
-            U.p "invite_link_changes" invite_link_changes,
-            U.p "setting_changes" setting_changes,
-            U.p "info_changes" info_changes,
-            U.p "member_restrictions" member_restrictions,
-            U.p "member_promotions" member_promotions,
-            U.p "member_invites" member_invites,
-            U.p "member_leaves" member_leaves,
-            U.p "member_joins" member_joins,
-            U.p "message_pins" message_pins,
-            U.p "message_deletions" message_deletions,
-            U.p "message_edits" message_edits
+          [ U.p "video_chat_changes" video_chat_changes_,
+            U.p "invite_link_changes" invite_link_changes_,
+            U.p "setting_changes" setting_changes_,
+            U.p "info_changes" info_changes_,
+            U.p "member_restrictions" member_restrictions_,
+            U.p "member_promotions" member_promotions_,
+            U.p "member_invites" member_invites_,
+            U.p "member_leaves" member_leaves_,
+            U.p "member_joins" member_joins_,
+            U.p "message_pins" message_pins_,
+            U.p "message_deletions" message_deletions_,
+            U.p "message_edits" message_edits_
           ]
 
 instance T.FromJSON ChatEventLogFilters where
@@ -95,31 +96,31 @@ instance T.FromJSON ChatEventLogFilters where
 instance T.ToJSON ChatEventLogFilters where
   toJSON
     ChatEventLogFilters
-      { video_chat_changes = video_chat_changes,
-        invite_link_changes = invite_link_changes,
-        setting_changes = setting_changes,
-        info_changes = info_changes,
-        member_restrictions = member_restrictions,
-        member_promotions = member_promotions,
-        member_invites = member_invites,
-        member_leaves = member_leaves,
-        member_joins = member_joins,
-        message_pins = message_pins,
-        message_deletions = message_deletions,
-        message_edits = message_edits
+      { video_chat_changes = video_chat_changes_,
+        invite_link_changes = invite_link_changes_,
+        setting_changes = setting_changes_,
+        info_changes = info_changes_,
+        member_restrictions = member_restrictions_,
+        member_promotions = member_promotions_,
+        member_invites = member_invites_,
+        member_leaves = member_leaves_,
+        member_joins = member_joins_,
+        message_pins = message_pins_,
+        message_deletions = message_deletions_,
+        message_edits = message_edits_
       } =
       A.object
         [ "@type" A..= T.String "chatEventLogFilters",
-          "video_chat_changes" A..= video_chat_changes,
-          "invite_link_changes" A..= invite_link_changes,
-          "setting_changes" A..= setting_changes,
-          "info_changes" A..= info_changes,
-          "member_restrictions" A..= member_restrictions,
-          "member_promotions" A..= member_promotions,
-          "member_invites" A..= member_invites,
-          "member_leaves" A..= member_leaves,
-          "member_joins" A..= member_joins,
-          "message_pins" A..= message_pins,
-          "message_deletions" A..= message_deletions,
-          "message_edits" A..= message_edits
+          "video_chat_changes" A..= video_chat_changes_,
+          "invite_link_changes" A..= invite_link_changes_,
+          "setting_changes" A..= setting_changes_,
+          "info_changes" A..= info_changes_,
+          "member_restrictions" A..= member_restrictions_,
+          "member_promotions" A..= member_promotions_,
+          "member_invites" A..= member_invites_,
+          "member_leaves" A..= member_leaves_,
+          "member_joins" A..= member_joins_,
+          "message_pins" A..= message_pins_,
+          "message_deletions" A..= message_deletions_,
+          "message_edits" A..= message_edits_
         ]

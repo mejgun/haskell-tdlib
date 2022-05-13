@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ProxyType where
 
 import qualified Data.Aeson as A
@@ -34,33 +35,33 @@ data ProxyType
 instance Show ProxyType where
   show
     ProxyTypeSocks5
-      { password = password,
-        username = username
+      { password = password_,
+        username = username_
       } =
       "ProxyTypeSocks5"
         ++ U.cc
-          [ U.p "password" password,
-            U.p "username" username
+          [ U.p "password" password_,
+            U.p "username" username_
           ]
   show
     ProxyTypeHttp
-      { http_only = http_only,
-        password = password,
-        username = username
+      { http_only = http_only_,
+        password = password_,
+        username = username_
       } =
       "ProxyTypeHttp"
         ++ U.cc
-          [ U.p "http_only" http_only,
-            U.p "password" password,
-            U.p "username" username
+          [ U.p "http_only" http_only_,
+            U.p "password" password_,
+            U.p "username" username_
           ]
   show
     ProxyTypeMtproto
-      { secret = secret
+      { secret = secret_
       } =
       "ProxyTypeMtproto"
         ++ U.cc
-          [ U.p "secret" secret
+          [ U.p "secret" secret_
           ]
 
 instance T.FromJSON ProxyType where
@@ -95,31 +96,31 @@ instance T.FromJSON ProxyType where
 instance T.ToJSON ProxyType where
   toJSON
     ProxyTypeSocks5
-      { password = password,
-        username = username
+      { password = password_,
+        username = username_
       } =
       A.object
         [ "@type" A..= T.String "proxyTypeSocks5",
-          "password" A..= password,
-          "username" A..= username
+          "password" A..= password_,
+          "username" A..= username_
         ]
   toJSON
     ProxyTypeHttp
-      { http_only = http_only,
-        password = password,
-        username = username
+      { http_only = http_only_,
+        password = password_,
+        username = username_
       } =
       A.object
         [ "@type" A..= T.String "proxyTypeHttp",
-          "http_only" A..= http_only,
-          "password" A..= password,
-          "username" A..= username
+          "http_only" A..= http_only_,
+          "password" A..= password_,
+          "username" A..= username_
         ]
   toJSON
     ProxyTypeMtproto
-      { secret = secret
+      { secret = secret_
       } =
       A.object
         [ "@type" A..= T.String "proxyTypeMtproto",
-          "secret" A..= secret
+          "secret" A..= secret_
         ]

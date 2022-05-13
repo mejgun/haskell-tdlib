@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PhotoSize where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data PhotoSize = -- | Describes an image in JPEG format @type Image type (see ht
 instance Show PhotoSize where
   show
     PhotoSize
-      { progressive_sizes = progressive_sizes,
-        height = height,
-        width = width,
-        photo = photo,
-        _type = _type
+      { progressive_sizes = progressive_sizes_,
+        height = height_,
+        width = width_,
+        photo = photo_,
+        _type = _type_
       } =
       "PhotoSize"
         ++ U.cc
-          [ U.p "progressive_sizes" progressive_sizes,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "photo" photo,
-            U.p "_type" _type
+          [ U.p "progressive_sizes" progressive_sizes_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "photo" photo_,
+            U.p "_type" _type_
           ]
 
 instance T.FromJSON PhotoSize where
@@ -61,17 +62,17 @@ instance T.FromJSON PhotoSize where
 instance T.ToJSON PhotoSize where
   toJSON
     PhotoSize
-      { progressive_sizes = progressive_sizes,
-        height = height,
-        width = width,
-        photo = photo,
-        _type = _type
+      { progressive_sizes = progressive_sizes_,
+        height = height_,
+        width = width_,
+        photo = photo_,
+        _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "photoSize",
-          "progressive_sizes" A..= progressive_sizes,
-          "height" A..= height,
-          "width" A..= width,
-          "photo" A..= photo,
-          "type" A..= _type
+          "progressive_sizes" A..= progressive_sizes_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "photo" A..= photo_,
+          "type" A..= _type_
         ]

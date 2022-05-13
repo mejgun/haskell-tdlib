@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Audio where
 
 import qualified Data.Aeson as A
@@ -33,25 +34,25 @@ data Audio = -- | Describes an audio file. Audio is usually in MP3 or M4A format
 instance Show Audio where
   show
     Audio
-      { audio = audio,
-        album_cover_thumbnail = album_cover_thumbnail,
-        album_cover_minithumbnail = album_cover_minithumbnail,
-        mime_type = mime_type,
-        file_name = file_name,
-        performer = performer,
-        title = title,
-        duration = duration
+      { audio = audio_,
+        album_cover_thumbnail = album_cover_thumbnail_,
+        album_cover_minithumbnail = album_cover_minithumbnail_,
+        mime_type = mime_type_,
+        file_name = file_name_,
+        performer = performer_,
+        title = title_,
+        duration = duration_
       } =
       "Audio"
         ++ U.cc
-          [ U.p "audio" audio,
-            U.p "album_cover_thumbnail" album_cover_thumbnail,
-            U.p "album_cover_minithumbnail" album_cover_minithumbnail,
-            U.p "mime_type" mime_type,
-            U.p "file_name" file_name,
-            U.p "performer" performer,
-            U.p "title" title,
-            U.p "duration" duration
+          [ U.p "audio" audio_,
+            U.p "album_cover_thumbnail" album_cover_thumbnail_,
+            U.p "album_cover_minithumbnail" album_cover_minithumbnail_,
+            U.p "mime_type" mime_type_,
+            U.p "file_name" file_name_,
+            U.p "performer" performer_,
+            U.p "title" title_,
+            U.p "duration" duration_
           ]
 
 instance T.FromJSON Audio where
@@ -78,23 +79,23 @@ instance T.FromJSON Audio where
 instance T.ToJSON Audio where
   toJSON
     Audio
-      { audio = audio,
-        album_cover_thumbnail = album_cover_thumbnail,
-        album_cover_minithumbnail = album_cover_minithumbnail,
-        mime_type = mime_type,
-        file_name = file_name,
-        performer = performer,
-        title = title,
-        duration = duration
+      { audio = audio_,
+        album_cover_thumbnail = album_cover_thumbnail_,
+        album_cover_minithumbnail = album_cover_minithumbnail_,
+        mime_type = mime_type_,
+        file_name = file_name_,
+        performer = performer_,
+        title = title_,
+        duration = duration_
       } =
       A.object
         [ "@type" A..= T.String "audio",
-          "audio" A..= audio,
-          "album_cover_thumbnail" A..= album_cover_thumbnail,
-          "album_cover_minithumbnail" A..= album_cover_minithumbnail,
-          "mime_type" A..= mime_type,
-          "file_name" A..= file_name,
-          "performer" A..= performer,
-          "title" A..= title,
-          "duration" A..= duration
+          "audio" A..= audio_,
+          "album_cover_thumbnail" A..= album_cover_thumbnail_,
+          "album_cover_minithumbnail" A..= album_cover_minithumbnail_,
+          "mime_type" A..= mime_type_,
+          "file_name" A..= file_name_,
+          "performer" A..= performer_,
+          "title" A..= title_,
+          "duration" A..= duration_
         ]

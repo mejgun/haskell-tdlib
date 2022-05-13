@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetMessageReaction where
 
 import qualified Data.Aeson as A
@@ -23,31 +24,31 @@ data SetMessageReaction = SetMessageReaction
 instance Show SetMessageReaction where
   show
     SetMessageReaction
-      { is_big = is_big,
-        reaction = reaction,
-        message_id = message_id,
-        chat_id = chat_id
+      { is_big = is_big_,
+        reaction = reaction_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "SetMessageReaction"
         ++ U.cc
-          [ U.p "is_big" is_big,
-            U.p "reaction" reaction,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "is_big" is_big_,
+            U.p "reaction" reaction_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetMessageReaction where
   toJSON
     SetMessageReaction
-      { is_big = is_big,
-        reaction = reaction,
-        message_id = message_id,
-        chat_id = chat_id
+      { is_big = is_big_,
+        reaction = reaction_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setMessageReaction",
-          "is_big" A..= is_big,
-          "reaction" A..= reaction,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "is_big" A..= is_big_,
+          "reaction" A..= reaction_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

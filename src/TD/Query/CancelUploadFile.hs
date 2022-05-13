@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CancelUploadFile where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CancelUploadFile = CancelUploadFile
 instance Show CancelUploadFile where
   show
     CancelUploadFile
-      { file_id = file_id
+      { file_id = file_id_
       } =
       "CancelUploadFile"
         ++ U.cc
-          [ U.p "file_id" file_id
+          [ U.p "file_id" file_id_
           ]
 
 instance T.ToJSON CancelUploadFile where
   toJSON
     CancelUploadFile
-      { file_id = file_id
+      { file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "cancelUploadFile",
-          "file_id" A..= file_id
+          "file_id" A..= file_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AccountTtl where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data AccountTtl = -- | Contains information about the period of inactivity after
 instance Show AccountTtl where
   show
     AccountTtl
-      { days = days
+      { days = days_
       } =
       "AccountTtl"
         ++ U.cc
-          [ U.p "days" days
+          [ U.p "days" days_
           ]
 
 instance T.FromJSON AccountTtl where
@@ -40,9 +41,9 @@ instance T.FromJSON AccountTtl where
 instance T.ToJSON AccountTtl where
   toJSON
     AccountTtl
-      { days = days
+      { days = days_
       } =
       A.object
         [ "@type" A..= T.String "accountTtl",
-          "days" A..= days
+          "days" A..= days_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetUsername where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SetUsername = SetUsername
 instance Show SetUsername where
   show
     SetUsername
-      { username = username
+      { username = username_
       } =
       "SetUsername"
         ++ U.cc
-          [ U.p "username" username
+          [ U.p "username" username_
           ]
 
 instance T.ToJSON SetUsername where
   toJSON
     SetUsername
-      { username = username
+      { username = username_
       } =
       A.object
         [ "@type" A..= T.String "setUsername",
-          "username" A..= username
+          "username" A..= username_
         ]

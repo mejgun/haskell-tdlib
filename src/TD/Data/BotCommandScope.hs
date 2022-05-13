@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BotCommandScope where
 
 import qualified Data.Aeson as A
@@ -54,29 +55,29 @@ instance Show BotCommandScope where
         []
   show
     BotCommandScopeChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "BotCommandScopeChat"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
   show
     BotCommandScopeChatAdministrators
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "BotCommandScopeChatAdministrators"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
   show
     BotCommandScopeChatMember
-      { user_id = user_id,
-        chat_id = chat_id
+      { user_id = user_id_,
+        chat_id = chat_id_
       } =
       "BotCommandScopeChatMember"
         ++ U.cc
-          [ U.p "user_id" user_id,
-            U.p "chat_id" chat_id
+          [ U.p "user_id" user_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.FromJSON BotCommandScope where
@@ -94,20 +95,16 @@ instance T.FromJSON BotCommandScope where
       _ -> mempty
     where
       parseBotCommandScopeDefault :: A.Value -> T.Parser BotCommandScope
-      parseBotCommandScopeDefault = A.withObject "BotCommandScopeDefault" $ \o -> do
-        return $ BotCommandScopeDefault {}
+      parseBotCommandScopeDefault = A.withObject "BotCommandScopeDefault" $ \_ -> return BotCommandScopeDefault
 
       parseBotCommandScopeAllPrivateChats :: A.Value -> T.Parser BotCommandScope
-      parseBotCommandScopeAllPrivateChats = A.withObject "BotCommandScopeAllPrivateChats" $ \o -> do
-        return $ BotCommandScopeAllPrivateChats {}
+      parseBotCommandScopeAllPrivateChats = A.withObject "BotCommandScopeAllPrivateChats" $ \_ -> return BotCommandScopeAllPrivateChats
 
       parseBotCommandScopeAllGroupChats :: A.Value -> T.Parser BotCommandScope
-      parseBotCommandScopeAllGroupChats = A.withObject "BotCommandScopeAllGroupChats" $ \o -> do
-        return $ BotCommandScopeAllGroupChats {}
+      parseBotCommandScopeAllGroupChats = A.withObject "BotCommandScopeAllGroupChats" $ \_ -> return BotCommandScopeAllGroupChats
 
       parseBotCommandScopeAllChatAdministrators :: A.Value -> T.Parser BotCommandScope
-      parseBotCommandScopeAllChatAdministrators = A.withObject "BotCommandScopeAllChatAdministrators" $ \o -> do
-        return $ BotCommandScopeAllChatAdministrators {}
+      parseBotCommandScopeAllChatAdministrators = A.withObject "BotCommandScopeAllChatAdministrators" $ \_ -> return BotCommandScopeAllChatAdministrators
 
       parseBotCommandScopeChat :: A.Value -> T.Parser BotCommandScope
       parseBotCommandScopeChat = A.withObject "BotCommandScopeChat" $ \o -> do
@@ -145,27 +142,27 @@ instance T.ToJSON BotCommandScope where
       ]
   toJSON
     BotCommandScopeChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "botCommandScopeChat",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]
   toJSON
     BotCommandScopeChatAdministrators
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "botCommandScopeChatAdministrators",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]
   toJSON
     BotCommandScopeChatMember
-      { user_id = user_id,
-        chat_id = chat_id
+      { user_id = user_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "botCommandScopeChatMember",
-          "user_id" A..= user_id,
-          "chat_id" A..= chat_id
+          "user_id" A..= user_id_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RegisterUser where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data RegisterUser = RegisterUser
 instance Show RegisterUser where
   show
     RegisterUser
-      { last_name = last_name,
-        first_name = first_name
+      { last_name = last_name_,
+        first_name = first_name_
       } =
       "RegisterUser"
         ++ U.cc
-          [ U.p "last_name" last_name,
-            U.p "first_name" first_name
+          [ U.p "last_name" last_name_,
+            U.p "first_name" first_name_
           ]
 
 instance T.ToJSON RegisterUser where
   toJSON
     RegisterUser
-      { last_name = last_name,
-        first_name = first_name
+      { last_name = last_name_,
+        first_name = first_name_
       } =
       A.object
         [ "@type" A..= T.String "registerUser",
-          "last_name" A..= last_name,
-          "first_name" A..= first_name
+          "last_name" A..= last_name_,
+          "first_name" A..= first_name_
         ]

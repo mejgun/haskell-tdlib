@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetPhoneNumberInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetPhoneNumberInfo = GetPhoneNumberInfo
 instance Show GetPhoneNumberInfo where
   show
     GetPhoneNumberInfo
-      { phone_number_prefix = phone_number_prefix
+      { phone_number_prefix = phone_number_prefix_
       } =
       "GetPhoneNumberInfo"
         ++ U.cc
-          [ U.p "phone_number_prefix" phone_number_prefix
+          [ U.p "phone_number_prefix" phone_number_prefix_
           ]
 
 instance T.ToJSON GetPhoneNumberInfo where
   toJSON
     GetPhoneNumberInfo
-      { phone_number_prefix = phone_number_prefix
+      { phone_number_prefix = phone_number_prefix_
       } =
       A.object
         [ "@type" A..= T.String "getPhoneNumberInfo",
-          "phone_number_prefix" A..= phone_number_prefix
+          "phone_number_prefix" A..= phone_number_prefix_
         ]

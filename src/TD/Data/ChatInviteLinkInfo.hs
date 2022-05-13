@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatInviteLinkInfo where
 
 import qualified Data.Aeson as A
@@ -36,29 +37,29 @@ data ChatInviteLinkInfo = -- | Contains information about a chat invite link
 instance Show ChatInviteLinkInfo where
   show
     ChatInviteLinkInfo
-      { is_public = is_public,
-        creates_join_request = creates_join_request,
-        member_user_ids = member_user_ids,
-        member_count = member_count,
-        description = description,
-        photo = photo,
-        title = title,
-        _type = _type,
-        accessible_for = accessible_for,
-        chat_id = chat_id
+      { is_public = is_public_,
+        creates_join_request = creates_join_request_,
+        member_user_ids = member_user_ids_,
+        member_count = member_count_,
+        description = description_,
+        photo = photo_,
+        title = title_,
+        _type = _type_,
+        accessible_for = accessible_for_,
+        chat_id = chat_id_
       } =
       "ChatInviteLinkInfo"
         ++ U.cc
-          [ U.p "is_public" is_public,
-            U.p "creates_join_request" creates_join_request,
-            U.p "member_user_ids" member_user_ids,
-            U.p "member_count" member_count,
-            U.p "description" description,
-            U.p "photo" photo,
-            U.p "title" title,
-            U.p "_type" _type,
-            U.p "accessible_for" accessible_for,
-            U.p "chat_id" chat_id
+          [ U.p "is_public" is_public_,
+            U.p "creates_join_request" creates_join_request_,
+            U.p "member_user_ids" member_user_ids_,
+            U.p "member_count" member_count_,
+            U.p "description" description_,
+            U.p "photo" photo_,
+            U.p "title" title_,
+            U.p "_type" _type_,
+            U.p "accessible_for" accessible_for_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.FromJSON ChatInviteLinkInfo where
@@ -87,27 +88,27 @@ instance T.FromJSON ChatInviteLinkInfo where
 instance T.ToJSON ChatInviteLinkInfo where
   toJSON
     ChatInviteLinkInfo
-      { is_public = is_public,
-        creates_join_request = creates_join_request,
-        member_user_ids = member_user_ids,
-        member_count = member_count,
-        description = description,
-        photo = photo,
-        title = title,
-        _type = _type,
-        accessible_for = accessible_for,
-        chat_id = chat_id
+      { is_public = is_public_,
+        creates_join_request = creates_join_request_,
+        member_user_ids = member_user_ids_,
+        member_count = member_count_,
+        description = description_,
+        photo = photo_,
+        title = title_,
+        _type = _type_,
+        accessible_for = accessible_for_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "chatInviteLinkInfo",
-          "is_public" A..= is_public,
-          "creates_join_request" A..= creates_join_request,
-          "member_user_ids" A..= member_user_ids,
-          "member_count" A..= member_count,
-          "description" A..= description,
-          "photo" A..= photo,
-          "title" A..= title,
-          "type" A..= _type,
-          "accessible_for" A..= accessible_for,
-          "chat_id" A..= chat_id
+          "is_public" A..= is_public_,
+          "creates_join_request" A..= creates_join_request_,
+          "member_user_ids" A..= member_user_ids_,
+          "member_count" A..= member_count_,
+          "description" A..= description_,
+          "photo" A..= photo_,
+          "title" A..= title_,
+          "type" A..= _type_,
+          "accessible_for" A..= accessible_for_,
+          "chat_id" A..= chat_id_
         ]

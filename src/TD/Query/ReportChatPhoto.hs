@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReportChatPhoto where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data ReportChatPhoto = ReportChatPhoto
 instance Show ReportChatPhoto where
   show
     ReportChatPhoto
-      { text = text,
-        reason = reason,
-        file_id = file_id,
-        chat_id = chat_id
+      { text = text_,
+        reason = reason_,
+        file_id = file_id_,
+        chat_id = chat_id_
       } =
       "ReportChatPhoto"
         ++ U.cc
-          [ U.p "text" text,
-            U.p "reason" reason,
-            U.p "file_id" file_id,
-            U.p "chat_id" chat_id
+          [ U.p "text" text_,
+            U.p "reason" reason_,
+            U.p "file_id" file_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ReportChatPhoto where
   toJSON
     ReportChatPhoto
-      { text = text,
-        reason = reason,
-        file_id = file_id,
-        chat_id = chat_id
+      { text = text_,
+        reason = reason_,
+        file_id = file_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "reportChatPhoto",
-          "text" A..= text,
-          "reason" A..= reason,
-          "file_id" A..= file_id,
-          "chat_id" A..= chat_id
+          "text" A..= text_,
+          "reason" A..= reason_,
+          "file_id" A..= file_id_,
+          "chat_id" A..= chat_id_
         ]

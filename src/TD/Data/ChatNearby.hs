@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatNearby where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data ChatNearby = -- | Describes a chat located nearby @chat_id Chat identifier 
 instance Show ChatNearby where
   show
     ChatNearby
-      { distance = distance,
-        chat_id = chat_id
+      { distance = distance_,
+        chat_id = chat_id_
       } =
       "ChatNearby"
         ++ U.cc
-          [ U.p "distance" distance,
-            U.p "chat_id" chat_id
+          [ U.p "distance" distance_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.FromJSON ChatNearby where
@@ -45,11 +46,11 @@ instance T.FromJSON ChatNearby where
 instance T.ToJSON ChatNearby where
   toJSON
     ChatNearby
-      { distance = distance,
-        chat_id = chat_id
+      { distance = distance_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "chatNearby",
-          "distance" A..= distance,
-          "chat_id" A..= chat_id
+          "distance" A..= distance_,
+          "chat_id" A..= chat_id_
         ]

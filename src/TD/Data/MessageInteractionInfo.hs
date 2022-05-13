@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageInteractionInfo where
 
 import qualified Data.Aeson as A
@@ -24,17 +25,17 @@ data MessageInteractionInfo = -- | Contains information about interactions with 
 instance Show MessageInteractionInfo where
   show
     MessageInteractionInfo
-      { reactions = reactions,
-        reply_info = reply_info,
-        forward_count = forward_count,
-        view_count = view_count
+      { reactions = reactions_,
+        reply_info = reply_info_,
+        forward_count = forward_count_,
+        view_count = view_count_
       } =
       "MessageInteractionInfo"
         ++ U.cc
-          [ U.p "reactions" reactions,
-            U.p "reply_info" reply_info,
-            U.p "forward_count" forward_count,
-            U.p "view_count" view_count
+          [ U.p "reactions" reactions_,
+            U.p "reply_info" reply_info_,
+            U.p "forward_count" forward_count_,
+            U.p "view_count" view_count_
           ]
 
 instance T.FromJSON MessageInteractionInfo where
@@ -57,15 +58,15 @@ instance T.FromJSON MessageInteractionInfo where
 instance T.ToJSON MessageInteractionInfo where
   toJSON
     MessageInteractionInfo
-      { reactions = reactions,
-        reply_info = reply_info,
-        forward_count = forward_count,
-        view_count = view_count
+      { reactions = reactions_,
+        reply_info = reply_info_,
+        forward_count = forward_count_,
+        view_count = view_count_
       } =
       A.object
         [ "@type" A..= T.String "messageInteractionInfo",
-          "reactions" A..= reactions,
-          "reply_info" A..= reply_info,
-          "forward_count" A..= forward_count,
-          "view_count" A..= view_count
+          "reactions" A..= reactions_,
+          "reply_info" A..= reply_info_,
+          "forward_count" A..= forward_count_,
+          "view_count" A..= view_count_
         ]

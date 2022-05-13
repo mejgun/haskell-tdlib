@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleAllDownloadsArePaused where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ToggleAllDownloadsArePaused = ToggleAllDownloadsArePaused
 instance Show ToggleAllDownloadsArePaused where
   show
     ToggleAllDownloadsArePaused
-      { are_paused = are_paused
+      { are_paused = are_paused_
       } =
       "ToggleAllDownloadsArePaused"
         ++ U.cc
-          [ U.p "are_paused" are_paused
+          [ U.p "are_paused" are_paused_
           ]
 
 instance T.ToJSON ToggleAllDownloadsArePaused where
   toJSON
     ToggleAllDownloadsArePaused
-      { are_paused = are_paused
+      { are_paused = are_paused_
       } =
       A.object
         [ "@type" A..= T.String "toggleAllDownloadsArePaused",
-          "are_paused" A..= are_paused
+          "are_paused" A..= are_paused_
         ]

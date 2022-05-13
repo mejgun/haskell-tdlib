@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetRecentInlineBots where
 
 import qualified Data.Aeson as A

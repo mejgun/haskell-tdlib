@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetPreferredCountryLanguage where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetPreferredCountryLanguage = GetPreferredCountryLanguage
 instance Show GetPreferredCountryLanguage where
   show
     GetPreferredCountryLanguage
-      { country_code = country_code
+      { country_code = country_code_
       } =
       "GetPreferredCountryLanguage"
         ++ U.cc
-          [ U.p "country_code" country_code
+          [ U.p "country_code" country_code_
           ]
 
 instance T.ToJSON GetPreferredCountryLanguage where
   toJSON
     GetPreferredCountryLanguage
-      { country_code = country_code
+      { country_code = country_code_
       } =
       A.object
         [ "@type" A..= T.String "getPreferredCountryLanguage",
-          "country_code" A..= country_code
+          "country_code" A..= country_code_
         ]

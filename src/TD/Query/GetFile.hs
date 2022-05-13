@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetFile where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetFile = GetFile
 instance Show GetFile where
   show
     GetFile
-      { file_id = file_id
+      { file_id = file_id_
       } =
       "GetFile"
         ++ U.cc
-          [ U.p "file_id" file_id
+          [ U.p "file_id" file_id_
           ]
 
 instance T.ToJSON GetFile where
   toJSON
     GetFile
-      { file_id = file_id
+      { file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "getFile",
-          "file_id" A..= file_id
+          "file_id" A..= file_id_
         ]

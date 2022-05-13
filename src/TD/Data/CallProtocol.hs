@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallProtocol where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data CallProtocol = -- | Specifies the supported call protocols
 instance Show CallProtocol where
   show
     CallProtocol
-      { library_versions = library_versions,
-        max_layer = max_layer,
-        min_layer = min_layer,
-        udp_reflector = udp_reflector,
-        udp_p2p = udp_p2p
+      { library_versions = library_versions_,
+        max_layer = max_layer_,
+        min_layer = min_layer_,
+        udp_reflector = udp_reflector_,
+        udp_p2p = udp_p2p_
       } =
       "CallProtocol"
         ++ U.cc
-          [ U.p "library_versions" library_versions,
-            U.p "max_layer" max_layer,
-            U.p "min_layer" min_layer,
-            U.p "udp_reflector" udp_reflector,
-            U.p "udp_p2p" udp_p2p
+          [ U.p "library_versions" library_versions_,
+            U.p "max_layer" max_layer_,
+            U.p "min_layer" min_layer_,
+            U.p "udp_reflector" udp_reflector_,
+            U.p "udp_p2p" udp_p2p_
           ]
 
 instance T.FromJSON CallProtocol where
@@ -60,17 +61,17 @@ instance T.FromJSON CallProtocol where
 instance T.ToJSON CallProtocol where
   toJSON
     CallProtocol
-      { library_versions = library_versions,
-        max_layer = max_layer,
-        min_layer = min_layer,
-        udp_reflector = udp_reflector,
-        udp_p2p = udp_p2p
+      { library_versions = library_versions_,
+        max_layer = max_layer_,
+        min_layer = min_layer_,
+        udp_reflector = udp_reflector_,
+        udp_p2p = udp_p2p_
       } =
       A.object
         [ "@type" A..= T.String "callProtocol",
-          "library_versions" A..= library_versions,
-          "max_layer" A..= max_layer,
-          "min_layer" A..= min_layer,
-          "udp_reflector" A..= udp_reflector,
-          "udp_p2p" A..= udp_p2p
+          "library_versions" A..= library_versions_,
+          "max_layer" A..= max_layer_,
+          "min_layer" A..= min_layer_,
+          "udp_reflector" A..= udp_reflector_,
+          "udp_p2p" A..= udp_p2p_
         ]

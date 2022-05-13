@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.User where
 
 import qualified Data.Aeson as A
@@ -51,43 +52,43 @@ data User = -- | Represents a user
 instance Show User where
   show
     User
-      { language_code = language_code,
-        _type = _type,
-        have_access = have_access,
-        is_fake = is_fake,
-        is_scam = is_scam,
-        restriction_reason = restriction_reason,
-        is_support = is_support,
-        is_verified = is_verified,
-        is_mutual_contact = is_mutual_contact,
-        is_contact = is_contact,
-        profile_photo = profile_photo,
-        status = status,
-        phone_number = phone_number,
-        username = username,
-        last_name = last_name,
-        first_name = first_name,
-        _id = _id
+      { language_code = language_code_,
+        _type = _type_,
+        have_access = have_access_,
+        is_fake = is_fake_,
+        is_scam = is_scam_,
+        restriction_reason = restriction_reason_,
+        is_support = is_support_,
+        is_verified = is_verified_,
+        is_mutual_contact = is_mutual_contact_,
+        is_contact = is_contact_,
+        profile_photo = profile_photo_,
+        status = status_,
+        phone_number = phone_number_,
+        username = username_,
+        last_name = last_name_,
+        first_name = first_name_,
+        _id = _id_
       } =
       "User"
         ++ U.cc
-          [ U.p "language_code" language_code,
-            U.p "_type" _type,
-            U.p "have_access" have_access,
-            U.p "is_fake" is_fake,
-            U.p "is_scam" is_scam,
-            U.p "restriction_reason" restriction_reason,
-            U.p "is_support" is_support,
-            U.p "is_verified" is_verified,
-            U.p "is_mutual_contact" is_mutual_contact,
-            U.p "is_contact" is_contact,
-            U.p "profile_photo" profile_photo,
-            U.p "status" status,
-            U.p "phone_number" phone_number,
-            U.p "username" username,
-            U.p "last_name" last_name,
-            U.p "first_name" first_name,
-            U.p "_id" _id
+          [ U.p "language_code" language_code_,
+            U.p "_type" _type_,
+            U.p "have_access" have_access_,
+            U.p "is_fake" is_fake_,
+            U.p "is_scam" is_scam_,
+            U.p "restriction_reason" restriction_reason_,
+            U.p "is_support" is_support_,
+            U.p "is_verified" is_verified_,
+            U.p "is_mutual_contact" is_mutual_contact_,
+            U.p "is_contact" is_contact_,
+            U.p "profile_photo" profile_photo_,
+            U.p "status" status_,
+            U.p "phone_number" phone_number_,
+            U.p "username" username_,
+            U.p "last_name" last_name_,
+            U.p "first_name" first_name_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON User where
@@ -123,41 +124,41 @@ instance T.FromJSON User where
 instance T.ToJSON User where
   toJSON
     User
-      { language_code = language_code,
-        _type = _type,
-        have_access = have_access,
-        is_fake = is_fake,
-        is_scam = is_scam,
-        restriction_reason = restriction_reason,
-        is_support = is_support,
-        is_verified = is_verified,
-        is_mutual_contact = is_mutual_contact,
-        is_contact = is_contact,
-        profile_photo = profile_photo,
-        status = status,
-        phone_number = phone_number,
-        username = username,
-        last_name = last_name,
-        first_name = first_name,
-        _id = _id
+      { language_code = language_code_,
+        _type = _type_,
+        have_access = have_access_,
+        is_fake = is_fake_,
+        is_scam = is_scam_,
+        restriction_reason = restriction_reason_,
+        is_support = is_support_,
+        is_verified = is_verified_,
+        is_mutual_contact = is_mutual_contact_,
+        is_contact = is_contact_,
+        profile_photo = profile_photo_,
+        status = status_,
+        phone_number = phone_number_,
+        username = username_,
+        last_name = last_name_,
+        first_name = first_name_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "user",
-          "language_code" A..= language_code,
-          "type" A..= _type,
-          "have_access" A..= have_access,
-          "is_fake" A..= is_fake,
-          "is_scam" A..= is_scam,
-          "restriction_reason" A..= restriction_reason,
-          "is_support" A..= is_support,
-          "is_verified" A..= is_verified,
-          "is_mutual_contact" A..= is_mutual_contact,
-          "is_contact" A..= is_contact,
-          "profile_photo" A..= profile_photo,
-          "status" A..= status,
-          "phone_number" A..= phone_number,
-          "username" A..= username,
-          "last_name" A..= last_name,
-          "first_name" A..= first_name,
-          "id" A..= _id
+          "language_code" A..= language_code_,
+          "type" A..= _type_,
+          "have_access" A..= have_access_,
+          "is_fake" A..= is_fake_,
+          "is_scam" A..= is_scam_,
+          "restriction_reason" A..= restriction_reason_,
+          "is_support" A..= is_support_,
+          "is_verified" A..= is_verified_,
+          "is_mutual_contact" A..= is_mutual_contact_,
+          "is_contact" A..= is_contact_,
+          "profile_photo" A..= profile_photo_,
+          "status" A..= status_,
+          "phone_number" A..= phone_number_,
+          "username" A..= username_,
+          "last_name" A..= last_name_,
+          "first_name" A..= first_name_,
+          "id" A..= _id_
         ]

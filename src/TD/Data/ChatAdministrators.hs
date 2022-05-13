@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatAdministrators where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data ChatAdministrators = -- | Represents a list of chat administrators @adminis
 instance Show ChatAdministrators where
   show
     ChatAdministrators
-      { administrators = administrators
+      { administrators = administrators_
       } =
       "ChatAdministrators"
         ++ U.cc
-          [ U.p "administrators" administrators
+          [ U.p "administrators" administrators_
           ]
 
 instance T.FromJSON ChatAdministrators where
@@ -41,9 +42,9 @@ instance T.FromJSON ChatAdministrators where
 instance T.ToJSON ChatAdministrators where
   toJSON
     ChatAdministrators
-      { administrators = administrators
+      { administrators = administrators_
       } =
       A.object
         [ "@type" A..= T.String "chatAdministrators",
-          "administrators" A..= administrators
+          "administrators" A..= administrators_
         ]

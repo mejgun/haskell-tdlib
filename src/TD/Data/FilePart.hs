@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.FilePart where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data FilePart = -- | Contains a part of a file @data File bytes
 instance Show FilePart where
   show
     FilePart
-      { _data = _data
+      { _data = _data_
       } =
       "FilePart"
         ++ U.cc
-          [ U.p "_data" _data
+          [ U.p "_data" _data_
           ]
 
 instance T.FromJSON FilePart where
@@ -40,9 +41,9 @@ instance T.FromJSON FilePart where
 instance T.ToJSON FilePart where
   toJSON
     FilePart
-      { _data = _data
+      { _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "filePart",
-          "data" A..= _data
+          "data" A..= _data_
         ]

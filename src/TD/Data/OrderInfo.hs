@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.OrderInfo where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data OrderInfo = -- | Order information @name Name of the user @phone_number Pho
 instance Show OrderInfo where
   show
     OrderInfo
-      { shipping_address = shipping_address,
-        email_address = email_address,
-        phone_number = phone_number,
-        name = name
+      { shipping_address = shipping_address_,
+        email_address = email_address_,
+        phone_number = phone_number_,
+        name = name_
       } =
       "OrderInfo"
         ++ U.cc
-          [ U.p "shipping_address" shipping_address,
-            U.p "email_address" email_address,
-            U.p "phone_number" phone_number,
-            U.p "name" name
+          [ U.p "shipping_address" shipping_address_,
+            U.p "email_address" email_address_,
+            U.p "phone_number" phone_number_,
+            U.p "name" name_
           ]
 
 instance T.FromJSON OrderInfo where
@@ -56,15 +57,15 @@ instance T.FromJSON OrderInfo where
 instance T.ToJSON OrderInfo where
   toJSON
     OrderInfo
-      { shipping_address = shipping_address,
-        email_address = email_address,
-        phone_number = phone_number,
-        name = name
+      { shipping_address = shipping_address_,
+        email_address = email_address_,
+        phone_number = phone_number_,
+        name = name_
       } =
       A.object
         [ "@type" A..= T.String "orderInfo",
-          "shipping_address" A..= shipping_address,
-          "email_address" A..= email_address,
-          "phone_number" A..= phone_number,
-          "name" A..= name
+          "shipping_address" A..= shipping_address_,
+          "email_address" A..= email_address_,
+          "phone_number" A..= phone_number_,
+          "name" A..= name_
         ]

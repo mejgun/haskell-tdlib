@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DatedFile where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data DatedFile = -- | File with the date it was uploaded @file The file @date Po
 instance Show DatedFile where
   show
     DatedFile
-      { date = date,
-        file = file
+      { date = date_,
+        file = file_
       } =
       "DatedFile"
         ++ U.cc
-          [ U.p "date" date,
-            U.p "file" file
+          [ U.p "date" date_,
+            U.p "file" file_
           ]
 
 instance T.FromJSON DatedFile where
@@ -46,11 +47,11 @@ instance T.FromJSON DatedFile where
 instance T.ToJSON DatedFile where
   toJSON
     DatedFile
-      { date = date,
-        file = file
+      { date = date_,
+        file = file_
       } =
       A.object
         [ "@type" A..= T.String "datedFile",
-          "date" A..= date,
-          "file" A..= file
+          "date" A..= date_,
+          "file" A..= file_
         ]

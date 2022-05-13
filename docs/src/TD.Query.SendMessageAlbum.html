@@ -1,36 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
-</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.SendMessageAlbum</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputMessageContent.html"><span class="hs-identifier">TD.Data.InputMessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputMessageContent</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html"><span class="hs-identifier">TD.Data.MessageSendOptions</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSendOptions</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SendMessageAlbum"><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-var">SendMessageAlbum</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SendMessageAlbum"><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-var">SendMessageAlbum</span></a></span></span><span>
-</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Pass true to get fake messages instead of actually sending them</span><span>
-</span><span id="line-15"></span><span>    </span><span id="only_preview"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Bool
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.SendMessageAlbum</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputMessageContent.html"><span class="hs-identifier">TD.Data.InputMessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputMessageContent</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html"><span class="hs-identifier">TD.Data.MessageSendOptions</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSendOptions</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages</span><span>
+</span><span id="line-14"></span><span class="hs-keyword">data</span><span> </span><span id="SendMessageAlbum"><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-var">SendMessageAlbum</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SendMessageAlbum"><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-var">SendMessageAlbum</span></a></span></span><span>
+</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Pass true to get fake messages instead of actually sending them</span><span>
+</span><span id="line-16"></span><span>    </span><span id="only_preview"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Bool
 </span><a href="TD.Query.SendMessageAlbum.html#only_preview"><span class="hs-identifier hs-var hs-var">only_preview</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Contents of messages to be sent. At most 10 messages can be added to an album</span><span>
-</span><span id="line-17"></span><span>    </span><span id="input_message_contents"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe [InputMessageContent]
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Contents of messages to be sent. At most 10 messages can be added to an album</span><span>
+</span><span id="line-18"></span><span>    </span><span id="input_message_contents"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe [InputMessageContent]
 </span><a href="TD.Query.SendMessageAlbum.html#input_message_contents"><span class="hs-identifier hs-var hs-var">input_message_contents</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.InputMessageContent.html#InputMessageContent"><span class="hs-identifier hs-type">InputMessageContent.InputMessageContent</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
-</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Options to be used to send the messages; pass null to use default options</span><span>
-</span><span id="line-19"></span><span>    </span><span id="options"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe MessageSendOptions
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Options to be used to send the messages; pass null to use default options</span><span>
+</span><span id="line-20"></span><span>    </span><span id="options"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe MessageSendOptions
 </span><a href="TD.Query.SendMessageAlbum.html#options"><span class="hs-identifier hs-var hs-var">options</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions.MessageSendOptions</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Identifier of a replied message; 0 if none</span><span>
-</span><span id="line-21"></span><span>    </span><span id="reply_to_message_id"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Int
+</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | Identifier of a replied message; 0 if none</span><span>
+</span><span id="line-22"></span><span>    </span><span id="reply_to_message_id"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Int
 </span><a href="TD.Query.SendMessageAlbum.html#reply_to_message_id"><span class="hs-identifier hs-var hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-22"></span><span>    </span><span class="hs-comment">-- | If not 0, a message thread identifier in which the messages will be sent</span><span>
-</span><span id="line-23"></span><span>    </span><span id="message_thread_id"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Int
+</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- | If not 0, a message thread identifier in which the messages will be sent</span><span>
+</span><span id="line-24"></span><span>    </span><span id="message_thread_id"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Int
 </span><a href="TD.Query.SendMessageAlbum.html#message_thread_id"><span class="hs-identifier hs-var hs-var">message_thread_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-24"></span><span>    </span><span class="hs-comment">-- | Target chat</span><span>
-</span><span id="line-25"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Int
+</span><span id="line-25"></span><span>    </span><span class="hs-comment">-- | Target chat</span><span>
+</span><span id="line-26"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; Maybe Int
 </span><a href="TD.Query.SendMessageAlbum.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-27"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423917"><span id="local-6989586621679423919"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; SendMessageAlbum -&gt; Bool
+</span><span id="line-27"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423026"><span id="local-6989586621679423028"><span class="annot"><span class="annottext">SendMessageAlbum -&gt; SendMessageAlbum -&gt; Bool
 (SendMessageAlbum -&gt; SendMessageAlbum -&gt; Bool)
 -&gt; (SendMessageAlbum -&gt; SendMessageAlbum -&gt; Bool)
 -&gt; Eq SendMessageAlbum
@@ -40,128 +41,128 @@ $c/= :: SendMessageAlbum -&gt; SendMessageAlbum -&gt; Bool
 == :: SendMessageAlbum -&gt; SendMessageAlbum -&gt; Bool
 $c== :: SendMessageAlbum -&gt; SendMessageAlbum -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423911"><span id="local-6989586621679423914"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>  </span><span id="local-6989586621679423909"><span class="annot"><span class="annottext">show :: SendMessageAlbum -&gt; String
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423020"><span id="local-6989586621679423023"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679423018"><span class="annot"><span class="annottext">show :: SendMessageAlbum -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-31"></span><span>    </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span><span>
-</span><span id="line-32"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">only_preview :: SendMessageAlbum -&gt; Maybe Bool
-</span><a href="TD.Query.SendMessageAlbum.html#only_preview"><span class="hs-identifier hs-var">only_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423907"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679423907"><span class="hs-identifier hs-var">only_preview</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">input_message_contents :: SendMessageAlbum -&gt; Maybe [InputMessageContent]
-</span><a href="TD.Query.SendMessageAlbum.html#input_message_contents"><span class="hs-identifier hs-var">input_message_contents</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423906"><span class="annot"><span class="annottext">Maybe [InputMessageContent]
-</span><a href="#local-6989586621679423906"><span class="hs-identifier hs-var">input_message_contents</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">options :: SendMessageAlbum -&gt; Maybe MessageSendOptions
-</span><a href="TD.Query.SendMessageAlbum.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423905"><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679423905"><span class="hs-identifier hs-var">options</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">reply_to_message_id :: SendMessageAlbum -&gt; Maybe Int
-</span><a href="TD.Query.SendMessageAlbum.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423904"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423904"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: SendMessageAlbum -&gt; Maybe Int
-</span><a href="TD.Query.SendMessageAlbum.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423903"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423903"><span class="hs-identifier hs-var">message_thread_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendMessageAlbum -&gt; Maybe Int
-</span><a href="TD.Query.SendMessageAlbum.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423902"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423902"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
-</span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>    </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span><span>
+</span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">only_preview :: SendMessageAlbum -&gt; Maybe Bool
+</span><a href="TD.Query.SendMessageAlbum.html#only_preview"><span class="hs-identifier hs-var">only_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423016"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679423016"><span class="hs-identifier hs-var">only_preview_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">input_message_contents :: SendMessageAlbum -&gt; Maybe [InputMessageContent]
+</span><a href="TD.Query.SendMessageAlbum.html#input_message_contents"><span class="hs-identifier hs-var">input_message_contents</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423015"><span class="annot"><span class="annottext">Maybe [InputMessageContent]
+</span><a href="#local-6989586621679423015"><span class="hs-identifier hs-var">input_message_contents_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">options :: SendMessageAlbum -&gt; Maybe MessageSendOptions
+</span><a href="TD.Query.SendMessageAlbum.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423014"><span class="annot"><span class="annottext">Maybe MessageSendOptions
+</span><a href="#local-6989586621679423014"><span class="hs-identifier hs-var">options_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">reply_to_message_id :: SendMessageAlbum -&gt; Maybe Int
+</span><a href="TD.Query.SendMessageAlbum.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423013"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423013"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: SendMessageAlbum -&gt; Maybe Int
+</span><a href="TD.Query.SendMessageAlbum.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423012"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423012"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendMessageAlbum -&gt; Maybe Int
+</span><a href="TD.Query.SendMessageAlbum.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423011"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423011"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><span id="line-39"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-40"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SendMessageAlbum&quot;</span></span><span>
-</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-41"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><span id="line-42"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;only_preview&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679423907"><span class="hs-identifier hs-var">only_preview</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-42"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [InputMessageContent] -&gt; String
+</span><a href="#local-6989586621679423016"><span class="hs-identifier hs-var">only_preview_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [InputMessageContent] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;input_message_contents&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [InputMessageContent]
-</span><a href="#local-6989586621679423906"><span class="hs-identifier hs-var">input_message_contents</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSendOptions -&gt; String
+</span><a href="#local-6989586621679423015"><span class="hs-identifier hs-var">input_message_contents_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSendOptions -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;options&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679423905"><span class="hs-identifier hs-var">options</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
-forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423904"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679423014"><span class="hs-identifier hs-var">options_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;message_thread_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423903"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span class="hs-special">,</span><span>
+</span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423013"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;message_thread_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423012"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423902"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
-</span><span id="line-47"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-48"></span><span>
-</span><span id="line-49"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423893"><span id="local-6989586621679423895"><span id="local-6989586621679423897"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-50"></span><span>  </span><span id="local-6989586621679423891"><span class="annot"><span class="annottext">toJSON :: SendMessageAlbum -&gt; Value
+</span><a href="#local-6989586621679423011"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><span id="line-48"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-49"></span><span>
+</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423002"><span id="local-6989586621679423004"><span id="local-6989586621679423006"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-51"></span><span>  </span><span id="local-6989586621679423000"><span class="annot"><span class="annottext">toJSON :: SendMessageAlbum -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-51"></span><span>    </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span><span>
-</span><span id="line-52"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">only_preview :: SendMessageAlbum -&gt; Maybe Bool
-</span><a href="TD.Query.SendMessageAlbum.html#only_preview"><span class="hs-identifier hs-var">only_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423889"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679423889"><span class="hs-identifier hs-var">only_preview</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-53"></span><span>        </span><span class="annot"><span class="annottext">input_message_contents :: SendMessageAlbum -&gt; Maybe [InputMessageContent]
-</span><a href="TD.Query.SendMessageAlbum.html#input_message_contents"><span class="hs-identifier hs-var">input_message_contents</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423888"><span class="annot"><span class="annottext">Maybe [InputMessageContent]
-</span><a href="#local-6989586621679423888"><span class="hs-identifier hs-var">input_message_contents</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-54"></span><span>        </span><span class="annot"><span class="annottext">options :: SendMessageAlbum -&gt; Maybe MessageSendOptions
-</span><a href="TD.Query.SendMessageAlbum.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423887"><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679423887"><span class="hs-identifier hs-var">options</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">reply_to_message_id :: SendMessageAlbum -&gt; Maybe Int
-</span><a href="TD.Query.SendMessageAlbum.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423886"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423886"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: SendMessageAlbum -&gt; Maybe Int
-</span><a href="TD.Query.SendMessageAlbum.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423885"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423885"><span class="hs-identifier hs-var">message_thread_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendMessageAlbum -&gt; Maybe Int
-</span><a href="TD.Query.SendMessageAlbum.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423884"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423884"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
-</span><span id="line-58"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-59"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-52"></span><span>    </span><span class="annot"><a href="TD.Query.SendMessageAlbum.html#SendMessageAlbum"><span class="hs-identifier hs-type">SendMessageAlbum</span></a></span><span>
+</span><span id="line-53"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">only_preview :: SendMessageAlbum -&gt; Maybe Bool
+</span><a href="TD.Query.SendMessageAlbum.html#only_preview"><span class="hs-identifier hs-var">only_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422998"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679422998"><span class="hs-identifier hs-var">only_preview_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-54"></span><span>        </span><span class="annot"><span class="annottext">input_message_contents :: SendMessageAlbum -&gt; Maybe [InputMessageContent]
+</span><a href="TD.Query.SendMessageAlbum.html#input_message_contents"><span class="hs-identifier hs-var">input_message_contents</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422997"><span class="annot"><span class="annottext">Maybe [InputMessageContent]
+</span><a href="#local-6989586621679422997"><span class="hs-identifier hs-var">input_message_contents_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">options :: SendMessageAlbum -&gt; Maybe MessageSendOptions
+</span><a href="TD.Query.SendMessageAlbum.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422996"><span class="annot"><span class="annottext">Maybe MessageSendOptions
+</span><a href="#local-6989586621679422996"><span class="hs-identifier hs-var">options_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">reply_to_message_id :: SendMessageAlbum -&gt; Maybe Int
+</span><a href="TD.Query.SendMessageAlbum.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422995"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679422995"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: SendMessageAlbum -&gt; Maybe Int
+</span><a href="TD.Query.SendMessageAlbum.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422994"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679422994"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendMessageAlbum -&gt; Maybe Int
+</span><a href="TD.Query.SendMessageAlbum.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422993"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679422993"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><span id="line-59"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-60"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-60"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-61"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sendMessageAlbum&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-61"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-62"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;only_preview&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679423889"><span class="hs-identifier hs-var">only_preview</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-62"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679422998"><span class="hs-identifier hs-var">only_preview_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-63"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;input_message_contents&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [InputMessageContent] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [InputMessageContent]
-</span><a href="#local-6989586621679423888"><span class="hs-identifier hs-var">input_message_contents</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-63"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679422997"><span class="hs-identifier hs-var">input_message_contents_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-64"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;options&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSendOptions -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679423887"><span class="hs-identifier hs-var">options</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-64"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679422996"><span class="hs-identifier hs-var">options_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-65"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423886"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-65"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679422995"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-66"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_thread_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423885"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-66"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679422994"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-67"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679423884"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
-</span><span id="line-67"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-68"></span></pre></body></html>
+</span><a href="#local-6989586621679422993"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><span id="line-68"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-69"></span></pre></body></html>

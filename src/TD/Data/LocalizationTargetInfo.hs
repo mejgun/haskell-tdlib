@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LocalizationTargetInfo where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data LocalizationTargetInfo = -- | Contains information about the current locali
 instance Show LocalizationTargetInfo where
   show
     LocalizationTargetInfo
-      { language_packs = language_packs
+      { language_packs = language_packs_
       } =
       "LocalizationTargetInfo"
         ++ U.cc
-          [ U.p "language_packs" language_packs
+          [ U.p "language_packs" language_packs_
           ]
 
 instance T.FromJSON LocalizationTargetInfo where
@@ -41,9 +42,9 @@ instance T.FromJSON LocalizationTargetInfo where
 instance T.ToJSON LocalizationTargetInfo where
   toJSON
     LocalizationTargetInfo
-      { language_packs = language_packs
+      { language_packs = language_packs_
       } =
       A.object
         [ "@type" A..= T.String "localizationTargetInfo",
-          "language_packs" A..= language_packs
+          "language_packs" A..= language_packs_
         ]

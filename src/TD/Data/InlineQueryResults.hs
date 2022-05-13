@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InlineQueryResults where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data InlineQueryResults = -- | Represents the results of the inline query. Use s
 instance Show InlineQueryResults where
   show
     InlineQueryResults
-      { switch_pm_parameter = switch_pm_parameter,
-        switch_pm_text = switch_pm_text,
-        results = results,
-        next_offset = next_offset,
-        inline_query_id = inline_query_id
+      { switch_pm_parameter = switch_pm_parameter_,
+        switch_pm_text = switch_pm_text_,
+        results = results_,
+        next_offset = next_offset_,
+        inline_query_id = inline_query_id_
       } =
       "InlineQueryResults"
         ++ U.cc
-          [ U.p "switch_pm_parameter" switch_pm_parameter,
-            U.p "switch_pm_text" switch_pm_text,
-            U.p "results" results,
-            U.p "next_offset" next_offset,
-            U.p "inline_query_id" inline_query_id
+          [ U.p "switch_pm_parameter" switch_pm_parameter_,
+            U.p "switch_pm_text" switch_pm_text_,
+            U.p "results" results_,
+            U.p "next_offset" next_offset_,
+            U.p "inline_query_id" inline_query_id_
           ]
 
 instance T.FromJSON InlineQueryResults where
@@ -61,17 +62,17 @@ instance T.FromJSON InlineQueryResults where
 instance T.ToJSON InlineQueryResults where
   toJSON
     InlineQueryResults
-      { switch_pm_parameter = switch_pm_parameter,
-        switch_pm_text = switch_pm_text,
-        results = results,
-        next_offset = next_offset,
-        inline_query_id = inline_query_id
+      { switch_pm_parameter = switch_pm_parameter_,
+        switch_pm_text = switch_pm_text_,
+        results = results_,
+        next_offset = next_offset_,
+        inline_query_id = inline_query_id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResults",
-          "switch_pm_parameter" A..= switch_pm_parameter,
-          "switch_pm_text" A..= switch_pm_text,
-          "results" A..= results,
-          "next_offset" A..= next_offset,
-          "inline_query_id" A..= inline_query_id
+          "switch_pm_parameter" A..= switch_pm_parameter_,
+          "switch_pm_text" A..= switch_pm_text_,
+          "results" A..= results_,
+          "next_offset" A..= next_offset_,
+          "inline_query_id" A..= inline_query_id_
         ]

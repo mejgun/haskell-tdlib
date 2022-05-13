@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMessageLink where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data GetMessageLink = GetMessageLink
 instance Show GetMessageLink where
   show
     GetMessageLink
-      { for_comment = for_comment,
-        for_album = for_album,
-        media_timestamp = media_timestamp,
-        message_id = message_id,
-        chat_id = chat_id
+      { for_comment = for_comment_,
+        for_album = for_album_,
+        media_timestamp = media_timestamp_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetMessageLink"
         ++ U.cc
-          [ U.p "for_comment" for_comment,
-            U.p "for_album" for_album,
-            U.p "media_timestamp" media_timestamp,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "for_comment" for_comment_,
+            U.p "for_album" for_album_,
+            U.p "media_timestamp" media_timestamp_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetMessageLink where
   toJSON
     GetMessageLink
-      { for_comment = for_comment,
-        for_album = for_album,
-        media_timestamp = media_timestamp,
-        message_id = message_id,
-        chat_id = chat_id
+      { for_comment = for_comment_,
+        for_album = for_album_,
+        media_timestamp = media_timestamp_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getMessageLink",
-          "for_comment" A..= for_comment,
-          "for_album" A..= for_album,
-          "media_timestamp" A..= media_timestamp,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "for_comment" A..= for_comment_,
+          "for_album" A..= for_album_,
+          "media_timestamp" A..= media_timestamp_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

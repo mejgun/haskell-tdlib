@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatPhoto where
 
 import qualified Data.Aeson as A
@@ -27,19 +28,19 @@ data ChatPhoto = -- | Describes a chat or user profile photo
 instance Show ChatPhoto where
   show
     ChatPhoto
-      { animation = animation,
-        sizes = sizes,
-        minithumbnail = minithumbnail,
-        added_date = added_date,
-        _id = _id
+      { animation = animation_,
+        sizes = sizes_,
+        minithumbnail = minithumbnail_,
+        added_date = added_date_,
+        _id = _id_
       } =
       "ChatPhoto"
         ++ U.cc
-          [ U.p "animation" animation,
-            U.p "sizes" sizes,
-            U.p "minithumbnail" minithumbnail,
-            U.p "added_date" added_date,
-            U.p "_id" _id
+          [ U.p "animation" animation_,
+            U.p "sizes" sizes_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "added_date" added_date_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON ChatPhoto where
@@ -63,17 +64,17 @@ instance T.FromJSON ChatPhoto where
 instance T.ToJSON ChatPhoto where
   toJSON
     ChatPhoto
-      { animation = animation,
-        sizes = sizes,
-        minithumbnail = minithumbnail,
-        added_date = added_date,
-        _id = _id
+      { animation = animation_,
+        sizes = sizes_,
+        minithumbnail = minithumbnail_,
+        added_date = added_date_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "chatPhoto",
-          "animation" A..= animation,
-          "sizes" A..= sizes,
-          "minithumbnail" A..= minithumbnail,
-          "added_date" A..= added_date,
-          "id" A..= _id
+          "animation" A..= animation_,
+          "sizes" A..= sizes_,
+          "minithumbnail" A..= minithumbnail_,
+          "added_date" A..= added_date_,
+          "id" A..= _id_
         ]

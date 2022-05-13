@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.EncryptedCredentials where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data EncryptedCredentials = -- | Contains encrypted Telegram Passport data crede
 instance Show EncryptedCredentials where
   show
     EncryptedCredentials
-      { secret = secret,
-        hash = hash,
-        _data = _data
+      { secret = secret_,
+        hash = hash_,
+        _data = _data_
       } =
       "EncryptedCredentials"
         ++ U.cc
-          [ U.p "secret" secret,
-            U.p "hash" hash,
-            U.p "_data" _data
+          [ U.p "secret" secret_,
+            U.p "hash" hash_,
+            U.p "_data" _data_
           ]
 
 instance T.FromJSON EncryptedCredentials where
@@ -50,13 +51,13 @@ instance T.FromJSON EncryptedCredentials where
 instance T.ToJSON EncryptedCredentials where
   toJSON
     EncryptedCredentials
-      { secret = secret,
-        hash = hash,
-        _data = _data
+      { secret = secret_,
+        hash = hash_,
+        _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "encryptedCredentials",
-          "secret" A..= secret,
-          "hash" A..= hash,
-          "data" A..= _data
+          "secret" A..= secret_,
+          "hash" A..= hash_,
+          "data" A..= _data_
         ]

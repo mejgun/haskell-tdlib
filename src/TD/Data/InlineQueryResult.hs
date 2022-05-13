@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InlineQueryResult where
 
 import qualified Data.Aeson as A
@@ -141,155 +142,155 @@ data InlineQueryResult
 instance Show InlineQueryResult where
   show
     InlineQueryResultArticle
-      { thumbnail = thumbnail,
-        description = description,
-        title = title,
-        hide_url = hide_url,
-        url = url,
-        _id = _id
+      { thumbnail = thumbnail_,
+        description = description_,
+        title = title_,
+        hide_url = hide_url_,
+        url = url_,
+        _id = _id_
       } =
       "InlineQueryResultArticle"
         ++ U.cc
-          [ U.p "thumbnail" thumbnail,
-            U.p "description" description,
-            U.p "title" title,
-            U.p "hide_url" hide_url,
-            U.p "url" url,
-            U.p "_id" _id
+          [ U.p "thumbnail" thumbnail_,
+            U.p "description" description_,
+            U.p "title" title_,
+            U.p "hide_url" hide_url_,
+            U.p "url" url_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultContact
-      { thumbnail = thumbnail,
-        contact = contact,
-        _id = _id
+      { thumbnail = thumbnail_,
+        contact = contact_,
+        _id = _id_
       } =
       "InlineQueryResultContact"
         ++ U.cc
-          [ U.p "thumbnail" thumbnail,
-            U.p "contact" contact,
-            U.p "_id" _id
+          [ U.p "thumbnail" thumbnail_,
+            U.p "contact" contact_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultLocation
-      { thumbnail = thumbnail,
-        title = title,
-        location = location,
-        _id = _id
+      { thumbnail = thumbnail_,
+        title = title_,
+        location = location_,
+        _id = _id_
       } =
       "InlineQueryResultLocation"
         ++ U.cc
-          [ U.p "thumbnail" thumbnail,
-            U.p "title" title,
-            U.p "location" location,
-            U.p "_id" _id
+          [ U.p "thumbnail" thumbnail_,
+            U.p "title" title_,
+            U.p "location" location_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultVenue
-      { thumbnail = thumbnail,
-        venue = venue,
-        _id = _id
+      { thumbnail = thumbnail_,
+        venue = venue_,
+        _id = _id_
       } =
       "InlineQueryResultVenue"
         ++ U.cc
-          [ U.p "thumbnail" thumbnail,
-            U.p "venue" venue,
-            U.p "_id" _id
+          [ U.p "thumbnail" thumbnail_,
+            U.p "venue" venue_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultGame
-      { game = game,
-        _id = _id
+      { game = game_,
+        _id = _id_
       } =
       "InlineQueryResultGame"
         ++ U.cc
-          [ U.p "game" game,
-            U.p "_id" _id
+          [ U.p "game" game_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultAnimation
-      { title = title,
-        animation = animation,
-        _id = _id
+      { title = title_,
+        animation = animation_,
+        _id = _id_
       } =
       "InlineQueryResultAnimation"
         ++ U.cc
-          [ U.p "title" title,
-            U.p "animation" animation,
-            U.p "_id" _id
+          [ U.p "title" title_,
+            U.p "animation" animation_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultAudio
-      { audio = audio,
-        _id = _id
+      { audio = audio_,
+        _id = _id_
       } =
       "InlineQueryResultAudio"
         ++ U.cc
-          [ U.p "audio" audio,
-            U.p "_id" _id
+          [ U.p "audio" audio_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultDocument
-      { description = description,
-        title = title,
-        document = document,
-        _id = _id
+      { description = description_,
+        title = title_,
+        document = document_,
+        _id = _id_
       } =
       "InlineQueryResultDocument"
         ++ U.cc
-          [ U.p "description" description,
-            U.p "title" title,
-            U.p "document" document,
-            U.p "_id" _id
+          [ U.p "description" description_,
+            U.p "title" title_,
+            U.p "document" document_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultPhoto
-      { description = description,
-        title = title,
-        photo = photo,
-        _id = _id
+      { description = description_,
+        title = title_,
+        photo = photo_,
+        _id = _id_
       } =
       "InlineQueryResultPhoto"
         ++ U.cc
-          [ U.p "description" description,
-            U.p "title" title,
-            U.p "photo" photo,
-            U.p "_id" _id
+          [ U.p "description" description_,
+            U.p "title" title_,
+            U.p "photo" photo_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultSticker
-      { sticker = sticker,
-        _id = _id
+      { sticker = sticker_,
+        _id = _id_
       } =
       "InlineQueryResultSticker"
         ++ U.cc
-          [ U.p "sticker" sticker,
-            U.p "_id" _id
+          [ U.p "sticker" sticker_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultVideo
-      { description = description,
-        title = title,
-        video = video,
-        _id = _id
+      { description = description_,
+        title = title_,
+        video = video_,
+        _id = _id_
       } =
       "InlineQueryResultVideo"
         ++ U.cc
-          [ U.p "description" description,
-            U.p "title" title,
-            U.p "video" video,
-            U.p "_id" _id
+          [ U.p "description" description_,
+            U.p "title" title_,
+            U.p "video" video_,
+            U.p "_id" _id_
           ]
   show
     InlineQueryResultVoiceNote
-      { title = title,
-        voice_note = voice_note,
-        _id = _id
+      { title = title_,
+        voice_note = voice_note_,
+        _id = _id_
       } =
       "InlineQueryResultVoiceNote"
         ++ U.cc
-          [ U.p "title" title,
-            U.p "voice_note" voice_note,
-            U.p "_id" _id
+          [ U.p "title" title_,
+            U.p "voice_note" voice_note_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON InlineQueryResult where
@@ -403,153 +404,153 @@ instance T.FromJSON InlineQueryResult where
 instance T.ToJSON InlineQueryResult where
   toJSON
     InlineQueryResultArticle
-      { thumbnail = thumbnail,
-        description = description,
-        title = title,
-        hide_url = hide_url,
-        url = url,
-        _id = _id
+      { thumbnail = thumbnail_,
+        description = description_,
+        title = title_,
+        hide_url = hide_url_,
+        url = url_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultArticle",
-          "thumbnail" A..= thumbnail,
-          "description" A..= description,
-          "title" A..= title,
-          "hide_url" A..= hide_url,
-          "url" A..= url,
-          "id" A..= _id
+          "thumbnail" A..= thumbnail_,
+          "description" A..= description_,
+          "title" A..= title_,
+          "hide_url" A..= hide_url_,
+          "url" A..= url_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultContact
-      { thumbnail = thumbnail,
-        contact = contact,
-        _id = _id
+      { thumbnail = thumbnail_,
+        contact = contact_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultContact",
-          "thumbnail" A..= thumbnail,
-          "contact" A..= contact,
-          "id" A..= _id
+          "thumbnail" A..= thumbnail_,
+          "contact" A..= contact_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultLocation
-      { thumbnail = thumbnail,
-        title = title,
-        location = location,
-        _id = _id
+      { thumbnail = thumbnail_,
+        title = title_,
+        location = location_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultLocation",
-          "thumbnail" A..= thumbnail,
-          "title" A..= title,
-          "location" A..= location,
-          "id" A..= _id
+          "thumbnail" A..= thumbnail_,
+          "title" A..= title_,
+          "location" A..= location_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultVenue
-      { thumbnail = thumbnail,
-        venue = venue,
-        _id = _id
+      { thumbnail = thumbnail_,
+        venue = venue_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultVenue",
-          "thumbnail" A..= thumbnail,
-          "venue" A..= venue,
-          "id" A..= _id
+          "thumbnail" A..= thumbnail_,
+          "venue" A..= venue_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultGame
-      { game = game,
-        _id = _id
+      { game = game_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultGame",
-          "game" A..= game,
-          "id" A..= _id
+          "game" A..= game_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultAnimation
-      { title = title,
-        animation = animation,
-        _id = _id
+      { title = title_,
+        animation = animation_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultAnimation",
-          "title" A..= title,
-          "animation" A..= animation,
-          "id" A..= _id
+          "title" A..= title_,
+          "animation" A..= animation_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultAudio
-      { audio = audio,
-        _id = _id
+      { audio = audio_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultAudio",
-          "audio" A..= audio,
-          "id" A..= _id
+          "audio" A..= audio_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultDocument
-      { description = description,
-        title = title,
-        document = document,
-        _id = _id
+      { description = description_,
+        title = title_,
+        document = document_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultDocument",
-          "description" A..= description,
-          "title" A..= title,
-          "document" A..= document,
-          "id" A..= _id
+          "description" A..= description_,
+          "title" A..= title_,
+          "document" A..= document_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultPhoto
-      { description = description,
-        title = title,
-        photo = photo,
-        _id = _id
+      { description = description_,
+        title = title_,
+        photo = photo_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultPhoto",
-          "description" A..= description,
-          "title" A..= title,
-          "photo" A..= photo,
-          "id" A..= _id
+          "description" A..= description_,
+          "title" A..= title_,
+          "photo" A..= photo_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultSticker
-      { sticker = sticker,
-        _id = _id
+      { sticker = sticker_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultSticker",
-          "sticker" A..= sticker,
-          "id" A..= _id
+          "sticker" A..= sticker_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultVideo
-      { description = description,
-        title = title,
-        video = video,
-        _id = _id
+      { description = description_,
+        title = title_,
+        video = video_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultVideo",
-          "description" A..= description,
-          "title" A..= title,
-          "video" A..= video,
-          "id" A..= _id
+          "description" A..= description_,
+          "title" A..= title_,
+          "video" A..= video_,
+          "id" A..= _id_
         ]
   toJSON
     InlineQueryResultVoiceNote
-      { title = title,
-        voice_note = voice_note,
-        _id = _id
+      { title = title_,
+        voice_note = voice_note_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "inlineQueryResultVoiceNote",
-          "title" A..= title,
-          "voice_note" A..= voice_note,
-          "id" A..= _id
+          "title" A..= title_,
+          "voice_note" A..= voice_note_,
+          "id" A..= _id_
         ]

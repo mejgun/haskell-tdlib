@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddProxy where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data AddProxy = AddProxy
 instance Show AddProxy where
   show
     AddProxy
-      { _type = _type,
-        enable = enable,
-        port = port,
-        server = server
+      { _type = _type_,
+        enable = enable_,
+        port = port_,
+        server = server_
       } =
       "AddProxy"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "enable" enable,
-            U.p "port" port,
-            U.p "server" server
+          [ U.p "_type" _type_,
+            U.p "enable" enable_,
+            U.p "port" port_,
+            U.p "server" server_
           ]
 
 instance T.ToJSON AddProxy where
   toJSON
     AddProxy
-      { _type = _type,
-        enable = enable,
-        port = port,
-        server = server
+      { _type = _type_,
+        enable = enable_,
+        port = port_,
+        server = server_
       } =
       A.object
         [ "@type" A..= T.String "addProxy",
-          "type" A..= _type,
-          "enable" A..= enable,
-          "port" A..= port,
-          "server" A..= server
+          "type" A..= _type_,
+          "enable" A..= enable_,
+          "port" A..= port_,
+          "server" A..= server_
         ]

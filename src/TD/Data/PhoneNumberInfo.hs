@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PhoneNumberInfo where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data PhoneNumberInfo = -- | Contains information about a phone number
 instance Show PhoneNumberInfo where
   show
     PhoneNumberInfo
-      { formatted_phone_number = formatted_phone_number,
-        country_calling_code = country_calling_code,
-        country = country
+      { formatted_phone_number = formatted_phone_number_,
+        country_calling_code = country_calling_code_,
+        country = country_
       } =
       "PhoneNumberInfo"
         ++ U.cc
-          [ U.p "formatted_phone_number" formatted_phone_number,
-            U.p "country_calling_code" country_calling_code,
-            U.p "country" country
+          [ U.p "formatted_phone_number" formatted_phone_number_,
+            U.p "country_calling_code" country_calling_code_,
+            U.p "country" country_
           ]
 
 instance T.FromJSON PhoneNumberInfo where
@@ -51,13 +52,13 @@ instance T.FromJSON PhoneNumberInfo where
 instance T.ToJSON PhoneNumberInfo where
   toJSON
     PhoneNumberInfo
-      { formatted_phone_number = formatted_phone_number,
-        country_calling_code = country_calling_code,
-        country = country
+      { formatted_phone_number = formatted_phone_number_,
+        country_calling_code = country_calling_code_,
+        country = country_
       } =
       A.object
         [ "@type" A..= T.String "phoneNumberInfo",
-          "formatted_phone_number" A..= formatted_phone_number,
-          "country_calling_code" A..= country_calling_code,
-          "country" A..= country
+          "formatted_phone_number" A..= formatted_phone_number_,
+          "country_calling_code" A..= country_calling_code_,
+          "country" A..= country_
         ]

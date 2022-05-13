@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetBotUpdatesStatus where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SetBotUpdatesStatus = SetBotUpdatesStatus
 instance Show SetBotUpdatesStatus where
   show
     SetBotUpdatesStatus
-      { error_message = error_message,
-        pending_update_count = pending_update_count
+      { error_message = error_message_,
+        pending_update_count = pending_update_count_
       } =
       "SetBotUpdatesStatus"
         ++ U.cc
-          [ U.p "error_message" error_message,
-            U.p "pending_update_count" pending_update_count
+          [ U.p "error_message" error_message_,
+            U.p "pending_update_count" pending_update_count_
           ]
 
 instance T.ToJSON SetBotUpdatesStatus where
   toJSON
     SetBotUpdatesStatus
-      { error_message = error_message,
-        pending_update_count = pending_update_count
+      { error_message = error_message_,
+        pending_update_count = pending_update_count_
       } =
       A.object
         [ "@type" A..= T.String "setBotUpdatesStatus",
-          "error_message" A..= error_message,
-          "pending_update_count" A..= pending_update_count
+          "error_message" A..= error_message_,
+          "pending_update_count" A..= pending_update_count_
         ]

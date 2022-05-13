@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatMessageTtl where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetChatMessageTtl = SetChatMessageTtl
 instance Show SetChatMessageTtl where
   show
     SetChatMessageTtl
-      { ttl = ttl,
-        chat_id = chat_id
+      { ttl = ttl_,
+        chat_id = chat_id_
       } =
       "SetChatMessageTtl"
         ++ U.cc
-          [ U.p "ttl" ttl,
-            U.p "chat_id" chat_id
+          [ U.p "ttl" ttl_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatMessageTtl where
   toJSON
     SetChatMessageTtl
-      { ttl = ttl,
-        chat_id = chat_id
+      { ttl = ttl_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatMessageTtl",
-          "ttl" A..= ttl,
-          "chat_id" A..= chat_id
+          "ttl" A..= ttl_,
+          "chat_id" A..= chat_id_
         ]

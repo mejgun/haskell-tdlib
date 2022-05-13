@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetSupergroupMembers where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data GetSupergroupMembers = GetSupergroupMembers
 instance Show GetSupergroupMembers where
   show
     GetSupergroupMembers
-      { limit = limit,
-        offset = offset,
-        _filter = _filter,
-        supergroup_id = supergroup_id
+      { limit = limit_,
+        offset = offset_,
+        _filter = _filter_,
+        supergroup_id = supergroup_id_
       } =
       "GetSupergroupMembers"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "_filter" _filter,
-            U.p "supergroup_id" supergroup_id
+          [ U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "_filter" _filter_,
+            U.p "supergroup_id" supergroup_id_
           ]
 
 instance T.ToJSON GetSupergroupMembers where
   toJSON
     GetSupergroupMembers
-      { limit = limit,
-        offset = offset,
-        _filter = _filter,
-        supergroup_id = supergroup_id
+      { limit = limit_,
+        offset = offset_,
+        _filter = _filter_,
+        supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "getSupergroupMembers",
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "filter" A..= _filter,
-          "supergroup_id" A..= supergroup_id
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "filter" A..= _filter_,
+          "supergroup_id" A..= supergroup_id_
         ]

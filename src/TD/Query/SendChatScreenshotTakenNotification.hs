@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendChatScreenshotTakenNotification where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SendChatScreenshotTakenNotification = SendChatScreenshotTakenNotification
 instance Show SendChatScreenshotTakenNotification where
   show
     SendChatScreenshotTakenNotification
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "SendChatScreenshotTakenNotification"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SendChatScreenshotTakenNotification where
   toJSON
     SendChatScreenshotTakenNotification
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "sendChatScreenshotTakenNotification",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.RecoveryEmailAddress where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data RecoveryEmailAddress = -- | Contains information about the current recovery
 instance Show RecoveryEmailAddress where
   show
     RecoveryEmailAddress
-      { recovery_email_address = recovery_email_address
+      { recovery_email_address = recovery_email_address_
       } =
       "RecoveryEmailAddress"
         ++ U.cc
-          [ U.p "recovery_email_address" recovery_email_address
+          [ U.p "recovery_email_address" recovery_email_address_
           ]
 
 instance T.FromJSON RecoveryEmailAddress where
@@ -40,9 +41,9 @@ instance T.FromJSON RecoveryEmailAddress where
 instance T.ToJSON RecoveryEmailAddress where
   toJSON
     RecoveryEmailAddress
-      { recovery_email_address = recovery_email_address
+      { recovery_email_address = recovery_email_address_
       } =
       A.object
         [ "@type" A..= T.String "recoveryEmailAddress",
-          "recovery_email_address" A..= recovery_email_address
+          "recovery_email_address" A..= recovery_email_address_
         ]

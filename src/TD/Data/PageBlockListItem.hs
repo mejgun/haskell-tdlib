@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PageBlockListItem where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data PageBlockListItem = -- | Describes an item of a list page block @label Item
 instance Show PageBlockListItem where
   show
     PageBlockListItem
-      { page_blocks = page_blocks,
-        label = label
+      { page_blocks = page_blocks_,
+        label = label_
       } =
       "PageBlockListItem"
         ++ U.cc
-          [ U.p "page_blocks" page_blocks,
-            U.p "label" label
+          [ U.p "page_blocks" page_blocks_,
+            U.p "label" label_
           ]
 
 instance T.FromJSON PageBlockListItem where
@@ -46,11 +47,11 @@ instance T.FromJSON PageBlockListItem where
 instance T.ToJSON PageBlockListItem where
   toJSON
     PageBlockListItem
-      { page_blocks = page_blocks,
-        label = label
+      { page_blocks = page_blocks_,
+        label = label_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockListItem",
-          "page_blocks" A..= page_blocks,
-          "label" A..= label
+          "page_blocks" A..= page_blocks_,
+          "label" A..= label_
         ]

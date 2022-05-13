@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallProblem where
 
 import qualified Data.Aeson as A
@@ -83,40 +84,31 @@ instance T.FromJSON CallProblem where
       _ -> mempty
     where
       parseCallProblemEcho :: A.Value -> T.Parser CallProblem
-      parseCallProblemEcho = A.withObject "CallProblemEcho" $ \o -> do
-        return $ CallProblemEcho {}
+      parseCallProblemEcho = A.withObject "CallProblemEcho" $ \_ -> return CallProblemEcho
 
       parseCallProblemNoise :: A.Value -> T.Parser CallProblem
-      parseCallProblemNoise = A.withObject "CallProblemNoise" $ \o -> do
-        return $ CallProblemNoise {}
+      parseCallProblemNoise = A.withObject "CallProblemNoise" $ \_ -> return CallProblemNoise
 
       parseCallProblemInterruptions :: A.Value -> T.Parser CallProblem
-      parseCallProblemInterruptions = A.withObject "CallProblemInterruptions" $ \o -> do
-        return $ CallProblemInterruptions {}
+      parseCallProblemInterruptions = A.withObject "CallProblemInterruptions" $ \_ -> return CallProblemInterruptions
 
       parseCallProblemDistortedSpeech :: A.Value -> T.Parser CallProblem
-      parseCallProblemDistortedSpeech = A.withObject "CallProblemDistortedSpeech" $ \o -> do
-        return $ CallProblemDistortedSpeech {}
+      parseCallProblemDistortedSpeech = A.withObject "CallProblemDistortedSpeech" $ \_ -> return CallProblemDistortedSpeech
 
       parseCallProblemSilentLocal :: A.Value -> T.Parser CallProblem
-      parseCallProblemSilentLocal = A.withObject "CallProblemSilentLocal" $ \o -> do
-        return $ CallProblemSilentLocal {}
+      parseCallProblemSilentLocal = A.withObject "CallProblemSilentLocal" $ \_ -> return CallProblemSilentLocal
 
       parseCallProblemSilentRemote :: A.Value -> T.Parser CallProblem
-      parseCallProblemSilentRemote = A.withObject "CallProblemSilentRemote" $ \o -> do
-        return $ CallProblemSilentRemote {}
+      parseCallProblemSilentRemote = A.withObject "CallProblemSilentRemote" $ \_ -> return CallProblemSilentRemote
 
       parseCallProblemDropped :: A.Value -> T.Parser CallProblem
-      parseCallProblemDropped = A.withObject "CallProblemDropped" $ \o -> do
-        return $ CallProblemDropped {}
+      parseCallProblemDropped = A.withObject "CallProblemDropped" $ \_ -> return CallProblemDropped
 
       parseCallProblemDistortedVideo :: A.Value -> T.Parser CallProblem
-      parseCallProblemDistortedVideo = A.withObject "CallProblemDistortedVideo" $ \o -> do
-        return $ CallProblemDistortedVideo {}
+      parseCallProblemDistortedVideo = A.withObject "CallProblemDistortedVideo" $ \_ -> return CallProblemDistortedVideo
 
       parseCallProblemPixelatedVideo :: A.Value -> T.Parser CallProblem
-      parseCallProblemPixelatedVideo = A.withObject "CallProblemPixelatedVideo" $ \o -> do
-        return $ CallProblemPixelatedVideo {}
+      parseCallProblemPixelatedVideo = A.withObject "CallProblemPixelatedVideo" $ \_ -> return CallProblemPixelatedVideo
   parseJSON _ = mempty
 
 instance T.ToJSON CallProblem where

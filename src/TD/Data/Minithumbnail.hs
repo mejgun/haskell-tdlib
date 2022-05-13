@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Minithumbnail where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data Minithumbnail = -- | Thumbnail image of a very poor quality and low resolut
 instance Show Minithumbnail where
   show
     Minithumbnail
-      { _data = _data,
-        height = height,
-        width = width
+      { _data = _data_,
+        height = height_,
+        width = width_
       } =
       "Minithumbnail"
         ++ U.cc
-          [ U.p "_data" _data,
-            U.p "height" height,
-            U.p "width" width
+          [ U.p "_data" _data_,
+            U.p "height" height_,
+            U.p "width" width_
           ]
 
 instance T.FromJSON Minithumbnail where
@@ -50,13 +51,13 @@ instance T.FromJSON Minithumbnail where
 instance T.ToJSON Minithumbnail where
   toJSON
     Minithumbnail
-      { _data = _data,
-        height = height,
-        width = width
+      { _data = _data_,
+        height = height_,
+        width = width_
       } =
       A.object
         [ "@type" A..= T.String "minithumbnail",
-          "data" A..= _data,
-          "height" A..= height,
-          "width" A..= width
+          "data" A..= _data_,
+          "height" A..= height_,
+          "width" A..= width_
         ]

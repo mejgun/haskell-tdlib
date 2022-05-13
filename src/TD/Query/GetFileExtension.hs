@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetFileExtension where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetFileExtension = GetFileExtension
 instance Show GetFileExtension where
   show
     GetFileExtension
-      { mime_type = mime_type
+      { mime_type = mime_type_
       } =
       "GetFileExtension"
         ++ U.cc
-          [ U.p "mime_type" mime_type
+          [ U.p "mime_type" mime_type_
           ]
 
 instance T.ToJSON GetFileExtension where
   toJSON
     GetFileExtension
-      { mime_type = mime_type
+      { mime_type = mime_type_
       } =
       A.object
         [ "@type" A..= T.String "getFileExtension",
-          "mime_type" A..= mime_type
+          "mime_type" A..= mime_type_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatMemberStatus where
 
 import qualified Data.Aeson as A
@@ -23,27 +24,27 @@ data SetChatMemberStatus = SetChatMemberStatus
 instance Show SetChatMemberStatus where
   show
     SetChatMemberStatus
-      { status = status,
-        member_id = member_id,
-        chat_id = chat_id
+      { status = status_,
+        member_id = member_id_,
+        chat_id = chat_id_
       } =
       "SetChatMemberStatus"
         ++ U.cc
-          [ U.p "status" status,
-            U.p "member_id" member_id,
-            U.p "chat_id" chat_id
+          [ U.p "status" status_,
+            U.p "member_id" member_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatMemberStatus where
   toJSON
     SetChatMemberStatus
-      { status = status,
-        member_id = member_id,
-        chat_id = chat_id
+      { status = status_,
+        member_id = member_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatMemberStatus",
-          "status" A..= status,
-          "member_id" A..= member_id,
-          "chat_id" A..= chat_id
+          "status" A..= status_,
+          "member_id" A..= member_id_,
+          "chat_id" A..= chat_id_
         ]

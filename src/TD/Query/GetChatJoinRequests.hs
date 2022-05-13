@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatJoinRequests where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data GetChatJoinRequests = GetChatJoinRequests
 instance Show GetChatJoinRequests where
   show
     GetChatJoinRequests
-      { limit = limit,
-        offset_request = offset_request,
-        query = query,
-        invite_link = invite_link,
-        chat_id = chat_id
+      { limit = limit_,
+        offset_request = offset_request_,
+        query = query_,
+        invite_link = invite_link_,
+        chat_id = chat_id_
       } =
       "GetChatJoinRequests"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset_request" offset_request,
-            U.p "query" query,
-            U.p "invite_link" invite_link,
-            U.p "chat_id" chat_id
+          [ U.p "limit" limit_,
+            U.p "offset_request" offset_request_,
+            U.p "query" query_,
+            U.p "invite_link" invite_link_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatJoinRequests where
   toJSON
     GetChatJoinRequests
-      { limit = limit,
-        offset_request = offset_request,
-        query = query,
-        invite_link = invite_link,
-        chat_id = chat_id
+      { limit = limit_,
+        offset_request = offset_request_,
+        query = query_,
+        invite_link = invite_link_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatJoinRequests",
-          "limit" A..= limit,
-          "offset_request" A..= offset_request,
-          "query" A..= query,
-          "invite_link" A..= invite_link,
-          "chat_id" A..= chat_id
+          "limit" A..= limit_,
+          "offset_request" A..= offset_request_,
+          "query" A..= query_,
+          "invite_link" A..= invite_link_,
+          "chat_id" A..= chat_id_
         ]

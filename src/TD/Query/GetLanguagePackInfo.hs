@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetLanguagePackInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetLanguagePackInfo = GetLanguagePackInfo
 instance Show GetLanguagePackInfo where
   show
     GetLanguagePackInfo
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       "GetLanguagePackInfo"
         ++ U.cc
-          [ U.p "language_pack_id" language_pack_id
+          [ U.p "language_pack_id" language_pack_id_
           ]
 
 instance T.ToJSON GetLanguagePackInfo where
   toJSON
     GetLanguagePackInfo
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       A.object
         [ "@type" A..= T.String "getLanguagePackInfo",
-          "language_pack_id" A..= language_pack_id
+          "language_pack_id" A..= language_pack_id_
         ]

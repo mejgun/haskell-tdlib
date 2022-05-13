@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GroupCallVideoSourceGroup where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data GroupCallVideoSourceGroup = -- | Describes a group of video synchronization
 instance Show GroupCallVideoSourceGroup where
   show
     GroupCallVideoSourceGroup
-      { source_ids = source_ids,
-        semantics = semantics
+      { source_ids = source_ids_,
+        semantics = semantics_
       } =
       "GroupCallVideoSourceGroup"
         ++ U.cc
-          [ U.p "source_ids" source_ids,
-            U.p "semantics" semantics
+          [ U.p "source_ids" source_ids_,
+            U.p "semantics" semantics_
           ]
 
 instance T.FromJSON GroupCallVideoSourceGroup where
@@ -45,11 +46,11 @@ instance T.FromJSON GroupCallVideoSourceGroup where
 instance T.ToJSON GroupCallVideoSourceGroup where
   toJSON
     GroupCallVideoSourceGroup
-      { source_ids = source_ids,
-        semantics = semantics
+      { source_ids = source_ids_,
+        semantics = semantics_
       } =
       A.object
         [ "@type" A..= T.String "groupCallVideoSourceGroup",
-          "source_ids" A..= source_ids,
-          "semantics" A..= semantics
+          "source_ids" A..= source_ids_,
+          "semantics" A..= semantics_
         ]

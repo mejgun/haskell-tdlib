@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatLists where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data ChatLists = -- | Contains a list of chat lists @chat_lists List of chat lis
 instance Show ChatLists where
   show
     ChatLists
-      { chat_lists = chat_lists
+      { chat_lists = chat_lists_
       } =
       "ChatLists"
         ++ U.cc
-          [ U.p "chat_lists" chat_lists
+          [ U.p "chat_lists" chat_lists_
           ]
 
 instance T.FromJSON ChatLists where
@@ -41,9 +42,9 @@ instance T.FromJSON ChatLists where
 instance T.ToJSON ChatLists where
   toJSON
     ChatLists
-      { chat_lists = chat_lists
+      { chat_lists = chat_lists_
       } =
       A.object
         [ "@type" A..= T.String "chatLists",
-          "chat_lists" A..= chat_lists
+          "chat_lists" A..= chat_lists_
         ]

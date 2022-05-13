@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.FoundMessages where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data FoundMessages = -- | Contains a list of messages found by a search @total_c
 instance Show FoundMessages where
   show
     FoundMessages
-      { next_offset = next_offset,
-        messages = messages,
-        total_count = total_count
+      { next_offset = next_offset_,
+        messages = messages_,
+        total_count = total_count_
       } =
       "FoundMessages"
         ++ U.cc
-          [ U.p "next_offset" next_offset,
-            U.p "messages" messages,
-            U.p "total_count" total_count
+          [ U.p "next_offset" next_offset_,
+            U.p "messages" messages_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON FoundMessages where
@@ -51,13 +52,13 @@ instance T.FromJSON FoundMessages where
 instance T.ToJSON FoundMessages where
   toJSON
     FoundMessages
-      { next_offset = next_offset,
-        messages = messages,
-        total_count = total_count
+      { next_offset = next_offset_,
+        messages = messages_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "foundMessages",
-          "next_offset" A..= next_offset,
-          "messages" A..= messages,
-          "total_count" A..= total_count
+          "next_offset" A..= next_offset_,
+          "messages" A..= messages_,
+          "total_count" A..= total_count_
         ]

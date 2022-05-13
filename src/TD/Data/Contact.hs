@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Contact where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data Contact = -- | Describes a user contact @phone_number Phone number of the u
 instance Show Contact where
   show
     Contact
-      { user_id = user_id,
-        vcard = vcard,
-        last_name = last_name,
-        first_name = first_name,
-        phone_number = phone_number
+      { user_id = user_id_,
+        vcard = vcard_,
+        last_name = last_name_,
+        first_name = first_name_,
+        phone_number = phone_number_
       } =
       "Contact"
         ++ U.cc
-          [ U.p "user_id" user_id,
-            U.p "vcard" vcard,
-            U.p "last_name" last_name,
-            U.p "first_name" first_name,
-            U.p "phone_number" phone_number
+          [ U.p "user_id" user_id_,
+            U.p "vcard" vcard_,
+            U.p "last_name" last_name_,
+            U.p "first_name" first_name_,
+            U.p "phone_number" phone_number_
           ]
 
 instance T.FromJSON Contact where
@@ -60,17 +61,17 @@ instance T.FromJSON Contact where
 instance T.ToJSON Contact where
   toJSON
     Contact
-      { user_id = user_id,
-        vcard = vcard,
-        last_name = last_name,
-        first_name = first_name,
-        phone_number = phone_number
+      { user_id = user_id_,
+        vcard = vcard_,
+        last_name = last_name_,
+        first_name = first_name_,
+        phone_number = phone_number_
       } =
       A.object
         [ "@type" A..= T.String "contact",
-          "user_id" A..= user_id,
-          "vcard" A..= vcard,
-          "last_name" A..= last_name,
-          "first_name" A..= first_name,
-          "phone_number" A..= phone_number
+          "user_id" A..= user_id_,
+          "vcard" A..= vcard_,
+          "last_name" A..= last_name_,
+          "first_name" A..= first_name_,
+          "phone_number" A..= phone_number_
         ]

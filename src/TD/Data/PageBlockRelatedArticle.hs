@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PageBlockRelatedArticle where
 
 import qualified Data.Aeson as A
@@ -27,21 +28,21 @@ data PageBlockRelatedArticle = -- | Contains information about a related article
 instance Show PageBlockRelatedArticle where
   show
     PageBlockRelatedArticle
-      { publish_date = publish_date,
-        author = author,
-        photo = photo,
-        description = description,
-        title = title,
-        url = url
+      { publish_date = publish_date_,
+        author = author_,
+        photo = photo_,
+        description = description_,
+        title = title_,
+        url = url_
       } =
       "PageBlockRelatedArticle"
         ++ U.cc
-          [ U.p "publish_date" publish_date,
-            U.p "author" author,
-            U.p "photo" photo,
-            U.p "description" description,
-            U.p "title" title,
-            U.p "url" url
+          [ U.p "publish_date" publish_date_,
+            U.p "author" author_,
+            U.p "photo" photo_,
+            U.p "description" description_,
+            U.p "title" title_,
+            U.p "url" url_
           ]
 
 instance T.FromJSON PageBlockRelatedArticle where
@@ -66,19 +67,19 @@ instance T.FromJSON PageBlockRelatedArticle where
 instance T.ToJSON PageBlockRelatedArticle where
   toJSON
     PageBlockRelatedArticle
-      { publish_date = publish_date,
-        author = author,
-        photo = photo,
-        description = description,
-        title = title,
-        url = url
+      { publish_date = publish_date_,
+        author = author_,
+        photo = photo_,
+        description = description_,
+        title = title_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockRelatedArticle",
-          "publish_date" A..= publish_date,
-          "author" A..= author,
-          "photo" A..= photo,
-          "description" A..= description,
-          "title" A..= title,
-          "url" A..= url
+          "publish_date" A..= publish_date_,
+          "author" A..= author_,
+          "photo" A..= photo_,
+          "description" A..= description_,
+          "title" A..= title_,
+          "url" A..= url_
         ]

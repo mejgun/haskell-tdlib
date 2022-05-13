@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.OptionValue where
 
 import qualified Data.Aeson as A
@@ -30,11 +31,11 @@ data OptionValue
 instance Show OptionValue where
   show
     OptionValueBoolean
-      { value = value
+      { value = value_
       } =
       "OptionValueBoolean"
         ++ U.cc
-          [ U.p "value" value
+          [ U.p "value" value_
           ]
   show OptionValueEmpty =
     "OptionValueEmpty"
@@ -42,19 +43,19 @@ instance Show OptionValue where
         []
   show
     OptionValueInteger
-      { _value = _value
+      { _value = _value_
       } =
       "OptionValueInteger"
         ++ U.cc
-          [ U.p "_value" _value
+          [ U.p "_value" _value_
           ]
   show
     OptionValueString
-      { __value = __value
+      { __value = __value_
       } =
       "OptionValueString"
         ++ U.cc
-          [ U.p "__value" __value
+          [ U.p "__value" __value_
           ]
 
 instance T.FromJSON OptionValue where
@@ -74,8 +75,7 @@ instance T.FromJSON OptionValue where
         return $ OptionValueBoolean {value = value_}
 
       parseOptionValueEmpty :: A.Value -> T.Parser OptionValue
-      parseOptionValueEmpty = A.withObject "OptionValueEmpty" $ \o -> do
-        return $ OptionValueEmpty {}
+      parseOptionValueEmpty = A.withObject "OptionValueEmpty" $ \_ -> return OptionValueEmpty
 
       parseOptionValueInteger :: A.Value -> T.Parser OptionValue
       parseOptionValueInteger = A.withObject "OptionValueInteger" $ \o -> do
@@ -91,11 +91,11 @@ instance T.FromJSON OptionValue where
 instance T.ToJSON OptionValue where
   toJSON
     OptionValueBoolean
-      { value = value
+      { value = value_
       } =
       A.object
         [ "@type" A..= T.String "optionValueBoolean",
-          "value" A..= value
+          "value" A..= value_
         ]
   toJSON OptionValueEmpty =
     A.object
@@ -103,17 +103,17 @@ instance T.ToJSON OptionValue where
       ]
   toJSON
     OptionValueInteger
-      { _value = _value
+      { _value = _value_
       } =
       A.object
         [ "@type" A..= T.String "optionValueInteger",
-          "value" A..= _value
+          "value" A..= _value_
         ]
   toJSON
     OptionValueString
-      { __value = __value
+      { __value = __value_
       } =
       A.object
         [ "@type" A..= T.String "optionValueString",
-          "value" A..= __value
+          "value" A..= __value_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetAttachmentMenuBot where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetAttachmentMenuBot = GetAttachmentMenuBot
 instance Show GetAttachmentMenuBot where
   show
     GetAttachmentMenuBot
-      { bot_user_id = bot_user_id
+      { bot_user_id = bot_user_id_
       } =
       "GetAttachmentMenuBot"
         ++ U.cc
-          [ U.p "bot_user_id" bot_user_id
+          [ U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.ToJSON GetAttachmentMenuBot where
   toJSON
     GetAttachmentMenuBot
-      { bot_user_id = bot_user_id
+      { bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "getAttachmentMenuBot",
-          "bot_user_id" A..= bot_user_id
+          "bot_user_id" A..= bot_user_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallId where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data CallId = -- | Contains the call identifier @id Call identifier
 instance Show CallId where
   show
     CallId
-      { _id = _id
+      { _id = _id_
       } =
       "CallId"
         ++ U.cc
-          [ U.p "_id" _id
+          [ U.p "_id" _id_
           ]
 
 instance T.FromJSON CallId where
@@ -40,9 +41,9 @@ instance T.FromJSON CallId where
 instance T.ToJSON CallId where
   toJSON
     CallId
-      { _id = _id
+      { _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "callId",
-          "id" A..= _id
+          "id" A..= _id_
         ]

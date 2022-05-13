@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SaveApplicationLogEvent where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data SaveApplicationLogEvent = SaveApplicationLogEvent
 instance Show SaveApplicationLogEvent where
   show
     SaveApplicationLogEvent
-      { _data = _data,
-        chat_id = chat_id,
-        _type = _type
+      { _data = _data_,
+        chat_id = chat_id_,
+        _type = _type_
       } =
       "SaveApplicationLogEvent"
         ++ U.cc
-          [ U.p "_data" _data,
-            U.p "chat_id" chat_id,
-            U.p "_type" _type
+          [ U.p "_data" _data_,
+            U.p "chat_id" chat_id_,
+            U.p "_type" _type_
           ]
 
 instance T.ToJSON SaveApplicationLogEvent where
   toJSON
     SaveApplicationLogEvent
-      { _data = _data,
-        chat_id = chat_id,
-        _type = _type
+      { _data = _data_,
+        chat_id = chat_id_,
+        _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "saveApplicationLogEvent",
-          "data" A..= _data,
-          "chat_id" A..= chat_id,
-          "type" A..= _type
+          "data" A..= _data_,
+          "chat_id" A..= chat_id_,
+          "type" A..= _type_
         ]

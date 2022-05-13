@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReadFilePart where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data ReadFilePart = ReadFilePart
 instance Show ReadFilePart where
   show
     ReadFilePart
-      { count = count,
-        offset = offset,
-        file_id = file_id
+      { count = count_,
+        offset = offset_,
+        file_id = file_id_
       } =
       "ReadFilePart"
         ++ U.cc
-          [ U.p "count" count,
-            U.p "offset" offset,
-            U.p "file_id" file_id
+          [ U.p "count" count_,
+            U.p "offset" offset_,
+            U.p "file_id" file_id_
           ]
 
 instance T.ToJSON ReadFilePart where
   toJSON
     ReadFilePart
-      { count = count,
-        offset = offset,
-        file_id = file_id
+      { count = count_,
+        offset = offset_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "readFilePart",
-          "count" A..= count,
-          "offset" A..= offset,
-          "file_id" A..= file_id
+          "count" A..= count_,
+          "offset" A..= offset_,
+          "file_id" A..= file_id_
         ]

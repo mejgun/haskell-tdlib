@@ -2,6 +2,7 @@
 -- stack --resolver lts-18.28 script
 
 {-# LANGUAGE OverloadedStrings #-}
+{-# OPTIONS_GHC -W -Wall -Werror #-}
 
 module Main where
 
@@ -99,6 +100,7 @@ writeGeneralResult l =
         "\n"
         [ "{-# LANGUAGE OverloadedStrings #-}",
           "",
+          "-- |",
           printf "module %s.%s where" dataModule modname,
           "",
           "import qualified Data.Aeson as A",
@@ -120,9 +122,10 @@ writeGeneralResult l =
           "   e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of",
           "     T.Success r -> r",
           "     _           -> Nothing",
+          " parseJSON _ = mempty",
           "",
           "instance T.FromJSON GeneralResult where",
-          " parseJSON v@(T.Object obj) = do",
+          " parseJSON v@(T.Object _) = do",
           "  mconcat t",
           "  where",
           "   t =",
@@ -139,7 +142,8 @@ writeGeneralResult l =
                 )
                 l
             ),
-          "     ]"
+          "     ]",
+          " parseJSON _ = mempty"
         ]
 
 writeFuncs :: [ImportRecord] -> [Entry] -> IO ()
@@ -160,6 +164,7 @@ writeFuncs imps (q@(Item _ con com arg) : t) = do
         "\n"
         [ "{-# LANGUAGE OverloadedStrings #-}\n",
           "",
+          "-- |",
           printf "module %s.%s where" funcModule con,
           "import qualified Utils as U",
           "import qualified Data.Aeson as A",
@@ -197,13 +202,13 @@ printToShow (Item _ con _ arg) =
     [ printf " show %s %s" con (if null arg then "" else "{" :: String),
       L.intercalate
         ",\n"
-        ( map (\(Arg x1 _ _) -> printf "   %s = %s" x1 x1) arg
+        ( map (\(Arg x1 _ _) -> printf "   %s = %s_" x1 x1) arg
         ),
       printf "   %s" (if null arg then "" else "}" :: String),
       printf "   = \"%s\" ++ U.cc [" con,
       L.intercalate
         ",\n"
-        ( map (\(Arg x1 _ _) -> printf "   U.p \"%s\" %s" x1 x1) arg
+        ( map (\(Arg x1 _ _) -> printf "   U.p \"%s\" %s_" x1 x1) arg
         ),
       "  ]"
     ]
@@ -216,14 +221,14 @@ printToJson (Item _ con _ arg) =
     [ printf " toJSON %s %s" con (if null arg then "" else "{" :: String),
       L.intercalate
         ",\n"
-        ( map (\(Arg x1 _ _) -> printf "   %s = %s" x1 x1) arg
+        ( map (\(Arg x1 _ _) -> printf "   %s = %s_" x1 x1) arg
         ),
       printf "   %s" (if null arg then "" else "}" :: String),
       printf "   = A.object [",
       printf "   \"@type\" A..= T.String \"%s\"%s" (toLower con) (if null arg then "" else "," :: String),
       L.intercalate
         ",\n"
-        ( map (\(Arg x1 _ _) -> printf "   \"%s\" A..= %s" (dropAround (== '_') x1) x1) arg
+        ( map (\(Arg x1 _ _) -> printf "   \"%s\" A..= %s_" (dropAround (== '_') x1) x1) arg
         ),
       "  ]"
     ]
@@ -247,6 +252,7 @@ writeData imps recimps (q@(nam, _, _) : t) = do
         "\n"
         [ "{-# LANGUAGE OverloadedStrings #-}",
           "",
+          " -- |",
           printf "module %s.%s where" dataModule n,
           "",
           "import qualified Utils as U",
@@ -309,6 +315,12 @@ writeData imps recimps (q@(nam, _, _) : t) = do
                 ++ [" parseJSON _ = mempty"]
             )
         printFromJsonItem :: Entry -> String
+        printFromJsonItem (Item cl con _ []) =
+          L.intercalate
+            "\n"
+            [ printf "   parse%s :: A.Value -> T.Parser %s" con cl,
+              printf "   parse%s = A.withObject \"%s\" $ \\_ -> return %s" con con con
+            ]
         printFromJsonItem (Item cl con _ ar) =
           L.intercalate
             "\n"

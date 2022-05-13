@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageSendingState where
 
 import qualified Data.Aeson as A
@@ -32,19 +33,19 @@ instance Show MessageSendingState where
         []
   show
     MessageSendingStateFailed
-      { retry_after = retry_after,
-        need_another_sender = need_another_sender,
-        can_retry = can_retry,
-        error_message = error_message,
-        error_code = error_code
+      { retry_after = retry_after_,
+        need_another_sender = need_another_sender_,
+        can_retry = can_retry_,
+        error_message = error_message_,
+        error_code = error_code_
       } =
       "MessageSendingStateFailed"
         ++ U.cc
-          [ U.p "retry_after" retry_after,
-            U.p "need_another_sender" need_another_sender,
-            U.p "can_retry" can_retry,
-            U.p "error_message" error_message,
-            U.p "error_code" error_code
+          [ U.p "retry_after" retry_after_,
+            U.p "need_another_sender" need_another_sender_,
+            U.p "can_retry" can_retry_,
+            U.p "error_message" error_message_,
+            U.p "error_code" error_code_
           ]
 
 instance T.FromJSON MessageSendingState where
@@ -57,8 +58,7 @@ instance T.FromJSON MessageSendingState where
       _ -> mempty
     where
       parseMessageSendingStatePending :: A.Value -> T.Parser MessageSendingState
-      parseMessageSendingStatePending = A.withObject "MessageSendingStatePending" $ \o -> do
-        return $ MessageSendingStatePending {}
+      parseMessageSendingStatePending = A.withObject "MessageSendingStatePending" $ \_ -> return MessageSendingStatePending
 
       parseMessageSendingStateFailed :: A.Value -> T.Parser MessageSendingState
       parseMessageSendingStateFailed = A.withObject "MessageSendingStateFailed" $ \o -> do
@@ -77,17 +77,17 @@ instance T.ToJSON MessageSendingState where
       ]
   toJSON
     MessageSendingStateFailed
-      { retry_after = retry_after,
-        need_another_sender = need_another_sender,
-        can_retry = can_retry,
-        error_message = error_message,
-        error_code = error_code
+      { retry_after = retry_after_,
+        need_another_sender = need_another_sender_,
+        can_retry = can_retry_,
+        error_message = error_message_,
+        error_code = error_code_
       } =
       A.object
         [ "@type" A..= T.String "messageSendingStateFailed",
-          "retry_after" A..= retry_after,
-          "need_another_sender" A..= need_another_sender,
-          "can_retry" A..= can_retry,
-          "error_message" A..= error_message,
-          "error_code" A..= error_code
+          "retry_after" A..= retry_after_,
+          "need_another_sender" A..= need_another_sender_,
+          "can_retry" A..= can_retry_,
+          "error_message" A..= error_message_,
+          "error_code" A..= error_code_
         ]

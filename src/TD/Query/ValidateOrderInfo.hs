@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ValidateOrderInfo where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data ValidateOrderInfo = ValidateOrderInfo
 instance Show ValidateOrderInfo where
   show
     ValidateOrderInfo
-      { allow_save = allow_save,
-        order_info = order_info,
-        message_id = message_id,
-        chat_id = chat_id
+      { allow_save = allow_save_,
+        order_info = order_info_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "ValidateOrderInfo"
         ++ U.cc
-          [ U.p "allow_save" allow_save,
-            U.p "order_info" order_info,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "allow_save" allow_save_,
+            U.p "order_info" order_info_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ValidateOrderInfo where
   toJSON
     ValidateOrderInfo
-      { allow_save = allow_save,
-        order_info = order_info,
-        message_id = message_id,
-        chat_id = chat_id
+      { allow_save = allow_save_,
+        order_info = order_info_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "validateOrderInfo",
-          "allow_save" A..= allow_save,
-          "order_info" A..= order_info,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "allow_save" A..= allow_save_,
+          "order_info" A..= order_info_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

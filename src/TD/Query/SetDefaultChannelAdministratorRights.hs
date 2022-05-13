@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetDefaultChannelAdministratorRights where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SetDefaultChannelAdministratorRights = SetDefaultChannelAdministratorRights
 instance Show SetDefaultChannelAdministratorRights where
   show
     SetDefaultChannelAdministratorRights
-      { default_channel_administrator_rights = default_channel_administrator_rights
+      { default_channel_administrator_rights = default_channel_administrator_rights_
       } =
       "SetDefaultChannelAdministratorRights"
         ++ U.cc
-          [ U.p "default_channel_administrator_rights" default_channel_administrator_rights
+          [ U.p "default_channel_administrator_rights" default_channel_administrator_rights_
           ]
 
 instance T.ToJSON SetDefaultChannelAdministratorRights where
   toJSON
     SetDefaultChannelAdministratorRights
-      { default_channel_administrator_rights = default_channel_administrator_rights
+      { default_channel_administrator_rights = default_channel_administrator_rights_
       } =
       A.object
         [ "@type" A..= T.String "setDefaultChannelAdministratorRights",
-          "default_channel_administrator_rights" A..= default_channel_administrator_rights
+          "default_channel_administrator_rights" A..= default_channel_administrator_rights_
         ]

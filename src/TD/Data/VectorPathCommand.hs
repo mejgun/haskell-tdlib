@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.VectorPathCommand where
 
 import qualified Data.Aeson as A
@@ -28,23 +29,23 @@ data VectorPathCommand
 instance Show VectorPathCommand where
   show
     VectorPathCommandLine
-      { end_point = end_point
+      { end_point = end_point_
       } =
       "VectorPathCommandLine"
         ++ U.cc
-          [ U.p "end_point" end_point
+          [ U.p "end_point" end_point_
           ]
   show
     VectorPathCommandCubicBezierCurve
-      { end_point = end_point,
-        end_control_point = end_control_point,
-        start_control_point = start_control_point
+      { end_point = end_point_,
+        end_control_point = end_control_point_,
+        start_control_point = start_control_point_
       } =
       "VectorPathCommandCubicBezierCurve"
         ++ U.cc
-          [ U.p "end_point" end_point,
-            U.p "end_control_point" end_control_point,
-            U.p "start_control_point" start_control_point
+          [ U.p "end_point" end_point_,
+            U.p "end_control_point" end_control_point_,
+            U.p "start_control_point" start_control_point_
           ]
 
 instance T.FromJSON VectorPathCommand where
@@ -72,21 +73,21 @@ instance T.FromJSON VectorPathCommand where
 instance T.ToJSON VectorPathCommand where
   toJSON
     VectorPathCommandLine
-      { end_point = end_point
+      { end_point = end_point_
       } =
       A.object
         [ "@type" A..= T.String "vectorPathCommandLine",
-          "end_point" A..= end_point
+          "end_point" A..= end_point_
         ]
   toJSON
     VectorPathCommandCubicBezierCurve
-      { end_point = end_point,
-        end_control_point = end_control_point,
-        start_control_point = start_control_point
+      { end_point = end_point_,
+        end_control_point = end_control_point_,
+        start_control_point = start_control_point_
       } =
       A.object
         [ "@type" A..= T.String "vectorPathCommandCubicBezierCurve",
-          "end_point" A..= end_point,
-          "end_control_point" A..= end_control_point,
-          "start_control_point" A..= start_control_point
+          "end_point" A..= end_point_,
+          "end_control_point" A..= end_control_point_,
+          "start_control_point" A..= start_control_point_
         ]

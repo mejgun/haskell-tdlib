@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ValidatedOrderInfo where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data ValidatedOrderInfo = -- | Contains a temporary identifier of validated orde
 instance Show ValidatedOrderInfo where
   show
     ValidatedOrderInfo
-      { shipping_options = shipping_options,
-        order_info_id = order_info_id
+      { shipping_options = shipping_options_,
+        order_info_id = order_info_id_
       } =
       "ValidatedOrderInfo"
         ++ U.cc
-          [ U.p "shipping_options" shipping_options,
-            U.p "order_info_id" order_info_id
+          [ U.p "shipping_options" shipping_options_,
+            U.p "order_info_id" order_info_id_
           ]
 
 instance T.FromJSON ValidatedOrderInfo where
@@ -46,11 +47,11 @@ instance T.FromJSON ValidatedOrderInfo where
 instance T.ToJSON ValidatedOrderInfo where
   toJSON
     ValidatedOrderInfo
-      { shipping_options = shipping_options,
-        order_info_id = order_info_id
+      { shipping_options = shipping_options_,
+        order_info_id = order_info_id_
       } =
       A.object
         [ "@type" A..= T.String "validatedOrderInfo",
-          "shipping_options" A..= shipping_options,
-          "order_info_id" A..= order_info_id
+          "shipping_options" A..= shipping_options_,
+          "order_info_id" A..= order_info_id_
         ]

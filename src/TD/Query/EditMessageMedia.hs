@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditMessageMedia where
 
 import qualified Data.Aeson as A
@@ -26,31 +27,31 @@ data EditMessageMedia = EditMessageMedia
 instance Show EditMessageMedia where
   show
     EditMessageMedia
-      { input_message_content = input_message_content,
-        reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { input_message_content = input_message_content_,
+        reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "EditMessageMedia"
         ++ U.cc
-          [ U.p "input_message_content" input_message_content,
-            U.p "reply_markup" reply_markup,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "input_message_content" input_message_content_,
+            U.p "reply_markup" reply_markup_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON EditMessageMedia where
   toJSON
     EditMessageMedia
-      { input_message_content = input_message_content,
-        reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { input_message_content = input_message_content_,
+        reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "editMessageMedia",
-          "input_message_content" A..= input_message_content,
-          "reply_markup" A..= reply_markup,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "input_message_content" A..= input_message_content_,
+          "reply_markup" A..= reply_markup_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

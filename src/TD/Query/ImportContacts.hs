@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ImportContacts where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data ImportContacts = ImportContacts
 instance Show ImportContacts where
   show
     ImportContacts
-      { contacts = contacts
+      { contacts = contacts_
       } =
       "ImportContacts"
         ++ U.cc
-          [ U.p "contacts" contacts
+          [ U.p "contacts" contacts_
           ]
 
 instance T.ToJSON ImportContacts where
   toJSON
     ImportContacts
-      { contacts = contacts
+      { contacts = contacts_
       } =
       A.object
         [ "@type" A..= T.String "importContacts",
-          "contacts" A..= contacts
+          "contacts" A..= contacts_
         ]

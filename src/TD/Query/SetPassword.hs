@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetPassword where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data SetPassword = SetPassword
 instance Show SetPassword where
   show
     SetPassword
-      { new_recovery_email_address = new_recovery_email_address,
-        set_recovery_email_address = set_recovery_email_address,
-        new_hint = new_hint,
-        new_password = new_password,
-        old_password = old_password
+      { new_recovery_email_address = new_recovery_email_address_,
+        set_recovery_email_address = set_recovery_email_address_,
+        new_hint = new_hint_,
+        new_password = new_password_,
+        old_password = old_password_
       } =
       "SetPassword"
         ++ U.cc
-          [ U.p "new_recovery_email_address" new_recovery_email_address,
-            U.p "set_recovery_email_address" set_recovery_email_address,
-            U.p "new_hint" new_hint,
-            U.p "new_password" new_password,
-            U.p "old_password" old_password
+          [ U.p "new_recovery_email_address" new_recovery_email_address_,
+            U.p "set_recovery_email_address" set_recovery_email_address_,
+            U.p "new_hint" new_hint_,
+            U.p "new_password" new_password_,
+            U.p "old_password" old_password_
           ]
 
 instance T.ToJSON SetPassword where
   toJSON
     SetPassword
-      { new_recovery_email_address = new_recovery_email_address,
-        set_recovery_email_address = set_recovery_email_address,
-        new_hint = new_hint,
-        new_password = new_password,
-        old_password = old_password
+      { new_recovery_email_address = new_recovery_email_address_,
+        set_recovery_email_address = set_recovery_email_address_,
+        new_hint = new_hint_,
+        new_password = new_password_,
+        old_password = old_password_
       } =
       A.object
         [ "@type" A..= T.String "setPassword",
-          "new_recovery_email_address" A..= new_recovery_email_address,
-          "set_recovery_email_address" A..= set_recovery_email_address,
-          "new_hint" A..= new_hint,
-          "new_password" A..= new_password,
-          "old_password" A..= old_password
+          "new_recovery_email_address" A..= new_recovery_email_address_,
+          "set_recovery_email_address" A..= set_recovery_email_address_,
+          "new_hint" A..= new_hint_,
+          "new_password" A..= new_password_,
+          "old_password" A..= old_password_
         ]

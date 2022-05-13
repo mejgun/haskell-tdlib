@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Reaction where
 
 import qualified Data.Aeson as A
@@ -35,29 +36,29 @@ data Reaction = -- | Contains stickers which must be used for reaction animation
 instance Show Reaction where
   show
     Reaction
-      { center_animation = center_animation,
-        around_animation = around_animation,
-        effect_animation = effect_animation,
-        activate_animation = activate_animation,
-        select_animation = select_animation,
-        appear_animation = appear_animation,
-        static_icon = static_icon,
-        is_active = is_active,
-        title = title,
-        reaction = reaction
+      { center_animation = center_animation_,
+        around_animation = around_animation_,
+        effect_animation = effect_animation_,
+        activate_animation = activate_animation_,
+        select_animation = select_animation_,
+        appear_animation = appear_animation_,
+        static_icon = static_icon_,
+        is_active = is_active_,
+        title = title_,
+        reaction = reaction_
       } =
       "Reaction"
         ++ U.cc
-          [ U.p "center_animation" center_animation,
-            U.p "around_animation" around_animation,
-            U.p "effect_animation" effect_animation,
-            U.p "activate_animation" activate_animation,
-            U.p "select_animation" select_animation,
-            U.p "appear_animation" appear_animation,
-            U.p "static_icon" static_icon,
-            U.p "is_active" is_active,
-            U.p "title" title,
-            U.p "reaction" reaction
+          [ U.p "center_animation" center_animation_,
+            U.p "around_animation" around_animation_,
+            U.p "effect_animation" effect_animation_,
+            U.p "activate_animation" activate_animation_,
+            U.p "select_animation" select_animation_,
+            U.p "appear_animation" appear_animation_,
+            U.p "static_icon" static_icon_,
+            U.p "is_active" is_active_,
+            U.p "title" title_,
+            U.p "reaction" reaction_
           ]
 
 instance T.FromJSON Reaction where
@@ -86,27 +87,27 @@ instance T.FromJSON Reaction where
 instance T.ToJSON Reaction where
   toJSON
     Reaction
-      { center_animation = center_animation,
-        around_animation = around_animation,
-        effect_animation = effect_animation,
-        activate_animation = activate_animation,
-        select_animation = select_animation,
-        appear_animation = appear_animation,
-        static_icon = static_icon,
-        is_active = is_active,
-        title = title,
-        reaction = reaction
+      { center_animation = center_animation_,
+        around_animation = around_animation_,
+        effect_animation = effect_animation_,
+        activate_animation = activate_animation_,
+        select_animation = select_animation_,
+        appear_animation = appear_animation_,
+        static_icon = static_icon_,
+        is_active = is_active_,
+        title = title_,
+        reaction = reaction_
       } =
       A.object
         [ "@type" A..= T.String "reaction",
-          "center_animation" A..= center_animation,
-          "around_animation" A..= around_animation,
-          "effect_animation" A..= effect_animation,
-          "activate_animation" A..= activate_animation,
-          "select_animation" A..= select_animation,
-          "appear_animation" A..= appear_animation,
-          "static_icon" A..= static_icon,
-          "is_active" A..= is_active,
-          "title" A..= title,
-          "reaction" A..= reaction
+          "center_animation" A..= center_animation_,
+          "around_animation" A..= around_animation_,
+          "effect_animation" A..= effect_animation_,
+          "activate_animation" A..= activate_animation_,
+          "select_animation" A..= select_animation_,
+          "appear_animation" A..= appear_animation_,
+          "static_icon" A..= static_icon_,
+          "is_active" A..= is_active_,
+          "title" A..= title_,
+          "reaction" A..= reaction_
         ]

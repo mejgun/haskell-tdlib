@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.VoiceNote where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data VoiceNote = -- | Describes a voice note. The voice note must be encoded wit
 instance Show VoiceNote where
   show
     VoiceNote
-      { voice = voice,
-        mime_type = mime_type,
-        waveform = waveform,
-        duration = duration
+      { voice = voice_,
+        mime_type = mime_type_,
+        waveform = waveform_,
+        duration = duration_
       } =
       "VoiceNote"
         ++ U.cc
-          [ U.p "voice" voice,
-            U.p "mime_type" mime_type,
-            U.p "waveform" waveform,
-            U.p "duration" duration
+          [ U.p "voice" voice_,
+            U.p "mime_type" mime_type_,
+            U.p "waveform" waveform_,
+            U.p "duration" duration_
           ]
 
 instance T.FromJSON VoiceNote where
@@ -56,15 +57,15 @@ instance T.FromJSON VoiceNote where
 instance T.ToJSON VoiceNote where
   toJSON
     VoiceNote
-      { voice = voice,
-        mime_type = mime_type,
-        waveform = waveform,
-        duration = duration
+      { voice = voice_,
+        mime_type = mime_type_,
+        waveform = waveform_,
+        duration = duration_
       } =
       A.object
         [ "@type" A..= T.String "voiceNote",
-          "voice" A..= voice,
-          "mime_type" A..= mime_type,
-          "waveform" A..= waveform,
-          "duration" A..= duration
+          "voice" A..= voice_,
+          "mime_type" A..= mime_type_,
+          "waveform" A..= waveform_,
+          "duration" A..= duration_
         ]

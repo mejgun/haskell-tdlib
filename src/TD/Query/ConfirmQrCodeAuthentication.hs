@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ConfirmQrCodeAuthentication where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ConfirmQrCodeAuthentication = ConfirmQrCodeAuthentication
 instance Show ConfirmQrCodeAuthentication where
   show
     ConfirmQrCodeAuthentication
-      { link = link
+      { link = link_
       } =
       "ConfirmQrCodeAuthentication"
         ++ U.cc
-          [ U.p "link" link
+          [ U.p "link" link_
           ]
 
 instance T.ToJSON ConfirmQrCodeAuthentication where
   toJSON
     ConfirmQrCodeAuthentication
-      { link = link
+      { link = link_
       } =
       A.object
         [ "@type" A..= T.String "confirmQrCodeAuthentication",
-          "link" A..= link
+          "link" A..= link_
         ]

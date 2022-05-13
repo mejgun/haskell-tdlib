@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AutoDownloadSettings where
 
 import qualified Data.Aeson as A
@@ -30,25 +31,25 @@ data AutoDownloadSettings = -- | Contains auto-download settings
 instance Show AutoDownloadSettings where
   show
     AutoDownloadSettings
-      { use_less_data_for_calls = use_less_data_for_calls,
-        preload_next_audio = preload_next_audio,
-        preload_large_videos = preload_large_videos,
-        video_upload_bitrate = video_upload_bitrate,
-        max_other_file_size = max_other_file_size,
-        max_video_file_size = max_video_file_size,
-        max_photo_file_size = max_photo_file_size,
-        is_auto_download_enabled = is_auto_download_enabled
+      { use_less_data_for_calls = use_less_data_for_calls_,
+        preload_next_audio = preload_next_audio_,
+        preload_large_videos = preload_large_videos_,
+        video_upload_bitrate = video_upload_bitrate_,
+        max_other_file_size = max_other_file_size_,
+        max_video_file_size = max_video_file_size_,
+        max_photo_file_size = max_photo_file_size_,
+        is_auto_download_enabled = is_auto_download_enabled_
       } =
       "AutoDownloadSettings"
         ++ U.cc
-          [ U.p "use_less_data_for_calls" use_less_data_for_calls,
-            U.p "preload_next_audio" preload_next_audio,
-            U.p "preload_large_videos" preload_large_videos,
-            U.p "video_upload_bitrate" video_upload_bitrate,
-            U.p "max_other_file_size" max_other_file_size,
-            U.p "max_video_file_size" max_video_file_size,
-            U.p "max_photo_file_size" max_photo_file_size,
-            U.p "is_auto_download_enabled" is_auto_download_enabled
+          [ U.p "use_less_data_for_calls" use_less_data_for_calls_,
+            U.p "preload_next_audio" preload_next_audio_,
+            U.p "preload_large_videos" preload_large_videos_,
+            U.p "video_upload_bitrate" video_upload_bitrate_,
+            U.p "max_other_file_size" max_other_file_size_,
+            U.p "max_video_file_size" max_video_file_size_,
+            U.p "max_photo_file_size" max_photo_file_size_,
+            U.p "is_auto_download_enabled" is_auto_download_enabled_
           ]
 
 instance T.FromJSON AutoDownloadSettings where
@@ -75,23 +76,23 @@ instance T.FromJSON AutoDownloadSettings where
 instance T.ToJSON AutoDownloadSettings where
   toJSON
     AutoDownloadSettings
-      { use_less_data_for_calls = use_less_data_for_calls,
-        preload_next_audio = preload_next_audio,
-        preload_large_videos = preload_large_videos,
-        video_upload_bitrate = video_upload_bitrate,
-        max_other_file_size = max_other_file_size,
-        max_video_file_size = max_video_file_size,
-        max_photo_file_size = max_photo_file_size,
-        is_auto_download_enabled = is_auto_download_enabled
+      { use_less_data_for_calls = use_less_data_for_calls_,
+        preload_next_audio = preload_next_audio_,
+        preload_large_videos = preload_large_videos_,
+        video_upload_bitrate = video_upload_bitrate_,
+        max_other_file_size = max_other_file_size_,
+        max_video_file_size = max_video_file_size_,
+        max_photo_file_size = max_photo_file_size_,
+        is_auto_download_enabled = is_auto_download_enabled_
       } =
       A.object
         [ "@type" A..= T.String "autoDownloadSettings",
-          "use_less_data_for_calls" A..= use_less_data_for_calls,
-          "preload_next_audio" A..= preload_next_audio,
-          "preload_large_videos" A..= preload_large_videos,
-          "video_upload_bitrate" A..= video_upload_bitrate,
-          "max_other_file_size" A..= max_other_file_size,
-          "max_video_file_size" A..= max_video_file_size,
-          "max_photo_file_size" A..= max_photo_file_size,
-          "is_auto_download_enabled" A..= is_auto_download_enabled
+          "use_less_data_for_calls" A..= use_less_data_for_calls_,
+          "preload_next_audio" A..= preload_next_audio_,
+          "preload_large_videos" A..= preload_large_videos_,
+          "video_upload_bitrate" A..= video_upload_bitrate_,
+          "max_other_file_size" A..= max_other_file_size_,
+          "max_video_file_size" A..= max_video_file_size_,
+          "max_photo_file_size" A..= max_photo_file_size_,
+          "is_auto_download_enabled" A..= is_auto_download_enabled_
         ]

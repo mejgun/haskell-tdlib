@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.StartGroupCallRecording where
 
 import qualified Data.Aeson as A
@@ -23,31 +24,31 @@ data StartGroupCallRecording = StartGroupCallRecording
 instance Show StartGroupCallRecording where
   show
     StartGroupCallRecording
-      { use_portrait_orientation = use_portrait_orientation,
-        record_video = record_video,
-        title = title,
-        group_call_id = group_call_id
+      { use_portrait_orientation = use_portrait_orientation_,
+        record_video = record_video_,
+        title = title_,
+        group_call_id = group_call_id_
       } =
       "StartGroupCallRecording"
         ++ U.cc
-          [ U.p "use_portrait_orientation" use_portrait_orientation,
-            U.p "record_video" record_video,
-            U.p "title" title,
-            U.p "group_call_id" group_call_id
+          [ U.p "use_portrait_orientation" use_portrait_orientation_,
+            U.p "record_video" record_video_,
+            U.p "title" title_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON StartGroupCallRecording where
   toJSON
     StartGroupCallRecording
-      { use_portrait_orientation = use_portrait_orientation,
-        record_video = record_video,
-        title = title,
-        group_call_id = group_call_id
+      { use_portrait_orientation = use_portrait_orientation_,
+        record_video = record_video_,
+        title = title_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "startGroupCallRecording",
-          "use_portrait_orientation" A..= use_portrait_orientation,
-          "record_video" A..= record_video,
-          "title" A..= title,
-          "group_call_id" A..= group_call_id
+          "use_portrait_orientation" A..= use_portrait_orientation_,
+          "record_video" A..= record_video_,
+          "title" A..= title_,
+          "group_call_id" A..= group_call_id_
         ]

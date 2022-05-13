@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PollOption where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data PollOption = -- | Describes one answer option of a poll @text Option text; 
 instance Show PollOption where
   show
     PollOption
-      { is_being_chosen = is_being_chosen,
-        is_chosen = is_chosen,
-        vote_percentage = vote_percentage,
-        voter_count = voter_count,
-        text = text
+      { is_being_chosen = is_being_chosen_,
+        is_chosen = is_chosen_,
+        vote_percentage = vote_percentage_,
+        voter_count = voter_count_,
+        text = text_
       } =
       "PollOption"
         ++ U.cc
-          [ U.p "is_being_chosen" is_being_chosen,
-            U.p "is_chosen" is_chosen,
-            U.p "vote_percentage" vote_percentage,
-            U.p "voter_count" voter_count,
-            U.p "text" text
+          [ U.p "is_being_chosen" is_being_chosen_,
+            U.p "is_chosen" is_chosen_,
+            U.p "vote_percentage" vote_percentage_,
+            U.p "voter_count" voter_count_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON PollOption where
@@ -60,17 +61,17 @@ instance T.FromJSON PollOption where
 instance T.ToJSON PollOption where
   toJSON
     PollOption
-      { is_being_chosen = is_being_chosen,
-        is_chosen = is_chosen,
-        vote_percentage = vote_percentage,
-        voter_count = voter_count,
-        text = text
+      { is_being_chosen = is_being_chosen_,
+        is_chosen = is_chosen_,
+        vote_percentage = vote_percentage_,
+        voter_count = voter_count_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "pollOption",
-          "is_being_chosen" A..= is_being_chosen,
-          "is_chosen" A..= is_chosen,
-          "vote_percentage" A..= vote_percentage,
-          "voter_count" A..= voter_count,
-          "text" A..= text
+          "is_being_chosen" A..= is_being_chosen_,
+          "is_chosen" A..= is_chosen_,
+          "vote_percentage" A..= vote_percentage_,
+          "voter_count" A..= voter_count_,
+          "text" A..= text_
         ]

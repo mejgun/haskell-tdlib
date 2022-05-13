@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.UpgradeBasicGroupChatToSupergroupChat where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data UpgradeBasicGroupChatToSupergroupChat = UpgradeBasicGroupChatToSupergroupCh
 instance Show UpgradeBasicGroupChatToSupergroupChat where
   show
     UpgradeBasicGroupChatToSupergroupChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "UpgradeBasicGroupChatToSupergroupChat"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON UpgradeBasicGroupChatToSupergroupChat where
   toJSON
     UpgradeBasicGroupChatToSupergroupChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "upgradeBasicGroupChatToSupergroupChat",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

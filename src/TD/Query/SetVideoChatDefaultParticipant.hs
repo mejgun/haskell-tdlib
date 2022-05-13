@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetVideoChatDefaultParticipant where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetVideoChatDefaultParticipant = SetVideoChatDefaultParticipant
 instance Show SetVideoChatDefaultParticipant where
   show
     SetVideoChatDefaultParticipant
-      { default_participant_id = default_participant_id,
-        chat_id = chat_id
+      { default_participant_id = default_participant_id_,
+        chat_id = chat_id_
       } =
       "SetVideoChatDefaultParticipant"
         ++ U.cc
-          [ U.p "default_participant_id" default_participant_id,
-            U.p "chat_id" chat_id
+          [ U.p "default_participant_id" default_participant_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetVideoChatDefaultParticipant where
   toJSON
     SetVideoChatDefaultParticipant
-      { default_participant_id = default_participant_id,
-        chat_id = chat_id
+      { default_participant_id = default_participant_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setVideoChatDefaultParticipant",
-          "default_participant_id" A..= default_participant_id,
-          "chat_id" A..= chat_id
+          "default_participant_id" A..= default_participant_id_,
+          "chat_id" A..= chat_id_
         ]

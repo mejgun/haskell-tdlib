@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetProfilePhoto where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SetProfilePhoto = SetProfilePhoto
 instance Show SetProfilePhoto where
   show
     SetProfilePhoto
-      { photo = photo
+      { photo = photo_
       } =
       "SetProfilePhoto"
         ++ U.cc
-          [ U.p "photo" photo
+          [ U.p "photo" photo_
           ]
 
 instance T.ToJSON SetProfilePhoto where
   toJSON
     SetProfilePhoto
-      { photo = photo
+      { photo = photo_
       } =
       A.object
         [ "@type" A..= T.String "setProfilePhoto",
-          "photo" A..= photo
+          "photo" A..= photo_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatPhotos where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data ChatPhotos = -- | Contains a list of chat or user profile photos @total_cou
 instance Show ChatPhotos where
   show
     ChatPhotos
-      { photos = photos,
-        total_count = total_count
+      { photos = photos_,
+        total_count = total_count_
       } =
       "ChatPhotos"
         ++ U.cc
-          [ U.p "photos" photos,
-            U.p "total_count" total_count
+          [ U.p "photos" photos_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON ChatPhotos where
@@ -46,11 +47,11 @@ instance T.FromJSON ChatPhotos where
 instance T.ToJSON ChatPhotos where
   toJSON
     ChatPhotos
-      { photos = photos,
-        total_count = total_count
+      { photos = photos_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "chatPhotos",
-          "photos" A..= photos,
-          "total_count" A..= total_count
+          "photos" A..= photos_,
+          "total_count" A..= total_count_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatAction where
 
 import qualified Data.Aeson as A
@@ -69,11 +70,11 @@ instance Show ChatAction where
         []
   show
     ChatActionUploadingVideo
-      { progress = progress
+      { progress = progress_
       } =
       "ChatActionUploadingVideo"
         ++ U.cc
-          [ U.p "progress" progress
+          [ U.p "progress" progress_
           ]
   show ChatActionRecordingVoiceNote =
     "ChatActionRecordingVoiceNote"
@@ -81,27 +82,27 @@ instance Show ChatAction where
         []
   show
     ChatActionUploadingVoiceNote
-      { progress = progress
+      { progress = progress_
       } =
       "ChatActionUploadingVoiceNote"
         ++ U.cc
-          [ U.p "progress" progress
+          [ U.p "progress" progress_
           ]
   show
     ChatActionUploadingPhoto
-      { progress = progress
+      { progress = progress_
       } =
       "ChatActionUploadingPhoto"
         ++ U.cc
-          [ U.p "progress" progress
+          [ U.p "progress" progress_
           ]
   show
     ChatActionUploadingDocument
-      { progress = progress
+      { progress = progress_
       } =
       "ChatActionUploadingDocument"
         ++ U.cc
-          [ U.p "progress" progress
+          [ U.p "progress" progress_
           ]
   show ChatActionChoosingSticker =
     "ChatActionChoosingSticker"
@@ -125,19 +126,19 @@ instance Show ChatAction where
         []
   show
     ChatActionUploadingVideoNote
-      { progress = progress
+      { progress = progress_
       } =
       "ChatActionUploadingVideoNote"
         ++ U.cc
-          [ U.p "progress" progress
+          [ U.p "progress" progress_
           ]
   show
     ChatActionWatchingAnimations
-      { emoji = emoji
+      { emoji = emoji_
       } =
       "ChatActionWatchingAnimations"
         ++ U.cc
-          [ U.p "emoji" emoji
+          [ U.p "emoji" emoji_
           ]
   show ChatActionCancel =
     "ChatActionCancel"
@@ -167,12 +168,10 @@ instance T.FromJSON ChatAction where
       _ -> mempty
     where
       parseChatActionTyping :: A.Value -> T.Parser ChatAction
-      parseChatActionTyping = A.withObject "ChatActionTyping" $ \o -> do
-        return $ ChatActionTyping {}
+      parseChatActionTyping = A.withObject "ChatActionTyping" $ \_ -> return ChatActionTyping
 
       parseChatActionRecordingVideo :: A.Value -> T.Parser ChatAction
-      parseChatActionRecordingVideo = A.withObject "ChatActionRecordingVideo" $ \o -> do
-        return $ ChatActionRecordingVideo {}
+      parseChatActionRecordingVideo = A.withObject "ChatActionRecordingVideo" $ \_ -> return ChatActionRecordingVideo
 
       parseChatActionUploadingVideo :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingVideo = A.withObject "ChatActionUploadingVideo" $ \o -> do
@@ -180,8 +179,7 @@ instance T.FromJSON ChatAction where
         return $ ChatActionUploadingVideo {progress = progress_}
 
       parseChatActionRecordingVoiceNote :: A.Value -> T.Parser ChatAction
-      parseChatActionRecordingVoiceNote = A.withObject "ChatActionRecordingVoiceNote" $ \o -> do
-        return $ ChatActionRecordingVoiceNote {}
+      parseChatActionRecordingVoiceNote = A.withObject "ChatActionRecordingVoiceNote" $ \_ -> return ChatActionRecordingVoiceNote
 
       parseChatActionUploadingVoiceNote :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingVoiceNote = A.withObject "ChatActionUploadingVoiceNote" $ \o -> do
@@ -199,24 +197,19 @@ instance T.FromJSON ChatAction where
         return $ ChatActionUploadingDocument {progress = progress_}
 
       parseChatActionChoosingSticker :: A.Value -> T.Parser ChatAction
-      parseChatActionChoosingSticker = A.withObject "ChatActionChoosingSticker" $ \o -> do
-        return $ ChatActionChoosingSticker {}
+      parseChatActionChoosingSticker = A.withObject "ChatActionChoosingSticker" $ \_ -> return ChatActionChoosingSticker
 
       parseChatActionChoosingLocation :: A.Value -> T.Parser ChatAction
-      parseChatActionChoosingLocation = A.withObject "ChatActionChoosingLocation" $ \o -> do
-        return $ ChatActionChoosingLocation {}
+      parseChatActionChoosingLocation = A.withObject "ChatActionChoosingLocation" $ \_ -> return ChatActionChoosingLocation
 
       parseChatActionChoosingContact :: A.Value -> T.Parser ChatAction
-      parseChatActionChoosingContact = A.withObject "ChatActionChoosingContact" $ \o -> do
-        return $ ChatActionChoosingContact {}
+      parseChatActionChoosingContact = A.withObject "ChatActionChoosingContact" $ \_ -> return ChatActionChoosingContact
 
       parseChatActionStartPlayingGame :: A.Value -> T.Parser ChatAction
-      parseChatActionStartPlayingGame = A.withObject "ChatActionStartPlayingGame" $ \o -> do
-        return $ ChatActionStartPlayingGame {}
+      parseChatActionStartPlayingGame = A.withObject "ChatActionStartPlayingGame" $ \_ -> return ChatActionStartPlayingGame
 
       parseChatActionRecordingVideoNote :: A.Value -> T.Parser ChatAction
-      parseChatActionRecordingVideoNote = A.withObject "ChatActionRecordingVideoNote" $ \o -> do
-        return $ ChatActionRecordingVideoNote {}
+      parseChatActionRecordingVideoNote = A.withObject "ChatActionRecordingVideoNote" $ \_ -> return ChatActionRecordingVideoNote
 
       parseChatActionUploadingVideoNote :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingVideoNote = A.withObject "ChatActionUploadingVideoNote" $ \o -> do
@@ -229,8 +222,7 @@ instance T.FromJSON ChatAction where
         return $ ChatActionWatchingAnimations {emoji = emoji_}
 
       parseChatActionCancel :: A.Value -> T.Parser ChatAction
-      parseChatActionCancel = A.withObject "ChatActionCancel" $ \o -> do
-        return $ ChatActionCancel {}
+      parseChatActionCancel = A.withObject "ChatActionCancel" $ \_ -> return ChatActionCancel
   parseJSON _ = mempty
 
 instance T.ToJSON ChatAction where
@@ -244,11 +236,11 @@ instance T.ToJSON ChatAction where
       ]
   toJSON
     ChatActionUploadingVideo
-      { progress = progress
+      { progress = progress_
       } =
       A.object
         [ "@type" A..= T.String "chatActionUploadingVideo",
-          "progress" A..= progress
+          "progress" A..= progress_
         ]
   toJSON ChatActionRecordingVoiceNote =
     A.object
@@ -256,27 +248,27 @@ instance T.ToJSON ChatAction where
       ]
   toJSON
     ChatActionUploadingVoiceNote
-      { progress = progress
+      { progress = progress_
       } =
       A.object
         [ "@type" A..= T.String "chatActionUploadingVoiceNote",
-          "progress" A..= progress
+          "progress" A..= progress_
         ]
   toJSON
     ChatActionUploadingPhoto
-      { progress = progress
+      { progress = progress_
       } =
       A.object
         [ "@type" A..= T.String "chatActionUploadingPhoto",
-          "progress" A..= progress
+          "progress" A..= progress_
         ]
   toJSON
     ChatActionUploadingDocument
-      { progress = progress
+      { progress = progress_
       } =
       A.object
         [ "@type" A..= T.String "chatActionUploadingDocument",
-          "progress" A..= progress
+          "progress" A..= progress_
         ]
   toJSON ChatActionChoosingSticker =
     A.object
@@ -300,19 +292,19 @@ instance T.ToJSON ChatAction where
       ]
   toJSON
     ChatActionUploadingVideoNote
-      { progress = progress
+      { progress = progress_
       } =
       A.object
         [ "@type" A..= T.String "chatActionUploadingVideoNote",
-          "progress" A..= progress
+          "progress" A..= progress_
         ]
   toJSON
     ChatActionWatchingAnimations
-      { emoji = emoji
+      { emoji = emoji_
       } =
       A.object
         [ "@type" A..= T.String "chatActionWatchingAnimations",
-          "emoji" A..= emoji
+          "emoji" A..= emoji_
         ]
   toJSON ChatActionCancel =
     A.object

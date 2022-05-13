@@ -1,27 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
-</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.UploadFile</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.FileType.html"><span class="hs-identifier">TD.Data.FileType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FileType</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputFile.html"><span class="hs-identifier">TD.Data.InputFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputFile</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="UploadFile"><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-var">UploadFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="UploadFile"><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-var">UploadFile</span></a></span></span><span>
-</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first</span><span>
-</span><span id="line-15"></span><span>    </span><span id="priority"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe Int
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.UploadFile</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.FileType.html"><span class="hs-identifier">TD.Data.FileType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FileType</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputFile.html"><span class="hs-identifier">TD.Data.InputFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputFile</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message</span><span>
+</span><span id="line-14"></span><span class="hs-keyword">data</span><span> </span><span id="UploadFile"><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-var">UploadFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="UploadFile"><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-var">UploadFile</span></a></span></span><span>
+</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first</span><span>
+</span><span id="line-16"></span><span>    </span><span id="priority"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe Int
 </span><a href="TD.Query.UploadFile.html#priority"><span class="hs-identifier hs-var hs-var">priority</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | File type; pass null if unknown</span><span>
-</span><span id="line-17"></span><span>    </span><span id="file_type"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe FileType
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | File type; pass null if unknown</span><span>
+</span><span id="line-18"></span><span>    </span><span id="file_type"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe FileType
 </span><a href="TD.Query.UploadFile.html#file_type"><span class="hs-identifier hs-var hs-var">file_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.FileType.html#FileType"><span class="hs-identifier hs-type">FileType.FileType</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | File to upload</span><span>
-</span><span id="line-19"></span><span>    </span><span id="file"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe InputFile
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | File to upload</span><span>
+</span><span id="line-20"></span><span>    </span><span id="file"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe InputFile
 </span><a href="TD.Query.UploadFile.html#file"><span class="hs-identifier hs-var hs-var">file</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679418498"><span id="local-6989586621679418500"><span class="annot"><span class="annottext">UploadFile -&gt; UploadFile -&gt; Bool
+</span><span id="line-21"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679417607"><span id="local-6989586621679417609"><span class="annot"><span class="annottext">UploadFile -&gt; UploadFile -&gt; Bool
 (UploadFile -&gt; UploadFile -&gt; Bool)
 -&gt; (UploadFile -&gt; UploadFile -&gt; Bool) -&gt; Eq UploadFile
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -30,80 +31,80 @@ $c/= :: UploadFile -&gt; UploadFile -&gt; Bool
 == :: UploadFile -&gt; UploadFile -&gt; Bool
 $c== :: UploadFile -&gt; UploadFile -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418492"><span id="local-6989586621679418495"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679418490"><span class="annot"><span class="annottext">show :: UploadFile -&gt; String
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417601"><span id="local-6989586621679417604"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679417599"><span class="annot"><span class="annottext">show :: UploadFile -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-25"></span><span>    </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span><span>
-</span><span id="line-26"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">priority :: UploadFile -&gt; Maybe Int
-</span><a href="TD.Query.UploadFile.html#priority"><span class="hs-identifier hs-var">priority</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418488"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679418488"><span class="hs-identifier hs-var">priority</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">file_type :: UploadFile -&gt; Maybe FileType
-</span><a href="TD.Query.UploadFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418487"><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679418487"><span class="hs-identifier hs-var">file_type</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">file :: UploadFile -&gt; Maybe InputFile
-</span><a href="TD.Query.UploadFile.html#file"><span class="hs-identifier hs-var">file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418486"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679418486"><span class="hs-identifier hs-var">file</span></a></span></span><span>
-</span><span id="line-29"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-30"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-26"></span><span>    </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span><span>
+</span><span id="line-27"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">priority :: UploadFile -&gt; Maybe Int
+</span><a href="TD.Query.UploadFile.html#priority"><span class="hs-identifier hs-var">priority</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417597"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679417597"><span class="hs-identifier hs-var">priority_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">file_type :: UploadFile -&gt; Maybe FileType
+</span><a href="TD.Query.UploadFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417596"><span class="annot"><span class="annottext">Maybe FileType
+</span><a href="#local-6989586621679417596"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">file :: UploadFile -&gt; Maybe InputFile
+</span><a href="TD.Query.UploadFile.html#file"><span class="hs-identifier hs-var">file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417595"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679417595"><span class="hs-identifier hs-var">file_</span></a></span></span><span>
+</span><span id="line-30"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-31"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UploadFile&quot;</span></span><span>
-</span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-32"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><span id="line-33"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;priority&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679418488"><span class="hs-identifier hs-var">priority</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe FileType -&gt; String
+</span><a href="#local-6989586621679417597"><span class="hs-identifier hs-var">priority_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-34"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe FileType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679418487"><span class="hs-identifier hs-var">file_type</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-34"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
+</span><a href="#local-6989586621679417596"><span class="hs-identifier hs-var">file_type_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679418486"><span class="hs-identifier hs-var">file</span></a></span><span>
-</span><span id="line-35"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418477"><span id="local-6989586621679418479"><span id="local-6989586621679418481"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span>  </span><span id="local-6989586621679418475"><span class="annot"><span class="annottext">toJSON :: UploadFile -&gt; Value
+</span><a href="#local-6989586621679417595"><span class="hs-identifier hs-var">file_</span></a></span><span>
+</span><span id="line-36"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417586"><span id="local-6989586621679417588"><span id="local-6989586621679417590"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679417584"><span class="annot"><span class="annottext">toJSON :: UploadFile -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-39"></span><span>    </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span><span>
-</span><span id="line-40"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">priority :: UploadFile -&gt; Maybe Int
-</span><a href="TD.Query.UploadFile.html#priority"><span class="hs-identifier hs-var">priority</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418473"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679418473"><span class="hs-identifier hs-var">priority</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">file_type :: UploadFile -&gt; Maybe FileType
-</span><a href="TD.Query.UploadFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418472"><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679418472"><span class="hs-identifier hs-var">file_type</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">file :: UploadFile -&gt; Maybe InputFile
-</span><a href="TD.Query.UploadFile.html#file"><span class="hs-identifier hs-var">file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418471"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679418471"><span class="hs-identifier hs-var">file</span></a></span></span><span>
-</span><span id="line-43"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-44"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-40"></span><span>    </span><span class="annot"><a href="TD.Query.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span><span>
+</span><span id="line-41"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">priority :: UploadFile -&gt; Maybe Int
+</span><a href="TD.Query.UploadFile.html#priority"><span class="hs-identifier hs-var">priority</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417582"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679417582"><span class="hs-identifier hs-var">priority_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">file_type :: UploadFile -&gt; Maybe FileType
+</span><a href="TD.Query.UploadFile.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417581"><span class="annot"><span class="annottext">Maybe FileType
+</span><a href="#local-6989586621679417581"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-43"></span><span>        </span><span class="annot"><span class="annottext">file :: UploadFile -&gt; Maybe InputFile
+</span><a href="TD.Query.UploadFile.html#file"><span class="hs-identifier hs-var">file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417580"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679417580"><span class="hs-identifier hs-var">file_</span></a></span></span><span>
+</span><span id="line-44"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-45"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-46"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;uploadFile&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;priority&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679418473"><span class="hs-identifier hs-var">priority</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679417582"><span class="hs-identifier hs-var">priority_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-48"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;file_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FileType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679418472"><span class="hs-identifier hs-var">file_type</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-48"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679417581"><span class="hs-identifier hs-var">file_type_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-49"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;file&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679418471"><span class="hs-identifier hs-var">file</span></a></span><span>
-</span><span id="line-49"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-50"></span></pre></body></html>
+</span><a href="#local-6989586621679417580"><span class="hs-identifier hs-var">file_</span></a></span><span>
+</span><span id="line-50"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-51"></span></pre></body></html>

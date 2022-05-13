@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NetworkStatisticsEntry where
 
 import qualified Data.Aeson as A
@@ -37,31 +38,31 @@ data NetworkStatisticsEntry
 instance Show NetworkStatisticsEntry where
   show
     NetworkStatisticsEntryFile
-      { received_bytes = received_bytes,
-        sent_bytes = sent_bytes,
-        network_type = network_type,
-        file_type = file_type
+      { received_bytes = received_bytes_,
+        sent_bytes = sent_bytes_,
+        network_type = network_type_,
+        file_type = file_type_
       } =
       "NetworkStatisticsEntryFile"
         ++ U.cc
-          [ U.p "received_bytes" received_bytes,
-            U.p "sent_bytes" sent_bytes,
-            U.p "network_type" network_type,
-            U.p "file_type" file_type
+          [ U.p "received_bytes" received_bytes_,
+            U.p "sent_bytes" sent_bytes_,
+            U.p "network_type" network_type_,
+            U.p "file_type" file_type_
           ]
   show
     NetworkStatisticsEntryCall
-      { duration = duration,
-        received_bytes = received_bytes,
-        sent_bytes = sent_bytes,
-        network_type = network_type
+      { duration = duration_,
+        received_bytes = received_bytes_,
+        sent_bytes = sent_bytes_,
+        network_type = network_type_
       } =
       "NetworkStatisticsEntryCall"
         ++ U.cc
-          [ U.p "duration" duration,
-            U.p "received_bytes" received_bytes,
-            U.p "sent_bytes" sent_bytes,
-            U.p "network_type" network_type
+          [ U.p "duration" duration_,
+            U.p "received_bytes" received_bytes_,
+            U.p "sent_bytes" sent_bytes_,
+            U.p "network_type" network_type_
           ]
 
 instance T.FromJSON NetworkStatisticsEntry where
@@ -93,29 +94,29 @@ instance T.FromJSON NetworkStatisticsEntry where
 instance T.ToJSON NetworkStatisticsEntry where
   toJSON
     NetworkStatisticsEntryFile
-      { received_bytes = received_bytes,
-        sent_bytes = sent_bytes,
-        network_type = network_type,
-        file_type = file_type
+      { received_bytes = received_bytes_,
+        sent_bytes = sent_bytes_,
+        network_type = network_type_,
+        file_type = file_type_
       } =
       A.object
         [ "@type" A..= T.String "networkStatisticsEntryFile",
-          "received_bytes" A..= received_bytes,
-          "sent_bytes" A..= sent_bytes,
-          "network_type" A..= network_type,
-          "file_type" A..= file_type
+          "received_bytes" A..= received_bytes_,
+          "sent_bytes" A..= sent_bytes_,
+          "network_type" A..= network_type_,
+          "file_type" A..= file_type_
         ]
   toJSON
     NetworkStatisticsEntryCall
-      { duration = duration,
-        received_bytes = received_bytes,
-        sent_bytes = sent_bytes,
-        network_type = network_type
+      { duration = duration_,
+        received_bytes = received_bytes_,
+        sent_bytes = sent_bytes_,
+        network_type = network_type_
       } =
       A.object
         [ "@type" A..= T.String "networkStatisticsEntryCall",
-          "duration" A..= duration,
-          "received_bytes" A..= received_bytes,
-          "sent_bytes" A..= sent_bytes,
-          "network_type" A..= network_type
+          "duration" A..= duration_,
+          "received_bytes" A..= received_bytes_,
+          "sent_bytes" A..= sent_bytes_,
+          "network_type" A..= network_type_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputBackground where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data InputBackground
 instance Show InputBackground where
   show
     InputBackgroundLocal
-      { background = background
+      { background = background_
       } =
       "InputBackgroundLocal"
         ++ U.cc
-          [ U.p "background" background
+          [ U.p "background" background_
           ]
   show
     InputBackgroundRemote
-      { background_id = background_id
+      { background_id = background_id_
       } =
       "InputBackgroundRemote"
         ++ U.cc
-          [ U.p "background_id" background_id
+          [ U.p "background_id" background_id_
           ]
 
 instance T.FromJSON InputBackground where
@@ -62,17 +63,17 @@ instance T.FromJSON InputBackground where
 instance T.ToJSON InputBackground where
   toJSON
     InputBackgroundLocal
-      { background = background
+      { background = background_
       } =
       A.object
         [ "@type" A..= T.String "inputBackgroundLocal",
-          "background" A..= background
+          "background" A..= background_
         ]
   toJSON
     InputBackgroundRemote
-      { background_id = background_id
+      { background_id = background_id_
       } =
       A.object
         [ "@type" A..= T.String "inputBackgroundRemote",
-          "background_id" A..= background_id
+          "background_id" A..= background_id_
         ]

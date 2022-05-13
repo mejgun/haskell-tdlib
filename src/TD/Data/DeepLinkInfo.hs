@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DeepLinkInfo where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data DeepLinkInfo = -- | Contains information about a tg: deep link @text Text t
 instance Show DeepLinkInfo where
   show
     DeepLinkInfo
-      { need_update_application = need_update_application,
-        text = text
+      { need_update_application = need_update_application_,
+        text = text_
       } =
       "DeepLinkInfo"
         ++ U.cc
-          [ U.p "need_update_application" need_update_application,
-            U.p "text" text
+          [ U.p "need_update_application" need_update_application_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON DeepLinkInfo where
@@ -46,11 +47,11 @@ instance T.FromJSON DeepLinkInfo where
 instance T.ToJSON DeepLinkInfo where
   toJSON
     DeepLinkInfo
-      { need_update_application = need_update_application,
-        text = text
+      { need_update_application = need_update_application_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "deepLinkInfo",
-          "need_update_application" A..= need_update_application,
-          "text" A..= text
+          "need_update_application" A..= need_update_application_,
+          "text" A..= text_
         ]

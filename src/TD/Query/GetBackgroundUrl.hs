@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetBackgroundUrl where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data GetBackgroundUrl = GetBackgroundUrl
 instance Show GetBackgroundUrl where
   show
     GetBackgroundUrl
-      { _type = _type,
-        name = name
+      { _type = _type_,
+        name = name_
       } =
       "GetBackgroundUrl"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "name" name
+          [ U.p "_type" _type_,
+            U.p "name" name_
           ]
 
 instance T.ToJSON GetBackgroundUrl where
   toJSON
     GetBackgroundUrl
-      { _type = _type,
-        name = name
+      { _type = _type_,
+        name = name_
       } =
       A.object
         [ "@type" A..= T.String "getBackgroundUrl",
-          "type" A..= _type,
-          "name" A..= name
+          "type" A..= _type_,
+          "name" A..= name_
         ]

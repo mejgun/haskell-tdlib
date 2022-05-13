@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GroupCallId where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data GroupCallId = -- | Contains the group call identifier @id Group call identi
 instance Show GroupCallId where
   show
     GroupCallId
-      { _id = _id
+      { _id = _id_
       } =
       "GroupCallId"
         ++ U.cc
-          [ U.p "_id" _id
+          [ U.p "_id" _id_
           ]
 
 instance T.FromJSON GroupCallId where
@@ -40,9 +41,9 @@ instance T.FromJSON GroupCallId where
 instance T.ToJSON GroupCallId where
   toJSON
     GroupCallId
-      { _id = _id
+      { _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "groupCallId",
-          "id" A..= _id
+          "id" A..= _id_
         ]

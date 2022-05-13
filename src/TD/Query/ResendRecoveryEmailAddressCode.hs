@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ResendRecoveryEmailAddressCode where
 
 import qualified Data.Aeson as A

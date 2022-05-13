@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.OpenChat where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data OpenChat = OpenChat
 instance Show OpenChat where
   show
     OpenChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "OpenChat"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON OpenChat where
   toJSON
     OpenChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "openChat",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

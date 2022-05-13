@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BasicGroup where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data BasicGroup = -- | Represents a basic group of 0-200 users (must be upgraded
 instance Show BasicGroup where
   show
     BasicGroup
-      { upgraded_to_supergroup_id = upgraded_to_supergroup_id,
-        is_active = is_active,
-        status = status,
-        member_count = member_count,
-        _id = _id
+      { upgraded_to_supergroup_id = upgraded_to_supergroup_id_,
+        is_active = is_active_,
+        status = status_,
+        member_count = member_count_,
+        _id = _id_
       } =
       "BasicGroup"
         ++ U.cc
-          [ U.p "upgraded_to_supergroup_id" upgraded_to_supergroup_id,
-            U.p "is_active" is_active,
-            U.p "status" status,
-            U.p "member_count" member_count,
-            U.p "_id" _id
+          [ U.p "upgraded_to_supergroup_id" upgraded_to_supergroup_id_,
+            U.p "is_active" is_active_,
+            U.p "status" status_,
+            U.p "member_count" member_count_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON BasicGroup where
@@ -61,17 +62,17 @@ instance T.FromJSON BasicGroup where
 instance T.ToJSON BasicGroup where
   toJSON
     BasicGroup
-      { upgraded_to_supergroup_id = upgraded_to_supergroup_id,
-        is_active = is_active,
-        status = status,
-        member_count = member_count,
-        _id = _id
+      { upgraded_to_supergroup_id = upgraded_to_supergroup_id_,
+        is_active = is_active_,
+        status = status_,
+        member_count = member_count_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "basicGroup",
-          "upgraded_to_supergroup_id" A..= upgraded_to_supergroup_id,
-          "is_active" A..= is_active,
-          "status" A..= status,
-          "member_count" A..= member_count,
-          "id" A..= _id
+          "upgraded_to_supergroup_id" A..= upgraded_to_supergroup_id_,
+          "is_active" A..= is_active_,
+          "status" A..= status_,
+          "member_count" A..= member_count_,
+          "id" A..= _id_
         ]

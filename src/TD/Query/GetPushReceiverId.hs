@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetPushReceiverId where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetPushReceiverId = GetPushReceiverId
 instance Show GetPushReceiverId where
   show
     GetPushReceiverId
-      { payload = payload
+      { payload = payload_
       } =
       "GetPushReceiverId"
         ++ U.cc
-          [ U.p "payload" payload
+          [ U.p "payload" payload_
           ]
 
 instance T.ToJSON GetPushReceiverId where
   toJSON
     GetPushReceiverId
-      { payload = payload
+      { payload = payload_
       } =
       A.object
         [ "@type" A..= T.String "getPushReceiverId",
-          "payload" A..= payload
+          "payload" A..= payload_
         ]

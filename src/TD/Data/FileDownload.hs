@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.FileDownload where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data FileDownload = -- | Describes a file added to file download list
 instance Show FileDownload where
   show
     FileDownload
-      { is_paused = is_paused,
-        complete_date = complete_date,
-        add_date = add_date,
-        message = message,
-        file_id = file_id
+      { is_paused = is_paused_,
+        complete_date = complete_date_,
+        add_date = add_date_,
+        message = message_,
+        file_id = file_id_
       } =
       "FileDownload"
         ++ U.cc
-          [ U.p "is_paused" is_paused,
-            U.p "complete_date" complete_date,
-            U.p "add_date" add_date,
-            U.p "message" message,
-            U.p "file_id" file_id
+          [ U.p "is_paused" is_paused_,
+            U.p "complete_date" complete_date_,
+            U.p "add_date" add_date_,
+            U.p "message" message_,
+            U.p "file_id" file_id_
           ]
 
 instance T.FromJSON FileDownload where
@@ -61,17 +62,17 @@ instance T.FromJSON FileDownload where
 instance T.ToJSON FileDownload where
   toJSON
     FileDownload
-      { is_paused = is_paused,
-        complete_date = complete_date,
-        add_date = add_date,
-        message = message,
-        file_id = file_id
+      { is_paused = is_paused_,
+        complete_date = complete_date_,
+        add_date = add_date_,
+        message = message_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "fileDownload",
-          "is_paused" A..= is_paused,
-          "complete_date" A..= complete_date,
-          "add_date" A..= add_date,
-          "message" A..= message,
-          "file_id" A..= file_id
+          "is_paused" A..= is_paused_,
+          "complete_date" A..= complete_date_,
+          "add_date" A..= add_date_,
+          "message" A..= message_,
+          "file_id" A..= file_id_
         ]

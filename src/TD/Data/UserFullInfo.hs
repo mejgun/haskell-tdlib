@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.UserFullInfo where
 
 import qualified Data.Aeson as A
@@ -36,29 +37,29 @@ data UserFullInfo = -- | Contains full information about a user
 instance Show UserFullInfo where
   show
     UserFullInfo
-      { bot_info = bot_info,
-        group_in_common_count = group_in_common_count,
-        bio = bio,
-        need_phone_number_privacy_exception = need_phone_number_privacy_exception,
-        has_private_forwards = has_private_forwards,
-        has_private_calls = has_private_calls,
-        supports_video_calls = supports_video_calls,
-        can_be_called = can_be_called,
-        is_blocked = is_blocked,
-        photo = photo
+      { bot_info = bot_info_,
+        group_in_common_count = group_in_common_count_,
+        bio = bio_,
+        need_phone_number_privacy_exception = need_phone_number_privacy_exception_,
+        has_private_forwards = has_private_forwards_,
+        has_private_calls = has_private_calls_,
+        supports_video_calls = supports_video_calls_,
+        can_be_called = can_be_called_,
+        is_blocked = is_blocked_,
+        photo = photo_
       } =
       "UserFullInfo"
         ++ U.cc
-          [ U.p "bot_info" bot_info,
-            U.p "group_in_common_count" group_in_common_count,
-            U.p "bio" bio,
-            U.p "need_phone_number_privacy_exception" need_phone_number_privacy_exception,
-            U.p "has_private_forwards" has_private_forwards,
-            U.p "has_private_calls" has_private_calls,
-            U.p "supports_video_calls" supports_video_calls,
-            U.p "can_be_called" can_be_called,
-            U.p "is_blocked" is_blocked,
-            U.p "photo" photo
+          [ U.p "bot_info" bot_info_,
+            U.p "group_in_common_count" group_in_common_count_,
+            U.p "bio" bio_,
+            U.p "need_phone_number_privacy_exception" need_phone_number_privacy_exception_,
+            U.p "has_private_forwards" has_private_forwards_,
+            U.p "has_private_calls" has_private_calls_,
+            U.p "supports_video_calls" supports_video_calls_,
+            U.p "can_be_called" can_be_called_,
+            U.p "is_blocked" is_blocked_,
+            U.p "photo" photo_
           ]
 
 instance T.FromJSON UserFullInfo where
@@ -87,27 +88,27 @@ instance T.FromJSON UserFullInfo where
 instance T.ToJSON UserFullInfo where
   toJSON
     UserFullInfo
-      { bot_info = bot_info,
-        group_in_common_count = group_in_common_count,
-        bio = bio,
-        need_phone_number_privacy_exception = need_phone_number_privacy_exception,
-        has_private_forwards = has_private_forwards,
-        has_private_calls = has_private_calls,
-        supports_video_calls = supports_video_calls,
-        can_be_called = can_be_called,
-        is_blocked = is_blocked,
-        photo = photo
+      { bot_info = bot_info_,
+        group_in_common_count = group_in_common_count_,
+        bio = bio_,
+        need_phone_number_privacy_exception = need_phone_number_privacy_exception_,
+        has_private_forwards = has_private_forwards_,
+        has_private_calls = has_private_calls_,
+        supports_video_calls = supports_video_calls_,
+        can_be_called = can_be_called_,
+        is_blocked = is_blocked_,
+        photo = photo_
       } =
       A.object
         [ "@type" A..= T.String "userFullInfo",
-          "bot_info" A..= bot_info,
-          "group_in_common_count" A..= group_in_common_count,
-          "bio" A..= bio,
-          "need_phone_number_privacy_exception" A..= need_phone_number_privacy_exception,
-          "has_private_forwards" A..= has_private_forwards,
-          "has_private_calls" A..= has_private_calls,
-          "supports_video_calls" A..= supports_video_calls,
-          "can_be_called" A..= can_be_called,
-          "is_blocked" A..= is_blocked,
-          "photo" A..= photo
+          "bot_info" A..= bot_info_,
+          "group_in_common_count" A..= group_in_common_count_,
+          "bio" A..= bio_,
+          "need_phone_number_privacy_exception" A..= need_phone_number_privacy_exception_,
+          "has_private_forwards" A..= has_private_forwards_,
+          "has_private_calls" A..= has_private_calls_,
+          "supports_video_calls" A..= supports_video_calls_,
+          "can_be_called" A..= can_be_called_,
+          "is_blocked" A..= is_blocked_,
+          "photo" A..= photo_
         ]

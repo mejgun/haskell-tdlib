@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatPinnedMessage where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetChatPinnedMessage = GetChatPinnedMessage
 instance Show GetChatPinnedMessage where
   show
     GetChatPinnedMessage
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "GetChatPinnedMessage"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatPinnedMessage where
   toJSON
     GetChatPinnedMessage
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatPinnedMessage",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SessionType where
 
 import qualified Data.Aeson as A
@@ -139,72 +140,55 @@ instance T.FromJSON SessionType where
       _ -> mempty
     where
       parseSessionTypeAndroid :: A.Value -> T.Parser SessionType
-      parseSessionTypeAndroid = A.withObject "SessionTypeAndroid" $ \o -> do
-        return $ SessionTypeAndroid {}
+      parseSessionTypeAndroid = A.withObject "SessionTypeAndroid" $ \_ -> return SessionTypeAndroid
 
       parseSessionTypeApple :: A.Value -> T.Parser SessionType
-      parseSessionTypeApple = A.withObject "SessionTypeApple" $ \o -> do
-        return $ SessionTypeApple {}
+      parseSessionTypeApple = A.withObject "SessionTypeApple" $ \_ -> return SessionTypeApple
 
       parseSessionTypeBrave :: A.Value -> T.Parser SessionType
-      parseSessionTypeBrave = A.withObject "SessionTypeBrave" $ \o -> do
-        return $ SessionTypeBrave {}
+      parseSessionTypeBrave = A.withObject "SessionTypeBrave" $ \_ -> return SessionTypeBrave
 
       parseSessionTypeChrome :: A.Value -> T.Parser SessionType
-      parseSessionTypeChrome = A.withObject "SessionTypeChrome" $ \o -> do
-        return $ SessionTypeChrome {}
+      parseSessionTypeChrome = A.withObject "SessionTypeChrome" $ \_ -> return SessionTypeChrome
 
       parseSessionTypeEdge :: A.Value -> T.Parser SessionType
-      parseSessionTypeEdge = A.withObject "SessionTypeEdge" $ \o -> do
-        return $ SessionTypeEdge {}
+      parseSessionTypeEdge = A.withObject "SessionTypeEdge" $ \_ -> return SessionTypeEdge
 
       parseSessionTypeFirefox :: A.Value -> T.Parser SessionType
-      parseSessionTypeFirefox = A.withObject "SessionTypeFirefox" $ \o -> do
-        return $ SessionTypeFirefox {}
+      parseSessionTypeFirefox = A.withObject "SessionTypeFirefox" $ \_ -> return SessionTypeFirefox
 
       parseSessionTypeIpad :: A.Value -> T.Parser SessionType
-      parseSessionTypeIpad = A.withObject "SessionTypeIpad" $ \o -> do
-        return $ SessionTypeIpad {}
+      parseSessionTypeIpad = A.withObject "SessionTypeIpad" $ \_ -> return SessionTypeIpad
 
       parseSessionTypeIphone :: A.Value -> T.Parser SessionType
-      parseSessionTypeIphone = A.withObject "SessionTypeIphone" $ \o -> do
-        return $ SessionTypeIphone {}
+      parseSessionTypeIphone = A.withObject "SessionTypeIphone" $ \_ -> return SessionTypeIphone
 
       parseSessionTypeLinux :: A.Value -> T.Parser SessionType
-      parseSessionTypeLinux = A.withObject "SessionTypeLinux" $ \o -> do
-        return $ SessionTypeLinux {}
+      parseSessionTypeLinux = A.withObject "SessionTypeLinux" $ \_ -> return SessionTypeLinux
 
       parseSessionTypeMac :: A.Value -> T.Parser SessionType
-      parseSessionTypeMac = A.withObject "SessionTypeMac" $ \o -> do
-        return $ SessionTypeMac {}
+      parseSessionTypeMac = A.withObject "SessionTypeMac" $ \_ -> return SessionTypeMac
 
       parseSessionTypeOpera :: A.Value -> T.Parser SessionType
-      parseSessionTypeOpera = A.withObject "SessionTypeOpera" $ \o -> do
-        return $ SessionTypeOpera {}
+      parseSessionTypeOpera = A.withObject "SessionTypeOpera" $ \_ -> return SessionTypeOpera
 
       parseSessionTypeSafari :: A.Value -> T.Parser SessionType
-      parseSessionTypeSafari = A.withObject "SessionTypeSafari" $ \o -> do
-        return $ SessionTypeSafari {}
+      parseSessionTypeSafari = A.withObject "SessionTypeSafari" $ \_ -> return SessionTypeSafari
 
       parseSessionTypeUbuntu :: A.Value -> T.Parser SessionType
-      parseSessionTypeUbuntu = A.withObject "SessionTypeUbuntu" $ \o -> do
-        return $ SessionTypeUbuntu {}
+      parseSessionTypeUbuntu = A.withObject "SessionTypeUbuntu" $ \_ -> return SessionTypeUbuntu
 
       parseSessionTypeUnknown :: A.Value -> T.Parser SessionType
-      parseSessionTypeUnknown = A.withObject "SessionTypeUnknown" $ \o -> do
-        return $ SessionTypeUnknown {}
+      parseSessionTypeUnknown = A.withObject "SessionTypeUnknown" $ \_ -> return SessionTypeUnknown
 
       parseSessionTypeVivaldi :: A.Value -> T.Parser SessionType
-      parseSessionTypeVivaldi = A.withObject "SessionTypeVivaldi" $ \o -> do
-        return $ SessionTypeVivaldi {}
+      parseSessionTypeVivaldi = A.withObject "SessionTypeVivaldi" $ \_ -> return SessionTypeVivaldi
 
       parseSessionTypeWindows :: A.Value -> T.Parser SessionType
-      parseSessionTypeWindows = A.withObject "SessionTypeWindows" $ \o -> do
-        return $ SessionTypeWindows {}
+      parseSessionTypeWindows = A.withObject "SessionTypeWindows" $ \_ -> return SessionTypeWindows
 
       parseSessionTypeXbox :: A.Value -> T.Parser SessionType
-      parseSessionTypeXbox = A.withObject "SessionTypeXbox" $ \o -> do
-        return $ SessionTypeXbox {}
+      parseSessionTypeXbox = A.withObject "SessionTypeXbox" $ \_ -> return SessionTypeXbox
   parseJSON _ = mempty
 
 instance T.ToJSON SessionType where

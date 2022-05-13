@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatNotificationSettings where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetChatNotificationSettings = SetChatNotificationSettings
 instance Show SetChatNotificationSettings where
   show
     SetChatNotificationSettings
-      { notification_settings = notification_settings,
-        chat_id = chat_id
+      { notification_settings = notification_settings_,
+        chat_id = chat_id_
       } =
       "SetChatNotificationSettings"
         ++ U.cc
-          [ U.p "notification_settings" notification_settings,
-            U.p "chat_id" chat_id
+          [ U.p "notification_settings" notification_settings_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatNotificationSettings where
   toJSON
     SetChatNotificationSettings
-      { notification_settings = notification_settings,
-        chat_id = chat_id
+      { notification_settings = notification_settings_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatNotificationSettings",
-          "notification_settings" A..= notification_settings,
-          "chat_id" A..= chat_id
+          "notification_settings" A..= notification_settings_,
+          "chat_id" A..= chat_id_
         ]

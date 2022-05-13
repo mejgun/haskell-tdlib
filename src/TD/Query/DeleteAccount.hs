@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteAccount where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data DeleteAccount = DeleteAccount
 instance Show DeleteAccount where
   show
     DeleteAccount
-      { reason = reason
+      { reason = reason_
       } =
       "DeleteAccount"
         ++ U.cc
-          [ U.p "reason" reason
+          [ U.p "reason" reason_
           ]
 
 instance T.ToJSON DeleteAccount where
   toJSON
     DeleteAccount
-      { reason = reason
+      { reason = reason_
       } =
       A.object
         [ "@type" A..= T.String "deleteAccount",
-          "reason" A..= reason
+          "reason" A..= reason_
         ]

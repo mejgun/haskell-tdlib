@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.JsonObjectMember where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data JsonObjectMember = -- | Represents one member of a JSON object @key Member'
 instance Show JsonObjectMember where
   show
     JsonObjectMember
-      { value = value,
-        key = key
+      { value = value_,
+        key = key_
       } =
       "JsonObjectMember"
         ++ U.cc
-          [ U.p "value" value,
-            U.p "key" key
+          [ U.p "value" value_,
+            U.p "key" key_
           ]
 
 instance T.FromJSON JsonObjectMember where
@@ -46,11 +47,11 @@ instance T.FromJSON JsonObjectMember where
 instance T.ToJSON JsonObjectMember where
   toJSON
     JsonObjectMember
-      { value = value,
-        key = key
+      { value = value_,
+        key = key_
       } =
       A.object
         [ "@type" A..= T.String "jsonObjectMember",
-          "value" A..= value,
-          "key" A..= key
+          "value" A..= value_,
+          "key" A..= key_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatSlowModeDelay where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SetChatSlowModeDelay = SetChatSlowModeDelay
 instance Show SetChatSlowModeDelay where
   show
     SetChatSlowModeDelay
-      { slow_mode_delay = slow_mode_delay,
-        chat_id = chat_id
+      { slow_mode_delay = slow_mode_delay_,
+        chat_id = chat_id_
       } =
       "SetChatSlowModeDelay"
         ++ U.cc
-          [ U.p "slow_mode_delay" slow_mode_delay,
-            U.p "chat_id" chat_id
+          [ U.p "slow_mode_delay" slow_mode_delay_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatSlowModeDelay where
   toJSON
     SetChatSlowModeDelay
-      { slow_mode_delay = slow_mode_delay,
-        chat_id = chat_id
+      { slow_mode_delay = slow_mode_delay_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatSlowModeDelay",
-          "slow_mode_delay" A..= slow_mode_delay,
-          "chat_id" A..= chat_id
+          "slow_mode_delay" A..= slow_mode_delay_,
+          "chat_id" A..= chat_id_
         ]

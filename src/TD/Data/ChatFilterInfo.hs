@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatFilterInfo where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data ChatFilterInfo = -- | Contains basic information about a chat filter
 instance Show ChatFilterInfo where
   show
     ChatFilterInfo
-      { icon_name = icon_name,
-        title = title,
-        _id = _id
+      { icon_name = icon_name_,
+        title = title_,
+        _id = _id_
       } =
       "ChatFilterInfo"
         ++ U.cc
-          [ U.p "icon_name" icon_name,
-            U.p "title" title,
-            U.p "_id" _id
+          [ U.p "icon_name" icon_name_,
+            U.p "title" title_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON ChatFilterInfo where
@@ -50,13 +51,13 @@ instance T.FromJSON ChatFilterInfo where
 instance T.ToJSON ChatFilterInfo where
   toJSON
     ChatFilterInfo
-      { icon_name = icon_name,
-        title = title,
-        _id = _id
+      { icon_name = icon_name_,
+        title = title_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "chatFilterInfo",
-          "icon_name" A..= icon_name,
-          "title" A..= title,
-          "id" A..= _id
+          "icon_name" A..= icon_name_,
+          "title" A..= title_,
+          "id" A..= _id_
         ]

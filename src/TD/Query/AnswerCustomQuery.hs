@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AnswerCustomQuery where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data AnswerCustomQuery = AnswerCustomQuery
 instance Show AnswerCustomQuery where
   show
     AnswerCustomQuery
-      { _data = _data,
-        custom_query_id = custom_query_id
+      { _data = _data_,
+        custom_query_id = custom_query_id_
       } =
       "AnswerCustomQuery"
         ++ U.cc
-          [ U.p "_data" _data,
-            U.p "custom_query_id" custom_query_id
+          [ U.p "_data" _data_,
+            U.p "custom_query_id" custom_query_id_
           ]
 
 instance T.ToJSON AnswerCustomQuery where
   toJSON
     AnswerCustomQuery
-      { _data = _data,
-        custom_query_id = custom_query_id
+      { _data = _data_,
+        custom_query_id = custom_query_id_
       } =
       A.object
         [ "@type" A..= T.String "answerCustomQuery",
-          "data" A..= _data,
-          "custom_query_id" A..= custom_query_id
+          "data" A..= _data_,
+          "custom_query_id" A..= custom_query_id_
         ]

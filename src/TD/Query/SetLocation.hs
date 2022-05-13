@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetLocation where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SetLocation = SetLocation
 instance Show SetLocation where
   show
     SetLocation
-      { location = location
+      { location = location_
       } =
       "SetLocation"
         ++ U.cc
-          [ U.p "location" location
+          [ U.p "location" location_
           ]
 
 instance T.ToJSON SetLocation where
   toJSON
     SetLocation
-      { location = location
+      { location = location_
       } =
       A.object
         [ "@type" A..= T.String "setLocation",
-          "location" A..= location
+          "location" A..= location_
         ]

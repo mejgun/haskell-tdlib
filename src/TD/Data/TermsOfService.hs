@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TermsOfService where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data TermsOfService = -- | Contains Telegram terms of service @text Text of the 
 instance Show TermsOfService where
   show
     TermsOfService
-      { show_popup = show_popup,
-        min_user_age = min_user_age,
-        text = text
+      { show_popup = show_popup_,
+        min_user_age = min_user_age_,
+        text = text_
       } =
       "TermsOfService"
         ++ U.cc
-          [ U.p "show_popup" show_popup,
-            U.p "min_user_age" min_user_age,
-            U.p "text" text
+          [ U.p "show_popup" show_popup_,
+            U.p "min_user_age" min_user_age_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON TermsOfService where
@@ -51,13 +52,13 @@ instance T.FromJSON TermsOfService where
 instance T.ToJSON TermsOfService where
   toJSON
     TermsOfService
-      { show_popup = show_popup,
-        min_user_age = min_user_age,
-        text = text
+      { show_popup = show_popup_,
+        min_user_age = min_user_age_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "termsOfService",
-          "show_popup" A..= show_popup,
-          "min_user_age" A..= min_user_age,
-          "text" A..= text
+          "show_popup" A..= show_popup_,
+          "min_user_age" A..= min_user_age_,
+          "text" A..= text_
         ]

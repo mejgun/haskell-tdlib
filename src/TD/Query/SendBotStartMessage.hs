@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendBotStartMessage where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data SendBotStartMessage = SendBotStartMessage
 instance Show SendBotStartMessage where
   show
     SendBotStartMessage
-      { parameter = parameter,
-        chat_id = chat_id,
-        bot_user_id = bot_user_id
+      { parameter = parameter_,
+        chat_id = chat_id_,
+        bot_user_id = bot_user_id_
       } =
       "SendBotStartMessage"
         ++ U.cc
-          [ U.p "parameter" parameter,
-            U.p "chat_id" chat_id,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "parameter" parameter_,
+            U.p "chat_id" chat_id_,
+            U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.ToJSON SendBotStartMessage where
   toJSON
     SendBotStartMessage
-      { parameter = parameter,
-        chat_id = chat_id,
-        bot_user_id = bot_user_id
+      { parameter = parameter_,
+        chat_id = chat_id_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "sendBotStartMessage",
-          "parameter" A..= parameter,
-          "chat_id" A..= chat_id,
-          "bot_user_id" A..= bot_user_id
+          "parameter" A..= parameter_,
+          "chat_id" A..= chat_id_,
+          "bot_user_id" A..= bot_user_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetCreatedPublicChats where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data GetCreatedPublicChats = GetCreatedPublicChats
 instance Show GetCreatedPublicChats where
   show
     GetCreatedPublicChats
-      { _type = _type
+      { _type = _type_
       } =
       "GetCreatedPublicChats"
         ++ U.cc
-          [ U.p "_type" _type
+          [ U.p "_type" _type_
           ]
 
 instance T.ToJSON GetCreatedPublicChats where
   toJSON
     GetCreatedPublicChats
-      { _type = _type
+      { _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "getCreatedPublicChats",
-          "type" A..= _type
+          "type" A..= _type_
         ]

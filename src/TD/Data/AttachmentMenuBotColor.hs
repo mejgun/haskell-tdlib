@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AttachmentMenuBotColor where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data AttachmentMenuBotColor = -- | Describes a color to highlight a bot added to
 instance Show AttachmentMenuBotColor where
   show
     AttachmentMenuBotColor
-      { dark_color = dark_color,
-        light_color = light_color
+      { dark_color = dark_color_,
+        light_color = light_color_
       } =
       "AttachmentMenuBotColor"
         ++ U.cc
-          [ U.p "dark_color" dark_color,
-            U.p "light_color" light_color
+          [ U.p "dark_color" dark_color_,
+            U.p "light_color" light_color_
           ]
 
 instance T.FromJSON AttachmentMenuBotColor where
@@ -45,11 +46,11 @@ instance T.FromJSON AttachmentMenuBotColor where
 instance T.ToJSON AttachmentMenuBotColor where
   toJSON
     AttachmentMenuBotColor
-      { dark_color = dark_color,
-        light_color = light_color
+      { dark_color = dark_color_,
+        light_color = light_color_
       } =
       A.object
         [ "@type" A..= T.String "attachmentMenuBotColor",
-          "dark_color" A..= dark_color,
-          "light_color" A..= light_color
+          "dark_color" A..= dark_color_,
+          "light_color" A..= light_color_
         ]

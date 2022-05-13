@@ -1,37 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
-</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Data.BasicGroupFullInfo</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.BotCommands.html"><span class="hs-identifier">TD.Data.BotCommands</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BotCommands</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLink.html"><span class="hs-identifier">TD.Data.ChatInviteLink</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatInviteLink</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatMember.html"><span class="hs-identifier">TD.Data.ChatMember</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatMember</span></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatPhoto.html"><span class="hs-identifier">TD.Data.ChatPhoto</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatPhoto</span></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="BasicGroupFullInfo"><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-var">BasicGroupFullInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains full information about a basic group</span><span>
-</span><span id="line-14"></span><span>  </span><span id="BasicGroupFullInfo"><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-var">BasicGroupFullInfo</span></a></span></span><span>
-</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | List of commands of bots in the group</span><span>
-</span><span id="line-16"></span><span>    </span><span id="bot_commands"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe [BotCommands]
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Data.BasicGroupFullInfo</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.BotCommands.html"><span class="hs-identifier">TD.Data.BotCommands</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BotCommands</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLink.html"><span class="hs-identifier">TD.Data.ChatInviteLink</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatInviteLink</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatMember.html"><span class="hs-identifier">TD.Data.ChatMember</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatMember</span></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatPhoto.html"><span class="hs-identifier">TD.Data.ChatPhoto</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatPhoto</span></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">data</span><span> </span><span id="BasicGroupFullInfo"><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-var">BasicGroupFullInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains full information about a basic group</span><span>
+</span><span id="line-15"></span><span>  </span><span id="BasicGroupFullInfo"><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-var">BasicGroupFullInfo</span></a></span></span><span>
+</span><span id="line-16"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | List of commands of bots in the group</span><span>
+</span><span id="line-17"></span><span>    </span><span id="bot_commands"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe [BotCommands]
 </span><a href="TD.Data.BasicGroupFullInfo.html#bot_commands"><span class="hs-identifier hs-var hs-var">bot_commands</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.BotCommands.html#BotCommands"><span class="hs-identifier hs-type">BotCommands.BotCommands</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened</span><span>
-</span><span id="line-18"></span><span>    </span><span id="invite_link"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe ChatInviteLink
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened</span><span>
+</span><span id="line-19"></span><span>    </span><span id="invite_link"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe ChatInviteLink
 </span><a href="TD.Data.BasicGroupFullInfo.html#invite_link"><span class="hs-identifier hs-var hs-var">invite_link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLink.html#ChatInviteLink"><span class="hs-identifier hs-type">ChatInviteLink.ChatInviteLink</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Group members</span><span>
-</span><span id="line-20"></span><span>    </span><span id="members"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe [ChatMember]
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Group members</span><span>
+</span><span id="line-21"></span><span>    </span><span id="members"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe [ChatMember]
 </span><a href="TD.Data.BasicGroupFullInfo.html#members"><span class="hs-identifier hs-var hs-var">members</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.ChatMember.html#ChatMember"><span class="hs-identifier hs-type">ChatMember.ChatMember</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
-</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | User identifier of the creator of the group; 0 if unknown</span><span>
-</span><span id="line-22"></span><span>    </span><span id="creator_user_id"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe Int
+</span><span id="line-22"></span><span>    </span><span class="hs-comment">-- | User identifier of the creator of the group; 0 if unknown</span><span>
+</span><span id="line-23"></span><span>    </span><span id="creator_user_id"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe Int
 </span><a href="TD.Data.BasicGroupFullInfo.html#creator_user_id"><span class="hs-identifier hs-var hs-var">creator_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-24"></span><span>    </span><span id="description"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe String
+</span><span id="line-24"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-25"></span><span>    </span><span id="description"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe String
 </span><a href="TD.Data.BasicGroupFullInfo.html#description"><span class="hs-identifier hs-var hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-25"></span><span>    </span><span class="hs-comment">-- | Chat photo; may be null</span><span>
-</span><span id="line-26"></span><span>    </span><span id="photo"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe ChatPhoto
+</span><span id="line-26"></span><span>    </span><span class="hs-comment">-- | Chat photo; may be null</span><span>
+</span><span id="line-27"></span><span>    </span><span id="photo"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Maybe ChatPhoto
 </span><a href="TD.Data.BasicGroupFullInfo.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhoto.html#ChatPhoto"><span class="hs-identifier hs-type">ChatPhoto.ChatPhoto</span></a></span><span>
-</span><span id="line-27"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679438809"><span id="local-6989586621679438811"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; BasicGroupFullInfo -&gt; Bool
+</span><span id="line-28"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-29"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679437827"><span id="local-6989586621679437829"><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; BasicGroupFullInfo -&gt; Bool
 (BasicGroupFullInfo -&gt; BasicGroupFullInfo -&gt; Bool)
 -&gt; (BasicGroupFullInfo -&gt; BasicGroupFullInfo -&gt; Bool)
 -&gt; Eq BasicGroupFullInfo
@@ -41,94 +42,94 @@ $c/= :: BasicGroupFullInfo -&gt; BasicGroupFullInfo -&gt; Bool
 == :: BasicGroupFullInfo -&gt; BasicGroupFullInfo -&gt; Bool
 $c== :: BasicGroupFullInfo -&gt; BasicGroupFullInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438803"><span id="local-6989586621679438806"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679438801"><span class="annot"><span class="annottext">show :: BasicGroupFullInfo -&gt; String
+</span><span id="line-30"></span><span>
+</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437821"><span id="local-6989586621679437824"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span>  </span><span id="local-6989586621679437819"><span class="annot"><span class="annottext">show :: BasicGroupFullInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-32"></span><span>    </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span><span>
-</span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bot_commands :: BasicGroupFullInfo -&gt; Maybe [BotCommands]
-</span><a href="TD.Data.BasicGroupFullInfo.html#bot_commands"><span class="hs-identifier hs-var">bot_commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438799"><span class="annot"><span class="annottext">Maybe [BotCommands]
-</span><a href="#local-6989586621679438799"><span class="hs-identifier hs-var">bot_commands</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">invite_link :: BasicGroupFullInfo -&gt; Maybe ChatInviteLink
-</span><a href="TD.Data.BasicGroupFullInfo.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438798"><span class="annot"><span class="annottext">Maybe ChatInviteLink
-</span><a href="#local-6989586621679438798"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">members :: BasicGroupFullInfo -&gt; Maybe [ChatMember]
-</span><a href="TD.Data.BasicGroupFullInfo.html#members"><span class="hs-identifier hs-var">members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438797"><span class="annot"><span class="annottext">Maybe [ChatMember]
-</span><a href="#local-6989586621679438797"><span class="hs-identifier hs-var">members</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">creator_user_id :: BasicGroupFullInfo -&gt; Maybe Int
-</span><a href="TD.Data.BasicGroupFullInfo.html#creator_user_id"><span class="hs-identifier hs-var">creator_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438796"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438796"><span class="hs-identifier hs-var">creator_user_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">description :: BasicGroupFullInfo -&gt; Maybe String
-</span><a href="TD.Data.BasicGroupFullInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438795"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438795"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">photo :: BasicGroupFullInfo -&gt; Maybe ChatPhoto
-</span><a href="TD.Data.BasicGroupFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438794"><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679438794"><span class="hs-identifier hs-var">photo</span></a></span></span><span>
-</span><span id="line-39"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-40"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>    </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span><span>
+</span><span id="line-34"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bot_commands :: BasicGroupFullInfo -&gt; Maybe [BotCommands]
+</span><a href="TD.Data.BasicGroupFullInfo.html#bot_commands"><span class="hs-identifier hs-var">bot_commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437817"><span class="annot"><span class="annottext">Maybe [BotCommands]
+</span><a href="#local-6989586621679437817"><span class="hs-identifier hs-var">bot_commands_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">invite_link :: BasicGroupFullInfo -&gt; Maybe ChatInviteLink
+</span><a href="TD.Data.BasicGroupFullInfo.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437816"><span class="annot"><span class="annottext">Maybe ChatInviteLink
+</span><a href="#local-6989586621679437816"><span class="hs-identifier hs-var">invite_link_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">members :: BasicGroupFullInfo -&gt; Maybe [ChatMember]
+</span><a href="TD.Data.BasicGroupFullInfo.html#members"><span class="hs-identifier hs-var">members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437815"><span class="annot"><span class="annottext">Maybe [ChatMember]
+</span><a href="#local-6989586621679437815"><span class="hs-identifier hs-var">members_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">creator_user_id :: BasicGroupFullInfo -&gt; Maybe Int
+</span><a href="TD.Data.BasicGroupFullInfo.html#creator_user_id"><span class="hs-identifier hs-var">creator_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437814"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679437814"><span class="hs-identifier hs-var">creator_user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">description :: BasicGroupFullInfo -&gt; Maybe String
+</span><a href="TD.Data.BasicGroupFullInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437813"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679437813"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">photo :: BasicGroupFullInfo -&gt; Maybe ChatPhoto
+</span><a href="TD.Data.BasicGroupFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437812"><span class="annot"><span class="annottext">Maybe ChatPhoto
+</span><a href="#local-6989586621679437812"><span class="hs-identifier hs-var">photo_</span></a></span></span><span>
+</span><span id="line-40"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BasicGroupFullInfo&quot;</span></span><span>
-</span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-42"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [BotCommands] -&gt; String
+</span><span id="line-43"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [BotCommands] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;bot_commands&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommands]
-</span><a href="#local-6989586621679438799"><span class="hs-identifier hs-var">bot_commands</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatInviteLink -&gt; String
+</span><a href="#local-6989586621679437817"><span class="hs-identifier hs-var">bot_commands_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatInviteLink -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;invite_link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatInviteLink
-</span><a href="#local-6989586621679438798"><span class="hs-identifier hs-var">invite_link</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [ChatMember] -&gt; String
+</span><a href="#local-6989586621679437816"><span class="hs-identifier hs-var">invite_link_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [ChatMember] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;members&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatMember]
-</span><a href="#local-6989586621679438797"><span class="hs-identifier hs-var">members</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679437815"><span class="hs-identifier hs-var">members_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;creator_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438796"><span class="hs-identifier hs-var">creator_user_id</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679437814"><span class="hs-identifier hs-var">creator_user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438795"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatPhoto -&gt; String
+</span><a href="#local-6989586621679437813"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-48"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatPhoto -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679438794"><span class="hs-identifier hs-var">photo</span></a></span><span>
-</span><span id="line-48"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438789"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span>  </span><span id="local-6989586621679438787"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BasicGroupFullInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679438785"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679438785"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679438783"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438783"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679438782"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438782"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438783"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679437812"><span class="hs-identifier hs-var">photo_</span></a></span><span>
+</span><span id="line-49"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437807"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-52"></span><span>  </span><span id="local-6989586621679437805"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BasicGroupFullInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679437803"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679437803"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679437801"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437801"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679437800"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679437800"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437801"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438782"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-55"></span><span>      </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;basicGroupFullInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BasicGroupFullInfo
-</span><a href="#local-6989586621679438780"><span class="hs-identifier hs-var">parseBasicGroupFullInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679438785"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-54"></span><span>
+</span><span id="line-55"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679437800"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-56"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;basicGroupFullInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BasicGroupFullInfo
+</span><a href="#local-6989586621679437798"><span class="hs-identifier hs-var">parseBasicGroupFullInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679437803"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-57"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser BasicGroupFullInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-57"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span>      </span><span class="annot"><a href="#local-6989586621679438780"><span class="hs-identifier hs-type">parseBasicGroupFullInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span><span>
-</span><span id="line-59"></span><span>      </span><span id="local-6989586621679438780"><span class="annot"><span class="annottext">parseBasicGroupFullInfo :: Value -&gt; Parser BasicGroupFullInfo
-</span><a href="#local-6989586621679438780"><span class="hs-identifier hs-var hs-var">parseBasicGroupFullInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>      </span><span class="annot"><a href="#local-6989586621679437798"><span class="hs-identifier hs-type">parseBasicGroupFullInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span><span>
+</span><span id="line-60"></span><span>      </span><span id="local-6989586621679437798"><span class="annot"><span class="annottext">parseBasicGroupFullInfo :: Value -&gt; Parser BasicGroupFullInfo
+</span><a href="#local-6989586621679437798"><span class="hs-identifier hs-var hs-var">parseBasicGroupFullInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BasicGroupFullInfo)
 -&gt; Value
 -&gt; Parser BasicGroupFullInfo
@@ -140,31 +141,31 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BasicGroupFullInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438778"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-60"></span><span>        </span><span id="local-6989586621679438777"><span class="annot"><span class="annottext">Maybe [BotCommands]
-</span><a href="#local-6989586621679438777"><span class="hs-identifier hs-var">bot_commands_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [BotCommands])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679437796"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-61"></span><span>        </span><span id="local-6989586621679437795"><span class="annot"><span class="annottext">Maybe [BotCommands]
+</span><a href="#local-6989586621679437795"><span class="hs-identifier hs-var">bot_commands_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [BotCommands])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bot_commands&quot;</span></span><span>
-</span><span id="line-61"></span><span>        </span><span id="local-6989586621679438775"><span class="annot"><span class="annottext">Maybe ChatInviteLink
-</span><a href="#local-6989586621679438775"><span class="hs-identifier hs-var">invite_link_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatInviteLink)
+</span><span id="line-62"></span><span>        </span><span id="local-6989586621679437793"><span class="annot"><span class="annottext">Maybe ChatInviteLink
+</span><a href="#local-6989586621679437793"><span class="hs-identifier hs-var">invite_link_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatInviteLink)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;invite_link&quot;</span></span><span>
-</span><span id="line-62"></span><span>        </span><span id="local-6989586621679438774"><span class="annot"><span class="annottext">Maybe [ChatMember]
-</span><a href="#local-6989586621679438774"><span class="hs-identifier hs-var">members_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatMember])
+</span><span id="line-63"></span><span>        </span><span id="local-6989586621679437792"><span class="annot"><span class="annottext">Maybe [ChatMember]
+</span><a href="#local-6989586621679437792"><span class="hs-identifier hs-var">members_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatMember])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;members&quot;</span></span><span>
-</span><span id="line-63"></span><span>        </span><span id="local-6989586621679438773"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438773"><span class="hs-identifier hs-var">creator_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-64"></span><span>        </span><span id="local-6989586621679437791"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679437791"><span class="hs-identifier hs-var">creator_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;creator_user_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -172,23 +173,23 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><a href="Utils.html#rm"><span class="hs-identifier hs-var">U.rm</span></a></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;creator_user_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-64"></span><span>        </span><span id="local-6989586621679438770"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438770"><span class="hs-identifier hs-var">description_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-65"></span><span>        </span><span id="local-6989586621679437788"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679437788"><span class="hs-identifier hs-var">description_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span>
-</span><span id="line-65"></span><span>        </span><span id="local-6989586621679438769"><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679438769"><span class="hs-identifier hs-var">photo_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatPhoto)
+</span><span id="line-66"></span><span>        </span><span id="local-6989586621679437787"><span class="annot"><span class="annottext">Maybe ChatPhoto
+</span><a href="#local-6989586621679437787"><span class="hs-identifier hs-var">photo_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatPhoto)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span>
-</span><span id="line-66"></span><span>        </span><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Parser BasicGroupFullInfo
+</span><span id="line-67"></span><span>        </span><span class="annot"><span class="annottext">BasicGroupFullInfo -&gt; Parser BasicGroupFullInfo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BasicGroupFullInfo -&gt; Parser BasicGroupFullInfo)
 -&gt; BasicGroupFullInfo -&gt; Parser BasicGroupFullInfo
@@ -202,82 +203,82 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; BasicGroupFullInfo
 </span><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">bot_commands :: Maybe [BotCommands]
 </span><a href="TD.Data.BasicGroupFullInfo.html#bot_commands"><span class="hs-identifier hs-var">bot_commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommands]
-</span><a href="#local-6989586621679438777"><span class="hs-identifier hs-var">bot_commands_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">invite_link :: Maybe ChatInviteLink
+</span><a href="#local-6989586621679437795"><span class="hs-identifier hs-var">bot_commands_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">invite_link :: Maybe ChatInviteLink
 </span><a href="TD.Data.BasicGroupFullInfo.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatInviteLink
-</span><a href="#local-6989586621679438775"><span class="hs-identifier hs-var">invite_link_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">members :: Maybe [ChatMember]
+</span><a href="#local-6989586621679437793"><span class="hs-identifier hs-var">invite_link_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">members :: Maybe [ChatMember]
 </span><a href="TD.Data.BasicGroupFullInfo.html#members"><span class="hs-identifier hs-var">members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [ChatMember]
-</span><a href="#local-6989586621679438774"><span class="hs-identifier hs-var">members_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">creator_user_id :: Maybe Int
+</span><a href="#local-6989586621679437792"><span class="hs-identifier hs-var">members_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">creator_user_id :: Maybe Int
 </span><a href="TD.Data.BasicGroupFullInfo.html#creator_user_id"><span class="hs-identifier hs-var">creator_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438773"><span class="hs-identifier hs-var">creator_user_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe String
+</span><a href="#local-6989586621679437791"><span class="hs-identifier hs-var">creator_user_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe String
 </span><a href="TD.Data.BasicGroupFullInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438770"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe ChatPhoto
+</span><a href="#local-6989586621679437788"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe ChatPhoto
 </span><a href="TD.Data.BasicGroupFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679438769"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">}</span><span>
-</span><span id="line-67"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679437787"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">}</span><span>
+</span><span id="line-68"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser BasicGroupFullInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-68"></span><span>
-</span><span id="line-69"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438762"><span id="local-6989586621679438764"><span id="local-6989586621679438766"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-70"></span><span>  </span><span id="local-6989586621679438760"><span class="annot"><span class="annottext">toJSON :: BasicGroupFullInfo -&gt; Value
+</span><span id="line-69"></span><span>
+</span><span id="line-70"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437780"><span id="local-6989586621679437782"><span id="local-6989586621679437784"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-71"></span><span>  </span><span id="local-6989586621679437778"><span class="annot"><span class="annottext">toJSON :: BasicGroupFullInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-71"></span><span>    </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span><span>
-</span><span id="line-72"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bot_commands :: BasicGroupFullInfo -&gt; Maybe [BotCommands]
-</span><a href="TD.Data.BasicGroupFullInfo.html#bot_commands"><span class="hs-identifier hs-var">bot_commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438758"><span class="annot"><span class="annottext">Maybe [BotCommands]
-</span><a href="#local-6989586621679438758"><span class="hs-identifier hs-var">bot_commands</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-73"></span><span>        </span><span class="annot"><span class="annottext">invite_link :: BasicGroupFullInfo -&gt; Maybe ChatInviteLink
-</span><a href="TD.Data.BasicGroupFullInfo.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438757"><span class="annot"><span class="annottext">Maybe ChatInviteLink
-</span><a href="#local-6989586621679438757"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-74"></span><span>        </span><span class="annot"><span class="annottext">members :: BasicGroupFullInfo -&gt; Maybe [ChatMember]
-</span><a href="TD.Data.BasicGroupFullInfo.html#members"><span class="hs-identifier hs-var">members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438756"><span class="annot"><span class="annottext">Maybe [ChatMember]
-</span><a href="#local-6989586621679438756"><span class="hs-identifier hs-var">members</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-75"></span><span>        </span><span class="annot"><span class="annottext">creator_user_id :: BasicGroupFullInfo -&gt; Maybe Int
-</span><a href="TD.Data.BasicGroupFullInfo.html#creator_user_id"><span class="hs-identifier hs-var">creator_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438755"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438755"><span class="hs-identifier hs-var">creator_user_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-76"></span><span>        </span><span class="annot"><span class="annottext">description :: BasicGroupFullInfo -&gt; Maybe String
-</span><a href="TD.Data.BasicGroupFullInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438754"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438754"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-77"></span><span>        </span><span class="annot"><span class="annottext">photo :: BasicGroupFullInfo -&gt; Maybe ChatPhoto
-</span><a href="TD.Data.BasicGroupFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438753"><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679438753"><span class="hs-identifier hs-var">photo</span></a></span></span><span>
-</span><span id="line-78"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-79"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-72"></span><span>    </span><span class="annot"><a href="TD.Data.BasicGroupFullInfo.html#BasicGroupFullInfo"><span class="hs-identifier hs-type">BasicGroupFullInfo</span></a></span><span>
+</span><span id="line-73"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bot_commands :: BasicGroupFullInfo -&gt; Maybe [BotCommands]
+</span><a href="TD.Data.BasicGroupFullInfo.html#bot_commands"><span class="hs-identifier hs-var">bot_commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437776"><span class="annot"><span class="annottext">Maybe [BotCommands]
+</span><a href="#local-6989586621679437776"><span class="hs-identifier hs-var">bot_commands_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-74"></span><span>        </span><span class="annot"><span class="annottext">invite_link :: BasicGroupFullInfo -&gt; Maybe ChatInviteLink
+</span><a href="TD.Data.BasicGroupFullInfo.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437775"><span class="annot"><span class="annottext">Maybe ChatInviteLink
+</span><a href="#local-6989586621679437775"><span class="hs-identifier hs-var">invite_link_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-75"></span><span>        </span><span class="annot"><span class="annottext">members :: BasicGroupFullInfo -&gt; Maybe [ChatMember]
+</span><a href="TD.Data.BasicGroupFullInfo.html#members"><span class="hs-identifier hs-var">members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437774"><span class="annot"><span class="annottext">Maybe [ChatMember]
+</span><a href="#local-6989586621679437774"><span class="hs-identifier hs-var">members_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-76"></span><span>        </span><span class="annot"><span class="annottext">creator_user_id :: BasicGroupFullInfo -&gt; Maybe Int
+</span><a href="TD.Data.BasicGroupFullInfo.html#creator_user_id"><span class="hs-identifier hs-var">creator_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437773"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679437773"><span class="hs-identifier hs-var">creator_user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-77"></span><span>        </span><span class="annot"><span class="annottext">description :: BasicGroupFullInfo -&gt; Maybe String
+</span><a href="TD.Data.BasicGroupFullInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437772"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679437772"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-78"></span><span>        </span><span class="annot"><span class="annottext">photo :: BasicGroupFullInfo -&gt; Maybe ChatPhoto
+</span><a href="TD.Data.BasicGroupFullInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437771"><span class="annot"><span class="annottext">Maybe ChatPhoto
+</span><a href="#local-6989586621679437771"><span class="hs-identifier hs-var">photo_</span></a></span></span><span>
+</span><span id="line-79"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-80"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-80"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-81"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;basicGroupFullInfo&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-81"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-82"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bot_commands&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [BotCommands] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommands]
-</span><a href="#local-6989586621679438758"><span class="hs-identifier hs-var">bot_commands</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-82"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679437776"><span class="hs-identifier hs-var">bot_commands_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-83"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;invite_link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatInviteLink -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatInviteLink
-</span><a href="#local-6989586621679438757"><span class="hs-identifier hs-var">invite_link</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-83"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679437775"><span class="hs-identifier hs-var">invite_link_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-84"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;members&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [ChatMember] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatMember]
-</span><a href="#local-6989586621679438756"><span class="hs-identifier hs-var">members</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-84"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679437774"><span class="hs-identifier hs-var">members_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-85"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;creator_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438755"><span class="hs-identifier hs-var">creator_user_id</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-85"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679437773"><span class="hs-identifier hs-var">creator_user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-86"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438754"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-86"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679437772"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-87"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatPhoto -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhoto
-</span><a href="#local-6989586621679438753"><span class="hs-identifier hs-var">photo</span></a></span><span>
-</span><span id="line-87"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-88"></span></pre></body></html>
+</span><a href="#local-6989586621679437771"><span class="hs-identifier hs-var">photo_</span></a></span><span>
+</span><span id="line-88"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-89"></span></pre></body></html>

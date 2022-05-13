@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteMessages where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data DeleteMessages = DeleteMessages
 instance Show DeleteMessages where
   show
     DeleteMessages
-      { revoke = revoke,
-        message_ids = message_ids,
-        chat_id = chat_id
+      { revoke = revoke_,
+        message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       "DeleteMessages"
         ++ U.cc
-          [ U.p "revoke" revoke,
-            U.p "message_ids" message_ids,
-            U.p "chat_id" chat_id
+          [ U.p "revoke" revoke_,
+            U.p "message_ids" message_ids_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON DeleteMessages where
   toJSON
     DeleteMessages
-      { revoke = revoke,
-        message_ids = message_ids,
-        chat_id = chat_id
+      { revoke = revoke_,
+        message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "deleteMessages",
-          "revoke" A..= revoke,
-          "message_ids" A..= message_ids,
-          "chat_id" A..= chat_id
+          "revoke" A..= revoke_,
+          "message_ids" A..= message_ids_,
+          "chat_id" A..= chat_id_
         ]

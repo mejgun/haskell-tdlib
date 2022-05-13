@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StorageStatistics where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data StorageStatistics = -- | Contains the exact storage usage statistics split 
 instance Show StorageStatistics where
   show
     StorageStatistics
-      { by_chat = by_chat,
-        count = count,
-        size = size
+      { by_chat = by_chat_,
+        count = count_,
+        size = size_
       } =
       "StorageStatistics"
         ++ U.cc
-          [ U.p "by_chat" by_chat,
-            U.p "count" count,
-            U.p "size" size
+          [ U.p "by_chat" by_chat_,
+            U.p "count" count_,
+            U.p "size" size_
           ]
 
 instance T.FromJSON StorageStatistics where
@@ -51,13 +52,13 @@ instance T.FromJSON StorageStatistics where
 instance T.ToJSON StorageStatistics where
   toJSON
     StorageStatistics
-      { by_chat = by_chat,
-        count = count,
-        size = size
+      { by_chat = by_chat_,
+        count = count_,
+        size = size_
       } =
       A.object
         [ "@type" A..= T.String "storageStatistics",
-          "by_chat" A..= by_chat,
-          "count" A..= count,
-          "size" A..= size
+          "by_chat" A..= by_chat_,
+          "count" A..= count_,
+          "size" A..= size_
         ]

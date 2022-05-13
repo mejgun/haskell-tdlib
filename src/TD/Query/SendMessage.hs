@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendMessage where
 
 import qualified Data.Aeson as A
@@ -30,39 +31,39 @@ data SendMessage = SendMessage
 instance Show SendMessage where
   show
     SendMessage
-      { input_message_content = input_message_content,
-        reply_markup = reply_markup,
-        options = options,
-        reply_to_message_id = reply_to_message_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { input_message_content = input_message_content_,
+        reply_markup = reply_markup_,
+        options = options_,
+        reply_to_message_id = reply_to_message_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       "SendMessage"
         ++ U.cc
-          [ U.p "input_message_content" input_message_content,
-            U.p "reply_markup" reply_markup,
-            U.p "options" options,
-            U.p "reply_to_message_id" reply_to_message_id,
-            U.p "message_thread_id" message_thread_id,
-            U.p "chat_id" chat_id
+          [ U.p "input_message_content" input_message_content_,
+            U.p "reply_markup" reply_markup_,
+            U.p "options" options_,
+            U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "message_thread_id" message_thread_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SendMessage where
   toJSON
     SendMessage
-      { input_message_content = input_message_content,
-        reply_markup = reply_markup,
-        options = options,
-        reply_to_message_id = reply_to_message_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { input_message_content = input_message_content_,
+        reply_markup = reply_markup_,
+        options = options_,
+        reply_to_message_id = reply_to_message_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "sendMessage",
-          "input_message_content" A..= input_message_content,
-          "reply_markup" A..= reply_markup,
-          "options" A..= options,
-          "reply_to_message_id" A..= reply_to_message_id,
-          "message_thread_id" A..= message_thread_id,
-          "chat_id" A..= chat_id
+          "input_message_content" A..= input_message_content_,
+          "reply_markup" A..= reply_markup_,
+          "options" A..= options_,
+          "reply_to_message_id" A..= reply_to_message_id_,
+          "message_thread_id" A..= message_thread_id_,
+          "chat_id" A..= chat_id_
         ]

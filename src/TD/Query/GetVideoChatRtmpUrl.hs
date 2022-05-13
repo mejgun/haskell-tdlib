@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetVideoChatRtmpUrl where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetVideoChatRtmpUrl = GetVideoChatRtmpUrl
 instance Show GetVideoChatRtmpUrl where
   show
     GetVideoChatRtmpUrl
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "GetVideoChatRtmpUrl"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetVideoChatRtmpUrl where
   toJSON
     GetVideoChatRtmpUrl
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getVideoChatRtmpUrl",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

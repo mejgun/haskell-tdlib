@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeletePassportElement where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data DeletePassportElement = DeletePassportElement
 instance Show DeletePassportElement where
   show
     DeletePassportElement
-      { _type = _type
+      { _type = _type_
       } =
       "DeletePassportElement"
         ++ U.cc
-          [ U.p "_type" _type
+          [ U.p "_type" _type_
           ]
 
 instance T.ToJSON DeletePassportElement where
   toJSON
     DeletePassportElement
-      { _type = _type
+      { _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "deletePassportElement",
-          "type" A..= _type
+          "type" A..= _type_
         ]

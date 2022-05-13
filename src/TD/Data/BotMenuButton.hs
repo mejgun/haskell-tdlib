@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BotMenuButton where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data BotMenuButton = -- | Describes a button to be shown instead of bot commands
 instance Show BotMenuButton where
   show
     BotMenuButton
-      { url = url,
-        text = text
+      { url = url_,
+        text = text_
       } =
       "BotMenuButton"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "text" text
+          [ U.p "url" url_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON BotMenuButton where
@@ -45,11 +46,11 @@ instance T.FromJSON BotMenuButton where
 instance T.ToJSON BotMenuButton where
   toJSON
     BotMenuButton
-      { url = url,
-        text = text
+      { url = url_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "botMenuButton",
-          "url" A..= url,
-          "text" A..= text
+          "url" A..= url_,
+          "text" A..= text_
         ]

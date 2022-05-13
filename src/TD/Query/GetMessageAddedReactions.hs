@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMessageAddedReactions where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data GetMessageAddedReactions = GetMessageAddedReactions
 instance Show GetMessageAddedReactions where
   show
     GetMessageAddedReactions
-      { limit = limit,
-        offset = offset,
-        reaction = reaction,
-        message_id = message_id,
-        chat_id = chat_id
+      { limit = limit_,
+        offset = offset_,
+        reaction = reaction_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetMessageAddedReactions"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "reaction" reaction,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "reaction" reaction_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetMessageAddedReactions where
   toJSON
     GetMessageAddedReactions
-      { limit = limit,
-        offset = offset,
-        reaction = reaction,
-        message_id = message_id,
-        chat_id = chat_id
+      { limit = limit_,
+        offset = offset_,
+        reaction = reaction_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getMessageAddedReactions",
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "reaction" A..= reaction,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "reaction" A..= reaction_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

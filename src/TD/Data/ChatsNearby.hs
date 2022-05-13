@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatsNearby where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data ChatsNearby = -- | Represents a list of chats located nearby @users_nearby 
 instance Show ChatsNearby where
   show
     ChatsNearby
-      { supergroups_nearby = supergroups_nearby,
-        users_nearby = users_nearby
+      { supergroups_nearby = supergroups_nearby_,
+        users_nearby = users_nearby_
       } =
       "ChatsNearby"
         ++ U.cc
-          [ U.p "supergroups_nearby" supergroups_nearby,
-            U.p "users_nearby" users_nearby
+          [ U.p "supergroups_nearby" supergroups_nearby_,
+            U.p "users_nearby" users_nearby_
           ]
 
 instance T.FromJSON ChatsNearby where
@@ -46,11 +47,11 @@ instance T.FromJSON ChatsNearby where
 instance T.ToJSON ChatsNearby where
   toJSON
     ChatsNearby
-      { supergroups_nearby = supergroups_nearby,
-        users_nearby = users_nearby
+      { supergroups_nearby = supergroups_nearby_,
+        users_nearby = users_nearby_
       } =
       A.object
         [ "@type" A..= T.String "chatsNearby",
-          "supergroups_nearby" A..= supergroups_nearby,
-          "users_nearby" A..= users_nearby
+          "supergroups_nearby" A..= supergroups_nearby_,
+          "users_nearby" A..= users_nearby_
         ]

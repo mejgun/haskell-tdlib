@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Game where
 
 import qualified Data.Aeson as A
@@ -31,23 +32,23 @@ data Game = -- | Describes a game @id Game ID @short_name Game short name. To sh
 instance Show Game where
   show
     Game
-      { animation = animation,
-        photo = photo,
-        description = description,
-        text = text,
-        title = title,
-        short_name = short_name,
-        _id = _id
+      { animation = animation_,
+        photo = photo_,
+        description = description_,
+        text = text_,
+        title = title_,
+        short_name = short_name_,
+        _id = _id_
       } =
       "Game"
         ++ U.cc
-          [ U.p "animation" animation,
-            U.p "photo" photo,
-            U.p "description" description,
-            U.p "text" text,
-            U.p "title" title,
-            U.p "short_name" short_name,
-            U.p "_id" _id
+          [ U.p "animation" animation_,
+            U.p "photo" photo_,
+            U.p "description" description_,
+            U.p "text" text_,
+            U.p "title" title_,
+            U.p "short_name" short_name_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Game where
@@ -73,21 +74,21 @@ instance T.FromJSON Game where
 instance T.ToJSON Game where
   toJSON
     Game
-      { animation = animation,
-        photo = photo,
-        description = description,
-        text = text,
-        title = title,
-        short_name = short_name,
-        _id = _id
+      { animation = animation_,
+        photo = photo_,
+        description = description_,
+        text = text_,
+        title = title_,
+        short_name = short_name_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "game",
-          "animation" A..= animation,
-          "photo" A..= photo,
-          "description" A..= description,
-          "text" A..= text,
-          "title" A..= title,
-          "short_name" A..= short_name,
-          "id" A..= _id
+          "animation" A..= animation_,
+          "photo" A..= photo_,
+          "description" A..= description_,
+          "text" A..= text_,
+          "title" A..= title_,
+          "short_name" A..= short_name_,
+          "id" A..= _id_
         ]

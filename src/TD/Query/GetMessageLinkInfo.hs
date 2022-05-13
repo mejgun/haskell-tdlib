@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMessageLinkInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetMessageLinkInfo = GetMessageLinkInfo
 instance Show GetMessageLinkInfo where
   show
     GetMessageLinkInfo
-      { url = url
+      { url = url_
       } =
       "GetMessageLinkInfo"
         ++ U.cc
-          [ U.p "url" url
+          [ U.p "url" url_
           ]
 
 instance T.ToJSON GetMessageLinkInfo where
   toJSON
     GetMessageLinkInfo
-      { url = url
+      { url = url_
       } =
       A.object
         [ "@type" A..= T.String "getMessageLinkInfo",
-          "url" A..= url
+          "url" A..= url_
         ]

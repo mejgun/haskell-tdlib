@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatSource where
 
 import qualified Data.Aeson as A
@@ -26,13 +27,13 @@ instance Show ChatSource where
         []
   show
     ChatSourcePublicServiceAnnouncement
-      { text = text,
-        _type = _type
+      { text = text_,
+        _type = _type_
       } =
       "ChatSourcePublicServiceAnnouncement"
         ++ U.cc
-          [ U.p "text" text,
-            U.p "_type" _type
+          [ U.p "text" text_,
+            U.p "_type" _type_
           ]
 
 instance T.FromJSON ChatSource where
@@ -45,8 +46,7 @@ instance T.FromJSON ChatSource where
       _ -> mempty
     where
       parseChatSourceMtprotoProxy :: A.Value -> T.Parser ChatSource
-      parseChatSourceMtprotoProxy = A.withObject "ChatSourceMtprotoProxy" $ \o -> do
-        return $ ChatSourceMtprotoProxy {}
+      parseChatSourceMtprotoProxy = A.withObject "ChatSourceMtprotoProxy" $ \_ -> return ChatSourceMtprotoProxy
 
       parseChatSourcePublicServiceAnnouncement :: A.Value -> T.Parser ChatSource
       parseChatSourcePublicServiceAnnouncement = A.withObject "ChatSourcePublicServiceAnnouncement" $ \o -> do
@@ -62,11 +62,11 @@ instance T.ToJSON ChatSource where
       ]
   toJSON
     ChatSourcePublicServiceAnnouncement
-      { text = text,
-        _type = _type
+      { text = text_,
+        _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "chatSourcePublicServiceAnnouncement",
-          "text" A..= text,
-          "type" A..= _type
+          "text" A..= text_,
+          "type" A..= _type_
         ]

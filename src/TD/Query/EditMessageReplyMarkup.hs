@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditMessageReplyMarkup where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data EditMessageReplyMarkup = EditMessageReplyMarkup
 instance Show EditMessageReplyMarkup where
   show
     EditMessageReplyMarkup
-      { reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "EditMessageReplyMarkup"
         ++ U.cc
-          [ U.p "reply_markup" reply_markup,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "reply_markup" reply_markup_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON EditMessageReplyMarkup where
   toJSON
     EditMessageReplyMarkup
-      { reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "editMessageReplyMarkup",
-          "reply_markup" A..= reply_markup,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "reply_markup" A..= reply_markup_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

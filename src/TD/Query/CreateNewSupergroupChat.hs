@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CreateNewSupergroupChat where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data CreateNewSupergroupChat = CreateNewSupergroupChat
 instance Show CreateNewSupergroupChat where
   show
     CreateNewSupergroupChat
-      { for_import = for_import,
-        location = location,
-        description = description,
-        is_channel = is_channel,
-        title = title
+      { for_import = for_import_,
+        location = location_,
+        description = description_,
+        is_channel = is_channel_,
+        title = title_
       } =
       "CreateNewSupergroupChat"
         ++ U.cc
-          [ U.p "for_import" for_import,
-            U.p "location" location,
-            U.p "description" description,
-            U.p "is_channel" is_channel,
-            U.p "title" title
+          [ U.p "for_import" for_import_,
+            U.p "location" location_,
+            U.p "description" description_,
+            U.p "is_channel" is_channel_,
+            U.p "title" title_
           ]
 
 instance T.ToJSON CreateNewSupergroupChat where
   toJSON
     CreateNewSupergroupChat
-      { for_import = for_import,
-        location = location,
-        description = description,
-        is_channel = is_channel,
-        title = title
+      { for_import = for_import_,
+        location = location_,
+        description = description_,
+        is_channel = is_channel_,
+        title = title_
       } =
       A.object
         [ "@type" A..= T.String "createNewSupergroupChat",
-          "for_import" A..= for_import,
-          "location" A..= location,
-          "description" A..= description,
-          "is_channel" A..= is_channel,
-          "title" A..= title
+          "for_import" A..= for_import_,
+          "location" A..= location_,
+          "description" A..= description_,
+          "is_channel" A..= is_channel_,
+          "title" A..= title_
         ]

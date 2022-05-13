@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteFile where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data DeleteFile = DeleteFile
 instance Show DeleteFile where
   show
     DeleteFile
-      { file_id = file_id
+      { file_id = file_id_
       } =
       "DeleteFile"
         ++ U.cc
-          [ U.p "file_id" file_id
+          [ U.p "file_id" file_id_
           ]
 
 instance T.ToJSON DeleteFile where
   toJSON
     DeleteFile
-      { file_id = file_id
+      { file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "deleteFile",
-          "file_id" A..= file_id
+          "file_id" A..= file_id_
         ]

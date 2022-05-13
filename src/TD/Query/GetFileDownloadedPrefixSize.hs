@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetFileDownloadedPrefixSize where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetFileDownloadedPrefixSize = GetFileDownloadedPrefixSize
 instance Show GetFileDownloadedPrefixSize where
   show
     GetFileDownloadedPrefixSize
-      { offset = offset,
-        file_id = file_id
+      { offset = offset_,
+        file_id = file_id_
       } =
       "GetFileDownloadedPrefixSize"
         ++ U.cc
-          [ U.p "offset" offset,
-            U.p "file_id" file_id
+          [ U.p "offset" offset_,
+            U.p "file_id" file_id_
           ]
 
 instance T.ToJSON GetFileDownloadedPrefixSize where
   toJSON
     GetFileDownloadedPrefixSize
-      { offset = offset,
-        file_id = file_id
+      { offset = offset_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "getFileDownloadedPrefixSize",
-          "offset" A..= offset,
-          "file_id" A..= file_id
+          "offset" A..= offset_,
+          "file_id" A..= file_id_
         ]

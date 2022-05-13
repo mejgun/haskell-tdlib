@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetVideoChatAvailableParticipants where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetVideoChatAvailableParticipants = GetVideoChatAvailableParticipants
 instance Show GetVideoChatAvailableParticipants where
   show
     GetVideoChatAvailableParticipants
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "GetVideoChatAvailableParticipants"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetVideoChatAvailableParticipants where
   toJSON
     GetVideoChatAvailableParticipants
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getVideoChatAvailableParticipants",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

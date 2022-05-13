@@ -3,10 +3,10 @@
 module Main where
 
 import Control.Monad (when)
+import TD.Data.GeneralResult
 import TD.Lib
 import TD.Query.GetCurrentState
 import TD.Query.SetLogVerbosityLevel
-import TD.Data.GeneralResult
 
 main :: IO ()
 main = do
@@ -18,7 +18,7 @@ main = do
         { new_verbosity_level = Just 2
         }
   extra2 <- sendWExtra client TD.Query.GetCurrentState.GetCurrentState
-  live client extra1 extra2
+  _ <- live client extra1 extra2
   destroy client
   where
     live c x1 x2 = do

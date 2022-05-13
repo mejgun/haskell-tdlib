@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetCommands where
 
 import qualified Data.Aeson as A
@@ -23,27 +24,27 @@ data SetCommands = SetCommands
 instance Show SetCommands where
   show
     SetCommands
-      { commands = commands,
-        language_code = language_code,
-        scope = scope
+      { commands = commands_,
+        language_code = language_code_,
+        scope = scope_
       } =
       "SetCommands"
         ++ U.cc
-          [ U.p "commands" commands,
-            U.p "language_code" language_code,
-            U.p "scope" scope
+          [ U.p "commands" commands_,
+            U.p "language_code" language_code_,
+            U.p "scope" scope_
           ]
 
 instance T.ToJSON SetCommands where
   toJSON
     SetCommands
-      { commands = commands,
-        language_code = language_code,
-        scope = scope
+      { commands = commands_,
+        language_code = language_code_,
+        scope = scope_
       } =
       A.object
         [ "@type" A..= T.String "setCommands",
-          "commands" A..= commands,
-          "language_code" A..= language_code,
-          "scope" A..= scope
+          "commands" A..= commands_,
+          "language_code" A..= language_code_,
+          "scope" A..= scope_
         ]

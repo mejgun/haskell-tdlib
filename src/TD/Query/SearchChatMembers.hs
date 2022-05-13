@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchChatMembers where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data SearchChatMembers = SearchChatMembers
 instance Show SearchChatMembers where
   show
     SearchChatMembers
-      { _filter = _filter,
-        limit = limit,
-        query = query,
-        chat_id = chat_id
+      { _filter = _filter_,
+        limit = limit_,
+        query = query_,
+        chat_id = chat_id_
       } =
       "SearchChatMembers"
         ++ U.cc
-          [ U.p "_filter" _filter,
-            U.p "limit" limit,
-            U.p "query" query,
-            U.p "chat_id" chat_id
+          [ U.p "_filter" _filter_,
+            U.p "limit" limit_,
+            U.p "query" query_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SearchChatMembers where
   toJSON
     SearchChatMembers
-      { _filter = _filter,
-        limit = limit,
-        query = query,
-        chat_id = chat_id
+      { _filter = _filter_,
+        limit = limit_,
+        query = query_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "searchChatMembers",
-          "filter" A..= _filter,
-          "limit" A..= limit,
-          "query" A..= query,
-          "chat_id" A..= chat_id
+          "filter" A..= _filter_,
+          "limit" A..= limit_,
+          "query" A..= query_,
+          "chat_id" A..= chat_id_
         ]

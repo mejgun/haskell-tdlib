@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatJoinRequest where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data ChatJoinRequest = -- | Describes a user that sent a join request and waits 
 instance Show ChatJoinRequest where
   show
     ChatJoinRequest
-      { bio = bio,
-        date = date,
-        user_id = user_id
+      { bio = bio_,
+        date = date_,
+        user_id = user_id_
       } =
       "ChatJoinRequest"
         ++ U.cc
-          [ U.p "bio" bio,
-            U.p "date" date,
-            U.p "user_id" user_id
+          [ U.p "bio" bio_,
+            U.p "date" date_,
+            U.p "user_id" user_id_
           ]
 
 instance T.FromJSON ChatJoinRequest where
@@ -50,13 +51,13 @@ instance T.FromJSON ChatJoinRequest where
 instance T.ToJSON ChatJoinRequest where
   toJSON
     ChatJoinRequest
-      { bio = bio,
-        date = date,
-        user_id = user_id
+      { bio = bio_,
+        date = date_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatJoinRequest",
-          "bio" A..= bio,
-          "date" A..= date,
-          "user_id" A..= user_id
+          "bio" A..= bio_,
+          "date" A..= date_,
+          "user_id" A..= user_id_
         ]

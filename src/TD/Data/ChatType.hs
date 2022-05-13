@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatType where
 
 import qualified Data.Aeson as A
@@ -37,39 +38,39 @@ data ChatType
 instance Show ChatType where
   show
     ChatTypePrivate
-      { user_id = user_id
+      { user_id = user_id_
       } =
       "ChatTypePrivate"
         ++ U.cc
-          [ U.p "user_id" user_id
+          [ U.p "user_id" user_id_
           ]
   show
     ChatTypeBasicGroup
-      { basic_group_id = basic_group_id
+      { basic_group_id = basic_group_id_
       } =
       "ChatTypeBasicGroup"
         ++ U.cc
-          [ U.p "basic_group_id" basic_group_id
+          [ U.p "basic_group_id" basic_group_id_
           ]
   show
     ChatTypeSupergroup
-      { is_channel = is_channel,
-        supergroup_id = supergroup_id
+      { is_channel = is_channel_,
+        supergroup_id = supergroup_id_
       } =
       "ChatTypeSupergroup"
         ++ U.cc
-          [ U.p "is_channel" is_channel,
-            U.p "supergroup_id" supergroup_id
+          [ U.p "is_channel" is_channel_,
+            U.p "supergroup_id" supergroup_id_
           ]
   show
     ChatTypeSecret
-      { user_id = user_id,
-        secret_chat_id = secret_chat_id
+      { user_id = user_id_,
+        secret_chat_id = secret_chat_id_
       } =
       "ChatTypeSecret"
         ++ U.cc
-          [ U.p "user_id" user_id,
-            U.p "secret_chat_id" secret_chat_id
+          [ U.p "user_id" user_id_,
+            U.p "secret_chat_id" secret_chat_id_
           ]
 
 instance T.FromJSON ChatType where
@@ -109,37 +110,37 @@ instance T.FromJSON ChatType where
 instance T.ToJSON ChatType where
   toJSON
     ChatTypePrivate
-      { user_id = user_id
+      { user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatTypePrivate",
-          "user_id" A..= user_id
+          "user_id" A..= user_id_
         ]
   toJSON
     ChatTypeBasicGroup
-      { basic_group_id = basic_group_id
+      { basic_group_id = basic_group_id_
       } =
       A.object
         [ "@type" A..= T.String "chatTypeBasicGroup",
-          "basic_group_id" A..= basic_group_id
+          "basic_group_id" A..= basic_group_id_
         ]
   toJSON
     ChatTypeSupergroup
-      { is_channel = is_channel,
-        supergroup_id = supergroup_id
+      { is_channel = is_channel_,
+        supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "chatTypeSupergroup",
-          "is_channel" A..= is_channel,
-          "supergroup_id" A..= supergroup_id
+          "is_channel" A..= is_channel_,
+          "supergroup_id" A..= supergroup_id_
         ]
   toJSON
     ChatTypeSecret
-      { user_id = user_id,
-        secret_chat_id = secret_chat_id
+      { user_id = user_id_,
+        secret_chat_id = secret_chat_id_
       } =
       A.object
         [ "@type" A..= T.String "chatTypeSecret",
-          "user_id" A..= user_id,
-          "secret_chat_id" A..= secret_chat_id
+          "user_id" A..= user_id_,
+          "secret_chat_id" A..= secret_chat_id_
         ]

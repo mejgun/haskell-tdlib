@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Stickers where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data Stickers = -- | Represents a list of stickers @stickers List of stickers
 instance Show Stickers where
   show
     Stickers
-      { stickers = stickers
+      { stickers = stickers_
       } =
       "Stickers"
         ++ U.cc
-          [ U.p "stickers" stickers
+          [ U.p "stickers" stickers_
           ]
 
 instance T.FromJSON Stickers where
@@ -41,9 +42,9 @@ instance T.FromJSON Stickers where
 instance T.ToJSON Stickers where
   toJSON
     Stickers
-      { stickers = stickers
+      { stickers = stickers_
       } =
       A.object
         [ "@type" A..= T.String "stickers",
-          "stickers" A..= stickers
+          "stickers" A..= stickers_
         ]

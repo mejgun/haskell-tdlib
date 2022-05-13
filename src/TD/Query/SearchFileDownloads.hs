@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchFileDownloads where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data SearchFileDownloads = SearchFileDownloads
 instance Show SearchFileDownloads where
   show
     SearchFileDownloads
-      { limit = limit,
-        offset = offset,
-        only_completed = only_completed,
-        only_active = only_active,
-        query = query
+      { limit = limit_,
+        offset = offset_,
+        only_completed = only_completed_,
+        only_active = only_active_,
+        query = query_
       } =
       "SearchFileDownloads"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "only_completed" only_completed,
-            U.p "only_active" only_active,
-            U.p "query" query
+          [ U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "only_completed" only_completed_,
+            U.p "only_active" only_active_,
+            U.p "query" query_
           ]
 
 instance T.ToJSON SearchFileDownloads where
   toJSON
     SearchFileDownloads
-      { limit = limit,
-        offset = offset,
-        only_completed = only_completed,
-        only_active = only_active,
-        query = query
+      { limit = limit_,
+        offset = offset_,
+        only_completed = only_completed_,
+        only_active = only_active_,
+        query = query_
       } =
       A.object
         [ "@type" A..= T.String "searchFileDownloads",
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "only_completed" A..= only_completed,
-          "only_active" A..= only_active,
-          "query" A..= query
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "only_completed" A..= only_completed_,
+          "only_active" A..= only_active_,
+          "query" A..= query_
         ]

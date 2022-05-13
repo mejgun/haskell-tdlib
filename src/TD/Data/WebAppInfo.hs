@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.WebAppInfo where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data WebAppInfo = -- | Contains information about a web app @launch_id Unique id
 instance Show WebAppInfo where
   show
     WebAppInfo
-      { url = url,
-        launch_id = launch_id
+      { url = url_,
+        launch_id = launch_id_
       } =
       "WebAppInfo"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "launch_id" launch_id
+          [ U.p "url" url_,
+            U.p "launch_id" launch_id_
           ]
 
 instance T.FromJSON WebAppInfo where
@@ -45,11 +46,11 @@ instance T.FromJSON WebAppInfo where
 instance T.ToJSON WebAppInfo where
   toJSON
     WebAppInfo
-      { url = url,
-        launch_id = launch_id
+      { url = url_,
+        launch_id = launch_id_
       } =
       A.object
         [ "@type" A..= T.String "webAppInfo",
-          "url" A..= url,
-          "launch_id" A..= launch_id
+          "url" A..= url_,
+          "launch_id" A..= launch_id_
         ]

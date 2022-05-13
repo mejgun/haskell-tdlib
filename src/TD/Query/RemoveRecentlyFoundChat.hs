@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveRecentlyFoundChat where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RemoveRecentlyFoundChat = RemoveRecentlyFoundChat
 instance Show RemoveRecentlyFoundChat where
   show
     RemoveRecentlyFoundChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "RemoveRecentlyFoundChat"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON RemoveRecentlyFoundChat where
   toJSON
     RemoveRecentlyFoundChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "removeRecentlyFoundChat",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

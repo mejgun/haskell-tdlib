@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteChatMessagesByDate where
 
 import qualified Data.Aeson as A
@@ -23,31 +24,31 @@ data DeleteChatMessagesByDate = DeleteChatMessagesByDate
 instance Show DeleteChatMessagesByDate where
   show
     DeleteChatMessagesByDate
-      { revoke = revoke,
-        max_date = max_date,
-        min_date = min_date,
-        chat_id = chat_id
+      { revoke = revoke_,
+        max_date = max_date_,
+        min_date = min_date_,
+        chat_id = chat_id_
       } =
       "DeleteChatMessagesByDate"
         ++ U.cc
-          [ U.p "revoke" revoke,
-            U.p "max_date" max_date,
-            U.p "min_date" min_date,
-            U.p "chat_id" chat_id
+          [ U.p "revoke" revoke_,
+            U.p "max_date" max_date_,
+            U.p "min_date" min_date_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON DeleteChatMessagesByDate where
   toJSON
     DeleteChatMessagesByDate
-      { revoke = revoke,
-        max_date = max_date,
-        min_date = min_date,
-        chat_id = chat_id
+      { revoke = revoke_,
+        max_date = max_date_,
+        min_date = min_date_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "deleteChatMessagesByDate",
-          "revoke" A..= revoke,
-          "max_date" A..= max_date,
-          "min_date" A..= min_date,
-          "chat_id" A..= chat_id
+          "revoke" A..= revoke_,
+          "max_date" A..= max_date_,
+          "min_date" A..= min_date_,
+          "chat_id" A..= chat_id_
         ]

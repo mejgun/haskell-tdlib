@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReportChat where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data ReportChat = ReportChat
 instance Show ReportChat where
   show
     ReportChat
-      { text = text,
-        reason = reason,
-        message_ids = message_ids,
-        chat_id = chat_id
+      { text = text_,
+        reason = reason_,
+        message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       "ReportChat"
         ++ U.cc
-          [ U.p "text" text,
-            U.p "reason" reason,
-            U.p "message_ids" message_ids,
-            U.p "chat_id" chat_id
+          [ U.p "text" text_,
+            U.p "reason" reason_,
+            U.p "message_ids" message_ids_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ReportChat where
   toJSON
     ReportChat
-      { text = text,
-        reason = reason,
-        message_ids = message_ids,
-        chat_id = chat_id
+      { text = text_,
+        reason = reason_,
+        message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "reportChat",
-          "text" A..= text,
-          "reason" A..= reason,
-          "message_ids" A..= message_ids,
-          "chat_id" A..= chat_id
+          "text" A..= text_,
+          "reason" A..= reason_,
+          "message_ids" A..= message_ids_,
+          "chat_id" A..= chat_id_
         ]

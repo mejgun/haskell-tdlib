@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Ok where
 
 import qualified Data.Aeson as A
@@ -26,8 +27,7 @@ instance T.FromJSON Ok where
       _ -> mempty
     where
       parseOk :: A.Value -> T.Parser Ok
-      parseOk = A.withObject "Ok" $ \o -> do
-        return $ Ok {}
+      parseOk = A.withObject "Ok" $ \_ -> return Ok
   parseJSON _ = mempty
 
 instance T.ToJSON Ok where

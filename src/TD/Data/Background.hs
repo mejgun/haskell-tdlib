@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Background where
 
 import qualified Data.Aeson as A
@@ -28,21 +29,21 @@ data Background = -- | Describes a chat background
 instance Show Background where
   show
     Background
-      { _type = _type,
-        document = document,
-        name = name,
-        is_dark = is_dark,
-        is_default = is_default,
-        _id = _id
+      { _type = _type_,
+        document = document_,
+        name = name_,
+        is_dark = is_dark_,
+        is_default = is_default_,
+        _id = _id_
       } =
       "Background"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "document" document,
-            U.p "name" name,
-            U.p "is_dark" is_dark,
-            U.p "is_default" is_default,
-            U.p "_id" _id
+          [ U.p "_type" _type_,
+            U.p "document" document_,
+            U.p "name" name_,
+            U.p "is_dark" is_dark_,
+            U.p "is_default" is_default_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Background where
@@ -67,19 +68,19 @@ instance T.FromJSON Background where
 instance T.ToJSON Background where
   toJSON
     Background
-      { _type = _type,
-        document = document,
-        name = name,
-        is_dark = is_dark,
-        is_default = is_default,
-        _id = _id
+      { _type = _type_,
+        document = document_,
+        name = name_,
+        is_dark = is_dark_,
+        is_default = is_default_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "background",
-          "type" A..= _type,
-          "document" A..= document,
-          "name" A..= name,
-          "is_dark" A..= is_dark,
-          "is_default" A..= is_default,
-          "id" A..= _id
+          "type" A..= _type_,
+          "document" A..= document_,
+          "name" A..= name_,
+          "is_dark" A..= is_dark_,
+          "is_default" A..= is_default_,
+          "id" A..= _id_
         ]

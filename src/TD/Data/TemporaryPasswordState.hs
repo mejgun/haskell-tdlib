@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TemporaryPasswordState where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data TemporaryPasswordState = -- | Returns information about the availability of
 instance Show TemporaryPasswordState where
   show
     TemporaryPasswordState
-      { valid_for = valid_for,
-        has_password = has_password
+      { valid_for = valid_for_,
+        has_password = has_password_
       } =
       "TemporaryPasswordState"
         ++ U.cc
-          [ U.p "valid_for" valid_for,
-            U.p "has_password" has_password
+          [ U.p "valid_for" valid_for_,
+            U.p "has_password" has_password_
           ]
 
 instance T.FromJSON TemporaryPasswordState where
@@ -45,11 +46,11 @@ instance T.FromJSON TemporaryPasswordState where
 instance T.ToJSON TemporaryPasswordState where
   toJSON
     TemporaryPasswordState
-      { valid_for = valid_for,
-        has_password = has_password
+      { valid_for = valid_for_,
+        has_password = has_password_
       } =
       A.object
         [ "@type" A..= T.String "temporaryPasswordState",
-          "valid_for" A..= valid_for,
-          "has_password" A..= has_password
+          "valid_for" A..= valid_for_,
+          "has_password" A..= has_password_
         ]

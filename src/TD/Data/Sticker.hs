@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Sticker where
 
 import qualified Data.Aeson as A
@@ -34,25 +35,25 @@ data Sticker = -- | Describes a sticker @set_id The identifier of the sticker se
 instance Show Sticker where
   show
     Sticker
-      { sticker = sticker,
-        thumbnail = thumbnail,
-        outline = outline,
-        _type = _type,
-        emoji = emoji,
-        height = height,
-        width = width,
-        set_id = set_id
+      { sticker = sticker_,
+        thumbnail = thumbnail_,
+        outline = outline_,
+        _type = _type_,
+        emoji = emoji_,
+        height = height_,
+        width = width_,
+        set_id = set_id_
       } =
       "Sticker"
         ++ U.cc
-          [ U.p "sticker" sticker,
-            U.p "thumbnail" thumbnail,
-            U.p "outline" outline,
-            U.p "_type" _type,
-            U.p "emoji" emoji,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "set_id" set_id
+          [ U.p "sticker" sticker_,
+            U.p "thumbnail" thumbnail_,
+            U.p "outline" outline_,
+            U.p "_type" _type_,
+            U.p "emoji" emoji_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "set_id" set_id_
           ]
 
 instance T.FromJSON Sticker where
@@ -79,23 +80,23 @@ instance T.FromJSON Sticker where
 instance T.ToJSON Sticker where
   toJSON
     Sticker
-      { sticker = sticker,
-        thumbnail = thumbnail,
-        outline = outline,
-        _type = _type,
-        emoji = emoji,
-        height = height,
-        width = width,
-        set_id = set_id
+      { sticker = sticker_,
+        thumbnail = thumbnail_,
+        outline = outline_,
+        _type = _type_,
+        emoji = emoji_,
+        height = height_,
+        width = width_,
+        set_id = set_id_
       } =
       A.object
         [ "@type" A..= T.String "sticker",
-          "sticker" A..= sticker,
-          "thumbnail" A..= thumbnail,
-          "outline" A..= outline,
-          "type" A..= _type,
-          "emoji" A..= emoji,
-          "height" A..= height,
-          "width" A..= width,
-          "set_id" A..= set_id
+          "sticker" A..= sticker_,
+          "thumbnail" A..= thumbnail_,
+          "outline" A..= outline_,
+          "type" A..= _type_,
+          "emoji" A..= emoji_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "set_id" A..= set_id_
         ]

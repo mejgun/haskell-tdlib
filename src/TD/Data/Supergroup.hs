@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Supergroup where
 
 import qualified Data.Aeson as A
@@ -45,39 +46,39 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
 instance Show Supergroup where
   show
     Supergroup
-      { is_fake = is_fake,
-        is_scam = is_scam,
-        restriction_reason = restriction_reason,
-        is_verified = is_verified,
-        is_broadcast_group = is_broadcast_group,
-        is_channel = is_channel,
-        is_slow_mode_enabled = is_slow_mode_enabled,
-        sign_messages = sign_messages,
-        has_location = has_location,
-        has_linked_chat = has_linked_chat,
-        member_count = member_count,
-        status = status,
-        date = date,
-        username = username,
-        _id = _id
+      { is_fake = is_fake_,
+        is_scam = is_scam_,
+        restriction_reason = restriction_reason_,
+        is_verified = is_verified_,
+        is_broadcast_group = is_broadcast_group_,
+        is_channel = is_channel_,
+        is_slow_mode_enabled = is_slow_mode_enabled_,
+        sign_messages = sign_messages_,
+        has_location = has_location_,
+        has_linked_chat = has_linked_chat_,
+        member_count = member_count_,
+        status = status_,
+        date = date_,
+        username = username_,
+        _id = _id_
       } =
       "Supergroup"
         ++ U.cc
-          [ U.p "is_fake" is_fake,
-            U.p "is_scam" is_scam,
-            U.p "restriction_reason" restriction_reason,
-            U.p "is_verified" is_verified,
-            U.p "is_broadcast_group" is_broadcast_group,
-            U.p "is_channel" is_channel,
-            U.p "is_slow_mode_enabled" is_slow_mode_enabled,
-            U.p "sign_messages" sign_messages,
-            U.p "has_location" has_location,
-            U.p "has_linked_chat" has_linked_chat,
-            U.p "member_count" member_count,
-            U.p "status" status,
-            U.p "date" date,
-            U.p "username" username,
-            U.p "_id" _id
+          [ U.p "is_fake" is_fake_,
+            U.p "is_scam" is_scam_,
+            U.p "restriction_reason" restriction_reason_,
+            U.p "is_verified" is_verified_,
+            U.p "is_broadcast_group" is_broadcast_group_,
+            U.p "is_channel" is_channel_,
+            U.p "is_slow_mode_enabled" is_slow_mode_enabled_,
+            U.p "sign_messages" sign_messages_,
+            U.p "has_location" has_location_,
+            U.p "has_linked_chat" has_linked_chat_,
+            U.p "member_count" member_count_,
+            U.p "status" status_,
+            U.p "date" date_,
+            U.p "username" username_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Supergroup where
@@ -111,37 +112,37 @@ instance T.FromJSON Supergroup where
 instance T.ToJSON Supergroup where
   toJSON
     Supergroup
-      { is_fake = is_fake,
-        is_scam = is_scam,
-        restriction_reason = restriction_reason,
-        is_verified = is_verified,
-        is_broadcast_group = is_broadcast_group,
-        is_channel = is_channel,
-        is_slow_mode_enabled = is_slow_mode_enabled,
-        sign_messages = sign_messages,
-        has_location = has_location,
-        has_linked_chat = has_linked_chat,
-        member_count = member_count,
-        status = status,
-        date = date,
-        username = username,
-        _id = _id
+      { is_fake = is_fake_,
+        is_scam = is_scam_,
+        restriction_reason = restriction_reason_,
+        is_verified = is_verified_,
+        is_broadcast_group = is_broadcast_group_,
+        is_channel = is_channel_,
+        is_slow_mode_enabled = is_slow_mode_enabled_,
+        sign_messages = sign_messages_,
+        has_location = has_location_,
+        has_linked_chat = has_linked_chat_,
+        member_count = member_count_,
+        status = status_,
+        date = date_,
+        username = username_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "supergroup",
-          "is_fake" A..= is_fake,
-          "is_scam" A..= is_scam,
-          "restriction_reason" A..= restriction_reason,
-          "is_verified" A..= is_verified,
-          "is_broadcast_group" A..= is_broadcast_group,
-          "is_channel" A..= is_channel,
-          "is_slow_mode_enabled" A..= is_slow_mode_enabled,
-          "sign_messages" A..= sign_messages,
-          "has_location" A..= has_location,
-          "has_linked_chat" A..= has_linked_chat,
-          "member_count" A..= member_count,
-          "status" A..= status,
-          "date" A..= date,
-          "username" A..= username,
-          "id" A..= _id
+          "is_fake" A..= is_fake_,
+          "is_scam" A..= is_scam_,
+          "restriction_reason" A..= restriction_reason_,
+          "is_verified" A..= is_verified_,
+          "is_broadcast_group" A..= is_broadcast_group_,
+          "is_channel" A..= is_channel_,
+          "is_slow_mode_enabled" A..= is_slow_mode_enabled_,
+          "sign_messages" A..= sign_messages_,
+          "has_location" A..= has_location_,
+          "has_linked_chat" A..= has_linked_chat_,
+          "member_count" A..= member_count_,
+          "status" A..= status_,
+          "date" A..= date_,
+          "username" A..= username_,
+          "id" A..= _id_
         ]

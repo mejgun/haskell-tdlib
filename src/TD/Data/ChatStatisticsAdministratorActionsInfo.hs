@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatStatisticsAdministratorActionsInfo where
 
 import qualified Data.Aeson as A
@@ -22,17 +23,17 @@ data ChatStatisticsAdministratorActionsInfo = -- | Contains statistics about adm
 instance Show ChatStatisticsAdministratorActionsInfo where
   show
     ChatStatisticsAdministratorActionsInfo
-      { restricted_user_count = restricted_user_count,
-        banned_user_count = banned_user_count,
-        deleted_message_count = deleted_message_count,
-        user_id = user_id
+      { restricted_user_count = restricted_user_count_,
+        banned_user_count = banned_user_count_,
+        deleted_message_count = deleted_message_count_,
+        user_id = user_id_
       } =
       "ChatStatisticsAdministratorActionsInfo"
         ++ U.cc
-          [ U.p "restricted_user_count" restricted_user_count,
-            U.p "banned_user_count" banned_user_count,
-            U.p "deleted_message_count" deleted_message_count,
-            U.p "user_id" user_id
+          [ U.p "restricted_user_count" restricted_user_count_,
+            U.p "banned_user_count" banned_user_count_,
+            U.p "deleted_message_count" deleted_message_count_,
+            U.p "user_id" user_id_
           ]
 
 instance T.FromJSON ChatStatisticsAdministratorActionsInfo where
@@ -55,15 +56,15 @@ instance T.FromJSON ChatStatisticsAdministratorActionsInfo where
 instance T.ToJSON ChatStatisticsAdministratorActionsInfo where
   toJSON
     ChatStatisticsAdministratorActionsInfo
-      { restricted_user_count = restricted_user_count,
-        banned_user_count = banned_user_count,
-        deleted_message_count = deleted_message_count,
-        user_id = user_id
+      { restricted_user_count = restricted_user_count_,
+        banned_user_count = banned_user_count_,
+        deleted_message_count = deleted_message_count_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatStatisticsAdministratorActionsInfo",
-          "restricted_user_count" A..= restricted_user_count,
-          "banned_user_count" A..= banned_user_count,
-          "deleted_message_count" A..= deleted_message_count,
-          "user_id" A..= user_id
+          "restricted_user_count" A..= restricted_user_count_,
+          "banned_user_count" A..= banned_user_count_,
+          "deleted_message_count" A..= deleted_message_count_,
+          "user_id" A..= user_id_
         ]

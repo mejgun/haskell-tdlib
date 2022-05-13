@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LanguagePackStringValue where
 
 import qualified Data.Aeson as A
@@ -35,29 +36,29 @@ data LanguagePackStringValue
 instance Show LanguagePackStringValue where
   show
     LanguagePackStringValueOrdinary
-      { value = value
+      { value = value_
       } =
       "LanguagePackStringValueOrdinary"
         ++ U.cc
-          [ U.p "value" value
+          [ U.p "value" value_
           ]
   show
     LanguagePackStringValuePluralized
-      { other_value = other_value,
-        many_value = many_value,
-        few_value = few_value,
-        two_value = two_value,
-        one_value = one_value,
-        zero_value = zero_value
+      { other_value = other_value_,
+        many_value = many_value_,
+        few_value = few_value_,
+        two_value = two_value_,
+        one_value = one_value_,
+        zero_value = zero_value_
       } =
       "LanguagePackStringValuePluralized"
         ++ U.cc
-          [ U.p "other_value" other_value,
-            U.p "many_value" many_value,
-            U.p "few_value" few_value,
-            U.p "two_value" two_value,
-            U.p "one_value" one_value,
-            U.p "zero_value" zero_value
+          [ U.p "other_value" other_value_,
+            U.p "many_value" many_value_,
+            U.p "few_value" few_value_,
+            U.p "two_value" two_value_,
+            U.p "one_value" one_value_,
+            U.p "zero_value" zero_value_
           ]
   show LanguagePackStringValueDeleted =
     "LanguagePackStringValueDeleted"
@@ -90,36 +91,35 @@ instance T.FromJSON LanguagePackStringValue where
         return $ LanguagePackStringValuePluralized {other_value = other_value_, many_value = many_value_, few_value = few_value_, two_value = two_value_, one_value = one_value_, zero_value = zero_value_}
 
       parseLanguagePackStringValueDeleted :: A.Value -> T.Parser LanguagePackStringValue
-      parseLanguagePackStringValueDeleted = A.withObject "LanguagePackStringValueDeleted" $ \o -> do
-        return $ LanguagePackStringValueDeleted {}
+      parseLanguagePackStringValueDeleted = A.withObject "LanguagePackStringValueDeleted" $ \_ -> return LanguagePackStringValueDeleted
   parseJSON _ = mempty
 
 instance T.ToJSON LanguagePackStringValue where
   toJSON
     LanguagePackStringValueOrdinary
-      { value = value
+      { value = value_
       } =
       A.object
         [ "@type" A..= T.String "languagePackStringValueOrdinary",
-          "value" A..= value
+          "value" A..= value_
         ]
   toJSON
     LanguagePackStringValuePluralized
-      { other_value = other_value,
-        many_value = many_value,
-        few_value = few_value,
-        two_value = two_value,
-        one_value = one_value,
-        zero_value = zero_value
+      { other_value = other_value_,
+        many_value = many_value_,
+        few_value = few_value_,
+        two_value = two_value_,
+        one_value = one_value_,
+        zero_value = zero_value_
       } =
       A.object
         [ "@type" A..= T.String "languagePackStringValuePluralized",
-          "other_value" A..= other_value,
-          "many_value" A..= many_value,
-          "few_value" A..= few_value,
-          "two_value" A..= two_value,
-          "one_value" A..= one_value,
-          "zero_value" A..= zero_value
+          "other_value" A..= other_value_,
+          "many_value" A..= many_value_,
+          "few_value" A..= few_value_,
+          "two_value" A..= two_value_,
+          "one_value" A..= one_value_,
+          "zero_value" A..= zero_value_
         ]
   toJSON LanguagePackStringValueDeleted =
     A.object

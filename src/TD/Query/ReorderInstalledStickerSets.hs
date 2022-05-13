@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReorderInstalledStickerSets where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ReorderInstalledStickerSets = ReorderInstalledStickerSets
 instance Show ReorderInstalledStickerSets where
   show
     ReorderInstalledStickerSets
-      { sticker_set_ids = sticker_set_ids,
-        is_masks = is_masks
+      { sticker_set_ids = sticker_set_ids_,
+        is_masks = is_masks_
       } =
       "ReorderInstalledStickerSets"
         ++ U.cc
-          [ U.p "sticker_set_ids" sticker_set_ids,
-            U.p "is_masks" is_masks
+          [ U.p "sticker_set_ids" sticker_set_ids_,
+            U.p "is_masks" is_masks_
           ]
 
 instance T.ToJSON ReorderInstalledStickerSets where
   toJSON
     ReorderInstalledStickerSets
-      { sticker_set_ids = sticker_set_ids,
-        is_masks = is_masks
+      { sticker_set_ids = sticker_set_ids_,
+        is_masks = is_masks_
       } =
       A.object
         [ "@type" A..= T.String "reorderInstalledStickerSets",
-          "sticker_set_ids" A..= sticker_set_ids,
-          "is_masks" A..= is_masks
+          "sticker_set_ids" A..= sticker_set_ids_,
+          "is_masks" A..= is_masks_
         ]

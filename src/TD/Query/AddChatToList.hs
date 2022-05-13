@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddChatToList where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data AddChatToList = AddChatToList
 instance Show AddChatToList where
   show
     AddChatToList
-      { chat_list = chat_list,
-        chat_id = chat_id
+      { chat_list = chat_list_,
+        chat_id = chat_id_
       } =
       "AddChatToList"
         ++ U.cc
-          [ U.p "chat_list" chat_list,
-            U.p "chat_id" chat_id
+          [ U.p "chat_list" chat_list_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON AddChatToList where
   toJSON
     AddChatToList
-      { chat_list = chat_list,
-        chat_id = chat_id
+      { chat_list = chat_list_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "addChatToList",
-          "chat_list" A..= chat_list,
-          "chat_id" A..= chat_id
+          "chat_list" A..= chat_list_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetWebPageInstantView where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetWebPageInstantView = GetWebPageInstantView
 instance Show GetWebPageInstantView where
   show
     GetWebPageInstantView
-      { force_full = force_full,
-        url = url
+      { force_full = force_full_,
+        url = url_
       } =
       "GetWebPageInstantView"
         ++ U.cc
-          [ U.p "force_full" force_full,
-            U.p "url" url
+          [ U.p "force_full" force_full_,
+            U.p "url" url_
           ]
 
 instance T.ToJSON GetWebPageInstantView where
   toJSON
     GetWebPageInstantView
-      { force_full = force_full,
-        url = url
+      { force_full = force_full_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "getWebPageInstantView",
-          "force_full" A..= force_full,
-          "url" A..= url
+          "force_full" A..= force_full_,
+          "url" A..= url_
         ]

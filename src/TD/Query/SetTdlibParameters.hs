@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetTdlibParameters where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SetTdlibParameters = SetTdlibParameters
 instance Show SetTdlibParameters where
   show
     SetTdlibParameters
-      { parameters = parameters
+      { parameters = parameters_
       } =
       "SetTdlibParameters"
         ++ U.cc
-          [ U.p "parameters" parameters
+          [ U.p "parameters" parameters_
           ]
 
 instance T.ToJSON SetTdlibParameters where
   toJSON
     SetTdlibParameters
-      { parameters = parameters
+      { parameters = parameters_
       } =
       A.object
         [ "@type" A..= T.String "setTdlibParameters",
-          "parameters" A..= parameters
+          "parameters" A..= parameters_
         ]

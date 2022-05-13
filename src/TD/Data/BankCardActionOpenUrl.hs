@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BankCardActionOpenUrl where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data BankCardActionOpenUrl = -- | Describes an action associated with a bank car
 instance Show BankCardActionOpenUrl where
   show
     BankCardActionOpenUrl
-      { url = url,
-        text = text
+      { url = url_,
+        text = text_
       } =
       "BankCardActionOpenUrl"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "text" text
+          [ U.p "url" url_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON BankCardActionOpenUrl where
@@ -45,11 +46,11 @@ instance T.FromJSON BankCardActionOpenUrl where
 instance T.ToJSON BankCardActionOpenUrl where
   toJSON
     BankCardActionOpenUrl
-      { url = url,
-        text = text
+      { url = url_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "bankCardActionOpenUrl",
-          "url" A..= url,
-          "text" A..= text
+          "url" A..= url_,
+          "text" A..= text_
         ]

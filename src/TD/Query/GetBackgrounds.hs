@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetBackgrounds where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetBackgrounds = GetBackgrounds
 instance Show GetBackgrounds where
   show
     GetBackgrounds
-      { for_dark_theme = for_dark_theme
+      { for_dark_theme = for_dark_theme_
       } =
       "GetBackgrounds"
         ++ U.cc
-          [ U.p "for_dark_theme" for_dark_theme
+          [ U.p "for_dark_theme" for_dark_theme_
           ]
 
 instance T.ToJSON GetBackgrounds where
   toJSON
     GetBackgrounds
-      { for_dark_theme = for_dark_theme
+      { for_dark_theme = for_dark_theme_
       } =
       A.object
         [ "@type" A..= T.String "getBackgrounds",
-          "for_dark_theme" A..= for_dark_theme
+          "for_dark_theme" A..= for_dark_theme_
         ]

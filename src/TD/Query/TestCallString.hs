@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TestCallString where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data TestCallString = TestCallString
 instance Show TestCallString where
   show
     TestCallString
-      { x = x
+      { x = x_
       } =
       "TestCallString"
         ++ U.cc
-          [ U.p "x" x
+          [ U.p "x" x_
           ]
 
 instance T.ToJSON TestCallString where
   toJSON
     TestCallString
-      { x = x
+      { x = x_
       } =
       A.object
         [ "@type" A..= T.String "testCallString",
-          "x" A..= x
+          "x" A..= x_
         ]

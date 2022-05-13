@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetGroupCallParticipantIsSpeaking where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data SetGroupCallParticipantIsSpeaking = SetGroupCallParticipantIsSpeaking
 instance Show SetGroupCallParticipantIsSpeaking where
   show
     SetGroupCallParticipantIsSpeaking
-      { is_speaking = is_speaking,
-        audio_source = audio_source,
-        group_call_id = group_call_id
+      { is_speaking = is_speaking_,
+        audio_source = audio_source_,
+        group_call_id = group_call_id_
       } =
       "SetGroupCallParticipantIsSpeaking"
         ++ U.cc
-          [ U.p "is_speaking" is_speaking,
-            U.p "audio_source" audio_source,
-            U.p "group_call_id" group_call_id
+          [ U.p "is_speaking" is_speaking_,
+            U.p "audio_source" audio_source_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON SetGroupCallParticipantIsSpeaking where
   toJSON
     SetGroupCallParticipantIsSpeaking
-      { is_speaking = is_speaking,
-        audio_source = audio_source,
-        group_call_id = group_call_id
+      { is_speaking = is_speaking_,
+        audio_source = audio_source_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "setGroupCallParticipantIsSpeaking",
-          "is_speaking" A..= is_speaking,
-          "audio_source" A..= audio_source,
-          "group_call_id" A..= group_call_id
+          "is_speaking" A..= is_speaking_,
+          "audio_source" A..= audio_source_,
+          "group_call_id" A..= group_call_id_
         ]

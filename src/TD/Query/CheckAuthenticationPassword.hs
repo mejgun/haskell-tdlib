@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckAuthenticationPassword where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CheckAuthenticationPassword = CheckAuthenticationPassword
 instance Show CheckAuthenticationPassword where
   show
     CheckAuthenticationPassword
-      { password = password
+      { password = password_
       } =
       "CheckAuthenticationPassword"
         ++ U.cc
-          [ U.p "password" password
+          [ U.p "password" password_
           ]
 
 instance T.ToJSON CheckAuthenticationPassword where
   toJSON
     CheckAuthenticationPassword
-      { password = password
+      { password = password_
       } =
       A.object
         [ "@type" A..= T.String "checkAuthenticationPassword",
-          "password" A..= password
+          "password" A..= password_
         ]

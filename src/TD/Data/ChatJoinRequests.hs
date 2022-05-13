@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatJoinRequests where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data ChatJoinRequests = -- | Contains a list of requests to join a chat @total_c
 instance Show ChatJoinRequests where
   show
     ChatJoinRequests
-      { requests = requests,
-        total_count = total_count
+      { requests = requests_,
+        total_count = total_count_
       } =
       "ChatJoinRequests"
         ++ U.cc
-          [ U.p "requests" requests,
-            U.p "total_count" total_count
+          [ U.p "requests" requests_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON ChatJoinRequests where
@@ -46,11 +47,11 @@ instance T.FromJSON ChatJoinRequests where
 instance T.ToJSON ChatJoinRequests where
   toJSON
     ChatJoinRequests
-      { requests = requests,
-        total_count = total_count
+      { requests = requests_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "chatJoinRequests",
-          "requests" A..= requests,
-          "total_count" A..= total_count
+          "requests" A..= requests_,
+          "total_count" A..= total_count_
         ]

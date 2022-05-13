@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetGroupCallInviteLink where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetGroupCallInviteLink = GetGroupCallInviteLink
 instance Show GetGroupCallInviteLink where
   show
     GetGroupCallInviteLink
-      { can_self_unmute = can_self_unmute,
-        group_call_id = group_call_id
+      { can_self_unmute = can_self_unmute_,
+        group_call_id = group_call_id_
       } =
       "GetGroupCallInviteLink"
         ++ U.cc
-          [ U.p "can_self_unmute" can_self_unmute,
-            U.p "group_call_id" group_call_id
+          [ U.p "can_self_unmute" can_self_unmute_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON GetGroupCallInviteLink where
   toJSON
     GetGroupCallInviteLink
-      { can_self_unmute = can_self_unmute,
-        group_call_id = group_call_id
+      { can_self_unmute = can_self_unmute_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "getGroupCallInviteLink",
-          "can_self_unmute" A..= can_self_unmute,
-          "group_call_id" A..= group_call_id
+          "can_self_unmute" A..= can_self_unmute_,
+          "group_call_id" A..= group_call_id_
         ]

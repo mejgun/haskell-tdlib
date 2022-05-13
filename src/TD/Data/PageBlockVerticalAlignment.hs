@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PageBlockVerticalAlignment where
 
 import qualified Data.Aeson as A
@@ -41,16 +42,13 @@ instance T.FromJSON PageBlockVerticalAlignment where
       _ -> mempty
     where
       parsePageBlockVerticalAlignmentTop :: A.Value -> T.Parser PageBlockVerticalAlignment
-      parsePageBlockVerticalAlignmentTop = A.withObject "PageBlockVerticalAlignmentTop" $ \o -> do
-        return $ PageBlockVerticalAlignmentTop {}
+      parsePageBlockVerticalAlignmentTop = A.withObject "PageBlockVerticalAlignmentTop" $ \_ -> return PageBlockVerticalAlignmentTop
 
       parsePageBlockVerticalAlignmentMiddle :: A.Value -> T.Parser PageBlockVerticalAlignment
-      parsePageBlockVerticalAlignmentMiddle = A.withObject "PageBlockVerticalAlignmentMiddle" $ \o -> do
-        return $ PageBlockVerticalAlignmentMiddle {}
+      parsePageBlockVerticalAlignmentMiddle = A.withObject "PageBlockVerticalAlignmentMiddle" $ \_ -> return PageBlockVerticalAlignmentMiddle
 
       parsePageBlockVerticalAlignmentBottom :: A.Value -> T.Parser PageBlockVerticalAlignment
-      parsePageBlockVerticalAlignmentBottom = A.withObject "PageBlockVerticalAlignmentBottom" $ \o -> do
-        return $ PageBlockVerticalAlignmentBottom {}
+      parsePageBlockVerticalAlignmentBottom = A.withObject "PageBlockVerticalAlignmentBottom" $ \_ -> return PageBlockVerticalAlignmentBottom
   parseJSON _ = mempty
 
 instance T.ToJSON PageBlockVerticalAlignment where

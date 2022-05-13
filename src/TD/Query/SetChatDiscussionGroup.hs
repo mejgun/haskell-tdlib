@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatDiscussionGroup where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetChatDiscussionGroup = SetChatDiscussionGroup
 instance Show SetChatDiscussionGroup where
   show
     SetChatDiscussionGroup
-      { discussion_chat_id = discussion_chat_id,
-        chat_id = chat_id
+      { discussion_chat_id = discussion_chat_id_,
+        chat_id = chat_id_
       } =
       "SetChatDiscussionGroup"
         ++ U.cc
-          [ U.p "discussion_chat_id" discussion_chat_id,
-            U.p "chat_id" chat_id
+          [ U.p "discussion_chat_id" discussion_chat_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatDiscussionGroup where
   toJSON
     SetChatDiscussionGroup
-      { discussion_chat_id = discussion_chat_id,
-        chat_id = chat_id
+      { discussion_chat_id = discussion_chat_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatDiscussionGroup",
-          "discussion_chat_id" A..= discussion_chat_id,
-          "chat_id" A..= chat_id
+          "discussion_chat_id" A..= discussion_chat_id_,
+          "chat_id" A..= chat_id_
         ]

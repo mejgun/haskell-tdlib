@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetDeepLinkInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetDeepLinkInfo = GetDeepLinkInfo
 instance Show GetDeepLinkInfo where
   show
     GetDeepLinkInfo
-      { link = link
+      { link = link_
       } =
       "GetDeepLinkInfo"
         ++ U.cc
-          [ U.p "link" link
+          [ U.p "link" link_
           ]
 
 instance T.ToJSON GetDeepLinkInfo where
   toJSON
     GetDeepLinkInfo
-      { link = link
+      { link = link_
       } =
       A.object
         [ "@type" A..= T.String "getDeepLinkInfo",
-          "link" A..= link
+          "link" A..= link_
         ]

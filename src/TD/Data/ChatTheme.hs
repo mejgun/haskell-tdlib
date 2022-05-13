@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatTheme where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data ChatTheme = -- | Describes a chat theme
 instance Show ChatTheme where
   show
     ChatTheme
-      { dark_settings = dark_settings,
-        light_settings = light_settings,
-        name = name
+      { dark_settings = dark_settings_,
+        light_settings = light_settings_,
+        name = name_
       } =
       "ChatTheme"
         ++ U.cc
-          [ U.p "dark_settings" dark_settings,
-            U.p "light_settings" light_settings,
-            U.p "name" name
+          [ U.p "dark_settings" dark_settings_,
+            U.p "light_settings" light_settings_,
+            U.p "name" name_
           ]
 
 instance T.FromJSON ChatTheme where
@@ -51,13 +52,13 @@ instance T.FromJSON ChatTheme where
 instance T.ToJSON ChatTheme where
   toJSON
     ChatTheme
-      { dark_settings = dark_settings,
-        light_settings = light_settings,
-        name = name
+      { dark_settings = dark_settings_,
+        light_settings = light_settings_,
+        name = name_
       } =
       A.object
         [ "@type" A..= T.String "chatTheme",
-          "dark_settings" A..= dark_settings,
-          "light_settings" A..= light_settings,
-          "name" A..= name
+          "dark_settings" A..= dark_settings_,
+          "light_settings" A..= light_settings_,
+          "name" A..= name_
         ]

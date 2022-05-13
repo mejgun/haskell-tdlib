@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SecretChatState where
 
 import qualified Data.Aeson as A
@@ -41,16 +42,13 @@ instance T.FromJSON SecretChatState where
       _ -> mempty
     where
       parseSecretChatStatePending :: A.Value -> T.Parser SecretChatState
-      parseSecretChatStatePending = A.withObject "SecretChatStatePending" $ \o -> do
-        return $ SecretChatStatePending {}
+      parseSecretChatStatePending = A.withObject "SecretChatStatePending" $ \_ -> return SecretChatStatePending
 
       parseSecretChatStateReady :: A.Value -> T.Parser SecretChatState
-      parseSecretChatStateReady = A.withObject "SecretChatStateReady" $ \o -> do
-        return $ SecretChatStateReady {}
+      parseSecretChatStateReady = A.withObject "SecretChatStateReady" $ \_ -> return SecretChatStateReady
 
       parseSecretChatStateClosed :: A.Value -> T.Parser SecretChatState
-      parseSecretChatStateClosed = A.withObject "SecretChatStateClosed" $ \o -> do
-        return $ SecretChatStateClosed {}
+      parseSecretChatStateClosed = A.withObject "SecretChatStateClosed" $ \_ -> return SecretChatStateClosed
   parseJSON _ = mempty
 
 instance T.ToJSON SecretChatState where

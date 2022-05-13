@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TestCallVectorInt where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data TestCallVectorInt = TestCallVectorInt
 instance Show TestCallVectorInt where
   show
     TestCallVectorInt
-      { x = x
+      { x = x_
       } =
       "TestCallVectorInt"
         ++ U.cc
-          [ U.p "x" x
+          [ U.p "x" x_
           ]
 
 instance T.ToJSON TestCallVectorInt where
   toJSON
     TestCallVectorInt
-      { x = x
+      { x = x_
       } =
       A.object
         [ "@type" A..= T.String "testCallVectorInt",
-          "x" A..= x
+          "x" A..= x_
         ]

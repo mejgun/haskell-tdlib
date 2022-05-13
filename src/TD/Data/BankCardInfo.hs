@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BankCardInfo where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data BankCardInfo = -- | Information about a bank card @title Title of the bank 
 instance Show BankCardInfo where
   show
     BankCardInfo
-      { actions = actions,
-        title = title
+      { actions = actions_,
+        title = title_
       } =
       "BankCardInfo"
         ++ U.cc
-          [ U.p "actions" actions,
-            U.p "title" title
+          [ U.p "actions" actions_,
+            U.p "title" title_
           ]
 
 instance T.FromJSON BankCardInfo where
@@ -46,11 +47,11 @@ instance T.FromJSON BankCardInfo where
 instance T.ToJSON BankCardInfo where
   toJSON
     BankCardInfo
-      { actions = actions,
-        title = title
+      { actions = actions_,
+        title = title_
       } =
       A.object
         [ "@type" A..= T.String "bankCardInfo",
-          "actions" A..= actions,
-          "title" A..= title
+          "actions" A..= actions_,
+          "title" A..= title_
         ]

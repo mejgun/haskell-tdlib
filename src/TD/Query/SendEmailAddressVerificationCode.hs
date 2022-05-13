@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendEmailAddressVerificationCode where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SendEmailAddressVerificationCode = SendEmailAddressVerificationCode
 instance Show SendEmailAddressVerificationCode where
   show
     SendEmailAddressVerificationCode
-      { email_address = email_address
+      { email_address = email_address_
       } =
       "SendEmailAddressVerificationCode"
         ++ U.cc
-          [ U.p "email_address" email_address
+          [ U.p "email_address" email_address_
           ]
 
 instance T.ToJSON SendEmailAddressVerificationCode where
   toJSON
     SendEmailAddressVerificationCode
-      { email_address = email_address
+      { email_address = email_address_
       } =
       A.object
         [ "@type" A..= T.String "sendEmailAddressVerificationCode",
-          "email_address" A..= email_address
+          "email_address" A..= email_address_
         ]

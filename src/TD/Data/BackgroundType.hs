@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BackgroundType where
 
 import qualified Data.Aeson as A
@@ -37,35 +38,35 @@ data BackgroundType
 instance Show BackgroundType where
   show
     BackgroundTypeWallpaper
-      { is_moving = is_moving,
-        is_blurred = is_blurred
+      { is_moving = is_moving_,
+        is_blurred = is_blurred_
       } =
       "BackgroundTypeWallpaper"
         ++ U.cc
-          [ U.p "is_moving" is_moving,
-            U.p "is_blurred" is_blurred
+          [ U.p "is_moving" is_moving_,
+            U.p "is_blurred" is_blurred_
           ]
   show
     BackgroundTypePattern
-      { is_moving = is_moving,
-        is_inverted = is_inverted,
-        intensity = intensity,
-        fill = fill
+      { is_moving = is_moving_,
+        is_inverted = is_inverted_,
+        intensity = intensity_,
+        fill = fill_
       } =
       "BackgroundTypePattern"
         ++ U.cc
-          [ U.p "is_moving" is_moving,
-            U.p "is_inverted" is_inverted,
-            U.p "intensity" intensity,
-            U.p "fill" fill
+          [ U.p "is_moving" is_moving_,
+            U.p "is_inverted" is_inverted_,
+            U.p "intensity" intensity_,
+            U.p "fill" fill_
           ]
   show
     BackgroundTypeFill
-      { fill = fill
+      { fill = fill_
       } =
       "BackgroundTypeFill"
         ++ U.cc
-          [ U.p "fill" fill
+          [ U.p "fill" fill_
           ]
 
 instance T.FromJSON BackgroundType where
@@ -101,33 +102,33 @@ instance T.FromJSON BackgroundType where
 instance T.ToJSON BackgroundType where
   toJSON
     BackgroundTypeWallpaper
-      { is_moving = is_moving,
-        is_blurred = is_blurred
+      { is_moving = is_moving_,
+        is_blurred = is_blurred_
       } =
       A.object
         [ "@type" A..= T.String "backgroundTypeWallpaper",
-          "is_moving" A..= is_moving,
-          "is_blurred" A..= is_blurred
+          "is_moving" A..= is_moving_,
+          "is_blurred" A..= is_blurred_
         ]
   toJSON
     BackgroundTypePattern
-      { is_moving = is_moving,
-        is_inverted = is_inverted,
-        intensity = intensity,
-        fill = fill
+      { is_moving = is_moving_,
+        is_inverted = is_inverted_,
+        intensity = intensity_,
+        fill = fill_
       } =
       A.object
         [ "@type" A..= T.String "backgroundTypePattern",
-          "is_moving" A..= is_moving,
-          "is_inverted" A..= is_inverted,
-          "intensity" A..= intensity,
-          "fill" A..= fill
+          "is_moving" A..= is_moving_,
+          "is_inverted" A..= is_inverted_,
+          "intensity" A..= intensity_,
+          "fill" A..= fill_
         ]
   toJSON
     BackgroundTypeFill
-      { fill = fill
+      { fill = fill_
       } =
       A.object
         [ "@type" A..= T.String "backgroundTypeFill",
-          "fill" A..= fill
+          "fill" A..= fill_
         ]

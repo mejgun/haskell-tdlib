@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PublicChatType where
 
 import qualified Data.Aeson as A
@@ -34,12 +35,10 @@ instance T.FromJSON PublicChatType where
       _ -> mempty
     where
       parsePublicChatTypeHasUsername :: A.Value -> T.Parser PublicChatType
-      parsePublicChatTypeHasUsername = A.withObject "PublicChatTypeHasUsername" $ \o -> do
-        return $ PublicChatTypeHasUsername {}
+      parsePublicChatTypeHasUsername = A.withObject "PublicChatTypeHasUsername" $ \_ -> return PublicChatTypeHasUsername
 
       parsePublicChatTypeIsLocationBased :: A.Value -> T.Parser PublicChatType
-      parsePublicChatTypeIsLocationBased = A.withObject "PublicChatTypeIsLocationBased" $ \o -> do
-        return $ PublicChatTypeIsLocationBased {}
+      parsePublicChatTypeIsLocationBased = A.withObject "PublicChatTypeIsLocationBased" $ \_ -> return PublicChatTypeIsLocationBased
   parseJSON _ = mempty
 
 instance T.ToJSON PublicChatType where

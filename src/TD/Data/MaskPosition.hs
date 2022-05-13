@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MaskPosition where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data MaskPosition = -- | Position on a photo where a mask is placed @point Part 
 instance Show MaskPosition where
   show
     MaskPosition
-      { scale = scale,
-        y_shift = y_shift,
-        x_shift = x_shift,
-        point = point
+      { scale = scale_,
+        y_shift = y_shift_,
+        x_shift = x_shift_,
+        point = point_
       } =
       "MaskPosition"
         ++ U.cc
-          [ U.p "scale" scale,
-            U.p "y_shift" y_shift,
-            U.p "x_shift" x_shift,
-            U.p "point" point
+          [ U.p "scale" scale_,
+            U.p "y_shift" y_shift_,
+            U.p "x_shift" x_shift_,
+            U.p "point" point_
           ]
 
 instance T.FromJSON MaskPosition where
@@ -56,15 +57,15 @@ instance T.FromJSON MaskPosition where
 instance T.ToJSON MaskPosition where
   toJSON
     MaskPosition
-      { scale = scale,
-        y_shift = y_shift,
-        x_shift = x_shift,
-        point = point
+      { scale = scale_,
+        y_shift = y_shift_,
+        x_shift = x_shift_,
+        point = point_
       } =
       A.object
         [ "@type" A..= T.String "maskPosition",
-          "scale" A..= scale,
-          "y_shift" A..= y_shift,
-          "x_shift" A..= x_shift,
-          "point" A..= point
+          "scale" A..= scale_,
+          "y_shift" A..= y_shift_,
+          "x_shift" A..= x_shift_,
+          "point" A..= point_
         ]

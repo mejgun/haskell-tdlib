@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Countries where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data Countries = -- | Contains information about countries @countries The list o
 instance Show Countries where
   show
     Countries
-      { countries = countries
+      { countries = countries_
       } =
       "Countries"
         ++ U.cc
-          [ U.p "countries" countries
+          [ U.p "countries" countries_
           ]
 
 instance T.FromJSON Countries where
@@ -41,9 +42,9 @@ instance T.FromJSON Countries where
 instance T.ToJSON Countries where
   toJSON
     Countries
-      { countries = countries
+      { countries = countries_
       } =
       A.object
         [ "@type" A..= T.String "countries",
-          "countries" A..= countries
+          "countries" A..= countries_
         ]

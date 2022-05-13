@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckAuthenticationPasswordRecoveryCode where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CheckAuthenticationPasswordRecoveryCode = CheckAuthenticationPasswordRecove
 instance Show CheckAuthenticationPasswordRecoveryCode where
   show
     CheckAuthenticationPasswordRecoveryCode
-      { recovery_code = recovery_code
+      { recovery_code = recovery_code_
       } =
       "CheckAuthenticationPasswordRecoveryCode"
         ++ U.cc
-          [ U.p "recovery_code" recovery_code
+          [ U.p "recovery_code" recovery_code_
           ]
 
 instance T.ToJSON CheckAuthenticationPasswordRecoveryCode where
   toJSON
     CheckAuthenticationPasswordRecoveryCode
-      { recovery_code = recovery_code
+      { recovery_code = recovery_code_
       } =
       A.object
         [ "@type" A..= T.String "checkAuthenticationPasswordRecoveryCode",
-          "recovery_code" A..= recovery_code
+          "recovery_code" A..= recovery_code_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PassportElementsWithErrors where
 
 import qualified Data.Aeson as A
@@ -20,13 +21,13 @@ data PassportElementsWithErrors = -- | Contains information about a Telegram Pas
 instance Show PassportElementsWithErrors where
   show
     PassportElementsWithErrors
-      { errors = errors,
-        elements = elements
+      { errors = errors_,
+        elements = elements_
       } =
       "PassportElementsWithErrors"
         ++ U.cc
-          [ U.p "errors" errors,
-            U.p "elements" elements
+          [ U.p "errors" errors_,
+            U.p "elements" elements_
           ]
 
 instance T.FromJSON PassportElementsWithErrors where
@@ -47,11 +48,11 @@ instance T.FromJSON PassportElementsWithErrors where
 instance T.ToJSON PassportElementsWithErrors where
   toJSON
     PassportElementsWithErrors
-      { errors = errors,
-        elements = elements
+      { errors = errors_,
+        elements = elements_
       } =
       A.object
         [ "@type" A..= T.String "passportElementsWithErrors",
-          "errors" A..= errors,
-          "elements" A..= elements
+          "errors" A..= errors_,
+          "elements" A..= elements_
         ]

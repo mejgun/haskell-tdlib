@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetStickerSet where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetStickerSet = GetStickerSet
 instance Show GetStickerSet where
   show
     GetStickerSet
-      { set_id = set_id
+      { set_id = set_id_
       } =
       "GetStickerSet"
         ++ U.cc
-          [ U.p "set_id" set_id
+          [ U.p "set_id" set_id_
           ]
 
 instance T.ToJSON GetStickerSet where
   toJSON
     GetStickerSet
-      { set_id = set_id
+      { set_id = set_id_
       } =
       A.object
         [ "@type" A..= T.String "getStickerSet",
-          "set_id" A..= set_id
+          "set_id" A..= set_id_
         ]

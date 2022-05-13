@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetPassportElementErrors where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetPassportElementErrors = SetPassportElementErrors
 instance Show SetPassportElementErrors where
   show
     SetPassportElementErrors
-      { errors = errors,
-        user_id = user_id
+      { errors = errors_,
+        user_id = user_id_
       } =
       "SetPassportElementErrors"
         ++ U.cc
-          [ U.p "errors" errors,
-            U.p "user_id" user_id
+          [ U.p "errors" errors_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON SetPassportElementErrors where
   toJSON
     SetPassportElementErrors
-      { errors = errors,
-        user_id = user_id
+      { errors = errors_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "setPassportElementErrors",
-          "errors" A..= errors,
-          "user_id" A..= user_id
+          "errors" A..= errors_,
+          "user_id" A..= user_id_
         ]

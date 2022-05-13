@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LoginUrlInfo where
 
 import qualified Data.Aeson as A
@@ -31,27 +32,27 @@ data LoginUrlInfo
 instance Show LoginUrlInfo where
   show
     LoginUrlInfoOpen
-      { skip_confirm = skip_confirm,
-        url = url
+      { skip_confirm = skip_confirm_,
+        url = url_
       } =
       "LoginUrlInfoOpen"
         ++ U.cc
-          [ U.p "skip_confirm" skip_confirm,
-            U.p "url" url
+          [ U.p "skip_confirm" skip_confirm_,
+            U.p "url" url_
           ]
   show
     LoginUrlInfoRequestConfirmation
-      { request_write_access = request_write_access,
-        bot_user_id = bot_user_id,
-        domain = domain,
-        url = url
+      { request_write_access = request_write_access_,
+        bot_user_id = bot_user_id_,
+        domain = domain_,
+        url = url_
       } =
       "LoginUrlInfoRequestConfirmation"
         ++ U.cc
-          [ U.p "request_write_access" request_write_access,
-            U.p "bot_user_id" bot_user_id,
-            U.p "domain" domain,
-            U.p "url" url
+          [ U.p "request_write_access" request_write_access_,
+            U.p "bot_user_id" bot_user_id_,
+            U.p "domain" domain_,
+            U.p "url" url_
           ]
 
 instance T.FromJSON LoginUrlInfo where
@@ -81,25 +82,25 @@ instance T.FromJSON LoginUrlInfo where
 instance T.ToJSON LoginUrlInfo where
   toJSON
     LoginUrlInfoOpen
-      { skip_confirm = skip_confirm,
-        url = url
+      { skip_confirm = skip_confirm_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "loginUrlInfoOpen",
-          "skip_confirm" A..= skip_confirm,
-          "url" A..= url
+          "skip_confirm" A..= skip_confirm_,
+          "url" A..= url_
         ]
   toJSON
     LoginUrlInfoRequestConfirmation
-      { request_write_access = request_write_access,
-        bot_user_id = bot_user_id,
-        domain = domain,
-        url = url
+      { request_write_access = request_write_access_,
+        bot_user_id = bot_user_id_,
+        domain = domain_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "loginUrlInfoRequestConfirmation",
-          "request_write_access" A..= request_write_access,
-          "bot_user_id" A..= bot_user_id,
-          "domain" A..= domain,
-          "url" A..= url
+          "request_write_access" A..= request_write_access_,
+          "bot_user_id" A..= bot_user_id_,
+          "domain" A..= domain_,
+          "url" A..= url_
         ]

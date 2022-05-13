@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetPassportAuthorizationFormAvailableElements where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetPassportAuthorizationFormAvailableElements = GetPassportAuthorizationFor
 instance Show GetPassportAuthorizationFormAvailableElements where
   show
     GetPassportAuthorizationFormAvailableElements
-      { password = password,
-        autorization_form_id = autorization_form_id
+      { password = password_,
+        autorization_form_id = autorization_form_id_
       } =
       "GetPassportAuthorizationFormAvailableElements"
         ++ U.cc
-          [ U.p "password" password,
-            U.p "autorization_form_id" autorization_form_id
+          [ U.p "password" password_,
+            U.p "autorization_form_id" autorization_form_id_
           ]
 
 instance T.ToJSON GetPassportAuthorizationFormAvailableElements where
   toJSON
     GetPassportAuthorizationFormAvailableElements
-      { password = password,
-        autorization_form_id = autorization_form_id
+      { password = password_,
+        autorization_form_id = autorization_form_id_
       } =
       A.object
         [ "@type" A..= T.String "getPassportAuthorizationFormAvailableElements",
-          "password" A..= password,
-          "autorization_form_id" A..= autorization_form_id
+          "password" A..= password_,
+          "autorization_form_id" A..= autorization_form_id_
         ]

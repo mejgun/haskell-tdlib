@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageLink where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data MessageLink = -- | Contains an HTTPS link to a message in a supergroup or c
 instance Show MessageLink where
   show
     MessageLink
-      { is_public = is_public,
-        link = link
+      { is_public = is_public_,
+        link = link_
       } =
       "MessageLink"
         ++ U.cc
-          [ U.p "is_public" is_public,
-            U.p "link" link
+          [ U.p "is_public" is_public_,
+            U.p "link" link_
           ]
 
 instance T.FromJSON MessageLink where
@@ -45,11 +46,11 @@ instance T.FromJSON MessageLink where
 instance T.ToJSON MessageLink where
   toJSON
     MessageLink
-      { is_public = is_public,
-        link = link
+      { is_public = is_public_,
+        link = link_
       } =
       A.object
         [ "@type" A..= T.String "messageLink",
-          "is_public" A..= is_public,
-          "link" A..= link
+          "is_public" A..= is_public_,
+          "link" A..= link_
         ]

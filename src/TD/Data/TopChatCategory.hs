@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TopChatCategory where
 
 import qualified Data.Aeson as A
@@ -69,32 +70,25 @@ instance T.FromJSON TopChatCategory where
       _ -> mempty
     where
       parseTopChatCategoryUsers :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryUsers = A.withObject "TopChatCategoryUsers" $ \o -> do
-        return $ TopChatCategoryUsers {}
+      parseTopChatCategoryUsers = A.withObject "TopChatCategoryUsers" $ \_ -> return TopChatCategoryUsers
 
       parseTopChatCategoryBots :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryBots = A.withObject "TopChatCategoryBots" $ \o -> do
-        return $ TopChatCategoryBots {}
+      parseTopChatCategoryBots = A.withObject "TopChatCategoryBots" $ \_ -> return TopChatCategoryBots
 
       parseTopChatCategoryGroups :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryGroups = A.withObject "TopChatCategoryGroups" $ \o -> do
-        return $ TopChatCategoryGroups {}
+      parseTopChatCategoryGroups = A.withObject "TopChatCategoryGroups" $ \_ -> return TopChatCategoryGroups
 
       parseTopChatCategoryChannels :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryChannels = A.withObject "TopChatCategoryChannels" $ \o -> do
-        return $ TopChatCategoryChannels {}
+      parseTopChatCategoryChannels = A.withObject "TopChatCategoryChannels" $ \_ -> return TopChatCategoryChannels
 
       parseTopChatCategoryInlineBots :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryInlineBots = A.withObject "TopChatCategoryInlineBots" $ \o -> do
-        return $ TopChatCategoryInlineBots {}
+      parseTopChatCategoryInlineBots = A.withObject "TopChatCategoryInlineBots" $ \_ -> return TopChatCategoryInlineBots
 
       parseTopChatCategoryCalls :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryCalls = A.withObject "TopChatCategoryCalls" $ \o -> do
-        return $ TopChatCategoryCalls {}
+      parseTopChatCategoryCalls = A.withObject "TopChatCategoryCalls" $ \_ -> return TopChatCategoryCalls
 
       parseTopChatCategoryForwardChats :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryForwardChats = A.withObject "TopChatCategoryForwardChats" $ \o -> do
-        return $ TopChatCategoryForwardChats {}
+      parseTopChatCategoryForwardChats = A.withObject "TopChatCategoryForwardChats" $ \_ -> return TopChatCategoryForwardChats
   parseJSON _ = mempty
 
 instance T.ToJSON TopChatCategory where

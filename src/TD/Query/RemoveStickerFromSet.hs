@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveStickerFromSet where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data RemoveStickerFromSet = RemoveStickerFromSet
 instance Show RemoveStickerFromSet where
   show
     RemoveStickerFromSet
-      { sticker = sticker
+      { sticker = sticker_
       } =
       "RemoveStickerFromSet"
         ++ U.cc
-          [ U.p "sticker" sticker
+          [ U.p "sticker" sticker_
           ]
 
 instance T.ToJSON RemoveStickerFromSet where
   toJSON
     RemoveStickerFromSet
-      { sticker = sticker
+      { sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "removeStickerFromSet",
-          "sticker" A..= sticker
+          "sticker" A..= sticker_
         ]

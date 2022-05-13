@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetStickerPositionInSet where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetStickerPositionInSet = SetStickerPositionInSet
 instance Show SetStickerPositionInSet where
   show
     SetStickerPositionInSet
-      { position = position,
-        sticker = sticker
+      { position = position_,
+        sticker = sticker_
       } =
       "SetStickerPositionInSet"
         ++ U.cc
-          [ U.p "position" position,
-            U.p "sticker" sticker
+          [ U.p "position" position_,
+            U.p "sticker" sticker_
           ]
 
 instance T.ToJSON SetStickerPositionInSet where
   toJSON
     SetStickerPositionInSet
-      { position = position,
-        sticker = sticker
+      { position = position_,
+        sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "setStickerPositionInSet",
-          "position" A..= position,
-          "sticker" A..= sticker
+          "position" A..= position_,
+          "sticker" A..= sticker_
         ]

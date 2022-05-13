@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReorderChatFilters where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ReorderChatFilters = ReorderChatFilters
 instance Show ReorderChatFilters where
   show
     ReorderChatFilters
-      { chat_filter_ids = chat_filter_ids
+      { chat_filter_ids = chat_filter_ids_
       } =
       "ReorderChatFilters"
         ++ U.cc
-          [ U.p "chat_filter_ids" chat_filter_ids
+          [ U.p "chat_filter_ids" chat_filter_ids_
           ]
 
 instance T.ToJSON ReorderChatFilters where
   toJSON
     ReorderChatFilters
-      { chat_filter_ids = chat_filter_ids
+      { chat_filter_ids = chat_filter_ids_
       } =
       A.object
         [ "@type" A..= T.String "reorderChatFilters",
-          "chat_filter_ids" A..= chat_filter_ids
+          "chat_filter_ids" A..= chat_filter_ids_
         ]

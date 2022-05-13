@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NotificationSounds where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data NotificationSounds = -- | Contains a list of notification sounds @notificat
 instance Show NotificationSounds where
   show
     NotificationSounds
-      { notification_sounds = notification_sounds
+      { notification_sounds = notification_sounds_
       } =
       "NotificationSounds"
         ++ U.cc
-          [ U.p "notification_sounds" notification_sounds
+          [ U.p "notification_sounds" notification_sounds_
           ]
 
 instance T.FromJSON NotificationSounds where
@@ -41,9 +42,9 @@ instance T.FromJSON NotificationSounds where
 instance T.ToJSON NotificationSounds where
   toJSON
     NotificationSounds
-      { notification_sounds = notification_sounds
+      { notification_sounds = notification_sounds_
       } =
       A.object
         [ "@type" A..= T.String "notificationSounds",
-          "notification_sounds" A..= notification_sounds
+          "notification_sounds" A..= notification_sounds_
         ]

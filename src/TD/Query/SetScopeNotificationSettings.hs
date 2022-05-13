@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetScopeNotificationSettings where
 
 import qualified Data.Aeson as A
@@ -21,23 +22,23 @@ data SetScopeNotificationSettings = SetScopeNotificationSettings
 instance Show SetScopeNotificationSettings where
   show
     SetScopeNotificationSettings
-      { notification_settings = notification_settings,
-        scope = scope
+      { notification_settings = notification_settings_,
+        scope = scope_
       } =
       "SetScopeNotificationSettings"
         ++ U.cc
-          [ U.p "notification_settings" notification_settings,
-            U.p "scope" scope
+          [ U.p "notification_settings" notification_settings_,
+            U.p "scope" scope_
           ]
 
 instance T.ToJSON SetScopeNotificationSettings where
   toJSON
     SetScopeNotificationSettings
-      { notification_settings = notification_settings,
-        scope = scope
+      { notification_settings = notification_settings_,
+        scope = scope_
       } =
       A.object
         [ "@type" A..= T.String "setScopeNotificationSettings",
-          "notification_settings" A..= notification_settings,
-          "scope" A..= scope
+          "notification_settings" A..= notification_settings_,
+          "scope" A..= scope_
         ]

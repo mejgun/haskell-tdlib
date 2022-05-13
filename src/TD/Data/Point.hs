@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Point where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data Point = -- | A point on a Cartesian plane @x The point's first coordinate @
 instance Show Point where
   show
     Point
-      { y = y,
-        x = x
+      { y = y_,
+        x = x_
       } =
       "Point"
         ++ U.cc
-          [ U.p "y" y,
-            U.p "x" x
+          [ U.p "y" y_,
+            U.p "x" x_
           ]
 
 instance T.FromJSON Point where
@@ -45,11 +46,11 @@ instance T.FromJSON Point where
 instance T.ToJSON Point where
   toJSON
     Point
-      { y = y,
-        x = x
+      { y = y_,
+        x = x_
       } =
       A.object
         [ "@type" A..= T.String "point",
-          "y" A..= y,
-          "x" A..= x
+          "y" A..= y_,
+          "x" A..= x_
         ]

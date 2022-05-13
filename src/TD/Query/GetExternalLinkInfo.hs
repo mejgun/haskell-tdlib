@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetExternalLinkInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetExternalLinkInfo = GetExternalLinkInfo
 instance Show GetExternalLinkInfo where
   show
     GetExternalLinkInfo
-      { link = link
+      { link = link_
       } =
       "GetExternalLinkInfo"
         ++ U.cc
-          [ U.p "link" link
+          [ U.p "link" link_
           ]
 
 instance T.ToJSON GetExternalLinkInfo where
   toJSON
     GetExternalLinkInfo
-      { link = link
+      { link = link_
       } =
       A.object
         [ "@type" A..= T.String "getExternalLinkInfo",
-          "link" A..= link
+          "link" A..= link_
         ]

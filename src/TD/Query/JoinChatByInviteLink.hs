@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.JoinChatByInviteLink where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data JoinChatByInviteLink = JoinChatByInviteLink
 instance Show JoinChatByInviteLink where
   show
     JoinChatByInviteLink
-      { invite_link = invite_link
+      { invite_link = invite_link_
       } =
       "JoinChatByInviteLink"
         ++ U.cc
-          [ U.p "invite_link" invite_link
+          [ U.p "invite_link" invite_link_
           ]
 
 instance T.ToJSON JoinChatByInviteLink where
   toJSON
     JoinChatByInviteLink
-      { invite_link = invite_link
+      { invite_link = invite_link_
       } =
       A.object
         [ "@type" A..= T.String "joinChatByInviteLink",
-          "invite_link" A..= invite_link
+          "invite_link" A..= invite_link_
         ]

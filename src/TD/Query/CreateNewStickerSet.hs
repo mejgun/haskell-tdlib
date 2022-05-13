@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CreateNewStickerSet where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data CreateNewStickerSet = CreateNewStickerSet
 instance Show CreateNewStickerSet where
   show
     CreateNewStickerSet
-      { source = source,
-        stickers = stickers,
-        name = name,
-        title = title,
-        user_id = user_id
+      { source = source_,
+        stickers = stickers_,
+        name = name_,
+        title = title_,
+        user_id = user_id_
       } =
       "CreateNewStickerSet"
         ++ U.cc
-          [ U.p "source" source,
-            U.p "stickers" stickers,
-            U.p "name" name,
-            U.p "title" title,
-            U.p "user_id" user_id
+          [ U.p "source" source_,
+            U.p "stickers" stickers_,
+            U.p "name" name_,
+            U.p "title" title_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON CreateNewStickerSet where
   toJSON
     CreateNewStickerSet
-      { source = source,
-        stickers = stickers,
-        name = name,
-        title = title,
-        user_id = user_id
+      { source = source_,
+        stickers = stickers_,
+        name = name_,
+        title = title_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "createNewStickerSet",
-          "source" A..= source,
-          "stickers" A..= stickers,
-          "name" A..= name,
-          "title" A..= title,
-          "user_id" A..= user_id
+          "source" A..= source_,
+          "stickers" A..= stickers_,
+          "name" A..= name_,
+          "title" A..= title_,
+          "user_id" A..= user_id_
         ]

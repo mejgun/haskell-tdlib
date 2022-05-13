@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Text where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data Text = -- | Contains some text @text Text
 instance Show Text where
   show
     Text
-      { text = text
+      { text = text_
       } =
       "Text"
         ++ U.cc
-          [ U.p "text" text
+          [ U.p "text" text_
           ]
 
 instance T.FromJSON Text where
@@ -40,9 +41,9 @@ instance T.FromJSON Text where
 instance T.ToJSON Text where
   toJSON
     Text
-      { text = text
+      { text = text_
       } =
       A.object
         [ "@type" A..= T.String "text",
-          "text" A..= text
+          "text" A..= text_
         ]

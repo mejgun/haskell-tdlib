@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AcceptTermsOfService where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data AcceptTermsOfService = AcceptTermsOfService
 instance Show AcceptTermsOfService where
   show
     AcceptTermsOfService
-      { terms_of_service_id = terms_of_service_id
+      { terms_of_service_id = terms_of_service_id_
       } =
       "AcceptTermsOfService"
         ++ U.cc
-          [ U.p "terms_of_service_id" terms_of_service_id
+          [ U.p "terms_of_service_id" terms_of_service_id_
           ]
 
 instance T.ToJSON AcceptTermsOfService where
   toJSON
     AcceptTermsOfService
-      { terms_of_service_id = terms_of_service_id
+      { terms_of_service_id = terms_of_service_id_
       } =
       A.object
         [ "@type" A..= T.String "acceptTermsOfService",
-          "terms_of_service_id" A..= terms_of_service_id
+          "terms_of_service_id" A..= terms_of_service_id_
         ]

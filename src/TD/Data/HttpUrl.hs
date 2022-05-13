@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.HttpUrl where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data HttpUrl = -- | Contains an HTTP URL @url The URL
 instance Show HttpUrl where
   show
     HttpUrl
-      { url = url
+      { url = url_
       } =
       "HttpUrl"
         ++ U.cc
-          [ U.p "url" url
+          [ U.p "url" url_
           ]
 
 instance T.FromJSON HttpUrl where
@@ -40,9 +41,9 @@ instance T.FromJSON HttpUrl where
 instance T.ToJSON HttpUrl where
   toJSON
     HttpUrl
-      { url = url
+      { url = url_
       } =
       A.object
         [ "@type" A..= T.String "httpUrl",
-          "url" A..= url
+          "url" A..= url_
         ]

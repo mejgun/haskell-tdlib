@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CheckStickerSetNameResult where
 
 import qualified Data.Aeson as A
@@ -41,16 +42,13 @@ instance T.FromJSON CheckStickerSetNameResult where
       _ -> mempty
     where
       parseCheckStickerSetNameResultOk :: A.Value -> T.Parser CheckStickerSetNameResult
-      parseCheckStickerSetNameResultOk = A.withObject "CheckStickerSetNameResultOk" $ \o -> do
-        return $ CheckStickerSetNameResultOk {}
+      parseCheckStickerSetNameResultOk = A.withObject "CheckStickerSetNameResultOk" $ \_ -> return CheckStickerSetNameResultOk
 
       parseCheckStickerSetNameResultNameInvalid :: A.Value -> T.Parser CheckStickerSetNameResult
-      parseCheckStickerSetNameResultNameInvalid = A.withObject "CheckStickerSetNameResultNameInvalid" $ \o -> do
-        return $ CheckStickerSetNameResultNameInvalid {}
+      parseCheckStickerSetNameResultNameInvalid = A.withObject "CheckStickerSetNameResultNameInvalid" $ \_ -> return CheckStickerSetNameResultNameInvalid
 
       parseCheckStickerSetNameResultNameOccupied :: A.Value -> T.Parser CheckStickerSetNameResult
-      parseCheckStickerSetNameResultNameOccupied = A.withObject "CheckStickerSetNameResultNameOccupied" $ \o -> do
-        return $ CheckStickerSetNameResultNameOccupied {}
+      parseCheckStickerSetNameResultNameOccupied = A.withObject "CheckStickerSetNameResultNameOccupied" $ \_ -> return CheckStickerSetNameResultNameOccupied
   parseJSON _ = mempty
 
 instance T.ToJSON CheckStickerSetNameResult where

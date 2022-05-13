@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchBackground where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SearchBackground = SearchBackground
 instance Show SearchBackground where
   show
     SearchBackground
-      { name = name
+      { name = name_
       } =
       "SearchBackground"
         ++ U.cc
-          [ U.p "name" name
+          [ U.p "name" name_
           ]
 
 instance T.ToJSON SearchBackground where
   toJSON
     SearchBackground
-      { name = name
+      { name = name_
       } =
       A.object
         [ "@type" A..= T.String "searchBackground",
-          "name" A..= name
+          "name" A..= name_
         ]

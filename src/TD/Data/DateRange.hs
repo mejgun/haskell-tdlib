@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DateRange where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data DateRange = -- | Represents a date range @start_date Point in time (Unix ti
 instance Show DateRange where
   show
     DateRange
-      { end_date = end_date,
-        start_date = start_date
+      { end_date = end_date_,
+        start_date = start_date_
       } =
       "DateRange"
         ++ U.cc
-          [ U.p "end_date" end_date,
-            U.p "start_date" start_date
+          [ U.p "end_date" end_date_,
+            U.p "start_date" start_date_
           ]
 
 instance T.FromJSON DateRange where
@@ -45,11 +46,11 @@ instance T.FromJSON DateRange where
 instance T.ToJSON DateRange where
   toJSON
     DateRange
-      { end_date = end_date,
-        start_date = start_date
+      { end_date = end_date_,
+        start_date = start_date_
       } =
       A.object
         [ "@type" A..= T.String "dateRange",
-          "end_date" A..= end_date,
-          "start_date" A..= start_date
+          "end_date" A..= end_date_,
+          "start_date" A..= start_date_
         ]

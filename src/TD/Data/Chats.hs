@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Chats where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data Chats = -- | Represents a list of chats @total_count Approximate total numb
 instance Show Chats where
   show
     Chats
-      { chat_ids = chat_ids,
-        total_count = total_count
+      { chat_ids = chat_ids_,
+        total_count = total_count_
       } =
       "Chats"
         ++ U.cc
-          [ U.p "chat_ids" chat_ids,
-            U.p "total_count" total_count
+          [ U.p "chat_ids" chat_ids_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON Chats where
@@ -45,11 +46,11 @@ instance T.FromJSON Chats where
 instance T.ToJSON Chats where
   toJSON
     Chats
-      { chat_ids = chat_ids,
-        total_count = total_count
+      { chat_ids = chat_ids_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "chats",
-          "chat_ids" A..= chat_ids,
-          "total_count" A..= total_count
+          "chat_ids" A..= chat_ids_,
+          "total_count" A..= total_count_
         ]

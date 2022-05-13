@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatDescription where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SetChatDescription = SetChatDescription
 instance Show SetChatDescription where
   show
     SetChatDescription
-      { description = description,
-        chat_id = chat_id
+      { description = description_,
+        chat_id = chat_id_
       } =
       "SetChatDescription"
         ++ U.cc
-          [ U.p "description" description,
-            U.p "chat_id" chat_id
+          [ U.p "description" description_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatDescription where
   toJSON
     SetChatDescription
-      { description = description,
-        chat_id = chat_id
+      { description = description_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatDescription",
-          "description" A..= description,
-          "chat_id" A..= chat_id
+          "description" A..= description_,
+          "chat_id" A..= chat_id_
         ]

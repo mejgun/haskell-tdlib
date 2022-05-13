@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchContacts where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SearchContacts = SearchContacts
 instance Show SearchContacts where
   show
     SearchContacts
-      { limit = limit,
-        query = query
+      { limit = limit_,
+        query = query_
       } =
       "SearchContacts"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "query" query
+          [ U.p "limit" limit_,
+            U.p "query" query_
           ]
 
 instance T.ToJSON SearchContacts where
   toJSON
     SearchContacts
-      { limit = limit,
-        query = query
+      { limit = limit_,
+        query = query_
       } =
       A.object
         [ "@type" A..= T.String "searchContacts",
-          "limit" A..= limit,
-          "query" A..= query
+          "limit" A..= limit_,
+          "query" A..= query_
         ]

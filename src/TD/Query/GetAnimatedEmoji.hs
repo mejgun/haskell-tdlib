@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetAnimatedEmoji where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetAnimatedEmoji = GetAnimatedEmoji
 instance Show GetAnimatedEmoji where
   show
     GetAnimatedEmoji
-      { emoji = emoji
+      { emoji = emoji_
       } =
       "GetAnimatedEmoji"
         ++ U.cc
-          [ U.p "emoji" emoji
+          [ U.p "emoji" emoji_
           ]
 
 instance T.ToJSON GetAnimatedEmoji where
   toJSON
     GetAnimatedEmoji
-      { emoji = emoji
+      { emoji = emoji_
       } =
       A.object
         [ "@type" A..= T.String "getAnimatedEmoji",
-          "emoji" A..= emoji
+          "emoji" A..= emoji_
         ]

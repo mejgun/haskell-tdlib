@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditCustomLanguagePackInfo where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data EditCustomLanguagePackInfo = EditCustomLanguagePackInfo
 instance Show EditCustomLanguagePackInfo where
   show
     EditCustomLanguagePackInfo
-      { info = info
+      { info = info_
       } =
       "EditCustomLanguagePackInfo"
         ++ U.cc
-          [ U.p "info" info
+          [ U.p "info" info_
           ]
 
 instance T.ToJSON EditCustomLanguagePackInfo where
   toJSON
     EditCustomLanguagePackInfo
-      { info = info
+      { info = info_
       } =
       A.object
         [ "@type" A..= T.String "editCustomLanguagePackInfo",
-          "info" A..= info
+          "info" A..= info_
         ]

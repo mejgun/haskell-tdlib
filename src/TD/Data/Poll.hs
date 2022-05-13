@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Poll where
 
 import qualified Data.Aeson as A
@@ -36,29 +37,29 @@ data Poll = -- | Describes a poll @id Unique poll identifier @question Poll ques
 instance Show Poll where
   show
     Poll
-      { is_closed = is_closed,
-        close_date = close_date,
-        open_period = open_period,
-        _type = _type,
-        is_anonymous = is_anonymous,
-        recent_voter_user_ids = recent_voter_user_ids,
-        total_voter_count = total_voter_count,
-        options = options,
-        question = question,
-        _id = _id
+      { is_closed = is_closed_,
+        close_date = close_date_,
+        open_period = open_period_,
+        _type = _type_,
+        is_anonymous = is_anonymous_,
+        recent_voter_user_ids = recent_voter_user_ids_,
+        total_voter_count = total_voter_count_,
+        options = options_,
+        question = question_,
+        _id = _id_
       } =
       "Poll"
         ++ U.cc
-          [ U.p "is_closed" is_closed,
-            U.p "close_date" close_date,
-            U.p "open_period" open_period,
-            U.p "_type" _type,
-            U.p "is_anonymous" is_anonymous,
-            U.p "recent_voter_user_ids" recent_voter_user_ids,
-            U.p "total_voter_count" total_voter_count,
-            U.p "options" options,
-            U.p "question" question,
-            U.p "_id" _id
+          [ U.p "is_closed" is_closed_,
+            U.p "close_date" close_date_,
+            U.p "open_period" open_period_,
+            U.p "_type" _type_,
+            U.p "is_anonymous" is_anonymous_,
+            U.p "recent_voter_user_ids" recent_voter_user_ids_,
+            U.p "total_voter_count" total_voter_count_,
+            U.p "options" options_,
+            U.p "question" question_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Poll where
@@ -87,27 +88,27 @@ instance T.FromJSON Poll where
 instance T.ToJSON Poll where
   toJSON
     Poll
-      { is_closed = is_closed,
-        close_date = close_date,
-        open_period = open_period,
-        _type = _type,
-        is_anonymous = is_anonymous,
-        recent_voter_user_ids = recent_voter_user_ids,
-        total_voter_count = total_voter_count,
-        options = options,
-        question = question,
-        _id = _id
+      { is_closed = is_closed_,
+        close_date = close_date_,
+        open_period = open_period_,
+        _type = _type_,
+        is_anonymous = is_anonymous_,
+        recent_voter_user_ids = recent_voter_user_ids_,
+        total_voter_count = total_voter_count_,
+        options = options_,
+        question = question_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "poll",
-          "is_closed" A..= is_closed,
-          "close_date" A..= close_date,
-          "open_period" A..= open_period,
-          "type" A..= _type,
-          "is_anonymous" A..= is_anonymous,
-          "recent_voter_user_ids" A..= recent_voter_user_ids,
-          "total_voter_count" A..= total_voter_count,
-          "options" A..= options,
-          "question" A..= question,
-          "id" A..= _id
+          "is_closed" A..= is_closed_,
+          "close_date" A..= close_date_,
+          "open_period" A..= open_period_,
+          "type" A..= _type_,
+          "is_anonymous" A..= is_anonymous_,
+          "recent_voter_user_ids" A..= recent_voter_user_ids_,
+          "total_voter_count" A..= total_voter_count_,
+          "options" A..= options_,
+          "question" A..= question_,
+          "id" A..= _id_
         ]

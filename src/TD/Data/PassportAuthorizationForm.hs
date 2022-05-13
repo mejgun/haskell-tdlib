@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PassportAuthorizationForm where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data PassportAuthorizationForm = -- | Contains information about a Telegram Pass
 instance Show PassportAuthorizationForm where
   show
     PassportAuthorizationForm
-      { privacy_policy_url = privacy_policy_url,
-        required_elements = required_elements,
-        _id = _id
+      { privacy_policy_url = privacy_policy_url_,
+        required_elements = required_elements_,
+        _id = _id_
       } =
       "PassportAuthorizationForm"
         ++ U.cc
-          [ U.p "privacy_policy_url" privacy_policy_url,
-            U.p "required_elements" required_elements,
-            U.p "_id" _id
+          [ U.p "privacy_policy_url" privacy_policy_url_,
+            U.p "required_elements" required_elements_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON PassportAuthorizationForm where
@@ -51,13 +52,13 @@ instance T.FromJSON PassportAuthorizationForm where
 instance T.ToJSON PassportAuthorizationForm where
   toJSON
     PassportAuthorizationForm
-      { privacy_policy_url = privacy_policy_url,
-        required_elements = required_elements,
-        _id = _id
+      { privacy_policy_url = privacy_policy_url_,
+        required_elements = required_elements_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "passportAuthorizationForm",
-          "privacy_policy_url" A..= privacy_policy_url,
-          "required_elements" A..= required_elements,
-          "id" A..= _id
+          "privacy_policy_url" A..= privacy_policy_url_,
+          "required_elements" A..= required_elements_,
+          "id" A..= _id_
         ]

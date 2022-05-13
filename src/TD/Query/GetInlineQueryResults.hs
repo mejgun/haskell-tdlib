@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetInlineQueryResults where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data GetInlineQueryResults = GetInlineQueryResults
 instance Show GetInlineQueryResults where
   show
     GetInlineQueryResults
-      { offset = offset,
-        query = query,
-        user_location = user_location,
-        chat_id = chat_id,
-        bot_user_id = bot_user_id
+      { offset = offset_,
+        query = query_,
+        user_location = user_location_,
+        chat_id = chat_id_,
+        bot_user_id = bot_user_id_
       } =
       "GetInlineQueryResults"
         ++ U.cc
-          [ U.p "offset" offset,
-            U.p "query" query,
-            U.p "user_location" user_location,
-            U.p "chat_id" chat_id,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "offset" offset_,
+            U.p "query" query_,
+            U.p "user_location" user_location_,
+            U.p "chat_id" chat_id_,
+            U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.ToJSON GetInlineQueryResults where
   toJSON
     GetInlineQueryResults
-      { offset = offset,
-        query = query,
-        user_location = user_location,
-        chat_id = chat_id,
-        bot_user_id = bot_user_id
+      { offset = offset_,
+        query = query_,
+        user_location = user_location_,
+        chat_id = chat_id_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "getInlineQueryResults",
-          "offset" A..= offset,
-          "query" A..= query,
-          "user_location" A..= user_location,
-          "chat_id" A..= chat_id,
-          "bot_user_id" A..= bot_user_id
+          "offset" A..= offset_,
+          "query" A..= query_,
+          "user_location" A..= user_location_,
+          "chat_id" A..= chat_id_,
+          "bot_user_id" A..= bot_user_id_
         ]

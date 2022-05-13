@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatStatisticsMessageInteractionInfo where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data ChatStatisticsMessageInteractionInfo = -- | Contains statistics about inter
 instance Show ChatStatisticsMessageInteractionInfo where
   show
     ChatStatisticsMessageInteractionInfo
-      { forward_count = forward_count,
-        view_count = view_count,
-        message_id = message_id
+      { forward_count = forward_count_,
+        view_count = view_count_,
+        message_id = message_id_
       } =
       "ChatStatisticsMessageInteractionInfo"
         ++ U.cc
-          [ U.p "forward_count" forward_count,
-            U.p "view_count" view_count,
-            U.p "message_id" message_id
+          [ U.p "forward_count" forward_count_,
+            U.p "view_count" view_count_,
+            U.p "message_id" message_id_
           ]
 
 instance T.FromJSON ChatStatisticsMessageInteractionInfo where
@@ -50,13 +51,13 @@ instance T.FromJSON ChatStatisticsMessageInteractionInfo where
 instance T.ToJSON ChatStatisticsMessageInteractionInfo where
   toJSON
     ChatStatisticsMessageInteractionInfo
-      { forward_count = forward_count,
-        view_count = view_count,
-        message_id = message_id
+      { forward_count = forward_count_,
+        view_count = view_count_,
+        message_id = message_id_
       } =
       A.object
         [ "@type" A..= T.String "chatStatisticsMessageInteractionInfo",
-          "forward_count" A..= forward_count,
-          "view_count" A..= view_count,
-          "message_id" A..= message_id
+          "forward_count" A..= forward_count_,
+          "view_count" A..= view_count_,
+          "message_id" A..= message_id_
         ]

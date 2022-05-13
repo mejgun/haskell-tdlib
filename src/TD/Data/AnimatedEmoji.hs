@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AnimatedEmoji where
 
 import qualified Data.Aeson as A
@@ -22,15 +23,15 @@ data AnimatedEmoji = -- | Describes an animated representation of an emoji
 instance Show AnimatedEmoji where
   show
     AnimatedEmoji
-      { sound = sound,
-        fitzpatrick_type = fitzpatrick_type,
-        sticker = sticker
+      { sound = sound_,
+        fitzpatrick_type = fitzpatrick_type_,
+        sticker = sticker_
       } =
       "AnimatedEmoji"
         ++ U.cc
-          [ U.p "sound" sound,
-            U.p "fitzpatrick_type" fitzpatrick_type,
-            U.p "sticker" sticker
+          [ U.p "sound" sound_,
+            U.p "fitzpatrick_type" fitzpatrick_type_,
+            U.p "sticker" sticker_
           ]
 
 instance T.FromJSON AnimatedEmoji where
@@ -52,13 +53,13 @@ instance T.FromJSON AnimatedEmoji where
 instance T.ToJSON AnimatedEmoji where
   toJSON
     AnimatedEmoji
-      { sound = sound,
-        fitzpatrick_type = fitzpatrick_type,
-        sticker = sticker
+      { sound = sound_,
+        fitzpatrick_type = fitzpatrick_type_,
+        sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "animatedEmoji",
-          "sound" A..= sound,
-          "fitzpatrick_type" A..= fitzpatrick_type,
-          "sticker" A..= sticker
+          "sound" A..= sound_,
+          "fitzpatrick_type" A..= fitzpatrick_type_,
+          "sticker" A..= sticker_
         ]

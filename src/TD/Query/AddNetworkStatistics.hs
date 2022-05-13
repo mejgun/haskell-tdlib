@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddNetworkStatistics where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data AddNetworkStatistics = AddNetworkStatistics
 instance Show AddNetworkStatistics where
   show
     AddNetworkStatistics
-      { entry = entry
+      { entry = entry_
       } =
       "AddNetworkStatistics"
         ++ U.cc
-          [ U.p "entry" entry
+          [ U.p "entry" entry_
           ]
 
 instance T.ToJSON AddNetworkStatistics where
   toJSON
     AddNetworkStatistics
-      { entry = entry
+      { entry = entry_
       } =
       A.object
         [ "@type" A..= T.String "addNetworkStatistics",
-          "entry" A..= entry
+          "entry" A..= entry_
         ]

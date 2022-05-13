@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ConnectedWebsite where
 
 import qualified Data.Aeson as A
@@ -32,27 +33,27 @@ data ConnectedWebsite = -- | Contains information about one website the current 
 instance Show ConnectedWebsite where
   show
     ConnectedWebsite
-      { location = location,
-        ip = ip,
-        last_active_date = last_active_date,
-        log_in_date = log_in_date,
-        platform = platform,
-        browser = browser,
-        bot_user_id = bot_user_id,
-        domain_name = domain_name,
-        _id = _id
+      { location = location_,
+        ip = ip_,
+        last_active_date = last_active_date_,
+        log_in_date = log_in_date_,
+        platform = platform_,
+        browser = browser_,
+        bot_user_id = bot_user_id_,
+        domain_name = domain_name_,
+        _id = _id_
       } =
       "ConnectedWebsite"
         ++ U.cc
-          [ U.p "location" location,
-            U.p "ip" ip,
-            U.p "last_active_date" last_active_date,
-            U.p "log_in_date" log_in_date,
-            U.p "platform" platform,
-            U.p "browser" browser,
-            U.p "bot_user_id" bot_user_id,
-            U.p "domain_name" domain_name,
-            U.p "_id" _id
+          [ U.p "location" location_,
+            U.p "ip" ip_,
+            U.p "last_active_date" last_active_date_,
+            U.p "log_in_date" log_in_date_,
+            U.p "platform" platform_,
+            U.p "browser" browser_,
+            U.p "bot_user_id" bot_user_id_,
+            U.p "domain_name" domain_name_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON ConnectedWebsite where
@@ -80,25 +81,25 @@ instance T.FromJSON ConnectedWebsite where
 instance T.ToJSON ConnectedWebsite where
   toJSON
     ConnectedWebsite
-      { location = location,
-        ip = ip,
-        last_active_date = last_active_date,
-        log_in_date = log_in_date,
-        platform = platform,
-        browser = browser,
-        bot_user_id = bot_user_id,
-        domain_name = domain_name,
-        _id = _id
+      { location = location_,
+        ip = ip_,
+        last_active_date = last_active_date_,
+        log_in_date = log_in_date_,
+        platform = platform_,
+        browser = browser_,
+        bot_user_id = bot_user_id_,
+        domain_name = domain_name_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "connectedWebsite",
-          "location" A..= location,
-          "ip" A..= ip,
-          "last_active_date" A..= last_active_date,
-          "log_in_date" A..= log_in_date,
-          "platform" A..= platform,
-          "browser" A..= browser,
-          "bot_user_id" A..= bot_user_id,
-          "domain_name" A..= domain_name,
-          "id" A..= _id
+          "location" A..= location_,
+          "ip" A..= ip_,
+          "last_active_date" A..= last_active_date_,
+          "log_in_date" A..= log_in_date_,
+          "platform" A..= platform_,
+          "browser" A..= browser_,
+          "bot_user_id" A..= bot_user_id_,
+          "domain_name" A..= domain_name_,
+          "id" A..= _id_
         ]

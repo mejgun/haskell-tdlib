@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SecretChat where
 
 import qualified Data.Aeson as A
@@ -28,21 +29,21 @@ data SecretChat = -- | Represents a secret chat
 instance Show SecretChat where
   show
     SecretChat
-      { layer = layer,
-        key_hash = key_hash,
-        is_outbound = is_outbound,
-        state = state,
-        user_id = user_id,
-        _id = _id
+      { layer = layer_,
+        key_hash = key_hash_,
+        is_outbound = is_outbound_,
+        state = state_,
+        user_id = user_id_,
+        _id = _id_
       } =
       "SecretChat"
         ++ U.cc
-          [ U.p "layer" layer,
-            U.p "key_hash" key_hash,
-            U.p "is_outbound" is_outbound,
-            U.p "state" state,
-            U.p "user_id" user_id,
-            U.p "_id" _id
+          [ U.p "layer" layer_,
+            U.p "key_hash" key_hash_,
+            U.p "is_outbound" is_outbound_,
+            U.p "state" state_,
+            U.p "user_id" user_id_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON SecretChat where
@@ -67,19 +68,19 @@ instance T.FromJSON SecretChat where
 instance T.ToJSON SecretChat where
   toJSON
     SecretChat
-      { layer = layer,
-        key_hash = key_hash,
-        is_outbound = is_outbound,
-        state = state,
-        user_id = user_id,
-        _id = _id
+      { layer = layer_,
+        key_hash = key_hash_,
+        is_outbound = is_outbound_,
+        state = state_,
+        user_id = user_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "secretChat",
-          "layer" A..= layer,
-          "key_hash" A..= key_hash,
-          "is_outbound" A..= is_outbound,
-          "state" A..= state,
-          "user_id" A..= user_id,
-          "id" A..= _id
+          "layer" A..= layer_,
+          "key_hash" A..= key_hash_,
+          "is_outbound" A..= is_outbound_,
+          "state" A..= state_,
+          "user_id" A..= user_id_,
+          "id" A..= _id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputSticker where
 
 import qualified Data.Aeson as A
@@ -22,15 +23,15 @@ data InputSticker = -- | A sticker to be added to a sticker set
 instance Show InputSticker where
   show
     InputSticker
-      { _type = _type,
-        emojis = emojis,
-        sticker = sticker
+      { _type = _type_,
+        emojis = emojis_,
+        sticker = sticker_
       } =
       "InputSticker"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "emojis" emojis,
-            U.p "sticker" sticker
+          [ U.p "_type" _type_,
+            U.p "emojis" emojis_,
+            U.p "sticker" sticker_
           ]
 
 instance T.FromJSON InputSticker where
@@ -52,13 +53,13 @@ instance T.FromJSON InputSticker where
 instance T.ToJSON InputSticker where
   toJSON
     InputSticker
-      { _type = _type,
-        emojis = emojis,
-        sticker = sticker
+      { _type = _type_,
+        emojis = emojis_,
+        sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "inputSticker",
-          "type" A..= _type,
-          "emojis" A..= emojis,
-          "sticker" A..= sticker
+          "type" A..= _type_,
+          "emojis" A..= emojis_,
+          "sticker" A..= sticker_
         ]

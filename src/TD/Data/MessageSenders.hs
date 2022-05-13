@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageSenders where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data MessageSenders = -- | Represents a list of message senders @total_count App
 instance Show MessageSenders where
   show
     MessageSenders
-      { senders = senders,
-        total_count = total_count
+      { senders = senders_,
+        total_count = total_count_
       } =
       "MessageSenders"
         ++ U.cc
-          [ U.p "senders" senders,
-            U.p "total_count" total_count
+          [ U.p "senders" senders_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON MessageSenders where
@@ -46,11 +47,11 @@ instance T.FromJSON MessageSenders where
 instance T.ToJSON MessageSenders where
   toJSON
     MessageSenders
-      { senders = senders,
-        total_count = total_count
+      { senders = senders_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "messageSenders",
-          "senders" A..= senders,
-          "total_count" A..= total_count
+          "senders" A..= senders_,
+          "total_count" A..= total_count_
         ]

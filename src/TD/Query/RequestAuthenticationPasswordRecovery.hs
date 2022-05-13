@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RequestAuthenticationPasswordRecovery where
 
 import qualified Data.Aeson as A

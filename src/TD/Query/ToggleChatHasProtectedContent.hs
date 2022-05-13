@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleChatHasProtectedContent where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleChatHasProtectedContent = ToggleChatHasProtectedContent
 instance Show ToggleChatHasProtectedContent where
   show
     ToggleChatHasProtectedContent
-      { has_protected_content = has_protected_content,
-        chat_id = chat_id
+      { has_protected_content = has_protected_content_,
+        chat_id = chat_id_
       } =
       "ToggleChatHasProtectedContent"
         ++ U.cc
-          [ U.p "has_protected_content" has_protected_content,
-            U.p "chat_id" chat_id
+          [ U.p "has_protected_content" has_protected_content_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ToggleChatHasProtectedContent where
   toJSON
     ToggleChatHasProtectedContent
-      { has_protected_content = has_protected_content,
-        chat_id = chat_id
+      { has_protected_content = has_protected_content_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleChatHasProtectedContent",
-          "has_protected_content" A..= has_protected_content,
-          "chat_id" A..= chat_id
+          "has_protected_content" A..= has_protected_content_,
+          "chat_id" A..= chat_id_
         ]

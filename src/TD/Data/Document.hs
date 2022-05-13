@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Document where
 
 import qualified Data.Aeson as A
@@ -27,19 +28,19 @@ data Document = -- | Describes a document of any type @file_name Original name o
 instance Show Document where
   show
     Document
-      { document = document,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        mime_type = mime_type,
-        file_name = file_name
+      { document = document_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        mime_type = mime_type_,
+        file_name = file_name_
       } =
       "Document"
         ++ U.cc
-          [ U.p "document" document,
-            U.p "thumbnail" thumbnail,
-            U.p "minithumbnail" minithumbnail,
-            U.p "mime_type" mime_type,
-            U.p "file_name" file_name
+          [ U.p "document" document_,
+            U.p "thumbnail" thumbnail_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "mime_type" mime_type_,
+            U.p "file_name" file_name_
           ]
 
 instance T.FromJSON Document where
@@ -63,17 +64,17 @@ instance T.FromJSON Document where
 instance T.ToJSON Document where
   toJSON
     Document
-      { document = document,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        mime_type = mime_type,
-        file_name = file_name
+      { document = document_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        mime_type = mime_type_,
+        file_name = file_name_
       } =
       A.object
         [ "@type" A..= T.String "document",
-          "document" A..= document,
-          "thumbnail" A..= thumbnail,
-          "minithumbnail" A..= minithumbnail,
-          "mime_type" A..= mime_type,
-          "file_name" A..= file_name
+          "document" A..= document_,
+          "thumbnail" A..= thumbnail_,
+          "minithumbnail" A..= minithumbnail_,
+          "mime_type" A..= mime_type_,
+          "file_name" A..= file_name_
         ]

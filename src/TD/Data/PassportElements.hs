@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PassportElements where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data PassportElements = -- | Contains information about saved Telegram Passport 
 instance Show PassportElements where
   show
     PassportElements
-      { elements = elements
+      { elements = elements_
       } =
       "PassportElements"
         ++ U.cc
-          [ U.p "elements" elements
+          [ U.p "elements" elements_
           ]
 
 instance T.FromJSON PassportElements where
@@ -41,9 +42,9 @@ instance T.FromJSON PassportElements where
 instance T.ToJSON PassportElements where
   toJSON
     PassportElements
-      { elements = elements
+      { elements = elements_
       } =
       A.object
         [ "@type" A..= T.String "passportElements",
-          "elements" A..= elements
+          "elements" A..= elements_
         ]

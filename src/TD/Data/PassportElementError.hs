@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PassportElementError where
 
 import qualified Data.Aeson as A
@@ -22,15 +23,15 @@ data PassportElementError = -- | Contains the description of an error in a Teleg
 instance Show PassportElementError where
   show
     PassportElementError
-      { source = source,
-        message = message,
-        _type = _type
+      { source = source_,
+        message = message_,
+        _type = _type_
       } =
       "PassportElementError"
         ++ U.cc
-          [ U.p "source" source,
-            U.p "message" message,
-            U.p "_type" _type
+          [ U.p "source" source_,
+            U.p "message" message_,
+            U.p "_type" _type_
           ]
 
 instance T.FromJSON PassportElementError where
@@ -52,13 +53,13 @@ instance T.FromJSON PassportElementError where
 instance T.ToJSON PassportElementError where
   toJSON
     PassportElementError
-      { source = source,
-        message = message,
-        _type = _type
+      { source = source_,
+        message = message_,
+        _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "passportElementError",
-          "source" A..= source,
-          "message" A..= message,
-          "type" A..= _type
+          "source" A..= source_,
+          "message" A..= message_,
+          "type" A..= _type_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Seconds where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data Seconds = -- | Contains a value representing a number of seconds @seconds N
 instance Show Seconds where
   show
     Seconds
-      { seconds = seconds
+      { seconds = seconds_
       } =
       "Seconds"
         ++ U.cc
-          [ U.p "seconds" seconds
+          [ U.p "seconds" seconds_
           ]
 
 instance T.FromJSON Seconds where
@@ -40,9 +41,9 @@ instance T.FromJSON Seconds where
 instance T.ToJSON Seconds where
   toJSON
     Seconds
-      { seconds = seconds
+      { seconds = seconds_
       } =
       A.object
         [ "@type" A..= T.String "seconds",
-          "seconds" A..= seconds
+          "seconds" A..= seconds_
         ]

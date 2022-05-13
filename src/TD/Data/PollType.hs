@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PollType where
 
 import qualified Data.Aeson as A
@@ -26,21 +27,21 @@ data PollType
 instance Show PollType where
   show
     PollTypeRegular
-      { allow_multiple_answers = allow_multiple_answers
+      { allow_multiple_answers = allow_multiple_answers_
       } =
       "PollTypeRegular"
         ++ U.cc
-          [ U.p "allow_multiple_answers" allow_multiple_answers
+          [ U.p "allow_multiple_answers" allow_multiple_answers_
           ]
   show
     PollTypeQuiz
-      { explanation = explanation,
-        correct_option_id = correct_option_id
+      { explanation = explanation_,
+        correct_option_id = correct_option_id_
       } =
       "PollTypeQuiz"
         ++ U.cc
-          [ U.p "explanation" explanation,
-            U.p "correct_option_id" correct_option_id
+          [ U.p "explanation" explanation_,
+            U.p "correct_option_id" correct_option_id_
           ]
 
 instance T.FromJSON PollType where
@@ -67,19 +68,19 @@ instance T.FromJSON PollType where
 instance T.ToJSON PollType where
   toJSON
     PollTypeRegular
-      { allow_multiple_answers = allow_multiple_answers
+      { allow_multiple_answers = allow_multiple_answers_
       } =
       A.object
         [ "@type" A..= T.String "pollTypeRegular",
-          "allow_multiple_answers" A..= allow_multiple_answers
+          "allow_multiple_answers" A..= allow_multiple_answers_
         ]
   toJSON
     PollTypeQuiz
-      { explanation = explanation,
-        correct_option_id = correct_option_id
+      { explanation = explanation_,
+        correct_option_id = correct_option_id_
       } =
       A.object
         [ "@type" A..= T.String "pollTypeQuiz",
-          "explanation" A..= explanation,
-          "correct_option_id" A..= correct_option_id
+          "explanation" A..= explanation_,
+          "correct_option_id" A..= correct_option_id_
         ]

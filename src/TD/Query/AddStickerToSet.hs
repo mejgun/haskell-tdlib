@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddStickerToSet where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data AddStickerToSet = AddStickerToSet
 instance Show AddStickerToSet where
   show
     AddStickerToSet
-      { sticker = sticker,
-        name = name,
-        user_id = user_id
+      { sticker = sticker_,
+        name = name_,
+        user_id = user_id_
       } =
       "AddStickerToSet"
         ++ U.cc
-          [ U.p "sticker" sticker,
-            U.p "name" name,
-            U.p "user_id" user_id
+          [ U.p "sticker" sticker_,
+            U.p "name" name_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON AddStickerToSet where
   toJSON
     AddStickerToSet
-      { sticker = sticker,
-        name = name,
-        user_id = user_id
+      { sticker = sticker_,
+        name = name_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "addStickerToSet",
-          "sticker" A..= sticker,
-          "name" A..= name,
-          "user_id" A..= user_id
+          "sticker" A..= sticker_,
+          "name" A..= name_,
+          "user_id" A..= user_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputPassportElementErrorSource where
 
 import qualified Data.Aeson as A
@@ -60,77 +61,77 @@ data InputPassportElementErrorSource
 instance Show InputPassportElementErrorSource where
   show
     InputPassportElementErrorSourceUnspecified
-      { element_hash = element_hash
+      { element_hash = element_hash_
       } =
       "InputPassportElementErrorSourceUnspecified"
         ++ U.cc
-          [ U.p "element_hash" element_hash
+          [ U.p "element_hash" element_hash_
           ]
   show
     InputPassportElementErrorSourceDataField
-      { data_hash = data_hash,
-        field_name = field_name
+      { data_hash = data_hash_,
+        field_name = field_name_
       } =
       "InputPassportElementErrorSourceDataField"
         ++ U.cc
-          [ U.p "data_hash" data_hash,
-            U.p "field_name" field_name
+          [ U.p "data_hash" data_hash_,
+            U.p "field_name" field_name_
           ]
   show
     InputPassportElementErrorSourceFrontSide
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       "InputPassportElementErrorSourceFrontSide"
         ++ U.cc
-          [ U.p "file_hash" file_hash
+          [ U.p "file_hash" file_hash_
           ]
   show
     InputPassportElementErrorSourceReverseSide
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       "InputPassportElementErrorSourceReverseSide"
         ++ U.cc
-          [ U.p "file_hash" file_hash
+          [ U.p "file_hash" file_hash_
           ]
   show
     InputPassportElementErrorSourceSelfie
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       "InputPassportElementErrorSourceSelfie"
         ++ U.cc
-          [ U.p "file_hash" file_hash
+          [ U.p "file_hash" file_hash_
           ]
   show
     InputPassportElementErrorSourceTranslationFile
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       "InputPassportElementErrorSourceTranslationFile"
         ++ U.cc
-          [ U.p "file_hash" file_hash
+          [ U.p "file_hash" file_hash_
           ]
   show
     InputPassportElementErrorSourceTranslationFiles
-      { file_hashes = file_hashes
+      { file_hashes = file_hashes_
       } =
       "InputPassportElementErrorSourceTranslationFiles"
         ++ U.cc
-          [ U.p "file_hashes" file_hashes
+          [ U.p "file_hashes" file_hashes_
           ]
   show
     InputPassportElementErrorSourceFile
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       "InputPassportElementErrorSourceFile"
         ++ U.cc
-          [ U.p "file_hash" file_hash
+          [ U.p "file_hash" file_hash_
           ]
   show
     InputPassportElementErrorSourceFiles
-      { file_hashes = file_hashes
+      { file_hashes = file_hashes_
       } =
       "InputPassportElementErrorSourceFiles"
         ++ U.cc
-          [ U.p "file_hashes" file_hashes
+          [ U.p "file_hashes" file_hashes_
           ]
 
 instance T.FromJSON InputPassportElementErrorSource where
@@ -199,75 +200,75 @@ instance T.FromJSON InputPassportElementErrorSource where
 instance T.ToJSON InputPassportElementErrorSource where
   toJSON
     InputPassportElementErrorSourceUnspecified
-      { element_hash = element_hash
+      { element_hash = element_hash_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceUnspecified",
-          "element_hash" A..= element_hash
+          "element_hash" A..= element_hash_
         ]
   toJSON
     InputPassportElementErrorSourceDataField
-      { data_hash = data_hash,
-        field_name = field_name
+      { data_hash = data_hash_,
+        field_name = field_name_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceDataField",
-          "data_hash" A..= data_hash,
-          "field_name" A..= field_name
+          "data_hash" A..= data_hash_,
+          "field_name" A..= field_name_
         ]
   toJSON
     InputPassportElementErrorSourceFrontSide
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceFrontSide",
-          "file_hash" A..= file_hash
+          "file_hash" A..= file_hash_
         ]
   toJSON
     InputPassportElementErrorSourceReverseSide
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceReverseSide",
-          "file_hash" A..= file_hash
+          "file_hash" A..= file_hash_
         ]
   toJSON
     InputPassportElementErrorSourceSelfie
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceSelfie",
-          "file_hash" A..= file_hash
+          "file_hash" A..= file_hash_
         ]
   toJSON
     InputPassportElementErrorSourceTranslationFile
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceTranslationFile",
-          "file_hash" A..= file_hash
+          "file_hash" A..= file_hash_
         ]
   toJSON
     InputPassportElementErrorSourceTranslationFiles
-      { file_hashes = file_hashes
+      { file_hashes = file_hashes_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceTranslationFiles",
-          "file_hashes" A..= file_hashes
+          "file_hashes" A..= file_hashes_
         ]
   toJSON
     InputPassportElementErrorSourceFile
-      { file_hash = file_hash
+      { file_hash = file_hash_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceFile",
-          "file_hash" A..= file_hash
+          "file_hash" A..= file_hash_
         ]
   toJSON
     InputPassportElementErrorSourceFiles
-      { file_hashes = file_hashes
+      { file_hashes = file_hashes_
       } =
       A.object
         [ "@type" A..= T.String "inputPassportElementErrorSourceFiles",
-          "file_hashes" A..= file_hashes
+          "file_hashes" A..= file_hashes_
         ]

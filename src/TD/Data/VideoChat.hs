@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.VideoChat where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data VideoChat = -- | Describes a video chat
 instance Show VideoChat where
   show
     VideoChat
-      { default_participant_id = default_participant_id,
-        has_participants = has_participants,
-        group_call_id = group_call_id
+      { default_participant_id = default_participant_id_,
+        has_participants = has_participants_,
+        group_call_id = group_call_id_
       } =
       "VideoChat"
         ++ U.cc
-          [ U.p "default_participant_id" default_participant_id,
-            U.p "has_participants" has_participants,
-            U.p "group_call_id" group_call_id
+          [ U.p "default_participant_id" default_participant_id_,
+            U.p "has_participants" has_participants_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.FromJSON VideoChat where
@@ -51,13 +52,13 @@ instance T.FromJSON VideoChat where
 instance T.ToJSON VideoChat where
   toJSON
     VideoChat
-      { default_participant_id = default_participant_id,
-        has_participants = has_participants,
-        group_call_id = group_call_id
+      { default_participant_id = default_participant_id_,
+        has_participants = has_participants_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "videoChat",
-          "default_participant_id" A..= default_participant_id,
-          "has_participants" A..= has_participants,
-          "group_call_id" A..= group_call_id
+          "default_participant_id" A..= default_participant_id_,
+          "has_participants" A..= has_participants_,
+          "group_call_id" A..= group_call_id_
         ]

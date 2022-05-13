@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AnimatedChatPhoto where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data AnimatedChatPhoto = -- | Animated variant of a chat photo in MPEG4 format
 instance Show AnimatedChatPhoto where
   show
     AnimatedChatPhoto
-      { main_frame_timestamp = main_frame_timestamp,
-        file = file,
-        _length = _length
+      { main_frame_timestamp = main_frame_timestamp_,
+        file = file_,
+        _length = _length_
       } =
       "AnimatedChatPhoto"
         ++ U.cc
-          [ U.p "main_frame_timestamp" main_frame_timestamp,
-            U.p "file" file,
-            U.p "_length" _length
+          [ U.p "main_frame_timestamp" main_frame_timestamp_,
+            U.p "file" file_,
+            U.p "_length" _length_
           ]
 
 instance T.FromJSON AnimatedChatPhoto where
@@ -51,13 +52,13 @@ instance T.FromJSON AnimatedChatPhoto where
 instance T.ToJSON AnimatedChatPhoto where
   toJSON
     AnimatedChatPhoto
-      { main_frame_timestamp = main_frame_timestamp,
-        file = file,
-        _length = _length
+      { main_frame_timestamp = main_frame_timestamp_,
+        file = file_,
+        _length = _length_
       } =
       A.object
         [ "@type" A..= T.String "animatedChatPhoto",
-          "main_frame_timestamp" A..= main_frame_timestamp,
-          "file" A..= file,
-          "length" A..= _length
+          "main_frame_timestamp" A..= main_frame_timestamp_,
+          "file" A..= file_,
+          "length" A..= _length_
         ]

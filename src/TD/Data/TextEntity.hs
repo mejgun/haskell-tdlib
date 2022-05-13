@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TextEntity where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data TextEntity = -- | Represents a part of the text that needs to be formatted 
 instance Show TextEntity where
   show
     TextEntity
-      { _type = _type,
-        _length = _length,
-        offset = offset
+      { _type = _type_,
+        _length = _length_,
+        offset = offset_
       } =
       "TextEntity"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "_length" _length,
-            U.p "offset" offset
+          [ U.p "_type" _type_,
+            U.p "_length" _length_,
+            U.p "offset" offset_
           ]
 
 instance T.FromJSON TextEntity where
@@ -51,13 +52,13 @@ instance T.FromJSON TextEntity where
 instance T.ToJSON TextEntity where
   toJSON
     TextEntity
-      { _type = _type,
-        _length = _length,
-        offset = offset
+      { _type = _type_,
+        _length = _length_,
+        offset = offset_
       } =
       A.object
         [ "@type" A..= T.String "textEntity",
-          "type" A..= _type,
-          "length" A..= _length,
-          "offset" A..= offset
+          "type" A..= _type_,
+          "length" A..= _length_,
+          "offset" A..= offset_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PageBlockTableCell where
 
 import qualified Data.Aeson as A
@@ -29,21 +30,21 @@ data PageBlockTableCell = -- | Represents a cell of a table @text Cell text; may
 instance Show PageBlockTableCell where
   show
     PageBlockTableCell
-      { valign = valign,
-        align = align,
-        rowspan = rowspan,
-        colspan = colspan,
-        is_header = is_header,
-        text = text
+      { valign = valign_,
+        align = align_,
+        rowspan = rowspan_,
+        colspan = colspan_,
+        is_header = is_header_,
+        text = text_
       } =
       "PageBlockTableCell"
         ++ U.cc
-          [ U.p "valign" valign,
-            U.p "align" align,
-            U.p "rowspan" rowspan,
-            U.p "colspan" colspan,
-            U.p "is_header" is_header,
-            U.p "text" text
+          [ U.p "valign" valign_,
+            U.p "align" align_,
+            U.p "rowspan" rowspan_,
+            U.p "colspan" colspan_,
+            U.p "is_header" is_header_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON PageBlockTableCell where
@@ -68,19 +69,19 @@ instance T.FromJSON PageBlockTableCell where
 instance T.ToJSON PageBlockTableCell where
   toJSON
     PageBlockTableCell
-      { valign = valign,
-        align = align,
-        rowspan = rowspan,
-        colspan = colspan,
-        is_header = is_header,
-        text = text
+      { valign = valign_,
+        align = align_,
+        rowspan = rowspan_,
+        colspan = colspan_,
+        is_header = is_header_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockTableCell",
-          "valign" A..= valign,
-          "align" A..= align,
-          "rowspan" A..= rowspan,
-          "colspan" A..= colspan,
-          "is_header" A..= is_header,
-          "text" A..= text
+          "valign" A..= valign_,
+          "align" A..= align_,
+          "rowspan" A..= rowspan_,
+          "colspan" A..= colspan_,
+          "is_header" A..= is_header_,
+          "text" A..= text_
         ]

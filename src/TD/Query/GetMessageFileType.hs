@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMessageFileType where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetMessageFileType = GetMessageFileType
 instance Show GetMessageFileType where
   show
     GetMessageFileType
-      { message_file_head = message_file_head
+      { message_file_head = message_file_head_
       } =
       "GetMessageFileType"
         ++ U.cc
-          [ U.p "message_file_head" message_file_head
+          [ U.p "message_file_head" message_file_head_
           ]
 
 instance T.ToJSON GetMessageFileType where
   toJSON
     GetMessageFileType
-      { message_file_head = message_file_head
+      { message_file_head = message_file_head_
       } =
       A.object
         [ "@type" A..= T.String "getMessageFileType",
-          "message_file_head" A..= message_file_head
+          "message_file_head" A..= message_file_head_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddLogMessage where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data AddLogMessage = AddLogMessage
 instance Show AddLogMessage where
   show
     AddLogMessage
-      { text = text,
-        verbosity_level = verbosity_level
+      { text = text_,
+        verbosity_level = verbosity_level_
       } =
       "AddLogMessage"
         ++ U.cc
-          [ U.p "text" text,
-            U.p "verbosity_level" verbosity_level
+          [ U.p "text" text_,
+            U.p "verbosity_level" verbosity_level_
           ]
 
 instance T.ToJSON AddLogMessage where
   toJSON
     AddLogMessage
-      { text = text,
-        verbosity_level = verbosity_level
+      { text = text_,
+        verbosity_level = verbosity_level_
       } =
       A.object
         [ "@type" A..= T.String "addLogMessage",
-          "text" A..= text,
-          "verbosity_level" A..= verbosity_level
+          "text" A..= text_,
+          "verbosity_level" A..= verbosity_level_
         ]

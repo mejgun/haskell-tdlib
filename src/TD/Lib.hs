@@ -17,10 +17,10 @@ import qualified Data.ByteString.Lazy as BL
 import qualified Data.HashMap.Strict as H
 import qualified Data.Text as T
 import qualified Data.Time.Clock.System as Time
-import Foreign
-import Foreign.C.String
-import Foreign.C.Types
-import TD.Data.GeneralResult as GeneralResult
+import Foreign (Ptr, nullPtr)
+import Foreign.C.String (CString)
+import Foreign.C.Types ()
+import TD.Data.GeneralResult as GeneralResult (ResultWithExtra)
 
 foreign import ccall "libtdjson td_json_client_create" c_create :: IO Client
 
@@ -28,7 +28,6 @@ foreign import ccall "libtdjson td_json_client_send" c_send :: Client -> CString
 
 foreign import ccall "libtdjson td_json_client_receive" c_receive :: Client -> Timeout -> IO CString
 
---foreign import ccall "libtdjson td_json_client_execute" c_execute :: Client -> CString -> IO ()
 foreign import ccall "libtdjson td_json_client_destroy" c_destroy :: Client -> IO ()
 
 type Client = Ptr ()
@@ -51,18 +50,15 @@ sendWExtra c d = do
     enc xtr = do
       BL.toStrict $ A.encode (addExtra d xtr)
     addExtra :: (A.ToJSON a) => a -> String -> H.HashMap T.Text A.Value
-    addExtra d s = do
-      let A.Object t = A.toJSON d
-      H.insert (T.pack "@extra") (A.String (T.pack s)) t
+    addExtra dd s =
+      let A.Object t = A.toJSON dd
+       in H.insert (T.pack "@extra") (A.String (T.pack s)) t
     getUnixTime :: IO String
     getUnixTime = do
-      let s = show <$> Time.systemSeconds <$> Time.getSystemTime
-      let ns = show <$> Time.systemNanoseconds <$> Time.getSystemTime
+      let s = show . Time.systemSeconds <$> Time.getSystemTime
+      let ns = show . Time.systemNanoseconds <$> Time.getSystemTime
       let str = (++) <$> s <*> ns
       str
-
--- execute :: Client -> String -> IO ()
--- execute c s = (newCString s) >>= c_execute c
 
 receive :: Client -> IO (Maybe GeneralResult.ResultWithExtra)
 receive c = dec $ c_receive c 1.0
@@ -77,4 +73,4 @@ receive c = dec $ c_receive c 1.0
           A.decodeStrict <$> B.packCString cs
 
 destroy :: Client -> IO ()
-destroy c = c_destroy c
+destroy = c_destroy

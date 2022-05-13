@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TestReturnError where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data TestReturnError = TestReturnError
 instance Show TestReturnError where
   show
     TestReturnError
-      { _error = _error
+      { _error = _error_
       } =
       "TestReturnError"
         ++ U.cc
-          [ U.p "_error" _error
+          [ U.p "_error" _error_
           ]
 
 instance T.ToJSON TestReturnError where
   toJSON
     TestReturnError
-      { _error = _error
+      { _error = _error_
       } =
       A.object
         [ "@type" A..= T.String "testReturnError",
-          "error" A..= _error
+          "error" A..= _error_
         ]

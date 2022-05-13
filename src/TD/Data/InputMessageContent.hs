@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputMessageContent where
 
 import qualified Data.Aeson as A
@@ -235,267 +236,267 @@ data InputMessageContent
 instance Show InputMessageContent where
   show
     InputMessageText
-      { clear_draft = clear_draft,
-        disable_web_page_preview = disable_web_page_preview,
-        text = text
+      { clear_draft = clear_draft_,
+        disable_web_page_preview = disable_web_page_preview_,
+        text = text_
       } =
       "InputMessageText"
         ++ U.cc
-          [ U.p "clear_draft" clear_draft,
-            U.p "disable_web_page_preview" disable_web_page_preview,
-            U.p "text" text
+          [ U.p "clear_draft" clear_draft_,
+            U.p "disable_web_page_preview" disable_web_page_preview_,
+            U.p "text" text_
           ]
   show
     InputMessageAnimation
-      { caption = caption,
-        height = height,
-        width = width,
-        duration = duration,
-        added_sticker_file_ids = added_sticker_file_ids,
-        thumbnail = thumbnail,
-        animation = animation
+      { caption = caption_,
+        height = height_,
+        width = width_,
+        duration = duration_,
+        added_sticker_file_ids = added_sticker_file_ids_,
+        thumbnail = thumbnail_,
+        animation = animation_
       } =
       "InputMessageAnimation"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "duration" duration,
-            U.p "added_sticker_file_ids" added_sticker_file_ids,
-            U.p "thumbnail" thumbnail,
-            U.p "animation" animation
+          [ U.p "caption" caption_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "duration" duration_,
+            U.p "added_sticker_file_ids" added_sticker_file_ids_,
+            U.p "thumbnail" thumbnail_,
+            U.p "animation" animation_
           ]
   show
     InputMessageAudio
-      { caption = caption,
-        performer = performer,
-        title = title,
-        duration = duration,
-        album_cover_thumbnail = album_cover_thumbnail,
-        audio = audio
+      { caption = caption_,
+        performer = performer_,
+        title = title_,
+        duration = duration_,
+        album_cover_thumbnail = album_cover_thumbnail_,
+        audio = audio_
       } =
       "InputMessageAudio"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "performer" performer,
-            U.p "title" title,
-            U.p "duration" duration,
-            U.p "album_cover_thumbnail" album_cover_thumbnail,
-            U.p "audio" audio
+          [ U.p "caption" caption_,
+            U.p "performer" performer_,
+            U.p "title" title_,
+            U.p "duration" duration_,
+            U.p "album_cover_thumbnail" album_cover_thumbnail_,
+            U.p "audio" audio_
           ]
   show
     InputMessageDocument
-      { caption = caption,
-        disable_content_type_detection = disable_content_type_detection,
-        thumbnail = thumbnail,
-        document = document
+      { caption = caption_,
+        disable_content_type_detection = disable_content_type_detection_,
+        thumbnail = thumbnail_,
+        document = document_
       } =
       "InputMessageDocument"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "disable_content_type_detection" disable_content_type_detection,
-            U.p "thumbnail" thumbnail,
-            U.p "document" document
+          [ U.p "caption" caption_,
+            U.p "disable_content_type_detection" disable_content_type_detection_,
+            U.p "thumbnail" thumbnail_,
+            U.p "document" document_
           ]
   show
     InputMessagePhoto
-      { ttl = ttl,
-        caption = caption,
-        height = height,
-        width = width,
-        added_sticker_file_ids = added_sticker_file_ids,
-        thumbnail = thumbnail,
-        photo = photo
+      { ttl = ttl_,
+        caption = caption_,
+        height = height_,
+        width = width_,
+        added_sticker_file_ids = added_sticker_file_ids_,
+        thumbnail = thumbnail_,
+        photo = photo_
       } =
       "InputMessagePhoto"
         ++ U.cc
-          [ U.p "ttl" ttl,
-            U.p "caption" caption,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "added_sticker_file_ids" added_sticker_file_ids,
-            U.p "thumbnail" thumbnail,
-            U.p "photo" photo
+          [ U.p "ttl" ttl_,
+            U.p "caption" caption_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "added_sticker_file_ids" added_sticker_file_ids_,
+            U.p "thumbnail" thumbnail_,
+            U.p "photo" photo_
           ]
   show
     InputMessageSticker
-      { emoji = emoji,
-        height = height,
-        width = width,
-        thumbnail = thumbnail,
-        sticker = sticker
+      { emoji = emoji_,
+        height = height_,
+        width = width_,
+        thumbnail = thumbnail_,
+        sticker = sticker_
       } =
       "InputMessageSticker"
         ++ U.cc
-          [ U.p "emoji" emoji,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "thumbnail" thumbnail,
-            U.p "sticker" sticker
+          [ U.p "emoji" emoji_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "thumbnail" thumbnail_,
+            U.p "sticker" sticker_
           ]
   show
     InputMessageVideo
-      { ttl = ttl,
-        caption = caption,
-        supports_streaming = supports_streaming,
-        height = height,
-        width = width,
-        duration = duration,
-        added_sticker_file_ids = added_sticker_file_ids,
-        thumbnail = thumbnail,
-        video = video
+      { ttl = ttl_,
+        caption = caption_,
+        supports_streaming = supports_streaming_,
+        height = height_,
+        width = width_,
+        duration = duration_,
+        added_sticker_file_ids = added_sticker_file_ids_,
+        thumbnail = thumbnail_,
+        video = video_
       } =
       "InputMessageVideo"
         ++ U.cc
-          [ U.p "ttl" ttl,
-            U.p "caption" caption,
-            U.p "supports_streaming" supports_streaming,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "duration" duration,
-            U.p "added_sticker_file_ids" added_sticker_file_ids,
-            U.p "thumbnail" thumbnail,
-            U.p "video" video
+          [ U.p "ttl" ttl_,
+            U.p "caption" caption_,
+            U.p "supports_streaming" supports_streaming_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "duration" duration_,
+            U.p "added_sticker_file_ids" added_sticker_file_ids_,
+            U.p "thumbnail" thumbnail_,
+            U.p "video" video_
           ]
   show
     InputMessageVideoNote
-      { _length = _length,
-        duration = duration,
-        thumbnail = thumbnail,
-        video_note = video_note
+      { _length = _length_,
+        duration = duration_,
+        thumbnail = thumbnail_,
+        video_note = video_note_
       } =
       "InputMessageVideoNote"
         ++ U.cc
-          [ U.p "_length" _length,
-            U.p "duration" duration,
-            U.p "thumbnail" thumbnail,
-            U.p "video_note" video_note
+          [ U.p "_length" _length_,
+            U.p "duration" duration_,
+            U.p "thumbnail" thumbnail_,
+            U.p "video_note" video_note_
           ]
   show
     InputMessageVoiceNote
-      { caption = caption,
-        waveform = waveform,
-        duration = duration,
-        voice_note = voice_note
+      { caption = caption_,
+        waveform = waveform_,
+        duration = duration_,
+        voice_note = voice_note_
       } =
       "InputMessageVoiceNote"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "waveform" waveform,
-            U.p "duration" duration,
-            U.p "voice_note" voice_note
+          [ U.p "caption" caption_,
+            U.p "waveform" waveform_,
+            U.p "duration" duration_,
+            U.p "voice_note" voice_note_
           ]
   show
     InputMessageLocation
-      { proximity_alert_radius = proximity_alert_radius,
-        heading = heading,
-        live_period = live_period,
-        location = location
+      { proximity_alert_radius = proximity_alert_radius_,
+        heading = heading_,
+        live_period = live_period_,
+        location = location_
       } =
       "InputMessageLocation"
         ++ U.cc
-          [ U.p "proximity_alert_radius" proximity_alert_radius,
-            U.p "heading" heading,
-            U.p "live_period" live_period,
-            U.p "location" location
+          [ U.p "proximity_alert_radius" proximity_alert_radius_,
+            U.p "heading" heading_,
+            U.p "live_period" live_period_,
+            U.p "location" location_
           ]
   show
     InputMessageVenue
-      { venue = venue
+      { venue = venue_
       } =
       "InputMessageVenue"
         ++ U.cc
-          [ U.p "venue" venue
+          [ U.p "venue" venue_
           ]
   show
     InputMessageContact
-      { contact = contact
+      { contact = contact_
       } =
       "InputMessageContact"
         ++ U.cc
-          [ U.p "contact" contact
+          [ U.p "contact" contact_
           ]
   show
     InputMessageDice
-      { clear_draft = clear_draft,
-        emoji = emoji
+      { clear_draft = clear_draft_,
+        emoji = emoji_
       } =
       "InputMessageDice"
         ++ U.cc
-          [ U.p "clear_draft" clear_draft,
-            U.p "emoji" emoji
+          [ U.p "clear_draft" clear_draft_,
+            U.p "emoji" emoji_
           ]
   show
     InputMessageGame
-      { game_short_name = game_short_name,
-        bot_user_id = bot_user_id
+      { game_short_name = game_short_name_,
+        bot_user_id = bot_user_id_
       } =
       "InputMessageGame"
         ++ U.cc
-          [ U.p "game_short_name" game_short_name,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "game_short_name" game_short_name_,
+            U.p "bot_user_id" bot_user_id_
           ]
   show
     InputMessageInvoice
-      { start_parameter = start_parameter,
-        provider_data = provider_data,
-        provider_token = provider_token,
-        payload = payload,
-        photo_height = photo_height,
-        photo_width = photo_width,
-        photo_size = photo_size,
-        photo_url = photo_url,
-        description = description,
-        title = title,
-        invoice = invoice
+      { start_parameter = start_parameter_,
+        provider_data = provider_data_,
+        provider_token = provider_token_,
+        payload = payload_,
+        photo_height = photo_height_,
+        photo_width = photo_width_,
+        photo_size = photo_size_,
+        photo_url = photo_url_,
+        description = description_,
+        title = title_,
+        invoice = invoice_
       } =
       "InputMessageInvoice"
         ++ U.cc
-          [ U.p "start_parameter" start_parameter,
-            U.p "provider_data" provider_data,
-            U.p "provider_token" provider_token,
-            U.p "payload" payload,
-            U.p "photo_height" photo_height,
-            U.p "photo_width" photo_width,
-            U.p "photo_size" photo_size,
-            U.p "photo_url" photo_url,
-            U.p "description" description,
-            U.p "title" title,
-            U.p "invoice" invoice
+          [ U.p "start_parameter" start_parameter_,
+            U.p "provider_data" provider_data_,
+            U.p "provider_token" provider_token_,
+            U.p "payload" payload_,
+            U.p "photo_height" photo_height_,
+            U.p "photo_width" photo_width_,
+            U.p "photo_size" photo_size_,
+            U.p "photo_url" photo_url_,
+            U.p "description" description_,
+            U.p "title" title_,
+            U.p "invoice" invoice_
           ]
   show
     InputMessagePoll
-      { is_closed = is_closed,
-        close_date = close_date,
-        open_period = open_period,
-        _type = _type,
-        is_anonymous = is_anonymous,
-        options = options,
-        question = question
+      { is_closed = is_closed_,
+        close_date = close_date_,
+        open_period = open_period_,
+        _type = _type_,
+        is_anonymous = is_anonymous_,
+        options = options_,
+        question = question_
       } =
       "InputMessagePoll"
         ++ U.cc
-          [ U.p "is_closed" is_closed,
-            U.p "close_date" close_date,
-            U.p "open_period" open_period,
-            U.p "_type" _type,
-            U.p "is_anonymous" is_anonymous,
-            U.p "options" options,
-            U.p "question" question
+          [ U.p "is_closed" is_closed_,
+            U.p "close_date" close_date_,
+            U.p "open_period" open_period_,
+            U.p "_type" _type_,
+            U.p "is_anonymous" is_anonymous_,
+            U.p "options" options_,
+            U.p "question" question_
           ]
   show
     InputMessageForwarded
-      { copy_options = copy_options,
-        in_game_share = in_game_share,
-        message_id = message_id,
-        from_chat_id = from_chat_id
+      { copy_options = copy_options_,
+        in_game_share = in_game_share_,
+        message_id = message_id_,
+        from_chat_id = from_chat_id_
       } =
       "InputMessageForwarded"
         ++ U.cc
-          [ U.p "copy_options" copy_options,
-            U.p "in_game_share" in_game_share,
-            U.p "message_id" message_id,
-            U.p "from_chat_id" from_chat_id
+          [ U.p "copy_options" copy_options_,
+            U.p "in_game_share" in_game_share_,
+            U.p "message_id" message_id_,
+            U.p "from_chat_id" from_chat_id_
           ]
 
 instance T.FromJSON InputMessageContent where
@@ -675,265 +676,265 @@ instance T.FromJSON InputMessageContent where
 instance T.ToJSON InputMessageContent where
   toJSON
     InputMessageText
-      { clear_draft = clear_draft,
-        disable_web_page_preview = disable_web_page_preview,
-        text = text
+      { clear_draft = clear_draft_,
+        disable_web_page_preview = disable_web_page_preview_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageText",
-          "clear_draft" A..= clear_draft,
-          "disable_web_page_preview" A..= disable_web_page_preview,
-          "text" A..= text
+          "clear_draft" A..= clear_draft_,
+          "disable_web_page_preview" A..= disable_web_page_preview_,
+          "text" A..= text_
         ]
   toJSON
     InputMessageAnimation
-      { caption = caption,
-        height = height,
-        width = width,
-        duration = duration,
-        added_sticker_file_ids = added_sticker_file_ids,
-        thumbnail = thumbnail,
-        animation = animation
+      { caption = caption_,
+        height = height_,
+        width = width_,
+        duration = duration_,
+        added_sticker_file_ids = added_sticker_file_ids_,
+        thumbnail = thumbnail_,
+        animation = animation_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageAnimation",
-          "caption" A..= caption,
-          "height" A..= height,
-          "width" A..= width,
-          "duration" A..= duration,
-          "added_sticker_file_ids" A..= added_sticker_file_ids,
-          "thumbnail" A..= thumbnail,
-          "animation" A..= animation
+          "caption" A..= caption_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "duration" A..= duration_,
+          "added_sticker_file_ids" A..= added_sticker_file_ids_,
+          "thumbnail" A..= thumbnail_,
+          "animation" A..= animation_
         ]
   toJSON
     InputMessageAudio
-      { caption = caption,
-        performer = performer,
-        title = title,
-        duration = duration,
-        album_cover_thumbnail = album_cover_thumbnail,
-        audio = audio
+      { caption = caption_,
+        performer = performer_,
+        title = title_,
+        duration = duration_,
+        album_cover_thumbnail = album_cover_thumbnail_,
+        audio = audio_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageAudio",
-          "caption" A..= caption,
-          "performer" A..= performer,
-          "title" A..= title,
-          "duration" A..= duration,
-          "album_cover_thumbnail" A..= album_cover_thumbnail,
-          "audio" A..= audio
+          "caption" A..= caption_,
+          "performer" A..= performer_,
+          "title" A..= title_,
+          "duration" A..= duration_,
+          "album_cover_thumbnail" A..= album_cover_thumbnail_,
+          "audio" A..= audio_
         ]
   toJSON
     InputMessageDocument
-      { caption = caption,
-        disable_content_type_detection = disable_content_type_detection,
-        thumbnail = thumbnail,
-        document = document
+      { caption = caption_,
+        disable_content_type_detection = disable_content_type_detection_,
+        thumbnail = thumbnail_,
+        document = document_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageDocument",
-          "caption" A..= caption,
-          "disable_content_type_detection" A..= disable_content_type_detection,
-          "thumbnail" A..= thumbnail,
-          "document" A..= document
+          "caption" A..= caption_,
+          "disable_content_type_detection" A..= disable_content_type_detection_,
+          "thumbnail" A..= thumbnail_,
+          "document" A..= document_
         ]
   toJSON
     InputMessagePhoto
-      { ttl = ttl,
-        caption = caption,
-        height = height,
-        width = width,
-        added_sticker_file_ids = added_sticker_file_ids,
-        thumbnail = thumbnail,
-        photo = photo
+      { ttl = ttl_,
+        caption = caption_,
+        height = height_,
+        width = width_,
+        added_sticker_file_ids = added_sticker_file_ids_,
+        thumbnail = thumbnail_,
+        photo = photo_
       } =
       A.object
         [ "@type" A..= T.String "inputMessagePhoto",
-          "ttl" A..= ttl,
-          "caption" A..= caption,
-          "height" A..= height,
-          "width" A..= width,
-          "added_sticker_file_ids" A..= added_sticker_file_ids,
-          "thumbnail" A..= thumbnail,
-          "photo" A..= photo
+          "ttl" A..= ttl_,
+          "caption" A..= caption_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "added_sticker_file_ids" A..= added_sticker_file_ids_,
+          "thumbnail" A..= thumbnail_,
+          "photo" A..= photo_
         ]
   toJSON
     InputMessageSticker
-      { emoji = emoji,
-        height = height,
-        width = width,
-        thumbnail = thumbnail,
-        sticker = sticker
+      { emoji = emoji_,
+        height = height_,
+        width = width_,
+        thumbnail = thumbnail_,
+        sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageSticker",
-          "emoji" A..= emoji,
-          "height" A..= height,
-          "width" A..= width,
-          "thumbnail" A..= thumbnail,
-          "sticker" A..= sticker
+          "emoji" A..= emoji_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "thumbnail" A..= thumbnail_,
+          "sticker" A..= sticker_
         ]
   toJSON
     InputMessageVideo
-      { ttl = ttl,
-        caption = caption,
-        supports_streaming = supports_streaming,
-        height = height,
-        width = width,
-        duration = duration,
-        added_sticker_file_ids = added_sticker_file_ids,
-        thumbnail = thumbnail,
-        video = video
+      { ttl = ttl_,
+        caption = caption_,
+        supports_streaming = supports_streaming_,
+        height = height_,
+        width = width_,
+        duration = duration_,
+        added_sticker_file_ids = added_sticker_file_ids_,
+        thumbnail = thumbnail_,
+        video = video_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageVideo",
-          "ttl" A..= ttl,
-          "caption" A..= caption,
-          "supports_streaming" A..= supports_streaming,
-          "height" A..= height,
-          "width" A..= width,
-          "duration" A..= duration,
-          "added_sticker_file_ids" A..= added_sticker_file_ids,
-          "thumbnail" A..= thumbnail,
-          "video" A..= video
+          "ttl" A..= ttl_,
+          "caption" A..= caption_,
+          "supports_streaming" A..= supports_streaming_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "duration" A..= duration_,
+          "added_sticker_file_ids" A..= added_sticker_file_ids_,
+          "thumbnail" A..= thumbnail_,
+          "video" A..= video_
         ]
   toJSON
     InputMessageVideoNote
-      { _length = _length,
-        duration = duration,
-        thumbnail = thumbnail,
-        video_note = video_note
+      { _length = _length_,
+        duration = duration_,
+        thumbnail = thumbnail_,
+        video_note = video_note_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageVideoNote",
-          "length" A..= _length,
-          "duration" A..= duration,
-          "thumbnail" A..= thumbnail,
-          "video_note" A..= video_note
+          "length" A..= _length_,
+          "duration" A..= duration_,
+          "thumbnail" A..= thumbnail_,
+          "video_note" A..= video_note_
         ]
   toJSON
     InputMessageVoiceNote
-      { caption = caption,
-        waveform = waveform,
-        duration = duration,
-        voice_note = voice_note
+      { caption = caption_,
+        waveform = waveform_,
+        duration = duration_,
+        voice_note = voice_note_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageVoiceNote",
-          "caption" A..= caption,
-          "waveform" A..= waveform,
-          "duration" A..= duration,
-          "voice_note" A..= voice_note
+          "caption" A..= caption_,
+          "waveform" A..= waveform_,
+          "duration" A..= duration_,
+          "voice_note" A..= voice_note_
         ]
   toJSON
     InputMessageLocation
-      { proximity_alert_radius = proximity_alert_radius,
-        heading = heading,
-        live_period = live_period,
-        location = location
+      { proximity_alert_radius = proximity_alert_radius_,
+        heading = heading_,
+        live_period = live_period_,
+        location = location_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageLocation",
-          "proximity_alert_radius" A..= proximity_alert_radius,
-          "heading" A..= heading,
-          "live_period" A..= live_period,
-          "location" A..= location
+          "proximity_alert_radius" A..= proximity_alert_radius_,
+          "heading" A..= heading_,
+          "live_period" A..= live_period_,
+          "location" A..= location_
         ]
   toJSON
     InputMessageVenue
-      { venue = venue
+      { venue = venue_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageVenue",
-          "venue" A..= venue
+          "venue" A..= venue_
         ]
   toJSON
     InputMessageContact
-      { contact = contact
+      { contact = contact_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageContact",
-          "contact" A..= contact
+          "contact" A..= contact_
         ]
   toJSON
     InputMessageDice
-      { clear_draft = clear_draft,
-        emoji = emoji
+      { clear_draft = clear_draft_,
+        emoji = emoji_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageDice",
-          "clear_draft" A..= clear_draft,
-          "emoji" A..= emoji
+          "clear_draft" A..= clear_draft_,
+          "emoji" A..= emoji_
         ]
   toJSON
     InputMessageGame
-      { game_short_name = game_short_name,
-        bot_user_id = bot_user_id
+      { game_short_name = game_short_name_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageGame",
-          "game_short_name" A..= game_short_name,
-          "bot_user_id" A..= bot_user_id
+          "game_short_name" A..= game_short_name_,
+          "bot_user_id" A..= bot_user_id_
         ]
   toJSON
     InputMessageInvoice
-      { start_parameter = start_parameter,
-        provider_data = provider_data,
-        provider_token = provider_token,
-        payload = payload,
-        photo_height = photo_height,
-        photo_width = photo_width,
-        photo_size = photo_size,
-        photo_url = photo_url,
-        description = description,
-        title = title,
-        invoice = invoice
+      { start_parameter = start_parameter_,
+        provider_data = provider_data_,
+        provider_token = provider_token_,
+        payload = payload_,
+        photo_height = photo_height_,
+        photo_width = photo_width_,
+        photo_size = photo_size_,
+        photo_url = photo_url_,
+        description = description_,
+        title = title_,
+        invoice = invoice_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageInvoice",
-          "start_parameter" A..= start_parameter,
-          "provider_data" A..= provider_data,
-          "provider_token" A..= provider_token,
-          "payload" A..= payload,
-          "photo_height" A..= photo_height,
-          "photo_width" A..= photo_width,
-          "photo_size" A..= photo_size,
-          "photo_url" A..= photo_url,
-          "description" A..= description,
-          "title" A..= title,
-          "invoice" A..= invoice
+          "start_parameter" A..= start_parameter_,
+          "provider_data" A..= provider_data_,
+          "provider_token" A..= provider_token_,
+          "payload" A..= payload_,
+          "photo_height" A..= photo_height_,
+          "photo_width" A..= photo_width_,
+          "photo_size" A..= photo_size_,
+          "photo_url" A..= photo_url_,
+          "description" A..= description_,
+          "title" A..= title_,
+          "invoice" A..= invoice_
         ]
   toJSON
     InputMessagePoll
-      { is_closed = is_closed,
-        close_date = close_date,
-        open_period = open_period,
-        _type = _type,
-        is_anonymous = is_anonymous,
-        options = options,
-        question = question
+      { is_closed = is_closed_,
+        close_date = close_date_,
+        open_period = open_period_,
+        _type = _type_,
+        is_anonymous = is_anonymous_,
+        options = options_,
+        question = question_
       } =
       A.object
         [ "@type" A..= T.String "inputMessagePoll",
-          "is_closed" A..= is_closed,
-          "close_date" A..= close_date,
-          "open_period" A..= open_period,
-          "type" A..= _type,
-          "is_anonymous" A..= is_anonymous,
-          "options" A..= options,
-          "question" A..= question
+          "is_closed" A..= is_closed_,
+          "close_date" A..= close_date_,
+          "open_period" A..= open_period_,
+          "type" A..= _type_,
+          "is_anonymous" A..= is_anonymous_,
+          "options" A..= options_,
+          "question" A..= question_
         ]
   toJSON
     InputMessageForwarded
-      { copy_options = copy_options,
-        in_game_share = in_game_share,
-        message_id = message_id,
-        from_chat_id = from_chat_id
+      { copy_options = copy_options_,
+        in_game_share = in_game_share_,
+        message_id = message_id_,
+        from_chat_id = from_chat_id_
       } =
       A.object
         [ "@type" A..= T.String "inputMessageForwarded",
-          "copy_options" A..= copy_options,
-          "in_game_share" A..= in_game_share,
-          "message_id" A..= message_id,
-          "from_chat_id" A..= from_chat_id
+          "copy_options" A..= copy_options_,
+          "in_game_share" A..= in_game_share_,
+          "message_id" A..= message_id_,
+          "from_chat_id" A..= from_chat_id_
         ]

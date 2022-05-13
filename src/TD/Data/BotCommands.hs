@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BotCommands where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data BotCommands = -- | Contains a list of bot commands @bot_user_id Bot's user 
 instance Show BotCommands where
   show
     BotCommands
-      { commands = commands,
-        bot_user_id = bot_user_id
+      { commands = commands_,
+        bot_user_id = bot_user_id_
       } =
       "BotCommands"
         ++ U.cc
-          [ U.p "commands" commands,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "commands" commands_,
+            U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.FromJSON BotCommands where
@@ -46,11 +47,11 @@ instance T.FromJSON BotCommands where
 instance T.ToJSON BotCommands where
   toJSON
     BotCommands
-      { commands = commands,
-        bot_user_id = bot_user_id
+      { commands = commands_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "botCommands",
-          "commands" A..= commands,
-          "bot_user_id" A..= bot_user_id
+          "commands" A..= commands_,
+          "bot_user_id" A..= bot_user_id_
         ]

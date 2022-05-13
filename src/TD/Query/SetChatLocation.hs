@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatLocation where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetChatLocation = SetChatLocation
 instance Show SetChatLocation where
   show
     SetChatLocation
-      { location = location,
-        chat_id = chat_id
+      { location = location_,
+        chat_id = chat_id_
       } =
       "SetChatLocation"
         ++ U.cc
-          [ U.p "location" location,
-            U.p "chat_id" chat_id
+          [ U.p "location" location_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatLocation where
   toJSON
     SetChatLocation
-      { location = location,
-        chat_id = chat_id
+      { location = location_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatLocation",
-          "location" A..= location,
-          "chat_id" A..= chat_id
+          "location" A..= location_,
+          "chat_id" A..= chat_id_
         ]

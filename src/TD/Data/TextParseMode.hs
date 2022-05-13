@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TextParseMode where
 
 import qualified Data.Aeson as A
@@ -20,11 +21,11 @@ data TextParseMode
 instance Show TextParseMode where
   show
     TextParseModeMarkdown
-      { version = version
+      { version = version_
       } =
       "TextParseModeMarkdown"
         ++ U.cc
-          [ U.p "version" version
+          [ U.p "version" version_
           ]
   show TextParseModeHTML =
     "TextParseModeHTML"
@@ -46,18 +47,17 @@ instance T.FromJSON TextParseMode where
         return $ TextParseModeMarkdown {version = version_}
 
       parseTextParseModeHTML :: A.Value -> T.Parser TextParseMode
-      parseTextParseModeHTML = A.withObject "TextParseModeHTML" $ \o -> do
-        return $ TextParseModeHTML {}
+      parseTextParseModeHTML = A.withObject "TextParseModeHTML" $ \_ -> return TextParseModeHTML
   parseJSON _ = mempty
 
 instance T.ToJSON TextParseMode where
   toJSON
     TextParseModeMarkdown
-      { version = version
+      { version = version_
       } =
       A.object
         [ "@type" A..= T.String "textParseModeMarkdown",
-          "version" A..= version
+          "version" A..= version_
         ]
   toJSON TextParseModeHTML =
     A.object

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatActionBar where
 
 import qualified Data.Aeson as A
@@ -42,11 +43,11 @@ data ChatActionBar
 instance Show ChatActionBar where
   show
     ChatActionBarReportSpam
-      { can_unarchive = can_unarchive
+      { can_unarchive = can_unarchive_
       } =
       "ChatActionBarReportSpam"
         ++ U.cc
-          [ U.p "can_unarchive" can_unarchive
+          [ U.p "can_unarchive" can_unarchive_
           ]
   show ChatActionBarReportUnrelatedLocation =
     "ChatActionBarReportUnrelatedLocation"
@@ -58,13 +59,13 @@ instance Show ChatActionBar where
         []
   show
     ChatActionBarReportAddBlock
-      { distance = distance,
-        can_unarchive = can_unarchive
+      { distance = distance_,
+        can_unarchive = can_unarchive_
       } =
       "ChatActionBarReportAddBlock"
         ++ U.cc
-          [ U.p "distance" distance,
-            U.p "can_unarchive" can_unarchive
+          [ U.p "distance" distance_,
+            U.p "can_unarchive" can_unarchive_
           ]
   show ChatActionBarAddContact =
     "ChatActionBarAddContact"
@@ -76,15 +77,15 @@ instance Show ChatActionBar where
         []
   show
     ChatActionBarJoinRequest
-      { request_date = request_date,
-        is_channel = is_channel,
-        title = title
+      { request_date = request_date_,
+        is_channel = is_channel_,
+        title = title_
       } =
       "ChatActionBarJoinRequest"
         ++ U.cc
-          [ U.p "request_date" request_date,
-            U.p "is_channel" is_channel,
-            U.p "title" title
+          [ U.p "request_date" request_date_,
+            U.p "is_channel" is_channel_,
+            U.p "title" title_
           ]
 
 instance T.FromJSON ChatActionBar where
@@ -107,12 +108,10 @@ instance T.FromJSON ChatActionBar where
         return $ ChatActionBarReportSpam {can_unarchive = can_unarchive_}
 
       parseChatActionBarReportUnrelatedLocation :: A.Value -> T.Parser ChatActionBar
-      parseChatActionBarReportUnrelatedLocation = A.withObject "ChatActionBarReportUnrelatedLocation" $ \o -> do
-        return $ ChatActionBarReportUnrelatedLocation {}
+      parseChatActionBarReportUnrelatedLocation = A.withObject "ChatActionBarReportUnrelatedLocation" $ \_ -> return ChatActionBarReportUnrelatedLocation
 
       parseChatActionBarInviteMembers :: A.Value -> T.Parser ChatActionBar
-      parseChatActionBarInviteMembers = A.withObject "ChatActionBarInviteMembers" $ \o -> do
-        return $ ChatActionBarInviteMembers {}
+      parseChatActionBarInviteMembers = A.withObject "ChatActionBarInviteMembers" $ \_ -> return ChatActionBarInviteMembers
 
       parseChatActionBarReportAddBlock :: A.Value -> T.Parser ChatActionBar
       parseChatActionBarReportAddBlock = A.withObject "ChatActionBarReportAddBlock" $ \o -> do
@@ -121,12 +120,10 @@ instance T.FromJSON ChatActionBar where
         return $ ChatActionBarReportAddBlock {distance = distance_, can_unarchive = can_unarchive_}
 
       parseChatActionBarAddContact :: A.Value -> T.Parser ChatActionBar
-      parseChatActionBarAddContact = A.withObject "ChatActionBarAddContact" $ \o -> do
-        return $ ChatActionBarAddContact {}
+      parseChatActionBarAddContact = A.withObject "ChatActionBarAddContact" $ \_ -> return ChatActionBarAddContact
 
       parseChatActionBarSharePhoneNumber :: A.Value -> T.Parser ChatActionBar
-      parseChatActionBarSharePhoneNumber = A.withObject "ChatActionBarSharePhoneNumber" $ \o -> do
-        return $ ChatActionBarSharePhoneNumber {}
+      parseChatActionBarSharePhoneNumber = A.withObject "ChatActionBarSharePhoneNumber" $ \_ -> return ChatActionBarSharePhoneNumber
 
       parseChatActionBarJoinRequest :: A.Value -> T.Parser ChatActionBar
       parseChatActionBarJoinRequest = A.withObject "ChatActionBarJoinRequest" $ \o -> do
@@ -139,11 +136,11 @@ instance T.FromJSON ChatActionBar where
 instance T.ToJSON ChatActionBar where
   toJSON
     ChatActionBarReportSpam
-      { can_unarchive = can_unarchive
+      { can_unarchive = can_unarchive_
       } =
       A.object
         [ "@type" A..= T.String "chatActionBarReportSpam",
-          "can_unarchive" A..= can_unarchive
+          "can_unarchive" A..= can_unarchive_
         ]
   toJSON ChatActionBarReportUnrelatedLocation =
     A.object
@@ -155,13 +152,13 @@ instance T.ToJSON ChatActionBar where
       ]
   toJSON
     ChatActionBarReportAddBlock
-      { distance = distance,
-        can_unarchive = can_unarchive
+      { distance = distance_,
+        can_unarchive = can_unarchive_
       } =
       A.object
         [ "@type" A..= T.String "chatActionBarReportAddBlock",
-          "distance" A..= distance,
-          "can_unarchive" A..= can_unarchive
+          "distance" A..= distance_,
+          "can_unarchive" A..= can_unarchive_
         ]
   toJSON ChatActionBarAddContact =
     A.object
@@ -173,13 +170,13 @@ instance T.ToJSON ChatActionBar where
       ]
   toJSON
     ChatActionBarJoinRequest
-      { request_date = request_date,
-        is_channel = is_channel,
-        title = title
+      { request_date = request_date_,
+        is_channel = is_channel_,
+        title = title_
       } =
       A.object
         [ "@type" A..= T.String "chatActionBarJoinRequest",
-          "request_date" A..= request_date,
-          "is_channel" A..= is_channel,
-          "title" A..= title
+          "request_date" A..= request_date_,
+          "is_channel" A..= is_channel_,
+          "title" A..= title_
         ]

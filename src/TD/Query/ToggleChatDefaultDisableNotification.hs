@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleChatDefaultDisableNotification where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleChatDefaultDisableNotification = ToggleChatDefaultDisableNotification
 instance Show ToggleChatDefaultDisableNotification where
   show
     ToggleChatDefaultDisableNotification
-      { default_disable_notification = default_disable_notification,
-        chat_id = chat_id
+      { default_disable_notification = default_disable_notification_,
+        chat_id = chat_id_
       } =
       "ToggleChatDefaultDisableNotification"
         ++ U.cc
-          [ U.p "default_disable_notification" default_disable_notification,
-            U.p "chat_id" chat_id
+          [ U.p "default_disable_notification" default_disable_notification_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ToggleChatDefaultDisableNotification where
   toJSON
     ToggleChatDefaultDisableNotification
-      { default_disable_notification = default_disable_notification,
-        chat_id = chat_id
+      { default_disable_notification = default_disable_notification_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleChatDefaultDisableNotification",
-          "default_disable_notification" A..= default_disable_notification,
-          "chat_id" A..= chat_id
+          "default_disable_notification" A..= default_disable_notification_,
+          "chat_id" A..= chat_id_
         ]

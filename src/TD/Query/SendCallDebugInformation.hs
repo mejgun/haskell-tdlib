@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendCallDebugInformation where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SendCallDebugInformation = SendCallDebugInformation
 instance Show SendCallDebugInformation where
   show
     SendCallDebugInformation
-      { debug_information = debug_information,
-        call_id = call_id
+      { debug_information = debug_information_,
+        call_id = call_id_
       } =
       "SendCallDebugInformation"
         ++ U.cc
-          [ U.p "debug_information" debug_information,
-            U.p "call_id" call_id
+          [ U.p "debug_information" debug_information_,
+            U.p "call_id" call_id_
           ]
 
 instance T.ToJSON SendCallDebugInformation where
   toJSON
     SendCallDebugInformation
-      { debug_information = debug_information,
-        call_id = call_id
+      { debug_information = debug_information_,
+        call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "sendCallDebugInformation",
-          "debug_information" A..= debug_information,
-          "call_id" A..= call_id
+          "debug_information" A..= debug_information_,
+          "call_id" A..= call_id_
         ]

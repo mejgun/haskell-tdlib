@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleSupergroupSignMessages where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleSupergroupSignMessages = ToggleSupergroupSignMessages
 instance Show ToggleSupergroupSignMessages where
   show
     ToggleSupergroupSignMessages
-      { sign_messages = sign_messages,
-        supergroup_id = supergroup_id
+      { sign_messages = sign_messages_,
+        supergroup_id = supergroup_id_
       } =
       "ToggleSupergroupSignMessages"
         ++ U.cc
-          [ U.p "sign_messages" sign_messages,
-            U.p "supergroup_id" supergroup_id
+          [ U.p "sign_messages" sign_messages_,
+            U.p "supergroup_id" supergroup_id_
           ]
 
 instance T.ToJSON ToggleSupergroupSignMessages where
   toJSON
     ToggleSupergroupSignMessages
-      { sign_messages = sign_messages,
-        supergroup_id = supergroup_id
+      { sign_messages = sign_messages_,
+        supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleSupergroupSignMessages",
-          "sign_messages" A..= sign_messages,
-          "supergroup_id" A..= supergroup_id
+          "sign_messages" A..= sign_messages_,
+          "supergroup_id" A..= supergroup_id_
         ]

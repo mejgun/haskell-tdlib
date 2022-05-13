@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatEvent where
 
 import qualified Data.Aeson as A
@@ -24,17 +25,17 @@ data ChatEvent = -- | Represents a chat event @id Chat event identifier @date Po
 instance Show ChatEvent where
   show
     ChatEvent
-      { action = action,
-        member_id = member_id,
-        date = date,
-        _id = _id
+      { action = action_,
+        member_id = member_id_,
+        date = date_,
+        _id = _id_
       } =
       "ChatEvent"
         ++ U.cc
-          [ U.p "action" action,
-            U.p "member_id" member_id,
-            U.p "date" date,
-            U.p "_id" _id
+          [ U.p "action" action_,
+            U.p "member_id" member_id_,
+            U.p "date" date_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON ChatEvent where
@@ -57,15 +58,15 @@ instance T.FromJSON ChatEvent where
 instance T.ToJSON ChatEvent where
   toJSON
     ChatEvent
-      { action = action,
-        member_id = member_id,
-        date = date,
-        _id = _id
+      { action = action_,
+        member_id = member_id_,
+        date = date_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "chatEvent",
-          "action" A..= action,
-          "member_id" A..= member_id,
-          "date" A..= date,
-          "id" A..= _id
+          "action" A..= action_,
+          "member_id" A..= member_id_,
+          "date" A..= date_,
+          "id" A..= _id_
         ]

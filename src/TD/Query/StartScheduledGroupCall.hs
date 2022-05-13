@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.StartScheduledGroupCall where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data StartScheduledGroupCall = StartScheduledGroupCall
 instance Show StartScheduledGroupCall where
   show
     StartScheduledGroupCall
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       "StartScheduledGroupCall"
         ++ U.cc
-          [ U.p "group_call_id" group_call_id
+          [ U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON StartScheduledGroupCall where
   toJSON
     StartScheduledGroupCall
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "startScheduledGroupCall",
-          "group_call_id" A..= group_call_id
+          "group_call_id" A..= group_call_id_
         ]

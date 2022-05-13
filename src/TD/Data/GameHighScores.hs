@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GameHighScores where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data GameHighScores = -- | Contains a list of game high scores @scores A list of
 instance Show GameHighScores where
   show
     GameHighScores
-      { scores = scores
+      { scores = scores_
       } =
       "GameHighScores"
         ++ U.cc
-          [ U.p "scores" scores
+          [ U.p "scores" scores_
           ]
 
 instance T.FromJSON GameHighScores where
@@ -41,9 +42,9 @@ instance T.FromJSON GameHighScores where
 instance T.ToJSON GameHighScores where
   toJSON
     GameHighScores
-      { scores = scores
+      { scores = scores_
       } =
       A.object
         [ "@type" A..= T.String "gameHighScores",
-          "scores" A..= scores
+          "scores" A..= scores_
         ]

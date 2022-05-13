@@ -1,25 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
-</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.AddChatMember</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- Adds a new member to a chat. Members can't be added to private or secret chats</span><span>
-</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="AddChatMember"><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-var">AddChatMember</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="AddChatMember"><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-var">AddChatMember</span></a></span></span><span>
-</span><span id="line-12"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-13"></span><span>    </span><span id="forward_limit"><span class="annot"><span class="annottext">AddChatMember -&gt; Maybe Int
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.AddChatMember</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Adds a new member to a chat. Members can't be added to private or secret chats</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="AddChatMember"><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-var">AddChatMember</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="AddChatMember"><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-var">AddChatMember</span></a></span></span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span>    </span><span id="forward_limit"><span class="annot"><span class="annottext">AddChatMember -&gt; Maybe Int
 </span><a href="TD.Query.AddChatMember.html#forward_limit"><span class="hs-identifier hs-var hs-var">forward_limit</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-14"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-15"></span><span>    </span><span id="user_id"><span class="annot"><span class="annottext">AddChatMember -&gt; Maybe Int
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>    </span><span id="user_id"><span class="annot"><span class="annottext">AddChatMember -&gt; Maybe Int
 </span><a href="TD.Query.AddChatMember.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Chat identifier @user_id Identifier of the user @forward_limit The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot</span><span>
-</span><span id="line-17"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">AddChatMember -&gt; Maybe Int
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Chat identifier @user_id Identifier of the user @forward_limit The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot</span><span>
+</span><span id="line-18"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">AddChatMember -&gt; Maybe Int
 </span><a href="TD.Query.AddChatMember.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679400301"><span id="local-6989586621679400303"><span class="annot"><span class="annottext">AddChatMember -&gt; AddChatMember -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679399584"><span id="local-6989586621679399586"><span class="annot"><span class="annottext">AddChatMember -&gt; AddChatMember -&gt; Bool
 (AddChatMember -&gt; AddChatMember -&gt; Bool)
 -&gt; (AddChatMember -&gt; AddChatMember -&gt; Bool) -&gt; Eq AddChatMember
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -28,80 +29,80 @@ $c/= :: AddChatMember -&gt; AddChatMember -&gt; Bool
 == :: AddChatMember -&gt; AddChatMember -&gt; Bool
 $c== :: AddChatMember -&gt; AddChatMember -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679400295"><span id="local-6989586621679400298"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679400293"><span class="annot"><span class="annottext">show :: AddChatMember -&gt; String
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399578"><span id="local-6989586621679399581"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679399576"><span class="annot"><span class="annottext">show :: AddChatMember -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span><span>
-</span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">forward_limit :: AddChatMember -&gt; Maybe Int
-</span><a href="TD.Query.AddChatMember.html#forward_limit"><span class="hs-identifier hs-var">forward_limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400291"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400291"><span class="hs-identifier hs-var">forward_limit</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">user_id :: AddChatMember -&gt; Maybe Int
-</span><a href="TD.Query.AddChatMember.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400290"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400290"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: AddChatMember -&gt; Maybe Int
-</span><a href="TD.Query.AddChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400289"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400289"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
-</span><span id="line-27"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-28"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span><span>
+</span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">forward_limit :: AddChatMember -&gt; Maybe Int
+</span><a href="TD.Query.AddChatMember.html#forward_limit"><span class="hs-identifier hs-var">forward_limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399574"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399574"><span class="hs-identifier hs-var">forward_limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">user_id :: AddChatMember -&gt; Maybe Int
+</span><a href="TD.Query.AddChatMember.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399573"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399573"><span class="hs-identifier hs-var">user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: AddChatMember -&gt; Maybe Int
+</span><a href="TD.Query.AddChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399572"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399572"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;AddChatMember&quot;</span></span><span>
-</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-30"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><span id="line-31"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;forward_limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400291"><span class="hs-identifier hs-var">forward_limit</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-31"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
-forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
-</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400290"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679399574"><span class="hs-identifier hs-var">forward_limit_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399573"><span class="hs-identifier hs-var">user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400289"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
-</span><span id="line-33"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679400280"><span id="local-6989586621679400282"><span id="local-6989586621679400284"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>  </span><span id="local-6989586621679400278"><span class="annot"><span class="annottext">toJSON :: AddChatMember -&gt; Value
+</span><a href="#local-6989586621679399572"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399563"><span id="local-6989586621679399565"><span id="local-6989586621679399567"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679399561"><span class="annot"><span class="annottext">toJSON :: AddChatMember -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-37"></span><span>    </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span><span>
-</span><span id="line-38"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">forward_limit :: AddChatMember -&gt; Maybe Int
-</span><a href="TD.Query.AddChatMember.html#forward_limit"><span class="hs-identifier hs-var">forward_limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400276"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400276"><span class="hs-identifier hs-var">forward_limit</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">user_id :: AddChatMember -&gt; Maybe Int
-</span><a href="TD.Query.AddChatMember.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400275"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400275"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: AddChatMember -&gt; Maybe Int
-</span><a href="TD.Query.AddChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400274"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400274"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span>
-</span><span id="line-41"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-38"></span><span>    </span><span class="annot"><a href="TD.Query.AddChatMember.html#AddChatMember"><span class="hs-identifier hs-type">AddChatMember</span></a></span><span>
+</span><span id="line-39"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">forward_limit :: AddChatMember -&gt; Maybe Int
+</span><a href="TD.Query.AddChatMember.html#forward_limit"><span class="hs-identifier hs-var">forward_limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399559"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399559"><span class="hs-identifier hs-var">forward_limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">user_id :: AddChatMember -&gt; Maybe Int
+</span><a href="TD.Query.AddChatMember.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399558"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399558"><span class="hs-identifier hs-var">user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: AddChatMember -&gt; Maybe Int
+</span><a href="TD.Query.AddChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399557"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679399557"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><span id="line-42"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-43"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-44"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;addChatMember&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-44"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-45"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;forward_limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400276"><span class="hs-identifier hs-var">forward_limit</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-45"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679399559"><span class="hs-identifier hs-var">forward_limit_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400275"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679399558"><span class="hs-identifier hs-var">user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679400274"><span class="hs-identifier hs-var">chat_id</span></a></span><span>
-</span><span id="line-47"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-48"></span></pre></body></html>
+</span><a href="#local-6989586621679399557"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><span id="line-48"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-49"></span></pre></body></html>

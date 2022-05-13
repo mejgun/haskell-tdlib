@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageReaction where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data MessageReaction = -- | Contains information about a reaction to a message
 instance Show MessageReaction where
   show
     MessageReaction
-      { recent_sender_ids = recent_sender_ids,
-        is_chosen = is_chosen,
-        total_count = total_count,
-        reaction = reaction
+      { recent_sender_ids = recent_sender_ids_,
+        is_chosen = is_chosen_,
+        total_count = total_count_,
+        reaction = reaction_
       } =
       "MessageReaction"
         ++ U.cc
-          [ U.p "recent_sender_ids" recent_sender_ids,
-            U.p "is_chosen" is_chosen,
-            U.p "total_count" total_count,
-            U.p "reaction" reaction
+          [ U.p "recent_sender_ids" recent_sender_ids_,
+            U.p "is_chosen" is_chosen_,
+            U.p "total_count" total_count_,
+            U.p "reaction" reaction_
           ]
 
 instance T.FromJSON MessageReaction where
@@ -56,15 +57,15 @@ instance T.FromJSON MessageReaction where
 instance T.ToJSON MessageReaction where
   toJSON
     MessageReaction
-      { recent_sender_ids = recent_sender_ids,
-        is_chosen = is_chosen,
-        total_count = total_count,
-        reaction = reaction
+      { recent_sender_ids = recent_sender_ids_,
+        is_chosen = is_chosen_,
+        total_count = total_count_,
+        reaction = reaction_
       } =
       A.object
         [ "@type" A..= T.String "messageReaction",
-          "recent_sender_ids" A..= recent_sender_ids,
-          "is_chosen" A..= is_chosen,
-          "total_count" A..= total_count,
-          "reaction" A..= reaction
+          "recent_sender_ids" A..= recent_sender_ids_,
+          "is_chosen" A..= is_chosen_,
+          "total_count" A..= total_count_,
+          "reaction" A..= reaction_
         ]

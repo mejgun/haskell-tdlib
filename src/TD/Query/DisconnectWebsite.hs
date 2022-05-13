@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DisconnectWebsite where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data DisconnectWebsite = DisconnectWebsite
 instance Show DisconnectWebsite where
   show
     DisconnectWebsite
-      { website_id = website_id
+      { website_id = website_id_
       } =
       "DisconnectWebsite"
         ++ U.cc
-          [ U.p "website_id" website_id
+          [ U.p "website_id" website_id_
           ]
 
 instance T.ToJSON DisconnectWebsite where
   toJSON
     DisconnectWebsite
-      { website_id = website_id
+      { website_id = website_id_
       } =
       A.object
         [ "@type" A..= T.String "disconnectWebsite",
-          "website_id" A..= website_id
+          "website_id" A..= website_id_
         ]

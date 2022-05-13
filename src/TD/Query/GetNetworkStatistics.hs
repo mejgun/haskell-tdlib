@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetNetworkStatistics where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetNetworkStatistics = GetNetworkStatistics
 instance Show GetNetworkStatistics where
   show
     GetNetworkStatistics
-      { only_current = only_current
+      { only_current = only_current_
       } =
       "GetNetworkStatistics"
         ++ U.cc
-          [ U.p "only_current" only_current
+          [ U.p "only_current" only_current_
           ]
 
 instance T.ToJSON GetNetworkStatistics where
   toJSON
     GetNetworkStatistics
-      { only_current = only_current
+      { only_current = only_current_
       } =
       A.object
         [ "@type" A..= T.String "getNetworkStatistics",
-          "only_current" A..= only_current
+          "only_current" A..= only_current_
         ]

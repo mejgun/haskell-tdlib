@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetMenuButton where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetMenuButton = SetMenuButton
 instance Show SetMenuButton where
   show
     SetMenuButton
-      { menu_button = menu_button,
-        user_id = user_id
+      { menu_button = menu_button_,
+        user_id = user_id_
       } =
       "SetMenuButton"
         ++ U.cc
-          [ U.p "menu_button" menu_button,
-            U.p "user_id" user_id
+          [ U.p "menu_button" menu_button_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON SetMenuButton where
   toJSON
     SetMenuButton
-      { menu_button = menu_button,
-        user_id = user_id
+      { menu_button = menu_button_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "setMenuButton",
-          "menu_button" A..= menu_button,
-          "user_id" A..= user_id
+          "menu_button" A..= menu_button_,
+          "user_id" A..= user_id_
         ]

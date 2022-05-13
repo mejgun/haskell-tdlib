@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetFileGenerationProgress where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data SetFileGenerationProgress = SetFileGenerationProgress
 instance Show SetFileGenerationProgress where
   show
     SetFileGenerationProgress
-      { local_prefix_size = local_prefix_size,
-        expected_size = expected_size,
-        generation_id = generation_id
+      { local_prefix_size = local_prefix_size_,
+        expected_size = expected_size_,
+        generation_id = generation_id_
       } =
       "SetFileGenerationProgress"
         ++ U.cc
-          [ U.p "local_prefix_size" local_prefix_size,
-            U.p "expected_size" expected_size,
-            U.p "generation_id" generation_id
+          [ U.p "local_prefix_size" local_prefix_size_,
+            U.p "expected_size" expected_size_,
+            U.p "generation_id" generation_id_
           ]
 
 instance T.ToJSON SetFileGenerationProgress where
   toJSON
     SetFileGenerationProgress
-      { local_prefix_size = local_prefix_size,
-        expected_size = expected_size,
-        generation_id = generation_id
+      { local_prefix_size = local_prefix_size_,
+        expected_size = expected_size_,
+        generation_id = generation_id_
       } =
       A.object
         [ "@type" A..= T.String "setFileGenerationProgress",
-          "local_prefix_size" A..= local_prefix_size,
-          "expected_size" A..= expected_size,
-          "generation_id" A..= generation_id
+          "local_prefix_size" A..= local_prefix_size_,
+          "expected_size" A..= expected_size_,
+          "generation_id" A..= generation_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.HideSuggestedAction where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data HideSuggestedAction = HideSuggestedAction
 instance Show HideSuggestedAction where
   show
     HideSuggestedAction
-      { action = action
+      { action = action_
       } =
       "HideSuggestedAction"
         ++ U.cc
-          [ U.p "action" action
+          [ U.p "action" action_
           ]
 
 instance T.ToJSON HideSuggestedAction where
   toJSON
     HideSuggestedAction
-      { action = action
+      { action = action_
       } =
       A.object
         [ "@type" A..= T.String "hideSuggestedAction",
-          "action" A..= action
+          "action" A..= action_
         ]

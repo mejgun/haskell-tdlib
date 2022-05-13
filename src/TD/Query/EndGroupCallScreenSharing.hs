@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EndGroupCallScreenSharing where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data EndGroupCallScreenSharing = EndGroupCallScreenSharing
 instance Show EndGroupCallScreenSharing where
   show
     EndGroupCallScreenSharing
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       "EndGroupCallScreenSharing"
         ++ U.cc
-          [ U.p "group_call_id" group_call_id
+          [ U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON EndGroupCallScreenSharing where
   toJSON
     EndGroupCallScreenSharing
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "endGroupCallScreenSharing",
-          "group_call_id" A..= group_call_id
+          "group_call_id" A..= group_call_id_
         ]

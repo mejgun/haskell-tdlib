@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatStatistics where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetChatStatistics = GetChatStatistics
 instance Show GetChatStatistics where
   show
     GetChatStatistics
-      { is_dark = is_dark,
-        chat_id = chat_id
+      { is_dark = is_dark_,
+        chat_id = chat_id_
       } =
       "GetChatStatistics"
         ++ U.cc
-          [ U.p "is_dark" is_dark,
-            U.p "chat_id" chat_id
+          [ U.p "is_dark" is_dark_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatStatistics where
   toJSON
     GetChatStatistics
-      { is_dark = is_dark,
-        chat_id = chat_id
+      { is_dark = is_dark_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatStatistics",
-          "is_dark" A..= is_dark,
-          "chat_id" A..= chat_id
+          "is_dark" A..= is_dark_,
+          "chat_id" A..= chat_id_
         ]

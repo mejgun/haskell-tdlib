@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveAllFilesFromDownloads where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data RemoveAllFilesFromDownloads = RemoveAllFilesFromDownloads
 instance Show RemoveAllFilesFromDownloads where
   show
     RemoveAllFilesFromDownloads
-      { delete_from_cache = delete_from_cache,
-        only_completed = only_completed,
-        only_active = only_active
+      { delete_from_cache = delete_from_cache_,
+        only_completed = only_completed_,
+        only_active = only_active_
       } =
       "RemoveAllFilesFromDownloads"
         ++ U.cc
-          [ U.p "delete_from_cache" delete_from_cache,
-            U.p "only_completed" only_completed,
-            U.p "only_active" only_active
+          [ U.p "delete_from_cache" delete_from_cache_,
+            U.p "only_completed" only_completed_,
+            U.p "only_active" only_active_
           ]
 
 instance T.ToJSON RemoveAllFilesFromDownloads where
   toJSON
     RemoveAllFilesFromDownloads
-      { delete_from_cache = delete_from_cache,
-        only_completed = only_completed,
-        only_active = only_active
+      { delete_from_cache = delete_from_cache_,
+        only_completed = only_completed_,
+        only_active = only_active_
       } =
       A.object
         [ "@type" A..= T.String "removeAllFilesFromDownloads",
-          "delete_from_cache" A..= delete_from_cache,
-          "only_completed" A..= only_completed,
-          "only_active" A..= only_active
+          "delete_from_cache" A..= delete_from_cache_,
+          "only_completed" A..= only_completed_,
+          "only_active" A..= only_active_
         ]

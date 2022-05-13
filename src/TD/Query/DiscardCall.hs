@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DiscardCall where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data DiscardCall = DiscardCall
 instance Show DiscardCall where
   show
     DiscardCall
-      { connection_id = connection_id,
-        is_video = is_video,
-        duration = duration,
-        is_disconnected = is_disconnected,
-        call_id = call_id
+      { connection_id = connection_id_,
+        is_video = is_video_,
+        duration = duration_,
+        is_disconnected = is_disconnected_,
+        call_id = call_id_
       } =
       "DiscardCall"
         ++ U.cc
-          [ U.p "connection_id" connection_id,
-            U.p "is_video" is_video,
-            U.p "duration" duration,
-            U.p "is_disconnected" is_disconnected,
-            U.p "call_id" call_id
+          [ U.p "connection_id" connection_id_,
+            U.p "is_video" is_video_,
+            U.p "duration" duration_,
+            U.p "is_disconnected" is_disconnected_,
+            U.p "call_id" call_id_
           ]
 
 instance T.ToJSON DiscardCall where
   toJSON
     DiscardCall
-      { connection_id = connection_id,
-        is_video = is_video,
-        duration = duration,
-        is_disconnected = is_disconnected,
-        call_id = call_id
+      { connection_id = connection_id_,
+        is_video = is_video_,
+        duration = duration_,
+        is_disconnected = is_disconnected_,
+        call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "discardCall",
-          "connection_id" A..= connection_id,
-          "is_video" A..= is_video,
-          "duration" A..= duration,
-          "is_disconnected" A..= is_disconnected,
-          "call_id" A..= call_id
+          "connection_id" A..= connection_id_,
+          "is_video" A..= is_video_,
+          "duration" A..= duration_,
+          "is_disconnected" A..= is_disconnected_,
+          "call_id" A..= call_id_
         ]

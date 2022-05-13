@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetAccountTtl where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SetAccountTtl = SetAccountTtl
 instance Show SetAccountTtl where
   show
     SetAccountTtl
-      { ttl = ttl
+      { ttl = ttl_
       } =
       "SetAccountTtl"
         ++ U.cc
-          [ U.p "ttl" ttl
+          [ U.p "ttl" ttl_
           ]
 
 instance T.ToJSON SetAccountTtl where
   toJSON
     SetAccountTtl
-      { ttl = ttl
+      { ttl = ttl_
       } =
       A.object
         [ "@type" A..= T.String "setAccountTtl",
-          "ttl" A..= ttl
+          "ttl" A..= ttl_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReportSupergroupSpam where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ReportSupergroupSpam = ReportSupergroupSpam
 instance Show ReportSupergroupSpam where
   show
     ReportSupergroupSpam
-      { message_ids = message_ids,
-        supergroup_id = supergroup_id
+      { message_ids = message_ids_,
+        supergroup_id = supergroup_id_
       } =
       "ReportSupergroupSpam"
         ++ U.cc
-          [ U.p "message_ids" message_ids,
-            U.p "supergroup_id" supergroup_id
+          [ U.p "message_ids" message_ids_,
+            U.p "supergroup_id" supergroup_id_
           ]
 
 instance T.ToJSON ReportSupergroupSpam where
   toJSON
     ReportSupergroupSpam
-      { message_ids = message_ids,
-        supergroup_id = supergroup_id
+      { message_ids = message_ids_,
+        supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "reportSupergroupSpam",
-          "message_ids" A..= message_ids,
-          "supergroup_id" A..= supergroup_id
+          "message_ids" A..= message_ids_,
+          "supergroup_id" A..= supergroup_id_
         ]

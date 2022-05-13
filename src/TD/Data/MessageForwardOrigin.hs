@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageForwardOrigin where
 
 import qualified Data.Aeson as A
@@ -44,49 +45,49 @@ data MessageForwardOrigin
 instance Show MessageForwardOrigin where
   show
     MessageForwardOriginUser
-      { sender_user_id = sender_user_id
+      { sender_user_id = sender_user_id_
       } =
       "MessageForwardOriginUser"
         ++ U.cc
-          [ U.p "sender_user_id" sender_user_id
+          [ U.p "sender_user_id" sender_user_id_
           ]
   show
     MessageForwardOriginChat
-      { author_signature = author_signature,
-        sender_chat_id = sender_chat_id
+      { author_signature = author_signature_,
+        sender_chat_id = sender_chat_id_
       } =
       "MessageForwardOriginChat"
         ++ U.cc
-          [ U.p "author_signature" author_signature,
-            U.p "sender_chat_id" sender_chat_id
+          [ U.p "author_signature" author_signature_,
+            U.p "sender_chat_id" sender_chat_id_
           ]
   show
     MessageForwardOriginHiddenUser
-      { sender_name = sender_name
+      { sender_name = sender_name_
       } =
       "MessageForwardOriginHiddenUser"
         ++ U.cc
-          [ U.p "sender_name" sender_name
+          [ U.p "sender_name" sender_name_
           ]
   show
     MessageForwardOriginChannel
-      { author_signature = author_signature,
-        message_id = message_id,
-        chat_id = chat_id
+      { author_signature = author_signature_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "MessageForwardOriginChannel"
         ++ U.cc
-          [ U.p "author_signature" author_signature,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "author_signature" author_signature_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     MessageForwardOriginMessageImport
-      { sender_name = sender_name
+      { sender_name = sender_name_
       } =
       "MessageForwardOriginMessageImport"
         ++ U.cc
-          [ U.p "sender_name" sender_name
+          [ U.p "sender_name" sender_name_
           ]
 
 instance T.FromJSON MessageForwardOrigin where
@@ -133,47 +134,47 @@ instance T.FromJSON MessageForwardOrigin where
 instance T.ToJSON MessageForwardOrigin where
   toJSON
     MessageForwardOriginUser
-      { sender_user_id = sender_user_id
+      { sender_user_id = sender_user_id_
       } =
       A.object
         [ "@type" A..= T.String "messageForwardOriginUser",
-          "sender_user_id" A..= sender_user_id
+          "sender_user_id" A..= sender_user_id_
         ]
   toJSON
     MessageForwardOriginChat
-      { author_signature = author_signature,
-        sender_chat_id = sender_chat_id
+      { author_signature = author_signature_,
+        sender_chat_id = sender_chat_id_
       } =
       A.object
         [ "@type" A..= T.String "messageForwardOriginChat",
-          "author_signature" A..= author_signature,
-          "sender_chat_id" A..= sender_chat_id
+          "author_signature" A..= author_signature_,
+          "sender_chat_id" A..= sender_chat_id_
         ]
   toJSON
     MessageForwardOriginHiddenUser
-      { sender_name = sender_name
+      { sender_name = sender_name_
       } =
       A.object
         [ "@type" A..= T.String "messageForwardOriginHiddenUser",
-          "sender_name" A..= sender_name
+          "sender_name" A..= sender_name_
         ]
   toJSON
     MessageForwardOriginChannel
-      { author_signature = author_signature,
-        message_id = message_id,
-        chat_id = chat_id
+      { author_signature = author_signature_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "messageForwardOriginChannel",
-          "author_signature" A..= author_signature,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "author_signature" A..= author_signature_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     MessageForwardOriginMessageImport
-      { sender_name = sender_name
+      { sender_name = sender_name_
       } =
       A.object
         [ "@type" A..= T.String "messageForwardOriginMessageImport",
-          "sender_name" A..= sender_name
+          "sender_name" A..= sender_name_
         ]

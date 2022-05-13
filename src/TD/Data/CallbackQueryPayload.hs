@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallbackQueryPayload where
 
 import qualified Data.Aeson as A
@@ -30,29 +31,29 @@ data CallbackQueryPayload
 instance Show CallbackQueryPayload where
   show
     CallbackQueryPayloadData
-      { _data = _data
+      { _data = _data_
       } =
       "CallbackQueryPayloadData"
         ++ U.cc
-          [ U.p "_data" _data
+          [ U.p "_data" _data_
           ]
   show
     CallbackQueryPayloadDataWithPassword
-      { _data = _data,
-        password = password
+      { _data = _data_,
+        password = password_
       } =
       "CallbackQueryPayloadDataWithPassword"
         ++ U.cc
-          [ U.p "_data" _data,
-            U.p "password" password
+          [ U.p "_data" _data_,
+            U.p "password" password_
           ]
   show
     CallbackQueryPayloadGame
-      { game_short_name = game_short_name
+      { game_short_name = game_short_name_
       } =
       "CallbackQueryPayloadGame"
         ++ U.cc
-          [ U.p "game_short_name" game_short_name
+          [ U.p "game_short_name" game_short_name_
           ]
 
 instance T.FromJSON CallbackQueryPayload where
@@ -85,27 +86,27 @@ instance T.FromJSON CallbackQueryPayload where
 instance T.ToJSON CallbackQueryPayload where
   toJSON
     CallbackQueryPayloadData
-      { _data = _data
+      { _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "callbackQueryPayloadData",
-          "data" A..= _data
+          "data" A..= _data_
         ]
   toJSON
     CallbackQueryPayloadDataWithPassword
-      { _data = _data,
-        password = password
+      { _data = _data_,
+        password = password_
       } =
       A.object
         [ "@type" A..= T.String "callbackQueryPayloadDataWithPassword",
-          "data" A..= _data,
-          "password" A..= password
+          "data" A..= _data_,
+          "password" A..= password_
         ]
   toJSON
     CallbackQueryPayloadGame
-      { game_short_name = game_short_name
+      { game_short_name = game_short_name_
       } =
       A.object
         [ "@type" A..= T.String "callbackQueryPayloadGame",
-          "game_short_name" A..= game_short_name
+          "game_short_name" A..= game_short_name_
         ]

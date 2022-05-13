@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ClosedVectorPath where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data ClosedVectorPath = -- | Represents a closed vector path. The path begins at
 instance Show ClosedVectorPath where
   show
     ClosedVectorPath
-      { commands = commands
+      { commands = commands_
       } =
       "ClosedVectorPath"
         ++ U.cc
-          [ U.p "commands" commands
+          [ U.p "commands" commands_
           ]
 
 instance T.FromJSON ClosedVectorPath where
@@ -41,9 +42,9 @@ instance T.FromJSON ClosedVectorPath where
 instance T.ToJSON ClosedVectorPath where
   toJSON
     ClosedVectorPath
-      { commands = commands
+      { commands = commands_
       } =
       A.object
         [ "@type" A..= T.String "closedVectorPath",
-          "commands" A..= commands
+          "commands" A..= commands_
         ]

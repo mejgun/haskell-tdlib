@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetSavedNotificationSound where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetSavedNotificationSound = GetSavedNotificationSound
 instance Show GetSavedNotificationSound where
   show
     GetSavedNotificationSound
-      { notification_sound_id = notification_sound_id
+      { notification_sound_id = notification_sound_id_
       } =
       "GetSavedNotificationSound"
         ++ U.cc
-          [ U.p "notification_sound_id" notification_sound_id
+          [ U.p "notification_sound_id" notification_sound_id_
           ]
 
 instance T.ToJSON GetSavedNotificationSound where
   toJSON
     GetSavedNotificationSound
-      { notification_sound_id = notification_sound_id
+      { notification_sound_id = notification_sound_id_
       } =
       A.object
         [ "@type" A..= T.String "getSavedNotificationSound",
-          "notification_sound_id" A..= notification_sound_id
+          "notification_sound_id" A..= notification_sound_id_
         ]

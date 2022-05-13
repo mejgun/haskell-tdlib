@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NetworkStatistics where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data NetworkStatistics = -- | A full list of available network statistic entries
 instance Show NetworkStatistics where
   show
     NetworkStatistics
-      { entries = entries,
-        since_date = since_date
+      { entries = entries_,
+        since_date = since_date_
       } =
       "NetworkStatistics"
         ++ U.cc
-          [ U.p "entries" entries,
-            U.p "since_date" since_date
+          [ U.p "entries" entries_,
+            U.p "since_date" since_date_
           ]
 
 instance T.FromJSON NetworkStatistics where
@@ -46,11 +47,11 @@ instance T.FromJSON NetworkStatistics where
 instance T.ToJSON NetworkStatistics where
   toJSON
     NetworkStatistics
-      { entries = entries,
-        since_date = since_date
+      { entries = entries_,
+        since_date = since_date_
       } =
       A.object
         [ "@type" A..= T.String "networkStatistics",
-          "entries" A..= entries,
-          "since_date" A..= since_date
+          "entries" A..= entries_,
+          "since_date" A..= since_date_
         ]

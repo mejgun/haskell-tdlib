@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallState where
 
 import qualified Data.Aeson as A
@@ -59,13 +60,13 @@ data CallState
 instance Show CallState where
   show
     CallStatePending
-      { is_received = is_received,
-        is_created = is_created
+      { is_received = is_received_,
+        is_created = is_created_
       } =
       "CallStatePending"
         ++ U.cc
-          [ U.p "is_received" is_received,
-            U.p "is_created" is_created
+          [ U.p "is_received" is_received_,
+            U.p "is_created" is_created_
           ]
   show CallStateExchangingKeys =
     "CallStateExchangingKeys"
@@ -73,21 +74,21 @@ instance Show CallState where
         []
   show
     CallStateReady
-      { allow_p2p = allow_p2p,
-        emojis = emojis,
-        encryption_key = encryption_key,
-        config = config,
-        servers = servers,
-        protocol = protocol
+      { allow_p2p = allow_p2p_,
+        emojis = emojis_,
+        encryption_key = encryption_key_,
+        config = config_,
+        servers = servers_,
+        protocol = protocol_
       } =
       "CallStateReady"
         ++ U.cc
-          [ U.p "allow_p2p" allow_p2p,
-            U.p "emojis" emojis,
-            U.p "encryption_key" encryption_key,
-            U.p "config" config,
-            U.p "servers" servers,
-            U.p "protocol" protocol
+          [ U.p "allow_p2p" allow_p2p_,
+            U.p "emojis" emojis_,
+            U.p "encryption_key" encryption_key_,
+            U.p "config" config_,
+            U.p "servers" servers_,
+            U.p "protocol" protocol_
           ]
   show CallStateHangingUp =
     "CallStateHangingUp"
@@ -95,25 +96,25 @@ instance Show CallState where
         []
   show
     CallStateDiscarded
-      { need_log = need_log,
-        need_debug_information = need_debug_information,
-        need_rating = need_rating,
-        reason = reason
+      { need_log = need_log_,
+        need_debug_information = need_debug_information_,
+        need_rating = need_rating_,
+        reason = reason_
       } =
       "CallStateDiscarded"
         ++ U.cc
-          [ U.p "need_log" need_log,
-            U.p "need_debug_information" need_debug_information,
-            U.p "need_rating" need_rating,
-            U.p "reason" reason
+          [ U.p "need_log" need_log_,
+            U.p "need_debug_information" need_debug_information_,
+            U.p "need_rating" need_rating_,
+            U.p "reason" reason_
           ]
   show
     CallStateError
-      { _error = _error
+      { _error = _error_
       } =
       "CallStateError"
         ++ U.cc
-          [ U.p "_error" _error
+          [ U.p "_error" _error_
           ]
 
 instance T.FromJSON CallState where
@@ -136,8 +137,7 @@ instance T.FromJSON CallState where
         return $ CallStatePending {is_received = is_received_, is_created = is_created_}
 
       parseCallStateExchangingKeys :: A.Value -> T.Parser CallState
-      parseCallStateExchangingKeys = A.withObject "CallStateExchangingKeys" $ \o -> do
-        return $ CallStateExchangingKeys {}
+      parseCallStateExchangingKeys = A.withObject "CallStateExchangingKeys" $ \_ -> return CallStateExchangingKeys
 
       parseCallStateReady :: A.Value -> T.Parser CallState
       parseCallStateReady = A.withObject "CallStateReady" $ \o -> do
@@ -150,8 +150,7 @@ instance T.FromJSON CallState where
         return $ CallStateReady {allow_p2p = allow_p2p_, emojis = emojis_, encryption_key = encryption_key_, config = config_, servers = servers_, protocol = protocol_}
 
       parseCallStateHangingUp :: A.Value -> T.Parser CallState
-      parseCallStateHangingUp = A.withObject "CallStateHangingUp" $ \o -> do
-        return $ CallStateHangingUp {}
+      parseCallStateHangingUp = A.withObject "CallStateHangingUp" $ \_ -> return CallStateHangingUp
 
       parseCallStateDiscarded :: A.Value -> T.Parser CallState
       parseCallStateDiscarded = A.withObject "CallStateDiscarded" $ \o -> do
@@ -170,13 +169,13 @@ instance T.FromJSON CallState where
 instance T.ToJSON CallState where
   toJSON
     CallStatePending
-      { is_received = is_received,
-        is_created = is_created
+      { is_received = is_received_,
+        is_created = is_created_
       } =
       A.object
         [ "@type" A..= T.String "callStatePending",
-          "is_received" A..= is_received,
-          "is_created" A..= is_created
+          "is_received" A..= is_received_,
+          "is_created" A..= is_created_
         ]
   toJSON CallStateExchangingKeys =
     A.object
@@ -184,21 +183,21 @@ instance T.ToJSON CallState where
       ]
   toJSON
     CallStateReady
-      { allow_p2p = allow_p2p,
-        emojis = emojis,
-        encryption_key = encryption_key,
-        config = config,
-        servers = servers,
-        protocol = protocol
+      { allow_p2p = allow_p2p_,
+        emojis = emojis_,
+        encryption_key = encryption_key_,
+        config = config_,
+        servers = servers_,
+        protocol = protocol_
       } =
       A.object
         [ "@type" A..= T.String "callStateReady",
-          "allow_p2p" A..= allow_p2p,
-          "emojis" A..= emojis,
-          "encryption_key" A..= encryption_key,
-          "config" A..= config,
-          "servers" A..= servers,
-          "protocol" A..= protocol
+          "allow_p2p" A..= allow_p2p_,
+          "emojis" A..= emojis_,
+          "encryption_key" A..= encryption_key_,
+          "config" A..= config_,
+          "servers" A..= servers_,
+          "protocol" A..= protocol_
         ]
   toJSON CallStateHangingUp =
     A.object
@@ -206,23 +205,23 @@ instance T.ToJSON CallState where
       ]
   toJSON
     CallStateDiscarded
-      { need_log = need_log,
-        need_debug_information = need_debug_information,
-        need_rating = need_rating,
-        reason = reason
+      { need_log = need_log_,
+        need_debug_information = need_debug_information_,
+        need_rating = need_rating_,
+        reason = reason_
       } =
       A.object
         [ "@type" A..= T.String "callStateDiscarded",
-          "need_log" A..= need_log,
-          "need_debug_information" A..= need_debug_information,
-          "need_rating" A..= need_rating,
-          "reason" A..= reason
+          "need_log" A..= need_log_,
+          "need_debug_information" A..= need_debug_information_,
+          "need_rating" A..= need_rating_,
+          "reason" A..= reason_
         ]
   toJSON
     CallStateError
-      { _error = _error
+      { _error = _error_
       } =
       A.object
         [ "@type" A..= T.String "callStateError",
-          "error" A..= _error
+          "error" A..= _error_
         ]

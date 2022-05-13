@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessagePosition where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data MessagePosition = -- | Contains information about a message in a specific p
 instance Show MessagePosition where
   show
     MessagePosition
-      { date = date,
-        message_id = message_id,
-        position = position
+      { date = date_,
+        message_id = message_id_,
+        position = position_
       } =
       "MessagePosition"
         ++ U.cc
-          [ U.p "date" date,
-            U.p "message_id" message_id,
-            U.p "position" position
+          [ U.p "date" date_,
+            U.p "message_id" message_id_,
+            U.p "position" position_
           ]
 
 instance T.FromJSON MessagePosition where
@@ -50,13 +51,13 @@ instance T.FromJSON MessagePosition where
 instance T.ToJSON MessagePosition where
   toJSON
     MessagePosition
-      { date = date,
-        message_id = message_id,
-        position = position
+      { date = date_,
+        message_id = message_id_,
+        position = position_
       } =
       A.object
         [ "@type" A..= T.String "messagePosition",
-          "date" A..= date,
-          "message_id" A..= message_id,
-          "position" A..= position
+          "date" A..= date_,
+          "message_id" A..= message_id_,
+          "position" A..= position_
         ]

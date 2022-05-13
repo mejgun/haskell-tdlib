@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetInlineGameHighScores where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetInlineGameHighScores = GetInlineGameHighScores
 instance Show GetInlineGameHighScores where
   show
     GetInlineGameHighScores
-      { user_id = user_id,
-        inline_message_id = inline_message_id
+      { user_id = user_id_,
+        inline_message_id = inline_message_id_
       } =
       "GetInlineGameHighScores"
         ++ U.cc
-          [ U.p "user_id" user_id,
-            U.p "inline_message_id" inline_message_id
+          [ U.p "user_id" user_id_,
+            U.p "inline_message_id" inline_message_id_
           ]
 
 instance T.ToJSON GetInlineGameHighScores where
   toJSON
     GetInlineGameHighScores
-      { user_id = user_id,
-        inline_message_id = inline_message_id
+      { user_id = user_id_,
+        inline_message_id = inline_message_id_
       } =
       A.object
         [ "@type" A..= T.String "getInlineGameHighScores",
-          "user_id" A..= user_id,
-          "inline_message_id" A..= inline_message_id
+          "user_id" A..= user_id_,
+          "inline_message_id" A..= inline_message_id_
         ]

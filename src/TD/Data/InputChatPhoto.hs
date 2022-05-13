@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputChatPhoto where
 
 import qualified Data.Aeson as A
@@ -31,29 +32,29 @@ data InputChatPhoto
 instance Show InputChatPhoto where
   show
     InputChatPhotoPrevious
-      { chat_photo_id = chat_photo_id
+      { chat_photo_id = chat_photo_id_
       } =
       "InputChatPhotoPrevious"
         ++ U.cc
-          [ U.p "chat_photo_id" chat_photo_id
+          [ U.p "chat_photo_id" chat_photo_id_
           ]
   show
     InputChatPhotoStatic
-      { photo = photo
+      { photo = photo_
       } =
       "InputChatPhotoStatic"
         ++ U.cc
-          [ U.p "photo" photo
+          [ U.p "photo" photo_
           ]
   show
     InputChatPhotoAnimation
-      { main_frame_timestamp = main_frame_timestamp,
-        animation = animation
+      { main_frame_timestamp = main_frame_timestamp_,
+        animation = animation_
       } =
       "InputChatPhotoAnimation"
         ++ U.cc
-          [ U.p "main_frame_timestamp" main_frame_timestamp,
-            U.p "animation" animation
+          [ U.p "main_frame_timestamp" main_frame_timestamp_,
+            U.p "animation" animation_
           ]
 
 instance T.FromJSON InputChatPhoto where
@@ -86,27 +87,27 @@ instance T.FromJSON InputChatPhoto where
 instance T.ToJSON InputChatPhoto where
   toJSON
     InputChatPhotoPrevious
-      { chat_photo_id = chat_photo_id
+      { chat_photo_id = chat_photo_id_
       } =
       A.object
         [ "@type" A..= T.String "inputChatPhotoPrevious",
-          "chat_photo_id" A..= chat_photo_id
+          "chat_photo_id" A..= chat_photo_id_
         ]
   toJSON
     InputChatPhotoStatic
-      { photo = photo
+      { photo = photo_
       } =
       A.object
         [ "@type" A..= T.String "inputChatPhotoStatic",
-          "photo" A..= photo
+          "photo" A..= photo_
         ]
   toJSON
     InputChatPhotoAnimation
-      { main_frame_timestamp = main_frame_timestamp,
-        animation = animation
+      { main_frame_timestamp = main_frame_timestamp_,
+        animation = animation_
       } =
       A.object
         [ "@type" A..= T.String "inputChatPhotoAnimation",
-          "main_frame_timestamp" A..= main_frame_timestamp,
-          "animation" A..= animation
+          "main_frame_timestamp" A..= main_frame_timestamp_,
+          "animation" A..= animation_
         ]

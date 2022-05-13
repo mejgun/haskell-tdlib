@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PassportElement where
 
 import qualified Data.Aeson as A
@@ -82,107 +83,107 @@ data PassportElement
 instance Show PassportElement where
   show
     PassportElementPersonalDetails
-      { personal_details = personal_details
+      { personal_details = personal_details_
       } =
       "PassportElementPersonalDetails"
         ++ U.cc
-          [ U.p "personal_details" personal_details
+          [ U.p "personal_details" personal_details_
           ]
   show
     PassportElementPassport
-      { passport = passport
+      { passport = passport_
       } =
       "PassportElementPassport"
         ++ U.cc
-          [ U.p "passport" passport
+          [ U.p "passport" passport_
           ]
   show
     PassportElementDriverLicense
-      { driver_license = driver_license
+      { driver_license = driver_license_
       } =
       "PassportElementDriverLicense"
         ++ U.cc
-          [ U.p "driver_license" driver_license
+          [ U.p "driver_license" driver_license_
           ]
   show
     PassportElementIdentityCard
-      { identity_card = identity_card
+      { identity_card = identity_card_
       } =
       "PassportElementIdentityCard"
         ++ U.cc
-          [ U.p "identity_card" identity_card
+          [ U.p "identity_card" identity_card_
           ]
   show
     PassportElementInternalPassport
-      { internal_passport = internal_passport
+      { internal_passport = internal_passport_
       } =
       "PassportElementInternalPassport"
         ++ U.cc
-          [ U.p "internal_passport" internal_passport
+          [ U.p "internal_passport" internal_passport_
           ]
   show
     PassportElementAddress
-      { address = address
+      { address = address_
       } =
       "PassportElementAddress"
         ++ U.cc
-          [ U.p "address" address
+          [ U.p "address" address_
           ]
   show
     PassportElementUtilityBill
-      { utility_bill = utility_bill
+      { utility_bill = utility_bill_
       } =
       "PassportElementUtilityBill"
         ++ U.cc
-          [ U.p "utility_bill" utility_bill
+          [ U.p "utility_bill" utility_bill_
           ]
   show
     PassportElementBankStatement
-      { bank_statement = bank_statement
+      { bank_statement = bank_statement_
       } =
       "PassportElementBankStatement"
         ++ U.cc
-          [ U.p "bank_statement" bank_statement
+          [ U.p "bank_statement" bank_statement_
           ]
   show
     PassportElementRentalAgreement
-      { rental_agreement = rental_agreement
+      { rental_agreement = rental_agreement_
       } =
       "PassportElementRentalAgreement"
         ++ U.cc
-          [ U.p "rental_agreement" rental_agreement
+          [ U.p "rental_agreement" rental_agreement_
           ]
   show
     PassportElementPassportRegistration
-      { passport_registration = passport_registration
+      { passport_registration = passport_registration_
       } =
       "PassportElementPassportRegistration"
         ++ U.cc
-          [ U.p "passport_registration" passport_registration
+          [ U.p "passport_registration" passport_registration_
           ]
   show
     PassportElementTemporaryRegistration
-      { temporary_registration = temporary_registration
+      { temporary_registration = temporary_registration_
       } =
       "PassportElementTemporaryRegistration"
         ++ U.cc
-          [ U.p "temporary_registration" temporary_registration
+          [ U.p "temporary_registration" temporary_registration_
           ]
   show
     PassportElementPhoneNumber
-      { phone_number = phone_number
+      { phone_number = phone_number_
       } =
       "PassportElementPhoneNumber"
         ++ U.cc
-          [ U.p "phone_number" phone_number
+          [ U.p "phone_number" phone_number_
           ]
   show
     PassportElementEmailAddress
-      { email_address = email_address
+      { email_address = email_address_
       } =
       "PassportElementEmailAddress"
         ++ U.cc
-          [ U.p "email_address" email_address
+          [ U.p "email_address" email_address_
           ]
 
 instance T.FromJSON PassportElement where
@@ -274,105 +275,105 @@ instance T.FromJSON PassportElement where
 instance T.ToJSON PassportElement where
   toJSON
     PassportElementPersonalDetails
-      { personal_details = personal_details
+      { personal_details = personal_details_
       } =
       A.object
         [ "@type" A..= T.String "passportElementPersonalDetails",
-          "personal_details" A..= personal_details
+          "personal_details" A..= personal_details_
         ]
   toJSON
     PassportElementPassport
-      { passport = passport
+      { passport = passport_
       } =
       A.object
         [ "@type" A..= T.String "passportElementPassport",
-          "passport" A..= passport
+          "passport" A..= passport_
         ]
   toJSON
     PassportElementDriverLicense
-      { driver_license = driver_license
+      { driver_license = driver_license_
       } =
       A.object
         [ "@type" A..= T.String "passportElementDriverLicense",
-          "driver_license" A..= driver_license
+          "driver_license" A..= driver_license_
         ]
   toJSON
     PassportElementIdentityCard
-      { identity_card = identity_card
+      { identity_card = identity_card_
       } =
       A.object
         [ "@type" A..= T.String "passportElementIdentityCard",
-          "identity_card" A..= identity_card
+          "identity_card" A..= identity_card_
         ]
   toJSON
     PassportElementInternalPassport
-      { internal_passport = internal_passport
+      { internal_passport = internal_passport_
       } =
       A.object
         [ "@type" A..= T.String "passportElementInternalPassport",
-          "internal_passport" A..= internal_passport
+          "internal_passport" A..= internal_passport_
         ]
   toJSON
     PassportElementAddress
-      { address = address
+      { address = address_
       } =
       A.object
         [ "@type" A..= T.String "passportElementAddress",
-          "address" A..= address
+          "address" A..= address_
         ]
   toJSON
     PassportElementUtilityBill
-      { utility_bill = utility_bill
+      { utility_bill = utility_bill_
       } =
       A.object
         [ "@type" A..= T.String "passportElementUtilityBill",
-          "utility_bill" A..= utility_bill
+          "utility_bill" A..= utility_bill_
         ]
   toJSON
     PassportElementBankStatement
-      { bank_statement = bank_statement
+      { bank_statement = bank_statement_
       } =
       A.object
         [ "@type" A..= T.String "passportElementBankStatement",
-          "bank_statement" A..= bank_statement
+          "bank_statement" A..= bank_statement_
         ]
   toJSON
     PassportElementRentalAgreement
-      { rental_agreement = rental_agreement
+      { rental_agreement = rental_agreement_
       } =
       A.object
         [ "@type" A..= T.String "passportElementRentalAgreement",
-          "rental_agreement" A..= rental_agreement
+          "rental_agreement" A..= rental_agreement_
         ]
   toJSON
     PassportElementPassportRegistration
-      { passport_registration = passport_registration
+      { passport_registration = passport_registration_
       } =
       A.object
         [ "@type" A..= T.String "passportElementPassportRegistration",
-          "passport_registration" A..= passport_registration
+          "passport_registration" A..= passport_registration_
         ]
   toJSON
     PassportElementTemporaryRegistration
-      { temporary_registration = temporary_registration
+      { temporary_registration = temporary_registration_
       } =
       A.object
         [ "@type" A..= T.String "passportElementTemporaryRegistration",
-          "temporary_registration" A..= temporary_registration
+          "temporary_registration" A..= temporary_registration_
         ]
   toJSON
     PassportElementPhoneNumber
-      { phone_number = phone_number
+      { phone_number = phone_number_
       } =
       A.object
         [ "@type" A..= T.String "passportElementPhoneNumber",
-          "phone_number" A..= phone_number
+          "phone_number" A..= phone_number_
         ]
   toJSON
     PassportElementEmailAddress
-      { email_address = email_address
+      { email_address = email_address_
       } =
       A.object
         [ "@type" A..= T.String "passportElementEmailAddress",
-          "email_address" A..= email_address
+          "email_address" A..= email_address_
         ]

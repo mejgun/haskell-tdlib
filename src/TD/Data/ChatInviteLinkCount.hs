@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatInviteLinkCount where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data ChatInviteLinkCount = -- | Describes a chat administrator with a number of 
 instance Show ChatInviteLinkCount where
   show
     ChatInviteLinkCount
-      { revoked_invite_link_count = revoked_invite_link_count,
-        invite_link_count = invite_link_count,
-        user_id = user_id
+      { revoked_invite_link_count = revoked_invite_link_count_,
+        invite_link_count = invite_link_count_,
+        user_id = user_id_
       } =
       "ChatInviteLinkCount"
         ++ U.cc
-          [ U.p "revoked_invite_link_count" revoked_invite_link_count,
-            U.p "invite_link_count" invite_link_count,
-            U.p "user_id" user_id
+          [ U.p "revoked_invite_link_count" revoked_invite_link_count_,
+            U.p "invite_link_count" invite_link_count_,
+            U.p "user_id" user_id_
           ]
 
 instance T.FromJSON ChatInviteLinkCount where
@@ -50,13 +51,13 @@ instance T.FromJSON ChatInviteLinkCount where
 instance T.ToJSON ChatInviteLinkCount where
   toJSON
     ChatInviteLinkCount
-      { revoked_invite_link_count = revoked_invite_link_count,
-        invite_link_count = invite_link_count,
-        user_id = user_id
+      { revoked_invite_link_count = revoked_invite_link_count_,
+        invite_link_count = invite_link_count_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatInviteLinkCount",
-          "revoked_invite_link_count" A..= revoked_invite_link_count,
-          "invite_link_count" A..= invite_link_count,
-          "user_id" A..= user_id
+          "revoked_invite_link_count" A..= revoked_invite_link_count_,
+          "invite_link_count" A..= invite_link_count_,
+          "user_id" A..= user_id_
         ]

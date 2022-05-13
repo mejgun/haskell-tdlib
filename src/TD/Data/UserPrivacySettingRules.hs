@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.UserPrivacySettingRules where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data UserPrivacySettingRules = -- | A list of privacy rules. Rules are matched i
 instance Show UserPrivacySettingRules where
   show
     UserPrivacySettingRules
-      { rules = rules
+      { rules = rules_
       } =
       "UserPrivacySettingRules"
         ++ U.cc
-          [ U.p "rules" rules
+          [ U.p "rules" rules_
           ]
 
 instance T.FromJSON UserPrivacySettingRules where
@@ -41,9 +42,9 @@ instance T.FromJSON UserPrivacySettingRules where
 instance T.ToJSON UserPrivacySettingRules where
   toJSON
     UserPrivacySettingRules
-      { rules = rules
+      { rules = rules_
       } =
       A.object
         [ "@type" A..= T.String "userPrivacySettingRules",
-          "rules" A..= rules
+          "rules" A..= rules_
         ]

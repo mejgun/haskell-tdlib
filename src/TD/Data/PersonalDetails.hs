@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PersonalDetails where
 
 import qualified Data.Aeson as A
@@ -35,29 +36,29 @@ data PersonalDetails = -- | Contains the user's personal details
 instance Show PersonalDetails where
   show
     PersonalDetails
-      { residence_country_code = residence_country_code,
-        country_code = country_code,
-        gender = gender,
-        birthdate = birthdate,
-        native_last_name = native_last_name,
-        native_middle_name = native_middle_name,
-        native_first_name = native_first_name,
-        last_name = last_name,
-        middle_name = middle_name,
-        first_name = first_name
+      { residence_country_code = residence_country_code_,
+        country_code = country_code_,
+        gender = gender_,
+        birthdate = birthdate_,
+        native_last_name = native_last_name_,
+        native_middle_name = native_middle_name_,
+        native_first_name = native_first_name_,
+        last_name = last_name_,
+        middle_name = middle_name_,
+        first_name = first_name_
       } =
       "PersonalDetails"
         ++ U.cc
-          [ U.p "residence_country_code" residence_country_code,
-            U.p "country_code" country_code,
-            U.p "gender" gender,
-            U.p "birthdate" birthdate,
-            U.p "native_last_name" native_last_name,
-            U.p "native_middle_name" native_middle_name,
-            U.p "native_first_name" native_first_name,
-            U.p "last_name" last_name,
-            U.p "middle_name" middle_name,
-            U.p "first_name" first_name
+          [ U.p "residence_country_code" residence_country_code_,
+            U.p "country_code" country_code_,
+            U.p "gender" gender_,
+            U.p "birthdate" birthdate_,
+            U.p "native_last_name" native_last_name_,
+            U.p "native_middle_name" native_middle_name_,
+            U.p "native_first_name" native_first_name_,
+            U.p "last_name" last_name_,
+            U.p "middle_name" middle_name_,
+            U.p "first_name" first_name_
           ]
 
 instance T.FromJSON PersonalDetails where
@@ -86,27 +87,27 @@ instance T.FromJSON PersonalDetails where
 instance T.ToJSON PersonalDetails where
   toJSON
     PersonalDetails
-      { residence_country_code = residence_country_code,
-        country_code = country_code,
-        gender = gender,
-        birthdate = birthdate,
-        native_last_name = native_last_name,
-        native_middle_name = native_middle_name,
-        native_first_name = native_first_name,
-        last_name = last_name,
-        middle_name = middle_name,
-        first_name = first_name
+      { residence_country_code = residence_country_code_,
+        country_code = country_code_,
+        gender = gender_,
+        birthdate = birthdate_,
+        native_last_name = native_last_name_,
+        native_middle_name = native_middle_name_,
+        native_first_name = native_first_name_,
+        last_name = last_name_,
+        middle_name = middle_name_,
+        first_name = first_name_
       } =
       A.object
         [ "@type" A..= T.String "personalDetails",
-          "residence_country_code" A..= residence_country_code,
-          "country_code" A..= country_code,
-          "gender" A..= gender,
-          "birthdate" A..= birthdate,
-          "native_last_name" A..= native_last_name,
-          "native_middle_name" A..= native_middle_name,
-          "native_first_name" A..= native_first_name,
-          "last_name" A..= last_name,
-          "middle_name" A..= middle_name,
-          "first_name" A..= first_name
+          "residence_country_code" A..= residence_country_code_,
+          "country_code" A..= country_code_,
+          "gender" A..= gender_,
+          "birthdate" A..= birthdate_,
+          "native_last_name" A..= native_last_name_,
+          "native_middle_name" A..= native_middle_name_,
+          "native_first_name" A..= native_first_name_,
+          "last_name" A..= last_name_,
+          "middle_name" A..= middle_name_,
+          "first_name" A..= first_name_
         ]

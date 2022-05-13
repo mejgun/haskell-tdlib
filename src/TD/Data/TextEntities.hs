@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TextEntities where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data TextEntities = -- | Contains a list of text entities @entities List of text
 instance Show TextEntities where
   show
     TextEntities
-      { entities = entities
+      { entities = entities_
       } =
       "TextEntities"
         ++ U.cc
-          [ U.p "entities" entities
+          [ U.p "entities" entities_
           ]
 
 instance T.FromJSON TextEntities where
@@ -41,9 +42,9 @@ instance T.FromJSON TextEntities where
 instance T.ToJSON TextEntities where
   toJSON
     TextEntities
-      { entities = entities
+      { entities = entities_
       } =
       A.object
         [ "@type" A..= T.String "textEntities",
-          "entities" A..= entities
+          "entities" A..= entities_
         ]

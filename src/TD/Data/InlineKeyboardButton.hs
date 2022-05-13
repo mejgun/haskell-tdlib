@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InlineKeyboardButton where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data InlineKeyboardButton = -- | Represents a single button in an inline keyboar
 instance Show InlineKeyboardButton where
   show
     InlineKeyboardButton
-      { _type = _type,
-        text = text
+      { _type = _type_,
+        text = text_
       } =
       "InlineKeyboardButton"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "text" text
+          [ U.p "_type" _type_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON InlineKeyboardButton where
@@ -46,11 +47,11 @@ instance T.FromJSON InlineKeyboardButton where
 instance T.ToJSON InlineKeyboardButton where
   toJSON
     InlineKeyboardButton
-      { _type = _type,
-        text = text
+      { _type = _type_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButton",
-          "type" A..= _type,
-          "text" A..= text
+          "type" A..= _type_,
+          "text" A..= text_
         ]

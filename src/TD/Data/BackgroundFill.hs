@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BackgroundFill where
 
 import qualified Data.Aeson as A
@@ -32,31 +33,31 @@ data BackgroundFill
 instance Show BackgroundFill where
   show
     BackgroundFillSolid
-      { color = color
+      { color = color_
       } =
       "BackgroundFillSolid"
         ++ U.cc
-          [ U.p "color" color
+          [ U.p "color" color_
           ]
   show
     BackgroundFillGradient
-      { rotation_angle = rotation_angle,
-        bottom_color = bottom_color,
-        top_color = top_color
+      { rotation_angle = rotation_angle_,
+        bottom_color = bottom_color_,
+        top_color = top_color_
       } =
       "BackgroundFillGradient"
         ++ U.cc
-          [ U.p "rotation_angle" rotation_angle,
-            U.p "bottom_color" bottom_color,
-            U.p "top_color" top_color
+          [ U.p "rotation_angle" rotation_angle_,
+            U.p "bottom_color" bottom_color_,
+            U.p "top_color" top_color_
           ]
   show
     BackgroundFillFreeformGradient
-      { colors = colors
+      { colors = colors_
       } =
       "BackgroundFillFreeformGradient"
         ++ U.cc
-          [ U.p "colors" colors
+          [ U.p "colors" colors_
           ]
 
 instance T.FromJSON BackgroundFill where
@@ -90,29 +91,29 @@ instance T.FromJSON BackgroundFill where
 instance T.ToJSON BackgroundFill where
   toJSON
     BackgroundFillSolid
-      { color = color
+      { color = color_
       } =
       A.object
         [ "@type" A..= T.String "backgroundFillSolid",
-          "color" A..= color
+          "color" A..= color_
         ]
   toJSON
     BackgroundFillGradient
-      { rotation_angle = rotation_angle,
-        bottom_color = bottom_color,
-        top_color = top_color
+      { rotation_angle = rotation_angle_,
+        bottom_color = bottom_color_,
+        top_color = top_color_
       } =
       A.object
         [ "@type" A..= T.String "backgroundFillGradient",
-          "rotation_angle" A..= rotation_angle,
-          "bottom_color" A..= bottom_color,
-          "top_color" A..= top_color
+          "rotation_angle" A..= rotation_angle_,
+          "bottom_color" A..= bottom_color_,
+          "top_color" A..= top_color_
         ]
   toJSON
     BackgroundFillFreeformGradient
-      { colors = colors
+      { colors = colors_
       } =
       A.object
         [ "@type" A..= T.String "backgroundFillFreeformGradient",
-          "colors" A..= colors
+          "colors" A..= colors_
         ]

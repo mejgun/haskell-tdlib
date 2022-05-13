@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ShippingOption where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data ShippingOption = -- | One shipping option @id Shipping option identifier @t
 instance Show ShippingOption where
   show
     ShippingOption
-      { price_parts = price_parts,
-        title = title,
-        _id = _id
+      { price_parts = price_parts_,
+        title = title_,
+        _id = _id_
       } =
       "ShippingOption"
         ++ U.cc
-          [ U.p "price_parts" price_parts,
-            U.p "title" title,
-            U.p "_id" _id
+          [ U.p "price_parts" price_parts_,
+            U.p "title" title_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON ShippingOption where
@@ -51,13 +52,13 @@ instance T.FromJSON ShippingOption where
 instance T.ToJSON ShippingOption where
   toJSON
     ShippingOption
-      { price_parts = price_parts,
-        title = title,
-        _id = _id
+      { price_parts = price_parts_,
+        title = title_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "shippingOption",
-          "price_parts" A..= price_parts,
-          "title" A..= title,
-          "id" A..= _id
+          "price_parts" A..= price_parts_,
+          "title" A..= title_,
+          "id" A..= _id_
         ]

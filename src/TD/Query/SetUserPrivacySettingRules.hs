@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetUserPrivacySettingRules where
 
 import qualified Data.Aeson as A
@@ -21,23 +22,23 @@ data SetUserPrivacySettingRules = SetUserPrivacySettingRules
 instance Show SetUserPrivacySettingRules where
   show
     SetUserPrivacySettingRules
-      { rules = rules,
-        setting = setting
+      { rules = rules_,
+        setting = setting_
       } =
       "SetUserPrivacySettingRules"
         ++ U.cc
-          [ U.p "rules" rules,
-            U.p "setting" setting
+          [ U.p "rules" rules_,
+            U.p "setting" setting_
           ]
 
 instance T.ToJSON SetUserPrivacySettingRules where
   toJSON
     SetUserPrivacySettingRules
-      { rules = rules,
-        setting = setting
+      { rules = rules_,
+        setting = setting_
       } =
       A.object
         [ "@type" A..= T.String "setUserPrivacySettingRules",
-          "rules" A..= rules,
-          "setting" A..= setting
+          "rules" A..= rules_,
+          "setting" A..= setting_
         ]

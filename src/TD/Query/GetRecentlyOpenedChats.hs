@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetRecentlyOpenedChats where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetRecentlyOpenedChats = GetRecentlyOpenedChats
 instance Show GetRecentlyOpenedChats where
   show
     GetRecentlyOpenedChats
-      { limit = limit
+      { limit = limit_
       } =
       "GetRecentlyOpenedChats"
         ++ U.cc
-          [ U.p "limit" limit
+          [ U.p "limit" limit_
           ]
 
 instance T.ToJSON GetRecentlyOpenedChats where
   toJSON
     GetRecentlyOpenedChats
-      { limit = limit
+      { limit = limit_
       } =
       A.object
         [ "@type" A..= T.String "getRecentlyOpenedChats",
-          "limit" A..= limit
+          "limit" A..= limit_
         ]

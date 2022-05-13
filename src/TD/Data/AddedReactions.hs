@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AddedReactions where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data AddedReactions = -- | Represents a list of reactions added to a message @to
 instance Show AddedReactions where
   show
     AddedReactions
-      { next_offset = next_offset,
-        reactions = reactions,
-        total_count = total_count
+      { next_offset = next_offset_,
+        reactions = reactions_,
+        total_count = total_count_
       } =
       "AddedReactions"
         ++ U.cc
-          [ U.p "next_offset" next_offset,
-            U.p "reactions" reactions,
-            U.p "total_count" total_count
+          [ U.p "next_offset" next_offset_,
+            U.p "reactions" reactions_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON AddedReactions where
@@ -51,13 +52,13 @@ instance T.FromJSON AddedReactions where
 instance T.ToJSON AddedReactions where
   toJSON
     AddedReactions
-      { next_offset = next_offset,
-        reactions = reactions,
-        total_count = total_count
+      { next_offset = next_offset_,
+        reactions = reactions_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "addedReactions",
-          "next_offset" A..= next_offset,
-          "reactions" A..= reactions,
-          "total_count" A..= total_count
+          "next_offset" A..= next_offset_,
+          "reactions" A..= reactions_,
+          "total_count" A..= total_count_
         ]

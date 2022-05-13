@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetInternalLinkType where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetInternalLinkType = GetInternalLinkType
 instance Show GetInternalLinkType where
   show
     GetInternalLinkType
-      { link = link
+      { link = link_
       } =
       "GetInternalLinkType"
         ++ U.cc
-          [ U.p "link" link
+          [ U.p "link" link_
           ]
 
 instance T.ToJSON GetInternalLinkType where
   toJSON
     GetInternalLinkType
-      { link = link
+      { link = link_
       } =
       A.object
         [ "@type" A..= T.String "getInternalLinkType",
-          "link" A..= link
+          "link" A..= link_
         ]

@@ -1,29 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
-</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.GetSupergroupMembers</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.SupergroupMembersFilter.html"><span class="hs-identifier">TD.Data.SupergroupMembersFilter</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">SupergroupMembersFilter</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters @supergroup_id Identifier of the supergroup or channel</span><span>
-</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="GetSupergroupMembers"><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-var">GetSupergroupMembers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetSupergroupMembers"><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-var">GetSupergroupMembers</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-14"></span><span>    </span><span id="limit"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe Int
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.GetSupergroupMembers</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.SupergroupMembersFilter.html"><span class="hs-identifier">TD.Data.SupergroupMembersFilter</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">SupergroupMembersFilter</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters @supergroup_id Identifier of the supergroup or channel</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetSupergroupMembers"><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-var">GetSupergroupMembers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetSupergroupMembers"><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-var">GetSupergroupMembers</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span id="limit"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe Int
 </span><a href="TD.Query.GetSupergroupMembers.html#limit"><span class="hs-identifier hs-var hs-var">limit</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-16"></span><span>    </span><span id="offset"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe Int
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span id="offset"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe Int
 </span><a href="TD.Query.GetSupergroupMembers.html#offset"><span class="hs-identifier hs-var hs-var">offset</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | The type of users to return; pass null to use supergroupMembersFilterRecent @offset Number of users to skip @limit The maximum number of users be returned; up to 200</span><span>
-</span><span id="line-18"></span><span>    </span><span id="_filter"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe SupergroupMembersFilter
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | The type of users to return; pass null to use supergroupMembersFilterRecent @offset Number of users to skip @limit The maximum number of users be returned; up to 200</span><span>
+</span><span id="line-19"></span><span>    </span><span id="_filter"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe SupergroupMembersFilter
 </span><a href="TD.Query.GetSupergroupMembers.html#_filter"><span class="hs-identifier hs-var hs-var">_filter</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter.SupergroupMembersFilter</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-20"></span><span>    </span><span id="supergroup_id"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe Int
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-21"></span><span>    </span><span id="supergroup_id"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; Maybe Int
 </span><a href="TD.Query.GetSupergroupMembers.html#supergroup_id"><span class="hs-identifier hs-var hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679403370"><span id="local-6989586621679403372"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; GetSupergroupMembers -&gt; Bool
+</span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679402601"><span id="local-6989586621679402603"><span class="annot"><span class="annottext">GetSupergroupMembers -&gt; GetSupergroupMembers -&gt; Bool
 (GetSupergroupMembers -&gt; GetSupergroupMembers -&gt; Bool)
 -&gt; (GetSupergroupMembers -&gt; GetSupergroupMembers -&gt; Bool)
 -&gt; Eq GetSupergroupMembers
@@ -33,96 +34,96 @@ $c/= :: GetSupergroupMembers -&gt; GetSupergroupMembers -&gt; Bool
 == :: GetSupergroupMembers -&gt; GetSupergroupMembers -&gt; Bool
 $c== :: GetSupergroupMembers -&gt; GetSupergroupMembers -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679403364"><span id="local-6989586621679403367"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679403362"><span class="annot"><span class="annottext">show :: GetSupergroupMembers -&gt; String
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402595"><span id="local-6989586621679402598"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679402593"><span class="annot"><span class="annottext">show :: GetSupergroupMembers -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span><span>
-</span><span id="line-27"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetSupergroupMembers -&gt; Maybe Int
-</span><a href="TD.Query.GetSupergroupMembers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403360"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403360"><span class="hs-identifier hs-var">limit</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">offset :: GetSupergroupMembers -&gt; Maybe Int
-</span><a href="TD.Query.GetSupergroupMembers.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403359"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403359"><span class="hs-identifier hs-var">offset</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">_filter :: GetSupergroupMembers -&gt; Maybe SupergroupMembersFilter
-</span><a href="TD.Query.GetSupergroupMembers.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403358"><span class="annot"><span class="annottext">Maybe SupergroupMembersFilter
-</span><a href="#local-6989586621679403358"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">supergroup_id :: GetSupergroupMembers -&gt; Maybe Int
-</span><a href="TD.Query.GetSupergroupMembers.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403357"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403357"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span>
-</span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span><span>
+</span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetSupergroupMembers -&gt; Maybe Int
+</span><a href="TD.Query.GetSupergroupMembers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402591"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679402591"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">offset :: GetSupergroupMembers -&gt; Maybe Int
+</span><a href="TD.Query.GetSupergroupMembers.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402590"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679402590"><span class="hs-identifier hs-var">offset_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">_filter :: GetSupergroupMembers -&gt; Maybe SupergroupMembersFilter
+</span><a href="TD.Query.GetSupergroupMembers.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402589"><span class="annot"><span class="annottext">Maybe SupergroupMembersFilter
+</span><a href="#local-6989586621679402589"><span class="hs-identifier hs-var">_filter_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">supergroup_id :: GetSupergroupMembers -&gt; Maybe Int
+</span><a href="TD.Query.GetSupergroupMembers.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402588"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679402588"><span class="hs-identifier hs-var">supergroup_id_</span></a></span></span><span>
+</span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetSupergroupMembers&quot;</span></span><span>
-</span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-34"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><span id="line-35"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403360"><span class="hs-identifier hs-var">limit</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679402591"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403359"><span class="hs-identifier hs-var">offset</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe SupergroupMembersFilter -&gt; String
+</span><a href="#local-6989586621679402590"><span class="hs-identifier hs-var">offset_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe SupergroupMembersFilter -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_filter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe SupergroupMembersFilter
-</span><a href="#local-6989586621679403358"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><a href="#local-6989586621679402589"><span class="hs-identifier hs-var">_filter_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403357"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span>
-</span><span id="line-38"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679403348"><span id="local-6989586621679403350"><span id="local-6989586621679403352"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679403346"><span class="annot"><span class="annottext">toJSON :: GetSupergroupMembers -&gt; Value
+</span><a href="#local-6989586621679402588"><span class="hs-identifier hs-var">supergroup_id_</span></a></span><span>
+</span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402579"><span id="local-6989586621679402581"><span id="local-6989586621679402583"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679402577"><span class="annot"><span class="annottext">toJSON :: GetSupergroupMembers -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-42"></span><span>    </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span><span>
-</span><span id="line-43"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetSupergroupMembers -&gt; Maybe Int
-</span><a href="TD.Query.GetSupergroupMembers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403344"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403344"><span class="hs-identifier hs-var">limit</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-44"></span><span>        </span><span class="annot"><span class="annottext">offset :: GetSupergroupMembers -&gt; Maybe Int
-</span><a href="TD.Query.GetSupergroupMembers.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403343"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403343"><span class="hs-identifier hs-var">offset</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">_filter :: GetSupergroupMembers -&gt; Maybe SupergroupMembersFilter
-</span><a href="TD.Query.GetSupergroupMembers.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403342"><span class="annot"><span class="annottext">Maybe SupergroupMembersFilter
-</span><a href="#local-6989586621679403342"><span class="hs-identifier hs-var">_filter</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">supergroup_id :: GetSupergroupMembers -&gt; Maybe Int
-</span><a href="TD.Query.GetSupergroupMembers.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679403341"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403341"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span>
-</span><span id="line-47"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-43"></span><span>    </span><span class="annot"><a href="TD.Query.GetSupergroupMembers.html#GetSupergroupMembers"><span class="hs-identifier hs-type">GetSupergroupMembers</span></a></span><span>
+</span><span id="line-44"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetSupergroupMembers -&gt; Maybe Int
+</span><a href="TD.Query.GetSupergroupMembers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402575"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679402575"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">offset :: GetSupergroupMembers -&gt; Maybe Int
+</span><a href="TD.Query.GetSupergroupMembers.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402574"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679402574"><span class="hs-identifier hs-var">offset_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">_filter :: GetSupergroupMembers -&gt; Maybe SupergroupMembersFilter
+</span><a href="TD.Query.GetSupergroupMembers.html#_filter"><span class="hs-identifier hs-var">_filter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402573"><span class="annot"><span class="annottext">Maybe SupergroupMembersFilter
+</span><a href="#local-6989586621679402573"><span class="hs-identifier hs-var">_filter_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>        </span><span class="annot"><span class="annottext">supergroup_id :: GetSupergroupMembers -&gt; Maybe Int
+</span><a href="TD.Query.GetSupergroupMembers.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402572"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679402572"><span class="hs-identifier hs-var">supergroup_id_</span></a></span></span><span>
+</span><span id="line-48"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-49"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-50"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;getSupergroupMembers&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-50"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-51"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403344"><span class="hs-identifier hs-var">limit</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-51"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679402575"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-52"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403343"><span class="hs-identifier hs-var">offset</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-52"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679402574"><span class="hs-identifier hs-var">offset_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;filter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe SupergroupMembersFilter -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe SupergroupMembersFilter
-</span><a href="#local-6989586621679403342"><span class="hs-identifier hs-var">_filter</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679402573"><span class="hs-identifier hs-var">_filter_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-54"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679403341"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span>
-</span><span id="line-54"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-55"></span></pre></body></html>
+</span><a href="#local-6989586621679402572"><span class="hs-identifier hs-var">supergroup_id_</span></a></span><span>
+</span><span id="line-55"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-56"></span></pre></body></html>

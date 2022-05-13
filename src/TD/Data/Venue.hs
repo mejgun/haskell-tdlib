@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Venue where
 
 import qualified Data.Aeson as A
@@ -27,21 +28,21 @@ data Venue = -- | Describes a venue @location Venue location; as defined by the 
 instance Show Venue where
   show
     Venue
-      { _type = _type,
-        _id = _id,
-        provider = provider,
-        address = address,
-        title = title,
-        location = location
+      { _type = _type_,
+        _id = _id_,
+        provider = provider_,
+        address = address_,
+        title = title_,
+        location = location_
       } =
       "Venue"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "_id" _id,
-            U.p "provider" provider,
-            U.p "address" address,
-            U.p "title" title,
-            U.p "location" location
+          [ U.p "_type" _type_,
+            U.p "_id" _id_,
+            U.p "provider" provider_,
+            U.p "address" address_,
+            U.p "title" title_,
+            U.p "location" location_
           ]
 
 instance T.FromJSON Venue where
@@ -66,19 +67,19 @@ instance T.FromJSON Venue where
 instance T.ToJSON Venue where
   toJSON
     Venue
-      { _type = _type,
-        _id = _id,
-        provider = provider,
-        address = address,
-        title = title,
-        location = location
+      { _type = _type_,
+        _id = _id_,
+        provider = provider_,
+        address = address_,
+        title = title_,
+        location = location_
       } =
       A.object
         [ "@type" A..= T.String "venue",
-          "type" A..= _type,
-          "id" A..= _id,
-          "provider" A..= provider,
-          "address" A..= address,
-          "title" A..= title,
-          "location" A..= location
+          "type" A..= _type_,
+          "id" A..= _id_,
+          "provider" A..= provider_,
+          "address" A..= address_,
+          "title" A..= title_,
+          "location" A..= location_
         ]

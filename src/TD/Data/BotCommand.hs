@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BotCommand where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data BotCommand = -- | Represents a command supported by a bot @command Text of 
 instance Show BotCommand where
   show
     BotCommand
-      { description = description,
-        command = command
+      { description = description_,
+        command = command_
       } =
       "BotCommand"
         ++ U.cc
-          [ U.p "description" description,
-            U.p "command" command
+          [ U.p "description" description_,
+            U.p "command" command_
           ]
 
 instance T.FromJSON BotCommand where
@@ -45,11 +46,11 @@ instance T.FromJSON BotCommand where
 instance T.ToJSON BotCommand where
   toJSON
     BotCommand
-      { description = description,
-        command = command
+      { description = description_,
+        command = command_
       } =
       A.object
         [ "@type" A..= T.String "botCommand",
-          "description" A..= description,
-          "command" A..= command
+          "description" A..= description_,
+          "command" A..= command_
         ]

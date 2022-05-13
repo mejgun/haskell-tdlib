@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PersonalDocument where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data PersonalDocument = -- | A personal document, containing some information ab
 instance Show PersonalDocument where
   show
     PersonalDocument
-      { translation = translation,
-        files = files
+      { translation = translation_,
+        files = files_
       } =
       "PersonalDocument"
         ++ U.cc
-          [ U.p "translation" translation,
-            U.p "files" files
+          [ U.p "translation" translation_,
+            U.p "files" files_
           ]
 
 instance T.FromJSON PersonalDocument where
@@ -46,11 +47,11 @@ instance T.FromJSON PersonalDocument where
 instance T.ToJSON PersonalDocument where
   toJSON
     PersonalDocument
-      { translation = translation,
-        files = files
+      { translation = translation_,
+        files = files_
       } =
       A.object
         [ "@type" A..= T.String "personalDocument",
-          "translation" A..= translation,
-          "files" A..= files
+          "translation" A..= translation_,
+          "files" A..= files_
         ]

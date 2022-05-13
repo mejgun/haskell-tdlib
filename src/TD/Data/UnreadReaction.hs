@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.UnreadReaction where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data UnreadReaction = -- | Contains information about an unread reaction to a me
 instance Show UnreadReaction where
   show
     UnreadReaction
-      { is_big = is_big,
-        sender_id = sender_id,
-        reaction = reaction
+      { is_big = is_big_,
+        sender_id = sender_id_,
+        reaction = reaction_
       } =
       "UnreadReaction"
         ++ U.cc
-          [ U.p "is_big" is_big,
-            U.p "sender_id" sender_id,
-            U.p "reaction" reaction
+          [ U.p "is_big" is_big_,
+            U.p "sender_id" sender_id_,
+            U.p "reaction" reaction_
           ]
 
 instance T.FromJSON UnreadReaction where
@@ -51,13 +52,13 @@ instance T.FromJSON UnreadReaction where
 instance T.ToJSON UnreadReaction where
   toJSON
     UnreadReaction
-      { is_big = is_big,
-        sender_id = sender_id,
-        reaction = reaction
+      { is_big = is_big_,
+        sender_id = sender_id_,
+        reaction = reaction_
       } =
       A.object
         [ "@type" A..= T.String "unreadReaction",
-          "is_big" A..= is_big,
-          "sender_id" A..= sender_id,
-          "reaction" A..= reaction
+          "is_big" A..= is_big_,
+          "sender_id" A..= sender_id_,
+          "reaction" A..= reaction_
         ]

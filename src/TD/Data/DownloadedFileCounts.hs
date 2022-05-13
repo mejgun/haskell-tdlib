@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DownloadedFileCounts where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data DownloadedFileCounts = -- | Contains number of being downloaded and recentl
 instance Show DownloadedFileCounts where
   show
     DownloadedFileCounts
-      { completed_count = completed_count,
-        paused_count = paused_count,
-        active_count = active_count
+      { completed_count = completed_count_,
+        paused_count = paused_count_,
+        active_count = active_count_
       } =
       "DownloadedFileCounts"
         ++ U.cc
-          [ U.p "completed_count" completed_count,
-            U.p "paused_count" paused_count,
-            U.p "active_count" active_count
+          [ U.p "completed_count" completed_count_,
+            U.p "paused_count" paused_count_,
+            U.p "active_count" active_count_
           ]
 
 instance T.FromJSON DownloadedFileCounts where
@@ -50,13 +51,13 @@ instance T.FromJSON DownloadedFileCounts where
 instance T.ToJSON DownloadedFileCounts where
   toJSON
     DownloadedFileCounts
-      { completed_count = completed_count,
-        paused_count = paused_count,
-        active_count = active_count
+      { completed_count = completed_count_,
+        paused_count = paused_count_,
+        active_count = active_count_
       } =
       A.object
         [ "@type" A..= T.String "downloadedFileCounts",
-          "completed_count" A..= completed_count,
-          "paused_count" A..= paused_count,
-          "active_count" A..= active_count
+          "completed_count" A..= completed_count_,
+          "paused_count" A..= paused_count_,
+          "active_count" A..= active_count_
         ]

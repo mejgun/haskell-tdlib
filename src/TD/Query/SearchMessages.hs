@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchMessages where
 
 import qualified Data.Aeson as A
@@ -36,51 +37,51 @@ data SearchMessages = SearchMessages
 instance Show SearchMessages where
   show
     SearchMessages
-      { max_date = max_date,
-        min_date = min_date,
-        _filter = _filter,
-        limit = limit,
-        offset_message_id = offset_message_id,
-        offset_chat_id = offset_chat_id,
-        offset_date = offset_date,
-        query = query,
-        chat_list = chat_list
+      { max_date = max_date_,
+        min_date = min_date_,
+        _filter = _filter_,
+        limit = limit_,
+        offset_message_id = offset_message_id_,
+        offset_chat_id = offset_chat_id_,
+        offset_date = offset_date_,
+        query = query_,
+        chat_list = chat_list_
       } =
       "SearchMessages"
         ++ U.cc
-          [ U.p "max_date" max_date,
-            U.p "min_date" min_date,
-            U.p "_filter" _filter,
-            U.p "limit" limit,
-            U.p "offset_message_id" offset_message_id,
-            U.p "offset_chat_id" offset_chat_id,
-            U.p "offset_date" offset_date,
-            U.p "query" query,
-            U.p "chat_list" chat_list
+          [ U.p "max_date" max_date_,
+            U.p "min_date" min_date_,
+            U.p "_filter" _filter_,
+            U.p "limit" limit_,
+            U.p "offset_message_id" offset_message_id_,
+            U.p "offset_chat_id" offset_chat_id_,
+            U.p "offset_date" offset_date_,
+            U.p "query" query_,
+            U.p "chat_list" chat_list_
           ]
 
 instance T.ToJSON SearchMessages where
   toJSON
     SearchMessages
-      { max_date = max_date,
-        min_date = min_date,
-        _filter = _filter,
-        limit = limit,
-        offset_message_id = offset_message_id,
-        offset_chat_id = offset_chat_id,
-        offset_date = offset_date,
-        query = query,
-        chat_list = chat_list
+      { max_date = max_date_,
+        min_date = min_date_,
+        _filter = _filter_,
+        limit = limit_,
+        offset_message_id = offset_message_id_,
+        offset_chat_id = offset_chat_id_,
+        offset_date = offset_date_,
+        query = query_,
+        chat_list = chat_list_
       } =
       A.object
         [ "@type" A..= T.String "searchMessages",
-          "max_date" A..= max_date,
-          "min_date" A..= min_date,
-          "filter" A..= _filter,
-          "limit" A..= limit,
-          "offset_message_id" A..= offset_message_id,
-          "offset_chat_id" A..= offset_chat_id,
-          "offset_date" A..= offset_date,
-          "query" A..= query,
-          "chat_list" A..= chat_list
+          "max_date" A..= max_date_,
+          "min_date" A..= min_date_,
+          "filter" A..= _filter_,
+          "limit" A..= limit_,
+          "offset_message_id" A..= offset_message_id_,
+          "offset_chat_id" A..= offset_chat_id_,
+          "offset_date" A..= offset_date_,
+          "query" A..= query_,
+          "chat_list" A..= chat_list_
         ]

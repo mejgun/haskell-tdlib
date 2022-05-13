@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMessageEmbeddingCode where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data GetMessageEmbeddingCode = GetMessageEmbeddingCode
 instance Show GetMessageEmbeddingCode where
   show
     GetMessageEmbeddingCode
-      { for_album = for_album,
-        message_id = message_id,
-        chat_id = chat_id
+      { for_album = for_album_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetMessageEmbeddingCode"
         ++ U.cc
-          [ U.p "for_album" for_album,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "for_album" for_album_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetMessageEmbeddingCode where
   toJSON
     GetMessageEmbeddingCode
-      { for_album = for_album,
-        message_id = message_id,
-        chat_id = chat_id
+      { for_album = for_album_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getMessageEmbeddingCode",
-          "for_album" A..= for_album,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "for_album" A..= for_album_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

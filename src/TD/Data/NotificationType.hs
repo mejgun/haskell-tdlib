@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NotificationType where
 
 import qualified Data.Aeson as A
@@ -41,11 +42,11 @@ data NotificationType
 instance Show NotificationType where
   show
     NotificationTypeNewMessage
-      { message = message
+      { message = message_
       } =
       "NotificationTypeNewMessage"
         ++ U.cc
-          [ U.p "message" message
+          [ U.p "message" message_
           ]
   show NotificationTypeNewSecretChat =
     "NotificationTypeNewSecretChat"
@@ -53,27 +54,27 @@ instance Show NotificationType where
         []
   show
     NotificationTypeNewCall
-      { call_id = call_id
+      { call_id = call_id_
       } =
       "NotificationTypeNewCall"
         ++ U.cc
-          [ U.p "call_id" call_id
+          [ U.p "call_id" call_id_
           ]
   show
     NotificationTypeNewPushMessage
-      { content = content,
-        is_outgoing = is_outgoing,
-        sender_name = sender_name,
-        sender_id = sender_id,
-        message_id = message_id
+      { content = content_,
+        is_outgoing = is_outgoing_,
+        sender_name = sender_name_,
+        sender_id = sender_id_,
+        message_id = message_id_
       } =
       "NotificationTypeNewPushMessage"
         ++ U.cc
-          [ U.p "content" content,
-            U.p "is_outgoing" is_outgoing,
-            U.p "sender_name" sender_name,
-            U.p "sender_id" sender_id,
-            U.p "message_id" message_id
+          [ U.p "content" content_,
+            U.p "is_outgoing" is_outgoing_,
+            U.p "sender_name" sender_name_,
+            U.p "sender_id" sender_id_,
+            U.p "message_id" message_id_
           ]
 
 instance T.FromJSON NotificationType where
@@ -93,8 +94,7 @@ instance T.FromJSON NotificationType where
         return $ NotificationTypeNewMessage {message = message_}
 
       parseNotificationTypeNewSecretChat :: A.Value -> T.Parser NotificationType
-      parseNotificationTypeNewSecretChat = A.withObject "NotificationTypeNewSecretChat" $ \o -> do
-        return $ NotificationTypeNewSecretChat {}
+      parseNotificationTypeNewSecretChat = A.withObject "NotificationTypeNewSecretChat" $ \_ -> return NotificationTypeNewSecretChat
 
       parseNotificationTypeNewCall :: A.Value -> T.Parser NotificationType
       parseNotificationTypeNewCall = A.withObject "NotificationTypeNewCall" $ \o -> do
@@ -114,11 +114,11 @@ instance T.FromJSON NotificationType where
 instance T.ToJSON NotificationType where
   toJSON
     NotificationTypeNewMessage
-      { message = message
+      { message = message_
       } =
       A.object
         [ "@type" A..= T.String "notificationTypeNewMessage",
-          "message" A..= message
+          "message" A..= message_
         ]
   toJSON NotificationTypeNewSecretChat =
     A.object
@@ -126,25 +126,25 @@ instance T.ToJSON NotificationType where
       ]
   toJSON
     NotificationTypeNewCall
-      { call_id = call_id
+      { call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "notificationTypeNewCall",
-          "call_id" A..= call_id
+          "call_id" A..= call_id_
         ]
   toJSON
     NotificationTypeNewPushMessage
-      { content = content,
-        is_outgoing = is_outgoing,
-        sender_name = sender_name,
-        sender_id = sender_id,
-        message_id = message_id
+      { content = content_,
+        is_outgoing = is_outgoing_,
+        sender_name = sender_name_,
+        sender_id = sender_id_,
+        message_id = message_id_
       } =
       A.object
         [ "@type" A..= T.String "notificationTypeNewPushMessage",
-          "content" A..= content,
-          "is_outgoing" A..= is_outgoing,
-          "sender_name" A..= sender_name,
-          "sender_id" A..= sender_id,
-          "message_id" A..= message_id
+          "content" A..= content_,
+          "is_outgoing" A..= is_outgoing_,
+          "sender_name" A..= sender_name_,
+          "sender_id" A..= sender_id_,
+          "message_id" A..= message_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.JoinGroupCall where
 
 import qualified Data.Aeson as A
@@ -30,43 +31,43 @@ data JoinGroupCall = JoinGroupCall
 instance Show JoinGroupCall where
   show
     JoinGroupCall
-      { invite_hash = invite_hash,
-        is_my_video_enabled = is_my_video_enabled,
-        is_muted = is_muted,
-        payload = payload,
-        audio_source_id = audio_source_id,
-        participant_id = participant_id,
-        group_call_id = group_call_id
+      { invite_hash = invite_hash_,
+        is_my_video_enabled = is_my_video_enabled_,
+        is_muted = is_muted_,
+        payload = payload_,
+        audio_source_id = audio_source_id_,
+        participant_id = participant_id_,
+        group_call_id = group_call_id_
       } =
       "JoinGroupCall"
         ++ U.cc
-          [ U.p "invite_hash" invite_hash,
-            U.p "is_my_video_enabled" is_my_video_enabled,
-            U.p "is_muted" is_muted,
-            U.p "payload" payload,
-            U.p "audio_source_id" audio_source_id,
-            U.p "participant_id" participant_id,
-            U.p "group_call_id" group_call_id
+          [ U.p "invite_hash" invite_hash_,
+            U.p "is_my_video_enabled" is_my_video_enabled_,
+            U.p "is_muted" is_muted_,
+            U.p "payload" payload_,
+            U.p "audio_source_id" audio_source_id_,
+            U.p "participant_id" participant_id_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON JoinGroupCall where
   toJSON
     JoinGroupCall
-      { invite_hash = invite_hash,
-        is_my_video_enabled = is_my_video_enabled,
-        is_muted = is_muted,
-        payload = payload,
-        audio_source_id = audio_source_id,
-        participant_id = participant_id,
-        group_call_id = group_call_id
+      { invite_hash = invite_hash_,
+        is_my_video_enabled = is_my_video_enabled_,
+        is_muted = is_muted_,
+        payload = payload_,
+        audio_source_id = audio_source_id_,
+        participant_id = participant_id_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "joinGroupCall",
-          "invite_hash" A..= invite_hash,
-          "is_my_video_enabled" A..= is_my_video_enabled,
-          "is_muted" A..= is_muted,
-          "payload" A..= payload,
-          "audio_source_id" A..= audio_source_id,
-          "participant_id" A..= participant_id,
-          "group_call_id" A..= group_call_id
+          "invite_hash" A..= invite_hash_,
+          "is_my_video_enabled" A..= is_my_video_enabled_,
+          "is_muted" A..= is_muted_,
+          "payload" A..= payload_,
+          "audio_source_id" A..= audio_source_id_,
+          "participant_id" A..= participant_id_,
+          "group_call_id" A..= group_call_id_
         ]

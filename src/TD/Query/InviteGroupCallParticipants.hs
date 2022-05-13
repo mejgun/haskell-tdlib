@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.InviteGroupCallParticipants where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data InviteGroupCallParticipants = InviteGroupCallParticipants
 instance Show InviteGroupCallParticipants where
   show
     InviteGroupCallParticipants
-      { user_ids = user_ids,
-        group_call_id = group_call_id
+      { user_ids = user_ids_,
+        group_call_id = group_call_id_
       } =
       "InviteGroupCallParticipants"
         ++ U.cc
-          [ U.p "user_ids" user_ids,
-            U.p "group_call_id" group_call_id
+          [ U.p "user_ids" user_ids_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON InviteGroupCallParticipants where
   toJSON
     InviteGroupCallParticipants
-      { user_ids = user_ids,
-        group_call_id = group_call_id
+      { user_ids = user_ids_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "inviteGroupCallParticipants",
-          "user_ids" A..= user_ids,
-          "group_call_id" A..= group_call_id
+          "user_ids" A..= user_ids_,
+          "group_call_id" A..= group_call_id_
         ]

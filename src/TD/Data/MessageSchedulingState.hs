@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageSchedulingState where
 
 import qualified Data.Aeson as A
@@ -20,11 +21,11 @@ data MessageSchedulingState
 instance Show MessageSchedulingState where
   show
     MessageSchedulingStateSendAtDate
-      { send_date = send_date
+      { send_date = send_date_
       } =
       "MessageSchedulingStateSendAtDate"
         ++ U.cc
-          [ U.p "send_date" send_date
+          [ U.p "send_date" send_date_
           ]
   show MessageSchedulingStateSendWhenOnline =
     "MessageSchedulingStateSendWhenOnline"
@@ -46,18 +47,17 @@ instance T.FromJSON MessageSchedulingState where
         return $ MessageSchedulingStateSendAtDate {send_date = send_date_}
 
       parseMessageSchedulingStateSendWhenOnline :: A.Value -> T.Parser MessageSchedulingState
-      parseMessageSchedulingStateSendWhenOnline = A.withObject "MessageSchedulingStateSendWhenOnline" $ \o -> do
-        return $ MessageSchedulingStateSendWhenOnline {}
+      parseMessageSchedulingStateSendWhenOnline = A.withObject "MessageSchedulingStateSendWhenOnline" $ \_ -> return MessageSchedulingStateSendWhenOnline
   parseJSON _ = mempty
 
 instance T.ToJSON MessageSchedulingState where
   toJSON
     MessageSchedulingStateSendAtDate
-      { send_date = send_date
+      { send_date = send_date_
       } =
       A.object
         [ "@type" A..= T.String "messageSchedulingStateSendAtDate",
-          "send_date" A..= send_date
+          "send_date" A..= send_date_
         ]
   toJSON MessageSchedulingStateSendWhenOnline =
     A.object

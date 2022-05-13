@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.WriteGeneratedFilePart where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data WriteGeneratedFilePart = WriteGeneratedFilePart
 instance Show WriteGeneratedFilePart where
   show
     WriteGeneratedFilePart
-      { _data = _data,
-        offset = offset,
-        generation_id = generation_id
+      { _data = _data_,
+        offset = offset_,
+        generation_id = generation_id_
       } =
       "WriteGeneratedFilePart"
         ++ U.cc
-          [ U.p "_data" _data,
-            U.p "offset" offset,
-            U.p "generation_id" generation_id
+          [ U.p "_data" _data_,
+            U.p "offset" offset_,
+            U.p "generation_id" generation_id_
           ]
 
 instance T.ToJSON WriteGeneratedFilePart where
   toJSON
     WriteGeneratedFilePart
-      { _data = _data,
-        offset = offset,
-        generation_id = generation_id
+      { _data = _data_,
+        offset = offset_,
+        generation_id = generation_id_
       } =
       A.object
         [ "@type" A..= T.String "writeGeneratedFilePart",
-          "data" A..= _data,
-          "offset" A..= offset,
-          "generation_id" A..= generation_id
+          "data" A..= _data_,
+          "offset" A..= offset_,
+          "generation_id" A..= generation_id_
         ]

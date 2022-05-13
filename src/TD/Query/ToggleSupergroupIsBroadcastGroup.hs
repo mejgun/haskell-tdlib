@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleSupergroupIsBroadcastGroup where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ToggleSupergroupIsBroadcastGroup = ToggleSupergroupIsBroadcastGroup
 instance Show ToggleSupergroupIsBroadcastGroup where
   show
     ToggleSupergroupIsBroadcastGroup
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       "ToggleSupergroupIsBroadcastGroup"
         ++ U.cc
-          [ U.p "supergroup_id" supergroup_id
+          [ U.p "supergroup_id" supergroup_id_
           ]
 
 instance T.ToJSON ToggleSupergroupIsBroadcastGroup where
   toJSON
     ToggleSupergroupIsBroadcastGroup
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleSupergroupIsBroadcastGroup",
-          "supergroup_id" A..= supergroup_id
+          "supergroup_id" A..= supergroup_id_
         ]

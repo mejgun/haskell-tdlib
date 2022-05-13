@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PassportSuitableElement where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data PassportSuitableElement = -- | Contains information about a Telegram Passpo
 instance Show PassportSuitableElement where
   show
     PassportSuitableElement
-      { is_native_name_required = is_native_name_required,
-        is_translation_required = is_translation_required,
-        is_selfie_required = is_selfie_required,
-        _type = _type
+      { is_native_name_required = is_native_name_required_,
+        is_translation_required = is_translation_required_,
+        is_selfie_required = is_selfie_required_,
+        _type = _type_
       } =
       "PassportSuitableElement"
         ++ U.cc
-          [ U.p "is_native_name_required" is_native_name_required,
-            U.p "is_translation_required" is_translation_required,
-            U.p "is_selfie_required" is_selfie_required,
-            U.p "_type" _type
+          [ U.p "is_native_name_required" is_native_name_required_,
+            U.p "is_translation_required" is_translation_required_,
+            U.p "is_selfie_required" is_selfie_required_,
+            U.p "_type" _type_
           ]
 
 instance T.FromJSON PassportSuitableElement where
@@ -56,15 +57,15 @@ instance T.FromJSON PassportSuitableElement where
 instance T.ToJSON PassportSuitableElement where
   toJSON
     PassportSuitableElement
-      { is_native_name_required = is_native_name_required,
-        is_translation_required = is_translation_required,
-        is_selfie_required = is_selfie_required,
-        _type = _type
+      { is_native_name_required = is_native_name_required_,
+        is_translation_required = is_translation_required_,
+        is_selfie_required = is_selfie_required_,
+        _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "passportSuitableElement",
-          "is_native_name_required" A..= is_native_name_required,
-          "is_translation_required" A..= is_translation_required,
-          "is_selfie_required" A..= is_selfie_required,
-          "type" A..= _type
+          "is_native_name_required" A..= is_native_name_required_,
+          "is_translation_required" A..= is_translation_required_,
+          "is_selfie_required" A..= is_selfie_required_,
+          "type" A..= _type_
         ]

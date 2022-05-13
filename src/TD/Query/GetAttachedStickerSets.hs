@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetAttachedStickerSets where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetAttachedStickerSets = GetAttachedStickerSets
 instance Show GetAttachedStickerSets where
   show
     GetAttachedStickerSets
-      { file_id = file_id
+      { file_id = file_id_
       } =
       "GetAttachedStickerSets"
         ++ U.cc
-          [ U.p "file_id" file_id
+          [ U.p "file_id" file_id_
           ]
 
 instance T.ToJSON GetAttachedStickerSets where
   toJSON
     GetAttachedStickerSets
-      { file_id = file_id
+      { file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "getAttachedStickerSets",
-          "file_id" A..= file_id
+          "file_id" A..= file_id_
         ]

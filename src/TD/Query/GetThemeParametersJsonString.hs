@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetThemeParametersJsonString where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data GetThemeParametersJsonString = GetThemeParametersJsonString
 instance Show GetThemeParametersJsonString where
   show
     GetThemeParametersJsonString
-      { theme = theme
+      { theme = theme_
       } =
       "GetThemeParametersJsonString"
         ++ U.cc
-          [ U.p "theme" theme
+          [ U.p "theme" theme_
           ]
 
 instance T.ToJSON GetThemeParametersJsonString where
   toJSON
     GetThemeParametersJsonString
-      { theme = theme
+      { theme = theme_
       } =
       A.object
         [ "@type" A..= T.String "getThemeParametersJsonString",
-          "theme" A..= theme
+          "theme" A..= theme_
         ]

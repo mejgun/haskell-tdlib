@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LogVerbosityLevel where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data LogVerbosityLevel = -- | Contains a TDLib internal log verbosity level @ver
 instance Show LogVerbosityLevel where
   show
     LogVerbosityLevel
-      { verbosity_level = verbosity_level
+      { verbosity_level = verbosity_level_
       } =
       "LogVerbosityLevel"
         ++ U.cc
-          [ U.p "verbosity_level" verbosity_level
+          [ U.p "verbosity_level" verbosity_level_
           ]
 
 instance T.FromJSON LogVerbosityLevel where
@@ -40,9 +41,9 @@ instance T.FromJSON LogVerbosityLevel where
 instance T.ToJSON LogVerbosityLevel where
   toJSON
     LogVerbosityLevel
-      { verbosity_level = verbosity_level
+      { verbosity_level = verbosity_level_
       } =
       A.object
         [ "@type" A..= T.String "logVerbosityLevel",
-          "verbosity_level" A..= verbosity_level
+          "verbosity_level" A..= verbosity_level_
         ]

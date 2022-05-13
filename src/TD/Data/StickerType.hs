@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StickerType where
 
 import qualified Data.Aeson as A
@@ -37,11 +38,11 @@ instance Show StickerType where
         []
   show
     StickerTypeMask
-      { mask_position = mask_position
+      { mask_position = mask_position_
       } =
       "StickerTypeMask"
         ++ U.cc
-          [ U.p "mask_position" mask_position
+          [ U.p "mask_position" mask_position_
           ]
 
 instance T.FromJSON StickerType where
@@ -56,16 +57,13 @@ instance T.FromJSON StickerType where
       _ -> mempty
     where
       parseStickerTypeStatic :: A.Value -> T.Parser StickerType
-      parseStickerTypeStatic = A.withObject "StickerTypeStatic" $ \o -> do
-        return $ StickerTypeStatic {}
+      parseStickerTypeStatic = A.withObject "StickerTypeStatic" $ \_ -> return StickerTypeStatic
 
       parseStickerTypeAnimated :: A.Value -> T.Parser StickerType
-      parseStickerTypeAnimated = A.withObject "StickerTypeAnimated" $ \o -> do
-        return $ StickerTypeAnimated {}
+      parseStickerTypeAnimated = A.withObject "StickerTypeAnimated" $ \_ -> return StickerTypeAnimated
 
       parseStickerTypeVideo :: A.Value -> T.Parser StickerType
-      parseStickerTypeVideo = A.withObject "StickerTypeVideo" $ \o -> do
-        return $ StickerTypeVideo {}
+      parseStickerTypeVideo = A.withObject "StickerTypeVideo" $ \_ -> return StickerTypeVideo
 
       parseStickerTypeMask :: A.Value -> T.Parser StickerType
       parseStickerTypeMask = A.withObject "StickerTypeMask" $ \o -> do
@@ -88,9 +86,9 @@ instance T.ToJSON StickerType where
       ]
   toJSON
     StickerTypeMask
-      { mask_position = mask_position
+      { mask_position = mask_position_
       } =
       A.object
         [ "@type" A..= T.String "stickerTypeMask",
-          "mask_position" A..= mask_position
+          "mask_position" A..= mask_position_
         ]

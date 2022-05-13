@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessagePositions where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data MessagePositions = -- | Contains a list of message positions @total_count T
 instance Show MessagePositions where
   show
     MessagePositions
-      { positions = positions,
-        total_count = total_count
+      { positions = positions_,
+        total_count = total_count_
       } =
       "MessagePositions"
         ++ U.cc
-          [ U.p "positions" positions,
-            U.p "total_count" total_count
+          [ U.p "positions" positions_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON MessagePositions where
@@ -46,11 +47,11 @@ instance T.FromJSON MessagePositions where
 instance T.ToJSON MessagePositions where
   toJSON
     MessagePositions
-      { positions = positions,
-        total_count = total_count
+      { positions = positions_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "messagePositions",
-          "positions" A..= positions,
-          "total_count" A..= total_count
+          "positions" A..= positions_,
+          "total_count" A..= total_count_
         ]

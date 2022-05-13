@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMarkdownText where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data GetMarkdownText = GetMarkdownText
 instance Show GetMarkdownText where
   show
     GetMarkdownText
-      { text = text
+      { text = text_
       } =
       "GetMarkdownText"
         ++ U.cc
-          [ U.p "text" text
+          [ U.p "text" text_
           ]
 
 instance T.ToJSON GetMarkdownText where
   toJSON
     GetMarkdownText
-      { text = text
+      { text = text_
       } =
       A.object
         [ "@type" A..= T.String "getMarkdownText",
-          "text" A..= text
+          "text" A..= text_
         ]

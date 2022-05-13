@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditInlineMessageText where
 
 import qualified Data.Aeson as A
@@ -23,27 +24,27 @@ data EditInlineMessageText = EditInlineMessageText
 instance Show EditInlineMessageText where
   show
     EditInlineMessageText
-      { input_message_content = input_message_content,
-        reply_markup = reply_markup,
-        inline_message_id = inline_message_id
+      { input_message_content = input_message_content_,
+        reply_markup = reply_markup_,
+        inline_message_id = inline_message_id_
       } =
       "EditInlineMessageText"
         ++ U.cc
-          [ U.p "input_message_content" input_message_content,
-            U.p "reply_markup" reply_markup,
-            U.p "inline_message_id" inline_message_id
+          [ U.p "input_message_content" input_message_content_,
+            U.p "reply_markup" reply_markup_,
+            U.p "inline_message_id" inline_message_id_
           ]
 
 instance T.ToJSON EditInlineMessageText where
   toJSON
     EditInlineMessageText
-      { input_message_content = input_message_content,
-        reply_markup = reply_markup,
-        inline_message_id = inline_message_id
+      { input_message_content = input_message_content_,
+        reply_markup = reply_markup_,
+        inline_message_id = inline_message_id_
       } =
       A.object
         [ "@type" A..= T.String "editInlineMessageText",
-          "input_message_content" A..= input_message_content,
-          "reply_markup" A..= reply_markup,
-          "inline_message_id" A..= inline_message_id
+          "input_message_content" A..= input_message_content_,
+          "reply_markup" A..= reply_markup_,
+          "inline_message_id" A..= inline_message_id_
         ]

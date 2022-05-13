@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditInlineMessageLiveLocation where
 
 import qualified Data.Aeson as A
@@ -27,35 +28,35 @@ data EditInlineMessageLiveLocation = EditInlineMessageLiveLocation
 instance Show EditInlineMessageLiveLocation where
   show
     EditInlineMessageLiveLocation
-      { proximity_alert_radius = proximity_alert_radius,
-        heading = heading,
-        location = location,
-        reply_markup = reply_markup,
-        inline_message_id = inline_message_id
+      { proximity_alert_radius = proximity_alert_radius_,
+        heading = heading_,
+        location = location_,
+        reply_markup = reply_markup_,
+        inline_message_id = inline_message_id_
       } =
       "EditInlineMessageLiveLocation"
         ++ U.cc
-          [ U.p "proximity_alert_radius" proximity_alert_radius,
-            U.p "heading" heading,
-            U.p "location" location,
-            U.p "reply_markup" reply_markup,
-            U.p "inline_message_id" inline_message_id
+          [ U.p "proximity_alert_radius" proximity_alert_radius_,
+            U.p "heading" heading_,
+            U.p "location" location_,
+            U.p "reply_markup" reply_markup_,
+            U.p "inline_message_id" inline_message_id_
           ]
 
 instance T.ToJSON EditInlineMessageLiveLocation where
   toJSON
     EditInlineMessageLiveLocation
-      { proximity_alert_radius = proximity_alert_radius,
-        heading = heading,
-        location = location,
-        reply_markup = reply_markup,
-        inline_message_id = inline_message_id
+      { proximity_alert_radius = proximity_alert_radius_,
+        heading = heading_,
+        location = location_,
+        reply_markup = reply_markup_,
+        inline_message_id = inline_message_id_
       } =
       A.object
         [ "@type" A..= T.String "editInlineMessageLiveLocation",
-          "proximity_alert_radius" A..= proximity_alert_radius,
-          "heading" A..= heading,
-          "location" A..= location,
-          "reply_markup" A..= reply_markup,
-          "inline_message_id" A..= inline_message_id
+          "proximity_alert_radius" A..= proximity_alert_radius_,
+          "heading" A..= heading_,
+          "location" A..= location_,
+          "reply_markup" A..= reply_markup_,
+          "inline_message_id" A..= inline_message_id_
         ]

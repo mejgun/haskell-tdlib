@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PasswordState where
 
 import qualified Data.Aeson as A
@@ -27,21 +28,21 @@ data PasswordState = -- | Represents the current state of 2-step verification @h
 instance Show PasswordState where
   show
     PasswordState
-      { pending_reset_date = pending_reset_date,
-        recovery_email_address_code_info = recovery_email_address_code_info,
-        has_passport_data = has_passport_data,
-        has_recovery_email_address = has_recovery_email_address,
-        password_hint = password_hint,
-        has_password = has_password
+      { pending_reset_date = pending_reset_date_,
+        recovery_email_address_code_info = recovery_email_address_code_info_,
+        has_passport_data = has_passport_data_,
+        has_recovery_email_address = has_recovery_email_address_,
+        password_hint = password_hint_,
+        has_password = has_password_
       } =
       "PasswordState"
         ++ U.cc
-          [ U.p "pending_reset_date" pending_reset_date,
-            U.p "recovery_email_address_code_info" recovery_email_address_code_info,
-            U.p "has_passport_data" has_passport_data,
-            U.p "has_recovery_email_address" has_recovery_email_address,
-            U.p "password_hint" password_hint,
-            U.p "has_password" has_password
+          [ U.p "pending_reset_date" pending_reset_date_,
+            U.p "recovery_email_address_code_info" recovery_email_address_code_info_,
+            U.p "has_passport_data" has_passport_data_,
+            U.p "has_recovery_email_address" has_recovery_email_address_,
+            U.p "password_hint" password_hint_,
+            U.p "has_password" has_password_
           ]
 
 instance T.FromJSON PasswordState where
@@ -66,19 +67,19 @@ instance T.FromJSON PasswordState where
 instance T.ToJSON PasswordState where
   toJSON
     PasswordState
-      { pending_reset_date = pending_reset_date,
-        recovery_email_address_code_info = recovery_email_address_code_info,
-        has_passport_data = has_passport_data,
-        has_recovery_email_address = has_recovery_email_address,
-        password_hint = password_hint,
-        has_password = has_password
+      { pending_reset_date = pending_reset_date_,
+        recovery_email_address_code_info = recovery_email_address_code_info_,
+        has_passport_data = has_passport_data_,
+        has_recovery_email_address = has_recovery_email_address_,
+        password_hint = password_hint_,
+        has_password = has_password_
       } =
       A.object
         [ "@type" A..= T.String "passwordState",
-          "pending_reset_date" A..= pending_reset_date,
-          "recovery_email_address_code_info" A..= recovery_email_address_code_info,
-          "has_passport_data" A..= has_passport_data,
-          "has_recovery_email_address" A..= has_recovery_email_address,
-          "password_hint" A..= password_hint,
-          "has_password" A..= has_password
+          "pending_reset_date" A..= pending_reset_date_,
+          "recovery_email_address_code_info" A..= recovery_email_address_code_info_,
+          "has_passport_data" A..= has_passport_data_,
+          "has_recovery_email_address" A..= has_recovery_email_address_,
+          "password_hint" A..= password_hint_,
+          "has_password" A..= has_password_
         ]

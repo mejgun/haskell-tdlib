@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ParseMarkdown where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data ParseMarkdown = ParseMarkdown
 instance Show ParseMarkdown where
   show
     ParseMarkdown
-      { text = text
+      { text = text_
       } =
       "ParseMarkdown"
         ++ U.cc
-          [ U.p "text" text
+          [ U.p "text" text_
           ]
 
 instance T.ToJSON ParseMarkdown where
   toJSON
     ParseMarkdown
-      { text = text
+      { text = text_
       } =
       A.object
         [ "@type" A..= T.String "parseMarkdown",
-          "text" A..= text
+          "text" A..= text_
         ]

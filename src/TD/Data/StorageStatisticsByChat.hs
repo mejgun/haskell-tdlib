@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StorageStatisticsByChat where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data StorageStatisticsByChat = -- | Contains the storage usage statistics for a 
 instance Show StorageStatisticsByChat where
   show
     StorageStatisticsByChat
-      { by_file_type = by_file_type,
-        count = count,
-        size = size,
-        chat_id = chat_id
+      { by_file_type = by_file_type_,
+        count = count_,
+        size = size_,
+        chat_id = chat_id_
       } =
       "StorageStatisticsByChat"
         ++ U.cc
-          [ U.p "by_file_type" by_file_type,
-            U.p "count" count,
-            U.p "size" size,
-            U.p "chat_id" chat_id
+          [ U.p "by_file_type" by_file_type_,
+            U.p "count" count_,
+            U.p "size" size_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.FromJSON StorageStatisticsByChat where
@@ -56,15 +57,15 @@ instance T.FromJSON StorageStatisticsByChat where
 instance T.ToJSON StorageStatisticsByChat where
   toJSON
     StorageStatisticsByChat
-      { by_file_type = by_file_type,
-        count = count,
-        size = size,
-        chat_id = chat_id
+      { by_file_type = by_file_type_,
+        count = count_,
+        size = size_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "storageStatisticsByChat",
-          "by_file_type" A..= by_file_type,
-          "count" A..= count,
-          "size" A..= size,
-          "chat_id" A..= chat_id
+          "by_file_type" A..= by_file_type_,
+          "count" A..= count_,
+          "size" A..= size_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetArchivedStickerSets where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data GetArchivedStickerSets = GetArchivedStickerSets
 instance Show GetArchivedStickerSets where
   show
     GetArchivedStickerSets
-      { limit = limit,
-        offset_sticker_set_id = offset_sticker_set_id,
-        is_masks = is_masks
+      { limit = limit_,
+        offset_sticker_set_id = offset_sticker_set_id_,
+        is_masks = is_masks_
       } =
       "GetArchivedStickerSets"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset_sticker_set_id" offset_sticker_set_id,
-            U.p "is_masks" is_masks
+          [ U.p "limit" limit_,
+            U.p "offset_sticker_set_id" offset_sticker_set_id_,
+            U.p "is_masks" is_masks_
           ]
 
 instance T.ToJSON GetArchivedStickerSets where
   toJSON
     GetArchivedStickerSets
-      { limit = limit,
-        offset_sticker_set_id = offset_sticker_set_id,
-        is_masks = is_masks
+      { limit = limit_,
+        offset_sticker_set_id = offset_sticker_set_id_,
+        is_masks = is_masks_
       } =
       A.object
         [ "@type" A..= T.String "getArchivedStickerSets",
-          "limit" A..= limit,
-          "offset_sticker_set_id" A..= offset_sticker_set_id,
-          "is_masks" A..= is_masks
+          "limit" A..= limit_,
+          "offset_sticker_set_id" A..= offset_sticker_set_id_,
+          "is_masks" A..= is_masks_
         ]

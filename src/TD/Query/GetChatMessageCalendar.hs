@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatMessageCalendar where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data GetChatMessageCalendar = GetChatMessageCalendar
 instance Show GetChatMessageCalendar where
   show
     GetChatMessageCalendar
-      { from_message_id = from_message_id,
-        _filter = _filter,
-        chat_id = chat_id
+      { from_message_id = from_message_id_,
+        _filter = _filter_,
+        chat_id = chat_id_
       } =
       "GetChatMessageCalendar"
         ++ U.cc
-          [ U.p "from_message_id" from_message_id,
-            U.p "_filter" _filter,
-            U.p "chat_id" chat_id
+          [ U.p "from_message_id" from_message_id_,
+            U.p "_filter" _filter_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatMessageCalendar where
   toJSON
     GetChatMessageCalendar
-      { from_message_id = from_message_id,
-        _filter = _filter,
-        chat_id = chat_id
+      { from_message_id = from_message_id_,
+        _filter = _filter_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatMessageCalendar",
-          "from_message_id" A..= from_message_id,
-          "filter" A..= _filter,
-          "chat_id" A..= chat_id
+          "from_message_id" A..= from_message_id_,
+          "filter" A..= _filter_,
+          "chat_id" A..= chat_id_
         ]

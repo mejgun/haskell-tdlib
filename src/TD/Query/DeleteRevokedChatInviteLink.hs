@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteRevokedChatInviteLink where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data DeleteRevokedChatInviteLink = DeleteRevokedChatInviteLink
 instance Show DeleteRevokedChatInviteLink where
   show
     DeleteRevokedChatInviteLink
-      { invite_link = invite_link,
-        chat_id = chat_id
+      { invite_link = invite_link_,
+        chat_id = chat_id_
       } =
       "DeleteRevokedChatInviteLink"
         ++ U.cc
-          [ U.p "invite_link" invite_link,
-            U.p "chat_id" chat_id
+          [ U.p "invite_link" invite_link_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON DeleteRevokedChatInviteLink where
   toJSON
     DeleteRevokedChatInviteLink
-      { invite_link = invite_link,
-        chat_id = chat_id
+      { invite_link = invite_link_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "deleteRevokedChatInviteLink",
-          "invite_link" A..= invite_link,
-          "chat_id" A..= chat_id
+          "invite_link" A..= invite_link_,
+          "chat_id" A..= chat_id_
         ]

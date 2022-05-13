@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputIdentityDocument where
 
 import qualified Data.Aeson as A
@@ -28,21 +29,21 @@ data InputIdentityDocument = -- | An identity document to be saved to Telegram P
 instance Show InputIdentityDocument where
   show
     InputIdentityDocument
-      { translation = translation,
-        selfie = selfie,
-        reverse_side = reverse_side,
-        front_side = front_side,
-        expiry_date = expiry_date,
-        number = number
+      { translation = translation_,
+        selfie = selfie_,
+        reverse_side = reverse_side_,
+        front_side = front_side_,
+        expiry_date = expiry_date_,
+        number = number_
       } =
       "InputIdentityDocument"
         ++ U.cc
-          [ U.p "translation" translation,
-            U.p "selfie" selfie,
-            U.p "reverse_side" reverse_side,
-            U.p "front_side" front_side,
-            U.p "expiry_date" expiry_date,
-            U.p "number" number
+          [ U.p "translation" translation_,
+            U.p "selfie" selfie_,
+            U.p "reverse_side" reverse_side_,
+            U.p "front_side" front_side_,
+            U.p "expiry_date" expiry_date_,
+            U.p "number" number_
           ]
 
 instance T.FromJSON InputIdentityDocument where
@@ -67,19 +68,19 @@ instance T.FromJSON InputIdentityDocument where
 instance T.ToJSON InputIdentityDocument where
   toJSON
     InputIdentityDocument
-      { translation = translation,
-        selfie = selfie,
-        reverse_side = reverse_side,
-        front_side = front_side,
-        expiry_date = expiry_date,
-        number = number
+      { translation = translation_,
+        selfie = selfie_,
+        reverse_side = reverse_side_,
+        front_side = front_side_,
+        expiry_date = expiry_date_,
+        number = number_
       } =
       A.object
         [ "@type" A..= T.String "inputIdentityDocument",
-          "translation" A..= translation,
-          "selfie" A..= selfie,
-          "reverse_side" A..= reverse_side,
-          "front_side" A..= front_side,
-          "expiry_date" A..= expiry_date,
-          "number" A..= number
+          "translation" A..= translation_,
+          "selfie" A..= selfie_,
+          "reverse_side" A..= reverse_side_,
+          "front_side" A..= front_side_,
+          "expiry_date" A..= expiry_date_,
+          "number" A..= number_
         ]

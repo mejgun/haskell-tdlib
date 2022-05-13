@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AuthorizationState where
 
 import qualified Data.Aeson as A
@@ -61,11 +62,11 @@ instance Show AuthorizationState where
         []
   show
     AuthorizationStateWaitEncryptionKey
-      { is_encrypted = is_encrypted
+      { is_encrypted = is_encrypted_
       } =
       "AuthorizationStateWaitEncryptionKey"
         ++ U.cc
-          [ U.p "is_encrypted" is_encrypted
+          [ U.p "is_encrypted" is_encrypted_
           ]
   show AuthorizationStateWaitPhoneNumber =
     "AuthorizationStateWaitPhoneNumber"
@@ -73,39 +74,39 @@ instance Show AuthorizationState where
         []
   show
     AuthorizationStateWaitCode
-      { code_info = code_info
+      { code_info = code_info_
       } =
       "AuthorizationStateWaitCode"
         ++ U.cc
-          [ U.p "code_info" code_info
+          [ U.p "code_info" code_info_
           ]
   show
     AuthorizationStateWaitOtherDeviceConfirmation
-      { link = link
+      { link = link_
       } =
       "AuthorizationStateWaitOtherDeviceConfirmation"
         ++ U.cc
-          [ U.p "link" link
+          [ U.p "link" link_
           ]
   show
     AuthorizationStateWaitRegistration
-      { terms_of_service = terms_of_service
+      { terms_of_service = terms_of_service_
       } =
       "AuthorizationStateWaitRegistration"
         ++ U.cc
-          [ U.p "terms_of_service" terms_of_service
+          [ U.p "terms_of_service" terms_of_service_
           ]
   show
     AuthorizationStateWaitPassword
-      { recovery_email_address_pattern = recovery_email_address_pattern,
-        has_recovery_email_address = has_recovery_email_address,
-        password_hint = password_hint
+      { recovery_email_address_pattern = recovery_email_address_pattern_,
+        has_recovery_email_address = has_recovery_email_address_,
+        password_hint = password_hint_
       } =
       "AuthorizationStateWaitPassword"
         ++ U.cc
-          [ U.p "recovery_email_address_pattern" recovery_email_address_pattern,
-            U.p "has_recovery_email_address" has_recovery_email_address,
-            U.p "password_hint" password_hint
+          [ U.p "recovery_email_address_pattern" recovery_email_address_pattern_,
+            U.p "has_recovery_email_address" has_recovery_email_address_,
+            U.p "password_hint" password_hint_
           ]
   show AuthorizationStateReady =
     "AuthorizationStateReady"
@@ -143,8 +144,7 @@ instance T.FromJSON AuthorizationState where
       _ -> mempty
     where
       parseAuthorizationStateWaitTdlibParameters :: A.Value -> T.Parser AuthorizationState
-      parseAuthorizationStateWaitTdlibParameters = A.withObject "AuthorizationStateWaitTdlibParameters" $ \o -> do
-        return $ AuthorizationStateWaitTdlibParameters {}
+      parseAuthorizationStateWaitTdlibParameters = A.withObject "AuthorizationStateWaitTdlibParameters" $ \_ -> return AuthorizationStateWaitTdlibParameters
 
       parseAuthorizationStateWaitEncryptionKey :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitEncryptionKey = A.withObject "AuthorizationStateWaitEncryptionKey" $ \o -> do
@@ -152,8 +152,7 @@ instance T.FromJSON AuthorizationState where
         return $ AuthorizationStateWaitEncryptionKey {is_encrypted = is_encrypted_}
 
       parseAuthorizationStateWaitPhoneNumber :: A.Value -> T.Parser AuthorizationState
-      parseAuthorizationStateWaitPhoneNumber = A.withObject "AuthorizationStateWaitPhoneNumber" $ \o -> do
-        return $ AuthorizationStateWaitPhoneNumber {}
+      parseAuthorizationStateWaitPhoneNumber = A.withObject "AuthorizationStateWaitPhoneNumber" $ \_ -> return AuthorizationStateWaitPhoneNumber
 
       parseAuthorizationStateWaitCode :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitCode = A.withObject "AuthorizationStateWaitCode" $ \o -> do
@@ -178,20 +177,16 @@ instance T.FromJSON AuthorizationState where
         return $ AuthorizationStateWaitPassword {recovery_email_address_pattern = recovery_email_address_pattern_, has_recovery_email_address = has_recovery_email_address_, password_hint = password_hint_}
 
       parseAuthorizationStateReady :: A.Value -> T.Parser AuthorizationState
-      parseAuthorizationStateReady = A.withObject "AuthorizationStateReady" $ \o -> do
-        return $ AuthorizationStateReady {}
+      parseAuthorizationStateReady = A.withObject "AuthorizationStateReady" $ \_ -> return AuthorizationStateReady
 
       parseAuthorizationStateLoggingOut :: A.Value -> T.Parser AuthorizationState
-      parseAuthorizationStateLoggingOut = A.withObject "AuthorizationStateLoggingOut" $ \o -> do
-        return $ AuthorizationStateLoggingOut {}
+      parseAuthorizationStateLoggingOut = A.withObject "AuthorizationStateLoggingOut" $ \_ -> return AuthorizationStateLoggingOut
 
       parseAuthorizationStateClosing :: A.Value -> T.Parser AuthorizationState
-      parseAuthorizationStateClosing = A.withObject "AuthorizationStateClosing" $ \o -> do
-        return $ AuthorizationStateClosing {}
+      parseAuthorizationStateClosing = A.withObject "AuthorizationStateClosing" $ \_ -> return AuthorizationStateClosing
 
       parseAuthorizationStateClosed :: A.Value -> T.Parser AuthorizationState
-      parseAuthorizationStateClosed = A.withObject "AuthorizationStateClosed" $ \o -> do
-        return $ AuthorizationStateClosed {}
+      parseAuthorizationStateClosed = A.withObject "AuthorizationStateClosed" $ \_ -> return AuthorizationStateClosed
   parseJSON _ = mempty
 
 instance T.ToJSON AuthorizationState where
@@ -201,11 +196,11 @@ instance T.ToJSON AuthorizationState where
       ]
   toJSON
     AuthorizationStateWaitEncryptionKey
-      { is_encrypted = is_encrypted
+      { is_encrypted = is_encrypted_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitEncryptionKey",
-          "is_encrypted" A..= is_encrypted
+          "is_encrypted" A..= is_encrypted_
         ]
   toJSON AuthorizationStateWaitPhoneNumber =
     A.object
@@ -213,39 +208,39 @@ instance T.ToJSON AuthorizationState where
       ]
   toJSON
     AuthorizationStateWaitCode
-      { code_info = code_info
+      { code_info = code_info_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitCode",
-          "code_info" A..= code_info
+          "code_info" A..= code_info_
         ]
   toJSON
     AuthorizationStateWaitOtherDeviceConfirmation
-      { link = link
+      { link = link_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitOtherDeviceConfirmation",
-          "link" A..= link
+          "link" A..= link_
         ]
   toJSON
     AuthorizationStateWaitRegistration
-      { terms_of_service = terms_of_service
+      { terms_of_service = terms_of_service_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitRegistration",
-          "terms_of_service" A..= terms_of_service
+          "terms_of_service" A..= terms_of_service_
         ]
   toJSON
     AuthorizationStateWaitPassword
-      { recovery_email_address_pattern = recovery_email_address_pattern,
-        has_recovery_email_address = has_recovery_email_address,
-        password_hint = password_hint
+      { recovery_email_address_pattern = recovery_email_address_pattern_,
+        has_recovery_email_address = has_recovery_email_address_,
+        password_hint = password_hint_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitPassword",
-          "recovery_email_address_pattern" A..= recovery_email_address_pattern,
-          "has_recovery_email_address" A..= has_recovery_email_address,
-          "password_hint" A..= password_hint
+          "recovery_email_address_pattern" A..= recovery_email_address_pattern_,
+          "has_recovery_email_address" A..= has_recovery_email_address_,
+          "password_hint" A..= password_hint_
         ]
   toJSON AuthorizationStateReady =
     A.object

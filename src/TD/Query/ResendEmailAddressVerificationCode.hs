@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ResendEmailAddressVerificationCode where
 
 import qualified Data.Aeson as A

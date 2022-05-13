@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatPosition where
 
 import qualified Data.Aeson as A
@@ -24,17 +25,17 @@ data ChatPosition = -- | Describes a position of a chat in a chat list
 instance Show ChatPosition where
   show
     ChatPosition
-      { source = source,
-        is_pinned = is_pinned,
-        order = order,
-        list = list
+      { source = source_,
+        is_pinned = is_pinned_,
+        order = order_,
+        list = list_
       } =
       "ChatPosition"
         ++ U.cc
-          [ U.p "source" source,
-            U.p "is_pinned" is_pinned,
-            U.p "order" order,
-            U.p "list" list
+          [ U.p "source" source_,
+            U.p "is_pinned" is_pinned_,
+            U.p "order" order_,
+            U.p "list" list_
           ]
 
 instance T.FromJSON ChatPosition where
@@ -57,15 +58,15 @@ instance T.FromJSON ChatPosition where
 instance T.ToJSON ChatPosition where
   toJSON
     ChatPosition
-      { source = source,
-        is_pinned = is_pinned,
-        order = order,
-        list = list
+      { source = source_,
+        is_pinned = is_pinned_,
+        order = order_,
+        list = list_
       } =
       A.object
         [ "@type" A..= T.String "chatPosition",
-          "source" A..= source,
-          "is_pinned" A..= is_pinned,
-          "order" A..= order,
-          "list" A..= list
+          "source" A..= source_,
+          "is_pinned" A..= is_pinned_,
+          "order" A..= order_,
+          "list" A..= list_
         ]

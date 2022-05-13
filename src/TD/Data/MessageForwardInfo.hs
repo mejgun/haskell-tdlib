@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageForwardInfo where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data MessageForwardInfo = -- | Contains information about a forwarded message
 instance Show MessageForwardInfo where
   show
     MessageForwardInfo
-      { from_message_id = from_message_id,
-        from_chat_id = from_chat_id,
-        public_service_announcement_type = public_service_announcement_type,
-        date = date,
-        origin = origin
+      { from_message_id = from_message_id_,
+        from_chat_id = from_chat_id_,
+        public_service_announcement_type = public_service_announcement_type_,
+        date = date_,
+        origin = origin_
       } =
       "MessageForwardInfo"
         ++ U.cc
-          [ U.p "from_message_id" from_message_id,
-            U.p "from_chat_id" from_chat_id,
-            U.p "public_service_announcement_type" public_service_announcement_type,
-            U.p "date" date,
-            U.p "origin" origin
+          [ U.p "from_message_id" from_message_id_,
+            U.p "from_chat_id" from_chat_id_,
+            U.p "public_service_announcement_type" public_service_announcement_type_,
+            U.p "date" date_,
+            U.p "origin" origin_
           ]
 
 instance T.FromJSON MessageForwardInfo where
@@ -61,17 +62,17 @@ instance T.FromJSON MessageForwardInfo where
 instance T.ToJSON MessageForwardInfo where
   toJSON
     MessageForwardInfo
-      { from_message_id = from_message_id,
-        from_chat_id = from_chat_id,
-        public_service_announcement_type = public_service_announcement_type,
-        date = date,
-        origin = origin
+      { from_message_id = from_message_id_,
+        from_chat_id = from_chat_id_,
+        public_service_announcement_type = public_service_announcement_type_,
+        date = date_,
+        origin = origin_
       } =
       A.object
         [ "@type" A..= T.String "messageForwardInfo",
-          "from_message_id" A..= from_message_id,
-          "from_chat_id" A..= from_chat_id,
-          "public_service_announcement_type" A..= public_service_announcement_type,
-          "date" A..= date,
-          "origin" A..= origin
+          "from_message_id" A..= from_message_id_,
+          "from_chat_id" A..= from_chat_id_,
+          "public_service_announcement_type" A..= public_service_announcement_type_,
+          "date" A..= date_,
+          "origin" A..= origin_
         ]

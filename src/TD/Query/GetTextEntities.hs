@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetTextEntities where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetTextEntities = GetTextEntities
 instance Show GetTextEntities where
   show
     GetTextEntities
-      { text = text
+      { text = text_
       } =
       "GetTextEntities"
         ++ U.cc
-          [ U.p "text" text
+          [ U.p "text" text_
           ]
 
 instance T.ToJSON GetTextEntities where
   toJSON
     GetTextEntities
-      { text = text
+      { text = text_
       } =
       A.object
         [ "@type" A..= T.String "getTextEntities",
-          "text" A..= text
+          "text" A..= text_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NotificationGroup where
 
 import qualified Data.Aeson as A
@@ -26,19 +27,19 @@ data NotificationGroup = -- | Describes a group of notifications @id Unique pers
 instance Show NotificationGroup where
   show
     NotificationGroup
-      { notifications = notifications,
-        total_count = total_count,
-        chat_id = chat_id,
-        _type = _type,
-        _id = _id
+      { notifications = notifications_,
+        total_count = total_count_,
+        chat_id = chat_id_,
+        _type = _type_,
+        _id = _id_
       } =
       "NotificationGroup"
         ++ U.cc
-          [ U.p "notifications" notifications,
-            U.p "total_count" total_count,
-            U.p "chat_id" chat_id,
-            U.p "_type" _type,
-            U.p "_id" _id
+          [ U.p "notifications" notifications_,
+            U.p "total_count" total_count_,
+            U.p "chat_id" chat_id_,
+            U.p "_type" _type_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON NotificationGroup where
@@ -62,17 +63,17 @@ instance T.FromJSON NotificationGroup where
 instance T.ToJSON NotificationGroup where
   toJSON
     NotificationGroup
-      { notifications = notifications,
-        total_count = total_count,
-        chat_id = chat_id,
-        _type = _type,
-        _id = _id
+      { notifications = notifications_,
+        total_count = total_count_,
+        chat_id = chat_id_,
+        _type = _type_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "notificationGroup",
-          "notifications" A..= notifications,
-          "total_count" A..= total_count,
-          "chat_id" A..= chat_id,
-          "type" A..= _type,
-          "id" A..= _id
+          "notifications" A..= notifications_,
+          "total_count" A..= total_count_,
+          "chat_id" A..= chat_id_,
+          "type" A..= _type_,
+          "id" A..= _id_
         ]

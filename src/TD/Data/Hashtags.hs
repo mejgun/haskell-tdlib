@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Hashtags where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data Hashtags = -- | Contains a list of hashtags @hashtags A list of hashtags
 instance Show Hashtags where
   show
     Hashtags
-      { hashtags = hashtags
+      { hashtags = hashtags_
       } =
       "Hashtags"
         ++ U.cc
-          [ U.p "hashtags" hashtags
+          [ U.p "hashtags" hashtags_
           ]
 
 instance T.FromJSON Hashtags where
@@ -40,9 +41,9 @@ instance T.FromJSON Hashtags where
 instance T.ToJSON Hashtags where
   toJSON
     Hashtags
-      { hashtags = hashtags
+      { hashtags = hashtags_
       } =
       A.object
         [ "@type" A..= T.String "hashtags",
-          "hashtags" A..= hashtags
+          "hashtags" A..= hashtags_
         ]

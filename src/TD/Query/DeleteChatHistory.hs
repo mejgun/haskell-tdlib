@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteChatHistory where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data DeleteChatHistory = DeleteChatHistory
 instance Show DeleteChatHistory where
   show
     DeleteChatHistory
-      { revoke = revoke,
-        remove_from_chat_list = remove_from_chat_list,
-        chat_id = chat_id
+      { revoke = revoke_,
+        remove_from_chat_list = remove_from_chat_list_,
+        chat_id = chat_id_
       } =
       "DeleteChatHistory"
         ++ U.cc
-          [ U.p "revoke" revoke,
-            U.p "remove_from_chat_list" remove_from_chat_list,
-            U.p "chat_id" chat_id
+          [ U.p "revoke" revoke_,
+            U.p "remove_from_chat_list" remove_from_chat_list_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON DeleteChatHistory where
   toJSON
     DeleteChatHistory
-      { revoke = revoke,
-        remove_from_chat_list = remove_from_chat_list,
-        chat_id = chat_id
+      { revoke = revoke_,
+        remove_from_chat_list = remove_from_chat_list_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "deleteChatHistory",
-          "revoke" A..= revoke,
-          "remove_from_chat_list" A..= remove_from_chat_list,
-          "chat_id" A..= chat_id
+          "revoke" A..= revoke_,
+          "remove_from_chat_list" A..= remove_from_chat_list_,
+          "chat_id" A..= chat_id_
         ]

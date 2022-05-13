@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteAllCallMessages where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data DeleteAllCallMessages = DeleteAllCallMessages
 instance Show DeleteAllCallMessages where
   show
     DeleteAllCallMessages
-      { revoke = revoke
+      { revoke = revoke_
       } =
       "DeleteAllCallMessages"
         ++ U.cc
-          [ U.p "revoke" revoke
+          [ U.p "revoke" revoke_
           ]
 
 instance T.ToJSON DeleteAllCallMessages where
   toJSON
     DeleteAllCallMessages
-      { revoke = revoke
+      { revoke = revoke_
       } =
       A.object
         [ "@type" A..= T.String "deleteAllCallMessages",
-          "revoke" A..= revoke
+          "revoke" A..= revoke_
         ]

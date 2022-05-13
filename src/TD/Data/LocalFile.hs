@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LocalFile where
 
 import qualified Data.Aeson as A
@@ -30,25 +31,25 @@ data LocalFile = -- | Represents a local file
 instance Show LocalFile where
   show
     LocalFile
-      { downloaded_size = downloaded_size,
-        downloaded_prefix_size = downloaded_prefix_size,
-        download_offset = download_offset,
-        is_downloading_completed = is_downloading_completed,
-        is_downloading_active = is_downloading_active,
-        can_be_deleted = can_be_deleted,
-        can_be_downloaded = can_be_downloaded,
-        path = path
+      { downloaded_size = downloaded_size_,
+        downloaded_prefix_size = downloaded_prefix_size_,
+        download_offset = download_offset_,
+        is_downloading_completed = is_downloading_completed_,
+        is_downloading_active = is_downloading_active_,
+        can_be_deleted = can_be_deleted_,
+        can_be_downloaded = can_be_downloaded_,
+        path = path_
       } =
       "LocalFile"
         ++ U.cc
-          [ U.p "downloaded_size" downloaded_size,
-            U.p "downloaded_prefix_size" downloaded_prefix_size,
-            U.p "download_offset" download_offset,
-            U.p "is_downloading_completed" is_downloading_completed,
-            U.p "is_downloading_active" is_downloading_active,
-            U.p "can_be_deleted" can_be_deleted,
-            U.p "can_be_downloaded" can_be_downloaded,
-            U.p "path" path
+          [ U.p "downloaded_size" downloaded_size_,
+            U.p "downloaded_prefix_size" downloaded_prefix_size_,
+            U.p "download_offset" download_offset_,
+            U.p "is_downloading_completed" is_downloading_completed_,
+            U.p "is_downloading_active" is_downloading_active_,
+            U.p "can_be_deleted" can_be_deleted_,
+            U.p "can_be_downloaded" can_be_downloaded_,
+            U.p "path" path_
           ]
 
 instance T.FromJSON LocalFile where
@@ -75,23 +76,23 @@ instance T.FromJSON LocalFile where
 instance T.ToJSON LocalFile where
   toJSON
     LocalFile
-      { downloaded_size = downloaded_size,
-        downloaded_prefix_size = downloaded_prefix_size,
-        download_offset = download_offset,
-        is_downloading_completed = is_downloading_completed,
-        is_downloading_active = is_downloading_active,
-        can_be_deleted = can_be_deleted,
-        can_be_downloaded = can_be_downloaded,
-        path = path
+      { downloaded_size = downloaded_size_,
+        downloaded_prefix_size = downloaded_prefix_size_,
+        download_offset = download_offset_,
+        is_downloading_completed = is_downloading_completed_,
+        is_downloading_active = is_downloading_active_,
+        can_be_deleted = can_be_deleted_,
+        can_be_downloaded = can_be_downloaded_,
+        path = path_
       } =
       A.object
         [ "@type" A..= T.String "localFile",
-          "downloaded_size" A..= downloaded_size,
-          "downloaded_prefix_size" A..= downloaded_prefix_size,
-          "download_offset" A..= download_offset,
-          "is_downloading_completed" A..= is_downloading_completed,
-          "is_downloading_active" A..= is_downloading_active,
-          "can_be_deleted" A..= can_be_deleted,
-          "can_be_downloaded" A..= can_be_downloaded,
-          "path" A..= path
+          "downloaded_size" A..= downloaded_size_,
+          "downloaded_prefix_size" A..= downloaded_prefix_size_,
+          "download_offset" A..= download_offset_,
+          "is_downloading_completed" A..= is_downloading_completed_,
+          "is_downloading_active" A..= is_downloading_active_,
+          "can_be_deleted" A..= can_be_deleted_,
+          "can_be_downloaded" A..= can_be_downloaded_,
+          "path" A..= path_
         ]

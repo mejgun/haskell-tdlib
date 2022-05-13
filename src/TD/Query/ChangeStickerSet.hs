@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ChangeStickerSet where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data ChangeStickerSet = ChangeStickerSet
 instance Show ChangeStickerSet where
   show
     ChangeStickerSet
-      { is_archived = is_archived,
-        is_installed = is_installed,
-        set_id = set_id
+      { is_archived = is_archived_,
+        is_installed = is_installed_,
+        set_id = set_id_
       } =
       "ChangeStickerSet"
         ++ U.cc
-          [ U.p "is_archived" is_archived,
-            U.p "is_installed" is_installed,
-            U.p "set_id" set_id
+          [ U.p "is_archived" is_archived_,
+            U.p "is_installed" is_installed_,
+            U.p "set_id" set_id_
           ]
 
 instance T.ToJSON ChangeStickerSet where
   toJSON
     ChangeStickerSet
-      { is_archived = is_archived,
-        is_installed = is_installed,
-        set_id = set_id
+      { is_archived = is_archived_,
+        is_installed = is_installed_,
+        set_id = set_id_
       } =
       A.object
         [ "@type" A..= T.String "changeStickerSet",
-          "is_archived" A..= is_archived,
-          "is_installed" A..= is_installed,
-          "set_id" A..= set_id
+          "is_archived" A..= is_archived_,
+          "is_installed" A..= is_installed_,
+          "set_id" A..= set_id_
         ]

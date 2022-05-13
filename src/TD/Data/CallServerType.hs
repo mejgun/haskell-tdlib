@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallServerType where
 
 import qualified Data.Aeson as A
@@ -29,25 +30,25 @@ data CallServerType
 instance Show CallServerType where
   show
     CallServerTypeTelegramReflector
-      { peer_tag = peer_tag
+      { peer_tag = peer_tag_
       } =
       "CallServerTypeTelegramReflector"
         ++ U.cc
-          [ U.p "peer_tag" peer_tag
+          [ U.p "peer_tag" peer_tag_
           ]
   show
     CallServerTypeWebrtc
-      { supports_stun = supports_stun,
-        supports_turn = supports_turn,
-        password = password,
-        username = username
+      { supports_stun = supports_stun_,
+        supports_turn = supports_turn_,
+        password = password_,
+        username = username_
       } =
       "CallServerTypeWebrtc"
         ++ U.cc
-          [ U.p "supports_stun" supports_stun,
-            U.p "supports_turn" supports_turn,
-            U.p "password" password,
-            U.p "username" username
+          [ U.p "supports_stun" supports_stun_,
+            U.p "supports_turn" supports_turn_,
+            U.p "password" password_,
+            U.p "username" username_
           ]
 
 instance T.FromJSON CallServerType where
@@ -76,23 +77,23 @@ instance T.FromJSON CallServerType where
 instance T.ToJSON CallServerType where
   toJSON
     CallServerTypeTelegramReflector
-      { peer_tag = peer_tag
+      { peer_tag = peer_tag_
       } =
       A.object
         [ "@type" A..= T.String "callServerTypeTelegramReflector",
-          "peer_tag" A..= peer_tag
+          "peer_tag" A..= peer_tag_
         ]
   toJSON
     CallServerTypeWebrtc
-      { supports_stun = supports_stun,
-        supports_turn = supports_turn,
-        password = password,
-        username = username
+      { supports_stun = supports_stun_,
+        supports_turn = supports_turn_,
+        password = password_,
+        username = username_
       } =
       A.object
         [ "@type" A..= T.String "callServerTypeWebrtc",
-          "supports_stun" A..= supports_stun,
-          "supports_turn" A..= supports_turn,
-          "password" A..= password,
-          "username" A..= username
+          "supports_stun" A..= supports_stun_,
+          "supports_turn" A..= supports_turn_,
+          "password" A..= password_,
+          "username" A..= username_
         ]

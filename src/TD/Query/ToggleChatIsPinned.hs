@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleChatIsPinned where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data ToggleChatIsPinned = ToggleChatIsPinned
 instance Show ToggleChatIsPinned where
   show
     ToggleChatIsPinned
-      { is_pinned = is_pinned,
-        chat_id = chat_id,
-        chat_list = chat_list
+      { is_pinned = is_pinned_,
+        chat_id = chat_id_,
+        chat_list = chat_list_
       } =
       "ToggleChatIsPinned"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "chat_id" chat_id,
-            U.p "chat_list" chat_list
+          [ U.p "is_pinned" is_pinned_,
+            U.p "chat_id" chat_id_,
+            U.p "chat_list" chat_list_
           ]
 
 instance T.ToJSON ToggleChatIsPinned where
   toJSON
     ToggleChatIsPinned
-      { is_pinned = is_pinned,
-        chat_id = chat_id,
-        chat_list = chat_list
+      { is_pinned = is_pinned_,
+        chat_id = chat_id_,
+        chat_list = chat_list_
       } =
       A.object
         [ "@type" A..= T.String "toggleChatIsPinned",
-          "is_pinned" A..= is_pinned,
-          "chat_id" A..= chat_id,
-          "chat_list" A..= chat_list
+          "is_pinned" A..= is_pinned_,
+          "chat_id" A..= chat_id_,
+          "chat_list" A..= chat_list_
         ]

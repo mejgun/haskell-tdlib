@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MaskPoint where
 
 import qualified Data.Aeson as A
@@ -48,20 +49,16 @@ instance T.FromJSON MaskPoint where
       _ -> mempty
     where
       parseMaskPointForehead :: A.Value -> T.Parser MaskPoint
-      parseMaskPointForehead = A.withObject "MaskPointForehead" $ \o -> do
-        return $ MaskPointForehead {}
+      parseMaskPointForehead = A.withObject "MaskPointForehead" $ \_ -> return MaskPointForehead
 
       parseMaskPointEyes :: A.Value -> T.Parser MaskPoint
-      parseMaskPointEyes = A.withObject "MaskPointEyes" $ \o -> do
-        return $ MaskPointEyes {}
+      parseMaskPointEyes = A.withObject "MaskPointEyes" $ \_ -> return MaskPointEyes
 
       parseMaskPointMouth :: A.Value -> T.Parser MaskPoint
-      parseMaskPointMouth = A.withObject "MaskPointMouth" $ \o -> do
-        return $ MaskPointMouth {}
+      parseMaskPointMouth = A.withObject "MaskPointMouth" $ \_ -> return MaskPointMouth
 
       parseMaskPointChin :: A.Value -> T.Parser MaskPoint
-      parseMaskPointChin = A.withObject "MaskPointChin" $ \o -> do
-        return $ MaskPointChin {}
+      parseMaskPointChin = A.withObject "MaskPointChin" $ \_ -> return MaskPointChin
   parseJSON _ = mempty
 
 instance T.ToJSON MaskPoint where

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatPermissions where
 
 import qualified Data.Aeson as A
@@ -30,25 +31,25 @@ data ChatPermissions = -- | Describes actions that a user is allowed to take in 
 instance Show ChatPermissions where
   show
     ChatPermissions
-      { can_pin_messages = can_pin_messages,
-        can_invite_users = can_invite_users,
-        can_change_info = can_change_info,
-        can_add_web_page_previews = can_add_web_page_previews,
-        can_send_other_messages = can_send_other_messages,
-        can_send_polls = can_send_polls,
-        can_send_media_messages = can_send_media_messages,
-        can_send_messages = can_send_messages
+      { can_pin_messages = can_pin_messages_,
+        can_invite_users = can_invite_users_,
+        can_change_info = can_change_info_,
+        can_add_web_page_previews = can_add_web_page_previews_,
+        can_send_other_messages = can_send_other_messages_,
+        can_send_polls = can_send_polls_,
+        can_send_media_messages = can_send_media_messages_,
+        can_send_messages = can_send_messages_
       } =
       "ChatPermissions"
         ++ U.cc
-          [ U.p "can_pin_messages" can_pin_messages,
-            U.p "can_invite_users" can_invite_users,
-            U.p "can_change_info" can_change_info,
-            U.p "can_add_web_page_previews" can_add_web_page_previews,
-            U.p "can_send_other_messages" can_send_other_messages,
-            U.p "can_send_polls" can_send_polls,
-            U.p "can_send_media_messages" can_send_media_messages,
-            U.p "can_send_messages" can_send_messages
+          [ U.p "can_pin_messages" can_pin_messages_,
+            U.p "can_invite_users" can_invite_users_,
+            U.p "can_change_info" can_change_info_,
+            U.p "can_add_web_page_previews" can_add_web_page_previews_,
+            U.p "can_send_other_messages" can_send_other_messages_,
+            U.p "can_send_polls" can_send_polls_,
+            U.p "can_send_media_messages" can_send_media_messages_,
+            U.p "can_send_messages" can_send_messages_
           ]
 
 instance T.FromJSON ChatPermissions where
@@ -75,23 +76,23 @@ instance T.FromJSON ChatPermissions where
 instance T.ToJSON ChatPermissions where
   toJSON
     ChatPermissions
-      { can_pin_messages = can_pin_messages,
-        can_invite_users = can_invite_users,
-        can_change_info = can_change_info,
-        can_add_web_page_previews = can_add_web_page_previews,
-        can_send_other_messages = can_send_other_messages,
-        can_send_polls = can_send_polls,
-        can_send_media_messages = can_send_media_messages,
-        can_send_messages = can_send_messages
+      { can_pin_messages = can_pin_messages_,
+        can_invite_users = can_invite_users_,
+        can_change_info = can_change_info_,
+        can_add_web_page_previews = can_add_web_page_previews_,
+        can_send_other_messages = can_send_other_messages_,
+        can_send_polls = can_send_polls_,
+        can_send_media_messages = can_send_media_messages_,
+        can_send_messages = can_send_messages_
       } =
       A.object
         [ "@type" A..= T.String "chatPermissions",
-          "can_pin_messages" A..= can_pin_messages,
-          "can_invite_users" A..= can_invite_users,
-          "can_change_info" A..= can_change_info,
-          "can_add_web_page_previews" A..= can_add_web_page_previews,
-          "can_send_other_messages" A..= can_send_other_messages,
-          "can_send_polls" A..= can_send_polls,
-          "can_send_media_messages" A..= can_send_media_messages,
-          "can_send_messages" A..= can_send_messages
+          "can_pin_messages" A..= can_pin_messages_,
+          "can_invite_users" A..= can_invite_users_,
+          "can_change_info" A..= can_change_info_,
+          "can_add_web_page_previews" A..= can_add_web_page_previews_,
+          "can_send_other_messages" A..= can_send_other_messages_,
+          "can_send_polls" A..= can_send_polls_,
+          "can_send_media_messages" A..= can_send_media_messages_,
+          "can_send_messages" A..= can_send_messages_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Animations where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data Animations = -- | Represents a list of animations @animations List of anima
 instance Show Animations where
   show
     Animations
-      { animations = animations
+      { animations = animations_
       } =
       "Animations"
         ++ U.cc
-          [ U.p "animations" animations
+          [ U.p "animations" animations_
           ]
 
 instance T.FromJSON Animations where
@@ -41,9 +42,9 @@ instance T.FromJSON Animations where
 instance T.ToJSON Animations where
   toJSON
     Animations
-      { animations = animations
+      { animations = animations_
       } =
       A.object
         [ "@type" A..= T.String "animations",
-          "animations" A..= animations
+          "animations" A..= animations_
         ]

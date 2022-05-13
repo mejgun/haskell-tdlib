@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageFileType where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data MessageFileType
 instance Show MessageFileType where
   show
     MessageFileTypePrivate
-      { name = name
+      { name = name_
       } =
       "MessageFileTypePrivate"
         ++ U.cc
-          [ U.p "name" name
+          [ U.p "name" name_
           ]
   show
     MessageFileTypeGroup
-      { title = title
+      { title = title_
       } =
       "MessageFileTypeGroup"
         ++ U.cc
-          [ U.p "title" title
+          [ U.p "title" title_
           ]
   show MessageFileTypeUnknown =
     "MessageFileTypeUnknown"
@@ -65,26 +66,25 @@ instance T.FromJSON MessageFileType where
         return $ MessageFileTypeGroup {title = title_}
 
       parseMessageFileTypeUnknown :: A.Value -> T.Parser MessageFileType
-      parseMessageFileTypeUnknown = A.withObject "MessageFileTypeUnknown" $ \o -> do
-        return $ MessageFileTypeUnknown {}
+      parseMessageFileTypeUnknown = A.withObject "MessageFileTypeUnknown" $ \_ -> return MessageFileTypeUnknown
   parseJSON _ = mempty
 
 instance T.ToJSON MessageFileType where
   toJSON
     MessageFileTypePrivate
-      { name = name
+      { name = name_
       } =
       A.object
         [ "@type" A..= T.String "messageFileTypePrivate",
-          "name" A..= name
+          "name" A..= name_
         ]
   toJSON
     MessageFileTypeGroup
-      { title = title
+      { title = title_
       } =
       A.object
         [ "@type" A..= T.String "messageFileTypeGroup",
-          "title" A..= title
+          "title" A..= title_
         ]
   toJSON MessageFileTypeUnknown =
     A.object

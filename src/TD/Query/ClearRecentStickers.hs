@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ClearRecentStickers where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ClearRecentStickers = ClearRecentStickers
 instance Show ClearRecentStickers where
   show
     ClearRecentStickers
-      { is_attached = is_attached
+      { is_attached = is_attached_
       } =
       "ClearRecentStickers"
         ++ U.cc
-          [ U.p "is_attached" is_attached
+          [ U.p "is_attached" is_attached_
           ]
 
 instance T.ToJSON ClearRecentStickers where
   toJSON
     ClearRecentStickers
-      { is_attached = is_attached
+      { is_attached = is_attached_
       } =
       A.object
         [ "@type" A..= T.String "clearRecentStickers",
-          "is_attached" A..= is_attached
+          "is_attached" A..= is_attached_
         ]

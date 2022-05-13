@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddLocalMessage where
 
 import qualified Data.Aeson as A
@@ -27,35 +28,35 @@ data AddLocalMessage = AddLocalMessage
 instance Show AddLocalMessage where
   show
     AddLocalMessage
-      { input_message_content = input_message_content,
-        disable_notification = disable_notification,
-        reply_to_message_id = reply_to_message_id,
-        sender_id = sender_id,
-        chat_id = chat_id
+      { input_message_content = input_message_content_,
+        disable_notification = disable_notification_,
+        reply_to_message_id = reply_to_message_id_,
+        sender_id = sender_id_,
+        chat_id = chat_id_
       } =
       "AddLocalMessage"
         ++ U.cc
-          [ U.p "input_message_content" input_message_content,
-            U.p "disable_notification" disable_notification,
-            U.p "reply_to_message_id" reply_to_message_id,
-            U.p "sender_id" sender_id,
-            U.p "chat_id" chat_id
+          [ U.p "input_message_content" input_message_content_,
+            U.p "disable_notification" disable_notification_,
+            U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "sender_id" sender_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON AddLocalMessage where
   toJSON
     AddLocalMessage
-      { input_message_content = input_message_content,
-        disable_notification = disable_notification,
-        reply_to_message_id = reply_to_message_id,
-        sender_id = sender_id,
-        chat_id = chat_id
+      { input_message_content = input_message_content_,
+        disable_notification = disable_notification_,
+        reply_to_message_id = reply_to_message_id_,
+        sender_id = sender_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "addLocalMessage",
-          "input_message_content" A..= input_message_content,
-          "disable_notification" A..= disable_notification,
-          "reply_to_message_id" A..= reply_to_message_id,
-          "sender_id" A..= sender_id,
-          "chat_id" A..= chat_id
+          "input_message_content" A..= input_message_content_,
+          "disable_notification" A..= disable_notification_,
+          "reply_to_message_id" A..= reply_to_message_id_,
+          "sender_id" A..= sender_id_,
+          "chat_id" A..= chat_id_
         ]

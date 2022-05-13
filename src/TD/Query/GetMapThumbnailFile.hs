@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMapThumbnailFile where
 
 import qualified Data.Aeson as A
@@ -28,39 +29,39 @@ data GetMapThumbnailFile = GetMapThumbnailFile
 instance Show GetMapThumbnailFile where
   show
     GetMapThumbnailFile
-      { chat_id = chat_id,
-        scale = scale,
-        height = height,
-        width = width,
-        zoom = zoom,
-        location = location
+      { chat_id = chat_id_,
+        scale = scale_,
+        height = height_,
+        width = width_,
+        zoom = zoom_,
+        location = location_
       } =
       "GetMapThumbnailFile"
         ++ U.cc
-          [ U.p "chat_id" chat_id,
-            U.p "scale" scale,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "zoom" zoom,
-            U.p "location" location
+          [ U.p "chat_id" chat_id_,
+            U.p "scale" scale_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "zoom" zoom_,
+            U.p "location" location_
           ]
 
 instance T.ToJSON GetMapThumbnailFile where
   toJSON
     GetMapThumbnailFile
-      { chat_id = chat_id,
-        scale = scale,
-        height = height,
-        width = width,
-        zoom = zoom,
-        location = location
+      { chat_id = chat_id_,
+        scale = scale_,
+        height = height_,
+        width = width_,
+        zoom = zoom_,
+        location = location_
       } =
       A.object
         [ "@type" A..= T.String "getMapThumbnailFile",
-          "chat_id" A..= chat_id,
-          "scale" A..= scale,
-          "height" A..= height,
-          "width" A..= width,
-          "zoom" A..= zoom,
-          "location" A..= location
+          "chat_id" A..= chat_id_,
+          "scale" A..= scale_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "zoom" A..= zoom_,
+          "location" A..= location_
         ]

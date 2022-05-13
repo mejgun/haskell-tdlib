@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ProfilePhoto where
 
 import qualified Data.Aeson as A
@@ -26,19 +27,19 @@ data ProfilePhoto = -- | Describes a user profile photo @id Photo identifier; 0 
 instance Show ProfilePhoto where
   show
     ProfilePhoto
-      { has_animation = has_animation,
-        minithumbnail = minithumbnail,
-        big = big,
-        small = small,
-        _id = _id
+      { has_animation = has_animation_,
+        minithumbnail = minithumbnail_,
+        big = big_,
+        small = small_,
+        _id = _id_
       } =
       "ProfilePhoto"
         ++ U.cc
-          [ U.p "has_animation" has_animation,
-            U.p "minithumbnail" minithumbnail,
-            U.p "big" big,
-            U.p "small" small,
-            U.p "_id" _id
+          [ U.p "has_animation" has_animation_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "big" big_,
+            U.p "small" small_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON ProfilePhoto where
@@ -62,17 +63,17 @@ instance T.FromJSON ProfilePhoto where
 instance T.ToJSON ProfilePhoto where
   toJSON
     ProfilePhoto
-      { has_animation = has_animation,
-        minithumbnail = minithumbnail,
-        big = big,
-        small = small,
-        _id = _id
+      { has_animation = has_animation_,
+        minithumbnail = minithumbnail_,
+        big = big_,
+        small = small_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "profilePhoto",
-          "has_animation" A..= has_animation,
-          "minithumbnail" A..= minithumbnail,
-          "big" A..= big,
-          "small" A..= small,
-          "id" A..= _id
+          "has_animation" A..= has_animation_,
+          "minithumbnail" A..= minithumbnail_,
+          "big" A..= big_,
+          "small" A..= small_,
+          "id" A..= _id_
         ]

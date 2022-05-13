@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.File where
 
 import qualified Data.Aeson as A
@@ -26,19 +27,19 @@ data File = -- | Represents a file
 instance Show File where
   show
     File
-      { remote = remote,
-        local = local,
-        expected_size = expected_size,
-        size = size,
-        _id = _id
+      { remote = remote_,
+        local = local_,
+        expected_size = expected_size_,
+        size = size_,
+        _id = _id_
       } =
       "File"
         ++ U.cc
-          [ U.p "remote" remote,
-            U.p "local" local,
-            U.p "expected_size" expected_size,
-            U.p "size" size,
-            U.p "_id" _id
+          [ U.p "remote" remote_,
+            U.p "local" local_,
+            U.p "expected_size" expected_size_,
+            U.p "size" size_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON File where
@@ -62,17 +63,17 @@ instance T.FromJSON File where
 instance T.ToJSON File where
   toJSON
     File
-      { remote = remote,
-        local = local,
-        expected_size = expected_size,
-        size = size,
-        _id = _id
+      { remote = remote_,
+        local = local_,
+        expected_size = expected_size_,
+        size = size_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "file",
-          "remote" A..= remote,
-          "local" A..= local,
-          "expected_size" A..= expected_size,
-          "size" A..= size,
-          "id" A..= _id
+          "remote" A..= remote_,
+          "local" A..= local_,
+          "expected_size" A..= expected_size_,
+          "size" A..= size_,
+          "id" A..= _id_
         ]

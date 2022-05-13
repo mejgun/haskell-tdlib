@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Proxies where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data Proxies = -- | Represents a list of proxy servers @proxies List of proxy se
 instance Show Proxies where
   show
     Proxies
-      { proxies = proxies
+      { proxies = proxies_
       } =
       "Proxies"
         ++ U.cc
-          [ U.p "proxies" proxies
+          [ U.p "proxies" proxies_
           ]
 
 instance T.FromJSON Proxies where
@@ -41,9 +42,9 @@ instance T.FromJSON Proxies where
 instance T.ToJSON Proxies where
   toJSON
     Proxies
-      { proxies = proxies
+      { proxies = proxies_
       } =
       A.object
         [ "@type" A..= T.String "proxies",
-          "proxies" A..= proxies
+          "proxies" A..= proxies_
         ]

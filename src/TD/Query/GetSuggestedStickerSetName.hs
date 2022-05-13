@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetSuggestedStickerSetName where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetSuggestedStickerSetName = GetSuggestedStickerSetName
 instance Show GetSuggestedStickerSetName where
   show
     GetSuggestedStickerSetName
-      { title = title
+      { title = title_
       } =
       "GetSuggestedStickerSetName"
         ++ U.cc
-          [ U.p "title" title
+          [ U.p "title" title_
           ]
 
 instance T.ToJSON GetSuggestedStickerSetName where
   toJSON
     GetSuggestedStickerSetName
-      { title = title
+      { title = title_
       } =
       A.object
         [ "@type" A..= T.String "getSuggestedStickerSetName",
-          "title" A..= title
+          "title" A..= title_
         ]

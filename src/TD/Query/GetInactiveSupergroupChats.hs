@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetInactiveSupergroupChats where
 
 import qualified Data.Aeson as A

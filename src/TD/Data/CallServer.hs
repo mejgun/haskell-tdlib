@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallServer where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data CallServer = -- | Describes a server for relaying call data @id Server iden
 instance Show CallServer where
   show
     CallServer
-      { _type = _type,
-        port = port,
-        ipv6_address = ipv6_address,
-        ip_address = ip_address,
-        _id = _id
+      { _type = _type_,
+        port = port_,
+        ipv6_address = ipv6_address_,
+        ip_address = ip_address_,
+        _id = _id_
       } =
       "CallServer"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "port" port,
-            U.p "ipv6_address" ipv6_address,
-            U.p "ip_address" ip_address,
-            U.p "_id" _id
+          [ U.p "_type" _type_,
+            U.p "port" port_,
+            U.p "ipv6_address" ipv6_address_,
+            U.p "ip_address" ip_address_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON CallServer where
@@ -61,17 +62,17 @@ instance T.FromJSON CallServer where
 instance T.ToJSON CallServer where
   toJSON
     CallServer
-      { _type = _type,
-        port = port,
-        ipv6_address = ipv6_address,
-        ip_address = ip_address,
-        _id = _id
+      { _type = _type_,
+        port = port_,
+        ipv6_address = ipv6_address_,
+        ip_address = ip_address_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "callServer",
-          "type" A..= _type,
-          "port" A..= port,
-          "ipv6_address" A..= ipv6_address,
-          "ip_address" A..= ip_address,
-          "id" A..= _id
+          "type" A..= _type_,
+          "port" A..= port_,
+          "ipv6_address" A..= ipv6_address_,
+          "ip_address" A..= ip_address_,
+          "id" A..= _id_
         ]

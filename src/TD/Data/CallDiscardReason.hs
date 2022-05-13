@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallDiscardReason where
 
 import qualified Data.Aeson as A
@@ -55,24 +56,19 @@ instance T.FromJSON CallDiscardReason where
       _ -> mempty
     where
       parseCallDiscardReasonEmpty :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonEmpty = A.withObject "CallDiscardReasonEmpty" $ \o -> do
-        return $ CallDiscardReasonEmpty {}
+      parseCallDiscardReasonEmpty = A.withObject "CallDiscardReasonEmpty" $ \_ -> return CallDiscardReasonEmpty
 
       parseCallDiscardReasonMissed :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonMissed = A.withObject "CallDiscardReasonMissed" $ \o -> do
-        return $ CallDiscardReasonMissed {}
+      parseCallDiscardReasonMissed = A.withObject "CallDiscardReasonMissed" $ \_ -> return CallDiscardReasonMissed
 
       parseCallDiscardReasonDeclined :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonDeclined = A.withObject "CallDiscardReasonDeclined" $ \o -> do
-        return $ CallDiscardReasonDeclined {}
+      parseCallDiscardReasonDeclined = A.withObject "CallDiscardReasonDeclined" $ \_ -> return CallDiscardReasonDeclined
 
       parseCallDiscardReasonDisconnected :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonDisconnected = A.withObject "CallDiscardReasonDisconnected" $ \o -> do
-        return $ CallDiscardReasonDisconnected {}
+      parseCallDiscardReasonDisconnected = A.withObject "CallDiscardReasonDisconnected" $ \_ -> return CallDiscardReasonDisconnected
 
       parseCallDiscardReasonHungUp :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonHungUp = A.withObject "CallDiscardReasonHungUp" $ \o -> do
-        return $ CallDiscardReasonHungUp {}
+      parseCallDiscardReasonHungUp = A.withObject "CallDiscardReasonHungUp" $ \_ -> return CallDiscardReasonHungUp
   parseJSON _ = mempty
 
 instance T.ToJSON CallDiscardReason where

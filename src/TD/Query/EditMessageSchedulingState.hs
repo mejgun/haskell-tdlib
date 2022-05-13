@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditMessageSchedulingState where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data EditMessageSchedulingState = EditMessageSchedulingState
 instance Show EditMessageSchedulingState where
   show
     EditMessageSchedulingState
-      { scheduling_state = scheduling_state,
-        message_id = message_id,
-        chat_id = chat_id
+      { scheduling_state = scheduling_state_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "EditMessageSchedulingState"
         ++ U.cc
-          [ U.p "scheduling_state" scheduling_state,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "scheduling_state" scheduling_state_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON EditMessageSchedulingState where
   toJSON
     EditMessageSchedulingState
-      { scheduling_state = scheduling_state,
-        message_id = message_id,
-        chat_id = chat_id
+      { scheduling_state = scheduling_state_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "editMessageSchedulingState",
-          "scheduling_state" A..= scheduling_state,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "scheduling_state" A..= scheduling_state_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

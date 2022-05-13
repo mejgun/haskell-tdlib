@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TestProxy where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data TestProxy = TestProxy
 instance Show TestProxy where
   show
     TestProxy
-      { timeout = timeout,
-        dc_id = dc_id,
-        _type = _type,
-        port = port,
-        server = server
+      { timeout = timeout_,
+        dc_id = dc_id_,
+        _type = _type_,
+        port = port_,
+        server = server_
       } =
       "TestProxy"
         ++ U.cc
-          [ U.p "timeout" timeout,
-            U.p "dc_id" dc_id,
-            U.p "_type" _type,
-            U.p "port" port,
-            U.p "server" server
+          [ U.p "timeout" timeout_,
+            U.p "dc_id" dc_id_,
+            U.p "_type" _type_,
+            U.p "port" port_,
+            U.p "server" server_
           ]
 
 instance T.ToJSON TestProxy where
   toJSON
     TestProxy
-      { timeout = timeout,
-        dc_id = dc_id,
-        _type = _type,
-        port = port,
-        server = server
+      { timeout = timeout_,
+        dc_id = dc_id_,
+        _type = _type_,
+        port = port_,
+        server = server_
       } =
       A.object
         [ "@type" A..= T.String "testProxy",
-          "timeout" A..= timeout,
-          "dc_id" A..= dc_id,
-          "type" A..= _type,
-          "port" A..= port,
-          "server" A..= server
+          "timeout" A..= timeout_,
+          "dc_id" A..= dc_id_,
+          "type" A..= _type_,
+          "port" A..= port_,
+          "server" A..= server_
         ]

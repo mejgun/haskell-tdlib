@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Location where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data Location = -- | Describes a location on planet Earth @latitude Latitude of 
 instance Show Location where
   show
     Location
-      { horizontal_accuracy = horizontal_accuracy,
-        longitude = longitude,
-        latitude = latitude
+      { horizontal_accuracy = horizontal_accuracy_,
+        longitude = longitude_,
+        latitude = latitude_
       } =
       "Location"
         ++ U.cc
-          [ U.p "horizontal_accuracy" horizontal_accuracy,
-            U.p "longitude" longitude,
-            U.p "latitude" latitude
+          [ U.p "horizontal_accuracy" horizontal_accuracy_,
+            U.p "longitude" longitude_,
+            U.p "latitude" latitude_
           ]
 
 instance T.FromJSON Location where
@@ -50,13 +51,13 @@ instance T.FromJSON Location where
 instance T.ToJSON Location where
   toJSON
     Location
-      { horizontal_accuracy = horizontal_accuracy,
-        longitude = longitude,
-        latitude = latitude
+      { horizontal_accuracy = horizontal_accuracy_,
+        longitude = longitude_,
+        latitude = latitude_
       } =
       A.object
         [ "@type" A..= T.String "location",
-          "horizontal_accuracy" A..= horizontal_accuracy,
-          "longitude" A..= longitude,
-          "latitude" A..= latitude
+          "horizontal_accuracy" A..= horizontal_accuracy_,
+          "longitude" A..= longitude_,
+          "latitude" A..= latitude_
         ]

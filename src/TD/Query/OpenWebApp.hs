@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.OpenWebApp where
 
 import qualified Data.Aeson as A
@@ -27,35 +28,35 @@ data OpenWebApp = OpenWebApp
 instance Show OpenWebApp where
   show
     OpenWebApp
-      { reply_to_message_id = reply_to_message_id,
-        theme = theme,
-        url = url,
-        bot_user_id = bot_user_id,
-        chat_id = chat_id
+      { reply_to_message_id = reply_to_message_id_,
+        theme = theme_,
+        url = url_,
+        bot_user_id = bot_user_id_,
+        chat_id = chat_id_
       } =
       "OpenWebApp"
         ++ U.cc
-          [ U.p "reply_to_message_id" reply_to_message_id,
-            U.p "theme" theme,
-            U.p "url" url,
-            U.p "bot_user_id" bot_user_id,
-            U.p "chat_id" chat_id
+          [ U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "theme" theme_,
+            U.p "url" url_,
+            U.p "bot_user_id" bot_user_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON OpenWebApp where
   toJSON
     OpenWebApp
-      { reply_to_message_id = reply_to_message_id,
-        theme = theme,
-        url = url,
-        bot_user_id = bot_user_id,
-        chat_id = chat_id
+      { reply_to_message_id = reply_to_message_id_,
+        theme = theme_,
+        url = url_,
+        bot_user_id = bot_user_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "openWebApp",
-          "reply_to_message_id" A..= reply_to_message_id,
-          "theme" A..= theme,
-          "url" A..= url,
-          "bot_user_id" A..= bot_user_id,
-          "chat_id" A..= chat_id
+          "reply_to_message_id" A..= reply_to_message_id_,
+          "theme" A..= theme_,
+          "url" A..= url_,
+          "bot_user_id" A..= bot_user_id_,
+          "chat_id" A..= chat_id_
         ]

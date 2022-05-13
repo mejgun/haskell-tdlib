@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Updates where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data Updates = -- | Contains a list of updates @updates List of updates
 instance Show Updates where
   show
     Updates
-      { updates = updates
+      { updates = updates_
       } =
       "Updates"
         ++ U.cc
-          [ U.p "updates" updates
+          [ U.p "updates" updates_
           ]
 
 instance T.FromJSON Updates where
@@ -41,9 +42,9 @@ instance T.FromJSON Updates where
 instance T.ToJSON Updates where
   toJSON
     Updates
-      { updates = updates
+      { updates = updates_
       } =
       A.object
         [ "@type" A..= T.String "updates",
-          "updates" A..= updates
+          "updates" A..= updates_
         ]

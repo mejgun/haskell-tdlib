@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveSavedAnimation where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data RemoveSavedAnimation = RemoveSavedAnimation
 instance Show RemoveSavedAnimation where
   show
     RemoveSavedAnimation
-      { animation = animation
+      { animation = animation_
       } =
       "RemoveSavedAnimation"
         ++ U.cc
-          [ U.p "animation" animation
+          [ U.p "animation" animation_
           ]
 
 instance T.ToJSON RemoveSavedAnimation where
   toJSON
     RemoveSavedAnimation
-      { animation = animation
+      { animation = animation_
       } =
       A.object
         [ "@type" A..= T.String "removeSavedAnimation",
-          "animation" A..= animation
+          "animation" A..= animation_
         ]

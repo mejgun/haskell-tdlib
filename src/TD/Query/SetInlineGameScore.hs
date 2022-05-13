@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetInlineGameScore where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data SetInlineGameScore = SetInlineGameScore
 instance Show SetInlineGameScore where
   show
     SetInlineGameScore
-      { force = force,
-        score = score,
-        user_id = user_id,
-        edit_message = edit_message,
-        inline_message_id = inline_message_id
+      { force = force_,
+        score = score_,
+        user_id = user_id_,
+        edit_message = edit_message_,
+        inline_message_id = inline_message_id_
       } =
       "SetInlineGameScore"
         ++ U.cc
-          [ U.p "force" force,
-            U.p "score" score,
-            U.p "user_id" user_id,
-            U.p "edit_message" edit_message,
-            U.p "inline_message_id" inline_message_id
+          [ U.p "force" force_,
+            U.p "score" score_,
+            U.p "user_id" user_id_,
+            U.p "edit_message" edit_message_,
+            U.p "inline_message_id" inline_message_id_
           ]
 
 instance T.ToJSON SetInlineGameScore where
   toJSON
     SetInlineGameScore
-      { force = force,
-        score = score,
-        user_id = user_id,
-        edit_message = edit_message,
-        inline_message_id = inline_message_id
+      { force = force_,
+        score = score_,
+        user_id = user_id_,
+        edit_message = edit_message_,
+        inline_message_id = inline_message_id_
       } =
       A.object
         [ "@type" A..= T.String "setInlineGameScore",
-          "force" A..= force,
-          "score" A..= score,
-          "user_id" A..= user_id,
-          "edit_message" A..= edit_message,
-          "inline_message_id" A..= inline_message_id
+          "force" A..= force_,
+          "score" A..= score_,
+          "user_id" A..= user_id_,
+          "edit_message" A..= edit_message_,
+          "inline_message_id" A..= inline_message_id_
         ]

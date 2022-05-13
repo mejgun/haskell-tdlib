@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ResendMessages where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data ResendMessages = ResendMessages
 instance Show ResendMessages where
   show
     ResendMessages
-      { message_ids = message_ids,
-        chat_id = chat_id
+      { message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       "ResendMessages"
         ++ U.cc
-          [ U.p "message_ids" message_ids,
-            U.p "chat_id" chat_id
+          [ U.p "message_ids" message_ids_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ResendMessages where
   toJSON
     ResendMessages
-      { message_ids = message_ids,
-        chat_id = chat_id
+      { message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "resendMessages",
-          "message_ids" A..= message_ids,
-          "chat_id" A..= chat_id
+          "message_ids" A..= message_ids_,
+          "chat_id" A..= chat_id_
         ]

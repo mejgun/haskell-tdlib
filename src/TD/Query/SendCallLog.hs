@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendCallLog where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SendCallLog = SendCallLog
 instance Show SendCallLog where
   show
     SendCallLog
-      { log_file = log_file,
-        call_id = call_id
+      { log_file = log_file_,
+        call_id = call_id_
       } =
       "SendCallLog"
         ++ U.cc
-          [ U.p "log_file" log_file,
-            U.p "call_id" call_id
+          [ U.p "log_file" log_file_,
+            U.p "call_id" call_id_
           ]
 
 instance T.ToJSON SendCallLog where
   toJSON
     SendCallLog
-      { log_file = log_file,
-        call_id = call_id
+      { log_file = log_file_,
+        call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "sendCallLog",
-          "log_file" A..= log_file,
-          "call_id" A..= call_id
+          "log_file" A..= log_file_,
+          "call_id" A..= call_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckRecoveryEmailAddressCode where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CheckRecoveryEmailAddressCode = CheckRecoveryEmailAddressCode
 instance Show CheckRecoveryEmailAddressCode where
   show
     CheckRecoveryEmailAddressCode
-      { code = code
+      { code = code_
       } =
       "CheckRecoveryEmailAddressCode"
         ++ U.cc
-          [ U.p "code" code
+          [ U.p "code" code_
           ]
 
 instance T.ToJSON CheckRecoveryEmailAddressCode where
   toJSON
     CheckRecoveryEmailAddressCode
-      { code = code
+      { code = code_
       } =
       A.object
         [ "@type" A..= T.String "checkRecoveryEmailAddressCode",
-          "code" A..= code
+          "code" A..= code_
         ]

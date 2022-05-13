@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetUserProfilePhotos where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data GetUserProfilePhotos = GetUserProfilePhotos
 instance Show GetUserProfilePhotos where
   show
     GetUserProfilePhotos
-      { limit = limit,
-        offset = offset,
-        user_id = user_id
+      { limit = limit_,
+        offset = offset_,
+        user_id = user_id_
       } =
       "GetUserProfilePhotos"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "user_id" user_id
+          [ U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON GetUserProfilePhotos where
   toJSON
     GetUserProfilePhotos
-      { limit = limit,
-        offset = offset,
-        user_id = user_id
+      { limit = limit_,
+        offset = offset_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "getUserProfilePhotos",
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "user_id" A..= user_id
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "user_id" A..= user_id_
         ]

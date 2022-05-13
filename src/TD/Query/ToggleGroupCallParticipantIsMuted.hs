@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleGroupCallParticipantIsMuted where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data ToggleGroupCallParticipantIsMuted = ToggleGroupCallParticipantIsMuted
 instance Show ToggleGroupCallParticipantIsMuted where
   show
     ToggleGroupCallParticipantIsMuted
-      { is_muted = is_muted,
-        participant_id = participant_id,
-        group_call_id = group_call_id
+      { is_muted = is_muted_,
+        participant_id = participant_id_,
+        group_call_id = group_call_id_
       } =
       "ToggleGroupCallParticipantIsMuted"
         ++ U.cc
-          [ U.p "is_muted" is_muted,
-            U.p "participant_id" participant_id,
-            U.p "group_call_id" group_call_id
+          [ U.p "is_muted" is_muted_,
+            U.p "participant_id" participant_id_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON ToggleGroupCallParticipantIsMuted where
   toJSON
     ToggleGroupCallParticipantIsMuted
-      { is_muted = is_muted,
-        participant_id = participant_id,
-        group_call_id = group_call_id
+      { is_muted = is_muted_,
+        participant_id = participant_id_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleGroupCallParticipantIsMuted",
-          "is_muted" A..= is_muted,
-          "participant_id" A..= participant_id,
-          "group_call_id" A..= group_call_id
+          "is_muted" A..= is_muted_,
+          "participant_id" A..= participant_id_,
+          "group_call_id" A..= group_call_id_
         ]

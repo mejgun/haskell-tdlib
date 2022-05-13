@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetTrendingStickerSets where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetTrendingStickerSets = GetTrendingStickerSets
 instance Show GetTrendingStickerSets where
   show
     GetTrendingStickerSets
-      { limit = limit,
-        offset = offset
+      { limit = limit_,
+        offset = offset_
       } =
       "GetTrendingStickerSets"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset" offset
+          [ U.p "limit" limit_,
+            U.p "offset" offset_
           ]
 
 instance T.ToJSON GetTrendingStickerSets where
   toJSON
     GetTrendingStickerSets
-      { limit = limit,
-        offset = offset
+      { limit = limit_,
+        offset = offset_
       } =
       A.object
         [ "@type" A..= T.String "getTrendingStickerSets",
-          "limit" A..= limit,
-          "offset" A..= offset
+          "limit" A..= limit_,
+          "offset" A..= offset_
         ]

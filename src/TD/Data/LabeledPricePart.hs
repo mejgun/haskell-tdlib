@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LabeledPricePart where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data LabeledPricePart = -- | Portion of the price of a product (e.g., "delivery 
 instance Show LabeledPricePart where
   show
     LabeledPricePart
-      { amount = amount,
-        label = label
+      { amount = amount_,
+        label = label_
       } =
       "LabeledPricePart"
         ++ U.cc
-          [ U.p "amount" amount,
-            U.p "label" label
+          [ U.p "amount" amount_,
+            U.p "label" label_
           ]
 
 instance T.FromJSON LabeledPricePart where
@@ -45,11 +46,11 @@ instance T.FromJSON LabeledPricePart where
 instance T.ToJSON LabeledPricePart where
   toJSON
     LabeledPricePart
-      { amount = amount,
-        label = label
+      { amount = amount_,
+        label = label_
       } =
       A.object
         [ "@type" A..= T.String "labeledPricePart",
-          "amount" A..= amount,
-          "label" A..= label
+          "amount" A..= amount_,
+          "label" A..= label_
         ]

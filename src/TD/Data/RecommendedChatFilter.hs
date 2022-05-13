@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.RecommendedChatFilter where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data RecommendedChatFilter = -- | Describes a recommended chat filter @filter Th
 instance Show RecommendedChatFilter where
   show
     RecommendedChatFilter
-      { description = description,
-        _filter = _filter
+      { description = description_,
+        _filter = _filter_
       } =
       "RecommendedChatFilter"
         ++ U.cc
-          [ U.p "description" description,
-            U.p "_filter" _filter
+          [ U.p "description" description_,
+            U.p "_filter" _filter_
           ]
 
 instance T.FromJSON RecommendedChatFilter where
@@ -46,11 +47,11 @@ instance T.FromJSON RecommendedChatFilter where
 instance T.ToJSON RecommendedChatFilter where
   toJSON
     RecommendedChatFilter
-      { description = description,
-        _filter = _filter
+      { description = description_,
+        _filter = _filter_
       } =
       A.object
         [ "@type" A..= T.String "recommendedChatFilter",
-          "description" A..= description,
-          "filter" A..= _filter
+          "description" A..= description_,
+          "filter" A..= _filter_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchChatsNearby where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SearchChatsNearby = SearchChatsNearby
 instance Show SearchChatsNearby where
   show
     SearchChatsNearby
-      { location = location
+      { location = location_
       } =
       "SearchChatsNearby"
         ++ U.cc
-          [ U.p "location" location
+          [ U.p "location" location_
           ]
 
 instance T.ToJSON SearchChatsNearby where
   toJSON
     SearchChatsNearby
-      { location = location
+      { location = location_
       } =
       A.object
         [ "@type" A..= T.String "searchChatsNearby",
-          "location" A..= location
+          "location" A..= location_
         ]

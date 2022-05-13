@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RecoverPassword where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data RecoverPassword = RecoverPassword
 instance Show RecoverPassword where
   show
     RecoverPassword
-      { new_hint = new_hint,
-        new_password = new_password,
-        recovery_code = recovery_code
+      { new_hint = new_hint_,
+        new_password = new_password_,
+        recovery_code = recovery_code_
       } =
       "RecoverPassword"
         ++ U.cc
-          [ U.p "new_hint" new_hint,
-            U.p "new_password" new_password,
-            U.p "recovery_code" recovery_code
+          [ U.p "new_hint" new_hint_,
+            U.p "new_password" new_password_,
+            U.p "recovery_code" recovery_code_
           ]
 
 instance T.ToJSON RecoverPassword where
   toJSON
     RecoverPassword
-      { new_hint = new_hint,
-        new_password = new_password,
-        recovery_code = recovery_code
+      { new_hint = new_hint_,
+        new_password = new_password_,
+        recovery_code = recovery_code_
       } =
       A.object
         [ "@type" A..= T.String "recoverPassword",
-          "new_hint" A..= new_hint,
-          "new_password" A..= new_password,
-          "recovery_code" A..= recovery_code
+          "new_hint" A..= new_hint_,
+          "new_password" A..= new_password_,
+          "recovery_code" A..= recovery_code_
         ]

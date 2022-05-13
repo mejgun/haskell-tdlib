@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.StopPoll where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data StopPoll = StopPoll
 instance Show StopPoll where
   show
     StopPoll
-      { reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "StopPoll"
         ++ U.cc
-          [ U.p "reply_markup" reply_markup,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "reply_markup" reply_markup_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON StopPoll where
   toJSON
     StopPoll
-      { reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "stopPoll",
-          "reply_markup" A..= reply_markup,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "reply_markup" A..= reply_markup_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

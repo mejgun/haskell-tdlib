@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatMembersFilter where
 
 import qualified Data.Aeson as A
@@ -42,11 +43,11 @@ instance Show ChatMembersFilter where
         []
   show
     ChatMembersFilterMention
-      { message_thread_id = message_thread_id
+      { message_thread_id = message_thread_id_
       } =
       "ChatMembersFilterMention"
         ++ U.cc
-          [ U.p "message_thread_id" message_thread_id
+          [ U.p "message_thread_id" message_thread_id_
           ]
   show ChatMembersFilterRestricted =
     "ChatMembersFilterRestricted"
@@ -76,16 +77,13 @@ instance T.FromJSON ChatMembersFilter where
       _ -> mempty
     where
       parseChatMembersFilterContacts :: A.Value -> T.Parser ChatMembersFilter
-      parseChatMembersFilterContacts = A.withObject "ChatMembersFilterContacts" $ \o -> do
-        return $ ChatMembersFilterContacts {}
+      parseChatMembersFilterContacts = A.withObject "ChatMembersFilterContacts" $ \_ -> return ChatMembersFilterContacts
 
       parseChatMembersFilterAdministrators :: A.Value -> T.Parser ChatMembersFilter
-      parseChatMembersFilterAdministrators = A.withObject "ChatMembersFilterAdministrators" $ \o -> do
-        return $ ChatMembersFilterAdministrators {}
+      parseChatMembersFilterAdministrators = A.withObject "ChatMembersFilterAdministrators" $ \_ -> return ChatMembersFilterAdministrators
 
       parseChatMembersFilterMembers :: A.Value -> T.Parser ChatMembersFilter
-      parseChatMembersFilterMembers = A.withObject "ChatMembersFilterMembers" $ \o -> do
-        return $ ChatMembersFilterMembers {}
+      parseChatMembersFilterMembers = A.withObject "ChatMembersFilterMembers" $ \_ -> return ChatMembersFilterMembers
 
       parseChatMembersFilterMention :: A.Value -> T.Parser ChatMembersFilter
       parseChatMembersFilterMention = A.withObject "ChatMembersFilterMention" $ \o -> do
@@ -93,16 +91,13 @@ instance T.FromJSON ChatMembersFilter where
         return $ ChatMembersFilterMention {message_thread_id = message_thread_id_}
 
       parseChatMembersFilterRestricted :: A.Value -> T.Parser ChatMembersFilter
-      parseChatMembersFilterRestricted = A.withObject "ChatMembersFilterRestricted" $ \o -> do
-        return $ ChatMembersFilterRestricted {}
+      parseChatMembersFilterRestricted = A.withObject "ChatMembersFilterRestricted" $ \_ -> return ChatMembersFilterRestricted
 
       parseChatMembersFilterBanned :: A.Value -> T.Parser ChatMembersFilter
-      parseChatMembersFilterBanned = A.withObject "ChatMembersFilterBanned" $ \o -> do
-        return $ ChatMembersFilterBanned {}
+      parseChatMembersFilterBanned = A.withObject "ChatMembersFilterBanned" $ \_ -> return ChatMembersFilterBanned
 
       parseChatMembersFilterBots :: A.Value -> T.Parser ChatMembersFilter
-      parseChatMembersFilterBots = A.withObject "ChatMembersFilterBots" $ \o -> do
-        return $ ChatMembersFilterBots {}
+      parseChatMembersFilterBots = A.withObject "ChatMembersFilterBots" $ \_ -> return ChatMembersFilterBots
   parseJSON _ = mempty
 
 instance T.ToJSON ChatMembersFilter where
@@ -120,11 +115,11 @@ instance T.ToJSON ChatMembersFilter where
       ]
   toJSON
     ChatMembersFilterMention
-      { message_thread_id = message_thread_id
+      { message_thread_id = message_thread_id_
       } =
       A.object
         [ "@type" A..= T.String "chatMembersFilterMention",
-          "message_thread_id" A..= message_thread_id
+          "message_thread_id" A..= message_thread_id_
         ]
   toJSON ChatMembersFilterRestricted =
     A.object

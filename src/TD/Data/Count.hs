@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Count where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data Count = -- | Contains a counter @count Count
 instance Show Count where
   show
     Count
-      { count = count
+      { count = count_
       } =
       "Count"
         ++ U.cc
-          [ U.p "count" count
+          [ U.p "count" count_
           ]
 
 instance T.FromJSON Count where
@@ -40,9 +41,9 @@ instance T.FromJSON Count where
 instance T.ToJSON Count where
   toJSON
     Count
-      { count = count
+      { count = count_
       } =
       A.object
         [ "@type" A..= T.String "count",
-          "count" A..= count
+          "count" A..= count_
         ]

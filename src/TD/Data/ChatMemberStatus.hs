@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatMemberStatus where
 
 import qualified Data.Aeson as A
@@ -51,27 +52,27 @@ data ChatMemberStatus
 instance Show ChatMemberStatus where
   show
     ChatMemberStatusCreator
-      { is_member = is_member,
-        is_anonymous = is_anonymous,
-        custom_title = custom_title
+      { is_member = is_member_,
+        is_anonymous = is_anonymous_,
+        custom_title = custom_title_
       } =
       "ChatMemberStatusCreator"
         ++ U.cc
-          [ U.p "is_member" is_member,
-            U.p "is_anonymous" is_anonymous,
-            U.p "custom_title" custom_title
+          [ U.p "is_member" is_member_,
+            U.p "is_anonymous" is_anonymous_,
+            U.p "custom_title" custom_title_
           ]
   show
     ChatMemberStatusAdministrator
-      { rights = rights,
-        can_be_edited = can_be_edited,
-        custom_title = custom_title
+      { rights = rights_,
+        can_be_edited = can_be_edited_,
+        custom_title = custom_title_
       } =
       "ChatMemberStatusAdministrator"
         ++ U.cc
-          [ U.p "rights" rights,
-            U.p "can_be_edited" can_be_edited,
-            U.p "custom_title" custom_title
+          [ U.p "rights" rights_,
+            U.p "can_be_edited" can_be_edited_,
+            U.p "custom_title" custom_title_
           ]
   show ChatMemberStatusMember =
     "ChatMemberStatusMember"
@@ -79,15 +80,15 @@ instance Show ChatMemberStatus where
         []
   show
     ChatMemberStatusRestricted
-      { permissions = permissions,
-        restricted_until_date = restricted_until_date,
-        is_member = is_member
+      { permissions = permissions_,
+        restricted_until_date = restricted_until_date_,
+        is_member = is_member_
       } =
       "ChatMemberStatusRestricted"
         ++ U.cc
-          [ U.p "permissions" permissions,
-            U.p "restricted_until_date" restricted_until_date,
-            U.p "is_member" is_member
+          [ U.p "permissions" permissions_,
+            U.p "restricted_until_date" restricted_until_date_,
+            U.p "is_member" is_member_
           ]
   show ChatMemberStatusLeft =
     "ChatMemberStatusLeft"
@@ -95,11 +96,11 @@ instance Show ChatMemberStatus where
         []
   show
     ChatMemberStatusBanned
-      { banned_until_date = banned_until_date
+      { banned_until_date = banned_until_date_
       } =
       "ChatMemberStatusBanned"
         ++ U.cc
-          [ U.p "banned_until_date" banned_until_date
+          [ U.p "banned_until_date" banned_until_date_
           ]
 
 instance T.FromJSON ChatMemberStatus where
@@ -130,8 +131,7 @@ instance T.FromJSON ChatMemberStatus where
         return $ ChatMemberStatusAdministrator {rights = rights_, can_be_edited = can_be_edited_, custom_title = custom_title_}
 
       parseChatMemberStatusMember :: A.Value -> T.Parser ChatMemberStatus
-      parseChatMemberStatusMember = A.withObject "ChatMemberStatusMember" $ \o -> do
-        return $ ChatMemberStatusMember {}
+      parseChatMemberStatusMember = A.withObject "ChatMemberStatusMember" $ \_ -> return ChatMemberStatusMember
 
       parseChatMemberStatusRestricted :: A.Value -> T.Parser ChatMemberStatus
       parseChatMemberStatusRestricted = A.withObject "ChatMemberStatusRestricted" $ \o -> do
@@ -141,8 +141,7 @@ instance T.FromJSON ChatMemberStatus where
         return $ ChatMemberStatusRestricted {permissions = permissions_, restricted_until_date = restricted_until_date_, is_member = is_member_}
 
       parseChatMemberStatusLeft :: A.Value -> T.Parser ChatMemberStatus
-      parseChatMemberStatusLeft = A.withObject "ChatMemberStatusLeft" $ \o -> do
-        return $ ChatMemberStatusLeft {}
+      parseChatMemberStatusLeft = A.withObject "ChatMemberStatusLeft" $ \_ -> return ChatMemberStatusLeft
 
       parseChatMemberStatusBanned :: A.Value -> T.Parser ChatMemberStatus
       parseChatMemberStatusBanned = A.withObject "ChatMemberStatusBanned" $ \o -> do
@@ -153,27 +152,27 @@ instance T.FromJSON ChatMemberStatus where
 instance T.ToJSON ChatMemberStatus where
   toJSON
     ChatMemberStatusCreator
-      { is_member = is_member,
-        is_anonymous = is_anonymous,
-        custom_title = custom_title
+      { is_member = is_member_,
+        is_anonymous = is_anonymous_,
+        custom_title = custom_title_
       } =
       A.object
         [ "@type" A..= T.String "chatMemberStatusCreator",
-          "is_member" A..= is_member,
-          "is_anonymous" A..= is_anonymous,
-          "custom_title" A..= custom_title
+          "is_member" A..= is_member_,
+          "is_anonymous" A..= is_anonymous_,
+          "custom_title" A..= custom_title_
         ]
   toJSON
     ChatMemberStatusAdministrator
-      { rights = rights,
-        can_be_edited = can_be_edited,
-        custom_title = custom_title
+      { rights = rights_,
+        can_be_edited = can_be_edited_,
+        custom_title = custom_title_
       } =
       A.object
         [ "@type" A..= T.String "chatMemberStatusAdministrator",
-          "rights" A..= rights,
-          "can_be_edited" A..= can_be_edited,
-          "custom_title" A..= custom_title
+          "rights" A..= rights_,
+          "can_be_edited" A..= can_be_edited_,
+          "custom_title" A..= custom_title_
         ]
   toJSON ChatMemberStatusMember =
     A.object
@@ -181,15 +180,15 @@ instance T.ToJSON ChatMemberStatus where
       ]
   toJSON
     ChatMemberStatusRestricted
-      { permissions = permissions,
-        restricted_until_date = restricted_until_date,
-        is_member = is_member
+      { permissions = permissions_,
+        restricted_until_date = restricted_until_date_,
+        is_member = is_member_
       } =
       A.object
         [ "@type" A..= T.String "chatMemberStatusRestricted",
-          "permissions" A..= permissions,
-          "restricted_until_date" A..= restricted_until_date,
-          "is_member" A..= is_member
+          "permissions" A..= permissions_,
+          "restricted_until_date" A..= restricted_until_date_,
+          "is_member" A..= is_member_
         ]
   toJSON ChatMemberStatusLeft =
     A.object
@@ -197,9 +196,9 @@ instance T.ToJSON ChatMemberStatus where
       ]
   toJSON
     ChatMemberStatusBanned
-      { banned_until_date = banned_until_date
+      { banned_until_date = banned_until_date_
       } =
       A.object
         [ "@type" A..= T.String "chatMemberStatusBanned",
-          "banned_until_date" A..= banned_until_date
+          "banned_until_date" A..= banned_until_date_
         ]

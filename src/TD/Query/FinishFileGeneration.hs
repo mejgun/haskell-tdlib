@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.FinishFileGeneration where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data FinishFileGeneration = FinishFileGeneration
 instance Show FinishFileGeneration where
   show
     FinishFileGeneration
-      { _error = _error,
-        generation_id = generation_id
+      { _error = _error_,
+        generation_id = generation_id_
       } =
       "FinishFileGeneration"
         ++ U.cc
-          [ U.p "_error" _error,
-            U.p "generation_id" generation_id
+          [ U.p "_error" _error_,
+            U.p "generation_id" generation_id_
           ]
 
 instance T.ToJSON FinishFileGeneration where
   toJSON
     FinishFileGeneration
-      { _error = _error,
-        generation_id = generation_id
+      { _error = _error_,
+        generation_id = generation_id_
       } =
       A.object
         [ "@type" A..= T.String "finishFileGeneration",
-          "error" A..= _error,
-          "generation_id" A..= generation_id
+          "error" A..= _error_,
+          "generation_id" A..= generation_id_
         ]

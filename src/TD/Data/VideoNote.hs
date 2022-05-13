@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.VideoNote where
 
 import qualified Data.Aeson as A
@@ -27,19 +28,19 @@ data VideoNote = -- | Describes a video note. The video must be equal in width a
 instance Show VideoNote where
   show
     VideoNote
-      { video = video,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        _length = _length,
-        duration = duration
+      { video = video_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        _length = _length_,
+        duration = duration_
       } =
       "VideoNote"
         ++ U.cc
-          [ U.p "video" video,
-            U.p "thumbnail" thumbnail,
-            U.p "minithumbnail" minithumbnail,
-            U.p "_length" _length,
-            U.p "duration" duration
+          [ U.p "video" video_,
+            U.p "thumbnail" thumbnail_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "_length" _length_,
+            U.p "duration" duration_
           ]
 
 instance T.FromJSON VideoNote where
@@ -63,17 +64,17 @@ instance T.FromJSON VideoNote where
 instance T.ToJSON VideoNote where
   toJSON
     VideoNote
-      { video = video,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        _length = _length,
-        duration = duration
+      { video = video_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        _length = _length_,
+        duration = duration_
       } =
       A.object
         [ "@type" A..= T.String "videoNote",
-          "video" A..= video,
-          "thumbnail" A..= thumbnail,
-          "minithumbnail" A..= minithumbnail,
-          "length" A..= _length,
-          "duration" A..= duration
+          "video" A..= video_,
+          "thumbnail" A..= thumbnail_,
+          "minithumbnail" A..= minithumbnail_,
+          "length" A..= _length_,
+          "duration" A..= duration_
         ]

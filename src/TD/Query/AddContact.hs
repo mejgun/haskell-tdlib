@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddContact where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data AddContact = AddContact
 instance Show AddContact where
   show
     AddContact
-      { share_phone_number = share_phone_number,
-        contact = contact
+      { share_phone_number = share_phone_number_,
+        contact = contact_
       } =
       "AddContact"
         ++ U.cc
-          [ U.p "share_phone_number" share_phone_number,
-            U.p "contact" contact
+          [ U.p "share_phone_number" share_phone_number_,
+            U.p "contact" contact_
           ]
 
 instance T.ToJSON AddContact where
   toJSON
     AddContact
-      { share_phone_number = share_phone_number,
-        contact = contact
+      { share_phone_number = share_phone_number_,
+        contact = contact_
       } =
       A.object
         [ "@type" A..= T.String "addContact",
-          "share_phone_number" A..= share_phone_number,
-          "contact" A..= contact
+          "share_phone_number" A..= share_phone_number_,
+          "contact" A..= contact_
         ]

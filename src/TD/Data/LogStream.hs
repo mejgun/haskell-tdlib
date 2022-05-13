@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LogStream where
 
 import qualified Data.Aeson as A
@@ -30,15 +31,15 @@ instance Show LogStream where
         []
   show
     LogStreamFile
-      { redirect_stderr = redirect_stderr,
-        max_file_size = max_file_size,
-        path = path
+      { redirect_stderr = redirect_stderr_,
+        max_file_size = max_file_size_,
+        path = path_
       } =
       "LogStreamFile"
         ++ U.cc
-          [ U.p "redirect_stderr" redirect_stderr,
-            U.p "max_file_size" max_file_size,
-            U.p "path" path
+          [ U.p "redirect_stderr" redirect_stderr_,
+            U.p "max_file_size" max_file_size_,
+            U.p "path" path_
           ]
   show LogStreamEmpty =
     "LogStreamEmpty"
@@ -56,8 +57,7 @@ instance T.FromJSON LogStream where
       _ -> mempty
     where
       parseLogStreamDefault :: A.Value -> T.Parser LogStream
-      parseLogStreamDefault = A.withObject "LogStreamDefault" $ \o -> do
-        return $ LogStreamDefault {}
+      parseLogStreamDefault = A.withObject "LogStreamDefault" $ \_ -> return LogStreamDefault
 
       parseLogStreamFile :: A.Value -> T.Parser LogStream
       parseLogStreamFile = A.withObject "LogStreamFile" $ \o -> do
@@ -67,8 +67,7 @@ instance T.FromJSON LogStream where
         return $ LogStreamFile {redirect_stderr = redirect_stderr_, max_file_size = max_file_size_, path = path_}
 
       parseLogStreamEmpty :: A.Value -> T.Parser LogStream
-      parseLogStreamEmpty = A.withObject "LogStreamEmpty" $ \o -> do
-        return $ LogStreamEmpty {}
+      parseLogStreamEmpty = A.withObject "LogStreamEmpty" $ \_ -> return LogStreamEmpty
   parseJSON _ = mempty
 
 instance T.ToJSON LogStream where
@@ -78,15 +77,15 @@ instance T.ToJSON LogStream where
       ]
   toJSON
     LogStreamFile
-      { redirect_stderr = redirect_stderr,
-        max_file_size = max_file_size,
-        path = path
+      { redirect_stderr = redirect_stderr_,
+        max_file_size = max_file_size_,
+        path = path_
       } =
       A.object
         [ "@type" A..= T.String "logStreamFile",
-          "redirect_stderr" A..= redirect_stderr,
-          "max_file_size" A..= max_file_size,
-          "path" A..= path
+          "redirect_stderr" A..= redirect_stderr_,
+          "max_file_size" A..= max_file_size_,
+          "path" A..= path_
         ]
   toJSON LogStreamEmpty =
     A.object

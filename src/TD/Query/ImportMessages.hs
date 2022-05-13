@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ImportMessages where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data ImportMessages = ImportMessages
 instance Show ImportMessages where
   show
     ImportMessages
-      { attached_files = attached_files,
-        message_file = message_file,
-        chat_id = chat_id
+      { attached_files = attached_files_,
+        message_file = message_file_,
+        chat_id = chat_id_
       } =
       "ImportMessages"
         ++ U.cc
-          [ U.p "attached_files" attached_files,
-            U.p "message_file" message_file,
-            U.p "chat_id" chat_id
+          [ U.p "attached_files" attached_files_,
+            U.p "message_file" message_file_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ImportMessages where
   toJSON
     ImportMessages
-      { attached_files = attached_files,
-        message_file = message_file,
-        chat_id = chat_id
+      { attached_files = attached_files_,
+        message_file = message_file_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "importMessages",
-          "attached_files" A..= attached_files,
-          "message_file" A..= message_file,
-          "chat_id" A..= chat_id
+          "attached_files" A..= attached_files_,
+          "message_file" A..= message_file_,
+          "chat_id" A..= chat_id_
         ]

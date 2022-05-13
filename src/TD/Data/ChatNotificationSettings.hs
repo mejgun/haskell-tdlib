@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatNotificationSettings where
 
 import qualified Data.Aeson as A
@@ -34,29 +35,29 @@ data ChatNotificationSettings = -- | Contains information about notification set
 instance Show ChatNotificationSettings where
   show
     ChatNotificationSettings
-      { disable_mention_notifications = disable_mention_notifications,
-        use_default_disable_mention_notifications = use_default_disable_mention_notifications,
-        disable_pinned_message_notifications = disable_pinned_message_notifications,
-        use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications,
-        show_preview = show_preview,
-        use_default_show_preview = use_default_show_preview,
-        sound_id = sound_id,
-        use_default_sound = use_default_sound,
-        mute_for = mute_for,
-        use_default_mute_for = use_default_mute_for
+      { disable_mention_notifications = disable_mention_notifications_,
+        use_default_disable_mention_notifications = use_default_disable_mention_notifications_,
+        disable_pinned_message_notifications = disable_pinned_message_notifications_,
+        use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications_,
+        show_preview = show_preview_,
+        use_default_show_preview = use_default_show_preview_,
+        sound_id = sound_id_,
+        use_default_sound = use_default_sound_,
+        mute_for = mute_for_,
+        use_default_mute_for = use_default_mute_for_
       } =
       "ChatNotificationSettings"
         ++ U.cc
-          [ U.p "disable_mention_notifications" disable_mention_notifications,
-            U.p "use_default_disable_mention_notifications" use_default_disable_mention_notifications,
-            U.p "disable_pinned_message_notifications" disable_pinned_message_notifications,
-            U.p "use_default_disable_pinned_message_notifications" use_default_disable_pinned_message_notifications,
-            U.p "show_preview" show_preview,
-            U.p "use_default_show_preview" use_default_show_preview,
-            U.p "sound_id" sound_id,
-            U.p "use_default_sound" use_default_sound,
-            U.p "mute_for" mute_for,
-            U.p "use_default_mute_for" use_default_mute_for
+          [ U.p "disable_mention_notifications" disable_mention_notifications_,
+            U.p "use_default_disable_mention_notifications" use_default_disable_mention_notifications_,
+            U.p "disable_pinned_message_notifications" disable_pinned_message_notifications_,
+            U.p "use_default_disable_pinned_message_notifications" use_default_disable_pinned_message_notifications_,
+            U.p "show_preview" show_preview_,
+            U.p "use_default_show_preview" use_default_show_preview_,
+            U.p "sound_id" sound_id_,
+            U.p "use_default_sound" use_default_sound_,
+            U.p "mute_for" mute_for_,
+            U.p "use_default_mute_for" use_default_mute_for_
           ]
 
 instance T.FromJSON ChatNotificationSettings where
@@ -85,27 +86,27 @@ instance T.FromJSON ChatNotificationSettings where
 instance T.ToJSON ChatNotificationSettings where
   toJSON
     ChatNotificationSettings
-      { disable_mention_notifications = disable_mention_notifications,
-        use_default_disable_mention_notifications = use_default_disable_mention_notifications,
-        disable_pinned_message_notifications = disable_pinned_message_notifications,
-        use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications,
-        show_preview = show_preview,
-        use_default_show_preview = use_default_show_preview,
-        sound_id = sound_id,
-        use_default_sound = use_default_sound,
-        mute_for = mute_for,
-        use_default_mute_for = use_default_mute_for
+      { disable_mention_notifications = disable_mention_notifications_,
+        use_default_disable_mention_notifications = use_default_disable_mention_notifications_,
+        disable_pinned_message_notifications = disable_pinned_message_notifications_,
+        use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications_,
+        show_preview = show_preview_,
+        use_default_show_preview = use_default_show_preview_,
+        sound_id = sound_id_,
+        use_default_sound = use_default_sound_,
+        mute_for = mute_for_,
+        use_default_mute_for = use_default_mute_for_
       } =
       A.object
         [ "@type" A..= T.String "chatNotificationSettings",
-          "disable_mention_notifications" A..= disable_mention_notifications,
-          "use_default_disable_mention_notifications" A..= use_default_disable_mention_notifications,
-          "disable_pinned_message_notifications" A..= disable_pinned_message_notifications,
-          "use_default_disable_pinned_message_notifications" A..= use_default_disable_pinned_message_notifications,
-          "show_preview" A..= show_preview,
-          "use_default_show_preview" A..= use_default_show_preview,
-          "sound_id" A..= sound_id,
-          "use_default_sound" A..= use_default_sound,
-          "mute_for" A..= mute_for,
-          "use_default_mute_for" A..= use_default_mute_for
+          "disable_mention_notifications" A..= disable_mention_notifications_,
+          "use_default_disable_mention_notifications" A..= use_default_disable_mention_notifications_,
+          "disable_pinned_message_notifications" A..= disable_pinned_message_notifications_,
+          "use_default_disable_pinned_message_notifications" A..= use_default_disable_pinned_message_notifications_,
+          "show_preview" A..= show_preview_,
+          "use_default_show_preview" A..= use_default_show_preview_,
+          "sound_id" A..= sound_id_,
+          "use_default_sound" A..= use_default_sound_,
+          "mute_for" A..= mute_for_,
+          "use_default_mute_for" A..= use_default_mute_for_
         ]

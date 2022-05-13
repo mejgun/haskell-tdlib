@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DiceStickers where
 
 import qualified Data.Aeson as A
@@ -32,27 +33,27 @@ data DiceStickers
 instance Show DiceStickers where
   show
     DiceStickersRegular
-      { sticker = sticker
+      { sticker = sticker_
       } =
       "DiceStickersRegular"
         ++ U.cc
-          [ U.p "sticker" sticker
+          [ U.p "sticker" sticker_
           ]
   show
     DiceStickersSlotMachine
-      { right_reel = right_reel,
-        center_reel = center_reel,
-        left_reel = left_reel,
-        lever = lever,
-        background = background
+      { right_reel = right_reel_,
+        center_reel = center_reel_,
+        left_reel = left_reel_,
+        lever = lever_,
+        background = background_
       } =
       "DiceStickersSlotMachine"
         ++ U.cc
-          [ U.p "right_reel" right_reel,
-            U.p "center_reel" center_reel,
-            U.p "left_reel" left_reel,
-            U.p "lever" lever,
-            U.p "background" background
+          [ U.p "right_reel" right_reel_,
+            U.p "center_reel" center_reel_,
+            U.p "left_reel" left_reel_,
+            U.p "lever" lever_,
+            U.p "background" background_
           ]
 
 instance T.FromJSON DiceStickers where
@@ -82,25 +83,25 @@ instance T.FromJSON DiceStickers where
 instance T.ToJSON DiceStickers where
   toJSON
     DiceStickersRegular
-      { sticker = sticker
+      { sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "diceStickersRegular",
-          "sticker" A..= sticker
+          "sticker" A..= sticker_
         ]
   toJSON
     DiceStickersSlotMachine
-      { right_reel = right_reel,
-        center_reel = center_reel,
-        left_reel = left_reel,
-        lever = lever,
-        background = background
+      { right_reel = right_reel_,
+        center_reel = center_reel_,
+        left_reel = left_reel_,
+        lever = lever_,
+        background = background_
       } =
       A.object
         [ "@type" A..= T.String "diceStickersSlotMachine",
-          "right_reel" A..= right_reel,
-          "center_reel" A..= center_reel,
-          "left_reel" A..= left_reel,
-          "lever" A..= lever,
-          "background" A..= background
+          "right_reel" A..= right_reel_,
+          "center_reel" A..= center_reel_,
+          "left_reel" A..= left_reel_,
+          "lever" A..= lever_,
+          "background" A..= background_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SharePhoneNumber where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SharePhoneNumber = SharePhoneNumber
 instance Show SharePhoneNumber where
   show
     SharePhoneNumber
-      { user_id = user_id
+      { user_id = user_id_
       } =
       "SharePhoneNumber"
         ++ U.cc
-          [ U.p "user_id" user_id
+          [ U.p "user_id" user_id_
           ]
 
 instance T.ToJSON SharePhoneNumber where
   toJSON
     SharePhoneNumber
-      { user_id = user_id
+      { user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "sharePhoneNumber",
-          "user_id" A..= user_id
+          "user_id" A..= user_id_
         ]

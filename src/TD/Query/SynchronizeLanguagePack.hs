@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SynchronizeLanguagePack where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SynchronizeLanguagePack = SynchronizeLanguagePack
 instance Show SynchronizeLanguagePack where
   show
     SynchronizeLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       "SynchronizeLanguagePack"
         ++ U.cc
-          [ U.p "language_pack_id" language_pack_id
+          [ U.p "language_pack_id" language_pack_id_
           ]
 
 instance T.ToJSON SynchronizeLanguagePack where
   toJSON
     SynchronizeLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       A.object
         [ "@type" A..= T.String "synchronizeLanguagePack",
-          "language_pack_id" A..= language_pack_id
+          "language_pack_id" A..= language_pack_id_
         ]

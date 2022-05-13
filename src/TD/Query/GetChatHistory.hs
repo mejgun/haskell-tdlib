@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatHistory where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data GetChatHistory = GetChatHistory
 instance Show GetChatHistory where
   show
     GetChatHistory
-      { only_local = only_local,
-        limit = limit,
-        offset = offset,
-        from_message_id = from_message_id,
-        chat_id = chat_id
+      { only_local = only_local_,
+        limit = limit_,
+        offset = offset_,
+        from_message_id = from_message_id_,
+        chat_id = chat_id_
       } =
       "GetChatHistory"
         ++ U.cc
-          [ U.p "only_local" only_local,
-            U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "from_message_id" from_message_id,
-            U.p "chat_id" chat_id
+          [ U.p "only_local" only_local_,
+            U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "from_message_id" from_message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatHistory where
   toJSON
     GetChatHistory
-      { only_local = only_local,
-        limit = limit,
-        offset = offset,
-        from_message_id = from_message_id,
-        chat_id = chat_id
+      { only_local = only_local_,
+        limit = limit_,
+        offset = offset_,
+        from_message_id = from_message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatHistory",
-          "only_local" A..= only_local,
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "from_message_id" A..= from_message_id,
-          "chat_id" A..= chat_id
+          "only_local" A..= only_local_,
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "from_message_id" A..= from_message_id_,
+          "chat_id" A..= chat_id_
         ]

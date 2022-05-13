@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TestString where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data TestString = -- | A simple object containing a string; for testing only @va
 instance Show TestString where
   show
     TestString
-      { value = value
+      { value = value_
       } =
       "TestString"
         ++ U.cc
-          [ U.p "value" value
+          [ U.p "value" value_
           ]
 
 instance T.FromJSON TestString where
@@ -40,9 +41,9 @@ instance T.FromJSON TestString where
 instance T.ToJSON TestString where
   toJSON
     TestString
-      { value = value
+      { value = value_
       } =
       A.object
         [ "@type" A..= T.String "testString",
-          "value" A..= value
+          "value" A..= value_
         ]

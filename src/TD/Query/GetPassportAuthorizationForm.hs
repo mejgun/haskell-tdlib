@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetPassportAuthorizationForm where
 
 import qualified Data.Aeson as A
@@ -23,31 +24,31 @@ data GetPassportAuthorizationForm = GetPassportAuthorizationForm
 instance Show GetPassportAuthorizationForm where
   show
     GetPassportAuthorizationForm
-      { nonce = nonce,
-        public_key = public_key,
-        scope = scope,
-        bot_user_id = bot_user_id
+      { nonce = nonce_,
+        public_key = public_key_,
+        scope = scope_,
+        bot_user_id = bot_user_id_
       } =
       "GetPassportAuthorizationForm"
         ++ U.cc
-          [ U.p "nonce" nonce,
-            U.p "public_key" public_key,
-            U.p "scope" scope,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "nonce" nonce_,
+            U.p "public_key" public_key_,
+            U.p "scope" scope_,
+            U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.ToJSON GetPassportAuthorizationForm where
   toJSON
     GetPassportAuthorizationForm
-      { nonce = nonce,
-        public_key = public_key,
-        scope = scope,
-        bot_user_id = bot_user_id
+      { nonce = nonce_,
+        public_key = public_key_,
+        scope = scope_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "getPassportAuthorizationForm",
-          "nonce" A..= nonce,
-          "public_key" A..= public_key,
-          "scope" A..= scope,
-          "bot_user_id" A..= bot_user_id
+          "nonce" A..= nonce_,
+          "public_key" A..= public_key_,
+          "scope" A..= scope_,
+          "bot_user_id" A..= bot_user_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.UserType where
 
 import qualified Data.Aeson as A
@@ -42,21 +43,21 @@ instance Show UserType where
         []
   show
     UserTypeBot
-      { can_be_added_to_attachment_menu = can_be_added_to_attachment_menu,
-        need_location = need_location,
-        inline_query_placeholder = inline_query_placeholder,
-        is_inline = is_inline,
-        can_read_all_group_messages = can_read_all_group_messages,
-        can_join_groups = can_join_groups
+      { can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_,
+        need_location = need_location_,
+        inline_query_placeholder = inline_query_placeholder_,
+        is_inline = is_inline_,
+        can_read_all_group_messages = can_read_all_group_messages_,
+        can_join_groups = can_join_groups_
       } =
       "UserTypeBot"
         ++ U.cc
-          [ U.p "can_be_added_to_attachment_menu" can_be_added_to_attachment_menu,
-            U.p "need_location" need_location,
-            U.p "inline_query_placeholder" inline_query_placeholder,
-            U.p "is_inline" is_inline,
-            U.p "can_read_all_group_messages" can_read_all_group_messages,
-            U.p "can_join_groups" can_join_groups
+          [ U.p "can_be_added_to_attachment_menu" can_be_added_to_attachment_menu_,
+            U.p "need_location" need_location_,
+            U.p "inline_query_placeholder" inline_query_placeholder_,
+            U.p "is_inline" is_inline_,
+            U.p "can_read_all_group_messages" can_read_all_group_messages_,
+            U.p "can_join_groups" can_join_groups_
           ]
   show UserTypeUnknown =
     "UserTypeUnknown"
@@ -75,12 +76,10 @@ instance T.FromJSON UserType where
       _ -> mempty
     where
       parseUserTypeRegular :: A.Value -> T.Parser UserType
-      parseUserTypeRegular = A.withObject "UserTypeRegular" $ \o -> do
-        return $ UserTypeRegular {}
+      parseUserTypeRegular = A.withObject "UserTypeRegular" $ \_ -> return UserTypeRegular
 
       parseUserTypeDeleted :: A.Value -> T.Parser UserType
-      parseUserTypeDeleted = A.withObject "UserTypeDeleted" $ \o -> do
-        return $ UserTypeDeleted {}
+      parseUserTypeDeleted = A.withObject "UserTypeDeleted" $ \_ -> return UserTypeDeleted
 
       parseUserTypeBot :: A.Value -> T.Parser UserType
       parseUserTypeBot = A.withObject "UserTypeBot" $ \o -> do
@@ -93,8 +92,7 @@ instance T.FromJSON UserType where
         return $ UserTypeBot {can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_, need_location = need_location_, inline_query_placeholder = inline_query_placeholder_, is_inline = is_inline_, can_read_all_group_messages = can_read_all_group_messages_, can_join_groups = can_join_groups_}
 
       parseUserTypeUnknown :: A.Value -> T.Parser UserType
-      parseUserTypeUnknown = A.withObject "UserTypeUnknown" $ \o -> do
-        return $ UserTypeUnknown {}
+      parseUserTypeUnknown = A.withObject "UserTypeUnknown" $ \_ -> return UserTypeUnknown
   parseJSON _ = mempty
 
 instance T.ToJSON UserType where
@@ -108,21 +106,21 @@ instance T.ToJSON UserType where
       ]
   toJSON
     UserTypeBot
-      { can_be_added_to_attachment_menu = can_be_added_to_attachment_menu,
-        need_location = need_location,
-        inline_query_placeholder = inline_query_placeholder,
-        is_inline = is_inline,
-        can_read_all_group_messages = can_read_all_group_messages,
-        can_join_groups = can_join_groups
+      { can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_,
+        need_location = need_location_,
+        inline_query_placeholder = inline_query_placeholder_,
+        is_inline = is_inline_,
+        can_read_all_group_messages = can_read_all_group_messages_,
+        can_join_groups = can_join_groups_
       } =
       A.object
         [ "@type" A..= T.String "userTypeBot",
-          "can_be_added_to_attachment_menu" A..= can_be_added_to_attachment_menu,
-          "need_location" A..= need_location,
-          "inline_query_placeholder" A..= inline_query_placeholder,
-          "is_inline" A..= is_inline,
-          "can_read_all_group_messages" A..= can_read_all_group_messages,
-          "can_join_groups" A..= can_join_groups
+          "can_be_added_to_attachment_menu" A..= can_be_added_to_attachment_menu_,
+          "need_location" A..= need_location_,
+          "inline_query_placeholder" A..= inline_query_placeholder_,
+          "is_inline" A..= is_inline_,
+          "can_read_all_group_messages" A..= can_read_all_group_messages_,
+          "can_join_groups" A..= can_join_groups_
         ]
   toJSON UserTypeUnknown =
     A.object

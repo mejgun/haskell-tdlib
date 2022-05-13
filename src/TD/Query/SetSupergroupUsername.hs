@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetSupergroupUsername where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SetSupergroupUsername = SetSupergroupUsername
 instance Show SetSupergroupUsername where
   show
     SetSupergroupUsername
-      { username = username,
-        supergroup_id = supergroup_id
+      { username = username_,
+        supergroup_id = supergroup_id_
       } =
       "SetSupergroupUsername"
         ++ U.cc
-          [ U.p "username" username,
-            U.p "supergroup_id" supergroup_id
+          [ U.p "username" username_,
+            U.p "supergroup_id" supergroup_id_
           ]
 
 instance T.ToJSON SetSupergroupUsername where
   toJSON
     SetSupergroupUsername
-      { username = username,
-        supergroup_id = supergroup_id
+      { username = username_,
+        supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "setSupergroupUsername",
-          "username" A..= username,
-          "supergroup_id" A..= supergroup_id
+          "username" A..= username_,
+          "supergroup_id" A..= supergroup_id_
         ]

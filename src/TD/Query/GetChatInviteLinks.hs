@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatInviteLinks where
 
 import qualified Data.Aeson as A
@@ -27,39 +28,39 @@ data GetChatInviteLinks = GetChatInviteLinks
 instance Show GetChatInviteLinks where
   show
     GetChatInviteLinks
-      { limit = limit,
-        offset_invite_link = offset_invite_link,
-        offset_date = offset_date,
-        is_revoked = is_revoked,
-        creator_user_id = creator_user_id,
-        chat_id = chat_id
+      { limit = limit_,
+        offset_invite_link = offset_invite_link_,
+        offset_date = offset_date_,
+        is_revoked = is_revoked_,
+        creator_user_id = creator_user_id_,
+        chat_id = chat_id_
       } =
       "GetChatInviteLinks"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset_invite_link" offset_invite_link,
-            U.p "offset_date" offset_date,
-            U.p "is_revoked" is_revoked,
-            U.p "creator_user_id" creator_user_id,
-            U.p "chat_id" chat_id
+          [ U.p "limit" limit_,
+            U.p "offset_invite_link" offset_invite_link_,
+            U.p "offset_date" offset_date_,
+            U.p "is_revoked" is_revoked_,
+            U.p "creator_user_id" creator_user_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatInviteLinks where
   toJSON
     GetChatInviteLinks
-      { limit = limit,
-        offset_invite_link = offset_invite_link,
-        offset_date = offset_date,
-        is_revoked = is_revoked,
-        creator_user_id = creator_user_id,
-        chat_id = chat_id
+      { limit = limit_,
+        offset_invite_link = offset_invite_link_,
+        offset_date = offset_date_,
+        is_revoked = is_revoked_,
+        creator_user_id = creator_user_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatInviteLinks",
-          "limit" A..= limit,
-          "offset_invite_link" A..= offset_invite_link,
-          "offset_date" A..= offset_date,
-          "is_revoked" A..= is_revoked,
-          "creator_user_id" A..= creator_user_id,
-          "chat_id" A..= chat_id
+          "limit" A..= limit_,
+          "offset_invite_link" A..= offset_invite_link_,
+          "offset_date" A..= offset_date_,
+          "is_revoked" A..= is_revoked_,
+          "creator_user_id" A..= creator_user_id_,
+          "chat_id" A..= chat_id_
         ]

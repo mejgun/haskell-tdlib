@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ResetPasswordResult where
 
 import qualified Data.Aeson as A
@@ -29,19 +30,19 @@ instance Show ResetPasswordResult where
         []
   show
     ResetPasswordResultPending
-      { pending_reset_date = pending_reset_date
+      { pending_reset_date = pending_reset_date_
       } =
       "ResetPasswordResultPending"
         ++ U.cc
-          [ U.p "pending_reset_date" pending_reset_date
+          [ U.p "pending_reset_date" pending_reset_date_
           ]
   show
     ResetPasswordResultDeclined
-      { retry_date = retry_date
+      { retry_date = retry_date_
       } =
       "ResetPasswordResultDeclined"
         ++ U.cc
-          [ U.p "retry_date" retry_date
+          [ U.p "retry_date" retry_date_
           ]
 
 instance T.FromJSON ResetPasswordResult where
@@ -55,8 +56,7 @@ instance T.FromJSON ResetPasswordResult where
       _ -> mempty
     where
       parseResetPasswordResultOk :: A.Value -> T.Parser ResetPasswordResult
-      parseResetPasswordResultOk = A.withObject "ResetPasswordResultOk" $ \o -> do
-        return $ ResetPasswordResultOk {}
+      parseResetPasswordResultOk = A.withObject "ResetPasswordResultOk" $ \_ -> return ResetPasswordResultOk
 
       parseResetPasswordResultPending :: A.Value -> T.Parser ResetPasswordResult
       parseResetPasswordResultPending = A.withObject "ResetPasswordResultPending" $ \o -> do
@@ -76,17 +76,17 @@ instance T.ToJSON ResetPasswordResult where
       ]
   toJSON
     ResetPasswordResultPending
-      { pending_reset_date = pending_reset_date
+      { pending_reset_date = pending_reset_date_
       } =
       A.object
         [ "@type" A..= T.String "resetPasswordResultPending",
-          "pending_reset_date" A..= pending_reset_date
+          "pending_reset_date" A..= pending_reset_date_
         ]
   toJSON
     ResetPasswordResultDeclined
-      { retry_date = retry_date
+      { retry_date = retry_date_
       } =
       A.object
         [ "@type" A..= T.String "resetPasswordResultDeclined",
-          "retry_date" A..= retry_date
+          "retry_date" A..= retry_date_
         ]

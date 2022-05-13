@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetLogVerbosityLevel where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SetLogVerbosityLevel = SetLogVerbosityLevel
 instance Show SetLogVerbosityLevel where
   show
     SetLogVerbosityLevel
-      { new_verbosity_level = new_verbosity_level
+      { new_verbosity_level = new_verbosity_level_
       } =
       "SetLogVerbosityLevel"
         ++ U.cc
-          [ U.p "new_verbosity_level" new_verbosity_level
+          [ U.p "new_verbosity_level" new_verbosity_level_
           ]
 
 instance T.ToJSON SetLogVerbosityLevel where
   toJSON
     SetLogVerbosityLevel
-      { new_verbosity_level = new_verbosity_level
+      { new_verbosity_level = new_verbosity_level_
       } =
       A.object
         [ "@type" A..= T.String "setLogVerbosityLevel",
-          "new_verbosity_level" A..= new_verbosity_level
+          "new_verbosity_level" A..= new_verbosity_level_
         ]

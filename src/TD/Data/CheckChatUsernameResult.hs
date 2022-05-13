@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CheckChatUsernameResult where
 
 import qualified Data.Aeson as A
@@ -55,24 +56,19 @@ instance T.FromJSON CheckChatUsernameResult where
       _ -> mempty
     where
       parseCheckChatUsernameResultOk :: A.Value -> T.Parser CheckChatUsernameResult
-      parseCheckChatUsernameResultOk = A.withObject "CheckChatUsernameResultOk" $ \o -> do
-        return $ CheckChatUsernameResultOk {}
+      parseCheckChatUsernameResultOk = A.withObject "CheckChatUsernameResultOk" $ \_ -> return CheckChatUsernameResultOk
 
       parseCheckChatUsernameResultUsernameInvalid :: A.Value -> T.Parser CheckChatUsernameResult
-      parseCheckChatUsernameResultUsernameInvalid = A.withObject "CheckChatUsernameResultUsernameInvalid" $ \o -> do
-        return $ CheckChatUsernameResultUsernameInvalid {}
+      parseCheckChatUsernameResultUsernameInvalid = A.withObject "CheckChatUsernameResultUsernameInvalid" $ \_ -> return CheckChatUsernameResultUsernameInvalid
 
       parseCheckChatUsernameResultUsernameOccupied :: A.Value -> T.Parser CheckChatUsernameResult
-      parseCheckChatUsernameResultUsernameOccupied = A.withObject "CheckChatUsernameResultUsernameOccupied" $ \o -> do
-        return $ CheckChatUsernameResultUsernameOccupied {}
+      parseCheckChatUsernameResultUsernameOccupied = A.withObject "CheckChatUsernameResultUsernameOccupied" $ \_ -> return CheckChatUsernameResultUsernameOccupied
 
       parseCheckChatUsernameResultPublicChatsTooMuch :: A.Value -> T.Parser CheckChatUsernameResult
-      parseCheckChatUsernameResultPublicChatsTooMuch = A.withObject "CheckChatUsernameResultPublicChatsTooMuch" $ \o -> do
-        return $ CheckChatUsernameResultPublicChatsTooMuch {}
+      parseCheckChatUsernameResultPublicChatsTooMuch = A.withObject "CheckChatUsernameResultPublicChatsTooMuch" $ \_ -> return CheckChatUsernameResultPublicChatsTooMuch
 
       parseCheckChatUsernameResultPublicGroupsUnavailable :: A.Value -> T.Parser CheckChatUsernameResult
-      parseCheckChatUsernameResultPublicGroupsUnavailable = A.withObject "CheckChatUsernameResultPublicGroupsUnavailable" $ \o -> do
-        return $ CheckChatUsernameResultPublicGroupsUnavailable {}
+      parseCheckChatUsernameResultPublicGroupsUnavailable = A.withObject "CheckChatUsernameResultPublicGroupsUnavailable" $ \_ -> return CheckChatUsernameResultPublicGroupsUnavailable
   parseJSON _ = mempty
 
 instance T.ToJSON CheckChatUsernameResult where

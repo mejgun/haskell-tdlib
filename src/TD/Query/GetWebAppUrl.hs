@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetWebAppUrl where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data GetWebAppUrl = GetWebAppUrl
 instance Show GetWebAppUrl where
   show
     GetWebAppUrl
-      { theme = theme,
-        url = url,
-        bot_user_id = bot_user_id
+      { theme = theme_,
+        url = url_,
+        bot_user_id = bot_user_id_
       } =
       "GetWebAppUrl"
         ++ U.cc
-          [ U.p "theme" theme,
-            U.p "url" url,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "theme" theme_,
+            U.p "url" url_,
+            U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.ToJSON GetWebAppUrl where
   toJSON
     GetWebAppUrl
-      { theme = theme,
-        url = url,
-        bot_user_id = bot_user_id
+      { theme = theme_,
+        url = url_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "getWebAppUrl",
-          "theme" A..= theme,
-          "url" A..= url,
-          "bot_user_id" A..= bot_user_id
+          "theme" A..= theme_,
+          "url" A..= url_,
+          "bot_user_id" A..= bot_user_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetProxyLink where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetProxyLink = GetProxyLink
 instance Show GetProxyLink where
   show
     GetProxyLink
-      { proxy_id = proxy_id
+      { proxy_id = proxy_id_
       } =
       "GetProxyLink"
         ++ U.cc
-          [ U.p "proxy_id" proxy_id
+          [ U.p "proxy_id" proxy_id_
           ]
 
 instance T.ToJSON GetProxyLink where
   toJSON
     GetProxyLink
-      { proxy_id = proxy_id
+      { proxy_id = proxy_id_
       } =
       A.object
         [ "@type" A..= T.String "getProxyLink",
-          "proxy_id" A..= proxy_id
+          "proxy_id" A..= proxy_id_
         ]

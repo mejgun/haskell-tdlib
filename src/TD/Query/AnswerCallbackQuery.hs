@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AnswerCallbackQuery where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data AnswerCallbackQuery = AnswerCallbackQuery
 instance Show AnswerCallbackQuery where
   show
     AnswerCallbackQuery
-      { cache_time = cache_time,
-        url = url,
-        show_alert = show_alert,
-        text = text,
-        callback_query_id = callback_query_id
+      { cache_time = cache_time_,
+        url = url_,
+        show_alert = show_alert_,
+        text = text_,
+        callback_query_id = callback_query_id_
       } =
       "AnswerCallbackQuery"
         ++ U.cc
-          [ U.p "cache_time" cache_time,
-            U.p "url" url,
-            U.p "show_alert" show_alert,
-            U.p "text" text,
-            U.p "callback_query_id" callback_query_id
+          [ U.p "cache_time" cache_time_,
+            U.p "url" url_,
+            U.p "show_alert" show_alert_,
+            U.p "text" text_,
+            U.p "callback_query_id" callback_query_id_
           ]
 
 instance T.ToJSON AnswerCallbackQuery where
   toJSON
     AnswerCallbackQuery
-      { cache_time = cache_time,
-        url = url,
-        show_alert = show_alert,
-        text = text,
-        callback_query_id = callback_query_id
+      { cache_time = cache_time_,
+        url = url_,
+        show_alert = show_alert_,
+        text = text_,
+        callback_query_id = callback_query_id_
       } =
       A.object
         [ "@type" A..= T.String "answerCallbackQuery",
-          "cache_time" A..= cache_time,
-          "url" A..= url,
-          "show_alert" A..= show_alert,
-          "text" A..= text,
-          "callback_query_id" A..= callback_query_id
+          "cache_time" A..= cache_time_,
+          "url" A..= url_,
+          "show_alert" A..= show_alert_,
+          "text" A..= text_,
+          "callback_query_id" A..= callback_query_id_
         ]

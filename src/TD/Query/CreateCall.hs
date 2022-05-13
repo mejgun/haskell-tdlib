@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CreateCall where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data CreateCall = CreateCall
 instance Show CreateCall where
   show
     CreateCall
-      { is_video = is_video,
-        protocol = protocol,
-        user_id = user_id
+      { is_video = is_video_,
+        protocol = protocol_,
+        user_id = user_id_
       } =
       "CreateCall"
         ++ U.cc
-          [ U.p "is_video" is_video,
-            U.p "protocol" protocol,
-            U.p "user_id" user_id
+          [ U.p "is_video" is_video_,
+            U.p "protocol" protocol_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON CreateCall where
   toJSON
     CreateCall
-      { is_video = is_video,
-        protocol = protocol,
-        user_id = user_id
+      { is_video = is_video_,
+        protocol = protocol_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "createCall",
-          "is_video" A..= is_video,
-          "protocol" A..= protocol,
-          "user_id" A..= user_id
+          "is_video" A..= is_video_,
+          "protocol" A..= protocol_,
+          "user_id" A..= user_id_
         ]

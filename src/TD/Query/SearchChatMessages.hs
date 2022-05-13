@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchChatMessages where
 
 import qualified Data.Aeson as A
@@ -34,47 +35,47 @@ data SearchChatMessages = SearchChatMessages
 instance Show SearchChatMessages where
   show
     SearchChatMessages
-      { message_thread_id = message_thread_id,
-        _filter = _filter,
-        limit = limit,
-        offset = offset,
-        from_message_id = from_message_id,
-        sender_id = sender_id,
-        query = query,
-        chat_id = chat_id
+      { message_thread_id = message_thread_id_,
+        _filter = _filter_,
+        limit = limit_,
+        offset = offset_,
+        from_message_id = from_message_id_,
+        sender_id = sender_id_,
+        query = query_,
+        chat_id = chat_id_
       } =
       "SearchChatMessages"
         ++ U.cc
-          [ U.p "message_thread_id" message_thread_id,
-            U.p "_filter" _filter,
-            U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "from_message_id" from_message_id,
-            U.p "sender_id" sender_id,
-            U.p "query" query,
-            U.p "chat_id" chat_id
+          [ U.p "message_thread_id" message_thread_id_,
+            U.p "_filter" _filter_,
+            U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "from_message_id" from_message_id_,
+            U.p "sender_id" sender_id_,
+            U.p "query" query_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SearchChatMessages where
   toJSON
     SearchChatMessages
-      { message_thread_id = message_thread_id,
-        _filter = _filter,
-        limit = limit,
-        offset = offset,
-        from_message_id = from_message_id,
-        sender_id = sender_id,
-        query = query,
-        chat_id = chat_id
+      { message_thread_id = message_thread_id_,
+        _filter = _filter_,
+        limit = limit_,
+        offset = offset_,
+        from_message_id = from_message_id_,
+        sender_id = sender_id_,
+        query = query_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "searchChatMessages",
-          "message_thread_id" A..= message_thread_id,
-          "filter" A..= _filter,
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "from_message_id" A..= from_message_id,
-          "sender_id" A..= sender_id,
-          "query" A..= query,
-          "chat_id" A..= chat_id
+          "message_thread_id" A..= message_thread_id_,
+          "filter" A..= _filter_,
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "from_message_id" A..= from_message_id_,
+          "sender_id" A..= sender_id_,
+          "query" A..= query_,
+          "chat_id" A..= chat_id_
         ]

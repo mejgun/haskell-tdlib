@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditChatFilter where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data EditChatFilter = EditChatFilter
 instance Show EditChatFilter where
   show
     EditChatFilter
-      { _filter = _filter,
-        chat_filter_id = chat_filter_id
+      { _filter = _filter_,
+        chat_filter_id = chat_filter_id_
       } =
       "EditChatFilter"
         ++ U.cc
-          [ U.p "_filter" _filter,
-            U.p "chat_filter_id" chat_filter_id
+          [ U.p "_filter" _filter_,
+            U.p "chat_filter_id" chat_filter_id_
           ]
 
 instance T.ToJSON EditChatFilter where
   toJSON
     EditChatFilter
-      { _filter = _filter,
-        chat_filter_id = chat_filter_id
+      { _filter = _filter_,
+        chat_filter_id = chat_filter_id_
       } =
       A.object
         [ "@type" A..= T.String "editChatFilter",
-          "filter" A..= _filter,
-          "chat_filter_id" A..= chat_filter_id
+          "filter" A..= _filter_,
+          "chat_filter_id" A..= chat_filter_id_
         ]

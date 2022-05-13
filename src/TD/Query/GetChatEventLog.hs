@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatEventLog where
 
 import qualified Data.Aeson as A
@@ -28,39 +29,39 @@ data GetChatEventLog = GetChatEventLog
 instance Show GetChatEventLog where
   show
     GetChatEventLog
-      { user_ids = user_ids,
-        filters = filters,
-        limit = limit,
-        from_event_id = from_event_id,
-        query = query,
-        chat_id = chat_id
+      { user_ids = user_ids_,
+        filters = filters_,
+        limit = limit_,
+        from_event_id = from_event_id_,
+        query = query_,
+        chat_id = chat_id_
       } =
       "GetChatEventLog"
         ++ U.cc
-          [ U.p "user_ids" user_ids,
-            U.p "filters" filters,
-            U.p "limit" limit,
-            U.p "from_event_id" from_event_id,
-            U.p "query" query,
-            U.p "chat_id" chat_id
+          [ U.p "user_ids" user_ids_,
+            U.p "filters" filters_,
+            U.p "limit" limit_,
+            U.p "from_event_id" from_event_id_,
+            U.p "query" query_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatEventLog where
   toJSON
     GetChatEventLog
-      { user_ids = user_ids,
-        filters = filters,
-        limit = limit,
-        from_event_id = from_event_id,
-        query = query,
-        chat_id = chat_id
+      { user_ids = user_ids_,
+        filters = filters_,
+        limit = limit_,
+        from_event_id = from_event_id_,
+        query = query_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatEventLog",
-          "user_ids" A..= user_ids,
-          "filters" A..= filters,
-          "limit" A..= limit,
-          "from_event_id" A..= from_event_id,
-          "query" A..= query,
-          "chat_id" A..= chat_id
+          "user_ids" A..= user_ids_,
+          "filters" A..= filters_,
+          "limit" A..= limit_,
+          "from_event_id" A..= from_event_id_,
+          "query" A..= query_,
+          "chat_id" A..= chat_id_
         ]

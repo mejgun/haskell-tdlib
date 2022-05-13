@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.UnpinAllChatMessages where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data UnpinAllChatMessages = UnpinAllChatMessages
 instance Show UnpinAllChatMessages where
   show
     UnpinAllChatMessages
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "UnpinAllChatMessages"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON UnpinAllChatMessages where
   toJSON
     UnpinAllChatMessages
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "unpinAllChatMessages",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

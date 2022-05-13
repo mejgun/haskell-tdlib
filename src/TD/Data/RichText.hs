@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.RichText where
 
 import qualified Data.Aeson as A
@@ -119,159 +120,159 @@ data RichText
 instance Show RichText where
   show
     RichTextPlain
-      { text = text
+      { text = text_
       } =
       "RichTextPlain"
         ++ U.cc
-          [ U.p "text" text
+          [ U.p "text" text_
           ]
   show
     RichTextBold
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextBold"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextItalic
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextItalic"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextUnderline
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextUnderline"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextStrikethrough
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextStrikethrough"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextFixed
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextFixed"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextUrl
-      { is_cached = is_cached,
-        url = url,
-        _text = _text
+      { is_cached = is_cached_,
+        url = url_,
+        _text = _text_
       } =
       "RichTextUrl"
         ++ U.cc
-          [ U.p "is_cached" is_cached,
-            U.p "url" url,
-            U.p "_text" _text
+          [ U.p "is_cached" is_cached_,
+            U.p "url" url_,
+            U.p "_text" _text_
           ]
   show
     RichTextEmailAddress
-      { email_address = email_address,
-        _text = _text
+      { email_address = email_address_,
+        _text = _text_
       } =
       "RichTextEmailAddress"
         ++ U.cc
-          [ U.p "email_address" email_address,
-            U.p "_text" _text
+          [ U.p "email_address" email_address_,
+            U.p "_text" _text_
           ]
   show
     RichTextSubscript
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextSubscript"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextSuperscript
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextSuperscript"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextMarked
-      { _text = _text
+      { _text = _text_
       } =
       "RichTextMarked"
         ++ U.cc
-          [ U.p "_text" _text
+          [ U.p "_text" _text_
           ]
   show
     RichTextPhoneNumber
-      { phone_number = phone_number,
-        _text = _text
+      { phone_number = phone_number_,
+        _text = _text_
       } =
       "RichTextPhoneNumber"
         ++ U.cc
-          [ U.p "phone_number" phone_number,
-            U.p "_text" _text
+          [ U.p "phone_number" phone_number_,
+            U.p "_text" _text_
           ]
   show
     RichTextIcon
-      { height = height,
-        width = width,
-        document = document
+      { height = height_,
+        width = width_,
+        document = document_
       } =
       "RichTextIcon"
         ++ U.cc
-          [ U.p "height" height,
-            U.p "width" width,
-            U.p "document" document
+          [ U.p "height" height_,
+            U.p "width" width_,
+            U.p "document" document_
           ]
   show
     RichTextReference
-      { url = url,
-        anchor_name = anchor_name,
-        _text = _text
+      { url = url_,
+        anchor_name = anchor_name_,
+        _text = _text_
       } =
       "RichTextReference"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "anchor_name" anchor_name,
-            U.p "_text" _text
+          [ U.p "url" url_,
+            U.p "anchor_name" anchor_name_,
+            U.p "_text" _text_
           ]
   show
     RichTextAnchor
-      { name = name
+      { name = name_
       } =
       "RichTextAnchor"
         ++ U.cc
-          [ U.p "name" name
+          [ U.p "name" name_
           ]
   show
     RichTextAnchorLink
-      { url = url,
-        anchor_name = anchor_name,
-        _text = _text
+      { url = url_,
+        anchor_name = anchor_name_,
+        _text = _text_
       } =
       "RichTextAnchorLink"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "anchor_name" anchor_name,
-            U.p "_text" _text
+          [ U.p "url" url_,
+            U.p "anchor_name" anchor_name_,
+            U.p "_text" _text_
           ]
   show
     RichTexts
-      { texts = texts
+      { texts = texts_
       } =
       "RichTexts"
         ++ U.cc
-          [ U.p "texts" texts
+          [ U.p "texts" texts_
           ]
 
 instance T.FromJSON RichText where
@@ -397,157 +398,157 @@ instance T.FromJSON RichText where
 instance T.ToJSON RichText where
   toJSON
     RichTextPlain
-      { text = text
+      { text = text_
       } =
       A.object
         [ "@type" A..= T.String "richTextPlain",
-          "text" A..= text
+          "text" A..= text_
         ]
   toJSON
     RichTextBold
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextBold",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextItalic
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextItalic",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextUnderline
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextUnderline",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextStrikethrough
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextStrikethrough",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextFixed
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextFixed",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextUrl
-      { is_cached = is_cached,
-        url = url,
-        _text = _text
+      { is_cached = is_cached_,
+        url = url_,
+        _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextUrl",
-          "is_cached" A..= is_cached,
-          "url" A..= url,
-          "text" A..= _text
+          "is_cached" A..= is_cached_,
+          "url" A..= url_,
+          "text" A..= _text_
         ]
   toJSON
     RichTextEmailAddress
-      { email_address = email_address,
-        _text = _text
+      { email_address = email_address_,
+        _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextEmailAddress",
-          "email_address" A..= email_address,
-          "text" A..= _text
+          "email_address" A..= email_address_,
+          "text" A..= _text_
         ]
   toJSON
     RichTextSubscript
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextSubscript",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextSuperscript
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextSuperscript",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextMarked
-      { _text = _text
+      { _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextMarked",
-          "text" A..= _text
+          "text" A..= _text_
         ]
   toJSON
     RichTextPhoneNumber
-      { phone_number = phone_number,
-        _text = _text
+      { phone_number = phone_number_,
+        _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextPhoneNumber",
-          "phone_number" A..= phone_number,
-          "text" A..= _text
+          "phone_number" A..= phone_number_,
+          "text" A..= _text_
         ]
   toJSON
     RichTextIcon
-      { height = height,
-        width = width,
-        document = document
+      { height = height_,
+        width = width_,
+        document = document_
       } =
       A.object
         [ "@type" A..= T.String "richTextIcon",
-          "height" A..= height,
-          "width" A..= width,
-          "document" A..= document
+          "height" A..= height_,
+          "width" A..= width_,
+          "document" A..= document_
         ]
   toJSON
     RichTextReference
-      { url = url,
-        anchor_name = anchor_name,
-        _text = _text
+      { url = url_,
+        anchor_name = anchor_name_,
+        _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextReference",
-          "url" A..= url,
-          "anchor_name" A..= anchor_name,
-          "text" A..= _text
+          "url" A..= url_,
+          "anchor_name" A..= anchor_name_,
+          "text" A..= _text_
         ]
   toJSON
     RichTextAnchor
-      { name = name
+      { name = name_
       } =
       A.object
         [ "@type" A..= T.String "richTextAnchor",
-          "name" A..= name
+          "name" A..= name_
         ]
   toJSON
     RichTextAnchorLink
-      { url = url,
-        anchor_name = anchor_name,
-        _text = _text
+      { url = url_,
+        anchor_name = anchor_name_,
+        _text = _text_
       } =
       A.object
         [ "@type" A..= T.String "richTextAnchorLink",
-          "url" A..= url,
-          "anchor_name" A..= anchor_name,
-          "text" A..= _text
+          "url" A..= url_,
+          "anchor_name" A..= anchor_name_,
+          "text" A..= _text_
         ]
   toJSON
     RichTexts
-      { texts = texts
+      { texts = texts_
       } =
       A.object
         [ "@type" A..= T.String "richTexts",
-          "texts" A..= texts
+          "texts" A..= texts_
         ]

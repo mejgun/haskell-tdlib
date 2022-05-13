@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CloseWebApp where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CloseWebApp = CloseWebApp
 instance Show CloseWebApp where
   show
     CloseWebApp
-      { web_app_launch_id = web_app_launch_id
+      { web_app_launch_id = web_app_launch_id_
       } =
       "CloseWebApp"
         ++ U.cc
-          [ U.p "web_app_launch_id" web_app_launch_id
+          [ U.p "web_app_launch_id" web_app_launch_id_
           ]
 
 instance T.ToJSON CloseWebApp where
   toJSON
     CloseWebApp
-      { web_app_launch_id = web_app_launch_id
+      { web_app_launch_id = web_app_launch_id_
       } =
       A.object
         [ "@type" A..= T.String "closeWebApp",
-          "web_app_launch_id" A..= web_app_launch_id
+          "web_app_launch_id" A..= web_app_launch_id_
         ]

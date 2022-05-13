@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMessageThreadHistory where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data GetMessageThreadHistory = GetMessageThreadHistory
 instance Show GetMessageThreadHistory where
   show
     GetMessageThreadHistory
-      { limit = limit,
-        offset = offset,
-        from_message_id = from_message_id,
-        message_id = message_id,
-        chat_id = chat_id
+      { limit = limit_,
+        offset = offset_,
+        from_message_id = from_message_id_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetMessageThreadHistory"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "from_message_id" from_message_id,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "from_message_id" from_message_id_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetMessageThreadHistory where
   toJSON
     GetMessageThreadHistory
-      { limit = limit,
-        offset = offset,
-        from_message_id = from_message_id,
-        message_id = message_id,
-        chat_id = chat_id
+      { limit = limit_,
+        offset = offset_,
+        from_message_id = from_message_id_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getMessageThreadHistory",
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "from_message_id" A..= from_message_id,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "from_message_id" A..= from_message_id_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

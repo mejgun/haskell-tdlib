@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ScopeNotificationSettings where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data ScopeNotificationSettings = -- | Contains information about notification se
 instance Show ScopeNotificationSettings where
   show
     ScopeNotificationSettings
-      { disable_mention_notifications = disable_mention_notifications,
-        disable_pinned_message_notifications = disable_pinned_message_notifications,
-        show_preview = show_preview,
-        sound_id = sound_id,
-        mute_for = mute_for
+      { disable_mention_notifications = disable_mention_notifications_,
+        disable_pinned_message_notifications = disable_pinned_message_notifications_,
+        show_preview = show_preview_,
+        sound_id = sound_id_,
+        mute_for = mute_for_
       } =
       "ScopeNotificationSettings"
         ++ U.cc
-          [ U.p "disable_mention_notifications" disable_mention_notifications,
-            U.p "disable_pinned_message_notifications" disable_pinned_message_notifications,
-            U.p "show_preview" show_preview,
-            U.p "sound_id" sound_id,
-            U.p "mute_for" mute_for
+          [ U.p "disable_mention_notifications" disable_mention_notifications_,
+            U.p "disable_pinned_message_notifications" disable_pinned_message_notifications_,
+            U.p "show_preview" show_preview_,
+            U.p "sound_id" sound_id_,
+            U.p "mute_for" mute_for_
           ]
 
 instance T.FromJSON ScopeNotificationSettings where
@@ -60,17 +61,17 @@ instance T.FromJSON ScopeNotificationSettings where
 instance T.ToJSON ScopeNotificationSettings where
   toJSON
     ScopeNotificationSettings
-      { disable_mention_notifications = disable_mention_notifications,
-        disable_pinned_message_notifications = disable_pinned_message_notifications,
-        show_preview = show_preview,
-        sound_id = sound_id,
-        mute_for = mute_for
+      { disable_mention_notifications = disable_mention_notifications_,
+        disable_pinned_message_notifications = disable_pinned_message_notifications_,
+        show_preview = show_preview_,
+        sound_id = sound_id_,
+        mute_for = mute_for_
       } =
       A.object
         [ "@type" A..= T.String "scopeNotificationSettings",
-          "disable_mention_notifications" A..= disable_mention_notifications,
-          "disable_pinned_message_notifications" A..= disable_pinned_message_notifications,
-          "show_preview" A..= show_preview,
-          "sound_id" A..= sound_id,
-          "mute_for" A..= mute_for
+          "disable_mention_notifications" A..= disable_mention_notifications_,
+          "disable_pinned_message_notifications" A..= disable_pinned_message_notifications_,
+          "show_preview" A..= show_preview_,
+          "sound_id" A..= sound_id_,
+          "mute_for" A..= mute_for_
         ]

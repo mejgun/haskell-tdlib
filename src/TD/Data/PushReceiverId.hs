@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PushReceiverId where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data PushReceiverId = -- | Contains a globally unique push receiver identifier, 
 instance Show PushReceiverId where
   show
     PushReceiverId
-      { _id = _id
+      { _id = _id_
       } =
       "PushReceiverId"
         ++ U.cc
-          [ U.p "_id" _id
+          [ U.p "_id" _id_
           ]
 
 instance T.FromJSON PushReceiverId where
@@ -40,9 +41,9 @@ instance T.FromJSON PushReceiverId where
 instance T.ToJSON PushReceiverId where
   toJSON
     PushReceiverId
-      { _id = _id
+      { _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "pushReceiverId",
-          "id" A..= _id
+          "id" A..= _id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ReplyMarkup where
 
 import qualified Data.Aeson as A
@@ -45,45 +46,45 @@ data ReplyMarkup
 instance Show ReplyMarkup where
   show
     ReplyMarkupRemoveKeyboard
-      { is_personal = is_personal
+      { is_personal = is_personal_
       } =
       "ReplyMarkupRemoveKeyboard"
         ++ U.cc
-          [ U.p "is_personal" is_personal
+          [ U.p "is_personal" is_personal_
           ]
   show
     ReplyMarkupForceReply
-      { input_field_placeholder = input_field_placeholder,
-        is_personal = is_personal
+      { input_field_placeholder = input_field_placeholder_,
+        is_personal = is_personal_
       } =
       "ReplyMarkupForceReply"
         ++ U.cc
-          [ U.p "input_field_placeholder" input_field_placeholder,
-            U.p "is_personal" is_personal
+          [ U.p "input_field_placeholder" input_field_placeholder_,
+            U.p "is_personal" is_personal_
           ]
   show
     ReplyMarkupShowKeyboard
-      { input_field_placeholder = input_field_placeholder,
-        is_personal = is_personal,
-        one_time = one_time,
-        resize_keyboard = resize_keyboard,
-        rows = rows
+      { input_field_placeholder = input_field_placeholder_,
+        is_personal = is_personal_,
+        one_time = one_time_,
+        resize_keyboard = resize_keyboard_,
+        rows = rows_
       } =
       "ReplyMarkupShowKeyboard"
         ++ U.cc
-          [ U.p "input_field_placeholder" input_field_placeholder,
-            U.p "is_personal" is_personal,
-            U.p "one_time" one_time,
-            U.p "resize_keyboard" resize_keyboard,
-            U.p "rows" rows
+          [ U.p "input_field_placeholder" input_field_placeholder_,
+            U.p "is_personal" is_personal_,
+            U.p "one_time" one_time_,
+            U.p "resize_keyboard" resize_keyboard_,
+            U.p "rows" rows_
           ]
   show
     ReplyMarkupInlineKeyboard
-      { _rows = _rows
+      { _rows = _rows_
       } =
       "ReplyMarkupInlineKeyboard"
         ++ U.cc
-          [ U.p "_rows" _rows
+          [ U.p "_rows" _rows_
           ]
 
 instance T.FromJSON ReplyMarkup where
@@ -126,43 +127,43 @@ instance T.FromJSON ReplyMarkup where
 instance T.ToJSON ReplyMarkup where
   toJSON
     ReplyMarkupRemoveKeyboard
-      { is_personal = is_personal
+      { is_personal = is_personal_
       } =
       A.object
         [ "@type" A..= T.String "replyMarkupRemoveKeyboard",
-          "is_personal" A..= is_personal
+          "is_personal" A..= is_personal_
         ]
   toJSON
     ReplyMarkupForceReply
-      { input_field_placeholder = input_field_placeholder,
-        is_personal = is_personal
+      { input_field_placeholder = input_field_placeholder_,
+        is_personal = is_personal_
       } =
       A.object
         [ "@type" A..= T.String "replyMarkupForceReply",
-          "input_field_placeholder" A..= input_field_placeholder,
-          "is_personal" A..= is_personal
+          "input_field_placeholder" A..= input_field_placeholder_,
+          "is_personal" A..= is_personal_
         ]
   toJSON
     ReplyMarkupShowKeyboard
-      { input_field_placeholder = input_field_placeholder,
-        is_personal = is_personal,
-        one_time = one_time,
-        resize_keyboard = resize_keyboard,
-        rows = rows
+      { input_field_placeholder = input_field_placeholder_,
+        is_personal = is_personal_,
+        one_time = one_time_,
+        resize_keyboard = resize_keyboard_,
+        rows = rows_
       } =
       A.object
         [ "@type" A..= T.String "replyMarkupShowKeyboard",
-          "input_field_placeholder" A..= input_field_placeholder,
-          "is_personal" A..= is_personal,
-          "one_time" A..= one_time,
-          "resize_keyboard" A..= resize_keyboard,
-          "rows" A..= rows
+          "input_field_placeholder" A..= input_field_placeholder_,
+          "is_personal" A..= is_personal_,
+          "one_time" A..= one_time_,
+          "resize_keyboard" A..= resize_keyboard_,
+          "rows" A..= rows_
         ]
   toJSON
     ReplyMarkupInlineKeyboard
-      { _rows = _rows
+      { _rows = _rows_
       } =
       A.object
         [ "@type" A..= T.String "replyMarkupInlineKeyboard",
-          "rows" A..= _rows
+          "rows" A..= _rows_
         ]

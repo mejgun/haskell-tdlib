@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.JsonValue where
 
 import qualified Data.Aeson as A
@@ -45,43 +46,43 @@ instance Show JsonValue where
         []
   show
     JsonValueBoolean
-      { value = value
+      { value = value_
       } =
       "JsonValueBoolean"
         ++ U.cc
-          [ U.p "value" value
+          [ U.p "value" value_
           ]
   show
     JsonValueNumber
-      { _value = _value
+      { _value = _value_
       } =
       "JsonValueNumber"
         ++ U.cc
-          [ U.p "_value" _value
+          [ U.p "_value" _value_
           ]
   show
     JsonValueString
-      { __value = __value
+      { __value = __value_
       } =
       "JsonValueString"
         ++ U.cc
-          [ U.p "__value" __value
+          [ U.p "__value" __value_
           ]
   show
     JsonValueArray
-      { values = values
+      { values = values_
       } =
       "JsonValueArray"
         ++ U.cc
-          [ U.p "values" values
+          [ U.p "values" values_
           ]
   show
     JsonValueObject
-      { members = members
+      { members = members_
       } =
       "JsonValueObject"
         ++ U.cc
-          [ U.p "members" members
+          [ U.p "members" members_
           ]
 
 instance T.FromJSON JsonValue where
@@ -98,8 +99,7 @@ instance T.FromJSON JsonValue where
       _ -> mempty
     where
       parseJsonValueNull :: A.Value -> T.Parser JsonValue
-      parseJsonValueNull = A.withObject "JsonValueNull" $ \o -> do
-        return $ JsonValueNull {}
+      parseJsonValueNull = A.withObject "JsonValueNull" $ \_ -> return JsonValueNull
 
       parseJsonValueBoolean :: A.Value -> T.Parser JsonValue
       parseJsonValueBoolean = A.withObject "JsonValueBoolean" $ \o -> do
@@ -134,41 +134,41 @@ instance T.ToJSON JsonValue where
       ]
   toJSON
     JsonValueBoolean
-      { value = value
+      { value = value_
       } =
       A.object
         [ "@type" A..= T.String "jsonValueBoolean",
-          "value" A..= value
+          "value" A..= value_
         ]
   toJSON
     JsonValueNumber
-      { _value = _value
+      { _value = _value_
       } =
       A.object
         [ "@type" A..= T.String "jsonValueNumber",
-          "value" A..= _value
+          "value" A..= _value_
         ]
   toJSON
     JsonValueString
-      { __value = __value
+      { __value = __value_
       } =
       A.object
         [ "@type" A..= T.String "jsonValueString",
-          "value" A..= __value
+          "value" A..= __value_
         ]
   toJSON
     JsonValueArray
-      { values = values
+      { values = values_
       } =
       A.object
         [ "@type" A..= T.String "jsonValueArray",
-          "values" A..= values
+          "values" A..= values_
         ]
   toJSON
     JsonValueObject
-      { members = members
+      { members = members_
       } =
       A.object
         [ "@type" A..= T.String "jsonValueObject",
-          "members" A..= members
+          "members" A..= members_
         ]

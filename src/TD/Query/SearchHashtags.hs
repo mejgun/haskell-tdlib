@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchHashtags where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SearchHashtags = SearchHashtags
 instance Show SearchHashtags where
   show
     SearchHashtags
-      { limit = limit,
-        prefix = prefix
+      { limit = limit_,
+        prefix = prefix_
       } =
       "SearchHashtags"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "prefix" prefix
+          [ U.p "limit" limit_,
+            U.p "prefix" prefix_
           ]
 
 instance T.ToJSON SearchHashtags where
   toJSON
     SearchHashtags
-      { limit = limit,
-        prefix = prefix
+      { limit = limit_,
+        prefix = prefix_
       } =
       A.object
         [ "@type" A..= T.String "searchHashtags",
-          "limit" A..= limit,
-          "prefix" A..= prefix
+          "limit" A..= limit_,
+          "prefix" A..= prefix_
         ]

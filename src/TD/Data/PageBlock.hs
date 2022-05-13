@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PageBlock where
 
 import qualified Data.Aeson as A
@@ -245,79 +246,79 @@ data PageBlock
 instance Show PageBlock where
   show
     PageBlockTitle
-      { title = title
+      { title = title_
       } =
       "PageBlockTitle"
         ++ U.cc
-          [ U.p "title" title
+          [ U.p "title" title_
           ]
   show
     PageBlockSubtitle
-      { subtitle = subtitle
+      { subtitle = subtitle_
       } =
       "PageBlockSubtitle"
         ++ U.cc
-          [ U.p "subtitle" subtitle
+          [ U.p "subtitle" subtitle_
           ]
   show
     PageBlockAuthorDate
-      { publish_date = publish_date,
-        author = author
+      { publish_date = publish_date_,
+        author = author_
       } =
       "PageBlockAuthorDate"
         ++ U.cc
-          [ U.p "publish_date" publish_date,
-            U.p "author" author
+          [ U.p "publish_date" publish_date_,
+            U.p "author" author_
           ]
   show
     PageBlockHeader
-      { header = header
+      { header = header_
       } =
       "PageBlockHeader"
         ++ U.cc
-          [ U.p "header" header
+          [ U.p "header" header_
           ]
   show
     PageBlockSubheader
-      { subheader = subheader
+      { subheader = subheader_
       } =
       "PageBlockSubheader"
         ++ U.cc
-          [ U.p "subheader" subheader
+          [ U.p "subheader" subheader_
           ]
   show
     PageBlockKicker
-      { kicker = kicker
+      { kicker = kicker_
       } =
       "PageBlockKicker"
         ++ U.cc
-          [ U.p "kicker" kicker
+          [ U.p "kicker" kicker_
           ]
   show
     PageBlockParagraph
-      { text = text
+      { text = text_
       } =
       "PageBlockParagraph"
         ++ U.cc
-          [ U.p "text" text
+          [ U.p "text" text_
           ]
   show
     PageBlockPreformatted
-      { language = language,
-        text = text
+      { language = language_,
+        text = text_
       } =
       "PageBlockPreformatted"
         ++ U.cc
-          [ U.p "language" language,
-            U.p "text" text
+          [ U.p "language" language_,
+            U.p "text" text_
           ]
   show
     PageBlockFooter
-      { footer = footer
+      { footer = footer_
       } =
       "PageBlockFooter"
         ++ U.cc
-          [ U.p "footer" footer
+          [ U.p "footer" footer_
           ]
   show PageBlockDivider =
     "PageBlockDivider"
@@ -325,229 +326,229 @@ instance Show PageBlock where
         []
   show
     PageBlockAnchor
-      { name = name
+      { name = name_
       } =
       "PageBlockAnchor"
         ++ U.cc
-          [ U.p "name" name
+          [ U.p "name" name_
           ]
   show
     PageBlockList
-      { items = items
+      { items = items_
       } =
       "PageBlockList"
         ++ U.cc
-          [ U.p "items" items
+          [ U.p "items" items_
           ]
   show
     PageBlockBlockQuote
-      { credit = credit,
-        text = text
+      { credit = credit_,
+        text = text_
       } =
       "PageBlockBlockQuote"
         ++ U.cc
-          [ U.p "credit" credit,
-            U.p "text" text
+          [ U.p "credit" credit_,
+            U.p "text" text_
           ]
   show
     PageBlockPullQuote
-      { credit = credit,
-        text = text
+      { credit = credit_,
+        text = text_
       } =
       "PageBlockPullQuote"
         ++ U.cc
-          [ U.p "credit" credit,
-            U.p "text" text
+          [ U.p "credit" credit_,
+            U.p "text" text_
           ]
   show
     PageBlockAnimation
-      { need_autoplay = need_autoplay,
-        caption = caption,
-        animation = animation
+      { need_autoplay = need_autoplay_,
+        caption = caption_,
+        animation = animation_
       } =
       "PageBlockAnimation"
         ++ U.cc
-          [ U.p "need_autoplay" need_autoplay,
-            U.p "caption" caption,
-            U.p "animation" animation
+          [ U.p "need_autoplay" need_autoplay_,
+            U.p "caption" caption_,
+            U.p "animation" animation_
           ]
   show
     PageBlockAudio
-      { caption = caption,
-        audio = audio
+      { caption = caption_,
+        audio = audio_
       } =
       "PageBlockAudio"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "audio" audio
+          [ U.p "caption" caption_,
+            U.p "audio" audio_
           ]
   show
     PageBlockPhoto
-      { url = url,
-        caption = caption,
-        photo = photo
+      { url = url_,
+        caption = caption_,
+        photo = photo_
       } =
       "PageBlockPhoto"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "caption" caption,
-            U.p "photo" photo
+          [ U.p "url" url_,
+            U.p "caption" caption_,
+            U.p "photo" photo_
           ]
   show
     PageBlockVideo
-      { is_looped = is_looped,
-        need_autoplay = need_autoplay,
-        caption = caption,
-        video = video
+      { is_looped = is_looped_,
+        need_autoplay = need_autoplay_,
+        caption = caption_,
+        video = video_
       } =
       "PageBlockVideo"
         ++ U.cc
-          [ U.p "is_looped" is_looped,
-            U.p "need_autoplay" need_autoplay,
-            U.p "caption" caption,
-            U.p "video" video
+          [ U.p "is_looped" is_looped_,
+            U.p "need_autoplay" need_autoplay_,
+            U.p "caption" caption_,
+            U.p "video" video_
           ]
   show
     PageBlockVoiceNote
-      { caption = caption,
-        voice_note = voice_note
+      { caption = caption_,
+        voice_note = voice_note_
       } =
       "PageBlockVoiceNote"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "voice_note" voice_note
+          [ U.p "caption" caption_,
+            U.p "voice_note" voice_note_
           ]
   show
     PageBlockCover
-      { cover = cover
+      { cover = cover_
       } =
       "PageBlockCover"
         ++ U.cc
-          [ U.p "cover" cover
+          [ U.p "cover" cover_
           ]
   show
     PageBlockEmbedded
-      { allow_scrolling = allow_scrolling,
-        is_full_width = is_full_width,
-        caption = caption,
-        height = height,
-        width = width,
-        poster_photo = poster_photo,
-        html = html,
-        url = url
+      { allow_scrolling = allow_scrolling_,
+        is_full_width = is_full_width_,
+        caption = caption_,
+        height = height_,
+        width = width_,
+        poster_photo = poster_photo_,
+        html = html_,
+        url = url_
       } =
       "PageBlockEmbedded"
         ++ U.cc
-          [ U.p "allow_scrolling" allow_scrolling,
-            U.p "is_full_width" is_full_width,
-            U.p "caption" caption,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "poster_photo" poster_photo,
-            U.p "html" html,
-            U.p "url" url
+          [ U.p "allow_scrolling" allow_scrolling_,
+            U.p "is_full_width" is_full_width_,
+            U.p "caption" caption_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "poster_photo" poster_photo_,
+            U.p "html" html_,
+            U.p "url" url_
           ]
   show
     PageBlockEmbeddedPost
-      { caption = caption,
-        page_blocks = page_blocks,
-        date = date,
-        author_photo = author_photo,
-        _author = _author,
-        url = url
+      { caption = caption_,
+        page_blocks = page_blocks_,
+        date = date_,
+        author_photo = author_photo_,
+        _author = _author_,
+        url = url_
       } =
       "PageBlockEmbeddedPost"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "page_blocks" page_blocks,
-            U.p "date" date,
-            U.p "author_photo" author_photo,
-            U.p "_author" _author,
-            U.p "url" url
+          [ U.p "caption" caption_,
+            U.p "page_blocks" page_blocks_,
+            U.p "date" date_,
+            U.p "author_photo" author_photo_,
+            U.p "_author" _author_,
+            U.p "url" url_
           ]
   show
     PageBlockCollage
-      { caption = caption,
-        page_blocks = page_blocks
+      { caption = caption_,
+        page_blocks = page_blocks_
       } =
       "PageBlockCollage"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "page_blocks" page_blocks
+          [ U.p "caption" caption_,
+            U.p "page_blocks" page_blocks_
           ]
   show
     PageBlockSlideshow
-      { caption = caption,
-        page_blocks = page_blocks
+      { caption = caption_,
+        page_blocks = page_blocks_
       } =
       "PageBlockSlideshow"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "page_blocks" page_blocks
+          [ U.p "caption" caption_,
+            U.p "page_blocks" page_blocks_
           ]
   show
     PageBlockChatLink
-      { username = username,
-        _photo = _photo,
-        _title = _title
+      { username = username_,
+        _photo = _photo_,
+        _title = _title_
       } =
       "PageBlockChatLink"
         ++ U.cc
-          [ U.p "username" username,
-            U.p "_photo" _photo,
-            U.p "_title" _title
+          [ U.p "username" username_,
+            U.p "_photo" _photo_,
+            U.p "_title" _title_
           ]
   show
     PageBlockTable
-      { is_striped = is_striped,
-        is_bordered = is_bordered,
-        cells = cells,
-        _caption = _caption
+      { is_striped = is_striped_,
+        is_bordered = is_bordered_,
+        cells = cells_,
+        _caption = _caption_
       } =
       "PageBlockTable"
         ++ U.cc
-          [ U.p "is_striped" is_striped,
-            U.p "is_bordered" is_bordered,
-            U.p "cells" cells,
-            U.p "_caption" _caption
+          [ U.p "is_striped" is_striped_,
+            U.p "is_bordered" is_bordered_,
+            U.p "cells" cells_,
+            U.p "_caption" _caption_
           ]
   show
     PageBlockDetails
-      { is_open = is_open,
-        page_blocks = page_blocks,
-        header = header
+      { is_open = is_open_,
+        page_blocks = page_blocks_,
+        header = header_
       } =
       "PageBlockDetails"
         ++ U.cc
-          [ U.p "is_open" is_open,
-            U.p "page_blocks" page_blocks,
-            U.p "header" header
+          [ U.p "is_open" is_open_,
+            U.p "page_blocks" page_blocks_,
+            U.p "header" header_
           ]
   show
     PageBlockRelatedArticles
-      { articles = articles,
-        header = header
+      { articles = articles_,
+        header = header_
       } =
       "PageBlockRelatedArticles"
         ++ U.cc
-          [ U.p "articles" articles,
-            U.p "header" header
+          [ U.p "articles" articles_,
+            U.p "header" header_
           ]
   show
     PageBlockMap
-      { caption = caption,
-        height = height,
-        width = width,
-        zoom = zoom,
-        location = location
+      { caption = caption_,
+        height = height_,
+        width = width_,
+        zoom = zoom_,
+        location = location_
       } =
       "PageBlockMap"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "zoom" zoom,
-            U.p "location" location
+          [ U.p "caption" caption_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "zoom" zoom_,
+            U.p "location" location_
           ]
 
 instance T.FromJSON PageBlock where
@@ -634,8 +635,7 @@ instance T.FromJSON PageBlock where
         return $ PageBlockFooter {footer = footer_}
 
       parsePageBlockDivider :: A.Value -> T.Parser PageBlock
-      parsePageBlockDivider = A.withObject "PageBlockDivider" $ \o -> do
-        return $ PageBlockDivider {}
+      parsePageBlockDivider = A.withObject "PageBlockDivider" $ \_ -> return PageBlockDivider
 
       parsePageBlockAnchor :: A.Value -> T.Parser PageBlock
       parsePageBlockAnchor = A.withObject "PageBlockAnchor" $ \o -> do
@@ -773,79 +773,79 @@ instance T.FromJSON PageBlock where
 instance T.ToJSON PageBlock where
   toJSON
     PageBlockTitle
-      { title = title
+      { title = title_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockTitle",
-          "title" A..= title
+          "title" A..= title_
         ]
   toJSON
     PageBlockSubtitle
-      { subtitle = subtitle
+      { subtitle = subtitle_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockSubtitle",
-          "subtitle" A..= subtitle
+          "subtitle" A..= subtitle_
         ]
   toJSON
     PageBlockAuthorDate
-      { publish_date = publish_date,
-        author = author
+      { publish_date = publish_date_,
+        author = author_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockAuthorDate",
-          "publish_date" A..= publish_date,
-          "author" A..= author
+          "publish_date" A..= publish_date_,
+          "author" A..= author_
         ]
   toJSON
     PageBlockHeader
-      { header = header
+      { header = header_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockHeader",
-          "header" A..= header
+          "header" A..= header_
         ]
   toJSON
     PageBlockSubheader
-      { subheader = subheader
+      { subheader = subheader_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockSubheader",
-          "subheader" A..= subheader
+          "subheader" A..= subheader_
         ]
   toJSON
     PageBlockKicker
-      { kicker = kicker
+      { kicker = kicker_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockKicker",
-          "kicker" A..= kicker
+          "kicker" A..= kicker_
         ]
   toJSON
     PageBlockParagraph
-      { text = text
+      { text = text_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockParagraph",
-          "text" A..= text
+          "text" A..= text_
         ]
   toJSON
     PageBlockPreformatted
-      { language = language,
-        text = text
+      { language = language_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockPreformatted",
-          "language" A..= language,
-          "text" A..= text
+          "language" A..= language_,
+          "text" A..= text_
         ]
   toJSON
     PageBlockFooter
-      { footer = footer
+      { footer = footer_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockFooter",
-          "footer" A..= footer
+          "footer" A..= footer_
         ]
   toJSON PageBlockDivider =
     A.object
@@ -853,227 +853,227 @@ instance T.ToJSON PageBlock where
       ]
   toJSON
     PageBlockAnchor
-      { name = name
+      { name = name_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockAnchor",
-          "name" A..= name
+          "name" A..= name_
         ]
   toJSON
     PageBlockList
-      { items = items
+      { items = items_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockList",
-          "items" A..= items
+          "items" A..= items_
         ]
   toJSON
     PageBlockBlockQuote
-      { credit = credit,
-        text = text
+      { credit = credit_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockBlockQuote",
-          "credit" A..= credit,
-          "text" A..= text
+          "credit" A..= credit_,
+          "text" A..= text_
         ]
   toJSON
     PageBlockPullQuote
-      { credit = credit,
-        text = text
+      { credit = credit_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockPullQuote",
-          "credit" A..= credit,
-          "text" A..= text
+          "credit" A..= credit_,
+          "text" A..= text_
         ]
   toJSON
     PageBlockAnimation
-      { need_autoplay = need_autoplay,
-        caption = caption,
-        animation = animation
+      { need_autoplay = need_autoplay_,
+        caption = caption_,
+        animation = animation_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockAnimation",
-          "need_autoplay" A..= need_autoplay,
-          "caption" A..= caption,
-          "animation" A..= animation
+          "need_autoplay" A..= need_autoplay_,
+          "caption" A..= caption_,
+          "animation" A..= animation_
         ]
   toJSON
     PageBlockAudio
-      { caption = caption,
-        audio = audio
+      { caption = caption_,
+        audio = audio_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockAudio",
-          "caption" A..= caption,
-          "audio" A..= audio
+          "caption" A..= caption_,
+          "audio" A..= audio_
         ]
   toJSON
     PageBlockPhoto
-      { url = url,
-        caption = caption,
-        photo = photo
+      { url = url_,
+        caption = caption_,
+        photo = photo_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockPhoto",
-          "url" A..= url,
-          "caption" A..= caption,
-          "photo" A..= photo
+          "url" A..= url_,
+          "caption" A..= caption_,
+          "photo" A..= photo_
         ]
   toJSON
     PageBlockVideo
-      { is_looped = is_looped,
-        need_autoplay = need_autoplay,
-        caption = caption,
-        video = video
+      { is_looped = is_looped_,
+        need_autoplay = need_autoplay_,
+        caption = caption_,
+        video = video_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockVideo",
-          "is_looped" A..= is_looped,
-          "need_autoplay" A..= need_autoplay,
-          "caption" A..= caption,
-          "video" A..= video
+          "is_looped" A..= is_looped_,
+          "need_autoplay" A..= need_autoplay_,
+          "caption" A..= caption_,
+          "video" A..= video_
         ]
   toJSON
     PageBlockVoiceNote
-      { caption = caption,
-        voice_note = voice_note
+      { caption = caption_,
+        voice_note = voice_note_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockVoiceNote",
-          "caption" A..= caption,
-          "voice_note" A..= voice_note
+          "caption" A..= caption_,
+          "voice_note" A..= voice_note_
         ]
   toJSON
     PageBlockCover
-      { cover = cover
+      { cover = cover_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockCover",
-          "cover" A..= cover
+          "cover" A..= cover_
         ]
   toJSON
     PageBlockEmbedded
-      { allow_scrolling = allow_scrolling,
-        is_full_width = is_full_width,
-        caption = caption,
-        height = height,
-        width = width,
-        poster_photo = poster_photo,
-        html = html,
-        url = url
+      { allow_scrolling = allow_scrolling_,
+        is_full_width = is_full_width_,
+        caption = caption_,
+        height = height_,
+        width = width_,
+        poster_photo = poster_photo_,
+        html = html_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockEmbedded",
-          "allow_scrolling" A..= allow_scrolling,
-          "is_full_width" A..= is_full_width,
-          "caption" A..= caption,
-          "height" A..= height,
-          "width" A..= width,
-          "poster_photo" A..= poster_photo,
-          "html" A..= html,
-          "url" A..= url
+          "allow_scrolling" A..= allow_scrolling_,
+          "is_full_width" A..= is_full_width_,
+          "caption" A..= caption_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "poster_photo" A..= poster_photo_,
+          "html" A..= html_,
+          "url" A..= url_
         ]
   toJSON
     PageBlockEmbeddedPost
-      { caption = caption,
-        page_blocks = page_blocks,
-        date = date,
-        author_photo = author_photo,
-        _author = _author,
-        url = url
+      { caption = caption_,
+        page_blocks = page_blocks_,
+        date = date_,
+        author_photo = author_photo_,
+        _author = _author_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockEmbeddedPost",
-          "caption" A..= caption,
-          "page_blocks" A..= page_blocks,
-          "date" A..= date,
-          "author_photo" A..= author_photo,
-          "author" A..= _author,
-          "url" A..= url
+          "caption" A..= caption_,
+          "page_blocks" A..= page_blocks_,
+          "date" A..= date_,
+          "author_photo" A..= author_photo_,
+          "author" A..= _author_,
+          "url" A..= url_
         ]
   toJSON
     PageBlockCollage
-      { caption = caption,
-        page_blocks = page_blocks
+      { caption = caption_,
+        page_blocks = page_blocks_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockCollage",
-          "caption" A..= caption,
-          "page_blocks" A..= page_blocks
+          "caption" A..= caption_,
+          "page_blocks" A..= page_blocks_
         ]
   toJSON
     PageBlockSlideshow
-      { caption = caption,
-        page_blocks = page_blocks
+      { caption = caption_,
+        page_blocks = page_blocks_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockSlideshow",
-          "caption" A..= caption,
-          "page_blocks" A..= page_blocks
+          "caption" A..= caption_,
+          "page_blocks" A..= page_blocks_
         ]
   toJSON
     PageBlockChatLink
-      { username = username,
-        _photo = _photo,
-        _title = _title
+      { username = username_,
+        _photo = _photo_,
+        _title = _title_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockChatLink",
-          "username" A..= username,
-          "photo" A..= _photo,
-          "title" A..= _title
+          "username" A..= username_,
+          "photo" A..= _photo_,
+          "title" A..= _title_
         ]
   toJSON
     PageBlockTable
-      { is_striped = is_striped,
-        is_bordered = is_bordered,
-        cells = cells,
-        _caption = _caption
+      { is_striped = is_striped_,
+        is_bordered = is_bordered_,
+        cells = cells_,
+        _caption = _caption_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockTable",
-          "is_striped" A..= is_striped,
-          "is_bordered" A..= is_bordered,
-          "cells" A..= cells,
-          "caption" A..= _caption
+          "is_striped" A..= is_striped_,
+          "is_bordered" A..= is_bordered_,
+          "cells" A..= cells_,
+          "caption" A..= _caption_
         ]
   toJSON
     PageBlockDetails
-      { is_open = is_open,
-        page_blocks = page_blocks,
-        header = header
+      { is_open = is_open_,
+        page_blocks = page_blocks_,
+        header = header_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockDetails",
-          "is_open" A..= is_open,
-          "page_blocks" A..= page_blocks,
-          "header" A..= header
+          "is_open" A..= is_open_,
+          "page_blocks" A..= page_blocks_,
+          "header" A..= header_
         ]
   toJSON
     PageBlockRelatedArticles
-      { articles = articles,
-        header = header
+      { articles = articles_,
+        header = header_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockRelatedArticles",
-          "articles" A..= articles,
-          "header" A..= header
+          "articles" A..= articles_,
+          "header" A..= header_
         ]
   toJSON
     PageBlockMap
-      { caption = caption,
-        height = height,
-        width = width,
-        zoom = zoom,
-        location = location
+      { caption = caption_,
+        height = height_,
+        width = width_,
+        zoom = zoom_,
+        location = location_
       } =
       A.object
         [ "@type" A..= T.String "pageBlockMap",
-          "caption" A..= caption,
-          "height" A..= height,
-          "width" A..= width,
-          "zoom" A..= zoom,
-          "location" A..= location
+          "caption" A..= caption_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "zoom" A..= zoom_,
+          "location" A..= location_
         ]

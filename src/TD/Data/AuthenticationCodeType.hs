@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AuthenticationCodeType where
 
 import qualified Data.Aeson as A
@@ -40,45 +41,45 @@ data AuthenticationCodeType
 instance Show AuthenticationCodeType where
   show
     AuthenticationCodeTypeTelegramMessage
-      { _length = _length
+      { _length = _length_
       } =
       "AuthenticationCodeTypeTelegramMessage"
         ++ U.cc
-          [ U.p "_length" _length
+          [ U.p "_length" _length_
           ]
   show
     AuthenticationCodeTypeSms
-      { _length = _length
+      { _length = _length_
       } =
       "AuthenticationCodeTypeSms"
         ++ U.cc
-          [ U.p "_length" _length
+          [ U.p "_length" _length_
           ]
   show
     AuthenticationCodeTypeCall
-      { _length = _length
+      { _length = _length_
       } =
       "AuthenticationCodeTypeCall"
         ++ U.cc
-          [ U.p "_length" _length
+          [ U.p "_length" _length_
           ]
   show
     AuthenticationCodeTypeFlashCall
-      { pattern = pattern
+      { pattern = pattern_
       } =
       "AuthenticationCodeTypeFlashCall"
         ++ U.cc
-          [ U.p "pattern" pattern
+          [ U.p "pattern" pattern_
           ]
   show
     AuthenticationCodeTypeMissedCall
-      { _length = _length,
-        phone_number_prefix = phone_number_prefix
+      { _length = _length_,
+        phone_number_prefix = phone_number_prefix_
       } =
       "AuthenticationCodeTypeMissedCall"
         ++ U.cc
-          [ U.p "_length" _length,
-            U.p "phone_number_prefix" phone_number_prefix
+          [ U.p "_length" _length_,
+            U.p "phone_number_prefix" phone_number_prefix_
           ]
 
 instance T.FromJSON AuthenticationCodeType where
@@ -123,43 +124,43 @@ instance T.FromJSON AuthenticationCodeType where
 instance T.ToJSON AuthenticationCodeType where
   toJSON
     AuthenticationCodeTypeTelegramMessage
-      { _length = _length
+      { _length = _length_
       } =
       A.object
         [ "@type" A..= T.String "authenticationCodeTypeTelegramMessage",
-          "length" A..= _length
+          "length" A..= _length_
         ]
   toJSON
     AuthenticationCodeTypeSms
-      { _length = _length
+      { _length = _length_
       } =
       A.object
         [ "@type" A..= T.String "authenticationCodeTypeSms",
-          "length" A..= _length
+          "length" A..= _length_
         ]
   toJSON
     AuthenticationCodeTypeCall
-      { _length = _length
+      { _length = _length_
       } =
       A.object
         [ "@type" A..= T.String "authenticationCodeTypeCall",
-          "length" A..= _length
+          "length" A..= _length_
         ]
   toJSON
     AuthenticationCodeTypeFlashCall
-      { pattern = pattern
+      { pattern = pattern_
       } =
       A.object
         [ "@type" A..= T.String "authenticationCodeTypeFlashCall",
-          "pattern" A..= pattern
+          "pattern" A..= pattern_
         ]
   toJSON
     AuthenticationCodeTypeMissedCall
-      { _length = _length,
-        phone_number_prefix = phone_number_prefix
+      { _length = _length_,
+        phone_number_prefix = phone_number_prefix_
       } =
       A.object
         [ "@type" A..= T.String "authenticationCodeTypeMissedCall",
-          "length" A..= _length,
-          "phone_number_prefix" A..= phone_number_prefix
+          "length" A..= _length_,
+          "phone_number_prefix" A..= phone_number_prefix_
         ]

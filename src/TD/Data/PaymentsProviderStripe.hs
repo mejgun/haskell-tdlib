@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PaymentsProviderStripe where
 
 import qualified Data.Aeson as A
@@ -22,17 +23,17 @@ data PaymentsProviderStripe = -- | Stripe payment provider @publishable_key Stri
 instance Show PaymentsProviderStripe where
   show
     PaymentsProviderStripe
-      { need_cardholder_name = need_cardholder_name,
-        need_postal_code = need_postal_code,
-        need_country = need_country,
-        publishable_key = publishable_key
+      { need_cardholder_name = need_cardholder_name_,
+        need_postal_code = need_postal_code_,
+        need_country = need_country_,
+        publishable_key = publishable_key_
       } =
       "PaymentsProviderStripe"
         ++ U.cc
-          [ U.p "need_cardholder_name" need_cardholder_name,
-            U.p "need_postal_code" need_postal_code,
-            U.p "need_country" need_country,
-            U.p "publishable_key" publishable_key
+          [ U.p "need_cardholder_name" need_cardholder_name_,
+            U.p "need_postal_code" need_postal_code_,
+            U.p "need_country" need_country_,
+            U.p "publishable_key" publishable_key_
           ]
 
 instance T.FromJSON PaymentsProviderStripe where
@@ -55,15 +56,15 @@ instance T.FromJSON PaymentsProviderStripe where
 instance T.ToJSON PaymentsProviderStripe where
   toJSON
     PaymentsProviderStripe
-      { need_cardholder_name = need_cardholder_name,
-        need_postal_code = need_postal_code,
-        need_country = need_country,
-        publishable_key = publishable_key
+      { need_cardholder_name = need_cardholder_name_,
+        need_postal_code = need_postal_code_,
+        need_country = need_country_,
+        publishable_key = publishable_key_
       } =
       A.object
         [ "@type" A..= T.String "paymentsProviderStripe",
-          "need_cardholder_name" A..= need_cardholder_name,
-          "need_postal_code" A..= need_postal_code,
-          "need_country" A..= need_country,
-          "publishable_key" A..= publishable_key
+          "need_cardholder_name" A..= need_cardholder_name_,
+          "need_postal_code" A..= need_postal_code_,
+          "need_country" A..= need_country_,
+          "publishable_key" A..= publishable_key_
         ]

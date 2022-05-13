@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetCallbackQueryAnswer where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data GetCallbackQueryAnswer = GetCallbackQueryAnswer
 instance Show GetCallbackQueryAnswer where
   show
     GetCallbackQueryAnswer
-      { payload = payload,
-        message_id = message_id,
-        chat_id = chat_id
+      { payload = payload_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetCallbackQueryAnswer"
         ++ U.cc
-          [ U.p "payload" payload,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "payload" payload_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetCallbackQueryAnswer where
   toJSON
     GetCallbackQueryAnswer
-      { payload = payload,
-        message_id = message_id,
-        chat_id = chat_id
+      { payload = payload_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getCallbackQueryAnswer",
-          "payload" A..= payload,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "payload" A..= payload_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

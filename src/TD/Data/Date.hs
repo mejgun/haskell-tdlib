@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Date where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data Date = -- | Represents a date according to the Gregorian calendar @day Day 
 instance Show Date where
   show
     Date
-      { year = year,
-        month = month,
-        day = day
+      { year = year_,
+        month = month_,
+        day = day_
       } =
       "Date"
         ++ U.cc
-          [ U.p "year" year,
-            U.p "month" month,
-            U.p "day" day
+          [ U.p "year" year_,
+            U.p "month" month_,
+            U.p "day" day_
           ]
 
 instance T.FromJSON Date where
@@ -50,13 +51,13 @@ instance T.FromJSON Date where
 instance T.ToJSON Date where
   toJSON
     Date
-      { year = year,
-        month = month,
-        day = day
+      { year = year_,
+        month = month_,
+        day = day_
       } =
       A.object
         [ "@type" A..= T.String "date",
-          "year" A..= year,
-          "month" A..= month,
-          "day" A..= day
+          "year" A..= year_,
+          "month" A..= month_,
+          "day" A..= day_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageSender where
 
 import qualified Data.Aeson as A
@@ -23,19 +24,19 @@ data MessageSender
 instance Show MessageSender where
   show
     MessageSenderUser
-      { user_id = user_id
+      { user_id = user_id_
       } =
       "MessageSenderUser"
         ++ U.cc
-          [ U.p "user_id" user_id
+          [ U.p "user_id" user_id_
           ]
   show
     MessageSenderChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "MessageSenderChat"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.FromJSON MessageSender where
@@ -61,17 +62,17 @@ instance T.FromJSON MessageSender where
 instance T.ToJSON MessageSender where
   toJSON
     MessageSenderUser
-      { user_id = user_id
+      { user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "messageSenderUser",
-          "user_id" A..= user_id
+          "user_id" A..= user_id_
         ]
   toJSON
     MessageSenderChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "messageSenderChat",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

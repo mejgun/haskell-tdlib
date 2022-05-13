@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetRemoteFile where
 
 import qualified Data.Aeson as A
@@ -21,23 +22,23 @@ data GetRemoteFile = GetRemoteFile
 instance Show GetRemoteFile where
   show
     GetRemoteFile
-      { file_type = file_type,
-        remote_file_id = remote_file_id
+      { file_type = file_type_,
+        remote_file_id = remote_file_id_
       } =
       "GetRemoteFile"
         ++ U.cc
-          [ U.p "file_type" file_type,
-            U.p "remote_file_id" remote_file_id
+          [ U.p "file_type" file_type_,
+            U.p "remote_file_id" remote_file_id_
           ]
 
 instance T.ToJSON GetRemoteFile where
   toJSON
     GetRemoteFile
-      { file_type = file_type,
-        remote_file_id = remote_file_id
+      { file_type = file_type_,
+        remote_file_id = remote_file_id_
       } =
       A.object
         [ "@type" A..= T.String "getRemoteFile",
-          "file_type" A..= file_type,
-          "remote_file_id" A..= remote_file_id
+          "file_type" A..= file_type_,
+          "remote_file_id" A..= remote_file_id_
         ]

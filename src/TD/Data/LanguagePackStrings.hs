@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.LanguagePackStrings where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data LanguagePackStrings = -- | Contains a list of language pack strings @string
 instance Show LanguagePackStrings where
   show
     LanguagePackStrings
-      { strings = strings
+      { strings = strings_
       } =
       "LanguagePackStrings"
         ++ U.cc
-          [ U.p "strings" strings
+          [ U.p "strings" strings_
           ]
 
 instance T.FromJSON LanguagePackStrings where
@@ -41,9 +42,9 @@ instance T.FromJSON LanguagePackStrings where
 instance T.ToJSON LanguagePackStrings where
   toJSON
     LanguagePackStrings
-      { strings = strings
+      { strings = strings_
       } =
       A.object
         [ "@type" A..= T.String "languagePackStrings",
-          "strings" A..= strings
+          "strings" A..= strings_
         ]

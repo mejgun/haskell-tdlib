@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ConnectionState where
 
 import qualified Data.Aeson as A
@@ -55,24 +56,19 @@ instance T.FromJSON ConnectionState where
       _ -> mempty
     where
       parseConnectionStateWaitingForNetwork :: A.Value -> T.Parser ConnectionState
-      parseConnectionStateWaitingForNetwork = A.withObject "ConnectionStateWaitingForNetwork" $ \o -> do
-        return $ ConnectionStateWaitingForNetwork {}
+      parseConnectionStateWaitingForNetwork = A.withObject "ConnectionStateWaitingForNetwork" $ \_ -> return ConnectionStateWaitingForNetwork
 
       parseConnectionStateConnectingToProxy :: A.Value -> T.Parser ConnectionState
-      parseConnectionStateConnectingToProxy = A.withObject "ConnectionStateConnectingToProxy" $ \o -> do
-        return $ ConnectionStateConnectingToProxy {}
+      parseConnectionStateConnectingToProxy = A.withObject "ConnectionStateConnectingToProxy" $ \_ -> return ConnectionStateConnectingToProxy
 
       parseConnectionStateConnecting :: A.Value -> T.Parser ConnectionState
-      parseConnectionStateConnecting = A.withObject "ConnectionStateConnecting" $ \o -> do
-        return $ ConnectionStateConnecting {}
+      parseConnectionStateConnecting = A.withObject "ConnectionStateConnecting" $ \_ -> return ConnectionStateConnecting
 
       parseConnectionStateUpdating :: A.Value -> T.Parser ConnectionState
-      parseConnectionStateUpdating = A.withObject "ConnectionStateUpdating" $ \o -> do
-        return $ ConnectionStateUpdating {}
+      parseConnectionStateUpdating = A.withObject "ConnectionStateUpdating" $ \_ -> return ConnectionStateUpdating
 
       parseConnectionStateReady :: A.Value -> T.Parser ConnectionState
-      parseConnectionStateReady = A.withObject "ConnectionStateReady" $ \o -> do
-        return $ ConnectionStateReady {}
+      parseConnectionStateReady = A.withObject "ConnectionStateReady" $ \_ -> return ConnectionStateReady
   parseJSON _ = mempty
 
 instance T.ToJSON ConnectionState where

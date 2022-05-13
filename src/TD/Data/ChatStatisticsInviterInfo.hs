@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatStatisticsInviterInfo where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data ChatStatisticsInviterInfo = -- | Contains statistics about number of new me
 instance Show ChatStatisticsInviterInfo where
   show
     ChatStatisticsInviterInfo
-      { added_member_count = added_member_count,
-        user_id = user_id
+      { added_member_count = added_member_count_,
+        user_id = user_id_
       } =
       "ChatStatisticsInviterInfo"
         ++ U.cc
-          [ U.p "added_member_count" added_member_count,
-            U.p "user_id" user_id
+          [ U.p "added_member_count" added_member_count_,
+            U.p "user_id" user_id_
           ]
 
 instance T.FromJSON ChatStatisticsInviterInfo where
@@ -45,11 +46,11 @@ instance T.FromJSON ChatStatisticsInviterInfo where
 instance T.ToJSON ChatStatisticsInviterInfo where
   toJSON
     ChatStatisticsInviterInfo
-      { added_member_count = added_member_count,
-        user_id = user_id
+      { added_member_count = added_member_count_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatStatisticsInviterInfo",
-          "added_member_count" A..= added_member_count,
-          "user_id" A..= user_id
+          "added_member_count" A..= added_member_count_,
+          "user_id" A..= user_id_
         ]

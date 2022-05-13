@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetStickerSetThumbnail where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data SetStickerSetThumbnail = SetStickerSetThumbnail
 instance Show SetStickerSetThumbnail where
   show
     SetStickerSetThumbnail
-      { thumbnail = thumbnail,
-        name = name,
-        user_id = user_id
+      { thumbnail = thumbnail_,
+        name = name_,
+        user_id = user_id_
       } =
       "SetStickerSetThumbnail"
         ++ U.cc
-          [ U.p "thumbnail" thumbnail,
-            U.p "name" name,
-            U.p "user_id" user_id
+          [ U.p "thumbnail" thumbnail_,
+            U.p "name" name_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON SetStickerSetThumbnail where
   toJSON
     SetStickerSetThumbnail
-      { thumbnail = thumbnail,
-        name = name,
-        user_id = user_id
+      { thumbnail = thumbnail_,
+        name = name_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "setStickerSetThumbnail",
-          "thumbnail" A..= thumbnail,
-          "name" A..= name,
-          "user_id" A..= user_id
+          "thumbnail" A..= thumbnail_,
+          "name" A..= name_,
+          "user_id" A..= user_id_
         ]

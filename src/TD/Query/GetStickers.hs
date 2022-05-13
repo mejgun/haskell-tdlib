@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetStickers where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetStickers = GetStickers
 instance Show GetStickers where
   show
     GetStickers
-      { limit = limit,
-        emoji = emoji
+      { limit = limit_,
+        emoji = emoji_
       } =
       "GetStickers"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "emoji" emoji
+          [ U.p "limit" limit_,
+            U.p "emoji" emoji_
           ]
 
 instance T.ToJSON GetStickers where
   toJSON
     GetStickers
-      { limit = limit,
-        emoji = emoji
+      { limit = limit_,
+        emoji = emoji_
       } =
       A.object
         [ "@type" A..= T.String "getStickers",
-          "limit" A..= limit,
-          "emoji" A..= emoji
+          "limit" A..= limit_,
+          "emoji" A..= emoji_
         ]

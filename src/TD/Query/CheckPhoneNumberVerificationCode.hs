@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckPhoneNumberVerificationCode where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CheckPhoneNumberVerificationCode = CheckPhoneNumberVerificationCode
 instance Show CheckPhoneNumberVerificationCode where
   show
     CheckPhoneNumberVerificationCode
-      { code = code
+      { code = code_
       } =
       "CheckPhoneNumberVerificationCode"
         ++ U.cc
-          [ U.p "code" code
+          [ U.p "code" code_
           ]
 
 instance T.ToJSON CheckPhoneNumberVerificationCode where
   toJSON
     CheckPhoneNumberVerificationCode
-      { code = code
+      { code = code_
       } =
       A.object
         [ "@type" A..= T.String "checkPhoneNumberVerificationCode",
-          "code" A..= code
+          "code" A..= code_
         ]

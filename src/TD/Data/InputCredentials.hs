@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputCredentials where
 
 import qualified Data.Aeson as A
@@ -35,37 +36,37 @@ data InputCredentials
 instance Show InputCredentials where
   show
     InputCredentialsSaved
-      { saved_credentials_id = saved_credentials_id
+      { saved_credentials_id = saved_credentials_id_
       } =
       "InputCredentialsSaved"
         ++ U.cc
-          [ U.p "saved_credentials_id" saved_credentials_id
+          [ U.p "saved_credentials_id" saved_credentials_id_
           ]
   show
     InputCredentialsNew
-      { allow_save = allow_save,
-        _data = _data
+      { allow_save = allow_save_,
+        _data = _data_
       } =
       "InputCredentialsNew"
         ++ U.cc
-          [ U.p "allow_save" allow_save,
-            U.p "_data" _data
+          [ U.p "allow_save" allow_save_,
+            U.p "_data" _data_
           ]
   show
     InputCredentialsApplePay
-      { _data = _data
+      { _data = _data_
       } =
       "InputCredentialsApplePay"
         ++ U.cc
-          [ U.p "_data" _data
+          [ U.p "_data" _data_
           ]
   show
     InputCredentialsGooglePay
-      { _data = _data
+      { _data = _data_
       } =
       "InputCredentialsGooglePay"
         ++ U.cc
-          [ U.p "_data" _data
+          [ U.p "_data" _data_
           ]
 
 instance T.FromJSON InputCredentials where
@@ -104,35 +105,35 @@ instance T.FromJSON InputCredentials where
 instance T.ToJSON InputCredentials where
   toJSON
     InputCredentialsSaved
-      { saved_credentials_id = saved_credentials_id
+      { saved_credentials_id = saved_credentials_id_
       } =
       A.object
         [ "@type" A..= T.String "inputCredentialsSaved",
-          "saved_credentials_id" A..= saved_credentials_id
+          "saved_credentials_id" A..= saved_credentials_id_
         ]
   toJSON
     InputCredentialsNew
-      { allow_save = allow_save,
-        _data = _data
+      { allow_save = allow_save_,
+        _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "inputCredentialsNew",
-          "allow_save" A..= allow_save,
-          "data" A..= _data
+          "allow_save" A..= allow_save_,
+          "data" A..= _data_
         ]
   toJSON
     InputCredentialsApplePay
-      { _data = _data
+      { _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "inputCredentialsApplePay",
-          "data" A..= _data
+          "data" A..= _data_
         ]
   toJSON
     InputCredentialsGooglePay
-      { _data = _data
+      { _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "inputCredentialsGooglePay",
-          "data" A..= _data
+          "data" A..= _data_
         ]

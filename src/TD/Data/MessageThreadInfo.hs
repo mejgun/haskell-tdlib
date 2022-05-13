@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageThreadInfo where
 
 import qualified Data.Aeson as A
@@ -29,21 +30,21 @@ data MessageThreadInfo = -- | Contains information about a message thread
 instance Show MessageThreadInfo where
   show
     MessageThreadInfo
-      { draft_message = draft_message,
-        messages = messages,
-        unread_message_count = unread_message_count,
-        reply_info = reply_info,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { draft_message = draft_message_,
+        messages = messages_,
+        unread_message_count = unread_message_count_,
+        reply_info = reply_info_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       "MessageThreadInfo"
         ++ U.cc
-          [ U.p "draft_message" draft_message,
-            U.p "messages" messages,
-            U.p "unread_message_count" unread_message_count,
-            U.p "reply_info" reply_info,
-            U.p "message_thread_id" message_thread_id,
-            U.p "chat_id" chat_id
+          [ U.p "draft_message" draft_message_,
+            U.p "messages" messages_,
+            U.p "unread_message_count" unread_message_count_,
+            U.p "reply_info" reply_info_,
+            U.p "message_thread_id" message_thread_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.FromJSON MessageThreadInfo where
@@ -68,19 +69,19 @@ instance T.FromJSON MessageThreadInfo where
 instance T.ToJSON MessageThreadInfo where
   toJSON
     MessageThreadInfo
-      { draft_message = draft_message,
-        messages = messages,
-        unread_message_count = unread_message_count,
-        reply_info = reply_info,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { draft_message = draft_message_,
+        messages = messages_,
+        unread_message_count = unread_message_count_,
+        reply_info = reply_info_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "messageThreadInfo",
-          "draft_message" A..= draft_message,
-          "messages" A..= messages,
-          "unread_message_count" A..= unread_message_count,
-          "reply_info" A..= reply_info,
-          "message_thread_id" A..= message_thread_id,
-          "chat_id" A..= chat_id
+          "draft_message" A..= draft_message_,
+          "messages" A..= messages_,
+          "unread_message_count" A..= unread_message_count_,
+          "reply_info" A..= reply_info_,
+          "message_thread_id" A..= message_thread_id_,
+          "chat_id" A..= chat_id_
         ]

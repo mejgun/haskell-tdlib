@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageCalendar where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data MessageCalendar = -- | Contains information about found messages, split by 
 instance Show MessageCalendar where
   show
     MessageCalendar
-      { days = days,
-        total_count = total_count
+      { days = days_,
+        total_count = total_count_
       } =
       "MessageCalendar"
         ++ U.cc
-          [ U.p "days" days,
-            U.p "total_count" total_count
+          [ U.p "days" days_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON MessageCalendar where
@@ -46,11 +47,11 @@ instance T.FromJSON MessageCalendar where
 instance T.ToJSON MessageCalendar where
   toJSON
     MessageCalendar
-      { days = days,
-        total_count = total_count
+      { days = days_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "messageCalendar",
-          "days" A..= days,
-          "total_count" A..= total_count
+          "days" A..= days_,
+          "total_count" A..= total_count_
         ]

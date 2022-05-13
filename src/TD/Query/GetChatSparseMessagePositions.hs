@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatSparseMessagePositions where
 
 import qualified Data.Aeson as A
@@ -25,31 +26,31 @@ data GetChatSparseMessagePositions = GetChatSparseMessagePositions
 instance Show GetChatSparseMessagePositions where
   show
     GetChatSparseMessagePositions
-      { limit = limit,
-        from_message_id = from_message_id,
-        _filter = _filter,
-        chat_id = chat_id
+      { limit = limit_,
+        from_message_id = from_message_id_,
+        _filter = _filter_,
+        chat_id = chat_id_
       } =
       "GetChatSparseMessagePositions"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "from_message_id" from_message_id,
-            U.p "_filter" _filter,
-            U.p "chat_id" chat_id
+          [ U.p "limit" limit_,
+            U.p "from_message_id" from_message_id_,
+            U.p "_filter" _filter_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatSparseMessagePositions where
   toJSON
     GetChatSparseMessagePositions
-      { limit = limit,
-        from_message_id = from_message_id,
-        _filter = _filter,
-        chat_id = chat_id
+      { limit = limit_,
+        from_message_id = from_message_id_,
+        _filter = _filter_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatSparseMessagePositions",
-          "limit" A..= limit,
-          "from_message_id" A..= from_message_id,
-          "filter" A..= _filter,
-          "chat_id" A..= chat_id
+          "limit" A..= limit_,
+          "from_message_id" A..= from_message_id_,
+          "filter" A..= _filter_,
+          "chat_id" A..= chat_id_
         ]

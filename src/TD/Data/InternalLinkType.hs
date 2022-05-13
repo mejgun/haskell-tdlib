@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InternalLinkType where
 
 import qualified Data.Aeson as A
@@ -184,63 +185,63 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeAttachmentMenuBot
-      { url = url,
-        bot_username = bot_username,
-        chat_link = chat_link
+      { url = url_,
+        bot_username = bot_username_,
+        chat_link = chat_link_
       } =
       "InternalLinkTypeAttachmentMenuBot"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "bot_username" bot_username,
-            U.p "chat_link" chat_link
+          [ U.p "url" url_,
+            U.p "bot_username" bot_username_,
+            U.p "chat_link" chat_link_
           ]
   show
     InternalLinkTypeAuthenticationCode
-      { code = code
+      { code = code_
       } =
       "InternalLinkTypeAuthenticationCode"
         ++ U.cc
-          [ U.p "code" code
+          [ U.p "code" code_
           ]
   show
     InternalLinkTypeBackground
-      { background_name = background_name
+      { background_name = background_name_
       } =
       "InternalLinkTypeBackground"
         ++ U.cc
-          [ U.p "background_name" background_name
+          [ U.p "background_name" background_name_
           ]
   show
     InternalLinkTypeBotStart
-      { start_parameter = start_parameter,
-        bot_username = bot_username
+      { start_parameter = start_parameter_,
+        bot_username = bot_username_
       } =
       "InternalLinkTypeBotStart"
         ++ U.cc
-          [ U.p "start_parameter" start_parameter,
-            U.p "bot_username" bot_username
+          [ U.p "start_parameter" start_parameter_,
+            U.p "bot_username" bot_username_
           ]
   show
     InternalLinkTypeBotStartInGroup
-      { administrator_rights = administrator_rights,
-        start_parameter = start_parameter,
-        bot_username = bot_username
+      { administrator_rights = administrator_rights_,
+        start_parameter = start_parameter_,
+        bot_username = bot_username_
       } =
       "InternalLinkTypeBotStartInGroup"
         ++ U.cc
-          [ U.p "administrator_rights" administrator_rights,
-            U.p "start_parameter" start_parameter,
-            U.p "bot_username" bot_username
+          [ U.p "administrator_rights" administrator_rights_,
+            U.p "start_parameter" start_parameter_,
+            U.p "bot_username" bot_username_
           ]
   show
     InternalLinkTypeBotAddToChannel
-      { administrator_rights = administrator_rights,
-        bot_username = bot_username
+      { administrator_rights = administrator_rights_,
+        bot_username = bot_username_
       } =
       "InternalLinkTypeBotAddToChannel"
         ++ U.cc
-          [ U.p "administrator_rights" administrator_rights,
-            U.p "bot_username" bot_username
+          [ U.p "administrator_rights" administrator_rights_,
+            U.p "bot_username" bot_username_
           ]
   show InternalLinkTypeChangePhoneNumber =
     "InternalLinkTypeChangePhoneNumber"
@@ -248,11 +249,11 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeChatInvite
-      { invite_link = invite_link
+      { invite_link = invite_link_
       } =
       "InternalLinkTypeChatInvite"
         ++ U.cc
-          [ U.p "invite_link" invite_link
+          [ U.p "invite_link" invite_link_
           ]
   show InternalLinkTypeFilterSettings =
     "InternalLinkTypeFilterSettings"
@@ -260,21 +261,21 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeGame
-      { game_short_name = game_short_name,
-        bot_username = bot_username
+      { game_short_name = game_short_name_,
+        bot_username = bot_username_
       } =
       "InternalLinkTypeGame"
         ++ U.cc
-          [ U.p "game_short_name" game_short_name,
-            U.p "bot_username" bot_username
+          [ U.p "game_short_name" game_short_name_,
+            U.p "bot_username" bot_username_
           ]
   show
     InternalLinkTypeLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       "InternalLinkTypeLanguagePack"
         ++ U.cc
-          [ U.p "language_pack_id" language_pack_id
+          [ U.p "language_pack_id" language_pack_id_
           ]
   show InternalLinkTypeLanguageSettings =
     "InternalLinkTypeLanguageSettings"
@@ -282,47 +283,47 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeMessage
-      { url = url
+      { url = url_
       } =
       "InternalLinkTypeMessage"
         ++ U.cc
-          [ U.p "url" url
+          [ U.p "url" url_
           ]
   show
     InternalLinkTypeMessageDraft
-      { contains_link = contains_link,
-        text = text
+      { contains_link = contains_link_,
+        text = text_
       } =
       "InternalLinkTypeMessageDraft"
         ++ U.cc
-          [ U.p "contains_link" contains_link,
-            U.p "text" text
+          [ U.p "contains_link" contains_link_,
+            U.p "text" text_
           ]
   show
     InternalLinkTypePassportDataRequest
-      { callback_url = callback_url,
-        nonce = nonce,
-        public_key = public_key,
-        scope = scope,
-        bot_user_id = bot_user_id
+      { callback_url = callback_url_,
+        nonce = nonce_,
+        public_key = public_key_,
+        scope = scope_,
+        bot_user_id = bot_user_id_
       } =
       "InternalLinkTypePassportDataRequest"
         ++ U.cc
-          [ U.p "callback_url" callback_url,
-            U.p "nonce" nonce,
-            U.p "public_key" public_key,
-            U.p "scope" scope,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "callback_url" callback_url_,
+            U.p "nonce" nonce_,
+            U.p "public_key" public_key_,
+            U.p "scope" scope_,
+            U.p "bot_user_id" bot_user_id_
           ]
   show
     InternalLinkTypePhoneNumberConfirmation
-      { phone_number = phone_number,
-        hash = hash
+      { phone_number = phone_number_,
+        hash = hash_
       } =
       "InternalLinkTypePhoneNumberConfirmation"
         ++ U.cc
-          [ U.p "phone_number" phone_number,
-            U.p "hash" hash
+          [ U.p "phone_number" phone_number_,
+            U.p "hash" hash_
           ]
   show InternalLinkTypePrivacyAndSecuritySettings =
     "InternalLinkTypePrivacyAndSecuritySettings"
@@ -330,23 +331,23 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeProxy
-      { _type = _type,
-        port = port,
-        server = server
+      { _type = _type_,
+        port = port_,
+        server = server_
       } =
       "InternalLinkTypeProxy"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "port" port,
-            U.p "server" server
+          [ U.p "_type" _type_,
+            U.p "port" port_,
+            U.p "server" server_
           ]
   show
     InternalLinkTypePublicChat
-      { chat_username = chat_username
+      { chat_username = chat_username_
       } =
       "InternalLinkTypePublicChat"
         ++ U.cc
-          [ U.p "chat_username" chat_username
+          [ U.p "chat_username" chat_username_
           ]
   show InternalLinkTypeQrCodeAuthentication =
     "InternalLinkTypeQrCodeAuthentication"
@@ -358,19 +359,19 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeStickerSet
-      { sticker_set_name = sticker_set_name
+      { sticker_set_name = sticker_set_name_
       } =
       "InternalLinkTypeStickerSet"
         ++ U.cc
-          [ U.p "sticker_set_name" sticker_set_name
+          [ U.p "sticker_set_name" sticker_set_name_
           ]
   show
     InternalLinkTypeTheme
-      { theme_name = theme_name
+      { theme_name = theme_name_
       } =
       "InternalLinkTypeTheme"
         ++ U.cc
-          [ U.p "theme_name" theme_name
+          [ U.p "theme_name" theme_name_
           ]
   show InternalLinkTypeThemeSettings =
     "InternalLinkTypeThemeSettings"
@@ -378,11 +379,11 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeUnknownDeepLink
-      { link = link
+      { link = link_
       } =
       "InternalLinkTypeUnknownDeepLink"
         ++ U.cc
-          [ U.p "link" link
+          [ U.p "link" link_
           ]
   show InternalLinkTypeUnsupportedProxy =
     "InternalLinkTypeUnsupportedProxy"
@@ -390,23 +391,23 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeUserPhoneNumber
-      { phone_number = phone_number
+      { phone_number = phone_number_
       } =
       "InternalLinkTypeUserPhoneNumber"
         ++ U.cc
-          [ U.p "phone_number" phone_number
+          [ U.p "phone_number" phone_number_
           ]
   show
     InternalLinkTypeVideoChat
-      { is_live_stream = is_live_stream,
-        invite_hash = invite_hash,
-        chat_username = chat_username
+      { is_live_stream = is_live_stream_,
+        invite_hash = invite_hash_,
+        chat_username = chat_username_
       } =
       "InternalLinkTypeVideoChat"
         ++ U.cc
-          [ U.p "is_live_stream" is_live_stream,
-            U.p "invite_hash" invite_hash,
-            U.p "chat_username" chat_username
+          [ U.p "is_live_stream" is_live_stream_,
+            U.p "invite_hash" invite_hash_,
+            U.p "chat_username" chat_username_
           ]
 
 instance T.FromJSON InternalLinkType where
@@ -446,8 +447,7 @@ instance T.FromJSON InternalLinkType where
       _ -> mempty
     where
       parseInternalLinkTypeActiveSessions :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeActiveSessions = A.withObject "InternalLinkTypeActiveSessions" $ \o -> do
-        return $ InternalLinkTypeActiveSessions {}
+      parseInternalLinkTypeActiveSessions = A.withObject "InternalLinkTypeActiveSessions" $ \_ -> return InternalLinkTypeActiveSessions
 
       parseInternalLinkTypeAttachmentMenuBot :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeAttachmentMenuBot = A.withObject "InternalLinkTypeAttachmentMenuBot" $ \o -> do
@@ -486,8 +486,7 @@ instance T.FromJSON InternalLinkType where
         return $ InternalLinkTypeBotAddToChannel {administrator_rights = administrator_rights_, bot_username = bot_username_}
 
       parseInternalLinkTypeChangePhoneNumber :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeChangePhoneNumber = A.withObject "InternalLinkTypeChangePhoneNumber" $ \o -> do
-        return $ InternalLinkTypeChangePhoneNumber {}
+      parseInternalLinkTypeChangePhoneNumber = A.withObject "InternalLinkTypeChangePhoneNumber" $ \_ -> return InternalLinkTypeChangePhoneNumber
 
       parseInternalLinkTypeChatInvite :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeChatInvite = A.withObject "InternalLinkTypeChatInvite" $ \o -> do
@@ -495,8 +494,7 @@ instance T.FromJSON InternalLinkType where
         return $ InternalLinkTypeChatInvite {invite_link = invite_link_}
 
       parseInternalLinkTypeFilterSettings :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeFilterSettings = A.withObject "InternalLinkTypeFilterSettings" $ \o -> do
-        return $ InternalLinkTypeFilterSettings {}
+      parseInternalLinkTypeFilterSettings = A.withObject "InternalLinkTypeFilterSettings" $ \_ -> return InternalLinkTypeFilterSettings
 
       parseInternalLinkTypeGame :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeGame = A.withObject "InternalLinkTypeGame" $ \o -> do
@@ -510,8 +508,7 @@ instance T.FromJSON InternalLinkType where
         return $ InternalLinkTypeLanguagePack {language_pack_id = language_pack_id_}
 
       parseInternalLinkTypeLanguageSettings :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeLanguageSettings = A.withObject "InternalLinkTypeLanguageSettings" $ \o -> do
-        return $ InternalLinkTypeLanguageSettings {}
+      parseInternalLinkTypeLanguageSettings = A.withObject "InternalLinkTypeLanguageSettings" $ \_ -> return InternalLinkTypeLanguageSettings
 
       parseInternalLinkTypeMessage :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeMessage = A.withObject "InternalLinkTypeMessage" $ \o -> do
@@ -540,8 +537,7 @@ instance T.FromJSON InternalLinkType where
         return $ InternalLinkTypePhoneNumberConfirmation {phone_number = phone_number_, hash = hash_}
 
       parseInternalLinkTypePrivacyAndSecuritySettings :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypePrivacyAndSecuritySettings = A.withObject "InternalLinkTypePrivacyAndSecuritySettings" $ \o -> do
-        return $ InternalLinkTypePrivacyAndSecuritySettings {}
+      parseInternalLinkTypePrivacyAndSecuritySettings = A.withObject "InternalLinkTypePrivacyAndSecuritySettings" $ \_ -> return InternalLinkTypePrivacyAndSecuritySettings
 
       parseInternalLinkTypeProxy :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeProxy = A.withObject "InternalLinkTypeProxy" $ \o -> do
@@ -556,12 +552,10 @@ instance T.FromJSON InternalLinkType where
         return $ InternalLinkTypePublicChat {chat_username = chat_username_}
 
       parseInternalLinkTypeQrCodeAuthentication :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeQrCodeAuthentication = A.withObject "InternalLinkTypeQrCodeAuthentication" $ \o -> do
-        return $ InternalLinkTypeQrCodeAuthentication {}
+      parseInternalLinkTypeQrCodeAuthentication = A.withObject "InternalLinkTypeQrCodeAuthentication" $ \_ -> return InternalLinkTypeQrCodeAuthentication
 
       parseInternalLinkTypeSettings :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeSettings = A.withObject "InternalLinkTypeSettings" $ \o -> do
-        return $ InternalLinkTypeSettings {}
+      parseInternalLinkTypeSettings = A.withObject "InternalLinkTypeSettings" $ \_ -> return InternalLinkTypeSettings
 
       parseInternalLinkTypeStickerSet :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeStickerSet = A.withObject "InternalLinkTypeStickerSet" $ \o -> do
@@ -574,8 +568,7 @@ instance T.FromJSON InternalLinkType where
         return $ InternalLinkTypeTheme {theme_name = theme_name_}
 
       parseInternalLinkTypeThemeSettings :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeThemeSettings = A.withObject "InternalLinkTypeThemeSettings" $ \o -> do
-        return $ InternalLinkTypeThemeSettings {}
+      parseInternalLinkTypeThemeSettings = A.withObject "InternalLinkTypeThemeSettings" $ \_ -> return InternalLinkTypeThemeSettings
 
       parseInternalLinkTypeUnknownDeepLink :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeUnknownDeepLink = A.withObject "InternalLinkTypeUnknownDeepLink" $ \o -> do
@@ -583,8 +576,7 @@ instance T.FromJSON InternalLinkType where
         return $ InternalLinkTypeUnknownDeepLink {link = link_}
 
       parseInternalLinkTypeUnsupportedProxy :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeUnsupportedProxy = A.withObject "InternalLinkTypeUnsupportedProxy" $ \o -> do
-        return $ InternalLinkTypeUnsupportedProxy {}
+      parseInternalLinkTypeUnsupportedProxy = A.withObject "InternalLinkTypeUnsupportedProxy" $ \_ -> return InternalLinkTypeUnsupportedProxy
 
       parseInternalLinkTypeUserPhoneNumber :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeUserPhoneNumber = A.withObject "InternalLinkTypeUserPhoneNumber" $ \o -> do
@@ -606,63 +598,63 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeAttachmentMenuBot
-      { url = url,
-        bot_username = bot_username,
-        chat_link = chat_link
+      { url = url_,
+        bot_username = bot_username_,
+        chat_link = chat_link_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeAttachmentMenuBot",
-          "url" A..= url,
-          "bot_username" A..= bot_username,
-          "chat_link" A..= chat_link
+          "url" A..= url_,
+          "bot_username" A..= bot_username_,
+          "chat_link" A..= chat_link_
         ]
   toJSON
     InternalLinkTypeAuthenticationCode
-      { code = code
+      { code = code_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeAuthenticationCode",
-          "code" A..= code
+          "code" A..= code_
         ]
   toJSON
     InternalLinkTypeBackground
-      { background_name = background_name
+      { background_name = background_name_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeBackground",
-          "background_name" A..= background_name
+          "background_name" A..= background_name_
         ]
   toJSON
     InternalLinkTypeBotStart
-      { start_parameter = start_parameter,
-        bot_username = bot_username
+      { start_parameter = start_parameter_,
+        bot_username = bot_username_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeBotStart",
-          "start_parameter" A..= start_parameter,
-          "bot_username" A..= bot_username
+          "start_parameter" A..= start_parameter_,
+          "bot_username" A..= bot_username_
         ]
   toJSON
     InternalLinkTypeBotStartInGroup
-      { administrator_rights = administrator_rights,
-        start_parameter = start_parameter,
-        bot_username = bot_username
+      { administrator_rights = administrator_rights_,
+        start_parameter = start_parameter_,
+        bot_username = bot_username_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeBotStartInGroup",
-          "administrator_rights" A..= administrator_rights,
-          "start_parameter" A..= start_parameter,
-          "bot_username" A..= bot_username
+          "administrator_rights" A..= administrator_rights_,
+          "start_parameter" A..= start_parameter_,
+          "bot_username" A..= bot_username_
         ]
   toJSON
     InternalLinkTypeBotAddToChannel
-      { administrator_rights = administrator_rights,
-        bot_username = bot_username
+      { administrator_rights = administrator_rights_,
+        bot_username = bot_username_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeBotAddToChannel",
-          "administrator_rights" A..= administrator_rights,
-          "bot_username" A..= bot_username
+          "administrator_rights" A..= administrator_rights_,
+          "bot_username" A..= bot_username_
         ]
   toJSON InternalLinkTypeChangePhoneNumber =
     A.object
@@ -670,11 +662,11 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeChatInvite
-      { invite_link = invite_link
+      { invite_link = invite_link_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeChatInvite",
-          "invite_link" A..= invite_link
+          "invite_link" A..= invite_link_
         ]
   toJSON InternalLinkTypeFilterSettings =
     A.object
@@ -682,21 +674,21 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeGame
-      { game_short_name = game_short_name,
-        bot_username = bot_username
+      { game_short_name = game_short_name_,
+        bot_username = bot_username_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeGame",
-          "game_short_name" A..= game_short_name,
-          "bot_username" A..= bot_username
+          "game_short_name" A..= game_short_name_,
+          "bot_username" A..= bot_username_
         ]
   toJSON
     InternalLinkTypeLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeLanguagePack",
-          "language_pack_id" A..= language_pack_id
+          "language_pack_id" A..= language_pack_id_
         ]
   toJSON InternalLinkTypeLanguageSettings =
     A.object
@@ -704,47 +696,47 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeMessage
-      { url = url
+      { url = url_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeMessage",
-          "url" A..= url
+          "url" A..= url_
         ]
   toJSON
     InternalLinkTypeMessageDraft
-      { contains_link = contains_link,
-        text = text
+      { contains_link = contains_link_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeMessageDraft",
-          "contains_link" A..= contains_link,
-          "text" A..= text
+          "contains_link" A..= contains_link_,
+          "text" A..= text_
         ]
   toJSON
     InternalLinkTypePassportDataRequest
-      { callback_url = callback_url,
-        nonce = nonce,
-        public_key = public_key,
-        scope = scope,
-        bot_user_id = bot_user_id
+      { callback_url = callback_url_,
+        nonce = nonce_,
+        public_key = public_key_,
+        scope = scope_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypePassportDataRequest",
-          "callback_url" A..= callback_url,
-          "nonce" A..= nonce,
-          "public_key" A..= public_key,
-          "scope" A..= scope,
-          "bot_user_id" A..= bot_user_id
+          "callback_url" A..= callback_url_,
+          "nonce" A..= nonce_,
+          "public_key" A..= public_key_,
+          "scope" A..= scope_,
+          "bot_user_id" A..= bot_user_id_
         ]
   toJSON
     InternalLinkTypePhoneNumberConfirmation
-      { phone_number = phone_number,
-        hash = hash
+      { phone_number = phone_number_,
+        hash = hash_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypePhoneNumberConfirmation",
-          "phone_number" A..= phone_number,
-          "hash" A..= hash
+          "phone_number" A..= phone_number_,
+          "hash" A..= hash_
         ]
   toJSON InternalLinkTypePrivacyAndSecuritySettings =
     A.object
@@ -752,23 +744,23 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeProxy
-      { _type = _type,
-        port = port,
-        server = server
+      { _type = _type_,
+        port = port_,
+        server = server_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeProxy",
-          "type" A..= _type,
-          "port" A..= port,
-          "server" A..= server
+          "type" A..= _type_,
+          "port" A..= port_,
+          "server" A..= server_
         ]
   toJSON
     InternalLinkTypePublicChat
-      { chat_username = chat_username
+      { chat_username = chat_username_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypePublicChat",
-          "chat_username" A..= chat_username
+          "chat_username" A..= chat_username_
         ]
   toJSON InternalLinkTypeQrCodeAuthentication =
     A.object
@@ -780,19 +772,19 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeStickerSet
-      { sticker_set_name = sticker_set_name
+      { sticker_set_name = sticker_set_name_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeStickerSet",
-          "sticker_set_name" A..= sticker_set_name
+          "sticker_set_name" A..= sticker_set_name_
         ]
   toJSON
     InternalLinkTypeTheme
-      { theme_name = theme_name
+      { theme_name = theme_name_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeTheme",
-          "theme_name" A..= theme_name
+          "theme_name" A..= theme_name_
         ]
   toJSON InternalLinkTypeThemeSettings =
     A.object
@@ -800,11 +792,11 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeUnknownDeepLink
-      { link = link
+      { link = link_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeUnknownDeepLink",
-          "link" A..= link
+          "link" A..= link_
         ]
   toJSON InternalLinkTypeUnsupportedProxy =
     A.object
@@ -812,21 +804,21 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeUserPhoneNumber
-      { phone_number = phone_number
+      { phone_number = phone_number_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeUserPhoneNumber",
-          "phone_number" A..= phone_number
+          "phone_number" A..= phone_number_
         ]
   toJSON
     InternalLinkTypeVideoChat
-      { is_live_stream = is_live_stream,
-        invite_hash = invite_hash,
-        chat_username = chat_username
+      { is_live_stream = is_live_stream_,
+        invite_hash = invite_hash_,
+        chat_username = chat_username_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeVideoChat",
-          "is_live_stream" A..= is_live_stream,
-          "invite_hash" A..= invite_hash,
-          "chat_username" A..= chat_username
+          "is_live_stream" A..= is_live_stream_,
+          "invite_hash" A..= invite_hash_,
+          "chat_username" A..= chat_username_
         ]

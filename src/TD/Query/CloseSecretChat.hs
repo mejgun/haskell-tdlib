@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CloseSecretChat where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CloseSecretChat = CloseSecretChat
 instance Show CloseSecretChat where
   show
     CloseSecretChat
-      { secret_chat_id = secret_chat_id
+      { secret_chat_id = secret_chat_id_
       } =
       "CloseSecretChat"
         ++ U.cc
-          [ U.p "secret_chat_id" secret_chat_id
+          [ U.p "secret_chat_id" secret_chat_id_
           ]
 
 instance T.ToJSON CloseSecretChat where
   toJSON
     CloseSecretChat
-      { secret_chat_id = secret_chat_id
+      { secret_chat_id = secret_chat_id_
       } =
       A.object
         [ "@type" A..= T.String "closeSecretChat",
-          "secret_chat_id" A..= secret_chat_id
+          "secret_chat_id" A..= secret_chat_id_
         ]

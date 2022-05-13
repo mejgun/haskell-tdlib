@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TdlibParameters where
 
 import qualified Data.Aeson as A
@@ -44,39 +45,39 @@ data TdlibParameters = -- | Contains parameters for TDLib initialization
 instance Show TdlibParameters where
   show
     TdlibParameters
-      { ignore_file_names = ignore_file_names,
-        enable_storage_optimizer = enable_storage_optimizer,
-        application_version = application_version,
-        system_version = system_version,
-        device_model = device_model,
-        system_language_code = system_language_code,
-        api_hash = api_hash,
-        api_id = api_id,
-        use_secret_chats = use_secret_chats,
-        use_message_database = use_message_database,
-        use_chat_info_database = use_chat_info_database,
-        use_file_database = use_file_database,
-        files_directory = files_directory,
-        database_directory = database_directory,
-        use_test_dc = use_test_dc
+      { ignore_file_names = ignore_file_names_,
+        enable_storage_optimizer = enable_storage_optimizer_,
+        application_version = application_version_,
+        system_version = system_version_,
+        device_model = device_model_,
+        system_language_code = system_language_code_,
+        api_hash = api_hash_,
+        api_id = api_id_,
+        use_secret_chats = use_secret_chats_,
+        use_message_database = use_message_database_,
+        use_chat_info_database = use_chat_info_database_,
+        use_file_database = use_file_database_,
+        files_directory = files_directory_,
+        database_directory = database_directory_,
+        use_test_dc = use_test_dc_
       } =
       "TdlibParameters"
         ++ U.cc
-          [ U.p "ignore_file_names" ignore_file_names,
-            U.p "enable_storage_optimizer" enable_storage_optimizer,
-            U.p "application_version" application_version,
-            U.p "system_version" system_version,
-            U.p "device_model" device_model,
-            U.p "system_language_code" system_language_code,
-            U.p "api_hash" api_hash,
-            U.p "api_id" api_id,
-            U.p "use_secret_chats" use_secret_chats,
-            U.p "use_message_database" use_message_database,
-            U.p "use_chat_info_database" use_chat_info_database,
-            U.p "use_file_database" use_file_database,
-            U.p "files_directory" files_directory,
-            U.p "database_directory" database_directory,
-            U.p "use_test_dc" use_test_dc
+          [ U.p "ignore_file_names" ignore_file_names_,
+            U.p "enable_storage_optimizer" enable_storage_optimizer_,
+            U.p "application_version" application_version_,
+            U.p "system_version" system_version_,
+            U.p "device_model" device_model_,
+            U.p "system_language_code" system_language_code_,
+            U.p "api_hash" api_hash_,
+            U.p "api_id" api_id_,
+            U.p "use_secret_chats" use_secret_chats_,
+            U.p "use_message_database" use_message_database_,
+            U.p "use_chat_info_database" use_chat_info_database_,
+            U.p "use_file_database" use_file_database_,
+            U.p "files_directory" files_directory_,
+            U.p "database_directory" database_directory_,
+            U.p "use_test_dc" use_test_dc_
           ]
 
 instance T.FromJSON TdlibParameters where
@@ -110,37 +111,37 @@ instance T.FromJSON TdlibParameters where
 instance T.ToJSON TdlibParameters where
   toJSON
     TdlibParameters
-      { ignore_file_names = ignore_file_names,
-        enable_storage_optimizer = enable_storage_optimizer,
-        application_version = application_version,
-        system_version = system_version,
-        device_model = device_model,
-        system_language_code = system_language_code,
-        api_hash = api_hash,
-        api_id = api_id,
-        use_secret_chats = use_secret_chats,
-        use_message_database = use_message_database,
-        use_chat_info_database = use_chat_info_database,
-        use_file_database = use_file_database,
-        files_directory = files_directory,
-        database_directory = database_directory,
-        use_test_dc = use_test_dc
+      { ignore_file_names = ignore_file_names_,
+        enable_storage_optimizer = enable_storage_optimizer_,
+        application_version = application_version_,
+        system_version = system_version_,
+        device_model = device_model_,
+        system_language_code = system_language_code_,
+        api_hash = api_hash_,
+        api_id = api_id_,
+        use_secret_chats = use_secret_chats_,
+        use_message_database = use_message_database_,
+        use_chat_info_database = use_chat_info_database_,
+        use_file_database = use_file_database_,
+        files_directory = files_directory_,
+        database_directory = database_directory_,
+        use_test_dc = use_test_dc_
       } =
       A.object
         [ "@type" A..= T.String "tdlibParameters",
-          "ignore_file_names" A..= ignore_file_names,
-          "enable_storage_optimizer" A..= enable_storage_optimizer,
-          "application_version" A..= application_version,
-          "system_version" A..= system_version,
-          "device_model" A..= device_model,
-          "system_language_code" A..= system_language_code,
-          "api_hash" A..= api_hash,
-          "api_id" A..= api_id,
-          "use_secret_chats" A..= use_secret_chats,
-          "use_message_database" A..= use_message_database,
-          "use_chat_info_database" A..= use_chat_info_database,
-          "use_file_database" A..= use_file_database,
-          "files_directory" A..= files_directory,
-          "database_directory" A..= database_directory,
-          "use_test_dc" A..= use_test_dc
+          "ignore_file_names" A..= ignore_file_names_,
+          "enable_storage_optimizer" A..= enable_storage_optimizer_,
+          "application_version" A..= application_version_,
+          "system_version" A..= system_version_,
+          "device_model" A..= device_model_,
+          "system_language_code" A..= system_language_code_,
+          "api_hash" A..= api_hash_,
+          "api_id" A..= api_id_,
+          "use_secret_chats" A..= use_secret_chats_,
+          "use_message_database" A..= use_message_database_,
+          "use_chat_info_database" A..= use_chat_info_database_,
+          "use_file_database" A..= use_file_database_,
+          "files_directory" A..= files_directory_,
+          "database_directory" A..= database_directory_,
+          "use_test_dc" A..= use_test_dc_
         ]

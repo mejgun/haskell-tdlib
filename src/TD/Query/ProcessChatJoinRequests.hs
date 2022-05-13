@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ProcessChatJoinRequests where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data ProcessChatJoinRequests = ProcessChatJoinRequests
 instance Show ProcessChatJoinRequests where
   show
     ProcessChatJoinRequests
-      { approve = approve,
-        invite_link = invite_link,
-        chat_id = chat_id
+      { approve = approve_,
+        invite_link = invite_link_,
+        chat_id = chat_id_
       } =
       "ProcessChatJoinRequests"
         ++ U.cc
-          [ U.p "approve" approve,
-            U.p "invite_link" invite_link,
-            U.p "chat_id" chat_id
+          [ U.p "approve" approve_,
+            U.p "invite_link" invite_link_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ProcessChatJoinRequests where
   toJSON
     ProcessChatJoinRequests
-      { approve = approve,
-        invite_link = invite_link,
-        chat_id = chat_id
+      { approve = approve_,
+        invite_link = invite_link_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "processChatJoinRequests",
-          "approve" A..= approve,
-          "invite_link" A..= invite_link,
-          "chat_id" A..= chat_id
+          "approve" A..= approve_,
+          "invite_link" A..= invite_link_,
+          "chat_id" A..= chat_id_
         ]

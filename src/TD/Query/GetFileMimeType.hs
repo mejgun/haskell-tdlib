@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetFileMimeType where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetFileMimeType = GetFileMimeType
 instance Show GetFileMimeType where
   show
     GetFileMimeType
-      { file_name = file_name
+      { file_name = file_name_
       } =
       "GetFileMimeType"
         ++ U.cc
-          [ U.p "file_name" file_name
+          [ U.p "file_name" file_name_
           ]
 
 instance T.ToJSON GetFileMimeType where
   toJSON
     GetFileMimeType
-      { file_name = file_name
+      { file_name = file_name_
       } =
       A.object
         [ "@type" A..= T.String "getFileMimeType",
-          "file_name" A..= file_name
+          "file_name" A..= file_name_
         ]

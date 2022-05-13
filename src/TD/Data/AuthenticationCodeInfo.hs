@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AuthenticationCodeInfo where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data AuthenticationCodeInfo = -- | Information about the authentication code tha
 instance Show AuthenticationCodeInfo where
   show
     AuthenticationCodeInfo
-      { timeout = timeout,
-        next_type = next_type,
-        _type = _type,
-        phone_number = phone_number
+      { timeout = timeout_,
+        next_type = next_type_,
+        _type = _type_,
+        phone_number = phone_number_
       } =
       "AuthenticationCodeInfo"
         ++ U.cc
-          [ U.p "timeout" timeout,
-            U.p "next_type" next_type,
-            U.p "_type" _type,
-            U.p "phone_number" phone_number
+          [ U.p "timeout" timeout_,
+            U.p "next_type" next_type_,
+            U.p "_type" _type_,
+            U.p "phone_number" phone_number_
           ]
 
 instance T.FromJSON AuthenticationCodeInfo where
@@ -56,15 +57,15 @@ instance T.FromJSON AuthenticationCodeInfo where
 instance T.ToJSON AuthenticationCodeInfo where
   toJSON
     AuthenticationCodeInfo
-      { timeout = timeout,
-        next_type = next_type,
-        _type = _type,
-        phone_number = phone_number
+      { timeout = timeout_,
+        next_type = next_type_,
+        _type = _type_,
+        phone_number = phone_number_
       } =
       A.object
         [ "@type" A..= T.String "authenticationCodeInfo",
-          "timeout" A..= timeout,
-          "next_type" A..= next_type,
-          "type" A..= _type,
-          "phone_number" A..= phone_number
+          "timeout" A..= timeout_,
+          "next_type" A..= next_type_,
+          "type" A..= _type_,
+          "phone_number" A..= phone_number_
         ]

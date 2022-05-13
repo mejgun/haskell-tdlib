@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AddedReaction where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data AddedReaction = -- | Represents a reaction applied to a message @reaction T
 instance Show AddedReaction where
   show
     AddedReaction
-      { sender_id = sender_id,
-        reaction = reaction
+      { sender_id = sender_id_,
+        reaction = reaction_
       } =
       "AddedReaction"
         ++ U.cc
-          [ U.p "sender_id" sender_id,
-            U.p "reaction" reaction
+          [ U.p "sender_id" sender_id_,
+            U.p "reaction" reaction_
           ]
 
 instance T.FromJSON AddedReaction where
@@ -46,11 +47,11 @@ instance T.FromJSON AddedReaction where
 instance T.ToJSON AddedReaction where
   toJSON
     AddedReaction
-      { sender_id = sender_id,
-        reaction = reaction
+      { sender_id = sender_id_,
+        reaction = reaction_
       } =
       A.object
         [ "@type" A..= T.String "addedReaction",
-          "sender_id" A..= sender_id,
-          "reaction" A..= reaction
+          "sender_id" A..= sender_id_,
+          "reaction" A..= reaction_
         ]

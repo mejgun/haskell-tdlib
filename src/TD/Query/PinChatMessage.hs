@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.PinChatMessage where
 
 import qualified Data.Aeson as A
@@ -23,31 +24,31 @@ data PinChatMessage = PinChatMessage
 instance Show PinChatMessage where
   show
     PinChatMessage
-      { only_for_self = only_for_self,
-        disable_notification = disable_notification,
-        message_id = message_id,
-        chat_id = chat_id
+      { only_for_self = only_for_self_,
+        disable_notification = disable_notification_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "PinChatMessage"
         ++ U.cc
-          [ U.p "only_for_self" only_for_self,
-            U.p "disable_notification" disable_notification,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "only_for_self" only_for_self_,
+            U.p "disable_notification" disable_notification_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON PinChatMessage where
   toJSON
     PinChatMessage
-      { only_for_self = only_for_self,
-        disable_notification = disable_notification,
-        message_id = message_id,
-        chat_id = chat_id
+      { only_for_self = only_for_self_,
+        disable_notification = disable_notification_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "pinChatMessage",
-          "only_for_self" A..= only_for_self,
-          "disable_notification" A..= disable_notification,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "only_for_self" A..= only_for_self_,
+          "disable_notification" A..= disable_notification_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

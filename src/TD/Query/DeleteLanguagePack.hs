@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteLanguagePack where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data DeleteLanguagePack = DeleteLanguagePack
 instance Show DeleteLanguagePack where
   show
     DeleteLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       "DeleteLanguagePack"
         ++ U.cc
-          [ U.p "language_pack_id" language_pack_id
+          [ U.p "language_pack_id" language_pack_id_
           ]
 
 instance T.ToJSON DeleteLanguagePack where
   toJSON
     DeleteLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       A.object
         [ "@type" A..= T.String "deleteLanguagePack",
-          "language_pack_id" A..= language_pack_id
+          "language_pack_id" A..= language_pack_id_
         ]

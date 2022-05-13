@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatAdministratorRights where
 
 import qualified Data.Aeson as A
@@ -36,31 +37,31 @@ data ChatAdministratorRights = -- | Describes rights of the administrator
 instance Show ChatAdministratorRights where
   show
     ChatAdministratorRights
-      { is_anonymous = is_anonymous,
-        can_manage_video_chats = can_manage_video_chats,
-        can_promote_members = can_promote_members,
-        can_pin_messages = can_pin_messages,
-        can_restrict_members = can_restrict_members,
-        can_invite_users = can_invite_users,
-        can_delete_messages = can_delete_messages,
-        can_edit_messages = can_edit_messages,
-        can_post_messages = can_post_messages,
-        can_change_info = can_change_info,
-        can_manage_chat = can_manage_chat
+      { is_anonymous = is_anonymous_,
+        can_manage_video_chats = can_manage_video_chats_,
+        can_promote_members = can_promote_members_,
+        can_pin_messages = can_pin_messages_,
+        can_restrict_members = can_restrict_members_,
+        can_invite_users = can_invite_users_,
+        can_delete_messages = can_delete_messages_,
+        can_edit_messages = can_edit_messages_,
+        can_post_messages = can_post_messages_,
+        can_change_info = can_change_info_,
+        can_manage_chat = can_manage_chat_
       } =
       "ChatAdministratorRights"
         ++ U.cc
-          [ U.p "is_anonymous" is_anonymous,
-            U.p "can_manage_video_chats" can_manage_video_chats,
-            U.p "can_promote_members" can_promote_members,
-            U.p "can_pin_messages" can_pin_messages,
-            U.p "can_restrict_members" can_restrict_members,
-            U.p "can_invite_users" can_invite_users,
-            U.p "can_delete_messages" can_delete_messages,
-            U.p "can_edit_messages" can_edit_messages,
-            U.p "can_post_messages" can_post_messages,
-            U.p "can_change_info" can_change_info,
-            U.p "can_manage_chat" can_manage_chat
+          [ U.p "is_anonymous" is_anonymous_,
+            U.p "can_manage_video_chats" can_manage_video_chats_,
+            U.p "can_promote_members" can_promote_members_,
+            U.p "can_pin_messages" can_pin_messages_,
+            U.p "can_restrict_members" can_restrict_members_,
+            U.p "can_invite_users" can_invite_users_,
+            U.p "can_delete_messages" can_delete_messages_,
+            U.p "can_edit_messages" can_edit_messages_,
+            U.p "can_post_messages" can_post_messages_,
+            U.p "can_change_info" can_change_info_,
+            U.p "can_manage_chat" can_manage_chat_
           ]
 
 instance T.FromJSON ChatAdministratorRights where
@@ -90,29 +91,29 @@ instance T.FromJSON ChatAdministratorRights where
 instance T.ToJSON ChatAdministratorRights where
   toJSON
     ChatAdministratorRights
-      { is_anonymous = is_anonymous,
-        can_manage_video_chats = can_manage_video_chats,
-        can_promote_members = can_promote_members,
-        can_pin_messages = can_pin_messages,
-        can_restrict_members = can_restrict_members,
-        can_invite_users = can_invite_users,
-        can_delete_messages = can_delete_messages,
-        can_edit_messages = can_edit_messages,
-        can_post_messages = can_post_messages,
-        can_change_info = can_change_info,
-        can_manage_chat = can_manage_chat
+      { is_anonymous = is_anonymous_,
+        can_manage_video_chats = can_manage_video_chats_,
+        can_promote_members = can_promote_members_,
+        can_pin_messages = can_pin_messages_,
+        can_restrict_members = can_restrict_members_,
+        can_invite_users = can_invite_users_,
+        can_delete_messages = can_delete_messages_,
+        can_edit_messages = can_edit_messages_,
+        can_post_messages = can_post_messages_,
+        can_change_info = can_change_info_,
+        can_manage_chat = can_manage_chat_
       } =
       A.object
         [ "@type" A..= T.String "chatAdministratorRights",
-          "is_anonymous" A..= is_anonymous,
-          "can_manage_video_chats" A..= can_manage_video_chats,
-          "can_promote_members" A..= can_promote_members,
-          "can_pin_messages" A..= can_pin_messages,
-          "can_restrict_members" A..= can_restrict_members,
-          "can_invite_users" A..= can_invite_users,
-          "can_delete_messages" A..= can_delete_messages,
-          "can_edit_messages" A..= can_edit_messages,
-          "can_post_messages" A..= can_post_messages,
-          "can_change_info" A..= can_change_info,
-          "can_manage_chat" A..= can_manage_chat
+          "is_anonymous" A..= is_anonymous_,
+          "can_manage_video_chats" A..= can_manage_video_chats_,
+          "can_promote_members" A..= can_promote_members_,
+          "can_pin_messages" A..= can_pin_messages_,
+          "can_restrict_members" A..= can_restrict_members_,
+          "can_invite_users" A..= can_invite_users_,
+          "can_delete_messages" A..= can_delete_messages_,
+          "can_edit_messages" A..= can_edit_messages_,
+          "can_post_messages" A..= can_post_messages_,
+          "can_change_info" A..= can_change_info_,
+          "can_manage_chat" A..= can_manage_chat_
         ]

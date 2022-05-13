@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetLoginUrlInfo where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data GetLoginUrlInfo = GetLoginUrlInfo
 instance Show GetLoginUrlInfo where
   show
     GetLoginUrlInfo
-      { button_id = button_id,
-        message_id = message_id,
-        chat_id = chat_id
+      { button_id = button_id_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetLoginUrlInfo"
         ++ U.cc
-          [ U.p "button_id" button_id,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "button_id" button_id_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetLoginUrlInfo where
   toJSON
     GetLoginUrlInfo
-      { button_id = button_id,
-        message_id = message_id,
-        chat_id = chat_id
+      { button_id = button_id_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getLoginUrlInfo",
-          "button_id" A..= button_id,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "button_id" A..= button_id_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

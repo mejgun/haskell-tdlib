@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetLogTagVerbosityLevel where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetLogTagVerbosityLevel = GetLogTagVerbosityLevel
 instance Show GetLogTagVerbosityLevel where
   show
     GetLogTagVerbosityLevel
-      { tag = tag
+      { tag = tag_
       } =
       "GetLogTagVerbosityLevel"
         ++ U.cc
-          [ U.p "tag" tag
+          [ U.p "tag" tag_
           ]
 
 instance T.ToJSON GetLogTagVerbosityLevel where
   toJSON
     GetLogTagVerbosityLevel
-      { tag = tag
+      { tag = tag_
       } =
       A.object
         [ "@type" A..= T.String "getLogTagVerbosityLevel",
-          "tag" A..= tag
+          "tag" A..= tag_
         ]

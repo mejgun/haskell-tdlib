@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetLogStream where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SetLogStream = SetLogStream
 instance Show SetLogStream where
   show
     SetLogStream
-      { log_stream = log_stream
+      { log_stream = log_stream_
       } =
       "SetLogStream"
         ++ U.cc
-          [ U.p "log_stream" log_stream
+          [ U.p "log_stream" log_stream_
           ]
 
 instance T.ToJSON SetLogStream where
   toJSON
     SetLogStream
-      { log_stream = log_stream
+      { log_stream = log_stream_
       } =
       A.object
         [ "@type" A..= T.String "setLogStream",
-          "log_stream" A..= log_stream
+          "log_stream" A..= log_stream_
         ]

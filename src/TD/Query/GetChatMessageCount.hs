@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatMessageCount where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data GetChatMessageCount = GetChatMessageCount
 instance Show GetChatMessageCount where
   show
     GetChatMessageCount
-      { return_local = return_local,
-        _filter = _filter,
-        chat_id = chat_id
+      { return_local = return_local_,
+        _filter = _filter_,
+        chat_id = chat_id_
       } =
       "GetChatMessageCount"
         ++ U.cc
-          [ U.p "return_local" return_local,
-            U.p "_filter" _filter,
-            U.p "chat_id" chat_id
+          [ U.p "return_local" return_local_,
+            U.p "_filter" _filter_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatMessageCount where
   toJSON
     GetChatMessageCount
-      { return_local = return_local,
-        _filter = _filter,
-        chat_id = chat_id
+      { return_local = return_local_,
+        _filter = _filter_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatMessageCount",
-          "return_local" A..= return_local,
-          "filter" A..= _filter,
-          "chat_id" A..= chat_id
+          "return_local" A..= return_local_,
+          "filter" A..= _filter_,
+          "chat_id" A..= chat_id_
         ]

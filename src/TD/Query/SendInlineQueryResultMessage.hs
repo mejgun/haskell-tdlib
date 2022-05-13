@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendInlineQueryResultMessage where
 
 import qualified Data.Aeson as A
@@ -30,43 +31,43 @@ data SendInlineQueryResultMessage = SendInlineQueryResultMessage
 instance Show SendInlineQueryResultMessage where
   show
     SendInlineQueryResultMessage
-      { hide_via_bot = hide_via_bot,
-        result_id = result_id,
-        query_id = query_id,
-        options = options,
-        reply_to_message_id = reply_to_message_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { hide_via_bot = hide_via_bot_,
+        result_id = result_id_,
+        query_id = query_id_,
+        options = options_,
+        reply_to_message_id = reply_to_message_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       "SendInlineQueryResultMessage"
         ++ U.cc
-          [ U.p "hide_via_bot" hide_via_bot,
-            U.p "result_id" result_id,
-            U.p "query_id" query_id,
-            U.p "options" options,
-            U.p "reply_to_message_id" reply_to_message_id,
-            U.p "message_thread_id" message_thread_id,
-            U.p "chat_id" chat_id
+          [ U.p "hide_via_bot" hide_via_bot_,
+            U.p "result_id" result_id_,
+            U.p "query_id" query_id_,
+            U.p "options" options_,
+            U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "message_thread_id" message_thread_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SendInlineQueryResultMessage where
   toJSON
     SendInlineQueryResultMessage
-      { hide_via_bot = hide_via_bot,
-        result_id = result_id,
-        query_id = query_id,
-        options = options,
-        reply_to_message_id = reply_to_message_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { hide_via_bot = hide_via_bot_,
+        result_id = result_id_,
+        query_id = query_id_,
+        options = options_,
+        reply_to_message_id = reply_to_message_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "sendInlineQueryResultMessage",
-          "hide_via_bot" A..= hide_via_bot,
-          "result_id" A..= result_id,
-          "query_id" A..= query_id,
-          "options" A..= options,
-          "reply_to_message_id" A..= reply_to_message_id,
-          "message_thread_id" A..= message_thread_id,
-          "chat_id" A..= chat_id
+          "hide_via_bot" A..= hide_via_bot_,
+          "result_id" A..= result_id_,
+          "query_id" A..= query_id_,
+          "options" A..= options_,
+          "reply_to_message_id" A..= reply_to_message_id_,
+          "message_thread_id" A..= message_thread_id_,
+          "chat_id" A..= chat_id_
         ]

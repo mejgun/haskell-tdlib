@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Call where
 
 import qualified Data.Aeson as A
@@ -25,19 +26,19 @@ data Call = -- | Describes a call @id Call identifier, not persistent @user_id P
 instance Show Call where
   show
     Call
-      { state = state,
-        is_video = is_video,
-        is_outgoing = is_outgoing,
-        user_id = user_id,
-        _id = _id
+      { state = state_,
+        is_video = is_video_,
+        is_outgoing = is_outgoing_,
+        user_id = user_id_,
+        _id = _id_
       } =
       "Call"
         ++ U.cc
-          [ U.p "state" state,
-            U.p "is_video" is_video,
-            U.p "is_outgoing" is_outgoing,
-            U.p "user_id" user_id,
-            U.p "_id" _id
+          [ U.p "state" state_,
+            U.p "is_video" is_video_,
+            U.p "is_outgoing" is_outgoing_,
+            U.p "user_id" user_id_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Call where
@@ -61,17 +62,17 @@ instance T.FromJSON Call where
 instance T.ToJSON Call where
   toJSON
     Call
-      { state = state,
-        is_video = is_video,
-        is_outgoing = is_outgoing,
-        user_id = user_id,
-        _id = _id
+      { state = state_,
+        is_video = is_video_,
+        is_outgoing = is_outgoing_,
+        user_id = user_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "call",
-          "state" A..= state,
-          "is_video" A..= is_video,
-          "is_outgoing" A..= is_outgoing,
-          "user_id" A..= user_id,
-          "id" A..= _id
+          "state" A..= state_,
+          "is_video" A..= is_video_,
+          "is_outgoing" A..= is_outgoing_,
+          "user_id" A..= user_id_,
+          "id" A..= _id_
         ]

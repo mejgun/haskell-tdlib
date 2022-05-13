@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StickerSet where
 
 import qualified Data.Aeson as A
@@ -43,33 +44,33 @@ data StickerSet = -- | Represents a sticker set
 instance Show StickerSet where
   show
     StickerSet
-      { emojis = emojis,
-        stickers = stickers,
-        is_viewed = is_viewed,
-        sticker_type = sticker_type,
-        is_official = is_official,
-        is_archived = is_archived,
-        is_installed = is_installed,
-        thumbnail_outline = thumbnail_outline,
-        thumbnail = thumbnail,
-        name = name,
-        title = title,
-        _id = _id
+      { emojis = emojis_,
+        stickers = stickers_,
+        is_viewed = is_viewed_,
+        sticker_type = sticker_type_,
+        is_official = is_official_,
+        is_archived = is_archived_,
+        is_installed = is_installed_,
+        thumbnail_outline = thumbnail_outline_,
+        thumbnail = thumbnail_,
+        name = name_,
+        title = title_,
+        _id = _id_
       } =
       "StickerSet"
         ++ U.cc
-          [ U.p "emojis" emojis,
-            U.p "stickers" stickers,
-            U.p "is_viewed" is_viewed,
-            U.p "sticker_type" sticker_type,
-            U.p "is_official" is_official,
-            U.p "is_archived" is_archived,
-            U.p "is_installed" is_installed,
-            U.p "thumbnail_outline" thumbnail_outline,
-            U.p "thumbnail" thumbnail,
-            U.p "name" name,
-            U.p "title" title,
-            U.p "_id" _id
+          [ U.p "emojis" emojis_,
+            U.p "stickers" stickers_,
+            U.p "is_viewed" is_viewed_,
+            U.p "sticker_type" sticker_type_,
+            U.p "is_official" is_official_,
+            U.p "is_archived" is_archived_,
+            U.p "is_installed" is_installed_,
+            U.p "thumbnail_outline" thumbnail_outline_,
+            U.p "thumbnail" thumbnail_,
+            U.p "name" name_,
+            U.p "title" title_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON StickerSet where
@@ -100,31 +101,31 @@ instance T.FromJSON StickerSet where
 instance T.ToJSON StickerSet where
   toJSON
     StickerSet
-      { emojis = emojis,
-        stickers = stickers,
-        is_viewed = is_viewed,
-        sticker_type = sticker_type,
-        is_official = is_official,
-        is_archived = is_archived,
-        is_installed = is_installed,
-        thumbnail_outline = thumbnail_outline,
-        thumbnail = thumbnail,
-        name = name,
-        title = title,
-        _id = _id
+      { emojis = emojis_,
+        stickers = stickers_,
+        is_viewed = is_viewed_,
+        sticker_type = sticker_type_,
+        is_official = is_official_,
+        is_archived = is_archived_,
+        is_installed = is_installed_,
+        thumbnail_outline = thumbnail_outline_,
+        thumbnail = thumbnail_,
+        name = name_,
+        title = title_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "stickerSet",
-          "emojis" A..= emojis,
-          "stickers" A..= stickers,
-          "is_viewed" A..= is_viewed,
-          "sticker_type" A..= sticker_type,
-          "is_official" A..= is_official,
-          "is_archived" A..= is_archived,
-          "is_installed" A..= is_installed,
-          "thumbnail_outline" A..= thumbnail_outline,
-          "thumbnail" A..= thumbnail,
-          "name" A..= name,
-          "title" A..= title,
-          "id" A..= _id
+          "emojis" A..= emojis_,
+          "stickers" A..= stickers_,
+          "is_viewed" A..= is_viewed_,
+          "sticker_type" A..= sticker_type_,
+          "is_official" A..= is_official_,
+          "is_archived" A..= is_archived_,
+          "is_installed" A..= is_installed_,
+          "thumbnail_outline" A..= thumbnail_outline_,
+          "thumbnail" A..= thumbnail_,
+          "name" A..= name_,
+          "title" A..= title_,
+          "id" A..= _id_
         ]

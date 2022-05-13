@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendPhoneNumberConfirmationCode where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data SendPhoneNumberConfirmationCode = SendPhoneNumberConfirmationCode
 instance Show SendPhoneNumberConfirmationCode where
   show
     SendPhoneNumberConfirmationCode
-      { settings = settings,
-        phone_number = phone_number,
-        hash = hash
+      { settings = settings_,
+        phone_number = phone_number_,
+        hash = hash_
       } =
       "SendPhoneNumberConfirmationCode"
         ++ U.cc
-          [ U.p "settings" settings,
-            U.p "phone_number" phone_number,
-            U.p "hash" hash
+          [ U.p "settings" settings_,
+            U.p "phone_number" phone_number_,
+            U.p "hash" hash_
           ]
 
 instance T.ToJSON SendPhoneNumberConfirmationCode where
   toJSON
     SendPhoneNumberConfirmationCode
-      { settings = settings,
-        phone_number = phone_number,
-        hash = hash
+      { settings = settings_,
+        phone_number = phone_number_,
+        hash = hash_
       } =
       A.object
         [ "@type" A..= T.String "sendPhoneNumberConfirmationCode",
-          "settings" A..= settings,
-          "phone_number" A..= phone_number,
-          "hash" A..= hash
+          "settings" A..= settings_,
+          "phone_number" A..= phone_number_,
+          "hash" A..= hash_
         ]

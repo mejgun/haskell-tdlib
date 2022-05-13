@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatScheduledMessages where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetChatScheduledMessages = GetChatScheduledMessages
 instance Show GetChatScheduledMessages where
   show
     GetChatScheduledMessages
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "GetChatScheduledMessages"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatScheduledMessages where
   toJSON
     GetChatScheduledMessages
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatScheduledMessages",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

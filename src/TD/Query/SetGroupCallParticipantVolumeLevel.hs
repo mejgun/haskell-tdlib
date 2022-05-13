@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetGroupCallParticipantVolumeLevel where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data SetGroupCallParticipantVolumeLevel = SetGroupCallParticipantVolumeLevel
 instance Show SetGroupCallParticipantVolumeLevel where
   show
     SetGroupCallParticipantVolumeLevel
-      { volume_level = volume_level,
-        participant_id = participant_id,
-        group_call_id = group_call_id
+      { volume_level = volume_level_,
+        participant_id = participant_id_,
+        group_call_id = group_call_id_
       } =
       "SetGroupCallParticipantVolumeLevel"
         ++ U.cc
-          [ U.p "volume_level" volume_level,
-            U.p "participant_id" participant_id,
-            U.p "group_call_id" group_call_id
+          [ U.p "volume_level" volume_level_,
+            U.p "participant_id" participant_id_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON SetGroupCallParticipantVolumeLevel where
   toJSON
     SetGroupCallParticipantVolumeLevel
-      { volume_level = volume_level,
-        participant_id = participant_id,
-        group_call_id = group_call_id
+      { volume_level = volume_level_,
+        participant_id = participant_id_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "setGroupCallParticipantVolumeLevel",
-          "volume_level" A..= volume_level,
-          "participant_id" A..= participant_id,
-          "group_call_id" A..= group_call_id
+          "volume_level" A..= volume_level_,
+          "participant_id" A..= participant_id_,
+          "group_call_id" A..= group_call_id_
         ]

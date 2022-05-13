@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CallbackQueryAnswer where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data CallbackQueryAnswer = -- | Contains a bot's answer to a callback query @tex
 instance Show CallbackQueryAnswer where
   show
     CallbackQueryAnswer
-      { url = url,
-        show_alert = show_alert,
-        text = text
+      { url = url_,
+        show_alert = show_alert_,
+        text = text_
       } =
       "CallbackQueryAnswer"
         ++ U.cc
-          [ U.p "url" url,
-            U.p "show_alert" show_alert,
-            U.p "text" text
+          [ U.p "url" url_,
+            U.p "show_alert" show_alert_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON CallbackQueryAnswer where
@@ -50,13 +51,13 @@ instance T.FromJSON CallbackQueryAnswer where
 instance T.ToJSON CallbackQueryAnswer where
   toJSON
     CallbackQueryAnswer
-      { url = url,
-        show_alert = show_alert,
-        text = text
+      { url = url_,
+        show_alert = show_alert_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "callbackQueryAnswer",
-          "url" A..= url,
-          "show_alert" A..= show_alert,
-          "text" A..= text
+          "url" A..= url_,
+          "show_alert" A..= show_alert_,
+          "text" A..= text_
         ]

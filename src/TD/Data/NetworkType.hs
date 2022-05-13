@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NetworkType where
 
 import qualified Data.Aeson as A
@@ -55,24 +56,19 @@ instance T.FromJSON NetworkType where
       _ -> mempty
     where
       parseNetworkTypeNone :: A.Value -> T.Parser NetworkType
-      parseNetworkTypeNone = A.withObject "NetworkTypeNone" $ \o -> do
-        return $ NetworkTypeNone {}
+      parseNetworkTypeNone = A.withObject "NetworkTypeNone" $ \_ -> return NetworkTypeNone
 
       parseNetworkTypeMobile :: A.Value -> T.Parser NetworkType
-      parseNetworkTypeMobile = A.withObject "NetworkTypeMobile" $ \o -> do
-        return $ NetworkTypeMobile {}
+      parseNetworkTypeMobile = A.withObject "NetworkTypeMobile" $ \_ -> return NetworkTypeMobile
 
       parseNetworkTypeMobileRoaming :: A.Value -> T.Parser NetworkType
-      parseNetworkTypeMobileRoaming = A.withObject "NetworkTypeMobileRoaming" $ \o -> do
-        return $ NetworkTypeMobileRoaming {}
+      parseNetworkTypeMobileRoaming = A.withObject "NetworkTypeMobileRoaming" $ \_ -> return NetworkTypeMobileRoaming
 
       parseNetworkTypeWiFi :: A.Value -> T.Parser NetworkType
-      parseNetworkTypeWiFi = A.withObject "NetworkTypeWiFi" $ \o -> do
-        return $ NetworkTypeWiFi {}
+      parseNetworkTypeWiFi = A.withObject "NetworkTypeWiFi" $ \_ -> return NetworkTypeWiFi
 
       parseNetworkTypeOther :: A.Value -> T.Parser NetworkType
-      parseNetworkTypeOther = A.withObject "NetworkTypeOther" $ \o -> do
-        return $ NetworkTypeOther {}
+      parseNetworkTypeOther = A.withObject "NetworkTypeOther" $ \_ -> return NetworkTypeOther
   parseJSON _ = mempty
 
 instance T.ToJSON NetworkType where

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendPassportAuthorizationForm where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SendPassportAuthorizationForm = SendPassportAuthorizationForm
 instance Show SendPassportAuthorizationForm where
   show
     SendPassportAuthorizationForm
-      { types = types,
-        autorization_form_id = autorization_form_id
+      { types = types_,
+        autorization_form_id = autorization_form_id_
       } =
       "SendPassportAuthorizationForm"
         ++ U.cc
-          [ U.p "types" types,
-            U.p "autorization_form_id" autorization_form_id
+          [ U.p "types" types_,
+            U.p "autorization_form_id" autorization_form_id_
           ]
 
 instance T.ToJSON SendPassportAuthorizationForm where
   toJSON
     SendPassportAuthorizationForm
-      { types = types,
-        autorization_form_id = autorization_form_id
+      { types = types_,
+        autorization_form_id = autorization_form_id_
       } =
       A.object
         [ "@type" A..= T.String "sendPassportAuthorizationForm",
-          "types" A..= types,
-          "autorization_form_id" A..= autorization_form_id
+          "types" A..= types_,
+          "autorization_form_id" A..= autorization_form_id_
         ]

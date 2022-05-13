@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.UserPrivacySetting where
 
 import qualified Data.Aeson as A
@@ -76,36 +77,28 @@ instance T.FromJSON UserPrivacySetting where
       _ -> mempty
     where
       parseUserPrivacySettingShowStatus :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingShowStatus = A.withObject "UserPrivacySettingShowStatus" $ \o -> do
-        return $ UserPrivacySettingShowStatus {}
+      parseUserPrivacySettingShowStatus = A.withObject "UserPrivacySettingShowStatus" $ \_ -> return UserPrivacySettingShowStatus
 
       parseUserPrivacySettingShowProfilePhoto :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingShowProfilePhoto = A.withObject "UserPrivacySettingShowProfilePhoto" $ \o -> do
-        return $ UserPrivacySettingShowProfilePhoto {}
+      parseUserPrivacySettingShowProfilePhoto = A.withObject "UserPrivacySettingShowProfilePhoto" $ \_ -> return UserPrivacySettingShowProfilePhoto
 
       parseUserPrivacySettingShowLinkInForwardedMessages :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingShowLinkInForwardedMessages = A.withObject "UserPrivacySettingShowLinkInForwardedMessages" $ \o -> do
-        return $ UserPrivacySettingShowLinkInForwardedMessages {}
+      parseUserPrivacySettingShowLinkInForwardedMessages = A.withObject "UserPrivacySettingShowLinkInForwardedMessages" $ \_ -> return UserPrivacySettingShowLinkInForwardedMessages
 
       parseUserPrivacySettingShowPhoneNumber :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingShowPhoneNumber = A.withObject "UserPrivacySettingShowPhoneNumber" $ \o -> do
-        return $ UserPrivacySettingShowPhoneNumber {}
+      parseUserPrivacySettingShowPhoneNumber = A.withObject "UserPrivacySettingShowPhoneNumber" $ \_ -> return UserPrivacySettingShowPhoneNumber
 
       parseUserPrivacySettingAllowChatInvites :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingAllowChatInvites = A.withObject "UserPrivacySettingAllowChatInvites" $ \o -> do
-        return $ UserPrivacySettingAllowChatInvites {}
+      parseUserPrivacySettingAllowChatInvites = A.withObject "UserPrivacySettingAllowChatInvites" $ \_ -> return UserPrivacySettingAllowChatInvites
 
       parseUserPrivacySettingAllowCalls :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingAllowCalls = A.withObject "UserPrivacySettingAllowCalls" $ \o -> do
-        return $ UserPrivacySettingAllowCalls {}
+      parseUserPrivacySettingAllowCalls = A.withObject "UserPrivacySettingAllowCalls" $ \_ -> return UserPrivacySettingAllowCalls
 
       parseUserPrivacySettingAllowPeerToPeerCalls :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingAllowPeerToPeerCalls = A.withObject "UserPrivacySettingAllowPeerToPeerCalls" $ \o -> do
-        return $ UserPrivacySettingAllowPeerToPeerCalls {}
+      parseUserPrivacySettingAllowPeerToPeerCalls = A.withObject "UserPrivacySettingAllowPeerToPeerCalls" $ \_ -> return UserPrivacySettingAllowPeerToPeerCalls
 
       parseUserPrivacySettingAllowFindingByPhoneNumber :: A.Value -> T.Parser UserPrivacySetting
-      parseUserPrivacySettingAllowFindingByPhoneNumber = A.withObject "UserPrivacySettingAllowFindingByPhoneNumber" $ \o -> do
-        return $ UserPrivacySettingAllowFindingByPhoneNumber {}
+      parseUserPrivacySettingAllowFindingByPhoneNumber = A.withObject "UserPrivacySettingAllowFindingByPhoneNumber" $ \_ -> return UserPrivacySettingAllowFindingByPhoneNumber
   parseJSON _ = mempty
 
 instance T.ToJSON UserPrivacySetting where

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Video where
 
 import qualified Data.Aeson as A
@@ -37,29 +38,29 @@ data Video = -- | Describes a video file @duration Duration of the video, in sec
 instance Show Video where
   show
     Video
-      { video = video,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        supports_streaming = supports_streaming,
-        has_stickers = has_stickers,
-        mime_type = mime_type,
-        file_name = file_name,
-        height = height,
-        width = width,
-        duration = duration
+      { video = video_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        supports_streaming = supports_streaming_,
+        has_stickers = has_stickers_,
+        mime_type = mime_type_,
+        file_name = file_name_,
+        height = height_,
+        width = width_,
+        duration = duration_
       } =
       "Video"
         ++ U.cc
-          [ U.p "video" video,
-            U.p "thumbnail" thumbnail,
-            U.p "minithumbnail" minithumbnail,
-            U.p "supports_streaming" supports_streaming,
-            U.p "has_stickers" has_stickers,
-            U.p "mime_type" mime_type,
-            U.p "file_name" file_name,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "duration" duration
+          [ U.p "video" video_,
+            U.p "thumbnail" thumbnail_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "supports_streaming" supports_streaming_,
+            U.p "has_stickers" has_stickers_,
+            U.p "mime_type" mime_type_,
+            U.p "file_name" file_name_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "duration" duration_
           ]
 
 instance T.FromJSON Video where
@@ -88,27 +89,27 @@ instance T.FromJSON Video where
 instance T.ToJSON Video where
   toJSON
     Video
-      { video = video,
-        thumbnail = thumbnail,
-        minithumbnail = minithumbnail,
-        supports_streaming = supports_streaming,
-        has_stickers = has_stickers,
-        mime_type = mime_type,
-        file_name = file_name,
-        height = height,
-        width = width,
-        duration = duration
+      { video = video_,
+        thumbnail = thumbnail_,
+        minithumbnail = minithumbnail_,
+        supports_streaming = supports_streaming_,
+        has_stickers = has_stickers_,
+        mime_type = mime_type_,
+        file_name = file_name_,
+        height = height_,
+        width = width_,
+        duration = duration_
       } =
       A.object
         [ "@type" A..= T.String "video",
-          "video" A..= video,
-          "thumbnail" A..= thumbnail,
-          "minithumbnail" A..= minithumbnail,
-          "supports_streaming" A..= supports_streaming,
-          "has_stickers" A..= has_stickers,
-          "mime_type" A..= mime_type,
-          "file_name" A..= file_name,
-          "height" A..= height,
-          "width" A..= width,
-          "duration" A..= duration
+          "video" A..= video_,
+          "thumbnail" A..= thumbnail_,
+          "minithumbnail" A..= minithumbnail_,
+          "supports_streaming" A..= supports_streaming_,
+          "has_stickers" A..= has_stickers_,
+          "mime_type" A..= mime_type_,
+          "file_name" A..= file_name_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "duration" A..= duration_
         ]

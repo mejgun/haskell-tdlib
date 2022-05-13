@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatSponsoredMessage where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetChatSponsoredMessage = GetChatSponsoredMessage
 instance Show GetChatSponsoredMessage where
   show
     GetChatSponsoredMessage
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "GetChatSponsoredMessage"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatSponsoredMessage where
   toJSON
     GetChatSponsoredMessage
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatSponsoredMessage",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

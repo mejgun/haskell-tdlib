@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ViewTrendingStickerSets where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ViewTrendingStickerSets = ViewTrendingStickerSets
 instance Show ViewTrendingStickerSets where
   show
     ViewTrendingStickerSets
-      { sticker_set_ids = sticker_set_ids
+      { sticker_set_ids = sticker_set_ids_
       } =
       "ViewTrendingStickerSets"
         ++ U.cc
-          [ U.p "sticker_set_ids" sticker_set_ids
+          [ U.p "sticker_set_ids" sticker_set_ids_
           ]
 
 instance T.ToJSON ViewTrendingStickerSets where
   toJSON
     ViewTrendingStickerSets
-      { sticker_set_ids = sticker_set_ids
+      { sticker_set_ids = sticker_set_ids_
       } =
       A.object
         [ "@type" A..= T.String "viewTrendingStickerSets",
-          "sticker_set_ids" A..= sticker_set_ids
+          "sticker_set_ids" A..= sticker_set_ids_
         ]

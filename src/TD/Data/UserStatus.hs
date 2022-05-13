@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.UserStatus where
 
 import qualified Data.Aeson as A
@@ -35,19 +36,19 @@ instance Show UserStatus where
         []
   show
     UserStatusOnline
-      { expires = expires
+      { expires = expires_
       } =
       "UserStatusOnline"
         ++ U.cc
-          [ U.p "expires" expires
+          [ U.p "expires" expires_
           ]
   show
     UserStatusOffline
-      { was_online = was_online
+      { was_online = was_online_
       } =
       "UserStatusOffline"
         ++ U.cc
-          [ U.p "was_online" was_online
+          [ U.p "was_online" was_online_
           ]
   show UserStatusRecently =
     "UserStatusRecently"
@@ -76,8 +77,7 @@ instance T.FromJSON UserStatus where
       _ -> mempty
     where
       parseUserStatusEmpty :: A.Value -> T.Parser UserStatus
-      parseUserStatusEmpty = A.withObject "UserStatusEmpty" $ \o -> do
-        return $ UserStatusEmpty {}
+      parseUserStatusEmpty = A.withObject "UserStatusEmpty" $ \_ -> return UserStatusEmpty
 
       parseUserStatusOnline :: A.Value -> T.Parser UserStatus
       parseUserStatusOnline = A.withObject "UserStatusOnline" $ \o -> do
@@ -90,16 +90,13 @@ instance T.FromJSON UserStatus where
         return $ UserStatusOffline {was_online = was_online_}
 
       parseUserStatusRecently :: A.Value -> T.Parser UserStatus
-      parseUserStatusRecently = A.withObject "UserStatusRecently" $ \o -> do
-        return $ UserStatusRecently {}
+      parseUserStatusRecently = A.withObject "UserStatusRecently" $ \_ -> return UserStatusRecently
 
       parseUserStatusLastWeek :: A.Value -> T.Parser UserStatus
-      parseUserStatusLastWeek = A.withObject "UserStatusLastWeek" $ \o -> do
-        return $ UserStatusLastWeek {}
+      parseUserStatusLastWeek = A.withObject "UserStatusLastWeek" $ \_ -> return UserStatusLastWeek
 
       parseUserStatusLastMonth :: A.Value -> T.Parser UserStatus
-      parseUserStatusLastMonth = A.withObject "UserStatusLastMonth" $ \o -> do
-        return $ UserStatusLastMonth {}
+      parseUserStatusLastMonth = A.withObject "UserStatusLastMonth" $ \_ -> return UserStatusLastMonth
   parseJSON _ = mempty
 
 instance T.ToJSON UserStatus where
@@ -109,19 +106,19 @@ instance T.ToJSON UserStatus where
       ]
   toJSON
     UserStatusOnline
-      { expires = expires
+      { expires = expires_
       } =
       A.object
         [ "@type" A..= T.String "userStatusOnline",
-          "expires" A..= expires
+          "expires" A..= expires_
         ]
   toJSON
     UserStatusOffline
-      { was_online = was_online
+      { was_online = was_online_
       } =
       A.object
         [ "@type" A..= T.String "userStatusOffline",
-          "was_online" A..= was_online
+          "was_online" A..= was_online_
         ]
   toJSON UserStatusRecently =
     A.object

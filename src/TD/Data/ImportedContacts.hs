@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ImportedContacts where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data ImportedContacts = -- | Represents the result of an ImportContacts request 
 instance Show ImportedContacts where
   show
     ImportedContacts
-      { importer_count = importer_count,
-        user_ids = user_ids
+      { importer_count = importer_count_,
+        user_ids = user_ids_
       } =
       "ImportedContacts"
         ++ U.cc
-          [ U.p "importer_count" importer_count,
-            U.p "user_ids" user_ids
+          [ U.p "importer_count" importer_count_,
+            U.p "user_ids" user_ids_
           ]
 
 instance T.FromJSON ImportedContacts where
@@ -45,11 +46,11 @@ instance T.FromJSON ImportedContacts where
 instance T.ToJSON ImportedContacts where
   toJSON
     ImportedContacts
-      { importer_count = importer_count,
-        user_ids = user_ids
+      { importer_count = importer_count_,
+        user_ids = user_ids_
       } =
       A.object
         [ "@type" A..= T.String "importedContacts",
-          "importer_count" A..= importer_count,
-          "user_ids" A..= user_ids
+          "importer_count" A..= importer_count_,
+          "user_ids" A..= user_ids_
         ]

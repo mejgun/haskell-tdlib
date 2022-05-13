@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Backgrounds where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data Backgrounds = -- | Contains a list of backgrounds @backgrounds A list of ba
 instance Show Backgrounds where
   show
     Backgrounds
-      { backgrounds = backgrounds
+      { backgrounds = backgrounds_
       } =
       "Backgrounds"
         ++ U.cc
-          [ U.p "backgrounds" backgrounds
+          [ U.p "backgrounds" backgrounds_
           ]
 
 instance T.FromJSON Backgrounds where
@@ -41,9 +42,9 @@ instance T.FromJSON Backgrounds where
 instance T.ToJSON Backgrounds where
   toJSON
     Backgrounds
-      { backgrounds = backgrounds
+      { backgrounds = backgrounds_
       } =
       A.object
         [ "@type" A..= T.String "backgrounds",
-          "backgrounds" A..= backgrounds
+          "backgrounds" A..= backgrounds_
         ]

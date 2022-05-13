@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchPublicChat where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SearchPublicChat = SearchPublicChat
 instance Show SearchPublicChat where
   show
     SearchPublicChat
-      { username = username
+      { username = username_
       } =
       "SearchPublicChat"
         ++ U.cc
-          [ U.p "username" username
+          [ U.p "username" username_
           ]
 
 instance T.ToJSON SearchPublicChat where
   toJSON
     SearchPublicChat
-      { username = username
+      { username = username_
       } =
       A.object
         [ "@type" A..= T.String "searchPublicChat",
-          "username" A..= username
+          "username" A..= username_
         ]

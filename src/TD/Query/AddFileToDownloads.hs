@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddFileToDownloads where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data AddFileToDownloads = AddFileToDownloads
 instance Show AddFileToDownloads where
   show
     AddFileToDownloads
-      { priority = priority,
-        message_id = message_id,
-        chat_id = chat_id,
-        file_id = file_id
+      { priority = priority_,
+        message_id = message_id_,
+        chat_id = chat_id_,
+        file_id = file_id_
       } =
       "AddFileToDownloads"
         ++ U.cc
-          [ U.p "priority" priority,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id,
-            U.p "file_id" file_id
+          [ U.p "priority" priority_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_,
+            U.p "file_id" file_id_
           ]
 
 instance T.ToJSON AddFileToDownloads where
   toJSON
     AddFileToDownloads
-      { priority = priority,
-        message_id = message_id,
-        chat_id = chat_id,
-        file_id = file_id
+      { priority = priority_,
+        message_id = message_id_,
+        chat_id = chat_id_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "addFileToDownloads",
-          "priority" A..= priority,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id,
-          "file_id" A..= file_id
+          "priority" A..= priority_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_,
+          "file_id" A..= file_id_
         ]

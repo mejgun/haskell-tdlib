@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReadAllChatMentions where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ReadAllChatMentions = ReadAllChatMentions
 instance Show ReadAllChatMentions where
   show
     ReadAllChatMentions
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "ReadAllChatMentions"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ReadAllChatMentions where
   toJSON
     ReadAllChatMentions
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "readAllChatMentions",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

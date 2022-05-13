@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatPhotoInfo where
 
 import qualified Data.Aeson as A
@@ -24,17 +25,17 @@ data ChatPhotoInfo = -- | Contains basic information about the photo of a chat
 instance Show ChatPhotoInfo where
   show
     ChatPhotoInfo
-      { has_animation = has_animation,
-        minithumbnail = minithumbnail,
-        big = big,
-        small = small
+      { has_animation = has_animation_,
+        minithumbnail = minithumbnail_,
+        big = big_,
+        small = small_
       } =
       "ChatPhotoInfo"
         ++ U.cc
-          [ U.p "has_animation" has_animation,
-            U.p "minithumbnail" minithumbnail,
-            U.p "big" big,
-            U.p "small" small
+          [ U.p "has_animation" has_animation_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "big" big_,
+            U.p "small" small_
           ]
 
 instance T.FromJSON ChatPhotoInfo where
@@ -57,15 +58,15 @@ instance T.FromJSON ChatPhotoInfo where
 instance T.ToJSON ChatPhotoInfo where
   toJSON
     ChatPhotoInfo
-      { has_animation = has_animation,
-        minithumbnail = minithumbnail,
-        big = big,
-        small = small
+      { has_animation = has_animation_,
+        minithumbnail = minithumbnail_,
+        big = big_,
+        small = small_
       } =
       A.object
         [ "@type" A..= T.String "chatPhotoInfo",
-          "has_animation" A..= has_animation,
-          "minithumbnail" A..= minithumbnail,
-          "big" A..= big,
-          "small" A..= small
+          "has_animation" A..= has_animation_,
+          "minithumbnail" A..= minithumbnail_,
+          "big" A..= big_,
+          "small" A..= small_
         ]

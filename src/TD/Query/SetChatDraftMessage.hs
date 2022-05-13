@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatDraftMessage where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data SetChatDraftMessage = SetChatDraftMessage
 instance Show SetChatDraftMessage where
   show
     SetChatDraftMessage
-      { draft_message = draft_message,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { draft_message = draft_message_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       "SetChatDraftMessage"
         ++ U.cc
-          [ U.p "draft_message" draft_message,
-            U.p "message_thread_id" message_thread_id,
-            U.p "chat_id" chat_id
+          [ U.p "draft_message" draft_message_,
+            U.p "message_thread_id" message_thread_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatDraftMessage where
   toJSON
     SetChatDraftMessage
-      { draft_message = draft_message,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { draft_message = draft_message_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatDraftMessage",
-          "draft_message" A..= draft_message,
-          "message_thread_id" A..= message_thread_id,
-          "chat_id" A..= chat_id
+          "draft_message" A..= draft_message_,
+          "message_thread_id" A..= message_thread_id_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditInlineMessageCaption where
 
 import qualified Data.Aeson as A
@@ -23,27 +24,27 @@ data EditInlineMessageCaption = EditInlineMessageCaption
 instance Show EditInlineMessageCaption where
   show
     EditInlineMessageCaption
-      { caption = caption,
-        reply_markup = reply_markup,
-        inline_message_id = inline_message_id
+      { caption = caption_,
+        reply_markup = reply_markup_,
+        inline_message_id = inline_message_id_
       } =
       "EditInlineMessageCaption"
         ++ U.cc
-          [ U.p "caption" caption,
-            U.p "reply_markup" reply_markup,
-            U.p "inline_message_id" inline_message_id
+          [ U.p "caption" caption_,
+            U.p "reply_markup" reply_markup_,
+            U.p "inline_message_id" inline_message_id_
           ]
 
 instance T.ToJSON EditInlineMessageCaption where
   toJSON
     EditInlineMessageCaption
-      { caption = caption,
-        reply_markup = reply_markup,
-        inline_message_id = inline_message_id
+      { caption = caption_,
+        reply_markup = reply_markup_,
+        inline_message_id = inline_message_id_
       } =
       A.object
         [ "@type" A..= T.String "editInlineMessageCaption",
-          "caption" A..= caption,
-          "reply_markup" A..= reply_markup,
-          "inline_message_id" A..= inline_message_id
+          "caption" A..= caption_,
+          "reply_markup" A..= reply_markup_,
+          "inline_message_id" A..= inline_message_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetBio where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SetBio = SetBio
 instance Show SetBio where
   show
     SetBio
-      { bio = bio
+      { bio = bio_
       } =
       "SetBio"
         ++ U.cc
-          [ U.p "bio" bio
+          [ U.p "bio" bio_
           ]
 
 instance T.ToJSON SetBio where
   toJSON
     SetBio
-      { bio = bio
+      { bio = bio_
       } =
       A.object
         [ "@type" A..= T.String "setBio",
-          "bio" A..= bio
+          "bio" A..= bio_
         ]

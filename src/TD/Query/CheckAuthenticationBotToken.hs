@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckAuthenticationBotToken where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CheckAuthenticationBotToken = CheckAuthenticationBotToken
 instance Show CheckAuthenticationBotToken where
   show
     CheckAuthenticationBotToken
-      { token = token
+      { token = token_
       } =
       "CheckAuthenticationBotToken"
         ++ U.cc
-          [ U.p "token" token
+          [ U.p "token" token_
           ]
 
 instance T.ToJSON CheckAuthenticationBotToken where
   toJSON
     CheckAuthenticationBotToken
-      { token = token
+      { token = token_
       } =
       A.object
         [ "@type" A..= T.String "checkAuthenticationBotToken",
-          "token" A..= token
+          "token" A..= token_
         ]

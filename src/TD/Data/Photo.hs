@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Photo where
 
 import qualified Data.Aeson as A
@@ -22,15 +23,15 @@ data Photo = -- | Describes a photo @has_stickers True, if stickers were added t
 instance Show Photo where
   show
     Photo
-      { sizes = sizes,
-        minithumbnail = minithumbnail,
-        has_stickers = has_stickers
+      { sizes = sizes_,
+        minithumbnail = minithumbnail_,
+        has_stickers = has_stickers_
       } =
       "Photo"
         ++ U.cc
-          [ U.p "sizes" sizes,
-            U.p "minithumbnail" minithumbnail,
-            U.p "has_stickers" has_stickers
+          [ U.p "sizes" sizes_,
+            U.p "minithumbnail" minithumbnail_,
+            U.p "has_stickers" has_stickers_
           ]
 
 instance T.FromJSON Photo where
@@ -52,13 +53,13 @@ instance T.FromJSON Photo where
 instance T.ToJSON Photo where
   toJSON
     Photo
-      { sizes = sizes,
-        minithumbnail = minithumbnail,
-        has_stickers = has_stickers
+      { sizes = sizes_,
+        minithumbnail = minithumbnail_,
+        has_stickers = has_stickers_
       } =
       A.object
         [ "@type" A..= T.String "photo",
-          "sizes" A..= sizes,
-          "minithumbnail" A..= minithumbnail,
-          "has_stickers" A..= has_stickers
+          "sizes" A..= sizes_,
+          "minithumbnail" A..= minithumbnail_,
+          "has_stickers" A..= has_stickers_
         ]

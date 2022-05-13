@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendCallSignalingData where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SendCallSignalingData = SendCallSignalingData
 instance Show SendCallSignalingData where
   show
     SendCallSignalingData
-      { _data = _data,
-        call_id = call_id
+      { _data = _data_,
+        call_id = call_id_
       } =
       "SendCallSignalingData"
         ++ U.cc
-          [ U.p "_data" _data,
-            U.p "call_id" call_id
+          [ U.p "_data" _data_,
+            U.p "call_id" call_id_
           ]
 
 instance T.ToJSON SendCallSignalingData where
   toJSON
     SendCallSignalingData
-      { _data = _data,
-        call_id = call_id
+      { _data = _data_,
+        call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "sendCallSignalingData",
-          "data" A..= _data,
-          "call_id" A..= call_id
+          "data" A..= _data_,
+          "call_id" A..= call_id_
         ]

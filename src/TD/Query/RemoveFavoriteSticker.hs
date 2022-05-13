@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveFavoriteSticker where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data RemoveFavoriteSticker = RemoveFavoriteSticker
 instance Show RemoveFavoriteSticker where
   show
     RemoveFavoriteSticker
-      { sticker = sticker
+      { sticker = sticker_
       } =
       "RemoveFavoriteSticker"
         ++ U.cc
-          [ U.p "sticker" sticker
+          [ U.p "sticker" sticker_
           ]
 
 instance T.ToJSON RemoveFavoriteSticker where
   toJSON
     RemoveFavoriteSticker
-      { sticker = sticker
+      { sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "removeFavoriteSticker",
-          "sticker" A..= sticker
+          "sticker" A..= sticker_
         ]

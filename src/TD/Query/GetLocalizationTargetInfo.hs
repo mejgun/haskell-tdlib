@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetLocalizationTargetInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetLocalizationTargetInfo = GetLocalizationTargetInfo
 instance Show GetLocalizationTargetInfo where
   show
     GetLocalizationTargetInfo
-      { only_local = only_local
+      { only_local = only_local_
       } =
       "GetLocalizationTargetInfo"
         ++ U.cc
-          [ U.p "only_local" only_local
+          [ U.p "only_local" only_local_
           ]
 
 instance T.ToJSON GetLocalizationTargetInfo where
   toJSON
     GetLocalizationTargetInfo
-      { only_local = only_local
+      { only_local = only_local_
       } =
       A.object
         [ "@type" A..= T.String "getLocalizationTargetInfo",
-          "only_local" A..= only_local
+          "only_local" A..= only_local_
         ]

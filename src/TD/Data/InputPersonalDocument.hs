@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InputPersonalDocument where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data InputPersonalDocument = -- | A personal document to be saved to Telegram Pa
 instance Show InputPersonalDocument where
   show
     InputPersonalDocument
-      { translation = translation,
-        files = files
+      { translation = translation_,
+        files = files_
       } =
       "InputPersonalDocument"
         ++ U.cc
-          [ U.p "translation" translation,
-            U.p "files" files
+          [ U.p "translation" translation_,
+            U.p "files" files_
           ]
 
 instance T.FromJSON InputPersonalDocument where
@@ -46,11 +47,11 @@ instance T.FromJSON InputPersonalDocument where
 instance T.ToJSON InputPersonalDocument where
   toJSON
     InputPersonalDocument
-      { translation = translation,
-        files = files
+      { translation = translation_,
+        files = files_
       } =
       A.object
         [ "@type" A..= T.String "inputPersonalDocument",
-          "translation" A..= translation,
-          "files" A..= files
+          "translation" A..= translation_,
+          "files" A..= files_
         ]

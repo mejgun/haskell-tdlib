@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatInviteLinkMember where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data ChatInviteLinkMember = -- | Describes a chat member joined a chat via an in
 instance Show ChatInviteLinkMember where
   show
     ChatInviteLinkMember
-      { approver_user_id = approver_user_id,
-        joined_chat_date = joined_chat_date,
-        user_id = user_id
+      { approver_user_id = approver_user_id_,
+        joined_chat_date = joined_chat_date_,
+        user_id = user_id_
       } =
       "ChatInviteLinkMember"
         ++ U.cc
-          [ U.p "approver_user_id" approver_user_id,
-            U.p "joined_chat_date" joined_chat_date,
-            U.p "user_id" user_id
+          [ U.p "approver_user_id" approver_user_id_,
+            U.p "joined_chat_date" joined_chat_date_,
+            U.p "user_id" user_id_
           ]
 
 instance T.FromJSON ChatInviteLinkMember where
@@ -50,13 +51,13 @@ instance T.FromJSON ChatInviteLinkMember where
 instance T.ToJSON ChatInviteLinkMember where
   toJSON
     ChatInviteLinkMember
-      { approver_user_id = approver_user_id,
-        joined_chat_date = joined_chat_date,
-        user_id = user_id
+      { approver_user_id = approver_user_id_,
+        joined_chat_date = joined_chat_date_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatInviteLinkMember",
-          "approver_user_id" A..= approver_user_id,
-          "joined_chat_date" A..= joined_chat_date,
-          "user_id" A..= user_id
+          "approver_user_id" A..= approver_user_id_,
+          "joined_chat_date" A..= joined_chat_date_,
+          "user_id" A..= user_id_
         ]

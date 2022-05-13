@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EndGroupCall where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data EndGroupCall = EndGroupCall
 instance Show EndGroupCall where
   show
     EndGroupCall
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       "EndGroupCall"
         ++ U.cc
-          [ U.p "group_call_id" group_call_id
+          [ U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON EndGroupCall where
   toJSON
     EndGroupCall
-      { group_call_id = group_call_id
+      { group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "endGroupCall",
-          "group_call_id" A..= group_call_id
+          "group_call_id" A..= group_call_id_
         ]

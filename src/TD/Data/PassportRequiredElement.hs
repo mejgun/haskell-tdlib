@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PassportRequiredElement where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data PassportRequiredElement = -- | Contains a description of the required Teleg
 instance Show PassportRequiredElement where
   show
     PassportRequiredElement
-      { suitable_elements = suitable_elements
+      { suitable_elements = suitable_elements_
       } =
       "PassportRequiredElement"
         ++ U.cc
-          [ U.p "suitable_elements" suitable_elements
+          [ U.p "suitable_elements" suitable_elements_
           ]
 
 instance T.FromJSON PassportRequiredElement where
@@ -41,9 +42,9 @@ instance T.FromJSON PassportRequiredElement where
 instance T.ToJSON PassportRequiredElement where
   toJSON
     PassportRequiredElement
-      { suitable_elements = suitable_elements
+      { suitable_elements = suitable_elements_
       } =
       A.object
         [ "@type" A..= T.String "passportRequiredElement",
-          "suitable_elements" A..= suitable_elements
+          "suitable_elements" A..= suitable_elements_
         ]

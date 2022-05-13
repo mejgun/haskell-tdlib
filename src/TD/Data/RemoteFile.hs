@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.RemoteFile where
 
 import qualified Data.Aeson as A
@@ -26,19 +27,19 @@ data RemoteFile = -- | Represents a remote file
 instance Show RemoteFile where
   show
     RemoteFile
-      { uploaded_size = uploaded_size,
-        is_uploading_completed = is_uploading_completed,
-        is_uploading_active = is_uploading_active,
-        unique_id = unique_id,
-        _id = _id
+      { uploaded_size = uploaded_size_,
+        is_uploading_completed = is_uploading_completed_,
+        is_uploading_active = is_uploading_active_,
+        unique_id = unique_id_,
+        _id = _id_
       } =
       "RemoteFile"
         ++ U.cc
-          [ U.p "uploaded_size" uploaded_size,
-            U.p "is_uploading_completed" is_uploading_completed,
-            U.p "is_uploading_active" is_uploading_active,
-            U.p "unique_id" unique_id,
-            U.p "_id" _id
+          [ U.p "uploaded_size" uploaded_size_,
+            U.p "is_uploading_completed" is_uploading_completed_,
+            U.p "is_uploading_active" is_uploading_active_,
+            U.p "unique_id" unique_id_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON RemoteFile where
@@ -62,17 +63,17 @@ instance T.FromJSON RemoteFile where
 instance T.ToJSON RemoteFile where
   toJSON
     RemoteFile
-      { uploaded_size = uploaded_size,
-        is_uploading_completed = is_uploading_completed,
-        is_uploading_active = is_uploading_active,
-        unique_id = unique_id,
-        _id = _id
+      { uploaded_size = uploaded_size_,
+        is_uploading_completed = is_uploading_completed_,
+        is_uploading_active = is_uploading_active_,
+        unique_id = unique_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "remoteFile",
-          "uploaded_size" A..= uploaded_size,
-          "is_uploading_completed" A..= is_uploading_completed,
-          "is_uploading_active" A..= is_uploading_active,
-          "unique_id" A..= unique_id,
-          "id" A..= _id
+          "uploaded_size" A..= uploaded_size_,
+          "is_uploading_completed" A..= is_uploading_completed_,
+          "is_uploading_active" A..= is_uploading_active_,
+          "unique_id" A..= unique_id_,
+          "id" A..= _id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ClearAllDraftMessages where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ClearAllDraftMessages = ClearAllDraftMessages
 instance Show ClearAllDraftMessages where
   show
     ClearAllDraftMessages
-      { exclude_secret_chats = exclude_secret_chats
+      { exclude_secret_chats = exclude_secret_chats_
       } =
       "ClearAllDraftMessages"
         ++ U.cc
-          [ U.p "exclude_secret_chats" exclude_secret_chats
+          [ U.p "exclude_secret_chats" exclude_secret_chats_
           ]
 
 instance T.ToJSON ClearAllDraftMessages where
   toJSON
     ClearAllDraftMessages
-      { exclude_secret_chats = exclude_secret_chats
+      { exclude_secret_chats = exclude_secret_chats_
       } =
       A.object
         [ "@type" A..= T.String "clearAllDraftMessages",
-          "exclude_secret_chats" A..= exclude_secret_chats
+          "exclude_secret_chats" A..= exclude_secret_chats_
         ]

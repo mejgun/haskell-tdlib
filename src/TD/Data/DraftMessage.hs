@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DraftMessage where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data DraftMessage = -- | Contains information about a message draft
 instance Show DraftMessage where
   show
     DraftMessage
-      { input_message_text = input_message_text,
-        date = date,
-        reply_to_message_id = reply_to_message_id
+      { input_message_text = input_message_text_,
+        date = date_,
+        reply_to_message_id = reply_to_message_id_
       } =
       "DraftMessage"
         ++ U.cc
-          [ U.p "input_message_text" input_message_text,
-            U.p "date" date,
-            U.p "reply_to_message_id" reply_to_message_id
+          [ U.p "input_message_text" input_message_text_,
+            U.p "date" date_,
+            U.p "reply_to_message_id" reply_to_message_id_
           ]
 
 instance T.FromJSON DraftMessage where
@@ -51,13 +52,13 @@ instance T.FromJSON DraftMessage where
 instance T.ToJSON DraftMessage where
   toJSON
     DraftMessage
-      { input_message_text = input_message_text,
-        date = date,
-        reply_to_message_id = reply_to_message_id
+      { input_message_text = input_message_text_,
+        date = date_,
+        reply_to_message_id = reply_to_message_id_
       } =
       A.object
         [ "@type" A..= T.String "draftMessage",
-          "input_message_text" A..= input_message_text,
-          "date" A..= date,
-          "reply_to_message_id" A..= reply_to_message_id
+          "input_message_text" A..= input_message_text_,
+          "date" A..= date_,
+          "reply_to_message_id" A..= reply_to_message_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveProxy where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RemoveProxy = RemoveProxy
 instance Show RemoveProxy where
   show
     RemoveProxy
-      { proxy_id = proxy_id
+      { proxy_id = proxy_id_
       } =
       "RemoveProxy"
         ++ U.cc
-          [ U.p "proxy_id" proxy_id
+          [ U.p "proxy_id" proxy_id_
           ]
 
 instance T.ToJSON RemoveProxy where
   toJSON
     RemoveProxy
-      { proxy_id = proxy_id
+      { proxy_id = proxy_id_
       } =
       A.object
         [ "@type" A..= T.String "removeProxy",
-          "proxy_id" A..= proxy_id
+          "proxy_id" A..= proxy_id_
         ]

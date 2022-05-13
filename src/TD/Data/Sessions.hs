@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Sessions where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data Sessions = -- | Contains a list of sessions @sessions List of sessions @ina
 instance Show Sessions where
   show
     Sessions
-      { inactive_session_ttl_days = inactive_session_ttl_days,
-        sessions = sessions
+      { inactive_session_ttl_days = inactive_session_ttl_days_,
+        sessions = sessions_
       } =
       "Sessions"
         ++ U.cc
-          [ U.p "inactive_session_ttl_days" inactive_session_ttl_days,
-            U.p "sessions" sessions
+          [ U.p "inactive_session_ttl_days" inactive_session_ttl_days_,
+            U.p "sessions" sessions_
           ]
 
 instance T.FromJSON Sessions where
@@ -46,11 +47,11 @@ instance T.FromJSON Sessions where
 instance T.ToJSON Sessions where
   toJSON
     Sessions
-      { inactive_session_ttl_days = inactive_session_ttl_days,
-        sessions = sessions
+      { inactive_session_ttl_days = inactive_session_ttl_days_,
+        sessions = sessions_
       } =
       A.object
         [ "@type" A..= T.String "sessions",
-          "inactive_session_ttl_days" A..= inactive_session_ttl_days,
-          "sessions" A..= sessions
+          "inactive_session_ttl_days" A..= inactive_session_ttl_days_,
+          "sessions" A..= sessions_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetApplicationConfig where
 
 import qualified Data.Aeson as A

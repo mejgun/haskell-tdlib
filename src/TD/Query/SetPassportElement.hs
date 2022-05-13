@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetPassportElement where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetPassportElement = SetPassportElement
 instance Show SetPassportElement where
   show
     SetPassportElement
-      { password = password,
-        element = element
+      { password = password_,
+        element = element_
       } =
       "SetPassportElement"
         ++ U.cc
-          [ U.p "password" password,
-            U.p "element" element
+          [ U.p "password" password_,
+            U.p "element" element_
           ]
 
 instance T.ToJSON SetPassportElement where
   toJSON
     SetPassportElement
-      { password = password,
-        element = element
+      { password = password_,
+        element = element_
       } =
       A.object
         [ "@type" A..= T.String "setPassportElement",
-          "password" A..= password,
-          "element" A..= element
+          "password" A..= password_,
+          "element" A..= element_
         ]

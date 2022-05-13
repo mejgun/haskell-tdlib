@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatMember where
 
 import qualified Data.Aeson as A
@@ -24,17 +25,17 @@ data ChatMember = -- | Describes a user or a chat as a member of another chat
 instance Show ChatMember where
   show
     ChatMember
-      { status = status,
-        joined_chat_date = joined_chat_date,
-        inviter_user_id = inviter_user_id,
-        member_id = member_id
+      { status = status_,
+        joined_chat_date = joined_chat_date_,
+        inviter_user_id = inviter_user_id_,
+        member_id = member_id_
       } =
       "ChatMember"
         ++ U.cc
-          [ U.p "status" status,
-            U.p "joined_chat_date" joined_chat_date,
-            U.p "inviter_user_id" inviter_user_id,
-            U.p "member_id" member_id
+          [ U.p "status" status_,
+            U.p "joined_chat_date" joined_chat_date_,
+            U.p "inviter_user_id" inviter_user_id_,
+            U.p "member_id" member_id_
           ]
 
 instance T.FromJSON ChatMember where
@@ -57,15 +58,15 @@ instance T.FromJSON ChatMember where
 instance T.ToJSON ChatMember where
   toJSON
     ChatMember
-      { status = status,
-        joined_chat_date = joined_chat_date,
-        inviter_user_id = inviter_user_id,
-        member_id = member_id
+      { status = status_,
+        joined_chat_date = joined_chat_date_,
+        inviter_user_id = inviter_user_id_,
+        member_id = member_id_
       } =
       A.object
         [ "@type" A..= T.String "chatMember",
-          "status" A..= status,
-          "joined_chat_date" A..= joined_chat_date,
-          "inviter_user_id" A..= inviter_user_id,
-          "member_id" A..= member_id
+          "status" A..= status_,
+          "joined_chat_date" A..= joined_chat_date_,
+          "inviter_user_id" A..= inviter_user_id_,
+          "member_id" A..= member_id_
         ]

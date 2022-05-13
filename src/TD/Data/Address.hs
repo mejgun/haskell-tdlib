@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Address where
 
 import qualified Data.Aeson as A
@@ -26,21 +27,21 @@ data Address = -- | Describes an address @country_code A two-letter ISO 3166-1 a
 instance Show Address where
   show
     Address
-      { postal_code = postal_code,
-        street_line2 = street_line2,
-        street_line1 = street_line1,
-        city = city,
-        state = state,
-        country_code = country_code
+      { postal_code = postal_code_,
+        street_line2 = street_line2_,
+        street_line1 = street_line1_,
+        city = city_,
+        state = state_,
+        country_code = country_code_
       } =
       "Address"
         ++ U.cc
-          [ U.p "postal_code" postal_code,
-            U.p "street_line2" street_line2,
-            U.p "street_line1" street_line1,
-            U.p "city" city,
-            U.p "state" state,
-            U.p "country_code" country_code
+          [ U.p "postal_code" postal_code_,
+            U.p "street_line2" street_line2_,
+            U.p "street_line1" street_line1_,
+            U.p "city" city_,
+            U.p "state" state_,
+            U.p "country_code" country_code_
           ]
 
 instance T.FromJSON Address where
@@ -65,19 +66,19 @@ instance T.FromJSON Address where
 instance T.ToJSON Address where
   toJSON
     Address
-      { postal_code = postal_code,
-        street_line2 = street_line2,
-        street_line1 = street_line1,
-        city = city,
-        state = state,
-        country_code = country_code
+      { postal_code = postal_code_,
+        street_line2 = street_line2_,
+        street_line1 = street_line1_,
+        city = city_,
+        state = state_,
+        country_code = country_code_
       } =
       A.object
         [ "@type" A..= T.String "address",
-          "postal_code" A..= postal_code,
-          "street_line2" A..= street_line2,
-          "street_line1" A..= street_line1,
-          "city" A..= city,
-          "state" A..= state,
-          "country_code" A..= country_code
+          "postal_code" A..= postal_code_,
+          "street_line2" A..= street_line2_,
+          "street_line1" A..= street_line1_,
+          "city" A..= city_,
+          "state" A..= state_,
+          "country_code" A..= country_code_
         ]

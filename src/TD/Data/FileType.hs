@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.FileType where
 
 import qualified Data.Aeson as A
@@ -139,72 +140,55 @@ instance T.FromJSON FileType where
       _ -> mempty
     where
       parseFileTypeNone :: A.Value -> T.Parser FileType
-      parseFileTypeNone = A.withObject "FileTypeNone" $ \o -> do
-        return $ FileTypeNone {}
+      parseFileTypeNone = A.withObject "FileTypeNone" $ \_ -> return FileTypeNone
 
       parseFileTypeAnimation :: A.Value -> T.Parser FileType
-      parseFileTypeAnimation = A.withObject "FileTypeAnimation" $ \o -> do
-        return $ FileTypeAnimation {}
+      parseFileTypeAnimation = A.withObject "FileTypeAnimation" $ \_ -> return FileTypeAnimation
 
       parseFileTypeAudio :: A.Value -> T.Parser FileType
-      parseFileTypeAudio = A.withObject "FileTypeAudio" $ \o -> do
-        return $ FileTypeAudio {}
+      parseFileTypeAudio = A.withObject "FileTypeAudio" $ \_ -> return FileTypeAudio
 
       parseFileTypeDocument :: A.Value -> T.Parser FileType
-      parseFileTypeDocument = A.withObject "FileTypeDocument" $ \o -> do
-        return $ FileTypeDocument {}
+      parseFileTypeDocument = A.withObject "FileTypeDocument" $ \_ -> return FileTypeDocument
 
       parseFileTypeNotificationSound :: A.Value -> T.Parser FileType
-      parseFileTypeNotificationSound = A.withObject "FileTypeNotificationSound" $ \o -> do
-        return $ FileTypeNotificationSound {}
+      parseFileTypeNotificationSound = A.withObject "FileTypeNotificationSound" $ \_ -> return FileTypeNotificationSound
 
       parseFileTypePhoto :: A.Value -> T.Parser FileType
-      parseFileTypePhoto = A.withObject "FileTypePhoto" $ \o -> do
-        return $ FileTypePhoto {}
+      parseFileTypePhoto = A.withObject "FileTypePhoto" $ \_ -> return FileTypePhoto
 
       parseFileTypeProfilePhoto :: A.Value -> T.Parser FileType
-      parseFileTypeProfilePhoto = A.withObject "FileTypeProfilePhoto" $ \o -> do
-        return $ FileTypeProfilePhoto {}
+      parseFileTypeProfilePhoto = A.withObject "FileTypeProfilePhoto" $ \_ -> return FileTypeProfilePhoto
 
       parseFileTypeSecret :: A.Value -> T.Parser FileType
-      parseFileTypeSecret = A.withObject "FileTypeSecret" $ \o -> do
-        return $ FileTypeSecret {}
+      parseFileTypeSecret = A.withObject "FileTypeSecret" $ \_ -> return FileTypeSecret
 
       parseFileTypeSecretThumbnail :: A.Value -> T.Parser FileType
-      parseFileTypeSecretThumbnail = A.withObject "FileTypeSecretThumbnail" $ \o -> do
-        return $ FileTypeSecretThumbnail {}
+      parseFileTypeSecretThumbnail = A.withObject "FileTypeSecretThumbnail" $ \_ -> return FileTypeSecretThumbnail
 
       parseFileTypeSecure :: A.Value -> T.Parser FileType
-      parseFileTypeSecure = A.withObject "FileTypeSecure" $ \o -> do
-        return $ FileTypeSecure {}
+      parseFileTypeSecure = A.withObject "FileTypeSecure" $ \_ -> return FileTypeSecure
 
       parseFileTypeSticker :: A.Value -> T.Parser FileType
-      parseFileTypeSticker = A.withObject "FileTypeSticker" $ \o -> do
-        return $ FileTypeSticker {}
+      parseFileTypeSticker = A.withObject "FileTypeSticker" $ \_ -> return FileTypeSticker
 
       parseFileTypeThumbnail :: A.Value -> T.Parser FileType
-      parseFileTypeThumbnail = A.withObject "FileTypeThumbnail" $ \o -> do
-        return $ FileTypeThumbnail {}
+      parseFileTypeThumbnail = A.withObject "FileTypeThumbnail" $ \_ -> return FileTypeThumbnail
 
       parseFileTypeUnknown :: A.Value -> T.Parser FileType
-      parseFileTypeUnknown = A.withObject "FileTypeUnknown" $ \o -> do
-        return $ FileTypeUnknown {}
+      parseFileTypeUnknown = A.withObject "FileTypeUnknown" $ \_ -> return FileTypeUnknown
 
       parseFileTypeVideo :: A.Value -> T.Parser FileType
-      parseFileTypeVideo = A.withObject "FileTypeVideo" $ \o -> do
-        return $ FileTypeVideo {}
+      parseFileTypeVideo = A.withObject "FileTypeVideo" $ \_ -> return FileTypeVideo
 
       parseFileTypeVideoNote :: A.Value -> T.Parser FileType
-      parseFileTypeVideoNote = A.withObject "FileTypeVideoNote" $ \o -> do
-        return $ FileTypeVideoNote {}
+      parseFileTypeVideoNote = A.withObject "FileTypeVideoNote" $ \_ -> return FileTypeVideoNote
 
       parseFileTypeVoiceNote :: A.Value -> T.Parser FileType
-      parseFileTypeVoiceNote = A.withObject "FileTypeVoiceNote" $ \o -> do
-        return $ FileTypeVoiceNote {}
+      parseFileTypeVoiceNote = A.withObject "FileTypeVoiceNote" $ \_ -> return FileTypeVoiceNote
 
       parseFileTypeWallpaper :: A.Value -> T.Parser FileType
-      parseFileTypeWallpaper = A.withObject "FileTypeWallpaper" $ \o -> do
-        return $ FileTypeWallpaper {}
+      parseFileTypeWallpaper = A.withObject "FileTypeWallpaper" $ \_ -> return FileTypeWallpaper
   parseJSON _ = mempty
 
 instance T.ToJSON FileType where

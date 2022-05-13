@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatReportReason where
 
 import qualified Data.Aeson as A
@@ -90,44 +91,34 @@ instance T.FromJSON ChatReportReason where
       _ -> mempty
     where
       parseChatReportReasonSpam :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonSpam = A.withObject "ChatReportReasonSpam" $ \o -> do
-        return $ ChatReportReasonSpam {}
+      parseChatReportReasonSpam = A.withObject "ChatReportReasonSpam" $ \_ -> return ChatReportReasonSpam
 
       parseChatReportReasonViolence :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonViolence = A.withObject "ChatReportReasonViolence" $ \o -> do
-        return $ ChatReportReasonViolence {}
+      parseChatReportReasonViolence = A.withObject "ChatReportReasonViolence" $ \_ -> return ChatReportReasonViolence
 
       parseChatReportReasonPornography :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonPornography = A.withObject "ChatReportReasonPornography" $ \o -> do
-        return $ ChatReportReasonPornography {}
+      parseChatReportReasonPornography = A.withObject "ChatReportReasonPornography" $ \_ -> return ChatReportReasonPornography
 
       parseChatReportReasonChildAbuse :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonChildAbuse = A.withObject "ChatReportReasonChildAbuse" $ \o -> do
-        return $ ChatReportReasonChildAbuse {}
+      parseChatReportReasonChildAbuse = A.withObject "ChatReportReasonChildAbuse" $ \_ -> return ChatReportReasonChildAbuse
 
       parseChatReportReasonCopyright :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonCopyright = A.withObject "ChatReportReasonCopyright" $ \o -> do
-        return $ ChatReportReasonCopyright {}
+      parseChatReportReasonCopyright = A.withObject "ChatReportReasonCopyright" $ \_ -> return ChatReportReasonCopyright
 
       parseChatReportReasonUnrelatedLocation :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonUnrelatedLocation = A.withObject "ChatReportReasonUnrelatedLocation" $ \o -> do
-        return $ ChatReportReasonUnrelatedLocation {}
+      parseChatReportReasonUnrelatedLocation = A.withObject "ChatReportReasonUnrelatedLocation" $ \_ -> return ChatReportReasonUnrelatedLocation
 
       parseChatReportReasonFake :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonFake = A.withObject "ChatReportReasonFake" $ \o -> do
-        return $ ChatReportReasonFake {}
+      parseChatReportReasonFake = A.withObject "ChatReportReasonFake" $ \_ -> return ChatReportReasonFake
 
       parseChatReportReasonIllegalDrugs :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonIllegalDrugs = A.withObject "ChatReportReasonIllegalDrugs" $ \o -> do
-        return $ ChatReportReasonIllegalDrugs {}
+      parseChatReportReasonIllegalDrugs = A.withObject "ChatReportReasonIllegalDrugs" $ \_ -> return ChatReportReasonIllegalDrugs
 
       parseChatReportReasonPersonalDetails :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonPersonalDetails = A.withObject "ChatReportReasonPersonalDetails" $ \o -> do
-        return $ ChatReportReasonPersonalDetails {}
+      parseChatReportReasonPersonalDetails = A.withObject "ChatReportReasonPersonalDetails" $ \_ -> return ChatReportReasonPersonalDetails
 
       parseChatReportReasonCustom :: A.Value -> T.Parser ChatReportReason
-      parseChatReportReasonCustom = A.withObject "ChatReportReasonCustom" $ \o -> do
-        return $ ChatReportReasonCustom {}
+      parseChatReportReasonCustom = A.withObject "ChatReportReasonCustom" $ \_ -> return ChatReportReasonCustom
   parseJSON _ = mempty
 
 instance T.ToJSON ChatReportReason where

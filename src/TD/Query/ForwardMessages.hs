@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ForwardMessages where
 
 import qualified Data.Aeson as A
@@ -30,43 +31,43 @@ data ForwardMessages = ForwardMessages
 instance Show ForwardMessages where
   show
     ForwardMessages
-      { only_preview = only_preview,
-        remove_caption = remove_caption,
-        send_copy = send_copy,
-        options = options,
-        message_ids = message_ids,
-        from_chat_id = from_chat_id,
-        chat_id = chat_id
+      { only_preview = only_preview_,
+        remove_caption = remove_caption_,
+        send_copy = send_copy_,
+        options = options_,
+        message_ids = message_ids_,
+        from_chat_id = from_chat_id_,
+        chat_id = chat_id_
       } =
       "ForwardMessages"
         ++ U.cc
-          [ U.p "only_preview" only_preview,
-            U.p "remove_caption" remove_caption,
-            U.p "send_copy" send_copy,
-            U.p "options" options,
-            U.p "message_ids" message_ids,
-            U.p "from_chat_id" from_chat_id,
-            U.p "chat_id" chat_id
+          [ U.p "only_preview" only_preview_,
+            U.p "remove_caption" remove_caption_,
+            U.p "send_copy" send_copy_,
+            U.p "options" options_,
+            U.p "message_ids" message_ids_,
+            U.p "from_chat_id" from_chat_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ForwardMessages where
   toJSON
     ForwardMessages
-      { only_preview = only_preview,
-        remove_caption = remove_caption,
-        send_copy = send_copy,
-        options = options,
-        message_ids = message_ids,
-        from_chat_id = from_chat_id,
-        chat_id = chat_id
+      { only_preview = only_preview_,
+        remove_caption = remove_caption_,
+        send_copy = send_copy_,
+        options = options_,
+        message_ids = message_ids_,
+        from_chat_id = from_chat_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "forwardMessages",
-          "only_preview" A..= only_preview,
-          "remove_caption" A..= remove_caption,
-          "send_copy" A..= send_copy,
-          "options" A..= options,
-          "message_ids" A..= message_ids,
-          "from_chat_id" A..= from_chat_id,
-          "chat_id" A..= chat_id
+          "only_preview" A..= only_preview_,
+          "remove_caption" A..= remove_caption_,
+          "send_copy" A..= send_copy_,
+          "options" A..= options_,
+          "message_ids" A..= message_ids_,
+          "from_chat_id" A..= from_chat_id_,
+          "chat_id" A..= chat_id_
         ]

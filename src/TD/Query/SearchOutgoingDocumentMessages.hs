@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchOutgoingDocumentMessages where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SearchOutgoingDocumentMessages = SearchOutgoingDocumentMessages
 instance Show SearchOutgoingDocumentMessages where
   show
     SearchOutgoingDocumentMessages
-      { limit = limit,
-        query = query
+      { limit = limit_,
+        query = query_
       } =
       "SearchOutgoingDocumentMessages"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "query" query
+          [ U.p "limit" limit_,
+            U.p "query" query_
           ]
 
 instance T.ToJSON SearchOutgoingDocumentMessages where
   toJSON
     SearchOutgoingDocumentMessages
-      { limit = limit,
-        query = query
+      { limit = limit_,
+        query = query_
       } =
       A.object
         [ "@type" A..= T.String "searchOutgoingDocumentMessages",
-          "limit" A..= limit,
-          "query" A..= query
+          "limit" A..= limit_,
+          "query" A..= query_
         ]

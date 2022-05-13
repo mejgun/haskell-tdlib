@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ThemeParameters where
 
 import qualified Data.Aeson as A
@@ -26,21 +27,21 @@ data ThemeParameters = -- | Contains parameters of the app theme @background_col
 instance Show ThemeParameters where
   show
     ThemeParameters
-      { button_text_color = button_text_color,
-        button_color = button_color,
-        link_color = link_color,
-        hint_color = hint_color,
-        text_color = text_color,
-        background_color = background_color
+      { button_text_color = button_text_color_,
+        button_color = button_color_,
+        link_color = link_color_,
+        hint_color = hint_color_,
+        text_color = text_color_,
+        background_color = background_color_
       } =
       "ThemeParameters"
         ++ U.cc
-          [ U.p "button_text_color" button_text_color,
-            U.p "button_color" button_color,
-            U.p "link_color" link_color,
-            U.p "hint_color" hint_color,
-            U.p "text_color" text_color,
-            U.p "background_color" background_color
+          [ U.p "button_text_color" button_text_color_,
+            U.p "button_color" button_color_,
+            U.p "link_color" link_color_,
+            U.p "hint_color" hint_color_,
+            U.p "text_color" text_color_,
+            U.p "background_color" background_color_
           ]
 
 instance T.FromJSON ThemeParameters where
@@ -65,19 +66,19 @@ instance T.FromJSON ThemeParameters where
 instance T.ToJSON ThemeParameters where
   toJSON
     ThemeParameters
-      { button_text_color = button_text_color,
-        button_color = button_color,
-        link_color = link_color,
-        hint_color = hint_color,
-        text_color = text_color,
-        background_color = background_color
+      { button_text_color = button_text_color_,
+        button_color = button_color_,
+        link_color = link_color_,
+        hint_color = hint_color_,
+        text_color = text_color_,
+        background_color = background_color_
       } =
       A.object
         [ "@type" A..= T.String "themeParameters",
-          "button_text_color" A..= button_text_color,
-          "button_color" A..= button_color,
-          "link_color" A..= link_color,
-          "hint_color" A..= hint_color,
-          "text_color" A..= text_color,
-          "background_color" A..= background_color
+          "button_text_color" A..= button_text_color_,
+          "button_color" A..= button_color_,
+          "link_color" A..= link_color_,
+          "hint_color" A..= hint_color_,
+          "text_color" A..= text_color_,
+          "background_color" A..= background_color_
         ]

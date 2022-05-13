@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetExternalLink where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetExternalLink = GetExternalLink
 instance Show GetExternalLink where
   show
     GetExternalLink
-      { allow_write_access = allow_write_access,
-        link = link
+      { allow_write_access = allow_write_access_,
+        link = link_
       } =
       "GetExternalLink"
         ++ U.cc
-          [ U.p "allow_write_access" allow_write_access,
-            U.p "link" link
+          [ U.p "allow_write_access" allow_write_access_,
+            U.p "link" link_
           ]
 
 instance T.ToJSON GetExternalLink where
   toJSON
     GetExternalLink
-      { allow_write_access = allow_write_access,
-        link = link
+      { allow_write_access = allow_write_access_,
+        link = link_
       } =
       A.object
         [ "@type" A..= T.String "getExternalLink",
-          "allow_write_access" A..= allow_write_access,
-          "link" A..= link
+          "allow_write_access" A..= allow_write_access_,
+          "link" A..= link_
         ]

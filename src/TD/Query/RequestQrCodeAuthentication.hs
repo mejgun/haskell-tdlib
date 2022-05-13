@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RequestQrCodeAuthentication where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data RequestQrCodeAuthentication = RequestQrCodeAuthentication
 instance Show RequestQrCodeAuthentication where
   show
     RequestQrCodeAuthentication
-      { other_user_ids = other_user_ids
+      { other_user_ids = other_user_ids_
       } =
       "RequestQrCodeAuthentication"
         ++ U.cc
-          [ U.p "other_user_ids" other_user_ids
+          [ U.p "other_user_ids" other_user_ids_
           ]
 
 instance T.ToJSON RequestQrCodeAuthentication where
   toJSON
     RequestQrCodeAuthentication
-      { other_user_ids = other_user_ids
+      { other_user_ids = other_user_ids_
       } =
       A.object
         [ "@type" A..= T.String "requestQrCodeAuthentication",
-          "other_user_ids" A..= other_user_ids
+          "other_user_ids" A..= other_user_ids_
         ]

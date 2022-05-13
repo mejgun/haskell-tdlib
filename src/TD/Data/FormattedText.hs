@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.FormattedText where
 
 import qualified Data.Aeson as A
@@ -20,13 +21,13 @@ data FormattedText = -- | A text with some entities @text The text @entities Ent
 instance Show FormattedText where
   show
     FormattedText
-      { entities = entities,
-        text = text
+      { entities = entities_,
+        text = text_
       } =
       "FormattedText"
         ++ U.cc
-          [ U.p "entities" entities,
-            U.p "text" text
+          [ U.p "entities" entities_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON FormattedText where
@@ -47,11 +48,11 @@ instance T.FromJSON FormattedText where
 instance T.ToJSON FormattedText where
   toJSON
     FormattedText
-      { entities = entities,
-        text = text
+      { entities = entities_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "formattedText",
-          "entities" A..= entities,
-          "text" A..= text
+          "entities" A..= entities_,
+          "text" A..= text_
         ]

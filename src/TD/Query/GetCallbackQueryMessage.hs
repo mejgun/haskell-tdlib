@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetCallbackQueryMessage where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data GetCallbackQueryMessage = GetCallbackQueryMessage
 instance Show GetCallbackQueryMessage where
   show
     GetCallbackQueryMessage
-      { callback_query_id = callback_query_id,
-        message_id = message_id,
-        chat_id = chat_id
+      { callback_query_id = callback_query_id_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetCallbackQueryMessage"
         ++ U.cc
-          [ U.p "callback_query_id" callback_query_id,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "callback_query_id" callback_query_id_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetCallbackQueryMessage where
   toJSON
     GetCallbackQueryMessage
-      { callback_query_id = callback_query_id,
-        message_id = message_id,
-        chat_id = chat_id
+      { callback_query_id = callback_query_id_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getCallbackQueryMessage",
-          "callback_query_id" A..= callback_query_id,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "callback_query_id" A..= callback_query_id_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

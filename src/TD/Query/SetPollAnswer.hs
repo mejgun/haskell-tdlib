@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetPollAnswer where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data SetPollAnswer = SetPollAnswer
 instance Show SetPollAnswer where
   show
     SetPollAnswer
-      { option_ids = option_ids,
-        message_id = message_id,
-        chat_id = chat_id
+      { option_ids = option_ids_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "SetPollAnswer"
         ++ U.cc
-          [ U.p "option_ids" option_ids,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "option_ids" option_ids_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetPollAnswer where
   toJSON
     SetPollAnswer
-      { option_ids = option_ids,
-        message_id = message_id,
-        chat_id = chat_id
+      { option_ids = option_ids_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setPollAnswer",
-          "option_ids" A..= option_ids,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "option_ids" A..= option_ids_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PaymentForm where
 
 import qualified Data.Aeson as A
@@ -38,29 +39,29 @@ data PaymentForm = -- | Contains information about an invoice payment form
 instance Show PaymentForm where
   show
     PaymentForm
-      { need_password = need_password,
-        can_save_credentials = can_save_credentials,
-        saved_credentials = saved_credentials,
-        saved_order_info = saved_order_info,
-        payments_provider = payments_provider,
-        payments_provider_user_id = payments_provider_user_id,
-        seller_bot_user_id = seller_bot_user_id,
-        url = url,
-        invoice = invoice,
-        _id = _id
+      { need_password = need_password_,
+        can_save_credentials = can_save_credentials_,
+        saved_credentials = saved_credentials_,
+        saved_order_info = saved_order_info_,
+        payments_provider = payments_provider_,
+        payments_provider_user_id = payments_provider_user_id_,
+        seller_bot_user_id = seller_bot_user_id_,
+        url = url_,
+        invoice = invoice_,
+        _id = _id_
       } =
       "PaymentForm"
         ++ U.cc
-          [ U.p "need_password" need_password,
-            U.p "can_save_credentials" can_save_credentials,
-            U.p "saved_credentials" saved_credentials,
-            U.p "saved_order_info" saved_order_info,
-            U.p "payments_provider" payments_provider,
-            U.p "payments_provider_user_id" payments_provider_user_id,
-            U.p "seller_bot_user_id" seller_bot_user_id,
-            U.p "url" url,
-            U.p "invoice" invoice,
-            U.p "_id" _id
+          [ U.p "need_password" need_password_,
+            U.p "can_save_credentials" can_save_credentials_,
+            U.p "saved_credentials" saved_credentials_,
+            U.p "saved_order_info" saved_order_info_,
+            U.p "payments_provider" payments_provider_,
+            U.p "payments_provider_user_id" payments_provider_user_id_,
+            U.p "seller_bot_user_id" seller_bot_user_id_,
+            U.p "url" url_,
+            U.p "invoice" invoice_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON PaymentForm where
@@ -89,27 +90,27 @@ instance T.FromJSON PaymentForm where
 instance T.ToJSON PaymentForm where
   toJSON
     PaymentForm
-      { need_password = need_password,
-        can_save_credentials = can_save_credentials,
-        saved_credentials = saved_credentials,
-        saved_order_info = saved_order_info,
-        payments_provider = payments_provider,
-        payments_provider_user_id = payments_provider_user_id,
-        seller_bot_user_id = seller_bot_user_id,
-        url = url,
-        invoice = invoice,
-        _id = _id
+      { need_password = need_password_,
+        can_save_credentials = can_save_credentials_,
+        saved_credentials = saved_credentials_,
+        saved_order_info = saved_order_info_,
+        payments_provider = payments_provider_,
+        payments_provider_user_id = payments_provider_user_id_,
+        seller_bot_user_id = seller_bot_user_id_,
+        url = url_,
+        invoice = invoice_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "paymentForm",
-          "need_password" A..= need_password,
-          "can_save_credentials" A..= can_save_credentials,
-          "saved_credentials" A..= saved_credentials,
-          "saved_order_info" A..= saved_order_info,
-          "payments_provider" A..= payments_provider,
-          "payments_provider_user_id" A..= payments_provider_user_id,
-          "seller_bot_user_id" A..= seller_bot_user_id,
-          "url" A..= url,
-          "invoice" A..= invoice,
-          "id" A..= _id
+          "need_password" A..= need_password_,
+          "can_save_credentials" A..= can_save_credentials_,
+          "saved_credentials" A..= saved_credentials_,
+          "saved_order_info" A..= saved_order_info_,
+          "payments_provider" A..= payments_provider_,
+          "payments_provider_user_id" A..= payments_provider_user_id_,
+          "seller_bot_user_id" A..= seller_bot_user_id_,
+          "url" A..= url_,
+          "invoice" A..= invoice_,
+          "id" A..= _id_
         ]

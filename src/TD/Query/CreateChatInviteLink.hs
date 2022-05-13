@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CreateChatInviteLink where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data CreateChatInviteLink = CreateChatInviteLink
 instance Show CreateChatInviteLink where
   show
     CreateChatInviteLink
-      { creates_join_request = creates_join_request,
-        member_limit = member_limit,
-        expiration_date = expiration_date,
-        name = name,
-        chat_id = chat_id
+      { creates_join_request = creates_join_request_,
+        member_limit = member_limit_,
+        expiration_date = expiration_date_,
+        name = name_,
+        chat_id = chat_id_
       } =
       "CreateChatInviteLink"
         ++ U.cc
-          [ U.p "creates_join_request" creates_join_request,
-            U.p "member_limit" member_limit,
-            U.p "expiration_date" expiration_date,
-            U.p "name" name,
-            U.p "chat_id" chat_id
+          [ U.p "creates_join_request" creates_join_request_,
+            U.p "member_limit" member_limit_,
+            U.p "expiration_date" expiration_date_,
+            U.p "name" name_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON CreateChatInviteLink where
   toJSON
     CreateChatInviteLink
-      { creates_join_request = creates_join_request,
-        member_limit = member_limit,
-        expiration_date = expiration_date,
-        name = name,
-        chat_id = chat_id
+      { creates_join_request = creates_join_request_,
+        member_limit = member_limit_,
+        expiration_date = expiration_date_,
+        name = name_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "createChatInviteLink",
-          "creates_join_request" A..= creates_join_request,
-          "member_limit" A..= member_limit,
-          "expiration_date" A..= expiration_date,
-          "name" A..= name,
-          "chat_id" A..= chat_id
+          "creates_join_request" A..= creates_join_request_,
+          "member_limit" A..= member_limit_,
+          "expiration_date" A..= expiration_date_,
+          "name" A..= name_,
+          "chat_id" A..= chat_id_
         ]

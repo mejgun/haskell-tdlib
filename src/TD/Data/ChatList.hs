@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatList where
 
 import qualified Data.Aeson as A
@@ -30,11 +31,11 @@ instance Show ChatList where
         []
   show
     ChatListFilter
-      { chat_filter_id = chat_filter_id
+      { chat_filter_id = chat_filter_id_
       } =
       "ChatListFilter"
         ++ U.cc
-          [ U.p "chat_filter_id" chat_filter_id
+          [ U.p "chat_filter_id" chat_filter_id_
           ]
 
 instance T.FromJSON ChatList where
@@ -48,12 +49,10 @@ instance T.FromJSON ChatList where
       _ -> mempty
     where
       parseChatListMain :: A.Value -> T.Parser ChatList
-      parseChatListMain = A.withObject "ChatListMain" $ \o -> do
-        return $ ChatListMain {}
+      parseChatListMain = A.withObject "ChatListMain" $ \_ -> return ChatListMain
 
       parseChatListArchive :: A.Value -> T.Parser ChatList
-      parseChatListArchive = A.withObject "ChatListArchive" $ \o -> do
-        return $ ChatListArchive {}
+      parseChatListArchive = A.withObject "ChatListArchive" $ \_ -> return ChatListArchive
 
       parseChatListFilter :: A.Value -> T.Parser ChatList
       parseChatListFilter = A.withObject "ChatListFilter" $ \o -> do
@@ -72,9 +71,9 @@ instance T.ToJSON ChatList where
       ]
   toJSON
     ChatListFilter
-      { chat_filter_id = chat_filter_id
+      { chat_filter_id = chat_filter_id_
       } =
       A.object
         [ "@type" A..= T.String "chatListFilter",
-          "chat_filter_id" A..= chat_filter_id
+          "chat_filter_id" A..= chat_filter_id_
         ]

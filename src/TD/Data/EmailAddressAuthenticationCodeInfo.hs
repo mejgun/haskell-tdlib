@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.EmailAddressAuthenticationCodeInfo where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data EmailAddressAuthenticationCodeInfo = -- | Information about the email addre
 instance Show EmailAddressAuthenticationCodeInfo where
   show
     EmailAddressAuthenticationCodeInfo
-      { _length = _length,
-        email_address_pattern = email_address_pattern
+      { _length = _length_,
+        email_address_pattern = email_address_pattern_
       } =
       "EmailAddressAuthenticationCodeInfo"
         ++ U.cc
-          [ U.p "_length" _length,
-            U.p "email_address_pattern" email_address_pattern
+          [ U.p "_length" _length_,
+            U.p "email_address_pattern" email_address_pattern_
           ]
 
 instance T.FromJSON EmailAddressAuthenticationCodeInfo where
@@ -45,11 +46,11 @@ instance T.FromJSON EmailAddressAuthenticationCodeInfo where
 instance T.ToJSON EmailAddressAuthenticationCodeInfo where
   toJSON
     EmailAddressAuthenticationCodeInfo
-      { _length = _length,
-        email_address_pattern = email_address_pattern
+      { _length = _length_,
+        email_address_pattern = email_address_pattern_
       } =
       A.object
         [ "@type" A..= T.String "emailAddressAuthenticationCodeInfo",
-          "length" A..= _length,
-          "email_address_pattern" A..= email_address_pattern
+          "length" A..= _length_,
+          "email_address_pattern" A..= email_address_pattern_
         ]

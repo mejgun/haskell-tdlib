@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CreateTemporaryPassword where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data CreateTemporaryPassword = CreateTemporaryPassword
 instance Show CreateTemporaryPassword where
   show
     CreateTemporaryPassword
-      { valid_for = valid_for,
-        password = password
+      { valid_for = valid_for_,
+        password = password_
       } =
       "CreateTemporaryPassword"
         ++ U.cc
-          [ U.p "valid_for" valid_for,
-            U.p "password" password
+          [ U.p "valid_for" valid_for_,
+            U.p "password" password_
           ]
 
 instance T.ToJSON CreateTemporaryPassword where
   toJSON
     CreateTemporaryPassword
-      { valid_for = valid_for,
-        password = password
+      { valid_for = valid_for_,
+        password = password_
       } =
       A.object
         [ "@type" A..= T.String "createTemporaryPassword",
-          "valid_for" A..= valid_for,
-          "password" A..= password
+          "valid_for" A..= valid_for_,
+          "password" A..= password_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BasicGroupFullInfo where
 
 import qualified Data.Aeson as A
@@ -30,21 +31,21 @@ data BasicGroupFullInfo = -- | Contains full information about a basic group
 instance Show BasicGroupFullInfo where
   show
     BasicGroupFullInfo
-      { bot_commands = bot_commands,
-        invite_link = invite_link,
-        members = members,
-        creator_user_id = creator_user_id,
-        description = description,
-        photo = photo
+      { bot_commands = bot_commands_,
+        invite_link = invite_link_,
+        members = members_,
+        creator_user_id = creator_user_id_,
+        description = description_,
+        photo = photo_
       } =
       "BasicGroupFullInfo"
         ++ U.cc
-          [ U.p "bot_commands" bot_commands,
-            U.p "invite_link" invite_link,
-            U.p "members" members,
-            U.p "creator_user_id" creator_user_id,
-            U.p "description" description,
-            U.p "photo" photo
+          [ U.p "bot_commands" bot_commands_,
+            U.p "invite_link" invite_link_,
+            U.p "members" members_,
+            U.p "creator_user_id" creator_user_id_,
+            U.p "description" description_,
+            U.p "photo" photo_
           ]
 
 instance T.FromJSON BasicGroupFullInfo where
@@ -69,19 +70,19 @@ instance T.FromJSON BasicGroupFullInfo where
 instance T.ToJSON BasicGroupFullInfo where
   toJSON
     BasicGroupFullInfo
-      { bot_commands = bot_commands,
-        invite_link = invite_link,
-        members = members,
-        creator_user_id = creator_user_id,
-        description = description,
-        photo = photo
+      { bot_commands = bot_commands_,
+        invite_link = invite_link_,
+        members = members_,
+        creator_user_id = creator_user_id_,
+        description = description_,
+        photo = photo_
       } =
       A.object
         [ "@type" A..= T.String "basicGroupFullInfo",
-          "bot_commands" A..= bot_commands,
-          "invite_link" A..= invite_link,
-          "members" A..= members,
-          "creator_user_id" A..= creator_user_id,
-          "description" A..= description,
-          "photo" A..= photo
+          "bot_commands" A..= bot_commands_,
+          "invite_link" A..= invite_link_,
+          "members" A..= members_,
+          "creator_user_id" A..= creator_user_id_,
+          "description" A..= description_,
+          "photo" A..= photo_
         ]

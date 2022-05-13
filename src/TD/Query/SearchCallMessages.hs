@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchCallMessages where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data SearchCallMessages = SearchCallMessages
 instance Show SearchCallMessages where
   show
     SearchCallMessages
-      { only_missed = only_missed,
-        limit = limit,
-        from_message_id = from_message_id
+      { only_missed = only_missed_,
+        limit = limit_,
+        from_message_id = from_message_id_
       } =
       "SearchCallMessages"
         ++ U.cc
-          [ U.p "only_missed" only_missed,
-            U.p "limit" limit,
-            U.p "from_message_id" from_message_id
+          [ U.p "only_missed" only_missed_,
+            U.p "limit" limit_,
+            U.p "from_message_id" from_message_id_
           ]
 
 instance T.ToJSON SearchCallMessages where
   toJSON
     SearchCallMessages
-      { only_missed = only_missed,
-        limit = limit,
-        from_message_id = from_message_id
+      { only_missed = only_missed_,
+        limit = limit_,
+        from_message_id = from_message_id_
       } =
       A.object
         [ "@type" A..= T.String "searchCallMessages",
-          "only_missed" A..= only_missed,
-          "limit" A..= limit,
-          "from_message_id" A..= from_message_id
+          "only_missed" A..= only_missed_,
+          "limit" A..= limit_,
+          "from_message_id" A..= from_message_id_
         ]

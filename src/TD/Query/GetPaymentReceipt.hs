@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetPaymentReceipt where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetPaymentReceipt = GetPaymentReceipt
 instance Show GetPaymentReceipt where
   show
     GetPaymentReceipt
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       "GetPaymentReceipt"
         ++ U.cc
-          [ U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetPaymentReceipt where
   toJSON
     GetPaymentReceipt
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getPaymentReceipt",
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GroupCallParticipantVideoInfo where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data GroupCallParticipantVideoInfo = -- | Contains information about a group cal
 instance Show GroupCallParticipantVideoInfo where
   show
     GroupCallParticipantVideoInfo
-      { is_paused = is_paused,
-        endpoint_id = endpoint_id,
-        source_groups = source_groups
+      { is_paused = is_paused_,
+        endpoint_id = endpoint_id_,
+        source_groups = source_groups_
       } =
       "GroupCallParticipantVideoInfo"
         ++ U.cc
-          [ U.p "is_paused" is_paused,
-            U.p "endpoint_id" endpoint_id,
-            U.p "source_groups" source_groups
+          [ U.p "is_paused" is_paused_,
+            U.p "endpoint_id" endpoint_id_,
+            U.p "source_groups" source_groups_
           ]
 
 instance T.FromJSON GroupCallParticipantVideoInfo where
@@ -51,13 +52,13 @@ instance T.FromJSON GroupCallParticipantVideoInfo where
 instance T.ToJSON GroupCallParticipantVideoInfo where
   toJSON
     GroupCallParticipantVideoInfo
-      { is_paused = is_paused,
-        endpoint_id = endpoint_id,
-        source_groups = source_groups
+      { is_paused = is_paused_,
+        endpoint_id = endpoint_id_,
+        source_groups = source_groups_
       } =
       A.object
         [ "@type" A..= T.String "groupCallParticipantVideoInfo",
-          "is_paused" A..= is_paused,
-          "endpoint_id" A..= endpoint_id,
-          "source_groups" A..= source_groups
+          "is_paused" A..= is_paused_,
+          "endpoint_id" A..= endpoint_id_,
+          "source_groups" A..= source_groups_
         ]

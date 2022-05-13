@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditMessageLiveLocation where
 
 import qualified Data.Aeson as A
@@ -29,39 +30,39 @@ data EditMessageLiveLocation = EditMessageLiveLocation
 instance Show EditMessageLiveLocation where
   show
     EditMessageLiveLocation
-      { proximity_alert_radius = proximity_alert_radius,
-        heading = heading,
-        location = location,
-        reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { proximity_alert_radius = proximity_alert_radius_,
+        heading = heading_,
+        location = location_,
+        reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "EditMessageLiveLocation"
         ++ U.cc
-          [ U.p "proximity_alert_radius" proximity_alert_radius,
-            U.p "heading" heading,
-            U.p "location" location,
-            U.p "reply_markup" reply_markup,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "proximity_alert_radius" proximity_alert_radius_,
+            U.p "heading" heading_,
+            U.p "location" location_,
+            U.p "reply_markup" reply_markup_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON EditMessageLiveLocation where
   toJSON
     EditMessageLiveLocation
-      { proximity_alert_radius = proximity_alert_radius,
-        heading = heading,
-        location = location,
-        reply_markup = reply_markup,
-        message_id = message_id,
-        chat_id = chat_id
+      { proximity_alert_radius = proximity_alert_radius_,
+        heading = heading_,
+        location = location_,
+        reply_markup = reply_markup_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "editMessageLiveLocation",
-          "proximity_alert_radius" A..= proximity_alert_radius,
-          "heading" A..= heading,
-          "location" A..= location,
-          "reply_markup" A..= reply_markup,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "proximity_alert_radius" A..= proximity_alert_radius_,
+          "heading" A..= heading_,
+          "location" A..= location_,
+          "reply_markup" A..= reply_markup_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]

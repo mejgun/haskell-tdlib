@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.FoundFileDownloads where
 
 import qualified Data.Aeson as A
@@ -22,15 +23,15 @@ data FoundFileDownloads = -- | Contains a list of downloaded files, found by a s
 instance Show FoundFileDownloads where
   show
     FoundFileDownloads
-      { next_offset = next_offset,
-        files = files,
-        total_counts = total_counts
+      { next_offset = next_offset_,
+        files = files_,
+        total_counts = total_counts_
       } =
       "FoundFileDownloads"
         ++ U.cc
-          [ U.p "next_offset" next_offset,
-            U.p "files" files,
-            U.p "total_counts" total_counts
+          [ U.p "next_offset" next_offset_,
+            U.p "files" files_,
+            U.p "total_counts" total_counts_
           ]
 
 instance T.FromJSON FoundFileDownloads where
@@ -52,13 +53,13 @@ instance T.FromJSON FoundFileDownloads where
 instance T.ToJSON FoundFileDownloads where
   toJSON
     FoundFileDownloads
-      { next_offset = next_offset,
-        files = files,
-        total_counts = total_counts
+      { next_offset = next_offset_,
+        files = files_,
+        total_counts = total_counts_
       } =
       A.object
         [ "@type" A..= T.String "foundFileDownloads",
-          "next_offset" A..= next_offset,
-          "files" A..= files,
-          "total_counts" A..= total_counts
+          "next_offset" A..= next_offset_,
+          "files" A..= files_,
+          "total_counts" A..= total_counts_
         ]

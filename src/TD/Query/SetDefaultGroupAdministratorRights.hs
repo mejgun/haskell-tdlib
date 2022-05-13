@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetDefaultGroupAdministratorRights where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data SetDefaultGroupAdministratorRights = SetDefaultGroupAdministratorRights
 instance Show SetDefaultGroupAdministratorRights where
   show
     SetDefaultGroupAdministratorRights
-      { default_group_administrator_rights = default_group_administrator_rights
+      { default_group_administrator_rights = default_group_administrator_rights_
       } =
       "SetDefaultGroupAdministratorRights"
         ++ U.cc
-          [ U.p "default_group_administrator_rights" default_group_administrator_rights
+          [ U.p "default_group_administrator_rights" default_group_administrator_rights_
           ]
 
 instance T.ToJSON SetDefaultGroupAdministratorRights where
   toJSON
     SetDefaultGroupAdministratorRights
-      { default_group_administrator_rights = default_group_administrator_rights
+      { default_group_administrator_rights = default_group_administrator_rights_
       } =
       A.object
         [ "@type" A..= T.String "setDefaultGroupAdministratorRights",
-          "default_group_administrator_rights" A..= default_group_administrator_rights
+          "default_group_administrator_rights" A..= default_group_administrator_rights_
         ]

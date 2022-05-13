@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteCommands where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data DeleteCommands = DeleteCommands
 instance Show DeleteCommands where
   show
     DeleteCommands
-      { language_code = language_code,
-        scope = scope
+      { language_code = language_code_,
+        scope = scope_
       } =
       "DeleteCommands"
         ++ U.cc
-          [ U.p "language_code" language_code,
-            U.p "scope" scope
+          [ U.p "language_code" language_code_,
+            U.p "scope" scope_
           ]
 
 instance T.ToJSON DeleteCommands where
   toJSON
     DeleteCommands
-      { language_code = language_code,
-        scope = scope
+      { language_code = language_code_,
+        scope = scope_
       } =
       A.object
         [ "@type" A..= T.String "deleteCommands",
-          "language_code" A..= language_code,
-          "scope" A..= scope
+          "language_code" A..= language_code_,
+          "scope" A..= scope_
         ]

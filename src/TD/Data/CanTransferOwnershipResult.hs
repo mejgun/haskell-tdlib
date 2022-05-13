@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CanTransferOwnershipResult where
 
 import qualified Data.Aeson as A
@@ -35,19 +36,19 @@ instance Show CanTransferOwnershipResult where
         []
   show
     CanTransferOwnershipResultPasswordTooFresh
-      { retry_after = retry_after
+      { retry_after = retry_after_
       } =
       "CanTransferOwnershipResultPasswordTooFresh"
         ++ U.cc
-          [ U.p "retry_after" retry_after
+          [ U.p "retry_after" retry_after_
           ]
   show
     CanTransferOwnershipResultSessionTooFresh
-      { retry_after = retry_after
+      { retry_after = retry_after_
       } =
       "CanTransferOwnershipResultSessionTooFresh"
         ++ U.cc
-          [ U.p "retry_after" retry_after
+          [ U.p "retry_after" retry_after_
           ]
 
 instance T.FromJSON CanTransferOwnershipResult where
@@ -62,12 +63,10 @@ instance T.FromJSON CanTransferOwnershipResult where
       _ -> mempty
     where
       parseCanTransferOwnershipResultOk :: A.Value -> T.Parser CanTransferOwnershipResult
-      parseCanTransferOwnershipResultOk = A.withObject "CanTransferOwnershipResultOk" $ \o -> do
-        return $ CanTransferOwnershipResultOk {}
+      parseCanTransferOwnershipResultOk = A.withObject "CanTransferOwnershipResultOk" $ \_ -> return CanTransferOwnershipResultOk
 
       parseCanTransferOwnershipResultPasswordNeeded :: A.Value -> T.Parser CanTransferOwnershipResult
-      parseCanTransferOwnershipResultPasswordNeeded = A.withObject "CanTransferOwnershipResultPasswordNeeded" $ \o -> do
-        return $ CanTransferOwnershipResultPasswordNeeded {}
+      parseCanTransferOwnershipResultPasswordNeeded = A.withObject "CanTransferOwnershipResultPasswordNeeded" $ \_ -> return CanTransferOwnershipResultPasswordNeeded
 
       parseCanTransferOwnershipResultPasswordTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
       parseCanTransferOwnershipResultPasswordTooFresh = A.withObject "CanTransferOwnershipResultPasswordTooFresh" $ \o -> do
@@ -91,17 +90,17 @@ instance T.ToJSON CanTransferOwnershipResult where
       ]
   toJSON
     CanTransferOwnershipResultPasswordTooFresh
-      { retry_after = retry_after
+      { retry_after = retry_after_
       } =
       A.object
         [ "@type" A..= T.String "canTransferOwnershipResultPasswordTooFresh",
-          "retry_after" A..= retry_after
+          "retry_after" A..= retry_after_
         ]
   toJSON
     CanTransferOwnershipResultSessionTooFresh
-      { retry_after = retry_after
+      { retry_after = retry_after_
       } =
       A.object
         [ "@type" A..= T.String "canTransferOwnershipResultSessionTooFresh",
-          "retry_after" A..= retry_after
+          "retry_after" A..= retry_after_
         ]

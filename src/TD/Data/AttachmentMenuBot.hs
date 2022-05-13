@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AttachmentMenuBot where
 
 import qualified Data.Aeson as A
@@ -34,27 +35,27 @@ data AttachmentMenuBot = -- | Represents a bot added to attachment menu
 instance Show AttachmentMenuBot where
   show
     AttachmentMenuBot
-      { icon_color = icon_color,
-        macos_icon = macos_icon,
-        android_icon = android_icon,
-        ios_animated_icon = ios_animated_icon,
-        ios_static_icon = ios_static_icon,
-        default_icon = default_icon,
-        name_color = name_color,
-        name = name,
-        bot_user_id = bot_user_id
+      { icon_color = icon_color_,
+        macos_icon = macos_icon_,
+        android_icon = android_icon_,
+        ios_animated_icon = ios_animated_icon_,
+        ios_static_icon = ios_static_icon_,
+        default_icon = default_icon_,
+        name_color = name_color_,
+        name = name_,
+        bot_user_id = bot_user_id_
       } =
       "AttachmentMenuBot"
         ++ U.cc
-          [ U.p "icon_color" icon_color,
-            U.p "macos_icon" macos_icon,
-            U.p "android_icon" android_icon,
-            U.p "ios_animated_icon" ios_animated_icon,
-            U.p "ios_static_icon" ios_static_icon,
-            U.p "default_icon" default_icon,
-            U.p "name_color" name_color,
-            U.p "name" name,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "icon_color" icon_color_,
+            U.p "macos_icon" macos_icon_,
+            U.p "android_icon" android_icon_,
+            U.p "ios_animated_icon" ios_animated_icon_,
+            U.p "ios_static_icon" ios_static_icon_,
+            U.p "default_icon" default_icon_,
+            U.p "name_color" name_color_,
+            U.p "name" name_,
+            U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.FromJSON AttachmentMenuBot where
@@ -82,25 +83,25 @@ instance T.FromJSON AttachmentMenuBot where
 instance T.ToJSON AttachmentMenuBot where
   toJSON
     AttachmentMenuBot
-      { icon_color = icon_color,
-        macos_icon = macos_icon,
-        android_icon = android_icon,
-        ios_animated_icon = ios_animated_icon,
-        ios_static_icon = ios_static_icon,
-        default_icon = default_icon,
-        name_color = name_color,
-        name = name,
-        bot_user_id = bot_user_id
+      { icon_color = icon_color_,
+        macos_icon = macos_icon_,
+        android_icon = android_icon_,
+        ios_animated_icon = ios_animated_icon_,
+        ios_static_icon = ios_static_icon_,
+        default_icon = default_icon_,
+        name_color = name_color_,
+        name = name_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "attachmentMenuBot",
-          "icon_color" A..= icon_color,
-          "macos_icon" A..= macos_icon,
-          "android_icon" A..= android_icon,
-          "ios_animated_icon" A..= ios_animated_icon,
-          "ios_static_icon" A..= ios_static_icon,
-          "default_icon" A..= default_icon,
-          "name_color" A..= name_color,
-          "name" A..= name,
-          "bot_user_id" A..= bot_user_id
+          "icon_color" A..= icon_color_,
+          "macos_icon" A..= macos_icon_,
+          "android_icon" A..= android_icon_,
+          "ios_animated_icon" A..= ios_animated_icon_,
+          "ios_static_icon" A..= ios_static_icon_,
+          "default_icon" A..= default_icon_,
+          "name_color" A..= name_color_,
+          "name" A..= name_,
+          "bot_user_id" A..= bot_user_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetWebPagePreview where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data GetWebPagePreview = GetWebPagePreview
 instance Show GetWebPagePreview where
   show
     GetWebPagePreview
-      { text = text
+      { text = text_
       } =
       "GetWebPagePreview"
         ++ U.cc
-          [ U.p "text" text
+          [ U.p "text" text_
           ]
 
 instance T.ToJSON GetWebPagePreview where
   toJSON
     GetWebPagePreview
-      { text = text
+      { text = text_
       } =
       A.object
         [ "@type" A..= T.String "getWebPagePreview",
-          "text" A..= text
+          "text" A..= text_
         ]

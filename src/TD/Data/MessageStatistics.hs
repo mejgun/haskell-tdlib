@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageStatistics where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data MessageStatistics = -- | A detailed statistics about a message @message_int
 instance Show MessageStatistics where
   show
     MessageStatistics
-      { message_interaction_graph = message_interaction_graph
+      { message_interaction_graph = message_interaction_graph_
       } =
       "MessageStatistics"
         ++ U.cc
-          [ U.p "message_interaction_graph" message_interaction_graph
+          [ U.p "message_interaction_graph" message_interaction_graph_
           ]
 
 instance T.FromJSON MessageStatistics where
@@ -41,9 +42,9 @@ instance T.FromJSON MessageStatistics where
 instance T.ToJSON MessageStatistics where
   toJSON
     MessageStatistics
-      { message_interaction_graph = message_interaction_graph
+      { message_interaction_graph = message_interaction_graph_
       } =
       A.object
         [ "@type" A..= T.String "messageStatistics",
-          "message_interaction_graph" A..= message_interaction_graph
+          "message_interaction_graph" A..= message_interaction_graph_
         ]

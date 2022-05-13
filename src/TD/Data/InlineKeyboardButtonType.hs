@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.InlineKeyboardButtonType where
 
 import qualified Data.Aeson as A
@@ -58,47 +59,47 @@ data InlineKeyboardButtonType
 instance Show InlineKeyboardButtonType where
   show
     InlineKeyboardButtonTypeUrl
-      { url = url
+      { url = url_
       } =
       "InlineKeyboardButtonTypeUrl"
         ++ U.cc
-          [ U.p "url" url
+          [ U.p "url" url_
           ]
   show
     InlineKeyboardButtonTypeLoginUrl
-      { forward_text = forward_text,
-        _id = _id,
-        url = url
+      { forward_text = forward_text_,
+        _id = _id_,
+        url = url_
       } =
       "InlineKeyboardButtonTypeLoginUrl"
         ++ U.cc
-          [ U.p "forward_text" forward_text,
-            U.p "_id" _id,
-            U.p "url" url
+          [ U.p "forward_text" forward_text_,
+            U.p "_id" _id_,
+            U.p "url" url_
           ]
   show
     InlineKeyboardButtonTypeWebApp
-      { url = url
+      { url = url_
       } =
       "InlineKeyboardButtonTypeWebApp"
         ++ U.cc
-          [ U.p "url" url
+          [ U.p "url" url_
           ]
   show
     InlineKeyboardButtonTypeCallback
-      { _data = _data
+      { _data = _data_
       } =
       "InlineKeyboardButtonTypeCallback"
         ++ U.cc
-          [ U.p "_data" _data
+          [ U.p "_data" _data_
           ]
   show
     InlineKeyboardButtonTypeCallbackWithPassword
-      { _data = _data
+      { _data = _data_
       } =
       "InlineKeyboardButtonTypeCallbackWithPassword"
         ++ U.cc
-          [ U.p "_data" _data
+          [ U.p "_data" _data_
           ]
   show InlineKeyboardButtonTypeCallbackGame =
     "InlineKeyboardButtonTypeCallbackGame"
@@ -106,13 +107,13 @@ instance Show InlineKeyboardButtonType where
         []
   show
     InlineKeyboardButtonTypeSwitchInline
-      { in_current_chat = in_current_chat,
-        query = query
+      { in_current_chat = in_current_chat_,
+        query = query_
       } =
       "InlineKeyboardButtonTypeSwitchInline"
         ++ U.cc
-          [ U.p "in_current_chat" in_current_chat,
-            U.p "query" query
+          [ U.p "in_current_chat" in_current_chat_,
+            U.p "query" query_
           ]
   show InlineKeyboardButtonTypeBuy =
     "InlineKeyboardButtonTypeBuy"
@@ -120,11 +121,11 @@ instance Show InlineKeyboardButtonType where
         []
   show
     InlineKeyboardButtonTypeUser
-      { user_id = user_id
+      { user_id = user_id_
       } =
       "InlineKeyboardButtonTypeUser"
         ++ U.cc
-          [ U.p "user_id" user_id
+          [ U.p "user_id" user_id_
           ]
 
 instance T.FromJSON InlineKeyboardButtonType where
@@ -171,8 +172,7 @@ instance T.FromJSON InlineKeyboardButtonType where
         return $ InlineKeyboardButtonTypeCallbackWithPassword {_data = _data_}
 
       parseInlineKeyboardButtonTypeCallbackGame :: A.Value -> T.Parser InlineKeyboardButtonType
-      parseInlineKeyboardButtonTypeCallbackGame = A.withObject "InlineKeyboardButtonTypeCallbackGame" $ \o -> do
-        return $ InlineKeyboardButtonTypeCallbackGame {}
+      parseInlineKeyboardButtonTypeCallbackGame = A.withObject "InlineKeyboardButtonTypeCallbackGame" $ \_ -> return InlineKeyboardButtonTypeCallbackGame
 
       parseInlineKeyboardButtonTypeSwitchInline :: A.Value -> T.Parser InlineKeyboardButtonType
       parseInlineKeyboardButtonTypeSwitchInline = A.withObject "InlineKeyboardButtonTypeSwitchInline" $ \o -> do
@@ -181,8 +181,7 @@ instance T.FromJSON InlineKeyboardButtonType where
         return $ InlineKeyboardButtonTypeSwitchInline {in_current_chat = in_current_chat_, query = query_}
 
       parseInlineKeyboardButtonTypeBuy :: A.Value -> T.Parser InlineKeyboardButtonType
-      parseInlineKeyboardButtonTypeBuy = A.withObject "InlineKeyboardButtonTypeBuy" $ \o -> do
-        return $ InlineKeyboardButtonTypeBuy {}
+      parseInlineKeyboardButtonTypeBuy = A.withObject "InlineKeyboardButtonTypeBuy" $ \_ -> return InlineKeyboardButtonTypeBuy
 
       parseInlineKeyboardButtonTypeUser :: A.Value -> T.Parser InlineKeyboardButtonType
       parseInlineKeyboardButtonTypeUser = A.withObject "InlineKeyboardButtonTypeUser" $ \o -> do
@@ -193,47 +192,47 @@ instance T.FromJSON InlineKeyboardButtonType where
 instance T.ToJSON InlineKeyboardButtonType where
   toJSON
     InlineKeyboardButtonTypeUrl
-      { url = url
+      { url = url_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeUrl",
-          "url" A..= url
+          "url" A..= url_
         ]
   toJSON
     InlineKeyboardButtonTypeLoginUrl
-      { forward_text = forward_text,
-        _id = _id,
-        url = url
+      { forward_text = forward_text_,
+        _id = _id_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeLoginUrl",
-          "forward_text" A..= forward_text,
-          "id" A..= _id,
-          "url" A..= url
+          "forward_text" A..= forward_text_,
+          "id" A..= _id_,
+          "url" A..= url_
         ]
   toJSON
     InlineKeyboardButtonTypeWebApp
-      { url = url
+      { url = url_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeWebApp",
-          "url" A..= url
+          "url" A..= url_
         ]
   toJSON
     InlineKeyboardButtonTypeCallback
-      { _data = _data
+      { _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeCallback",
-          "data" A..= _data
+          "data" A..= _data_
         ]
   toJSON
     InlineKeyboardButtonTypeCallbackWithPassword
-      { _data = _data
+      { _data = _data_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeCallbackWithPassword",
-          "data" A..= _data
+          "data" A..= _data_
         ]
   toJSON InlineKeyboardButtonTypeCallbackGame =
     A.object
@@ -241,13 +240,13 @@ instance T.ToJSON InlineKeyboardButtonType where
       ]
   toJSON
     InlineKeyboardButtonTypeSwitchInline
-      { in_current_chat = in_current_chat,
-        query = query
+      { in_current_chat = in_current_chat_,
+        query = query_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeSwitchInline",
-          "in_current_chat" A..= in_current_chat,
-          "query" A..= query
+          "in_current_chat" A..= in_current_chat_,
+          "query" A..= query_
         ]
   toJSON InlineKeyboardButtonTypeBuy =
     A.object
@@ -255,9 +254,9 @@ instance T.ToJSON InlineKeyboardButtonType where
       ]
   toJSON
     InlineKeyboardButtonTypeUser
-      { user_id = user_id
+      { user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeUser",
-          "user_id" A..= user_id
+          "user_id" A..= user_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChat where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetChat = GetChat
 instance Show GetChat where
   show
     GetChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "GetChat"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChat where
   toJSON
     GetChat
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChat",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetRecentlyVisitedTMeUrls where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetRecentlyVisitedTMeUrls = GetRecentlyVisitedTMeUrls
 instance Show GetRecentlyVisitedTMeUrls where
   show
     GetRecentlyVisitedTMeUrls
-      { referrer = referrer
+      { referrer = referrer_
       } =
       "GetRecentlyVisitedTMeUrls"
         ++ U.cc
-          [ U.p "referrer" referrer
+          [ U.p "referrer" referrer_
           ]
 
 instance T.ToJSON GetRecentlyVisitedTMeUrls where
   toJSON
     GetRecentlyVisitedTMeUrls
-      { referrer = referrer
+      { referrer = referrer_
       } =
       A.object
         [ "@type" A..= T.String "getRecentlyVisitedTMeUrls",
-          "referrer" A..= referrer
+          "referrer" A..= referrer_
         ]

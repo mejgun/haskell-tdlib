@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ProcessPushNotification where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ProcessPushNotification = ProcessPushNotification
 instance Show ProcessPushNotification where
   show
     ProcessPushNotification
-      { payload = payload
+      { payload = payload_
       } =
       "ProcessPushNotification"
         ++ U.cc
-          [ U.p "payload" payload
+          [ U.p "payload" payload_
           ]
 
 instance T.ToJSON ProcessPushNotification where
   toJSON
     ProcessPushNotification
-      { payload = payload
+      { payload = payload_
       } =
       A.object
         [ "@type" A..= T.String "processPushNotification",
-          "payload" A..= payload
+          "payload" A..= payload_
         ]

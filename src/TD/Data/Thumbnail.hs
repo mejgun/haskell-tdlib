@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Thumbnail where
 
 import qualified Data.Aeson as A
@@ -24,17 +25,17 @@ data Thumbnail = -- | Represents a thumbnail @format Thumbnail format @width Thu
 instance Show Thumbnail where
   show
     Thumbnail
-      { file = file,
-        height = height,
-        width = width,
-        format = format
+      { file = file_,
+        height = height_,
+        width = width_,
+        format = format_
       } =
       "Thumbnail"
         ++ U.cc
-          [ U.p "file" file,
-            U.p "height" height,
-            U.p "width" width,
-            U.p "format" format
+          [ U.p "file" file_,
+            U.p "height" height_,
+            U.p "width" width_,
+            U.p "format" format_
           ]
 
 instance T.FromJSON Thumbnail where
@@ -57,15 +58,15 @@ instance T.FromJSON Thumbnail where
 instance T.ToJSON Thumbnail where
   toJSON
     Thumbnail
-      { file = file,
-        height = height,
-        width = width,
-        format = format
+      { file = file_,
+        height = height_,
+        width = width_,
+        format = format_
       } =
       A.object
         [ "@type" A..= T.String "thumbnail",
-          "file" A..= file,
-          "height" A..= height,
-          "width" A..= width,
-          "format" A..= format
+          "file" A..= file_,
+          "height" A..= height_,
+          "width" A..= width_,
+          "format" A..= format_
         ]

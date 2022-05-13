@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.LoadGroupCallParticipants where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data LoadGroupCallParticipants = LoadGroupCallParticipants
 instance Show LoadGroupCallParticipants where
   show
     LoadGroupCallParticipants
-      { limit = limit,
-        group_call_id = group_call_id
+      { limit = limit_,
+        group_call_id = group_call_id_
       } =
       "LoadGroupCallParticipants"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "group_call_id" group_call_id
+          [ U.p "limit" limit_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON LoadGroupCallParticipants where
   toJSON
     LoadGroupCallParticipants
-      { limit = limit,
-        group_call_id = group_call_id
+      { limit = limit_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "loadGroupCallParticipants",
-          "limit" A..= limit,
-          "group_call_id" A..= group_call_id
+          "limit" A..= limit_,
+          "group_call_id" A..= group_call_id_
         ]

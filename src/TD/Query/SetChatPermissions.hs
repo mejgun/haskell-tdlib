@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatPermissions where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetChatPermissions = SetChatPermissions
 instance Show SetChatPermissions where
   show
     SetChatPermissions
-      { permissions = permissions,
-        chat_id = chat_id
+      { permissions = permissions_,
+        chat_id = chat_id_
       } =
       "SetChatPermissions"
         ++ U.cc
-          [ U.p "permissions" permissions,
-            U.p "chat_id" chat_id
+          [ U.p "permissions" permissions_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatPermissions where
   toJSON
     SetChatPermissions
-      { permissions = permissions,
-        chat_id = chat_id
+      { permissions = permissions_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatPermissions",
-          "permissions" A..= permissions,
-          "chat_id" A..= chat_id
+          "permissions" A..= permissions_,
+          "chat_id" A..= chat_id_
         ]

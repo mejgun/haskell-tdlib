@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetBlockedMessageSenders where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetBlockedMessageSenders = GetBlockedMessageSenders
 instance Show GetBlockedMessageSenders where
   show
     GetBlockedMessageSenders
-      { limit = limit,
-        offset = offset
+      { limit = limit_,
+        offset = offset_
       } =
       "GetBlockedMessageSenders"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset" offset
+          [ U.p "limit" limit_,
+            U.p "offset" offset_
           ]
 
 instance T.ToJSON GetBlockedMessageSenders where
   toJSON
     GetBlockedMessageSenders
-      { limit = limit,
-        offset = offset
+      { limit = limit_,
+        offset = offset_
       } =
       A.object
         [ "@type" A..= T.String "getBlockedMessageSenders",
-          "limit" A..= limit,
-          "offset" A..= offset
+          "limit" A..= limit_,
+          "offset" A..= offset_
         ]

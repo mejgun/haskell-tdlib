@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatAdministrator where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data ChatAdministrator = -- | Contains information about a chat administrator @u
 instance Show ChatAdministrator where
   show
     ChatAdministrator
-      { is_owner = is_owner,
-        custom_title = custom_title,
-        user_id = user_id
+      { is_owner = is_owner_,
+        custom_title = custom_title_,
+        user_id = user_id_
       } =
       "ChatAdministrator"
         ++ U.cc
-          [ U.p "is_owner" is_owner,
-            U.p "custom_title" custom_title,
-            U.p "user_id" user_id
+          [ U.p "is_owner" is_owner_,
+            U.p "custom_title" custom_title_,
+            U.p "user_id" user_id_
           ]
 
 instance T.FromJSON ChatAdministrator where
@@ -50,13 +51,13 @@ instance T.FromJSON ChatAdministrator where
 instance T.ToJSON ChatAdministrator where
   toJSON
     ChatAdministrator
-      { is_owner = is_owner,
-        custom_title = custom_title,
-        user_id = user_id
+      { is_owner = is_owner_,
+        custom_title = custom_title_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatAdministrator",
-          "is_owner" A..= is_owner,
-          "custom_title" A..= custom_title,
-          "user_id" A..= user_id
+          "is_owner" A..= is_owner_,
+          "custom_title" A..= custom_title_,
+          "user_id" A..= user_id_
         ]

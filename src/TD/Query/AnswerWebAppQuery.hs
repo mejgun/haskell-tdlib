@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AnswerWebAppQuery where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data AnswerWebAppQuery = AnswerWebAppQuery
 instance Show AnswerWebAppQuery where
   show
     AnswerWebAppQuery
-      { result = result,
-        web_app_query_id = web_app_query_id
+      { result = result_,
+        web_app_query_id = web_app_query_id_
       } =
       "AnswerWebAppQuery"
         ++ U.cc
-          [ U.p "result" result,
-            U.p "web_app_query_id" web_app_query_id
+          [ U.p "result" result_,
+            U.p "web_app_query_id" web_app_query_id_
           ]
 
 instance T.ToJSON AnswerWebAppQuery where
   toJSON
     AnswerWebAppQuery
-      { result = result,
-        web_app_query_id = web_app_query_id
+      { result = result_,
+        web_app_query_id = web_app_query_id_
       } =
       A.object
         [ "@type" A..= T.String "answerWebAppQuery",
-          "result" A..= result,
-          "web_app_query_id" A..= web_app_query_id
+          "result" A..= result_,
+          "web_app_query_id" A..= web_app_query_id_
         ]

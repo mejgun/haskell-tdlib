@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SearchMessagesFilter where
 
 import qualified Data.Aeson as A
@@ -139,72 +140,55 @@ instance T.FromJSON SearchMessagesFilter where
       _ -> mempty
     where
       parseSearchMessagesFilterEmpty :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterEmpty = A.withObject "SearchMessagesFilterEmpty" $ \o -> do
-        return $ SearchMessagesFilterEmpty {}
+      parseSearchMessagesFilterEmpty = A.withObject "SearchMessagesFilterEmpty" $ \_ -> return SearchMessagesFilterEmpty
 
       parseSearchMessagesFilterAnimation :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterAnimation = A.withObject "SearchMessagesFilterAnimation" $ \o -> do
-        return $ SearchMessagesFilterAnimation {}
+      parseSearchMessagesFilterAnimation = A.withObject "SearchMessagesFilterAnimation" $ \_ -> return SearchMessagesFilterAnimation
 
       parseSearchMessagesFilterAudio :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterAudio = A.withObject "SearchMessagesFilterAudio" $ \o -> do
-        return $ SearchMessagesFilterAudio {}
+      parseSearchMessagesFilterAudio = A.withObject "SearchMessagesFilterAudio" $ \_ -> return SearchMessagesFilterAudio
 
       parseSearchMessagesFilterDocument :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterDocument = A.withObject "SearchMessagesFilterDocument" $ \o -> do
-        return $ SearchMessagesFilterDocument {}
+      parseSearchMessagesFilterDocument = A.withObject "SearchMessagesFilterDocument" $ \_ -> return SearchMessagesFilterDocument
 
       parseSearchMessagesFilterPhoto :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterPhoto = A.withObject "SearchMessagesFilterPhoto" $ \o -> do
-        return $ SearchMessagesFilterPhoto {}
+      parseSearchMessagesFilterPhoto = A.withObject "SearchMessagesFilterPhoto" $ \_ -> return SearchMessagesFilterPhoto
 
       parseSearchMessagesFilterVideo :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterVideo = A.withObject "SearchMessagesFilterVideo" $ \o -> do
-        return $ SearchMessagesFilterVideo {}
+      parseSearchMessagesFilterVideo = A.withObject "SearchMessagesFilterVideo" $ \_ -> return SearchMessagesFilterVideo
 
       parseSearchMessagesFilterVoiceNote :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterVoiceNote = A.withObject "SearchMessagesFilterVoiceNote" $ \o -> do
-        return $ SearchMessagesFilterVoiceNote {}
+      parseSearchMessagesFilterVoiceNote = A.withObject "SearchMessagesFilterVoiceNote" $ \_ -> return SearchMessagesFilterVoiceNote
 
       parseSearchMessagesFilterPhotoAndVideo :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterPhotoAndVideo = A.withObject "SearchMessagesFilterPhotoAndVideo" $ \o -> do
-        return $ SearchMessagesFilterPhotoAndVideo {}
+      parseSearchMessagesFilterPhotoAndVideo = A.withObject "SearchMessagesFilterPhotoAndVideo" $ \_ -> return SearchMessagesFilterPhotoAndVideo
 
       parseSearchMessagesFilterUrl :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterUrl = A.withObject "SearchMessagesFilterUrl" $ \o -> do
-        return $ SearchMessagesFilterUrl {}
+      parseSearchMessagesFilterUrl = A.withObject "SearchMessagesFilterUrl" $ \_ -> return SearchMessagesFilterUrl
 
       parseSearchMessagesFilterChatPhoto :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterChatPhoto = A.withObject "SearchMessagesFilterChatPhoto" $ \o -> do
-        return $ SearchMessagesFilterChatPhoto {}
+      parseSearchMessagesFilterChatPhoto = A.withObject "SearchMessagesFilterChatPhoto" $ \_ -> return SearchMessagesFilterChatPhoto
 
       parseSearchMessagesFilterVideoNote :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterVideoNote = A.withObject "SearchMessagesFilterVideoNote" $ \o -> do
-        return $ SearchMessagesFilterVideoNote {}
+      parseSearchMessagesFilterVideoNote = A.withObject "SearchMessagesFilterVideoNote" $ \_ -> return SearchMessagesFilterVideoNote
 
       parseSearchMessagesFilterVoiceAndVideoNote :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterVoiceAndVideoNote = A.withObject "SearchMessagesFilterVoiceAndVideoNote" $ \o -> do
-        return $ SearchMessagesFilterVoiceAndVideoNote {}
+      parseSearchMessagesFilterVoiceAndVideoNote = A.withObject "SearchMessagesFilterVoiceAndVideoNote" $ \_ -> return SearchMessagesFilterVoiceAndVideoNote
 
       parseSearchMessagesFilterMention :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterMention = A.withObject "SearchMessagesFilterMention" $ \o -> do
-        return $ SearchMessagesFilterMention {}
+      parseSearchMessagesFilterMention = A.withObject "SearchMessagesFilterMention" $ \_ -> return SearchMessagesFilterMention
 
       parseSearchMessagesFilterUnreadMention :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterUnreadMention = A.withObject "SearchMessagesFilterUnreadMention" $ \o -> do
-        return $ SearchMessagesFilterUnreadMention {}
+      parseSearchMessagesFilterUnreadMention = A.withObject "SearchMessagesFilterUnreadMention" $ \_ -> return SearchMessagesFilterUnreadMention
 
       parseSearchMessagesFilterUnreadReaction :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterUnreadReaction = A.withObject "SearchMessagesFilterUnreadReaction" $ \o -> do
-        return $ SearchMessagesFilterUnreadReaction {}
+      parseSearchMessagesFilterUnreadReaction = A.withObject "SearchMessagesFilterUnreadReaction" $ \_ -> return SearchMessagesFilterUnreadReaction
 
       parseSearchMessagesFilterFailedToSend :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterFailedToSend = A.withObject "SearchMessagesFilterFailedToSend" $ \o -> do
-        return $ SearchMessagesFilterFailedToSend {}
+      parseSearchMessagesFilterFailedToSend = A.withObject "SearchMessagesFilterFailedToSend" $ \_ -> return SearchMessagesFilterFailedToSend
 
       parseSearchMessagesFilterPinned :: A.Value -> T.Parser SearchMessagesFilter
-      parseSearchMessagesFilterPinned = A.withObject "SearchMessagesFilterPinned" $ \o -> do
-        return $ SearchMessagesFilterPinned {}
+      parseSearchMessagesFilterPinned = A.withObject "SearchMessagesFilterPinned" $ \_ -> return SearchMessagesFilterPinned
   parseJSON _ = mempty
 
 instance T.ToJSON SearchMessagesFilter where

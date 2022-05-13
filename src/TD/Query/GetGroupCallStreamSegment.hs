@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetGroupCallStreamSegment where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data GetGroupCallStreamSegment = GetGroupCallStreamSegment
 instance Show GetGroupCallStreamSegment where
   show
     GetGroupCallStreamSegment
-      { video_quality = video_quality,
-        channel_id = channel_id,
-        scale = scale,
-        time_offset = time_offset,
-        group_call_id = group_call_id
+      { video_quality = video_quality_,
+        channel_id = channel_id_,
+        scale = scale_,
+        time_offset = time_offset_,
+        group_call_id = group_call_id_
       } =
       "GetGroupCallStreamSegment"
         ++ U.cc
-          [ U.p "video_quality" video_quality,
-            U.p "channel_id" channel_id,
-            U.p "scale" scale,
-            U.p "time_offset" time_offset,
-            U.p "group_call_id" group_call_id
+          [ U.p "video_quality" video_quality_,
+            U.p "channel_id" channel_id_,
+            U.p "scale" scale_,
+            U.p "time_offset" time_offset_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON GetGroupCallStreamSegment where
   toJSON
     GetGroupCallStreamSegment
-      { video_quality = video_quality,
-        channel_id = channel_id,
-        scale = scale,
-        time_offset = time_offset,
-        group_call_id = group_call_id
+      { video_quality = video_quality_,
+        channel_id = channel_id_,
+        scale = scale_,
+        time_offset = time_offset_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "getGroupCallStreamSegment",
-          "video_quality" A..= video_quality,
-          "channel_id" A..= channel_id,
-          "scale" A..= scale,
-          "time_offset" A..= time_offset,
-          "group_call_id" A..= group_call_id
+          "video_quality" A..= video_quality_,
+          "channel_id" A..= channel_id_,
+          "scale" A..= scale_,
+          "time_offset" A..= time_offset_,
+          "group_call_id" A..= group_call_id_
         ]

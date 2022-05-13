@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveBackground where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RemoveBackground = RemoveBackground
 instance Show RemoveBackground where
   show
     RemoveBackground
-      { background_id = background_id
+      { background_id = background_id_
       } =
       "RemoveBackground"
         ++ U.cc
-          [ U.p "background_id" background_id
+          [ U.p "background_id" background_id_
           ]
 
 instance T.ToJSON RemoveBackground where
   toJSON
     RemoveBackground
-      { background_id = background_id
+      { background_id = background_id_
       } =
       A.object
         [ "@type" A..= T.String "removeBackground",
-          "background_id" A..= background_id
+          "background_id" A..= background_id_
         ]

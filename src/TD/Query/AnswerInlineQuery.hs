@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AnswerInlineQuery where
 
 import qualified Data.Aeson as A
@@ -30,43 +31,43 @@ data AnswerInlineQuery = AnswerInlineQuery
 instance Show AnswerInlineQuery where
   show
     AnswerInlineQuery
-      { switch_pm_parameter = switch_pm_parameter,
-        switch_pm_text = switch_pm_text,
-        next_offset = next_offset,
-        cache_time = cache_time,
-        results = results,
-        is_personal = is_personal,
-        inline_query_id = inline_query_id
+      { switch_pm_parameter = switch_pm_parameter_,
+        switch_pm_text = switch_pm_text_,
+        next_offset = next_offset_,
+        cache_time = cache_time_,
+        results = results_,
+        is_personal = is_personal_,
+        inline_query_id = inline_query_id_
       } =
       "AnswerInlineQuery"
         ++ U.cc
-          [ U.p "switch_pm_parameter" switch_pm_parameter,
-            U.p "switch_pm_text" switch_pm_text,
-            U.p "next_offset" next_offset,
-            U.p "cache_time" cache_time,
-            U.p "results" results,
-            U.p "is_personal" is_personal,
-            U.p "inline_query_id" inline_query_id
+          [ U.p "switch_pm_parameter" switch_pm_parameter_,
+            U.p "switch_pm_text" switch_pm_text_,
+            U.p "next_offset" next_offset_,
+            U.p "cache_time" cache_time_,
+            U.p "results" results_,
+            U.p "is_personal" is_personal_,
+            U.p "inline_query_id" inline_query_id_
           ]
 
 instance T.ToJSON AnswerInlineQuery where
   toJSON
     AnswerInlineQuery
-      { switch_pm_parameter = switch_pm_parameter,
-        switch_pm_text = switch_pm_text,
-        next_offset = next_offset,
-        cache_time = cache_time,
-        results = results,
-        is_personal = is_personal,
-        inline_query_id = inline_query_id
+      { switch_pm_parameter = switch_pm_parameter_,
+        switch_pm_text = switch_pm_text_,
+        next_offset = next_offset_,
+        cache_time = cache_time_,
+        results = results_,
+        is_personal = is_personal_,
+        inline_query_id = inline_query_id_
       } =
       A.object
         [ "@type" A..= T.String "answerInlineQuery",
-          "switch_pm_parameter" A..= switch_pm_parameter,
-          "switch_pm_text" A..= switch_pm_text,
-          "next_offset" A..= next_offset,
-          "cache_time" A..= cache_time,
-          "results" A..= results,
-          "is_personal" A..= is_personal,
-          "inline_query_id" A..= inline_query_id
+          "switch_pm_parameter" A..= switch_pm_parameter_,
+          "switch_pm_text" A..= switch_pm_text_,
+          "next_offset" A..= next_offset_,
+          "cache_time" A..= cache_time_,
+          "results" A..= results_,
+          "is_personal" A..= is_personal_,
+          "inline_query_id" A..= inline_query_id_
         ]

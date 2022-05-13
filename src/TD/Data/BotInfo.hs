@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.BotInfo where
 
 import qualified Data.Aeson as A
@@ -29,21 +30,21 @@ data BotInfo = -- | Contains information about a bot
 instance Show BotInfo where
   show
     BotInfo
-      { default_channel_administrator_rights = default_channel_administrator_rights,
-        default_group_administrator_rights = default_group_administrator_rights,
-        commands = commands,
-        menu_button = menu_button,
-        description = description,
-        share_text = share_text
+      { default_channel_administrator_rights = default_channel_administrator_rights_,
+        default_group_administrator_rights = default_group_administrator_rights_,
+        commands = commands_,
+        menu_button = menu_button_,
+        description = description_,
+        share_text = share_text_
       } =
       "BotInfo"
         ++ U.cc
-          [ U.p "default_channel_administrator_rights" default_channel_administrator_rights,
-            U.p "default_group_administrator_rights" default_group_administrator_rights,
-            U.p "commands" commands,
-            U.p "menu_button" menu_button,
-            U.p "description" description,
-            U.p "share_text" share_text
+          [ U.p "default_channel_administrator_rights" default_channel_administrator_rights_,
+            U.p "default_group_administrator_rights" default_group_administrator_rights_,
+            U.p "commands" commands_,
+            U.p "menu_button" menu_button_,
+            U.p "description" description_,
+            U.p "share_text" share_text_
           ]
 
 instance T.FromJSON BotInfo where
@@ -68,19 +69,19 @@ instance T.FromJSON BotInfo where
 instance T.ToJSON BotInfo where
   toJSON
     BotInfo
-      { default_channel_administrator_rights = default_channel_administrator_rights,
-        default_group_administrator_rights = default_group_administrator_rights,
-        commands = commands,
-        menu_button = menu_button,
-        description = description,
-        share_text = share_text
+      { default_channel_administrator_rights = default_channel_administrator_rights_,
+        default_group_administrator_rights = default_group_administrator_rights_,
+        commands = commands_,
+        menu_button = menu_button_,
+        description = description_,
+        share_text = share_text_
       } =
       A.object
         [ "@type" A..= T.String "botInfo",
-          "default_channel_administrator_rights" A..= default_channel_administrator_rights,
-          "default_group_administrator_rights" A..= default_group_administrator_rights,
-          "commands" A..= commands,
-          "menu_button" A..= menu_button,
-          "description" A..= description,
-          "share_text" A..= share_text
+          "default_channel_administrator_rights" A..= default_channel_administrator_rights_,
+          "default_group_administrator_rights" A..= default_group_administrator_rights_,
+          "commands" A..= commands_,
+          "menu_button" A..= menu_button_,
+          "description" A..= description_,
+          "share_text" A..= share_text_
         ]

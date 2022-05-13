@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveChatActionBar where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RemoveChatActionBar = RemoveChatActionBar
 instance Show RemoveChatActionBar where
   show
     RemoveChatActionBar
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "RemoveChatActionBar"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON RemoveChatActionBar where
   toJSON
     RemoveChatActionBar
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "removeChatActionBar",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

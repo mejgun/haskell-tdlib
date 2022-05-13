@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.RtmpUrl where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data RtmpUrl = -- | Represents an RTMP url @url The URL @stream_key Stream key
 instance Show RtmpUrl where
   show
     RtmpUrl
-      { stream_key = stream_key,
-        url = url
+      { stream_key = stream_key_,
+        url = url_
       } =
       "RtmpUrl"
         ++ U.cc
-          [ U.p "stream_key" stream_key,
-            U.p "url" url
+          [ U.p "stream_key" stream_key_,
+            U.p "url" url_
           ]
 
 instance T.FromJSON RtmpUrl where
@@ -45,11 +46,11 @@ instance T.FromJSON RtmpUrl where
 instance T.ToJSON RtmpUrl where
   toJSON
     RtmpUrl
-      { stream_key = stream_key,
-        url = url
+      { stream_key = stream_key_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "rtmpUrl",
-          "stream_key" A..= stream_key,
-          "url" A..= url
+          "stream_key" A..= stream_key_,
+          "url" A..= url_
         ]

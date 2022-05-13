@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddCustomServerLanguagePack where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data AddCustomServerLanguagePack = AddCustomServerLanguagePack
 instance Show AddCustomServerLanguagePack where
   show
     AddCustomServerLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       "AddCustomServerLanguagePack"
         ++ U.cc
-          [ U.p "language_pack_id" language_pack_id
+          [ U.p "language_pack_id" language_pack_id_
           ]
 
 instance T.ToJSON AddCustomServerLanguagePack where
   toJSON
     AddCustomServerLanguagePack
-      { language_pack_id = language_pack_id
+      { language_pack_id = language_pack_id_
       } =
       A.object
         [ "@type" A..= T.String "addCustomServerLanguagePack",
-          "language_pack_id" A..= language_pack_id
+          "language_pack_id" A..= language_pack_id_
         ]

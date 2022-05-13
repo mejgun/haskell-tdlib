@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendPhoneNumberVerificationCode where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SendPhoneNumberVerificationCode = SendPhoneNumberVerificationCode
 instance Show SendPhoneNumberVerificationCode where
   show
     SendPhoneNumberVerificationCode
-      { settings = settings,
-        phone_number = phone_number
+      { settings = settings_,
+        phone_number = phone_number_
       } =
       "SendPhoneNumberVerificationCode"
         ++ U.cc
-          [ U.p "settings" settings,
-            U.p "phone_number" phone_number
+          [ U.p "settings" settings_,
+            U.p "phone_number" phone_number_
           ]
 
 instance T.ToJSON SendPhoneNumberVerificationCode where
   toJSON
     SendPhoneNumberVerificationCode
-      { settings = settings,
-        phone_number = phone_number
+      { settings = settings_,
+        phone_number = phone_number_
       } =
       A.object
         [ "@type" A..= T.String "sendPhoneNumberVerificationCode",
-          "settings" A..= settings,
-          "phone_number" A..= phone_number
+          "settings" A..= settings_,
+          "phone_number" A..= phone_number_
         ]

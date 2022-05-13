@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetMessageImportConfirmationText where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetMessageImportConfirmationText = GetMessageImportConfirmationText
 instance Show GetMessageImportConfirmationText where
   show
     GetMessageImportConfirmationText
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "GetMessageImportConfirmationText"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetMessageImportConfirmationText where
   toJSON
     GetMessageImportConfirmationText
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getMessageImportConfirmationText",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

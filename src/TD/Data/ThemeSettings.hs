@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ThemeSettings where
 
 import qualified Data.Aeson as A
@@ -26,19 +27,19 @@ data ThemeSettings = -- | Describes theme settings
 instance Show ThemeSettings where
   show
     ThemeSettings
-      { outgoing_message_accent_color = outgoing_message_accent_color,
-        animate_outgoing_message_fill = animate_outgoing_message_fill,
-        outgoing_message_fill = outgoing_message_fill,
-        background = background,
-        accent_color = accent_color
+      { outgoing_message_accent_color = outgoing_message_accent_color_,
+        animate_outgoing_message_fill = animate_outgoing_message_fill_,
+        outgoing_message_fill = outgoing_message_fill_,
+        background = background_,
+        accent_color = accent_color_
       } =
       "ThemeSettings"
         ++ U.cc
-          [ U.p "outgoing_message_accent_color" outgoing_message_accent_color,
-            U.p "animate_outgoing_message_fill" animate_outgoing_message_fill,
-            U.p "outgoing_message_fill" outgoing_message_fill,
-            U.p "background" background,
-            U.p "accent_color" accent_color
+          [ U.p "outgoing_message_accent_color" outgoing_message_accent_color_,
+            U.p "animate_outgoing_message_fill" animate_outgoing_message_fill_,
+            U.p "outgoing_message_fill" outgoing_message_fill_,
+            U.p "background" background_,
+            U.p "accent_color" accent_color_
           ]
 
 instance T.FromJSON ThemeSettings where
@@ -62,17 +63,17 @@ instance T.FromJSON ThemeSettings where
 instance T.ToJSON ThemeSettings where
   toJSON
     ThemeSettings
-      { outgoing_message_accent_color = outgoing_message_accent_color,
-        animate_outgoing_message_fill = animate_outgoing_message_fill,
-        outgoing_message_fill = outgoing_message_fill,
-        background = background,
-        accent_color = accent_color
+      { outgoing_message_accent_color = outgoing_message_accent_color_,
+        animate_outgoing_message_fill = animate_outgoing_message_fill_,
+        outgoing_message_fill = outgoing_message_fill_,
+        background = background_,
+        accent_color = accent_color_
       } =
       A.object
         [ "@type" A..= T.String "themeSettings",
-          "outgoing_message_accent_color" A..= outgoing_message_accent_color,
-          "animate_outgoing_message_fill" A..= animate_outgoing_message_fill,
-          "outgoing_message_fill" A..= outgoing_message_fill,
-          "background" A..= background,
-          "accent_color" A..= accent_color
+          "outgoing_message_accent_color" A..= outgoing_message_accent_color_,
+          "animate_outgoing_message_fill" A..= animate_outgoing_message_fill_,
+          "outgoing_message_fill" A..= outgoing_message_fill_,
+          "background" A..= background_,
+          "accent_color" A..= accent_color_
         ]

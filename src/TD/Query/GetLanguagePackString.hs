@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetLanguagePackString where
 
 import qualified Data.Aeson as A
@@ -23,31 +24,31 @@ data GetLanguagePackString = GetLanguagePackString
 instance Show GetLanguagePackString where
   show
     GetLanguagePackString
-      { key = key,
-        language_pack_id = language_pack_id,
-        localization_target = localization_target,
-        language_pack_database_path = language_pack_database_path
+      { key = key_,
+        language_pack_id = language_pack_id_,
+        localization_target = localization_target_,
+        language_pack_database_path = language_pack_database_path_
       } =
       "GetLanguagePackString"
         ++ U.cc
-          [ U.p "key" key,
-            U.p "language_pack_id" language_pack_id,
-            U.p "localization_target" localization_target,
-            U.p "language_pack_database_path" language_pack_database_path
+          [ U.p "key" key_,
+            U.p "language_pack_id" language_pack_id_,
+            U.p "localization_target" localization_target_,
+            U.p "language_pack_database_path" language_pack_database_path_
           ]
 
 instance T.ToJSON GetLanguagePackString where
   toJSON
     GetLanguagePackString
-      { key = key,
-        language_pack_id = language_pack_id,
-        localization_target = localization_target,
-        language_pack_database_path = language_pack_database_path
+      { key = key_,
+        language_pack_id = language_pack_id_,
+        localization_target = localization_target_,
+        language_pack_database_path = language_pack_database_path_
       } =
       A.object
         [ "@type" A..= T.String "getLanguagePackString",
-          "key" A..= key,
-          "language_pack_id" A..= language_pack_id,
-          "localization_target" A..= localization_target,
-          "language_pack_database_path" A..= language_pack_database_path
+          "key" A..= key_,
+          "language_pack_id" A..= language_pack_id_,
+          "localization_target" A..= localization_target_,
+          "language_pack_database_path" A..= language_pack_database_path_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckCreatedPublicChatsLimit where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data CheckCreatedPublicChatsLimit = CheckCreatedPublicChatsLimit
 instance Show CheckCreatedPublicChatsLimit where
   show
     CheckCreatedPublicChatsLimit
-      { _type = _type
+      { _type = _type_
       } =
       "CheckCreatedPublicChatsLimit"
         ++ U.cc
-          [ U.p "_type" _type
+          [ U.p "_type" _type_
           ]
 
 instance T.ToJSON CheckCreatedPublicChatsLimit where
   toJSON
     CheckCreatedPublicChatsLimit
-      { _type = _type
+      { _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "checkCreatedPublicChatsLimit",
-          "type" A..= _type
+          "type" A..= _type_
         ]

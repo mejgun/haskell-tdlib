@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Emojis where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data Emojis = -- | Represents a list of emoji @emojis List of emojis
 instance Show Emojis where
   show
     Emojis
-      { emojis = emojis
+      { emojis = emojis_
       } =
       "Emojis"
         ++ U.cc
-          [ U.p "emojis" emojis
+          [ U.p "emojis" emojis_
           ]
 
 instance T.FromJSON Emojis where
@@ -40,9 +41,9 @@ instance T.FromJSON Emojis where
 instance T.ToJSON Emojis where
   toJSON
     Emojis
-      { emojis = emojis
+      { emojis = emojis_
       } =
       A.object
         [ "@type" A..= T.String "emojis",
-          "emojis" A..= emojis
+          "emojis" A..= emojis_
         ]

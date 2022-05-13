@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetJsonString where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data GetJsonString = GetJsonString
 instance Show GetJsonString where
   show
     GetJsonString
-      { json_value = json_value
+      { json_value = json_value_
       } =
       "GetJsonString"
         ++ U.cc
-          [ U.p "json_value" json_value
+          [ U.p "json_value" json_value_
           ]
 
 instance T.ToJSON GetJsonString where
   toJSON
     GetJsonString
-      { json_value = json_value
+      { json_value = json_value_
       } =
       A.object
         [ "@type" A..= T.String "getJsonString",
-          "json_value" A..= json_value
+          "json_value" A..= json_value_
         ]

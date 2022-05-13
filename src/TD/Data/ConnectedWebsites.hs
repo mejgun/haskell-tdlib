@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ConnectedWebsites where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data ConnectedWebsites = -- | Contains a list of websites the current user is lo
 instance Show ConnectedWebsites where
   show
     ConnectedWebsites
-      { websites = websites
+      { websites = websites_
       } =
       "ConnectedWebsites"
         ++ U.cc
-          [ U.p "websites" websites
+          [ U.p "websites" websites_
           ]
 
 instance T.FromJSON ConnectedWebsites where
@@ -41,9 +42,9 @@ instance T.FromJSON ConnectedWebsites where
 instance T.ToJSON ConnectedWebsites where
   toJSON
     ConnectedWebsites
-      { websites = websites
+      { websites = websites_
       } =
       A.object
         [ "@type" A..= T.String "connectedWebsites",
-          "websites" A..= websites
+          "websites" A..= websites_
         ]

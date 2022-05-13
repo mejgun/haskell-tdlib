@@ -1,24 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
-</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.SetScopeNotificationSettings</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.NotificationSettingsScope.html"><span class="hs-identifier">TD.Data.NotificationSettingsScope</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">NotificationSettingsScope</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ScopeNotificationSettings.html"><span class="hs-identifier">TD.Data.ScopeNotificationSettings</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ScopeNotificationSettings</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Changes notification settings for chats of a given type @scope Types of chats for which to change the notification settings @notification_settings The new notification settings for the given scope</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SetScopeNotificationSettings"><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-var">SetScopeNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetScopeNotificationSettings"><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-var">SetScopeNotificationSettings</span></a></span></span><span>
-</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-15"></span><span>    </span><span id="notification_settings"><span class="annot"><span class="annottext">SetScopeNotificationSettings -&gt; Maybe ScopeNotificationSettings
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.SetScopeNotificationSettings</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.NotificationSettingsScope.html"><span class="hs-identifier">TD.Data.NotificationSettingsScope</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">NotificationSettingsScope</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ScopeNotificationSettings.html"><span class="hs-identifier">TD.Data.ScopeNotificationSettings</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ScopeNotificationSettings</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Changes notification settings for chats of a given type @scope Types of chats for which to change the notification settings @notification_settings The new notification settings for the given scope</span><span>
+</span><span id="line-14"></span><span class="hs-keyword">data</span><span> </span><span id="SetScopeNotificationSettings"><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-var">SetScopeNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetScopeNotificationSettings"><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-var">SetScopeNotificationSettings</span></a></span></span><span>
+</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>    </span><span id="notification_settings"><span class="annot"><span class="annottext">SetScopeNotificationSettings -&gt; Maybe ScopeNotificationSettings
 </span><a href="TD.Query.SetScopeNotificationSettings.html#notification_settings"><span class="hs-identifier hs-var hs-var">notification_settings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ScopeNotificationSettings.html#ScopeNotificationSettings"><span class="hs-identifier hs-type">ScopeNotificationSettings.ScopeNotificationSettings</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-17"></span><span>    </span><span id="scope"><span class="annot"><span class="annottext">SetScopeNotificationSettings -&gt; Maybe NotificationSettingsScope
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-18"></span><span>    </span><span id="scope"><span class="annot"><span class="annottext">SetScopeNotificationSettings -&gt; Maybe NotificationSettingsScope
 </span><a href="TD.Query.SetScopeNotificationSettings.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope.NotificationSettingsScope</span></a></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408145"><span id="local-6989586621679408147"><span class="annot"><span class="annottext">SetScopeNotificationSettings
+</span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679407302"><span id="local-6989586621679407304"><span class="annot"><span class="annottext">SetScopeNotificationSettings
 -&gt; SetScopeNotificationSettings -&gt; Bool
 (SetScopeNotificationSettings
  -&gt; SetScopeNotificationSettings -&gt; Bool)
@@ -35,64 +36,64 @@ $c/= :: SetScopeNotificationSettings
 $c== :: SetScopeNotificationSettings
 -&gt; SetScopeNotificationSettings -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408139"><span id="local-6989586621679408142"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679408137"><span class="annot"><span class="annottext">show :: SetScopeNotificationSettings -&gt; String
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407296"><span id="local-6989586621679407299"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679407294"><span class="annot"><span class="annottext">show :: SetScopeNotificationSettings -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span><span>
-</span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">notification_settings :: SetScopeNotificationSettings -&gt; Maybe ScopeNotificationSettings
-</span><a href="TD.Query.SetScopeNotificationSettings.html#notification_settings"><span class="hs-identifier hs-var">notification_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408135"><span class="annot"><span class="annottext">Maybe ScopeNotificationSettings
-</span><a href="#local-6989586621679408135"><span class="hs-identifier hs-var">notification_settings</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">scope :: SetScopeNotificationSettings -&gt; Maybe NotificationSettingsScope
-</span><a href="TD.Query.SetScopeNotificationSettings.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408134"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679408134"><span class="hs-identifier hs-var">scope</span></a></span></span><span>
-</span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span><span>
+</span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">notification_settings :: SetScopeNotificationSettings -&gt; Maybe ScopeNotificationSettings
+</span><a href="TD.Query.SetScopeNotificationSettings.html#notification_settings"><span class="hs-identifier hs-var">notification_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407292"><span class="annot"><span class="annottext">Maybe ScopeNotificationSettings
+</span><a href="#local-6989586621679407292"><span class="hs-identifier hs-var">notification_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">scope :: SetScopeNotificationSettings -&gt; Maybe NotificationSettingsScope
+</span><a href="TD.Query.SetScopeNotificationSettings.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407291"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
+</span><a href="#local-6989586621679407291"><span class="hs-identifier hs-var">scope_</span></a></span></span><span>
+</span><span id="line-27"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-28"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetScopeNotificationSettings&quot;</span></span><span>
-</span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-29"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe ScopeNotificationSettings -&gt; String
+</span><span id="line-30"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe ScopeNotificationSettings -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;notification_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeNotificationSettings
-</span><a href="#local-6989586621679408135"><span class="hs-identifier hs-var">notification_settings</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe NotificationSettingsScope -&gt; String
+</span><a href="#local-6989586621679407292"><span class="hs-identifier hs-var">notification_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-31"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe NotificationSettingsScope -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679408134"><span class="hs-identifier hs-var">scope</span></a></span><span>
-</span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408125"><span id="local-6989586621679408127"><span id="local-6989586621679408129"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679408123"><span class="annot"><span class="annottext">toJSON :: SetScopeNotificationSettings -&gt; Value
+</span><a href="#local-6989586621679407291"><span class="hs-identifier hs-var">scope_</span></a></span><span>
+</span><span id="line-32"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407282"><span id="local-6989586621679407284"><span id="local-6989586621679407286"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679407280"><span class="annot"><span class="annottext">toJSON :: SetScopeNotificationSettings -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span><span>
-</span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">notification_settings :: SetScopeNotificationSettings -&gt; Maybe ScopeNotificationSettings
-</span><a href="TD.Query.SetScopeNotificationSettings.html#notification_settings"><span class="hs-identifier hs-var">notification_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408121"><span class="annot"><span class="annottext">Maybe ScopeNotificationSettings
-</span><a href="#local-6989586621679408121"><span class="hs-identifier hs-var">notification_settings</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">scope :: SetScopeNotificationSettings -&gt; Maybe NotificationSettingsScope
-</span><a href="TD.Query.SetScopeNotificationSettings.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408120"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679408120"><span class="hs-identifier hs-var">scope</span></a></span></span><span>
-</span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-36"></span><span>    </span><span class="annot"><a href="TD.Query.SetScopeNotificationSettings.html#SetScopeNotificationSettings"><span class="hs-identifier hs-type">SetScopeNotificationSettings</span></a></span><span>
+</span><span id="line-37"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">notification_settings :: SetScopeNotificationSettings -&gt; Maybe ScopeNotificationSettings
+</span><a href="TD.Query.SetScopeNotificationSettings.html#notification_settings"><span class="hs-identifier hs-var">notification_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407278"><span class="annot"><span class="annottext">Maybe ScopeNotificationSettings
+</span><a href="#local-6989586621679407278"><span class="hs-identifier hs-var">notification_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">scope :: SetScopeNotificationSettings -&gt; Maybe NotificationSettingsScope
+</span><a href="TD.Query.SetScopeNotificationSettings.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407277"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
+</span><a href="#local-6989586621679407277"><span class="hs-identifier hs-var">scope_</span></a></span></span><span>
+</span><span id="line-39"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-40"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-40"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-41"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;setScopeNotificationSettings&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;notification_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ScopeNotificationSettings -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeNotificationSettings
-</span><a href="#local-6989586621679408121"><span class="hs-identifier hs-var">notification_settings</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679407278"><span class="hs-identifier hs-var">notification_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-43"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NotificationSettingsScope -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679408120"><span class="hs-identifier hs-var">scope</span></a></span><span>
-</span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-44"></span></pre></body></html>
+</span><a href="#local-6989586621679407277"><span class="hs-identifier hs-var">scope_</span></a></span><span>
+</span><span id="line-44"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-45"></span></pre></body></html>

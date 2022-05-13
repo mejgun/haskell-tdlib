@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleSessionCanAcceptCalls where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleSessionCanAcceptCalls = ToggleSessionCanAcceptCalls
 instance Show ToggleSessionCanAcceptCalls where
   show
     ToggleSessionCanAcceptCalls
-      { can_accept_calls = can_accept_calls,
-        session_id = session_id
+      { can_accept_calls = can_accept_calls_,
+        session_id = session_id_
       } =
       "ToggleSessionCanAcceptCalls"
         ++ U.cc
-          [ U.p "can_accept_calls" can_accept_calls,
-            U.p "session_id" session_id
+          [ U.p "can_accept_calls" can_accept_calls_,
+            U.p "session_id" session_id_
           ]
 
 instance T.ToJSON ToggleSessionCanAcceptCalls where
   toJSON
     ToggleSessionCanAcceptCalls
-      { can_accept_calls = can_accept_calls,
-        session_id = session_id
+      { can_accept_calls = can_accept_calls_,
+        session_id = session_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleSessionCanAcceptCalls",
-          "can_accept_calls" A..= can_accept_calls,
-          "session_id" A..= session_id
+          "can_accept_calls" A..= can_accept_calls_,
+          "session_id" A..= session_id_
         ]

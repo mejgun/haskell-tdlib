@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatFilter where
 
 import qualified Data.Aeson as A
@@ -41,35 +42,35 @@ data ChatFilter = -- | Represents a filter of user chats
 instance Show ChatFilter where
   show
     ChatFilter
-      { include_channels = include_channels,
-        include_groups = include_groups,
-        include_bots = include_bots,
-        include_non_contacts = include_non_contacts,
-        include_contacts = include_contacts,
-        exclude_archived = exclude_archived,
-        exclude_read = exclude_read,
-        exclude_muted = exclude_muted,
-        excluded_chat_ids = excluded_chat_ids,
-        included_chat_ids = included_chat_ids,
-        pinned_chat_ids = pinned_chat_ids,
-        icon_name = icon_name,
-        title = title
+      { include_channels = include_channels_,
+        include_groups = include_groups_,
+        include_bots = include_bots_,
+        include_non_contacts = include_non_contacts_,
+        include_contacts = include_contacts_,
+        exclude_archived = exclude_archived_,
+        exclude_read = exclude_read_,
+        exclude_muted = exclude_muted_,
+        excluded_chat_ids = excluded_chat_ids_,
+        included_chat_ids = included_chat_ids_,
+        pinned_chat_ids = pinned_chat_ids_,
+        icon_name = icon_name_,
+        title = title_
       } =
       "ChatFilter"
         ++ U.cc
-          [ U.p "include_channels" include_channels,
-            U.p "include_groups" include_groups,
-            U.p "include_bots" include_bots,
-            U.p "include_non_contacts" include_non_contacts,
-            U.p "include_contacts" include_contacts,
-            U.p "exclude_archived" exclude_archived,
-            U.p "exclude_read" exclude_read,
-            U.p "exclude_muted" exclude_muted,
-            U.p "excluded_chat_ids" excluded_chat_ids,
-            U.p "included_chat_ids" included_chat_ids,
-            U.p "pinned_chat_ids" pinned_chat_ids,
-            U.p "icon_name" icon_name,
-            U.p "title" title
+          [ U.p "include_channels" include_channels_,
+            U.p "include_groups" include_groups_,
+            U.p "include_bots" include_bots_,
+            U.p "include_non_contacts" include_non_contacts_,
+            U.p "include_contacts" include_contacts_,
+            U.p "exclude_archived" exclude_archived_,
+            U.p "exclude_read" exclude_read_,
+            U.p "exclude_muted" exclude_muted_,
+            U.p "excluded_chat_ids" excluded_chat_ids_,
+            U.p "included_chat_ids" included_chat_ids_,
+            U.p "pinned_chat_ids" pinned_chat_ids_,
+            U.p "icon_name" icon_name_,
+            U.p "title" title_
           ]
 
 instance T.FromJSON ChatFilter where
@@ -101,33 +102,33 @@ instance T.FromJSON ChatFilter where
 instance T.ToJSON ChatFilter where
   toJSON
     ChatFilter
-      { include_channels = include_channels,
-        include_groups = include_groups,
-        include_bots = include_bots,
-        include_non_contacts = include_non_contacts,
-        include_contacts = include_contacts,
-        exclude_archived = exclude_archived,
-        exclude_read = exclude_read,
-        exclude_muted = exclude_muted,
-        excluded_chat_ids = excluded_chat_ids,
-        included_chat_ids = included_chat_ids,
-        pinned_chat_ids = pinned_chat_ids,
-        icon_name = icon_name,
-        title = title
+      { include_channels = include_channels_,
+        include_groups = include_groups_,
+        include_bots = include_bots_,
+        include_non_contacts = include_non_contacts_,
+        include_contacts = include_contacts_,
+        exclude_archived = exclude_archived_,
+        exclude_read = exclude_read_,
+        exclude_muted = exclude_muted_,
+        excluded_chat_ids = excluded_chat_ids_,
+        included_chat_ids = included_chat_ids_,
+        pinned_chat_ids = pinned_chat_ids_,
+        icon_name = icon_name_,
+        title = title_
       } =
       A.object
         [ "@type" A..= T.String "chatFilter",
-          "include_channels" A..= include_channels,
-          "include_groups" A..= include_groups,
-          "include_bots" A..= include_bots,
-          "include_non_contacts" A..= include_non_contacts,
-          "include_contacts" A..= include_contacts,
-          "exclude_archived" A..= exclude_archived,
-          "exclude_read" A..= exclude_read,
-          "exclude_muted" A..= exclude_muted,
-          "excluded_chat_ids" A..= excluded_chat_ids,
-          "included_chat_ids" A..= included_chat_ids,
-          "pinned_chat_ids" A..= pinned_chat_ids,
-          "icon_name" A..= icon_name,
-          "title" A..= title
+          "include_channels" A..= include_channels_,
+          "include_groups" A..= include_groups_,
+          "include_bots" A..= include_bots_,
+          "include_non_contacts" A..= include_non_contacts_,
+          "include_contacts" A..= include_contacts_,
+          "exclude_archived" A..= exclude_archived_,
+          "exclude_read" A..= exclude_read_,
+          "exclude_muted" A..= exclude_muted_,
+          "excluded_chat_ids" A..= excluded_chat_ids_,
+          "included_chat_ids" A..= included_chat_ids_,
+          "pinned_chat_ids" A..= pinned_chat_ids_,
+          "icon_name" A..= icon_name_,
+          "title" A..= title_
         ]

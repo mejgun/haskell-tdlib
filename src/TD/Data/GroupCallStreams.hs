@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GroupCallStreams where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data GroupCallStreams = -- | Represents a list of group call streams @streams A 
 instance Show GroupCallStreams where
   show
     GroupCallStreams
-      { streams = streams
+      { streams = streams_
       } =
       "GroupCallStreams"
         ++ U.cc
-          [ U.p "streams" streams
+          [ U.p "streams" streams_
           ]
 
 instance T.FromJSON GroupCallStreams where
@@ -41,9 +42,9 @@ instance T.FromJSON GroupCallStreams where
 instance T.ToJSON GroupCallStreams where
   toJSON
     GroupCallStreams
-      { streams = streams
+      { streams = streams_
       } =
       A.object
         [ "@type" A..= T.String "groupCallStreams",
-          "streams" A..= streams
+          "streams" A..= streams_
         ]

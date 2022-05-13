@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TMeUrl where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data TMeUrl = -- | Represents a URL linking to an internal Telegram entity @url 
 instance Show TMeUrl where
   show
     TMeUrl
-      { _type = _type,
-        url = url
+      { _type = _type_,
+        url = url_
       } =
       "TMeUrl"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "url" url
+          [ U.p "_type" _type_,
+            U.p "url" url_
           ]
 
 instance T.FromJSON TMeUrl where
@@ -46,11 +47,11 @@ instance T.FromJSON TMeUrl where
 instance T.ToJSON TMeUrl where
   toJSON
     TMeUrl
-      { _type = _type,
-        url = url
+      { _type = _type_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "tMeUrl",
-          "type" A..= _type,
-          "url" A..= url
+          "type" A..= _type_,
+          "url" A..= url_
         ]

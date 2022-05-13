@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TransferChatOwnership where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data TransferChatOwnership = TransferChatOwnership
 instance Show TransferChatOwnership where
   show
     TransferChatOwnership
-      { password = password,
-        user_id = user_id,
-        chat_id = chat_id
+      { password = password_,
+        user_id = user_id_,
+        chat_id = chat_id_
       } =
       "TransferChatOwnership"
         ++ U.cc
-          [ U.p "password" password,
-            U.p "user_id" user_id,
-            U.p "chat_id" chat_id
+          [ U.p "password" password_,
+            U.p "user_id" user_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON TransferChatOwnership where
   toJSON
     TransferChatOwnership
-      { password = password,
-        user_id = user_id,
-        chat_id = chat_id
+      { password = password_,
+        user_id = user_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "transferChatOwnership",
-          "password" A..= password,
-          "user_id" A..= user_id,
-          "chat_id" A..= chat_id
+          "password" A..= password_,
+          "user_id" A..= user_id_,
+          "chat_id" A..= chat_id_
         ]

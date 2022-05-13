@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveFileFromDownloads where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data RemoveFileFromDownloads = RemoveFileFromDownloads
 instance Show RemoveFileFromDownloads where
   show
     RemoveFileFromDownloads
-      { delete_from_cache = delete_from_cache,
-        file_id = file_id
+      { delete_from_cache = delete_from_cache_,
+        file_id = file_id_
       } =
       "RemoveFileFromDownloads"
         ++ U.cc
-          [ U.p "delete_from_cache" delete_from_cache,
-            U.p "file_id" file_id
+          [ U.p "delete_from_cache" delete_from_cache_,
+            U.p "file_id" file_id_
           ]
 
 instance T.ToJSON RemoveFileFromDownloads where
   toJSON
     RemoveFileFromDownloads
-      { delete_from_cache = delete_from_cache,
-        file_id = file_id
+      { delete_from_cache = delete_from_cache_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "removeFileFromDownloads",
-          "delete_from_cache" A..= delete_from_cache,
-          "file_id" A..= file_id
+          "delete_from_cache" A..= delete_from_cache_,
+          "file_id" A..= file_id_
         ]

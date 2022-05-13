@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatInviteLinkCounts where
 
 import qualified Data.Aeson as A
@@ -17,11 +18,11 @@ data ChatInviteLinkCounts = -- | Contains a list of chat invite link counts @inv
 instance Show ChatInviteLinkCounts where
   show
     ChatInviteLinkCounts
-      { invite_link_counts = invite_link_counts
+      { invite_link_counts = invite_link_counts_
       } =
       "ChatInviteLinkCounts"
         ++ U.cc
-          [ U.p "invite_link_counts" invite_link_counts
+          [ U.p "invite_link_counts" invite_link_counts_
           ]
 
 instance T.FromJSON ChatInviteLinkCounts where
@@ -41,9 +42,9 @@ instance T.FromJSON ChatInviteLinkCounts where
 instance T.ToJSON ChatInviteLinkCounts where
   toJSON
     ChatInviteLinkCounts
-      { invite_link_counts = invite_link_counts
+      { invite_link_counts = invite_link_counts_
       } =
       A.object
         [ "@type" A..= T.String "chatInviteLinkCounts",
-          "invite_link_counts" A..= invite_link_counts
+          "invite_link_counts" A..= invite_link_counts_
         ]

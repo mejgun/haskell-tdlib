@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchChatRecentLocationMessages where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SearchChatRecentLocationMessages = SearchChatRecentLocationMessages
 instance Show SearchChatRecentLocationMessages where
   show
     SearchChatRecentLocationMessages
-      { limit = limit,
-        chat_id = chat_id
+      { limit = limit_,
+        chat_id = chat_id_
       } =
       "SearchChatRecentLocationMessages"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "chat_id" chat_id
+          [ U.p "limit" limit_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SearchChatRecentLocationMessages where
   toJSON
     SearchChatRecentLocationMessages
-      { limit = limit,
-        chat_id = chat_id
+      { limit = limit_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "searchChatRecentLocationMessages",
-          "limit" A..= limit,
-          "chat_id" A..= chat_id
+          "limit" A..= limit_,
+          "chat_id" A..= chat_id_
         ]

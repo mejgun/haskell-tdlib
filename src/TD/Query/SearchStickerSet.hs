@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchStickerSet where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SearchStickerSet = SearchStickerSet
 instance Show SearchStickerSet where
   show
     SearchStickerSet
-      { name = name
+      { name = name_
       } =
       "SearchStickerSet"
         ++ U.cc
-          [ U.p "name" name
+          [ U.p "name" name_
           ]
 
 instance T.ToJSON SearchStickerSet where
   toJSON
     SearchStickerSet
-      { name = name
+      { name = name_
       } =
       A.object
         [ "@type" A..= T.String "searchStickerSet",
-          "name" A..= name
+          "name" A..= name_
         ]

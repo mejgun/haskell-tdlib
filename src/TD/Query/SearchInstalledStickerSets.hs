@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchInstalledStickerSets where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data SearchInstalledStickerSets = SearchInstalledStickerSets
 instance Show SearchInstalledStickerSets where
   show
     SearchInstalledStickerSets
-      { limit = limit,
-        query = query,
-        is_masks = is_masks
+      { limit = limit_,
+        query = query_,
+        is_masks = is_masks_
       } =
       "SearchInstalledStickerSets"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "query" query,
-            U.p "is_masks" is_masks
+          [ U.p "limit" limit_,
+            U.p "query" query_,
+            U.p "is_masks" is_masks_
           ]
 
 instance T.ToJSON SearchInstalledStickerSets where
   toJSON
     SearchInstalledStickerSets
-      { limit = limit,
-        query = query,
-        is_masks = is_masks
+      { limit = limit_,
+        query = query_,
+        is_masks = is_masks_
       } =
       A.object
         [ "@type" A..= T.String "searchInstalledStickerSets",
-          "limit" A..= limit,
-          "query" A..= query,
-          "is_masks" A..= is_masks
+          "limit" A..= limit_,
+          "query" A..= query_,
+          "is_masks" A..= is_masks_
         ]

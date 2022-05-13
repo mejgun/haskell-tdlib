@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatFilterDefaultIconName where
 
 import qualified Data.Aeson as A
@@ -18,19 +19,19 @@ data GetChatFilterDefaultIconName = GetChatFilterDefaultIconName
 instance Show GetChatFilterDefaultIconName where
   show
     GetChatFilterDefaultIconName
-      { _filter = _filter
+      { _filter = _filter_
       } =
       "GetChatFilterDefaultIconName"
         ++ U.cc
-          [ U.p "_filter" _filter
+          [ U.p "_filter" _filter_
           ]
 
 instance T.ToJSON GetChatFilterDefaultIconName where
   toJSON
     GetChatFilterDefaultIconName
-      { _filter = _filter
+      { _filter = _filter_
       } =
       A.object
         [ "@type" A..= T.String "getChatFilterDefaultIconName",
-          "filter" A..= _filter
+          "filter" A..= _filter_
         ]

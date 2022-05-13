@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendMessageAlbum where
 
 import qualified Data.Aeson as A
@@ -29,39 +30,39 @@ data SendMessageAlbum = SendMessageAlbum
 instance Show SendMessageAlbum where
   show
     SendMessageAlbum
-      { only_preview = only_preview,
-        input_message_contents = input_message_contents,
-        options = options,
-        reply_to_message_id = reply_to_message_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { only_preview = only_preview_,
+        input_message_contents = input_message_contents_,
+        options = options_,
+        reply_to_message_id = reply_to_message_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       "SendMessageAlbum"
         ++ U.cc
-          [ U.p "only_preview" only_preview,
-            U.p "input_message_contents" input_message_contents,
-            U.p "options" options,
-            U.p "reply_to_message_id" reply_to_message_id,
-            U.p "message_thread_id" message_thread_id,
-            U.p "chat_id" chat_id
+          [ U.p "only_preview" only_preview_,
+            U.p "input_message_contents" input_message_contents_,
+            U.p "options" options_,
+            U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "message_thread_id" message_thread_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SendMessageAlbum where
   toJSON
     SendMessageAlbum
-      { only_preview = only_preview,
-        input_message_contents = input_message_contents,
-        options = options,
-        reply_to_message_id = reply_to_message_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { only_preview = only_preview_,
+        input_message_contents = input_message_contents_,
+        options = options_,
+        reply_to_message_id = reply_to_message_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "sendMessageAlbum",
-          "only_preview" A..= only_preview,
-          "input_message_contents" A..= input_message_contents,
-          "options" A..= options,
-          "reply_to_message_id" A..= reply_to_message_id,
-          "message_thread_id" A..= message_thread_id,
-          "chat_id" A..= chat_id
+          "only_preview" A..= only_preview_,
+          "input_message_contents" A..= input_message_contents_,
+          "options" A..= options_,
+          "reply_to_message_id" A..= reply_to_message_id_,
+          "message_thread_id" A..= message_thread_id_,
+          "chat_id" A..= chat_id_
         ]

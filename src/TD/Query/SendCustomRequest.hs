@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendCustomRequest where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SendCustomRequest = SendCustomRequest
 instance Show SendCustomRequest where
   show
     SendCustomRequest
-      { parameters = parameters,
-        method = method
+      { parameters = parameters_,
+        method = method_
       } =
       "SendCustomRequest"
         ++ U.cc
-          [ U.p "parameters" parameters,
-            U.p "method" method
+          [ U.p "parameters" parameters_,
+            U.p "method" method_
           ]
 
 instance T.ToJSON SendCustomRequest where
   toJSON
     SendCustomRequest
-      { parameters = parameters,
-        method = method
+      { parameters = parameters_,
+        method = method_
       } =
       A.object
         [ "@type" A..= T.String "sendCustomRequest",
-          "parameters" A..= parameters,
-          "method" A..= method
+          "parameters" A..= parameters_,
+          "method" A..= method_
         ]

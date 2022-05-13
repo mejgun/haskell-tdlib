@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckStickerSetName where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CheckStickerSetName = CheckStickerSetName
 instance Show CheckStickerSetName where
   show
     CheckStickerSetName
-      { name = name
+      { name = name_
       } =
       "CheckStickerSetName"
         ++ U.cc
-          [ U.p "name" name
+          [ U.p "name" name_
           ]
 
 instance T.ToJSON CheckStickerSetName where
   toJSON
     CheckStickerSetName
-      { name = name
+      { name = name_
       } =
       A.object
         [ "@type" A..= T.String "checkStickerSetName",
-          "name" A..= name
+          "name" A..= name_
         ]

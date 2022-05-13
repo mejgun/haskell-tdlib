@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SponsoredMessage where
 
 import qualified Data.Aeson as A
@@ -27,19 +28,19 @@ data SponsoredMessage = -- | Describes a sponsored message
 instance Show SponsoredMessage where
   show
     SponsoredMessage
-      { content = content,
-        link = link,
-        sponsor_chat_info = sponsor_chat_info,
-        sponsor_chat_id = sponsor_chat_id,
-        message_id = message_id
+      { content = content_,
+        link = link_,
+        sponsor_chat_info = sponsor_chat_info_,
+        sponsor_chat_id = sponsor_chat_id_,
+        message_id = message_id_
       } =
       "SponsoredMessage"
         ++ U.cc
-          [ U.p "content" content,
-            U.p "link" link,
-            U.p "sponsor_chat_info" sponsor_chat_info,
-            U.p "sponsor_chat_id" sponsor_chat_id,
-            U.p "message_id" message_id
+          [ U.p "content" content_,
+            U.p "link" link_,
+            U.p "sponsor_chat_info" sponsor_chat_info_,
+            U.p "sponsor_chat_id" sponsor_chat_id_,
+            U.p "message_id" message_id_
           ]
 
 instance T.FromJSON SponsoredMessage where
@@ -63,17 +64,17 @@ instance T.FromJSON SponsoredMessage where
 instance T.ToJSON SponsoredMessage where
   toJSON
     SponsoredMessage
-      { content = content,
-        link = link,
-        sponsor_chat_info = sponsor_chat_info,
-        sponsor_chat_id = sponsor_chat_id,
-        message_id = message_id
+      { content = content_,
+        link = link_,
+        sponsor_chat_info = sponsor_chat_info_,
+        sponsor_chat_id = sponsor_chat_id_,
+        message_id = message_id_
       } =
       A.object
         [ "@type" A..= T.String "sponsoredMessage",
-          "content" A..= content,
-          "link" A..= link,
-          "sponsor_chat_info" A..= sponsor_chat_info,
-          "sponsor_chat_id" A..= sponsor_chat_id,
-          "message_id" A..= message_id
+          "content" A..= content_,
+          "link" A..= link_,
+          "sponsor_chat_info" A..= sponsor_chat_info_,
+          "sponsor_chat_id" A..= sponsor_chat_id_,
+          "message_id" A..= message_id_
         ]

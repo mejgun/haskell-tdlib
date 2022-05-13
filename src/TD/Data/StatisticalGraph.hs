@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StatisticalGraph where
 
 import qualified Data.Aeson as A
@@ -30,29 +31,29 @@ data StatisticalGraph
 instance Show StatisticalGraph where
   show
     StatisticalGraphData
-      { zoom_token = zoom_token,
-        json_data = json_data
+      { zoom_token = zoom_token_,
+        json_data = json_data_
       } =
       "StatisticalGraphData"
         ++ U.cc
-          [ U.p "zoom_token" zoom_token,
-            U.p "json_data" json_data
+          [ U.p "zoom_token" zoom_token_,
+            U.p "json_data" json_data_
           ]
   show
     StatisticalGraphAsync
-      { token = token
+      { token = token_
       } =
       "StatisticalGraphAsync"
         ++ U.cc
-          [ U.p "token" token
+          [ U.p "token" token_
           ]
   show
     StatisticalGraphError
-      { error_message = error_message
+      { error_message = error_message_
       } =
       "StatisticalGraphError"
         ++ U.cc
-          [ U.p "error_message" error_message
+          [ U.p "error_message" error_message_
           ]
 
 instance T.FromJSON StatisticalGraph where
@@ -85,27 +86,27 @@ instance T.FromJSON StatisticalGraph where
 instance T.ToJSON StatisticalGraph where
   toJSON
     StatisticalGraphData
-      { zoom_token = zoom_token,
-        json_data = json_data
+      { zoom_token = zoom_token_,
+        json_data = json_data_
       } =
       A.object
         [ "@type" A..= T.String "statisticalGraphData",
-          "zoom_token" A..= zoom_token,
-          "json_data" A..= json_data
+          "zoom_token" A..= zoom_token_,
+          "json_data" A..= json_data_
         ]
   toJSON
     StatisticalGraphAsync
-      { token = token
+      { token = token_
       } =
       A.object
         [ "@type" A..= T.String "statisticalGraphAsync",
-          "token" A..= token
+          "token" A..= token_
         ]
   toJSON
     StatisticalGraphError
-      { error_message = error_message
+      { error_message = error_message_
       } =
       A.object
         [ "@type" A..= T.String "statisticalGraphError",
-          "error_message" A..= error_message
+          "error_message" A..= error_message_
         ]

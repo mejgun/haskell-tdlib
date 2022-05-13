@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SearchSecretMessages where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data SearchSecretMessages = SearchSecretMessages
 instance Show SearchSecretMessages where
   show
     SearchSecretMessages
-      { _filter = _filter,
-        limit = limit,
-        offset = offset,
-        query = query,
-        chat_id = chat_id
+      { _filter = _filter_,
+        limit = limit_,
+        offset = offset_,
+        query = query_,
+        chat_id = chat_id_
       } =
       "SearchSecretMessages"
         ++ U.cc
-          [ U.p "_filter" _filter,
-            U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "query" query,
-            U.p "chat_id" chat_id
+          [ U.p "_filter" _filter_,
+            U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "query" query_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SearchSecretMessages where
   toJSON
     SearchSecretMessages
-      { _filter = _filter,
-        limit = limit,
-        offset = offset,
-        query = query,
-        chat_id = chat_id
+      { _filter = _filter_,
+        limit = limit_,
+        offset = offset_,
+        query = query_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "searchSecretMessages",
-          "filter" A..= _filter,
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "query" A..= query,
-          "chat_id" A..= chat_id
+          "filter" A..= _filter_,
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "query" A..= query_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PushMessageContent where
 
 import qualified Data.Aeson as A
@@ -205,43 +206,43 @@ data PushMessageContent
 instance Show PushMessageContent where
   show
     PushMessageContentHidden
-      { is_pinned = is_pinned
+      { is_pinned = is_pinned_
       } =
       "PushMessageContentHidden"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned
+          [ U.p "is_pinned" is_pinned_
           ]
   show
     PushMessageContentAnimation
-      { is_pinned = is_pinned,
-        caption = caption,
-        animation = animation
+      { is_pinned = is_pinned_,
+        caption = caption_,
+        animation = animation_
       } =
       "PushMessageContentAnimation"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "caption" caption,
-            U.p "animation" animation
+          [ U.p "is_pinned" is_pinned_,
+            U.p "caption" caption_,
+            U.p "animation" animation_
           ]
   show
     PushMessageContentAudio
-      { is_pinned = is_pinned,
-        audio = audio
+      { is_pinned = is_pinned_,
+        audio = audio_
       } =
       "PushMessageContentAudio"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "audio" audio
+          [ U.p "is_pinned" is_pinned_,
+            U.p "audio" audio_
           ]
   show
     PushMessageContentContact
-      { is_pinned = is_pinned,
-        name = name
+      { is_pinned = is_pinned_,
+        name = name_
       } =
       "PushMessageContentContact"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "name" name
+          [ U.p "is_pinned" is_pinned_,
+            U.p "name" name_
           ]
   show PushMessageContentContactRegistered =
     "PushMessageContentContactRegistered"
@@ -249,81 +250,81 @@ instance Show PushMessageContent where
         []
   show
     PushMessageContentDocument
-      { is_pinned = is_pinned,
-        document = document
+      { is_pinned = is_pinned_,
+        document = document_
       } =
       "PushMessageContentDocument"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "document" document
+          [ U.p "is_pinned" is_pinned_,
+            U.p "document" document_
           ]
   show
     PushMessageContentGame
-      { is_pinned = is_pinned,
-        title = title
+      { is_pinned = is_pinned_,
+        title = title_
       } =
       "PushMessageContentGame"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "title" title
+          [ U.p "is_pinned" is_pinned_,
+            U.p "title" title_
           ]
   show
     PushMessageContentGameScore
-      { is_pinned = is_pinned,
-        score = score,
-        title = title
+      { is_pinned = is_pinned_,
+        score = score_,
+        title = title_
       } =
       "PushMessageContentGameScore"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "score" score,
-            U.p "title" title
+          [ U.p "is_pinned" is_pinned_,
+            U.p "score" score_,
+            U.p "title" title_
           ]
   show
     PushMessageContentInvoice
-      { is_pinned = is_pinned,
-        price = price
+      { is_pinned = is_pinned_,
+        price = price_
       } =
       "PushMessageContentInvoice"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "price" price
+          [ U.p "is_pinned" is_pinned_,
+            U.p "price" price_
           ]
   show
     PushMessageContentLocation
-      { is_pinned = is_pinned,
-        is_live = is_live
+      { is_pinned = is_pinned_,
+        is_live = is_live_
       } =
       "PushMessageContentLocation"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "is_live" is_live
+          [ U.p "is_pinned" is_pinned_,
+            U.p "is_live" is_live_
           ]
   show
     PushMessageContentPhoto
-      { is_pinned = is_pinned,
-        is_secret = is_secret,
-        caption = caption,
-        photo = photo
+      { is_pinned = is_pinned_,
+        is_secret = is_secret_,
+        caption = caption_,
+        photo = photo_
       } =
       "PushMessageContentPhoto"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "is_secret" is_secret,
-            U.p "caption" caption,
-            U.p "photo" photo
+          [ U.p "is_pinned" is_pinned_,
+            U.p "is_secret" is_secret_,
+            U.p "caption" caption_,
+            U.p "photo" photo_
           ]
   show
     PushMessageContentPoll
-      { is_pinned = is_pinned,
-        is_regular = is_regular,
-        question = question
+      { is_pinned = is_pinned_,
+        is_regular = is_regular_,
+        question = question_
       } =
       "PushMessageContentPoll"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "is_regular" is_regular,
-            U.p "question" question
+          [ U.p "is_pinned" is_pinned_,
+            U.p "is_regular" is_regular_,
+            U.p "question" question_
           ]
   show PushMessageContentScreenshotTaken =
     "PushMessageContentScreenshotTaken"
@@ -331,59 +332,59 @@ instance Show PushMessageContent where
         []
   show
     PushMessageContentSticker
-      { is_pinned = is_pinned,
-        emoji = emoji,
-        sticker = sticker
+      { is_pinned = is_pinned_,
+        emoji = emoji_,
+        sticker = sticker_
       } =
       "PushMessageContentSticker"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "emoji" emoji,
-            U.p "sticker" sticker
+          [ U.p "is_pinned" is_pinned_,
+            U.p "emoji" emoji_,
+            U.p "sticker" sticker_
           ]
   show
     PushMessageContentText
-      { is_pinned = is_pinned,
-        text = text
+      { is_pinned = is_pinned_,
+        text = text_
       } =
       "PushMessageContentText"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "text" text
+          [ U.p "is_pinned" is_pinned_,
+            U.p "text" text_
           ]
   show
     PushMessageContentVideo
-      { is_pinned = is_pinned,
-        is_secret = is_secret,
-        caption = caption,
-        video = video
+      { is_pinned = is_pinned_,
+        is_secret = is_secret_,
+        caption = caption_,
+        video = video_
       } =
       "PushMessageContentVideo"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "is_secret" is_secret,
-            U.p "caption" caption,
-            U.p "video" video
+          [ U.p "is_pinned" is_pinned_,
+            U.p "is_secret" is_secret_,
+            U.p "caption" caption_,
+            U.p "video" video_
           ]
   show
     PushMessageContentVideoNote
-      { is_pinned = is_pinned,
-        video_note = video_note
+      { is_pinned = is_pinned_,
+        video_note = video_note_
       } =
       "PushMessageContentVideoNote"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "video_note" video_note
+          [ U.p "is_pinned" is_pinned_,
+            U.p "video_note" video_note_
           ]
   show
     PushMessageContentVoiceNote
-      { is_pinned = is_pinned,
-        voice_note = voice_note
+      { is_pinned = is_pinned_,
+        voice_note = voice_note_
       } =
       "PushMessageContentVoiceNote"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "voice_note" voice_note
+          [ U.p "is_pinned" is_pinned_,
+            U.p "voice_note" voice_note_
           ]
   show PushMessageContentBasicGroupChatCreate =
     "PushMessageContentBasicGroupChatCreate"
@@ -391,15 +392,15 @@ instance Show PushMessageContent where
         []
   show
     PushMessageContentChatAddMembers
-      { is_returned = is_returned,
-        is_current_user = is_current_user,
-        member_name = member_name
+      { is_returned = is_returned_,
+        is_current_user = is_current_user_,
+        member_name = member_name_
       } =
       "PushMessageContentChatAddMembers"
         ++ U.cc
-          [ U.p "is_returned" is_returned,
-            U.p "is_current_user" is_current_user,
-            U.p "member_name" member_name
+          [ U.p "is_returned" is_returned_,
+            U.p "is_current_user" is_current_user_,
+            U.p "member_name" member_name_
           ]
   show PushMessageContentChatChangePhoto =
     "PushMessageContentChatChangePhoto"
@@ -407,31 +408,31 @@ instance Show PushMessageContent where
         []
   show
     PushMessageContentChatChangeTitle
-      { title = title
+      { title = title_
       } =
       "PushMessageContentChatChangeTitle"
         ++ U.cc
-          [ U.p "title" title
+          [ U.p "title" title_
           ]
   show
     PushMessageContentChatSetTheme
-      { theme_name = theme_name
+      { theme_name = theme_name_
       } =
       "PushMessageContentChatSetTheme"
         ++ U.cc
-          [ U.p "theme_name" theme_name
+          [ U.p "theme_name" theme_name_
           ]
   show
     PushMessageContentChatDeleteMember
-      { is_left = is_left,
-        is_current_user = is_current_user,
-        member_name = member_name
+      { is_left = is_left_,
+        is_current_user = is_current_user_,
+        member_name = member_name_
       } =
       "PushMessageContentChatDeleteMember"
         ++ U.cc
-          [ U.p "is_left" is_left,
-            U.p "is_current_user" is_current_user,
-            U.p "member_name" member_name
+          [ U.p "is_left" is_left_,
+            U.p "is_current_user" is_current_user_,
+            U.p "member_name" member_name_
           ]
   show PushMessageContentChatJoinByLink =
     "PushMessageContentChatJoinByLink"
@@ -443,27 +444,27 @@ instance Show PushMessageContent where
         []
   show
     PushMessageContentMessageForwards
-      { total_count = total_count
+      { total_count = total_count_
       } =
       "PushMessageContentMessageForwards"
         ++ U.cc
-          [ U.p "total_count" total_count
+          [ U.p "total_count" total_count_
           ]
   show
     PushMessageContentMediaAlbum
-      { has_documents = has_documents,
-        has_audios = has_audios,
-        has_videos = has_videos,
-        has_photos = has_photos,
-        total_count = total_count
+      { has_documents = has_documents_,
+        has_audios = has_audios_,
+        has_videos = has_videos_,
+        has_photos = has_photos_,
+        total_count = total_count_
       } =
       "PushMessageContentMediaAlbum"
         ++ U.cc
-          [ U.p "has_documents" has_documents,
-            U.p "has_audios" has_audios,
-            U.p "has_videos" has_videos,
-            U.p "has_photos" has_photos,
-            U.p "total_count" total_count
+          [ U.p "has_documents" has_documents_,
+            U.p "has_audios" has_audios_,
+            U.p "has_videos" has_videos_,
+            U.p "has_photos" has_photos_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON PushMessageContent where
@@ -526,8 +527,7 @@ instance T.FromJSON PushMessageContent where
         return $ PushMessageContentContact {is_pinned = is_pinned_, name = name_}
 
       parsePushMessageContentContactRegistered :: A.Value -> T.Parser PushMessageContent
-      parsePushMessageContentContactRegistered = A.withObject "PushMessageContentContactRegistered" $ \o -> do
-        return $ PushMessageContentContactRegistered {}
+      parsePushMessageContentContactRegistered = A.withObject "PushMessageContentContactRegistered" $ \_ -> return PushMessageContentContactRegistered
 
       parsePushMessageContentDocument :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentDocument = A.withObject "PushMessageContentDocument" $ \o -> do
@@ -576,8 +576,7 @@ instance T.FromJSON PushMessageContent where
         return $ PushMessageContentPoll {is_pinned = is_pinned_, is_regular = is_regular_, question = question_}
 
       parsePushMessageContentScreenshotTaken :: A.Value -> T.Parser PushMessageContent
-      parsePushMessageContentScreenshotTaken = A.withObject "PushMessageContentScreenshotTaken" $ \o -> do
-        return $ PushMessageContentScreenshotTaken {}
+      parsePushMessageContentScreenshotTaken = A.withObject "PushMessageContentScreenshotTaken" $ \_ -> return PushMessageContentScreenshotTaken
 
       parsePushMessageContentSticker :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentSticker = A.withObject "PushMessageContentSticker" $ \o -> do
@@ -613,8 +612,7 @@ instance T.FromJSON PushMessageContent where
         return $ PushMessageContentVoiceNote {is_pinned = is_pinned_, voice_note = voice_note_}
 
       parsePushMessageContentBasicGroupChatCreate :: A.Value -> T.Parser PushMessageContent
-      parsePushMessageContentBasicGroupChatCreate = A.withObject "PushMessageContentBasicGroupChatCreate" $ \o -> do
-        return $ PushMessageContentBasicGroupChatCreate {}
+      parsePushMessageContentBasicGroupChatCreate = A.withObject "PushMessageContentBasicGroupChatCreate" $ \_ -> return PushMessageContentBasicGroupChatCreate
 
       parsePushMessageContentChatAddMembers :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentChatAddMembers = A.withObject "PushMessageContentChatAddMembers" $ \o -> do
@@ -624,8 +622,7 @@ instance T.FromJSON PushMessageContent where
         return $ PushMessageContentChatAddMembers {is_returned = is_returned_, is_current_user = is_current_user_, member_name = member_name_}
 
       parsePushMessageContentChatChangePhoto :: A.Value -> T.Parser PushMessageContent
-      parsePushMessageContentChatChangePhoto = A.withObject "PushMessageContentChatChangePhoto" $ \o -> do
-        return $ PushMessageContentChatChangePhoto {}
+      parsePushMessageContentChatChangePhoto = A.withObject "PushMessageContentChatChangePhoto" $ \_ -> return PushMessageContentChatChangePhoto
 
       parsePushMessageContentChatChangeTitle :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentChatChangeTitle = A.withObject "PushMessageContentChatChangeTitle" $ \o -> do
@@ -645,12 +642,10 @@ instance T.FromJSON PushMessageContent where
         return $ PushMessageContentChatDeleteMember {is_left = is_left_, is_current_user = is_current_user_, member_name = member_name_}
 
       parsePushMessageContentChatJoinByLink :: A.Value -> T.Parser PushMessageContent
-      parsePushMessageContentChatJoinByLink = A.withObject "PushMessageContentChatJoinByLink" $ \o -> do
-        return $ PushMessageContentChatJoinByLink {}
+      parsePushMessageContentChatJoinByLink = A.withObject "PushMessageContentChatJoinByLink" $ \_ -> return PushMessageContentChatJoinByLink
 
       parsePushMessageContentChatJoinByRequest :: A.Value -> T.Parser PushMessageContent
-      parsePushMessageContentChatJoinByRequest = A.withObject "PushMessageContentChatJoinByRequest" $ \o -> do
-        return $ PushMessageContentChatJoinByRequest {}
+      parsePushMessageContentChatJoinByRequest = A.withObject "PushMessageContentChatJoinByRequest" $ \_ -> return PushMessageContentChatJoinByRequest
 
       parsePushMessageContentMessageForwards :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do
@@ -670,43 +665,43 @@ instance T.FromJSON PushMessageContent where
 instance T.ToJSON PushMessageContent where
   toJSON
     PushMessageContentHidden
-      { is_pinned = is_pinned
+      { is_pinned = is_pinned_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentHidden",
-          "is_pinned" A..= is_pinned
+          "is_pinned" A..= is_pinned_
         ]
   toJSON
     PushMessageContentAnimation
-      { is_pinned = is_pinned,
-        caption = caption,
-        animation = animation
+      { is_pinned = is_pinned_,
+        caption = caption_,
+        animation = animation_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentAnimation",
-          "is_pinned" A..= is_pinned,
-          "caption" A..= caption,
-          "animation" A..= animation
+          "is_pinned" A..= is_pinned_,
+          "caption" A..= caption_,
+          "animation" A..= animation_
         ]
   toJSON
     PushMessageContentAudio
-      { is_pinned = is_pinned,
-        audio = audio
+      { is_pinned = is_pinned_,
+        audio = audio_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentAudio",
-          "is_pinned" A..= is_pinned,
-          "audio" A..= audio
+          "is_pinned" A..= is_pinned_,
+          "audio" A..= audio_
         ]
   toJSON
     PushMessageContentContact
-      { is_pinned = is_pinned,
-        name = name
+      { is_pinned = is_pinned_,
+        name = name_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentContact",
-          "is_pinned" A..= is_pinned,
-          "name" A..= name
+          "is_pinned" A..= is_pinned_,
+          "name" A..= name_
         ]
   toJSON PushMessageContentContactRegistered =
     A.object
@@ -714,81 +709,81 @@ instance T.ToJSON PushMessageContent where
       ]
   toJSON
     PushMessageContentDocument
-      { is_pinned = is_pinned,
-        document = document
+      { is_pinned = is_pinned_,
+        document = document_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentDocument",
-          "is_pinned" A..= is_pinned,
-          "document" A..= document
+          "is_pinned" A..= is_pinned_,
+          "document" A..= document_
         ]
   toJSON
     PushMessageContentGame
-      { is_pinned = is_pinned,
-        title = title
+      { is_pinned = is_pinned_,
+        title = title_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentGame",
-          "is_pinned" A..= is_pinned,
-          "title" A..= title
+          "is_pinned" A..= is_pinned_,
+          "title" A..= title_
         ]
   toJSON
     PushMessageContentGameScore
-      { is_pinned = is_pinned,
-        score = score,
-        title = title
+      { is_pinned = is_pinned_,
+        score = score_,
+        title = title_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentGameScore",
-          "is_pinned" A..= is_pinned,
-          "score" A..= score,
-          "title" A..= title
+          "is_pinned" A..= is_pinned_,
+          "score" A..= score_,
+          "title" A..= title_
         ]
   toJSON
     PushMessageContentInvoice
-      { is_pinned = is_pinned,
-        price = price
+      { is_pinned = is_pinned_,
+        price = price_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentInvoice",
-          "is_pinned" A..= is_pinned,
-          "price" A..= price
+          "is_pinned" A..= is_pinned_,
+          "price" A..= price_
         ]
   toJSON
     PushMessageContentLocation
-      { is_pinned = is_pinned,
-        is_live = is_live
+      { is_pinned = is_pinned_,
+        is_live = is_live_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentLocation",
-          "is_pinned" A..= is_pinned,
-          "is_live" A..= is_live
+          "is_pinned" A..= is_pinned_,
+          "is_live" A..= is_live_
         ]
   toJSON
     PushMessageContentPhoto
-      { is_pinned = is_pinned,
-        is_secret = is_secret,
-        caption = caption,
-        photo = photo
+      { is_pinned = is_pinned_,
+        is_secret = is_secret_,
+        caption = caption_,
+        photo = photo_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentPhoto",
-          "is_pinned" A..= is_pinned,
-          "is_secret" A..= is_secret,
-          "caption" A..= caption,
-          "photo" A..= photo
+          "is_pinned" A..= is_pinned_,
+          "is_secret" A..= is_secret_,
+          "caption" A..= caption_,
+          "photo" A..= photo_
         ]
   toJSON
     PushMessageContentPoll
-      { is_pinned = is_pinned,
-        is_regular = is_regular,
-        question = question
+      { is_pinned = is_pinned_,
+        is_regular = is_regular_,
+        question = question_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentPoll",
-          "is_pinned" A..= is_pinned,
-          "is_regular" A..= is_regular,
-          "question" A..= question
+          "is_pinned" A..= is_pinned_,
+          "is_regular" A..= is_regular_,
+          "question" A..= question_
         ]
   toJSON PushMessageContentScreenshotTaken =
     A.object
@@ -796,59 +791,59 @@ instance T.ToJSON PushMessageContent where
       ]
   toJSON
     PushMessageContentSticker
-      { is_pinned = is_pinned,
-        emoji = emoji,
-        sticker = sticker
+      { is_pinned = is_pinned_,
+        emoji = emoji_,
+        sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentSticker",
-          "is_pinned" A..= is_pinned,
-          "emoji" A..= emoji,
-          "sticker" A..= sticker
+          "is_pinned" A..= is_pinned_,
+          "emoji" A..= emoji_,
+          "sticker" A..= sticker_
         ]
   toJSON
     PushMessageContentText
-      { is_pinned = is_pinned,
-        text = text
+      { is_pinned = is_pinned_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentText",
-          "is_pinned" A..= is_pinned,
-          "text" A..= text
+          "is_pinned" A..= is_pinned_,
+          "text" A..= text_
         ]
   toJSON
     PushMessageContentVideo
-      { is_pinned = is_pinned,
-        is_secret = is_secret,
-        caption = caption,
-        video = video
+      { is_pinned = is_pinned_,
+        is_secret = is_secret_,
+        caption = caption_,
+        video = video_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentVideo",
-          "is_pinned" A..= is_pinned,
-          "is_secret" A..= is_secret,
-          "caption" A..= caption,
-          "video" A..= video
+          "is_pinned" A..= is_pinned_,
+          "is_secret" A..= is_secret_,
+          "caption" A..= caption_,
+          "video" A..= video_
         ]
   toJSON
     PushMessageContentVideoNote
-      { is_pinned = is_pinned,
-        video_note = video_note
+      { is_pinned = is_pinned_,
+        video_note = video_note_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentVideoNote",
-          "is_pinned" A..= is_pinned,
-          "video_note" A..= video_note
+          "is_pinned" A..= is_pinned_,
+          "video_note" A..= video_note_
         ]
   toJSON
     PushMessageContentVoiceNote
-      { is_pinned = is_pinned,
-        voice_note = voice_note
+      { is_pinned = is_pinned_,
+        voice_note = voice_note_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentVoiceNote",
-          "is_pinned" A..= is_pinned,
-          "voice_note" A..= voice_note
+          "is_pinned" A..= is_pinned_,
+          "voice_note" A..= voice_note_
         ]
   toJSON PushMessageContentBasicGroupChatCreate =
     A.object
@@ -856,15 +851,15 @@ instance T.ToJSON PushMessageContent where
       ]
   toJSON
     PushMessageContentChatAddMembers
-      { is_returned = is_returned,
-        is_current_user = is_current_user,
-        member_name = member_name
+      { is_returned = is_returned_,
+        is_current_user = is_current_user_,
+        member_name = member_name_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentChatAddMembers",
-          "is_returned" A..= is_returned,
-          "is_current_user" A..= is_current_user,
-          "member_name" A..= member_name
+          "is_returned" A..= is_returned_,
+          "is_current_user" A..= is_current_user_,
+          "member_name" A..= member_name_
         ]
   toJSON PushMessageContentChatChangePhoto =
     A.object
@@ -872,31 +867,31 @@ instance T.ToJSON PushMessageContent where
       ]
   toJSON
     PushMessageContentChatChangeTitle
-      { title = title
+      { title = title_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentChatChangeTitle",
-          "title" A..= title
+          "title" A..= title_
         ]
   toJSON
     PushMessageContentChatSetTheme
-      { theme_name = theme_name
+      { theme_name = theme_name_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentChatSetTheme",
-          "theme_name" A..= theme_name
+          "theme_name" A..= theme_name_
         ]
   toJSON
     PushMessageContentChatDeleteMember
-      { is_left = is_left,
-        is_current_user = is_current_user,
-        member_name = member_name
+      { is_left = is_left_,
+        is_current_user = is_current_user_,
+        member_name = member_name_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentChatDeleteMember",
-          "is_left" A..= is_left,
-          "is_current_user" A..= is_current_user,
-          "member_name" A..= member_name
+          "is_left" A..= is_left_,
+          "is_current_user" A..= is_current_user_,
+          "member_name" A..= member_name_
         ]
   toJSON PushMessageContentChatJoinByLink =
     A.object
@@ -908,25 +903,25 @@ instance T.ToJSON PushMessageContent where
       ]
   toJSON
     PushMessageContentMessageForwards
-      { total_count = total_count
+      { total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentMessageForwards",
-          "total_count" A..= total_count
+          "total_count" A..= total_count_
         ]
   toJSON
     PushMessageContentMediaAlbum
-      { has_documents = has_documents,
-        has_audios = has_audios,
-        has_videos = has_videos,
-        has_photos = has_photos,
-        total_count = total_count
+      { has_documents = has_documents_,
+        has_audios = has_audios_,
+        has_videos = has_videos_,
+        has_photos = has_photos_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "pushMessageContentMediaAlbum",
-          "has_documents" A..= has_documents,
-          "has_audios" A..= has_audios,
-          "has_videos" A..= has_videos,
-          "has_photos" A..= has_photos,
-          "total_count" A..= total_count
+          "has_documents" A..= has_documents_,
+          "has_audios" A..= has_audios_,
+          "has_videos" A..= has_videos_,
+          "has_photos" A..= has_photos_,
+          "total_count" A..= total_count_
         ]

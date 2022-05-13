@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatMessageByDate where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data GetChatMessageByDate = GetChatMessageByDate
 instance Show GetChatMessageByDate where
   show
     GetChatMessageByDate
-      { date = date,
-        chat_id = chat_id
+      { date = date_,
+        chat_id = chat_id_
       } =
       "GetChatMessageByDate"
         ++ U.cc
-          [ U.p "date" date,
-            U.p "chat_id" chat_id
+          [ U.p "date" date_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetChatMessageByDate where
   toJSON
     GetChatMessageByDate
-      { date = date,
-        chat_id = chat_id
+      { date = date_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getChatMessageByDate",
-          "date" A..= date,
-          "chat_id" A..= chat_id
+          "date" A..= date_,
+          "chat_id" A..= chat_id_
         ]

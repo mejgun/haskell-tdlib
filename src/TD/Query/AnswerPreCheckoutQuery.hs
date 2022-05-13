@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AnswerPreCheckoutQuery where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data AnswerPreCheckoutQuery = AnswerPreCheckoutQuery
 instance Show AnswerPreCheckoutQuery where
   show
     AnswerPreCheckoutQuery
-      { error_message = error_message,
-        pre_checkout_query_id = pre_checkout_query_id
+      { error_message = error_message_,
+        pre_checkout_query_id = pre_checkout_query_id_
       } =
       "AnswerPreCheckoutQuery"
         ++ U.cc
-          [ U.p "error_message" error_message,
-            U.p "pre_checkout_query_id" pre_checkout_query_id
+          [ U.p "error_message" error_message_,
+            U.p "pre_checkout_query_id" pre_checkout_query_id_
           ]
 
 instance T.ToJSON AnswerPreCheckoutQuery where
   toJSON
     AnswerPreCheckoutQuery
-      { error_message = error_message,
-        pre_checkout_query_id = pre_checkout_query_id
+      { error_message = error_message_,
+        pre_checkout_query_id = pre_checkout_query_id_
       } =
       A.object
         [ "@type" A..= T.String "answerPreCheckoutQuery",
-          "error_message" A..= error_message,
-          "pre_checkout_query_id" A..= pre_checkout_query_id
+          "error_message" A..= error_message_,
+          "pre_checkout_query_id" A..= pre_checkout_query_id_
         ]

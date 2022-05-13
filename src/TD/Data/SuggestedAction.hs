@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SuggestedAction where
 
 import qualified Data.Aeson as A
@@ -47,19 +48,19 @@ instance Show SuggestedAction where
         []
   show
     SuggestedActionConvertToBroadcastGroup
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       "SuggestedActionConvertToBroadcastGroup"
         ++ U.cc
-          [ U.p "supergroup_id" supergroup_id
+          [ U.p "supergroup_id" supergroup_id_
           ]
   show
     SuggestedActionSetPassword
-      { authorization_delay = authorization_delay
+      { authorization_delay = authorization_delay_
       } =
       "SuggestedActionSetPassword"
         ++ U.cc
-          [ U.p "authorization_delay" authorization_delay
+          [ U.p "authorization_delay" authorization_delay_
           ]
 
 instance T.FromJSON SuggestedAction where
@@ -76,20 +77,16 @@ instance T.FromJSON SuggestedAction where
       _ -> mempty
     where
       parseSuggestedActionEnableArchiveAndMuteNewChats :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionEnableArchiveAndMuteNewChats = A.withObject "SuggestedActionEnableArchiveAndMuteNewChats" $ \o -> do
-        return $ SuggestedActionEnableArchiveAndMuteNewChats {}
+      parseSuggestedActionEnableArchiveAndMuteNewChats = A.withObject "SuggestedActionEnableArchiveAndMuteNewChats" $ \_ -> return SuggestedActionEnableArchiveAndMuteNewChats
 
       parseSuggestedActionCheckPassword :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionCheckPassword = A.withObject "SuggestedActionCheckPassword" $ \o -> do
-        return $ SuggestedActionCheckPassword {}
+      parseSuggestedActionCheckPassword = A.withObject "SuggestedActionCheckPassword" $ \_ -> return SuggestedActionCheckPassword
 
       parseSuggestedActionCheckPhoneNumber :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionCheckPhoneNumber = A.withObject "SuggestedActionCheckPhoneNumber" $ \o -> do
-        return $ SuggestedActionCheckPhoneNumber {}
+      parseSuggestedActionCheckPhoneNumber = A.withObject "SuggestedActionCheckPhoneNumber" $ \_ -> return SuggestedActionCheckPhoneNumber
 
       parseSuggestedActionViewChecksHint :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionViewChecksHint = A.withObject "SuggestedActionViewChecksHint" $ \o -> do
-        return $ SuggestedActionViewChecksHint {}
+      parseSuggestedActionViewChecksHint = A.withObject "SuggestedActionViewChecksHint" $ \_ -> return SuggestedActionViewChecksHint
 
       parseSuggestedActionConvertToBroadcastGroup :: A.Value -> T.Parser SuggestedAction
       parseSuggestedActionConvertToBroadcastGroup = A.withObject "SuggestedActionConvertToBroadcastGroup" $ \o -> do
@@ -121,17 +118,17 @@ instance T.ToJSON SuggestedAction where
       ]
   toJSON
     SuggestedActionConvertToBroadcastGroup
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "suggestedActionConvertToBroadcastGroup",
-          "supergroup_id" A..= supergroup_id
+          "supergroup_id" A..= supergroup_id_
         ]
   toJSON
     SuggestedActionSetPassword
-      { authorization_delay = authorization_delay
+      { authorization_delay = authorization_delay_
       } =
       A.object
         [ "@type" A..= T.String "suggestedActionSetPassword",
-          "authorization_delay" A..= authorization_delay
+          "authorization_delay" A..= authorization_delay_
         ]

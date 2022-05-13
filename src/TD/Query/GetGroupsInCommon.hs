@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetGroupsInCommon where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data GetGroupsInCommon = GetGroupsInCommon
 instance Show GetGroupsInCommon where
   show
     GetGroupsInCommon
-      { limit = limit,
-        offset_chat_id = offset_chat_id,
-        user_id = user_id
+      { limit = limit_,
+        offset_chat_id = offset_chat_id_,
+        user_id = user_id_
       } =
       "GetGroupsInCommon"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "offset_chat_id" offset_chat_id,
-            U.p "user_id" user_id
+          [ U.p "limit" limit_,
+            U.p "offset_chat_id" offset_chat_id_,
+            U.p "user_id" user_id_
           ]
 
 instance T.ToJSON GetGroupsInCommon where
   toJSON
     GetGroupsInCommon
-      { limit = limit,
-        offset_chat_id = offset_chat_id,
-        user_id = user_id
+      { limit = limit_,
+        offset_chat_id = offset_chat_id_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "getGroupsInCommon",
-          "limit" A..= limit,
-          "offset_chat_id" A..= offset_chat_id,
-          "user_id" A..= user_id
+          "limit" A..= limit_,
+          "offset_chat_id" A..= offset_chat_id_,
+          "user_id" A..= user_id_
         ]

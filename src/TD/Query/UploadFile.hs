@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.UploadFile where
 
 import qualified Data.Aeson as A
@@ -23,27 +24,27 @@ data UploadFile = UploadFile
 instance Show UploadFile where
   show
     UploadFile
-      { priority = priority,
-        file_type = file_type,
-        file = file
+      { priority = priority_,
+        file_type = file_type_,
+        file = file_
       } =
       "UploadFile"
         ++ U.cc
-          [ U.p "priority" priority,
-            U.p "file_type" file_type,
-            U.p "file" file
+          [ U.p "priority" priority_,
+            U.p "file_type" file_type_,
+            U.p "file" file_
           ]
 
 instance T.ToJSON UploadFile where
   toJSON
     UploadFile
-      { priority = priority,
-        file_type = file_type,
-        file = file
+      { priority = priority_,
+        file_type = file_type_,
+        file = file_
       } =
       A.object
         [ "@type" A..= T.String "uploadFile",
-          "priority" A..= priority,
-          "file_type" A..= file_type,
-          "file" A..= file
+          "priority" A..= priority_,
+          "file_type" A..= file_type_,
+          "file" A..= file_
         ]

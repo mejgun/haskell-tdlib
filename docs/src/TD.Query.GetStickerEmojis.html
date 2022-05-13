@@ -1,20 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
-</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.GetStickerEmojis</span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputFile.html"><span class="hs-identifier">TD.Data.InputFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputFile</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object @sticker Sticker file identifier</span><span>
-</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="GetStickerEmojis"><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-var">GetStickerEmojis</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetStickerEmojis"><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-var">GetStickerEmojis</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-14"></span><span>    </span><span id="sticker"><span class="annot"><span class="annottext">GetStickerEmojis -&gt; Maybe InputFile
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.GetStickerEmojis</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputFile.html"><span class="hs-identifier">TD.Data.InputFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputFile</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object @sticker Sticker file identifier</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetStickerEmojis"><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-var">GetStickerEmojis</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetStickerEmojis"><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-var">GetStickerEmojis</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span id="sticker"><span class="annot"><span class="annottext">GetStickerEmojis -&gt; Maybe InputFile
 </span><a href="TD.Query.GetStickerEmojis.html#sticker"><span class="hs-identifier hs-var hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span>
-</span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414511"><span id="local-6989586621679414513"><span class="annot"><span class="annottext">GetStickerEmojis -&gt; GetStickerEmojis -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-17"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679413642"><span id="local-6989586621679413644"><span class="annot"><span class="annottext">GetStickerEmojis -&gt; GetStickerEmojis -&gt; Bool
 (GetStickerEmojis -&gt; GetStickerEmojis -&gt; Bool)
 -&gt; (GetStickerEmojis -&gt; GetStickerEmojis -&gt; Bool)
 -&gt; Eq GetStickerEmojis
@@ -24,48 +25,48 @@ $c/= :: GetStickerEmojis -&gt; GetStickerEmojis -&gt; Bool
 == :: GetStickerEmojis -&gt; GetStickerEmojis -&gt; Bool
 $c== :: GetStickerEmojis -&gt; GetStickerEmojis -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414505"><span id="local-6989586621679414508"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679414503"><span class="annot"><span class="annottext">show :: GetStickerEmojis -&gt; String
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679413636"><span id="local-6989586621679413639"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679413634"><span class="annot"><span class="annottext">show :: GetStickerEmojis -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span><span>
-</span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: GetStickerEmojis -&gt; Maybe InputFile
-</span><a href="TD.Query.GetStickerEmojis.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414501"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679414501"><span class="hs-identifier hs-var">sticker</span></a></span></span><span>
-</span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-21"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span><span>
+</span><span id="line-22"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: GetStickerEmojis -&gt; Maybe InputFile
+</span><a href="TD.Query.GetStickerEmojis.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679413632"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679413632"><span class="hs-identifier hs-var">sticker_</span></a></span></span><span>
+</span><span id="line-23"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-24"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetStickerEmojis&quot;</span></span><span>
-</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-25"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
+</span><span id="line-26"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679414501"><span class="hs-identifier hs-var">sticker</span></a></span><span>
-</span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414492"><span id="local-6989586621679414494"><span id="local-6989586621679414496"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679414490"><span class="annot"><span class="annottext">toJSON :: GetStickerEmojis -&gt; Value
+</span><a href="#local-6989586621679413632"><span class="hs-identifier hs-var">sticker_</span></a></span><span>
+</span><span id="line-27"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679413623"><span id="local-6989586621679413625"><span id="local-6989586621679413627"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679413621"><span class="annot"><span class="annottext">toJSON :: GetStickerEmojis -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span><span>
-</span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: GetStickerEmojis -&gt; Maybe InputFile
-</span><a href="TD.Query.GetStickerEmojis.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414488"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679414488"><span class="hs-identifier hs-var">sticker</span></a></span></span><span>
-</span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-31"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickerEmojis.html#GetStickerEmojis"><span class="hs-identifier hs-type">GetStickerEmojis</span></a></span><span>
+</span><span id="line-32"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker :: GetStickerEmojis -&gt; Maybe InputFile
+</span><a href="TD.Query.GetStickerEmojis.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679413619"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679413619"><span class="hs-identifier hs-var">sticker_</span></a></span></span><span>
+</span><span id="line-33"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-34"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-35"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;getStickerEmojis&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-35"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-36"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679414488"><span class="hs-identifier hs-var">sticker</span></a></span><span>
-</span><span id="line-36"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-37"></span></pre></body></html>
+</span><a href="#local-6989586621679413619"><span class="hs-identifier hs-var">sticker_</span></a></span><span>
+</span><span id="line-37"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-38"></span></pre></body></html>

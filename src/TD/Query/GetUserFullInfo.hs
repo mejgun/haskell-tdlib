@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetUserFullInfo where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetUserFullInfo = GetUserFullInfo
 instance Show GetUserFullInfo where
   show
     GetUserFullInfo
-      { user_id = user_id
+      { user_id = user_id_
       } =
       "GetUserFullInfo"
         ++ U.cc
-          [ U.p "user_id" user_id
+          [ U.p "user_id" user_id_
           ]
 
 instance T.ToJSON GetUserFullInfo where
   toJSON
     GetUserFullInfo
-      { user_id = user_id
+      { user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "getUserFullInfo",
-          "user_id" A..= user_id
+          "user_id" A..= user_id_
         ]

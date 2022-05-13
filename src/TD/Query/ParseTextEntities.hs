@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ParseTextEntities where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data ParseTextEntities = ParseTextEntities
 instance Show ParseTextEntities where
   show
     ParseTextEntities
-      { parse_mode = parse_mode,
-        text = text
+      { parse_mode = parse_mode_,
+        text = text_
       } =
       "ParseTextEntities"
         ++ U.cc
-          [ U.p "parse_mode" parse_mode,
-            U.p "text" text
+          [ U.p "parse_mode" parse_mode_,
+            U.p "text" text_
           ]
 
 instance T.ToJSON ParseTextEntities where
   toJSON
     ParseTextEntities
-      { parse_mode = parse_mode,
-        text = text
+      { parse_mode = parse_mode_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "parseTextEntities",
-          "parse_mode" A..= parse_mode,
-          "text" A..= text
+          "parse_mode" A..= parse_mode_,
+          "text" A..= text_
         ]

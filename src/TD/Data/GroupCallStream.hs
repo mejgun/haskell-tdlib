@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GroupCallStream where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data GroupCallStream = -- | Describes an available stream in a group call
 instance Show GroupCallStream where
   show
     GroupCallStream
-      { time_offset = time_offset,
-        scale = scale,
-        channel_id = channel_id
+      { time_offset = time_offset_,
+        scale = scale_,
+        channel_id = channel_id_
       } =
       "GroupCallStream"
         ++ U.cc
-          [ U.p "time_offset" time_offset,
-            U.p "scale" scale,
-            U.p "channel_id" channel_id
+          [ U.p "time_offset" time_offset_,
+            U.p "scale" scale_,
+            U.p "channel_id" channel_id_
           ]
 
 instance T.FromJSON GroupCallStream where
@@ -50,13 +51,13 @@ instance T.FromJSON GroupCallStream where
 instance T.ToJSON GroupCallStream where
   toJSON
     GroupCallStream
-      { time_offset = time_offset,
-        scale = scale,
-        channel_id = channel_id
+      { time_offset = time_offset_,
+        scale = scale_,
+        channel_id = channel_id_
       } =
       A.object
         [ "@type" A..= T.String "groupCallStream",
-          "time_offset" A..= time_offset,
-          "scale" A..= scale,
-          "channel_id" A..= channel_id
+          "time_offset" A..= time_offset_,
+          "scale" A..= scale_,
+          "channel_id" A..= channel_id_
         ]

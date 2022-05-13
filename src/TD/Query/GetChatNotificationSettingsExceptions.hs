@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetChatNotificationSettingsExceptions where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data GetChatNotificationSettingsExceptions = GetChatNotificationSettingsExceptio
 instance Show GetChatNotificationSettingsExceptions where
   show
     GetChatNotificationSettingsExceptions
-      { compare_sound = compare_sound,
-        scope = scope
+      { compare_sound = compare_sound_,
+        scope = scope_
       } =
       "GetChatNotificationSettingsExceptions"
         ++ U.cc
-          [ U.p "compare_sound" compare_sound,
-            U.p "scope" scope
+          [ U.p "compare_sound" compare_sound_,
+            U.p "scope" scope_
           ]
 
 instance T.ToJSON GetChatNotificationSettingsExceptions where
   toJSON
     GetChatNotificationSettingsExceptions
-      { compare_sound = compare_sound,
-        scope = scope
+      { compare_sound = compare_sound_,
+        scope = scope_
       } =
       A.object
         [ "@type" A..= T.String "getChatNotificationSettingsExceptions",
-          "compare_sound" A..= compare_sound,
-          "scope" A..= scope
+          "compare_sound" A..= compare_sound_,
+          "scope" A..= scope_
         ]

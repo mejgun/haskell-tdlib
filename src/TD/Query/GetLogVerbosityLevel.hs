@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetLogVerbosityLevel where
 
 import qualified Data.Aeson as A

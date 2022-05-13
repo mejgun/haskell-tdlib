@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.EditProxy where
 
 import qualified Data.Aeson as A
@@ -26,35 +27,35 @@ data EditProxy = EditProxy
 instance Show EditProxy where
   show
     EditProxy
-      { _type = _type,
-        enable = enable,
-        port = port,
-        server = server,
-        proxy_id = proxy_id
+      { _type = _type_,
+        enable = enable_,
+        port = port_,
+        server = server_,
+        proxy_id = proxy_id_
       } =
       "EditProxy"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "enable" enable,
-            U.p "port" port,
-            U.p "server" server,
-            U.p "proxy_id" proxy_id
+          [ U.p "_type" _type_,
+            U.p "enable" enable_,
+            U.p "port" port_,
+            U.p "server" server_,
+            U.p "proxy_id" proxy_id_
           ]
 
 instance T.ToJSON EditProxy where
   toJSON
     EditProxy
-      { _type = _type,
-        enable = enable,
-        port = port,
-        server = server,
-        proxy_id = proxy_id
+      { _type = _type_,
+        enable = enable_,
+        port = port_,
+        server = server_,
+        proxy_id = proxy_id_
       } =
       A.object
         [ "@type" A..= T.String "editProxy",
-          "type" A..= _type,
-          "enable" A..= enable,
-          "port" A..= port,
-          "server" A..= server,
-          "proxy_id" A..= proxy_id
+          "type" A..= _type_,
+          "enable" A..= enable_,
+          "port" A..= port_,
+          "server" A..= server_,
+          "proxy_id" A..= proxy_id_
         ]

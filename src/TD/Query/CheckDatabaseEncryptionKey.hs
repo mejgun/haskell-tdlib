@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckDatabaseEncryptionKey where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CheckDatabaseEncryptionKey = CheckDatabaseEncryptionKey
 instance Show CheckDatabaseEncryptionKey where
   show
     CheckDatabaseEncryptionKey
-      { encryption_key = encryption_key
+      { encryption_key = encryption_key_
       } =
       "CheckDatabaseEncryptionKey"
         ++ U.cc
-          [ U.p "encryption_key" encryption_key
+          [ U.p "encryption_key" encryption_key_
           ]
 
 instance T.ToJSON CheckDatabaseEncryptionKey where
   toJSON
     CheckDatabaseEncryptionKey
-      { encryption_key = encryption_key
+      { encryption_key = encryption_key_
       } =
       A.object
         [ "@type" A..= T.String "checkDatabaseEncryptionKey",
-          "encryption_key" A..= encryption_key
+          "encryption_key" A..= encryption_key_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetNetworkType where
 
 import qualified Data.Aeson as A
@@ -19,19 +20,19 @@ data SetNetworkType = SetNetworkType
 instance Show SetNetworkType where
   show
     SetNetworkType
-      { _type = _type
+      { _type = _type_
       } =
       "SetNetworkType"
         ++ U.cc
-          [ U.p "_type" _type
+          [ U.p "_type" _type_
           ]
 
 instance T.ToJSON SetNetworkType where
   toJSON
     SetNetworkType
-      { _type = _type
+      { _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "setNetworkType",
-          "type" A..= _type
+          "type" A..= _type_
         ]

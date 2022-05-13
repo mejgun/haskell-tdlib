@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.WebPageInstantView where
 
 import qualified Data.Aeson as A
@@ -28,21 +29,21 @@ data WebPageInstantView = -- | Describes an instant view page for a web page
 instance Show WebPageInstantView where
   show
     WebPageInstantView
-      { feedback_link = feedback_link,
-        is_full = is_full,
-        is_rtl = is_rtl,
-        version = version,
-        view_count = view_count,
-        page_blocks = page_blocks
+      { feedback_link = feedback_link_,
+        is_full = is_full_,
+        is_rtl = is_rtl_,
+        version = version_,
+        view_count = view_count_,
+        page_blocks = page_blocks_
       } =
       "WebPageInstantView"
         ++ U.cc
-          [ U.p "feedback_link" feedback_link,
-            U.p "is_full" is_full,
-            U.p "is_rtl" is_rtl,
-            U.p "version" version,
-            U.p "view_count" view_count,
-            U.p "page_blocks" page_blocks
+          [ U.p "feedback_link" feedback_link_,
+            U.p "is_full" is_full_,
+            U.p "is_rtl" is_rtl_,
+            U.p "version" version_,
+            U.p "view_count" view_count_,
+            U.p "page_blocks" page_blocks_
           ]
 
 instance T.FromJSON WebPageInstantView where
@@ -67,19 +68,19 @@ instance T.FromJSON WebPageInstantView where
 instance T.ToJSON WebPageInstantView where
   toJSON
     WebPageInstantView
-      { feedback_link = feedback_link,
-        is_full = is_full,
-        is_rtl = is_rtl,
-        version = version,
-        view_count = view_count,
-        page_blocks = page_blocks
+      { feedback_link = feedback_link_,
+        is_full = is_full_,
+        is_rtl = is_rtl_,
+        version = version_,
+        view_count = view_count_,
+        page_blocks = page_blocks_
       } =
       A.object
         [ "@type" A..= T.String "webPageInstantView",
-          "feedback_link" A..= feedback_link,
-          "is_full" A..= is_full,
-          "is_rtl" A..= is_rtl,
-          "version" A..= version,
-          "view_count" A..= view_count,
-          "page_blocks" A..= page_blocks
+          "feedback_link" A..= feedback_link_,
+          "is_full" A..= is_full_,
+          "is_rtl" A..= is_rtl_,
+          "version" A..= version_,
+          "view_count" A..= view_count_,
+          "page_blocks" A..= page_blocks_
         ]

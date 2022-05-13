@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleGroupCallIsMyVideoEnabled where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleGroupCallIsMyVideoEnabled = ToggleGroupCallIsMyVideoEnabled
 instance Show ToggleGroupCallIsMyVideoEnabled where
   show
     ToggleGroupCallIsMyVideoEnabled
-      { is_my_video_enabled = is_my_video_enabled,
-        group_call_id = group_call_id
+      { is_my_video_enabled = is_my_video_enabled_,
+        group_call_id = group_call_id_
       } =
       "ToggleGroupCallIsMyVideoEnabled"
         ++ U.cc
-          [ U.p "is_my_video_enabled" is_my_video_enabled,
-            U.p "group_call_id" group_call_id
+          [ U.p "is_my_video_enabled" is_my_video_enabled_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON ToggleGroupCallIsMyVideoEnabled where
   toJSON
     ToggleGroupCallIsMyVideoEnabled
-      { is_my_video_enabled = is_my_video_enabled,
-        group_call_id = group_call_id
+      { is_my_video_enabled = is_my_video_enabled_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleGroupCallIsMyVideoEnabled",
-          "is_my_video_enabled" A..= is_my_video_enabled,
-          "group_call_id" A..= group_call_id
+          "is_my_video_enabled" A..= is_my_video_enabled_,
+          "group_call_id" A..= group_call_id_
         ]

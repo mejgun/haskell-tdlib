@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.KeyboardButton where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data KeyboardButton = -- | Represents a single button in a bot keyboard @text Te
 instance Show KeyboardButton where
   show
     KeyboardButton
-      { _type = _type,
-        text = text
+      { _type = _type_,
+        text = text_
       } =
       "KeyboardButton"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "text" text
+          [ U.p "_type" _type_,
+            U.p "text" text_
           ]
 
 instance T.FromJSON KeyboardButton where
@@ -46,11 +47,11 @@ instance T.FromJSON KeyboardButton where
 instance T.ToJSON KeyboardButton where
   toJSON
     KeyboardButton
-      { _type = _type,
-        text = text
+      { _type = _type_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "keyboardButton",
-          "type" A..= _type,
-          "text" A..= text
+          "type" A..= _type_,
+          "text" A..= text_
         ]

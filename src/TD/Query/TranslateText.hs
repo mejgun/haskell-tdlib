@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TranslateText where
 
 import qualified Data.Aeson as A
@@ -21,27 +22,27 @@ data TranslateText = TranslateText
 instance Show TranslateText where
   show
     TranslateText
-      { to_language_code = to_language_code,
-        from_language_code = from_language_code,
-        text = text
+      { to_language_code = to_language_code_,
+        from_language_code = from_language_code_,
+        text = text_
       } =
       "TranslateText"
         ++ U.cc
-          [ U.p "to_language_code" to_language_code,
-            U.p "from_language_code" from_language_code,
-            U.p "text" text
+          [ U.p "to_language_code" to_language_code_,
+            U.p "from_language_code" from_language_code_,
+            U.p "text" text_
           ]
 
 instance T.ToJSON TranslateText where
   toJSON
     TranslateText
-      { to_language_code = to_language_code,
-        from_language_code = from_language_code,
-        text = text
+      { to_language_code = to_language_code_,
+        from_language_code = from_language_code_,
+        text = text_
       } =
       A.object
         [ "@type" A..= T.String "translateText",
-          "to_language_code" A..= to_language_code,
-          "from_language_code" A..= from_language_code,
-          "text" A..= text
+          "to_language_code" A..= to_language_code_,
+          "from_language_code" A..= from_language_code_,
+          "text" A..= text_
         ]

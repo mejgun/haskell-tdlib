@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DownloadFile where
 
 import qualified Data.Aeson as A
@@ -25,35 +26,35 @@ data DownloadFile = DownloadFile
 instance Show DownloadFile where
   show
     DownloadFile
-      { synchronous = synchronous,
-        limit = limit,
-        offset = offset,
-        priority = priority,
-        file_id = file_id
+      { synchronous = synchronous_,
+        limit = limit_,
+        offset = offset_,
+        priority = priority_,
+        file_id = file_id_
       } =
       "DownloadFile"
         ++ U.cc
-          [ U.p "synchronous" synchronous,
-            U.p "limit" limit,
-            U.p "offset" offset,
-            U.p "priority" priority,
-            U.p "file_id" file_id
+          [ U.p "synchronous" synchronous_,
+            U.p "limit" limit_,
+            U.p "offset" offset_,
+            U.p "priority" priority_,
+            U.p "file_id" file_id_
           ]
 
 instance T.ToJSON DownloadFile where
   toJSON
     DownloadFile
-      { synchronous = synchronous,
-        limit = limit,
-        offset = offset,
-        priority = priority,
-        file_id = file_id
+      { synchronous = synchronous_,
+        limit = limit_,
+        offset = offset_,
+        priority = priority_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "downloadFile",
-          "synchronous" A..= synchronous,
-          "limit" A..= limit,
-          "offset" A..= offset,
-          "priority" A..= priority,
-          "file_id" A..= file_id
+          "synchronous" A..= synchronous_,
+          "limit" A..= limit_,
+          "offset" A..= offset_,
+          "priority" A..= priority_,
+          "file_id" A..= file_id_
         ]

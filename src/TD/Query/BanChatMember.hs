@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.BanChatMember where
 
 import qualified Data.Aeson as A
@@ -24,31 +25,31 @@ data BanChatMember = BanChatMember
 instance Show BanChatMember where
   show
     BanChatMember
-      { revoke_messages = revoke_messages,
-        banned_until_date = banned_until_date,
-        member_id = member_id,
-        chat_id = chat_id
+      { revoke_messages = revoke_messages_,
+        banned_until_date = banned_until_date_,
+        member_id = member_id_,
+        chat_id = chat_id_
       } =
       "BanChatMember"
         ++ U.cc
-          [ U.p "revoke_messages" revoke_messages,
-            U.p "banned_until_date" banned_until_date,
-            U.p "member_id" member_id,
-            U.p "chat_id" chat_id
+          [ U.p "revoke_messages" revoke_messages_,
+            U.p "banned_until_date" banned_until_date_,
+            U.p "member_id" member_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON BanChatMember where
   toJSON
     BanChatMember
-      { revoke_messages = revoke_messages,
-        banned_until_date = banned_until_date,
-        member_id = member_id,
-        chat_id = chat_id
+      { revoke_messages = revoke_messages_,
+        banned_until_date = banned_until_date_,
+        member_id = member_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "banChatMember",
-          "revoke_messages" A..= revoke_messages,
-          "banned_until_date" A..= banned_until_date,
-          "member_id" A..= member_id,
-          "chat_id" A..= chat_id
+          "revoke_messages" A..= revoke_messages_,
+          "banned_until_date" A..= banned_until_date_,
+          "member_id" A..= member_id_,
+          "chat_id" A..= chat_id_
         ]

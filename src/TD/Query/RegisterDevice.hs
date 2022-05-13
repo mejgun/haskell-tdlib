@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RegisterDevice where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data RegisterDevice = RegisterDevice
 instance Show RegisterDevice where
   show
     RegisterDevice
-      { other_user_ids = other_user_ids,
-        device_token = device_token
+      { other_user_ids = other_user_ids_,
+        device_token = device_token_
       } =
       "RegisterDevice"
         ++ U.cc
-          [ U.p "other_user_ids" other_user_ids,
-            U.p "device_token" device_token
+          [ U.p "other_user_ids" other_user_ids_,
+            U.p "device_token" device_token_
           ]
 
 instance T.ToJSON RegisterDevice where
   toJSON
     RegisterDevice
-      { other_user_ids = other_user_ids,
-        device_token = device_token
+      { other_user_ids = other_user_ids_,
+        device_token = device_token_
       } =
       A.object
         [ "@type" A..= T.String "registerDevice",
-          "other_user_ids" A..= other_user_ids,
-          "device_token" A..= device_token
+          "other_user_ids" A..= other_user_ids_,
+          "device_token" A..= device_token_
         ]

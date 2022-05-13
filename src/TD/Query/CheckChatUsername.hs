@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CheckChatUsername where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data CheckChatUsername = CheckChatUsername
 instance Show CheckChatUsername where
   show
     CheckChatUsername
-      { username = username,
-        chat_id = chat_id
+      { username = username_,
+        chat_id = chat_id_
       } =
       "CheckChatUsername"
         ++ U.cc
-          [ U.p "username" username,
-            U.p "chat_id" chat_id
+          [ U.p "username" username_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON CheckChatUsername where
   toJSON
     CheckChatUsername
-      { username = username,
-        chat_id = chat_id
+      { username = username_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "checkChatUsername",
-          "username" A..= username,
-          "chat_id" A..= chat_id
+          "username" A..= username_,
+          "chat_id" A..= chat_id_
         ]

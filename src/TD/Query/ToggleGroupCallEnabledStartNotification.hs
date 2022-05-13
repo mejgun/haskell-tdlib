@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleGroupCallEnabledStartNotification where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleGroupCallEnabledStartNotification = ToggleGroupCallEnabledStartNotifi
 instance Show ToggleGroupCallEnabledStartNotification where
   show
     ToggleGroupCallEnabledStartNotification
-      { enabled_start_notification = enabled_start_notification,
-        group_call_id = group_call_id
+      { enabled_start_notification = enabled_start_notification_,
+        group_call_id = group_call_id_
       } =
       "ToggleGroupCallEnabledStartNotification"
         ++ U.cc
-          [ U.p "enabled_start_notification" enabled_start_notification,
-            U.p "group_call_id" group_call_id
+          [ U.p "enabled_start_notification" enabled_start_notification_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON ToggleGroupCallEnabledStartNotification where
   toJSON
     ToggleGroupCallEnabledStartNotification
-      { enabled_start_notification = enabled_start_notification,
-        group_call_id = group_call_id
+      { enabled_start_notification = enabled_start_notification_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleGroupCallEnabledStartNotification",
-          "enabled_start_notification" A..= enabled_start_notification,
-          "group_call_id" A..= group_call_id
+          "enabled_start_notification" A..= enabled_start_notification_,
+          "group_call_id" A..= group_call_id_
         ]

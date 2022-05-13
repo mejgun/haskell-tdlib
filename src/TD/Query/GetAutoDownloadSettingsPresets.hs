@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetAutoDownloadSettingsPresets where
 
 import qualified Data.Aeson as A

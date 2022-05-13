@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Notification where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data Notification = -- | Contains information about a notification @id Unique pe
 instance Show Notification where
   show
     Notification
-      { _type = _type,
-        is_silent = is_silent,
-        date = date,
-        _id = _id
+      { _type = _type_,
+        is_silent = is_silent_,
+        date = date_,
+        _id = _id_
       } =
       "Notification"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "is_silent" is_silent,
-            U.p "date" date,
-            U.p "_id" _id
+          [ U.p "_type" _type_,
+            U.p "is_silent" is_silent_,
+            U.p "date" date_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Notification where
@@ -56,15 +57,15 @@ instance T.FromJSON Notification where
 instance T.ToJSON Notification where
   toJSON
     Notification
-      { _type = _type,
-        is_silent = is_silent,
-        date = date,
-        _id = _id
+      { _type = _type_,
+        is_silent = is_silent_,
+        date = date_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "notification",
-          "type" A..= _type,
-          "is_silent" A..= is_silent,
-          "date" A..= date,
-          "id" A..= _id
+          "type" A..= _type_,
+          "is_silent" A..= is_silent_,
+          "date" A..= date_,
+          "id" A..= _id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetStorageStatistics where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetStorageStatistics = GetStorageStatistics
 instance Show GetStorageStatistics where
   show
     GetStorageStatistics
-      { chat_limit = chat_limit
+      { chat_limit = chat_limit_
       } =
       "GetStorageStatistics"
         ++ U.cc
-          [ U.p "chat_limit" chat_limit
+          [ U.p "chat_limit" chat_limit_
           ]
 
 instance T.ToJSON GetStorageStatistics where
   toJSON
     GetStorageStatistics
-      { chat_limit = chat_limit
+      { chat_limit = chat_limit_
       } =
       A.object
         [ "@type" A..= T.String "getStorageStatistics",
-          "chat_limit" A..= chat_limit
+          "chat_limit" A..= chat_limit_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetInactiveSessionTtl where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data SetInactiveSessionTtl = SetInactiveSessionTtl
 instance Show SetInactiveSessionTtl where
   show
     SetInactiveSessionTtl
-      { inactive_session_ttl_days = inactive_session_ttl_days
+      { inactive_session_ttl_days = inactive_session_ttl_days_
       } =
       "SetInactiveSessionTtl"
         ++ U.cc
-          [ U.p "inactive_session_ttl_days" inactive_session_ttl_days
+          [ U.p "inactive_session_ttl_days" inactive_session_ttl_days_
           ]
 
 instance T.ToJSON SetInactiveSessionTtl where
   toJSON
     SetInactiveSessionTtl
-      { inactive_session_ttl_days = inactive_session_ttl_days
+      { inactive_session_ttl_days = inactive_session_ttl_days_
       } =
       A.object
         [ "@type" A..= T.String "setInactiveSessionTtl",
-          "inactive_session_ttl_days" A..= inactive_session_ttl_days
+          "inactive_session_ttl_days" A..= inactive_session_ttl_days_
         ]

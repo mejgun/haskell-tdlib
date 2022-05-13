@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GroupCallRecentSpeaker where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data GroupCallRecentSpeaker = -- | Describes a recently speaking participant in 
 instance Show GroupCallRecentSpeaker where
   show
     GroupCallRecentSpeaker
-      { is_speaking = is_speaking,
-        participant_id = participant_id
+      { is_speaking = is_speaking_,
+        participant_id = participant_id_
       } =
       "GroupCallRecentSpeaker"
         ++ U.cc
-          [ U.p "is_speaking" is_speaking,
-            U.p "participant_id" participant_id
+          [ U.p "is_speaking" is_speaking_,
+            U.p "participant_id" participant_id_
           ]
 
 instance T.FromJSON GroupCallRecentSpeaker where
@@ -46,11 +47,11 @@ instance T.FromJSON GroupCallRecentSpeaker where
 instance T.ToJSON GroupCallRecentSpeaker where
   toJSON
     GroupCallRecentSpeaker
-      { is_speaking = is_speaking,
-        participant_id = participant_id
+      { is_speaking = is_speaking_,
+        participant_id = participant_id_
       } =
       A.object
         [ "@type" A..= T.String "groupCallRecentSpeaker",
-          "is_speaking" A..= is_speaking,
-          "participant_id" A..= participant_id
+          "is_speaking" A..= is_speaking_,
+          "participant_id" A..= participant_id_
         ]

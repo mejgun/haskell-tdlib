@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetOption where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetOption = SetOption
 instance Show SetOption where
   show
     SetOption
-      { value = value,
-        name = name
+      { value = value_,
+        name = name_
       } =
       "SetOption"
         ++ U.cc
-          [ U.p "value" value,
-            U.p "name" name
+          [ U.p "value" value_,
+            U.p "name" name_
           ]
 
 instance T.ToJSON SetOption where
   toJSON
     SetOption
-      { value = value,
-        name = name
+      { value = value_,
+        name = name_
       } =
       A.object
         [ "@type" A..= T.String "setOption",
-          "value" A..= value,
-          "name" A..= name
+          "value" A..= value_,
+          "name" A..= name_
         ]

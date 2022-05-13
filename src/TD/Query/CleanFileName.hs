@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CleanFileName where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data CleanFileName = CleanFileName
 instance Show CleanFileName where
   show
     CleanFileName
-      { file_name = file_name
+      { file_name = file_name_
       } =
       "CleanFileName"
         ++ U.cc
-          [ U.p "file_name" file_name
+          [ U.p "file_name" file_name_
           ]
 
 instance T.ToJSON CleanFileName where
   toJSON
     CleanFileName
-      { file_name = file_name
+      { file_name = file_name_
       } =
       A.object
         [ "@type" A..= T.String "cleanFileName",
-          "file_name" A..= file_name
+          "file_name" A..= file_name_
         ]

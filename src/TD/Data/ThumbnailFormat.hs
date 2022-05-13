@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ThumbnailFormat where
 
 import qualified Data.Aeson as A
@@ -69,32 +70,25 @@ instance T.FromJSON ThumbnailFormat where
       _ -> mempty
     where
       parseThumbnailFormatJpeg :: A.Value -> T.Parser ThumbnailFormat
-      parseThumbnailFormatJpeg = A.withObject "ThumbnailFormatJpeg" $ \o -> do
-        return $ ThumbnailFormatJpeg {}
+      parseThumbnailFormatJpeg = A.withObject "ThumbnailFormatJpeg" $ \_ -> return ThumbnailFormatJpeg
 
       parseThumbnailFormatGif :: A.Value -> T.Parser ThumbnailFormat
-      parseThumbnailFormatGif = A.withObject "ThumbnailFormatGif" $ \o -> do
-        return $ ThumbnailFormatGif {}
+      parseThumbnailFormatGif = A.withObject "ThumbnailFormatGif" $ \_ -> return ThumbnailFormatGif
 
       parseThumbnailFormatMpeg4 :: A.Value -> T.Parser ThumbnailFormat
-      parseThumbnailFormatMpeg4 = A.withObject "ThumbnailFormatMpeg4" $ \o -> do
-        return $ ThumbnailFormatMpeg4 {}
+      parseThumbnailFormatMpeg4 = A.withObject "ThumbnailFormatMpeg4" $ \_ -> return ThumbnailFormatMpeg4
 
       parseThumbnailFormatPng :: A.Value -> T.Parser ThumbnailFormat
-      parseThumbnailFormatPng = A.withObject "ThumbnailFormatPng" $ \o -> do
-        return $ ThumbnailFormatPng {}
+      parseThumbnailFormatPng = A.withObject "ThumbnailFormatPng" $ \_ -> return ThumbnailFormatPng
 
       parseThumbnailFormatTgs :: A.Value -> T.Parser ThumbnailFormat
-      parseThumbnailFormatTgs = A.withObject "ThumbnailFormatTgs" $ \o -> do
-        return $ ThumbnailFormatTgs {}
+      parseThumbnailFormatTgs = A.withObject "ThumbnailFormatTgs" $ \_ -> return ThumbnailFormatTgs
 
       parseThumbnailFormatWebm :: A.Value -> T.Parser ThumbnailFormat
-      parseThumbnailFormatWebm = A.withObject "ThumbnailFormatWebm" $ \o -> do
-        return $ ThumbnailFormatWebm {}
+      parseThumbnailFormatWebm = A.withObject "ThumbnailFormatWebm" $ \_ -> return ThumbnailFormatWebm
 
       parseThumbnailFormatWebp :: A.Value -> T.Parser ThumbnailFormat
-      parseThumbnailFormatWebp = A.withObject "ThumbnailFormatWebp" $ \o -> do
-        return $ ThumbnailFormatWebp {}
+      parseThumbnailFormatWebp = A.withObject "ThumbnailFormatWebp" $ \_ -> return ThumbnailFormatWebp
   parseJSON _ = mempty
 
 instance T.ToJSON ThumbnailFormat where

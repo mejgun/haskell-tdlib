@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetTopChats where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data GetTopChats = GetTopChats
 instance Show GetTopChats where
   show
     GetTopChats
-      { limit = limit,
-        category = category
+      { limit = limit_,
+        category = category_
       } =
       "GetTopChats"
         ++ U.cc
-          [ U.p "limit" limit,
-            U.p "category" category
+          [ U.p "limit" limit_,
+            U.p "category" category_
           ]
 
 instance T.ToJSON GetTopChats where
   toJSON
     GetTopChats
-      { limit = limit,
-        category = category
+      { limit = limit_,
+        category = category_
       } =
       A.object
         [ "@type" A..= T.String "getTopChats",
-          "limit" A..= limit,
-          "category" A..= category
+          "limit" A..= limit_,
+          "category" A..= category_
         ]

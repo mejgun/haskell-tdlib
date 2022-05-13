@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StickerSets where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data StickerSets = -- | Represents a list of sticker sets @total_count Approxima
 instance Show StickerSets where
   show
     StickerSets
-      { sets = sets,
-        total_count = total_count
+      { sets = sets_,
+        total_count = total_count_
       } =
       "StickerSets"
         ++ U.cc
-          [ U.p "sets" sets,
-            U.p "total_count" total_count
+          [ U.p "sets" sets_,
+            U.p "total_count" total_count_
           ]
 
 instance T.FromJSON StickerSets where
@@ -46,11 +47,11 @@ instance T.FromJSON StickerSets where
 instance T.ToJSON StickerSets where
   toJSON
     StickerSets
-      { sets = sets,
-        total_count = total_count
+      { sets = sets_,
+        total_count = total_count_
       } =
       A.object
         [ "@type" A..= T.String "stickerSets",
-          "sets" A..= sets,
-          "total_count" A..= total_count
+          "sets" A..= sets_,
+          "total_count" A..= total_count_
         ]

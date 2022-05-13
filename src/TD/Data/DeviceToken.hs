@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DeviceToken where
 
 import qualified Data.Aeson as A
@@ -80,103 +81,103 @@ data DeviceToken
 instance Show DeviceToken where
   show
     DeviceTokenFirebaseCloudMessaging
-      { encrypt = encrypt,
-        token = token
+      { encrypt = encrypt_,
+        token = token_
       } =
       "DeviceTokenFirebaseCloudMessaging"
         ++ U.cc
-          [ U.p "encrypt" encrypt,
-            U.p "token" token
+          [ U.p "encrypt" encrypt_,
+            U.p "token" token_
           ]
   show
     DeviceTokenApplePush
-      { is_app_sandbox = is_app_sandbox,
-        device_token = device_token
+      { is_app_sandbox = is_app_sandbox_,
+        device_token = device_token_
       } =
       "DeviceTokenApplePush"
         ++ U.cc
-          [ U.p "is_app_sandbox" is_app_sandbox,
-            U.p "device_token" device_token
+          [ U.p "is_app_sandbox" is_app_sandbox_,
+            U.p "device_token" device_token_
           ]
   show
     DeviceTokenApplePushVoIP
-      { encrypt = encrypt,
-        is_app_sandbox = is_app_sandbox,
-        device_token = device_token
+      { encrypt = encrypt_,
+        is_app_sandbox = is_app_sandbox_,
+        device_token = device_token_
       } =
       "DeviceTokenApplePushVoIP"
         ++ U.cc
-          [ U.p "encrypt" encrypt,
-            U.p "is_app_sandbox" is_app_sandbox,
-            U.p "device_token" device_token
+          [ U.p "encrypt" encrypt_,
+            U.p "is_app_sandbox" is_app_sandbox_,
+            U.p "device_token" device_token_
           ]
   show
     DeviceTokenWindowsPush
-      { access_token = access_token
+      { access_token = access_token_
       } =
       "DeviceTokenWindowsPush"
         ++ U.cc
-          [ U.p "access_token" access_token
+          [ U.p "access_token" access_token_
           ]
   show
     DeviceTokenMicrosoftPush
-      { channel_uri = channel_uri
+      { channel_uri = channel_uri_
       } =
       "DeviceTokenMicrosoftPush"
         ++ U.cc
-          [ U.p "channel_uri" channel_uri
+          [ U.p "channel_uri" channel_uri_
           ]
   show
     DeviceTokenMicrosoftPushVoIP
-      { channel_uri = channel_uri
+      { channel_uri = channel_uri_
       } =
       "DeviceTokenMicrosoftPushVoIP"
         ++ U.cc
-          [ U.p "channel_uri" channel_uri
+          [ U.p "channel_uri" channel_uri_
           ]
   show
     DeviceTokenWebPush
-      { auth_base64url = auth_base64url,
-        p256dh_base64url = p256dh_base64url,
-        endpoint = endpoint
+      { auth_base64url = auth_base64url_,
+        p256dh_base64url = p256dh_base64url_,
+        endpoint = endpoint_
       } =
       "DeviceTokenWebPush"
         ++ U.cc
-          [ U.p "auth_base64url" auth_base64url,
-            U.p "p256dh_base64url" p256dh_base64url,
-            U.p "endpoint" endpoint
+          [ U.p "auth_base64url" auth_base64url_,
+            U.p "p256dh_base64url" p256dh_base64url_,
+            U.p "endpoint" endpoint_
           ]
   show
     DeviceTokenSimplePush
-      { endpoint = endpoint
+      { endpoint = endpoint_
       } =
       "DeviceTokenSimplePush"
         ++ U.cc
-          [ U.p "endpoint" endpoint
+          [ U.p "endpoint" endpoint_
           ]
   show
     DeviceTokenUbuntuPush
-      { token = token
+      { token = token_
       } =
       "DeviceTokenUbuntuPush"
         ++ U.cc
-          [ U.p "token" token
+          [ U.p "token" token_
           ]
   show
     DeviceTokenBlackBerryPush
-      { token = token
+      { token = token_
       } =
       "DeviceTokenBlackBerryPush"
         ++ U.cc
-          [ U.p "token" token
+          [ U.p "token" token_
           ]
   show
     DeviceTokenTizenPush
-      { reg_id = reg_id
+      { reg_id = reg_id_
       } =
       "DeviceTokenTizenPush"
         ++ U.cc
-          [ U.p "reg_id" reg_id
+          [ U.p "reg_id" reg_id_
           ]
 
 instance T.FromJSON DeviceToken where
@@ -262,101 +263,101 @@ instance T.FromJSON DeviceToken where
 instance T.ToJSON DeviceToken where
   toJSON
     DeviceTokenFirebaseCloudMessaging
-      { encrypt = encrypt,
-        token = token
+      { encrypt = encrypt_,
+        token = token_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenFirebaseCloudMessaging",
-          "encrypt" A..= encrypt,
-          "token" A..= token
+          "encrypt" A..= encrypt_,
+          "token" A..= token_
         ]
   toJSON
     DeviceTokenApplePush
-      { is_app_sandbox = is_app_sandbox,
-        device_token = device_token
+      { is_app_sandbox = is_app_sandbox_,
+        device_token = device_token_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenApplePush",
-          "is_app_sandbox" A..= is_app_sandbox,
-          "device_token" A..= device_token
+          "is_app_sandbox" A..= is_app_sandbox_,
+          "device_token" A..= device_token_
         ]
   toJSON
     DeviceTokenApplePushVoIP
-      { encrypt = encrypt,
-        is_app_sandbox = is_app_sandbox,
-        device_token = device_token
+      { encrypt = encrypt_,
+        is_app_sandbox = is_app_sandbox_,
+        device_token = device_token_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenApplePushVoIP",
-          "encrypt" A..= encrypt,
-          "is_app_sandbox" A..= is_app_sandbox,
-          "device_token" A..= device_token
+          "encrypt" A..= encrypt_,
+          "is_app_sandbox" A..= is_app_sandbox_,
+          "device_token" A..= device_token_
         ]
   toJSON
     DeviceTokenWindowsPush
-      { access_token = access_token
+      { access_token = access_token_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenWindowsPush",
-          "access_token" A..= access_token
+          "access_token" A..= access_token_
         ]
   toJSON
     DeviceTokenMicrosoftPush
-      { channel_uri = channel_uri
+      { channel_uri = channel_uri_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenMicrosoftPush",
-          "channel_uri" A..= channel_uri
+          "channel_uri" A..= channel_uri_
         ]
   toJSON
     DeviceTokenMicrosoftPushVoIP
-      { channel_uri = channel_uri
+      { channel_uri = channel_uri_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenMicrosoftPushVoIP",
-          "channel_uri" A..= channel_uri
+          "channel_uri" A..= channel_uri_
         ]
   toJSON
     DeviceTokenWebPush
-      { auth_base64url = auth_base64url,
-        p256dh_base64url = p256dh_base64url,
-        endpoint = endpoint
+      { auth_base64url = auth_base64url_,
+        p256dh_base64url = p256dh_base64url_,
+        endpoint = endpoint_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenWebPush",
-          "auth_base64url" A..= auth_base64url,
-          "p256dh_base64url" A..= p256dh_base64url,
-          "endpoint" A..= endpoint
+          "auth_base64url" A..= auth_base64url_,
+          "p256dh_base64url" A..= p256dh_base64url_,
+          "endpoint" A..= endpoint_
         ]
   toJSON
     DeviceTokenSimplePush
-      { endpoint = endpoint
+      { endpoint = endpoint_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenSimplePush",
-          "endpoint" A..= endpoint
+          "endpoint" A..= endpoint_
         ]
   toJSON
     DeviceTokenUbuntuPush
-      { token = token
+      { token = token_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenUbuntuPush",
-          "token" A..= token
+          "token" A..= token_
         ]
   toJSON
     DeviceTokenBlackBerryPush
-      { token = token
+      { token = token_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenBlackBerryPush",
-          "token" A..= token
+          "token" A..= token_
         ]
   toJSON
     DeviceTokenTizenPush
-      { reg_id = reg_id
+      { reg_id = reg_id_
       } =
       A.object
         [ "@type" A..= T.String "deviceTokenTizenPush",
-          "reg_id" A..= reg_id
+          "reg_id" A..= reg_id_
         ]

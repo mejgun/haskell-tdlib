@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AnswerShippingQuery where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data AnswerShippingQuery = AnswerShippingQuery
 instance Show AnswerShippingQuery where
   show
     AnswerShippingQuery
-      { error_message = error_message,
-        shipping_options = shipping_options,
-        shipping_query_id = shipping_query_id
+      { error_message = error_message_,
+        shipping_options = shipping_options_,
+        shipping_query_id = shipping_query_id_
       } =
       "AnswerShippingQuery"
         ++ U.cc
-          [ U.p "error_message" error_message,
-            U.p "shipping_options" shipping_options,
-            U.p "shipping_query_id" shipping_query_id
+          [ U.p "error_message" error_message_,
+            U.p "shipping_options" shipping_options_,
+            U.p "shipping_query_id" shipping_query_id_
           ]
 
 instance T.ToJSON AnswerShippingQuery where
   toJSON
     AnswerShippingQuery
-      { error_message = error_message,
-        shipping_options = shipping_options,
-        shipping_query_id = shipping_query_id
+      { error_message = error_message_,
+        shipping_options = shipping_options_,
+        shipping_query_id = shipping_query_id_
       } =
       A.object
         [ "@type" A..= T.String "answerShippingQuery",
-          "error_message" A..= error_message,
-          "shipping_options" A..= shipping_options,
-          "shipping_query_id" A..= shipping_query_id
+          "error_message" A..= error_message_,
+          "shipping_options" A..= shipping_options_,
+          "shipping_query_id" A..= shipping_query_id_
         ]

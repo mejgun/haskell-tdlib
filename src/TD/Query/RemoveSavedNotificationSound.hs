@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveSavedNotificationSound where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RemoveSavedNotificationSound = RemoveSavedNotificationSound
 instance Show RemoveSavedNotificationSound where
   show
     RemoveSavedNotificationSound
-      { notification_sound_id = notification_sound_id
+      { notification_sound_id = notification_sound_id_
       } =
       "RemoveSavedNotificationSound"
         ++ U.cc
-          [ U.p "notification_sound_id" notification_sound_id
+          [ U.p "notification_sound_id" notification_sound_id_
           ]
 
 instance T.ToJSON RemoveSavedNotificationSound where
   toJSON
     RemoveSavedNotificationSound
-      { notification_sound_id = notification_sound_id
+      { notification_sound_id = notification_sound_id_
       } =
       A.object
         [ "@type" A..= T.String "removeSavedNotificationSound",
-          "notification_sound_id" A..= notification_sound_id
+          "notification_sound_id" A..= notification_sound_id_
         ]

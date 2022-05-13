@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AvailableReactions where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data AvailableReactions = -- | Represents a list of available reactions @reactio
 instance Show AvailableReactions where
   show
     AvailableReactions
-      { reactions = reactions
+      { reactions = reactions_
       } =
       "AvailableReactions"
         ++ U.cc
-          [ U.p "reactions" reactions
+          [ U.p "reactions" reactions_
           ]
 
 instance T.FromJSON AvailableReactions where
@@ -40,9 +41,9 @@ instance T.FromJSON AvailableReactions where
 instance T.ToJSON AvailableReactions where
   toJSON
     AvailableReactions
-      { reactions = reactions
+      { reactions = reactions_
       } =
       A.object
         [ "@type" A..= T.String "availableReactions",
-          "reactions" A..= reactions
+          "reactions" A..= reactions_
         ]

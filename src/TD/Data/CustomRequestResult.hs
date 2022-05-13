@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CustomRequestResult where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data CustomRequestResult = -- | Contains the result of a custom request @result 
 instance Show CustomRequestResult where
   show
     CustomRequestResult
-      { result = result
+      { result = result_
       } =
       "CustomRequestResult"
         ++ U.cc
-          [ U.p "result" result
+          [ U.p "result" result_
           ]
 
 instance T.FromJSON CustomRequestResult where
@@ -40,9 +41,9 @@ instance T.FromJSON CustomRequestResult where
 instance T.ToJSON CustomRequestResult where
   toJSON
     CustomRequestResult
-      { result = result
+      { result = result_
       } =
       A.object
         [ "@type" A..= T.String "customRequestResult",
-          "result" A..= result
+          "result" A..= result_
         ]

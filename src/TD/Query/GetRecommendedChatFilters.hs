@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetRecommendedChatFilters where
 
 import qualified Data.Aeson as A

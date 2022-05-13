@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveContacts where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RemoveContacts = RemoveContacts
 instance Show RemoveContacts where
   show
     RemoveContacts
-      { user_ids = user_ids
+      { user_ids = user_ids_
       } =
       "RemoveContacts"
         ++ U.cc
-          [ U.p "user_ids" user_ids
+          [ U.p "user_ids" user_ids_
           ]
 
 instance T.ToJSON RemoveContacts where
   toJSON
     RemoveContacts
-      { user_ids = user_ids
+      { user_ids = user_ids_
       } =
       A.object
         [ "@type" A..= T.String "removeContacts",
-          "user_ids" A..= user_ids
+          "user_ids" A..= user_ids_
         ]

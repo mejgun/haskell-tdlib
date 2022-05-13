@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.TMeUrlType where
 
 import qualified Data.Aeson as A
@@ -34,35 +35,35 @@ data TMeUrlType
 instance Show TMeUrlType where
   show
     TMeUrlTypeUser
-      { user_id = user_id
+      { user_id = user_id_
       } =
       "TMeUrlTypeUser"
         ++ U.cc
-          [ U.p "user_id" user_id
+          [ U.p "user_id" user_id_
           ]
   show
     TMeUrlTypeSupergroup
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       "TMeUrlTypeSupergroup"
         ++ U.cc
-          [ U.p "supergroup_id" supergroup_id
+          [ U.p "supergroup_id" supergroup_id_
           ]
   show
     TMeUrlTypeChatInvite
-      { info = info
+      { info = info_
       } =
       "TMeUrlTypeChatInvite"
         ++ U.cc
-          [ U.p "info" info
+          [ U.p "info" info_
           ]
   show
     TMeUrlTypeStickerSet
-      { sticker_set_id = sticker_set_id
+      { sticker_set_id = sticker_set_id_
       } =
       "TMeUrlTypeStickerSet"
         ++ U.cc
-          [ U.p "sticker_set_id" sticker_set_id
+          [ U.p "sticker_set_id" sticker_set_id_
           ]
 
 instance T.FromJSON TMeUrlType where
@@ -100,33 +101,33 @@ instance T.FromJSON TMeUrlType where
 instance T.ToJSON TMeUrlType where
   toJSON
     TMeUrlTypeUser
-      { user_id = user_id
+      { user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "tMeUrlTypeUser",
-          "user_id" A..= user_id
+          "user_id" A..= user_id_
         ]
   toJSON
     TMeUrlTypeSupergroup
-      { supergroup_id = supergroup_id
+      { supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "tMeUrlTypeSupergroup",
-          "supergroup_id" A..= supergroup_id
+          "supergroup_id" A..= supergroup_id_
         ]
   toJSON
     TMeUrlTypeChatInvite
-      { info = info
+      { info = info_
       } =
       A.object
         [ "@type" A..= T.String "tMeUrlTypeChatInvite",
-          "info" A..= info
+          "info" A..= info_
         ]
   toJSON
     TMeUrlTypeStickerSet
-      { sticker_set_id = sticker_set_id
+      { sticker_set_id = sticker_set_id_
       } =
       A.object
         [ "@type" A..= T.String "tMeUrlTypeStickerSet",
-          "sticker_set_id" A..= sticker_set_id
+          "sticker_set_id" A..= sticker_set_id_
         ]

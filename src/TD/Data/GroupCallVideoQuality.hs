@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.GroupCallVideoQuality where
 
 import qualified Data.Aeson as A
@@ -41,16 +42,13 @@ instance T.FromJSON GroupCallVideoQuality where
       _ -> mempty
     where
       parseGroupCallVideoQualityThumbnail :: A.Value -> T.Parser GroupCallVideoQuality
-      parseGroupCallVideoQualityThumbnail = A.withObject "GroupCallVideoQualityThumbnail" $ \o -> do
-        return $ GroupCallVideoQualityThumbnail {}
+      parseGroupCallVideoQualityThumbnail = A.withObject "GroupCallVideoQualityThumbnail" $ \_ -> return GroupCallVideoQualityThumbnail
 
       parseGroupCallVideoQualityMedium :: A.Value -> T.Parser GroupCallVideoQuality
-      parseGroupCallVideoQualityMedium = A.withObject "GroupCallVideoQualityMedium" $ \o -> do
-        return $ GroupCallVideoQualityMedium {}
+      parseGroupCallVideoQualityMedium = A.withObject "GroupCallVideoQualityMedium" $ \_ -> return GroupCallVideoQualityMedium
 
       parseGroupCallVideoQualityFull :: A.Value -> T.Parser GroupCallVideoQuality
-      parseGroupCallVideoQualityFull = A.withObject "GroupCallVideoQualityFull" $ \o -> do
-        return $ GroupCallVideoQualityFull {}
+      parseGroupCallVideoQualityFull = A.withObject "GroupCallVideoQualityFull" $ \_ -> return GroupCallVideoQualityFull
   parseJSON _ = mempty
 
 instance T.ToJSON GroupCallVideoQuality where

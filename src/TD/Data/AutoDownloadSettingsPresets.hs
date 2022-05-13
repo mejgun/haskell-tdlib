@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.AutoDownloadSettingsPresets where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data AutoDownloadSettingsPresets = -- | Contains auto-download settings presets 
 instance Show AutoDownloadSettingsPresets where
   show
     AutoDownloadSettingsPresets
-      { high = high,
-        medium = medium,
-        low = low
+      { high = high_,
+        medium = medium_,
+        low = low_
       } =
       "AutoDownloadSettingsPresets"
         ++ U.cc
-          [ U.p "high" high,
-            U.p "medium" medium,
-            U.p "low" low
+          [ U.p "high" high_,
+            U.p "medium" medium_,
+            U.p "low" low_
           ]
 
 instance T.FromJSON AutoDownloadSettingsPresets where
@@ -51,13 +52,13 @@ instance T.FromJSON AutoDownloadSettingsPresets where
 instance T.ToJSON AutoDownloadSettingsPresets where
   toJSON
     AutoDownloadSettingsPresets
-      { high = high,
-        medium = medium,
-        low = low
+      { high = high_,
+        medium = medium_,
+        low = low_
       } =
       A.object
         [ "@type" A..= T.String "autoDownloadSettingsPresets",
-          "high" A..= high,
-          "medium" A..= medium,
-          "low" A..= low
+          "high" A..= high_,
+          "medium" A..= medium_,
+          "low" A..= low_
         ]

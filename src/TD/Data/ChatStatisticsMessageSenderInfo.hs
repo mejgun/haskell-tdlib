@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatStatisticsMessageSenderInfo where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data ChatStatisticsMessageSenderInfo = -- | Contains statistics about messages s
 instance Show ChatStatisticsMessageSenderInfo where
   show
     ChatStatisticsMessageSenderInfo
-      { average_character_count = average_character_count,
-        sent_message_count = sent_message_count,
-        user_id = user_id
+      { average_character_count = average_character_count_,
+        sent_message_count = sent_message_count_,
+        user_id = user_id_
       } =
       "ChatStatisticsMessageSenderInfo"
         ++ U.cc
-          [ U.p "average_character_count" average_character_count,
-            U.p "sent_message_count" sent_message_count,
-            U.p "user_id" user_id
+          [ U.p "average_character_count" average_character_count_,
+            U.p "sent_message_count" sent_message_count_,
+            U.p "user_id" user_id_
           ]
 
 instance T.FromJSON ChatStatisticsMessageSenderInfo where
@@ -50,13 +51,13 @@ instance T.FromJSON ChatStatisticsMessageSenderInfo where
 instance T.ToJSON ChatStatisticsMessageSenderInfo where
   toJSON
     ChatStatisticsMessageSenderInfo
-      { average_character_count = average_character_count,
-        sent_message_count = sent_message_count,
-        user_id = user_id
+      { average_character_count = average_character_count_,
+        sent_message_count = sent_message_count_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "chatStatisticsMessageSenderInfo",
-          "average_character_count" A..= average_character_count,
-          "sent_message_count" A..= sent_message_count,
-          "user_id" A..= user_id
+          "average_character_count" A..= average_character_count_,
+          "sent_message_count" A..= sent_message_count_,
+          "user_id" A..= user_id_
         ]

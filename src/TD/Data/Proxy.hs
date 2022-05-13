@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Proxy where
 
 import qualified Data.Aeson as A
@@ -27,21 +28,21 @@ data Proxy = -- | Contains information about a proxy server @id Unique identifie
 instance Show Proxy where
   show
     Proxy
-      { _type = _type,
-        is_enabled = is_enabled,
-        last_used_date = last_used_date,
-        port = port,
-        server = server,
-        _id = _id
+      { _type = _type_,
+        is_enabled = is_enabled_,
+        last_used_date = last_used_date_,
+        port = port_,
+        server = server_,
+        _id = _id_
       } =
       "Proxy"
         ++ U.cc
-          [ U.p "_type" _type,
-            U.p "is_enabled" is_enabled,
-            U.p "last_used_date" last_used_date,
-            U.p "port" port,
-            U.p "server" server,
-            U.p "_id" _id
+          [ U.p "_type" _type_,
+            U.p "is_enabled" is_enabled_,
+            U.p "last_used_date" last_used_date_,
+            U.p "port" port_,
+            U.p "server" server_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Proxy where
@@ -66,19 +67,19 @@ instance T.FromJSON Proxy where
 instance T.ToJSON Proxy where
   toJSON
     Proxy
-      { _type = _type,
-        is_enabled = is_enabled,
-        last_used_date = last_used_date,
-        port = port,
-        server = server,
-        _id = _id
+      { _type = _type_,
+        is_enabled = is_enabled_,
+        last_used_date = last_used_date_,
+        port = port_,
+        server = server_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "proxy",
-          "type" A..= _type,
-          "is_enabled" A..= is_enabled,
-          "last_used_date" A..= last_used_date,
-          "port" A..= port,
-          "server" A..= server,
-          "id" A..= _id
+          "type" A..= _type_,
+          "is_enabled" A..= is_enabled_,
+          "last_used_date" A..= last_used_date_,
+          "port" A..= port_,
+          "server" A..= server_,
+          "id" A..= _id_
         ]

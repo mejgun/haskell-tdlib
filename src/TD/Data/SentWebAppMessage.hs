@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SentWebAppMessage where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data SentWebAppMessage = -- | Information about the message sent by answerWebApp
 instance Show SentWebAppMessage where
   show
     SentWebAppMessage
-      { inline_message_id = inline_message_id
+      { inline_message_id = inline_message_id_
       } =
       "SentWebAppMessage"
         ++ U.cc
-          [ U.p "inline_message_id" inline_message_id
+          [ U.p "inline_message_id" inline_message_id_
           ]
 
 instance T.FromJSON SentWebAppMessage where
@@ -40,9 +41,9 @@ instance T.FromJSON SentWebAppMessage where
 instance T.ToJSON SentWebAppMessage where
   toJSON
     SentWebAppMessage
-      { inline_message_id = inline_message_id
+      { inline_message_id = inline_message_id_
       } =
       A.object
         [ "@type" A..= T.String "sentWebAppMessage",
-          "inline_message_id" A..= inline_message_id
+          "inline_message_id" A..= inline_message_id_
         ]

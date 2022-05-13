@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleMessageSenderIsBlocked where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data ToggleMessageSenderIsBlocked = ToggleMessageSenderIsBlocked
 instance Show ToggleMessageSenderIsBlocked where
   show
     ToggleMessageSenderIsBlocked
-      { is_blocked = is_blocked,
-        sender_id = sender_id
+      { is_blocked = is_blocked_,
+        sender_id = sender_id_
       } =
       "ToggleMessageSenderIsBlocked"
         ++ U.cc
-          [ U.p "is_blocked" is_blocked,
-            U.p "sender_id" sender_id
+          [ U.p "is_blocked" is_blocked_,
+            U.p "sender_id" sender_id_
           ]
 
 instance T.ToJSON ToggleMessageSenderIsBlocked where
   toJSON
     ToggleMessageSenderIsBlocked
-      { is_blocked = is_blocked,
-        sender_id = sender_id
+      { is_blocked = is_blocked_,
+        sender_id = sender_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleMessageSenderIsBlocked",
-          "is_blocked" A..= is_blocked,
-          "sender_id" A..= sender_id
+          "is_blocked" A..= is_blocked_,
+          "sender_id" A..= sender_id_
         ]

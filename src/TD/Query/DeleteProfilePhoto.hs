@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.DeleteProfilePhoto where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data DeleteProfilePhoto = DeleteProfilePhoto
 instance Show DeleteProfilePhoto where
   show
     DeleteProfilePhoto
-      { profile_photo_id = profile_photo_id
+      { profile_photo_id = profile_photo_id_
       } =
       "DeleteProfilePhoto"
         ++ U.cc
-          [ U.p "profile_photo_id" profile_photo_id
+          [ U.p "profile_photo_id" profile_photo_id_
           ]
 
 instance T.ToJSON DeleteProfilePhoto where
   toJSON
     DeleteProfilePhoto
-      { profile_photo_id = profile_photo_id
+      { profile_photo_id = profile_photo_id_
       } =
       A.object
         [ "@type" A..= T.String "deleteProfilePhoto",
-          "profile_photo_id" A..= profile_photo_id
+          "profile_photo_id" A..= profile_photo_id_
         ]

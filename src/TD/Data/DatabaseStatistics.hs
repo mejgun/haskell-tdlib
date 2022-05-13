@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.DatabaseStatistics where
 
 import qualified Data.Aeson as A
@@ -16,11 +17,11 @@ data DatabaseStatistics = -- | Contains database statistics
 instance Show DatabaseStatistics where
   show
     DatabaseStatistics
-      { statistics = statistics
+      { statistics = statistics_
       } =
       "DatabaseStatistics"
         ++ U.cc
-          [ U.p "statistics" statistics
+          [ U.p "statistics" statistics_
           ]
 
 instance T.FromJSON DatabaseStatistics where
@@ -40,9 +41,9 @@ instance T.FromJSON DatabaseStatistics where
 instance T.ToJSON DatabaseStatistics where
   toJSON
     DatabaseStatistics
-      { statistics = statistics
+      { statistics = statistics_
       } =
       A.object
         [ "@type" A..= T.String "databaseStatistics",
-          "statistics" A..= statistics
+          "statistics" A..= statistics_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.GetEmojiSuggestionsUrl where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data GetEmojiSuggestionsUrl = GetEmojiSuggestionsUrl
 instance Show GetEmojiSuggestionsUrl where
   show
     GetEmojiSuggestionsUrl
-      { language_code = language_code
+      { language_code = language_code_
       } =
       "GetEmojiSuggestionsUrl"
         ++ U.cc
-          [ U.p "language_code" language_code
+          [ U.p "language_code" language_code_
           ]
 
 instance T.ToJSON GetEmojiSuggestionsUrl where
   toJSON
     GetEmojiSuggestionsUrl
-      { language_code = language_code
+      { language_code = language_code_
       } =
       A.object
         [ "@type" A..= T.String "getEmojiSuggestionsUrl",
-          "language_code" A..= language_code
+          "language_code" A..= language_code_
         ]

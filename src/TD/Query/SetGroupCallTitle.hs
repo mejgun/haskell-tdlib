@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetGroupCallTitle where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SetGroupCallTitle = SetGroupCallTitle
 instance Show SetGroupCallTitle where
   show
     SetGroupCallTitle
-      { title = title,
-        group_call_id = group_call_id
+      { title = title_,
+        group_call_id = group_call_id_
       } =
       "SetGroupCallTitle"
         ++ U.cc
-          [ U.p "title" title,
-            U.p "group_call_id" group_call_id
+          [ U.p "title" title_,
+            U.p "group_call_id" group_call_id_
           ]
 
 instance T.ToJSON SetGroupCallTitle where
   toJSON
     SetGroupCallTitle
-      { title = title,
-        group_call_id = group_call_id
+      { title = title_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "setGroupCallTitle",
-          "title" A..= title,
-          "group_call_id" A..= group_call_id
+          "title" A..= title_,
+          "group_call_id" A..= group_call_id_
         ]

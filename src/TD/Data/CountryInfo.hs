@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.CountryInfo where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data CountryInfo = -- | Contains information about a country
 instance Show CountryInfo where
   show
     CountryInfo
-      { calling_codes = calling_codes,
-        is_hidden = is_hidden,
-        english_name = english_name,
-        name = name,
-        country_code = country_code
+      { calling_codes = calling_codes_,
+        is_hidden = is_hidden_,
+        english_name = english_name_,
+        name = name_,
+        country_code = country_code_
       } =
       "CountryInfo"
         ++ U.cc
-          [ U.p "calling_codes" calling_codes,
-            U.p "is_hidden" is_hidden,
-            U.p "english_name" english_name,
-            U.p "name" name,
-            U.p "country_code" country_code
+          [ U.p "calling_codes" calling_codes_,
+            U.p "is_hidden" is_hidden_,
+            U.p "english_name" english_name_,
+            U.p "name" name_,
+            U.p "country_code" country_code_
           ]
 
 instance T.FromJSON CountryInfo where
@@ -60,17 +61,17 @@ instance T.FromJSON CountryInfo where
 instance T.ToJSON CountryInfo where
   toJSON
     CountryInfo
-      { calling_codes = calling_codes,
-        is_hidden = is_hidden,
-        english_name = english_name,
-        name = name,
-        country_code = country_code
+      { calling_codes = calling_codes_,
+        is_hidden = is_hidden_,
+        english_name = english_name_,
+        name = name_,
+        country_code = country_code_
       } =
       A.object
         [ "@type" A..= T.String "countryInfo",
-          "calling_codes" A..= calling_codes,
-          "is_hidden" A..= is_hidden,
-          "english_name" A..= english_name,
-          "name" A..= name,
-          "country_code" A..= country_code
+          "calling_codes" A..= calling_codes_,
+          "is_hidden" A..= is_hidden_,
+          "english_name" A..= english_name_,
+          "name" A..= name_,
+          "country_code" A..= country_code_
         ]

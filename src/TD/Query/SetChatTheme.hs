@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatTheme where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data SetChatTheme = SetChatTheme
 instance Show SetChatTheme where
   show
     SetChatTheme
-      { theme_name = theme_name,
-        chat_id = chat_id
+      { theme_name = theme_name_,
+        chat_id = chat_id_
       } =
       "SetChatTheme"
         ++ U.cc
-          [ U.p "theme_name" theme_name,
-            U.p "chat_id" chat_id
+          [ U.p "theme_name" theme_name_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatTheme where
   toJSON
     SetChatTheme
-      { theme_name = theme_name,
-        chat_id = chat_id
+      { theme_name = theme_name_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatTheme",
-          "theme_name" A..= theme_name,
-          "chat_id" A..= chat_id
+          "theme_name" A..= theme_name_,
+          "chat_id" A..= chat_id_
         ]

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.KeyboardButtonType where
 
 import qualified Data.Aeson as A
@@ -43,21 +44,21 @@ instance Show KeyboardButtonType where
         []
   show
     KeyboardButtonTypeRequestPoll
-      { force_quiz = force_quiz,
-        force_regular = force_regular
+      { force_quiz = force_quiz_,
+        force_regular = force_regular_
       } =
       "KeyboardButtonTypeRequestPoll"
         ++ U.cc
-          [ U.p "force_quiz" force_quiz,
-            U.p "force_regular" force_regular
+          [ U.p "force_quiz" force_quiz_,
+            U.p "force_regular" force_regular_
           ]
   show
     KeyboardButtonTypeWebApp
-      { url = url
+      { url = url_
       } =
       "KeyboardButtonTypeWebApp"
         ++ U.cc
-          [ U.p "url" url
+          [ U.p "url" url_
           ]
 
 instance T.FromJSON KeyboardButtonType where
@@ -73,16 +74,13 @@ instance T.FromJSON KeyboardButtonType where
       _ -> mempty
     where
       parseKeyboardButtonTypeText :: A.Value -> T.Parser KeyboardButtonType
-      parseKeyboardButtonTypeText = A.withObject "KeyboardButtonTypeText" $ \o -> do
-        return $ KeyboardButtonTypeText {}
+      parseKeyboardButtonTypeText = A.withObject "KeyboardButtonTypeText" $ \_ -> return KeyboardButtonTypeText
 
       parseKeyboardButtonTypeRequestPhoneNumber :: A.Value -> T.Parser KeyboardButtonType
-      parseKeyboardButtonTypeRequestPhoneNumber = A.withObject "KeyboardButtonTypeRequestPhoneNumber" $ \o -> do
-        return $ KeyboardButtonTypeRequestPhoneNumber {}
+      parseKeyboardButtonTypeRequestPhoneNumber = A.withObject "KeyboardButtonTypeRequestPhoneNumber" $ \_ -> return KeyboardButtonTypeRequestPhoneNumber
 
       parseKeyboardButtonTypeRequestLocation :: A.Value -> T.Parser KeyboardButtonType
-      parseKeyboardButtonTypeRequestLocation = A.withObject "KeyboardButtonTypeRequestLocation" $ \o -> do
-        return $ KeyboardButtonTypeRequestLocation {}
+      parseKeyboardButtonTypeRequestLocation = A.withObject "KeyboardButtonTypeRequestLocation" $ \_ -> return KeyboardButtonTypeRequestLocation
 
       parseKeyboardButtonTypeRequestPoll :: A.Value -> T.Parser KeyboardButtonType
       parseKeyboardButtonTypeRequestPoll = A.withObject "KeyboardButtonTypeRequestPoll" $ \o -> do
@@ -111,19 +109,19 @@ instance T.ToJSON KeyboardButtonType where
       ]
   toJSON
     KeyboardButtonTypeRequestPoll
-      { force_quiz = force_quiz,
-        force_regular = force_regular
+      { force_quiz = force_quiz_,
+        force_regular = force_regular_
       } =
       A.object
         [ "@type" A..= T.String "keyboardButtonTypeRequestPoll",
-          "force_quiz" A..= force_quiz,
-          "force_regular" A..= force_regular
+          "force_quiz" A..= force_quiz_,
+          "force_regular" A..= force_regular_
         ]
   toJSON
     KeyboardButtonTypeWebApp
-      { url = url
+      { url = url_
       } =
       A.object
         [ "@type" A..= T.String "keyboardButtonTypeWebApp",
-          "url" A..= url
+          "url" A..= url_
         ]

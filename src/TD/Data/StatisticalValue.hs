@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StatisticalValue where
 
 import qualified Data.Aeson as A
@@ -20,15 +21,15 @@ data StatisticalValue = -- | A value with information about its recent changes @
 instance Show StatisticalValue where
   show
     StatisticalValue
-      { growth_rate_percentage = growth_rate_percentage,
-        previous_value = previous_value,
-        value = value
+      { growth_rate_percentage = growth_rate_percentage_,
+        previous_value = previous_value_,
+        value = value_
       } =
       "StatisticalValue"
         ++ U.cc
-          [ U.p "growth_rate_percentage" growth_rate_percentage,
-            U.p "previous_value" previous_value,
-            U.p "value" value
+          [ U.p "growth_rate_percentage" growth_rate_percentage_,
+            U.p "previous_value" previous_value_,
+            U.p "value" value_
           ]
 
 instance T.FromJSON StatisticalValue where
@@ -50,13 +51,13 @@ instance T.FromJSON StatisticalValue where
 instance T.ToJSON StatisticalValue where
   toJSON
     StatisticalValue
-      { growth_rate_percentage = growth_rate_percentage,
-        previous_value = previous_value,
-        value = value
+      { growth_rate_percentage = growth_rate_percentage_,
+        previous_value = previous_value_,
+        value = value_
       } =
       A.object
         [ "@type" A..= T.String "statisticalValue",
-          "growth_rate_percentage" A..= growth_rate_percentage,
-          "previous_value" A..= previous_value,
-          "value" A..= value
+          "growth_rate_percentage" A..= growth_rate_percentage_,
+          "previous_value" A..= previous_value_,
+          "value" A..= value_
         ]

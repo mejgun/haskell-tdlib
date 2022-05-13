@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageSendOptions where
 
 import qualified Data.Aeson as A
@@ -23,17 +24,17 @@ data MessageSendOptions = -- | Options to be used when a message is sent
 instance Show MessageSendOptions where
   show
     MessageSendOptions
-      { scheduling_state = scheduling_state,
-        protect_content = protect_content,
-        from_background = from_background,
-        disable_notification = disable_notification
+      { scheduling_state = scheduling_state_,
+        protect_content = protect_content_,
+        from_background = from_background_,
+        disable_notification = disable_notification_
       } =
       "MessageSendOptions"
         ++ U.cc
-          [ U.p "scheduling_state" scheduling_state,
-            U.p "protect_content" protect_content,
-            U.p "from_background" from_background,
-            U.p "disable_notification" disable_notification
+          [ U.p "scheduling_state" scheduling_state_,
+            U.p "protect_content" protect_content_,
+            U.p "from_background" from_background_,
+            U.p "disable_notification" disable_notification_
           ]
 
 instance T.FromJSON MessageSendOptions where
@@ -56,15 +57,15 @@ instance T.FromJSON MessageSendOptions where
 instance T.ToJSON MessageSendOptions where
   toJSON
     MessageSendOptions
-      { scheduling_state = scheduling_state,
-        protect_content = protect_content,
-        from_background = from_background,
-        disable_notification = disable_notification
+      { scheduling_state = scheduling_state_,
+        protect_content = protect_content_,
+        from_background = from_background_,
+        disable_notification = disable_notification_
       } =
       A.object
         [ "@type" A..= T.String "messageSendOptions",
-          "scheduling_state" A..= scheduling_state,
-          "protect_content" A..= protect_content,
-          "from_background" A..= from_background,
-          "disable_notification" A..= disable_notification
+          "scheduling_state" A..= scheduling_state_,
+          "protect_content" A..= protect_content_,
+          "from_background" A..= from_background_,
+          "disable_notification" A..= disable_notification_
         ]

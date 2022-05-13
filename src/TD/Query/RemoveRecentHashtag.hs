@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.RemoveRecentHashtag where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data RemoveRecentHashtag = RemoveRecentHashtag
 instance Show RemoveRecentHashtag where
   show
     RemoveRecentHashtag
-      { hashtag = hashtag
+      { hashtag = hashtag_
       } =
       "RemoveRecentHashtag"
         ++ U.cc
-          [ U.p "hashtag" hashtag
+          [ U.p "hashtag" hashtag_
           ]
 
 instance T.ToJSON RemoveRecentHashtag where
   toJSON
     RemoveRecentHashtag
-      { hashtag = hashtag
+      { hashtag = hashtag_
       } =
       A.object
         [ "@type" A..= T.String "removeRecentHashtag",
-          "hashtag" A..= hashtag
+          "hashtag" A..= hashtag_
         ]

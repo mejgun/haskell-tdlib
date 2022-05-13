@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NotificationSettingsScope where
 
 import qualified Data.Aeson as A
@@ -41,16 +42,13 @@ instance T.FromJSON NotificationSettingsScope where
       _ -> mempty
     where
       parseNotificationSettingsScopePrivateChats :: A.Value -> T.Parser NotificationSettingsScope
-      parseNotificationSettingsScopePrivateChats = A.withObject "NotificationSettingsScopePrivateChats" $ \o -> do
-        return $ NotificationSettingsScopePrivateChats {}
+      parseNotificationSettingsScopePrivateChats = A.withObject "NotificationSettingsScopePrivateChats" $ \_ -> return NotificationSettingsScopePrivateChats
 
       parseNotificationSettingsScopeGroupChats :: A.Value -> T.Parser NotificationSettingsScope
-      parseNotificationSettingsScopeGroupChats = A.withObject "NotificationSettingsScopeGroupChats" $ \o -> do
-        return $ NotificationSettingsScopeGroupChats {}
+      parseNotificationSettingsScopeGroupChats = A.withObject "NotificationSettingsScopeGroupChats" $ \_ -> return NotificationSettingsScopeGroupChats
 
       parseNotificationSettingsScopeChannelChats :: A.Value -> T.Parser NotificationSettingsScope
-      parseNotificationSettingsScopeChannelChats = A.withObject "NotificationSettingsScopeChannelChats" $ \o -> do
-        return $ NotificationSettingsScopeChannelChats {}
+      parseNotificationSettingsScopeChannelChats = A.withObject "NotificationSettingsScopeChannelChats" $ \_ -> return NotificationSettingsScopeChannelChats
   parseJSON _ = mempty
 
 instance T.ToJSON NotificationSettingsScope where

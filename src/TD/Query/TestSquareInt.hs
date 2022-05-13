@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.TestSquareInt where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data TestSquareInt = TestSquareInt
 instance Show TestSquareInt where
   show
     TestSquareInt
-      { x = x
+      { x = x_
       } =
       "TestSquareInt"
         ++ U.cc
-          [ U.p "x" x
+          [ U.p "x" x_
           ]
 
 instance T.ToJSON TestSquareInt where
   toJSON
     TestSquareInt
-      { x = x
+      { x = x_
       } =
       A.object
         [ "@type" A..= T.String "testSquareInt",
-          "x" A..= x
+          "x" A..= x_
         ]

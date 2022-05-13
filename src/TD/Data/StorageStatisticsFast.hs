@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.StorageStatisticsFast where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data StorageStatisticsFast = -- | Contains approximate storage usage statistics,
 instance Show StorageStatisticsFast where
   show
     StorageStatisticsFast
-      { log_size = log_size,
-        language_pack_database_size = language_pack_database_size,
-        database_size = database_size,
-        file_count = file_count,
-        files_size = files_size
+      { log_size = log_size_,
+        language_pack_database_size = language_pack_database_size_,
+        database_size = database_size_,
+        file_count = file_count_,
+        files_size = files_size_
       } =
       "StorageStatisticsFast"
         ++ U.cc
-          [ U.p "log_size" log_size,
-            U.p "language_pack_database_size" language_pack_database_size,
-            U.p "database_size" database_size,
-            U.p "file_count" file_count,
-            U.p "files_size" files_size
+          [ U.p "log_size" log_size_,
+            U.p "language_pack_database_size" language_pack_database_size_,
+            U.p "database_size" database_size_,
+            U.p "file_count" file_count_,
+            U.p "files_size" files_size_
           ]
 
 instance T.FromJSON StorageStatisticsFast where
@@ -60,17 +61,17 @@ instance T.FromJSON StorageStatisticsFast where
 instance T.ToJSON StorageStatisticsFast where
   toJSON
     StorageStatisticsFast
-      { log_size = log_size,
-        language_pack_database_size = language_pack_database_size,
-        database_size = database_size,
-        file_count = file_count,
-        files_size = files_size
+      { log_size = log_size_,
+        language_pack_database_size = language_pack_database_size_,
+        database_size = database_size_,
+        file_count = file_count_,
+        files_size = files_size_
       } =
       A.object
         [ "@type" A..= T.String "storageStatisticsFast",
-          "log_size" A..= log_size,
-          "language_pack_database_size" A..= language_pack_database_size,
-          "database_size" A..= database_size,
-          "file_count" A..= file_count,
-          "files_size" A..= files_size
+          "log_size" A..= log_size_,
+          "language_pack_database_size" A..= language_pack_database_size_,
+          "database_size" A..= database_size_,
+          "file_count" A..= file_count_,
+          "files_size" A..= files_size_
         ]

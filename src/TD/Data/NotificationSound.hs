@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NotificationSound where
 
 import qualified Data.Aeson as A
@@ -27,21 +28,21 @@ data NotificationSound = -- | Describes a notification sound in MP3 format
 instance Show NotificationSound where
   show
     NotificationSound
-      { sound = sound,
-        _data = _data,
-        title = title,
-        date = date,
-        duration = duration,
-        _id = _id
+      { sound = sound_,
+        _data = _data_,
+        title = title_,
+        date = date_,
+        duration = duration_,
+        _id = _id_
       } =
       "NotificationSound"
         ++ U.cc
-          [ U.p "sound" sound,
-            U.p "_data" _data,
-            U.p "title" title,
-            U.p "date" date,
-            U.p "duration" duration,
-            U.p "_id" _id
+          [ U.p "sound" sound_,
+            U.p "_data" _data_,
+            U.p "title" title_,
+            U.p "date" date_,
+            U.p "duration" duration_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON NotificationSound where
@@ -66,19 +67,19 @@ instance T.FromJSON NotificationSound where
 instance T.ToJSON NotificationSound where
   toJSON
     NotificationSound
-      { sound = sound,
-        _data = _data,
-        title = title,
-        date = date,
-        duration = duration,
-        _id = _id
+      { sound = sound_,
+        _data = _data_,
+        title = title_,
+        date = date_,
+        duration = duration_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "notificationSound",
-          "sound" A..= sound,
-          "data" A..= _data,
-          "title" A..= title,
-          "date" A..= date,
-          "duration" A..= duration,
-          "id" A..= _id
+          "sound" A..= sound_,
+          "data" A..= _data_,
+          "title" A..= title_,
+          "date" A..= date_,
+          "duration" A..= duration_,
+          "id" A..= _id_
         ]

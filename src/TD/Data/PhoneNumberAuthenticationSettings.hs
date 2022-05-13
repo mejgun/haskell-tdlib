@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.PhoneNumberAuthenticationSettings where
 
 import qualified Data.Aeson as A
@@ -24,19 +25,19 @@ data PhoneNumberAuthenticationSettings = -- | Contains settings for the authenti
 instance Show PhoneNumberAuthenticationSettings where
   show
     PhoneNumberAuthenticationSettings
-      { authentication_tokens = authentication_tokens,
-        allow_sms_retriever_api = allow_sms_retriever_api,
-        is_current_phone_number = is_current_phone_number,
-        allow_missed_call = allow_missed_call,
-        allow_flash_call = allow_flash_call
+      { authentication_tokens = authentication_tokens_,
+        allow_sms_retriever_api = allow_sms_retriever_api_,
+        is_current_phone_number = is_current_phone_number_,
+        allow_missed_call = allow_missed_call_,
+        allow_flash_call = allow_flash_call_
       } =
       "PhoneNumberAuthenticationSettings"
         ++ U.cc
-          [ U.p "authentication_tokens" authentication_tokens,
-            U.p "allow_sms_retriever_api" allow_sms_retriever_api,
-            U.p "is_current_phone_number" is_current_phone_number,
-            U.p "allow_missed_call" allow_missed_call,
-            U.p "allow_flash_call" allow_flash_call
+          [ U.p "authentication_tokens" authentication_tokens_,
+            U.p "allow_sms_retriever_api" allow_sms_retriever_api_,
+            U.p "is_current_phone_number" is_current_phone_number_,
+            U.p "allow_missed_call" allow_missed_call_,
+            U.p "allow_flash_call" allow_flash_call_
           ]
 
 instance T.FromJSON PhoneNumberAuthenticationSettings where
@@ -60,17 +61,17 @@ instance T.FromJSON PhoneNumberAuthenticationSettings where
 instance T.ToJSON PhoneNumberAuthenticationSettings where
   toJSON
     PhoneNumberAuthenticationSettings
-      { authentication_tokens = authentication_tokens,
-        allow_sms_retriever_api = allow_sms_retriever_api,
-        is_current_phone_number = is_current_phone_number,
-        allow_missed_call = allow_missed_call,
-        allow_flash_call = allow_flash_call
+      { authentication_tokens = authentication_tokens_,
+        allow_sms_retriever_api = allow_sms_retriever_api_,
+        is_current_phone_number = is_current_phone_number_,
+        allow_missed_call = allow_missed_call_,
+        allow_flash_call = allow_flash_call_
       } =
       A.object
         [ "@type" A..= T.String "phoneNumberAuthenticationSettings",
-          "authentication_tokens" A..= authentication_tokens,
-          "allow_sms_retriever_api" A..= allow_sms_retriever_api,
-          "is_current_phone_number" A..= is_current_phone_number,
-          "allow_missed_call" A..= allow_missed_call,
-          "allow_flash_call" A..= allow_flash_call
+          "authentication_tokens" A..= authentication_tokens_,
+          "allow_sms_retriever_api" A..= allow_sms_retriever_api_,
+          "is_current_phone_number" A..= is_current_phone_number_,
+          "allow_missed_call" A..= allow_missed_call_,
+          "allow_flash_call" A..= allow_flash_call_
         ]

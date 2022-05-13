@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.Update where
 
 import qualified Data.Aeson as A
@@ -868,1105 +869,1105 @@ data Update
 instance Show Update where
   show
     UpdateAuthorizationState
-      { authorization_state = authorization_state
+      { authorization_state = authorization_state_
       } =
       "UpdateAuthorizationState"
         ++ U.cc
-          [ U.p "authorization_state" authorization_state
+          [ U.p "authorization_state" authorization_state_
           ]
   show
     UpdateNewMessage
-      { message = message
+      { message = message_
       } =
       "UpdateNewMessage"
         ++ U.cc
-          [ U.p "message" message
+          [ U.p "message" message_
           ]
   show
     UpdateMessageSendAcknowledged
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageSendAcknowledged"
         ++ U.cc
-          [ U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageSendSucceeded
-      { old_message_id = old_message_id,
-        message = message
+      { old_message_id = old_message_id_,
+        message = message_
       } =
       "UpdateMessageSendSucceeded"
         ++ U.cc
-          [ U.p "old_message_id" old_message_id,
-            U.p "message" message
+          [ U.p "old_message_id" old_message_id_,
+            U.p "message" message_
           ]
   show
     UpdateMessageSendFailed
-      { error_message = error_message,
-        error_code = error_code,
-        old_message_id = old_message_id,
-        message = message
+      { error_message = error_message_,
+        error_code = error_code_,
+        old_message_id = old_message_id_,
+        message = message_
       } =
       "UpdateMessageSendFailed"
         ++ U.cc
-          [ U.p "error_message" error_message,
-            U.p "error_code" error_code,
-            U.p "old_message_id" old_message_id,
-            U.p "message" message
+          [ U.p "error_message" error_message_,
+            U.p "error_code" error_code_,
+            U.p "old_message_id" old_message_id_,
+            U.p "message" message_
           ]
   show
     UpdateMessageContent
-      { new_content = new_content,
-        message_id = message_id,
-        chat_id = chat_id
+      { new_content = new_content_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageContent"
         ++ U.cc
-          [ U.p "new_content" new_content,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "new_content" new_content_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageEdited
-      { reply_markup = reply_markup,
-        edit_date = edit_date,
-        message_id = message_id,
-        chat_id = chat_id
+      { reply_markup = reply_markup_,
+        edit_date = edit_date_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageEdited"
         ++ U.cc
-          [ U.p "reply_markup" reply_markup,
-            U.p "edit_date" edit_date,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "reply_markup" reply_markup_,
+            U.p "edit_date" edit_date_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageIsPinned
-      { is_pinned = is_pinned,
-        message_id = message_id,
-        chat_id = chat_id
+      { is_pinned = is_pinned_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageIsPinned"
         ++ U.cc
-          [ U.p "is_pinned" is_pinned,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "is_pinned" is_pinned_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageInteractionInfo
-      { interaction_info = interaction_info,
-        message_id = message_id,
-        chat_id = chat_id
+      { interaction_info = interaction_info_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageInteractionInfo"
         ++ U.cc
-          [ U.p "interaction_info" interaction_info,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "interaction_info" interaction_info_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageContentOpened
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageContentOpened"
         ++ U.cc
-          [ U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageMentionRead
-      { unread_mention_count = unread_mention_count,
-        message_id = message_id,
-        chat_id = chat_id
+      { unread_mention_count = unread_mention_count_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageMentionRead"
         ++ U.cc
-          [ U.p "unread_mention_count" unread_mention_count,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "unread_mention_count" unread_mention_count_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageUnreadReactions
-      { unread_reaction_count = unread_reaction_count,
-        unread_reactions = unread_reactions,
-        message_id = message_id,
-        chat_id = chat_id
+      { unread_reaction_count = unread_reaction_count_,
+        unread_reactions = unread_reactions_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageUnreadReactions"
         ++ U.cc
-          [ U.p "unread_reaction_count" unread_reaction_count,
-            U.p "unread_reactions" unread_reactions,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "unread_reaction_count" unread_reaction_count_,
+            U.p "unread_reactions" unread_reactions_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateMessageLiveLocationViewed
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateMessageLiveLocationViewed"
         ++ U.cc
-          [ U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateNewChat
-      { chat = chat
+      { chat = chat_
       } =
       "UpdateNewChat"
         ++ U.cc
-          [ U.p "chat" chat
+          [ U.p "chat" chat_
           ]
   show
     UpdateChatTitle
-      { title = title,
-        chat_id = chat_id
+      { title = title_,
+        chat_id = chat_id_
       } =
       "UpdateChatTitle"
         ++ U.cc
-          [ U.p "title" title,
-            U.p "chat_id" chat_id
+          [ U.p "title" title_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatPhoto
-      { photo = photo,
-        chat_id = chat_id
+      { photo = photo_,
+        chat_id = chat_id_
       } =
       "UpdateChatPhoto"
         ++ U.cc
-          [ U.p "photo" photo,
-            U.p "chat_id" chat_id
+          [ U.p "photo" photo_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatPermissions
-      { permissions = permissions,
-        chat_id = chat_id
+      { permissions = permissions_,
+        chat_id = chat_id_
       } =
       "UpdateChatPermissions"
         ++ U.cc
-          [ U.p "permissions" permissions,
-            U.p "chat_id" chat_id
+          [ U.p "permissions" permissions_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatLastMessage
-      { positions = positions,
-        last_message = last_message,
-        chat_id = chat_id
+      { positions = positions_,
+        last_message = last_message_,
+        chat_id = chat_id_
       } =
       "UpdateChatLastMessage"
         ++ U.cc
-          [ U.p "positions" positions,
-            U.p "last_message" last_message,
-            U.p "chat_id" chat_id
+          [ U.p "positions" positions_,
+            U.p "last_message" last_message_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatPosition
-      { position = position,
-        chat_id = chat_id
+      { position = position_,
+        chat_id = chat_id_
       } =
       "UpdateChatPosition"
         ++ U.cc
-          [ U.p "position" position,
-            U.p "chat_id" chat_id
+          [ U.p "position" position_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatReadInbox
-      { unread_count = unread_count,
-        last_read_inbox_message_id = last_read_inbox_message_id,
-        chat_id = chat_id
+      { unread_count = unread_count_,
+        last_read_inbox_message_id = last_read_inbox_message_id_,
+        chat_id = chat_id_
       } =
       "UpdateChatReadInbox"
         ++ U.cc
-          [ U.p "unread_count" unread_count,
-            U.p "last_read_inbox_message_id" last_read_inbox_message_id,
-            U.p "chat_id" chat_id
+          [ U.p "unread_count" unread_count_,
+            U.p "last_read_inbox_message_id" last_read_inbox_message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatReadOutbox
-      { last_read_outbox_message_id = last_read_outbox_message_id,
-        chat_id = chat_id
+      { last_read_outbox_message_id = last_read_outbox_message_id_,
+        chat_id = chat_id_
       } =
       "UpdateChatReadOutbox"
         ++ U.cc
-          [ U.p "last_read_outbox_message_id" last_read_outbox_message_id,
-            U.p "chat_id" chat_id
+          [ U.p "last_read_outbox_message_id" last_read_outbox_message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatActionBar
-      { action_bar = action_bar,
-        chat_id = chat_id
+      { action_bar = action_bar_,
+        chat_id = chat_id_
       } =
       "UpdateChatActionBar"
         ++ U.cc
-          [ U.p "action_bar" action_bar,
-            U.p "chat_id" chat_id
+          [ U.p "action_bar" action_bar_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatAvailableReactions
-      { available_reactions = available_reactions,
-        chat_id = chat_id
+      { available_reactions = available_reactions_,
+        chat_id = chat_id_
       } =
       "UpdateChatAvailableReactions"
         ++ U.cc
-          [ U.p "available_reactions" available_reactions,
-            U.p "chat_id" chat_id
+          [ U.p "available_reactions" available_reactions_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatDraftMessage
-      { positions = positions,
-        draft_message = draft_message,
-        chat_id = chat_id
+      { positions = positions_,
+        draft_message = draft_message_,
+        chat_id = chat_id_
       } =
       "UpdateChatDraftMessage"
         ++ U.cc
-          [ U.p "positions" positions,
-            U.p "draft_message" draft_message,
-            U.p "chat_id" chat_id
+          [ U.p "positions" positions_,
+            U.p "draft_message" draft_message_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatMessageSender
-      { message_sender_id = message_sender_id,
-        chat_id = chat_id
+      { message_sender_id = message_sender_id_,
+        chat_id = chat_id_
       } =
       "UpdateChatMessageSender"
         ++ U.cc
-          [ U.p "message_sender_id" message_sender_id,
-            U.p "chat_id" chat_id
+          [ U.p "message_sender_id" message_sender_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatMessageTtl
-      { message_ttl = message_ttl,
-        chat_id = chat_id
+      { message_ttl = message_ttl_,
+        chat_id = chat_id_
       } =
       "UpdateChatMessageTtl"
         ++ U.cc
-          [ U.p "message_ttl" message_ttl,
-            U.p "chat_id" chat_id
+          [ U.p "message_ttl" message_ttl_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatNotificationSettings
-      { notification_settings = notification_settings,
-        chat_id = chat_id
+      { notification_settings = notification_settings_,
+        chat_id = chat_id_
       } =
       "UpdateChatNotificationSettings"
         ++ U.cc
-          [ U.p "notification_settings" notification_settings,
-            U.p "chat_id" chat_id
+          [ U.p "notification_settings" notification_settings_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatPendingJoinRequests
-      { pending_join_requests = pending_join_requests,
-        chat_id = chat_id
+      { pending_join_requests = pending_join_requests_,
+        chat_id = chat_id_
       } =
       "UpdateChatPendingJoinRequests"
         ++ U.cc
-          [ U.p "pending_join_requests" pending_join_requests,
-            U.p "chat_id" chat_id
+          [ U.p "pending_join_requests" pending_join_requests_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatReplyMarkup
-      { reply_markup_message_id = reply_markup_message_id,
-        chat_id = chat_id
+      { reply_markup_message_id = reply_markup_message_id_,
+        chat_id = chat_id_
       } =
       "UpdateChatReplyMarkup"
         ++ U.cc
-          [ U.p "reply_markup_message_id" reply_markup_message_id,
-            U.p "chat_id" chat_id
+          [ U.p "reply_markup_message_id" reply_markup_message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatTheme
-      { theme_name = theme_name,
-        chat_id = chat_id
+      { theme_name = theme_name_,
+        chat_id = chat_id_
       } =
       "UpdateChatTheme"
         ++ U.cc
-          [ U.p "theme_name" theme_name,
-            U.p "chat_id" chat_id
+          [ U.p "theme_name" theme_name_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatUnreadMentionCount
-      { unread_mention_count = unread_mention_count,
-        chat_id = chat_id
+      { unread_mention_count = unread_mention_count_,
+        chat_id = chat_id_
       } =
       "UpdateChatUnreadMentionCount"
         ++ U.cc
-          [ U.p "unread_mention_count" unread_mention_count,
-            U.p "chat_id" chat_id
+          [ U.p "unread_mention_count" unread_mention_count_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatUnreadReactionCount
-      { unread_reaction_count = unread_reaction_count,
-        chat_id = chat_id
+      { unread_reaction_count = unread_reaction_count_,
+        chat_id = chat_id_
       } =
       "UpdateChatUnreadReactionCount"
         ++ U.cc
-          [ U.p "unread_reaction_count" unread_reaction_count,
-            U.p "chat_id" chat_id
+          [ U.p "unread_reaction_count" unread_reaction_count_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatVideoChat
-      { video_chat = video_chat,
-        chat_id = chat_id
+      { video_chat = video_chat_,
+        chat_id = chat_id_
       } =
       "UpdateChatVideoChat"
         ++ U.cc
-          [ U.p "video_chat" video_chat,
-            U.p "chat_id" chat_id
+          [ U.p "video_chat" video_chat_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatDefaultDisableNotification
-      { default_disable_notification = default_disable_notification,
-        chat_id = chat_id
+      { default_disable_notification = default_disable_notification_,
+        chat_id = chat_id_
       } =
       "UpdateChatDefaultDisableNotification"
         ++ U.cc
-          [ U.p "default_disable_notification" default_disable_notification,
-            U.p "chat_id" chat_id
+          [ U.p "default_disable_notification" default_disable_notification_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatHasProtectedContent
-      { has_protected_content = has_protected_content,
-        chat_id = chat_id
+      { has_protected_content = has_protected_content_,
+        chat_id = chat_id_
       } =
       "UpdateChatHasProtectedContent"
         ++ U.cc
-          [ U.p "has_protected_content" has_protected_content,
-            U.p "chat_id" chat_id
+          [ U.p "has_protected_content" has_protected_content_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatHasScheduledMessages
-      { has_scheduled_messages = has_scheduled_messages,
-        chat_id = chat_id
+      { has_scheduled_messages = has_scheduled_messages_,
+        chat_id = chat_id_
       } =
       "UpdateChatHasScheduledMessages"
         ++ U.cc
-          [ U.p "has_scheduled_messages" has_scheduled_messages,
-            U.p "chat_id" chat_id
+          [ U.p "has_scheduled_messages" has_scheduled_messages_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatIsBlocked
-      { is_blocked = is_blocked,
-        chat_id = chat_id
+      { is_blocked = is_blocked_,
+        chat_id = chat_id_
       } =
       "UpdateChatIsBlocked"
         ++ U.cc
-          [ U.p "is_blocked" is_blocked,
-            U.p "chat_id" chat_id
+          [ U.p "is_blocked" is_blocked_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatIsMarkedAsUnread
-      { is_marked_as_unread = is_marked_as_unread,
-        chat_id = chat_id
+      { is_marked_as_unread = is_marked_as_unread_,
+        chat_id = chat_id_
       } =
       "UpdateChatIsMarkedAsUnread"
         ++ U.cc
-          [ U.p "is_marked_as_unread" is_marked_as_unread,
-            U.p "chat_id" chat_id
+          [ U.p "is_marked_as_unread" is_marked_as_unread_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatFilters
-      { chat_filters = chat_filters
+      { chat_filters = chat_filters_
       } =
       "UpdateChatFilters"
         ++ U.cc
-          [ U.p "chat_filters" chat_filters
+          [ U.p "chat_filters" chat_filters_
           ]
   show
     UpdateChatOnlineMemberCount
-      { online_member_count = online_member_count,
-        chat_id = chat_id
+      { online_member_count = online_member_count_,
+        chat_id = chat_id_
       } =
       "UpdateChatOnlineMemberCount"
         ++ U.cc
-          [ U.p "online_member_count" online_member_count,
-            U.p "chat_id" chat_id
+          [ U.p "online_member_count" online_member_count_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateScopeNotificationSettings
-      { _notification_settings = _notification_settings,
-        scope = scope
+      { _notification_settings = _notification_settings_,
+        scope = scope_
       } =
       "UpdateScopeNotificationSettings"
         ++ U.cc
-          [ U.p "_notification_settings" _notification_settings,
-            U.p "scope" scope
+          [ U.p "_notification_settings" _notification_settings_,
+            U.p "scope" scope_
           ]
   show
     UpdateNotification
-      { notification = notification,
-        notification_group_id = notification_group_id
+      { notification = notification_,
+        notification_group_id = notification_group_id_
       } =
       "UpdateNotification"
         ++ U.cc
-          [ U.p "notification" notification,
-            U.p "notification_group_id" notification_group_id
+          [ U.p "notification" notification_,
+            U.p "notification_group_id" notification_group_id_
           ]
   show
     UpdateNotificationGroup
-      { removed_notification_ids = removed_notification_ids,
-        added_notifications = added_notifications,
-        total_count = total_count,
-        notification_sound_id = notification_sound_id,
-        notification_settings_chat_id = notification_settings_chat_id,
-        chat_id = chat_id,
-        _type = _type,
-        notification_group_id = notification_group_id
+      { removed_notification_ids = removed_notification_ids_,
+        added_notifications = added_notifications_,
+        total_count = total_count_,
+        notification_sound_id = notification_sound_id_,
+        notification_settings_chat_id = notification_settings_chat_id_,
+        chat_id = chat_id_,
+        _type = _type_,
+        notification_group_id = notification_group_id_
       } =
       "UpdateNotificationGroup"
         ++ U.cc
-          [ U.p "removed_notification_ids" removed_notification_ids,
-            U.p "added_notifications" added_notifications,
-            U.p "total_count" total_count,
-            U.p "notification_sound_id" notification_sound_id,
-            U.p "notification_settings_chat_id" notification_settings_chat_id,
-            U.p "chat_id" chat_id,
-            U.p "_type" _type,
-            U.p "notification_group_id" notification_group_id
+          [ U.p "removed_notification_ids" removed_notification_ids_,
+            U.p "added_notifications" added_notifications_,
+            U.p "total_count" total_count_,
+            U.p "notification_sound_id" notification_sound_id_,
+            U.p "notification_settings_chat_id" notification_settings_chat_id_,
+            U.p "chat_id" chat_id_,
+            U.p "_type" _type_,
+            U.p "notification_group_id" notification_group_id_
           ]
   show
     UpdateActiveNotifications
-      { groups = groups
+      { groups = groups_
       } =
       "UpdateActiveNotifications"
         ++ U.cc
-          [ U.p "groups" groups
+          [ U.p "groups" groups_
           ]
   show
     UpdateHavePendingNotifications
-      { have_unreceived_notifications = have_unreceived_notifications,
-        have_delayed_notifications = have_delayed_notifications
+      { have_unreceived_notifications = have_unreceived_notifications_,
+        have_delayed_notifications = have_delayed_notifications_
       } =
       "UpdateHavePendingNotifications"
         ++ U.cc
-          [ U.p "have_unreceived_notifications" have_unreceived_notifications,
-            U.p "have_delayed_notifications" have_delayed_notifications
+          [ U.p "have_unreceived_notifications" have_unreceived_notifications_,
+            U.p "have_delayed_notifications" have_delayed_notifications_
           ]
   show
     UpdateDeleteMessages
-      { from_cache = from_cache,
-        is_permanent = is_permanent,
-        message_ids = message_ids,
-        chat_id = chat_id
+      { from_cache = from_cache_,
+        is_permanent = is_permanent_,
+        message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       "UpdateDeleteMessages"
         ++ U.cc
-          [ U.p "from_cache" from_cache,
-            U.p "is_permanent" is_permanent,
-            U.p "message_ids" message_ids,
-            U.p "chat_id" chat_id
+          [ U.p "from_cache" from_cache_,
+            U.p "is_permanent" is_permanent_,
+            U.p "message_ids" message_ids_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateChatAction
-      { action = action,
-        sender_id = sender_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { action = action_,
+        sender_id = sender_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       "UpdateChatAction"
         ++ U.cc
-          [ U.p "action" action,
-            U.p "sender_id" sender_id,
-            U.p "message_thread_id" message_thread_id,
-            U.p "chat_id" chat_id
+          [ U.p "action" action_,
+            U.p "sender_id" sender_id_,
+            U.p "message_thread_id" message_thread_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateUserStatus
-      { status = status,
-        user_id = user_id
+      { status = status_,
+        user_id = user_id_
       } =
       "UpdateUserStatus"
         ++ U.cc
-          [ U.p "status" status,
-            U.p "user_id" user_id
+          [ U.p "status" status_,
+            U.p "user_id" user_id_
           ]
   show
     UpdateUser
-      { user = user
+      { user = user_
       } =
       "UpdateUser"
         ++ U.cc
-          [ U.p "user" user
+          [ U.p "user" user_
           ]
   show
     UpdateBasicGroup
-      { basic_group = basic_group
+      { basic_group = basic_group_
       } =
       "UpdateBasicGroup"
         ++ U.cc
-          [ U.p "basic_group" basic_group
+          [ U.p "basic_group" basic_group_
           ]
   show
     UpdateSupergroup
-      { supergroup = supergroup
+      { supergroup = supergroup_
       } =
       "UpdateSupergroup"
         ++ U.cc
-          [ U.p "supergroup" supergroup
+          [ U.p "supergroup" supergroup_
           ]
   show
     UpdateSecretChat
-      { secret_chat = secret_chat
+      { secret_chat = secret_chat_
       } =
       "UpdateSecretChat"
         ++ U.cc
-          [ U.p "secret_chat" secret_chat
+          [ U.p "secret_chat" secret_chat_
           ]
   show
     UpdateUserFullInfo
-      { user_full_info = user_full_info,
-        user_id = user_id
+      { user_full_info = user_full_info_,
+        user_id = user_id_
       } =
       "UpdateUserFullInfo"
         ++ U.cc
-          [ U.p "user_full_info" user_full_info,
-            U.p "user_id" user_id
+          [ U.p "user_full_info" user_full_info_,
+            U.p "user_id" user_id_
           ]
   show
     UpdateBasicGroupFullInfo
-      { basic_group_full_info = basic_group_full_info,
-        basic_group_id = basic_group_id
+      { basic_group_full_info = basic_group_full_info_,
+        basic_group_id = basic_group_id_
       } =
       "UpdateBasicGroupFullInfo"
         ++ U.cc
-          [ U.p "basic_group_full_info" basic_group_full_info,
-            U.p "basic_group_id" basic_group_id
+          [ U.p "basic_group_full_info" basic_group_full_info_,
+            U.p "basic_group_id" basic_group_id_
           ]
   show
     UpdateSupergroupFullInfo
-      { supergroup_full_info = supergroup_full_info,
-        supergroup_id = supergroup_id
+      { supergroup_full_info = supergroup_full_info_,
+        supergroup_id = supergroup_id_
       } =
       "UpdateSupergroupFullInfo"
         ++ U.cc
-          [ U.p "supergroup_full_info" supergroup_full_info,
-            U.p "supergroup_id" supergroup_id
+          [ U.p "supergroup_full_info" supergroup_full_info_,
+            U.p "supergroup_id" supergroup_id_
           ]
   show
     UpdateServiceNotification
-      { content = content,
-        __type = __type
+      { content = content_,
+        __type = __type_
       } =
       "UpdateServiceNotification"
         ++ U.cc
-          [ U.p "content" content,
-            U.p "__type" __type
+          [ U.p "content" content_,
+            U.p "__type" __type_
           ]
   show
     UpdateFile
-      { file = file
+      { file = file_
       } =
       "UpdateFile"
         ++ U.cc
-          [ U.p "file" file
+          [ U.p "file" file_
           ]
   show
     UpdateFileGenerationStart
-      { conversion = conversion,
-        destination_path = destination_path,
-        original_path = original_path,
-        generation_id = generation_id
+      { conversion = conversion_,
+        destination_path = destination_path_,
+        original_path = original_path_,
+        generation_id = generation_id_
       } =
       "UpdateFileGenerationStart"
         ++ U.cc
-          [ U.p "conversion" conversion,
-            U.p "destination_path" destination_path,
-            U.p "original_path" original_path,
-            U.p "generation_id" generation_id
+          [ U.p "conversion" conversion_,
+            U.p "destination_path" destination_path_,
+            U.p "original_path" original_path_,
+            U.p "generation_id" generation_id_
           ]
   show
     UpdateFileGenerationStop
-      { generation_id = generation_id
+      { generation_id = generation_id_
       } =
       "UpdateFileGenerationStop"
         ++ U.cc
-          [ U.p "generation_id" generation_id
+          [ U.p "generation_id" generation_id_
           ]
   show
     UpdateFileDownloads
-      { downloaded_size = downloaded_size,
-        total_count = total_count,
-        total_size = total_size
+      { downloaded_size = downloaded_size_,
+        total_count = total_count_,
+        total_size = total_size_
       } =
       "UpdateFileDownloads"
         ++ U.cc
-          [ U.p "downloaded_size" downloaded_size,
-            U.p "total_count" total_count,
-            U.p "total_size" total_size
+          [ U.p "downloaded_size" downloaded_size_,
+            U.p "total_count" total_count_,
+            U.p "total_size" total_size_
           ]
   show
     UpdateFileAddedToDownloads
-      { counts = counts,
-        file_download = file_download
+      { counts = counts_,
+        file_download = file_download_
       } =
       "UpdateFileAddedToDownloads"
         ++ U.cc
-          [ U.p "counts" counts,
-            U.p "file_download" file_download
+          [ U.p "counts" counts_,
+            U.p "file_download" file_download_
           ]
   show
     UpdateFileDownload
-      { counts = counts,
-        is_paused = is_paused,
-        complete_date = complete_date,
-        file_id = file_id
+      { counts = counts_,
+        is_paused = is_paused_,
+        complete_date = complete_date_,
+        file_id = file_id_
       } =
       "UpdateFileDownload"
         ++ U.cc
-          [ U.p "counts" counts,
-            U.p "is_paused" is_paused,
-            U.p "complete_date" complete_date,
-            U.p "file_id" file_id
+          [ U.p "counts" counts_,
+            U.p "is_paused" is_paused_,
+            U.p "complete_date" complete_date_,
+            U.p "file_id" file_id_
           ]
   show
     UpdateFileRemovedFromDownloads
-      { counts = counts,
-        file_id = file_id
+      { counts = counts_,
+        file_id = file_id_
       } =
       "UpdateFileRemovedFromDownloads"
         ++ U.cc
-          [ U.p "counts" counts,
-            U.p "file_id" file_id
+          [ U.p "counts" counts_,
+            U.p "file_id" file_id_
           ]
   show
     UpdateCall
-      { call = call
+      { call = call_
       } =
       "UpdateCall"
         ++ U.cc
-          [ U.p "call" call
+          [ U.p "call" call_
           ]
   show
     UpdateGroupCall
-      { group_call = group_call
+      { group_call = group_call_
       } =
       "UpdateGroupCall"
         ++ U.cc
-          [ U.p "group_call" group_call
+          [ U.p "group_call" group_call_
           ]
   show
     UpdateGroupCallParticipant
-      { participant = participant,
-        group_call_id = group_call_id
+      { participant = participant_,
+        group_call_id = group_call_id_
       } =
       "UpdateGroupCallParticipant"
         ++ U.cc
-          [ U.p "participant" participant,
-            U.p "group_call_id" group_call_id
+          [ U.p "participant" participant_,
+            U.p "group_call_id" group_call_id_
           ]
   show
     UpdateNewCallSignalingData
-      { _data = _data,
-        call_id = call_id
+      { _data = _data_,
+        call_id = call_id_
       } =
       "UpdateNewCallSignalingData"
         ++ U.cc
-          [ U.p "_data" _data,
-            U.p "call_id" call_id
+          [ U.p "_data" _data_,
+            U.p "call_id" call_id_
           ]
   show
     UpdateUserPrivacySettingRules
-      { rules = rules,
-        setting = setting
+      { rules = rules_,
+        setting = setting_
       } =
       "UpdateUserPrivacySettingRules"
         ++ U.cc
-          [ U.p "rules" rules,
-            U.p "setting" setting
+          [ U.p "rules" rules_,
+            U.p "setting" setting_
           ]
   show
     UpdateUnreadMessageCount
-      { unread_unmuted_count = unread_unmuted_count,
-        unread_count = unread_count,
-        chat_list = chat_list
+      { unread_unmuted_count = unread_unmuted_count_,
+        unread_count = unread_count_,
+        chat_list = chat_list_
       } =
       "UpdateUnreadMessageCount"
         ++ U.cc
-          [ U.p "unread_unmuted_count" unread_unmuted_count,
-            U.p "unread_count" unread_count,
-            U.p "chat_list" chat_list
+          [ U.p "unread_unmuted_count" unread_unmuted_count_,
+            U.p "unread_count" unread_count_,
+            U.p "chat_list" chat_list_
           ]
   show
     UpdateUnreadChatCount
-      { marked_as_unread_unmuted_count = marked_as_unread_unmuted_count,
-        marked_as_unread_count = marked_as_unread_count,
-        unread_unmuted_count = unread_unmuted_count,
-        unread_count = unread_count,
-        total_count = total_count,
-        chat_list = chat_list
+      { marked_as_unread_unmuted_count = marked_as_unread_unmuted_count_,
+        marked_as_unread_count = marked_as_unread_count_,
+        unread_unmuted_count = unread_unmuted_count_,
+        unread_count = unread_count_,
+        total_count = total_count_,
+        chat_list = chat_list_
       } =
       "UpdateUnreadChatCount"
         ++ U.cc
-          [ U.p "marked_as_unread_unmuted_count" marked_as_unread_unmuted_count,
-            U.p "marked_as_unread_count" marked_as_unread_count,
-            U.p "unread_unmuted_count" unread_unmuted_count,
-            U.p "unread_count" unread_count,
-            U.p "total_count" total_count,
-            U.p "chat_list" chat_list
+          [ U.p "marked_as_unread_unmuted_count" marked_as_unread_unmuted_count_,
+            U.p "marked_as_unread_count" marked_as_unread_count_,
+            U.p "unread_unmuted_count" unread_unmuted_count_,
+            U.p "unread_count" unread_count_,
+            U.p "total_count" total_count_,
+            U.p "chat_list" chat_list_
           ]
   show
     UpdateOption
-      { value = value,
-        name = name
+      { value = value_,
+        name = name_
       } =
       "UpdateOption"
         ++ U.cc
-          [ U.p "value" value,
-            U.p "name" name
+          [ U.p "value" value_,
+            U.p "name" name_
           ]
   show
     UpdateStickerSet
-      { sticker_set = sticker_set
+      { sticker_set = sticker_set_
       } =
       "UpdateStickerSet"
         ++ U.cc
-          [ U.p "sticker_set" sticker_set
+          [ U.p "sticker_set" sticker_set_
           ]
   show
     UpdateInstalledStickerSets
-      { sticker_set_ids = sticker_set_ids,
-        is_masks = is_masks
+      { sticker_set_ids = sticker_set_ids_,
+        is_masks = is_masks_
       } =
       "UpdateInstalledStickerSets"
         ++ U.cc
-          [ U.p "sticker_set_ids" sticker_set_ids,
-            U.p "is_masks" is_masks
+          [ U.p "sticker_set_ids" sticker_set_ids_,
+            U.p "is_masks" is_masks_
           ]
   show
     UpdateTrendingStickerSets
-      { sticker_sets = sticker_sets
+      { sticker_sets = sticker_sets_
       } =
       "UpdateTrendingStickerSets"
         ++ U.cc
-          [ U.p "sticker_sets" sticker_sets
+          [ U.p "sticker_sets" sticker_sets_
           ]
   show
     UpdateRecentStickers
-      { sticker_ids = sticker_ids,
-        is_attached = is_attached
+      { sticker_ids = sticker_ids_,
+        is_attached = is_attached_
       } =
       "UpdateRecentStickers"
         ++ U.cc
-          [ U.p "sticker_ids" sticker_ids,
-            U.p "is_attached" is_attached
+          [ U.p "sticker_ids" sticker_ids_,
+            U.p "is_attached" is_attached_
           ]
   show
     UpdateFavoriteStickers
-      { sticker_ids = sticker_ids
+      { sticker_ids = sticker_ids_
       } =
       "UpdateFavoriteStickers"
         ++ U.cc
-          [ U.p "sticker_ids" sticker_ids
+          [ U.p "sticker_ids" sticker_ids_
           ]
   show
     UpdateSavedAnimations
-      { animation_ids = animation_ids
+      { animation_ids = animation_ids_
       } =
       "UpdateSavedAnimations"
         ++ U.cc
-          [ U.p "animation_ids" animation_ids
+          [ U.p "animation_ids" animation_ids_
           ]
   show
     UpdateSavedNotificationSounds
-      { notification_sound_ids = notification_sound_ids
+      { notification_sound_ids = notification_sound_ids_
       } =
       "UpdateSavedNotificationSounds"
         ++ U.cc
-          [ U.p "notification_sound_ids" notification_sound_ids
+          [ U.p "notification_sound_ids" notification_sound_ids_
           ]
   show
     UpdateSelectedBackground
-      { background = background,
-        for_dark_theme = for_dark_theme
+      { background = background_,
+        for_dark_theme = for_dark_theme_
       } =
       "UpdateSelectedBackground"
         ++ U.cc
-          [ U.p "background" background,
-            U.p "for_dark_theme" for_dark_theme
+          [ U.p "background" background_,
+            U.p "for_dark_theme" for_dark_theme_
           ]
   show
     UpdateChatThemes
-      { chat_themes = chat_themes
+      { chat_themes = chat_themes_
       } =
       "UpdateChatThemes"
         ++ U.cc
-          [ U.p "chat_themes" chat_themes
+          [ U.p "chat_themes" chat_themes_
           ]
   show
     UpdateLanguagePackStrings
-      { strings = strings,
-        language_pack_id = language_pack_id,
-        localization_target = localization_target
+      { strings = strings_,
+        language_pack_id = language_pack_id_,
+        localization_target = localization_target_
       } =
       "UpdateLanguagePackStrings"
         ++ U.cc
-          [ U.p "strings" strings,
-            U.p "language_pack_id" language_pack_id,
-            U.p "localization_target" localization_target
+          [ U.p "strings" strings_,
+            U.p "language_pack_id" language_pack_id_,
+            U.p "localization_target" localization_target_
           ]
   show
     UpdateConnectionState
-      { state = state
+      { state = state_
       } =
       "UpdateConnectionState"
         ++ U.cc
-          [ U.p "state" state
+          [ U.p "state" state_
           ]
   show
     UpdateTermsOfService
-      { terms_of_service = terms_of_service,
-        terms_of_service_id = terms_of_service_id
+      { terms_of_service = terms_of_service_,
+        terms_of_service_id = terms_of_service_id_
       } =
       "UpdateTermsOfService"
         ++ U.cc
-          [ U.p "terms_of_service" terms_of_service,
-            U.p "terms_of_service_id" terms_of_service_id
+          [ U.p "terms_of_service" terms_of_service_,
+            U.p "terms_of_service_id" terms_of_service_id_
           ]
   show
     UpdateUsersNearby
-      { users_nearby = users_nearby
+      { users_nearby = users_nearby_
       } =
       "UpdateUsersNearby"
         ++ U.cc
-          [ U.p "users_nearby" users_nearby
+          [ U.p "users_nearby" users_nearby_
           ]
   show
     UpdateAttachmentMenuBots
-      { bots = bots
+      { bots = bots_
       } =
       "UpdateAttachmentMenuBots"
         ++ U.cc
-          [ U.p "bots" bots
+          [ U.p "bots" bots_
           ]
   show
     UpdateWebAppMessageSent
-      { web_app_launch_id = web_app_launch_id
+      { web_app_launch_id = web_app_launch_id_
       } =
       "UpdateWebAppMessageSent"
         ++ U.cc
-          [ U.p "web_app_launch_id" web_app_launch_id
+          [ U.p "web_app_launch_id" web_app_launch_id_
           ]
   show
     UpdateReactions
-      { reactions = reactions
+      { reactions = reactions_
       } =
       "UpdateReactions"
         ++ U.cc
-          [ U.p "reactions" reactions
+          [ U.p "reactions" reactions_
           ]
   show
     UpdateDiceEmojis
-      { emojis = emojis
+      { emojis = emojis_
       } =
       "UpdateDiceEmojis"
         ++ U.cc
-          [ U.p "emojis" emojis
+          [ U.p "emojis" emojis_
           ]
   show
     UpdateAnimatedEmojiMessageClicked
-      { sticker = sticker,
-        message_id = message_id,
-        chat_id = chat_id
+      { sticker = sticker_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       "UpdateAnimatedEmojiMessageClicked"
         ++ U.cc
-          [ U.p "sticker" sticker,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id
+          [ U.p "sticker" sticker_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateAnimationSearchParameters
-      { emojis = emojis,
-        provider = provider
+      { emojis = emojis_,
+        provider = provider_
       } =
       "UpdateAnimationSearchParameters"
         ++ U.cc
-          [ U.p "emojis" emojis,
-            U.p "provider" provider
+          [ U.p "emojis" emojis_,
+            U.p "provider" provider_
           ]
   show
     UpdateSuggestedActions
-      { removed_actions = removed_actions,
-        added_actions = added_actions
+      { removed_actions = removed_actions_,
+        added_actions = added_actions_
       } =
       "UpdateSuggestedActions"
         ++ U.cc
-          [ U.p "removed_actions" removed_actions,
-            U.p "added_actions" added_actions
+          [ U.p "removed_actions" removed_actions_,
+            U.p "added_actions" added_actions_
           ]
   show
     UpdateNewInlineQuery
-      { offset = offset,
-        query = query,
-        chat_type = chat_type,
-        user_location = user_location,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { offset = offset_,
+        query = query_,
+        chat_type = chat_type_,
+        user_location = user_location_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       "UpdateNewInlineQuery"
         ++ U.cc
-          [ U.p "offset" offset,
-            U.p "query" query,
-            U.p "chat_type" chat_type,
-            U.p "user_location" user_location,
-            U.p "sender_user_id" sender_user_id,
-            U.p "_id" _id
+          [ U.p "offset" offset_,
+            U.p "query" query_,
+            U.p "chat_type" chat_type_,
+            U.p "user_location" user_location_,
+            U.p "sender_user_id" sender_user_id_,
+            U.p "_id" _id_
           ]
   show
     UpdateNewChosenInlineResult
-      { inline_message_id = inline_message_id,
-        result_id = result_id,
-        query = query,
-        user_location = user_location,
-        sender_user_id = sender_user_id
+      { inline_message_id = inline_message_id_,
+        result_id = result_id_,
+        query = query_,
+        user_location = user_location_,
+        sender_user_id = sender_user_id_
       } =
       "UpdateNewChosenInlineResult"
         ++ U.cc
-          [ U.p "inline_message_id" inline_message_id,
-            U.p "result_id" result_id,
-            U.p "query" query,
-            U.p "user_location" user_location,
-            U.p "sender_user_id" sender_user_id
+          [ U.p "inline_message_id" inline_message_id_,
+            U.p "result_id" result_id_,
+            U.p "query" query_,
+            U.p "user_location" user_location_,
+            U.p "sender_user_id" sender_user_id_
           ]
   show
     UpdateNewCallbackQuery
-      { payload = payload,
-        chat_instance = chat_instance,
-        message_id = message_id,
-        chat_id = chat_id,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { payload = payload_,
+        chat_instance = chat_instance_,
+        message_id = message_id_,
+        chat_id = chat_id_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       "UpdateNewCallbackQuery"
         ++ U.cc
-          [ U.p "payload" payload,
-            U.p "chat_instance" chat_instance,
-            U.p "message_id" message_id,
-            U.p "chat_id" chat_id,
-            U.p "sender_user_id" sender_user_id,
-            U.p "_id" _id
+          [ U.p "payload" payload_,
+            U.p "chat_instance" chat_instance_,
+            U.p "message_id" message_id_,
+            U.p "chat_id" chat_id_,
+            U.p "sender_user_id" sender_user_id_,
+            U.p "_id" _id_
           ]
   show
     UpdateNewInlineCallbackQuery
-      { payload = payload,
-        chat_instance = chat_instance,
-        inline_message_id = inline_message_id,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { payload = payload_,
+        chat_instance = chat_instance_,
+        inline_message_id = inline_message_id_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       "UpdateNewInlineCallbackQuery"
         ++ U.cc
-          [ U.p "payload" payload,
-            U.p "chat_instance" chat_instance,
-            U.p "inline_message_id" inline_message_id,
-            U.p "sender_user_id" sender_user_id,
-            U.p "_id" _id
+          [ U.p "payload" payload_,
+            U.p "chat_instance" chat_instance_,
+            U.p "inline_message_id" inline_message_id_,
+            U.p "sender_user_id" sender_user_id_,
+            U.p "_id" _id_
           ]
   show
     UpdateNewShippingQuery
-      { shipping_address = shipping_address,
-        invoice_payload = invoice_payload,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { shipping_address = shipping_address_,
+        invoice_payload = invoice_payload_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       "UpdateNewShippingQuery"
         ++ U.cc
-          [ U.p "shipping_address" shipping_address,
-            U.p "invoice_payload" invoice_payload,
-            U.p "sender_user_id" sender_user_id,
-            U.p "_id" _id
+          [ U.p "shipping_address" shipping_address_,
+            U.p "invoice_payload" invoice_payload_,
+            U.p "sender_user_id" sender_user_id_,
+            U.p "_id" _id_
           ]
   show
     UpdateNewPreCheckoutQuery
-      { order_info = order_info,
-        shipping_option_id = shipping_option_id,
-        invoice_payload = invoice_payload,
-        total_amount = total_amount,
-        currency = currency,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { order_info = order_info_,
+        shipping_option_id = shipping_option_id_,
+        invoice_payload = invoice_payload_,
+        total_amount = total_amount_,
+        currency = currency_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       "UpdateNewPreCheckoutQuery"
         ++ U.cc
-          [ U.p "order_info" order_info,
-            U.p "shipping_option_id" shipping_option_id,
-            U.p "invoice_payload" invoice_payload,
-            U.p "total_amount" total_amount,
-            U.p "currency" currency,
-            U.p "sender_user_id" sender_user_id,
-            U.p "_id" _id
+          [ U.p "order_info" order_info_,
+            U.p "shipping_option_id" shipping_option_id_,
+            U.p "invoice_payload" invoice_payload_,
+            U.p "total_amount" total_amount_,
+            U.p "currency" currency_,
+            U.p "sender_user_id" sender_user_id_,
+            U.p "_id" _id_
           ]
   show
     UpdateNewCustomEvent
-      { event = event
+      { event = event_
       } =
       "UpdateNewCustomEvent"
         ++ U.cc
-          [ U.p "event" event
+          [ U.p "event" event_
           ]
   show
     UpdateNewCustomQuery
-      { timeout = timeout,
-        _data = _data,
-        _id = _id
+      { timeout = timeout_,
+        _data = _data_,
+        _id = _id_
       } =
       "UpdateNewCustomQuery"
         ++ U.cc
-          [ U.p "timeout" timeout,
-            U.p "_data" _data,
-            U.p "_id" _id
+          [ U.p "timeout" timeout_,
+            U.p "_data" _data_,
+            U.p "_id" _id_
           ]
   show
     UpdatePoll
-      { poll = poll
+      { poll = poll_
       } =
       "UpdatePoll"
         ++ U.cc
-          [ U.p "poll" poll
+          [ U.p "poll" poll_
           ]
   show
     UpdatePollAnswer
-      { option_ids = option_ids,
-        user_id = user_id,
-        poll_id = poll_id
+      { option_ids = option_ids_,
+        user_id = user_id_,
+        poll_id = poll_id_
       } =
       "UpdatePollAnswer"
         ++ U.cc
-          [ U.p "option_ids" option_ids,
-            U.p "user_id" user_id,
-            U.p "poll_id" poll_id
+          [ U.p "option_ids" option_ids_,
+            U.p "user_id" user_id_,
+            U.p "poll_id" poll_id_
           ]
   show
     UpdateChatMember
-      { new_chat_member = new_chat_member,
-        old_chat_member = old_chat_member,
-        invite_link = invite_link,
-        date = date,
-        actor_user_id = actor_user_id,
-        chat_id = chat_id
+      { new_chat_member = new_chat_member_,
+        old_chat_member = old_chat_member_,
+        invite_link = invite_link_,
+        date = date_,
+        actor_user_id = actor_user_id_,
+        chat_id = chat_id_
       } =
       "UpdateChatMember"
         ++ U.cc
-          [ U.p "new_chat_member" new_chat_member,
-            U.p "old_chat_member" old_chat_member,
-            U.p "invite_link" invite_link,
-            U.p "date" date,
-            U.p "actor_user_id" actor_user_id,
-            U.p "chat_id" chat_id
+          [ U.p "new_chat_member" new_chat_member_,
+            U.p "old_chat_member" old_chat_member_,
+            U.p "invite_link" invite_link_,
+            U.p "date" date_,
+            U.p "actor_user_id" actor_user_id_,
+            U.p "chat_id" chat_id_
           ]
   show
     UpdateNewChatJoinRequest
-      { invite_link = invite_link,
-        request = request,
-        chat_id = chat_id
+      { invite_link = invite_link_,
+        request = request_,
+        chat_id = chat_id_
       } =
       "UpdateNewChatJoinRequest"
         ++ U.cc
-          [ U.p "invite_link" invite_link,
-            U.p "request" request,
-            U.p "chat_id" chat_id
+          [ U.p "invite_link" invite_link_,
+            U.p "request" request_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.FromJSON Update where
@@ -2737,1103 +2738,1103 @@ instance T.FromJSON Update where
 instance T.ToJSON Update where
   toJSON
     UpdateAuthorizationState
-      { authorization_state = authorization_state
+      { authorization_state = authorization_state_
       } =
       A.object
         [ "@type" A..= T.String "updateAuthorizationState",
-          "authorization_state" A..= authorization_state
+          "authorization_state" A..= authorization_state_
         ]
   toJSON
     UpdateNewMessage
-      { message = message
+      { message = message_
       } =
       A.object
         [ "@type" A..= T.String "updateNewMessage",
-          "message" A..= message
+          "message" A..= message_
         ]
   toJSON
     UpdateMessageSendAcknowledged
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageSendAcknowledged",
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageSendSucceeded
-      { old_message_id = old_message_id,
-        message = message
+      { old_message_id = old_message_id_,
+        message = message_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageSendSucceeded",
-          "old_message_id" A..= old_message_id,
-          "message" A..= message
+          "old_message_id" A..= old_message_id_,
+          "message" A..= message_
         ]
   toJSON
     UpdateMessageSendFailed
-      { error_message = error_message,
-        error_code = error_code,
-        old_message_id = old_message_id,
-        message = message
+      { error_message = error_message_,
+        error_code = error_code_,
+        old_message_id = old_message_id_,
+        message = message_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageSendFailed",
-          "error_message" A..= error_message,
-          "error_code" A..= error_code,
-          "old_message_id" A..= old_message_id,
-          "message" A..= message
+          "error_message" A..= error_message_,
+          "error_code" A..= error_code_,
+          "old_message_id" A..= old_message_id_,
+          "message" A..= message_
         ]
   toJSON
     UpdateMessageContent
-      { new_content = new_content,
-        message_id = message_id,
-        chat_id = chat_id
+      { new_content = new_content_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageContent",
-          "new_content" A..= new_content,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "new_content" A..= new_content_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageEdited
-      { reply_markup = reply_markup,
-        edit_date = edit_date,
-        message_id = message_id,
-        chat_id = chat_id
+      { reply_markup = reply_markup_,
+        edit_date = edit_date_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageEdited",
-          "reply_markup" A..= reply_markup,
-          "edit_date" A..= edit_date,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "reply_markup" A..= reply_markup_,
+          "edit_date" A..= edit_date_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageIsPinned
-      { is_pinned = is_pinned,
-        message_id = message_id,
-        chat_id = chat_id
+      { is_pinned = is_pinned_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageIsPinned",
-          "is_pinned" A..= is_pinned,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "is_pinned" A..= is_pinned_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageInteractionInfo
-      { interaction_info = interaction_info,
-        message_id = message_id,
-        chat_id = chat_id
+      { interaction_info = interaction_info_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageInteractionInfo",
-          "interaction_info" A..= interaction_info,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "interaction_info" A..= interaction_info_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageContentOpened
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageContentOpened",
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageMentionRead
-      { unread_mention_count = unread_mention_count,
-        message_id = message_id,
-        chat_id = chat_id
+      { unread_mention_count = unread_mention_count_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageMentionRead",
-          "unread_mention_count" A..= unread_mention_count,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "unread_mention_count" A..= unread_mention_count_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageUnreadReactions
-      { unread_reaction_count = unread_reaction_count,
-        unread_reactions = unread_reactions,
-        message_id = message_id,
-        chat_id = chat_id
+      { unread_reaction_count = unread_reaction_count_,
+        unread_reactions = unread_reactions_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageUnreadReactions",
-          "unread_reaction_count" A..= unread_reaction_count,
-          "unread_reactions" A..= unread_reactions,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "unread_reaction_count" A..= unread_reaction_count_,
+          "unread_reactions" A..= unread_reactions_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateMessageLiveLocationViewed
-      { message_id = message_id,
-        chat_id = chat_id
+      { message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateMessageLiveLocationViewed",
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateNewChat
-      { chat = chat
+      { chat = chat_
       } =
       A.object
         [ "@type" A..= T.String "updateNewChat",
-          "chat" A..= chat
+          "chat" A..= chat_
         ]
   toJSON
     UpdateChatTitle
-      { title = title,
-        chat_id = chat_id
+      { title = title_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatTitle",
-          "title" A..= title,
-          "chat_id" A..= chat_id
+          "title" A..= title_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatPhoto
-      { photo = photo,
-        chat_id = chat_id
+      { photo = photo_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatPhoto",
-          "photo" A..= photo,
-          "chat_id" A..= chat_id
+          "photo" A..= photo_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatPermissions
-      { permissions = permissions,
-        chat_id = chat_id
+      { permissions = permissions_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatPermissions",
-          "permissions" A..= permissions,
-          "chat_id" A..= chat_id
+          "permissions" A..= permissions_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatLastMessage
-      { positions = positions,
-        last_message = last_message,
-        chat_id = chat_id
+      { positions = positions_,
+        last_message = last_message_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatLastMessage",
-          "positions" A..= positions,
-          "last_message" A..= last_message,
-          "chat_id" A..= chat_id
+          "positions" A..= positions_,
+          "last_message" A..= last_message_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatPosition
-      { position = position,
-        chat_id = chat_id
+      { position = position_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatPosition",
-          "position" A..= position,
-          "chat_id" A..= chat_id
+          "position" A..= position_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatReadInbox
-      { unread_count = unread_count,
-        last_read_inbox_message_id = last_read_inbox_message_id,
-        chat_id = chat_id
+      { unread_count = unread_count_,
+        last_read_inbox_message_id = last_read_inbox_message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatReadInbox",
-          "unread_count" A..= unread_count,
-          "last_read_inbox_message_id" A..= last_read_inbox_message_id,
-          "chat_id" A..= chat_id
+          "unread_count" A..= unread_count_,
+          "last_read_inbox_message_id" A..= last_read_inbox_message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatReadOutbox
-      { last_read_outbox_message_id = last_read_outbox_message_id,
-        chat_id = chat_id
+      { last_read_outbox_message_id = last_read_outbox_message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatReadOutbox",
-          "last_read_outbox_message_id" A..= last_read_outbox_message_id,
-          "chat_id" A..= chat_id
+          "last_read_outbox_message_id" A..= last_read_outbox_message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatActionBar
-      { action_bar = action_bar,
-        chat_id = chat_id
+      { action_bar = action_bar_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatActionBar",
-          "action_bar" A..= action_bar,
-          "chat_id" A..= chat_id
+          "action_bar" A..= action_bar_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatAvailableReactions
-      { available_reactions = available_reactions,
-        chat_id = chat_id
+      { available_reactions = available_reactions_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatAvailableReactions",
-          "available_reactions" A..= available_reactions,
-          "chat_id" A..= chat_id
+          "available_reactions" A..= available_reactions_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatDraftMessage
-      { positions = positions,
-        draft_message = draft_message,
-        chat_id = chat_id
+      { positions = positions_,
+        draft_message = draft_message_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatDraftMessage",
-          "positions" A..= positions,
-          "draft_message" A..= draft_message,
-          "chat_id" A..= chat_id
+          "positions" A..= positions_,
+          "draft_message" A..= draft_message_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatMessageSender
-      { message_sender_id = message_sender_id,
-        chat_id = chat_id
+      { message_sender_id = message_sender_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatMessageSender",
-          "message_sender_id" A..= message_sender_id,
-          "chat_id" A..= chat_id
+          "message_sender_id" A..= message_sender_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatMessageTtl
-      { message_ttl = message_ttl,
-        chat_id = chat_id
+      { message_ttl = message_ttl_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatMessageTtl",
-          "message_ttl" A..= message_ttl,
-          "chat_id" A..= chat_id
+          "message_ttl" A..= message_ttl_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatNotificationSettings
-      { notification_settings = notification_settings,
-        chat_id = chat_id
+      { notification_settings = notification_settings_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatNotificationSettings",
-          "notification_settings" A..= notification_settings,
-          "chat_id" A..= chat_id
+          "notification_settings" A..= notification_settings_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatPendingJoinRequests
-      { pending_join_requests = pending_join_requests,
-        chat_id = chat_id
+      { pending_join_requests = pending_join_requests_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatPendingJoinRequests",
-          "pending_join_requests" A..= pending_join_requests,
-          "chat_id" A..= chat_id
+          "pending_join_requests" A..= pending_join_requests_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatReplyMarkup
-      { reply_markup_message_id = reply_markup_message_id,
-        chat_id = chat_id
+      { reply_markup_message_id = reply_markup_message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatReplyMarkup",
-          "reply_markup_message_id" A..= reply_markup_message_id,
-          "chat_id" A..= chat_id
+          "reply_markup_message_id" A..= reply_markup_message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatTheme
-      { theme_name = theme_name,
-        chat_id = chat_id
+      { theme_name = theme_name_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatTheme",
-          "theme_name" A..= theme_name,
-          "chat_id" A..= chat_id
+          "theme_name" A..= theme_name_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatUnreadMentionCount
-      { unread_mention_count = unread_mention_count,
-        chat_id = chat_id
+      { unread_mention_count = unread_mention_count_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatUnreadMentionCount",
-          "unread_mention_count" A..= unread_mention_count,
-          "chat_id" A..= chat_id
+          "unread_mention_count" A..= unread_mention_count_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatUnreadReactionCount
-      { unread_reaction_count = unread_reaction_count,
-        chat_id = chat_id
+      { unread_reaction_count = unread_reaction_count_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatUnreadReactionCount",
-          "unread_reaction_count" A..= unread_reaction_count,
-          "chat_id" A..= chat_id
+          "unread_reaction_count" A..= unread_reaction_count_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatVideoChat
-      { video_chat = video_chat,
-        chat_id = chat_id
+      { video_chat = video_chat_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatVideoChat",
-          "video_chat" A..= video_chat,
-          "chat_id" A..= chat_id
+          "video_chat" A..= video_chat_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatDefaultDisableNotification
-      { default_disable_notification = default_disable_notification,
-        chat_id = chat_id
+      { default_disable_notification = default_disable_notification_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatDefaultDisableNotification",
-          "default_disable_notification" A..= default_disable_notification,
-          "chat_id" A..= chat_id
+          "default_disable_notification" A..= default_disable_notification_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatHasProtectedContent
-      { has_protected_content = has_protected_content,
-        chat_id = chat_id
+      { has_protected_content = has_protected_content_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatHasProtectedContent",
-          "has_protected_content" A..= has_protected_content,
-          "chat_id" A..= chat_id
+          "has_protected_content" A..= has_protected_content_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatHasScheduledMessages
-      { has_scheduled_messages = has_scheduled_messages,
-        chat_id = chat_id
+      { has_scheduled_messages = has_scheduled_messages_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatHasScheduledMessages",
-          "has_scheduled_messages" A..= has_scheduled_messages,
-          "chat_id" A..= chat_id
+          "has_scheduled_messages" A..= has_scheduled_messages_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatIsBlocked
-      { is_blocked = is_blocked,
-        chat_id = chat_id
+      { is_blocked = is_blocked_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatIsBlocked",
-          "is_blocked" A..= is_blocked,
-          "chat_id" A..= chat_id
+          "is_blocked" A..= is_blocked_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatIsMarkedAsUnread
-      { is_marked_as_unread = is_marked_as_unread,
-        chat_id = chat_id
+      { is_marked_as_unread = is_marked_as_unread_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatIsMarkedAsUnread",
-          "is_marked_as_unread" A..= is_marked_as_unread,
-          "chat_id" A..= chat_id
+          "is_marked_as_unread" A..= is_marked_as_unread_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatFilters
-      { chat_filters = chat_filters
+      { chat_filters = chat_filters_
       } =
       A.object
         [ "@type" A..= T.String "updateChatFilters",
-          "chat_filters" A..= chat_filters
+          "chat_filters" A..= chat_filters_
         ]
   toJSON
     UpdateChatOnlineMemberCount
-      { online_member_count = online_member_count,
-        chat_id = chat_id
+      { online_member_count = online_member_count_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatOnlineMemberCount",
-          "online_member_count" A..= online_member_count,
-          "chat_id" A..= chat_id
+          "online_member_count" A..= online_member_count_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateScopeNotificationSettings
-      { _notification_settings = _notification_settings,
-        scope = scope
+      { _notification_settings = _notification_settings_,
+        scope = scope_
       } =
       A.object
         [ "@type" A..= T.String "updateScopeNotificationSettings",
-          "notification_settings" A..= _notification_settings,
-          "scope" A..= scope
+          "notification_settings" A..= _notification_settings_,
+          "scope" A..= scope_
         ]
   toJSON
     UpdateNotification
-      { notification = notification,
-        notification_group_id = notification_group_id
+      { notification = notification_,
+        notification_group_id = notification_group_id_
       } =
       A.object
         [ "@type" A..= T.String "updateNotification",
-          "notification" A..= notification,
-          "notification_group_id" A..= notification_group_id
+          "notification" A..= notification_,
+          "notification_group_id" A..= notification_group_id_
         ]
   toJSON
     UpdateNotificationGroup
-      { removed_notification_ids = removed_notification_ids,
-        added_notifications = added_notifications,
-        total_count = total_count,
-        notification_sound_id = notification_sound_id,
-        notification_settings_chat_id = notification_settings_chat_id,
-        chat_id = chat_id,
-        _type = _type,
-        notification_group_id = notification_group_id
+      { removed_notification_ids = removed_notification_ids_,
+        added_notifications = added_notifications_,
+        total_count = total_count_,
+        notification_sound_id = notification_sound_id_,
+        notification_settings_chat_id = notification_settings_chat_id_,
+        chat_id = chat_id_,
+        _type = _type_,
+        notification_group_id = notification_group_id_
       } =
       A.object
         [ "@type" A..= T.String "updateNotificationGroup",
-          "removed_notification_ids" A..= removed_notification_ids,
-          "added_notifications" A..= added_notifications,
-          "total_count" A..= total_count,
-          "notification_sound_id" A..= notification_sound_id,
-          "notification_settings_chat_id" A..= notification_settings_chat_id,
-          "chat_id" A..= chat_id,
-          "type" A..= _type,
-          "notification_group_id" A..= notification_group_id
+          "removed_notification_ids" A..= removed_notification_ids_,
+          "added_notifications" A..= added_notifications_,
+          "total_count" A..= total_count_,
+          "notification_sound_id" A..= notification_sound_id_,
+          "notification_settings_chat_id" A..= notification_settings_chat_id_,
+          "chat_id" A..= chat_id_,
+          "type" A..= _type_,
+          "notification_group_id" A..= notification_group_id_
         ]
   toJSON
     UpdateActiveNotifications
-      { groups = groups
+      { groups = groups_
       } =
       A.object
         [ "@type" A..= T.String "updateActiveNotifications",
-          "groups" A..= groups
+          "groups" A..= groups_
         ]
   toJSON
     UpdateHavePendingNotifications
-      { have_unreceived_notifications = have_unreceived_notifications,
-        have_delayed_notifications = have_delayed_notifications
+      { have_unreceived_notifications = have_unreceived_notifications_,
+        have_delayed_notifications = have_delayed_notifications_
       } =
       A.object
         [ "@type" A..= T.String "updateHavePendingNotifications",
-          "have_unreceived_notifications" A..= have_unreceived_notifications,
-          "have_delayed_notifications" A..= have_delayed_notifications
+          "have_unreceived_notifications" A..= have_unreceived_notifications_,
+          "have_delayed_notifications" A..= have_delayed_notifications_
         ]
   toJSON
     UpdateDeleteMessages
-      { from_cache = from_cache,
-        is_permanent = is_permanent,
-        message_ids = message_ids,
-        chat_id = chat_id
+      { from_cache = from_cache_,
+        is_permanent = is_permanent_,
+        message_ids = message_ids_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateDeleteMessages",
-          "from_cache" A..= from_cache,
-          "is_permanent" A..= is_permanent,
-          "message_ids" A..= message_ids,
-          "chat_id" A..= chat_id
+          "from_cache" A..= from_cache_,
+          "is_permanent" A..= is_permanent_,
+          "message_ids" A..= message_ids_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateChatAction
-      { action = action,
-        sender_id = sender_id,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { action = action_,
+        sender_id = sender_id_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatAction",
-          "action" A..= action,
-          "sender_id" A..= sender_id,
-          "message_thread_id" A..= message_thread_id,
-          "chat_id" A..= chat_id
+          "action" A..= action_,
+          "sender_id" A..= sender_id_,
+          "message_thread_id" A..= message_thread_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateUserStatus
-      { status = status,
-        user_id = user_id
+      { status = status_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "updateUserStatus",
-          "status" A..= status,
-          "user_id" A..= user_id
+          "status" A..= status_,
+          "user_id" A..= user_id_
         ]
   toJSON
     UpdateUser
-      { user = user
+      { user = user_
       } =
       A.object
         [ "@type" A..= T.String "updateUser",
-          "user" A..= user
+          "user" A..= user_
         ]
   toJSON
     UpdateBasicGroup
-      { basic_group = basic_group
+      { basic_group = basic_group_
       } =
       A.object
         [ "@type" A..= T.String "updateBasicGroup",
-          "basic_group" A..= basic_group
+          "basic_group" A..= basic_group_
         ]
   toJSON
     UpdateSupergroup
-      { supergroup = supergroup
+      { supergroup = supergroup_
       } =
       A.object
         [ "@type" A..= T.String "updateSupergroup",
-          "supergroup" A..= supergroup
+          "supergroup" A..= supergroup_
         ]
   toJSON
     UpdateSecretChat
-      { secret_chat = secret_chat
+      { secret_chat = secret_chat_
       } =
       A.object
         [ "@type" A..= T.String "updateSecretChat",
-          "secret_chat" A..= secret_chat
+          "secret_chat" A..= secret_chat_
         ]
   toJSON
     UpdateUserFullInfo
-      { user_full_info = user_full_info,
-        user_id = user_id
+      { user_full_info = user_full_info_,
+        user_id = user_id_
       } =
       A.object
         [ "@type" A..= T.String "updateUserFullInfo",
-          "user_full_info" A..= user_full_info,
-          "user_id" A..= user_id
+          "user_full_info" A..= user_full_info_,
+          "user_id" A..= user_id_
         ]
   toJSON
     UpdateBasicGroupFullInfo
-      { basic_group_full_info = basic_group_full_info,
-        basic_group_id = basic_group_id
+      { basic_group_full_info = basic_group_full_info_,
+        basic_group_id = basic_group_id_
       } =
       A.object
         [ "@type" A..= T.String "updateBasicGroupFullInfo",
-          "basic_group_full_info" A..= basic_group_full_info,
-          "basic_group_id" A..= basic_group_id
+          "basic_group_full_info" A..= basic_group_full_info_,
+          "basic_group_id" A..= basic_group_id_
         ]
   toJSON
     UpdateSupergroupFullInfo
-      { supergroup_full_info = supergroup_full_info,
-        supergroup_id = supergroup_id
+      { supergroup_full_info = supergroup_full_info_,
+        supergroup_id = supergroup_id_
       } =
       A.object
         [ "@type" A..= T.String "updateSupergroupFullInfo",
-          "supergroup_full_info" A..= supergroup_full_info,
-          "supergroup_id" A..= supergroup_id
+          "supergroup_full_info" A..= supergroup_full_info_,
+          "supergroup_id" A..= supergroup_id_
         ]
   toJSON
     UpdateServiceNotification
-      { content = content,
-        __type = __type
+      { content = content_,
+        __type = __type_
       } =
       A.object
         [ "@type" A..= T.String "updateServiceNotification",
-          "content" A..= content,
-          "type" A..= __type
+          "content" A..= content_,
+          "type" A..= __type_
         ]
   toJSON
     UpdateFile
-      { file = file
+      { file = file_
       } =
       A.object
         [ "@type" A..= T.String "updateFile",
-          "file" A..= file
+          "file" A..= file_
         ]
   toJSON
     UpdateFileGenerationStart
-      { conversion = conversion,
-        destination_path = destination_path,
-        original_path = original_path,
-        generation_id = generation_id
+      { conversion = conversion_,
+        destination_path = destination_path_,
+        original_path = original_path_,
+        generation_id = generation_id_
       } =
       A.object
         [ "@type" A..= T.String "updateFileGenerationStart",
-          "conversion" A..= conversion,
-          "destination_path" A..= destination_path,
-          "original_path" A..= original_path,
-          "generation_id" A..= generation_id
+          "conversion" A..= conversion_,
+          "destination_path" A..= destination_path_,
+          "original_path" A..= original_path_,
+          "generation_id" A..= generation_id_
         ]
   toJSON
     UpdateFileGenerationStop
-      { generation_id = generation_id
+      { generation_id = generation_id_
       } =
       A.object
         [ "@type" A..= T.String "updateFileGenerationStop",
-          "generation_id" A..= generation_id
+          "generation_id" A..= generation_id_
         ]
   toJSON
     UpdateFileDownloads
-      { downloaded_size = downloaded_size,
-        total_count = total_count,
-        total_size = total_size
+      { downloaded_size = downloaded_size_,
+        total_count = total_count_,
+        total_size = total_size_
       } =
       A.object
         [ "@type" A..= T.String "updateFileDownloads",
-          "downloaded_size" A..= downloaded_size,
-          "total_count" A..= total_count,
-          "total_size" A..= total_size
+          "downloaded_size" A..= downloaded_size_,
+          "total_count" A..= total_count_,
+          "total_size" A..= total_size_
         ]
   toJSON
     UpdateFileAddedToDownloads
-      { counts = counts,
-        file_download = file_download
+      { counts = counts_,
+        file_download = file_download_
       } =
       A.object
         [ "@type" A..= T.String "updateFileAddedToDownloads",
-          "counts" A..= counts,
-          "file_download" A..= file_download
+          "counts" A..= counts_,
+          "file_download" A..= file_download_
         ]
   toJSON
     UpdateFileDownload
-      { counts = counts,
-        is_paused = is_paused,
-        complete_date = complete_date,
-        file_id = file_id
+      { counts = counts_,
+        is_paused = is_paused_,
+        complete_date = complete_date_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "updateFileDownload",
-          "counts" A..= counts,
-          "is_paused" A..= is_paused,
-          "complete_date" A..= complete_date,
-          "file_id" A..= file_id
+          "counts" A..= counts_,
+          "is_paused" A..= is_paused_,
+          "complete_date" A..= complete_date_,
+          "file_id" A..= file_id_
         ]
   toJSON
     UpdateFileRemovedFromDownloads
-      { counts = counts,
-        file_id = file_id
+      { counts = counts_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "updateFileRemovedFromDownloads",
-          "counts" A..= counts,
-          "file_id" A..= file_id
+          "counts" A..= counts_,
+          "file_id" A..= file_id_
         ]
   toJSON
     UpdateCall
-      { call = call
+      { call = call_
       } =
       A.object
         [ "@type" A..= T.String "updateCall",
-          "call" A..= call
+          "call" A..= call_
         ]
   toJSON
     UpdateGroupCall
-      { group_call = group_call
+      { group_call = group_call_
       } =
       A.object
         [ "@type" A..= T.String "updateGroupCall",
-          "group_call" A..= group_call
+          "group_call" A..= group_call_
         ]
   toJSON
     UpdateGroupCallParticipant
-      { participant = participant,
-        group_call_id = group_call_id
+      { participant = participant_,
+        group_call_id = group_call_id_
       } =
       A.object
         [ "@type" A..= T.String "updateGroupCallParticipant",
-          "participant" A..= participant,
-          "group_call_id" A..= group_call_id
+          "participant" A..= participant_,
+          "group_call_id" A..= group_call_id_
         ]
   toJSON
     UpdateNewCallSignalingData
-      { _data = _data,
-        call_id = call_id
+      { _data = _data_,
+        call_id = call_id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewCallSignalingData",
-          "data" A..= _data,
-          "call_id" A..= call_id
+          "data" A..= _data_,
+          "call_id" A..= call_id_
         ]
   toJSON
     UpdateUserPrivacySettingRules
-      { rules = rules,
-        setting = setting
+      { rules = rules_,
+        setting = setting_
       } =
       A.object
         [ "@type" A..= T.String "updateUserPrivacySettingRules",
-          "rules" A..= rules,
-          "setting" A..= setting
+          "rules" A..= rules_,
+          "setting" A..= setting_
         ]
   toJSON
     UpdateUnreadMessageCount
-      { unread_unmuted_count = unread_unmuted_count,
-        unread_count = unread_count,
-        chat_list = chat_list
+      { unread_unmuted_count = unread_unmuted_count_,
+        unread_count = unread_count_,
+        chat_list = chat_list_
       } =
       A.object
         [ "@type" A..= T.String "updateUnreadMessageCount",
-          "unread_unmuted_count" A..= unread_unmuted_count,
-          "unread_count" A..= unread_count,
-          "chat_list" A..= chat_list
+          "unread_unmuted_count" A..= unread_unmuted_count_,
+          "unread_count" A..= unread_count_,
+          "chat_list" A..= chat_list_
         ]
   toJSON
     UpdateUnreadChatCount
-      { marked_as_unread_unmuted_count = marked_as_unread_unmuted_count,
-        marked_as_unread_count = marked_as_unread_count,
-        unread_unmuted_count = unread_unmuted_count,
-        unread_count = unread_count,
-        total_count = total_count,
-        chat_list = chat_list
+      { marked_as_unread_unmuted_count = marked_as_unread_unmuted_count_,
+        marked_as_unread_count = marked_as_unread_count_,
+        unread_unmuted_count = unread_unmuted_count_,
+        unread_count = unread_count_,
+        total_count = total_count_,
+        chat_list = chat_list_
       } =
       A.object
         [ "@type" A..= T.String "updateUnreadChatCount",
-          "marked_as_unread_unmuted_count" A..= marked_as_unread_unmuted_count,
-          "marked_as_unread_count" A..= marked_as_unread_count,
-          "unread_unmuted_count" A..= unread_unmuted_count,
-          "unread_count" A..= unread_count,
-          "total_count" A..= total_count,
-          "chat_list" A..= chat_list
+          "marked_as_unread_unmuted_count" A..= marked_as_unread_unmuted_count_,
+          "marked_as_unread_count" A..= marked_as_unread_count_,
+          "unread_unmuted_count" A..= unread_unmuted_count_,
+          "unread_count" A..= unread_count_,
+          "total_count" A..= total_count_,
+          "chat_list" A..= chat_list_
         ]
   toJSON
     UpdateOption
-      { value = value,
-        name = name
+      { value = value_,
+        name = name_
       } =
       A.object
         [ "@type" A..= T.String "updateOption",
-          "value" A..= value,
-          "name" A..= name
+          "value" A..= value_,
+          "name" A..= name_
         ]
   toJSON
     UpdateStickerSet
-      { sticker_set = sticker_set
+      { sticker_set = sticker_set_
       } =
       A.object
         [ "@type" A..= T.String "updateStickerSet",
-          "sticker_set" A..= sticker_set
+          "sticker_set" A..= sticker_set_
         ]
   toJSON
     UpdateInstalledStickerSets
-      { sticker_set_ids = sticker_set_ids,
-        is_masks = is_masks
+      { sticker_set_ids = sticker_set_ids_,
+        is_masks = is_masks_
       } =
       A.object
         [ "@type" A..= T.String "updateInstalledStickerSets",
-          "sticker_set_ids" A..= sticker_set_ids,
-          "is_masks" A..= is_masks
+          "sticker_set_ids" A..= sticker_set_ids_,
+          "is_masks" A..= is_masks_
         ]
   toJSON
     UpdateTrendingStickerSets
-      { sticker_sets = sticker_sets
+      { sticker_sets = sticker_sets_
       } =
       A.object
         [ "@type" A..= T.String "updateTrendingStickerSets",
-          "sticker_sets" A..= sticker_sets
+          "sticker_sets" A..= sticker_sets_
         ]
   toJSON
     UpdateRecentStickers
-      { sticker_ids = sticker_ids,
-        is_attached = is_attached
+      { sticker_ids = sticker_ids_,
+        is_attached = is_attached_
       } =
       A.object
         [ "@type" A..= T.String "updateRecentStickers",
-          "sticker_ids" A..= sticker_ids,
-          "is_attached" A..= is_attached
+          "sticker_ids" A..= sticker_ids_,
+          "is_attached" A..= is_attached_
         ]
   toJSON
     UpdateFavoriteStickers
-      { sticker_ids = sticker_ids
+      { sticker_ids = sticker_ids_
       } =
       A.object
         [ "@type" A..= T.String "updateFavoriteStickers",
-          "sticker_ids" A..= sticker_ids
+          "sticker_ids" A..= sticker_ids_
         ]
   toJSON
     UpdateSavedAnimations
-      { animation_ids = animation_ids
+      { animation_ids = animation_ids_
       } =
       A.object
         [ "@type" A..= T.String "updateSavedAnimations",
-          "animation_ids" A..= animation_ids
+          "animation_ids" A..= animation_ids_
         ]
   toJSON
     UpdateSavedNotificationSounds
-      { notification_sound_ids = notification_sound_ids
+      { notification_sound_ids = notification_sound_ids_
       } =
       A.object
         [ "@type" A..= T.String "updateSavedNotificationSounds",
-          "notification_sound_ids" A..= notification_sound_ids
+          "notification_sound_ids" A..= notification_sound_ids_
         ]
   toJSON
     UpdateSelectedBackground
-      { background = background,
-        for_dark_theme = for_dark_theme
+      { background = background_,
+        for_dark_theme = for_dark_theme_
       } =
       A.object
         [ "@type" A..= T.String "updateSelectedBackground",
-          "background" A..= background,
-          "for_dark_theme" A..= for_dark_theme
+          "background" A..= background_,
+          "for_dark_theme" A..= for_dark_theme_
         ]
   toJSON
     UpdateChatThemes
-      { chat_themes = chat_themes
+      { chat_themes = chat_themes_
       } =
       A.object
         [ "@type" A..= T.String "updateChatThemes",
-          "chat_themes" A..= chat_themes
+          "chat_themes" A..= chat_themes_
         ]
   toJSON
     UpdateLanguagePackStrings
-      { strings = strings,
-        language_pack_id = language_pack_id,
-        localization_target = localization_target
+      { strings = strings_,
+        language_pack_id = language_pack_id_,
+        localization_target = localization_target_
       } =
       A.object
         [ "@type" A..= T.String "updateLanguagePackStrings",
-          "strings" A..= strings,
-          "language_pack_id" A..= language_pack_id,
-          "localization_target" A..= localization_target
+          "strings" A..= strings_,
+          "language_pack_id" A..= language_pack_id_,
+          "localization_target" A..= localization_target_
         ]
   toJSON
     UpdateConnectionState
-      { state = state
+      { state = state_
       } =
       A.object
         [ "@type" A..= T.String "updateConnectionState",
-          "state" A..= state
+          "state" A..= state_
         ]
   toJSON
     UpdateTermsOfService
-      { terms_of_service = terms_of_service,
-        terms_of_service_id = terms_of_service_id
+      { terms_of_service = terms_of_service_,
+        terms_of_service_id = terms_of_service_id_
       } =
       A.object
         [ "@type" A..= T.String "updateTermsOfService",
-          "terms_of_service" A..= terms_of_service,
-          "terms_of_service_id" A..= terms_of_service_id
+          "terms_of_service" A..= terms_of_service_,
+          "terms_of_service_id" A..= terms_of_service_id_
         ]
   toJSON
     UpdateUsersNearby
-      { users_nearby = users_nearby
+      { users_nearby = users_nearby_
       } =
       A.object
         [ "@type" A..= T.String "updateUsersNearby",
-          "users_nearby" A..= users_nearby
+          "users_nearby" A..= users_nearby_
         ]
   toJSON
     UpdateAttachmentMenuBots
-      { bots = bots
+      { bots = bots_
       } =
       A.object
         [ "@type" A..= T.String "updateAttachmentMenuBots",
-          "bots" A..= bots
+          "bots" A..= bots_
         ]
   toJSON
     UpdateWebAppMessageSent
-      { web_app_launch_id = web_app_launch_id
+      { web_app_launch_id = web_app_launch_id_
       } =
       A.object
         [ "@type" A..= T.String "updateWebAppMessageSent",
-          "web_app_launch_id" A..= web_app_launch_id
+          "web_app_launch_id" A..= web_app_launch_id_
         ]
   toJSON
     UpdateReactions
-      { reactions = reactions
+      { reactions = reactions_
       } =
       A.object
         [ "@type" A..= T.String "updateReactions",
-          "reactions" A..= reactions
+          "reactions" A..= reactions_
         ]
   toJSON
     UpdateDiceEmojis
-      { emojis = emojis
+      { emojis = emojis_
       } =
       A.object
         [ "@type" A..= T.String "updateDiceEmojis",
-          "emojis" A..= emojis
+          "emojis" A..= emojis_
         ]
   toJSON
     UpdateAnimatedEmojiMessageClicked
-      { sticker = sticker,
-        message_id = message_id,
-        chat_id = chat_id
+      { sticker = sticker_,
+        message_id = message_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateAnimatedEmojiMessageClicked",
-          "sticker" A..= sticker,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id
+          "sticker" A..= sticker_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateAnimationSearchParameters
-      { emojis = emojis,
-        provider = provider
+      { emojis = emojis_,
+        provider = provider_
       } =
       A.object
         [ "@type" A..= T.String "updateAnimationSearchParameters",
-          "emojis" A..= emojis,
-          "provider" A..= provider
+          "emojis" A..= emojis_,
+          "provider" A..= provider_
         ]
   toJSON
     UpdateSuggestedActions
-      { removed_actions = removed_actions,
-        added_actions = added_actions
+      { removed_actions = removed_actions_,
+        added_actions = added_actions_
       } =
       A.object
         [ "@type" A..= T.String "updateSuggestedActions",
-          "removed_actions" A..= removed_actions,
-          "added_actions" A..= added_actions
+          "removed_actions" A..= removed_actions_,
+          "added_actions" A..= added_actions_
         ]
   toJSON
     UpdateNewInlineQuery
-      { offset = offset,
-        query = query,
-        chat_type = chat_type,
-        user_location = user_location,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { offset = offset_,
+        query = query_,
+        chat_type = chat_type_,
+        user_location = user_location_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewInlineQuery",
-          "offset" A..= offset,
-          "query" A..= query,
-          "chat_type" A..= chat_type,
-          "user_location" A..= user_location,
-          "sender_user_id" A..= sender_user_id,
-          "id" A..= _id
+          "offset" A..= offset_,
+          "query" A..= query_,
+          "chat_type" A..= chat_type_,
+          "user_location" A..= user_location_,
+          "sender_user_id" A..= sender_user_id_,
+          "id" A..= _id_
         ]
   toJSON
     UpdateNewChosenInlineResult
-      { inline_message_id = inline_message_id,
-        result_id = result_id,
-        query = query,
-        user_location = user_location,
-        sender_user_id = sender_user_id
+      { inline_message_id = inline_message_id_,
+        result_id = result_id_,
+        query = query_,
+        user_location = user_location_,
+        sender_user_id = sender_user_id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewChosenInlineResult",
-          "inline_message_id" A..= inline_message_id,
-          "result_id" A..= result_id,
-          "query" A..= query,
-          "user_location" A..= user_location,
-          "sender_user_id" A..= sender_user_id
+          "inline_message_id" A..= inline_message_id_,
+          "result_id" A..= result_id_,
+          "query" A..= query_,
+          "user_location" A..= user_location_,
+          "sender_user_id" A..= sender_user_id_
         ]
   toJSON
     UpdateNewCallbackQuery
-      { payload = payload,
-        chat_instance = chat_instance,
-        message_id = message_id,
-        chat_id = chat_id,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { payload = payload_,
+        chat_instance = chat_instance_,
+        message_id = message_id_,
+        chat_id = chat_id_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewCallbackQuery",
-          "payload" A..= payload,
-          "chat_instance" A..= chat_instance,
-          "message_id" A..= message_id,
-          "chat_id" A..= chat_id,
-          "sender_user_id" A..= sender_user_id,
-          "id" A..= _id
+          "payload" A..= payload_,
+          "chat_instance" A..= chat_instance_,
+          "message_id" A..= message_id_,
+          "chat_id" A..= chat_id_,
+          "sender_user_id" A..= sender_user_id_,
+          "id" A..= _id_
         ]
   toJSON
     UpdateNewInlineCallbackQuery
-      { payload = payload,
-        chat_instance = chat_instance,
-        inline_message_id = inline_message_id,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { payload = payload_,
+        chat_instance = chat_instance_,
+        inline_message_id = inline_message_id_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewInlineCallbackQuery",
-          "payload" A..= payload,
-          "chat_instance" A..= chat_instance,
-          "inline_message_id" A..= inline_message_id,
-          "sender_user_id" A..= sender_user_id,
-          "id" A..= _id
+          "payload" A..= payload_,
+          "chat_instance" A..= chat_instance_,
+          "inline_message_id" A..= inline_message_id_,
+          "sender_user_id" A..= sender_user_id_,
+          "id" A..= _id_
         ]
   toJSON
     UpdateNewShippingQuery
-      { shipping_address = shipping_address,
-        invoice_payload = invoice_payload,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { shipping_address = shipping_address_,
+        invoice_payload = invoice_payload_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewShippingQuery",
-          "shipping_address" A..= shipping_address,
-          "invoice_payload" A..= invoice_payload,
-          "sender_user_id" A..= sender_user_id,
-          "id" A..= _id
+          "shipping_address" A..= shipping_address_,
+          "invoice_payload" A..= invoice_payload_,
+          "sender_user_id" A..= sender_user_id_,
+          "id" A..= _id_
         ]
   toJSON
     UpdateNewPreCheckoutQuery
-      { order_info = order_info,
-        shipping_option_id = shipping_option_id,
-        invoice_payload = invoice_payload,
-        total_amount = total_amount,
-        currency = currency,
-        sender_user_id = sender_user_id,
-        _id = _id
+      { order_info = order_info_,
+        shipping_option_id = shipping_option_id_,
+        invoice_payload = invoice_payload_,
+        total_amount = total_amount_,
+        currency = currency_,
+        sender_user_id = sender_user_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewPreCheckoutQuery",
-          "order_info" A..= order_info,
-          "shipping_option_id" A..= shipping_option_id,
-          "invoice_payload" A..= invoice_payload,
-          "total_amount" A..= total_amount,
-          "currency" A..= currency,
-          "sender_user_id" A..= sender_user_id,
-          "id" A..= _id
+          "order_info" A..= order_info_,
+          "shipping_option_id" A..= shipping_option_id_,
+          "invoice_payload" A..= invoice_payload_,
+          "total_amount" A..= total_amount_,
+          "currency" A..= currency_,
+          "sender_user_id" A..= sender_user_id_,
+          "id" A..= _id_
         ]
   toJSON
     UpdateNewCustomEvent
-      { event = event
+      { event = event_
       } =
       A.object
         [ "@type" A..= T.String "updateNewCustomEvent",
-          "event" A..= event
+          "event" A..= event_
         ]
   toJSON
     UpdateNewCustomQuery
-      { timeout = timeout,
-        _data = _data,
-        _id = _id
+      { timeout = timeout_,
+        _data = _data_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewCustomQuery",
-          "timeout" A..= timeout,
-          "data" A..= _data,
-          "id" A..= _id
+          "timeout" A..= timeout_,
+          "data" A..= _data_,
+          "id" A..= _id_
         ]
   toJSON
     UpdatePoll
-      { poll = poll
+      { poll = poll_
       } =
       A.object
         [ "@type" A..= T.String "updatePoll",
-          "poll" A..= poll
+          "poll" A..= poll_
         ]
   toJSON
     UpdatePollAnswer
-      { option_ids = option_ids,
-        user_id = user_id,
-        poll_id = poll_id
+      { option_ids = option_ids_,
+        user_id = user_id_,
+        poll_id = poll_id_
       } =
       A.object
         [ "@type" A..= T.String "updatePollAnswer",
-          "option_ids" A..= option_ids,
-          "user_id" A..= user_id,
-          "poll_id" A..= poll_id
+          "option_ids" A..= option_ids_,
+          "user_id" A..= user_id_,
+          "poll_id" A..= poll_id_
         ]
   toJSON
     UpdateChatMember
-      { new_chat_member = new_chat_member,
-        old_chat_member = old_chat_member,
-        invite_link = invite_link,
-        date = date,
-        actor_user_id = actor_user_id,
-        chat_id = chat_id
+      { new_chat_member = new_chat_member_,
+        old_chat_member = old_chat_member_,
+        invite_link = invite_link_,
+        date = date_,
+        actor_user_id = actor_user_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateChatMember",
-          "new_chat_member" A..= new_chat_member,
-          "old_chat_member" A..= old_chat_member,
-          "invite_link" A..= invite_link,
-          "date" A..= date,
-          "actor_user_id" A..= actor_user_id,
-          "chat_id" A..= chat_id
+          "new_chat_member" A..= new_chat_member_,
+          "old_chat_member" A..= old_chat_member_,
+          "invite_link" A..= invite_link_,
+          "date" A..= date_,
+          "actor_user_id" A..= actor_user_id_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateNewChatJoinRequest
-      { invite_link = invite_link,
-        request = request,
-        chat_id = chat_id
+      { invite_link = invite_link_,
+        request = request_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewChatJoinRequest",
-          "invite_link" A..= invite_link,
-          "request" A..= request,
-          "chat_id" A..= chat_id
+          "invite_link" A..= invite_link_,
+          "request" A..= request_,
+          "chat_id" A..= chat_id_
         ]

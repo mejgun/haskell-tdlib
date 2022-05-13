@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CreateBasicGroupChat where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data CreateBasicGroupChat = CreateBasicGroupChat
 instance Show CreateBasicGroupChat where
   show
     CreateBasicGroupChat
-      { force = force,
-        basic_group_id = basic_group_id
+      { force = force_,
+        basic_group_id = basic_group_id_
       } =
       "CreateBasicGroupChat"
         ++ U.cc
-          [ U.p "force" force,
-            U.p "basic_group_id" basic_group_id
+          [ U.p "force" force_,
+            U.p "basic_group_id" basic_group_id_
           ]
 
 instance T.ToJSON CreateBasicGroupChat where
   toJSON
     CreateBasicGroupChat
-      { force = force,
-        basic_group_id = basic_group_id
+      { force = force_,
+        basic_group_id = basic_group_id_
       } =
       A.object
         [ "@type" A..= T.String "createBasicGroupChat",
-          "force" A..= force,
-          "basic_group_id" A..= basic_group_id
+          "force" A..= force_,
+          "basic_group_id" A..= basic_group_id_
         ]

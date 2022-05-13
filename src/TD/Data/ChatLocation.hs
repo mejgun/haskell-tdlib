@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.ChatLocation where
 
 import qualified Data.Aeson as A
@@ -19,13 +20,13 @@ data ChatLocation = -- | Represents a location to which a chat is connected @loc
 instance Show ChatLocation where
   show
     ChatLocation
-      { address = address,
-        location = location
+      { address = address_,
+        location = location_
       } =
       "ChatLocation"
         ++ U.cc
-          [ U.p "address" address,
-            U.p "location" location
+          [ U.p "address" address_,
+            U.p "location" location_
           ]
 
 instance T.FromJSON ChatLocation where
@@ -46,11 +47,11 @@ instance T.FromJSON ChatLocation where
 instance T.ToJSON ChatLocation where
   toJSON
     ChatLocation
-      { address = address,
-        location = location
+      { address = address_,
+        location = location_
       } =
       A.object
         [ "@type" A..= T.String "chatLocation",
-          "address" A..= address,
-          "location" A..= location
+          "address" A..= address_,
+          "location" A..= location_
         ]

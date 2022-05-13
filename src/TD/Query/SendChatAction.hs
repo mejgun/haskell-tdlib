@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SendChatAction where
 
 import qualified Data.Aeson as A
@@ -22,27 +23,27 @@ data SendChatAction = SendChatAction
 instance Show SendChatAction where
   show
     SendChatAction
-      { action = action,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { action = action_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       "SendChatAction"
         ++ U.cc
-          [ U.p "action" action,
-            U.p "message_thread_id" message_thread_id,
-            U.p "chat_id" chat_id
+          [ U.p "action" action_,
+            U.p "message_thread_id" message_thread_id_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SendChatAction where
   toJSON
     SendChatAction
-      { action = action,
-        message_thread_id = message_thread_id,
-        chat_id = chat_id
+      { action = action_,
+        message_thread_id = message_thread_id_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "sendChatAction",
-          "action" A..= action,
-          "message_thread_id" A..= message_thread_id,
-          "chat_id" A..= chat_id
+          "action" A..= action_,
+          "message_thread_id" A..= message_thread_id_,
+          "chat_id" A..= chat_id_
         ]

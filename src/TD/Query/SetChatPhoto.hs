@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetChatPhoto where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data SetChatPhoto = SetChatPhoto
 instance Show SetChatPhoto where
   show
     SetChatPhoto
-      { photo = photo,
-        chat_id = chat_id
+      { photo = photo_,
+        chat_id = chat_id_
       } =
       "SetChatPhoto"
         ++ U.cc
-          [ U.p "photo" photo,
-            U.p "chat_id" chat_id
+          [ U.p "photo" photo_,
+            U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON SetChatPhoto where
   toJSON
     SetChatPhoto
-      { photo = photo,
-        chat_id = chat_id
+      { photo = photo_,
+        chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "setChatPhoto",
-          "photo" A..= photo,
-          "chat_id" A..= chat_id
+          "photo" A..= photo_,
+          "chat_id" A..= chat_id_
         ]

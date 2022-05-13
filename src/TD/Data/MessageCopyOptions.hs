@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.MessageCopyOptions where
 
 import qualified Data.Aeson as A
@@ -21,15 +22,15 @@ data MessageCopyOptions = -- | Options to be used when a message content is copi
 instance Show MessageCopyOptions where
   show
     MessageCopyOptions
-      { new_caption = new_caption,
-        replace_caption = replace_caption,
-        send_copy = send_copy
+      { new_caption = new_caption_,
+        replace_caption = replace_caption_,
+        send_copy = send_copy_
       } =
       "MessageCopyOptions"
         ++ U.cc
-          [ U.p "new_caption" new_caption,
-            U.p "replace_caption" replace_caption,
-            U.p "send_copy" send_copy
+          [ U.p "new_caption" new_caption_,
+            U.p "replace_caption" replace_caption_,
+            U.p "send_copy" send_copy_
           ]
 
 instance T.FromJSON MessageCopyOptions where
@@ -51,13 +52,13 @@ instance T.FromJSON MessageCopyOptions where
 instance T.ToJSON MessageCopyOptions where
   toJSON
     MessageCopyOptions
-      { new_caption = new_caption,
-        replace_caption = replace_caption,
-        send_copy = send_copy
+      { new_caption = new_caption_,
+        replace_caption = replace_caption_,
+        send_copy = send_copy_
       } =
       A.object
         [ "@type" A..= T.String "messageCopyOptions",
-          "new_caption" A..= new_caption,
-          "replace_caption" A..= replace_caption,
-          "send_copy" A..= send_copy
+          "new_caption" A..= new_caption_,
+          "replace_caption" A..= replace_caption_,
+          "send_copy" A..= send_copy_
         ]

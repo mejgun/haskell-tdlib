@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.NotificationGroupType where
 
 import qualified Data.Aeson as A
@@ -48,20 +49,16 @@ instance T.FromJSON NotificationGroupType where
       _ -> mempty
     where
       parseNotificationGroupTypeMessages :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeMessages = A.withObject "NotificationGroupTypeMessages" $ \o -> do
-        return $ NotificationGroupTypeMessages {}
+      parseNotificationGroupTypeMessages = A.withObject "NotificationGroupTypeMessages" $ \_ -> return NotificationGroupTypeMessages
 
       parseNotificationGroupTypeMentions :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeMentions = A.withObject "NotificationGroupTypeMentions" $ \o -> do
-        return $ NotificationGroupTypeMentions {}
+      parseNotificationGroupTypeMentions = A.withObject "NotificationGroupTypeMentions" $ \_ -> return NotificationGroupTypeMentions
 
       parseNotificationGroupTypeSecretChat :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeSecretChat = A.withObject "NotificationGroupTypeSecretChat" $ \o -> do
-        return $ NotificationGroupTypeSecretChat {}
+      parseNotificationGroupTypeSecretChat = A.withObject "NotificationGroupTypeSecretChat" $ \_ -> return NotificationGroupTypeSecretChat
 
       parseNotificationGroupTypeCalls :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeCalls = A.withObject "NotificationGroupTypeCalls" $ \o -> do
-        return $ NotificationGroupTypeCalls {}
+      parseNotificationGroupTypeCalls = A.withObject "NotificationGroupTypeCalls" $ \_ -> return NotificationGroupTypeCalls
   parseJSON _ = mempty
 
 instance T.ToJSON NotificationGroupType where

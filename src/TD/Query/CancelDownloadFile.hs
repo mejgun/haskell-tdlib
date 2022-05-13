@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.CancelDownloadFile where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data CancelDownloadFile = CancelDownloadFile
 instance Show CancelDownloadFile where
   show
     CancelDownloadFile
-      { only_if_pending = only_if_pending,
-        file_id = file_id
+      { only_if_pending = only_if_pending_,
+        file_id = file_id_
       } =
       "CancelDownloadFile"
         ++ U.cc
-          [ U.p "only_if_pending" only_if_pending,
-            U.p "file_id" file_id
+          [ U.p "only_if_pending" only_if_pending_,
+            U.p "file_id" file_id_
           ]
 
 instance T.ToJSON CancelDownloadFile where
   toJSON
     CancelDownloadFile
-      { only_if_pending = only_if_pending,
-        file_id = file_id
+      { only_if_pending = only_if_pending_,
+        file_id = file_id_
       } =
       A.object
         [ "@type" A..= T.String "cancelDownloadFile",
-          "only_if_pending" A..= only_if_pending,
-          "file_id" A..= file_id
+          "only_if_pending" A..= only_if_pending_,
+          "file_id" A..= file_id_
         ]

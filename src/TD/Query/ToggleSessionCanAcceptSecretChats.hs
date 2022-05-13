@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleSessionCanAcceptSecretChats where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleSessionCanAcceptSecretChats = ToggleSessionCanAcceptSecretChats
 instance Show ToggleSessionCanAcceptSecretChats where
   show
     ToggleSessionCanAcceptSecretChats
-      { can_accept_secret_chats = can_accept_secret_chats,
-        session_id = session_id
+      { can_accept_secret_chats = can_accept_secret_chats_,
+        session_id = session_id_
       } =
       "ToggleSessionCanAcceptSecretChats"
         ++ U.cc
-          [ U.p "can_accept_secret_chats" can_accept_secret_chats,
-            U.p "session_id" session_id
+          [ U.p "can_accept_secret_chats" can_accept_secret_chats_,
+            U.p "session_id" session_id_
           ]
 
 instance T.ToJSON ToggleSessionCanAcceptSecretChats where
   toJSON
     ToggleSessionCanAcceptSecretChats
-      { can_accept_secret_chats = can_accept_secret_chats,
-        session_id = session_id
+      { can_accept_secret_chats = can_accept_secret_chats_,
+        session_id = session_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleSessionCanAcceptSecretChats",
-          "can_accept_secret_chats" A..= can_accept_secret_chats,
-          "session_id" A..= session_id
+          "can_accept_secret_chats" A..= can_accept_secret_chats_,
+          "session_id" A..= session_id_
         ]

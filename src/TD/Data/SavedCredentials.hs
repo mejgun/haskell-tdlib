@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Data.SavedCredentials where
 
 import qualified Data.Aeson as A
@@ -18,13 +19,13 @@ data SavedCredentials = -- | Contains information about saved card credentials @
 instance Show SavedCredentials where
   show
     SavedCredentials
-      { title = title,
-        _id = _id
+      { title = title_,
+        _id = _id_
       } =
       "SavedCredentials"
         ++ U.cc
-          [ U.p "title" title,
-            U.p "_id" _id
+          [ U.p "title" title_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON SavedCredentials where
@@ -45,11 +46,11 @@ instance T.FromJSON SavedCredentials where
 instance T.ToJSON SavedCredentials where
   toJSON
     SavedCredentials
-      { title = title,
-        _id = _id
+      { title = title_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "savedCredentials",
-          "title" A..= title,
-          "id" A..= _id
+          "title" A..= title_,
+          "id" A..= _id_
         ]

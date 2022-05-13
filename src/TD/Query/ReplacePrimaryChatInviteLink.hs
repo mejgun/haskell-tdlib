@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ReplacePrimaryChatInviteLink where
 
 import qualified Data.Aeson as A
@@ -17,19 +18,19 @@ data ReplacePrimaryChatInviteLink = ReplacePrimaryChatInviteLink
 instance Show ReplacePrimaryChatInviteLink where
   show
     ReplacePrimaryChatInviteLink
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       "ReplacePrimaryChatInviteLink"
         ++ U.cc
-          [ U.p "chat_id" chat_id
+          [ U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON ReplacePrimaryChatInviteLink where
   toJSON
     ReplacePrimaryChatInviteLink
-      { chat_id = chat_id
+      { chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "replacePrimaryChatInviteLink",
-          "chat_id" A..= chat_id
+          "chat_id" A..= chat_id_
         ]

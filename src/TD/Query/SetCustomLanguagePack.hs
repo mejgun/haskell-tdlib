@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.SetCustomLanguagePack where
 
 import qualified Data.Aeson as A
@@ -21,23 +22,23 @@ data SetCustomLanguagePack = SetCustomLanguagePack
 instance Show SetCustomLanguagePack where
   show
     SetCustomLanguagePack
-      { strings = strings,
-        info = info
+      { strings = strings_,
+        info = info_
       } =
       "SetCustomLanguagePack"
         ++ U.cc
-          [ U.p "strings" strings,
-            U.p "info" info
+          [ U.p "strings" strings_,
+            U.p "info" info_
           ]
 
 instance T.ToJSON SetCustomLanguagePack where
   toJSON
     SetCustomLanguagePack
-      { strings = strings,
-        info = info
+      { strings = strings_,
+        info = info_
       } =
       A.object
         [ "@type" A..= T.String "setCustomLanguagePack",
-          "strings" A..= strings,
-          "info" A..= info
+          "strings" A..= strings_,
+          "info" A..= info_
         ]

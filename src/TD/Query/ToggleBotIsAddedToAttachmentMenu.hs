@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.ToggleBotIsAddedToAttachmentMenu where
 
 import qualified Data.Aeson as A
@@ -19,23 +20,23 @@ data ToggleBotIsAddedToAttachmentMenu = ToggleBotIsAddedToAttachmentMenu
 instance Show ToggleBotIsAddedToAttachmentMenu where
   show
     ToggleBotIsAddedToAttachmentMenu
-      { is_added = is_added,
-        bot_user_id = bot_user_id
+      { is_added = is_added_,
+        bot_user_id = bot_user_id_
       } =
       "ToggleBotIsAddedToAttachmentMenu"
         ++ U.cc
-          [ U.p "is_added" is_added,
-            U.p "bot_user_id" bot_user_id
+          [ U.p "is_added" is_added_,
+            U.p "bot_user_id" bot_user_id_
           ]
 
 instance T.ToJSON ToggleBotIsAddedToAttachmentMenu where
   toJSON
     ToggleBotIsAddedToAttachmentMenu
-      { is_added = is_added,
-        bot_user_id = bot_user_id
+      { is_added = is_added_,
+        bot_user_id = bot_user_id_
       } =
       A.object
         [ "@type" A..= T.String "toggleBotIsAddedToAttachmentMenu",
-          "is_added" A..= is_added,
-          "bot_user_id" A..= bot_user_id
+          "is_added" A..= is_added_,
+          "bot_user_id" A..= bot_user_id_
         ]

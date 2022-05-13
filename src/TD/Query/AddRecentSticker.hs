@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
 module TD.Query.AddRecentSticker where
 
 import qualified Data.Aeson as A
@@ -20,23 +21,23 @@ data AddRecentSticker = AddRecentSticker
 instance Show AddRecentSticker where
   show
     AddRecentSticker
-      { sticker = sticker,
-        is_attached = is_attached
+      { sticker = sticker_,
+        is_attached = is_attached_
       } =
       "AddRecentSticker"
         ++ U.cc
-          [ U.p "sticker" sticker,
-            U.p "is_attached" is_attached
+          [ U.p "sticker" sticker_,
+            U.p "is_attached" is_attached_
           ]
 
 instance T.ToJSON AddRecentSticker where
   toJSON
     AddRecentSticker
-      { sticker = sticker,
-        is_attached = is_attached
+      { sticker = sticker_,
+        is_attached = is_attached_
       } =
       A.object
         [ "@type" A..= T.String "addRecentSticker",
-          "sticker" A..= sticker,
-          "is_attached" A..= is_attached
+          "sticker" A..= sticker_,
+          "is_attached" A..= is_attached_
         ]
