@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Sticker as Sticker
 import qualified Utils as U
 
+-- |
 data Reaction = -- | Contains stickers which must be used for reaction animation rendering
   Reaction
   { -- | Center animation for the reaction; may be null

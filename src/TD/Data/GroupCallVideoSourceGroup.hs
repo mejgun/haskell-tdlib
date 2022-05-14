@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data GroupCallVideoSourceGroup = -- | Describes a group of video synchronization source identifiers @semantics The semantics of sources, one of "SIM" or "FID" @source_ids The list of synchronization source identifiers
   GroupCallVideoSourceGroup
   { -- |

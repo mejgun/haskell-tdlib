@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data Location = -- | Describes a location on planet Earth @latitude Latitude of the location in degrees; as defined by the sender @longitude Longitude of the location, in degrees; as defined by the sender
   Location
   { -- | The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown

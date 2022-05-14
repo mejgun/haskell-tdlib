@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data TemporaryPasswordState = -- | Returns information about the availability of a temporary password, which can be used for payments @has_password True, if a temporary password is available @valid_for Time left before the temporary password expires, in seconds
   TemporaryPasswordState
   { -- |

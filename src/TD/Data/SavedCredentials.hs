@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data SavedCredentials = -- | Contains information about saved card credentials @id Unique identifier of the saved credentials @title Title of the saved credentials
   SavedCredentials
   { -- |

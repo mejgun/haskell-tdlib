@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.TextEntity as TextEntity
 import qualified Utils as U
 
+-- |
 data FormattedText = -- | A text with some entities @text The text @entities Entities contained in the text. Entities can be nested, but must not mutually intersect with each other.
   -- Pre, Code and PreCode entities can't contain other entities. Bold, Italic, Underline, Strikethrough, and Spoiler entities can contain and to be contained in all other entities. All other entities can't contain each other
   FormattedText

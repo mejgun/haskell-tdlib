@@ -9,6 +9,7 @@ import qualified TD.Data.InternalLinkType as InternalLinkType
 import qualified TD.Data.PageBlock as PageBlock
 import qualified Utils as U
 
+-- |
 data WebPageInstantView = -- | Describes an instant view page for a web page
   WebPageInstantView
   { -- | An internal link to be opened to leave feedback about the instant view

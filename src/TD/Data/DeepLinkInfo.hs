@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified Utils as U
 
+-- |
 data DeepLinkInfo = -- | Contains information about a tg: deep link @text Text to be shown to the user @need_update_application True, if the user must be asked to update the application
   DeepLinkInfo
   { -- |

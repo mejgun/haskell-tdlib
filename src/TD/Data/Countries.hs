@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.CountryInfo as CountryInfo
 import qualified Utils as U
 
+-- |
 data Countries = -- | Contains information about countries @countries The list of countries
   Countries
   { -- |

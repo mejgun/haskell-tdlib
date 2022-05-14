@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data Chats = -- | Represents a list of chats @total_count Approximate total number of chats found @chat_ids List of chat identifiers
   Chats
   { -- |

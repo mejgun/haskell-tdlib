@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.File as File
 import qualified Utils as U
 
+-- |
 data NotificationSound = -- | Describes a notification sound in MP3 format
   NotificationSound
   { -- | File containing the sound

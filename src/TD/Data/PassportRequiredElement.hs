@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.PassportSuitableElement as PassportSuitableElement
 import qualified Utils as U
 
+-- |
 data PassportRequiredElement = -- | Contains a description of the required Telegram Passport element that was requested by a service @suitable_elements List of Telegram Passport elements any of which is enough to provide
   PassportRequiredElement
   { -- |

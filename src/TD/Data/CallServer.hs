@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.CallServerType as CallServerType
 import qualified Utils as U
 
+-- |
 data CallServer = -- | Describes a server for relaying call data @id Server identifier @ip_address Server IPv4 address @ipv6_address Server IPv6 address @port Server port number @type Server type
   CallServer
   { -- |

@@ -9,6 +9,7 @@ import qualified TD.Data.Date as Date
 import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
+-- |
 data InputIdentityDocument = -- | An identity document to be saved to Telegram Passport @number Document number; 1-24 characters @expiry_date Document expiry date; pass null if not applicable @front_side Front side of the document
   InputIdentityDocument
   { -- |

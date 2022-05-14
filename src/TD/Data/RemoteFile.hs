@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data RemoteFile = -- | Represents a remote file
   RemoteFile
   { -- | Size of the remote available part of the file, in bytes; 0 if unknown

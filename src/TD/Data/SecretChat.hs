@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.SecretChatState as SecretChatState
 import qualified Utils as U
 
+-- |
 data SecretChat = -- | Represents a secret chat
   SecretChat
   { -- | Secret chat layer; determines features supported by the chat partner's application. Nested text entities and underline and strikethrough entities are supported if the layer >= 101

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data MessageReaction = -- | Contains information about a reaction to a message
   MessageReaction
   { -- | Identifiers of at most 3 recent message senders, added the reaction; available in private, basic group and supergroup chats

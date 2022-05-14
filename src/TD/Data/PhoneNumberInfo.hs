@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.CountryInfo as CountryInfo
 import qualified Utils as U
 
+-- |
 data PhoneNumberInfo = -- | Contains information about a phone number
   PhoneNumberInfo
   { -- | The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Message as Message
 import qualified Utils as U
 
+-- |
 data Messages = -- | Contains a list of messages @total_count Approximate total number of messages found @messages List of messages; messages may be null
   Messages
   { -- |

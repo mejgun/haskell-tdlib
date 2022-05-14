@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageCalendarDay as MessageCalendarDay
 import qualified Utils as U
 
+-- |
 data MessageCalendar = -- | Contains information about found messages, split by days according to the option "utc_time_offset" @total_count Total number of found messages @days Information about messages sent
   MessageCalendar
   { -- |

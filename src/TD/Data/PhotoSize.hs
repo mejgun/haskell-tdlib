@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.File as File
 import qualified Utils as U
 
+-- |
 data PhotoSize = -- | Describes an image in JPEG format @type Image type (see https://core.telegram.org/constructor/photoSize)
   PhotoSize
   { -- | Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes

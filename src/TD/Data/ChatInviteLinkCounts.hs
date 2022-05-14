@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatInviteLinkCount as ChatInviteLinkCount
 import qualified Utils as U
 
+-- |
 data ChatInviteLinkCounts = -- | Contains a list of chat invite link counts @invite_link_counts List of invite link counts
   ChatInviteLinkCounts
   { -- |

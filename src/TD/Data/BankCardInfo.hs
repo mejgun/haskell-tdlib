@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.BankCardActionOpenUrl as BankCardActionOpenUrl
 import qualified Utils as U
 
+-- |
 data BankCardInfo = -- | Information about a bank card @title Title of the bank card description @actions Actions that can be done with the bank card number
   BankCardInfo
   { -- |

@@ -10,6 +10,7 @@ import qualified TD.Data.PageBlockVerticalAlignment as PageBlockVerticalAlignmen
 import qualified TD.Data.RichText as RichText
 import qualified Utils as U
 
+-- |
 data PageBlockTableCell = -- | Represents a cell of a table @text Cell text; may be null. If the text is null, then the cell must be invisible @is_header True, if it is a header cell
   PageBlockTableCell
   { -- |

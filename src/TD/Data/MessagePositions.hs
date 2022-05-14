@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessagePosition as MessagePosition
 import qualified Utils as U
 
+-- |
 data MessagePositions = -- | Contains a list of message positions @total_count Total number of messages found @positions List of message positions
   MessagePositions
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data WebAppInfo = -- | Contains information about a web app @launch_id Unique identifier for the web app launch @url A web app URL to open in a web view
   WebAppInfo
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data LogVerbosityLevel = -- | Contains a TDLib internal log verbosity level @verbosity_level Log verbosity level
   LogVerbosityLevel
   { -- |

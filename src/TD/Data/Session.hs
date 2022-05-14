@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.SessionType as SessionType
 import qualified Utils as U
 
+-- |
 data Session = -- | Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
   Session
   { -- |

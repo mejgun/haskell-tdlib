@@ -16,6 +16,7 @@ import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
 import qualified Utils as U
 
+-- |
 data WebPage = -- | Describes a web page preview
   WebPage
   { -- | Version of instant view, available for the web page (currently, can be 1 or 2), 0 if none

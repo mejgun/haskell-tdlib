@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatInviteLink = -- | Contains a chat invite link
   ChatInviteLink
   { -- | True, if the link was revoked

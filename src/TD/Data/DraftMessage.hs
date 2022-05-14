@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.InputMessageContent as InputMessageContent
 import qualified Utils as U
 
+-- |
 data DraftMessage = -- | Contains information about a message draft
   DraftMessage
   { -- | Content of the message draft; must be of the type inputMessageText

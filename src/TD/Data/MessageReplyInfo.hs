@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data MessageReplyInfo = -- | Contains information about replies to a message
   MessageReplyInfo
   { -- | Identifier of the last reply to the message

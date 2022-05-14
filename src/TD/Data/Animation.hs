@@ -10,6 +10,7 @@ import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
+-- |
 data Animation = -- | Describes an animation file. The animation must be encoded in GIF or MPEG4 format @duration Duration of the animation, in seconds; as defined by the sender @width Width of the animation @height Height of the animation
   Animation
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data AutoDownloadSettings = -- | Contains auto-download settings
   AutoDownloadSettings
   { -- | True, if "use less data for calls" option needs to be enabled

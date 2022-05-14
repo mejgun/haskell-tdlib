@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.TestString as TestString
 import qualified Utils as U
 
+-- |
 data TestVectorStringObject = -- | A simple object containing a vector of objects that hold a string; for testing only @value Vector of objects
   TestVectorStringObject
   { -- |

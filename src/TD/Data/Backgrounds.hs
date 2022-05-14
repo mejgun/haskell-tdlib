@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Background as Background
 import qualified Utils as U
 
+-- |
 data Backgrounds = -- | Contains a list of backgrounds @backgrounds A list of backgrounds
   Backgrounds
   { -- |

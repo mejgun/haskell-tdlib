@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data TdlibParameters = -- | Contains parameters for TDLib initialization
   TdlibParameters
   { -- | If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name

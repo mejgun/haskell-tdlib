@@ -9,6 +9,7 @@ import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data ChatMember = -- | Describes a user or a chat as a member of another chat
   ChatMember
   { -- | Status of the member in the chat

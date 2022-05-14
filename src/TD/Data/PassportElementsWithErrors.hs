@@ -9,6 +9,7 @@ import qualified TD.Data.PassportElement as PassportElement
 import qualified TD.Data.PassportElementError as PassportElementError
 import qualified Utils as U
 
+-- |
 data PassportElementsWithErrors = -- | Contains information about a Telegram Passport elements and corresponding errors @elements Telegram Passport elements @errors Errors in the elements that are already available
   PassportElementsWithErrors
   { -- |

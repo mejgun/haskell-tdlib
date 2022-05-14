@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data LogTags = -- | Contains a list of available TDLib internal log tags @tags List of log tags
   LogTags
   { -- |

@@ -9,6 +9,7 @@ import qualified TD.Data.MessageReaction as MessageReaction
 import qualified TD.Data.MessageReplyInfo as MessageReplyInfo
 import qualified Utils as U
 
+-- |
 data MessageInteractionInfo = -- | Contains information about interactions with a message
   MessageInteractionInfo
   { -- | The list of reactions added to the message

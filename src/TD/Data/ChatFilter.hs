@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatFilter = -- | Represents a filter of user chats
   ChatFilter
   { -- | True, if channels need to be included

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data BotMenuButton = -- | Describes a button to be shown instead of bot commands menu button @text Text of the button @url URL to be passed to openWebApp
   BotMenuButton
   { -- |

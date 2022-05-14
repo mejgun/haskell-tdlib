@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data BotCommand = -- | Represents a command supported by a bot @command Text of the bot command @param_description Description of the bot command
   BotCommand
   { -- |

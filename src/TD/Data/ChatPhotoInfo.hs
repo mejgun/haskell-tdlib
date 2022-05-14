@@ -9,6 +9,7 @@ import qualified TD.Data.File as File
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified Utils as U
 
+-- |
 data ChatPhotoInfo = -- | Contains basic information about the photo of a chat
   ChatPhotoInfo
   { -- | True, if the photo has animated variant

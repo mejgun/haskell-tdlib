@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data SentWebAppMessage = -- | Information about the message sent by answerWebAppQuery @inline_message_id Identifier of the sent inline message, if known
   SentWebAppMessage
   { -- |

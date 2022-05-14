@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.AddedReaction as AddedReaction
 import qualified Utils as U
 
+-- |
 data AddedReactions = -- | Represents a list of reactions added to a message @total_count The total number of found reactions @reactions The list of added reactions @next_offset The offset for the next request. If empty, there are no more results
   AddedReactions
   { -- |

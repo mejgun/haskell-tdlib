@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ThemeSettings as ThemeSettings
 import qualified Utils as U
 
+-- |
 data ChatTheme = -- | Describes a chat theme
   ChatTheme
   { -- | Theme settings for a dark chat theme

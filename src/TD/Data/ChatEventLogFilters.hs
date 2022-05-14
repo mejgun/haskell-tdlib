@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatEventLogFilters = -- | Represents a set of filters used to obtain a chat event log
   ChatEventLogFilters
   { -- | True, if video chat actions need to be returned

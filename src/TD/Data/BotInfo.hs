@@ -10,6 +10,7 @@ import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified Utils as U
 
+-- |
 data BotInfo = -- | Contains information about a bot
   BotInfo
   { -- | Default administrator rights for adding the bot to channels; may be null

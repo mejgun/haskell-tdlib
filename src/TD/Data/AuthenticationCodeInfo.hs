@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.AuthenticationCodeType as AuthenticationCodeType
 import qualified Utils as U
 
+-- |
 data AuthenticationCodeInfo = -- | Information about the authentication code that was sent @phone_number A phone number that is being authenticated @type The way the code was sent to the user @next_type The way the next code will be sent to the user; may be null @timeout Timeout before the code can be re-sent, in seconds
   AuthenticationCodeInfo
   { -- |

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified Utils as U
 
+-- |
 data MessageCopyOptions = -- | Options to be used when a message content is copied without reference to the original sender. Service messages and messageInvoice can't be copied
   MessageCopyOptions
   { -- | New message caption; pass null to copy message without caption. Ignored if replace_caption is false

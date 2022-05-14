@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.KeyboardButtonType as KeyboardButtonType
 import qualified Utils as U
 
+-- |
 data KeyboardButton = -- | Represents a single button in a bot keyboard @text Text of the button @type Type of the button
   KeyboardButton
   { -- |

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Message as Message
 import qualified Utils as U
 
+-- |
 data FoundMessages = -- | Contains a list of messages found by a search @total_count Approximate total number of messages found; -1 if unknown @messages List of messages @next_offset The offset for the next request. If empty, there are no more results
   FoundMessages
   { -- |

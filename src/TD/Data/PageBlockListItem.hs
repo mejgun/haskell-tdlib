@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified TD.Data.PageBlock as PageBlock
 import qualified Utils as U
 
+-- |
 data PageBlockListItem = -- | Describes an item of a list page block @label Item label @page_blocks Item blocks
   PageBlockListItem
   { -- |

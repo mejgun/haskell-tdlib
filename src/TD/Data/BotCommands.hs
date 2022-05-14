@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.BotCommand as BotCommand
 import qualified Utils as U
 
+-- |
 data BotCommands = -- | Contains a list of bot commands @bot_user_id Bot's user identifier @commands List of bot commands
   BotCommands
   { -- |

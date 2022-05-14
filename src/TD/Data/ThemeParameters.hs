@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ThemeParameters = -- | Contains parameters of the app theme @background_color A color of the background in the RGB24 format @text_color A color of text in the RGB24 format
   ThemeParameters
   { -- | A color of text on the buttons in the RGB24 format

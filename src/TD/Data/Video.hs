@@ -10,6 +10,7 @@ import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
+-- |
 data Video = -- | Describes a video file @duration Duration of the video, in seconds; as defined by the sender @width Video width; as defined by the sender @height Video height; as defined by the sender
   Video
   { -- |

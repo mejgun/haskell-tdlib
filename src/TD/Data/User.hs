@@ -10,6 +10,7 @@ import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.UserType as UserType
 import qualified Utils as U
 
+-- |
 data User = -- | Represents a user
   User
   { -- | IETF language tag of the user's language; only available to bots

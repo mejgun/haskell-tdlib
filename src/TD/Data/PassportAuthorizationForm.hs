@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.PassportRequiredElement as PassportRequiredElement
 import qualified Utils as U
 
+-- |
 data PassportAuthorizationForm = -- | Contains information about a Telegram Passport authorization form that was requested @id Unique identifier of the authorization form
   PassportAuthorizationForm
   { -- | URL for the privacy policy of the service; may be empty

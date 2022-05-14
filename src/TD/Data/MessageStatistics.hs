@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified Utils as U
 
+-- |
 data MessageStatistics = -- | A detailed statistics about a message @message_interaction_graph A graph containing number of message views and shares
   MessageStatistics
   { -- |

@@ -9,6 +9,7 @@ import qualified TD.Data.LocalFile as LocalFile
 import qualified TD.Data.RemoteFile as RemoteFile
 import qualified Utils as U
 
+-- |
 data File = -- | Represents a file
   File
   { -- | Information about the remote copy of the file

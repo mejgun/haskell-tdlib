@@ -10,6 +10,7 @@ import qualified TD.Data.InternalLinkType as InternalLinkType
 import qualified TD.Data.MessageContent as MessageContent
 import qualified Utils as U
 
+-- |
 data SponsoredMessage = -- | Describes a sponsored message
   SponsoredMessage
   { -- | Content of the message. Currently, can be only of the type messageText

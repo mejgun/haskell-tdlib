@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified Utils as U
 
+-- |
 data BasicGroup = -- | Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)
   BasicGroup
   { -- | Identifier of the supergroup to which this group was upgraded; 0 if none

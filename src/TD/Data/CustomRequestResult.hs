@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data CustomRequestResult = -- | Contains the result of a custom request @result A JSON-serialized result
   CustomRequestResult
   { -- |

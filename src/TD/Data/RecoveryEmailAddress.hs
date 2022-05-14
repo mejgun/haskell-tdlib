@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data RecoveryEmailAddress = -- | Contains information about the current recovery email address @recovery_email_address Recovery email address
   RecoveryEmailAddress
   { -- |

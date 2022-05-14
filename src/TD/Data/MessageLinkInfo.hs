@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Message as Message
 import qualified Utils as U
 
+-- |
 data MessageLinkInfo = -- | Contains information about a link to a message in a chat
   MessageLinkInfo
   { -- | True, if the message is linked as a channel post comment or from a message thread

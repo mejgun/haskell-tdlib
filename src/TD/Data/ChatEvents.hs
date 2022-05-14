@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatEvent as ChatEvent
 import qualified Utils as U
 
+-- |
 data ChatEvents = -- | Contains a list of chat events @events List of events
   ChatEvents
   { -- |

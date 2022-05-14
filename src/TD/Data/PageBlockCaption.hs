@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.RichText as RichText
 import qualified Utils as U
 
+-- |
 data PageBlockCaption = -- | Contains a caption of an instant view web page block, consisting of a text and a trailing credit @text Content of the caption @credit Block credit (like HTML tag <cite>)
   PageBlockCaption
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data DownloadedFileCounts = -- | Contains number of being downloaded and recently downloaded files found
   DownloadedFileCounts
   { -- | Number of completed file downloads found

@@ -9,6 +9,7 @@ import qualified TD.Data.Notification as Notification
 import qualified TD.Data.NotificationGroupType as NotificationGroupType
 import qualified Utils as U
 
+-- |
 data NotificationGroup = -- | Describes a group of notifications @id Unique persistent auto-incremented from 1 identifier of the notification group @type Type of the group
   NotificationGroup
   { -- |

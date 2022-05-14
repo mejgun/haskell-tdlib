@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.FileType as FileType
 import qualified Utils as U
 
+-- |
 data StorageStatisticsByFileType = -- | Contains the storage usage statistics for a specific file type @file_type File type @size Total size of the files, in bytes @count Total number of files
   StorageStatisticsByFileType
   { -- |

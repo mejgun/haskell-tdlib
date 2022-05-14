@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatStatisticsMessageSenderInfo = -- | Contains statistics about messages sent by a user
   ChatStatisticsMessageSenderInfo
   { -- | Average number of characters in sent messages; 0 if unknown

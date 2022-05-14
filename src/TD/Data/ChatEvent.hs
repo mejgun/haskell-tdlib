@@ -9,6 +9,7 @@ import qualified TD.Data.ChatEventAction as ChatEventAction
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data ChatEvent = -- | Represents a chat event @id Chat event identifier @date Point in time (Unix timestamp) when the event happened @member_id Identifier of the user or chat who performed the action @action The action
   ChatEvent
   { -- |

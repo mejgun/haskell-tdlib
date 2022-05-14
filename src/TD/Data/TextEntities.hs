@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.TextEntity as TextEntity
 import qualified Utils as U
 
+-- |
 data TextEntities = -- | Contains a list of text entities @entities List of text entities
   TextEntities
   { -- |

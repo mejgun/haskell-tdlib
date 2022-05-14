@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified TD.Data.JsonValue as JsonValue
 import qualified Utils as U
 
+-- |
 data JsonObjectMember = -- | Represents one member of a JSON object @key Member's key @value Member's value
   JsonObjectMember
   { -- |

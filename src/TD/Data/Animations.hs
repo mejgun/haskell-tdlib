@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Animation as Animation
 import qualified Utils as U
 
+-- |
 data Animations = -- | Represents a list of animations @animations List of animations
   Animations
   { -- |

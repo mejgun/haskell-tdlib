@@ -8,22 +8,23 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeType.html"><span class="hs-identifier">TD.Data.AuthenticationCodeType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AuthenticationCodeType</span></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="AuthenticationCodeInfo"><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-var">AuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Information about the authentication code that was sent @phone_number A phone number that is being authenticated @type The way the code was sent to the user @next_type The way the next code will be sent to the user; may be null @timeout Timeout before the code can be re-sent, in seconds</span><span>
-</span><span id="line-12"></span><span>  </span><span id="AuthenticationCodeInfo"><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-var">AuthenticationCodeInfo</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-14"></span><span>    </span><span id="timeout"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe Int
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="AuthenticationCodeInfo"><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-var">AuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Information about the authentication code that was sent @phone_number A phone number that is being authenticated @type The way the code was sent to the user @next_type The way the next code will be sent to the user; may be null @timeout Timeout before the code can be re-sent, in seconds</span><span>
+</span><span id="line-13"></span><span>  </span><span id="AuthenticationCodeInfo"><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-var">AuthenticationCodeInfo</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span id="timeout"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe Int
 </span><a href="TD.Data.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var hs-var">timeout</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-16"></span><span>    </span><span id="next_type"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span id="next_type"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="TD.Data.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var hs-var">next_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType.AuthenticationCodeType</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-18"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-19"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="TD.Data.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType.AuthenticationCodeType</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-20"></span><span>    </span><span id="phone_number"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe String
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-21"></span><span>    </span><span id="phone_number"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Maybe String
 </span><a href="TD.Data.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434906"><span id="local-6989586621679434908"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
+</span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434906"><span id="local-6989586621679434908"><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
 (AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool)
 -&gt; (AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool)
 -&gt; Eq AuthenticationCodeInfo
@@ -33,77 +34,77 @@ $c/= :: AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
 == :: AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
 $c== :: AuthenticationCodeInfo -&gt; AuthenticationCodeInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434900"><span id="local-6989586621679434903"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679434898"><span class="annot"><span class="annottext">show :: AuthenticationCodeInfo -&gt; String
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434900"><span id="local-6989586621679434903"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679434898"><span class="annot"><span class="annottext">show :: AuthenticationCodeInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
-</span><span id="line-27"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">timeout :: AuthenticationCodeInfo -&gt; Maybe Int
+</span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
+</span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">timeout :: AuthenticationCodeInfo -&gt; Maybe Int
 </span><a href="TD.Data.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var">timeout</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434896"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679434896"><span class="hs-identifier hs-var">timeout_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="TD.Data.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var">next_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434895"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434895"><span class="hs-identifier hs-var">next_type_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="TD.Data.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434894"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434894"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
+</span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
 </span><a href="TD.Data.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434893"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679434893"><span class="hs-identifier hs-var">phone_number_</span></a></span></span><span>
-</span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;AuthenticationCodeInfo&quot;</span></span><span>
-</span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-34"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><span id="line-35"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;timeout&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679434896"><span class="hs-identifier hs-var">timeout_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
+</span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;next_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434895"><span class="hs-identifier hs-var">next_type_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
+</span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe AuthenticationCodeType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434894"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679434893"><span class="hs-identifier hs-var">phone_number_</span></a></span><span>
-</span><span id="line-38"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434888"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679434886"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthenticationCodeInfo
+</span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434888"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679434886"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthenticationCodeInfo
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679434884"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679434884"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679434882"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679434882"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>    </span><span id="local-6989586621679434881"><span class="annot"><span class="annottext">String
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679434881"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679434881"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679434882"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>
+</span><span id="line-45"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679434881"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;authenticationCodeInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthenticationCodeInfo
 </span><a href="#local-6989586621679434879"><span class="hs-identifier hs-var">parseAuthenticationCodeInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679434884"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-46"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AuthenticationCodeInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-47"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>      </span><span class="annot"><a href="#local-6989586621679434879"><span class="hs-identifier hs-type">parseAuthenticationCodeInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
-</span><span id="line-49"></span><span>      </span><span id="local-6989586621679434879"><span class="annot"><span class="annottext">parseAuthenticationCodeInfo :: Value -&gt; Parser AuthenticationCodeInfo
+</span><span id="line-48"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-49"></span><span>      </span><span class="annot"><a href="#local-6989586621679434879"><span class="hs-identifier hs-type">parseAuthenticationCodeInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
+</span><span id="line-50"></span><span>      </span><span id="local-6989586621679434879"><span class="annot"><span class="annottext">parseAuthenticationCodeInfo :: Value -&gt; Parser AuthenticationCodeInfo
 </span><a href="#local-6989586621679434879"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthenticationCodeInfo)
 -&gt; Value
@@ -118,7 +119,7 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679434877"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679434877"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>        </span><span id="local-6989586621679434876"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-51"></span><span>        </span><span id="local-6989586621679434876"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679434876"><span class="hs-identifier hs-var">timeout_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
@@ -134,25 +135,25 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;timeout&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-51"></span><span>        </span><span id="local-6989586621679434872"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><span id="line-52"></span><span>        </span><span id="local-6989586621679434872"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434872"><span class="hs-identifier hs-var">next_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679434877"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AuthenticationCodeType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;next_type&quot;</span></span><span>
-</span><span id="line-52"></span><span>        </span><span id="local-6989586621679434871"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679434871"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434871"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679434877"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AuthenticationCodeType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679434870"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679434870"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679434870"><span class="hs-identifier hs-var">phone_number_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679434877"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;phone_number&quot;</span></span><span>
-</span><span id="line-54"></span><span>        </span><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Parser AuthenticationCodeInfo
+</span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">AuthenticationCodeInfo -&gt; Parser AuthenticationCodeInfo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AuthenticationCodeInfo -&gt; Parser AuthenticationCodeInfo)
 -&gt; AuthenticationCodeInfo -&gt; Parser AuthenticationCodeInfo
@@ -171,55 +172,55 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="#local-6989586621679434871"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: Maybe String
 </span><a href="TD.Data.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679434870"><span class="hs-identifier hs-var">phone_number_</span></a></span><span class="hs-special">}</span><span>
-</span><span id="line-55"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span id="line-56"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser AuthenticationCodeInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434863"><span id="local-6989586621679434865"><span id="local-6989586621679434867"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span>  </span><span id="local-6989586621679434861"><span class="annot"><span class="annottext">toJSON :: AuthenticationCodeInfo -&gt; Value
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434863"><span id="local-6989586621679434865"><span id="local-6989586621679434867"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679434861"><span class="annot"><span class="annottext">toJSON :: AuthenticationCodeInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-59"></span><span>    </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
-</span><span id="line-60"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">timeout :: AuthenticationCodeInfo -&gt; Maybe Int
+</span><span id="line-60"></span><span>    </span><span class="annot"><a href="TD.Data.AuthenticationCodeInfo.html#AuthenticationCodeInfo"><span class="hs-identifier hs-type">AuthenticationCodeInfo</span></a></span><span>
+</span><span id="line-61"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">timeout :: AuthenticationCodeInfo -&gt; Maybe Int
 </span><a href="TD.Data.AuthenticationCodeInfo.html#timeout"><span class="hs-identifier hs-var">timeout</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434859"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679434859"><span class="hs-identifier hs-var">timeout_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-61"></span><span>        </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">next_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="TD.Data.AuthenticationCodeInfo.html#next_type"><span class="hs-identifier hs-var">next_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434858"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434858"><span class="hs-identifier hs-var">next_type_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
+</span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">_type :: AuthenticationCodeInfo -&gt; Maybe AuthenticationCodeType
 </span><a href="TD.Data.AuthenticationCodeInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434857"><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434857"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
+</span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">phone_number :: AuthenticationCodeInfo -&gt; Maybe String
 </span><a href="TD.Data.AuthenticationCodeInfo.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434856"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679434856"><span class="hs-identifier hs-var">phone_number_</span></a></span></span><span>
-</span><span id="line-64"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-65"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-65"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-66"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-66"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-67"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;authenticationCodeInfo&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-67"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-68"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;timeout&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679434859"><span class="hs-identifier hs-var">timeout_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-68"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;next_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AuthenticationCodeType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434858"><span class="hs-identifier hs-var">next_type_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AuthenticationCodeType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AuthenticationCodeType
 </span><a href="#local-6989586621679434857"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679434856"><span class="hs-identifier hs-var">phone_number_</span></a></span><span>
-</span><span id="line-71"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-72"></span></pre></body></html>
+</span><span id="line-72"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-73"></span></pre></body></html>

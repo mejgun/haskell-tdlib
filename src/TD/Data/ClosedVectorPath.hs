@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.VectorPathCommand as VectorPathCommand
 import qualified Utils as U
 
+-- |
 data ClosedVectorPath = -- | Represents a closed vector path. The path begins at the end point of the last command @commands List of vector path commands
   ClosedVectorPath
   { -- |

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Update as Update
 import qualified Utils as U
 
+-- |
 data Updates = -- | Contains a list of updates @updates List of updates
   Updates
   { -- |

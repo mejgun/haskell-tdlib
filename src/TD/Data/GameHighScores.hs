@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.GameHighScore as GameHighScore
 import qualified Utils as U
 
+-- |
 data GameHighScores = -- | Contains a list of game high scores @scores A list of game high scores
   GameHighScores
   { -- |

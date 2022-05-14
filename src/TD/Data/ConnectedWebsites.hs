@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ConnectedWebsite as ConnectedWebsite
 import qualified Utils as U
 
+-- |
 data ConnectedWebsites = -- | Contains a list of websites the current user is logged in with Telegram @websites List of connected websites
   ConnectedWebsites
   { -- |

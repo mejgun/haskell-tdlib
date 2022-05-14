@@ -9,6 +9,7 @@ import qualified TD.Data.InputPassportElementErrorSource as InputPassportElement
 import qualified TD.Data.PassportElementType as PassportElementType
 import qualified Utils as U
 
+-- |
 data InputPassportElementError = -- | Contains the description of an error in a Telegram Passport element; for bots only @type Type of Telegram Passport element that has the error @message Error message @source Error source
   InputPassportElementError
   { -- |

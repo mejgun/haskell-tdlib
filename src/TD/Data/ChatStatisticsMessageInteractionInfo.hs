@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatStatisticsMessageInteractionInfo = -- | Contains statistics about interactions with a message
   ChatStatisticsMessageInteractionInfo
   { -- | Number of times the message was forwarded

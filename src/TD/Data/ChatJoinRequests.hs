@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
 import qualified Utils as U
 
+-- |
 data ChatJoinRequests = -- | Contains a list of requests to join a chat @total_count Approximate total number of requests found @requests List of the requests
   ChatJoinRequests
   { -- |

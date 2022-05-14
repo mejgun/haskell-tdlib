@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data CallProtocol = -- | Specifies the supported call protocols
   CallProtocol
   { -- | List of supported tgcalls versions

@@ -10,6 +10,7 @@ import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.PhotoSize as PhotoSize
 import qualified Utils as U
 
+-- |
 data ChatPhoto = -- | Describes a chat or user profile photo
   ChatPhoto
   { -- | Animated variant of the photo in MPEG4 format; may be null

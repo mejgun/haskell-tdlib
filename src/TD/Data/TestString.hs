@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data TestString = -- | A simple object containing a string; for testing only @value String
   TestString
   { -- |

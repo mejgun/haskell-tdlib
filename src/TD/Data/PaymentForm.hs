@@ -11,6 +11,7 @@ import qualified TD.Data.PaymentsProviderStripe as PaymentsProviderStripe
 import qualified TD.Data.SavedCredentials as SavedCredentials
 import qualified Utils as U
 
+-- |
 data PaymentForm = -- | Contains information about an invoice payment form
   PaymentForm
   { -- | True, if the user will be able to save credentials protected by a password they set up

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 import qualified Utils as U
 
+-- |
 data MessageSendOptions = -- | Options to be used when a message is sent
   MessageSendOptions
   { -- | Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled

@@ -8,16 +8,17 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.FormattedText.html"><span class="hs-identifier">TD.Data.FormattedText</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FormattedText</span></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="DeepLinkInfo"><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-var">DeepLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains information about a tg: deep link @text Text to be shown to the user @need_update_application True, if the user must be asked to update the application</span><span>
-</span><span id="line-12"></span><span>  </span><span id="DeepLinkInfo"><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-var">DeepLinkInfo</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-14"></span><span>    </span><span id="need_update_application"><span class="annot"><span class="annottext">DeepLinkInfo -&gt; Maybe Bool
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="DeepLinkInfo"><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-var">DeepLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains information about a tg: deep link @text Text to be shown to the user @need_update_application True, if the user must be asked to update the application</span><span>
+</span><span id="line-13"></span><span>  </span><span id="DeepLinkInfo"><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-var">DeepLinkInfo</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span id="need_update_application"><span class="annot"><span class="annottext">DeepLinkInfo -&gt; Maybe Bool
 </span><a href="TD.Data.DeepLinkInfo.html#need_update_application"><span class="hs-identifier hs-var hs-var">need_update_application</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-16"></span><span>    </span><span id="text"><span class="annot"><span class="annottext">DeepLinkInfo -&gt; Maybe FormattedText
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span id="text"><span class="annot"><span class="annottext">DeepLinkInfo -&gt; Maybe FormattedText
 </span><a href="TD.Data.DeepLinkInfo.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span>
-</span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421005"><span id="local-6989586621679421007"><span class="annot"><span class="annottext">DeepLinkInfo -&gt; DeepLinkInfo -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421005"><span id="local-6989586621679421007"><span class="annot"><span class="annottext">DeepLinkInfo -&gt; DeepLinkInfo -&gt; Bool
 (DeepLinkInfo -&gt; DeepLinkInfo -&gt; Bool)
 -&gt; (DeepLinkInfo -&gt; DeepLinkInfo -&gt; Bool) -&gt; Eq DeepLinkInfo
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -26,61 +27,61 @@ $c/= :: DeepLinkInfo -&gt; DeepLinkInfo -&gt; Bool
 == :: DeepLinkInfo -&gt; DeepLinkInfo -&gt; Bool
 $c== :: DeepLinkInfo -&gt; DeepLinkInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420999"><span id="local-6989586621679421002"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679420997"><span class="annot"><span class="annottext">show :: DeepLinkInfo -&gt; String
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420999"><span id="local-6989586621679421002"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679420997"><span class="annot"><span class="annottext">show :: DeepLinkInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span><span>
-</span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_update_application :: DeepLinkInfo -&gt; Maybe Bool
+</span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span><span>
+</span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_update_application :: DeepLinkInfo -&gt; Maybe Bool
 </span><a href="TD.Data.DeepLinkInfo.html#need_update_application"><span class="hs-identifier hs-var">need_update_application</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420995"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679420995"><span class="hs-identifier hs-var">need_update_application_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">text :: DeepLinkInfo -&gt; Maybe FormattedText
+</span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">text :: DeepLinkInfo -&gt; Maybe FormattedText
 </span><a href="TD.Data.DeepLinkInfo.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420994"><span class="annot"><span class="annottext">Maybe FormattedText
 </span><a href="#local-6989586621679420994"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
-</span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;DeepLinkInfo&quot;</span></span><span>
-</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-28"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+</span><span id="line-29"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;need_update_application&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679420995"><span class="hs-identifier hs-var">need_update_application_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe FormattedText -&gt; String
+</span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe FormattedText -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
 </span><a href="#local-6989586621679420994"><span class="hs-identifier hs-var">text_</span></a></span><span>
-</span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420989"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679420987"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeepLinkInfo
+</span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420989"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679420987"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeepLinkInfo
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679420985"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679420985"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679420983"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679420983"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679420982"><span class="annot"><span class="annottext">String
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679420982"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679420982"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679420983"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679420982"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-37"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;deepLinkInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeepLinkInfo
 </span><a href="#local-6989586621679420980"><span class="hs-identifier hs-var">parseDeepLinkInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679420985"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeepLinkInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-39"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span>      </span><span class="annot"><a href="#local-6989586621679420980"><span class="hs-identifier hs-type">parseDeepLinkInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span><span>
-</span><span id="line-41"></span><span>      </span><span id="local-6989586621679420980"><span class="annot"><span class="annottext">parseDeepLinkInfo :: Value -&gt; Parser DeepLinkInfo
+</span><span id="line-40"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span>      </span><span class="annot"><a href="#local-6989586621679420980"><span class="hs-identifier hs-type">parseDeepLinkInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span><span>
+</span><span id="line-42"></span><span>      </span><span id="local-6989586621679420980"><span class="annot"><span class="annottext">parseDeepLinkInfo :: Value -&gt; Parser DeepLinkInfo
 </span><a href="#local-6989586621679420980"><span class="hs-identifier hs-var hs-var">parseDeepLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeepLinkInfo) -&gt; Value -&gt; Parser DeepLinkInfo
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -90,19 +91,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679420978"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679420978"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>        </span><span id="local-6989586621679420977"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-43"></span><span>        </span><span id="local-6989586621679420977"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679420977"><span class="hs-identifier hs-var">need_update_application_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679420978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;need_update_application&quot;</span></span><span>
-</span><span id="line-43"></span><span>        </span><span id="local-6989586621679420975"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><span id="line-44"></span><span>        </span><span id="local-6989586621679420975"><span class="annot"><span class="annottext">Maybe FormattedText
 </span><a href="#local-6989586621679420975"><span class="hs-identifier hs-var">text_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679420978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FormattedText)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;text&quot;</span></span><span>
-</span><span id="line-44"></span><span>        </span><span class="annot"><span class="annottext">DeepLinkInfo -&gt; Parser DeepLinkInfo
+</span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">DeepLinkInfo -&gt; Parser DeepLinkInfo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(DeepLinkInfo -&gt; Parser DeepLinkInfo)
 -&gt; DeepLinkInfo -&gt; Parser DeepLinkInfo
@@ -113,39 +114,39 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="#local-6989586621679420977"><span class="hs-identifier hs-var">need_update_application_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: Maybe FormattedText
 </span><a href="TD.Data.DeepLinkInfo.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
 </span><a href="#local-6989586621679420975"><span class="hs-identifier hs-var">text_</span></a></span><span class="hs-special">}</span><span>
-</span><span id="line-45"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span id="line-46"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser DeepLinkInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420968"><span id="local-6989586621679420970"><span id="local-6989586621679420972"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>  </span><span id="local-6989586621679420966"><span class="annot"><span class="annottext">toJSON :: DeepLinkInfo -&gt; Value
+</span><span id="line-47"></span><span>
+</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420968"><span id="local-6989586621679420970"><span id="local-6989586621679420972"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-49"></span><span>  </span><span id="local-6989586621679420966"><span class="annot"><span class="annottext">toJSON :: DeepLinkInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-49"></span><span>    </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span><span>
-</span><span id="line-50"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_update_application :: DeepLinkInfo -&gt; Maybe Bool
+</span><span id="line-50"></span><span>    </span><span class="annot"><a href="TD.Data.DeepLinkInfo.html#DeepLinkInfo"><span class="hs-identifier hs-type">DeepLinkInfo</span></a></span><span>
+</span><span id="line-51"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_update_application :: DeepLinkInfo -&gt; Maybe Bool
 </span><a href="TD.Data.DeepLinkInfo.html#need_update_application"><span class="hs-identifier hs-var">need_update_application</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420964"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679420964"><span class="hs-identifier hs-var">need_update_application_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-51"></span><span>        </span><span class="annot"><span class="annottext">text :: DeepLinkInfo -&gt; Maybe FormattedText
+</span><span id="line-52"></span><span>        </span><span class="annot"><span class="annottext">text :: DeepLinkInfo -&gt; Maybe FormattedText
 </span><a href="TD.Data.DeepLinkInfo.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420963"><span class="annot"><span class="annottext">Maybe FormattedText
 </span><a href="#local-6989586621679420963"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
-</span><span id="line-52"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-53"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-53"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-54"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-54"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-55"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;deepLinkInfo&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-55"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-56"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;need_update_application&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679420964"><span class="hs-identifier hs-var">need_update_application_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-56"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-57"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
 </span><a href="#local-6989586621679420963"><span class="hs-identifier hs-var">text_</span></a></span><span>
-</span><span id="line-57"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-58"></span></pre></body></html>
+</span><span id="line-58"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-59"></span></pre></body></html>

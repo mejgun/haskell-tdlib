@@ -9,6 +9,7 @@ import qualified TD.Data.BotInfo as BotInfo
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified Utils as U
 
+-- |
 data UserFullInfo = -- | Contains full information about a user
   UserFullInfo
   { -- | For bots, information about the bot; may be null

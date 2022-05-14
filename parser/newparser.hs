@@ -12,6 +12,7 @@ import Data.Char (isSpace)
 import qualified Data.Char as C
 import qualified Data.List as L
 import qualified Data.List.Extra as LE
+import qualified Data.Maybe as M
 import Text.Printf (printf)
 
 data Entry
@@ -47,32 +48,33 @@ type ImportRecord = (String, String)
 main :: IO ()
 main = do
   [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
-  let dt = filter (not . null) . map strip $ LE.splitOn "\n" d
-  let a0 =
-        map fixConstructors
-          . filter (not . isJunk)
-          $ foldl parse [] dt
-  let fun = filter (not . null) . map strip $ LE.splitOn "\n" f
-  let f0 = map fixConstructors $ foldl parse [] fun
-  -- let b = foldr structureData (Nothing, []) a
-  -- let a1 = foldl addGeneralResult [] a0
-  -- let a = fixArgsKeys a0 []
-  let (import', b) = foldl (fixArgTypes True) ([], []) a0
-  let (importFun', f1) = foldl (fixArgTypes False) ([], []) f0
-  -- let imports = uniq import'
+  let (import', d1) = foldl (fixArgTypes True) ([], []) . toEntries . split $ d
+  let (importFun', f1) = foldl (fixArgTypes False) ([], []) . toEntries . split $ f
   let recImports' = uniq . findRecursiions $ uniq import'
   let (okImports, recurImports) = sortImports import' recImports'
-  let (Nothing, Nothing, c) = foldl insertComments (Nothing, Nothing, []) b
+  let (Nothing, Nothing, d2) = foldl insertComments (Nothing, Nothing, []) d1
   let (Nothing, Nothing, f2) = foldl insertComments (Nothing, Nothing, []) f1
-  let c1 = foldl groupDataItems [] c
-  let dat = map fixArgsKeys c1
-  let f3 = concatMap ((\(_, _, x) -> x) . fixArgsKeys . (\x -> ("a", [], [x]))) f2
+  let d3 = foldl groupDataItems [] d2
+  let d4 = map fixArgsKeys d3
+  let f3 = fixFunArgKeys f2
   mapM_ print importFun'
   mapM_ print f3
-  writeData okImports recurImports dat
+  writeData okImports recurImports d4
   writeFuncs importFun' f3
-  writeGeneralResult dat
+  writeGeneralResult d4
   writeDataBoot recImports'
+  where
+    split :: String -> [String]
+    split = filter (not . null) . map strip . lines
+
+    toEntries :: [String] -> [Entry]
+    toEntries =
+      map fixConstructors
+        . filter (not . isJunk)
+        . foldl parse []
+
+    fixFunArgKeys :: [Entry] -> [Entry]
+    fixFunArgKeys = concatMap ((\(_, _, x) -> x) . fixArgsKeys . (\x -> ("a", [], [x])))
 
 dataFileMask :: String
 dataFileMask = "../src/TD/Data/%s.hs"
@@ -262,7 +264,7 @@ writeData imps recimps (q@(nam, _, _) : t) = do
           L.intercalate "\n" (map (\(_, a) -> printf "import {-# SOURCE #-} qualified %s.%s as %s" dataModule a a) recs),
           "",
           case cm of
-            Nothing -> ""
+            Nothing -> "-- |"
             Just c -> do
               printf "-- | %s" (comment c),
           printf "data %s =" n,
@@ -498,9 +500,7 @@ insertComments (q@(Just _), Nothing, acc) (ArgComment n c) =
 insertComments (Just i, Just arg, acc) (ArgComment n c) =
   (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = ""}, acc)
 insertComments (it, a, acc) q@(Item cl con _ arg) = do
-  let i = case it of
-        Nothing -> q
-        Just ii -> ii
+  let i = M.fromMaybe q it
   let i1 = case a of
         Nothing -> i
         Just ar -> i {args = args i ++ [ar]}
@@ -663,7 +663,7 @@ splitToItems =
 
 itemToEntry :: String -> Entry
 itemToEntry x = do
-  let splited = filter (/= "") . map strip $ LE.splitOn "\n" x
+  let splited = filter (/= "") . map strip $ lines x
   let comments = head splited : map (T.dropWhile (== '/')) (filter (L.isPrefixOf "//") splited)
   let [dat] = filter (not . L.isPrefixOf "//") $ tail splited
   let (a, name) = LE.breakOn "=" dat

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified Utils as U
 
+-- |
 data LocalizationTargetInfo = -- | Contains information about the current localization target @language_packs List of available language packs for this application
   LocalizationTargetInfo
   { -- |

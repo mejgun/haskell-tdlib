@@ -10,6 +10,7 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Photo as Photo
 import qualified Utils as U
 
+-- |
 data Game = -- | Describes a game @id Game ID @short_name Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name} @title Game title @text Game text, usually containing scoreboards for a game
   Game
   { -- |

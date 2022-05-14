@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageForwardOrigin as MessageForwardOrigin
 import qualified Utils as U
 
+-- |
 data MessageForwardInfo = -- | Contains information about a forwarded message
   MessageForwardInfo
   { -- | For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the original message from which the new message was forwarded last time; 0 if unknown

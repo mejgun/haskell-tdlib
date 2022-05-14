@@ -9,22 +9,23 @@
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.MessageReplyInfo.html"><span class="hs-identifier">TD.Data.MessageReplyInfo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageReplyInfo</span></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="MessageInteractionInfo"><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-var">MessageInteractionInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains information about interactions with a message</span><span>
-</span><span id="line-13"></span><span>  </span><span id="MessageInteractionInfo"><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-var">MessageInteractionInfo</span></a></span></span><span>
-</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | The list of reactions added to the message</span><span>
-</span><span id="line-15"></span><span>    </span><span id="reactions"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe [MessageReaction]
+</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="MessageInteractionInfo"><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-var">MessageInteractionInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains information about interactions with a message</span><span>
+</span><span id="line-14"></span><span>  </span><span id="MessageInteractionInfo"><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-var">MessageInteractionInfo</span></a></span></span><span>
+</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | The list of reactions added to the message</span><span>
+</span><span id="line-16"></span><span>    </span><span id="reactions"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe [MessageReaction]
 </span><a href="TD.Data.MessageInteractionInfo.html#reactions"><span class="hs-identifier hs-var hs-var">reactions</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.MessageReaction.html#MessageReaction"><span class="hs-identifier hs-type">MessageReaction.MessageReaction</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself</span><span>
-</span><span id="line-17"></span><span>    </span><span id="reply_info"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe MessageReplyInfo
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself</span><span>
+</span><span id="line-18"></span><span>    </span><span id="reply_info"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe MessageReplyInfo
 </span><a href="TD.Data.MessageInteractionInfo.html#reply_info"><span class="hs-identifier hs-var hs-var">reply_info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.MessageReplyInfo.html#MessageReplyInfo"><span class="hs-identifier hs-type">MessageReplyInfo.MessageReplyInfo</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Number of times the message was forwarded</span><span>
-</span><span id="line-19"></span><span>    </span><span id="forward_count"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe Int
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Number of times the message was forwarded</span><span>
+</span><span id="line-20"></span><span>    </span><span id="forward_count"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe Int
 </span><a href="TD.Data.MessageInteractionInfo.html#forward_count"><span class="hs-identifier hs-var hs-var">forward_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Number of times the message was viewed</span><span>
-</span><span id="line-21"></span><span>    </span><span id="view_count"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe Int
+</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | Number of times the message was viewed</span><span>
+</span><span id="line-22"></span><span>    </span><span id="view_count"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Maybe Int
 </span><a href="TD.Data.MessageInteractionInfo.html#view_count"><span class="hs-identifier hs-var hs-var">view_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409751"><span id="local-6989586621679409753"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; MessageInteractionInfo -&gt; Bool
+</span><span id="line-23"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409751"><span id="local-6989586621679409753"><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; MessageInteractionInfo -&gt; Bool
 (MessageInteractionInfo -&gt; MessageInteractionInfo -&gt; Bool)
 -&gt; (MessageInteractionInfo -&gt; MessageInteractionInfo -&gt; Bool)
 -&gt; Eq MessageInteractionInfo
@@ -34,77 +35,77 @@ $c/= :: MessageInteractionInfo -&gt; MessageInteractionInfo -&gt; Bool
 == :: MessageInteractionInfo -&gt; MessageInteractionInfo -&gt; Bool
 $c== :: MessageInteractionInfo -&gt; MessageInteractionInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409745"><span id="local-6989586621679409748"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679409743"><span class="annot"><span class="annottext">show :: MessageInteractionInfo -&gt; String
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409745"><span id="local-6989586621679409748"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679409743"><span class="annot"><span class="annottext">show :: MessageInteractionInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span><span>
-</span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reactions :: MessageInteractionInfo -&gt; Maybe [MessageReaction]
+</span><span id="line-28"></span><span>    </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span><span>
+</span><span id="line-29"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reactions :: MessageInteractionInfo -&gt; Maybe [MessageReaction]
 </span><a href="TD.Data.MessageInteractionInfo.html#reactions"><span class="hs-identifier hs-var">reactions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409741"><span class="annot"><span class="annottext">Maybe [MessageReaction]
 </span><a href="#local-6989586621679409741"><span class="hs-identifier hs-var">reactions_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">reply_info :: MessageInteractionInfo -&gt; Maybe MessageReplyInfo
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">reply_info :: MessageInteractionInfo -&gt; Maybe MessageReplyInfo
 </span><a href="TD.Data.MessageInteractionInfo.html#reply_info"><span class="hs-identifier hs-var">reply_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409740"><span class="annot"><span class="annottext">Maybe MessageReplyInfo
 </span><a href="#local-6989586621679409740"><span class="hs-identifier hs-var">reply_info_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">forward_count :: MessageInteractionInfo -&gt; Maybe Int
+</span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">forward_count :: MessageInteractionInfo -&gt; Maybe Int
 </span><a href="TD.Data.MessageInteractionInfo.html#forward_count"><span class="hs-identifier hs-var">forward_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409739"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409739"><span class="hs-identifier hs-var">forward_count_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">view_count :: MessageInteractionInfo -&gt; Maybe Int
+</span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">view_count :: MessageInteractionInfo -&gt; Maybe Int
 </span><a href="TD.Data.MessageInteractionInfo.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409738"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409738"><span class="hs-identifier hs-var">view_count_</span></a></span></span><span>
-</span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MessageInteractionInfo&quot;</span></span><span>
-</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-35"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [MessageReaction] -&gt; String
+</span><span id="line-36"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [MessageReaction] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reactions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [MessageReaction]
 </span><a href="#local-6989586621679409741"><span class="hs-identifier hs-var">reactions_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageReplyInfo -&gt; String
+</span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageReplyInfo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reply_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageReplyInfo
 </span><a href="#local-6989586621679409740"><span class="hs-identifier hs-var">reply_info_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;forward_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409739"><span class="hs-identifier hs-var">forward_count_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><span id="line-39"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;view_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409738"><span class="hs-identifier hs-var">view_count_</span></a></span><span>
-</span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409733"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>  </span><span id="local-6989586621679409731"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageInteractionInfo
+</span><span id="line-40"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-41"></span><span>
+</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409733"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679409731"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageInteractionInfo
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679409729"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679409729"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679409727"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679409727"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>    </span><span id="local-6989586621679409726"><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679409726"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679409726"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679409727"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>
+</span><span id="line-46"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679409726"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-46"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageInteractionInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageInteractionInfo
 </span><a href="#local-6989586621679409724"><span class="hs-identifier hs-var">parseMessageInteractionInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679409729"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser MessageInteractionInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-48"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>      </span><span class="annot"><a href="#local-6989586621679409724"><span class="hs-identifier hs-type">parseMessageInteractionInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span><span>
-</span><span id="line-50"></span><span>      </span><span id="local-6989586621679409724"><span class="annot"><span class="annottext">parseMessageInteractionInfo :: Value -&gt; Parser MessageInteractionInfo
+</span><span id="line-49"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679409724"><span class="hs-identifier hs-type">parseMessageInteractionInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span><span>
+</span><span id="line-51"></span><span>      </span><span id="local-6989586621679409724"><span class="annot"><span class="annottext">parseMessageInteractionInfo :: Value -&gt; Parser MessageInteractionInfo
 </span><a href="#local-6989586621679409724"><span class="hs-identifier hs-var hs-var">parseMessageInteractionInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageInteractionInfo)
 -&gt; Value
@@ -119,19 +120,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409722"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679409722"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-51"></span><span>        </span><span id="local-6989586621679409721"><span class="annot"><span class="annottext">Maybe [MessageReaction]
+</span><span id="line-52"></span><span>        </span><span id="local-6989586621679409721"><span class="annot"><span class="annottext">Maybe [MessageReaction]
 </span><a href="#local-6989586621679409721"><span class="hs-identifier hs-var">reactions_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679409722"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [MessageReaction])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reactions&quot;</span></span><span>
-</span><span id="line-52"></span><span>        </span><span id="local-6989586621679409719"><span class="annot"><span class="annottext">Maybe MessageReplyInfo
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679409719"><span class="annot"><span class="annottext">Maybe MessageReplyInfo
 </span><a href="#local-6989586621679409719"><span class="hs-identifier hs-var">reply_info_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679409722"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageReplyInfo)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_info&quot;</span></span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679409718"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679409718"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409718"><span class="hs-identifier hs-var">forward_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
@@ -147,7 +148,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;forward_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-54"></span><span>        </span><span id="local-6989586621679409715"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-55"></span><span>        </span><span id="local-6989586621679409715"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409715"><span class="hs-identifier hs-var">view_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Object
@@ -163,7 +164,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;view_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Parser MessageInteractionInfo
+</span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">MessageInteractionInfo -&gt; Parser MessageInteractionInfo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(MessageInteractionInfo -&gt; Parser MessageInteractionInfo)
 -&gt; MessageInteractionInfo -&gt; Parser MessageInteractionInfo
@@ -182,55 +183,55 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="#local-6989586621679409718"><span class="hs-identifier hs-var">forward_count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">view_count :: Maybe Int
 </span><a href="TD.Data.MessageInteractionInfo.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409715"><span class="hs-identifier hs-var">view_count_</span></a></span><span class="hs-special">}</span><span>
-</span><span id="line-56"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span id="line-57"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser MessageInteractionInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409708"><span id="local-6989586621679409710"><span id="local-6989586621679409712"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679409706"><span class="annot"><span class="annottext">toJSON :: MessageInteractionInfo -&gt; Value
+</span><span id="line-58"></span><span>
+</span><span id="line-59"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409708"><span id="local-6989586621679409710"><span id="local-6989586621679409712"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-60"></span><span>  </span><span id="local-6989586621679409706"><span class="annot"><span class="annottext">toJSON :: MessageInteractionInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-60"></span><span>    </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span><span>
-</span><span id="line-61"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reactions :: MessageInteractionInfo -&gt; Maybe [MessageReaction]
+</span><span id="line-61"></span><span>    </span><span class="annot"><a href="TD.Data.MessageInteractionInfo.html#MessageInteractionInfo"><span class="hs-identifier hs-type">MessageInteractionInfo</span></a></span><span>
+</span><span id="line-62"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reactions :: MessageInteractionInfo -&gt; Maybe [MessageReaction]
 </span><a href="TD.Data.MessageInteractionInfo.html#reactions"><span class="hs-identifier hs-var">reactions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409704"><span class="annot"><span class="annottext">Maybe [MessageReaction]
 </span><a href="#local-6989586621679409704"><span class="hs-identifier hs-var">reactions_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">reply_info :: MessageInteractionInfo -&gt; Maybe MessageReplyInfo
+</span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">reply_info :: MessageInteractionInfo -&gt; Maybe MessageReplyInfo
 </span><a href="TD.Data.MessageInteractionInfo.html#reply_info"><span class="hs-identifier hs-var">reply_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409703"><span class="annot"><span class="annottext">Maybe MessageReplyInfo
 </span><a href="#local-6989586621679409703"><span class="hs-identifier hs-var">reply_info_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">forward_count :: MessageInteractionInfo -&gt; Maybe Int
+</span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">forward_count :: MessageInteractionInfo -&gt; Maybe Int
 </span><a href="TD.Data.MessageInteractionInfo.html#forward_count"><span class="hs-identifier hs-var">forward_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409702"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409702"><span class="hs-identifier hs-var">forward_count_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">view_count :: MessageInteractionInfo -&gt; Maybe Int
+</span><span id="line-65"></span><span>        </span><span class="annot"><span class="annottext">view_count :: MessageInteractionInfo -&gt; Maybe Int
 </span><a href="TD.Data.MessageInteractionInfo.html#view_count"><span class="hs-identifier hs-var">view_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409701"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409701"><span class="hs-identifier hs-var">view_count_</span></a></span></span><span>
-</span><span id="line-65"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-66"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-66"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-67"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-67"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-68"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;messageInteractionInfo&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-68"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reactions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [MessageReaction] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [MessageReaction]
 </span><a href="#local-6989586621679409704"><span class="hs-identifier hs-var">reactions_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageReplyInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageReplyInfo
 </span><a href="#local-6989586621679409703"><span class="hs-identifier hs-var">reply_info_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;forward_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409702"><span class="hs-identifier hs-var">forward_count_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-72"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;view_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679409701"><span class="hs-identifier hs-var">view_count_</span></a></span><span>
-</span><span id="line-72"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-73"></span></pre></body></html>
+</span><span id="line-73"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-74"></span></pre></body></html>

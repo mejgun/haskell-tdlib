@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data HttpUrl = -- | Contains an HTTP URL @url The URL
   HttpUrl
   { -- |

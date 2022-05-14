@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatMember as ChatMember
 import qualified Utils as U
 
+-- |
 data ChatMembers = -- | Contains a list of chat members @total_count Approximate total number of chat members found @members A list of chat members
   ChatMembers
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data Ok
   = -- | An object of this type is returned on a successful function call for certain functions
     Ok

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.LabeledPricePart as LabeledPricePart
 import qualified Utils as U
 
+-- |
 data ShippingOption = -- | One shipping option @id Shipping option identifier @title Option title @price_parts A list of objects used to calculate the total shipping costs
   ShippingOption
   { -- |

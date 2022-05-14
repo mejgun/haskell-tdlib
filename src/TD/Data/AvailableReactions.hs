@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data AvailableReactions = -- | Represents a list of available reactions @reactions List of reactions
   AvailableReactions
   { -- |

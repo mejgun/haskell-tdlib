@@ -9,6 +9,7 @@ import qualified TD.Data.Background as Background
 import qualified TD.Data.BackgroundFill as BackgroundFill
 import qualified Utils as U
 
+-- |
 data ThemeSettings = -- | Describes theme settings
   ThemeSettings
   { -- | Accent color of outgoing messages in ARGB format

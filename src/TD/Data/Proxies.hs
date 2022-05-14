@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Proxy as Proxy
 import qualified Utils as U
 
+-- |
 data Proxies = -- | Represents a list of proxy servers @proxies List of proxy servers
   Proxies
   { -- |

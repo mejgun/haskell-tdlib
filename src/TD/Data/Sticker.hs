@@ -11,6 +11,7 @@ import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
+-- |
 data Sticker = -- | Describes a sticker @set_id The identifier of the sticker set to which the sticker belongs; 0 if none @width Sticker width; as defined by the sender @height Sticker height; as defined by the sender
   Sticker
   { -- |

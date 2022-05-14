@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Message as Message
 import qualified Utils as U
 
+-- |
 data MessageCalendarDay = -- | Contains information about found messages sent on a specific day @total_count Total number of found messages sent on the day @message First message sent on the day
   MessageCalendarDay
   { -- |

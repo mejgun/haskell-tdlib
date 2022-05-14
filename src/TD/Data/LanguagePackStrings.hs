@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified Utils as U
 
+-- |
 data LanguagePackStrings = -- | Contains a list of language pack strings @strings A list of language pack strings
   LanguagePackStrings
   { -- |

@@ -11,6 +11,7 @@ import qualified TD.Data.Photo as Photo
 import qualified TD.Data.ShippingOption as ShippingOption
 import qualified Utils as U
 
+-- |
 data PaymentReceipt = -- | Contains information about a successful payment
   PaymentReceipt
   { -- | The amount of tip chosen by the buyer in the smallest units of the currency

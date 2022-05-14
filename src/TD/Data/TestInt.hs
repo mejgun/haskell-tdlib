@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data TestInt = -- | A simple object containing a number; for testing only @value Number
   TestInt
   { -- |

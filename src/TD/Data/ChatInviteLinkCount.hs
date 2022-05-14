@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatInviteLinkCount = -- | Describes a chat administrator with a number of active and revoked chat invite links
   ChatInviteLinkCount
   { -- | Number of revoked invite links

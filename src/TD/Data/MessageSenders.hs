@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data MessageSenders = -- | Represents a list of message senders @total_count Approximate total number of messages senders found @senders List of message senders
   MessageSenders
   { -- |

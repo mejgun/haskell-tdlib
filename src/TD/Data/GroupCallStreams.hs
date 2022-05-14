@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.GroupCallStream as GroupCallStream
 import qualified Utils as U
 
+-- |
 data GroupCallStreams = -- | Represents a list of group call streams @streams A list of group call streams
   GroupCallStreams
   { -- |

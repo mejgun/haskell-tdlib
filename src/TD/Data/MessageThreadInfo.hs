@@ -10,6 +10,7 @@ import qualified TD.Data.Message as Message
 import qualified TD.Data.MessageReplyInfo as MessageReplyInfo
 import qualified Utils as U
 
+-- |
 data MessageThreadInfo = -- | Contains information about a message thread
   MessageThreadInfo
   { -- | A draft of a message in the message thread; may be null

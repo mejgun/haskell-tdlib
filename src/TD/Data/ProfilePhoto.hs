@@ -9,6 +9,7 @@ import qualified TD.Data.File as File
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified Utils as U
 
+-- |
 data ProfilePhoto = -- | Describes a user profile photo @id Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
   ProfilePhoto
   { -- | True, if the photo has animated variant

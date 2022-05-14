@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data VideoChat = -- | Describes a video chat
   VideoChat
   { -- | Default group call participant identifier to join the video chat; may be null

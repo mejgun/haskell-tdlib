@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data StorageStatisticsFast = -- | Contains approximate storage usage statistics, excluding files of unknown file type @files_size Approximate total size of files, in bytes @file_count Approximate number of files
   StorageStatisticsFast
   { -- |

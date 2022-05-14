@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.InlineKeyboardButtonType as InlineKeyboardButtonType
 import qualified Utils as U
 
+-- |
 data InlineKeyboardButton = -- | Represents a single button in an inline keyboard @text Text of the button @type Type of the button
   InlineKeyboardButton
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data TestBytes = -- | A simple object containing a sequence of bytes; for testing only @value Bytes
   TestBytes
   { -- |

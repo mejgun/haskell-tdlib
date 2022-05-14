@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatNearby as ChatNearby
 import qualified Utils as U
 
+-- |
 data ChatsNearby = -- | Represents a list of chats located nearby @users_nearby List of users nearby @supergroups_nearby List of location-based supergroups nearby
   ChatsNearby
   { -- |

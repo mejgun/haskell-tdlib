@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Sticker as Sticker
 import qualified Utils as U
 
+-- |
 data Stickers = -- | Represents a list of stickers @stickers List of stickers
   Stickers
   { -- |

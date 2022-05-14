@@ -15,6 +15,7 @@ import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified Utils as U
 
+-- |
 data Message = -- | Describes a message
   Message
   { -- | Reply markup for the message; may be null

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatPermissions = -- | Describes actions that a user is allowed to take in a chat
   ChatPermissions
   { -- | True, if the user can pin messages

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.LabeledPricePart as LabeledPricePart
 import qualified Utils as U
 
+-- |
 data Invoice = -- | Product invoice @currency ISO 4217 currency code
   Invoice
   { -- | True, if the total price depends on the shipping method

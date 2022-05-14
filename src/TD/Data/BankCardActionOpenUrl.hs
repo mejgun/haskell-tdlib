@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data BankCardActionOpenUrl = -- | Describes an action associated with a bank card number @text Action text @url The URL to be opened
   BankCardActionOpenUrl
   { -- |

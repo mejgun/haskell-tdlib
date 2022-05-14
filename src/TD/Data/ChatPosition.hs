@@ -9,6 +9,7 @@ import qualified TD.Data.ChatList as ChatList
 import qualified TD.Data.ChatSource as ChatSource
 import qualified Utils as U
 
+-- |
 data ChatPosition = -- | Describes a position of a chat in a chat list
   ChatPosition
   { -- | Source of the chat in the chat list; may be null

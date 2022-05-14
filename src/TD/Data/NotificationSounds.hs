@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.NotificationSound as NotificationSound
 import qualified Utils as U
 
+-- |
 data NotificationSounds = -- | Contains a list of notification sounds @notification_sounds A list of notification sounds
   NotificationSounds
   { -- |

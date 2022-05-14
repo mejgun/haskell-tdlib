@@ -11,6 +11,7 @@ import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
+-- |
 data StickerSetInfo = -- | Represents short information about a sticker set
   StickerSetInfo
   { -- |

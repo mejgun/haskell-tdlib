@@ -9,6 +9,7 @@ import qualified TD.Data.File as File
 import qualified TD.Data.ThumbnailFormat as ThumbnailFormat
 import qualified Utils as U
 
+-- |
 data Thumbnail = -- | Represents a thumbnail @format Thumbnail format @width Thumbnail width @height Thumbnail height @file The thumbnail
   Thumbnail
   { -- |

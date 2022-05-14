@@ -11,6 +11,7 @@ import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified Utils as U
 
+-- |
 data SupergroupFullInfo = -- | Contains full information about a supergroup or channel
   SupergroupFullInfo
   { -- | Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none

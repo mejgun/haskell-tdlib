@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data UnreadReaction = -- | Contains information about an unread reaction to a message
   UnreadReaction
   { -- | True, if the reaction was added with a big animation

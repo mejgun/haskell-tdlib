@@ -9,6 +9,7 @@ import qualified TD.Data.AttachmentMenuBotColor as AttachmentMenuBotColor
 import qualified TD.Data.File as File
 import qualified Utils as U
 
+-- |
 data AttachmentMenuBot = -- | Represents a bot added to attachment menu
   AttachmentMenuBot
   { -- | Color to highlight selected icon of the bot if appropriate; may be null

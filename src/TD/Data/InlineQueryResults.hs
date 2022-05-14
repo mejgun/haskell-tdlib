@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.InlineQueryResult as InlineQueryResult
 import qualified Utils as U
 
+-- |
 data InlineQueryResults = -- | Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query @inline_query_id Unique identifier of the inline query @next_offset The offset for the next request. If empty, there are no more results @results Results of the query
   InlineQueryResults
   { -- |

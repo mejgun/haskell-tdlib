@@ -9,6 +9,7 @@ import qualified TD.Data.PollOption as PollOption
 import qualified TD.Data.PollType as PollType
 import qualified Utils as U
 
+-- |
 data Poll = -- | Describes a poll @id Unique poll identifier @question Poll question; 1-300 characters @options List of poll answer options
   Poll
   { -- |

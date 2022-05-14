@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatNearby = -- | Describes a chat located nearby @chat_id Chat identifier @distance Distance to the chat location, in meters
   ChatNearby
   { -- |

@@ -11,6 +11,7 @@ import qualified TD.Data.ChatMember as ChatMember
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified Utils as U
 
+-- |
 data BasicGroupFullInfo = -- | Contains full information about a basic group
   BasicGroupFullInfo
   { -- | List of commands of bots in the group

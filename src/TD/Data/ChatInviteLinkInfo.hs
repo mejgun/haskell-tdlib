@@ -9,6 +9,7 @@ import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
 import qualified TD.Data.ChatType as ChatType
 import qualified Utils as U
 
+-- |
 data ChatInviteLinkInfo = -- | Contains information about a chat invite link
   ChatInviteLinkInfo
   { -- | True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup

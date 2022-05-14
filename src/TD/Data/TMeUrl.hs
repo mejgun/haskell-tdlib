@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.TMeUrlType as TMeUrlType
 import qualified Utils as U
 
+-- |
 data TMeUrl = -- | Represents a URL linking to an internal Telegram entity @url URL @type Type of the URL
   TMeUrl
   { -- |

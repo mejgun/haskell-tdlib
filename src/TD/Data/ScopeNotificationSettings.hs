@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ScopeNotificationSettings = -- | Contains information about notification settings for several chats
   ScopeNotificationSettings
   { -- | True, if notifications for messages with mentions will be created as for an ordinary unread message

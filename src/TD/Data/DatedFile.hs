@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.File as File
 import qualified Utils as U
 
+-- |
 data DatedFile = -- | File with the date it was uploaded @file The file @date Point in time (Unix timestamp) when the file was uploaded
   DatedFile
   { -- |

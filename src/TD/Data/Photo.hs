@@ -9,6 +9,7 @@ import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.PhotoSize as PhotoSize
 import qualified Utils as U
 
+-- |
 data Photo = -- | Describes a photo @has_stickers True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
   Photo
   { -- |

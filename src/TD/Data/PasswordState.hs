@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 import qualified Utils as U
 
+-- |
 data PasswordState = -- | Represents the current state of 2-step verification @has_password True, if a 2-step verification password is set @password_hint Hint for the password; may be empty
   PasswordState
   { -- | If not 0, point in time (Unix timestamp) after which the password can be reset immediately using resetPassword

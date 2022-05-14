@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Date as Date
 import qualified Utils as U
 
+-- |
 data PersonalDetails = -- | Contains the user's personal details
   PersonalDetails
   { -- |

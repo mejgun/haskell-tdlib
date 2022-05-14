@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.NetworkStatisticsEntry as NetworkStatisticsEntry
 import qualified Utils as U
 
+-- |
 data NetworkStatistics = -- | A full list of available network statistic entries @since_date Point in time (Unix timestamp) from which the statistics are collected @entries Network statistics entries
   NetworkStatistics
   { -- |

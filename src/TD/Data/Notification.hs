@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.NotificationType as NotificationType
 import qualified Utils as U
 
+-- |
 data Notification = -- | Contains information about a notification @id Unique persistent identifier of this notification @date Notification date
   Notification
   { -- |

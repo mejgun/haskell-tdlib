@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data Seconds = -- | Contains a value representing a number of seconds @seconds Number of seconds
   Seconds
   { -- |

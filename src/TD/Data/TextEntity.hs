@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.TextEntityType as TextEntityType
 import qualified Utils as U
 
+-- |
 data TextEntity = -- | Represents a part of the text that needs to be formatted in some unusual way @offset Offset of the entity, in UTF-16 code units @length Length of the entity, in UTF-16 code units @type Type of the entity
   TextEntity
   { -- |

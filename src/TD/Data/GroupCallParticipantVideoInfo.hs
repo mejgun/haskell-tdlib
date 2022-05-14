@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.GroupCallVideoSourceGroup as GroupCallVideoSourceGroup
 import qualified Utils as U
 
+-- |
 data GroupCallParticipantVideoInfo = -- | Contains information about a group call participant's video channel @source_groups List of synchronization source groups of the video @endpoint_id Video channel endpoint identifier
   GroupCallParticipantVideoInfo
   { -- | True if the video is paused. This flag needs to be ignored, if new video frames are received

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data AddedReaction = -- | Represents a reaction applied to a message @reaction Text representation of the reaction @sender_id Identifier of the chat member, applied the reaction
   AddedReaction
   { -- |

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.File as File
 import qualified Utils as U
 
+-- |
 data AnimatedChatPhoto = -- | Animated variant of a chat photo in MPEG4 format
   AnimatedChatPhoto
   { -- | Timestamp of the frame, used as a static chat photo

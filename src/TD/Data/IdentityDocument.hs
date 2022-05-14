@@ -9,6 +9,7 @@ import qualified TD.Data.Date as Date
 import qualified TD.Data.DatedFile as DatedFile
 import qualified Utils as U
 
+-- |
 data IdentityDocument = -- | An identity document @number Document number; 1-24 characters @expiry_date Document expiry date; may be null if not applicable @front_side Front side of the document
   IdentityDocument
   { -- |

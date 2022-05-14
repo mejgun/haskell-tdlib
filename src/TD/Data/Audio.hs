@@ -10,6 +10,7 @@ import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
+-- |
 data Audio = -- | Describes an audio file. Audio is usually in MP3 or M4A format @duration Duration of the audio, in seconds; as defined by the sender @title Title of the audio; as defined by the sender @performer Performer of the audio; as defined by the sender
   Audio
   { -- |

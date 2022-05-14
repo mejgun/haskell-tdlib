@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Photo as Photo
 import qualified Utils as U
 
+-- |
 data PageBlockRelatedArticle = -- | Contains information about a related article @url Related article URL @title Article title; may be empty @param_description Article description; may be empty
   PageBlockRelatedArticle
   { -- |

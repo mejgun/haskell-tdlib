@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Session as Session
 import qualified Utils as U
 
+-- |
 data Sessions = -- | Contains a list of sessions @sessions List of sessions @inactive_session_ttl_days Number of days of inactivity before sessions will automatically be terminated; 1-366 days
   Sessions
   { -- |

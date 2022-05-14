@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatStatisticsAdministratorActionsInfo = -- | Contains statistics about administrator actions done by a user
   ChatStatisticsAdministratorActionsInfo
   { -- | Number of users restricted by the administrator

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.GroupCallRecentSpeaker as GroupCallRecentSpeaker
 import qualified Utils as U
 
+-- |
 data GroupCall = -- | Describes a group call
   GroupCall
   { -- | Call duration, in seconds; for ended calls only

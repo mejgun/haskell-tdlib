@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data Users = -- | Represents a list of users @total_count Approximate total number of users found @user_ids A list of user identifiers
   Users
   { -- |

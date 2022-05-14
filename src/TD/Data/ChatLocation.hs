@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Location as Location
 import qualified Utils as U
 
+-- |
 data ChatLocation = -- | Represents a location to which a chat is connected @location The location @address Location address; 1-64 characters, as defined by the chat owner
   ChatLocation
   { -- |

@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Address as Address
 import qualified Utils as U
 
+-- |
 data OrderInfo = -- | Order information @name Name of the user @phone_number Phone number of the user @email_address Email address of the user @shipping_address Shipping address for this order; may be null
   OrderInfo
   { -- |

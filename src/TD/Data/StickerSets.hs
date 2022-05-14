@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.StickerSetInfo as StickerSetInfo
 import qualified Utils as U
 
+-- |
 data StickerSets = -- | Represents a list of sticker sets @total_count Approximate total number of sticker sets found @sets List of sticker sets
   StickerSets
   { -- |

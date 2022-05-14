@@ -8,13 +8,14 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrator.html"><span class="hs-identifier">TD.Data.ChatAdministrator</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatAdministrator</span></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="ChatAdministrators"><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-var">ChatAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Represents a list of chat administrators @administrators A list of chat administrators</span><span>
-</span><span id="line-12"></span><span>  </span><span id="ChatAdministrators"><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-var">ChatAdministrators</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-14"></span><span>    </span><span id="administrators"><span class="annot"><span class="annottext">ChatAdministrators -&gt; Maybe [ChatAdministrator]
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="ChatAdministrators"><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-var">ChatAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Represents a list of chat administrators @administrators A list of chat administrators</span><span>
+</span><span id="line-13"></span><span>  </span><span id="ChatAdministrators"><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-var">ChatAdministrators</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span id="administrators"><span class="annot"><span class="annottext">ChatAdministrators -&gt; Maybe [ChatAdministrator]
 </span><a href="TD.Data.ChatAdministrators.html#administrators"><span class="hs-identifier hs-var hs-var">administrators</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.ChatAdministrator.html#ChatAdministrator"><span class="hs-identifier hs-type">ChatAdministrator.ChatAdministrator</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679431169"><span id="local-6989586621679431171"><span class="annot"><span class="annottext">ChatAdministrators -&gt; ChatAdministrators -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-17"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679431169"><span id="local-6989586621679431171"><span class="annot"><span class="annottext">ChatAdministrators -&gt; ChatAdministrators -&gt; Bool
 (ChatAdministrators -&gt; ChatAdministrators -&gt; Bool)
 -&gt; (ChatAdministrators -&gt; ChatAdministrators -&gt; Bool)
 -&gt; Eq ChatAdministrators
@@ -24,53 +25,53 @@ $c/= :: ChatAdministrators -&gt; ChatAdministrators -&gt; Bool
 == :: ChatAdministrators -&gt; ChatAdministrators -&gt; Bool
 $c== :: ChatAdministrators -&gt; ChatAdministrators -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431163"><span id="local-6989586621679431166"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679431161"><span class="annot"><span class="annottext">show :: ChatAdministrators -&gt; String
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431163"><span id="local-6989586621679431166"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679431161"><span class="annot"><span class="annottext">show :: ChatAdministrators -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span><span>
-</span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">administrators :: ChatAdministrators -&gt; Maybe [ChatAdministrator]
+</span><span id="line-21"></span><span>    </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span><span>
+</span><span id="line-22"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">administrators :: ChatAdministrators -&gt; Maybe [ChatAdministrator]
 </span><a href="TD.Data.ChatAdministrators.html#administrators"><span class="hs-identifier hs-var">administrators</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431159"><span class="annot"><span class="annottext">Maybe [ChatAdministrator]
 </span><a href="#local-6989586621679431159"><span class="hs-identifier hs-var">administrators_</span></a></span></span><span>
-</span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-24"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChatAdministrators&quot;</span></span><span>
-</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-25"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [ChatAdministrator] -&gt; String
+</span><span id="line-26"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [ChatAdministrator] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;administrators&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatAdministrator]
 </span><a href="#local-6989586621679431159"><span class="hs-identifier hs-var">administrators_</span></a></span><span>
-</span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431154"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679431152"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatAdministrators
+</span><span id="line-27"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431154"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679431152"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatAdministrators
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679431150"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679431150"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679431148"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679431148"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679431147"><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679431147"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679431147"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679431148"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679431147"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chatAdministrators&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatAdministrators
 </span><a href="#local-6989586621679431145"><span class="hs-identifier hs-var">parseChatAdministrators</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679431150"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-35"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatAdministrators
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-35"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>      </span><span class="annot"><a href="#local-6989586621679431145"><span class="hs-identifier hs-type">parseChatAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span><span>
-</span><span id="line-37"></span><span>      </span><span id="local-6989586621679431145"><span class="annot"><span class="annottext">parseChatAdministrators :: Value -&gt; Parser ChatAdministrators
+</span><span id="line-36"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>      </span><span class="annot"><a href="#local-6989586621679431145"><span class="hs-identifier hs-type">parseChatAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span><span>
+</span><span id="line-38"></span><span>      </span><span id="local-6989586621679431145"><span class="annot"><span class="annottext">parseChatAdministrators :: Value -&gt; Parser ChatAdministrators
 </span><a href="#local-6989586621679431145"><span class="hs-identifier hs-var hs-var">parseChatAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatAdministrators)
 -&gt; Value
@@ -85,13 +86,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679431143"><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679431143"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-38"></span><span>        </span><span id="local-6989586621679431142"><span class="annot"><span class="annottext">Maybe [ChatAdministrator]
+</span><span id="line-39"></span><span>        </span><span id="local-6989586621679431142"><span class="annot"><span class="annottext">Maybe [ChatAdministrator]
 </span><a href="#local-6989586621679431142"><span class="hs-identifier hs-var">administrators_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679431143"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatAdministrator])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;administrators&quot;</span></span><span>
-</span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">ChatAdministrators -&gt; Parser ChatAdministrators
+</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">ChatAdministrators -&gt; Parser ChatAdministrators
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatAdministrators -&gt; Parser ChatAdministrators)
 -&gt; ChatAdministrators -&gt; Parser ChatAdministrators
@@ -100,31 +101,31 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">administrators :: Maybe [ChatAdministrator]
 </span><a href="TD.Data.ChatAdministrators.html#administrators"><span class="hs-identifier hs-var">administrators</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [ChatAdministrator]
 </span><a href="#local-6989586621679431142"><span class="hs-identifier hs-var">administrators_</span></a></span><span class="hs-special">}</span><span>
-</span><span id="line-40"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span id="line-41"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ChatAdministrators
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431134"><span id="local-6989586621679431136"><span id="local-6989586621679431138"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679431132"><span class="annot"><span class="annottext">toJSON :: ChatAdministrators -&gt; Value
+</span><span id="line-42"></span><span>
+</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431134"><span id="local-6989586621679431136"><span id="local-6989586621679431138"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span>  </span><span id="local-6989586621679431132"><span class="annot"><span class="annottext">toJSON :: ChatAdministrators -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-44"></span><span>    </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span><span>
-</span><span id="line-45"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">administrators :: ChatAdministrators -&gt; Maybe [ChatAdministrator]
+</span><span id="line-45"></span><span>    </span><span class="annot"><a href="TD.Data.ChatAdministrators.html#ChatAdministrators"><span class="hs-identifier hs-type">ChatAdministrators</span></a></span><span>
+</span><span id="line-46"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">administrators :: ChatAdministrators -&gt; Maybe [ChatAdministrator]
 </span><a href="TD.Data.ChatAdministrators.html#administrators"><span class="hs-identifier hs-var">administrators</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431130"><span class="annot"><span class="annottext">Maybe [ChatAdministrator]
 </span><a href="#local-6989586621679431130"><span class="hs-identifier hs-var">administrators_</span></a></span></span><span>
-</span><span id="line-46"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-47"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-48"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-49"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chatAdministrators&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-49"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-50"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;administrators&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [ChatAdministrator] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatAdministrator]
 </span><a href="#local-6989586621679431130"><span class="hs-identifier hs-var">administrators_</span></a></span><span>
-</span><span id="line-50"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-51"></span></pre></body></html>
+</span><span id="line-51"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-52"></span></pre></body></html>

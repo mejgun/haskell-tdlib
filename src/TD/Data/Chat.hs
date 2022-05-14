@@ -18,6 +18,7 @@ import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.VideoChat as VideoChat
 import qualified Utils as U
 
+-- |
 data Chat = -- | A chat. (Can be a private chat, basic group, supergroup, or secret chat)
   Chat
   { -- | Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used

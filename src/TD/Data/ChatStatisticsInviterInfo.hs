@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ChatStatisticsInviterInfo = -- | Contains statistics about number of new members invited by a user
   ChatStatisticsInviterInfo
   { -- | Number of new members invited by the user

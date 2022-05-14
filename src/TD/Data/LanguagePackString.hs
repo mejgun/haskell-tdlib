@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.LanguagePackStringValue as LanguagePackStringValue
 import qualified Utils as U
 
+-- |
 data LanguagePackString = -- | Represents one language pack string @key String key @value String value; pass null if the string needs to be taken from the built-in English language pack
   LanguagePackString
   { -- |

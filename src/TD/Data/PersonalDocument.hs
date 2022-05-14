@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.DatedFile as DatedFile
 import qualified Utils as U
 
+-- |
 data PersonalDocument = -- | A personal document, containing some information about a user @files List of files containing the pages of the document @translation List of files containing a certified English translation of the document
   PersonalDocument
   { -- |

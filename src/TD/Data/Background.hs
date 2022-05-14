@@ -9,6 +9,7 @@ import qualified TD.Data.BackgroundType as BackgroundType
 import qualified TD.Data.Document as Document
 import qualified Utils as U
 
+-- |
 data Background = -- | Describes a chat background
   Background
   { -- | Type of the background

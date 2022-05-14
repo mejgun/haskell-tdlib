@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.TestInt as TestInt
 import qualified Utils as U
 
+-- |
 data TestVectorIntObject = -- | A simple object containing a vector of objects that hold a number; for testing only @value Vector of objects
   TestVectorIntObject
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data PhoneNumberAuthenticationSettings = -- | Contains settings for the authentication of the user's phone number
   PhoneNumberAuthenticationSettings
   { -- | List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions

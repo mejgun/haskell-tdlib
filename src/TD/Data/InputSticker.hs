@@ -9,6 +9,7 @@ import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.StickerType as StickerType
 import qualified Utils as U
 
+-- |
 data InputSticker = -- | A sticker to be added to a sticker set
   InputSticker
   { -- | Sticker type

@@ -9,6 +9,7 @@ import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.FileDownload as FileDownload
 import qualified Utils as U
 
+-- |
 data FoundFileDownloads = -- | Contains a list of downloaded files, found by a search
   FoundFileDownloads
   { -- | The offset for the next request. If empty, there are no more results

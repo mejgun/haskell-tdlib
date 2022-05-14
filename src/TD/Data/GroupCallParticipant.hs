@@ -9,6 +9,7 @@ import qualified TD.Data.GroupCallParticipantVideoInfo as GroupCallParticipantVi
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
+-- |
 data GroupCallParticipant = -- | Represents a group call participant
   GroupCallParticipant
   { -- | User's order in the group call participant list. Orders must be compared lexicographically. The bigger is order, the higher is user in the list. If order is empty, the user must be removed from the participant list

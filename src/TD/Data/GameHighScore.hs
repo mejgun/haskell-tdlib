@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data GameHighScore = -- | Contains one row of the game high score table @position Position in the high score table @user_id User identifier @score User score
   GameHighScore
   { -- |

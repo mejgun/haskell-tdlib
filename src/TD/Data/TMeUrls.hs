@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.TMeUrl as TMeUrl
 import qualified Utils as U
 
+-- |
 data TMeUrls = -- | Contains a list of t.me URLs @urls List of URLs
   TMeUrls
   { -- |

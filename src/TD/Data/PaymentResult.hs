@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data PaymentResult = -- | Contains the result of a payment request @success True, if the payment request was successful; otherwise the verification_url will be non-empty @verification_url URL for additional payment credentials verification
   PaymentResult
   { -- |

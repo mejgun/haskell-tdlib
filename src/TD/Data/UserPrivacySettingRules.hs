@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.UserPrivacySettingRule as UserPrivacySettingRule
 import qualified Utils as U
 
+-- |
 data UserPrivacySettingRules = -- | A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed @rules A list of rules
   UserPrivacySettingRules
   { -- |

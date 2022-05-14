@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatList as ChatList
 import qualified Utils as U
 
+-- |
 data ChatLists = -- | Contains a list of chat lists @chat_lists List of chat lists
   ChatLists
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data Error = -- | An object of this type can be returned on every function call, in case of an error
   Error
   { -- | Error message; subject to future changes

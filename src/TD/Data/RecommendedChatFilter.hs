@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatFilter as ChatFilter
 import qualified Utils as U
 
+-- |
 data RecommendedChatFilter = -- | Describes a recommended chat filter @filter The chat filter @param_description Chat filter description
   RecommendedChatFilter
   { -- |

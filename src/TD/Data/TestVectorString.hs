@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data TestVectorString = -- | A simple object containing a vector of strings; for testing only @value Vector of strings
   TestVectorString
   { -- |

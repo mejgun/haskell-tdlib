@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MaskPoint as MaskPoint
 import qualified Utils as U
 
+-- |
 data MaskPosition = -- | Position on a photo where a mask is placed @point Part of the face, relative to which the mask is placed
   MaskPosition
   { -- | Mask scaling coefficient. (For example, 2.0 means a doubled size)

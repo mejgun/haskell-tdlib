@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatAdministrator as ChatAdministrator
 import qualified Utils as U
 
+-- |
 data ChatAdministrators = -- | Represents a list of chat administrators @administrators A list of chat administrators
   ChatAdministrators
   { -- |

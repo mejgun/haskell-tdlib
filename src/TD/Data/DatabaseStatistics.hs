@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data DatabaseStatistics = -- | Contains database statistics
   DatabaseStatistics
   { -- | Database statistics in an unspecified human-readable format

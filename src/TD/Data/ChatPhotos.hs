@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified Utils as U
 
+-- |
 data ChatPhotos = -- | Contains a list of chat or user profile photos @total_count Total number of photos @photos List of photos
   ChatPhotos
   { -- |

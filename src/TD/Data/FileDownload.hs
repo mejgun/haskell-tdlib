@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Message as Message
 import qualified Utils as U
 
+-- |
 data FileDownload = -- | Describes a file added to file download list
   FileDownload
   { -- | True, if downloading of the file is paused

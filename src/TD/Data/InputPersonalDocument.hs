@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
+-- |
 data InputPersonalDocument = -- | A personal document to be saved to Telegram Passport @files List of files containing the pages of the document @translation List of files containing a certified English translation of the document
   InputPersonalDocument
   { -- |

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data GroupCallStream = -- | Describes an available stream in a group call
   GroupCallStream
   { -- | Point in time when the stream currently ends; Unix timestamp in milliseconds

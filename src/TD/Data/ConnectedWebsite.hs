@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
+-- |
 data ConnectedWebsite = -- | Contains information about one website the current user is logged in with Telegram
   ConnectedWebsite
   { -- | Human-readable description of a country and a region from which the user was logged in, based on the IP address

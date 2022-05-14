@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
 import qualified Utils as U
 
+-- |
 data AutoDownloadSettingsPresets = -- | Contains auto-download settings presets for the current user
   AutoDownloadSettingsPresets
   { -- | Preset with highest settings; supposed to be used by default when connected on Wi-Fi
