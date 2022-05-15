@@ -32,5 +32,5 @@ instance T.ToJSON DeleteProfilePhoto where
       } =
       A.object
         [ "@type" A..= T.String "deleteProfilePhoto",
-          "profile_photo_id" A..= profile_photo_id_
+          "profile_photo_id" A..= U.toS profile_photo_id_
         ]

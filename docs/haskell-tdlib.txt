@@ -10,7 +10,10 @@
 module Utils
 p :: Show a => String -> Maybe a -> String
 cc :: [String] -> String
-rm :: Read a => String -> Maybe a
+rm :: Read a => Maybe String -> Maybe a
+rl :: Read a => Maybe [String] -> Maybe [a]
+toS :: Show a => Maybe a -> Value
+toLS :: Show a => Maybe [a] -> [Value]
 
 
 module TD.Query.WriteGeneratedFilePart

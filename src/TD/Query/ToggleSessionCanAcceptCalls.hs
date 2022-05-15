@@ -38,5 +38,5 @@ instance T.ToJSON ToggleSessionCanAcceptCalls where
       A.object
         [ "@type" A..= T.String "toggleSessionCanAcceptCalls",
           "can_accept_calls" A..= can_accept_calls_,
-          "session_id" A..= session_id_
+          "session_id" A..= U.toS session_id_
         ]

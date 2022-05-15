@@ -32,5 +32,5 @@ instance T.ToJSON GetStickerSet where
       } =
       A.object
         [ "@type" A..= T.String "getStickerSet",
-          "set_id" A..= set_id_
+          "set_id" A..= U.toS set_id_
         ]

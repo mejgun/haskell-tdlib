@@ -14,7 +14,7 @@
 </span><span id="line-14"></span><span>    </span><span id="file_name"><span class="annot"><span class="annottext">CleanFileName -&gt; Maybe String
 </span><a href="TD.Query.CleanFileName.html#file_name"><span class="hs-identifier hs-var hs-var">file_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679386116"><span id="local-6989586621679386118"><span class="annot"><span class="annottext">CleanFileName -&gt; CleanFileName -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679386570"><span id="local-6989586621679386572"><span class="annot"><span class="annottext">CleanFileName -&gt; CleanFileName -&gt; Bool
 (CleanFileName -&gt; CleanFileName -&gt; Bool)
 -&gt; (CleanFileName -&gt; CleanFileName -&gt; Bool) -&gt; Eq CleanFileName
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -24,13 +24,13 @@ $c/= :: CleanFileName -&gt; CleanFileName -&gt; Bool
 $c== :: CleanFileName -&gt; CleanFileName -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386110"><span id="local-6989586621679386113"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.CleanFileName.html#CleanFileName"><span class="hs-identifier hs-type">CleanFileName</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679386108"><span class="annot"><span class="annottext">show :: CleanFileName -&gt; String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386564"><span id="local-6989586621679386567"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.CleanFileName.html#CleanFileName"><span class="hs-identifier hs-type">CleanFileName</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679386562"><span class="annot"><span class="annottext">show :: CleanFileName -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Query.CleanFileName.html#CleanFileName"><span class="hs-identifier hs-type">CleanFileName</span></a></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">file_name :: CleanFileName -&gt; Maybe String
-</span><a href="TD.Query.CleanFileName.html#file_name"><span class="hs-identifier hs-var">file_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386106"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386106"><span class="hs-identifier hs-var">file_name_</span></a></span></span><span>
+</span><a href="TD.Query.CleanFileName.html#file_name"><span class="hs-identifier hs-var">file_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386560"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679386560"><span class="hs-identifier hs-var">file_name_</span></a></span></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CleanFileName&quot;</span></span><span>
@@ -42,16 +42,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386106"><span class="hs-identifier hs-var">file_name_</span></a></span><span>
+</span><a href="#local-6989586621679386560"><span class="hs-identifier hs-var">file_name_</span></a></span><span>
 </span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386097"><span id="local-6989586621679386099"><span id="local-6989586621679386101"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.CleanFileName.html#CleanFileName"><span class="hs-identifier hs-type">CleanFileName</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679386095"><span class="annot"><span class="annottext">toJSON :: CleanFileName -&gt; Value
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386551"><span id="local-6989586621679386553"><span id="local-6989586621679386555"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.CleanFileName.html#CleanFileName"><span class="hs-identifier hs-type">CleanFileName</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679386549"><span class="annot"><span class="annottext">toJSON :: CleanFileName -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Query.CleanFileName.html#CleanFileName"><span class="hs-identifier hs-type">CleanFileName</span></a></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">file_name :: CleanFileName -&gt; Maybe String
-</span><a href="TD.Query.CleanFileName.html#file_name"><span class="hs-identifier hs-var">file_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386093"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386093"><span class="hs-identifier hs-var">file_name_</span></a></span></span><span>
+</span><a href="TD.Query.CleanFileName.html#file_name"><span class="hs-identifier hs-var">file_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386547"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679386547"><span class="hs-identifier hs-var">file_name_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -65,6 +65,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;file_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386093"><span class="hs-identifier hs-var">file_name_</span></a></span><span>
+</span><a href="#local-6989586621679386547"><span class="hs-identifier hs-var">file_name_</span></a></span><span>
 </span><span id="line-36"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span></pre></body></html>

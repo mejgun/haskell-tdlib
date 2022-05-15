@@ -32,5 +32,5 @@ instance T.ToJSON DisconnectWebsite where
       } =
       A.object
         [ "@type" A..= T.String "disconnectWebsite",
-          "website_id" A..= website_id_
+          "website_id" A..= U.toS website_id_
         ]

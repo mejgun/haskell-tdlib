@@ -56,7 +56,7 @@ instance T.FromJSON CallServer where
         port_ <- o A..:? "port"
         ipv6_address_ <- o A..:? "ipv6_address"
         ip_address_ <- o A..:? "ip_address"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ CallServer {_type = _type_, port = port_, ipv6_address = ipv6_address_, ip_address = ip_address_, _id = _id_}
   parseJSON _ = mempty
 
@@ -75,5 +75,5 @@ instance T.ToJSON CallServer where
           "port" A..= port_,
           "ipv6_address" A..= ipv6_address_,
           "ip_address" A..= ip_address_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

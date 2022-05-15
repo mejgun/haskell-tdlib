@@ -17,7 +17,7 @@
 </span><span id="line-16"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">GetRepliedMessage -&gt; Maybe Int
 </span><a href="TD.Query.GetRepliedMessage.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679378728"><span id="local-6989586621679378730"><span class="annot"><span class="annottext">GetRepliedMessage -&gt; GetRepliedMessage -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679379170"><span id="local-6989586621679379172"><span class="annot"><span class="annottext">GetRepliedMessage -&gt; GetRepliedMessage -&gt; Bool
 (GetRepliedMessage -&gt; GetRepliedMessage -&gt; Bool)
 -&gt; (GetRepliedMessage -&gt; GetRepliedMessage -&gt; Bool)
 -&gt; Eq GetRepliedMessage
@@ -28,16 +28,16 @@ $c/= :: GetRepliedMessage -&gt; GetRepliedMessage -&gt; Bool
 $c== :: GetRepliedMessage -&gt; GetRepliedMessage -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378722"><span id="local-6989586621679378725"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetRepliedMessage.html#GetRepliedMessage"><span class="hs-identifier hs-type">GetRepliedMessage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679378720"><span class="annot"><span class="annottext">show :: GetRepliedMessage -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379164"><span id="local-6989586621679379167"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetRepliedMessage.html#GetRepliedMessage"><span class="hs-identifier hs-type">GetRepliedMessage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679379162"><span class="annot"><span class="annottext">show :: GetRepliedMessage -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.GetRepliedMessage.html#GetRepliedMessage"><span class="hs-identifier hs-type">GetRepliedMessage</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_id :: GetRepliedMessage -&gt; Maybe Int
-</span><a href="TD.Query.GetRepliedMessage.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378718"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378718"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetRepliedMessage.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379160"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679379160"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: GetRepliedMessage -&gt; Maybe Int
-</span><a href="TD.Query.GetRepliedMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378717"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378717"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.GetRepliedMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379159"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679379159"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetRepliedMessage&quot;</span></span><span>
@@ -49,24 +49,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378718"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679379160"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378717"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679379159"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378708"><span id="local-6989586621679378710"><span id="local-6989586621679378712"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetRepliedMessage.html#GetRepliedMessage"><span class="hs-identifier hs-type">GetRepliedMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679378706"><span class="annot"><span class="annottext">toJSON :: GetRepliedMessage -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379150"><span id="local-6989586621679379152"><span id="local-6989586621679379154"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetRepliedMessage.html#GetRepliedMessage"><span class="hs-identifier hs-type">GetRepliedMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679379148"><span class="annot"><span class="annottext">toJSON :: GetRepliedMessage -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.GetRepliedMessage.html#GetRepliedMessage"><span class="hs-identifier hs-type">GetRepliedMessage</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_id :: GetRepliedMessage -&gt; Maybe Int
-</span><a href="TD.Query.GetRepliedMessage.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378704"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378704"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetRepliedMessage.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379146"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679379146"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: GetRepliedMessage -&gt; Maybe Int
-</span><a href="TD.Query.GetRepliedMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378703"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378703"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.GetRepliedMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379145"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679379145"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378704"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679379146"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679378703"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679379145"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

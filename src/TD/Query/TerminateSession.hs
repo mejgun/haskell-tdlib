@@ -32,5 +32,5 @@ instance T.ToJSON TerminateSession where
       } =
       A.object
         [ "@type" A..= T.String "terminateSession",
-          "session_id" A..= session_id_
+          "session_id" A..= U.toS session_id_
         ]

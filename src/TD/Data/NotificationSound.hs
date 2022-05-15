@@ -61,7 +61,7 @@ instance T.FromJSON NotificationSound where
         title_ <- o A..:? "title"
         date_ <- o A..:? "date"
         duration_ <- o A..:? "duration"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ NotificationSound {sound = sound_, _data = _data_, title = title_, date = date_, duration = duration_, _id = _id_}
   parseJSON _ = mempty
 
@@ -82,5 +82,5 @@ instance T.ToJSON NotificationSound where
           "title" A..= title_,
           "date" A..= date_,
           "duration" A..= duration_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

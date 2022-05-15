@@ -38,5 +38,5 @@ instance T.ToJSON AnswerPreCheckoutQuery where
       A.object
         [ "@type" A..= T.String "answerPreCheckoutQuery",
           "error_message" A..= error_message_,
-          "pre_checkout_query_id" A..= pre_checkout_query_id_
+          "pre_checkout_query_id" A..= U.toS pre_checkout_query_id_
         ]

@@ -1133,7 +1133,7 @@ instance T.FromJSON MessageContent where
       parseMessageGameScore :: A.Value -> T.Parser MessageContent
       parseMessageGameScore = A.withObject "MessageGameScore" $ \o -> do
         score_ <- o A..:? "score"
-        game_id_ <- U.rm <$> (o A..: "game_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        game_id_ <- U.rm <$> (o A..:? "game_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         game_message_id_ <- o A..:? "game_message_id"
         return $ MessageGameScore {score = score_, game_id = game_id_, game_message_id = game_message_id_}
 
@@ -1575,7 +1575,7 @@ instance T.ToJSON MessageContent where
       A.object
         [ "@type" A..= T.String "messageGameScore",
           "score" A..= score_,
-          "game_id" A..= game_id_,
+          "game_id" A..= U.toS game_id_,
           "game_message_id" A..= game_message_id_
         ]
   toJSON

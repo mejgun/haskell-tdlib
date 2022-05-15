@@ -700,8 +700,8 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventStickerSetChanged :: A.Value -> T.Parser ChatEventAction
       parseChatEventStickerSetChanged = A.withObject "ChatEventStickerSetChanged" $ \o -> do
-        new_sticker_set_id_ <- U.rm <$> (o A..: "new_sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
-        old_sticker_set_id_ <- U.rm <$> (o A..: "old_sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        new_sticker_set_id_ <- U.rm <$> (o A..:? "new_sticker_set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
+        old_sticker_set_id_ <- U.rm <$> (o A..:? "old_sticker_set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ ChatEventStickerSetChanged {new_sticker_set_id = new_sticker_set_id_, old_sticker_set_id = old_sticker_set_id_}
 
       parseChatEventTitleChanged :: A.Value -> T.Parser ChatEventAction
@@ -970,8 +970,8 @@ instance T.ToJSON ChatEventAction where
       } =
       A.object
         [ "@type" A..= T.String "chatEventStickerSetChanged",
-          "new_sticker_set_id" A..= new_sticker_set_id_,
-          "old_sticker_set_id" A..= old_sticker_set_id_
+          "new_sticker_set_id" A..= U.toS new_sticker_set_id_,
+          "old_sticker_set_id" A..= U.toS old_sticker_set_id_
         ]
   toJSON
     ChatEventTitleChanged

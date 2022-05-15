@@ -84,7 +84,7 @@ instance T.FromJSON PaymentForm where
         seller_bot_user_id_ <- o A..:? "seller_bot_user_id"
         url_ <- o A..:? "url"
         invoice_ <- o A..:? "invoice"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ PaymentForm {need_password = need_password_, can_save_credentials = can_save_credentials_, saved_credentials = saved_credentials_, saved_order_info = saved_order_info_, payments_provider = payments_provider_, payments_provider_user_id = payments_provider_user_id_, seller_bot_user_id = seller_bot_user_id_, url = url_, invoice = invoice_, _id = _id_}
   parseJSON _ = mempty
 
@@ -113,5 +113,5 @@ instance T.ToJSON PaymentForm where
           "seller_bot_user_id" A..= seller_bot_user_id_,
           "url" A..= url_,
           "invoice" A..= invoice_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

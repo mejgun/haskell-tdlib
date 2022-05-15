@@ -38,5 +38,5 @@ instance T.ToJSON ToggleSessionCanAcceptSecretChats where
       A.object
         [ "@type" A..= T.String "toggleSessionCanAcceptSecretChats",
           "can_accept_secret_chats" A..= can_accept_secret_chats_,
-          "session_id" A..= session_id_
+          "session_id" A..= U.toS session_id_
         ]

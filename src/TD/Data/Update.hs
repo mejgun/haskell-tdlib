@@ -2346,7 +2346,7 @@ instance T.FromJSON Update where
         removed_notification_ids_ <- o A..:? "removed_notification_ids"
         added_notifications_ <- o A..:? "added_notifications"
         total_count_ <- o A..:? "total_count"
-        notification_sound_id_ <- U.rm <$> (o A..: "notification_sound_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        notification_sound_id_ <- U.rm <$> (o A..:? "notification_sound_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         notification_settings_chat_id_ <- o A..:? "notification_settings_chat_id"
         chat_id_ <- o A..:? "chat_id"
         _type_ <- o A..:? "type"
@@ -2440,12 +2440,12 @@ instance T.FromJSON Update where
         conversion_ <- o A..:? "conversion"
         destination_path_ <- o A..:? "destination_path"
         original_path_ <- o A..:? "original_path"
-        generation_id_ <- U.rm <$> (o A..: "generation_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        generation_id_ <- U.rm <$> (o A..:? "generation_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateFileGenerationStart {conversion = conversion_, destination_path = destination_path_, original_path = original_path_, generation_id = generation_id_}
 
       parseUpdateFileGenerationStop :: A.Value -> T.Parser Update
       parseUpdateFileGenerationStop = A.withObject "UpdateFileGenerationStop" $ \o -> do
-        generation_id_ <- U.rm <$> (o A..: "generation_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        generation_id_ <- U.rm <$> (o A..:? "generation_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateFileGenerationStop {generation_id = generation_id_}
 
       parseUpdateFileDownloads :: A.Value -> T.Parser Update
@@ -2533,7 +2533,7 @@ instance T.FromJSON Update where
 
       parseUpdateInstalledStickerSets :: A.Value -> T.Parser Update
       parseUpdateInstalledStickerSets = A.withObject "UpdateInstalledStickerSets" $ \o -> do
-        sticker_set_ids_ <- traverse U.rm <$> (o A..: "sticker_set_ids" :: T.Parser [String]) :: T.Parser (Maybe [Int])
+        sticker_set_ids_ <- U.rl <$> (o A..:? "sticker_set_ids" :: T.Parser (Maybe [String])) :: T.Parser (Maybe [Int])
         is_masks_ <- o A..:? "is_masks"
         return $ UpdateInstalledStickerSets {sticker_set_ids = sticker_set_ids_, is_masks = is_masks_}
 
@@ -2560,7 +2560,7 @@ instance T.FromJSON Update where
 
       parseUpdateSavedNotificationSounds :: A.Value -> T.Parser Update
       parseUpdateSavedNotificationSounds = A.withObject "UpdateSavedNotificationSounds" $ \o -> do
-        notification_sound_ids_ <- traverse U.rm <$> (o A..: "notification_sound_ids" :: T.Parser [String]) :: T.Parser (Maybe [Int])
+        notification_sound_ids_ <- U.rl <$> (o A..:? "notification_sound_ids" :: T.Parser (Maybe [String])) :: T.Parser (Maybe [Int])
         return $ UpdateSavedNotificationSounds {notification_sound_ids = notification_sound_ids_}
 
       parseUpdateSelectedBackground :: A.Value -> T.Parser Update
@@ -2604,7 +2604,7 @@ instance T.FromJSON Update where
 
       parseUpdateWebAppMessageSent :: A.Value -> T.Parser Update
       parseUpdateWebAppMessageSent = A.withObject "UpdateWebAppMessageSent" $ \o -> do
-        web_app_launch_id_ <- U.rm <$> (o A..: "web_app_launch_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        web_app_launch_id_ <- U.rm <$> (o A..:? "web_app_launch_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateWebAppMessageSent {web_app_launch_id = web_app_launch_id_}
 
       parseUpdateReactions :: A.Value -> T.Parser Update
@@ -2643,7 +2643,7 @@ instance T.FromJSON Update where
         chat_type_ <- o A..:? "chat_type"
         user_location_ <- o A..:? "user_location"
         sender_user_id_ <- o A..:? "sender_user_id"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateNewInlineQuery {offset = offset_, query = query_, chat_type = chat_type_, user_location = user_location_, sender_user_id = sender_user_id_, _id = _id_}
 
       parseUpdateNewChosenInlineResult :: A.Value -> T.Parser Update
@@ -2658,20 +2658,20 @@ instance T.FromJSON Update where
       parseUpdateNewCallbackQuery :: A.Value -> T.Parser Update
       parseUpdateNewCallbackQuery = A.withObject "UpdateNewCallbackQuery" $ \o -> do
         payload_ <- o A..:? "payload"
-        chat_instance_ <- U.rm <$> (o A..: "chat_instance" :: T.Parser String) :: T.Parser (Maybe Int)
+        chat_instance_ <- U.rm <$> (o A..:? "chat_instance" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         message_id_ <- o A..:? "message_id"
         chat_id_ <- o A..:? "chat_id"
         sender_user_id_ <- o A..:? "sender_user_id"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateNewCallbackQuery {payload = payload_, chat_instance = chat_instance_, message_id = message_id_, chat_id = chat_id_, sender_user_id = sender_user_id_, _id = _id_}
 
       parseUpdateNewInlineCallbackQuery :: A.Value -> T.Parser Update
       parseUpdateNewInlineCallbackQuery = A.withObject "UpdateNewInlineCallbackQuery" $ \o -> do
         payload_ <- o A..:? "payload"
-        chat_instance_ <- U.rm <$> (o A..: "chat_instance" :: T.Parser String) :: T.Parser (Maybe Int)
+        chat_instance_ <- U.rm <$> (o A..:? "chat_instance" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         inline_message_id_ <- o A..:? "inline_message_id"
         sender_user_id_ <- o A..:? "sender_user_id"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateNewInlineCallbackQuery {payload = payload_, chat_instance = chat_instance_, inline_message_id = inline_message_id_, sender_user_id = sender_user_id_, _id = _id_}
 
       parseUpdateNewShippingQuery :: A.Value -> T.Parser Update
@@ -2679,7 +2679,7 @@ instance T.FromJSON Update where
         shipping_address_ <- o A..:? "shipping_address"
         invoice_payload_ <- o A..:? "invoice_payload"
         sender_user_id_ <- o A..:? "sender_user_id"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateNewShippingQuery {shipping_address = shipping_address_, invoice_payload = invoice_payload_, sender_user_id = sender_user_id_, _id = _id_}
 
       parseUpdateNewPreCheckoutQuery :: A.Value -> T.Parser Update
@@ -2690,7 +2690,7 @@ instance T.FromJSON Update where
         total_amount_ <- o A..:? "total_amount"
         currency_ <- o A..:? "currency"
         sender_user_id_ <- o A..:? "sender_user_id"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateNewPreCheckoutQuery {order_info = order_info_, shipping_option_id = shipping_option_id_, _invoice_payload = _invoice_payload_, total_amount = total_amount_, currency = currency_, sender_user_id = sender_user_id_, _id = _id_}
 
       parseUpdateNewCustomEvent :: A.Value -> T.Parser Update
@@ -2702,7 +2702,7 @@ instance T.FromJSON Update where
       parseUpdateNewCustomQuery = A.withObject "UpdateNewCustomQuery" $ \o -> do
         timeout_ <- o A..:? "timeout"
         __data_ <- o A..:? "data"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateNewCustomQuery {timeout = timeout_, __data = __data_, _id = _id_}
 
       parseUpdatePoll :: A.Value -> T.Parser Update
@@ -2714,7 +2714,7 @@ instance T.FromJSON Update where
       parseUpdatePollAnswer = A.withObject "UpdatePollAnswer" $ \o -> do
         option_ids_ <- o A..:? "option_ids"
         user_id_ <- o A..:? "user_id"
-        poll_id_ <- U.rm <$> (o A..: "poll_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        poll_id_ <- U.rm <$> (o A..:? "poll_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdatePollAnswer {option_ids = option_ids_, user_id = user_id_, poll_id = poll_id_}
 
       parseUpdateChatMember :: A.Value -> T.Parser Update
@@ -3190,7 +3190,7 @@ instance T.ToJSON Update where
           "removed_notification_ids" A..= removed_notification_ids_,
           "added_notifications" A..= added_notifications_,
           "total_count" A..= total_count_,
-          "notification_sound_id" A..= notification_sound_id_,
+          "notification_sound_id" A..= U.toS notification_sound_id_,
           "notification_settings_chat_id" A..= notification_settings_chat_id_,
           "chat_id" A..= chat_id_,
           "type" A..= _type_,
@@ -3344,7 +3344,7 @@ instance T.ToJSON Update where
           "conversion" A..= conversion_,
           "destination_path" A..= destination_path_,
           "original_path" A..= original_path_,
-          "generation_id" A..= generation_id_
+          "generation_id" A..= U.toS generation_id_
         ]
   toJSON
     UpdateFileGenerationStop
@@ -3352,7 +3352,7 @@ instance T.ToJSON Update where
       } =
       A.object
         [ "@type" A..= T.String "updateFileGenerationStop",
-          "generation_id" A..= generation_id_
+          "generation_id" A..= U.toS generation_id_
         ]
   toJSON
     UpdateFileDownloads
@@ -3501,7 +3501,7 @@ instance T.ToJSON Update where
       } =
       A.object
         [ "@type" A..= T.String "updateInstalledStickerSets",
-          "sticker_set_ids" A..= sticker_set_ids_,
+          "sticker_set_ids" A..= U.toLS sticker_set_ids_,
           "is_masks" A..= is_masks_
         ]
   toJSON
@@ -3544,7 +3544,7 @@ instance T.ToJSON Update where
       } =
       A.object
         [ "@type" A..= T.String "updateSavedNotificationSounds",
-          "notification_sound_ids" A..= notification_sound_ids_
+          "notification_sound_ids" A..= U.toLS notification_sound_ids_
         ]
   toJSON
     UpdateSelectedBackground
@@ -3616,7 +3616,7 @@ instance T.ToJSON Update where
       } =
       A.object
         [ "@type" A..= T.String "updateWebAppMessageSent",
-          "web_app_launch_id" A..= web_app_launch_id_
+          "web_app_launch_id" A..= U.toS web_app_launch_id_
         ]
   toJSON
     UpdateReactions
@@ -3682,7 +3682,7 @@ instance T.ToJSON Update where
           "chat_type" A..= chat_type_,
           "user_location" A..= user_location_,
           "sender_user_id" A..= sender_user_id_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]
   toJSON
     UpdateNewChosenInlineResult
@@ -3712,11 +3712,11 @@ instance T.ToJSON Update where
       A.object
         [ "@type" A..= T.String "updateNewCallbackQuery",
           "payload" A..= payload_,
-          "chat_instance" A..= chat_instance_,
+          "chat_instance" A..= U.toS chat_instance_,
           "message_id" A..= message_id_,
           "chat_id" A..= chat_id_,
           "sender_user_id" A..= sender_user_id_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]
   toJSON
     UpdateNewInlineCallbackQuery
@@ -3729,10 +3729,10 @@ instance T.ToJSON Update where
       A.object
         [ "@type" A..= T.String "updateNewInlineCallbackQuery",
           "payload" A..= payload_,
-          "chat_instance" A..= chat_instance_,
+          "chat_instance" A..= U.toS chat_instance_,
           "inline_message_id" A..= inline_message_id_,
           "sender_user_id" A..= sender_user_id_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]
   toJSON
     UpdateNewShippingQuery
@@ -3746,7 +3746,7 @@ instance T.ToJSON Update where
           "shipping_address" A..= shipping_address_,
           "invoice_payload" A..= invoice_payload_,
           "sender_user_id" A..= sender_user_id_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]
   toJSON
     UpdateNewPreCheckoutQuery
@@ -3766,7 +3766,7 @@ instance T.ToJSON Update where
           "total_amount" A..= total_amount_,
           "currency" A..= currency_,
           "sender_user_id" A..= sender_user_id_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]
   toJSON
     UpdateNewCustomEvent
@@ -3786,7 +3786,7 @@ instance T.ToJSON Update where
         [ "@type" A..= T.String "updateNewCustomQuery",
           "timeout" A..= timeout_,
           "data" A..= __data_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]
   toJSON
     UpdatePoll
@@ -3806,7 +3806,7 @@ instance T.ToJSON Update where
         [ "@type" A..= T.String "updatePollAnswer",
           "option_ids" A..= option_ids_,
           "user_id" A..= user_id_,
-          "poll_id" A..= poll_id_
+          "poll_id" A..= U.toS poll_id_
         ]
   toJSON
     UpdateChatMember

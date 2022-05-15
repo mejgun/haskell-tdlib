@@ -68,7 +68,7 @@ instance T.FromJSON Game where
         text_ <- o A..:? "text"
         title_ <- o A..:? "title"
         short_name_ <- o A..:? "short_name"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ Game {animation = animation_, photo = photo_, description = description_, text = text_, title = title_, short_name = short_name_, _id = _id_}
   parseJSON _ = mempty
 
@@ -91,5 +91,5 @@ instance T.ToJSON Game where
           "text" A..= text_,
           "title" A..= title_,
           "short_name" A..= short_name_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

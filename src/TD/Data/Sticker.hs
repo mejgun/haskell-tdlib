@@ -74,7 +74,7 @@ instance T.FromJSON Sticker where
         emoji_ <- o A..:? "emoji"
         height_ <- o A..:? "height"
         width_ <- o A..:? "width"
-        set_id_ <- U.rm <$> (o A..: "set_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        set_id_ <- U.rm <$> (o A..:? "set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ Sticker {sticker = sticker_, thumbnail = thumbnail_, outline = outline_, _type = _type_, emoji = emoji_, height = height_, width = width_, set_id = set_id_}
   parseJSON _ = mempty
 
@@ -99,5 +99,5 @@ instance T.ToJSON Sticker where
           "emoji" A..= emoji_,
           "height" A..= height_,
           "width" A..= width_,
-          "set_id" A..= set_id_
+          "set_id" A..= U.toS set_id_
         ]

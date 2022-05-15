@@ -265,7 +265,9 @@ printToJson (Item _ con _ arg) =
     ]
   where
     printArg :: Arg -> String
-    -- printArg (Arg x Int64 _) = printf "   \"%s\" A..= %s_" (dropAround (== '_') x
+    printArg (Arg _ (Vector (Vector Int64)) _) = undefined
+    printArg (Arg x (Vector Int64) _) = printf "   \"%s\" A..= U.toLS %s_" (dropAround (== '_') x) x
+    printArg (Arg x Int64 _) = printf "   \"%s\" A..= U.toS %s_" (dropAround (== '_') x) x
     printArg (Arg x _ _) = printf "   \"%s\" A..= %s_" (dropAround (== '_') x) x
 printToJson _ = error "not item"
 
@@ -373,8 +375,8 @@ writeData imps recimps (q@(nam, _, _) : t) = do
             )
         printFromJsonItem _ = error "oops"
         printFromJsonArg :: Arg -> String
-        printFromJsonArg (Arg k Int64 _) = printf "    %s_ <- U.rm <$> (o A..: \"%s\" :: T.Parser String) :: T.Parser (Maybe Int)" k (dropAround (== '_') k)
-        printFromJsonArg (Arg k (Vector Int64) _) = printf "    %s_ <- traverse U.rm <$> (o A..: \"%s\" :: T.Parser [String]) :: T.Parser (Maybe [Int])" k (dropAround (== '_') k)
+        printFromJsonArg (Arg k Int64 _) = printf "    %s_ <- U.rm <$> (o A..:? \"%s\" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)" k (dropAround (== '_') k)
+        printFromJsonArg (Arg k (Vector Int64) _) = printf "    %s_ <- U.rl <$> (o A..:? \"%s\" :: T.Parser (Maybe [String])) :: T.Parser (Maybe [Int])" k (dropAround (== '_') k)
         printFromJsonArg (Arg _ (Vector (Vector Int64)) _) = undefined
         printFromJsonArg (Arg k _ _) = printf "    %s_ <- o A..:? \"%s\"" k (dropAround (== '_') k)
 

@@ -39,5 +39,5 @@ instance T.ToJSON FinishFileGeneration where
       A.object
         [ "@type" A..= T.String "finishFileGeneration",
           "error" A..= _error_,
-          "generation_id" A..= generation_id_
+          "generation_id" A..= U.toS generation_id_
         ]

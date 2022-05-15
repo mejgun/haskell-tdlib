@@ -69,5 +69,5 @@ instance T.ToJSON AnswerInlineQuery where
           "cache_time" A..= cache_time_,
           "results" A..= results_,
           "is_personal" A..= is_personal_,
-          "inline_query_id" A..= inline_query_id_
+          "inline_query_id" A..= U.toS inline_query_id_
         ]

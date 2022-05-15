@@ -67,7 +67,7 @@ instance T.ToJSON SendPaymentForm where
           "credentials" A..= credentials_,
           "shipping_option_id" A..= shipping_option_id_,
           "order_info_id" A..= order_info_id_,
-          "payment_form_id" A..= payment_form_id_,
+          "payment_form_id" A..= U.toS payment_form_id_,
           "message_id" A..= message_id_,
           "chat_id" A..= chat_id_
         ]

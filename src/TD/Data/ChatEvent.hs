@@ -52,7 +52,7 @@ instance T.FromJSON ChatEvent where
         action_ <- o A..:? "action"
         member_id_ <- o A..:? "member_id"
         date_ <- o A..:? "date"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ ChatEvent {action = action_, member_id = member_id_, date = date_, _id = _id_}
   parseJSON _ = mempty
 
@@ -69,5 +69,5 @@ instance T.ToJSON ChatEvent where
           "action" A..= action_,
           "member_id" A..= member_id_,
           "date" A..= date_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

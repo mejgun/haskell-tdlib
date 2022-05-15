@@ -94,7 +94,7 @@ instance T.FromJSON StickerSetInfo where
         thumbnail_ <- o A..:? "thumbnail"
         name_ <- o A..:? "name"
         title_ <- o A..:? "title"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ StickerSetInfo {covers = covers_, size = size_, is_viewed = is_viewed_, sticker_type = sticker_type_, is_official = is_official_, is_archived = is_archived_, is_installed = is_installed_, thumbnail_outline = thumbnail_outline_, thumbnail = thumbnail_, name = name_, title = title_, _id = _id_}
   parseJSON _ = mempty
 
@@ -127,5 +127,5 @@ instance T.ToJSON StickerSetInfo where
           "thumbnail" A..= thumbnail_,
           "name" A..= name_,
           "title" A..= title_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

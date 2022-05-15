@@ -79,7 +79,7 @@ instance T.FromJSON OptionValue where
 
       parseOptionValueInteger :: A.Value -> T.Parser OptionValue
       parseOptionValueInteger = A.withObject "OptionValueInteger" $ \o -> do
-        _value_ <- U.rm <$> (o A..: "value" :: T.Parser String) :: T.Parser (Maybe Int)
+        _value_ <- U.rm <$> (o A..:? "value" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ OptionValueInteger {_value = _value_}
 
       parseOptionValueString :: A.Value -> T.Parser OptionValue
@@ -107,7 +107,7 @@ instance T.ToJSON OptionValue where
       } =
       A.object
         [ "@type" A..= T.String "optionValueInteger",
-          "value" A..= _value_
+          "value" A..= U.toS _value_
         ]
   toJSON
     OptionValueString

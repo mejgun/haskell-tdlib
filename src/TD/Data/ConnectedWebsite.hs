@@ -75,7 +75,7 @@ instance T.FromJSON ConnectedWebsite where
         browser_ <- o A..:? "browser"
         bot_user_id_ <- o A..:? "bot_user_id"
         domain_name_ <- o A..:? "domain_name"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ ConnectedWebsite {location = location_, ip = ip_, last_active_date = last_active_date_, log_in_date = log_in_date_, platform = platform_, browser = browser_, bot_user_id = bot_user_id_, domain_name = domain_name_, _id = _id_}
   parseJSON _ = mempty
 
@@ -102,5 +102,5 @@ instance T.ToJSON ConnectedWebsite where
           "browser" A..= browser_,
           "bot_user_id" A..= bot_user_id_,
           "domain_name" A..= domain_name_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

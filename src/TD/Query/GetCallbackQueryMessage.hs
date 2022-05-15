@@ -42,7 +42,7 @@ instance T.ToJSON GetCallbackQueryMessage where
       } =
       A.object
         [ "@type" A..= T.String "getCallbackQueryMessage",
-          "callback_query_id" A..= callback_query_id_,
+          "callback_query_id" A..= U.toS callback_query_id_,
           "message_id" A..= message_id_,
           "chat_id" A..= chat_id_
         ]

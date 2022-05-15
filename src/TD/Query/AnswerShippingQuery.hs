@@ -45,5 +45,5 @@ instance T.ToJSON AnswerShippingQuery where
         [ "@type" A..= T.String "answerShippingQuery",
           "error_message" A..= error_message_,
           "shipping_options" A..= shipping_options_,
-          "shipping_query_id" A..= shipping_query_id_
+          "shipping_query_id" A..= U.toS shipping_query_id_
         ]

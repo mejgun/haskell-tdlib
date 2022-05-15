@@ -37,6 +37,6 @@ instance T.ToJSON ReorderInstalledStickerSets where
       } =
       A.object
         [ "@type" A..= T.String "reorderInstalledStickerSets",
-          "sticker_set_ids" A..= sticker_set_ids_,
+          "sticker_set_ids" A..= U.toLS sticker_set_ids_,
           "is_masks" A..= is_masks_
         ]

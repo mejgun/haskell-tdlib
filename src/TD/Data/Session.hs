@@ -121,7 +121,7 @@ instance T.FromJSON Session where
         can_accept_secret_chats_ <- o A..:? "can_accept_secret_chats"
         is_password_pending_ <- o A..:? "is_password_pending"
         is_current_ <- o A..:? "is_current"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ Session {region = region_, country = country_, ip = ip_, last_active_date = last_active_date_, log_in_date = log_in_date_, system_version = system_version_, platform = platform_, device_model = device_model_, is_official_application = is_official_application_, application_version = application_version_, application_name = application_name_, api_id = api_id_, _type = _type_, can_accept_calls = can_accept_calls_, can_accept_secret_chats = can_accept_secret_chats_, is_password_pending = is_password_pending_, is_current = is_current_, _id = _id_}
   parseJSON _ = mempty
 
@@ -166,5 +166,5 @@ instance T.ToJSON Session where
           "can_accept_secret_chats" A..= can_accept_secret_chats_,
           "is_password_pending" A..= is_password_pending_,
           "is_current" A..= is_current_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

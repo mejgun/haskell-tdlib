@@ -32,5 +32,5 @@ instance T.ToJSON ViewTrendingStickerSets where
       } =
       A.object
         [ "@type" A..= T.String "viewTrendingStickerSets",
-          "sticker_set_ids" A..= sticker_set_ids_
+          "sticker_set_ids" A..= U.toLS sticker_set_ids_
         ]

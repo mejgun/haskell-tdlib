@@ -186,7 +186,7 @@ instance T.FromJSON Message where
         reply_markup_ <- o A..:? "reply_markup"
         content_ <- o A..:? "content"
         restriction_reason_ <- o A..:? "restriction_reason"
-        media_album_id_ <- U.rm <$> (o A..: "media_album_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        media_album_id_ <- U.rm <$> (o A..:? "media_album_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         author_signature_ <- o A..:? "author_signature"
         via_bot_user_id_ <- o A..:? "via_bot_user_id"
         ttl_expires_in_ <- o A..:? "ttl_expires_in"
@@ -267,7 +267,7 @@ instance T.ToJSON Message where
           "reply_markup" A..= reply_markup_,
           "content" A..= content_,
           "restriction_reason" A..= restriction_reason_,
-          "media_album_id" A..= media_album_id_,
+          "media_album_id" A..= U.toS media_album_id_,
           "author_signature" A..= author_signature_,
           "via_bot_user_id" A..= via_bot_user_id_,
           "ttl_expires_in" A..= ttl_expires_in_,

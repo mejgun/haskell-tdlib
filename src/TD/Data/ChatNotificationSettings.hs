@@ -77,7 +77,7 @@ instance T.FromJSON ChatNotificationSettings where
         use_default_disable_pinned_message_notifications_ <- o A..:? "use_default_disable_pinned_message_notifications"
         show_preview_ <- o A..:? "show_preview"
         use_default_show_preview_ <- o A..:? "use_default_show_preview"
-        sound_id_ <- U.rm <$> (o A..: "sound_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        sound_id_ <- U.rm <$> (o A..:? "sound_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         use_default_sound_ <- o A..:? "use_default_sound"
         mute_for_ <- o A..:? "mute_for"
         use_default_mute_for_ <- o A..:? "use_default_mute_for"
@@ -106,7 +106,7 @@ instance T.ToJSON ChatNotificationSettings where
           "use_default_disable_pinned_message_notifications" A..= use_default_disable_pinned_message_notifications_,
           "show_preview" A..= show_preview_,
           "use_default_show_preview" A..= use_default_show_preview_,
-          "sound_id" A..= sound_id_,
+          "sound_id" A..= U.toS sound_id_,
           "use_default_sound" A..= use_default_sound_,
           "mute_for" A..= mute_for_,
           "use_default_mute_for" A..= use_default_mute_for_

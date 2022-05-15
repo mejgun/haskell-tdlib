@@ -61,7 +61,7 @@ instance T.ToJSON GetChatEventLog where
           "user_ids" A..= user_ids_,
           "filters" A..= filters_,
           "limit" A..= limit_,
-          "from_event_id" A..= from_event_id_,
+          "from_event_id" A..= U.toS from_event_id_,
           "query" A..= query_,
           "chat_id" A..= chat_id_
         ]

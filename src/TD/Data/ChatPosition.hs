@@ -51,7 +51,7 @@ instance T.FromJSON ChatPosition where
       parseChatPosition = A.withObject "ChatPosition" $ \o -> do
         source_ <- o A..:? "source"
         is_pinned_ <- o A..:? "is_pinned"
-        order_ <- U.rm <$> (o A..: "order" :: T.Parser String) :: T.Parser (Maybe Int)
+        order_ <- U.rm <$> (o A..:? "order" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         list_ <- o A..:? "list"
         return $ ChatPosition {source = source_, is_pinned = is_pinned_, order = order_, list = list_}
   parseJSON _ = mempty
@@ -68,6 +68,6 @@ instance T.ToJSON ChatPosition where
         [ "@type" A..= T.String "chatPosition",
           "source" A..= source_,
           "is_pinned" A..= is_pinned_,
-          "order" A..= order_,
+          "order" A..= U.toS order_,
           "list" A..= list_
         ]

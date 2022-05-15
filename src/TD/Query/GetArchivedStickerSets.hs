@@ -43,6 +43,6 @@ instance T.ToJSON GetArchivedStickerSets where
       A.object
         [ "@type" A..= T.String "getArchivedStickerSets",
           "limit" A..= limit_,
-          "offset_sticker_set_id" A..= offset_sticker_set_id_,
+          "offset_sticker_set_id" A..= U.toS offset_sticker_set_id_,
           "is_masks" A..= is_masks_
         ]

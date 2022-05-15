@@ -82,7 +82,7 @@ instance T.FromJSON Poll where
         total_voter_count_ <- o A..:? "total_voter_count"
         options_ <- o A..:? "options"
         question_ <- o A..:? "question"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ Poll {is_closed = is_closed_, close_date = close_date_, open_period = open_period_, _type = _type_, is_anonymous = is_anonymous_, recent_voter_user_ids = recent_voter_user_ids_, total_voter_count = total_voter_count_, options = options_, question = question_, _id = _id_}
   parseJSON _ = mempty
 
@@ -111,5 +111,5 @@ instance T.ToJSON Poll where
           "total_voter_count" A..= total_voter_count_,
           "options" A..= options_,
           "question" A..= question_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

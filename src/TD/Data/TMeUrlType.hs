@@ -94,7 +94,7 @@ instance T.FromJSON TMeUrlType where
 
       parseTMeUrlTypeStickerSet :: A.Value -> T.Parser TMeUrlType
       parseTMeUrlTypeStickerSet = A.withObject "TMeUrlTypeStickerSet" $ \o -> do
-        sticker_set_id_ <- U.rm <$> (o A..: "sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        sticker_set_id_ <- U.rm <$> (o A..:? "sticker_set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ TMeUrlTypeStickerSet {sticker_set_id = sticker_set_id_}
   parseJSON _ = mempty
 
@@ -129,5 +129,5 @@ instance T.ToJSON TMeUrlType where
       } =
       A.object
         [ "@type" A..= T.String "tMeUrlTypeStickerSet",
-          "sticker_set_id" A..= sticker_set_id_
+          "sticker_set_id" A..= U.toS sticker_set_id_
         ]

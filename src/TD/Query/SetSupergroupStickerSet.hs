@@ -37,6 +37,6 @@ instance T.ToJSON SetSupergroupStickerSet where
       } =
       A.object
         [ "@type" A..= T.String "setSupergroupStickerSet",
-          "sticker_set_id" A..= sticker_set_id_,
+          "sticker_set_id" A..= U.toS sticker_set_id_,
           "supergroup_id" A..= supergroup_id_
         ]

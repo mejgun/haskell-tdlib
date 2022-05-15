@@ -58,7 +58,7 @@ instance T.FromJSON ChatPhoto where
         sizes_ <- o A..:? "sizes"
         minithumbnail_ <- o A..:? "minithumbnail"
         added_date_ <- o A..:? "added_date"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ ChatPhoto {animation = animation_, sizes = sizes_, minithumbnail = minithumbnail_, added_date = added_date_, _id = _id_}
   parseJSON _ = mempty
 
@@ -77,5 +77,5 @@ instance T.ToJSON ChatPhoto where
           "sizes" A..= sizes_,
           "minithumbnail" A..= minithumbnail_,
           "added_date" A..= added_date_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

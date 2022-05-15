@@ -52,7 +52,7 @@ instance T.ToJSON DiscardCall where
       } =
       A.object
         [ "@type" A..= T.String "discardCall",
-          "connection_id" A..= connection_id_,
+          "connection_id" A..= U.toS connection_id_,
           "is_video" A..= is_video_,
           "duration" A..= duration_,
           "is_disconnected" A..= is_disconnected_,

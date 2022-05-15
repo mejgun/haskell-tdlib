@@ -62,7 +62,7 @@ instance T.FromJSON Background where
         name_ <- o A..:? "name"
         is_dark_ <- o A..:? "is_dark"
         is_default_ <- o A..:? "is_default"
-        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ Background {_type = _type_, document = document_, name = name_, is_dark = is_dark_, is_default = is_default_, _id = _id_}
   parseJSON _ = mempty
 
@@ -83,5 +83,5 @@ instance T.ToJSON Background where
           "name" A..= name_,
           "is_dark" A..= is_dark_,
           "is_default" A..= is_default_,
-          "id" A..= _id_
+          "id" A..= U.toS _id_
         ]

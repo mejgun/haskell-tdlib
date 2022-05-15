@@ -44,5 +44,5 @@ instance T.ToJSON ChangeStickerSet where
         [ "@type" A..= T.String "changeStickerSet",
           "is_archived" A..= is_archived_,
           "is_installed" A..= is_installed_,
-          "set_id" A..= set_id_
+          "set_id" A..= U.toS set_id_
         ]

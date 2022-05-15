@@ -32,5 +32,5 @@ instance T.ToJSON RemoveBackground where
       } =
       A.object
         [ "@type" A..= T.String "removeBackground",
-          "background_id" A..= background_id_
+          "background_id" A..= U.toS background_id_
         ]

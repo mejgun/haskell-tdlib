@@ -38,5 +38,5 @@ instance T.ToJSON AnswerCustomQuery where
       A.object
         [ "@type" A..= T.String "answerCustomQuery",
           "data" A..= _data_,
-          "custom_query_id" A..= custom_query_id_
+          "custom_query_id" A..= U.toS custom_query_id_
         ]

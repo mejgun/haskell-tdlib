@@ -44,5 +44,5 @@ instance T.ToJSON WriteGeneratedFilePart where
         [ "@type" A..= T.String "writeGeneratedFilePart",
           "data" A..= _data_,
           "offset" A..= offset_,
-          "generation_id" A..= generation_id_
+          "generation_id" A..= U.toS generation_id_
         ]

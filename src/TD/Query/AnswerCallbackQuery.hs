@@ -56,5 +56,5 @@ instance T.ToJSON AnswerCallbackQuery where
           "url" A..= url_,
           "show_alert" A..= show_alert_,
           "text" A..= text_,
-          "callback_query_id" A..= callback_query_id_
+          "callback_query_id" A..= U.toS callback_query_id_
         ]

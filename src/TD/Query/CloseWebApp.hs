@@ -32,5 +32,5 @@ instance T.ToJSON CloseWebApp where
       } =
       A.object
         [ "@type" A..= T.String "closeWebApp",
-          "web_app_launch_id" A..= web_app_launch_id_
+          "web_app_launch_id" A..= U.toS web_app_launch_id_
         ]

@@ -124,7 +124,7 @@ instance T.FromJSON SupergroupFullInfo where
         bot_commands_ <- o A..:? "bot_commands"
         invite_link_ <- o A..:? "invite_link"
         location_ <- o A..:? "location"
-        sticker_set_id_ <- U.rm <$> (o A..: "sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        sticker_set_id_ <- U.rm <$> (o A..:? "sticker_set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         is_all_history_available_ <- o A..:? "is_all_history_available"
         can_get_statistics_ <- o A..:? "can_get_statistics"
         can_set_location_ <- o A..:? "can_set_location"
@@ -175,7 +175,7 @@ instance T.ToJSON SupergroupFullInfo where
           "bot_commands" A..= bot_commands_,
           "invite_link" A..= invite_link_,
           "location" A..= location_,
-          "sticker_set_id" A..= sticker_set_id_,
+          "sticker_set_id" A..= U.toS sticker_set_id_,
           "is_all_history_available" A..= is_all_history_available_,
           "can_get_statistics" A..= can_get_statistics_,
           "can_set_location" A..= can_set_location_,

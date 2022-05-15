@@ -32,5 +32,5 @@ instance T.ToJSON GetSavedNotificationSound where
       } =
       A.object
         [ "@type" A..= T.String "getSavedNotificationSound",
-          "notification_sound_id" A..= notification_sound_id_
+          "notification_sound_id" A..= U.toS notification_sound_id_
         ]

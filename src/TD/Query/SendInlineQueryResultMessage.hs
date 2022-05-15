@@ -65,7 +65,7 @@ instance T.ToJSON SendInlineQueryResultMessage where
         [ "@type" A..= T.String "sendInlineQueryResultMessage",
           "hide_via_bot" A..= hide_via_bot_,
           "result_id" A..= result_id_,
-          "query_id" A..= query_id_,
+          "query_id" A..= U.toS query_id_,
           "options" A..= options_,
           "reply_to_message_id" A..= reply_to_message_id_,
           "message_thread_id" A..= message_thread_id_,
