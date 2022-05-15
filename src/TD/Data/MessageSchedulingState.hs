@@ -43,7 +43,7 @@ instance T.FromJSON MessageSchedulingState where
     where
       parseMessageSchedulingStateSendAtDate :: A.Value -> T.Parser MessageSchedulingState
       parseMessageSchedulingStateSendAtDate = A.withObject "MessageSchedulingStateSendAtDate" $ \o -> do
-        send_date_ <- mconcat [o A..:? "send_date", U.rm <$> (o A..: "send_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        send_date_ <- o A..:? "send_date"
         return $ MessageSchedulingStateSendAtDate {send_date = send_date_}
 
       parseMessageSchedulingStateSendWhenOnline :: A.Value -> T.Parser MessageSchedulingState

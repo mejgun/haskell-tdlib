@@ -42,7 +42,7 @@
 </span><span id="line-33"></span><span>    </span><span id="reaction"><span class="annot"><span class="annottext">Reaction -&gt; Maybe String
 </span><a href="TD.Data.Reaction.html#reaction"><span class="hs-identifier hs-var hs-var">reaction</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-34"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-35"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679425082"><span id="local-6989586621679425084"><span class="annot"><span class="annottext">Reaction -&gt; Reaction -&gt; Bool
+</span><span id="line-35"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412586"><span id="local-6989586621679412588"><span class="annot"><span class="annottext">Reaction -&gt; Reaction -&gt; Bool
 (Reaction -&gt; Reaction -&gt; Bool)
 -&gt; (Reaction -&gt; Reaction -&gt; Bool) -&gt; Eq Reaction
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -52,40 +52,40 @@ $c/= :: Reaction -&gt; Reaction -&gt; Bool
 $c== :: Reaction -&gt; Reaction -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425076"><span id="local-6989586621679425079"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span>  </span><span id="local-6989586621679425074"><span class="annot"><span class="annottext">show :: Reaction -&gt; String
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412580"><span id="local-6989586621679412583"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span>  </span><span id="local-6989586621679412578"><span class="annot"><span class="annottext">show :: Reaction -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-39"></span><span>    </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span><span>
 </span><span id="line-40"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">center_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#center_animation"><span class="hs-identifier hs-var">center_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425072"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425072"><span class="hs-identifier hs-var">center_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#center_animation"><span class="hs-identifier hs-var">center_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412576"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412576"><span class="hs-identifier hs-var">center_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">around_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#around_animation"><span class="hs-identifier hs-var">around_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425071"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425071"><span class="hs-identifier hs-var">around_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#around_animation"><span class="hs-identifier hs-var">around_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412575"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412575"><span class="hs-identifier hs-var">around_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">effect_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#effect_animation"><span class="hs-identifier hs-var">effect_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425070"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425070"><span class="hs-identifier hs-var">effect_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#effect_animation"><span class="hs-identifier hs-var">effect_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412574"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412574"><span class="hs-identifier hs-var">effect_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-43"></span><span>        </span><span class="annot"><span class="annottext">activate_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#activate_animation"><span class="hs-identifier hs-var">activate_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425069"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425069"><span class="hs-identifier hs-var">activate_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#activate_animation"><span class="hs-identifier hs-var">activate_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412573"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412573"><span class="hs-identifier hs-var">activate_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>        </span><span class="annot"><span class="annottext">select_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#select_animation"><span class="hs-identifier hs-var">select_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425068"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425068"><span class="hs-identifier hs-var">select_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#select_animation"><span class="hs-identifier hs-var">select_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412572"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412572"><span class="hs-identifier hs-var">select_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">appear_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#appear_animation"><span class="hs-identifier hs-var">appear_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425067"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425067"><span class="hs-identifier hs-var">appear_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#appear_animation"><span class="hs-identifier hs-var">appear_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412571"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412571"><span class="hs-identifier hs-var">appear_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">static_icon :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#static_icon"><span class="hs-identifier hs-var">static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425066"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425066"><span class="hs-identifier hs-var">static_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#static_icon"><span class="hs-identifier hs-var">static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412570"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412570"><span class="hs-identifier hs-var">static_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>        </span><span class="annot"><span class="annottext">is_active :: Reaction -&gt; Maybe Bool
-</span><a href="TD.Data.Reaction.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425065"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679425065"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412569"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412569"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>        </span><span class="annot"><span class="annottext">title :: Reaction -&gt; Maybe String
-</span><a href="TD.Data.Reaction.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425064"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425064"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412568"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412568"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">reaction :: Reaction -&gt; Maybe String
-</span><a href="TD.Data.Reaction.html#reaction"><span class="hs-identifier hs-var">reaction</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425063"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425063"><span class="hs-identifier hs-var">reaction_</span></a></span></span><span>
+</span><a href="TD.Data.Reaction.html#reaction"><span class="hs-identifier hs-var">reaction</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412567"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412567"><span class="hs-identifier hs-var">reaction_</span></a></span></span><span>
 </span><span id="line-50"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-51"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Reaction&quot;</span></span><span>
@@ -97,144 +97,144 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;center_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425072"><span class="hs-identifier hs-var">center_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412576"><span class="hs-identifier hs-var">center_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-54"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Sticker -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;around_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425071"><span class="hs-identifier hs-var">around_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412575"><span class="hs-identifier hs-var">around_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-55"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Sticker -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;effect_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425070"><span class="hs-identifier hs-var">effect_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412574"><span class="hs-identifier hs-var">effect_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Sticker -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;activate_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425069"><span class="hs-identifier hs-var">activate_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412573"><span class="hs-identifier hs-var">activate_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Sticker -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;select_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425068"><span class="hs-identifier hs-var">select_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412572"><span class="hs-identifier hs-var">select_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Sticker -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;appear_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425067"><span class="hs-identifier hs-var">appear_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412571"><span class="hs-identifier hs-var">appear_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Sticker -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;static_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425066"><span class="hs-identifier hs-var">static_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412570"><span class="hs-identifier hs-var">static_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679425065"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412569"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-61"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425064"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412568"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-62"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reaction&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425063"><span class="hs-identifier hs-var">reaction_</span></a></span><span>
+</span><a href="#local-6989586621679412567"><span class="hs-identifier hs-var">reaction_</span></a></span><span>
 </span><span id="line-63"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-64"></span><span>
-</span><span id="line-65"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425058"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-66"></span><span>  </span><span id="local-6989586621679425056"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Reaction
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679425054"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679425054"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679425052"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425052"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621679425051"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425051"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425052"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-65"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412562"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-66"></span><span>  </span><span id="local-6989586621679412560"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Reaction
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679412558"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679412558"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679412556"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412556"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679412555"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412555"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412556"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-68"></span><span>
 </span><span id="line-69"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425051"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679412555"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-70"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reaction&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Reaction
-</span><a href="#local-6989586621679425049"><span class="hs-identifier hs-var">parseReaction</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679425054"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412553"><span class="hs-identifier hs-var">parseReaction</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412558"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-71"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Reaction
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-72"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-73"></span><span>      </span><span class="annot"><a href="#local-6989586621679425049"><span class="hs-identifier hs-type">parseReaction</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span><span>
-</span><span id="line-74"></span><span>      </span><span id="local-6989586621679425049"><span class="annot"><span class="annottext">parseReaction :: Value -&gt; Parser Reaction
-</span><a href="#local-6989586621679425049"><span class="hs-identifier hs-var hs-var">parseReaction</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Reaction) -&gt; Value -&gt; Parser Reaction
+</span><span id="line-73"></span><span>      </span><span class="annot"><a href="#local-6989586621679412553"><span class="hs-identifier hs-type">parseReaction</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span><span>
+</span><span id="line-74"></span><span>      </span><span id="local-6989586621679412553"><span class="annot"><span class="annottext">parseReaction :: Value -&gt; Parser Reaction
+</span><a href="#local-6989586621679412553"><span class="hs-identifier hs-var hs-var">parseReaction</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Reaction) -&gt; Value -&gt; Parser Reaction
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Reaction&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Reaction) -&gt; Value -&gt; Parser Reaction)
 -&gt; (Object -&gt; Parser Reaction) -&gt; Value -&gt; Parser Reaction
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679425047"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-75"></span><span>        </span><span id="local-6989586621679425046"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425046"><span class="hs-identifier hs-var">center_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412551"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-75"></span><span>        </span><span id="local-6989586621679412550"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412550"><span class="hs-identifier hs-var">center_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;center_animation&quot;</span></span><span>
-</span><span id="line-76"></span><span>        </span><span id="local-6989586621679425044"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425044"><span class="hs-identifier hs-var">around_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
+</span><span id="line-76"></span><span>        </span><span id="local-6989586621679412548"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412548"><span class="hs-identifier hs-var">around_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;around_animation&quot;</span></span><span>
-</span><span id="line-77"></span><span>        </span><span id="local-6989586621679425043"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425043"><span class="hs-identifier hs-var">effect_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
+</span><span id="line-77"></span><span>        </span><span id="local-6989586621679412547"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412547"><span class="hs-identifier hs-var">effect_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;effect_animation&quot;</span></span><span>
-</span><span id="line-78"></span><span>        </span><span id="local-6989586621679425042"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425042"><span class="hs-identifier hs-var">activate_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
+</span><span id="line-78"></span><span>        </span><span id="local-6989586621679412546"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412546"><span class="hs-identifier hs-var">activate_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;activate_animation&quot;</span></span><span>
-</span><span id="line-79"></span><span>        </span><span id="local-6989586621679425041"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425041"><span class="hs-identifier hs-var">select_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
+</span><span id="line-79"></span><span>        </span><span id="local-6989586621679412545"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412545"><span class="hs-identifier hs-var">select_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;select_animation&quot;</span></span><span>
-</span><span id="line-80"></span><span>        </span><span id="local-6989586621679425040"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425040"><span class="hs-identifier hs-var">appear_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
+</span><span id="line-80"></span><span>        </span><span id="local-6989586621679412544"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412544"><span class="hs-identifier hs-var">appear_animation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;appear_animation&quot;</span></span><span>
-</span><span id="line-81"></span><span>        </span><span id="local-6989586621679425039"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425039"><span class="hs-identifier hs-var">static_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
+</span><span id="line-81"></span><span>        </span><span id="local-6989586621679412543"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412543"><span class="hs-identifier hs-var">static_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Sticker)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;static_icon&quot;</span></span><span>
-</span><span id="line-82"></span><span>        </span><span id="local-6989586621679425038"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679425038"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-82"></span><span>        </span><span id="local-6989586621679412542"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412542"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_active&quot;</span></span><span>
-</span><span id="line-83"></span><span>        </span><span id="local-6989586621679425037"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425037"><span class="hs-identifier hs-var">title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-83"></span><span>        </span><span id="local-6989586621679412541"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412541"><span class="hs-identifier hs-var">title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span>
-</span><span id="line-84"></span><span>        </span><span id="local-6989586621679425036"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425036"><span class="hs-identifier hs-var">reaction_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425047"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-84"></span><span>        </span><span id="local-6989586621679412540"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412540"><span class="hs-identifier hs-var">reaction_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reaction&quot;</span></span><span>
@@ -255,64 +255,64 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Reaction
 </span><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">center_animation :: Maybe Sticker
 </span><a href="TD.Data.Reaction.html#center_animation"><span class="hs-identifier hs-var">center_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425046"><span class="hs-identifier hs-var">center_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">around_animation :: Maybe Sticker
+</span><a href="#local-6989586621679412550"><span class="hs-identifier hs-var">center_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">around_animation :: Maybe Sticker
 </span><a href="TD.Data.Reaction.html#around_animation"><span class="hs-identifier hs-var">around_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425044"><span class="hs-identifier hs-var">around_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">effect_animation :: Maybe Sticker
+</span><a href="#local-6989586621679412548"><span class="hs-identifier hs-var">around_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">effect_animation :: Maybe Sticker
 </span><a href="TD.Data.Reaction.html#effect_animation"><span class="hs-identifier hs-var">effect_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425043"><span class="hs-identifier hs-var">effect_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">activate_animation :: Maybe Sticker
+</span><a href="#local-6989586621679412547"><span class="hs-identifier hs-var">effect_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">activate_animation :: Maybe Sticker
 </span><a href="TD.Data.Reaction.html#activate_animation"><span class="hs-identifier hs-var">activate_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425042"><span class="hs-identifier hs-var">activate_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">select_animation :: Maybe Sticker
+</span><a href="#local-6989586621679412546"><span class="hs-identifier hs-var">activate_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">select_animation :: Maybe Sticker
 </span><a href="TD.Data.Reaction.html#select_animation"><span class="hs-identifier hs-var">select_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425041"><span class="hs-identifier hs-var">select_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">appear_animation :: Maybe Sticker
+</span><a href="#local-6989586621679412545"><span class="hs-identifier hs-var">select_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">appear_animation :: Maybe Sticker
 </span><a href="TD.Data.Reaction.html#appear_animation"><span class="hs-identifier hs-var">appear_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425040"><span class="hs-identifier hs-var">appear_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">static_icon :: Maybe Sticker
+</span><a href="#local-6989586621679412544"><span class="hs-identifier hs-var">appear_animation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">static_icon :: Maybe Sticker
 </span><a href="TD.Data.Reaction.html#static_icon"><span class="hs-identifier hs-var">static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425039"><span class="hs-identifier hs-var">static_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_active :: Maybe Bool
+</span><a href="#local-6989586621679412543"><span class="hs-identifier hs-var">static_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_active :: Maybe Bool
 </span><a href="TD.Data.Reaction.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679425038"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
+</span><a href="#local-6989586621679412542"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
 </span><a href="TD.Data.Reaction.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425037"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reaction :: Maybe String
+</span><a href="#local-6989586621679412541"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reaction :: Maybe String
 </span><a href="TD.Data.Reaction.html#reaction"><span class="hs-identifier hs-var">reaction</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425036"><span class="hs-identifier hs-var">reaction_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412540"><span class="hs-identifier hs-var">reaction_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-86"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser Reaction
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-87"></span><span>
-</span><span id="line-88"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425029"><span id="local-6989586621679425031"><span id="local-6989586621679425033"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-89"></span><span>  </span><span id="local-6989586621679425027"><span class="annot"><span class="annottext">toJSON :: Reaction -&gt; Value
+</span><span id="line-88"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412533"><span id="local-6989586621679412535"><span id="local-6989586621679412537"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-89"></span><span>  </span><span id="local-6989586621679412531"><span class="annot"><span class="annottext">toJSON :: Reaction -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-90"></span><span>    </span><span class="annot"><a href="TD.Data.Reaction.html#Reaction"><span class="hs-identifier hs-type">Reaction</span></a></span><span>
 </span><span id="line-91"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">center_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#center_animation"><span class="hs-identifier hs-var">center_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425025"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425025"><span class="hs-identifier hs-var">center_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#center_animation"><span class="hs-identifier hs-var">center_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412529"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412529"><span class="hs-identifier hs-var">center_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-92"></span><span>        </span><span class="annot"><span class="annottext">around_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#around_animation"><span class="hs-identifier hs-var">around_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425024"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425024"><span class="hs-identifier hs-var">around_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#around_animation"><span class="hs-identifier hs-var">around_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412528"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412528"><span class="hs-identifier hs-var">around_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-93"></span><span>        </span><span class="annot"><span class="annottext">effect_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#effect_animation"><span class="hs-identifier hs-var">effect_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425023"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425023"><span class="hs-identifier hs-var">effect_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#effect_animation"><span class="hs-identifier hs-var">effect_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412527"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412527"><span class="hs-identifier hs-var">effect_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-94"></span><span>        </span><span class="annot"><span class="annottext">activate_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#activate_animation"><span class="hs-identifier hs-var">activate_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425022"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425022"><span class="hs-identifier hs-var">activate_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#activate_animation"><span class="hs-identifier hs-var">activate_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412526"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412526"><span class="hs-identifier hs-var">activate_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-95"></span><span>        </span><span class="annot"><span class="annottext">select_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#select_animation"><span class="hs-identifier hs-var">select_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425021"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425021"><span class="hs-identifier hs-var">select_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#select_animation"><span class="hs-identifier hs-var">select_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412525"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412525"><span class="hs-identifier hs-var">select_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-96"></span><span>        </span><span class="annot"><span class="annottext">appear_animation :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#appear_animation"><span class="hs-identifier hs-var">appear_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425020"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425020"><span class="hs-identifier hs-var">appear_animation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#appear_animation"><span class="hs-identifier hs-var">appear_animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412524"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412524"><span class="hs-identifier hs-var">appear_animation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-97"></span><span>        </span><span class="annot"><span class="annottext">static_icon :: Reaction -&gt; Maybe Sticker
-</span><a href="TD.Data.Reaction.html#static_icon"><span class="hs-identifier hs-var">static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425019"><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425019"><span class="hs-identifier hs-var">static_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#static_icon"><span class="hs-identifier hs-var">static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412523"><span class="annot"><span class="annottext">Maybe Sticker
+</span><a href="#local-6989586621679412523"><span class="hs-identifier hs-var">static_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-98"></span><span>        </span><span class="annot"><span class="annottext">is_active :: Reaction -&gt; Maybe Bool
-</span><a href="TD.Data.Reaction.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425018"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679425018"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412522"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412522"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-99"></span><span>        </span><span class="annot"><span class="annottext">title :: Reaction -&gt; Maybe String
-</span><a href="TD.Data.Reaction.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425017"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425017"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Reaction.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412521"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412521"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-100"></span><span>        </span><span class="annot"><span class="annottext">reaction :: Reaction -&gt; Maybe String
-</span><a href="TD.Data.Reaction.html#reaction"><span class="hs-identifier hs-var">reaction</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425016"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425016"><span class="hs-identifier hs-var">reaction_</span></a></span></span><span>
+</span><a href="TD.Data.Reaction.html#reaction"><span class="hs-identifier hs-var">reaction</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412520"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412520"><span class="hs-identifier hs-var">reaction_</span></a></span></span><span>
 </span><span id="line-101"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-102"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -326,51 +326,51 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;center_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Sticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425025"><span class="hs-identifier hs-var">center_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412529"><span class="hs-identifier hs-var">center_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-105"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;around_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Sticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425024"><span class="hs-identifier hs-var">around_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412528"><span class="hs-identifier hs-var">around_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-106"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;effect_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Sticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425023"><span class="hs-identifier hs-var">effect_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412527"><span class="hs-identifier hs-var">effect_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-107"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;activate_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Sticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425022"><span class="hs-identifier hs-var">activate_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412526"><span class="hs-identifier hs-var">activate_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-108"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;select_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Sticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425021"><span class="hs-identifier hs-var">select_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412525"><span class="hs-identifier hs-var">select_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-109"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;appear_animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Sticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425020"><span class="hs-identifier hs-var">appear_animation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412524"><span class="hs-identifier hs-var">appear_animation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-110"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;static_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Sticker -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Sticker
-</span><a href="#local-6989586621679425019"><span class="hs-identifier hs-var">static_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412523"><span class="hs-identifier hs-var">static_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-111"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679425018"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412522"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-112"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425017"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679412521"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-113"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reaction&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425016"><span class="hs-identifier hs-var">reaction_</span></a></span><span>
+</span><a href="#local-6989586621679412520"><span class="hs-identifier hs-var">reaction_</span></a></span><span>
 </span><span id="line-114"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-115"></span></pre></body></html>

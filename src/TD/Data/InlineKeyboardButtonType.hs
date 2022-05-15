@@ -152,7 +152,7 @@ instance T.FromJSON InlineKeyboardButtonType where
       parseInlineKeyboardButtonTypeLoginUrl :: A.Value -> T.Parser InlineKeyboardButtonType
       parseInlineKeyboardButtonTypeLoginUrl = A.withObject "InlineKeyboardButtonTypeLoginUrl" $ \o -> do
         forward_text_ <- o A..:? "forward_text"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         url_ <- o A..:? "url"
         return $ InlineKeyboardButtonTypeLoginUrl {forward_text = forward_text_, _id = _id_, url = url_}
 
@@ -185,7 +185,7 @@ instance T.FromJSON InlineKeyboardButtonType where
 
       parseInlineKeyboardButtonTypeUser :: A.Value -> T.Parser InlineKeyboardButtonType
       parseInlineKeyboardButtonTypeUser = A.withObject "InlineKeyboardButtonTypeUser" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ InlineKeyboardButtonTypeUser {user_id = user_id_}
   parseJSON _ = mempty
 

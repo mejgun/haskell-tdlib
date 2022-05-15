@@ -60,8 +60,8 @@ instance T.FromJSON WebPageInstantView where
         feedback_link_ <- o A..:? "feedback_link"
         is_full_ <- o A..:? "is_full"
         is_rtl_ <- o A..:? "is_rtl"
-        version_ <- mconcat [o A..:? "version", U.rm <$> (o A..: "version" :: T.Parser String)] :: T.Parser (Maybe Int)
-        view_count_ <- mconcat [o A..:? "view_count", U.rm <$> (o A..: "view_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        version_ <- o A..:? "version"
+        view_count_ <- o A..:? "view_count"
         page_blocks_ <- o A..:? "page_blocks"
         return $ WebPageInstantView {feedback_link = feedback_link_, is_full = is_full_, is_rtl = is_rtl_, version = version_, view_count = view_count_, page_blocks = page_blocks_}
   parseJSON _ = mempty

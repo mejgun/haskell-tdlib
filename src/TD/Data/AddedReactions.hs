@@ -46,7 +46,7 @@ instance T.FromJSON AddedReactions where
       parseAddedReactions = A.withObject "AddedReactions" $ \o -> do
         next_offset_ <- o A..:? "next_offset"
         reactions_ <- o A..:? "reactions"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         return $ AddedReactions {next_offset = next_offset_, reactions = reactions_, total_count = total_count_}
   parseJSON _ = mempty
 

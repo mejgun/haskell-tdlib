@@ -41,7 +41,7 @@ instance T.FromJSON NetworkStatistics where
       parseNetworkStatistics :: A.Value -> T.Parser NetworkStatistics
       parseNetworkStatistics = A.withObject "NetworkStatistics" $ \o -> do
         entries_ <- o A..:? "entries"
-        since_date_ <- mconcat [o A..:? "since_date", U.rm <$> (o A..: "since_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        since_date_ <- o A..:? "since_date"
         return $ NetworkStatistics {entries = entries_, since_date = since_date_}
   parseJSON _ = mempty
 

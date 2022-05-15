@@ -186,19 +186,19 @@ instance T.FromJSON Message where
         reply_markup_ <- o A..:? "reply_markup"
         content_ <- o A..:? "content"
         restriction_reason_ <- o A..:? "restriction_reason"
-        media_album_id_ <- mconcat [o A..:? "media_album_id", U.rm <$> (o A..: "media_album_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        media_album_id_ <- U.rm <$> (o A..: "media_album_id" :: T.Parser String) :: T.Parser (Maybe Int)
         author_signature_ <- o A..:? "author_signature"
-        via_bot_user_id_ <- mconcat [o A..:? "via_bot_user_id", U.rm <$> (o A..: "via_bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        via_bot_user_id_ <- o A..:? "via_bot_user_id"
         ttl_expires_in_ <- o A..:? "ttl_expires_in"
-        ttl_ <- mconcat [o A..:? "ttl", U.rm <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
-        message_thread_id_ <- mconcat [o A..:? "message_thread_id", U.rm <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        reply_to_message_id_ <- mconcat [o A..:? "reply_to_message_id", U.rm <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        reply_in_chat_id_ <- mconcat [o A..:? "reply_in_chat_id", U.rm <$> (o A..: "reply_in_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        ttl_ <- o A..:? "ttl"
+        message_thread_id_ <- o A..:? "message_thread_id"
+        reply_to_message_id_ <- o A..:? "reply_to_message_id"
+        reply_in_chat_id_ <- o A..:? "reply_in_chat_id"
         unread_reactions_ <- o A..:? "unread_reactions"
         interaction_info_ <- o A..:? "interaction_info"
         forward_info_ <- o A..:? "forward_info"
-        edit_date_ <- mconcat [o A..:? "edit_date", U.rm <$> (o A..: "edit_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        edit_date_ <- o A..:? "edit_date"
+        date_ <- o A..:? "date"
         contains_unread_mention_ <- o A..:? "contains_unread_mention"
         is_channel_post_ <- o A..:? "is_channel_post"
         has_timestamped_media_ <- o A..:? "has_timestamped_media"
@@ -216,9 +216,9 @@ instance T.FromJSON Message where
         is_outgoing_ <- o A..:? "is_outgoing"
         scheduling_state_ <- o A..:? "scheduling_state"
         sending_state_ <- o A..:? "sending_state"
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        chat_id_ <- o A..:? "chat_id"
         sender_id_ <- o A..:? "sender_id"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ Message {reply_markup = reply_markup_, content = content_, restriction_reason = restriction_reason_, media_album_id = media_album_id_, author_signature = author_signature_, via_bot_user_id = via_bot_user_id_, ttl_expires_in = ttl_expires_in_, ttl = ttl_, message_thread_id = message_thread_id_, reply_to_message_id = reply_to_message_id_, reply_in_chat_id = reply_in_chat_id_, unread_reactions = unread_reactions_, interaction_info = interaction_info_, forward_info = forward_info_, edit_date = edit_date_, date = date_, contains_unread_mention = contains_unread_mention_, is_channel_post = is_channel_post_, has_timestamped_media = has_timestamped_media_, can_get_media_timestamp_links = can_get_media_timestamp_links_, can_get_viewers = can_get_viewers_, can_get_message_thread = can_get_message_thread_, can_get_statistics = can_get_statistics_, can_get_added_reactions = can_get_added_reactions_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, can_be_saved = can_be_saved_, can_be_forwarded = can_be_forwarded_, can_be_edited = can_be_edited_, is_pinned = is_pinned_, is_outgoing = is_outgoing_, scheduling_state = scheduling_state_, sending_state = sending_state_, chat_id = chat_id_, sender_id = sender_id_, _id = _id_}
   parseJSON _ = mempty
 

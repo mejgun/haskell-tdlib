@@ -45,7 +45,7 @@ instance T.FromJSON ChatAdministrator where
       parseChatAdministrator = A.withObject "ChatAdministrator" $ \o -> do
         is_owner_ <- o A..:? "is_owner"
         custom_title_ <- o A..:? "custom_title"
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ ChatAdministrator {is_owner = is_owner_, custom_title = custom_title_, user_id = user_id_}
   parseJSON _ = mempty
 

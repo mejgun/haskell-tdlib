@@ -104,13 +104,13 @@ instance T.FromJSON MessageForwardOrigin where
     where
       parseMessageForwardOriginUser :: A.Value -> T.Parser MessageForwardOrigin
       parseMessageForwardOriginUser = A.withObject "MessageForwardOriginUser" $ \o -> do
-        sender_user_id_ <- mconcat [o A..:? "sender_user_id", U.rm <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sender_user_id_ <- o A..:? "sender_user_id"
         return $ MessageForwardOriginUser {sender_user_id = sender_user_id_}
 
       parseMessageForwardOriginChat :: A.Value -> T.Parser MessageForwardOrigin
       parseMessageForwardOriginChat = A.withObject "MessageForwardOriginChat" $ \o -> do
         author_signature_ <- o A..:? "author_signature"
-        sender_chat_id_ <- mconcat [o A..:? "sender_chat_id", U.rm <$> (o A..: "sender_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sender_chat_id_ <- o A..:? "sender_chat_id"
         return $ MessageForwardOriginChat {author_signature = author_signature_, sender_chat_id = sender_chat_id_}
 
       parseMessageForwardOriginHiddenUser :: A.Value -> T.Parser MessageForwardOrigin
@@ -121,8 +121,8 @@ instance T.FromJSON MessageForwardOrigin where
       parseMessageForwardOriginChannel :: A.Value -> T.Parser MessageForwardOrigin
       parseMessageForwardOriginChannel = A.withObject "MessageForwardOriginChannel" $ \o -> do
         author_signature_ <- o A..:? "author_signature"
-        message_id_ <- mconcat [o A..:? "message_id", U.rm <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_id_ <- o A..:? "message_id"
+        chat_id_ <- o A..:? "chat_id"
         return $ MessageForwardOriginChannel {author_signature = author_signature_, message_id = message_id_, chat_id = chat_id_}
 
       parseMessageForwardOriginMessageImport :: A.Value -> T.Parser MessageForwardOrigin

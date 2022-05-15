@@ -86,24 +86,24 @@ instance T.FromJSON ChatType where
     where
       parseChatTypePrivate :: A.Value -> T.Parser ChatType
       parseChatTypePrivate = A.withObject "ChatTypePrivate" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ ChatTypePrivate {user_id = user_id_}
 
       parseChatTypeBasicGroup :: A.Value -> T.Parser ChatType
       parseChatTypeBasicGroup = A.withObject "ChatTypeBasicGroup" $ \o -> do
-        basic_group_id_ <- mconcat [o A..:? "basic_group_id", U.rm <$> (o A..: "basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        basic_group_id_ <- o A..:? "basic_group_id"
         return $ ChatTypeBasicGroup {basic_group_id = basic_group_id_}
 
       parseChatTypeSupergroup :: A.Value -> T.Parser ChatType
       parseChatTypeSupergroup = A.withObject "ChatTypeSupergroup" $ \o -> do
         is_channel_ <- o A..:? "is_channel"
-        supergroup_id_ <- mconcat [o A..:? "supergroup_id", U.rm <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        supergroup_id_ <- o A..:? "supergroup_id"
         return $ ChatTypeSupergroup {is_channel = is_channel_, supergroup_id = supergroup_id_}
 
       parseChatTypeSecret :: A.Value -> T.Parser ChatType
       parseChatTypeSecret = A.withObject "ChatTypeSecret" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        secret_chat_id_ <- mconcat [o A..:? "secret_chat_id", U.rm <$> (o A..: "secret_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
+        secret_chat_id_ <- o A..:? "secret_chat_id"
         return $ ChatTypeSecret {user_id = user_id_, secret_chat_id = secret_chat_id_}
   parseJSON _ = mempty
 

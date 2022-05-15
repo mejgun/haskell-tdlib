@@ -43,9 +43,9 @@ instance T.FromJSON GroupCallStream where
     where
       parseGroupCallStream :: A.Value -> T.Parser GroupCallStream
       parseGroupCallStream = A.withObject "GroupCallStream" $ \o -> do
-        time_offset_ <- mconcat [o A..:? "time_offset", U.rm <$> (o A..: "time_offset" :: T.Parser String)] :: T.Parser (Maybe Int)
-        scale_ <- mconcat [o A..:? "scale", U.rm <$> (o A..: "scale" :: T.Parser String)] :: T.Parser (Maybe Int)
-        channel_id_ <- mconcat [o A..:? "channel_id", U.rm <$> (o A..: "channel_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        time_offset_ <- o A..:? "time_offset"
+        scale_ <- o A..:? "scale"
+        channel_id_ <- o A..:? "channel_id"
         return $ GroupCallStream {time_offset = time_offset_, scale = scale_, channel_id = channel_id_}
   parseJSON _ = mempty
 

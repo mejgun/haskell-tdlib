@@ -55,12 +55,12 @@ instance T.FromJSON ThemeParameters where
     where
       parseThemeParameters :: A.Value -> T.Parser ThemeParameters
       parseThemeParameters = A.withObject "ThemeParameters" $ \o -> do
-        button_text_color_ <- mconcat [o A..:? "button_text_color", U.rm <$> (o A..: "button_text_color" :: T.Parser String)] :: T.Parser (Maybe Int)
-        button_color_ <- mconcat [o A..:? "button_color", U.rm <$> (o A..: "button_color" :: T.Parser String)] :: T.Parser (Maybe Int)
-        link_color_ <- mconcat [o A..:? "link_color", U.rm <$> (o A..: "link_color" :: T.Parser String)] :: T.Parser (Maybe Int)
-        hint_color_ <- mconcat [o A..:? "hint_color", U.rm <$> (o A..: "hint_color" :: T.Parser String)] :: T.Parser (Maybe Int)
-        text_color_ <- mconcat [o A..:? "text_color", U.rm <$> (o A..: "text_color" :: T.Parser String)] :: T.Parser (Maybe Int)
-        background_color_ <- mconcat [o A..:? "background_color", U.rm <$> (o A..: "background_color" :: T.Parser String)] :: T.Parser (Maybe Int)
+        button_text_color_ <- o A..:? "button_text_color"
+        button_color_ <- o A..:? "button_color"
+        link_color_ <- o A..:? "link_color"
+        hint_color_ <- o A..:? "hint_color"
+        text_color_ <- o A..:? "text_color"
+        background_color_ <- o A..:? "background_color"
         return $ ThemeParameters {button_text_color = button_text_color_, button_color = button_color_, link_color = link_color_, hint_color = hint_color_, text_color = text_color_, background_color = background_color_}
   parseJSON _ = mempty
 

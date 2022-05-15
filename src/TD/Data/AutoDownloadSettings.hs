@@ -66,10 +66,10 @@ instance T.FromJSON AutoDownloadSettings where
         use_less_data_for_calls_ <- o A..:? "use_less_data_for_calls"
         preload_next_audio_ <- o A..:? "preload_next_audio"
         preload_large_videos_ <- o A..:? "preload_large_videos"
-        video_upload_bitrate_ <- mconcat [o A..:? "video_upload_bitrate", U.rm <$> (o A..: "video_upload_bitrate" :: T.Parser String)] :: T.Parser (Maybe Int)
-        max_other_file_size_ <- mconcat [o A..:? "max_other_file_size", U.rm <$> (o A..: "max_other_file_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        max_video_file_size_ <- mconcat [o A..:? "max_video_file_size", U.rm <$> (o A..: "max_video_file_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        max_photo_file_size_ <- mconcat [o A..:? "max_photo_file_size", U.rm <$> (o A..: "max_photo_file_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        video_upload_bitrate_ <- o A..:? "video_upload_bitrate"
+        max_other_file_size_ <- o A..:? "max_other_file_size"
+        max_video_file_size_ <- o A..:? "max_video_file_size"
+        max_photo_file_size_ <- o A..:? "max_photo_file_size"
         is_auto_download_enabled_ <- o A..:? "is_auto_download_enabled"
         return $ AutoDownloadSettings {use_less_data_for_calls = use_less_data_for_calls_, preload_next_audio = preload_next_audio_, preload_large_videos = preload_large_videos_, video_upload_bitrate = video_upload_bitrate_, max_other_file_size = max_other_file_size_, max_video_file_size = max_video_file_size_, max_photo_file_size = max_photo_file_size_, is_auto_download_enabled = is_auto_download_enabled_}
   parseJSON _ = mempty

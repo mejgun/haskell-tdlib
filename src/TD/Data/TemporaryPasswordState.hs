@@ -39,7 +39,7 @@ instance T.FromJSON TemporaryPasswordState where
     where
       parseTemporaryPasswordState :: A.Value -> T.Parser TemporaryPasswordState
       parseTemporaryPasswordState = A.withObject "TemporaryPasswordState" $ \o -> do
-        valid_for_ <- mconcat [o A..:? "valid_for", U.rm <$> (o A..: "valid_for" :: T.Parser String)] :: T.Parser (Maybe Int)
+        valid_for_ <- o A..:? "valid_for"
         has_password_ <- o A..:? "has_password"
         return $ TemporaryPasswordState {valid_for = valid_for_, has_password = has_password_}
   parseJSON _ = mempty

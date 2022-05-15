@@ -544,7 +544,7 @@ instance T.FromJSON PushMessageContent where
       parsePushMessageContentGameScore :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentGameScore = A.withObject "PushMessageContentGameScore" $ \o -> do
         is_pinned_ <- o A..:? "is_pinned"
-        score_ <- mconcat [o A..:? "score", U.rm <$> (o A..: "score" :: T.Parser String)] :: T.Parser (Maybe Int)
+        score_ <- o A..:? "score"
         title_ <- o A..:? "title"
         return $ PushMessageContentGameScore {is_pinned = is_pinned_, score = score_, title = title_}
 
@@ -649,7 +649,7 @@ instance T.FromJSON PushMessageContent where
 
       parsePushMessageContentMessageForwards :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         return $ PushMessageContentMessageForwards {total_count = total_count_}
 
       parsePushMessageContentMediaAlbum :: A.Value -> T.Parser PushMessageContent
@@ -658,7 +658,7 @@ instance T.FromJSON PushMessageContent where
         has_audios_ <- o A..:? "has_audios"
         has_videos_ <- o A..:? "has_videos"
         has_photos_ <- o A..:? "has_photos"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         return $ PushMessageContentMediaAlbum {has_documents = has_documents_, has_audios = has_audios_, has_videos = has_videos_, has_photos = has_photos_, total_count = total_count_}
   parseJSON _ = mempty
 

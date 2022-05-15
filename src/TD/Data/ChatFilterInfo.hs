@@ -45,7 +45,7 @@ instance T.FromJSON ChatFilterInfo where
       parseChatFilterInfo = A.withObject "ChatFilterInfo" $ \o -> do
         icon_name_ <- o A..:? "icon_name"
         title_ <- o A..:? "title"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ ChatFilterInfo {icon_name = icon_name_, title = title_, _id = _id_}
   parseJSON _ = mempty
 

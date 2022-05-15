@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span>    </span><span id="_error"><span class="annot"><span class="annottext">TestReturnError -&gt; Maybe Error
 </span><a href="TD.Query.TestReturnError.html#_error"><span class="hs-identifier hs-var hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error.Error</span></a></span><span>
 </span><span id="line-16"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-17"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419720"><span id="local-6989586621679419722"><span class="annot"><span class="annottext">TestReturnError -&gt; TestReturnError -&gt; Bool
+</span><span id="line-17"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679407308"><span id="local-6989586621679407310"><span class="annot"><span class="annottext">TestReturnError -&gt; TestReturnError -&gt; Bool
 (TestReturnError -&gt; TestReturnError -&gt; Bool)
 -&gt; (TestReturnError -&gt; TestReturnError -&gt; Bool)
 -&gt; Eq TestReturnError
@@ -26,13 +26,13 @@ $c/= :: TestReturnError -&gt; TestReturnError -&gt; Bool
 $c== :: TestReturnError -&gt; TestReturnError -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419714"><span id="local-6989586621679419717"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span>  </span><span id="local-6989586621679419712"><span class="annot"><span class="annottext">show :: TestReturnError -&gt; String
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407302"><span id="local-6989586621679407305"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679407300"><span class="annot"><span class="annottext">show :: TestReturnError -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-21"></span><span>    </span><span class="annot"><a href="TD.Query.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: TestReturnError -&gt; Maybe Error
-</span><a href="TD.Query.TestReturnError.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419710"><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679419710"><span class="hs-identifier hs-var">_error_</span></a></span></span><span>
+</span><a href="TD.Query.TestReturnError.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407298"><span class="annot"><span class="annottext">Maybe Error
+</span><a href="#local-6989586621679407298"><span class="hs-identifier hs-var">_error_</span></a></span></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;TestReturnError&quot;</span></span><span>
@@ -44,16 +44,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_error&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679419710"><span class="hs-identifier hs-var">_error_</span></a></span><span>
+</span><a href="#local-6989586621679407298"><span class="hs-identifier hs-var">_error_</span></a></span><span>
 </span><span id="line-27"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419701"><span id="local-6989586621679419703"><span id="local-6989586621679419705"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>  </span><span id="local-6989586621679419699"><span class="annot"><span class="annottext">toJSON :: TestReturnError -&gt; Value
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407289"><span id="local-6989586621679407291"><span id="local-6989586621679407293"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679407287"><span class="annot"><span class="annottext">toJSON :: TestReturnError -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-31"></span><span>    </span><span class="annot"><a href="TD.Query.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: TestReturnError -&gt; Maybe Error
-</span><a href="TD.Query.TestReturnError.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419697"><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679419697"><span class="hs-identifier hs-var">_error_</span></a></span></span><span>
+</span><a href="TD.Query.TestReturnError.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407285"><span class="annot"><span class="annottext">Maybe Error
+</span><a href="#local-6989586621679407285"><span class="hs-identifier hs-var">_error_</span></a></span></span><span>
 </span><span id="line-33"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -67,6 +67,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;error&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Error -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679419697"><span class="hs-identifier hs-var">_error_</span></a></span><span>
+</span><a href="#local-6989586621679407285"><span class="hs-identifier hs-var">_error_</span></a></span><span>
 </span><span id="line-37"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-38"></span></pre></body></html>

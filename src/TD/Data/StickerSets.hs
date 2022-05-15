@@ -41,7 +41,7 @@ instance T.FromJSON StickerSets where
       parseStickerSets :: A.Value -> T.Parser StickerSets
       parseStickerSets = A.withObject "StickerSets" $ \o -> do
         sets_ <- o A..:? "sets"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         return $ StickerSets {sets = sets_, total_count = total_count_}
   parseJSON _ = mempty
 

@@ -61,7 +61,7 @@ instance T.FromJSON PollType where
       parsePollTypeQuiz :: A.Value -> T.Parser PollType
       parsePollTypeQuiz = A.withObject "PollTypeQuiz" $ \o -> do
         explanation_ <- o A..:? "explanation"
-        correct_option_id_ <- mconcat [o A..:? "correct_option_id", U.rm <$> (o A..: "correct_option_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        correct_option_id_ <- o A..:? "correct_option_id"
         return $ PollTypeQuiz {explanation = explanation_, correct_option_id = correct_option_id_}
   parseJSON _ = mempty
 

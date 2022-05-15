@@ -76,8 +76,8 @@ instance T.FromJSON NetworkStatisticsEntry where
     where
       parseNetworkStatisticsEntryFile :: A.Value -> T.Parser NetworkStatisticsEntry
       parseNetworkStatisticsEntryFile = A.withObject "NetworkStatisticsEntryFile" $ \o -> do
-        received_bytes_ <- mconcat [o A..:? "received_bytes", U.rm <$> (o A..: "received_bytes" :: T.Parser String)] :: T.Parser (Maybe Int)
-        sent_bytes_ <- mconcat [o A..:? "sent_bytes", U.rm <$> (o A..: "sent_bytes" :: T.Parser String)] :: T.Parser (Maybe Int)
+        received_bytes_ <- o A..:? "received_bytes"
+        sent_bytes_ <- o A..:? "sent_bytes"
         network_type_ <- o A..:? "network_type"
         file_type_ <- o A..:? "file_type"
         return $ NetworkStatisticsEntryFile {received_bytes = received_bytes_, sent_bytes = sent_bytes_, network_type = network_type_, file_type = file_type_}
@@ -85,8 +85,8 @@ instance T.FromJSON NetworkStatisticsEntry where
       parseNetworkStatisticsEntryCall :: A.Value -> T.Parser NetworkStatisticsEntry
       parseNetworkStatisticsEntryCall = A.withObject "NetworkStatisticsEntryCall" $ \o -> do
         duration_ <- o A..:? "duration"
-        received_bytes_ <- mconcat [o A..:? "received_bytes", U.rm <$> (o A..: "received_bytes" :: T.Parser String)] :: T.Parser (Maybe Int)
-        sent_bytes_ <- mconcat [o A..:? "sent_bytes", U.rm <$> (o A..: "sent_bytes" :: T.Parser String)] :: T.Parser (Maybe Int)
+        received_bytes_ <- o A..:? "received_bytes"
+        sent_bytes_ <- o A..:? "sent_bytes"
         network_type_ <- o A..:? "network_type"
         return $ NetworkStatisticsEntryCall {duration = duration_, received_bytes = received_bytes_, sent_bytes = sent_bytes_, network_type = network_type_}
   parseJSON _ = mempty

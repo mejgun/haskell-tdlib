@@ -41,7 +41,7 @@ instance T.FromJSON BotCommands where
       parseBotCommands :: A.Value -> T.Parser BotCommands
       parseBotCommands = A.withObject "BotCommands" $ \o -> do
         commands_ <- o A..:? "commands"
-        bot_user_id_ <- mconcat [o A..:? "bot_user_id", U.rm <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        bot_user_id_ <- o A..:? "bot_user_id"
         return $ BotCommands {commands = commands_, bot_user_id = bot_user_id_}
   parseJSON _ = mempty
 

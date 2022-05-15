@@ -43,9 +43,9 @@ instance T.FromJSON DownloadedFileCounts where
     where
       parseDownloadedFileCounts :: A.Value -> T.Parser DownloadedFileCounts
       parseDownloadedFileCounts = A.withObject "DownloadedFileCounts" $ \o -> do
-        completed_count_ <- mconcat [o A..:? "completed_count", U.rm <$> (o A..: "completed_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        paused_count_ <- mconcat [o A..:? "paused_count", U.rm <$> (o A..: "paused_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        active_count_ <- mconcat [o A..:? "active_count", U.rm <$> (o A..: "active_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        completed_count_ <- o A..:? "completed_count"
+        paused_count_ <- o A..:? "paused_count"
+        active_count_ <- o A..:? "active_count"
         return $ DownloadedFileCounts {completed_count = completed_count_, paused_count = paused_count_, active_count = active_count_}
   parseJSON _ = mempty
 

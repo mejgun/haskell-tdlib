@@ -57,12 +57,12 @@ instance T.FromJSON SecretChat where
     where
       parseSecretChat :: A.Value -> T.Parser SecretChat
       parseSecretChat = A.withObject "SecretChat" $ \o -> do
-        layer_ <- mconcat [o A..:? "layer", U.rm <$> (o A..: "layer" :: T.Parser String)] :: T.Parser (Maybe Int)
+        layer_ <- o A..:? "layer"
         key_hash_ <- o A..:? "key_hash"
         is_outbound_ <- o A..:? "is_outbound"
         state_ <- o A..:? "state"
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
+        _id_ <- o A..:? "id"
         return $ SecretChat {layer = layer_, key_hash = key_hash_, is_outbound = is_outbound_, state = state_, user_id = user_id_, _id = _id_}
   parseJSON _ = mempty
 

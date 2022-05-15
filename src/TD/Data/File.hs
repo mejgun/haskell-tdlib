@@ -55,9 +55,9 @@ instance T.FromJSON File where
       parseFile = A.withObject "File" $ \o -> do
         remote_ <- o A..:? "remote"
         local_ <- o A..:? "local"
-        expected_size_ <- mconcat [o A..:? "expected_size", U.rm <$> (o A..: "expected_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        size_ <- mconcat [o A..:? "size", U.rm <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        expected_size_ <- o A..:? "expected_size"
+        size_ <- o A..:? "size"
+        _id_ <- o A..:? "id"
         return $ File {remote = remote_, local = local_, expected_size = expected_size_, size = size_, _id = _id_}
   parseJSON _ = mempty
 

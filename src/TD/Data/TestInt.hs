@@ -35,7 +35,7 @@ instance T.FromJSON TestInt where
     where
       parseTestInt :: A.Value -> T.Parser TestInt
       parseTestInt = A.withObject "TestInt" $ \o -> do
-        value_ <- mconcat [o A..:? "value", U.rm <$> (o A..: "value" :: T.Parser String)] :: T.Parser (Maybe Int)
+        value_ <- o A..:? "value"
         return $ TestInt {value = value_}
   parseJSON _ = mempty
 

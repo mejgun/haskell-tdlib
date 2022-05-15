@@ -40,7 +40,7 @@ instance T.FromJSON ChatJoinRequestsInfo where
       parseChatJoinRequestsInfo :: A.Value -> T.Parser ChatJoinRequestsInfo
       parseChatJoinRequestsInfo = A.withObject "ChatJoinRequestsInfo" $ \o -> do
         user_ids_ <- o A..:? "user_ids"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         return $ ChatJoinRequestsInfo {user_ids = user_ids_, total_count = total_count_}
   parseJSON _ = mempty
 

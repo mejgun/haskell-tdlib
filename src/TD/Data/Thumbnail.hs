@@ -50,8 +50,8 @@ instance T.FromJSON Thumbnail where
       parseThumbnail :: A.Value -> T.Parser Thumbnail
       parseThumbnail = A.withObject "Thumbnail" $ \o -> do
         file_ <- o A..:? "file"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
         format_ <- o A..:? "format"
         return $ Thumbnail {file = file_, height = height_, width = width_, format = format_}
   parseJSON _ = mempty

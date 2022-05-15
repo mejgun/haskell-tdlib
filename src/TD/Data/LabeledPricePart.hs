@@ -39,7 +39,7 @@ instance T.FromJSON LabeledPricePart where
     where
       parseLabeledPricePart :: A.Value -> T.Parser LabeledPricePart
       parseLabeledPricePart = A.withObject "LabeledPricePart" $ \o -> do
-        amount_ <- mconcat [o A..:? "amount", U.rm <$> (o A..: "amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+        amount_ <- o A..:? "amount"
         label_ <- o A..:? "label"
         return $ LabeledPricePart {amount = amount_, label = label_}
   parseJSON _ = mempty

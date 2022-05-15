@@ -39,8 +39,8 @@ instance T.FromJSON DateRange where
     where
       parseDateRange :: A.Value -> T.Parser DateRange
       parseDateRange = A.withObject "DateRange" $ \o -> do
-        end_date_ <- mconcat [o A..:? "end_date", U.rm <$> (o A..: "end_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        start_date_ <- mconcat [o A..:? "start_date", U.rm <$> (o A..: "start_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        end_date_ <- o A..:? "end_date"
+        start_date_ <- o A..:? "start_date"
         return $ DateRange {end_date = end_date_, start_date = start_date_}
   parseJSON _ = mempty
 

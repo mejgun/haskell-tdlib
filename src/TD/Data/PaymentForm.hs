@@ -80,11 +80,11 @@ instance T.FromJSON PaymentForm where
         saved_credentials_ <- o A..:? "saved_credentials"
         saved_order_info_ <- o A..:? "saved_order_info"
         payments_provider_ <- o A..:? "payments_provider"
-        payments_provider_user_id_ <- mconcat [o A..:? "payments_provider_user_id", U.rm <$> (o A..: "payments_provider_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        seller_bot_user_id_ <- mconcat [o A..:? "seller_bot_user_id", U.rm <$> (o A..: "seller_bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        payments_provider_user_id_ <- o A..:? "payments_provider_user_id"
+        seller_bot_user_id_ <- o A..:? "seller_bot_user_id"
         url_ <- o A..:? "url"
         invoice_ <- o A..:? "invoice"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ PaymentForm {need_password = need_password_, can_save_credentials = can_save_credentials_, saved_credentials = saved_credentials_, saved_order_info = saved_order_info_, payments_provider = payments_provider_, payments_provider_user_id = payments_provider_user_id_, seller_bot_user_id = seller_bot_user_id_, url = url_, invoice = invoice_, _id = _id_}
   parseJSON _ = mempty
 

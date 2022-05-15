@@ -51,11 +51,11 @@ instance T.FromJSON StorageStatisticsFast where
     where
       parseStorageStatisticsFast :: A.Value -> T.Parser StorageStatisticsFast
       parseStorageStatisticsFast = A.withObject "StorageStatisticsFast" $ \o -> do
-        log_size_ <- mconcat [o A..:? "log_size", U.rm <$> (o A..: "log_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        language_pack_database_size_ <- mconcat [o A..:? "language_pack_database_size", U.rm <$> (o A..: "language_pack_database_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        database_size_ <- mconcat [o A..:? "database_size", U.rm <$> (o A..: "database_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        file_count_ <- mconcat [o A..:? "file_count", U.rm <$> (o A..: "file_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        files_size_ <- mconcat [o A..:? "files_size", U.rm <$> (o A..: "files_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        log_size_ <- o A..:? "log_size"
+        language_pack_database_size_ <- o A..:? "language_pack_database_size"
+        database_size_ <- o A..:? "database_size"
+        file_count_ <- o A..:? "file_count"
+        files_size_ <- o A..:? "files_size"
         return $ StorageStatisticsFast {log_size = log_size_, language_pack_database_size = language_pack_database_size_, database_size = database_size_, file_count = file_count_, files_size = files_size_}
   parseJSON _ = mempty
 

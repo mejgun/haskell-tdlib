@@ -57,8 +57,8 @@ instance T.FromJSON ChatPhoto where
         animation_ <- o A..:? "animation"
         sizes_ <- o A..:? "sizes"
         minithumbnail_ <- o A..:? "minithumbnail"
-        added_date_ <- mconcat [o A..:? "added_date", U.rm <$> (o A..: "added_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        added_date_ <- o A..:? "added_date"
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ ChatPhoto {animation = animation_, sizes = sizes_, minithumbnail = minithumbnail_, added_date = added_date_, _id = _id_}
   parseJSON _ = mempty
 

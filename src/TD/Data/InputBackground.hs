@@ -56,7 +56,7 @@ instance T.FromJSON InputBackground where
 
       parseInputBackgroundRemote :: A.Value -> T.Parser InputBackground
       parseInputBackgroundRemote = A.withObject "InputBackgroundRemote" $ \o -> do
-        background_id_ <- mconcat [o A..:? "background_id", U.rm <$> (o A..: "background_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        background_id_ <- U.rm <$> (o A..: "background_id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ InputBackgroundRemote {background_id = background_id_}
   parseJSON _ = mempty
 

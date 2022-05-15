@@ -124,7 +124,7 @@ instance T.FromJSON WebPage where
     where
       parseWebPage :: A.Value -> T.Parser WebPage
       parseWebPage = A.withObject "WebPage" $ \o -> do
-        instant_view_version_ <- mconcat [o A..:? "instant_view_version", U.rm <$> (o A..: "instant_view_version" :: T.Parser String)] :: T.Parser (Maybe Int)
+        instant_view_version_ <- o A..:? "instant_view_version"
         voice_note_ <- o A..:? "voice_note"
         video_note_ <- o A..:? "video_note"
         video_ <- o A..:? "video"
@@ -133,9 +133,9 @@ instance T.FromJSON WebPage where
         audio_ <- o A..:? "audio"
         animation_ <- o A..:? "animation"
         author_ <- o A..:? "author"
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
-        embed_height_ <- mconcat [o A..:? "embed_height", U.rm <$> (o A..: "embed_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        embed_width_ <- mconcat [o A..:? "embed_width", U.rm <$> (o A..: "embed_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
+        embed_height_ <- o A..:? "embed_height"
+        embed_width_ <- o A..:? "embed_width"
         embed_type_ <- o A..:? "embed_type"
         embed_url_ <- o A..:? "embed_url"
         photo_ <- o A..:? "photo"

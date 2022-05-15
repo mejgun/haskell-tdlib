@@ -43,9 +43,9 @@ instance T.FromJSON ChatInviteLinkCount where
     where
       parseChatInviteLinkCount :: A.Value -> T.Parser ChatInviteLinkCount
       parseChatInviteLinkCount = A.withObject "ChatInviteLinkCount" $ \o -> do
-        revoked_invite_link_count_ <- mconcat [o A..:? "revoked_invite_link_count", U.rm <$> (o A..: "revoked_invite_link_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        invite_link_count_ <- mconcat [o A..:? "invite_link_count", U.rm <$> (o A..: "invite_link_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        revoked_invite_link_count_ <- o A..:? "revoked_invite_link_count"
+        invite_link_count_ <- o A..:? "invite_link_count"
+        user_id_ <- o A..:? "user_id"
         return $ ChatInviteLinkCount {revoked_invite_link_count = revoked_invite_link_count_, invite_link_count = invite_link_count_, user_id = user_id_}
   parseJSON _ = mempty
 

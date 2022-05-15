@@ -43,9 +43,9 @@ instance T.FromJSON MessagePosition where
     where
       parseMessagePosition :: A.Value -> T.Parser MessagePosition
       parseMessagePosition = A.withObject "MessagePosition" $ \o -> do
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        message_id_ <- mconcat [o A..:? "message_id", U.rm <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        position_ <- mconcat [o A..:? "position", U.rm <$> (o A..: "position" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
+        message_id_ <- o A..:? "message_id"
+        position_ <- o A..:? "position"
         return $ MessagePosition {date = date_, message_id = message_id_, position = position_}
   parseJSON _ = mempty
 

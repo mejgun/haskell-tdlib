@@ -118,7 +118,7 @@ instance T.FromJSON User where
         username_ <- o A..:? "username"
         last_name_ <- o A..:? "last_name"
         first_name_ <- o A..:? "first_name"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ User {language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, username = username_, last_name = last_name_, first_name = first_name_, _id = _id_}
   parseJSON _ = mempty
 

@@ -46,7 +46,7 @@ instance T.FromJSON AnimatedEmoji where
       parseAnimatedEmoji :: A.Value -> T.Parser AnimatedEmoji
       parseAnimatedEmoji = A.withObject "AnimatedEmoji" $ \o -> do
         sound_ <- o A..:? "sound"
-        fitzpatrick_type_ <- mconcat [o A..:? "fitzpatrick_type", U.rm <$> (o A..: "fitzpatrick_type" :: T.Parser String)] :: T.Parser (Maybe Int)
+        fitzpatrick_type_ <- o A..:? "fitzpatrick_type"
         sticker_ <- o A..:? "sticker"
         return $ AnimatedEmoji {sound = sound_, fitzpatrick_type = fitzpatrick_type_, sticker = sticker_}
   parseJSON _ = mempty

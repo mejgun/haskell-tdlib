@@ -50,12 +50,12 @@ instance T.FromJSON MessageSender where
     where
       parseMessageSenderUser :: A.Value -> T.Parser MessageSender
       parseMessageSenderUser = A.withObject "MessageSenderUser" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ MessageSenderUser {user_id = user_id_}
 
       parseMessageSenderChat :: A.Value -> T.Parser MessageSender
       parseMessageSenderChat = A.withObject "MessageSenderChat" $ \o -> do
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        chat_id_ <- o A..:? "chat_id"
         return $ MessageSenderChat {chat_id = chat_id_}
   parseJSON _ = mempty
 

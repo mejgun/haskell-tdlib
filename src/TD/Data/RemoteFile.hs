@@ -53,7 +53,7 @@ instance T.FromJSON RemoteFile where
     where
       parseRemoteFile :: A.Value -> T.Parser RemoteFile
       parseRemoteFile = A.withObject "RemoteFile" $ \o -> do
-        uploaded_size_ <- mconcat [o A..:? "uploaded_size", U.rm <$> (o A..: "uploaded_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        uploaded_size_ <- o A..:? "uploaded_size"
         is_uploading_completed_ <- o A..:? "is_uploading_completed"
         is_uploading_active_ <- o A..:? "is_uploading_active"
         unique_id_ <- o A..:? "unique_id"

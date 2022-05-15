@@ -537,9 +537,9 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultAnimation = A.withObject "InputInlineQueryResultAnimation" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        video_height_ <- mconcat [o A..:? "video_height", U.rm <$> (o A..: "video_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        video_width_ <- mconcat [o A..:? "video_width", U.rm <$> (o A..: "video_width" :: T.Parser String)] :: T.Parser (Maybe Int)
-        video_duration_ <- mconcat [o A..:? "video_duration", U.rm <$> (o A..: "video_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        video_height_ <- o A..:? "video_height"
+        video_width_ <- o A..:? "video_width"
+        video_duration_ <- o A..:? "video_duration"
         video_mime_type_ <- o A..:? "video_mime_type"
         video_url_ <- o A..:? "video_url"
         thumbnail_mime_type_ <- o A..:? "thumbnail_mime_type"
@@ -552,8 +552,8 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultArticle = A.withObject "InputInlineQueryResultArticle" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        thumbnail_height_ <- mconcat [o A..:? "thumbnail_height", U.rm <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        thumbnail_width_ <- mconcat [o A..:? "thumbnail_width", U.rm <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        thumbnail_height_ <- o A..:? "thumbnail_height"
+        thumbnail_width_ <- o A..:? "thumbnail_width"
         thumbnail_url_ <- o A..:? "thumbnail_url"
         description_ <- o A..:? "description"
         title_ <- o A..:? "title"
@@ -566,7 +566,7 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultAudio = A.withObject "InputInlineQueryResultAudio" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        audio_duration_ <- mconcat [o A..:? "audio_duration", U.rm <$> (o A..: "audio_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        audio_duration_ <- o A..:? "audio_duration"
         audio_url_ <- o A..:? "audio_url"
         performer_ <- o A..:? "performer"
         title_ <- o A..:? "title"
@@ -577,8 +577,8 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultContact = A.withObject "InputInlineQueryResultContact" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        thumbnail_height_ <- mconcat [o A..:? "thumbnail_height", U.rm <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        thumbnail_width_ <- mconcat [o A..:? "thumbnail_width", U.rm <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        thumbnail_height_ <- o A..:? "thumbnail_height"
+        thumbnail_width_ <- o A..:? "thumbnail_width"
         thumbnail_url_ <- o A..:? "thumbnail_url"
         contact_ <- o A..:? "contact"
         _id_ <- o A..:? "id"
@@ -588,8 +588,8 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultDocument = A.withObject "InputInlineQueryResultDocument" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        thumbnail_height_ <- mconcat [o A..:? "thumbnail_height", U.rm <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        thumbnail_width_ <- mconcat [o A..:? "thumbnail_width", U.rm <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        thumbnail_height_ <- o A..:? "thumbnail_height"
+        thumbnail_width_ <- o A..:? "thumbnail_width"
         thumbnail_url_ <- o A..:? "thumbnail_url"
         mime_type_ <- o A..:? "mime_type"
         document_url_ <- o A..:? "document_url"
@@ -609,11 +609,11 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultLocation = A.withObject "InputInlineQueryResultLocation" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        thumbnail_height_ <- mconcat [o A..:? "thumbnail_height", U.rm <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        thumbnail_width_ <- mconcat [o A..:? "thumbnail_width", U.rm <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        thumbnail_height_ <- o A..:? "thumbnail_height"
+        thumbnail_width_ <- o A..:? "thumbnail_width"
         thumbnail_url_ <- o A..:? "thumbnail_url"
         title_ <- o A..:? "title"
-        live_period_ <- mconcat [o A..:? "live_period", U.rm <$> (o A..: "live_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+        live_period_ <- o A..:? "live_period"
         location_ <- o A..:? "location"
         _id_ <- o A..:? "id"
         return $ InputInlineQueryResultLocation {input_message_content = input_message_content_, reply_markup = reply_markup_, thumbnail_height = thumbnail_height_, thumbnail_width = thumbnail_width_, thumbnail_url = thumbnail_url_, title = title_, live_period = live_period_, location = location_, _id = _id_}
@@ -622,8 +622,8 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultPhoto = A.withObject "InputInlineQueryResultPhoto" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        photo_height_ <- mconcat [o A..:? "photo_height", U.rm <$> (o A..: "photo_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        photo_width_ <- mconcat [o A..:? "photo_width", U.rm <$> (o A..: "photo_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        photo_height_ <- o A..:? "photo_height"
+        photo_width_ <- o A..:? "photo_width"
         photo_url_ <- o A..:? "photo_url"
         thumbnail_url_ <- o A..:? "thumbnail_url"
         description_ <- o A..:? "description"
@@ -635,8 +635,8 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultSticker = A.withObject "InputInlineQueryResultSticker" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        sticker_height_ <- mconcat [o A..:? "sticker_height", U.rm <$> (o A..: "sticker_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        sticker_width_ <- mconcat [o A..:? "sticker_width", U.rm <$> (o A..: "sticker_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sticker_height_ <- o A..:? "sticker_height"
+        sticker_width_ <- o A..:? "sticker_width"
         sticker_url_ <- o A..:? "sticker_url"
         thumbnail_url_ <- o A..:? "thumbnail_url"
         _id_ <- o A..:? "id"
@@ -646,8 +646,8 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultVenue = A.withObject "InputInlineQueryResultVenue" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        thumbnail_height_ <- mconcat [o A..:? "thumbnail_height", U.rm <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        thumbnail_width_ <- mconcat [o A..:? "thumbnail_width", U.rm <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        thumbnail_height_ <- o A..:? "thumbnail_height"
+        thumbnail_width_ <- o A..:? "thumbnail_width"
         thumbnail_url_ <- o A..:? "thumbnail_url"
         venue_ <- o A..:? "venue"
         _id_ <- o A..:? "id"
@@ -657,9 +657,9 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultVideo = A.withObject "InputInlineQueryResultVideo" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        video_duration_ <- mconcat [o A..:? "video_duration", U.rm <$> (o A..: "video_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
-        video_height_ <- mconcat [o A..:? "video_height", U.rm <$> (o A..: "video_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        video_width_ <- mconcat [o A..:? "video_width", U.rm <$> (o A..: "video_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        video_duration_ <- o A..:? "video_duration"
+        video_height_ <- o A..:? "video_height"
+        video_width_ <- o A..:? "video_width"
         mime_type_ <- o A..:? "mime_type"
         video_url_ <- o A..:? "video_url"
         thumbnail_url_ <- o A..:? "thumbnail_url"
@@ -672,7 +672,7 @@ instance T.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultVoiceNote = A.withObject "InputInlineQueryResultVoiceNote" $ \o -> do
         input_message_content_ <- o A..:? "input_message_content"
         reply_markup_ <- o A..:? "reply_markup"
-        voice_note_duration_ <- mconcat [o A..:? "voice_note_duration", U.rm <$> (o A..: "voice_note_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        voice_note_duration_ <- o A..:? "voice_note_duration"
         voice_note_url_ <- o A..:? "voice_note_url"
         title_ <- o A..:? "title"
         _id_ <- o A..:? "id"

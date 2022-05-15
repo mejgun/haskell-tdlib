@@ -143,7 +143,7 @@ instance T.FromJSON SupergroupMembersFilter where
 
       parseSupergroupMembersFilterMention :: A.Value -> T.Parser SupergroupMembersFilter
       parseSupergroupMembersFilterMention = A.withObject "SupergroupMembersFilterMention" $ \o -> do
-        message_thread_id_ <- mconcat [o A..:? "message_thread_id", U.rm <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_thread_id_ <- o A..:? "message_thread_id"
         query_ <- o A..:? "query"
         return $ SupergroupMembersFilterMention {message_thread_id = message_thread_id_, query = query_}
 

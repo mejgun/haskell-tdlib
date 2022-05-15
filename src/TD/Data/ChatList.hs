@@ -56,7 +56,7 @@ instance T.FromJSON ChatList where
 
       parseChatListFilter :: A.Value -> T.Parser ChatList
       parseChatListFilter = A.withObject "ChatListFilter" $ \o -> do
-        chat_filter_id_ <- mconcat [o A..:? "chat_filter_id", U.rm <$> (o A..: "chat_filter_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        chat_filter_id_ <- o A..:? "chat_filter_id"
         return $ ChatListFilter {chat_filter_id = chat_filter_id_}
   parseJSON _ = mempty
 

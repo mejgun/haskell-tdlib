@@ -82,13 +82,13 @@ instance T.FromJSON ChatInviteLink where
         is_revoked_ <- o A..:? "is_revoked"
         is_primary_ <- o A..:? "is_primary"
         creates_join_request_ <- o A..:? "creates_join_request"
-        pending_join_request_count_ <- mconcat [o A..:? "pending_join_request_count", U.rm <$> (o A..: "pending_join_request_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        member_count_ <- mconcat [o A..:? "member_count", U.rm <$> (o A..: "member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        member_limit_ <- mconcat [o A..:? "member_limit", U.rm <$> (o A..: "member_limit" :: T.Parser String)] :: T.Parser (Maybe Int)
-        expiration_date_ <- mconcat [o A..:? "expiration_date", U.rm <$> (o A..: "expiration_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        edit_date_ <- mconcat [o A..:? "edit_date", U.rm <$> (o A..: "edit_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        creator_user_id_ <- mconcat [o A..:? "creator_user_id", U.rm <$> (o A..: "creator_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        pending_join_request_count_ <- o A..:? "pending_join_request_count"
+        member_count_ <- o A..:? "member_count"
+        member_limit_ <- o A..:? "member_limit"
+        expiration_date_ <- o A..:? "expiration_date"
+        edit_date_ <- o A..:? "edit_date"
+        date_ <- o A..:? "date"
+        creator_user_id_ <- o A..:? "creator_user_id"
         name_ <- o A..:? "name"
         invite_link_ <- o A..:? "invite_link"
         return $ ChatInviteLink {is_revoked = is_revoked_, is_primary = is_primary_, creates_join_request = creates_join_request_, pending_join_request_count = pending_join_request_count_, member_count = member_count_, member_limit = member_limit_, expiration_date = expiration_date_, edit_date = edit_date_, date = date_, creator_user_id = creator_user_id_, name = name_, invite_link = invite_link_}

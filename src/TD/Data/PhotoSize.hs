@@ -53,8 +53,8 @@ instance T.FromJSON PhotoSize where
       parsePhotoSize :: A.Value -> T.Parser PhotoSize
       parsePhotoSize = A.withObject "PhotoSize" $ \o -> do
         progressive_sizes_ <- o A..:? "progressive_sizes"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
         photo_ <- o A..:? "photo"
         _type_ <- o A..:? "type"
         return $ PhotoSize {progressive_sizes = progressive_sizes_, height = height_, width = width_, photo = photo_, _type = _type_}

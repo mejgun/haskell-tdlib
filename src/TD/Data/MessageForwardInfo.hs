@@ -52,10 +52,10 @@ instance T.FromJSON MessageForwardInfo where
     where
       parseMessageForwardInfo :: A.Value -> T.Parser MessageForwardInfo
       parseMessageForwardInfo = A.withObject "MessageForwardInfo" $ \o -> do
-        from_message_id_ <- mconcat [o A..:? "from_message_id", U.rm <$> (o A..: "from_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        from_chat_id_ <- mconcat [o A..:? "from_chat_id", U.rm <$> (o A..: "from_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        from_message_id_ <- o A..:? "from_message_id"
+        from_chat_id_ <- o A..:? "from_chat_id"
         public_service_announcement_type_ <- o A..:? "public_service_announcement_type"
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
         origin_ <- o A..:? "origin"
         return $ MessageForwardInfo {from_message_id = from_message_id_, from_chat_id = from_chat_id_, public_service_announcement_type = public_service_announcement_type_, date = date_, origin = origin_}
   parseJSON _ = mempty

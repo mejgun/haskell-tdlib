@@ -46,7 +46,7 @@ instance T.FromJSON AnimatedChatPhoto where
       parseAnimatedChatPhoto = A.withObject "AnimatedChatPhoto" $ \o -> do
         main_frame_timestamp_ <- o A..:? "main_frame_timestamp"
         file_ <- o A..:? "file"
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
         return $ AnimatedChatPhoto {main_frame_timestamp = main_frame_timestamp_, file = file_, _length = _length_}
   parseJSON _ = mempty
 

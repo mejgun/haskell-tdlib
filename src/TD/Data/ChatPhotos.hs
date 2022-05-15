@@ -41,7 +41,7 @@ instance T.FromJSON ChatPhotos where
       parseChatPhotos :: A.Value -> T.Parser ChatPhotos
       parseChatPhotos = A.withObject "ChatPhotos" $ \o -> do
         photos_ <- o A..:? "photos"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         return $ ChatPhotos {photos = photos_, total_count = total_count_}
   parseJSON _ = mempty
 

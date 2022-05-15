@@ -39,7 +39,7 @@ instance T.FromJSON EmailAddressAuthenticationCodeInfo where
     where
       parseEmailAddressAuthenticationCodeInfo :: A.Value -> T.Parser EmailAddressAuthenticationCodeInfo
       parseEmailAddressAuthenticationCodeInfo = A.withObject "EmailAddressAuthenticationCodeInfo" $ \o -> do
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
         email_address_pattern_ <- o A..:? "email_address_pattern"
         return $ EmailAddressAuthenticationCodeInfo {_length = _length_, email_address_pattern = email_address_pattern_}
   parseJSON _ = mempty

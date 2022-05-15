@@ -76,13 +76,13 @@ instance T.FromJSON ChatInviteLinkInfo where
         is_public_ <- o A..:? "is_public"
         creates_join_request_ <- o A..:? "creates_join_request"
         member_user_ids_ <- o A..:? "member_user_ids"
-        member_count_ <- mconcat [o A..:? "member_count", U.rm <$> (o A..: "member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        member_count_ <- o A..:? "member_count"
         description_ <- o A..:? "description"
         photo_ <- o A..:? "photo"
         title_ <- o A..:? "title"
         _type_ <- o A..:? "type"
-        accessible_for_ <- mconcat [o A..:? "accessible_for", U.rm <$> (o A..: "accessible_for" :: T.Parser String)] :: T.Parser (Maybe Int)
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        accessible_for_ <- o A..:? "accessible_for"
+        chat_id_ <- o A..:? "chat_id"
         return $ ChatInviteLinkInfo {is_public = is_public_, creates_join_request = creates_join_request_, member_user_ids = member_user_ids_, member_count = member_count_, description = description_, photo = photo_, title = title_, _type = _type_, accessible_for = accessible_for_, chat_id = chat_id_}
   parseJSON _ = mempty
 

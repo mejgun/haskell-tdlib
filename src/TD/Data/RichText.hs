@@ -365,8 +365,8 @@ instance T.FromJSON RichText where
 
       parseRichTextIcon :: A.Value -> T.Parser RichText
       parseRichTextIcon = A.withObject "RichTextIcon" $ \o -> do
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
         document_ <- o A..:? "document"
         return $ RichTextIcon {height = height_, width = width_, document = document_}
 

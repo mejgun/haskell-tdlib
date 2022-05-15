@@ -69,13 +69,13 @@ instance T.FromJSON ConnectedWebsite where
       parseConnectedWebsite = A.withObject "ConnectedWebsite" $ \o -> do
         location_ <- o A..:? "location"
         ip_ <- o A..:? "ip"
-        last_active_date_ <- mconcat [o A..:? "last_active_date", U.rm <$> (o A..: "last_active_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        log_in_date_ <- mconcat [o A..:? "log_in_date", U.rm <$> (o A..: "log_in_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        last_active_date_ <- o A..:? "last_active_date"
+        log_in_date_ <- o A..:? "log_in_date"
         platform_ <- o A..:? "platform"
         browser_ <- o A..:? "browser"
-        bot_user_id_ <- mconcat [o A..:? "bot_user_id", U.rm <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        bot_user_id_ <- o A..:? "bot_user_id"
         domain_name_ <- o A..:? "domain_name"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ ConnectedWebsite {location = location_, ip = ip_, last_active_date = last_active_date_, log_in_date = log_in_date_, platform = platform_, browser = browser_, bot_user_id = bot_user_id_, domain_name = domain_name_, _id = _id_}
   parseJSON _ = mempty
 

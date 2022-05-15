@@ -89,7 +89,7 @@ instance T.FromJSON Invoice where
         need_name_ <- o A..:? "need_name"
         is_test_ <- o A..:? "is_test"
         suggested_tip_amounts_ <- o A..:? "suggested_tip_amounts"
-        max_tip_amount_ <- mconcat [o A..:? "max_tip_amount", U.rm <$> (o A..: "max_tip_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+        max_tip_amount_ <- o A..:? "max_tip_amount"
         price_parts_ <- o A..:? "price_parts"
         currency_ <- o A..:? "currency"
         return $ Invoice {is_flexible = is_flexible_, send_email_address_to_provider = send_email_address_to_provider_, send_phone_number_to_provider = send_phone_number_to_provider_, need_shipping_address = need_shipping_address_, need_email_address = need_email_address_, need_phone_number = need_phone_number_, need_name = need_name_, is_test = is_test_, suggested_tip_amounts = suggested_tip_amounts_, max_tip_amount = max_tip_amount_, price_parts = price_parts_, currency = currency_}

@@ -57,7 +57,7 @@ instance T.FromJSON ProfilePhoto where
         minithumbnail_ <- o A..:? "minithumbnail"
         big_ <- o A..:? "big"
         small_ <- o A..:? "small"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ ProfilePhoto {has_animation = has_animation_, minithumbnail = minithumbnail_, big = big_, small = small_, _id = _id_}
   parseJSON _ = mempty
 

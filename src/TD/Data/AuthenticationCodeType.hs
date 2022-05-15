@@ -96,17 +96,17 @@ instance T.FromJSON AuthenticationCodeType where
     where
       parseAuthenticationCodeTypeTelegramMessage :: A.Value -> T.Parser AuthenticationCodeType
       parseAuthenticationCodeTypeTelegramMessage = A.withObject "AuthenticationCodeTypeTelegramMessage" $ \o -> do
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
         return $ AuthenticationCodeTypeTelegramMessage {_length = _length_}
 
       parseAuthenticationCodeTypeSms :: A.Value -> T.Parser AuthenticationCodeType
       parseAuthenticationCodeTypeSms = A.withObject "AuthenticationCodeTypeSms" $ \o -> do
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
         return $ AuthenticationCodeTypeSms {_length = _length_}
 
       parseAuthenticationCodeTypeCall :: A.Value -> T.Parser AuthenticationCodeType
       parseAuthenticationCodeTypeCall = A.withObject "AuthenticationCodeTypeCall" $ \o -> do
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
         return $ AuthenticationCodeTypeCall {_length = _length_}
 
       parseAuthenticationCodeTypeFlashCall :: A.Value -> T.Parser AuthenticationCodeType
@@ -116,7 +116,7 @@ instance T.FromJSON AuthenticationCodeType where
 
       parseAuthenticationCodeTypeMissedCall :: A.Value -> T.Parser AuthenticationCodeType
       parseAuthenticationCodeTypeMissedCall = A.withObject "AuthenticationCodeTypeMissedCall" $ \o -> do
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
         phone_number_prefix_ <- o A..:? "phone_number_prefix"
         return $ AuthenticationCodeTypeMissedCall {_length = _length_, phone_number_prefix = phone_number_prefix_}
   parseJSON _ = mempty

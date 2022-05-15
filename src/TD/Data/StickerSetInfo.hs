@@ -84,7 +84,7 @@ instance T.FromJSON StickerSetInfo where
       parseStickerSetInfo :: A.Value -> T.Parser StickerSetInfo
       parseStickerSetInfo = A.withObject "StickerSetInfo" $ \o -> do
         covers_ <- o A..:? "covers"
-        size_ <- mconcat [o A..:? "size", U.rm <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        size_ <- o A..:? "size"
         is_viewed_ <- o A..:? "is_viewed"
         sticker_type_ <- o A..:? "sticker_type"
         is_official_ <- o A..:? "is_official"
@@ -94,7 +94,7 @@ instance T.FromJSON StickerSetInfo where
         thumbnail_ <- o A..:? "thumbnail"
         name_ <- o A..:? "name"
         title_ <- o A..:? "title"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ StickerSetInfo {covers = covers_, size = size_, is_viewed = is_viewed_, sticker_type = sticker_type_, is_official = is_official_, is_archived = is_archived_, is_installed = is_installed_, thumbnail_outline = thumbnail_outline_, thumbnail = thumbnail_, name = name_, title = title_, _id = _id_}
   parseJSON _ = mempty
 

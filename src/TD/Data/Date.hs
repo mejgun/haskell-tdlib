@@ -43,9 +43,9 @@ instance T.FromJSON Date where
     where
       parseDate :: A.Value -> T.Parser Date
       parseDate = A.withObject "Date" $ \o -> do
-        year_ <- mconcat [o A..:? "year", U.rm <$> (o A..: "year" :: T.Parser String)] :: T.Parser (Maybe Int)
-        month_ <- mconcat [o A..:? "month", U.rm <$> (o A..: "month" :: T.Parser String)] :: T.Parser (Maybe Int)
-        day_ <- mconcat [o A..:? "day", U.rm <$> (o A..: "day" :: T.Parser String)] :: T.Parser (Maybe Int)
+        year_ <- o A..:? "year"
+        month_ <- o A..:? "month"
+        day_ <- o A..:? "day"
         return $ Date {year = year_, month = month_, day = day_}
   parseJSON _ = mempty
 

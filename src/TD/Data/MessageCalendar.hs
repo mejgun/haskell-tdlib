@@ -41,7 +41,7 @@ instance T.FromJSON MessageCalendar where
       parseMessageCalendar :: A.Value -> T.Parser MessageCalendar
       parseMessageCalendar = A.withObject "MessageCalendar" $ \o -> do
         days_ <- o A..:? "days"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         return $ MessageCalendar {days = days_, total_count = total_count_}
   parseJSON _ = mempty
 

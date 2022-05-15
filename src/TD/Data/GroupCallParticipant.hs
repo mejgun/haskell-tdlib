@@ -106,7 +106,7 @@ instance T.FromJSON GroupCallParticipant where
       parseGroupCallParticipant :: A.Value -> T.Parser GroupCallParticipant
       parseGroupCallParticipant = A.withObject "GroupCallParticipant" $ \o -> do
         order_ <- o A..:? "order"
-        volume_level_ <- mconcat [o A..:? "volume_level", U.rm <$> (o A..: "volume_level" :: T.Parser String)] :: T.Parser (Maybe Int)
+        volume_level_ <- o A..:? "volume_level"
         can_unmute_self_ <- o A..:? "can_unmute_self"
         is_muted_for_current_user_ <- o A..:? "is_muted_for_current_user"
         is_muted_for_all_users_ <- o A..:? "is_muted_for_all_users"
@@ -120,8 +120,8 @@ instance T.FromJSON GroupCallParticipant where
         bio_ <- o A..:? "bio"
         screen_sharing_video_info_ <- o A..:? "screen_sharing_video_info"
         video_info_ <- o A..:? "video_info"
-        screen_sharing_audio_source_id_ <- mconcat [o A..:? "screen_sharing_audio_source_id", U.rm <$> (o A..: "screen_sharing_audio_source_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        audio_source_id_ <- mconcat [o A..:? "audio_source_id", U.rm <$> (o A..: "audio_source_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        screen_sharing_audio_source_id_ <- o A..:? "screen_sharing_audio_source_id"
+        audio_source_id_ <- o A..:? "audio_source_id"
         participant_id_ <- o A..:? "participant_id"
         return $ GroupCallParticipant {order = order_, volume_level = volume_level_, can_unmute_self = can_unmute_self_, is_muted_for_current_user = is_muted_for_current_user_, is_muted_for_all_users = is_muted_for_all_users_, can_be_unmuted_for_current_user = can_be_unmuted_for_current_user_, can_be_muted_for_current_user = can_be_muted_for_current_user_, can_be_unmuted_for_all_users = can_be_unmuted_for_all_users_, can_be_muted_for_all_users = can_be_muted_for_all_users_, is_hand_raised = is_hand_raised_, is_speaking = is_speaking_, is_current_user = is_current_user_, bio = bio_, screen_sharing_video_info = screen_sharing_video_info_, video_info = video_info_, screen_sharing_audio_source_id = screen_sharing_audio_source_id_, audio_source_id = audio_source_id_, participant_id = participant_id_}
   parseJSON _ = mempty

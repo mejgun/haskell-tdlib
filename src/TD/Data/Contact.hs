@@ -51,7 +51,7 @@ instance T.FromJSON Contact where
     where
       parseContact :: A.Value -> T.Parser Contact
       parseContact = A.withObject "Contact" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         vcard_ <- o A..:? "vcard"
         last_name_ <- o A..:? "last_name"
         first_name_ <- o A..:? "first_name"

@@ -175,7 +175,7 @@ instance T.FromJSON ChatAction where
 
       parseChatActionUploadingVideo :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingVideo = A.withObject "ChatActionUploadingVideo" $ \o -> do
-        progress_ <- mconcat [o A..:? "progress", U.rm <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
+        progress_ <- o A..:? "progress"
         return $ ChatActionUploadingVideo {progress = progress_}
 
       parseChatActionRecordingVoiceNote :: A.Value -> T.Parser ChatAction
@@ -183,17 +183,17 @@ instance T.FromJSON ChatAction where
 
       parseChatActionUploadingVoiceNote :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingVoiceNote = A.withObject "ChatActionUploadingVoiceNote" $ \o -> do
-        progress_ <- mconcat [o A..:? "progress", U.rm <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
+        progress_ <- o A..:? "progress"
         return $ ChatActionUploadingVoiceNote {progress = progress_}
 
       parseChatActionUploadingPhoto :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingPhoto = A.withObject "ChatActionUploadingPhoto" $ \o -> do
-        progress_ <- mconcat [o A..:? "progress", U.rm <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
+        progress_ <- o A..:? "progress"
         return $ ChatActionUploadingPhoto {progress = progress_}
 
       parseChatActionUploadingDocument :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingDocument = A.withObject "ChatActionUploadingDocument" $ \o -> do
-        progress_ <- mconcat [o A..:? "progress", U.rm <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
+        progress_ <- o A..:? "progress"
         return $ ChatActionUploadingDocument {progress = progress_}
 
       parseChatActionChoosingSticker :: A.Value -> T.Parser ChatAction
@@ -213,7 +213,7 @@ instance T.FromJSON ChatAction where
 
       parseChatActionUploadingVideoNote :: A.Value -> T.Parser ChatAction
       parseChatActionUploadingVideoNote = A.withObject "ChatActionUploadingVideoNote" $ \o -> do
-        progress_ <- mconcat [o A..:? "progress", U.rm <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
+        progress_ <- o A..:? "progress"
         return $ ChatActionUploadingVideoNote {progress = progress_}
 
       parseChatActionWatchingAnimations :: A.Value -> T.Parser ChatAction

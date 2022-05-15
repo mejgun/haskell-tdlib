@@ -54,10 +54,10 @@ instance T.FromJSON NotificationGroup where
       parseNotificationGroup :: A.Value -> T.Parser NotificationGroup
       parseNotificationGroup = A.withObject "NotificationGroup" $ \o -> do
         notifications_ <- o A..:? "notifications"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
+        chat_id_ <- o A..:? "chat_id"
         _type_ <- o A..:? "type"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ NotificationGroup {notifications = notifications_, total_count = total_count_, chat_id = chat_id_, _type = _type_, _id = _id_}
   parseJSON _ = mempty
 

@@ -52,11 +52,11 @@ instance T.FromJSON BasicGroup where
     where
       parseBasicGroup :: A.Value -> T.Parser BasicGroup
       parseBasicGroup = A.withObject "BasicGroup" $ \o -> do
-        upgraded_to_supergroup_id_ <- mconcat [o A..:? "upgraded_to_supergroup_id", U.rm <$> (o A..: "upgraded_to_supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        upgraded_to_supergroup_id_ <- o A..:? "upgraded_to_supergroup_id"
         is_active_ <- o A..:? "is_active"
         status_ <- o A..:? "status"
-        member_count_ <- mconcat [o A..:? "member_count", U.rm <$> (o A..: "member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        member_count_ <- o A..:? "member_count"
+        _id_ <- o A..:? "id"
         return $ BasicGroup {upgraded_to_supergroup_id = upgraded_to_supergroup_id_, is_active = is_active_, status = status_, member_count = member_count_, _id = _id_}
   parseJSON _ = mempty
 

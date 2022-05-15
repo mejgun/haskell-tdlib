@@ -52,8 +52,8 @@ instance T.FromJSON CallProtocol where
       parseCallProtocol :: A.Value -> T.Parser CallProtocol
       parseCallProtocol = A.withObject "CallProtocol" $ \o -> do
         library_versions_ <- o A..:? "library_versions"
-        max_layer_ <- mconcat [o A..:? "max_layer", U.rm <$> (o A..: "max_layer" :: T.Parser String)] :: T.Parser (Maybe Int)
-        min_layer_ <- mconcat [o A..:? "min_layer", U.rm <$> (o A..: "min_layer" :: T.Parser String)] :: T.Parser (Maybe Int)
+        max_layer_ <- o A..:? "max_layer"
+        min_layer_ <- o A..:? "min_layer"
         udp_reflector_ <- o A..:? "udp_reflector"
         udp_p2p_ <- o A..:? "udp_p2p"
         return $ CallProtocol {library_versions = library_versions_, max_layer = max_layer_, min_layer = min_layer_, udp_reflector = udp_reflector_, udp_p2p = udp_p2p_}

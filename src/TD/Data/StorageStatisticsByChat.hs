@@ -49,9 +49,9 @@ instance T.FromJSON StorageStatisticsByChat where
       parseStorageStatisticsByChat :: A.Value -> T.Parser StorageStatisticsByChat
       parseStorageStatisticsByChat = A.withObject "StorageStatisticsByChat" $ \o -> do
         by_file_type_ <- o A..:? "by_file_type"
-        count_ <- mconcat [o A..:? "count", U.rm <$> (o A..: "count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        size_ <- mconcat [o A..:? "size", U.rm <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        count_ <- o A..:? "count"
+        size_ <- o A..:? "size"
+        chat_id_ <- o A..:? "chat_id"
         return $ StorageStatisticsByChat {by_file_type = by_file_type_, count = count_, size = size_, chat_id = chat_id_}
   parseJSON _ = mempty
 

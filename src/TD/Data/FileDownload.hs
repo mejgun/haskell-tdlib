@@ -53,10 +53,10 @@ instance T.FromJSON FileDownload where
       parseFileDownload :: A.Value -> T.Parser FileDownload
       parseFileDownload = A.withObject "FileDownload" $ \o -> do
         is_paused_ <- o A..:? "is_paused"
-        complete_date_ <- mconcat [o A..:? "complete_date", U.rm <$> (o A..: "complete_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        add_date_ <- mconcat [o A..:? "add_date", U.rm <$> (o A..: "add_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        complete_date_ <- o A..:? "complete_date"
+        add_date_ <- o A..:? "add_date"
         message_ <- o A..:? "message"
-        file_id_ <- mconcat [o A..:? "file_id", U.rm <$> (o A..: "file_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        file_id_ <- o A..:? "file_id"
         return $ FileDownload {is_paused = is_paused_, complete_date = complete_date_, add_date = add_date_, message = message_, file_id = file_id_}
   parseJSON _ = mempty
 

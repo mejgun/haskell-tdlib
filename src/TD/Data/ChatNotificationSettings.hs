@@ -77,9 +77,9 @@ instance T.FromJSON ChatNotificationSettings where
         use_default_disable_pinned_message_notifications_ <- o A..:? "use_default_disable_pinned_message_notifications"
         show_preview_ <- o A..:? "show_preview"
         use_default_show_preview_ <- o A..:? "use_default_show_preview"
-        sound_id_ <- mconcat [o A..:? "sound_id", U.rm <$> (o A..: "sound_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sound_id_ <- U.rm <$> (o A..: "sound_id" :: T.Parser String) :: T.Parser (Maybe Int)
         use_default_sound_ <- o A..:? "use_default_sound"
-        mute_for_ <- mconcat [o A..:? "mute_for", U.rm <$> (o A..: "mute_for" :: T.Parser String)] :: T.Parser (Maybe Int)
+        mute_for_ <- o A..:? "mute_for"
         use_default_mute_for_ <- o A..:? "use_default_mute_for"
         return $ ChatNotificationSettings {disable_mention_notifications = disable_mention_notifications_, use_default_disable_mention_notifications = use_default_disable_mention_notifications_, disable_pinned_message_notifications = disable_pinned_message_notifications_, use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications_, show_preview = show_preview_, use_default_show_preview = use_default_show_preview_, sound_id = sound_id_, use_default_sound = use_default_sound_, mute_for = mute_for_, use_default_mute_for = use_default_mute_for_}
   parseJSON _ = mempty

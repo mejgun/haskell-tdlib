@@ -39,8 +39,8 @@ instance T.FromJSON AttachmentMenuBotColor where
     where
       parseAttachmentMenuBotColor :: A.Value -> T.Parser AttachmentMenuBotColor
       parseAttachmentMenuBotColor = A.withObject "AttachmentMenuBotColor" $ \o -> do
-        dark_color_ <- mconcat [o A..:? "dark_color", U.rm <$> (o A..: "dark_color" :: T.Parser String)] :: T.Parser (Maybe Int)
-        light_color_ <- mconcat [o A..:? "light_color", U.rm <$> (o A..: "light_color" :: T.Parser String)] :: T.Parser (Maybe Int)
+        dark_color_ <- o A..:? "dark_color"
+        light_color_ <- o A..:? "light_color"
         return $ AttachmentMenuBotColor {dark_color = dark_color_, light_color = light_color_}
   parseJSON _ = mempty
 

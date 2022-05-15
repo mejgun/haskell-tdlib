@@ -527,7 +527,7 @@ instance T.FromJSON InternalLinkType where
         nonce_ <- o A..:? "nonce"
         public_key_ <- o A..:? "public_key"
         scope_ <- o A..:? "scope"
-        bot_user_id_ <- mconcat [o A..:? "bot_user_id", U.rm <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        bot_user_id_ <- o A..:? "bot_user_id"
         return $ InternalLinkTypePassportDataRequest {callback_url = callback_url_, nonce = nonce_, public_key = public_key_, scope = scope_, bot_user_id = bot_user_id_}
 
       parseInternalLinkTypePhoneNumberConfirmation :: A.Value -> T.Parser InternalLinkType
@@ -542,7 +542,7 @@ instance T.FromJSON InternalLinkType where
       parseInternalLinkTypeProxy :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeProxy = A.withObject "InternalLinkTypeProxy" $ \o -> do
         _type_ <- o A..:? "type"
-        port_ <- mconcat [o A..:? "port", U.rm <$> (o A..: "port" :: T.Parser String)] :: T.Parser (Maybe Int)
+        port_ <- o A..:? "port"
         server_ <- o A..:? "server"
         return $ InternalLinkTypeProxy {_type = _type_, port = port_, server = server_}
 

@@ -62,7 +62,7 @@ instance T.FromJSON BasicGroupFullInfo where
         bot_commands_ <- o A..:? "bot_commands"
         invite_link_ <- o A..:? "invite_link"
         members_ <- o A..:? "members"
-        creator_user_id_ <- mconcat [o A..:? "creator_user_id", U.rm <$> (o A..: "creator_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        creator_user_id_ <- o A..:? "creator_user_id"
         description_ <- o A..:? "description"
         photo_ <- o A..:? "photo"
         return $ BasicGroupFullInfo {bot_commands = bot_commands_, invite_link = invite_link_, members = members_, creator_user_id = creator_user_id_, description = description_, photo = photo_}

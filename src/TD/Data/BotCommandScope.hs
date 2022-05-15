@@ -108,18 +108,18 @@ instance T.FromJSON BotCommandScope where
 
       parseBotCommandScopeChat :: A.Value -> T.Parser BotCommandScope
       parseBotCommandScopeChat = A.withObject "BotCommandScopeChat" $ \o -> do
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        chat_id_ <- o A..:? "chat_id"
         return $ BotCommandScopeChat {chat_id = chat_id_}
 
       parseBotCommandScopeChatAdministrators :: A.Value -> T.Parser BotCommandScope
       parseBotCommandScopeChatAdministrators = A.withObject "BotCommandScopeChatAdministrators" $ \o -> do
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        chat_id_ <- o A..:? "chat_id"
         return $ BotCommandScopeChatAdministrators {chat_id = chat_id_}
 
       parseBotCommandScopeChatMember :: A.Value -> T.Parser BotCommandScope
       parseBotCommandScopeChatMember = A.withObject "BotCommandScopeChatMember" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
+        chat_id_ <- o A..:? "chat_id"
         return $ BotCommandScopeChatMember {user_id = user_id_, chat_id = chat_id_}
   parseJSON _ = mempty
 

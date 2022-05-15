@@ -168,19 +168,19 @@ instance T.FromJSON Chat where
       parseChat = A.withObject "Chat" $ \o -> do
         client_data_ <- o A..:? "client_data"
         draft_message_ <- o A..:? "draft_message"
-        reply_markup_message_id_ <- mconcat [o A..:? "reply_markup_message_id", U.rm <$> (o A..: "reply_markup_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        reply_markup_message_id_ <- o A..:? "reply_markup_message_id"
         pending_join_requests_ <- o A..:? "pending_join_requests"
         video_chat_ <- o A..:? "video_chat"
         action_bar_ <- o A..:? "action_bar"
         theme_name_ <- o A..:? "theme_name"
-        message_ttl_ <- mconcat [o A..:? "message_ttl", U.rm <$> (o A..: "message_ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_ttl_ <- o A..:? "message_ttl"
         available_reactions_ <- o A..:? "available_reactions"
         notification_settings_ <- o A..:? "notification_settings"
-        unread_reaction_count_ <- mconcat [o A..:? "unread_reaction_count", U.rm <$> (o A..: "unread_reaction_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        unread_mention_count_ <- mconcat [o A..:? "unread_mention_count", U.rm <$> (o A..: "unread_mention_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        last_read_outbox_message_id_ <- mconcat [o A..:? "last_read_outbox_message_id", U.rm <$> (o A..: "last_read_outbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        last_read_inbox_message_id_ <- mconcat [o A..:? "last_read_inbox_message_id", U.rm <$> (o A..: "last_read_inbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        unread_count_ <- mconcat [o A..:? "unread_count", U.rm <$> (o A..: "unread_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        unread_reaction_count_ <- o A..:? "unread_reaction_count"
+        unread_mention_count_ <- o A..:? "unread_mention_count"
+        last_read_outbox_message_id_ <- o A..:? "last_read_outbox_message_id"
+        last_read_inbox_message_id_ <- o A..:? "last_read_inbox_message_id"
+        unread_count_ <- o A..:? "unread_count"
         default_disable_notification_ <- o A..:? "default_disable_notification"
         can_be_reported_ <- o A..:? "can_be_reported"
         can_be_deleted_for_all_users_ <- o A..:? "can_be_deleted_for_all_users"
@@ -196,7 +196,7 @@ instance T.FromJSON Chat where
         photo_ <- o A..:? "photo"
         title_ <- o A..:? "title"
         _type_ <- o A..:? "type"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ Chat {client_data = client_data_, draft_message = draft_message_, reply_markup_message_id = reply_markup_message_id_, pending_join_requests = pending_join_requests_, video_chat = video_chat_, action_bar = action_bar_, theme_name = theme_name_, message_ttl = message_ttl_, available_reactions = available_reactions_, notification_settings = notification_settings_, unread_reaction_count = unread_reaction_count_, unread_mention_count = unread_mention_count_, last_read_outbox_message_id = last_read_outbox_message_id_, last_read_inbox_message_id = last_read_inbox_message_id_, unread_count = unread_count_, default_disable_notification = default_disable_notification_, can_be_reported = can_be_reported_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, has_scheduled_messages = has_scheduled_messages_, is_blocked = is_blocked_, is_marked_as_unread = is_marked_as_unread_, has_protected_content = has_protected_content_, message_sender_id = message_sender_id_, positions = positions_, last_message = last_message_, permissions = permissions_, photo = photo_, title = title_, _type = _type_, _id = _id_}
   parseJSON _ = mempty
 

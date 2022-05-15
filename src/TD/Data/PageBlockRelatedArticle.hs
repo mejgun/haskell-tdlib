@@ -56,7 +56,7 @@ instance T.FromJSON PageBlockRelatedArticle where
     where
       parsePageBlockRelatedArticle :: A.Value -> T.Parser PageBlockRelatedArticle
       parsePageBlockRelatedArticle = A.withObject "PageBlockRelatedArticle" $ \o -> do
-        publish_date_ <- mconcat [o A..:? "publish_date", U.rm <$> (o A..: "publish_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        publish_date_ <- o A..:? "publish_date"
         author_ <- o A..:? "author"
         photo_ <- o A..:? "photo"
         description_ <- o A..:? "description"

@@ -45,7 +45,7 @@ instance T.FromJSON TermsOfService where
       parseTermsOfService :: A.Value -> T.Parser TermsOfService
       parseTermsOfService = A.withObject "TermsOfService" $ \o -> do
         show_popup_ <- o A..:? "show_popup"
-        min_user_age_ <- mconcat [o A..:? "min_user_age", U.rm <$> (o A..: "min_user_age" :: T.Parser String)] :: T.Parser (Maybe Int)
+        min_user_age_ <- o A..:? "min_user_age"
         text_ <- o A..:? "text"
         return $ TermsOfService {show_popup = show_popup_, min_user_age = min_user_age_, text = text_}
   parseJSON _ = mempty

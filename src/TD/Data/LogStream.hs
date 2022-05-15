@@ -62,7 +62,7 @@ instance T.FromJSON LogStream where
       parseLogStreamFile :: A.Value -> T.Parser LogStream
       parseLogStreamFile = A.withObject "LogStreamFile" $ \o -> do
         redirect_stderr_ <- o A..:? "redirect_stderr"
-        max_file_size_ <- mconcat [o A..:? "max_file_size", U.rm <$> (o A..: "max_file_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        max_file_size_ <- o A..:? "max_file_size"
         path_ <- o A..:? "path"
         return $ LogStreamFile {redirect_stderr = redirect_stderr_, max_file_size = max_file_size_, path = path_}
 

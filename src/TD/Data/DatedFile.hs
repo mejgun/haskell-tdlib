@@ -40,7 +40,7 @@ instance T.FromJSON DatedFile where
     where
       parseDatedFile :: A.Value -> T.Parser DatedFile
       parseDatedFile = A.withObject "DatedFile" $ \o -> do
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
         file_ <- o A..:? "file"
         return $ DatedFile {date = date_, file = file_}
   parseJSON _ = mempty

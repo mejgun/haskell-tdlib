@@ -74,15 +74,15 @@ instance T.FromJSON Poll where
       parsePoll :: A.Value -> T.Parser Poll
       parsePoll = A.withObject "Poll" $ \o -> do
         is_closed_ <- o A..:? "is_closed"
-        close_date_ <- mconcat [o A..:? "close_date", U.rm <$> (o A..: "close_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        open_period_ <- mconcat [o A..:? "open_period", U.rm <$> (o A..: "open_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+        close_date_ <- o A..:? "close_date"
+        open_period_ <- o A..:? "open_period"
         _type_ <- o A..:? "type"
         is_anonymous_ <- o A..:? "is_anonymous"
         recent_voter_user_ids_ <- o A..:? "recent_voter_user_ids"
-        total_voter_count_ <- mconcat [o A..:? "total_voter_count", U.rm <$> (o A..: "total_voter_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_voter_count_ <- o A..:? "total_voter_count"
         options_ <- o A..:? "options"
         question_ <- o A..:? "question"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ Poll {is_closed = is_closed_, close_date = close_date_, open_period = open_period_, _type = _type_, is_anonymous = is_anonymous_, recent_voter_user_ids = recent_voter_user_ids_, total_voter_count = total_voter_count_, options = options_, question = question_, _id = _id_}
   parseJSON _ = mempty
 

@@ -119,12 +119,12 @@ instance T.FromJSON SupergroupFullInfo where
     where
       parseSupergroupFullInfo :: A.Value -> T.Parser SupergroupFullInfo
       parseSupergroupFullInfo = A.withObject "SupergroupFullInfo" $ \o -> do
-        upgraded_from_max_message_id_ <- mconcat [o A..:? "upgraded_from_max_message_id", U.rm <$> (o A..: "upgraded_from_max_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        upgraded_from_basic_group_id_ <- mconcat [o A..:? "upgraded_from_basic_group_id", U.rm <$> (o A..: "upgraded_from_basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        upgraded_from_max_message_id_ <- o A..:? "upgraded_from_max_message_id"
+        upgraded_from_basic_group_id_ <- o A..:? "upgraded_from_basic_group_id"
         bot_commands_ <- o A..:? "bot_commands"
         invite_link_ <- o A..:? "invite_link"
         location_ <- o A..:? "location"
-        sticker_set_id_ <- mconcat [o A..:? "sticker_set_id", U.rm <$> (o A..: "sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sticker_set_id_ <- U.rm <$> (o A..: "sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
         is_all_history_available_ <- o A..:? "is_all_history_available"
         can_get_statistics_ <- o A..:? "can_get_statistics"
         can_set_location_ <- o A..:? "can_set_location"
@@ -132,12 +132,12 @@ instance T.FromJSON SupergroupFullInfo where
         can_set_username_ <- o A..:? "can_set_username"
         can_get_members_ <- o A..:? "can_get_members"
         slow_mode_delay_expires_in_ <- o A..:? "slow_mode_delay_expires_in"
-        slow_mode_delay_ <- mconcat [o A..:? "slow_mode_delay", U.rm <$> (o A..: "slow_mode_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
-        linked_chat_id_ <- mconcat [o A..:? "linked_chat_id", U.rm <$> (o A..: "linked_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        banned_count_ <- mconcat [o A..:? "banned_count", U.rm <$> (o A..: "banned_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        restricted_count_ <- mconcat [o A..:? "restricted_count", U.rm <$> (o A..: "restricted_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        administrator_count_ <- mconcat [o A..:? "administrator_count", U.rm <$> (o A..: "administrator_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        member_count_ <- mconcat [o A..:? "member_count", U.rm <$> (o A..: "member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        slow_mode_delay_ <- o A..:? "slow_mode_delay"
+        linked_chat_id_ <- o A..:? "linked_chat_id"
+        banned_count_ <- o A..:? "banned_count"
+        restricted_count_ <- o A..:? "restricted_count"
+        administrator_count_ <- o A..:? "administrator_count"
+        member_count_ <- o A..:? "member_count"
         description_ <- o A..:? "description"
         photo_ <- o A..:? "photo"
         return $ SupergroupFullInfo {upgraded_from_max_message_id = upgraded_from_max_message_id_, upgraded_from_basic_group_id = upgraded_from_basic_group_id_, bot_commands = bot_commands_, invite_link = invite_link_, location = location_, sticker_set_id = sticker_set_id_, is_all_history_available = is_all_history_available_, can_get_statistics = can_get_statistics_, can_set_location = can_set_location_, can_set_sticker_set = can_set_sticker_set_, can_set_username = can_set_username_, can_get_members = can_get_members_, slow_mode_delay_expires_in = slow_mode_delay_expires_in_, slow_mode_delay = slow_mode_delay_, linked_chat_id = linked_chat_id_, banned_count = banned_count_, restricted_count = restricted_count_, administrator_count = administrator_count_, member_count = member_count_, description = description_, photo = photo_}

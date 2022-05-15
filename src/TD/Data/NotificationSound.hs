@@ -59,9 +59,9 @@ instance T.FromJSON NotificationSound where
         sound_ <- o A..:? "sound"
         _data_ <- o A..:? "data"
         title_ <- o A..:? "title"
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
+        duration_ <- o A..:? "duration"
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ NotificationSound {sound = sound_, _data = _data_, title = title_, date = date_, duration = duration_, _id = _id_}
   parseJSON _ = mempty
 

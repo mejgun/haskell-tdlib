@@ -46,7 +46,7 @@ instance T.FromJSON PassportAuthorizationForm where
       parsePassportAuthorizationForm = A.withObject "PassportAuthorizationForm" $ \o -> do
         privacy_policy_url_ <- o A..:? "privacy_policy_url"
         required_elements_ <- o A..:? "required_elements"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ PassportAuthorizationForm {privacy_policy_url = privacy_policy_url_, required_elements = required_elements_, _id = _id_}
   parseJSON _ = mempty
 

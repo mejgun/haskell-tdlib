@@ -60,10 +60,10 @@ instance T.FromJSON MessageThreadInfo where
       parseMessageThreadInfo = A.withObject "MessageThreadInfo" $ \o -> do
         draft_message_ <- o A..:? "draft_message"
         messages_ <- o A..:? "messages"
-        unread_message_count_ <- mconcat [o A..:? "unread_message_count", U.rm <$> (o A..: "unread_message_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        unread_message_count_ <- o A..:? "unread_message_count"
         reply_info_ <- o A..:? "reply_info"
-        message_thread_id_ <- mconcat [o A..:? "message_thread_id", U.rm <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_thread_id_ <- o A..:? "message_thread_id"
+        chat_id_ <- o A..:? "chat_id"
         return $ MessageThreadInfo {draft_message = draft_message_, messages = messages_, unread_message_count = unread_message_count_, reply_info = reply_info_, message_thread_id = message_thread_id_, chat_id = chat_id_}
   parseJSON _ = mempty
 

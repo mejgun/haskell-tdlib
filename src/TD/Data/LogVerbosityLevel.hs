@@ -35,7 +35,7 @@ instance T.FromJSON LogVerbosityLevel where
     where
       parseLogVerbosityLevel :: A.Value -> T.Parser LogVerbosityLevel
       parseLogVerbosityLevel = A.withObject "LogVerbosityLevel" $ \o -> do
-        verbosity_level_ <- mconcat [o A..:? "verbosity_level", U.rm <$> (o A..: "verbosity_level" :: T.Parser String)] :: T.Parser (Maybe Int)
+        verbosity_level_ <- o A..:? "verbosity_level"
         return $ LogVerbosityLevel {verbosity_level = verbosity_level_}
   parseJSON _ = mempty
 

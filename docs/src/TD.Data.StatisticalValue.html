@@ -20,7 +20,7 @@
 </span><span id="line-18"></span><span>    </span><span id="value"><span class="annot"><span class="annottext">StatisticalValue -&gt; Maybe Float
 </span><a href="TD.Data.StatisticalValue.html#value"><span class="hs-identifier hs-var hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679402922"><span id="local-6989586621679402924"><span class="annot"><span class="annottext">StatisticalValue -&gt; StatisticalValue -&gt; Bool
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679390824"><span id="local-6989586621679390826"><span class="annot"><span class="annottext">StatisticalValue -&gt; StatisticalValue -&gt; Bool
 (StatisticalValue -&gt; StatisticalValue -&gt; Bool)
 -&gt; (StatisticalValue -&gt; StatisticalValue -&gt; Bool)
 -&gt; Eq StatisticalValue
@@ -31,19 +31,19 @@ $c/= :: StatisticalValue -&gt; StatisticalValue -&gt; Bool
 $c== :: StatisticalValue -&gt; StatisticalValue -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402916"><span id="local-6989586621679402919"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679402914"><span class="annot"><span class="annottext">show :: StatisticalValue -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679390818"><span id="local-6989586621679390821"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679390816"><span class="annot"><span class="annottext">show :: StatisticalValue -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">growth_rate_percentage :: StatisticalValue -&gt; Maybe Float
-</span><a href="TD.Data.StatisticalValue.html#growth_rate_percentage"><span class="hs-identifier hs-var">growth_rate_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402912"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402912"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StatisticalValue.html#growth_rate_percentage"><span class="hs-identifier hs-var">growth_rate_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679390814"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390814"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">previous_value :: StatisticalValue -&gt; Maybe Float
-</span><a href="TD.Data.StatisticalValue.html#previous_value"><span class="hs-identifier hs-var">previous_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402911"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402911"><span class="hs-identifier hs-var">previous_value_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StatisticalValue.html#previous_value"><span class="hs-identifier hs-var">previous_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679390813"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390813"><span class="hs-identifier hs-var">previous_value_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">value :: StatisticalValue -&gt; Maybe Float
-</span><a href="TD.Data.StatisticalValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402910"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402910"><span class="hs-identifier hs-var">value_</span></a></span></span><span>
+</span><a href="TD.Data.StatisticalValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679390812"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390812"><span class="hs-identifier hs-var">value_</span></a></span></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;StatisticalValue&quot;</span></span><span>
@@ -55,45 +55,45 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;growth_rate_percentage&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402912"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679390814"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Float -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;previous_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402911"><span class="hs-identifier hs-var">previous_value_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679390813"><span class="hs-identifier hs-var">previous_value_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Float -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402910"><span class="hs-identifier hs-var">value_</span></a></span><span>
+</span><a href="#local-6989586621679390812"><span class="hs-identifier hs-var">value_</span></a></span><span>
 </span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402905"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>  </span><span id="local-6989586621679402903"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StatisticalValue
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679402901"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679402901"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679402899"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402899"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-38"></span><span>    </span><span id="local-6989586621679402898"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679402898"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402899"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679390807"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679390805"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StatisticalValue
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679390803"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679390803"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679390801"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679390801"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679390800"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679390800"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679390801"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-39"></span><span>
 </span><span id="line-40"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679402898"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679390800"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;statisticalValue&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StatisticalValue
-</span><a href="#local-6989586621679402896"><span class="hs-identifier hs-var">parseStatisticalValue</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402901"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679390798"><span class="hs-identifier hs-var">parseStatisticalValue</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679390803"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser StatisticalValue
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-43"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679402896"><span class="hs-identifier hs-type">parseStatisticalValue</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span><span>
-</span><span id="line-45"></span><span>      </span><span id="local-6989586621679402896"><span class="annot"><span class="annottext">parseStatisticalValue :: Value -&gt; Parser StatisticalValue
-</span><a href="#local-6989586621679402896"><span class="hs-identifier hs-var hs-var">parseStatisticalValue</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679390798"><span class="hs-identifier hs-type">parseStatisticalValue</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span><span>
+</span><span id="line-45"></span><span>      </span><span id="local-6989586621679390798"><span class="annot"><span class="annottext">parseStatisticalValue :: Value -&gt; Parser StatisticalValue
+</span><a href="#local-6989586621679390798"><span class="hs-identifier hs-var hs-var">parseStatisticalValue</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StatisticalValue)
 -&gt; Value
 -&gt; Parser StatisticalValue
@@ -105,23 +105,23 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser StatisticalValue
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679402894"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402894"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>        </span><span id="local-6989586621679402893"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402893"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402894"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679390796"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679390796"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>        </span><span id="local-6989586621679390795"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390795"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679390796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;growth_rate_percentage&quot;</span></span><span>
-</span><span id="line-47"></span><span>        </span><span id="local-6989586621679402891"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402891"><span class="hs-identifier hs-var">previous_value_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402894"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
+</span><span id="line-47"></span><span>        </span><span id="local-6989586621679390793"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390793"><span class="hs-identifier hs-var">previous_value_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679390796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;previous_value&quot;</span></span><span>
-</span><span id="line-48"></span><span>        </span><span id="local-6989586621679402890"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402890"><span class="hs-identifier hs-var">value_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402894"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
+</span><span id="line-48"></span><span>        </span><span id="local-6989586621679390792"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390792"><span class="hs-identifier hs-var">value_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679390796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;value&quot;</span></span><span>
@@ -133,29 +133,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">StatisticalValue :: Maybe Float -&gt; Maybe Float -&gt; Maybe Float -&gt; StatisticalValue
 </span><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">growth_rate_percentage :: Maybe Float
 </span><a href="TD.Data.StatisticalValue.html#growth_rate_percentage"><span class="hs-identifier hs-var">growth_rate_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402893"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">previous_value :: Maybe Float
+</span><a href="#local-6989586621679390795"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">previous_value :: Maybe Float
 </span><a href="TD.Data.StatisticalValue.html#previous_value"><span class="hs-identifier hs-var">previous_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402891"><span class="hs-identifier hs-var">previous_value_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">value :: Maybe Float
+</span><a href="#local-6989586621679390793"><span class="hs-identifier hs-var">previous_value_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">value :: Maybe Float
 </span><a href="TD.Data.StatisticalValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402890"><span class="hs-identifier hs-var">value_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679390792"><span class="hs-identifier hs-var">value_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-50"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser StatisticalValue
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402883"><span id="local-6989586621679402885"><span id="local-6989586621679402887"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-53"></span><span>  </span><span id="local-6989586621679402881"><span class="annot"><span class="annottext">toJSON :: StatisticalValue -&gt; Value
+</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679390785"><span id="local-6989586621679390787"><span id="local-6989586621679390789"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-53"></span><span>  </span><span id="local-6989586621679390783"><span class="annot"><span class="annottext">toJSON :: StatisticalValue -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-54"></span><span>    </span><span class="annot"><a href="TD.Data.StatisticalValue.html#StatisticalValue"><span class="hs-identifier hs-type">StatisticalValue</span></a></span><span>
 </span><span id="line-55"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">growth_rate_percentage :: StatisticalValue -&gt; Maybe Float
-</span><a href="TD.Data.StatisticalValue.html#growth_rate_percentage"><span class="hs-identifier hs-var">growth_rate_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402879"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402879"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StatisticalValue.html#growth_rate_percentage"><span class="hs-identifier hs-var">growth_rate_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679390781"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390781"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">previous_value :: StatisticalValue -&gt; Maybe Float
-</span><a href="TD.Data.StatisticalValue.html#previous_value"><span class="hs-identifier hs-var">previous_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402878"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402878"><span class="hs-identifier hs-var">previous_value_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StatisticalValue.html#previous_value"><span class="hs-identifier hs-var">previous_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679390780"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390780"><span class="hs-identifier hs-var">previous_value_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">value :: StatisticalValue -&gt; Maybe Float
-</span><a href="TD.Data.StatisticalValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402877"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402877"><span class="hs-identifier hs-var">value_</span></a></span></span><span>
+</span><a href="TD.Data.StatisticalValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679390779"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679390779"><span class="hs-identifier hs-var">value_</span></a></span></span><span>
 </span><span id="line-58"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-59"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -169,16 +169,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;growth_rate_percentage&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402879"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679390781"><span class="hs-identifier hs-var">growth_rate_percentage_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-62"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;previous_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402878"><span class="hs-identifier hs-var">previous_value_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679390780"><span class="hs-identifier hs-var">previous_value_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679402877"><span class="hs-identifier hs-var">value_</span></a></span><span>
+</span><a href="#local-6989586621679390779"><span class="hs-identifier hs-var">value_</span></a></span><span>
 </span><span id="line-64"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-65"></span></pre></body></html>

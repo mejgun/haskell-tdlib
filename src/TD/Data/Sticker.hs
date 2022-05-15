@@ -72,9 +72,9 @@ instance T.FromJSON Sticker where
         outline_ <- o A..:? "outline"
         _type_ <- o A..:? "type"
         emoji_ <- o A..:? "emoji"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
-        set_id_ <- mconcat [o A..:? "set_id", U.rm <$> (o A..: "set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
+        set_id_ <- U.rm <$> (o A..: "set_id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ Sticker {sticker = sticker_, thumbnail = thumbnail_, outline = outline_, _type = _type_, emoji = emoji_, height = height_, width = width_, set_id = set_id_}
   parseJSON _ = mempty
 

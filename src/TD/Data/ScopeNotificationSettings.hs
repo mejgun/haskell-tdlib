@@ -54,8 +54,8 @@ instance T.FromJSON ScopeNotificationSettings where
         disable_mention_notifications_ <- o A..:? "disable_mention_notifications"
         disable_pinned_message_notifications_ <- o A..:? "disable_pinned_message_notifications"
         show_preview_ <- o A..:? "show_preview"
-        sound_id_ <- mconcat [o A..:? "sound_id", U.rm <$> (o A..: "sound_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        mute_for_ <- mconcat [o A..:? "mute_for", U.rm <$> (o A..: "mute_for" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sound_id_ <- U.rm <$> (o A..: "sound_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        mute_for_ <- o A..:? "mute_for"
         return $ ScopeNotificationSettings {disable_mention_notifications = disable_mention_notifications_, disable_pinned_message_notifications = disable_pinned_message_notifications_, show_preview = show_preview_, sound_id = sound_id_, mute_for = mute_for_}
   parseJSON _ = mempty
 

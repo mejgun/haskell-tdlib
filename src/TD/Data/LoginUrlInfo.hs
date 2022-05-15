@@ -73,7 +73,7 @@ instance T.FromJSON LoginUrlInfo where
       parseLoginUrlInfoRequestConfirmation :: A.Value -> T.Parser LoginUrlInfo
       parseLoginUrlInfoRequestConfirmation = A.withObject "LoginUrlInfoRequestConfirmation" $ \o -> do
         request_write_access_ <- o A..:? "request_write_access"
-        bot_user_id_ <- mconcat [o A..:? "bot_user_id", U.rm <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        bot_user_id_ <- o A..:? "bot_user_id"
         domain_ <- o A..:? "domain"
         url_ <- o A..:? "url"
         return $ LoginUrlInfoRequestConfirmation {request_write_access = request_write_access_, bot_user_id = bot_user_id_, domain = domain_, url = url_}

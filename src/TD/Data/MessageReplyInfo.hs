@@ -52,11 +52,11 @@ instance T.FromJSON MessageReplyInfo where
     where
       parseMessageReplyInfo :: A.Value -> T.Parser MessageReplyInfo
       parseMessageReplyInfo = A.withObject "MessageReplyInfo" $ \o -> do
-        last_message_id_ <- mconcat [o A..:? "last_message_id", U.rm <$> (o A..: "last_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        last_read_outbox_message_id_ <- mconcat [o A..:? "last_read_outbox_message_id", U.rm <$> (o A..: "last_read_outbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        last_read_inbox_message_id_ <- mconcat [o A..:? "last_read_inbox_message_id", U.rm <$> (o A..: "last_read_inbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        last_message_id_ <- o A..:? "last_message_id"
+        last_read_outbox_message_id_ <- o A..:? "last_read_outbox_message_id"
+        last_read_inbox_message_id_ <- o A..:? "last_read_inbox_message_id"
         recent_replier_ids_ <- o A..:? "recent_replier_ids"
-        reply_count_ <- mconcat [o A..:? "reply_count", U.rm <$> (o A..: "reply_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        reply_count_ <- o A..:? "reply_count"
         return $ MessageReplyInfo {last_message_id = last_message_id_, last_read_outbox_message_id = last_read_outbox_message_id_, last_read_inbox_message_id = last_read_inbox_message_id_, recent_replier_ids = recent_replier_ids_, reply_count = reply_count_}
   parseJSON _ = mempty
 

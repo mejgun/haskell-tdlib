@@ -98,7 +98,7 @@ instance T.FromJSON TdlibParameters where
         device_model_ <- o A..:? "device_model"
         system_language_code_ <- o A..:? "system_language_code"
         api_hash_ <- o A..:? "api_hash"
-        api_id_ <- mconcat [o A..:? "api_id", U.rm <$> (o A..: "api_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        api_id_ <- o A..:? "api_id"
         use_secret_chats_ <- o A..:? "use_secret_chats"
         use_message_database_ <- o A..:? "use_message_database"
         use_chat_info_database_ <- o A..:? "use_chat_info_database"

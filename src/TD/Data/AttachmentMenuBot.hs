@@ -77,7 +77,7 @@ instance T.FromJSON AttachmentMenuBot where
         default_icon_ <- o A..:? "default_icon"
         name_color_ <- o A..:? "name_color"
         name_ <- o A..:? "name"
-        bot_user_id_ <- mconcat [o A..:? "bot_user_id", U.rm <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        bot_user_id_ <- o A..:? "bot_user_id"
         return $ AttachmentMenuBot {icon_color = icon_color_, macos_icon = macos_icon_, android_icon = android_icon_, ios_animated_icon = ios_animated_icon_, ios_static_icon = ios_static_icon_, default_icon = default_icon_, name_color = name_color_, name = name_, bot_user_id = bot_user_id_}
   parseJSON _ = mempty
 

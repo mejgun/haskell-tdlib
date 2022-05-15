@@ -624,13 +624,13 @@ instance T.FromJSON ChatEventAction where
       parseChatEventMemberJoinedByRequest :: A.Value -> T.Parser ChatEventAction
       parseChatEventMemberJoinedByRequest = A.withObject "ChatEventMemberJoinedByRequest" $ \o -> do
         invite_link_ <- o A..:? "invite_link"
-        approver_user_id_ <- mconcat [o A..:? "approver_user_id", U.rm <$> (o A..: "approver_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        approver_user_id_ <- o A..:? "approver_user_id"
         return $ ChatEventMemberJoinedByRequest {invite_link = invite_link_, approver_user_id = approver_user_id_}
 
       parseChatEventMemberInvited :: A.Value -> T.Parser ChatEventAction
       parseChatEventMemberInvited = A.withObject "ChatEventMemberInvited" $ \o -> do
         status_ <- o A..:? "status"
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ ChatEventMemberInvited {status = status_, user_id = user_id_}
 
       parseChatEventMemberLeft :: A.Value -> T.Parser ChatEventAction
@@ -640,7 +640,7 @@ instance T.FromJSON ChatEventAction where
       parseChatEventMemberPromoted = A.withObject "ChatEventMemberPromoted" $ \o -> do
         new_status_ <- o A..:? "new_status"
         old_status_ <- o A..:? "old_status"
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ ChatEventMemberPromoted {new_status = new_status_, old_status = old_status_, user_id = user_id_}
 
       parseChatEventMemberRestricted :: A.Value -> T.Parser ChatEventAction
@@ -664,8 +664,8 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventLinkedChatChanged :: A.Value -> T.Parser ChatEventAction
       parseChatEventLinkedChatChanged = A.withObject "ChatEventLinkedChatChanged" $ \o -> do
-        new_linked_chat_id_ <- mconcat [o A..:? "new_linked_chat_id", U.rm <$> (o A..: "new_linked_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        old_linked_chat_id_ <- mconcat [o A..:? "old_linked_chat_id", U.rm <$> (o A..: "old_linked_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        new_linked_chat_id_ <- o A..:? "new_linked_chat_id"
+        old_linked_chat_id_ <- o A..:? "old_linked_chat_id"
         return $ ChatEventLinkedChatChanged {new_linked_chat_id = new_linked_chat_id_, old_linked_chat_id = old_linked_chat_id_}
 
       parseChatEventLocationChanged :: A.Value -> T.Parser ChatEventAction
@@ -676,8 +676,8 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventMessageTtlChanged :: A.Value -> T.Parser ChatEventAction
       parseChatEventMessageTtlChanged = A.withObject "ChatEventMessageTtlChanged" $ \o -> do
-        new_message_ttl_ <- mconcat [o A..:? "new_message_ttl", U.rm <$> (o A..: "new_message_ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
-        old_message_ttl_ <- mconcat [o A..:? "old_message_ttl", U.rm <$> (o A..: "old_message_ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+        new_message_ttl_ <- o A..:? "new_message_ttl"
+        old_message_ttl_ <- o A..:? "old_message_ttl"
         return $ ChatEventMessageTtlChanged {new_message_ttl = new_message_ttl_, old_message_ttl = old_message_ttl_}
 
       parseChatEventPermissionsChanged :: A.Value -> T.Parser ChatEventAction
@@ -694,14 +694,14 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventSlowModeDelayChanged :: A.Value -> T.Parser ChatEventAction
       parseChatEventSlowModeDelayChanged = A.withObject "ChatEventSlowModeDelayChanged" $ \o -> do
-        new_slow_mode_delay_ <- mconcat [o A..:? "new_slow_mode_delay", U.rm <$> (o A..: "new_slow_mode_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
-        old_slow_mode_delay_ <- mconcat [o A..:? "old_slow_mode_delay", U.rm <$> (o A..: "old_slow_mode_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
+        new_slow_mode_delay_ <- o A..:? "new_slow_mode_delay"
+        old_slow_mode_delay_ <- o A..:? "old_slow_mode_delay"
         return $ ChatEventSlowModeDelayChanged {new_slow_mode_delay = new_slow_mode_delay_, old_slow_mode_delay = old_slow_mode_delay_}
 
       parseChatEventStickerSetChanged :: A.Value -> T.Parser ChatEventAction
       parseChatEventStickerSetChanged = A.withObject "ChatEventStickerSetChanged" $ \o -> do
-        new_sticker_set_id_ <- mconcat [o A..:? "new_sticker_set_id", U.rm <$> (o A..: "new_sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        old_sticker_set_id_ <- mconcat [o A..:? "old_sticker_set_id", U.rm <$> (o A..: "old_sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        new_sticker_set_id_ <- U.rm <$> (o A..: "new_sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        old_sticker_set_id_ <- U.rm <$> (o A..: "old_sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ ChatEventStickerSetChanged {new_sticker_set_id = new_sticker_set_id_, old_sticker_set_id = old_sticker_set_id_}
 
       parseChatEventTitleChanged :: A.Value -> T.Parser ChatEventAction
@@ -754,12 +754,12 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventVideoChatCreated :: A.Value -> T.Parser ChatEventAction
       parseChatEventVideoChatCreated = A.withObject "ChatEventVideoChatCreated" $ \o -> do
-        group_call_id_ <- mconcat [o A..:? "group_call_id", U.rm <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        group_call_id_ <- o A..:? "group_call_id"
         return $ ChatEventVideoChatCreated {group_call_id = group_call_id_}
 
       parseChatEventVideoChatEnded :: A.Value -> T.Parser ChatEventAction
       parseChatEventVideoChatEnded = A.withObject "ChatEventVideoChatEnded" $ \o -> do
-        group_call_id_ <- mconcat [o A..:? "group_call_id", U.rm <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        group_call_id_ <- o A..:? "group_call_id"
         return $ ChatEventVideoChatEnded {group_call_id = group_call_id_}
 
       parseChatEventVideoChatMuteNewParticipantsToggled :: A.Value -> T.Parser ChatEventAction
@@ -775,7 +775,7 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventVideoChatParticipantVolumeLevelChanged :: A.Value -> T.Parser ChatEventAction
       parseChatEventVideoChatParticipantVolumeLevelChanged = A.withObject "ChatEventVideoChatParticipantVolumeLevelChanged" $ \o -> do
-        volume_level_ <- mconcat [o A..:? "volume_level", U.rm <$> (o A..: "volume_level" :: T.Parser String)] :: T.Parser (Maybe Int)
+        volume_level_ <- o A..:? "volume_level"
         participant_id_ <- o A..:? "participant_id"
         return $ ChatEventVideoChatParticipantVolumeLevelChanged {volume_level = volume_level_, participant_id = participant_id_}
   parseJSON _ = mempty

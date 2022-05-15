@@ -48,7 +48,7 @@ instance T.FromJSON AuthenticationCodeInfo where
     where
       parseAuthenticationCodeInfo :: A.Value -> T.Parser AuthenticationCodeInfo
       parseAuthenticationCodeInfo = A.withObject "AuthenticationCodeInfo" $ \o -> do
-        timeout_ <- mconcat [o A..:? "timeout", U.rm <$> (o A..: "timeout" :: T.Parser String)] :: T.Parser (Maybe Int)
+        timeout_ <- o A..:? "timeout"
         next_type_ <- o A..:? "next_type"
         _type_ <- o A..:? "type"
         phone_number_ <- o A..:? "phone_number"

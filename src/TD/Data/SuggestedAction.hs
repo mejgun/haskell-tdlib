@@ -90,12 +90,12 @@ instance T.FromJSON SuggestedAction where
 
       parseSuggestedActionConvertToBroadcastGroup :: A.Value -> T.Parser SuggestedAction
       parseSuggestedActionConvertToBroadcastGroup = A.withObject "SuggestedActionConvertToBroadcastGroup" $ \o -> do
-        supergroup_id_ <- mconcat [o A..:? "supergroup_id", U.rm <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        supergroup_id_ <- o A..:? "supergroup_id"
         return $ SuggestedActionConvertToBroadcastGroup {supergroup_id = supergroup_id_}
 
       parseSuggestedActionSetPassword :: A.Value -> T.Parser SuggestedAction
       parseSuggestedActionSetPassword = A.withObject "SuggestedActionSetPassword" $ \o -> do
-        authorization_delay_ <- mconcat [o A..:? "authorization_delay", U.rm <$> (o A..: "authorization_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
+        authorization_delay_ <- o A..:? "authorization_delay"
         return $ SuggestedActionSetPassword {authorization_delay = authorization_delay_}
   parseJSON _ = mempty
 

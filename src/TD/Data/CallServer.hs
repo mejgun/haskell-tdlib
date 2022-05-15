@@ -53,10 +53,10 @@ instance T.FromJSON CallServer where
       parseCallServer :: A.Value -> T.Parser CallServer
       parseCallServer = A.withObject "CallServer" $ \o -> do
         _type_ <- o A..:? "type"
-        port_ <- mconcat [o A..:? "port", U.rm <$> (o A..: "port" :: T.Parser String)] :: T.Parser (Maybe Int)
+        port_ <- o A..:? "port"
         ipv6_address_ <- o A..:? "ipv6_address"
         ip_address_ <- o A..:? "ip_address"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- U.rm <$> (o A..: "id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ CallServer {_type = _type_, port = port_, ipv6_address = ipv6_address_, ip_address = ip_address_, _id = _id_}
   parseJSON _ = mempty
 

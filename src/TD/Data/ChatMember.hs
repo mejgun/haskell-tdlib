@@ -50,8 +50,8 @@ instance T.FromJSON ChatMember where
       parseChatMember :: A.Value -> T.Parser ChatMember
       parseChatMember = A.withObject "ChatMember" $ \o -> do
         status_ <- o A..:? "status"
-        joined_chat_date_ <- mconcat [o A..:? "joined_chat_date", U.rm <$> (o A..: "joined_chat_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        inviter_user_id_ <- mconcat [o A..:? "inviter_user_id", U.rm <$> (o A..: "inviter_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        joined_chat_date_ <- o A..:? "joined_chat_date"
+        inviter_user_id_ <- o A..:? "inviter_user_id"
         member_id_ <- o A..:? "member_id"
         return $ ChatMember {status = status_, joined_chat_date = joined_chat_date_, inviter_user_id = inviter_user_id_, member_id = member_id_}
   parseJSON _ = mempty

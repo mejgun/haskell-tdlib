@@ -45,8 +45,8 @@ instance T.FromJSON TextEntity where
       parseTextEntity :: A.Value -> T.Parser TextEntity
       parseTextEntity = A.withObject "TextEntity" $ \o -> do
         _type_ <- o A..:? "type"
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
-        offset_ <- mconcat [o A..:? "offset", U.rm <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
+        offset_ <- o A..:? "offset"
         return $ TextEntity {_type = _type_, _length = _length_, offset = offset_}
   parseJSON _ = mempty
 

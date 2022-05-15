@@ -40,7 +40,7 @@ instance T.FromJSON Error where
       parseError :: A.Value -> T.Parser Error
       parseError = A.withObject "Error" $ \o -> do
         message_ <- o A..:? "message"
-        code_ <- mconcat [o A..:? "code", U.rm <$> (o A..: "code" :: T.Parser String)] :: T.Parser (Maybe Int)
+        code_ <- o A..:? "code"
         return $ Error {message = message_, code = code_}
   parseJSON _ = mempty
 

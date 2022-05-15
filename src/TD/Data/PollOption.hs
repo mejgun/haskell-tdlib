@@ -53,8 +53,8 @@ instance T.FromJSON PollOption where
       parsePollOption = A.withObject "PollOption" $ \o -> do
         is_being_chosen_ <- o A..:? "is_being_chosen"
         is_chosen_ <- o A..:? "is_chosen"
-        vote_percentage_ <- mconcat [o A..:? "vote_percentage", U.rm <$> (o A..: "vote_percentage" :: T.Parser String)] :: T.Parser (Maybe Int)
-        voter_count_ <- mconcat [o A..:? "voter_count", U.rm <$> (o A..: "voter_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        vote_percentage_ <- o A..:? "vote_percentage"
+        voter_count_ <- o A..:? "voter_count"
         text_ <- o A..:? "text"
         return $ PollOption {is_being_chosen = is_being_chosen_, is_chosen = is_chosen_, vote_percentage = vote_percentage_, voter_count = voter_count_, text = text_}
   parseJSON _ = mempty

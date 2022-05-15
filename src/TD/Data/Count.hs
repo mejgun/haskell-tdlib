@@ -35,7 +35,7 @@ instance T.FromJSON Count where
     where
       parseCount :: A.Value -> T.Parser Count
       parseCount = A.withObject "Count" $ \o -> do
-        count_ <- mconcat [o A..:? "count", U.rm <$> (o A..: "count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        count_ <- o A..:? "count"
         return $ Count {count = count_}
   parseJSON _ = mempty
 

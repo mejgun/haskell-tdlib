@@ -44,8 +44,8 @@ instance T.FromJSON Minithumbnail where
       parseMinithumbnail :: A.Value -> T.Parser Minithumbnail
       parseMinithumbnail = A.withObject "Minithumbnail" $ \o -> do
         _data_ <- o A..:? "data"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
         return $ Minithumbnail {_data = _data_, height = height_, width = width_}
   parseJSON _ = mempty
 

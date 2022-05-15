@@ -44,8 +44,8 @@ instance T.FromJSON StorageStatisticsByFileType where
     where
       parseStorageStatisticsByFileType :: A.Value -> T.Parser StorageStatisticsByFileType
       parseStorageStatisticsByFileType = A.withObject "StorageStatisticsByFileType" $ \o -> do
-        count_ <- mconcat [o A..:? "count", U.rm <$> (o A..: "count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        size_ <- mconcat [o A..:? "size", U.rm <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        count_ <- o A..:? "count"
+        size_ <- o A..:? "size"
         file_type_ <- o A..:? "file_type"
         return $ StorageStatisticsByFileType {count = count_, size = size_, file_type = file_type_}
   parseJSON _ = mempty

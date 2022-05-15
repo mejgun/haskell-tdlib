@@ -533,9 +533,9 @@ instance T.FromJSON InputMessageContent where
       parseInputMessageAnimation :: A.Value -> T.Parser InputMessageContent
       parseInputMessageAnimation = A.withObject "InputMessageAnimation" $ \o -> do
         caption_ <- o A..:? "caption"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
+        duration_ <- o A..:? "duration"
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         animation_ <- o A..:? "animation"
@@ -546,7 +546,7 @@ instance T.FromJSON InputMessageContent where
         caption_ <- o A..:? "caption"
         performer_ <- o A..:? "performer"
         title_ <- o A..:? "title"
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
         album_cover_thumbnail_ <- o A..:? "album_cover_thumbnail"
         audio_ <- o A..:? "audio"
         return $ InputMessageAudio {caption = caption_, performer = performer_, title = title_, duration = duration_, album_cover_thumbnail = album_cover_thumbnail_, audio = audio_}
@@ -561,10 +561,10 @@ instance T.FromJSON InputMessageContent where
 
       parseInputMessagePhoto :: A.Value -> T.Parser InputMessageContent
       parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
-        ttl_ <- mconcat [o A..:? "ttl", U.rm <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+        ttl_ <- o A..:? "ttl"
         caption_ <- o A..:? "caption"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         photo_ <- o A..:? "photo"
@@ -573,20 +573,20 @@ instance T.FromJSON InputMessageContent where
       parseInputMessageSticker :: A.Value -> T.Parser InputMessageContent
       parseInputMessageSticker = A.withObject "InputMessageSticker" $ \o -> do
         emoji_ <- o A..:? "emoji"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
         thumbnail_ <- o A..:? "thumbnail"
         sticker_ <- o A..:? "sticker"
         return $ InputMessageSticker {emoji = emoji_, height = height_, width = width_, thumbnail = thumbnail_, sticker = sticker_}
 
       parseInputMessageVideo :: A.Value -> T.Parser InputMessageContent
       parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
-        ttl_ <- mconcat [o A..:? "ttl", U.rm <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+        ttl_ <- o A..:? "ttl"
         caption_ <- o A..:? "caption"
         supports_streaming_ <- o A..:? "supports_streaming"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
+        duration_ <- o A..:? "duration"
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         video_ <- o A..:? "video"
@@ -594,8 +594,8 @@ instance T.FromJSON InputMessageContent where
 
       parseInputMessageVideoNote :: A.Value -> T.Parser InputMessageContent
       parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
+        duration_ <- o A..:? "duration"
         thumbnail_ <- o A..:? "thumbnail"
         video_note_ <- o A..:? "video_note"
         return $ InputMessageVideoNote {_length = _length_, duration = duration_, thumbnail = thumbnail_, video_note = video_note_}
@@ -604,15 +604,15 @@ instance T.FromJSON InputMessageContent where
       parseInputMessageVoiceNote = A.withObject "InputMessageVoiceNote" $ \o -> do
         caption_ <- o A..:? "caption"
         waveform_ <- o A..:? "waveform"
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
         voice_note_ <- o A..:? "voice_note"
         return $ InputMessageVoiceNote {caption = caption_, waveform = waveform_, duration = duration_, voice_note = voice_note_}
 
       parseInputMessageLocation :: A.Value -> T.Parser InputMessageContent
       parseInputMessageLocation = A.withObject "InputMessageLocation" $ \o -> do
-        proximity_alert_radius_ <- mconcat [o A..:? "proximity_alert_radius", U.rm <$> (o A..: "proximity_alert_radius" :: T.Parser String)] :: T.Parser (Maybe Int)
-        heading_ <- mconcat [o A..:? "heading", U.rm <$> (o A..: "heading" :: T.Parser String)] :: T.Parser (Maybe Int)
-        live_period_ <- mconcat [o A..:? "live_period", U.rm <$> (o A..: "live_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+        proximity_alert_radius_ <- o A..:? "proximity_alert_radius"
+        heading_ <- o A..:? "heading"
+        live_period_ <- o A..:? "live_period"
         location_ <- o A..:? "location"
         return $ InputMessageLocation {proximity_alert_radius = proximity_alert_radius_, heading = heading_, live_period = live_period_, location = location_}
 
@@ -635,7 +635,7 @@ instance T.FromJSON InputMessageContent where
       parseInputMessageGame :: A.Value -> T.Parser InputMessageContent
       parseInputMessageGame = A.withObject "InputMessageGame" $ \o -> do
         game_short_name_ <- o A..:? "game_short_name"
-        bot_user_id_ <- mconcat [o A..:? "bot_user_id", U.rm <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        bot_user_id_ <- o A..:? "bot_user_id"
         return $ InputMessageGame {game_short_name = game_short_name_, bot_user_id = bot_user_id_}
 
       parseInputMessageInvoice :: A.Value -> T.Parser InputMessageContent
@@ -644,9 +644,9 @@ instance T.FromJSON InputMessageContent where
         provider_data_ <- o A..:? "provider_data"
         provider_token_ <- o A..:? "provider_token"
         payload_ <- o A..:? "payload"
-        photo_height_ <- mconcat [o A..:? "photo_height", U.rm <$> (o A..: "photo_height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        photo_width_ <- mconcat [o A..:? "photo_width", U.rm <$> (o A..: "photo_width" :: T.Parser String)] :: T.Parser (Maybe Int)
-        photo_size_ <- mconcat [o A..:? "photo_size", U.rm <$> (o A..: "photo_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        photo_height_ <- o A..:? "photo_height"
+        photo_width_ <- o A..:? "photo_width"
+        photo_size_ <- o A..:? "photo_size"
         photo_url_ <- o A..:? "photo_url"
         description_ <- o A..:? "description"
         title_ <- o A..:? "title"
@@ -656,8 +656,8 @@ instance T.FromJSON InputMessageContent where
       parseInputMessagePoll :: A.Value -> T.Parser InputMessageContent
       parseInputMessagePoll = A.withObject "InputMessagePoll" $ \o -> do
         is_closed_ <- o A..:? "is_closed"
-        close_date_ <- mconcat [o A..:? "close_date", U.rm <$> (o A..: "close_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        open_period_ <- mconcat [o A..:? "open_period", U.rm <$> (o A..: "open_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+        close_date_ <- o A..:? "close_date"
+        open_period_ <- o A..:? "open_period"
         _type_ <- o A..:? "type"
         is_anonymous_ <- o A..:? "is_anonymous"
         options_ <- o A..:? "options"
@@ -668,8 +668,8 @@ instance T.FromJSON InputMessageContent where
       parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do
         copy_options_ <- o A..:? "copy_options"
         in_game_share_ <- o A..:? "in_game_share"
-        message_id_ <- mconcat [o A..:? "message_id", U.rm <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        from_chat_id_ <- mconcat [o A..:? "from_chat_id", U.rm <$> (o A..: "from_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_id_ <- o A..:? "message_id"
+        from_chat_id_ <- o A..:? "from_chat_id"
         return $ InputMessageForwarded {copy_options = copy_options_, in_game_share = in_game_share_, message_id = message_id_, from_chat_id = from_chat_id_}
   parseJSON _ = mempty
 

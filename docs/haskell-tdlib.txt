@@ -21547,7 +21547,10 @@ UpdateNewPreCheckoutQuery :: Maybe OrderInfo -> Maybe String -> Maybe String -> 
 
 [shipping_option_id] :: Update -> Maybe String
 
-[invoice_payload] :: Update -> Maybe String
+-- | Invoice payload <tt>shipping_option_id Identifier of a shipping option
+--   chosen by the user; may be empty if not applicable </tt>order_info
+--   Information about the order; may be null
+[_invoice_payload] :: Update -> Maybe String
 
 [total_amount] :: Update -> Maybe Int
 
@@ -21568,7 +21571,7 @@ UpdateNewCustomQuery :: Maybe Int -> Maybe String -> Maybe Int -> Update
 
 [timeout] :: Update -> Maybe Int
 
-[_data] :: Update -> Maybe String
+[__data] :: Update -> Maybe String
 
 [_id] :: Update -> Maybe Int
 

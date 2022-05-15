@@ -60,12 +60,12 @@ instance T.FromJSON ResetPasswordResult where
 
       parseResetPasswordResultPending :: A.Value -> T.Parser ResetPasswordResult
       parseResetPasswordResultPending = A.withObject "ResetPasswordResultPending" $ \o -> do
-        pending_reset_date_ <- mconcat [o A..:? "pending_reset_date", U.rm <$> (o A..: "pending_reset_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        pending_reset_date_ <- o A..:? "pending_reset_date"
         return $ ResetPasswordResultPending {pending_reset_date = pending_reset_date_}
 
       parseResetPasswordResultDeclined :: A.Value -> T.Parser ResetPasswordResult
       parseResetPasswordResultDeclined = A.withObject "ResetPasswordResultDeclined" $ \o -> do
-        retry_date_ <- mconcat [o A..:? "retry_date", U.rm <$> (o A..: "retry_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        retry_date_ <- o A..:? "retry_date"
         return $ ResetPasswordResultDeclined {retry_date = retry_date_}
   parseJSON _ = mempty
 

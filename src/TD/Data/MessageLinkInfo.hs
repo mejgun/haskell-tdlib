@@ -58,9 +58,9 @@ instance T.FromJSON MessageLinkInfo where
       parseMessageLinkInfo = A.withObject "MessageLinkInfo" $ \o -> do
         for_comment_ <- o A..:? "for_comment"
         for_album_ <- o A..:? "for_album"
-        media_timestamp_ <- mconcat [o A..:? "media_timestamp", U.rm <$> (o A..: "media_timestamp" :: T.Parser String)] :: T.Parser (Maybe Int)
+        media_timestamp_ <- o A..:? "media_timestamp"
         message_ <- o A..:? "message"
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        chat_id_ <- o A..:? "chat_id"
         is_public_ <- o A..:? "is_public"
         return $ MessageLinkInfo {for_comment = for_comment_, for_album = for_album_, media_timestamp = media_timestamp_, message = message_, chat_id = chat_id_, is_public = is_public_}
   parseJSON _ = mempty

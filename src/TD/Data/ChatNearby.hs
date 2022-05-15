@@ -39,8 +39,8 @@ instance T.FromJSON ChatNearby where
     where
       parseChatNearby :: A.Value -> T.Parser ChatNearby
       parseChatNearby = A.withObject "ChatNearby" $ \o -> do
-        distance_ <- mconcat [o A..:? "distance", U.rm <$> (o A..: "distance" :: T.Parser String)] :: T.Parser (Maybe Int)
-        chat_id_ <- mconcat [o A..:? "chat_id", U.rm <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        distance_ <- o A..:? "distance"
+        chat_id_ <- o A..:? "chat_id"
         return $ ChatNearby {distance = distance_, chat_id = chat_id_}
   parseJSON _ = mempty
 

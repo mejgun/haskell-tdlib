@@ -102,11 +102,11 @@ instance T.FromJSON Supergroup where
         sign_messages_ <- o A..:? "sign_messages"
         has_location_ <- o A..:? "has_location"
         has_linked_chat_ <- o A..:? "has_linked_chat"
-        member_count_ <- mconcat [o A..:? "member_count", U.rm <$> (o A..: "member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        member_count_ <- o A..:? "member_count"
         status_ <- o A..:? "status"
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
         username_ <- o A..:? "username"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ Supergroup {is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_verified = is_verified_, is_broadcast_group = is_broadcast_group_, is_channel = is_channel_, is_slow_mode_enabled = is_slow_mode_enabled_, sign_messages = sign_messages_, has_location = has_location_, has_linked_chat = has_linked_chat_, member_count = member_count_, status = status_, date = date_, username = username_, _id = _id_}
   parseJSON _ = mempty
 

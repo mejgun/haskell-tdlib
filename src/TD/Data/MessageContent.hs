@@ -972,10 +972,10 @@ instance T.FromJSON MessageContent where
 
       parseMessageLocation :: A.Value -> T.Parser MessageContent
       parseMessageLocation = A.withObject "MessageLocation" $ \o -> do
-        proximity_alert_radius_ <- mconcat [o A..:? "proximity_alert_radius", U.rm <$> (o A..: "proximity_alert_radius" :: T.Parser String)] :: T.Parser (Maybe Int)
-        heading_ <- mconcat [o A..:? "heading", U.rm <$> (o A..: "heading" :: T.Parser String)] :: T.Parser (Maybe Int)
-        expires_in_ <- mconcat [o A..:? "expires_in", U.rm <$> (o A..: "expires_in" :: T.Parser String)] :: T.Parser (Maybe Int)
-        live_period_ <- mconcat [o A..:? "live_period", U.rm <$> (o A..: "live_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+        proximity_alert_radius_ <- o A..:? "proximity_alert_radius"
+        heading_ <- o A..:? "heading"
+        expires_in_ <- o A..:? "expires_in"
+        live_period_ <- o A..:? "live_period"
         location_ <- o A..:? "location"
         return $ MessageLocation {proximity_alert_radius = proximity_alert_radius_, heading = heading_, expires_in = expires_in_, live_period = live_period_, location = location_}
 
@@ -997,8 +997,8 @@ instance T.FromJSON MessageContent where
 
       parseMessageDice :: A.Value -> T.Parser MessageContent
       parseMessageDice = A.withObject "MessageDice" $ \o -> do
-        success_animation_frame_number_ <- mconcat [o A..:? "success_animation_frame_number", U.rm <$> (o A..: "success_animation_frame_number" :: T.Parser String)] :: T.Parser (Maybe Int)
-        value_ <- mconcat [o A..:? "value", U.rm <$> (o A..: "value" :: T.Parser String)] :: T.Parser (Maybe Int)
+        success_animation_frame_number_ <- o A..:? "success_animation_frame_number"
+        value_ <- o A..:? "value"
         emoji_ <- o A..:? "emoji"
         final_state_ <- o A..:? "final_state"
         initial_state_ <- o A..:? "initial_state"
@@ -1016,11 +1016,11 @@ instance T.FromJSON MessageContent where
 
       parseMessageInvoice :: A.Value -> T.Parser MessageContent
       parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
-        receipt_message_id_ <- mconcat [o A..:? "receipt_message_id", U.rm <$> (o A..: "receipt_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        receipt_message_id_ <- o A..:? "receipt_message_id"
         need_shipping_address_ <- o A..:? "need_shipping_address"
         is_test_ <- o A..:? "is_test"
         start_parameter_ <- o A..:? "start_parameter"
-        total_amount_ <- mconcat [o A..:? "total_amount", U.rm <$> (o A..: "total_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_amount_ <- o A..:? "total_amount"
         currency_ <- o A..:? "currency"
         photo_ <- o A..:? "photo"
         description_ <- o A..:? "description"
@@ -1029,31 +1029,31 @@ instance T.FromJSON MessageContent where
 
       parseMessageCall :: A.Value -> T.Parser MessageContent
       parseMessageCall = A.withObject "MessageCall" $ \o -> do
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
         discard_reason_ <- o A..:? "discard_reason"
         is_video_ <- o A..:? "is_video"
         return $ MessageCall {duration = duration_, discard_reason = discard_reason_, is_video = is_video_}
 
       parseMessageVideoChatScheduled :: A.Value -> T.Parser MessageContent
       parseMessageVideoChatScheduled = A.withObject "MessageVideoChatScheduled" $ \o -> do
-        start_date_ <- mconcat [o A..:? "start_date", U.rm <$> (o A..: "start_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        group_call_id_ <- mconcat [o A..:? "group_call_id", U.rm <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        start_date_ <- o A..:? "start_date"
+        group_call_id_ <- o A..:? "group_call_id"
         return $ MessageVideoChatScheduled {start_date = start_date_, group_call_id = group_call_id_}
 
       parseMessageVideoChatStarted :: A.Value -> T.Parser MessageContent
       parseMessageVideoChatStarted = A.withObject "MessageVideoChatStarted" $ \o -> do
-        group_call_id_ <- mconcat [o A..:? "group_call_id", U.rm <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        group_call_id_ <- o A..:? "group_call_id"
         return $ MessageVideoChatStarted {group_call_id = group_call_id_}
 
       parseMessageVideoChatEnded :: A.Value -> T.Parser MessageContent
       parseMessageVideoChatEnded = A.withObject "MessageVideoChatEnded" $ \o -> do
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
         return $ MessageVideoChatEnded {duration = duration_}
 
       parseMessageInviteVideoChatParticipants :: A.Value -> T.Parser MessageContent
       parseMessageInviteVideoChatParticipants = A.withObject "MessageInviteVideoChatParticipants" $ \o -> do
         user_ids_ <- o A..:? "user_ids"
-        group_call_id_ <- mconcat [o A..:? "group_call_id", U.rm <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        group_call_id_ <- o A..:? "group_call_id"
         return $ MessageInviteVideoChatParticipants {user_ids = user_ids_, group_call_id = group_call_id_}
 
       parseMessageBasicGroupChatCreate :: A.Value -> T.Parser MessageContent
@@ -1093,23 +1093,23 @@ instance T.FromJSON MessageContent where
 
       parseMessageChatDeleteMember :: A.Value -> T.Parser MessageContent
       parseMessageChatDeleteMember = A.withObject "MessageChatDeleteMember" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ MessageChatDeleteMember {user_id = user_id_}
 
       parseMessageChatUpgradeTo :: A.Value -> T.Parser MessageContent
       parseMessageChatUpgradeTo = A.withObject "MessageChatUpgradeTo" $ \o -> do
-        supergroup_id_ <- mconcat [o A..:? "supergroup_id", U.rm <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        supergroup_id_ <- o A..:? "supergroup_id"
         return $ MessageChatUpgradeTo {supergroup_id = supergroup_id_}
 
       parseMessageChatUpgradeFrom :: A.Value -> T.Parser MessageContent
       parseMessageChatUpgradeFrom = A.withObject "MessageChatUpgradeFrom" $ \o -> do
-        basic_group_id_ <- mconcat [o A..:? "basic_group_id", U.rm <$> (o A..: "basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        basic_group_id_ <- o A..:? "basic_group_id"
         title_ <- o A..:? "title"
         return $ MessageChatUpgradeFrom {basic_group_id = basic_group_id_, title = title_}
 
       parseMessagePinMessage :: A.Value -> T.Parser MessageContent
       parseMessagePinMessage = A.withObject "MessagePinMessage" $ \o -> do
-        message_id_ <- mconcat [o A..:? "message_id", U.rm <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_id_ <- o A..:? "message_id"
         return $ MessagePinMessage {message_id = message_id_}
 
       parseMessageScreenshotTaken :: A.Value -> T.Parser MessageContent
@@ -1122,7 +1122,7 @@ instance T.FromJSON MessageContent where
 
       parseMessageChatSetTtl :: A.Value -> T.Parser MessageContent
       parseMessageChatSetTtl = A.withObject "MessageChatSetTtl" $ \o -> do
-        ttl_ <- mconcat [o A..:? "ttl", U.rm <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+        ttl_ <- o A..:? "ttl"
         return $ MessageChatSetTtl {ttl = ttl_}
 
       parseMessageCustomServiceAction :: A.Value -> T.Parser MessageContent
@@ -1132,17 +1132,17 @@ instance T.FromJSON MessageContent where
 
       parseMessageGameScore :: A.Value -> T.Parser MessageContent
       parseMessageGameScore = A.withObject "MessageGameScore" $ \o -> do
-        score_ <- mconcat [o A..:? "score", U.rm <$> (o A..: "score" :: T.Parser String)] :: T.Parser (Maybe Int)
-        game_id_ <- mconcat [o A..:? "game_id", U.rm <$> (o A..: "game_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        game_message_id_ <- mconcat [o A..:? "game_message_id", U.rm <$> (o A..: "game_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        score_ <- o A..:? "score"
+        game_id_ <- U.rm <$> (o A..: "game_id" :: T.Parser String) :: T.Parser (Maybe Int)
+        game_message_id_ <- o A..:? "game_message_id"
         return $ MessageGameScore {score = score_, game_id = game_id_, game_message_id = game_message_id_}
 
       parseMessagePaymentSuccessful :: A.Value -> T.Parser MessageContent
       parseMessagePaymentSuccessful = A.withObject "MessagePaymentSuccessful" $ \o -> do
-        total_amount_ <- mconcat [o A..:? "total_amount", U.rm <$> (o A..: "total_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_amount_ <- o A..:? "total_amount"
         currency_ <- o A..:? "currency"
-        invoice_message_id_ <- mconcat [o A..:? "invoice_message_id", U.rm <$> (o A..: "invoice_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        invoice_chat_id_ <- mconcat [o A..:? "invoice_chat_id", U.rm <$> (o A..: "invoice_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        invoice_message_id_ <- o A..:? "invoice_message_id"
+        invoice_chat_id_ <- o A..:? "invoice_chat_id"
         return $ MessagePaymentSuccessful {total_amount = total_amount_, currency = currency_, invoice_message_id = invoice_message_id_, invoice_chat_id = invoice_chat_id_}
 
       parseMessagePaymentSuccessfulBot :: A.Value -> T.Parser MessageContent
@@ -1152,7 +1152,7 @@ instance T.FromJSON MessageContent where
         order_info_ <- o A..:? "order_info"
         shipping_option_id_ <- o A..:? "shipping_option_id"
         invoice_payload_ <- o A..:? "invoice_payload"
-        total_amount_ <- mconcat [o A..:? "total_amount", U.rm <$> (o A..: "total_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_amount_ <- o A..:? "total_amount"
         currency_ <- o A..:? "currency"
         return $ MessagePaymentSuccessfulBot {provider_payment_charge_id = provider_payment_charge_id_, telegram_payment_charge_id = telegram_payment_charge_id_, order_info = order_info_, shipping_option_id = shipping_option_id_, invoice_payload = invoice_payload_, total_amount = total_amount_, currency = currency_}
 
@@ -1188,7 +1188,7 @@ instance T.FromJSON MessageContent where
 
       parseMessageProximityAlertTriggered :: A.Value -> T.Parser MessageContent
       parseMessageProximityAlertTriggered = A.withObject "MessageProximityAlertTriggered" $ \o -> do
-        distance_ <- mconcat [o A..:? "distance", U.rm <$> (o A..: "distance" :: T.Parser String)] :: T.Parser (Maybe Int)
+        distance_ <- o A..:? "distance"
         watcher_id_ <- o A..:? "watcher_id"
         traveler_id_ <- o A..:? "traveler_id"
         return $ MessageProximityAlertTriggered {distance = distance_, watcher_id = watcher_id_, traveler_id = traveler_id_}

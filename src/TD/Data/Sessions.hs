@@ -40,7 +40,7 @@ instance T.FromJSON Sessions where
     where
       parseSessions :: A.Value -> T.Parser Sessions
       parseSessions = A.withObject "Sessions" $ \o -> do
-        inactive_session_ttl_days_ <- mconcat [o A..:? "inactive_session_ttl_days", U.rm <$> (o A..: "inactive_session_ttl_days" :: T.Parser String)] :: T.Parser (Maybe Int)
+        inactive_session_ttl_days_ <- o A..:? "inactive_session_ttl_days"
         sessions_ <- o A..:? "sessions"
         return $ Sessions {inactive_session_ttl_days = inactive_session_ttl_days_, sessions = sessions_}
   parseJSON _ = mempty

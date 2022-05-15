@@ -35,7 +35,7 @@ instance T.FromJSON AccountTtl where
     where
       parseAccountTtl :: A.Value -> T.Parser AccountTtl
       parseAccountTtl = A.withObject "AccountTtl" $ \o -> do
-        days_ <- mconcat [o A..:? "days", U.rm <$> (o A..: "days" :: T.Parser String)] :: T.Parser (Maybe Int)
+        days_ <- o A..:? "days"
         return $ AccountTtl {days = days_}
   parseJSON _ = mempty
 

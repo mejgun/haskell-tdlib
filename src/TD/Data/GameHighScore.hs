@@ -43,9 +43,9 @@ instance T.FromJSON GameHighScore where
     where
       parseGameHighScore :: A.Value -> T.Parser GameHighScore
       parseGameHighScore = A.withObject "GameHighScore" $ \o -> do
-        score_ <- mconcat [o A..:? "score", U.rm <$> (o A..: "score" :: T.Parser String)] :: T.Parser (Maybe Int)
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        position_ <- mconcat [o A..:? "position", U.rm <$> (o A..: "position" :: T.Parser String)] :: T.Parser (Maybe Int)
+        score_ <- o A..:? "score"
+        user_id_ <- o A..:? "user_id"
+        position_ <- o A..:? "position"
         return $ GameHighScore {score = score_, user_id = user_id_, position = position_}
   parseJSON _ = mempty
 

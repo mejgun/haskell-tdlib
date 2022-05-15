@@ -136,7 +136,7 @@ instance T.FromJSON ChatMemberStatus where
       parseChatMemberStatusRestricted :: A.Value -> T.Parser ChatMemberStatus
       parseChatMemberStatusRestricted = A.withObject "ChatMemberStatusRestricted" $ \o -> do
         permissions_ <- o A..:? "permissions"
-        restricted_until_date_ <- mconcat [o A..:? "restricted_until_date", U.rm <$> (o A..: "restricted_until_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        restricted_until_date_ <- o A..:? "restricted_until_date"
         is_member_ <- o A..:? "is_member"
         return $ ChatMemberStatusRestricted {permissions = permissions_, restricted_until_date = restricted_until_date_, is_member = is_member_}
 
@@ -145,7 +145,7 @@ instance T.FromJSON ChatMemberStatus where
 
       parseChatMemberStatusBanned :: A.Value -> T.Parser ChatMemberStatus
       parseChatMemberStatusBanned = A.withObject "ChatMemberStatusBanned" $ \o -> do
-        banned_until_date_ <- mconcat [o A..:? "banned_until_date", U.rm <$> (o A..: "banned_until_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        banned_until_date_ <- o A..:? "banned_until_date"
         return $ ChatMemberStatusBanned {banned_until_date = banned_until_date_}
   parseJSON _ = mempty
 

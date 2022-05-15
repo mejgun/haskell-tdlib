@@ -57,8 +57,8 @@ instance T.FromJSON VideoNote where
         video_ <- o A..:? "video"
         thumbnail_ <- o A..:? "thumbnail"
         minithumbnail_ <- o A..:? "minithumbnail"
-        _length_ <- mconcat [o A..:? "length", U.rm <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _length_ <- o A..:? "length"
+        duration_ <- o A..:? "duration"
         return $ VideoNote {video = video_, thumbnail = thumbnail_, minithumbnail = minithumbnail_, _length = _length_, duration = duration_}
   parseJSON _ = mempty
 

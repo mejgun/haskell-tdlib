@@ -123,7 +123,7 @@ instance T.FromJSON PassportElementErrorSource where
 
       parsePassportElementErrorSourceTranslationFile :: A.Value -> T.Parser PassportElementErrorSource
       parsePassportElementErrorSourceTranslationFile = A.withObject "PassportElementErrorSourceTranslationFile" $ \o -> do
-        file_index_ <- mconcat [o A..:? "file_index", U.rm <$> (o A..: "file_index" :: T.Parser String)] :: T.Parser (Maybe Int)
+        file_index_ <- o A..:? "file_index"
         return $ PassportElementErrorSourceTranslationFile {file_index = file_index_}
 
       parsePassportElementErrorSourceTranslationFiles :: A.Value -> T.Parser PassportElementErrorSource
@@ -131,7 +131,7 @@ instance T.FromJSON PassportElementErrorSource where
 
       parsePassportElementErrorSourceFile :: A.Value -> T.Parser PassportElementErrorSource
       parsePassportElementErrorSourceFile = A.withObject "PassportElementErrorSourceFile" $ \o -> do
-        file_index_ <- mconcat [o A..:? "file_index", U.rm <$> (o A..: "file_index" :: T.Parser String)] :: T.Parser (Maybe Int)
+        file_index_ <- o A..:? "file_index"
         return $ PassportElementErrorSourceFile {file_index = file_index_}
 
       parsePassportElementErrorSourceFiles :: A.Value -> T.Parser PassportElementErrorSource

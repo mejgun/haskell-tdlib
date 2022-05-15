@@ -79,14 +79,14 @@ instance T.FromJSON PaymentReceipt where
     where
       parsePaymentReceipt :: A.Value -> T.Parser PaymentReceipt
       parsePaymentReceipt = A.withObject "PaymentReceipt" $ \o -> do
-        tip_amount_ <- mconcat [o A..:? "tip_amount", U.rm <$> (o A..: "tip_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+        tip_amount_ <- o A..:? "tip_amount"
         credentials_title_ <- o A..:? "credentials_title"
         shipping_option_ <- o A..:? "shipping_option"
         order_info_ <- o A..:? "order_info"
         invoice_ <- o A..:? "invoice"
-        payments_provider_user_id_ <- mconcat [o A..:? "payments_provider_user_id", U.rm <$> (o A..: "payments_provider_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        seller_bot_user_id_ <- mconcat [o A..:? "seller_bot_user_id", U.rm <$> (o A..: "seller_bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        payments_provider_user_id_ <- o A..:? "payments_provider_user_id"
+        seller_bot_user_id_ <- o A..:? "seller_bot_user_id"
+        date_ <- o A..:? "date"
         photo_ <- o A..:? "photo"
         description_ <- o A..:? "description"
         title_ <- o A..:? "title"

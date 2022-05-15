@@ -87,7 +87,7 @@ instance T.FromJSON ChatMembersFilter where
 
       parseChatMembersFilterMention :: A.Value -> T.Parser ChatMembersFilter
       parseChatMembersFilterMention = A.withObject "ChatMembersFilterMention" $ \o -> do
-        message_thread_id_ <- mconcat [o A..:? "message_thread_id", U.rm <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_thread_id_ <- o A..:? "message_thread_id"
         return $ ChatMembersFilterMention {message_thread_id = message_thread_id_}
 
       parseChatMembersFilterRestricted :: A.Value -> T.Parser ChatMembersFilter

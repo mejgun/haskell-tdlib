@@ -84,9 +84,9 @@ instance T.FromJSON LanguagePackInfo where
       parseLanguagePackInfo :: A.Value -> T.Parser LanguagePackInfo
       parseLanguagePackInfo = A.withObject "LanguagePackInfo" $ \o -> do
         translation_url_ <- o A..:? "translation_url"
-        local_string_count_ <- mconcat [o A..:? "local_string_count", U.rm <$> (o A..: "local_string_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        translated_string_count_ <- mconcat [o A..:? "translated_string_count", U.rm <$> (o A..: "translated_string_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        total_string_count_ <- mconcat [o A..:? "total_string_count", U.rm <$> (o A..: "total_string_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        local_string_count_ <- o A..:? "local_string_count"
+        translated_string_count_ <- o A..:? "translated_string_count"
+        total_string_count_ <- o A..:? "total_string_count"
         is_installed_ <- o A..:? "is_installed"
         is_beta_ <- o A..:? "is_beta"
         is_rtl_ <- o A..:? "is_rtl"

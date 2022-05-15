@@ -50,8 +50,8 @@ instance T.FromJSON Notification where
       parseNotification = A.withObject "Notification" $ \o -> do
         _type_ <- o A..:? "type"
         is_silent_ <- o A..:? "is_silent"
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
+        _id_ <- o A..:? "id"
         return $ Notification {_type = _type_, is_silent = is_silent_, date = date_, _id = _id_}
   parseJSON _ = mempty
 

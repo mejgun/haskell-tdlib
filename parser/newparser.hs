@@ -36,9 +36,21 @@ data Entry
 
 data Arg = Arg
   { key :: String,
-    value :: String,
+    value :: ArgType,
     comments_ :: [String]
   }
+  deriving (Show, Eq)
+
+data ArgType
+  = Double
+  | String
+  | Int32
+  | Int53
+  | Int64
+  | Bytes
+  | Bool
+  | Module String
+  | Vector ArgType
   deriving (Show, Eq)
 
 type GroupedItems = (String, Maybe Entry, [Entry])
@@ -48,8 +60,12 @@ type ImportRecord = (String, String)
 main :: IO ()
 main = do
   [d, f] <- LE.splitOn "---functions---" <$> readFile "td_api.tl"
-  let (import', d1) = foldl (fixArgTypes True) ([], []) . toEntries . split $ d
-  let (importFun', f1) = foldl (fixArgTypes False) ([], []) . toEntries . split $ f
+  let d1 = toEntries . split $ d
+  let f1 = toEntries . split $ f
+  let import' = getImports True d1
+  let importFun' = getImports False f1
+  -- let (import', d1) = foldl (fixArgTypes True) ([], []) . toEntries . split $ d
+  -- let (importFun', f1) = foldl (fixArgTypes False) ([], []) . toEntries . split $ f
   let recImports' = uniq . findRecursiions $ uniq import'
   let (okImports, recurImports) = sortImports import' recImports'
   let (Nothing, Nothing, d2) = foldl insertComments (Nothing, Nothing, []) d1
@@ -193,9 +209,22 @@ writeFuncs imps (q@(Item _ con com arg) : t) = do
           L.concat
             [ "   -- | ",
               L.intercalate "\n   -- " comms,
-              printf "\n   %s :: %s" k v
+              printf "\n   %s :: Maybe %s" k (showArgType con v)
             ]
 writeFuncs _ _ = error "func write error"
+
+showArgType :: String -> ArgType -> String
+showArgType modname (Vector x) = printf "[%s]" $ showArgType modname x
+showArgType modname (Module s)
+  | modname == s = printf "%s" s
+  | otherwise = printf "%s.%s" s s
+showArgType _ Bool = "Bool"
+showArgType _ Int32 = "Int"
+showArgType _ Int53 = "Int"
+showArgType _ Int64 = "Int"
+showArgType _ String = "String"
+showArgType _ Bytes = "String"
+showArgType _ Double = "Float"
 
 printToShow :: Entry -> String
 printToShow (Item _ con _ arg) =
@@ -230,10 +259,14 @@ printToJson (Item _ con _ arg) =
       printf "   \"@type\" A..= T.String \"%s\"%s" (toLower con) (if null arg then "" else "," :: String),
       L.intercalate
         ",\n"
-        ( map (\(Arg x1 _ _) -> printf "   \"%s\" A..= %s_" (dropAround (== '_') x1) x1) arg
+        ( map printArg arg
         ),
       "  ]"
     ]
+  where
+    printArg :: Arg -> String
+    -- printArg (Arg x Int64 _) = printf "   \"%s\" A..= %s_" (dropAround (== '_') x
+    printArg (Arg x _ _) = printf "   \"%s\" A..= %s_" (dropAround (== '_') x) x
 printToJson _ = error "not item"
 
 writeData :: [ImportRecord] -> [ImportRecord] -> [GroupedItems] -> IO ()
@@ -293,7 +326,7 @@ writeData imps recimps (q@(nam, _, _) : t) = do
         printArg a =
           "\n    -- | "
             ++ L.intercalate "\n    -- " (comments_ a)
-            ++ printf "\n    %s :: %s" (key a) (value a)
+            ++ printf "\n    %s :: Maybe %s" (key a) (showArgType n $ value a)
         printFromJson :: String
         printFromJson =
           L.intercalate
@@ -340,7 +373,9 @@ writeData imps recimps (q@(nam, _, _) : t) = do
             )
         printFromJsonItem _ = error "oops"
         printFromJsonArg :: Arg -> String
-        printFromJsonArg (Arg k "Maybe Int" _) = printf "    %s_ <- mconcat [o A..:? \"%s\", U.rm <$> (o A..: \"%s\" :: T.Parser String)] :: T.Parser (Maybe Int)" k (dropAround (== '_') k) (dropAround (== '_') k)
+        printFromJsonArg (Arg k Int64 _) = printf "    %s_ <- U.rm <$> (o A..: \"%s\" :: T.Parser String) :: T.Parser (Maybe Int)" k (dropAround (== '_') k)
+        printFromJsonArg (Arg k (Vector Int64) _) = printf "    %s_ <- traverse U.rm <$> (o A..: \"%s\" :: T.Parser [String]) :: T.Parser (Maybe [Int])" k (dropAround (== '_') k)
+        printFromJsonArg (Arg _ (Vector (Vector Int64)) _) = undefined
         printFromJsonArg (Arg k _ _) = printf "    %s_ <- o A..:? \"%s\"" k (dropAround (== '_') k)
 
 writeDataBoot :: [ImportRecord] -> IO ()
@@ -424,13 +459,14 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
   where
     -- fixArgsKeys (q@(Item cl _ _ arg) : t) acc = fixArgsKeys t acc ++ [q {args = map fix arg}]
 
-    fixAll :: ([(String, String)], [Arg], [Entry]) -> Entry -> ([(String, String)], [Arg], [Entry])
+    fixAll :: ([(String, ArgType)], [Arg], [Entry]) -> Entry -> ([(String, ArgType)], [Arg], [Entry])
     fixAll (keys, ar, acc) q@(Item _ _ _ (h : t)) =
       let (k, a) = fix keys h in fixAll (k, a : ar, acc) (q {args = t}) -- (k, acc ++ [q {args = a}])
     fixAll (keys, ar, acc) q@(Item _ _ _ []) =
       (keys, [], acc ++ [q {args = ar}]) -- (k, acc ++ [q {args = a}])
     fixAll _ _ = error "could not be"
-    fix :: [(String, String)] -> Arg -> ([(String, String)], Arg)
+
+    fix :: [(String, ArgType)] -> Arg -> ([(String, ArgType)], Arg)
     fix keys q@(Arg k v _)
       | k `elem` ["type", "data", "id", "length", "error", "filter"] =
         let newk = add k
@@ -438,6 +474,7 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
       | (k, v) `elem` keys = (keys ++ [(k, v)], q)
       | k `elem` map fst keys = let newk = add k in fix keys (q {key = newk})
       | otherwise = (keys ++ [(k, v)], q)
+
     add :: String -> String
     add a = "_" ++ a
 
@@ -453,6 +490,7 @@ fixArgsKeys (nm, b, l) = let (_, _, ll) = foldl fixAll ([], [], []) l in (nm, b,
 
 -- fixArgsKeys (h : t) acc = fixArgsKeys t (acc ++ [h])
 
+{-
 fixArgTypes :: Bool -> ([ImportRecord], [Entry]) -> Entry -> ([ImportRecord], [Entry])
 fixArgTypes pr (imp, acc) i@(Item cl c _ arg) =
   let (imports, newarg) = foldl fix ([], []) arg
@@ -475,16 +513,29 @@ fixArgTypes pr (imp, acc) i@(Item cl c _ arg) =
         else
           let m = toTitle p
            in if (pr && cl == m) || (not pr && c == m) then ([], m) else ([m], printf "%s.%s" m m)
-    replace :: String -> (Bool, String)
-    replace "Bool" = (False, "Bool")
-    replace "int32" = (False, "Int")
-    replace "int53" = (False, "Int")
-    replace "int64" = (False, "Int")
-    replace "string" = (False, "String")
-    replace "bytes" = (False, "String")
-    replace "double" = (False, "Float")
-    replace x = (True, x)
 fixArgTypes _ (imp, acc) o = (imp, acc ++ [o])
+-}
+
+getImports :: Bool -> [Entry] -> [ImportRecord]
+getImports _ [] = []
+getImports bool (x@Item {} : xs) = res ++ getImports bool xs
+  where
+    modname :: String
+    modname
+      | bool = class_ x
+      | otherwise = constructor x
+
+    list :: [Maybe String]
+    list = filter M.isJust . map (getArgTypeModule . value) $ args x
+
+    res :: [ImportRecord]
+    res = filter (\(x1, x2) -> x1 /= x2) . map (\(Just s) -> (modname, s)) $ list
+getImports b (_ : xs) = getImports b xs
+
+getArgTypeModule :: ArgType -> Maybe String
+getArgTypeModule (Vector x) = getArgTypeModule x
+getArgTypeModule (Module x) = Just x
+getArgTypeModule _ = Nothing
 
 insertComments :: (Maybe Entry, Maybe Arg, [Entry]) -> Entry -> (Maybe Entry, Maybe Arg, [Entry])
 insertComments (Nothing, Nothing, acc) q@(ClassComment _ _) =
@@ -494,11 +545,11 @@ insertComments (Nothing, Nothing, acc) (CommentStart t) =
 insertComments (Just item, Nothing, acc) (Comment t) =
   (Just Item {comments = comments item ++ [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
 insertComments (q@(Just _), Just arg, acc) (Comment t) =
-  (q, Just Arg {comments_ = comments_ arg ++ [t], key = key arg, value = ""}, acc)
+  (q, Just Arg {comments_ = comments_ arg ++ [t], key = key arg, value = Bool}, acc)
 insertComments (q@(Just _), Nothing, acc) (ArgComment n c) =
-  (q, Just Arg {comments_ = [c], key = n, value = ""}, acc)
+  (q, Just Arg {comments_ = [c], key = n, value = Bool}, acc)
 insertComments (Just i, Just arg, acc) (ArgComment n c) =
-  (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = ""}, acc)
+  (Just (i {args = args i ++ [arg]}), Just Arg {comments_ = [c], key = n, value = Bool}, acc)
 insertComments (it, a, acc) q@(Item cl con _ arg) = do
   let i = M.fromMaybe q it
   let i1 = case a of
@@ -583,7 +634,7 @@ parse acc h
                    ( \(x, y) ->
                        Arg
                          { key = x,
-                           value = myStrip y,
+                           value = parseArgType . myStrip $ y,
                            comments_ = []
                          }
                    )
@@ -591,6 +642,18 @@ parse acc h
              }
          ]
   | otherwise = acc
+
+parseArgType :: String -> ArgType
+parseArgType "Bool" = Bool
+parseArgType "int32" = Int32
+parseArgType "int53" = Int53
+parseArgType "int64" = Int64
+parseArgType "string" = String
+parseArgType "bytes" = Bytes
+parseArgType "double" = Double
+parseArgType x
+  | LE.isPrefixOf "vector<" x = Vector . parseArgType . dropAround (== '>') . myStripPrefix "vector<" $ x
+  | otherwise = Module $ toTitle x
 
 uniq :: (Eq a) => [a] -> [a]
 uniq = foldl (\acc i -> if i `elem` acc then acc else acc ++ [i]) []

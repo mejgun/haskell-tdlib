@@ -56,7 +56,7 @@ instance T.FromJSON InlineQueryResults where
         switch_pm_text_ <- o A..:? "switch_pm_text"
         results_ <- o A..:? "results"
         next_offset_ <- o A..:? "next_offset"
-        inline_query_id_ <- mconcat [o A..:? "inline_query_id", U.rm <$> (o A..: "inline_query_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        inline_query_id_ <- U.rm <$> (o A..: "inline_query_id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ InlineQueryResults {switch_pm_parameter = switch_pm_parameter_, switch_pm_text = switch_pm_text_, results = results_, next_offset = next_offset_, inline_query_id = inline_query_id_}
   parseJSON _ = mempty
 

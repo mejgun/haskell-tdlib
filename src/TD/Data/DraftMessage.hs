@@ -45,8 +45,8 @@ instance T.FromJSON DraftMessage where
       parseDraftMessage :: A.Value -> T.Parser DraftMessage
       parseDraftMessage = A.withObject "DraftMessage" $ \o -> do
         input_message_text_ <- o A..:? "input_message_text"
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        reply_to_message_id_ <- mconcat [o A..:? "reply_to_message_id", U.rm <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
+        reply_to_message_id_ <- o A..:? "reply_to_message_id"
         return $ DraftMessage {input_message_text = input_message_text_, date = date_, reply_to_message_id = reply_to_message_id_}
   parseJSON _ = mempty
 

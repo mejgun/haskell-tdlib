@@ -74,7 +74,7 @@ instance T.FromJSON UserFullInfo where
       parseUserFullInfo :: A.Value -> T.Parser UserFullInfo
       parseUserFullInfo = A.withObject "UserFullInfo" $ \o -> do
         bot_info_ <- o A..:? "bot_info"
-        group_in_common_count_ <- mconcat [o A..:? "group_in_common_count", U.rm <$> (o A..: "group_in_common_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        group_in_common_count_ <- o A..:? "group_in_common_count"
         bio_ <- o A..:? "bio"
         need_phone_number_privacy_exception_ <- o A..:? "need_phone_number_privacy_exception"
         has_private_forwards_ <- o A..:? "has_private_forwards"

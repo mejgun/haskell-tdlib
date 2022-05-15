@@ -69,7 +69,7 @@ instance T.FromJSON InputChatPhoto where
     where
       parseInputChatPhotoPrevious :: A.Value -> T.Parser InputChatPhoto
       parseInputChatPhotoPrevious = A.withObject "InputChatPhotoPrevious" $ \o -> do
-        chat_photo_id_ <- mconcat [o A..:? "chat_photo_id", U.rm <$> (o A..: "chat_photo_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        chat_photo_id_ <- U.rm <$> (o A..: "chat_photo_id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ InputChatPhotoPrevious {chat_photo_id = chat_photo_id_}
 
       parseInputChatPhotoStatic :: A.Value -> T.Parser InputChatPhoto

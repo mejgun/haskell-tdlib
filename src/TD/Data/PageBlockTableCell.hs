@@ -60,8 +60,8 @@ instance T.FromJSON PageBlockTableCell where
       parsePageBlockTableCell = A.withObject "PageBlockTableCell" $ \o -> do
         valign_ <- o A..:? "valign"
         align_ <- o A..:? "align"
-        rowspan_ <- mconcat [o A..:? "rowspan", U.rm <$> (o A..: "rowspan" :: T.Parser String)] :: T.Parser (Maybe Int)
-        colspan_ <- mconcat [o A..:? "colspan", U.rm <$> (o A..: "colspan" :: T.Parser String)] :: T.Parser (Maybe Int)
+        rowspan_ <- o A..:? "rowspan"
+        colspan_ <- o A..:? "colspan"
         is_header_ <- o A..:? "is_header"
         text_ <- o A..:? "text"
         return $ PageBlockTableCell {valign = valign_, align = align_, rowspan = rowspan_, colspan = colspan_, is_header = is_header_, text = text_}

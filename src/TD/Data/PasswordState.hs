@@ -56,7 +56,7 @@ instance T.FromJSON PasswordState where
     where
       parsePasswordState :: A.Value -> T.Parser PasswordState
       parsePasswordState = A.withObject "PasswordState" $ \o -> do
-        pending_reset_date_ <- mconcat [o A..:? "pending_reset_date", U.rm <$> (o A..: "pending_reset_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        pending_reset_date_ <- o A..:? "pending_reset_date"
         recovery_email_address_code_info_ <- o A..:? "recovery_email_address_code_info"
         has_passport_data_ <- o A..:? "has_passport_data"
         has_recovery_email_address_ <- o A..:? "has_recovery_email_address"

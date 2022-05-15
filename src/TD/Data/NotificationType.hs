@@ -98,7 +98,7 @@ instance T.FromJSON NotificationType where
 
       parseNotificationTypeNewCall :: A.Value -> T.Parser NotificationType
       parseNotificationTypeNewCall = A.withObject "NotificationTypeNewCall" $ \o -> do
-        call_id_ <- mconcat [o A..:? "call_id", U.rm <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        call_id_ <- o A..:? "call_id"
         return $ NotificationTypeNewCall {call_id = call_id_}
 
       parseNotificationTypeNewPushMessage :: A.Value -> T.Parser NotificationType
@@ -107,7 +107,7 @@ instance T.FromJSON NotificationType where
         is_outgoing_ <- o A..:? "is_outgoing"
         sender_name_ <- o A..:? "sender_name"
         sender_id_ <- o A..:? "sender_id"
-        message_id_ <- mconcat [o A..:? "message_id", U.rm <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        message_id_ <- o A..:? "message_id"
         return $ NotificationTypeNewPushMessage {content = content_, is_outgoing = is_outgoing_, sender_name = sender_name_, sender_id = sender_id_, message_id = message_id_}
   parseJSON _ = mempty
 

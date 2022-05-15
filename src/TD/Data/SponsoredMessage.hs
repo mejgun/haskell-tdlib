@@ -57,8 +57,8 @@ instance T.FromJSON SponsoredMessage where
         content_ <- o A..:? "content"
         link_ <- o A..:? "link"
         sponsor_chat_info_ <- o A..:? "sponsor_chat_info"
-        sponsor_chat_id_ <- mconcat [o A..:? "sponsor_chat_id", U.rm <$> (o A..: "sponsor_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        message_id_ <- mconcat [o A..:? "message_id", U.rm <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sponsor_chat_id_ <- o A..:? "sponsor_chat_id"
+        message_id_ <- o A..:? "message_id"
         return $ SponsoredMessage {content = content_, link = link_, sponsor_chat_info = sponsor_chat_info_, sponsor_chat_id = sponsor_chat_id_, message_id = message_id_}
   parseJSON _ = mempty
 

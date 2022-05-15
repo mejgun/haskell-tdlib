@@ -599,7 +599,7 @@ instance T.FromJSON PageBlock where
 
       parsePageBlockAuthorDate :: A.Value -> T.Parser PageBlock
       parsePageBlockAuthorDate = A.withObject "PageBlockAuthorDate" $ \o -> do
-        publish_date_ <- mconcat [o A..:? "publish_date", U.rm <$> (o A..: "publish_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        publish_date_ <- o A..:? "publish_date"
         author_ <- o A..:? "author"
         return $ PageBlockAuthorDate {publish_date = publish_date_, author = author_}
 
@@ -703,8 +703,8 @@ instance T.FromJSON PageBlock where
         allow_scrolling_ <- o A..:? "allow_scrolling"
         is_full_width_ <- o A..:? "is_full_width"
         caption_ <- o A..:? "caption"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
         poster_photo_ <- o A..:? "poster_photo"
         html_ <- o A..:? "html"
         url_ <- o A..:? "url"
@@ -714,7 +714,7 @@ instance T.FromJSON PageBlock where
       parsePageBlockEmbeddedPost = A.withObject "PageBlockEmbeddedPost" $ \o -> do
         caption_ <- o A..:? "caption"
         page_blocks_ <- o A..:? "page_blocks"
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
         author_photo_ <- o A..:? "author_photo"
         _author_ <- o A..:? "author"
         url_ <- o A..:? "url"
@@ -763,9 +763,9 @@ instance T.FromJSON PageBlock where
       parsePageBlockMap :: A.Value -> T.Parser PageBlock
       parsePageBlockMap = A.withObject "PageBlockMap" $ \o -> do
         caption_ <- o A..:? "caption"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
-        zoom_ <- mconcat [o A..:? "zoom", U.rm <$> (o A..: "zoom" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
+        zoom_ <- o A..:? "zoom"
         location_ <- o A..:? "location"
         return $ PageBlockMap {caption = caption_, height = height_, width = width_, zoom = zoom_, location = location_}
   parseJSON _ = mempty

@@ -43,7 +43,7 @@ instance T.FromJSON TextParseMode where
     where
       parseTextParseModeMarkdown :: A.Value -> T.Parser TextParseMode
       parseTextParseModeMarkdown = A.withObject "TextParseModeMarkdown" $ \o -> do
-        version_ <- mconcat [o A..:? "version", U.rm <$> (o A..: "version" :: T.Parser String)] :: T.Parser (Maybe Int)
+        version_ <- o A..:? "version"
         return $ TextParseModeMarkdown {version = version_}
 
       parseTextParseModeHTML :: A.Value -> T.Parser TextParseMode

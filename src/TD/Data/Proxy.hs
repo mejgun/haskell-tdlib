@@ -58,10 +58,10 @@ instance T.FromJSON Proxy where
       parseProxy = A.withObject "Proxy" $ \o -> do
         _type_ <- o A..:? "type"
         is_enabled_ <- o A..:? "is_enabled"
-        last_used_date_ <- mconcat [o A..:? "last_used_date", U.rm <$> (o A..: "last_used_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        port_ <- mconcat [o A..:? "port", U.rm <$> (o A..: "port" :: T.Parser String)] :: T.Parser (Maybe Int)
+        last_used_date_ <- o A..:? "last_used_date"
+        port_ <- o A..:? "port"
         server_ <- o A..:? "server"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ Proxy {_type = _type_, is_enabled = is_enabled_, last_used_date = last_used_date_, port = port_, server = server_, _id = _id_}
   parseJSON _ = mempty
 

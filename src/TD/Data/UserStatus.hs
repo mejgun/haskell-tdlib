@@ -81,12 +81,12 @@ instance T.FromJSON UserStatus where
 
       parseUserStatusOnline :: A.Value -> T.Parser UserStatus
       parseUserStatusOnline = A.withObject "UserStatusOnline" $ \o -> do
-        expires_ <- mconcat [o A..:? "expires", U.rm <$> (o A..: "expires" :: T.Parser String)] :: T.Parser (Maybe Int)
+        expires_ <- o A..:? "expires"
         return $ UserStatusOnline {expires = expires_}
 
       parseUserStatusOffline :: A.Value -> T.Parser UserStatus
       parseUserStatusOffline = A.withObject "UserStatusOffline" $ \o -> do
-        was_online_ <- mconcat [o A..:? "was_online", U.rm <$> (o A..: "was_online" :: T.Parser String)] :: T.Parser (Maybe Int)
+        was_online_ <- o A..:? "was_online"
         return $ UserStatusOffline {was_online = was_online_}
 
       parseUserStatusRecently :: A.Value -> T.Parser UserStatus

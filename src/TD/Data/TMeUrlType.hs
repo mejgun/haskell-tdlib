@@ -79,12 +79,12 @@ instance T.FromJSON TMeUrlType where
     where
       parseTMeUrlTypeUser :: A.Value -> T.Parser TMeUrlType
       parseTMeUrlTypeUser = A.withObject "TMeUrlTypeUser" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ TMeUrlTypeUser {user_id = user_id_}
 
       parseTMeUrlTypeSupergroup :: A.Value -> T.Parser TMeUrlType
       parseTMeUrlTypeSupergroup = A.withObject "TMeUrlTypeSupergroup" $ \o -> do
-        supergroup_id_ <- mconcat [o A..:? "supergroup_id", U.rm <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        supergroup_id_ <- o A..:? "supergroup_id"
         return $ TMeUrlTypeSupergroup {supergroup_id = supergroup_id_}
 
       parseTMeUrlTypeChatInvite :: A.Value -> T.Parser TMeUrlType
@@ -94,7 +94,7 @@ instance T.FromJSON TMeUrlType where
 
       parseTMeUrlTypeStickerSet :: A.Value -> T.Parser TMeUrlType
       parseTMeUrlTypeStickerSet = A.withObject "TMeUrlTypeStickerSet" $ \o -> do
-        sticker_set_id_ <- mconcat [o A..:? "sticker_set_id", U.rm <$> (o A..: "sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        sticker_set_id_ <- U.rm <$> (o A..: "sticker_set_id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ TMeUrlTypeStickerSet {sticker_set_id = sticker_set_id_}
   parseJSON _ = mempty
 

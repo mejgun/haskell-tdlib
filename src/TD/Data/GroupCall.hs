@@ -116,9 +116,9 @@ instance T.FromJSON GroupCall where
     where
       parseGroupCall :: A.Value -> T.Parser GroupCall
       parseGroupCall = A.withObject "GroupCall" $ \o -> do
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
         is_video_recorded_ <- o A..:? "is_video_recorded"
-        record_duration_ <- mconcat [o A..:? "record_duration", U.rm <$> (o A..: "record_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        record_duration_ <- o A..:? "record_duration"
         can_toggle_mute_new_participants_ <- o A..:? "can_toggle_mute_new_participants"
         mute_new_participants_ <- o A..:? "mute_new_participants"
         can_enable_video_ <- o A..:? "can_enable_video"
@@ -127,16 +127,16 @@ instance T.FromJSON GroupCall where
         recent_speakers_ <- o A..:? "recent_speakers"
         loaded_all_participants_ <- o A..:? "loaded_all_participants"
         has_hidden_listeners_ <- o A..:? "has_hidden_listeners"
-        participant_count_ <- mconcat [o A..:? "participant_count", U.rm <$> (o A..: "participant_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        participant_count_ <- o A..:? "participant_count"
         can_be_managed_ <- o A..:? "can_be_managed"
         need_rejoin_ <- o A..:? "need_rejoin"
         is_joined_ <- o A..:? "is_joined"
         is_rtmp_stream_ <- o A..:? "is_rtmp_stream"
         is_active_ <- o A..:? "is_active"
         enabled_start_notification_ <- o A..:? "enabled_start_notification"
-        scheduled_start_date_ <- mconcat [o A..:? "scheduled_start_date", U.rm <$> (o A..: "scheduled_start_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        scheduled_start_date_ <- o A..:? "scheduled_start_date"
         title_ <- o A..:? "title"
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ GroupCall {duration = duration_, is_video_recorded = is_video_recorded_, record_duration = record_duration_, can_toggle_mute_new_participants = can_toggle_mute_new_participants_, mute_new_participants = mute_new_participants_, can_enable_video = can_enable_video_, is_my_video_paused = is_my_video_paused_, is_my_video_enabled = is_my_video_enabled_, recent_speakers = recent_speakers_, loaded_all_participants = loaded_all_participants_, has_hidden_listeners = has_hidden_listeners_, participant_count = participant_count_, can_be_managed = can_be_managed_, need_rejoin = need_rejoin_, is_joined = is_joined_, is_rtmp_stream = is_rtmp_stream_, is_active = is_active_, enabled_start_notification = enabled_start_notification_, scheduled_start_date = scheduled_start_date_, title = title_, _id = _id_}
   parseJSON _ = mempty
 

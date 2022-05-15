@@ -238,12 +238,12 @@ instance T.FromJSON TextEntityType where
 
       parseTextEntityTypeMentionName :: A.Value -> T.Parser TextEntityType
       parseTextEntityTypeMentionName = A.withObject "TextEntityTypeMentionName" $ \o -> do
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
         return $ TextEntityTypeMentionName {user_id = user_id_}
 
       parseTextEntityTypeMediaTimestamp :: A.Value -> T.Parser TextEntityType
       parseTextEntityTypeMediaTimestamp = A.withObject "TextEntityTypeMediaTimestamp" $ \o -> do
-        media_timestamp_ <- mconcat [o A..:? "media_timestamp", U.rm <$> (o A..: "media_timestamp" :: T.Parser String)] :: T.Parser (Maybe Int)
+        media_timestamp_ <- o A..:? "media_timestamp"
         return $ TextEntityTypeMediaTimestamp {media_timestamp = media_timestamp_}
   parseJSON _ = mempty
 

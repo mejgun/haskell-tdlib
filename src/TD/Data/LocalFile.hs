@@ -63,9 +63,9 @@ instance T.FromJSON LocalFile where
     where
       parseLocalFile :: A.Value -> T.Parser LocalFile
       parseLocalFile = A.withObject "LocalFile" $ \o -> do
-        downloaded_size_ <- mconcat [o A..:? "downloaded_size", U.rm <$> (o A..: "downloaded_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        downloaded_prefix_size_ <- mconcat [o A..:? "downloaded_prefix_size", U.rm <$> (o A..: "downloaded_prefix_size" :: T.Parser String)] :: T.Parser (Maybe Int)
-        download_offset_ <- mconcat [o A..:? "download_offset", U.rm <$> (o A..: "download_offset" :: T.Parser String)] :: T.Parser (Maybe Int)
+        downloaded_size_ <- o A..:? "downloaded_size"
+        downloaded_prefix_size_ <- o A..:? "downloaded_prefix_size"
+        download_offset_ <- o A..:? "download_offset"
         is_downloading_completed_ <- o A..:? "is_downloading_completed"
         is_downloading_active_ <- o A..:? "is_downloading_active"
         can_be_deleted_ <- o A..:? "can_be_deleted"

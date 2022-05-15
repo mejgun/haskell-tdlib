@@ -87,7 +87,7 @@ instance T.FromJSON InputFile where
     where
       parseInputFileId :: A.Value -> T.Parser InputFile
       parseInputFileId = A.withObject "InputFileId" $ \o -> do
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        _id_ <- o A..:? "id"
         return $ InputFileId {_id = _id_}
 
       parseInputFileRemote :: A.Value -> T.Parser InputFile
@@ -102,7 +102,7 @@ instance T.FromJSON InputFile where
 
       parseInputFileGenerated :: A.Value -> T.Parser InputFile
       parseInputFileGenerated = A.withObject "InputFileGenerated" $ \o -> do
-        expected_size_ <- mconcat [o A..:? "expected_size", U.rm <$> (o A..: "expected_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+        expected_size_ <- o A..:? "expected_size"
         conversion_ <- o A..:? "conversion"
         original_path_ <- o A..:? "original_path"
         return $ InputFileGenerated {expected_size = expected_size_, conversion = conversion_, original_path = original_path_}

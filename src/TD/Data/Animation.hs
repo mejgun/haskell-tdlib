@@ -76,9 +76,9 @@ instance T.FromJSON Animation where
         has_stickers_ <- o A..:? "has_stickers"
         mime_type_ <- o A..:? "mime_type"
         file_name_ <- o A..:? "file_name"
-        height_ <- mconcat [o A..:? "height", U.rm <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
-        width_ <- mconcat [o A..:? "width", U.rm <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        height_ <- o A..:? "height"
+        width_ <- o A..:? "width"
+        duration_ <- o A..:? "duration"
         return $ Animation {animation = animation_, thumbnail = thumbnail_, minithumbnail = minithumbnail_, has_stickers = has_stickers_, mime_type = mime_type_, file_name = file_name_, height = height_, width = width_, duration = duration_}
   parseJSON _ = mempty
 

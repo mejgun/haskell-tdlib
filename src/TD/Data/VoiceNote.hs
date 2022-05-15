@@ -51,7 +51,7 @@ instance T.FromJSON VoiceNote where
         voice_ <- o A..:? "voice"
         mime_type_ <- o A..:? "mime_type"
         waveform_ <- o A..:? "waveform"
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
         return $ VoiceNote {voice = voice_, mime_type = mime_type_, waveform = waveform_, duration = duration_}
   parseJSON _ = mempty
 

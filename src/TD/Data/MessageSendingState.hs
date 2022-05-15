@@ -66,7 +66,7 @@ instance T.FromJSON MessageSendingState where
         need_another_sender_ <- o A..:? "need_another_sender"
         can_retry_ <- o A..:? "can_retry"
         error_message_ <- o A..:? "error_message"
-        error_code_ <- mconcat [o A..:? "error_code", U.rm <$> (o A..: "error_code" :: T.Parser String)] :: T.Parser (Maybe Int)
+        error_code_ <- o A..:? "error_code"
         return $ MessageSendingStateFailed {retry_after = retry_after_, need_another_sender = need_another_sender_, can_retry = can_retry_, error_message = error_message_, error_code = error_code_}
   parseJSON _ = mempty
 

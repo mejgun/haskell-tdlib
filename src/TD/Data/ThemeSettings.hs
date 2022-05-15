@@ -53,11 +53,11 @@ instance T.FromJSON ThemeSettings where
     where
       parseThemeSettings :: A.Value -> T.Parser ThemeSettings
       parseThemeSettings = A.withObject "ThemeSettings" $ \o -> do
-        outgoing_message_accent_color_ <- mconcat [o A..:? "outgoing_message_accent_color", U.rm <$> (o A..: "outgoing_message_accent_color" :: T.Parser String)] :: T.Parser (Maybe Int)
+        outgoing_message_accent_color_ <- o A..:? "outgoing_message_accent_color"
         animate_outgoing_message_fill_ <- o A..:? "animate_outgoing_message_fill"
         outgoing_message_fill_ <- o A..:? "outgoing_message_fill"
         background_ <- o A..:? "background"
-        accent_color_ <- mconcat [o A..:? "accent_color", U.rm <$> (o A..: "accent_color" :: T.Parser String)] :: T.Parser (Maybe Int)
+        accent_color_ <- o A..:? "accent_color"
         return $ ThemeSettings {outgoing_message_accent_color = outgoing_message_accent_color_, animate_outgoing_message_fill = animate_outgoing_message_fill_, outgoing_message_fill = outgoing_message_fill_, background = background_, accent_color = accent_color_}
   parseJSON _ = mempty
 

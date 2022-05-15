@@ -40,7 +40,7 @@ instance T.FromJSON WebAppInfo where
       parseWebAppInfo :: A.Value -> T.Parser WebAppInfo
       parseWebAppInfo = A.withObject "WebAppInfo" $ \o -> do
         url_ <- o A..:? "url"
-        launch_id_ <- mconcat [o A..:? "launch_id", U.rm <$> (o A..: "launch_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        launch_id_ <- U.rm <$> (o A..: "launch_id" :: T.Parser String) :: T.Parser (Maybe Int)
         return $ WebAppInfo {url = url_, launch_id = launch_id_}
   parseJSON _ = mempty
 

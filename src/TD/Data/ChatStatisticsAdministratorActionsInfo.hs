@@ -47,10 +47,10 @@ instance T.FromJSON ChatStatisticsAdministratorActionsInfo where
     where
       parseChatStatisticsAdministratorActionsInfo :: A.Value -> T.Parser ChatStatisticsAdministratorActionsInfo
       parseChatStatisticsAdministratorActionsInfo = A.withObject "ChatStatisticsAdministratorActionsInfo" $ \o -> do
-        restricted_user_count_ <- mconcat [o A..:? "restricted_user_count", U.rm <$> (o A..: "restricted_user_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        banned_user_count_ <- mconcat [o A..:? "banned_user_count", U.rm <$> (o A..: "banned_user_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        deleted_message_count_ <- mconcat [o A..:? "deleted_message_count", U.rm <$> (o A..: "deleted_message_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        restricted_user_count_ <- o A..:? "restricted_user_count"
+        banned_user_count_ <- o A..:? "banned_user_count"
+        deleted_message_count_ <- o A..:? "deleted_message_count"
+        user_id_ <- o A..:? "user_id"
         return $ ChatStatisticsAdministratorActionsInfo {restricted_user_count = restricted_user_count_, banned_user_count = banned_user_count_, deleted_message_count = deleted_message_count_, user_id = user_id_}
   parseJSON _ = mempty
 

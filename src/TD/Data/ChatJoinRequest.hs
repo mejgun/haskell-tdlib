@@ -44,8 +44,8 @@ instance T.FromJSON ChatJoinRequest where
       parseChatJoinRequest :: A.Value -> T.Parser ChatJoinRequest
       parseChatJoinRequest = A.withObject "ChatJoinRequest" $ \o -> do
         bio_ <- o A..:? "bio"
-        date_ <- mconcat [o A..:? "date", U.rm <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        date_ <- o A..:? "date"
+        user_id_ <- o A..:? "user_id"
         return $ ChatJoinRequest {bio = bio_, date = date_, user_id = user_id_}
   parseJSON _ = mempty
 

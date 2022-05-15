@@ -115,7 +115,7 @@ instance T.FromJSON ChatActionBar where
 
       parseChatActionBarReportAddBlock :: A.Value -> T.Parser ChatActionBar
       parseChatActionBarReportAddBlock = A.withObject "ChatActionBarReportAddBlock" $ \o -> do
-        distance_ <- mconcat [o A..:? "distance", U.rm <$> (o A..: "distance" :: T.Parser String)] :: T.Parser (Maybe Int)
+        distance_ <- o A..:? "distance"
         can_unarchive_ <- o A..:? "can_unarchive"
         return $ ChatActionBarReportAddBlock {distance = distance_, can_unarchive = can_unarchive_}
 
@@ -127,7 +127,7 @@ instance T.FromJSON ChatActionBar where
 
       parseChatActionBarJoinRequest :: A.Value -> T.Parser ChatActionBar
       parseChatActionBarJoinRequest = A.withObject "ChatActionBarJoinRequest" $ \o -> do
-        request_date_ <- mconcat [o A..:? "request_date", U.rm <$> (o A..: "request_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+        request_date_ <- o A..:? "request_date"
         is_channel_ <- o A..:? "is_channel"
         title_ <- o A..:? "title"
         return $ ChatActionBarJoinRequest {request_date = request_date_, is_channel = is_channel_, title = title_}

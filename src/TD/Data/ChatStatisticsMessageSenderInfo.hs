@@ -43,9 +43,9 @@ instance T.FromJSON ChatStatisticsMessageSenderInfo where
     where
       parseChatStatisticsMessageSenderInfo :: A.Value -> T.Parser ChatStatisticsMessageSenderInfo
       parseChatStatisticsMessageSenderInfo = A.withObject "ChatStatisticsMessageSenderInfo" $ \o -> do
-        average_character_count_ <- mconcat [o A..:? "average_character_count", U.rm <$> (o A..: "average_character_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        sent_message_count_ <- mconcat [o A..:? "sent_message_count", U.rm <$> (o A..: "sent_message_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        average_character_count_ <- o A..:? "average_character_count"
+        sent_message_count_ <- o A..:? "sent_message_count"
+        user_id_ <- o A..:? "user_id"
         return $ ChatStatisticsMessageSenderInfo {average_character_count = average_character_count_, sent_message_count = sent_message_count_, user_id = user_id_}
   parseJSON _ = mempty
 

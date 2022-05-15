@@ -46,7 +46,7 @@ instance T.FromJSON VideoChat where
       parseVideoChat = A.withObject "VideoChat" $ \o -> do
         default_participant_id_ <- o A..:? "default_participant_id"
         has_participants_ <- o A..:? "has_participants"
-        group_call_id_ <- mconcat [o A..:? "group_call_id", U.rm <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        group_call_id_ <- o A..:? "group_call_id"
         return $ VideoChat {default_participant_id = default_participant_id_, has_participants = has_participants_, group_call_id = group_call_id_}
   parseJSON _ = mempty
 

@@ -70,12 +70,12 @@ instance T.FromJSON CanTransferOwnershipResult where
 
       parseCanTransferOwnershipResultPasswordTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
       parseCanTransferOwnershipResultPasswordTooFresh = A.withObject "CanTransferOwnershipResultPasswordTooFresh" $ \o -> do
-        retry_after_ <- mconcat [o A..:? "retry_after", U.rm <$> (o A..: "retry_after" :: T.Parser String)] :: T.Parser (Maybe Int)
+        retry_after_ <- o A..:? "retry_after"
         return $ CanTransferOwnershipResultPasswordTooFresh {retry_after = retry_after_}
 
       parseCanTransferOwnershipResultSessionTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
       parseCanTransferOwnershipResultSessionTooFresh = A.withObject "CanTransferOwnershipResultSessionTooFresh" $ \o -> do
-        retry_after_ <- mconcat [o A..:? "retry_after", U.rm <$> (o A..: "retry_after" :: T.Parser String)] :: T.Parser (Maybe Int)
+        retry_after_ <- o A..:? "retry_after"
         return $ CanTransferOwnershipResultSessionTooFresh {retry_after = retry_after_}
   parseJSON _ = mempty
 

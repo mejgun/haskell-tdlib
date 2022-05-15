@@ -55,8 +55,8 @@ instance T.FromJSON Call where
         state_ <- o A..:? "state"
         is_video_ <- o A..:? "is_video"
         is_outgoing_ <- o A..:? "is_outgoing"
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        _id_ <- mconcat [o A..:? "id", U.rm <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        user_id_ <- o A..:? "user_id"
+        _id_ <- o A..:? "id"
         return $ Call {state = state_, is_video = is_video_, is_outgoing = is_outgoing_, user_id = user_id_, _id = _id_}
   parseJSON _ = mempty
 

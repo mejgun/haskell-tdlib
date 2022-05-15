@@ -43,9 +43,9 @@ instance T.FromJSON ChatInviteLinkMember where
     where
       parseChatInviteLinkMember :: A.Value -> T.Parser ChatInviteLinkMember
       parseChatInviteLinkMember = A.withObject "ChatInviteLinkMember" $ \o -> do
-        approver_user_id_ <- mconcat [o A..:? "approver_user_id", U.rm <$> (o A..: "approver_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-        joined_chat_date_ <- mconcat [o A..:? "joined_chat_date", U.rm <$> (o A..: "joined_chat_date" :: T.Parser String)] :: T.Parser (Maybe Int)
-        user_id_ <- mconcat [o A..:? "user_id", U.rm <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+        approver_user_id_ <- o A..:? "approver_user_id"
+        joined_chat_date_ <- o A..:? "joined_chat_date"
+        user_id_ <- o A..:? "user_id"
         return $ ChatInviteLinkMember {approver_user_id = approver_user_id_, joined_chat_date = joined_chat_date_, user_id = user_id_}
   parseJSON _ = mempty
 

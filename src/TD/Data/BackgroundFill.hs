@@ -72,14 +72,14 @@ instance T.FromJSON BackgroundFill where
     where
       parseBackgroundFillSolid :: A.Value -> T.Parser BackgroundFill
       parseBackgroundFillSolid = A.withObject "BackgroundFillSolid" $ \o -> do
-        color_ <- mconcat [o A..:? "color", U.rm <$> (o A..: "color" :: T.Parser String)] :: T.Parser (Maybe Int)
+        color_ <- o A..:? "color"
         return $ BackgroundFillSolid {color = color_}
 
       parseBackgroundFillGradient :: A.Value -> T.Parser BackgroundFill
       parseBackgroundFillGradient = A.withObject "BackgroundFillGradient" $ \o -> do
-        rotation_angle_ <- mconcat [o A..:? "rotation_angle", U.rm <$> (o A..: "rotation_angle" :: T.Parser String)] :: T.Parser (Maybe Int)
-        bottom_color_ <- mconcat [o A..:? "bottom_color", U.rm <$> (o A..: "bottom_color" :: T.Parser String)] :: T.Parser (Maybe Int)
-        top_color_ <- mconcat [o A..:? "top_color", U.rm <$> (o A..: "top_color" :: T.Parser String)] :: T.Parser (Maybe Int)
+        rotation_angle_ <- o A..:? "rotation_angle"
+        bottom_color_ <- o A..:? "bottom_color"
+        top_color_ <- o A..:? "top_color"
         return $ BackgroundFillGradient {rotation_angle = rotation_angle_, bottom_color = bottom_color_, top_color = top_color_}
 
       parseBackgroundFillFreeformGradient :: A.Value -> T.Parser BackgroundFill

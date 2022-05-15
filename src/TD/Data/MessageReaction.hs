@@ -50,7 +50,7 @@ instance T.FromJSON MessageReaction where
       parseMessageReaction = A.withObject "MessageReaction" $ \o -> do
         recent_sender_ids_ <- o A..:? "recent_sender_ids"
         is_chosen_ <- o A..:? "is_chosen"
-        total_count_ <- mconcat [o A..:? "total_count", U.rm <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+        total_count_ <- o A..:? "total_count"
         reaction_ <- o A..:? "reaction"
         return $ MessageReaction {recent_sender_ids = recent_sender_ids_, is_chosen = is_chosen_, total_count = total_count_, reaction = reaction_}
   parseJSON _ = mempty

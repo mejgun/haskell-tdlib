@@ -73,7 +73,7 @@ instance T.FromJSON Audio where
         file_name_ <- o A..:? "file_name"
         performer_ <- o A..:? "performer"
         title_ <- o A..:? "title"
-        duration_ <- mconcat [o A..:? "duration", U.rm <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+        duration_ <- o A..:? "duration"
         return $ Audio {audio = audio_, album_cover_thumbnail = album_cover_thumbnail_, album_cover_minithumbnail = album_cover_minithumbnail_, mime_type = mime_type_, file_name = file_name_, performer = performer_, title = title_, duration = duration_}
   parseJSON _ = mempty
 

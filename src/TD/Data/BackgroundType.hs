@@ -89,7 +89,7 @@ instance T.FromJSON BackgroundType where
       parseBackgroundTypePattern = A.withObject "BackgroundTypePattern" $ \o -> do
         is_moving_ <- o A..:? "is_moving"
         is_inverted_ <- o A..:? "is_inverted"
-        intensity_ <- mconcat [o A..:? "intensity", U.rm <$> (o A..: "intensity" :: T.Parser String)] :: T.Parser (Maybe Int)
+        intensity_ <- o A..:? "intensity"
         fill_ <- o A..:? "fill"
         return $ BackgroundTypePattern {is_moving = is_moving_, is_inverted = is_inverted_, intensity = intensity_, fill = fill_}
 

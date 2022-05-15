@@ -51,7 +51,7 @@ instance T.FromJSON ChatPosition where
       parseChatPosition = A.withObject "ChatPosition" $ \o -> do
         source_ <- o A..:? "source"
         is_pinned_ <- o A..:? "is_pinned"
-        order_ <- mconcat [o A..:? "order", U.rm <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
+        order_ <- U.rm <$> (o A..: "order" :: T.Parser String) :: T.Parser (Maybe Int)
         list_ <- o A..:? "list"
         return $ ChatPosition {source = source_, is_pinned = is_pinned_, order = order_, list = list_}
   parseJSON _ = mempty
