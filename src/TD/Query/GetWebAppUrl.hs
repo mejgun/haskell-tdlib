@@ -9,9 +9,9 @@ import qualified TD.Data.ThemeParameters as ThemeParameters
 import qualified Utils as U
 
 -- |
--- Returns an HTTPS URL of a web app to open after keyboardButtonTypeWebApp button is pressed
+-- Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
 data GetWebAppUrl = GetWebAppUrl
-  { -- | Preferred web app theme; pass null to use the default theme
+  { -- | Preferred Web App theme; pass null to use the default theme
     theme :: Maybe ThemeParameters.ThemeParameters,
     -- | The URL from the keyboardButtonTypeWebApp button
     url :: Maybe String,

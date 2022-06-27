@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns information about a file with messages exported from another app @message_file_head Beginning of the message file; up to 100 first lines
+-- Returns information about a file with messages exported from another application @message_file_head Beginning of the message file; up to 100 first lines
 data GetMessageFileType = GetMessageFileType
   { -- |
     message_file_head :: Maybe String

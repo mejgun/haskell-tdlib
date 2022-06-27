@@ -22,7 +22,7 @@ data KeyboardButtonType
         -- |
         force_regular :: Maybe Bool
       }
-  | -- | A button that opens a web app by calling getWebAppUrl @url An HTTP URL to pass to getWebAppUrl
+  | -- | A button that opens a Web App by calling getWebAppUrl @url An HTTP URL to pass to getWebAppUrl
     KeyboardButtonTypeWebApp
       { -- |
         url :: Maybe String

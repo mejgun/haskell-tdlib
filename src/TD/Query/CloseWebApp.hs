@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Informs TDLib that a previously opened web app was closed @web_app_launch_id Identifier of web app launch, received from openWebApp
+-- Informs TDLib that a previously opened Web App was closed @web_app_launch_id Identifier of Web App launch, received from openWebApp
 data CloseWebApp = CloseWebApp
   { -- |
     web_app_launch_id :: Maybe Int

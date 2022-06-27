@@ -70,7 +70,7 @@ data InputMessageContent
         -- |
         document :: Maybe InputFile.InputFile
       }
-  | -- | A photo message @photo Photo to send @thumbnail Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats @added_sticker_file_ids File identifiers of the stickers added to the photo, if applicable @width Photo width @height Photo height @caption Photo caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+  | -- | A photo message @photo Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20 @thumbnail Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats @added_sticker_file_ids File identifiers of the stickers added to the photo, if applicable @width Photo width @height Photo height @caption Photo caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     InputMessagePhoto
       { -- | Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
         ttl :: Maybe Int,

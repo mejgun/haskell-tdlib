@@ -9,11 +9,11 @@ import qualified TD.Data.InputInlineQueryResult as InputInlineQueryResult
 import qualified Utils as U
 
 -- |
--- Sets the result of interaction with a web app and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+-- Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
 data AnswerWebAppQuery = AnswerWebAppQuery
   { -- | The result of the query
     result :: Maybe InputInlineQueryResult.InputInlineQueryResult,
-    -- | Identifier of the web app query
+    -- | Identifier of the Web App query
     web_app_query_id :: Maybe String
   }
   deriving (Eq)

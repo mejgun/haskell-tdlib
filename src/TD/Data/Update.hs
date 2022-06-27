@@ -55,11 +55,11 @@ import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified TD.Data.SecretChat as SecretChat
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.StickerSet as StickerSet
-import qualified TD.Data.StickerSets as StickerSets
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
 import qualified TD.Data.TermsOfService as TermsOfService
+import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.User as User
 import qualified TD.Data.UserFullInfo as UserFullInfo
@@ -357,9 +357,11 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | The list of chat filters or a chat filter has changed @chat_filters The new list of chat filters
+  | -- | The list of chat filters or a chat filter has changed @chat_filters The new list of chat filters @main_chat_list_position Position of the main chat list among chat filters, 0-based
     UpdateChatFilters
       { -- |
+        main_chat_list_position :: Maybe Int,
+        -- |
         chat_filters :: Maybe [ChatFilterInfo.ChatFilterInfo]
       }
   | -- | The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed @chat_id Identifier of the chat @online_member_count New number of online members in the chat, or 0 if unknown
@@ -623,7 +625,7 @@ data Update
   | -- | The list of trending sticker sets was updated or some of them were viewed @sticker_sets The prefix of the list of trending sticker sets with the newest trending sticker sets
     UpdateTrendingStickerSets
       { -- |
-        sticker_sets :: Maybe StickerSets.StickerSets
+        sticker_sets :: Maybe TrendingStickerSets.TrendingStickerSets
       }
   | -- | The list of recently used stickers was updated @is_attached True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated @sticker_ids The new list of file identifiers of recently used stickers
     UpdateRecentStickers
@@ -685,12 +687,12 @@ data Update
       { -- |
         users_nearby :: Maybe [ChatNearby.ChatNearby]
       }
-  | -- | The list of bots added to attachment menu has changed @bots The new list of bots added to attachment menu. The bots must be shown in attachment menu only in private chats. The bots must not be shown on scheduled messages screen
+  | -- | The list of bots added to attachment menu has changed @bots The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
     UpdateAttachmentMenuBots
       { -- |
         bots :: Maybe [AttachmentMenuBot.AttachmentMenuBot]
       }
-  | -- | A message was sent by an opened web app, so the web app needs to be closed @web_app_launch_id Identifier of web app launch
+  | -- | A message was sent by an opened Web App, so the Web App needs to be closed @web_app_launch_id Identifier of Web App launch
     UpdateWebAppMessageSent
       { -- |
         web_app_launch_id :: Maybe Int
@@ -1269,11 +1271,13 @@ instance Show Update where
           ]
   show
     UpdateChatFilters
-      { chat_filters = chat_filters_
+      { main_chat_list_position = main_chat_list_position_,
+        chat_filters = chat_filters_
       } =
       "UpdateChatFilters"
         ++ U.cc
-          [ U.p "chat_filters" chat_filters_
+          [ U.p "main_chat_list_position" main_chat_list_position_,
+            U.p "chat_filters" chat_filters_
           ]
   show
     UpdateChatOnlineMemberCount
@@ -2320,8 +2324,9 @@ instance T.FromJSON Update where
 
       parseUpdateChatFilters :: A.Value -> T.Parser Update
       parseUpdateChatFilters = A.withObject "UpdateChatFilters" $ \o -> do
+        main_chat_list_position_ <- o A..:? "main_chat_list_position"
         chat_filters_ <- o A..:? "chat_filters"
-        return $ UpdateChatFilters {chat_filters = chat_filters_}
+        return $ UpdateChatFilters {main_chat_list_position = main_chat_list_position_, chat_filters = chat_filters_}
 
       parseUpdateChatOnlineMemberCount :: A.Value -> T.Parser Update
       parseUpdateChatOnlineMemberCount = A.withObject "UpdateChatOnlineMemberCount" $ \o -> do
@@ -3138,10 +3143,12 @@ instance T.ToJSON Update where
         ]
   toJSON
     UpdateChatFilters
-      { chat_filters = chat_filters_
+      { main_chat_list_position = main_chat_list_position_,
+        chat_filters = chat_filters_
       } =
       A.object
         [ "@type" A..= T.String "updateChatFilters",
+          "main_chat_list_position" A..= main_chat_list_position_,
           "chat_filters" A..= chat_filters_
         ]
   toJSON

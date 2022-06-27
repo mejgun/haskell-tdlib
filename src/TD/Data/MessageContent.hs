@@ -74,9 +74,11 @@ data MessageContent
       }
   | -- | An expired photo message (self-destructed after TTL has elapsed)
     MessageExpiredPhoto
-  | -- | A sticker message @sticker The sticker description
+  | -- | A sticker message @sticker The sticker description @is_premium True, if premium animation of the sticker must be played
     MessageSticker
       { -- |
+        is_premium :: Maybe Bool,
+        -- |
         sticker :: Maybe Sticker.Sticker
       }
   | -- | A video message @video The video description @caption Video caption @is_secret True, if the video thumbnail must be blurred and the video must be shown only while tapped
@@ -178,7 +180,7 @@ data MessageContent
         -- |
         photo :: Maybe Photo.Photo,
         -- |
-        description :: Maybe String,
+        description :: Maybe FormattedText.FormattedText,
         -- |
         title :: Maybe String
       }
@@ -296,18 +298,24 @@ data MessageContent
         -- |
         game_message_id :: Maybe Int
       }
-  | -- | A payment has been completed @invoice_chat_id Identifier of the chat, containing the corresponding invoice message; 0 if unknown @invoice_message_id Identifier of the message with the corresponding invoice; can be an identifier of a deleted message @currency Currency for the price of the product @total_amount Total price for the product, in the smallest units of the currency
+  | -- | A payment has been completed @invoice_chat_id Identifier of the chat, containing the corresponding invoice message; 0 if unknown @invoice_message_id Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
     MessagePaymentSuccessful
       { -- |
-        total_amount :: Maybe Int,
+        invoice_name :: Maybe String,
         -- |
+        is_first_recurring :: Maybe Bool,
+        -- | True, if this is a recurring payment @is_first_recurring True, if this is the first recurring payment @invoice_name Name of the invoice; may be empty if unknown
+        is_recurring :: Maybe Bool,
+        -- |
+        total_amount :: Maybe Int,
+        -- | Currency for the price of the product @total_amount Total price for the product, in the smallest units of the currency
         currency :: Maybe String,
         -- |
         invoice_message_id :: Maybe Int,
         -- |
         invoice_chat_id :: Maybe Int
       }
-  | -- | A payment has been completed; for bots only @currency Currency for price of the product
+  | -- | A payment has been completed; for bots only @currency Currency for price of the product @total_amount Total price for the product, in the smallest units of the currency
     MessagePaymentSuccessfulBot
       { -- |
         provider_payment_charge_id :: Maybe String,
@@ -317,9 +325,13 @@ data MessageContent
         order_info :: Maybe OrderInfo.OrderInfo,
         -- |
         shipping_option_id :: Maybe String,
-        -- |
+        -- | Invoice payload @shipping_option_id Identifier of the shipping option chosen by the user; may be empty if not applicable @order_info Information about the order; may be null
         invoice_payload :: Maybe String,
-        -- | Total price for the product, in the smallest units of the currency @invoice_payload Invoice payload @shipping_option_id Identifier of the shipping option chosen by the user; may be empty if not applicable @order_info Information about the order; may be null
+        -- |
+        is_first_recurring :: Maybe Bool,
+        -- | True, if this is a recurring payment @is_first_recurring True, if this is the first recurring payment
+        is_recurring :: Maybe Bool,
+        -- |
         total_amount :: Maybe Int,
         -- |
         currency :: Maybe String
@@ -331,12 +343,12 @@ data MessageContent
       { -- |
         domain_name :: Maybe String
       }
-  | -- | Data from a web app has been sent to a bot @button_text Text of the keyboardButtonTypeWebApp button, which opened the web app
+  | -- | Data from a Web App has been sent to a bot @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App
     MessageWebAppDataSent
       { -- |
         button_text :: Maybe String
       }
-  | -- | Data from a web app has been received; for bots only @button_text Text of the keyboardButtonTypeWebApp button, which opened the web app @data Received data
+  | -- | Data from a Web App has been received; for bots only @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App @data Received data
     MessageWebAppDataReceived
       { -- |
         _data :: Maybe String,
@@ -429,11 +441,13 @@ instance Show MessageContent where
         []
   show
     MessageSticker
-      { sticker = sticker_
+      { is_premium = is_premium_,
+        sticker = sticker_
       } =
       "MessageSticker"
         ++ U.cc
-          [ U.p "sticker" sticker_
+          [ U.p "is_premium" is_premium_,
+            U.p "sticker" sticker_
           ]
   show
     MessageVideo
@@ -751,14 +765,20 @@ instance Show MessageContent where
           ]
   show
     MessagePaymentSuccessful
-      { total_amount = total_amount_,
+      { invoice_name = invoice_name_,
+        is_first_recurring = is_first_recurring_,
+        is_recurring = is_recurring_,
+        total_amount = total_amount_,
         currency = currency_,
         invoice_message_id = invoice_message_id_,
         invoice_chat_id = invoice_chat_id_
       } =
       "MessagePaymentSuccessful"
         ++ U.cc
-          [ U.p "total_amount" total_amount_,
+          [ U.p "invoice_name" invoice_name_,
+            U.p "is_first_recurring" is_first_recurring_,
+            U.p "is_recurring" is_recurring_,
+            U.p "total_amount" total_amount_,
             U.p "currency" currency_,
             U.p "invoice_message_id" invoice_message_id_,
             U.p "invoice_chat_id" invoice_chat_id_
@@ -770,6 +790,8 @@ instance Show MessageContent where
         order_info = order_info_,
         shipping_option_id = shipping_option_id_,
         invoice_payload = invoice_payload_,
+        is_first_recurring = is_first_recurring_,
+        is_recurring = is_recurring_,
         total_amount = total_amount_,
         currency = currency_
       } =
@@ -780,6 +802,8 @@ instance Show MessageContent where
             U.p "order_info" order_info_,
             U.p "shipping_option_id" shipping_option_id_,
             U.p "invoice_payload" invoice_payload_,
+            U.p "is_first_recurring" is_first_recurring_,
+            U.p "is_recurring" is_recurring_,
             U.p "total_amount" total_amount_,
             U.p "currency" currency_
           ]
@@ -943,8 +967,9 @@ instance T.FromJSON MessageContent where
 
       parseMessageSticker :: A.Value -> T.Parser MessageContent
       parseMessageSticker = A.withObject "MessageSticker" $ \o -> do
+        is_premium_ <- o A..:? "is_premium"
         sticker_ <- o A..:? "sticker"
-        return $ MessageSticker {sticker = sticker_}
+        return $ MessageSticker {is_premium = is_premium_, sticker = sticker_}
 
       parseMessageVideo :: A.Value -> T.Parser MessageContent
       parseMessageVideo = A.withObject "MessageVideo" $ \o -> do
@@ -1139,11 +1164,14 @@ instance T.FromJSON MessageContent where
 
       parseMessagePaymentSuccessful :: A.Value -> T.Parser MessageContent
       parseMessagePaymentSuccessful = A.withObject "MessagePaymentSuccessful" $ \o -> do
+        invoice_name_ <- o A..:? "invoice_name"
+        is_first_recurring_ <- o A..:? "is_first_recurring"
+        is_recurring_ <- o A..:? "is_recurring"
         total_amount_ <- o A..:? "total_amount"
         currency_ <- o A..:? "currency"
         invoice_message_id_ <- o A..:? "invoice_message_id"
         invoice_chat_id_ <- o A..:? "invoice_chat_id"
-        return $ MessagePaymentSuccessful {total_amount = total_amount_, currency = currency_, invoice_message_id = invoice_message_id_, invoice_chat_id = invoice_chat_id_}
+        return $ MessagePaymentSuccessful {invoice_name = invoice_name_, is_first_recurring = is_first_recurring_, is_recurring = is_recurring_, total_amount = total_amount_, currency = currency_, invoice_message_id = invoice_message_id_, invoice_chat_id = invoice_chat_id_}
 
       parseMessagePaymentSuccessfulBot :: A.Value -> T.Parser MessageContent
       parseMessagePaymentSuccessfulBot = A.withObject "MessagePaymentSuccessfulBot" $ \o -> do
@@ -1152,9 +1180,11 @@ instance T.FromJSON MessageContent where
         order_info_ <- o A..:? "order_info"
         shipping_option_id_ <- o A..:? "shipping_option_id"
         invoice_payload_ <- o A..:? "invoice_payload"
+        is_first_recurring_ <- o A..:? "is_first_recurring"
+        is_recurring_ <- o A..:? "is_recurring"
         total_amount_ <- o A..:? "total_amount"
         currency_ <- o A..:? "currency"
-        return $ MessagePaymentSuccessfulBot {provider_payment_charge_id = provider_payment_charge_id_, telegram_payment_charge_id = telegram_payment_charge_id_, order_info = order_info_, shipping_option_id = shipping_option_id_, invoice_payload = invoice_payload_, total_amount = total_amount_, currency = currency_}
+        return $ MessagePaymentSuccessfulBot {provider_payment_charge_id = provider_payment_charge_id_, telegram_payment_charge_id = telegram_payment_charge_id_, order_info = order_info_, shipping_option_id = shipping_option_id_, invoice_payload = invoice_payload_, is_first_recurring = is_first_recurring_, is_recurring = is_recurring_, total_amount = total_amount_, currency = currency_}
 
       parseMessageContactRegistered :: A.Value -> T.Parser MessageContent
       parseMessageContactRegistered = A.withObject "MessageContactRegistered" $ \_ -> return MessageContactRegistered
@@ -1258,10 +1288,12 @@ instance T.ToJSON MessageContent where
       ]
   toJSON
     MessageSticker
-      { sticker = sticker_
+      { is_premium = is_premium_,
+        sticker = sticker_
       } =
       A.object
         [ "@type" A..= T.String "messageSticker",
+          "is_premium" A..= is_premium_,
           "sticker" A..= sticker_
         ]
   toJSON
@@ -1580,13 +1612,19 @@ instance T.ToJSON MessageContent where
         ]
   toJSON
     MessagePaymentSuccessful
-      { total_amount = total_amount_,
+      { invoice_name = invoice_name_,
+        is_first_recurring = is_first_recurring_,
+        is_recurring = is_recurring_,
+        total_amount = total_amount_,
         currency = currency_,
         invoice_message_id = invoice_message_id_,
         invoice_chat_id = invoice_chat_id_
       } =
       A.object
         [ "@type" A..= T.String "messagePaymentSuccessful",
+          "invoice_name" A..= invoice_name_,
+          "is_first_recurring" A..= is_first_recurring_,
+          "is_recurring" A..= is_recurring_,
           "total_amount" A..= total_amount_,
           "currency" A..= currency_,
           "invoice_message_id" A..= invoice_message_id_,
@@ -1599,6 +1637,8 @@ instance T.ToJSON MessageContent where
         order_info = order_info_,
         shipping_option_id = shipping_option_id_,
         invoice_payload = invoice_payload_,
+        is_first_recurring = is_first_recurring_,
+        is_recurring = is_recurring_,
         total_amount = total_amount_,
         currency = currency_
       } =
@@ -1609,6 +1649,8 @@ instance T.ToJSON MessageContent where
           "order_info" A..= order_info_,
           "shipping_option_id" A..= shipping_option_id_,
           "invoice_payload" A..= invoice_payload_,
+          "is_first_recurring" A..= is_first_recurring_,
+          "is_recurring" A..= is_recurring_,
           "total_amount" A..= total_amount_,
           "currency" A..= currency_
         ]

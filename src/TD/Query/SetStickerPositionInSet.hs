@@ -13,7 +13,7 @@ import qualified Utils as U
 data SetStickerPositionInSet = SetStickerPositionInSet
   { -- |
     position :: Maybe Int,
-    -- | Sticker @position New position of the sticker in the set, zero-based
+    -- | Sticker @position New position of the sticker in the set, 0-based
     sticker :: Maybe InputFile.InputFile
   }
   deriving (Eq)

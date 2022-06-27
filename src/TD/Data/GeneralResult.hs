@@ -21,6 +21,7 @@ import qualified TD.Data.AuthenticationCodeType as AuthenticationCodeType
 import qualified TD.Data.AuthorizationState as AuthorizationState
 import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
 import qualified TD.Data.AutoDownloadSettingsPresets as AutoDownloadSettingsPresets
+import qualified TD.Data.AvailableReaction as AvailableReaction
 import qualified TD.Data.AvailableReactions as AvailableReactions
 import qualified TD.Data.Background as Background
 import qualified TD.Data.BackgroundFill as BackgroundFill
@@ -121,6 +122,7 @@ import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
 import qualified TD.Data.Error as Error
 import qualified TD.Data.File as File
 import qualified TD.Data.FileDownload as FileDownload
+import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
 import qualified TD.Data.FilePart as FilePart
 import qualified TD.Data.FileType as FileType
 import qualified TD.Data.FormattedText as FormattedText
@@ -152,6 +154,7 @@ import qualified TD.Data.InputCredentials as InputCredentials
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.InputIdentityDocument as InputIdentityDocument
 import qualified TD.Data.InputInlineQueryResult as InputInlineQueryResult
+import qualified TD.Data.InputInvoice as InputInvoice
 import qualified TD.Data.InputMessageContent as InputMessageContent
 import qualified TD.Data.InputPassportElement as InputPassportElement
 import qualified TD.Data.InputPassportElementError as InputPassportElementError
@@ -234,9 +237,9 @@ import qualified TD.Data.PassportRequiredElement as PassportRequiredElement
 import qualified TD.Data.PassportSuitableElement as PassportSuitableElement
 import qualified TD.Data.PasswordState as PasswordState
 import qualified TD.Data.PaymentForm as PaymentForm
+import qualified TD.Data.PaymentProvider as PaymentProvider
 import qualified TD.Data.PaymentReceipt as PaymentReceipt
 import qualified TD.Data.PaymentResult as PaymentResult
-import qualified TD.Data.PaymentsProviderStripe as PaymentsProviderStripe
 import qualified TD.Data.PersonalDetails as PersonalDetails
 import qualified TD.Data.PersonalDocument as PersonalDocument
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
@@ -247,6 +250,13 @@ import qualified TD.Data.Point as Point
 import qualified TD.Data.Poll as Poll
 import qualified TD.Data.PollOption as PollOption
 import qualified TD.Data.PollType as PollType
+import qualified TD.Data.PremiumFeature as PremiumFeature
+import qualified TD.Data.PremiumFeaturePromotionAnimation as PremiumFeaturePromotionAnimation
+import qualified TD.Data.PremiumFeatures as PremiumFeatures
+import qualified TD.Data.PremiumLimit as PremiumLimit
+import qualified TD.Data.PremiumLimitType as PremiumLimitType
+import qualified TD.Data.PremiumSource as PremiumSource
+import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
 import qualified TD.Data.Proxies as Proxies
 import qualified TD.Data.Proxy as Proxy
@@ -294,6 +304,7 @@ import qualified TD.Data.SupergroupMembersFilter as SupergroupMembersFilter
 import qualified TD.Data.TMeUrl as TMeUrl
 import qualified TD.Data.TMeUrlType as TMeUrlType
 import qualified TD.Data.TMeUrls as TMeUrls
+import qualified TD.Data.TargetChat as TargetChat
 import qualified TD.Data.TdlibParameters as TdlibParameters
 import qualified TD.Data.TemporaryPasswordState as TemporaryPasswordState
 import qualified TD.Data.TermsOfService as TermsOfService
@@ -314,6 +325,7 @@ import qualified TD.Data.ThemeSettings as ThemeSettings
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.ThumbnailFormat as ThumbnailFormat
 import qualified TD.Data.TopChatCategory as TopChatCategory
+import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
@@ -490,11 +502,12 @@ data GeneralResult
   | ShippingOption ShippingOption.ShippingOption
   | SavedCredentials SavedCredentials.SavedCredentials
   | InputCredentials InputCredentials.InputCredentials
-  | PaymentsProviderStripe PaymentsProviderStripe.PaymentsProviderStripe
+  | PaymentProvider PaymentProvider.PaymentProvider
   | PaymentForm PaymentForm.PaymentForm
   | ValidatedOrderInfo ValidatedOrderInfo.ValidatedOrderInfo
   | PaymentResult PaymentResult.PaymentResult
   | PaymentReceipt PaymentReceipt.PaymentReceipt
+  | InputInvoice InputInvoice.InputInvoice
   | DatedFile DatedFile.DatedFile
   | PassportElementType PassportElementType.PassportElementType
   | Date Date.Date
@@ -531,6 +544,7 @@ data GeneralResult
   | StickerSet StickerSet.StickerSet
   | StickerSetInfo StickerSetInfo.StickerSetInfo
   | StickerSets StickerSets.StickerSets
+  | TrendingStickerSets TrendingStickerSets.TrendingStickerSets
   | CallDiscardReason CallDiscardReason.CallDiscardReason
   | CallProtocol CallProtocol.CallProtocol
   | CallServerType CallServerType.CallServerType
@@ -552,6 +566,7 @@ data GeneralResult
   | PhoneNumberAuthenticationSettings PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings
   | AddedReaction AddedReaction.AddedReaction
   | AddedReactions AddedReactions.AddedReactions
+  | AvailableReaction AvailableReaction.AvailableReaction
   | AvailableReactions AvailableReactions.AvailableReactions
   | Reaction Reaction.Reaction
   | Animations Animations.Animations
@@ -578,6 +593,13 @@ data GeneralResult
   | LanguagePackStrings LanguagePackStrings.LanguagePackStrings
   | LanguagePackInfo LanguagePackInfo.LanguagePackInfo
   | LocalizationTargetInfo LocalizationTargetInfo.LocalizationTargetInfo
+  | PremiumLimitType PremiumLimitType.PremiumLimitType
+  | PremiumFeature PremiumFeature.PremiumFeature
+  | PremiumLimit PremiumLimit.PremiumLimit
+  | PremiumFeatures PremiumFeatures.PremiumFeatures
+  | PremiumSource PremiumSource.PremiumSource
+  | PremiumFeaturePromotionAnimation PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation
+  | PremiumState PremiumState.PremiumState
   | DeviceToken DeviceToken.DeviceToken
   | PushReceiverId PushReceiverId.PushReceiverId
   | BackgroundFill BackgroundFill.BackgroundFill
@@ -613,6 +635,7 @@ data GeneralResult
   | ConnectedWebsite ConnectedWebsite.ConnectedWebsite
   | ConnectedWebsites ConnectedWebsites.ConnectedWebsites
   | ChatReportReason ChatReportReason.ChatReportReason
+  | TargetChat TargetChat.TargetChat
   | InternalLinkType InternalLinkType.InternalLinkType
   | MessageLink MessageLink.MessageLink
   | MessageLinkInfo MessageLinkInfo.MessageLinkInfo
@@ -637,6 +660,7 @@ data GeneralResult
   | Count Count.Count
   | Text Text.Text
   | Seconds Seconds.Seconds
+  | FileDownloadedPrefixSize FileDownloadedPrefixSize.FileDownloadedPrefixSize
   | DeepLinkInfo DeepLinkInfo.DeepLinkInfo
   | TextParseMode TextParseMode.TextParseMode
   | ProxyType ProxyType.ProxyType
@@ -1147,8 +1171,8 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result InputCredentials.InputCredentials) of
             T.Success a -> return $ InputCredentials a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result PaymentsProviderStripe.PaymentsProviderStripe) of
-            T.Success a -> return $ PaymentsProviderStripe a
+          case (T.fromJSON v :: T.Result PaymentProvider.PaymentProvider) of
+            T.Success a -> return $ PaymentProvider a
             _ -> mempty,
           case (T.fromJSON v :: T.Result PaymentForm.PaymentForm) of
             T.Success a -> return $ PaymentForm a
@@ -1161,6 +1185,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result PaymentReceipt.PaymentReceipt) of
             T.Success a -> return $ PaymentReceipt a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result InputInvoice.InputInvoice) of
+            T.Success a -> return $ InputInvoice a
             _ -> mempty,
           case (T.fromJSON v :: T.Result DatedFile.DatedFile) of
             T.Success a -> return $ DatedFile a
@@ -1270,6 +1297,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result StickerSets.StickerSets) of
             T.Success a -> return $ StickerSets a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result TrendingStickerSets.TrendingStickerSets) of
+            T.Success a -> return $ TrendingStickerSets a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result CallDiscardReason.CallDiscardReason) of
             T.Success a -> return $ CallDiscardReason a
             _ -> mempty,
@@ -1332,6 +1362,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result AddedReactions.AddedReactions) of
             T.Success a -> return $ AddedReactions a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result AvailableReaction.AvailableReaction) of
+            T.Success a -> return $ AvailableReaction a
             _ -> mempty,
           case (T.fromJSON v :: T.Result AvailableReactions.AvailableReactions) of
             T.Success a -> return $ AvailableReactions a
@@ -1410,6 +1443,27 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result LocalizationTargetInfo.LocalizationTargetInfo) of
             T.Success a -> return $ LocalizationTargetInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumLimitType.PremiumLimitType) of
+            T.Success a -> return $ PremiumLimitType a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumFeature.PremiumFeature) of
+            T.Success a -> return $ PremiumFeature a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumLimit.PremiumLimit) of
+            T.Success a -> return $ PremiumLimit a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumFeatures.PremiumFeatures) of
+            T.Success a -> return $ PremiumFeatures a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumSource.PremiumSource) of
+            T.Success a -> return $ PremiumSource a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation) of
+            T.Success a -> return $ PremiumFeaturePromotionAnimation a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumState.PremiumState) of
+            T.Success a -> return $ PremiumState a
             _ -> mempty,
           case (T.fromJSON v :: T.Result DeviceToken.DeviceToken) of
             T.Success a -> return $ DeviceToken a
@@ -1516,6 +1570,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ChatReportReason.ChatReportReason) of
             T.Success a -> return $ ChatReportReason a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result TargetChat.TargetChat) of
+            T.Success a -> return $ TargetChat a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result InternalLinkType.InternalLinkType) of
             T.Success a -> return $ InternalLinkType a
             _ -> mempty,
@@ -1587,6 +1644,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result Seconds.Seconds) of
             T.Success a -> return $ Seconds a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result FileDownloadedPrefixSize.FileDownloadedPrefixSize) of
+            T.Success a -> return $ FileDownloadedPrefixSize a
             _ -> mempty,
           case (T.fromJSON v :: T.Result DeepLinkInfo.DeepLinkInfo) of
             T.Success a -> return $ DeepLinkInfo a

@@ -25,6 +25,8 @@ data Reaction = -- | Contains stickers which must be used for reaction animation
     appear_animation :: Maybe Sticker.Sticker,
     -- | Static icon for the reaction
     static_icon :: Maybe Sticker.Sticker,
+    -- | True, if the reaction is available only for Premium users
+    is_premium :: Maybe Bool,
     -- | True, if the reaction can be added to new messages and enabled in chats
     is_active :: Maybe Bool,
     -- | Reaction title
@@ -44,6 +46,7 @@ instance Show Reaction where
         select_animation = select_animation_,
         appear_animation = appear_animation_,
         static_icon = static_icon_,
+        is_premium = is_premium_,
         is_active = is_active_,
         title = title_,
         reaction = reaction_
@@ -57,6 +60,7 @@ instance Show Reaction where
             U.p "select_animation" select_animation_,
             U.p "appear_animation" appear_animation_,
             U.p "static_icon" static_icon_,
+            U.p "is_premium" is_premium_,
             U.p "is_active" is_active_,
             U.p "title" title_,
             U.p "reaction" reaction_
@@ -79,10 +83,11 @@ instance T.FromJSON Reaction where
         select_animation_ <- o A..:? "select_animation"
         appear_animation_ <- o A..:? "appear_animation"
         static_icon_ <- o A..:? "static_icon"
+        is_premium_ <- o A..:? "is_premium"
         is_active_ <- o A..:? "is_active"
         title_ <- o A..:? "title"
         reaction_ <- o A..:? "reaction"
-        return $ Reaction {center_animation = center_animation_, around_animation = around_animation_, effect_animation = effect_animation_, activate_animation = activate_animation_, select_animation = select_animation_, appear_animation = appear_animation_, static_icon = static_icon_, is_active = is_active_, title = title_, reaction = reaction_}
+        return $ Reaction {center_animation = center_animation_, around_animation = around_animation_, effect_animation = effect_animation_, activate_animation = activate_animation_, select_animation = select_animation_, appear_animation = appear_animation_, static_icon = static_icon_, is_premium = is_premium_, is_active = is_active_, title = title_, reaction = reaction_}
   parseJSON _ = mempty
 
 instance T.ToJSON Reaction where
@@ -95,6 +100,7 @@ instance T.ToJSON Reaction where
         select_animation = select_animation_,
         appear_animation = appear_animation_,
         static_icon = static_icon_,
+        is_premium = is_premium_,
         is_active = is_active_,
         title = title_,
         reaction = reaction_
@@ -108,6 +114,7 @@ instance T.ToJSON Reaction where
           "select_animation" A..= select_animation_,
           "appear_animation" A..= appear_animation_,
           "static_icon" A..= static_icon_,
+          "is_premium" A..= is_premium_,
           "is_active" A..= is_active_,
           "title" A..= title_,
           "reaction" A..= reaction_

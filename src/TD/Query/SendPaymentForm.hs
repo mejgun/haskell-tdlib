@@ -6,10 +6,11 @@ module TD.Query.SendPaymentForm where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.InputCredentials as InputCredentials
+import qualified TD.Data.InputInvoice as InputInvoice
 import qualified Utils as U
 
 -- |
--- Sends a filled-out payment form to the bot for final verification @chat_id Chat identifier of the Invoice message @message_id Message identifier
+-- Sends a filled-out payment form to the bot for final verification @input_invoice The invoice
 data SendPaymentForm = SendPaymentForm
   { -- |
     tip_amount :: Maybe Int,
@@ -22,9 +23,7 @@ data SendPaymentForm = SendPaymentForm
     -- | Payment form identifier returned by getPaymentForm @order_info_id Identifier returned by validateOrderInfo, or an empty string @shipping_option_id Identifier of a chosen shipping option, if applicable
     payment_form_id :: Maybe Int,
     -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
+    input_invoice :: Maybe InputInvoice.InputInvoice
   }
   deriving (Eq)
 
@@ -36,8 +35,7 @@ instance Show SendPaymentForm where
         shipping_option_id = shipping_option_id_,
         order_info_id = order_info_id_,
         payment_form_id = payment_form_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
+        input_invoice = input_invoice_
       } =
       "SendPaymentForm"
         ++ U.cc
@@ -46,8 +44,7 @@ instance Show SendPaymentForm where
             U.p "shipping_option_id" shipping_option_id_,
             U.p "order_info_id" order_info_id_,
             U.p "payment_form_id" payment_form_id_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+            U.p "input_invoice" input_invoice_
           ]
 
 instance T.ToJSON SendPaymentForm where
@@ -58,8 +55,7 @@ instance T.ToJSON SendPaymentForm where
         shipping_option_id = shipping_option_id_,
         order_info_id = order_info_id_,
         payment_form_id = payment_form_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
+        input_invoice = input_invoice_
       } =
       A.object
         [ "@type" A..= T.String "sendPaymentForm",
@@ -68,6 +64,5 @@ instance T.ToJSON SendPaymentForm where
           "shipping_option_id" A..= shipping_option_id_,
           "order_info_id" A..= order_info_id_,
           "payment_form_id" A..= U.toS payment_form_id_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
+          "input_invoice" A..= input_invoice_
         ]

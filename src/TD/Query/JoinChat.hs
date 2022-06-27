@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method @chat_id Chat identifier
+-- Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created @chat_id Chat identifier
 data JoinChat = JoinChat
   { -- |
     chat_id :: Maybe Int

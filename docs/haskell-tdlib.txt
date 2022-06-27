@@ -188,6 +188,40 @@ instance GHC.Show.Show TD.Query.ToggleSupergroupSignMessages.ToggleSupergroupSig
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ToggleSupergroupSignMessages.ToggleSupergroupSignMessages
 
 
+module TD.Query.ToggleSupergroupJoinToSendMessages
+
+-- | Toggles whether joining is mandatory to send messages to a discussion
+--   supergroup; requires can_restrict_members administrator right
+--   <tt>supergroup_id Identifier of the supergroup
+--   </tt>join_to_send_messages New value of join_to_send_messages
+data ToggleSupergroupJoinToSendMessages
+ToggleSupergroupJoinToSendMessages :: Maybe Bool -> Maybe Int -> ToggleSupergroupJoinToSendMessages
+
+[join_to_send_messages] :: ToggleSupergroupJoinToSendMessages -> Maybe Bool
+
+[supergroup_id] :: ToggleSupergroupJoinToSendMessages -> Maybe Int
+instance GHC.Classes.Eq TD.Query.ToggleSupergroupJoinToSendMessages.ToggleSupergroupJoinToSendMessages
+instance GHC.Show.Show TD.Query.ToggleSupergroupJoinToSendMessages.ToggleSupergroupJoinToSendMessages
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ToggleSupergroupJoinToSendMessages.ToggleSupergroupJoinToSendMessages
+
+
+module TD.Query.ToggleSupergroupJoinByRequest
+
+-- | Toggles whether all users directly joining the supergroup need to be
+--   approved by supergroup administrators; requires can_restrict_members
+--   administrator right <tt>supergroup_id Identifier of the channel
+--   </tt>join_by_request New value of join_by_request
+data ToggleSupergroupJoinByRequest
+ToggleSupergroupJoinByRequest :: Maybe Bool -> Maybe Int -> ToggleSupergroupJoinByRequest
+
+[join_by_request] :: ToggleSupergroupJoinByRequest -> Maybe Bool
+
+[supergroup_id] :: ToggleSupergroupJoinByRequest -> Maybe Int
+instance GHC.Classes.Eq TD.Query.ToggleSupergroupJoinByRequest.ToggleSupergroupJoinByRequest
+instance GHC.Show.Show TD.Query.ToggleSupergroupJoinByRequest.ToggleSupergroupJoinByRequest
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ToggleSupergroupJoinByRequest.ToggleSupergroupJoinByRequest
+
+
 module TD.Query.ToggleSupergroupIsBroadcastGroup
 
 -- | Upgrades supergroup to a broadcast group; requires owner privileges in
@@ -1144,7 +1178,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SetBotUpdatesStatus.SetBotUpdat
 module TD.Query.SetBio
 
 -- | Changes the bio of the current user @bio The new value of the user
---   bio; 0-70 characters without line feeds
+--   bio; 0-GetOption("bio_length_max") characters without line feeds
 data SetBio
 SetBio :: Maybe String -> SetBio
 
@@ -1170,7 +1204,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SetAlarm.SetAlarm
 
 module TD.Query.SendWebAppData
 
--- | Sends data received from a keyboardButtonTypeWebApp web app to a bot
+-- | Sends data received from a keyboardButtonTypeWebApp Web App to a bot
 data SendWebAppData
 SendWebAppData :: Maybe String -> Maybe String -> Maybe Int -> SendWebAppData
 
@@ -1179,7 +1213,7 @@ SendWebAppData :: Maybe String -> Maybe String -> Maybe Int -> SendWebAppData
 [button_text] :: SendWebAppData -> Maybe String
 
 -- | Identifier of the target bot <tt>button_text Text of the
---   keyboardButtonTypeWebApp button, which opened the web app </tt>data
+--   keyboardButtonTypeWebApp button, which opened the Web App </tt>data
 --   Received data
 [bot_user_id] :: SendWebAppData -> Maybe Int
 instance GHC.Classes.Eq TD.Query.SendWebAppData.SendWebAppData
@@ -1848,10 +1882,14 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ReorderInstalledStickerSets.Reo
 
 module TD.Query.ReorderChatFilters
 
--- | Changes the order of chat filters @chat_filter_ids Identifiers of chat
---   filters in the new correct order
+-- | Changes the order of chat filters <tt>chat_filter_ids Identifiers of
+--   chat filters in the new correct order </tt>main_chat_list_position
+--   Position of the main chat list among chat filters, 0-based. Can be
+--   non-zero only for Premium users
 data ReorderChatFilters
-ReorderChatFilters :: Maybe [Int] -> ReorderChatFilters
+ReorderChatFilters :: Maybe Int -> Maybe [Int] -> ReorderChatFilters
+
+[main_chat_list_position] :: ReorderChatFilters -> Maybe Int
 
 [chat_filter_ids] :: ReorderChatFilters -> Maybe [Int]
 instance GHC.Classes.Eq TD.Query.ReorderChatFilters.ReorderChatFilters
@@ -2079,6 +2117,25 @@ instance GHC.Show.Show TD.Query.RecoverAuthenticationPassword.RecoverAuthenticat
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.RecoverAuthenticationPassword.RecoverAuthenticationPassword
 
 
+module TD.Query.RecognizeSpeech
+
+-- | Recognizes speech in a voice note message. The message must be
+--   successfully sent and must not be scheduled. May return an error with
+--   a message <a>MSG_VOICE_TOO_LONG</a> if the voice note is too long to
+--   be recognized
+data RecognizeSpeech
+RecognizeSpeech :: Maybe Int -> Maybe Int -> RecognizeSpeech
+
+-- | Identifier of the message
+[message_id] :: RecognizeSpeech -> Maybe Int
+
+-- | Identifier of the chat to which the message belongs
+[chat_id] :: RecognizeSpeech -> Maybe Int
+instance GHC.Classes.Eq TD.Query.RecognizeSpeech.RecognizeSpeech
+instance GHC.Show.Show TD.Query.RecognizeSpeech.RecognizeSpeech
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.RecognizeSpeech.RecognizeSpeech
+
+
 module TD.Query.ReadFilePart
 
 -- | Reads a part of a file from the TDLib file cache and returns read
@@ -2126,6 +2183,24 @@ ReadAllChatMentions :: Maybe Int -> ReadAllChatMentions
 instance GHC.Classes.Eq TD.Query.ReadAllChatMentions.ReadAllChatMentions
 instance GHC.Show.Show TD.Query.ReadAllChatMentions.ReadAllChatMentions
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ReadAllChatMentions.ReadAllChatMentions
+
+
+module TD.Query.RateSpeechRecognition
+
+-- | Rates recognized speech in a voice note message <tt>chat_id Identifier
+--   of the chat to which the message belongs </tt>message_id Identifier of
+--   the message @is_good Pass true if the speech recognition is good
+data RateSpeechRecognition
+RateSpeechRecognition :: Maybe Bool -> Maybe Int -> Maybe Int -> RateSpeechRecognition
+
+[is_good] :: RateSpeechRecognition -> Maybe Bool
+
+[message_id] :: RateSpeechRecognition -> Maybe Int
+
+[chat_id] :: RateSpeechRecognition -> Maybe Int
+instance GHC.Classes.Eq TD.Query.RateSpeechRecognition.RateSpeechRecognition
+instance GHC.Show.Show TD.Query.RateSpeechRecognition.RateSpeechRecognition
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.RateSpeechRecognition.RateSpeechRecognition
 
 
 module TD.Query.ProcessPushNotification
@@ -2317,8 +2392,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.LeaveChat.LeaveChat
 
 module TD.Query.JoinChatByInviteLink
 
--- | Uses an invite link to add the current user to the chat if possible
---   @invite_link Invite link to use
+-- | Uses an invite link to add the current user to the chat if possible.
+--   May return an error with a message <a>INVITE_REQUEST_SENT</a> if only
+--   a join request was created @invite_link Invite link to use
 data JoinChatByInviteLink
 JoinChatByInviteLink :: Maybe String -> JoinChatByInviteLink
 
@@ -2331,7 +2407,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.JoinChatByInviteLink.JoinChatBy
 module TD.Query.JoinChat
 
 -- | Adds the current user as a new member to a chat. Private and secret
---   chats can't be joined using this method @chat_id Chat identifier
+--   chats can't be joined using this method. May return an error with a
+--   message <a>INVITE_REQUEST_SENT</a> if only a join request was created
+--   @chat_id Chat identifier
 data JoinChat
 JoinChat :: Maybe Int -> JoinChat
 
@@ -2844,6 +2922,27 @@ instance GHC.Show.Show TD.Query.GetProxies.GetProxies
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetProxies.GetProxies
 
 
+module TD.Query.GetPremiumStickers
+
+-- | Returns examples of premium stickers for demonstration purposes
+data GetPremiumStickers
+GetPremiumStickers :: GetPremiumStickers
+instance GHC.Classes.Eq TD.Query.GetPremiumStickers.GetPremiumStickers
+instance GHC.Show.Show TD.Query.GetPremiumStickers.GetPremiumStickers
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPremiumStickers.GetPremiumStickers
+
+
+module TD.Query.GetPremiumState
+
+-- | Returns state of Telegram Premium subscription and promotion videos
+--   for Premium features
+data GetPremiumState
+GetPremiumState :: GetPremiumState
+instance GHC.Classes.Eq TD.Query.GetPremiumState.GetPremiumState
+instance GHC.Show.Show TD.Query.GetPremiumState.GetPremiumState
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPremiumState.GetPremiumState
+
+
 module TD.Query.GetPreferredCountryLanguage
 
 -- | Returns an IETF language tag of the language preferred in the country,
@@ -3232,8 +3331,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetMessageImportConfirmationTex
 module TD.Query.GetMessageFileType
 
 -- | Returns information about a file with messages exported from another
---   app @message_file_head Beginning of the message file; up to 100 first
---   lines
+--   application @message_file_head Beginning of the message file; up to
+--   100 first lines
 data GetMessageFileType
 GetMessageFileType :: Maybe String -> GetMessageFileType
 
@@ -3268,7 +3367,9 @@ module TD.Query.GetMessageAvailableReactions
 
 -- | Returns reactions, which can be added to a message. The list can
 --   change after updateReactions, updateChatAvailableReactions for the
---   chat, or updateMessageInteractionInfo for the message
+--   chat, or updateMessageInteractionInfo for the message. The method will
+--   return Premium reactions, even the current user has no Premium
+--   subscription
 data GetMessageAvailableReactions
 GetMessageAvailableReactions :: Maybe Int -> Maybe Int -> GetMessageAvailableReactions
 
@@ -3575,7 +3676,8 @@ module TD.Query.GetInactiveSupergroupChats
 
 -- | Returns a list of recently inactive supergroups and channels. Can be
 --   used when user reaches limit on the number of joined supergroups and
---   channels and receives CHANNELS_TOO_MUCH error
+--   channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be
+--   increased with Telegram Premium
 data GetInactiveSupergroupChats
 GetInactiveSupergroupChats :: GetInactiveSupergroupChats
 instance GHC.Classes.Eq TD.Query.GetInactiveSupergroupChats.GetInactiveSupergroupChats
@@ -4320,6 +4422,16 @@ instance GHC.Show.Show TD.Query.GetAllPassportElements.GetAllPassportElements
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetAllPassportElements.GetAllPassportElements
 
 
+module TD.Query.GetAllAnimatedEmojis
+
+-- | Returns all emojis, which has a corresponding animated emoji
+data GetAllAnimatedEmojis
+GetAllAnimatedEmojis :: GetAllAnimatedEmojis
+instance GHC.Classes.Eq TD.Query.GetAllAnimatedEmojis.GetAllAnimatedEmojis
+instance GHC.Show.Show TD.Query.GetAllAnimatedEmojis.GetAllAnimatedEmojis
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetAllAnimatedEmojis.GetAllAnimatedEmojis
+
+
 module TD.Query.GetActiveSessions
 
 -- | Returns all active sessions of the current user
@@ -4971,8 +5083,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ConfirmQrCodeAuthentication.Con
 
 module TD.Query.CloseWebApp
 
--- | Informs TDLib that a previously opened web app was closed
---   @web_app_launch_id Identifier of web app launch, received from
+-- | Informs TDLib that a previously opened Web App was closed
+--   @web_app_launch_id Identifier of Web App launch, received from
 --   openWebApp
 data CloseWebApp
 CloseWebApp :: Maybe Int -> CloseWebApp
@@ -5021,6 +5133,17 @@ Close :: Close
 instance GHC.Classes.Eq TD.Query.Close.Close
 instance GHC.Show.Show TD.Query.Close.Close
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.Close.Close
+
+
+module TD.Query.ClickPremiumSubscriptionButton
+
+-- | Informs TDLib that the user clicked Premium subscription button on the
+--   Premium features screen
+data ClickPremiumSubscriptionButton
+ClickPremiumSubscriptionButton :: ClickPremiumSubscriptionButton
+instance GHC.Classes.Eq TD.Query.ClickPremiumSubscriptionButton.ClickPremiumSubscriptionButton
+instance GHC.Show.Show TD.Query.ClickPremiumSubscriptionButton.ClickPremiumSubscriptionButton
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ClickPremiumSubscriptionButton.ClickPremiumSubscriptionButton
 
 
 module TD.Query.ClickAnimatedEmojiMessage
@@ -5367,6 +5490,17 @@ instance GHC.Show.Show TD.Query.CanTransferOwnership.CanTransferOwnership
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CanTransferOwnership.CanTransferOwnership
 
 
+module TD.Query.CanPurchasePremium
+
+-- | Checks whether Telegram Premium purchase is possible. Must be called
+--   before in-store Premium purchase
+data CanPurchasePremium
+CanPurchasePremium :: CanPurchasePremium
+instance GHC.Classes.Eq TD.Query.CanPurchasePremium.CanPurchasePremium
+instance GHC.Show.Show TD.Query.CanPurchasePremium.CanPurchasePremium
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CanPurchasePremium.CanPurchasePremium
+
+
 module TD.Query.BlockMessageSenderFromReplies
 
 -- | Blocks an original sender of a message in the Replies chat
@@ -5387,6 +5521,36 @@ BlockMessageSenderFromReplies :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe
 instance GHC.Classes.Eq TD.Query.BlockMessageSenderFromReplies.BlockMessageSenderFromReplies
 instance GHC.Show.Show TD.Query.BlockMessageSenderFromReplies.BlockMessageSenderFromReplies
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.BlockMessageSenderFromReplies.BlockMessageSenderFromReplies
+
+
+module TD.Query.AssignGooglePlayTransaction
+
+-- | Informs server about a Telegram Premium purchase through Google Play.
+--   For official applications only @purchase_token Google Play purchase
+--   token
+data AssignGooglePlayTransaction
+AssignGooglePlayTransaction :: Maybe String -> AssignGooglePlayTransaction
+
+[purchase_token] :: AssignGooglePlayTransaction -> Maybe String
+instance GHC.Classes.Eq TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
+instance GHC.Show.Show TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
+
+
+module TD.Query.AssignAppStoreTransaction
+
+-- | Informs server about a Telegram Premium purchase through App Store.
+--   For official applications only <tt>receipt App Store receipt
+--   </tt>is_restore True, if this is restore of Premium purchase
+data AssignAppStoreTransaction
+AssignAppStoreTransaction :: Maybe Bool -> Maybe String -> AssignAppStoreTransaction
+
+[is_restore] :: AssignAppStoreTransaction -> Maybe Bool
+
+[receipt] :: AssignAppStoreTransaction -> Maybe String
+instance GHC.Classes.Eq TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
+instance GHC.Show.Show TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
 
 
 module TD.Query.AnswerPreCheckoutQuery
@@ -5578,8 +5742,8 @@ module TD.Data.WebAppInfo
 
 data WebAppInfo
 
--- | Contains information about a web app <tt>launch_id Unique identifier
---   for the web app launch </tt>url A web app URL to open in a web view
+-- | Contains information about a Web App <tt>launch_id Unique identifier
+--   for the Web App launch </tt>url A Web App URL to open in a web view
 WebAppInfo :: Maybe String -> Maybe Int -> WebAppInfo
 
 [url] :: WebAppInfo -> Maybe String
@@ -5933,10 +6097,11 @@ module TD.Data.ThemeParameters
 
 data ThemeParameters
 
--- | Contains parameters of the app theme <tt>background_color A color of
---   the background in the RGB24 format </tt>text_color A color of text in
---   the RGB24 format
-ThemeParameters :: Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> ThemeParameters
+-- | Contains parameters of the application theme <tt>background_color A
+--   color of the background in the RGB24 format
+--   </tt>secondary_background_color A secondary color for the background
+--   in the RGB24 format
+ThemeParameters :: Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> ThemeParameters
 
 -- | A color of text on the buttons in the RGB24 format
 [button_text_color] :: ThemeParameters -> Maybe Int
@@ -5945,12 +6110,14 @@ ThemeParameters :: Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int
 
 [link_color] :: ThemeParameters -> Maybe Int
 
--- | A color of hints in the RGB24 format <tt>link_color A color of links
---   in the RGB24 format </tt>button_color A color of the buttons in the
---   RGB24 format
 [hint_color] :: ThemeParameters -> Maybe Int
 
+-- | A color of text in the RGB24 format <tt>hint_color A color of hints in
+--   the RGB24 format </tt>link_color A color of links in the RGB24 format
+--   @button_color A color of the buttons in the RGB24 format
 [text_color] :: ThemeParameters -> Maybe Int
+
+[secondary_background_color] :: ThemeParameters -> Maybe Int
 
 [background_color] :: ThemeParameters -> Maybe Int
 instance GHC.Classes.Eq TD.Data.ThemeParameters.ThemeParameters
@@ -5961,18 +6128,18 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.ThemeParameters.ThemeParameters
 
 module TD.Query.OpenWebApp
 
--- | Informs TDLib that a web app is being opened from attachment menu, a
+-- | Informs TDLib that a Web App is being opened from attachment menu, a
 --   botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an
 --   inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation
 --   alert about data sent to the bot must be shown once
 data OpenWebApp
 OpenWebApp :: Maybe Int -> Maybe ThemeParameters -> Maybe String -> Maybe Int -> Maybe Int -> OpenWebApp
 
--- | Identifier of the replied message for the message sent by the web app;
+-- | Identifier of the replied message for the message sent by the Web App;
 --   0 if none
 [reply_to_message_id] :: OpenWebApp -> Maybe Int
 
--- | Preferred web app theme; pass null to use the default theme
+-- | Preferred Web App theme; pass null to use the default theme
 [theme] :: OpenWebApp -> Maybe ThemeParameters
 
 -- | The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton
@@ -5980,11 +6147,10 @@ OpenWebApp :: Maybe Int -> Maybe ThemeParameters -> Maybe String -> Maybe Int ->
 --   string otherwise
 [url] :: OpenWebApp -> Maybe String
 
--- | Identifier of the bot, providing the web app
+-- | Identifier of the bot, providing the Web App
 [bot_user_id] :: OpenWebApp -> Maybe Int
 
--- | Identifier of the chat in which the web app is opened. Web apps can be
---   opened only in private chats for now
+-- | Identifier of the chat in which the Web App is opened
 [chat_id] :: OpenWebApp -> Maybe Int
 instance GHC.Classes.Eq TD.Query.OpenWebApp.OpenWebApp
 instance GHC.Show.Show TD.Query.OpenWebApp.OpenWebApp
@@ -5993,12 +6159,12 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.OpenWebApp.OpenWebApp
 
 module TD.Query.GetWebAppUrl
 
--- | Returns an HTTPS URL of a web app to open after
+-- | Returns an HTTPS URL of a Web App to open after
 --   keyboardButtonTypeWebApp button is pressed
 data GetWebAppUrl
 GetWebAppUrl :: Maybe ThemeParameters -> Maybe String -> Maybe Int -> GetWebAppUrl
 
--- | Preferred web app theme; pass null to use the default theme
+-- | Preferred Web App theme; pass null to use the default theme
 [theme] :: GetWebAppUrl -> Maybe ThemeParameters
 
 -- | The URL from the keyboardButtonTypeWebApp button
@@ -6023,26 +6189,6 @@ GetThemeParametersJsonString :: Maybe ThemeParameters -> GetThemeParametersJsonS
 instance GHC.Classes.Eq TD.Query.GetThemeParametersJsonString.GetThemeParametersJsonString
 instance GHC.Show.Show TD.Query.GetThemeParametersJsonString.GetThemeParametersJsonString
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetThemeParametersJsonString.GetThemeParametersJsonString
-
-
-module TD.Query.GetPaymentForm
-
--- | Returns an invoice payment form. This method must be called when the
---   user presses inlineKeyboardButtonBuy
-data GetPaymentForm
-GetPaymentForm :: Maybe ThemeParameters -> Maybe Int -> Maybe Int -> GetPaymentForm
-
--- | Preferred payment form theme; pass null to use the default theme
-[theme] :: GetPaymentForm -> Maybe ThemeParameters
-
--- | Message identifier
-[message_id] :: GetPaymentForm -> Maybe Int
-
--- | Chat identifier of the Invoice message
-[chat_id] :: GetPaymentForm -> Maybe Int
-instance GHC.Classes.Eq TD.Query.GetPaymentForm.GetPaymentForm
-instance GHC.Show.Show TD.Query.GetPaymentForm.GetPaymentForm
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPaymentForm.GetPaymentForm
 
 
 module TD.Data.TextParseMode
@@ -6452,6 +6598,41 @@ module TD.Defaults
 defaultTdlibParameters :: TdlibParameters
 
 
+module TD.Data.TargetChat
+
+-- | Describes the target chat to be opened
+data TargetChat
+
+-- | The currently opened chat needs to be kept
+TargetChatCurrent :: TargetChat
+
+-- | The chat needs to be chosen by the user among chats of the specified
+--   types
+TargetChatChosen :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> TargetChat
+
+-- | True, if channel chats are allowed
+[allow_channel_chats] :: TargetChat -> Maybe Bool
+
+-- | True, if basic group and supergroup chats are allowed
+[allow_group_chats] :: TargetChat -> Maybe Bool
+
+-- | True, if private chats with other bots are allowed
+[allow_bot_chats] :: TargetChat -> Maybe Bool
+
+-- | True, if private chats with ordinary users are allowed
+[allow_user_chats] :: TargetChat -> Maybe Bool
+
+-- | The chat needs to be open with the provided internal link @link An
+--   internal link pointing to the chat
+TargetChatInternalLink :: Maybe InternalLinkType -> TargetChat
+
+[link] :: TargetChat -> Maybe InternalLinkType
+instance GHC.Classes.Eq TD.Data.TargetChat.TargetChat
+instance GHC.Show.Show TD.Data.TargetChat.TargetChat
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.TargetChat.TargetChat
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.TargetChat.TargetChat
+
+
 module TD.Data.SupergroupMembersFilter
 
 -- | Specifies the kind of chat members to return in getSupergroupMembers
@@ -6852,7 +7033,8 @@ SecretChat :: Maybe Int -> Maybe String -> Maybe Bool -> Maybe SecretChatState -
 
 -- | Secret chat layer; determines features supported by the chat partner's
 --   application. Nested text entities and underline and strikethrough
---   entities are supported if the layer &gt;= 101
+--   entities are supported if the layer &gt;= 101, files bigger than
+--   2000MB are supported if the layer &gt;= 143
 [layer] :: SecretChat -> Maybe Int
 
 -- | Hash of the currently used key for comparison with the hash of the
@@ -7268,8 +7450,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetCreatedPublicChats.GetCreate
 module TD.Query.CheckCreatedPublicChatsLimit
 
 -- | Checks whether the maximum number of owned public chats has been
---   reached. Returns corresponding error if the limit was reached @type
---   Type of the public chats, for which to check the limit
+--   reached. Returns corresponding error if the limit was reached. The
+--   limit can be increased with Telegram Premium @type Type of the public
+--   chats, for which to check the limit
 data CheckCreatedPublicChatsLimit
 CheckCreatedPublicChatsLimit :: Maybe PublicChatType -> CheckCreatedPublicChatsLimit
 
@@ -7423,6 +7606,183 @@ instance GHC.Classes.Eq TD.Data.Proxies.Proxies
 instance GHC.Show.Show TD.Data.Proxies.Proxies
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.Proxies.Proxies
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.Proxies.Proxies
+
+
+module TD.Data.PremiumLimitType
+
+-- | Describes type of a limit, increased for Premium users
+data PremiumLimitType
+
+-- | The maximum number of joined supergroups and channels
+PremiumLimitTypeSupergroupCount :: PremiumLimitType
+
+-- | The maximum number of pinned chats in the main chat list
+PremiumLimitTypePinnedChatCount :: PremiumLimitType
+
+-- | The maximum number of created public chats
+PremiumLimitTypeCreatedPublicChatCount :: PremiumLimitType
+
+-- | The maximum number of saved animations
+PremiumLimitTypeSavedAnimationCount :: PremiumLimitType
+
+-- | The maximum number of favorite stickers
+PremiumLimitTypeFavoriteStickerCount :: PremiumLimitType
+
+-- | The maximum number of chat filters
+PremiumLimitTypeChatFilterCount :: PremiumLimitType
+
+-- | The maximum number of pinned and always included, or always excluded
+--   chats in a chat filter
+PremiumLimitTypeChatFilterChosenChatCount :: PremiumLimitType
+
+-- | The maximum number of pinned chats in the archive chat list
+PremiumLimitTypePinnedArchivedChatCount :: PremiumLimitType
+
+-- | The maximum length of sent media caption
+PremiumLimitTypeCaptionLength :: PremiumLimitType
+
+-- | The maximum length of the user's bio
+PremiumLimitTypeBioLength :: PremiumLimitType
+instance GHC.Classes.Eq TD.Data.PremiumLimitType.PremiumLimitType
+instance GHC.Show.Show TD.Data.PremiumLimitType.PremiumLimitType
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumLimitType.PremiumLimitType
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumLimitType.PremiumLimitType
+
+
+module TD.Query.GetPremiumLimit
+
+-- | Returns information about a limit, increased for Premium users.
+--   Returns a 404 error if the limit is unknown @limit_type Type of the
+--   limit
+data GetPremiumLimit
+GetPremiumLimit :: Maybe PremiumLimitType -> GetPremiumLimit
+
+[limit_type] :: GetPremiumLimit -> Maybe PremiumLimitType
+instance GHC.Classes.Eq TD.Query.GetPremiumLimit.GetPremiumLimit
+instance GHC.Show.Show TD.Query.GetPremiumLimit.GetPremiumLimit
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPremiumLimit.GetPremiumLimit
+
+
+module TD.Data.PremiumLimit
+
+data PremiumLimit
+
+-- | Contains information about a limit, increased for Premium users
+--   <tt>type The type of the limit </tt>default_value Default value of the
+--   limit @premium_value Value of the limit for Premium users
+PremiumLimit :: Maybe Int -> Maybe Int -> Maybe PremiumLimitType -> PremiumLimit
+
+[premium_value] :: PremiumLimit -> Maybe Int
+
+[default_value] :: PremiumLimit -> Maybe Int
+
+[_type] :: PremiumLimit -> Maybe PremiumLimitType
+instance GHC.Classes.Eq TD.Data.PremiumLimit.PremiumLimit
+instance GHC.Show.Show TD.Data.PremiumLimit.PremiumLimit
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumLimit.PremiumLimit
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumLimit.PremiumLimit
+
+
+module TD.Data.PremiumFeature
+
+-- | Describes a feature available to Premium users
+data PremiumFeature
+
+-- | Increased limits
+PremiumFeatureIncreasedLimits :: PremiumFeature
+
+-- | Increased maximum upload file size
+PremiumFeatureIncreasedUploadFileSize :: PremiumFeature
+
+-- | Improved download speed
+PremiumFeatureImprovedDownloadSpeed :: PremiumFeature
+
+-- | The ability to convert voice notes to text
+PremiumFeatureVoiceRecognition :: PremiumFeature
+
+-- | Disabled ads
+PremiumFeatureDisabledAds :: PremiumFeature
+
+-- | Allowed to use more reactions
+PremiumFeatureUniqueReactions :: PremiumFeature
+
+-- | Allowed to use premium stickers with unique effects
+PremiumFeatureUniqueStickers :: PremiumFeature
+
+-- | Ability to change position of the main chat list, archive and mute all
+--   new chats from non-contacts, and completely disable notifications
+--   about the user's contacts joined Telegram
+PremiumFeatureAdvancedChatManagement :: PremiumFeature
+
+-- | A badge in the user's profile
+PremiumFeatureProfileBadge :: PremiumFeature
+
+-- | Profile photo animation on message and chat screens
+PremiumFeatureAnimatedProfilePhoto :: PremiumFeature
+
+-- | Allowed to set a premium appllication icons
+PremiumFeatureAppIcons :: PremiumFeature
+instance GHC.Classes.Eq TD.Data.PremiumFeature.PremiumFeature
+instance GHC.Show.Show TD.Data.PremiumFeature.PremiumFeature
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumFeature.PremiumFeature
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumFeature.PremiumFeature
+
+
+module TD.Query.ViewPremiumFeature
+
+-- | Informs TDLib that the user viewed detailed information about a
+--   Premium feature on the Premium features screen @feature The viewed
+--   premium feature
+data ViewPremiumFeature
+ViewPremiumFeature :: Maybe PremiumFeature -> ViewPremiumFeature
+
+[feature] :: ViewPremiumFeature -> Maybe PremiumFeature
+instance GHC.Classes.Eq TD.Query.ViewPremiumFeature.ViewPremiumFeature
+instance GHC.Show.Show TD.Query.ViewPremiumFeature.ViewPremiumFeature
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ViewPremiumFeature.ViewPremiumFeature
+
+
+module TD.Data.PremiumSource
+
+-- | Describes a source from which the Premium features screen is opened
+data PremiumSource
+
+-- | A limit was exceeded @limit_type Type of the exceeded limit
+PremiumSourceLimitExceeded :: Maybe PremiumLimitType -> PremiumSource
+
+[limit_type] :: PremiumSource -> Maybe PremiumLimitType
+
+-- | A user tried to use a Premium feature @feature The used feature
+PremiumSourceFeature :: Maybe PremiumFeature -> PremiumSource
+
+[feature] :: PremiumSource -> Maybe PremiumFeature
+
+-- | A user opened an internal link of the type
+--   internalLinkTypePremiumFeatures @referrer The referrer from the link
+PremiumSourceLink :: Maybe String -> PremiumSource
+
+[referrer] :: PremiumSource -> Maybe String
+
+-- | A user opened the Premium features screen from settings
+PremiumSourceSettings :: PremiumSource
+instance GHC.Classes.Eq TD.Data.PremiumSource.PremiumSource
+instance GHC.Show.Show TD.Data.PremiumSource.PremiumSource
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumSource.PremiumSource
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumSource.PremiumSource
+
+
+module TD.Query.GetPremiumFeatures
+
+-- | Returns information about features, available to Premium users @source
+--   Source of the request; pass null if the method is called from some
+--   non-standard source
+data GetPremiumFeatures
+GetPremiumFeatures :: Maybe PremiumSource -> GetPremiumFeatures
+
+[source] :: GetPremiumFeatures -> Maybe PremiumSource
+instance GHC.Classes.Eq TD.Query.GetPremiumFeatures.GetPremiumFeatures
+instance GHC.Show.Show TD.Query.GetPremiumFeatures.GetPremiumFeatures
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPremiumFeatures.GetPremiumFeatures
 
 
 module TD.Data.PollOption
@@ -7610,30 +7970,6 @@ instance GHC.Show.Show TD.Query.ChangePhoneNumber.ChangePhoneNumber
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ChangePhoneNumber.ChangePhoneNumber
 
 
-module TD.Data.PaymentsProviderStripe
-
-data PaymentsProviderStripe
-
--- | Stripe payment provider <tt>publishable_key Stripe API publishable key
---   </tt>need_country True, if the user country must be provided
---   <tt>need_postal_code True, if the user ZIP/postal code must be
---   provided </tt>need_cardholder_name True, if the cardholder name must
---   be provided
-PaymentsProviderStripe :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe String -> PaymentsProviderStripe
-
-[need_cardholder_name] :: PaymentsProviderStripe -> Maybe Bool
-
-[need_postal_code] :: PaymentsProviderStripe -> Maybe Bool
-
-[need_country] :: PaymentsProviderStripe -> Maybe Bool
-
-[publishable_key] :: PaymentsProviderStripe -> Maybe String
-instance GHC.Classes.Eq TD.Data.PaymentsProviderStripe.PaymentsProviderStripe
-instance GHC.Show.Show TD.Data.PaymentsProviderStripe.PaymentsProviderStripe
-instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PaymentsProviderStripe.PaymentsProviderStripe
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PaymentsProviderStripe.PaymentsProviderStripe
-
-
 module TD.Data.PaymentResult
 
 data PaymentResult
@@ -7651,6 +7987,42 @@ instance GHC.Classes.Eq TD.Data.PaymentResult.PaymentResult
 instance GHC.Show.Show TD.Data.PaymentResult.PaymentResult
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PaymentResult.PaymentResult
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PaymentResult.PaymentResult
+
+
+module TD.Data.PaymentProvider
+
+-- | Contains information about a payment provider
+data PaymentProvider
+
+-- | Smart Glocal payment provider @public_token Public payment token
+PaymentProviderSmartGlocal :: Maybe String -> PaymentProvider
+
+[public_token] :: PaymentProvider -> Maybe String
+
+-- | Stripe payment provider <tt>publishable_key Stripe API publishable key
+--   </tt>need_country True, if the user country must be provided
+--   <tt>need_postal_code True, if the user ZIP/postal code must be
+--   provided </tt>need_cardholder_name True, if the cardholder name must
+--   be provided
+PaymentProviderStripe :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe String -> PaymentProvider
+
+[need_cardholder_name] :: PaymentProvider -> Maybe Bool
+
+[need_postal_code] :: PaymentProvider -> Maybe Bool
+
+[need_country] :: PaymentProvider -> Maybe Bool
+
+[publishable_key] :: PaymentProvider -> Maybe String
+
+-- | Some other payment provider, for which a web payment form must be
+--   shown @url Payment form URL
+PaymentProviderOther :: Maybe String -> PaymentProvider
+
+[url] :: PaymentProvider -> Maybe String
+instance GHC.Classes.Eq TD.Data.PaymentProvider.PaymentProvider
+instance GHC.Show.Show TD.Data.PaymentProvider.PaymentProvider
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PaymentProvider.PaymentProvider
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PaymentProvider.PaymentProvider
 
 
 module TD.Data.PassportElementType
@@ -9604,7 +9976,7 @@ KeyboardButtonTypeRequestPoll :: Maybe Bool -> Maybe Bool -> KeyboardButtonType
 
 [force_regular] :: KeyboardButtonType -> Maybe Bool
 
--- | A button that opens a web app by calling getWebAppUrl @url An HTTP URL
+-- | A button that opens a Web App by calling getWebAppUrl @url An HTTP URL
 --   to pass to getWebAppUrl
 KeyboardButtonTypeWebApp :: Maybe String -> KeyboardButtonType
 
@@ -9722,8 +10094,8 @@ module TD.Data.Invoice
 
 data Invoice
 
--- | Product invoice @currency ISO 4217 currency code
-Invoice :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe [Int] -> Maybe Int -> Maybe [LabeledPricePart] -> Maybe String -> Invoice
+-- | Product invoice
+Invoice :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe [Int] -> Maybe Int -> Maybe [LabeledPricePart] -> Maybe String -> Invoice
 
 -- | True, if the total price depends on the shipping method
 [is_flexible] :: Invoice -> Maybe Bool
@@ -9749,6 +10121,11 @@ Invoice :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool ->
 -- | True, if the payment is a test payment
 [is_test] :: Invoice -> Maybe Bool
 
+-- | An HTTP URL with terms of service for recurring payments. If
+--   non-empty, the invoice payment will result in recurring payments and
+--   the user must accept the terms of service before allowed to pay
+[recurring_payment_terms_of_service_url] :: Invoice -> Maybe String
+
 -- | Suggested amounts of tip in the smallest units of the currency
 [suggested_tip_amounts] :: Invoice -> Maybe [Int]
 
@@ -9759,6 +10136,7 @@ Invoice :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool ->
 -- | A list of objects used to calculate the total price of the product
 [price_parts] :: Invoice -> Maybe [LabeledPricePart]
 
+-- | ISO 4217 currency code
 [currency] :: Invoice -> Maybe String
 instance GHC.Classes.Eq TD.Data.Invoice.Invoice
 instance GHC.Show.Show TD.Data.Invoice.Invoice
@@ -9880,6 +10258,47 @@ instance GHC.Show.Show TD.Query.SetPassportElementErrors.SetPassportElementError
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SetPassportElementErrors.SetPassportElementErrors
 
 
+module TD.Data.InputInvoice
+
+-- | Describe an invoice to process
+data InputInvoice
+
+-- | An invoice from a message of the type messageInvoice <tt>chat_id Chat
+--   identifier of the message </tt>message_id Message identifier
+InputInvoiceMessage :: Maybe Int -> Maybe Int -> InputInvoice
+
+[message_id] :: InputInvoice -> Maybe Int
+
+[chat_id] :: InputInvoice -> Maybe Int
+
+-- | An invoice from a link of the type internalLinkTypeInvoice @name Name
+--   of the invoice
+InputInvoiceName :: Maybe String -> InputInvoice
+
+[name] :: InputInvoice -> Maybe String
+instance GHC.Classes.Eq TD.Data.InputInvoice.InputInvoice
+instance GHC.Show.Show TD.Data.InputInvoice.InputInvoice
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.InputInvoice.InputInvoice
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.InputInvoice.InputInvoice
+
+
+module TD.Query.GetPaymentForm
+
+-- | Returns an invoice payment form. This method must be called when the
+--   user presses inlineKeyboardButtonBuy
+data GetPaymentForm
+GetPaymentForm :: Maybe ThemeParameters -> Maybe InputInvoice -> GetPaymentForm
+
+-- | Preferred payment form theme; pass null to use the default theme
+[theme] :: GetPaymentForm -> Maybe ThemeParameters
+
+-- | The invoice
+[input_invoice] :: GetPaymentForm -> Maybe InputInvoice
+instance GHC.Classes.Eq TD.Query.GetPaymentForm.GetPaymentForm
+instance GHC.Show.Show TD.Query.GetPaymentForm.GetPaymentForm
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPaymentForm.GetPaymentForm
+
+
 module TD.Data.InputFile
 
 -- | Points to a file
@@ -9955,7 +10374,7 @@ SetStickerPositionInSet :: Maybe Int -> Maybe InputFile -> SetStickerPositionInS
 
 [position] :: SetStickerPositionInSet -> Maybe Int
 
--- | Sticker @position New position of the sticker in the set, zero-based
+-- | Sticker @position New position of the sticker in the set, 0-based
 [sticker] :: SetStickerPositionInSet -> Maybe InputFile
 instance GHC.Classes.Eq TD.Query.SetStickerPositionInSet.SetStickerPositionInSet
 instance GHC.Show.Show TD.Query.SetStickerPositionInSet.SetStickerPositionInSet
@@ -10317,10 +10736,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.InputCredentials.InputCredential
 module TD.Query.SendPaymentForm
 
 -- | Sends a filled-out payment form to the bot for final verification
---   <tt>chat_id Chat identifier of the Invoice message </tt>message_id
---   Message identifier
+--   @input_invoice The invoice
 data SendPaymentForm
-SendPaymentForm :: Maybe Int -> Maybe InputCredentials -> Maybe String -> Maybe String -> Maybe Int -> Maybe Int -> Maybe Int -> SendPaymentForm
+SendPaymentForm :: Maybe Int -> Maybe InputCredentials -> Maybe String -> Maybe String -> Maybe Int -> Maybe InputInvoice -> SendPaymentForm
 
 [tip_amount] :: SendPaymentForm -> Maybe Int
 
@@ -10338,9 +10756,7 @@ SendPaymentForm :: Maybe Int -> Maybe InputCredentials -> Maybe String -> Maybe 
 --   applicable
 [payment_form_id] :: SendPaymentForm -> Maybe Int
 
-[message_id] :: SendPaymentForm -> Maybe Int
-
-[chat_id] :: SendPaymentForm -> Maybe Int
+[input_invoice] :: SendPaymentForm -> Maybe InputInvoice
 instance GHC.Classes.Eq TD.Query.SendPaymentForm.SendPaymentForm
 instance GHC.Show.Show TD.Query.SendPaymentForm.SendPaymentForm
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SendPaymentForm.SendPaymentForm
@@ -10454,7 +10870,7 @@ InlineKeyboardButtonTypeLoginUrl :: Maybe String -> Maybe Int -> Maybe String ->
 
 [url] :: InlineKeyboardButtonType -> Maybe String
 
--- | A button that opens a web app by calling openWebApp @url An HTTP URL
+-- | A button that opens a Web App by calling openWebApp @url An HTTP URL
 --   to pass to openWebApp
 InlineKeyboardButtonTypeWebApp :: Maybe String -> InlineKeyboardButtonType
 
@@ -11639,6 +12055,21 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.FilePart.FilePart
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.FilePart.FilePart
 
 
+module TD.Data.FileDownloadedPrefixSize
+
+data FileDownloadedPrefixSize
+
+-- | Contains size of downloaded prefix of a file @size The prefix size, in
+--   bytes
+FileDownloadedPrefixSize :: Maybe Int -> FileDownloadedPrefixSize
+
+[size] :: FileDownloadedPrefixSize -> Maybe Int
+instance GHC.Classes.Eq TD.Data.FileDownloadedPrefixSize.FileDownloadedPrefixSize
+instance GHC.Show.Show TD.Data.FileDownloadedPrefixSize.FileDownloadedPrefixSize
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.FileDownloadedPrefixSize.FileDownloadedPrefixSize
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.FileDownloadedPrefixSize.FileDownloadedPrefixSize
+
+
 module TD.Data.File
 
 data File
@@ -11673,19 +12104,26 @@ data VoiceNote
 
 -- | Describes a voice note. The voice note must be encoded with the Opus
 --   codec, and stored inside an OGG container. Voice notes can have only a
---   single audio channel @duration Duration of the voice note, in seconds;
---   as defined by the sender
-VoiceNote :: Maybe File -> Maybe String -> Maybe String -> Maybe Int -> VoiceNote
+--   single audio channel
+VoiceNote :: Maybe File -> Maybe String -> Maybe Bool -> Maybe String -> Maybe String -> Maybe Int -> VoiceNote
 
 [voice] :: VoiceNote -> Maybe File
 
+-- | Recognized text of the voice note; Premium users only. Call
+--   recognizeSpeech to get recognized text of the voice note @voice File
+--   containing the voice note
+[recognized_text] :: VoiceNote -> Maybe String
+
+[is_recognized] :: VoiceNote -> Maybe Bool
+
+-- | MIME type of the file; as defined by the sender @is_recognized True,
+--   if speech recognition is completed; Premium users only
 [mime_type] :: VoiceNote -> Maybe String
 
--- | A waveform representation of the voice note in 5-bit format
---   <tt>mime_type MIME type of the file; as defined by the sender
---   </tt>voice File containing the voice note
 [waveform] :: VoiceNote -> Maybe String
 
+-- | Duration of the voice note, in seconds; as defined by the sender
+--   @waveform A waveform representation of the voice note in 5-bit format
 [duration] :: VoiceNote -> Maybe Int
 instance GHC.Classes.Eq TD.Data.VoiceNote.VoiceNote
 instance GHC.Show.Show TD.Data.VoiceNote.VoiceNote
@@ -11818,7 +12256,11 @@ module TD.Data.User
 data User
 
 -- | Represents a user
-User :: Maybe String -> Maybe UserType -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe ProfilePhoto -> Maybe UserStatus -> Maybe String -> Maybe String -> Maybe String -> Maybe String -> Maybe Int -> User
+User :: Maybe Bool -> Maybe String -> Maybe UserType -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe ProfilePhoto -> Maybe UserStatus -> Maybe String -> Maybe String -> Maybe String -> Maybe String -> Maybe Int -> User
+
+-- | True, if the user added the current bot to attachment menu; only
+--   available to bots
+[added_to_attachment_menu] :: User -> Maybe Bool
 
 -- | IETF language tag of the user's language; only available to bots
 [language_code] :: User -> Maybe String
@@ -11843,6 +12285,9 @@ User :: Maybe String -> Maybe UserType -> Maybe Bool -> Maybe Bool -> Maybe Bool
 
 -- | True, if the user is Telegram support account
 [is_support] :: User -> Maybe Bool
+
+-- | True, if the user is a Telegram Premium user
+[is_premium] :: User -> Maybe Bool
 
 -- | True, if the user is verified
 [is_verified] :: User -> Maybe Bool
@@ -12989,9 +13434,11 @@ InputMessageDocument :: Maybe FormattedText -> Maybe Bool -> Maybe InputThumbnai
 
 [document] :: InputMessageContent -> Maybe InputFile
 
--- | A photo message <tt>photo Photo to send </tt>thumbnail Photo thumbnail
---   to be sent; pass null to skip thumbnail uploading. The thumbnail is
---   sent to the other party only in secret chats
+-- | A photo message <tt>photo Photo to send. The photo must be at most 10
+--   MB in size. The photo's width and height must not exceed 10000 in
+--   total. Width and height ratio must be at most 20 </tt>thumbnail Photo
+--   thumbnail to be sent; pass null to skip thumbnail uploading. The
+--   thumbnail is sent to the other party only in secret chats
 --   <tt>added_sticker_file_ids File identifiers of the stickers added to
 --   the photo, if applicable </tt>width Photo width <tt>height Photo
 --   height </tt>caption Photo caption; pass null to use an empty caption;
@@ -13390,6 +13837,19 @@ EditInlineMessageMedia :: Maybe InputMessageContent -> Maybe ReplyMarkup -> Mayb
 instance GHC.Classes.Eq TD.Query.EditInlineMessageMedia.EditInlineMessageMedia
 instance GHC.Show.Show TD.Query.EditInlineMessageMedia.EditInlineMessageMedia
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.EditInlineMessageMedia.EditInlineMessageMedia
+
+
+module TD.Query.CreateInvoiceLink
+
+-- | Creates a link for the given invoice; for bots only @invoice
+--   Information about the invoice of the type inputMessageInvoice
+data CreateInvoiceLink
+CreateInvoiceLink :: Maybe InputMessageContent -> CreateInvoiceLink
+
+[invoice] :: CreateInvoiceLink -> Maybe InputMessageContent
+instance GHC.Classes.Eq TD.Query.CreateInvoiceLink.CreateInvoiceLink
+instance GHC.Show.Show TD.Query.CreateInvoiceLink.CreateInvoiceLink
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CreateInvoiceLink.CreateInvoiceLink
 
 
 module TD.Query.AddLocalMessage
@@ -13849,7 +14309,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.InputInlineQueryResult.InputInli
 
 module TD.Query.AnswerWebAppQuery
 
--- | Sets the result of interaction with a web app and sends corresponding
+-- | Sets the result of interaction with a Web App and sends corresponding
 --   message on behalf of the user to the chat from which the query
 --   originated; for bots only
 data AnswerWebAppQuery
@@ -13858,7 +14318,7 @@ AnswerWebAppQuery :: Maybe InputInlineQueryResult -> Maybe String -> AnswerWebAp
 -- | The result of the query
 [result] :: AnswerWebAppQuery -> Maybe InputInlineQueryResult
 
--- | Identifier of the web app query
+-- | Identifier of the Web App query
 [web_app_query_id] :: AnswerWebAppQuery -> Maybe String
 instance GHC.Classes.Eq TD.Query.AnswerWebAppQuery.AnswerWebAppQuery
 instance GHC.Show.Show TD.Query.AnswerWebAppQuery.AnswerWebAppQuery
@@ -14006,11 +14466,15 @@ data Sticker
 -- | Describes a sticker <tt>set_id The identifier of the sticker set to
 --   which the sticker belongs; 0 if none </tt>width Sticker width; as
 --   defined by the sender @height Sticker height; as defined by the sender
-Sticker :: Maybe File -> Maybe Thumbnail -> Maybe [ClosedVectorPath] -> Maybe StickerType -> Maybe String -> Maybe Int -> Maybe Int -> Maybe Int -> Sticker
+Sticker :: Maybe File -> Maybe File -> Maybe Thumbnail -> Maybe [ClosedVectorPath] -> Maybe StickerType -> Maybe String -> Maybe Int -> Maybe Int -> Maybe Int -> Sticker
 
 [sticker] :: Sticker -> Maybe File
 
--- | Sticker thumbnail in WEBP or JPEG format; may be null @sticker File
+[premium_animation] :: Sticker -> Maybe File
+
+-- | Sticker thumbnail in WEBP or JPEG format; may be null
+--   <tt>premium_animation Premium animation of the sticker; may be null.
+--   If present, only Premium users can send the sticker </tt>sticker File
 --   containing the sticker
 [thumbnail] :: Sticker -> Maybe Thumbnail
 
@@ -14099,6 +14563,27 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.StickerSetInfo.StickerSetInf
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.StickerSetInfo.StickerSetInfo
 
 
+module TD.Data.TrendingStickerSets
+
+data TrendingStickerSets
+
+-- | Represents a list of trending sticker sets <tt>total_count Approximate
+--   total number of trending sticker sets </tt>sets List of trending
+--   sticker sets @is_premium True, if the list contains sticker sets with
+--   premium stickers
+TrendingStickerSets :: Maybe Bool -> Maybe [StickerSetInfo] -> Maybe Int -> TrendingStickerSets
+
+[is_premium] :: TrendingStickerSets -> Maybe Bool
+
+[sets] :: TrendingStickerSets -> Maybe [StickerSetInfo]
+
+[total_count] :: TrendingStickerSets -> Maybe Int
+instance GHC.Classes.Eq TD.Data.TrendingStickerSets.TrendingStickerSets
+instance GHC.Show.Show TD.Data.TrendingStickerSets.TrendingStickerSets
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.TrendingStickerSets.TrendingStickerSets
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.TrendingStickerSets.TrendingStickerSets
+
+
 module TD.Data.StickerSets
 
 data StickerSets
@@ -14174,7 +14659,7 @@ module TD.Data.Reaction
 data Reaction
 
 -- | Contains stickers which must be used for reaction animation rendering
-Reaction :: Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Bool -> Maybe String -> Maybe String -> Reaction
+Reaction :: Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe String -> Reaction
 
 -- | Center animation for the reaction; may be null
 [center_animation] :: Reaction -> Maybe Sticker
@@ -14196,6 +14681,9 @@ Reaction :: Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> Maybe Sticker -> 
 
 -- | Static icon for the reaction
 [static_icon] :: Reaction -> Maybe Sticker
+
+-- | True, if the reaction is available only for Premium users
+[is_premium] :: Reaction -> Maybe Bool
 
 -- | True, if the reaction can be added to new messages and enabled in
 --   chats
@@ -14991,7 +15479,8 @@ module TD.Query.ToggleChatIsPinned
 -- | Changes the pinned state of a chat. There can be up to
 --   GetOption("pinned_chat_count_max")<i>GetOption("pinned_archived_chat_count_max")
 --   pinned non-secret chats and the same number of secret chats in the
---   main</i>archive chat list
+--   main</i>archive chat list. The limit can be increased with Telegram
+--   Premium
 data ToggleChatIsPinned
 ToggleChatIsPinned :: Maybe Bool -> Maybe Int -> Maybe ChatList -> ToggleChatIsPinned
 
@@ -15555,7 +16044,8 @@ ChatFilterInfo :: Maybe String -> Maybe String -> Maybe Int -> ChatFilterInfo
 --   <a>Setup</a>, <a>Cat</a>, <a>Crown</a>, <a>Favorite</a>,
 --   <a>Flower</a>, <a>Game</a>, <a>Home</a>, <a>Love</a>, <a>Mask</a>,
 --   <a>Party</a>, <a>Sport</a>, <a>Study</a>, <a>Trade</a>, <a>Travel</a>,
---   <a>Work</a>
+--   <a>Work</a>, <a>Airplane</a>, <a>Book</a>, <a>Light</a>, <a>Like</a>,
+--   <a>Money</a>, <a>Note</a>, <a>Palette</a>
 [icon_name] :: ChatFilterInfo -> Maybe String
 
 -- | The title of the filter; 1-12 characters without line feeds
@@ -15601,14 +16091,23 @@ ChatFilter :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool
 [exclude_muted] :: ChatFilter -> Maybe Bool
 
 -- | The chat identifiers of always excluded chats in the filtered chat
---   list
+--   list. There can be up to
+--   GetOption("chat_filter_chosen_chat_count_max") always excluded
+--   non-secret chats and the same number of secret chats, but the limit
+--   can be increased with Telegram Premium
 [excluded_chat_ids] :: ChatFilter -> Maybe [Int]
 
 -- | The chat identifiers of always included chats in the filtered chat
---   list
+--   list. There can be up to
+--   GetOption("chat_filter_chosen_chat_count_max") pinned and always
+--   included non-secret chats and the same number of secret chats, but the
+--   limit can be increased with Telegram Premium
 [included_chat_ids] :: ChatFilter -> Maybe [Int]
 
--- | The chat identifiers of pinned chats in the filtered chat list
+-- | The chat identifiers of pinned chats in the filtered chat list. There
+--   can be up to GetOption("chat_filter_chosen_chat_count_max") pinned and
+--   always included non-secret chats and the same number of secret chats,
+--   but the limit can be increased with Telegram Premium
 [pinned_chat_ids] :: ChatFilter -> Maybe [Int]
 
 -- | The chosen icon name for short filter representation. If non-empty,
@@ -15617,8 +16116,9 @@ ChatFilter :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool
 --   <a>Setup</a>, <a>Cat</a>, <a>Crown</a>, <a>Favorite</a>,
 --   <a>Flower</a>, <a>Game</a>, <a>Home</a>, <a>Love</a>, <a>Mask</a>,
 --   <a>Party</a>, <a>Sport</a>, <a>Study</a>, <a>Trade</a>, <a>Travel</a>,
---   <a>Work</a>. If empty, use getChatFilterDefaultIconName to get default
---   icon name for the filter
+--   <a>Work</a>, <a>Airplane</a>, <a>Book</a>, <a>Light</a>, <a>Like</a>,
+--   <a>Money</a>, <a>Note</a>, <a>Palette</a>. If empty, use
+--   getChatFilterDefaultIconName to get default icon name for the filter
 [icon_name] :: ChatFilter -> Maybe String
 
 -- | The title of the filter; 1-12 characters without line feeds
@@ -15661,7 +16161,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.EditChatFilter.EditChatFilter
 module TD.Query.CreateChatFilter
 
 -- | Creates new chat filter. Returns information about the created chat
---   filter @filter Chat filter
+--   filter. There can be up to GetOption("chat_filter_count_max") chat
+--   filters, but the limit can be increased with Telegram Premium @filter
+--   Chat filter
 data CreateChatFilter
 CreateChatFilter :: Maybe ChatFilter -> CreateChatFilter
 
@@ -15873,34 +16375,33 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SetDefaultChannelAdministratorR
 module TD.Data.InternalLinkType
 
 -- | Describes an internal <a>https://t.me</a> or tg: link, which must be
---   processed by the app in a special way
+--   processed by the application in a special way
 data InternalLinkType
 
--- | The link is a link to the active sessions section of the app. Use
---   getActiveSessions to handle the link
+-- | The link is a link to the active sessions section of the application.
+--   Use getActiveSessions to handle the link
 InternalLinkTypeActiveSessions :: InternalLinkType
 
 -- | The link is a link to an attachment menu bot to be opened in the
---   specified chat. Process given chat_link to open corresponding chat.
---   Then call searchPublicChat with the given bot username, check that the
---   user is a bot and can be added to attachment menu. Then use
+--   specified or a chosen chat. Process given target_chat to open the
+--   chat. Then call searchPublicChat with the given bot username, check
+--   that the user is a bot and can be added to attachment menu. Then use
 --   getAttachmentMenuBot to receive information about the bot. If the bot
 --   isn't added to attachment menu, then user needs to confirm adding the
 --   bot to attachment menu. If user confirms adding, then use
---   toggleBotIsAddedToAttachmentMenu to add it. If attachment menu bots
---   can't be used in the current chat, show an error to the user. If the
---   bot is added to attachment menu, then use openWebApp with the given
---   URL
-InternalLinkTypeAttachmentMenuBot :: Maybe String -> Maybe String -> Maybe InternalLinkType -> InternalLinkType
+--   toggleBotIsAddedToAttachmentMenu to add it. If the attachment menu bot
+--   can't be used in the opened chat, show an error to the user. If the
+--   bot is added to attachment menu and can be used in the chat, then use
+--   openWebApp with the given URL
+InternalLinkTypeAttachmentMenuBot :: Maybe String -> Maybe String -> Maybe TargetChat -> InternalLinkType
 
 [url] :: InternalLinkType -> Maybe String
 
 [bot_username] :: InternalLinkType -> Maybe String
 
--- | An internal link pointing to a chat; may be null if the current chat
---   needs to be kept <tt>bot_username Username of the bot </tt>url URL to
---   be passed to openWebApp
-[chat_link] :: InternalLinkType -> Maybe InternalLinkType
+-- | Target chat to be opened <tt>bot_username Username of the bot </tt>url
+--   URL to be passed to openWebApp
+[target_chat] :: InternalLinkType -> Maybe TargetChat
 
 -- | The link contains an authentication code. Call checkAuthenticationCode
 --   with the code if the current authorization state is
@@ -15991,6 +16492,12 @@ InternalLinkTypeGame :: Maybe String -> Maybe String -> InternalLinkType
 
 [bot_username] :: InternalLinkType -> Maybe String
 
+-- | The link is a link to an invoice. Call getPaymentForm with the given
+--   invoice name to process the link @invoice_name Name of the invoice
+InternalLinkTypeInvoice :: Maybe String -> InternalLinkType
+
+[invoice_name] :: InternalLinkType -> Maybe String
+
 -- | The link is a link to a language pack. Call getLanguagePackInfo with
 --   the given language pack identifier to process the link
 --   @language_pack_id Language pack identifier
@@ -16022,8 +16529,8 @@ InternalLinkTypeMessageDraft :: Maybe Bool -> Maybe FormattedText -> InternalLin
 
 -- | The link contains a request of Telegram passport data. Call
 --   getPassportAuthorizationForm with the given parameters to process the
---   link if the link was received from outside of the app, otherwise
---   ignore it
+--   link if the link was received from outside of the application,
+--   otherwise ignore it
 InternalLinkTypePassportDataRequest :: Maybe String -> Maybe String -> Maybe String -> Maybe String -> Maybe Int -> InternalLinkType
 
 -- | An HTTP URL to open once the request is finished or canceled with the
@@ -16053,6 +16560,14 @@ InternalLinkTypePhoneNumberConfirmation :: Maybe String -> Maybe String -> Inter
 -- | Hash value from the link @phone_number Phone number value from the
 --   link
 [hash] :: InternalLinkType -> Maybe String
+
+-- | The link is a link to the Premium features screen of the applcation
+--   from which the user can subscribe to Telegram Premium. Call
+--   getPremiumFeatures with the given referrer to process the link
+--   @referrer Referrer specified in the link
+InternalLinkTypePremiumFeatures :: Maybe String -> InternalLinkType
+
+[referrer] :: InternalLinkType -> Maybe String
 
 -- | The link is a link to the privacy and security settings section of the
 --   app
@@ -16084,7 +16599,7 @@ InternalLinkTypePublicChat :: Maybe String -> InternalLinkType
 --   &gt; Scan QR and scan the code" needs to be shown
 InternalLinkTypeQrCodeAuthentication :: InternalLinkType
 
--- | The link is a link to app settings
+-- | The link is a link to application settings
 InternalLinkTypeSettings :: InternalLinkType
 
 -- | The link is a link to a sticker set. Call searchStickerSet with the
@@ -16136,6 +16651,30 @@ instance GHC.Classes.Eq TD.Data.InternalLinkType.InternalLinkType
 instance GHC.Show.Show TD.Data.InternalLinkType.InternalLinkType
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.InternalLinkType.InternalLinkType
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.InternalLinkType.InternalLinkType
+
+
+module TD.Data.PremiumFeatures
+
+data PremiumFeatures
+
+-- | Contains information about features, available to Premium users
+--   <tt>features The list of available features </tt>limits The list of
+--   limits, increased for Premium users
+PremiumFeatures :: Maybe InternalLinkType -> Maybe [PremiumLimit] -> Maybe [PremiumFeature] -> PremiumFeatures
+
+-- | An internal link to be opened to pay for Telegram Premium if store
+--   payment isn't possible; may be null if direct payment isn't available.
+--   If the link has type internalLinkTypeBotStart, then
+--   sendBotStartMessage must be called automatically
+[payment_link] :: PremiumFeatures -> Maybe InternalLinkType
+
+[limits] :: PremiumFeatures -> Maybe [PremiumLimit]
+
+[features] :: PremiumFeatures -> Maybe [PremiumFeature]
+instance GHC.Classes.Eq TD.Data.PremiumFeatures.PremiumFeatures
+instance GHC.Show.Show TD.Data.PremiumFeatures.PremiumFeatures
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumFeatures.PremiumFeatures
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumFeatures.PremiumFeatures
 
 
 module TD.Data.ChatMemberStatus
@@ -16248,7 +16787,7 @@ data Supergroup
 --   all administrators use the name and photo of the channel instead of
 --   individual names and profile photos. Unlike supergroups, channels can
 --   have an unlimited number of subscribers
-Supergroup :: Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Int -> Maybe ChatMemberStatus -> Maybe Int -> Maybe String -> Maybe Int -> Supergroup
+Supergroup :: Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Int -> Maybe ChatMemberStatus -> Maybe Int -> Maybe String -> Maybe Int -> Supergroup
 
 -- | True, if many users reported this supergroup or channel as a fake
 --   account
@@ -16273,6 +16812,15 @@ Supergroup :: Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Bool -> Maybe Bo
 
 -- | True, if the slow mode is enabled in the supergroup
 [is_slow_mode_enabled] :: Supergroup -> Maybe Bool
+
+-- | True, if all users directly joining the supergroup need to be approved
+--   by supergroup administrators. Always false for channels and
+--   supergroups without username, location, or a linked chat
+[join_by_request] :: Supergroup -> Maybe Bool
+
+-- | True, if users need to join the supergroup before they can send
+--   messages. Always true for channels and non-discussion supergroups
+[join_to_send_messages] :: Supergroup -> Maybe Bool
 
 -- | True, if messages sent to the channel need to contain information
 --   about the sender. This field is only applicable to channels
@@ -16660,9 +17208,11 @@ module TD.Data.CallServerType
 -- | Describes the type of a call server
 data CallServerType
 
--- | A Telegram call reflector @peer_tag A peer tag to be used with the
---   reflector
-CallServerTypeTelegramReflector :: Maybe String -> CallServerType
+-- | A Telegram call reflector <tt>peer_tag A peer tag to be used with the
+--   reflector </tt>is_tcp True, if the server uses TCP instead of UDP
+CallServerTypeTelegramReflector :: Maybe Bool -> Maybe String -> CallServerType
+
+[is_tcp] :: CallServerType -> Maybe Bool
 
 [peer_tag] :: CallServerType -> Maybe String
 
@@ -17109,39 +17659,6 @@ instance GHC.Show.Show TD.Query.SetCommands.SetCommands
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SetCommands.SetCommands
 
 
-module TD.Data.BotInfo
-
-data BotInfo
-
--- | Contains information about a bot
-BotInfo :: Maybe ChatAdministratorRights -> Maybe ChatAdministratorRights -> Maybe [BotCommand] -> Maybe BotMenuButton -> Maybe String -> Maybe String -> BotInfo
-
--- | Default administrator rights for adding the bot to channels; may be
---   null
-[default_channel_administrator_rights] :: BotInfo -> Maybe ChatAdministratorRights
-
--- | Default administrator rights for adding the bot to basic group and
---   supergroup chats; may be null
-[default_group_administrator_rights] :: BotInfo -> Maybe ChatAdministratorRights
-
--- | List of the bot commands
-[commands] :: BotInfo -> Maybe [BotCommand]
-
--- | Information about a button to show instead of the bot commands menu
---   button; may be null if ordinary bot commands menu must be shown
-[menu_button] :: BotInfo -> Maybe BotMenuButton
-
-[description] :: BotInfo -> Maybe String
-
--- | The text that is shown on the bot's profile page and is sent together
---   with the link when users share the bot
-[share_text] :: BotInfo -> Maybe String
-instance GHC.Classes.Eq TD.Data.BotInfo.BotInfo
-instance GHC.Show.Show TD.Data.BotInfo.BotInfo
-instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.BotInfo.BotInfo
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.BotInfo.BotInfo
-
-
 module TD.Data.BotCommands
 
 data BotCommands
@@ -17437,14 +17954,32 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.Backgrounds.Backgrounds
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.Backgrounds.Backgrounds
 
 
+module TD.Data.AvailableReaction
+
+data AvailableReaction
+
+-- | Represents an available reaction <tt>reaction Text representation of
+--   the reaction </tt>needs_premium True, if Telegram Premium is needed to
+--   send the reaction
+AvailableReaction :: Maybe Bool -> Maybe String -> AvailableReaction
+
+[needs_premium] :: AvailableReaction -> Maybe Bool
+
+[reaction] :: AvailableReaction -> Maybe String
+instance GHC.Classes.Eq TD.Data.AvailableReaction.AvailableReaction
+instance GHC.Show.Show TD.Data.AvailableReaction.AvailableReaction
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.AvailableReaction.AvailableReaction
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.AvailableReaction.AvailableReaction
+
+
 module TD.Data.AvailableReactions
 
 data AvailableReactions
 
 -- | Represents a list of available reactions @reactions List of reactions
-AvailableReactions :: Maybe [String] -> AvailableReactions
+AvailableReactions :: Maybe [AvailableReaction] -> AvailableReactions
 
-[reactions] :: AvailableReactions -> Maybe [String]
+[reactions] :: AvailableReactions -> Maybe [AvailableReaction]
 instance GHC.Classes.Eq TD.Data.AvailableReactions.AvailableReactions
 instance GHC.Show.Show TD.Data.AvailableReactions.AvailableReactions
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.AvailableReactions.AvailableReactions
@@ -17741,7 +18276,10 @@ module TD.Data.AttachmentMenuBot
 data AttachmentMenuBot
 
 -- | Represents a bot added to attachment menu
-AttachmentMenuBot :: Maybe AttachmentMenuBotColor -> Maybe File -> Maybe File -> Maybe File -> Maybe File -> Maybe File -> Maybe AttachmentMenuBotColor -> Maybe String -> Maybe Int -> AttachmentMenuBot
+AttachmentMenuBot :: Maybe File -> Maybe AttachmentMenuBotColor -> Maybe File -> Maybe File -> Maybe File -> Maybe File -> Maybe File -> Maybe AttachmentMenuBotColor -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Int -> AttachmentMenuBot
+
+-- | Default placeholder for opened Web Apps in SVG format; may be null
+[web_app_placeholder] :: AttachmentMenuBot -> Maybe File
 
 -- | Color to highlight selected icon of the bot if appropriate; may be
 --   null
@@ -17772,6 +18310,29 @@ AttachmentMenuBot :: Maybe AttachmentMenuBotColor -> Maybe File -> Maybe File ->
 
 -- | Name for the bot in attachment menu
 [name] :: AttachmentMenuBot -> Maybe String
+
+-- | True, if the bot supports "settings_button_pressed" event
+[supports_settings] :: AttachmentMenuBot -> Maybe Bool
+
+-- | True, if the bot supports opening from attachment menu in channel
+--   chats
+[supports_channel_chats] :: AttachmentMenuBot -> Maybe Bool
+
+-- | True, if the bot supports opening from attachment menu in basic group
+--   and supergroup chats
+[supports_group_chats] :: AttachmentMenuBot -> Maybe Bool
+
+-- | True, if the bot supports opening from attachment menu in private
+--   chats with other bots
+[supports_bot_chats] :: AttachmentMenuBot -> Maybe Bool
+
+-- | True, if the bot supports opening from attachment menu in private
+--   chats with ordinary users
+[supports_user_chats] :: AttachmentMenuBot -> Maybe Bool
+
+-- | True, if the bot supports opening from attachment menu in the chat
+--   with the bot
+[supports_self_chat] :: AttachmentMenuBot -> Maybe Bool
 
 -- | User identifier of the bot added to attachment menu
 [bot_user_id] :: AttachmentMenuBot -> Maybe Int
@@ -18113,6 +18674,12 @@ PushMessageContentChatJoinByLink :: PushMessageContent
 -- | A new member was accepted to the chat by an administrator
 PushMessageContentChatJoinByRequest :: PushMessageContent
 
+-- | A new recurrent payment was made by the current user @amount The paid
+--   amount
+PushMessageContentRecurringPayment :: Maybe String -> PushMessageContent
+
+[amount] :: PushMessageContent -> Maybe String
+
 -- | A forwarded messages @total_count Number of forwarded messages
 PushMessageContentMessageForwards :: Maybe Int -> PushMessageContent
 
@@ -18138,6 +18705,50 @@ instance GHC.Classes.Eq TD.Data.PushMessageContent.PushMessageContent
 instance GHC.Show.Show TD.Data.PushMessageContent.PushMessageContent
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PushMessageContent.PushMessageContent
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PushMessageContent.PushMessageContent
+
+
+module TD.Data.PremiumFeaturePromotionAnimation
+
+data PremiumFeaturePromotionAnimation
+
+-- | Describes a promotion animation for a Premium feature <tt>feature
+--   Premium feature </tt>animation Promotion animation for the feature
+PremiumFeaturePromotionAnimation :: Maybe Animation -> Maybe PremiumFeature -> PremiumFeaturePromotionAnimation
+
+[animation] :: PremiumFeaturePromotionAnimation -> Maybe Animation
+
+[feature] :: PremiumFeaturePromotionAnimation -> Maybe PremiumFeature
+instance GHC.Classes.Eq TD.Data.PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation
+instance GHC.Show.Show TD.Data.PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation
+
+
+module TD.Data.PremiumState
+
+data PremiumState
+
+-- | Contains state of Telegram Premium subscription and promotion videos
+--   for Premium features
+PremiumState :: Maybe [PremiumFeaturePromotionAnimation] -> Maybe Int -> Maybe String -> Maybe FormattedText -> PremiumState
+
+-- | The list of available promotion animations for Premium features
+[animations] :: PremiumState -> Maybe [PremiumFeaturePromotionAnimation]
+
+-- | Monthly subscription payment for Telegram Premium subscription, in the
+--   smallest units of the currency
+[monthly_amount] :: PremiumState -> Maybe Int
+
+-- | ISO 4217 currency code for Telegram Premium subscription payment
+[currency] :: PremiumState -> Maybe String
+
+-- | Text description of the state of the current Premium subscription; may
+--   be empty if the current user has no Telegram Premium subscription
+[state] :: PremiumState -> Maybe FormattedText
+instance GHC.Classes.Eq TD.Data.PremiumState.PremiumState
+instance GHC.Show.Show TD.Data.PremiumState.PremiumState
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumState.PremiumState
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumState.PremiumState
 
 
 module TD.Data.PageBlock
@@ -18637,6 +19248,46 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.InlineQueryResults.InlineQue
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.InlineQueryResults.InlineQueryResults
 
 
+module TD.Data.BotInfo
+
+data BotInfo
+
+-- | Contains information about a bot
+BotInfo :: Maybe ChatAdministratorRights -> Maybe ChatAdministratorRights -> Maybe [BotCommand] -> Maybe BotMenuButton -> Maybe Animation -> Maybe Photo -> Maybe String -> Maybe String -> BotInfo
+
+-- | Default administrator rights for adding the bot to channels; may be
+--   null
+[default_channel_administrator_rights] :: BotInfo -> Maybe ChatAdministratorRights
+
+-- | Default administrator rights for adding the bot to basic group and
+--   supergroup chats; may be null
+[default_group_administrator_rights] :: BotInfo -> Maybe ChatAdministratorRights
+
+-- | List of the bot commands
+[commands] :: BotInfo -> Maybe [BotCommand]
+
+-- | Information about a button to show instead of the bot commands menu
+--   button; may be null if ordinary bot commands menu must be shown
+[menu_button] :: BotInfo -> Maybe BotMenuButton
+
+-- | Animation shown in the chat with the bot if the chat is empty; may be
+--   null
+[animation] :: BotInfo -> Maybe Animation
+
+-- | Photo shown in the chat with the bot if the chat is empty; may be null
+[photo] :: BotInfo -> Maybe Photo
+
+[description] :: BotInfo -> Maybe String
+
+-- | The text that is shown on the bot's profile page and is sent together
+--   with the link when users share the bot
+[share_text] :: BotInfo -> Maybe String
+instance GHC.Classes.Eq TD.Data.BotInfo.BotInfo
+instance GHC.Show.Show TD.Data.BotInfo.BotInfo
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.BotInfo.BotInfo
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.BotInfo.BotInfo
+
+
 module TD.Data.Animations
 
 data Animations
@@ -18700,9 +19351,14 @@ module TD.Data.ChatPhoto
 data ChatPhoto
 
 -- | Describes a chat or user profile photo
-ChatPhoto :: Maybe AnimatedChatPhoto -> Maybe [PhotoSize] -> Maybe Minithumbnail -> Maybe Int -> Maybe Int -> ChatPhoto
+ChatPhoto :: Maybe AnimatedChatPhoto -> Maybe AnimatedChatPhoto -> Maybe [PhotoSize] -> Maybe Minithumbnail -> Maybe Int -> Maybe Int -> ChatPhoto
 
--- | Animated variant of the photo in MPEG4 format; may be null
+-- | A small (160x160) animated variant of the photo in MPEG4 format; may
+--   be null even the big animation is available
+[small_animation] :: ChatPhoto -> Maybe AnimatedChatPhoto
+
+-- | A big (640x640) animated variant of the photo in MPEG4 format; may be
+--   null
 [animation] :: ChatPhoto -> Maybe AnimatedChatPhoto
 
 -- | Available variants of the photo in JPEG format, in different size
@@ -18727,7 +19383,7 @@ module TD.Data.UserFullInfo
 data UserFullInfo
 
 -- | Contains full information about a user
-UserFullInfo :: Maybe BotInfo -> Maybe Int -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe ChatPhoto -> UserFullInfo
+UserFullInfo :: Maybe BotInfo -> Maybe Int -> Maybe FormattedText -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe ChatPhoto -> UserFullInfo
 
 -- | For bots, information about the bot; may be null
 [bot_info] :: UserFullInfo -> Maybe BotInfo
@@ -18736,8 +19392,8 @@ UserFullInfo :: Maybe BotInfo -> Maybe Int -> Maybe String -> Maybe Bool -> Mayb
 --   are a member; 0 for the current user
 [group_in_common_count] :: UserFullInfo -> Maybe Int
 
--- | A short user bio
-[bio] :: UserFullInfo -> Maybe String
+-- | A short user bio; may be null for bots
+[bio] :: UserFullInfo -> Maybe FormattedText
 
 -- | True, if the current user needs to explicitly allow to share their
 --   phone number with the user when the method addContact is used
@@ -19076,7 +19732,7 @@ module TD.Query.ValidateOrderInfo
 -- | Validates the order information provided by a user and returns the
 --   available shipping options for a flexible invoice
 data ValidateOrderInfo
-ValidateOrderInfo :: Maybe Bool -> Maybe OrderInfo -> Maybe Int -> Maybe Int -> ValidateOrderInfo
+ValidateOrderInfo :: Maybe Bool -> Maybe OrderInfo -> Maybe InputInvoice -> ValidateOrderInfo
 
 -- | Pass true to save the order information
 [allow_save] :: ValidateOrderInfo -> Maybe Bool
@@ -19084,11 +19740,8 @@ ValidateOrderInfo :: Maybe Bool -> Maybe OrderInfo -> Maybe Int -> Maybe Int -> 
 -- | The order information, provided by the user; pass null if empty
 [order_info] :: ValidateOrderInfo -> Maybe OrderInfo
 
--- | Message identifier
-[message_id] :: ValidateOrderInfo -> Maybe Int
-
--- | Chat identifier of the Invoice message
-[chat_id] :: ValidateOrderInfo -> Maybe Int
+-- | The invoice
+[input_invoice] :: ValidateOrderInfo -> Maybe InputInvoice
 instance GHC.Classes.Eq TD.Query.ValidateOrderInfo.ValidateOrderInfo
 instance GHC.Show.Show TD.Query.ValidateOrderInfo.ValidateOrderInfo
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ValidateOrderInfo.ValidateOrderInfo
@@ -19099,7 +19752,7 @@ module TD.Data.PaymentReceipt
 data PaymentReceipt
 
 -- | Contains information about a successful payment
-PaymentReceipt :: Maybe Int -> Maybe String -> Maybe ShippingOption -> Maybe OrderInfo -> Maybe Invoice -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Photo -> Maybe String -> Maybe String -> PaymentReceipt
+PaymentReceipt :: Maybe Int -> Maybe String -> Maybe ShippingOption -> Maybe OrderInfo -> Maybe Invoice -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe Photo -> Maybe FormattedText -> Maybe String -> PaymentReceipt
 
 -- | The amount of tip chosen by the buyer in the smallest units of the
 --   currency
@@ -19118,7 +19771,7 @@ PaymentReceipt :: Maybe Int -> Maybe String -> Maybe ShippingOption -> Maybe Ord
 [invoice] :: PaymentReceipt -> Maybe Invoice
 
 -- | User identifier of the payment provider bot
-[payments_provider_user_id] :: PaymentReceipt -> Maybe Int
+[payment_provider_user_id] :: PaymentReceipt -> Maybe Int
 
 -- | User identifier of the seller bot
 [seller_bot_user_id] :: PaymentReceipt -> Maybe Int
@@ -19129,7 +19782,7 @@ PaymentReceipt :: Maybe Int -> Maybe String -> Maybe ShippingOption -> Maybe Ord
 -- | Product photo; may be null
 [photo] :: PaymentReceipt -> Maybe Photo
 
-[description] :: PaymentReceipt -> Maybe String
+[description] :: PaymentReceipt -> Maybe FormattedText
 
 -- | Product title
 [title] :: PaymentReceipt -> Maybe String
@@ -19144,7 +19797,16 @@ module TD.Data.PaymentForm
 data PaymentForm
 
 -- | Contains information about an invoice payment form
-PaymentForm :: Maybe Bool -> Maybe Bool -> Maybe SavedCredentials -> Maybe OrderInfo -> Maybe PaymentsProviderStripe -> Maybe Int -> Maybe Int -> Maybe String -> Maybe Invoice -> Maybe Int -> PaymentForm
+PaymentForm :: Maybe Photo -> Maybe FormattedText -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe SavedCredentials -> Maybe OrderInfo -> Maybe PaymentProvider -> Maybe Int -> Maybe Int -> Maybe Invoice -> Maybe Int -> PaymentForm
+
+-- | Product photo; may be null
+[product_photo] :: PaymentForm -> Maybe Photo
+
+-- | Product description
+[product_description] :: PaymentForm -> Maybe FormattedText
+
+-- | Product title
+[product_title] :: PaymentForm -> Maybe String
 
 -- | True, if the user will be able to save credentials protected by a
 --   password they set up
@@ -19159,20 +19821,16 @@ PaymentForm :: Maybe Bool -> Maybe Bool -> Maybe SavedCredentials -> Maybe Order
 -- | Saved server-side order information; may be null
 [saved_order_info] :: PaymentForm -> Maybe OrderInfo
 
--- | Information about the payment provider, if available, to support it
---   natively without the need for opening the URL; may be null
-[payments_provider] :: PaymentForm -> Maybe PaymentsProviderStripe
+-- | Information about the payment provider
+[payment_provider] :: PaymentForm -> Maybe PaymentProvider
 
 -- | User identifier of the payment provider bot
-[payments_provider_user_id] :: PaymentForm -> Maybe Int
+[payment_provider_user_id] :: PaymentForm -> Maybe Int
 
 -- | User identifier of the seller bot
 [seller_bot_user_id] :: PaymentForm -> Maybe Int
 
--- | Payment form URL
-[url] :: PaymentForm -> Maybe String
-
--- | Full information of the invoice
+-- | Full information about the invoice
 [invoice] :: PaymentForm -> Maybe Invoice
 
 -- | The payment form identifier
@@ -19238,8 +19896,11 @@ MessagePhoto :: Maybe Bool -> Maybe FormattedText -> Maybe Photo -> MessageConte
 -- | An expired photo message (self-destructed after TTL has elapsed)
 MessageExpiredPhoto :: MessageContent
 
--- | A sticker message @sticker The sticker description
-MessageSticker :: Maybe Sticker -> MessageContent
+-- | A sticker message <tt>sticker The sticker description </tt>is_premium
+--   True, if premium animation of the sticker must be played
+MessageSticker :: Maybe Bool -> Maybe Sticker -> MessageContent
+
+[is_premium] :: MessageContent -> Maybe Bool
 
 [sticker] :: MessageContent -> Maybe Sticker
 
@@ -19356,7 +20017,7 @@ MessagePoll :: Maybe Poll -> MessageContent
 --   </tt>param_description Product description <tt>photo Product photo;
 --   may be null </tt>currency Currency for the product price @total_amount
 --   Product total price in the smallest units of the currency
-MessageInvoice :: Maybe Int -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Int -> Maybe String -> Maybe Photo -> Maybe String -> Maybe String -> MessageContent
+MessageInvoice :: Maybe Int -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Int -> Maybe String -> Maybe Photo -> Maybe FormattedText -> Maybe String -> MessageContent
 
 [receipt_message_id] :: MessageContent -> Maybe Int
 
@@ -19378,7 +20039,7 @@ MessageInvoice :: Maybe Int -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe
 
 [photo] :: MessageContent -> Maybe Photo
 
-[description] :: MessageContent -> Maybe String
+[description] :: MessageContent -> Maybe FormattedText
 
 [title] :: MessageContent -> Maybe String
 
@@ -19529,10 +20190,17 @@ MessageGameScore :: Maybe Int -> Maybe Int -> Maybe Int -> MessageContent
 -- | A payment has been completed <tt>invoice_chat_id Identifier of the
 --   chat, containing the corresponding invoice message; 0 if unknown
 --   </tt>invoice_message_id Identifier of the message with the
---   corresponding invoice; can be an identifier of a deleted message
---   <tt>currency Currency for the price of the product </tt>total_amount
---   Total price for the product, in the smallest units of the currency
-MessagePaymentSuccessful :: Maybe Int -> Maybe String -> Maybe Int -> Maybe Int -> MessageContent
+--   corresponding invoice; can be 0 or an identifier of a deleted message
+MessagePaymentSuccessful :: Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Int -> Maybe String -> Maybe Int -> Maybe Int -> MessageContent
+
+[invoice_name] :: MessageContent -> Maybe String
+
+[is_first_recurring] :: MessageContent -> Maybe Bool
+
+-- | True, if this is a recurring payment <tt>is_first_recurring True, if
+--   this is the first recurring payment </tt>invoice_name Name of the
+--   invoice; may be empty if unknown
+[is_recurring] :: MessageContent -> Maybe Bool
 
 [total_amount] :: MessageContent -> Maybe Int
 
@@ -19542,9 +20210,10 @@ MessagePaymentSuccessful :: Maybe Int -> Maybe String -> Maybe Int -> Maybe Int 
 
 [invoice_chat_id] :: MessageContent -> Maybe Int
 
--- | A payment has been completed; for bots only @currency Currency for
---   price of the product
-MessagePaymentSuccessfulBot :: Maybe String -> Maybe String -> Maybe OrderInfo -> Maybe String -> Maybe String -> Maybe Int -> Maybe String -> MessageContent
+-- | A payment has been completed; for bots only <tt>currency Currency for
+--   price of the product </tt>total_amount Total price for the product, in
+--   the smallest units of the currency
+MessagePaymentSuccessfulBot :: Maybe String -> Maybe String -> Maybe OrderInfo -> Maybe String -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe Int -> Maybe String -> MessageContent
 
 [provider_payment_charge_id] :: MessageContent -> Maybe String
 
@@ -19556,7 +20225,17 @@ MessagePaymentSuccessfulBot :: Maybe String -> Maybe String -> Maybe OrderInfo -
 
 [shipping_option_id] :: MessageContent -> Maybe String
 
+-- | Invoice payload <tt>shipping_option_id Identifier of the shipping
+--   option chosen by the user; may be empty if not applicable
+--   </tt>order_info Information about the order; may be null
 [invoice_payload] :: MessageContent -> Maybe String
+
+[is_first_recurring] :: MessageContent -> Maybe Bool
+
+-- | True, if this is a recurring payment <tt>is_first_recurring True, if
+--   this is the first recurring payment </tt>invoice_name Name of the
+--   invoice; may be empty if unknown
+[is_recurring] :: MessageContent -> Maybe Bool
 
 [total_amount] :: MessageContent -> Maybe Int
 
@@ -19571,14 +20250,14 @@ MessageWebsiteConnected :: Maybe String -> MessageContent
 
 [domain_name] :: MessageContent -> Maybe String
 
--- | Data from a web app has been sent to a bot @button_text Text of the
---   keyboardButtonTypeWebApp button, which opened the web app
+-- | Data from a Web App has been sent to a bot @button_text Text of the
+--   keyboardButtonTypeWebApp button, which opened the Web App
 MessageWebAppDataSent :: Maybe String -> MessageContent
 
 [button_text] :: MessageContent -> Maybe String
 
--- | Data from a web app has been received; for bots only <tt>button_text
---   Text of the keyboardButtonTypeWebApp button, which opened the web app
+-- | Data from a Web App has been received; for bots only <tt>button_text
+--   Text of the keyboardButtonTypeWebApp button, which opened the Web App
 --   </tt>data Received data
 MessageWebAppDataReceived :: Maybe String -> Maybe String -> MessageContent
 
@@ -19626,7 +20305,7 @@ module TD.Data.SponsoredMessage
 data SponsoredMessage
 
 -- | Describes a sponsored message
-SponsoredMessage :: Maybe MessageContent -> Maybe InternalLinkType -> Maybe ChatInviteLinkInfo -> Maybe Int -> Maybe Int -> SponsoredMessage
+SponsoredMessage :: Maybe MessageContent -> Maybe InternalLinkType -> Maybe ChatInviteLinkInfo -> Maybe Int -> Maybe Bool -> Maybe Int -> SponsoredMessage
 
 -- | Content of the message. Currently, can be only of the type messageText
 [content] :: SponsoredMessage -> Maybe MessageContent
@@ -19642,6 +20321,10 @@ SponsoredMessage :: Maybe MessageContent -> Maybe InternalLinkType -> Maybe Chat
 -- | Sponsor chat identifier; 0 if the sponsor chat is accessible through
 --   an invite link
 [sponsor_chat_id] :: SponsoredMessage -> Maybe Int
+
+-- | True, if the message needs to be labeled as "recommended" instead of
+--   "sponsored"
+[is_recommended] :: SponsoredMessage -> Maybe Bool
 
 -- | Message identifier; unique for the chat to which the sponsored message
 --   belongs among both ordinary and sponsored messages
@@ -19799,8 +20482,11 @@ module TD.Data.NotificationType
 -- | Contains detailed information about a notification
 data NotificationType
 
--- | New message was received @message The message
-NotificationTypeNewMessage :: Maybe Message -> NotificationType
+-- | New message was received <tt>message The message </tt>show_preview
+--   True, if message content must be displayed in notifications
+NotificationTypeNewMessage :: Maybe Bool -> Maybe Message -> NotificationType
+
+[show_preview] :: NotificationType -> Maybe Bool
 
 [message] :: NotificationType -> Maybe Message
 
@@ -20934,9 +21620,12 @@ UpdateChatIsMarkedAsUnread :: Maybe Bool -> Maybe Int -> Update
 --   message identifier
 [chat_id] :: Update -> Maybe Int
 
--- | The list of chat filters or a chat filter has changed @chat_filters
---   The new list of chat filters
-UpdateChatFilters :: Maybe [ChatFilterInfo] -> Update
+-- | The list of chat filters or a chat filter has changed <tt>chat_filters
+--   The new list of chat filters </tt>main_chat_list_position Position of
+--   the main chat list among chat filters, 0-based
+UpdateChatFilters :: Maybe Int -> Maybe [ChatFilterInfo] -> Update
+
+[main_chat_list_position] :: Update -> Maybe Int
 
 [chat_filters] :: Update -> Maybe [ChatFilterInfo]
 
@@ -21306,9 +21995,9 @@ UpdateInstalledStickerSets :: Maybe [Int] -> Maybe Bool -> Update
 -- | The list of trending sticker sets was updated or some of them were
 --   viewed @sticker_sets The prefix of the list of trending sticker sets
 --   with the newest trending sticker sets
-UpdateTrendingStickerSets :: Maybe StickerSets -> Update
+UpdateTrendingStickerSets :: Maybe TrendingStickerSets -> Update
 
-[sticker_sets] :: Update -> Maybe StickerSets
+[sticker_sets] :: Update -> Maybe TrendingStickerSets
 
 -- | The list of recently used stickers was updated <tt>is_attached True,
 --   if the list of stickers attached to photo or video files was updated,
@@ -21393,15 +22082,14 @@ UpdateUsersNearby :: Maybe [ChatNearby] -> Update
 [users_nearby] :: Update -> Maybe [ChatNearby]
 
 -- | The list of bots added to attachment menu has changed @bots The new
---   list of bots added to attachment menu. The bots must be shown in
---   attachment menu only in private chats. The bots must not be shown on
+--   list of bots added to attachment menu. The bots must not be shown on
 --   scheduled messages screen
 UpdateAttachmentMenuBots :: Maybe [AttachmentMenuBot] -> Update
 
 [bots] :: Update -> Maybe [AttachmentMenuBot]
 
--- | A message was sent by an opened web app, so the web app needs to be
---   closed @web_app_launch_id Identifier of web app launch
+-- | A message was sent by an opened Web App, so the Web App needs to be
+--   closed @web_app_launch_id Identifier of Web App launch
 UpdateWebAppMessageSent :: Maybe Int -> Update
 
 [web_app_launch_id] :: Update -> Maybe Int
@@ -21982,11 +22670,12 @@ OrderInfo :: OrderInfo -> GeneralResult
 ShippingOption :: ShippingOption -> GeneralResult
 SavedCredentials :: SavedCredentials -> GeneralResult
 InputCredentials :: InputCredentials -> GeneralResult
-PaymentsProviderStripe :: PaymentsProviderStripe -> GeneralResult
+PaymentProvider :: PaymentProvider -> GeneralResult
 PaymentForm :: PaymentForm -> GeneralResult
 ValidatedOrderInfo :: ValidatedOrderInfo -> GeneralResult
 PaymentResult :: PaymentResult -> GeneralResult
 PaymentReceipt :: PaymentReceipt -> GeneralResult
+InputInvoice :: InputInvoice -> GeneralResult
 DatedFile :: DatedFile -> GeneralResult
 PassportElementType :: PassportElementType -> GeneralResult
 Date :: Date -> GeneralResult
@@ -22023,6 +22712,7 @@ Emojis :: Emojis -> GeneralResult
 StickerSet :: StickerSet -> GeneralResult
 StickerSetInfo :: StickerSetInfo -> GeneralResult
 StickerSets :: StickerSets -> GeneralResult
+TrendingStickerSets :: TrendingStickerSets -> GeneralResult
 CallDiscardReason :: CallDiscardReason -> GeneralResult
 CallProtocol :: CallProtocol -> GeneralResult
 CallServerType :: CallServerType -> GeneralResult
@@ -22044,6 +22734,7 @@ Call :: Call -> GeneralResult
 PhoneNumberAuthenticationSettings :: PhoneNumberAuthenticationSettings -> GeneralResult
 AddedReaction :: AddedReaction -> GeneralResult
 AddedReactions :: AddedReactions -> GeneralResult
+AvailableReaction :: AvailableReaction -> GeneralResult
 AvailableReactions :: AvailableReactions -> GeneralResult
 Reaction :: Reaction -> GeneralResult
 Animations :: Animations -> GeneralResult
@@ -22070,6 +22761,13 @@ LanguagePackString :: LanguagePackString -> GeneralResult
 LanguagePackStrings :: LanguagePackStrings -> GeneralResult
 LanguagePackInfo :: LanguagePackInfo -> GeneralResult
 LocalizationTargetInfo :: LocalizationTargetInfo -> GeneralResult
+PremiumLimitType :: PremiumLimitType -> GeneralResult
+PremiumFeature :: PremiumFeature -> GeneralResult
+PremiumLimit :: PremiumLimit -> GeneralResult
+PremiumFeatures :: PremiumFeatures -> GeneralResult
+PremiumSource :: PremiumSource -> GeneralResult
+PremiumFeaturePromotionAnimation :: PremiumFeaturePromotionAnimation -> GeneralResult
+PremiumState :: PremiumState -> GeneralResult
 DeviceToken :: DeviceToken -> GeneralResult
 PushReceiverId :: PushReceiverId -> GeneralResult
 BackgroundFill :: BackgroundFill -> GeneralResult
@@ -22105,6 +22803,7 @@ Sessions :: Sessions -> GeneralResult
 ConnectedWebsite :: ConnectedWebsite -> GeneralResult
 ConnectedWebsites :: ConnectedWebsites -> GeneralResult
 ChatReportReason :: ChatReportReason -> GeneralResult
+TargetChat :: TargetChat -> GeneralResult
 InternalLinkType :: InternalLinkType -> GeneralResult
 MessageLink :: MessageLink -> GeneralResult
 MessageLinkInfo :: MessageLinkInfo -> GeneralResult
@@ -22129,6 +22828,7 @@ SuggestedAction :: SuggestedAction -> GeneralResult
 Count :: Count -> GeneralResult
 Text :: Text -> GeneralResult
 Seconds :: Seconds -> GeneralResult
+FileDownloadedPrefixSize :: FileDownloadedPrefixSize -> GeneralResult
 DeepLinkInfo :: DeepLinkInfo -> GeneralResult
 TextParseMode :: TextParseMode -> GeneralResult
 ProxyType :: ProxyType -> GeneralResult

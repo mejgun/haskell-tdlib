@@ -38,7 +38,7 @@
 </span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-34"></span><span>        </span><span id="fill"><span class="annot"><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundFill.html#BackgroundFill"><span class="hs-identifier hs-type">BackgroundFill.BackgroundFill</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">}</span><span>
-</span><span id="line-36"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421694"><span id="local-6989586621679421696"><span class="annot"><span class="annottext">BackgroundType -&gt; BackgroundType -&gt; Bool
+</span><span id="line-36"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679433044"><span id="local-6989586621679433046"><span class="annot"><span class="annottext">BackgroundType -&gt; BackgroundType -&gt; Bool
 (BackgroundType -&gt; BackgroundType -&gt; Bool)
 -&gt; (BackgroundType -&gt; BackgroundType -&gt; Bool) -&gt; Eq BackgroundType
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -48,16 +48,16 @@ $c/= :: BackgroundType -&gt; BackgroundType -&gt; Bool
 $c== :: BackgroundType -&gt; BackgroundType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421688"><span id="local-6989586621679421691"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span>  </span><span id="local-6989586621679421686"><span class="annot"><span class="annottext">show :: BackgroundType -&gt; String
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433038"><span id="local-6989586621679433041"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679433036"><span class="annot"><span class="annottext">show :: BackgroundType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-40"></span><span>    </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundTypeWallpaper"><span class="hs-identifier hs-type">BackgroundTypeWallpaper</span></a></span><span>
 </span><span id="line-41"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421684"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421684"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433034"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433034"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">is_blurred :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421683"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421683"><span class="hs-identifier hs-var">is_blurred_</span></a></span></span><span>
+</span><a href="TD.Data.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433033"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433033"><span class="hs-identifier hs-var">is_blurred_</span></a></span></span><span>
 </span><span id="line-43"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-44"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BackgroundTypeWallpaper&quot;</span></span><span>
@@ -69,27 +69,27 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_moving&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421684"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679433034"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_blurred&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421683"><span class="hs-identifier hs-var">is_blurred_</span></a></span><span>
+</span><a href="#local-6989586621679433033"><span class="hs-identifier hs-var">is_blurred_</span></a></span><span>
 </span><span id="line-48"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-49"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-50"></span><span>    </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-type">BackgroundTypePattern</span></a></span><span>
 </span><span id="line-51"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421680"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421680"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433030"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433030"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>        </span><span class="annot"><span class="annottext">is_inverted :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_inverted"><span class="hs-identifier hs-var">is_inverted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421679"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421679"><span class="hs-identifier hs-var">is_inverted_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#is_inverted"><span class="hs-identifier hs-var">is_inverted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433029"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433029"><span class="hs-identifier hs-var">is_inverted_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-53"></span><span>        </span><span class="annot"><span class="annottext">intensity :: BackgroundType -&gt; Maybe Int
-</span><a href="TD.Data.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421678"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421678"><span class="hs-identifier hs-var">intensity_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433028"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679433028"><span class="hs-identifier hs-var">intensity_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-54"></span><span>        </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
-</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421677"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421677"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
+</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433027"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679433027"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
 </span><span id="line-55"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-56"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BackgroundTypePattern&quot;</span></span><span>
@@ -101,28 +101,28 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_moving&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421680"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679433030"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_inverted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421679"><span class="hs-identifier hs-var">is_inverted_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679433029"><span class="hs-identifier hs-var">is_inverted_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;intensity&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421678"><span class="hs-identifier hs-var">intensity_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679433028"><span class="hs-identifier hs-var">intensity_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-61"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe BackgroundFill -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;fill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421677"><span class="hs-identifier hs-var">fill_</span></a></span><span>
+</span><a href="#local-6989586621679433027"><span class="hs-identifier hs-var">fill_</span></a></span><span>
 </span><span id="line-62"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-63"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-64"></span><span>    </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-type">BackgroundTypeFill</span></a></span><span>
 </span><span id="line-65"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
-</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421676"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421676"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
+</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433026"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679433026"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
 </span><span id="line-66"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-67"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BackgroundTypeFill&quot;</span></span><span>
@@ -134,43 +134,43 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;fill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421676"><span class="hs-identifier hs-var">fill_</span></a></span><span>
+</span><a href="#local-6989586621679433026"><span class="hs-identifier hs-var">fill_</span></a></span><span>
 </span><span id="line-70"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-71"></span><span>
-</span><span id="line-72"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421673"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-73"></span><span>  </span><span id="local-6989586621679421671"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BackgroundType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679421669"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679421669"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679421667"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421667"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-74"></span><span>    </span><span id="local-6989586621679421666"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421666"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421667"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-72"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433023"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-73"></span><span>  </span><span id="local-6989586621679433021"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BackgroundType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679433019"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679433019"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679433017"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433017"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679433016"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679433016"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433017"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-75"></span><span>
 </span><span id="line-76"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421666"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679433016"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-77"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;backgroundTypeWallpaper&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679421664"><span class="hs-identifier hs-var">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679421669"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433014"><span class="hs-identifier hs-var">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433019"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-78"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;backgroundTypePattern&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679421663"><span class="hs-identifier hs-var">parseBackgroundTypePattern</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679421669"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433013"><span class="hs-identifier hs-var">parseBackgroundTypePattern</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433019"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-79"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;backgroundTypeFill&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679421662"><span class="hs-identifier hs-var">parseBackgroundTypeFill</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679421669"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433012"><span class="hs-identifier hs-var">parseBackgroundTypeFill</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433019"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-80"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser BackgroundType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-81"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-82"></span><span>      </span><span class="annot"><a href="#local-6989586621679421664"><span class="hs-identifier hs-type">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
-</span><span id="line-83"></span><span>      </span><span id="local-6989586621679421664"><span class="annot"><span class="annottext">parseBackgroundTypeWallpaper :: Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679421664"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeWallpaper</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-82"></span><span>      </span><span class="annot"><a href="#local-6989586621679433014"><span class="hs-identifier hs-type">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
+</span><span id="line-83"></span><span>      </span><span id="local-6989586621679433014"><span class="annot"><span class="annottext">parseBackgroundTypeWallpaper :: Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679433014"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeWallpaper</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BackgroundType)
 -&gt; Value
 -&gt; Parser BackgroundType
@@ -182,17 +182,17 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BackgroundType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679421660"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421660"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-84"></span><span>        </span><span id="local-6989586621679421659"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421659"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421660"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433010"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433010"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-84"></span><span>        </span><span id="local-6989586621679433009"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433009"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433010"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_moving&quot;</span></span><span>
-</span><span id="line-85"></span><span>        </span><span id="local-6989586621679421657"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421657"><span class="hs-identifier hs-var">is_blurred_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421660"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-85"></span><span>        </span><span id="local-6989586621679433007"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433007"><span class="hs-identifier hs-var">is_blurred_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433010"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_blurred&quot;</span></span><span>
@@ -204,13 +204,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BackgroundTypeWallpaper :: Maybe Bool -&gt; Maybe Bool -&gt; BackgroundType
 </span><a href="TD.Data.BackgroundType.html#BackgroundTypeWallpaper"><span class="hs-identifier hs-type">BackgroundTypeWallpaper</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">is_moving :: Maybe Bool
 </span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421659"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blurred :: Maybe Bool
+</span><a href="#local-6989586621679433009"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blurred :: Maybe Bool
 </span><a href="TD.Data.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421657"><span class="hs-identifier hs-var">is_blurred_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679433007"><span class="hs-identifier hs-var">is_blurred_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-87"></span><span>
-</span><span id="line-88"></span><span>      </span><span class="annot"><a href="#local-6989586621679421663"><span class="hs-identifier hs-type">parseBackgroundTypePattern</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
-</span><span id="line-89"></span><span>      </span><span id="local-6989586621679421663"><span class="annot"><span class="annottext">parseBackgroundTypePattern :: Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679421663"><span class="hs-identifier hs-var hs-var">parseBackgroundTypePattern</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-88"></span><span>      </span><span class="annot"><a href="#local-6989586621679433013"><span class="hs-identifier hs-type">parseBackgroundTypePattern</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
+</span><span id="line-89"></span><span>      </span><span id="local-6989586621679433013"><span class="annot"><span class="annottext">parseBackgroundTypePattern :: Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679433013"><span class="hs-identifier hs-var hs-var">parseBackgroundTypePattern</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BackgroundType)
 -&gt; Value
 -&gt; Parser BackgroundType
@@ -222,29 +222,29 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BackgroundType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679421656"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421656"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-90"></span><span>        </span><span id="local-6989586621679421655"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421655"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421656"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433006"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433006"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-90"></span><span>        </span><span id="local-6989586621679433005"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433005"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433006"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_moving&quot;</span></span><span>
-</span><span id="line-91"></span><span>        </span><span id="local-6989586621679421654"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421654"><span class="hs-identifier hs-var">is_inverted_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421656"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-91"></span><span>        </span><span id="local-6989586621679433004"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679433004"><span class="hs-identifier hs-var">is_inverted_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433006"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_inverted&quot;</span></span><span>
-</span><span id="line-92"></span><span>        </span><span id="local-6989586621679421653"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421653"><span class="hs-identifier hs-var">intensity_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421656"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-92"></span><span>        </span><span id="local-6989586621679433003"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679433003"><span class="hs-identifier hs-var">intensity_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433006"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;intensity&quot;</span></span><span>
-</span><span id="line-93"></span><span>        </span><span id="local-6989586621679421652"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421652"><span class="hs-identifier hs-var">fill_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421656"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundFill)
+</span><span id="line-93"></span><span>        </span><span id="local-6989586621679433002"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679433002"><span class="hs-identifier hs-var">fill_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433006"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundFill)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;fill&quot;</span></span><span>
@@ -260,17 +260,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; BackgroundType
 </span><a href="TD.Data.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-type">BackgroundTypePattern</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">is_moving :: Maybe Bool
 </span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421655"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_inverted :: Maybe Bool
+</span><a href="#local-6989586621679433005"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_inverted :: Maybe Bool
 </span><a href="TD.Data.BackgroundType.html#is_inverted"><span class="hs-identifier hs-var">is_inverted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421654"><span class="hs-identifier hs-var">is_inverted_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">intensity :: Maybe Int
+</span><a href="#local-6989586621679433004"><span class="hs-identifier hs-var">is_inverted_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">intensity :: Maybe Int
 </span><a href="TD.Data.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421653"><span class="hs-identifier hs-var">intensity_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">fill :: Maybe BackgroundFill
+</span><a href="#local-6989586621679433003"><span class="hs-identifier hs-var">intensity_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">fill :: Maybe BackgroundFill
 </span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421652"><span class="hs-identifier hs-var">fill_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679433002"><span class="hs-identifier hs-var">fill_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-95"></span><span>
-</span><span id="line-96"></span><span>      </span><span class="annot"><a href="#local-6989586621679421662"><span class="hs-identifier hs-type">parseBackgroundTypeFill</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
-</span><span id="line-97"></span><span>      </span><span id="local-6989586621679421662"><span class="annot"><span class="annottext">parseBackgroundTypeFill :: Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679421662"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeFill</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-96"></span><span>      </span><span class="annot"><a href="#local-6989586621679433012"><span class="hs-identifier hs-type">parseBackgroundTypeFill</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
+</span><span id="line-97"></span><span>      </span><span id="local-6989586621679433012"><span class="annot"><span class="annottext">parseBackgroundTypeFill :: Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679433012"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeFill</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BackgroundType)
 -&gt; Value
 -&gt; Parser BackgroundType
@@ -282,11 +282,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BackgroundType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679421651"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421651"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-98"></span><span>        </span><span id="local-6989586621679421650"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421650"><span class="hs-identifier hs-var">fill_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421651"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundFill)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433001"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433001"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-98"></span><span>        </span><span id="local-6989586621679433000"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679433000"><span class="hs-identifier hs-var">fill_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433001"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundFill)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;fill&quot;</span></span><span>
@@ -298,22 +298,22 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BackgroundTypeFill :: Maybe BackgroundFill -&gt; BackgroundType
 </span><a href="TD.Data.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-type">BackgroundTypeFill</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">fill :: Maybe BackgroundFill
 </span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421650"><span class="hs-identifier hs-var">fill_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679433000"><span class="hs-identifier hs-var">fill_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-100"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser BackgroundType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-101"></span><span>
-</span><span id="line-102"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421643"><span id="local-6989586621679421645"><span id="local-6989586621679421647"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-103"></span><span>  </span><span id="local-6989586621679421641"><span class="annot"><span class="annottext">toJSON :: BackgroundType -&gt; Value
+</span><span id="line-102"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679432993"><span id="local-6989586621679432995"><span id="local-6989586621679432997"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-103"></span><span>  </span><span id="local-6989586621679432991"><span class="annot"><span class="annottext">toJSON :: BackgroundType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-104"></span><span>    </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundTypeWallpaper"><span class="hs-identifier hs-type">BackgroundTypeWallpaper</span></a></span><span>
 </span><span id="line-105"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421639"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421639"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432989"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679432989"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-106"></span><span>        </span><span class="annot"><span class="annottext">is_blurred :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421638"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421638"><span class="hs-identifier hs-var">is_blurred_</span></a></span></span><span>
+</span><a href="TD.Data.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432988"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679432988"><span class="hs-identifier hs-var">is_blurred_</span></a></span></span><span>
 </span><span id="line-107"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-108"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -327,27 +327,27 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_moving&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421639"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679432989"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-111"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_blurred&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421638"><span class="hs-identifier hs-var">is_blurred_</span></a></span><span>
+</span><a href="#local-6989586621679432988"><span class="hs-identifier hs-var">is_blurred_</span></a></span><span>
 </span><span id="line-112"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-113"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-114"></span><span>    </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-type">BackgroundTypePattern</span></a></span><span>
 </span><span id="line-115"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421634"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421634"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432984"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679432984"><span class="hs-identifier hs-var">is_moving_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-116"></span><span>        </span><span class="annot"><span class="annottext">is_inverted :: BackgroundType -&gt; Maybe Bool
-</span><a href="TD.Data.BackgroundType.html#is_inverted"><span class="hs-identifier hs-var">is_inverted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421633"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421633"><span class="hs-identifier hs-var">is_inverted_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#is_inverted"><span class="hs-identifier hs-var">is_inverted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432983"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679432983"><span class="hs-identifier hs-var">is_inverted_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-117"></span><span>        </span><span class="annot"><span class="annottext">intensity :: BackgroundType -&gt; Maybe Int
-</span><a href="TD.Data.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421632"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421632"><span class="hs-identifier hs-var">intensity_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432982"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679432982"><span class="hs-identifier hs-var">intensity_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-118"></span><span>        </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
-</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421631"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421631"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
+</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432981"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679432981"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
 </span><span id="line-119"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-120"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -361,28 +361,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_moving&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421634"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679432984"><span class="hs-identifier hs-var">is_moving_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-123"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_inverted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679421633"><span class="hs-identifier hs-var">is_inverted_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679432983"><span class="hs-identifier hs-var">is_inverted_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-124"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;intensity&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679421632"><span class="hs-identifier hs-var">intensity_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679432982"><span class="hs-identifier hs-var">intensity_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-125"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;fill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BackgroundFill -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421631"><span class="hs-identifier hs-var">fill_</span></a></span><span>
+</span><a href="#local-6989586621679432981"><span class="hs-identifier hs-var">fill_</span></a></span><span>
 </span><span id="line-126"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-127"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-128"></span><span>    </span><span class="annot"><a href="TD.Data.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-type">BackgroundTypeFill</span></a></span><span>
 </span><span id="line-129"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
-</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421630"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421630"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
+</span><a href="TD.Data.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432980"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679432980"><span class="hs-identifier hs-var">fill_</span></a></span></span><span>
 </span><span id="line-130"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-131"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -396,6 +396,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;fill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BackgroundFill -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679421630"><span class="hs-identifier hs-var">fill_</span></a></span><span>
+</span><a href="#local-6989586621679432980"><span class="hs-identifier hs-var">fill_</span></a></span><span>
 </span><span id="line-134"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-135"></span></pre></body></html>

@@ -9,7 +9,7 @@ import qualified TD.Data.LabeledPricePart as LabeledPricePart
 import qualified Utils as U
 
 -- |
-data Invoice = -- | Product invoice @currency ISO 4217 currency code
+data Invoice = -- | Product invoice
   Invoice
   { -- | True, if the total price depends on the shipping method
     is_flexible :: Maybe Bool,
@@ -27,13 +27,15 @@ data Invoice = -- | Product invoice @currency ISO 4217 currency code
     need_name :: Maybe Bool,
     -- | True, if the payment is a test payment
     is_test :: Maybe Bool,
+    -- | An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
+    recurring_payment_terms_of_service_url :: Maybe String,
     -- | Suggested amounts of tip in the smallest units of the currency
     suggested_tip_amounts :: Maybe [Int],
     -- | The maximum allowed amount of tip in the smallest units of the currency
     max_tip_amount :: Maybe Int,
     -- | A list of objects used to calculate the total price of the product
     price_parts :: Maybe [LabeledPricePart.LabeledPricePart],
-    -- |
+    -- | ISO 4217 currency code
     currency :: Maybe String
   }
   deriving (Eq)
@@ -49,6 +51,7 @@ instance Show Invoice where
         need_phone_number = need_phone_number_,
         need_name = need_name_,
         is_test = is_test_,
+        recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_,
         suggested_tip_amounts = suggested_tip_amounts_,
         max_tip_amount = max_tip_amount_,
         price_parts = price_parts_,
@@ -64,6 +67,7 @@ instance Show Invoice where
             U.p "need_phone_number" need_phone_number_,
             U.p "need_name" need_name_,
             U.p "is_test" is_test_,
+            U.p "recurring_payment_terms_of_service_url" recurring_payment_terms_of_service_url_,
             U.p "suggested_tip_amounts" suggested_tip_amounts_,
             U.p "max_tip_amount" max_tip_amount_,
             U.p "price_parts" price_parts_,
@@ -88,11 +92,12 @@ instance T.FromJSON Invoice where
         need_phone_number_ <- o A..:? "need_phone_number"
         need_name_ <- o A..:? "need_name"
         is_test_ <- o A..:? "is_test"
+        recurring_payment_terms_of_service_url_ <- o A..:? "recurring_payment_terms_of_service_url"
         suggested_tip_amounts_ <- o A..:? "suggested_tip_amounts"
         max_tip_amount_ <- o A..:? "max_tip_amount"
         price_parts_ <- o A..:? "price_parts"
         currency_ <- o A..:? "currency"
-        return $ Invoice {is_flexible = is_flexible_, send_email_address_to_provider = send_email_address_to_provider_, send_phone_number_to_provider = send_phone_number_to_provider_, need_shipping_address = need_shipping_address_, need_email_address = need_email_address_, need_phone_number = need_phone_number_, need_name = need_name_, is_test = is_test_, suggested_tip_amounts = suggested_tip_amounts_, max_tip_amount = max_tip_amount_, price_parts = price_parts_, currency = currency_}
+        return $ Invoice {is_flexible = is_flexible_, send_email_address_to_provider = send_email_address_to_provider_, send_phone_number_to_provider = send_phone_number_to_provider_, need_shipping_address = need_shipping_address_, need_email_address = need_email_address_, need_phone_number = need_phone_number_, need_name = need_name_, is_test = is_test_, recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_, suggested_tip_amounts = suggested_tip_amounts_, max_tip_amount = max_tip_amount_, price_parts = price_parts_, currency = currency_}
   parseJSON _ = mempty
 
 instance T.ToJSON Invoice where
@@ -106,6 +111,7 @@ instance T.ToJSON Invoice where
         need_phone_number = need_phone_number_,
         need_name = need_name_,
         is_test = is_test_,
+        recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_,
         suggested_tip_amounts = suggested_tip_amounts_,
         max_tip_amount = max_tip_amount_,
         price_parts = price_parts_,
@@ -121,6 +127,7 @@ instance T.ToJSON Invoice where
           "need_phone_number" A..= need_phone_number_,
           "need_name" A..= need_name_,
           "is_test" A..= is_test_,
+          "recurring_payment_terms_of_service_url" A..= recurring_payment_terms_of_service_url_,
           "suggested_tip_amounts" A..= suggested_tip_amounts_,
           "max_tip_amount" A..= max_tip_amount_,
           "price_parts" A..= price_parts_,

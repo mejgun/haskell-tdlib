@@ -17,7 +17,7 @@
 </span><span id="line-16"></span><span>    </span><span id="query"><span class="annot"><span class="annottext">SearchContacts -&gt; Maybe String
 </span><a href="TD.Query.SearchContacts.html#query"><span class="hs-identifier hs-var hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679375136"><span id="local-6989586621679375138"><span class="annot"><span class="annottext">SearchContacts -&gt; SearchContacts -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679385096"><span id="local-6989586621679385098"><span class="annot"><span class="annottext">SearchContacts -&gt; SearchContacts -&gt; Bool
 (SearchContacts -&gt; SearchContacts -&gt; Bool)
 -&gt; (SearchContacts -&gt; SearchContacts -&gt; Bool) -&gt; Eq SearchContacts
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -27,16 +27,16 @@ $c/= :: SearchContacts -&gt; SearchContacts -&gt; Bool
 $c== :: SearchContacts -&gt; SearchContacts -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679375130"><span id="local-6989586621679375133"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchContacts.html#SearchContacts"><span class="hs-identifier hs-type">SearchContacts</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679375128"><span class="annot"><span class="annottext">show :: SearchContacts -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679385090"><span id="local-6989586621679385093"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchContacts.html#SearchContacts"><span class="hs-identifier hs-type">SearchContacts</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679385088"><span class="annot"><span class="annottext">show :: SearchContacts -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.SearchContacts.html#SearchContacts"><span class="hs-identifier hs-type">SearchContacts</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: SearchContacts -&gt; Maybe Int
-</span><a href="TD.Query.SearchContacts.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679375126"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679375126"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchContacts.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679385086"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679385086"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">query :: SearchContacts -&gt; Maybe String
-</span><a href="TD.Query.SearchContacts.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679375125"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375125"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
+</span><a href="TD.Query.SearchContacts.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679385085"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679385085"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SearchContacts&quot;</span></span><span>
@@ -48,24 +48,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679375126"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679385086"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375125"><span class="hs-identifier hs-var">query_</span></a></span><span>
+</span><a href="#local-6989586621679385085"><span class="hs-identifier hs-var">query_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679375116"><span id="local-6989586621679375118"><span id="local-6989586621679375120"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchContacts.html#SearchContacts"><span class="hs-identifier hs-type">SearchContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679375114"><span class="annot"><span class="annottext">toJSON :: SearchContacts -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679385076"><span id="local-6989586621679385078"><span id="local-6989586621679385080"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchContacts.html#SearchContacts"><span class="hs-identifier hs-type">SearchContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679385074"><span class="annot"><span class="annottext">toJSON :: SearchContacts -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.SearchContacts.html#SearchContacts"><span class="hs-identifier hs-type">SearchContacts</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: SearchContacts -&gt; Maybe Int
-</span><a href="TD.Query.SearchContacts.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679375112"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679375112"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchContacts.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679385072"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679385072"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">query :: SearchContacts -&gt; Maybe String
-</span><a href="TD.Query.SearchContacts.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679375111"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375111"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
+</span><a href="TD.Query.SearchContacts.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679385071"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679385071"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -79,11 +79,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679375112"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679385072"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375111"><span class="hs-identifier hs-var">query_</span></a></span><span>
+</span><a href="#local-6989586621679385071"><span class="hs-identifier hs-var">query_</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

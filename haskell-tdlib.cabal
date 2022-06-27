@@ -41,6 +41,7 @@ library
       TD.Data.AuthorizationState
       TD.Data.AutoDownloadSettings
       TD.Data.AutoDownloadSettingsPresets
+      TD.Data.AvailableReaction
       TD.Data.AvailableReactions
       TD.Data.Background
       TD.Data.BackgroundFill
@@ -141,6 +142,7 @@ library
       TD.Data.Error
       TD.Data.File
       TD.Data.FileDownload
+      TD.Data.FileDownloadedPrefixSize
       TD.Data.FilePart
       TD.Data.FileType
       TD.Data.FormattedText
@@ -173,6 +175,7 @@ library
       TD.Data.InputFile
       TD.Data.InputIdentityDocument
       TD.Data.InputInlineQueryResult
+      TD.Data.InputInvoice
       TD.Data.InputMessageContent
       TD.Data.InputPassportElement
       TD.Data.InputPassportElementError
@@ -255,9 +258,9 @@ library
       TD.Data.PassportSuitableElement
       TD.Data.PasswordState
       TD.Data.PaymentForm
+      TD.Data.PaymentProvider
       TD.Data.PaymentReceipt
       TD.Data.PaymentResult
-      TD.Data.PaymentsProviderStripe
       TD.Data.PersonalDetails
       TD.Data.PersonalDocument
       TD.Data.PhoneNumberAuthenticationSettings
@@ -268,6 +271,13 @@ library
       TD.Data.Poll
       TD.Data.PollOption
       TD.Data.PollType
+      TD.Data.PremiumFeature
+      TD.Data.PremiumFeaturePromotionAnimation
+      TD.Data.PremiumFeatures
+      TD.Data.PremiumLimit
+      TD.Data.PremiumLimitType
+      TD.Data.PremiumSource
+      TD.Data.PremiumState
       TD.Data.ProfilePhoto
       TD.Data.Proxies
       TD.Data.Proxy
@@ -312,6 +322,7 @@ library
       TD.Data.Supergroup
       TD.Data.SupergroupFullInfo
       TD.Data.SupergroupMembersFilter
+      TD.Data.TargetChat
       TD.Data.TdlibParameters
       TD.Data.TemporaryPasswordState
       TD.Data.TermsOfService
@@ -335,6 +346,7 @@ library
       TD.Data.TMeUrls
       TD.Data.TMeUrlType
       TD.Data.TopChatCategory
+      TD.Data.TrendingStickerSets
       TD.Data.UnreadReaction
       TD.Data.Update
       TD.Data.Updates
@@ -382,11 +394,14 @@ library
       TD.Query.AnswerPreCheckoutQuery
       TD.Query.AnswerShippingQuery
       TD.Query.AnswerWebAppQuery
+      TD.Query.AssignAppStoreTransaction
+      TD.Query.AssignGooglePlayTransaction
       TD.Query.BanChatMember
       TD.Query.BlockMessageSenderFromReplies
       TD.Query.CancelDownloadFile
       TD.Query.CancelPasswordReset
       TD.Query.CancelUploadFile
+      TD.Query.CanPurchasePremium
       TD.Query.CanTransferOwnership
       TD.Query.ChangeImportedContacts
       TD.Query.ChangePhoneNumber
@@ -412,6 +427,7 @@ library
       TD.Query.ClearRecentlyFoundChats
       TD.Query.ClearRecentStickers
       TD.Query.ClickAnimatedEmojiMessage
+      TD.Query.ClickPremiumSubscriptionButton
       TD.Query.Close
       TD.Query.CloseChat
       TD.Query.CloseSecretChat
@@ -421,6 +437,7 @@ library
       TD.Query.CreateCall
       TD.Query.CreateChatFilter
       TD.Query.CreateChatInviteLink
+      TD.Query.CreateInvoiceLink
       TD.Query.CreateNewBasicGroupChat
       TD.Query.CreateNewSecretChat
       TD.Query.CreateNewStickerSet
@@ -478,6 +495,7 @@ library
       TD.Query.GetAccountTtl
       TD.Query.GetActiveLiveLocationMessages
       TD.Query.GetActiveSessions
+      TD.Query.GetAllAnimatedEmojis
       TD.Query.GetAllPassportElements
       TD.Query.GetAnimatedEmoji
       TD.Query.GetApplicationConfig
@@ -591,6 +609,10 @@ library
       TD.Query.GetPhoneNumberInfoSync
       TD.Query.GetPollVoters
       TD.Query.GetPreferredCountryLanguage
+      TD.Query.GetPremiumFeatures
+      TD.Query.GetPremiumLimit
+      TD.Query.GetPremiumState
+      TD.Query.GetPremiumStickers
       TD.Query.GetProxies
       TD.Query.GetProxyLink
       TD.Query.GetPushReceiverId
@@ -658,9 +680,11 @@ library
       TD.Query.ProcessChatJoinRequest
       TD.Query.ProcessChatJoinRequests
       TD.Query.ProcessPushNotification
+      TD.Query.RateSpeechRecognition
       TD.Query.ReadAllChatMentions
       TD.Query.ReadAllChatReactions
       TD.Query.ReadFilePart
+      TD.Query.RecognizeSpeech
       TD.Query.RecoverAuthenticationPassword
       TD.Query.RecoverPassword
       TD.Query.RegisterDevice
@@ -844,6 +868,8 @@ library
       TD.Query.ToggleSessionCanAcceptSecretChats
       TD.Query.ToggleSupergroupIsAllHistoryAvailable
       TD.Query.ToggleSupergroupIsBroadcastGroup
+      TD.Query.ToggleSupergroupJoinByRequest
+      TD.Query.ToggleSupergroupJoinToSendMessages
       TD.Query.ToggleSupergroupSignMessages
       TD.Query.TransferChatOwnership
       TD.Query.TranslateText
@@ -854,6 +880,7 @@ library
       TD.Query.UploadStickerFile
       TD.Query.ValidateOrderInfo
       TD.Query.ViewMessages
+      TD.Query.ViewPremiumFeature
       TD.Query.ViewTrendingStickerSets
       TD.Query.WriteGeneratedFilePart
       Utils

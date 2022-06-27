@@ -9,9 +9,11 @@ import qualified Utils as U
 
 -- | Describes the type of a call server
 data CallServerType
-  = -- | A Telegram call reflector @peer_tag A peer tag to be used with the reflector
+  = -- | A Telegram call reflector @peer_tag A peer tag to be used with the reflector @is_tcp True, if the server uses TCP instead of UDP
     CallServerTypeTelegramReflector
       { -- |
+        is_tcp :: Maybe Bool,
+        -- |
         peer_tag :: Maybe String
       }
   | -- | A WebRTC server @username Username to be used for authentication @password Authentication password @supports_turn True, if the server supports TURN @supports_stun True, if the server supports STUN
@@ -30,11 +32,13 @@ data CallServerType
 instance Show CallServerType where
   show
     CallServerTypeTelegramReflector
-      { peer_tag = peer_tag_
+      { is_tcp = is_tcp_,
+        peer_tag = peer_tag_
       } =
       "CallServerTypeTelegramReflector"
         ++ U.cc
-          [ U.p "peer_tag" peer_tag_
+          [ U.p "is_tcp" is_tcp_,
+            U.p "peer_tag" peer_tag_
           ]
   show
     CallServerTypeWebrtc
@@ -62,8 +66,9 @@ instance T.FromJSON CallServerType where
     where
       parseCallServerTypeTelegramReflector :: A.Value -> T.Parser CallServerType
       parseCallServerTypeTelegramReflector = A.withObject "CallServerTypeTelegramReflector" $ \o -> do
+        is_tcp_ <- o A..:? "is_tcp"
         peer_tag_ <- o A..:? "peer_tag"
-        return $ CallServerTypeTelegramReflector {peer_tag = peer_tag_}
+        return $ CallServerTypeTelegramReflector {is_tcp = is_tcp_, peer_tag = peer_tag_}
 
       parseCallServerTypeWebrtc :: A.Value -> T.Parser CallServerType
       parseCallServerTypeWebrtc = A.withObject "CallServerTypeWebrtc" $ \o -> do
@@ -77,10 +82,12 @@ instance T.FromJSON CallServerType where
 instance T.ToJSON CallServerType where
   toJSON
     CallServerTypeTelegramReflector
-      { peer_tag = peer_tag_
+      { is_tcp = is_tcp_,
+        peer_tag = peer_tag_
       } =
       A.object
         [ "@type" A..= T.String "callServerTypeTelegramReflector",
+          "is_tcp" A..= is_tcp_,
           "peer_tag" A..= peer_tag_
         ]
   toJSON

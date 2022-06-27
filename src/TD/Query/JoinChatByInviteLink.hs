@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Uses an invite link to add the current user to the chat if possible @invite_link Invite link to use
+-- Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created @invite_link Invite link to use
 data JoinChatByInviteLink = JoinChatByInviteLink
   { -- |
     invite_link :: Maybe String

@@ -9,7 +9,7 @@ import qualified TD.Data.ChatFilter as ChatFilter
 import qualified Utils as U
 
 -- |
--- Creates new chat filter. Returns information about the created chat filter @filter Chat filter
+-- Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium @filter Chat filter
 data CreateChatFilter = CreateChatFilter
   { -- |
     _filter :: Maybe ChatFilter.ChatFilter

@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.BotInfo as BotInfo
 import qualified TD.Data.ChatPhoto as ChatPhoto
+import qualified TD.Data.FormattedText as FormattedText
 import qualified Utils as U
 
 -- |
@@ -16,8 +17,8 @@ data UserFullInfo = -- | Contains full information about a user
     bot_info :: Maybe BotInfo.BotInfo,
     -- | Number of group chats where both the other user and the current user are a member; 0 for the current user
     group_in_common_count :: Maybe Int,
-    -- | A short user bio
-    bio :: Maybe String,
+    -- | A short user bio; may be null for bots
+    bio :: Maybe FormattedText.FormattedText,
     -- | True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     need_phone_number_privacy_exception :: Maybe Bool,
     -- | True, if the user can't be linked in forwarded messages due to their privacy settings

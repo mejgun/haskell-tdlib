@@ -8,13 +8,13 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Sends data received from a keyboardButtonTypeWebApp web app to a bot
+-- Sends data received from a keyboardButtonTypeWebApp Web App to a bot
 data SendWebAppData = SendWebAppData
   { -- |
     _data :: Maybe String,
     -- |
     button_text :: Maybe String,
-    -- | Identifier of the target bot @button_text Text of the keyboardButtonTypeWebApp button, which opened the web app @data Received data
+    -- | Identifier of the target bot @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App @data Received data
     bot_user_id :: Maybe Int
   }
   deriving (Eq)

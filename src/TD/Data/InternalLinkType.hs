@@ -8,23 +8,24 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ProxyType as ProxyType
+import {-# SOURCE #-} qualified TD.Data.TargetChat as TargetChat
 import qualified Utils as U
 
--- | Describes an internal https://t.me or tg: link, which must be processed by the app in a special way
+-- | Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 data InternalLinkType
-  = -- | The link is a link to the active sessions section of the app. Use getActiveSessions to handle the link
+  = -- | The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
     InternalLinkTypeActiveSessions
-  | -- | The link is a link to an attachment menu bot to be opened in the specified chat. Process given chat_link to open corresponding chat.
+  | -- | The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat.
     -- Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot.
     -- If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it.
-    -- If attachment menu bots can't be used in the current chat, show an error to the user. If the bot is added to attachment menu, then use openWebApp with the given URL
+    -- If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     InternalLinkTypeAttachmentMenuBot
       { -- |
         url :: Maybe String,
         -- |
         bot_username :: Maybe String,
-        -- | An internal link pointing to a chat; may be null if the current chat needs to be kept @bot_username Username of the bot @url URL to be passed to openWebApp
-        chat_link :: Maybe InternalLinkType
+        -- | Target chat to be opened @bot_username Username of the bot @url URL to be passed to openWebApp
+        target_chat :: Maybe TargetChat.TargetChat
       }
   | -- | The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode @code The authentication code
     InternalLinkTypeAuthenticationCode
@@ -83,6 +84,11 @@ data InternalLinkType
         -- | Username of the bot that owns the game @game_short_name Short name of the game
         bot_username :: Maybe String
       }
+  | -- | The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link @invoice_name Name of the invoice
+    InternalLinkTypeInvoice
+      { -- |
+        invoice_name :: Maybe String
+      }
   | -- | The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link @language_pack_id Language pack identifier
     InternalLinkTypeLanguagePack
       { -- |
@@ -102,7 +108,7 @@ data InternalLinkType
         -- | Message draft text @contains_link True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
         text :: Maybe FormattedText.FormattedText
       }
-  | -- | The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
+  | -- | The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application, otherwise ignore it
     InternalLinkTypePassportDataRequest
       { -- | An HTTP URL to open once the request is finished or canceled with the parameter tg_passport=success or tg_passport=cancel respectively. If empty, then the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel needs to be opened instead
         callback_url :: Maybe String,
@@ -121,6 +127,11 @@ data InternalLinkType
         phone_number :: Maybe String,
         -- | Hash value from the link @phone_number Phone number value from the link
         hash :: Maybe String
+      }
+  | -- | The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link @referrer Referrer specified in the link
+    InternalLinkTypePremiumFeatures
+      { -- |
+        referrer :: Maybe String
       }
   | -- | The link is a link to the privacy and security settings section of the app
     InternalLinkTypePrivacyAndSecuritySettings
@@ -141,7 +152,7 @@ data InternalLinkType
   | -- | The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to
     -- "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
     InternalLinkTypeQrCodeAuthentication
-  | -- | The link is a link to app settings
+  | -- | The link is a link to application settings
     InternalLinkTypeSettings
   | -- | The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set @sticker_set_name Name of the sticker set
     InternalLinkTypeStickerSet
@@ -187,13 +198,13 @@ instance Show InternalLinkType where
     InternalLinkTypeAttachmentMenuBot
       { url = url_,
         bot_username = bot_username_,
-        chat_link = chat_link_
+        target_chat = target_chat_
       } =
       "InternalLinkTypeAttachmentMenuBot"
         ++ U.cc
           [ U.p "url" url_,
             U.p "bot_username" bot_username_,
-            U.p "chat_link" chat_link_
+            U.p "target_chat" target_chat_
           ]
   show
     InternalLinkTypeAuthenticationCode
@@ -270,6 +281,14 @@ instance Show InternalLinkType where
             U.p "bot_username" bot_username_
           ]
   show
+    InternalLinkTypeInvoice
+      { invoice_name = invoice_name_
+      } =
+      "InternalLinkTypeInvoice"
+        ++ U.cc
+          [ U.p "invoice_name" invoice_name_
+          ]
+  show
     InternalLinkTypeLanguagePack
       { language_pack_id = language_pack_id_
       } =
@@ -324,6 +343,14 @@ instance Show InternalLinkType where
         ++ U.cc
           [ U.p "phone_number" phone_number_,
             U.p "hash" hash_
+          ]
+  show
+    InternalLinkTypePremiumFeatures
+      { referrer = referrer_
+      } =
+      "InternalLinkTypePremiumFeatures"
+        ++ U.cc
+          [ U.p "referrer" referrer_
           ]
   show InternalLinkTypePrivacyAndSecuritySettings =
     "InternalLinkTypePrivacyAndSecuritySettings"
@@ -426,12 +453,14 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeChatInvite" -> parseInternalLinkTypeChatInvite v
       "internalLinkTypeFilterSettings" -> parseInternalLinkTypeFilterSettings v
       "internalLinkTypeGame" -> parseInternalLinkTypeGame v
+      "internalLinkTypeInvoice" -> parseInternalLinkTypeInvoice v
       "internalLinkTypeLanguagePack" -> parseInternalLinkTypeLanguagePack v
       "internalLinkTypeLanguageSettings" -> parseInternalLinkTypeLanguageSettings v
       "internalLinkTypeMessage" -> parseInternalLinkTypeMessage v
       "internalLinkTypeMessageDraft" -> parseInternalLinkTypeMessageDraft v
       "internalLinkTypePassportDataRequest" -> parseInternalLinkTypePassportDataRequest v
       "internalLinkTypePhoneNumberConfirmation" -> parseInternalLinkTypePhoneNumberConfirmation v
+      "internalLinkTypePremiumFeatures" -> parseInternalLinkTypePremiumFeatures v
       "internalLinkTypePrivacyAndSecuritySettings" -> parseInternalLinkTypePrivacyAndSecuritySettings v
       "internalLinkTypeProxy" -> parseInternalLinkTypeProxy v
       "internalLinkTypePublicChat" -> parseInternalLinkTypePublicChat v
@@ -453,8 +482,8 @@ instance T.FromJSON InternalLinkType where
       parseInternalLinkTypeAttachmentMenuBot = A.withObject "InternalLinkTypeAttachmentMenuBot" $ \o -> do
         url_ <- o A..:? "url"
         bot_username_ <- o A..:? "bot_username"
-        chat_link_ <- o A..:? "chat_link"
-        return $ InternalLinkTypeAttachmentMenuBot {url = url_, bot_username = bot_username_, chat_link = chat_link_}
+        target_chat_ <- o A..:? "target_chat"
+        return $ InternalLinkTypeAttachmentMenuBot {url = url_, bot_username = bot_username_, target_chat = target_chat_}
 
       parseInternalLinkTypeAuthenticationCode :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeAuthenticationCode = A.withObject "InternalLinkTypeAuthenticationCode" $ \o -> do
@@ -502,6 +531,11 @@ instance T.FromJSON InternalLinkType where
         bot_username_ <- o A..:? "bot_username"
         return $ InternalLinkTypeGame {game_short_name = game_short_name_, bot_username = bot_username_}
 
+      parseInternalLinkTypeInvoice :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeInvoice = A.withObject "InternalLinkTypeInvoice" $ \o -> do
+        invoice_name_ <- o A..:? "invoice_name"
+        return $ InternalLinkTypeInvoice {invoice_name = invoice_name_}
+
       parseInternalLinkTypeLanguagePack :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeLanguagePack = A.withObject "InternalLinkTypeLanguagePack" $ \o -> do
         language_pack_id_ <- o A..:? "language_pack_id"
@@ -535,6 +569,11 @@ instance T.FromJSON InternalLinkType where
         phone_number_ <- o A..:? "phone_number"
         hash_ <- o A..:? "hash"
         return $ InternalLinkTypePhoneNumberConfirmation {phone_number = phone_number_, hash = hash_}
+
+      parseInternalLinkTypePremiumFeatures :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypePremiumFeatures = A.withObject "InternalLinkTypePremiumFeatures" $ \o -> do
+        referrer_ <- o A..:? "referrer"
+        return $ InternalLinkTypePremiumFeatures {referrer = referrer_}
 
       parseInternalLinkTypePrivacyAndSecuritySettings :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypePrivacyAndSecuritySettings = A.withObject "InternalLinkTypePrivacyAndSecuritySettings" $ \_ -> return InternalLinkTypePrivacyAndSecuritySettings
@@ -600,13 +639,13 @@ instance T.ToJSON InternalLinkType where
     InternalLinkTypeAttachmentMenuBot
       { url = url_,
         bot_username = bot_username_,
-        chat_link = chat_link_
+        target_chat = target_chat_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeAttachmentMenuBot",
           "url" A..= url_,
           "bot_username" A..= bot_username_,
-          "chat_link" A..= chat_link_
+          "target_chat" A..= target_chat_
         ]
   toJSON
     InternalLinkTypeAuthenticationCode
@@ -683,6 +722,14 @@ instance T.ToJSON InternalLinkType where
           "bot_username" A..= bot_username_
         ]
   toJSON
+    InternalLinkTypeInvoice
+      { invoice_name = invoice_name_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypeInvoice",
+          "invoice_name" A..= invoice_name_
+        ]
+  toJSON
     InternalLinkTypeLanguagePack
       { language_pack_id = language_pack_id_
       } =
@@ -737,6 +784,14 @@ instance T.ToJSON InternalLinkType where
         [ "@type" A..= T.String "internalLinkTypePhoneNumberConfirmation",
           "phone_number" A..= phone_number_,
           "hash" A..= hash_
+        ]
+  toJSON
+    InternalLinkTypePremiumFeatures
+      { referrer = referrer_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypePremiumFeatures",
+          "referrer" A..= referrer_
         ]
   toJSON InternalLinkTypePrivacyAndSecuritySettings =
     A.object

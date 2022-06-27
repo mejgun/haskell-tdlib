@@ -8,13 +8,13 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method @chat_id Chat identifier</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message &quot;INVITE_REQUEST_SENT&quot; if only a join request was created @chat_id Chat identifier</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="JoinChat"><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-var">JoinChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="JoinChat"><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-var">JoinChat</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">JoinChat -&gt; Maybe Int
 </span><a href="TD.Query.JoinChat.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679377869"><span id="local-6989586621679377871"><span class="annot"><span class="annottext">JoinChat -&gt; JoinChat -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679387937"><span id="local-6989586621679387939"><span class="annot"><span class="annottext">JoinChat -&gt; JoinChat -&gt; Bool
 (JoinChat -&gt; JoinChat -&gt; Bool)
 -&gt; (JoinChat -&gt; JoinChat -&gt; Bool) -&gt; Eq JoinChat
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -24,13 +24,13 @@ $c/= :: JoinChat -&gt; JoinChat -&gt; Bool
 $c== :: JoinChat -&gt; JoinChat -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679377863"><span id="local-6989586621679377866"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-type">JoinChat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679377861"><span class="annot"><span class="annottext">show :: JoinChat -&gt; String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387931"><span id="local-6989586621679387934"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-type">JoinChat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679387929"><span class="annot"><span class="annottext">show :: JoinChat -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-type">JoinChat</span></a></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: JoinChat -&gt; Maybe Int
-</span><a href="TD.Query.JoinChat.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377859"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377859"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.JoinChat.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387927"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387927"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;JoinChat&quot;</span></span><span>
@@ -42,16 +42,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377859"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679387927"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679377850"><span id="local-6989586621679377852"><span id="local-6989586621679377854"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-type">JoinChat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679377848"><span class="annot"><span class="annottext">toJSON :: JoinChat -&gt; Value
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387918"><span id="local-6989586621679387920"><span id="local-6989586621679387922"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-type">JoinChat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679387916"><span class="annot"><span class="annottext">toJSON :: JoinChat -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Query.JoinChat.html#JoinChat"><span class="hs-identifier hs-type">JoinChat</span></a></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: JoinChat -&gt; Maybe Int
-</span><a href="TD.Query.JoinChat.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377846"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377846"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.JoinChat.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387914"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387914"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -65,6 +65,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377846"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679387914"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-36"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span></pre></body></html>

@@ -25,6 +25,10 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
     is_channel :: Maybe Bool,
     -- | True, if the slow mode is enabled in the supergroup
     is_slow_mode_enabled :: Maybe Bool,
+    -- | True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
+    join_by_request :: Maybe Bool,
+    -- | True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
+    join_to_send_messages :: Maybe Bool,
     -- | True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
     sign_messages :: Maybe Bool,
     -- | True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
@@ -54,6 +58,8 @@ instance Show Supergroup where
         is_broadcast_group = is_broadcast_group_,
         is_channel = is_channel_,
         is_slow_mode_enabled = is_slow_mode_enabled_,
+        join_by_request = join_by_request_,
+        join_to_send_messages = join_to_send_messages_,
         sign_messages = sign_messages_,
         has_location = has_location_,
         has_linked_chat = has_linked_chat_,
@@ -72,6 +78,8 @@ instance Show Supergroup where
             U.p "is_broadcast_group" is_broadcast_group_,
             U.p "is_channel" is_channel_,
             U.p "is_slow_mode_enabled" is_slow_mode_enabled_,
+            U.p "join_by_request" join_by_request_,
+            U.p "join_to_send_messages" join_to_send_messages_,
             U.p "sign_messages" sign_messages_,
             U.p "has_location" has_location_,
             U.p "has_linked_chat" has_linked_chat_,
@@ -99,6 +107,8 @@ instance T.FromJSON Supergroup where
         is_broadcast_group_ <- o A..:? "is_broadcast_group"
         is_channel_ <- o A..:? "is_channel"
         is_slow_mode_enabled_ <- o A..:? "is_slow_mode_enabled"
+        join_by_request_ <- o A..:? "join_by_request"
+        join_to_send_messages_ <- o A..:? "join_to_send_messages"
         sign_messages_ <- o A..:? "sign_messages"
         has_location_ <- o A..:? "has_location"
         has_linked_chat_ <- o A..:? "has_linked_chat"
@@ -107,7 +117,7 @@ instance T.FromJSON Supergroup where
         date_ <- o A..:? "date"
         username_ <- o A..:? "username"
         _id_ <- o A..:? "id"
-        return $ Supergroup {is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_verified = is_verified_, is_broadcast_group = is_broadcast_group_, is_channel = is_channel_, is_slow_mode_enabled = is_slow_mode_enabled_, sign_messages = sign_messages_, has_location = has_location_, has_linked_chat = has_linked_chat_, member_count = member_count_, status = status_, date = date_, username = username_, _id = _id_}
+        return $ Supergroup {is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_verified = is_verified_, is_broadcast_group = is_broadcast_group_, is_channel = is_channel_, is_slow_mode_enabled = is_slow_mode_enabled_, join_by_request = join_by_request_, join_to_send_messages = join_to_send_messages_, sign_messages = sign_messages_, has_location = has_location_, has_linked_chat = has_linked_chat_, member_count = member_count_, status = status_, date = date_, username = username_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Supergroup where
@@ -120,6 +130,8 @@ instance T.ToJSON Supergroup where
         is_broadcast_group = is_broadcast_group_,
         is_channel = is_channel_,
         is_slow_mode_enabled = is_slow_mode_enabled_,
+        join_by_request = join_by_request_,
+        join_to_send_messages = join_to_send_messages_,
         sign_messages = sign_messages_,
         has_location = has_location_,
         has_linked_chat = has_linked_chat_,
@@ -138,6 +150,8 @@ instance T.ToJSON Supergroup where
           "is_broadcast_group" A..= is_broadcast_group_,
           "is_channel" A..= is_channel_,
           "is_slow_mode_enabled" A..= is_slow_mode_enabled_,
+          "join_by_request" A..= join_by_request_,
+          "join_to_send_messages" A..= join_to_send_messages_,
           "sign_messages" A..= sign_messages_,
           "has_location" A..= has_location_,
           "has_linked_chat" A..= has_linked_chat_,

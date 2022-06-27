@@ -24,7 +24,7 @@
 </span><span id="line-21"></span><span>    </span><span id="disable_notification"><span class="annot"><span class="annottext">MessageSendOptions -&gt; Maybe Bool
 </span><a href="TD.Data.MessageSendOptions.html#disable_notification"><span class="hs-identifier hs-var hs-var">disable_notification</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679397359"><span id="local-6989586621679397361"><span class="annot"><span class="annottext">MessageSendOptions -&gt; MessageSendOptions -&gt; Bool
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408315"><span id="local-6989586621679408317"><span class="annot"><span class="annottext">MessageSendOptions -&gt; MessageSendOptions -&gt; Bool
 (MessageSendOptions -&gt; MessageSendOptions -&gt; Bool)
 -&gt; (MessageSendOptions -&gt; MessageSendOptions -&gt; Bool)
 -&gt; Eq MessageSendOptions
@@ -35,22 +35,22 @@ $c/= :: MessageSendOptions -&gt; MessageSendOptions -&gt; Bool
 $c== :: MessageSendOptions -&gt; MessageSendOptions -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397353"><span id="local-6989586621679397356"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679397351"><span class="annot"><span class="annottext">show :: MessageSendOptions -&gt; String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408309"><span id="local-6989586621679408312"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679408307"><span class="annot"><span class="annottext">show :: MessageSendOptions -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">scheduling_state :: MessageSendOptions -&gt; Maybe MessageSchedulingState
-</span><a href="TD.Data.MessageSendOptions.html#scheduling_state"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397349"><span class="annot"><span class="annottext">Maybe MessageSchedulingState
-</span><a href="#local-6989586621679397349"><span class="hs-identifier hs-var">scheduling_state_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.MessageSendOptions.html#scheduling_state"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408305"><span class="annot"><span class="annottext">Maybe MessageSchedulingState
+</span><a href="#local-6989586621679408305"><span class="hs-identifier hs-var">scheduling_state_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">protect_content :: MessageSendOptions -&gt; Maybe Bool
-</span><a href="TD.Data.MessageSendOptions.html#protect_content"><span class="hs-identifier hs-var">protect_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397348"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397348"><span class="hs-identifier hs-var">protect_content_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.MessageSendOptions.html#protect_content"><span class="hs-identifier hs-var">protect_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408304"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408304"><span class="hs-identifier hs-var">protect_content_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">from_background :: MessageSendOptions -&gt; Maybe Bool
-</span><a href="TD.Data.MessageSendOptions.html#from_background"><span class="hs-identifier hs-var">from_background</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397347"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397347"><span class="hs-identifier hs-var">from_background_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.MessageSendOptions.html#from_background"><span class="hs-identifier hs-var">from_background</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408303"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408303"><span class="hs-identifier hs-var">from_background_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">disable_notification :: MessageSendOptions -&gt; Maybe Bool
-</span><a href="TD.Data.MessageSendOptions.html#disable_notification"><span class="hs-identifier hs-var">disable_notification</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397346"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397346"><span class="hs-identifier hs-var">disable_notification_</span></a></span></span><span>
+</span><a href="TD.Data.MessageSendOptions.html#disable_notification"><span class="hs-identifier hs-var">disable_notification</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408302"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408302"><span class="hs-identifier hs-var">disable_notification_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MessageSendOptions&quot;</span></span><span>
@@ -62,50 +62,50 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;scheduling_state&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSchedulingState
-</span><a href="#local-6989586621679397349"><span class="hs-identifier hs-var">scheduling_state_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408305"><span class="hs-identifier hs-var">scheduling_state_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;protect_content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397348"><span class="hs-identifier hs-var">protect_content_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408304"><span class="hs-identifier hs-var">protect_content_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;from_background&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397347"><span class="hs-identifier hs-var">from_background_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408303"><span class="hs-identifier hs-var">from_background_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;disable_notification&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397346"><span class="hs-identifier hs-var">disable_notification_</span></a></span><span>
+</span><a href="#local-6989586621679408302"><span class="hs-identifier hs-var">disable_notification_</span></a></span><span>
 </span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397341"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>  </span><span id="local-6989586621679397339"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageSendOptions
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679397337"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679397337"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679397335"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397335"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>    </span><span id="local-6989586621679397334"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679397334"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397335"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408297"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679408295"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageSendOptions
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408293"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679408293"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408291"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408291"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679408290"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679408290"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408291"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-44"></span><span>
 </span><span id="line-45"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679397334"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679408290"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-46"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSendOptions&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSendOptions
-</span><a href="#local-6989586621679397332"><span class="hs-identifier hs-var">parseMessageSendOptions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679397337"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679408288"><span class="hs-identifier hs-var">parseMessageSendOptions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679408293"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser MessageSendOptions
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-48"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>      </span><span class="annot"><a href="#local-6989586621679397332"><span class="hs-identifier hs-type">parseMessageSendOptions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span><span>
-</span><span id="line-50"></span><span>      </span><span id="local-6989586621679397332"><span class="annot"><span class="annottext">parseMessageSendOptions :: Value -&gt; Parser MessageSendOptions
-</span><a href="#local-6989586621679397332"><span class="hs-identifier hs-var hs-var">parseMessageSendOptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-49"></span><span>      </span><span class="annot"><a href="#local-6989586621679408288"><span class="hs-identifier hs-type">parseMessageSendOptions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span><span>
+</span><span id="line-50"></span><span>      </span><span id="local-6989586621679408288"><span class="annot"><span class="annottext">parseMessageSendOptions :: Value -&gt; Parser MessageSendOptions
+</span><a href="#local-6989586621679408288"><span class="hs-identifier hs-var hs-var">parseMessageSendOptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSendOptions)
 -&gt; Value
 -&gt; Parser MessageSendOptions
@@ -117,29 +117,29 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser MessageSendOptions
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397330"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397330"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-51"></span><span>        </span><span id="local-6989586621679397329"><span class="annot"><span class="annottext">Maybe MessageSchedulingState
-</span><a href="#local-6989586621679397329"><span class="hs-identifier hs-var">scheduling_state_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397330"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageSchedulingState)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408286"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408286"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-51"></span><span>        </span><span id="local-6989586621679408285"><span class="annot"><span class="annottext">Maybe MessageSchedulingState
+</span><a href="#local-6989586621679408285"><span class="hs-identifier hs-var">scheduling_state_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408286"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageSchedulingState)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scheduling_state&quot;</span></span><span>
-</span><span id="line-52"></span><span>        </span><span id="local-6989586621679397327"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397327"><span class="hs-identifier hs-var">protect_content_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397330"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-52"></span><span>        </span><span id="local-6989586621679408283"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408283"><span class="hs-identifier hs-var">protect_content_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408286"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;protect_content&quot;</span></span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679397326"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397326"><span class="hs-identifier hs-var">from_background_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397330"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679408282"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408282"><span class="hs-identifier hs-var">from_background_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408286"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;from_background&quot;</span></span><span>
-</span><span id="line-54"></span><span>        </span><span id="local-6989586621679397325"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397325"><span class="hs-identifier hs-var">disable_notification_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397330"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679408281"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408281"><span class="hs-identifier hs-var">disable_notification_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408286"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;disable_notification&quot;</span></span><span>
@@ -152,34 +152,34 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe Bool -&gt; Maybe Bool -&gt; Maybe Bool -&gt; MessageSendOptions
 </span><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">scheduling_state :: Maybe MessageSchedulingState
 </span><a href="TD.Data.MessageSendOptions.html#scheduling_state"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe MessageSchedulingState
-</span><a href="#local-6989586621679397329"><span class="hs-identifier hs-var">scheduling_state_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">protect_content :: Maybe Bool
+</span><a href="#local-6989586621679408285"><span class="hs-identifier hs-var">scheduling_state_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">protect_content :: Maybe Bool
 </span><a href="TD.Data.MessageSendOptions.html#protect_content"><span class="hs-identifier hs-var">protect_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397327"><span class="hs-identifier hs-var">protect_content_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">from_background :: Maybe Bool
+</span><a href="#local-6989586621679408283"><span class="hs-identifier hs-var">protect_content_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">from_background :: Maybe Bool
 </span><a href="TD.Data.MessageSendOptions.html#from_background"><span class="hs-identifier hs-var">from_background</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397326"><span class="hs-identifier hs-var">from_background_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">disable_notification :: Maybe Bool
+</span><a href="#local-6989586621679408282"><span class="hs-identifier hs-var">from_background_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">disable_notification :: Maybe Bool
 </span><a href="TD.Data.MessageSendOptions.html#disable_notification"><span class="hs-identifier hs-var">disable_notification</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397325"><span class="hs-identifier hs-var">disable_notification_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679408281"><span class="hs-identifier hs-var">disable_notification_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-56"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser MessageSendOptions
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397318"><span id="local-6989586621679397320"><span id="local-6989586621679397322"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679397316"><span class="annot"><span class="annottext">toJSON :: MessageSendOptions -&gt; Value
+</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408274"><span id="local-6989586621679408276"><span id="local-6989586621679408278"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679408272"><span class="annot"><span class="annottext">toJSON :: MessageSendOptions -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-60"></span><span>    </span><span class="annot"><a href="TD.Data.MessageSendOptions.html#MessageSendOptions"><span class="hs-identifier hs-type">MessageSendOptions</span></a></span><span>
 </span><span id="line-61"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">scheduling_state :: MessageSendOptions -&gt; Maybe MessageSchedulingState
-</span><a href="TD.Data.MessageSendOptions.html#scheduling_state"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397314"><span class="annot"><span class="annottext">Maybe MessageSchedulingState
-</span><a href="#local-6989586621679397314"><span class="hs-identifier hs-var">scheduling_state_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.MessageSendOptions.html#scheduling_state"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408270"><span class="annot"><span class="annottext">Maybe MessageSchedulingState
+</span><a href="#local-6989586621679408270"><span class="hs-identifier hs-var">scheduling_state_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">protect_content :: MessageSendOptions -&gt; Maybe Bool
-</span><a href="TD.Data.MessageSendOptions.html#protect_content"><span class="hs-identifier hs-var">protect_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397313"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397313"><span class="hs-identifier hs-var">protect_content_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.MessageSendOptions.html#protect_content"><span class="hs-identifier hs-var">protect_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408269"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408269"><span class="hs-identifier hs-var">protect_content_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">from_background :: MessageSendOptions -&gt; Maybe Bool
-</span><a href="TD.Data.MessageSendOptions.html#from_background"><span class="hs-identifier hs-var">from_background</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397312"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397312"><span class="hs-identifier hs-var">from_background_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.MessageSendOptions.html#from_background"><span class="hs-identifier hs-var">from_background</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408268"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408268"><span class="hs-identifier hs-var">from_background_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">disable_notification :: MessageSendOptions -&gt; Maybe Bool
-</span><a href="TD.Data.MessageSendOptions.html#disable_notification"><span class="hs-identifier hs-var">disable_notification</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397311"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397311"><span class="hs-identifier hs-var">disable_notification_</span></a></span></span><span>
+</span><a href="TD.Data.MessageSendOptions.html#disable_notification"><span class="hs-identifier hs-var">disable_notification</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408267"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408267"><span class="hs-identifier hs-var">disable_notification_</span></a></span></span><span>
 </span><span id="line-65"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-66"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -193,21 +193,21 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;scheduling_state&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSchedulingState -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSchedulingState
-</span><a href="#local-6989586621679397314"><span class="hs-identifier hs-var">scheduling_state_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408270"><span class="hs-identifier hs-var">scheduling_state_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;protect_content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397313"><span class="hs-identifier hs-var">protect_content_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408269"><span class="hs-identifier hs-var">protect_content_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;from_background&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397312"><span class="hs-identifier hs-var">from_background_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408268"><span class="hs-identifier hs-var">from_background_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;disable_notification&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679397311"><span class="hs-identifier hs-var">disable_notification_</span></a></span><span>
+</span><a href="#local-6989586621679408267"><span class="hs-identifier hs-var">disable_notification_</span></a></span><span>
 </span><span id="line-72"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-73"></span></pre></body></html>

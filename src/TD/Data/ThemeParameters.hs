@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data ThemeParameters = -- | Contains parameters of the app theme @background_color A color of the background in the RGB24 format @text_color A color of text in the RGB24 format
+data ThemeParameters = -- | Contains parameters of the application theme @background_color A color of the background in the RGB24 format @secondary_background_color A secondary color for the background in the RGB24 format
   ThemeParameters
   { -- | A color of text on the buttons in the RGB24 format
     button_text_color :: Maybe Int,
@@ -16,10 +16,12 @@ data ThemeParameters = -- | Contains parameters of the app theme @background_col
     button_color :: Maybe Int,
     -- |
     link_color :: Maybe Int,
-    -- | A color of hints in the RGB24 format @link_color A color of links in the RGB24 format @button_color A color of the buttons in the RGB24 format
-    hint_color :: Maybe Int,
     -- |
+    hint_color :: Maybe Int,
+    -- | A color of text in the RGB24 format @hint_color A color of hints in the RGB24 format @link_color A color of links in the RGB24 format @button_color A color of the buttons in the RGB24 format
     text_color :: Maybe Int,
+    -- |
+    secondary_background_color :: Maybe Int,
     -- |
     background_color :: Maybe Int
   }
@@ -33,6 +35,7 @@ instance Show ThemeParameters where
         link_color = link_color_,
         hint_color = hint_color_,
         text_color = text_color_,
+        secondary_background_color = secondary_background_color_,
         background_color = background_color_
       } =
       "ThemeParameters"
@@ -42,6 +45,7 @@ instance Show ThemeParameters where
             U.p "link_color" link_color_,
             U.p "hint_color" hint_color_,
             U.p "text_color" text_color_,
+            U.p "secondary_background_color" secondary_background_color_,
             U.p "background_color" background_color_
           ]
 
@@ -60,8 +64,9 @@ instance T.FromJSON ThemeParameters where
         link_color_ <- o A..:? "link_color"
         hint_color_ <- o A..:? "hint_color"
         text_color_ <- o A..:? "text_color"
+        secondary_background_color_ <- o A..:? "secondary_background_color"
         background_color_ <- o A..:? "background_color"
-        return $ ThemeParameters {button_text_color = button_text_color_, button_color = button_color_, link_color = link_color_, hint_color = hint_color_, text_color = text_color_, background_color = background_color_}
+        return $ ThemeParameters {button_text_color = button_text_color_, button_color = button_color_, link_color = link_color_, hint_color = hint_color_, text_color = text_color_, secondary_background_color = secondary_background_color_, background_color = background_color_}
   parseJSON _ = mempty
 
 instance T.ToJSON ThemeParameters where
@@ -72,6 +77,7 @@ instance T.ToJSON ThemeParameters where
         link_color = link_color_,
         hint_color = hint_color_,
         text_color = text_color_,
+        secondary_background_color = secondary_background_color_,
         background_color = background_color_
       } =
       A.object
@@ -81,5 +87,6 @@ instance T.ToJSON ThemeParameters where
           "link_color" A..= link_color_,
           "hint_color" A..= hint_color_,
           "text_color" A..= text_color_,
+          "secondary_background_color" A..= secondary_background_color_,
           "background_color" A..= background_color_
         ]

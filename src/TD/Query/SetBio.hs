@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Changes the bio of the current user @bio The new value of the user bio; 0-70 characters without line feeds
+-- Changes the bio of the current user @bio The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
 data SetBio = SetBio
   { -- |
     bio :: Maybe String

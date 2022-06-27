@@ -13,7 +13,9 @@ import qualified Utils as U
 -- |
 data User = -- | Represents a user
   User
-  { -- | IETF language tag of the user's language; only available to bots
+  { -- | True, if the user added the current bot to attachment menu; only available to bots
+    added_to_attachment_menu :: Maybe Bool,
+    -- | IETF language tag of the user's language; only available to bots
     language_code :: Maybe String,
     -- | Type of the user
     _type :: Maybe UserType.UserType,
@@ -27,6 +29,8 @@ data User = -- | Represents a user
     restriction_reason :: Maybe String,
     -- | True, if the user is Telegram support account
     is_support :: Maybe Bool,
+    -- | True, if the user is a Telegram Premium user
+    is_premium :: Maybe Bool,
     -- | True, if the user is verified
     is_verified :: Maybe Bool,
     -- | The user is a contact of the current user and the current user is a contact of the user
@@ -53,13 +57,15 @@ data User = -- | Represents a user
 instance Show User where
   show
     User
-      { language_code = language_code_,
+      { added_to_attachment_menu = added_to_attachment_menu_,
+        language_code = language_code_,
         _type = _type_,
         have_access = have_access_,
         is_fake = is_fake_,
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
         is_support = is_support_,
+        is_premium = is_premium_,
         is_verified = is_verified_,
         is_mutual_contact = is_mutual_contact_,
         is_contact = is_contact_,
@@ -73,13 +79,15 @@ instance Show User where
       } =
       "User"
         ++ U.cc
-          [ U.p "language_code" language_code_,
+          [ U.p "added_to_attachment_menu" added_to_attachment_menu_,
+            U.p "language_code" language_code_,
             U.p "_type" _type_,
             U.p "have_access" have_access_,
             U.p "is_fake" is_fake_,
             U.p "is_scam" is_scam_,
             U.p "restriction_reason" restriction_reason_,
             U.p "is_support" is_support_,
+            U.p "is_premium" is_premium_,
             U.p "is_verified" is_verified_,
             U.p "is_mutual_contact" is_mutual_contact_,
             U.p "is_contact" is_contact_,
@@ -102,6 +110,7 @@ instance T.FromJSON User where
     where
       parseUser :: A.Value -> T.Parser User
       parseUser = A.withObject "User" $ \o -> do
+        added_to_attachment_menu_ <- o A..:? "added_to_attachment_menu"
         language_code_ <- o A..:? "language_code"
         _type_ <- o A..:? "type"
         have_access_ <- o A..:? "have_access"
@@ -109,6 +118,7 @@ instance T.FromJSON User where
         is_scam_ <- o A..:? "is_scam"
         restriction_reason_ <- o A..:? "restriction_reason"
         is_support_ <- o A..:? "is_support"
+        is_premium_ <- o A..:? "is_premium"
         is_verified_ <- o A..:? "is_verified"
         is_mutual_contact_ <- o A..:? "is_mutual_contact"
         is_contact_ <- o A..:? "is_contact"
@@ -119,19 +129,21 @@ instance T.FromJSON User where
         last_name_ <- o A..:? "last_name"
         first_name_ <- o A..:? "first_name"
         _id_ <- o A..:? "id"
-        return $ User {language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, username = username_, last_name = last_name_, first_name = first_name_, _id = _id_}
+        return $ User {added_to_attachment_menu = added_to_attachment_menu_, language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_premium = is_premium_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, username = username_, last_name = last_name_, first_name = first_name_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON User where
   toJSON
     User
-      { language_code = language_code_,
+      { added_to_attachment_menu = added_to_attachment_menu_,
+        language_code = language_code_,
         _type = _type_,
         have_access = have_access_,
         is_fake = is_fake_,
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
         is_support = is_support_,
+        is_premium = is_premium_,
         is_verified = is_verified_,
         is_mutual_contact = is_mutual_contact_,
         is_contact = is_contact_,
@@ -145,6 +157,7 @@ instance T.ToJSON User where
       } =
       A.object
         [ "@type" A..= T.String "user",
+          "added_to_attachment_menu" A..= added_to_attachment_menu_,
           "language_code" A..= language_code_,
           "type" A..= _type_,
           "have_access" A..= have_access_,
@@ -152,6 +165,7 @@ instance T.ToJSON User where
           "is_scam" A..= is_scam_,
           "restriction_reason" A..= restriction_reason_,
           "is_support" A..= is_support_,
+          "is_premium" A..= is_premium_,
           "is_verified" A..= is_verified_,
           "is_mutual_contact" A..= is_mutual_contact_,
           "is_contact" A..= is_contact_,

@@ -183,6 +183,11 @@ data PushMessageContent
     PushMessageContentChatJoinByLink
   | -- | A new member was accepted to the chat by an administrator
     PushMessageContentChatJoinByRequest
+  | -- | A new recurrent payment was made by the current user @amount The paid amount
+    PushMessageContentRecurringPayment
+      { -- |
+        amount :: Maybe String
+      }
   | -- | A forwarded messages @total_count Number of forwarded messages
     PushMessageContentMessageForwards
       { -- |
@@ -443,6 +448,14 @@ instance Show PushMessageContent where
       ++ U.cc
         []
   show
+    PushMessageContentRecurringPayment
+      { amount = amount_
+      } =
+      "PushMessageContentRecurringPayment"
+        ++ U.cc
+          [ U.p "amount" amount_
+          ]
+  show
     PushMessageContentMessageForwards
       { total_count = total_count_
       } =
@@ -498,6 +511,7 @@ instance T.FromJSON PushMessageContent where
       "pushMessageContentChatDeleteMember" -> parsePushMessageContentChatDeleteMember v
       "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
       "pushMessageContentChatJoinByRequest" -> parsePushMessageContentChatJoinByRequest v
+      "pushMessageContentRecurringPayment" -> parsePushMessageContentRecurringPayment v
       "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
       "pushMessageContentMediaAlbum" -> parsePushMessageContentMediaAlbum v
       _ -> mempty
@@ -646,6 +660,11 @@ instance T.FromJSON PushMessageContent where
 
       parsePushMessageContentChatJoinByRequest :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentChatJoinByRequest = A.withObject "PushMessageContentChatJoinByRequest" $ \_ -> return PushMessageContentChatJoinByRequest
+
+      parsePushMessageContentRecurringPayment :: A.Value -> T.Parser PushMessageContent
+      parsePushMessageContentRecurringPayment = A.withObject "PushMessageContentRecurringPayment" $ \o -> do
+        amount_ <- o A..:? "amount"
+        return $ PushMessageContentRecurringPayment {amount = amount_}
 
       parsePushMessageContentMessageForwards :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do
@@ -901,6 +920,14 @@ instance T.ToJSON PushMessageContent where
     A.object
       [ "@type" A..= T.String "pushMessageContentChatJoinByRequest"
       ]
+  toJSON
+    PushMessageContentRecurringPayment
+      { amount = amount_
+      } =
+      A.object
+        [ "@type" A..= T.String "pushMessageContentRecurringPayment",
+          "amount" A..= amount_
+        ]
   toJSON
     PushMessageContentMessageForwards
       { total_count = total_count_

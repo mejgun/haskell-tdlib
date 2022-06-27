@@ -9,7 +9,7 @@ import qualified TD.Data.PublicChatType as PublicChatType
 import qualified Utils as U
 
 -- |
--- Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached @type Type of the public chats, for which to check the limit
+-- Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium @type Type of the public chats, for which to check the limit
 data CheckCreatedPublicChatsLimit = CheckCreatedPublicChatsLimit
   { -- |
     _type :: Maybe PublicChatType.PublicChatType

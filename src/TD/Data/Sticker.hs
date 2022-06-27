@@ -16,7 +16,9 @@ data Sticker = -- | Describes a sticker @set_id The identifier of the sticker se
   Sticker
   { -- |
     sticker :: Maybe File.File,
-    -- | Sticker thumbnail in WEBP or JPEG format; may be null @sticker File containing the sticker
+    -- |
+    premium_animation :: Maybe File.File,
+    -- | Sticker thumbnail in WEBP or JPEG format; may be null @premium_animation Premium animation of the sticker; may be null. If present, only Premium users can send the sticker @sticker File containing the sticker
     thumbnail :: Maybe Thumbnail.Thumbnail,
     -- |
     outline :: Maybe [ClosedVectorPath.ClosedVectorPath],
@@ -37,6 +39,7 @@ instance Show Sticker where
   show
     Sticker
       { sticker = sticker_,
+        premium_animation = premium_animation_,
         thumbnail = thumbnail_,
         outline = outline_,
         _type = _type_,
@@ -48,6 +51,7 @@ instance Show Sticker where
       "Sticker"
         ++ U.cc
           [ U.p "sticker" sticker_,
+            U.p "premium_animation" premium_animation_,
             U.p "thumbnail" thumbnail_,
             U.p "outline" outline_,
             U.p "_type" _type_,
@@ -68,6 +72,7 @@ instance T.FromJSON Sticker where
       parseSticker :: A.Value -> T.Parser Sticker
       parseSticker = A.withObject "Sticker" $ \o -> do
         sticker_ <- o A..:? "sticker"
+        premium_animation_ <- o A..:? "premium_animation"
         thumbnail_ <- o A..:? "thumbnail"
         outline_ <- o A..:? "outline"
         _type_ <- o A..:? "type"
@@ -75,13 +80,14 @@ instance T.FromJSON Sticker where
         height_ <- o A..:? "height"
         width_ <- o A..:? "width"
         set_id_ <- U.rm <$> (o A..:? "set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ Sticker {sticker = sticker_, thumbnail = thumbnail_, outline = outline_, _type = _type_, emoji = emoji_, height = height_, width = width_, set_id = set_id_}
+        return $ Sticker {sticker = sticker_, premium_animation = premium_animation_, thumbnail = thumbnail_, outline = outline_, _type = _type_, emoji = emoji_, height = height_, width = width_, set_id = set_id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Sticker where
   toJSON
     Sticker
       { sticker = sticker_,
+        premium_animation = premium_animation_,
         thumbnail = thumbnail_,
         outline = outline_,
         _type = _type_,
@@ -93,6 +99,7 @@ instance T.ToJSON Sticker where
       A.object
         [ "@type" A..= T.String "sticker",
           "sticker" A..= sticker_,
+          "premium_animation" A..= premium_animation_,
           "thumbnail" A..= thumbnail_,
           "outline" A..= outline_,
           "type" A..= _type_,

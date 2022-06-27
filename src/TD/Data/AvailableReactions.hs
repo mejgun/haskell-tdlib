@@ -5,13 +5,14 @@ module TD.Data.AvailableReactions where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.AvailableReaction as AvailableReaction
 import qualified Utils as U
 
 -- |
 data AvailableReactions = -- | Represents a list of available reactions @reactions List of reactions
   AvailableReactions
   { -- |
-    reactions :: Maybe [String]
+    reactions :: Maybe [AvailableReaction.AvailableReaction]
   }
   deriving (Eq)
 

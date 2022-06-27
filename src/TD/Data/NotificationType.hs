@@ -12,9 +12,11 @@ import qualified Utils as U
 
 -- | Contains detailed information about a notification
 data NotificationType
-  = -- | New message was received @message The message
+  = -- | New message was received @message The message @show_preview True, if message content must be displayed in notifications
     NotificationTypeNewMessage
       { -- |
+        show_preview :: Maybe Bool,
+        -- |
         message :: Maybe Message.Message
       }
   | -- | New secret chat was created
@@ -42,11 +44,13 @@ data NotificationType
 instance Show NotificationType where
   show
     NotificationTypeNewMessage
-      { message = message_
+      { show_preview = show_preview_,
+        message = message_
       } =
       "NotificationTypeNewMessage"
         ++ U.cc
-          [ U.p "message" message_
+          [ U.p "show_preview" show_preview_,
+            U.p "message" message_
           ]
   show NotificationTypeNewSecretChat =
     "NotificationTypeNewSecretChat"
@@ -90,8 +94,9 @@ instance T.FromJSON NotificationType where
     where
       parseNotificationTypeNewMessage :: A.Value -> T.Parser NotificationType
       parseNotificationTypeNewMessage = A.withObject "NotificationTypeNewMessage" $ \o -> do
+        show_preview_ <- o A..:? "show_preview"
         message_ <- o A..:? "message"
-        return $ NotificationTypeNewMessage {message = message_}
+        return $ NotificationTypeNewMessage {show_preview = show_preview_, message = message_}
 
       parseNotificationTypeNewSecretChat :: A.Value -> T.Parser NotificationType
       parseNotificationTypeNewSecretChat = A.withObject "NotificationTypeNewSecretChat" $ \_ -> return NotificationTypeNewSecretChat
@@ -114,10 +119,12 @@ instance T.FromJSON NotificationType where
 instance T.ToJSON NotificationType where
   toJSON
     NotificationTypeNewMessage
-      { message = message_
+      { show_preview = show_preview_,
+        message = message_
       } =
       A.object
         [ "@type" A..= T.String "notificationTypeNewMessage",
+          "show_preview" A..= show_preview_,
           "message" A..= message_
         ]
   toJSON NotificationTypeNewSecretChat =

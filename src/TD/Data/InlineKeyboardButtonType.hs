@@ -23,7 +23,7 @@ data InlineKeyboardButtonType
         -- |
         url :: Maybe String
       }
-  | -- | A button that opens a web app by calling openWebApp @url An HTTP URL to pass to openWebApp
+  | -- | A button that opens a Web App by calling openWebApp @url An HTTP URL to pass to openWebApp
     InlineKeyboardButtonTypeWebApp
       { -- |
         url :: Maybe String

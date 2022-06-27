@@ -21,6 +21,8 @@ data SponsoredMessage = -- | Describes a sponsored message
     sponsor_chat_info :: Maybe ChatInviteLinkInfo.ChatInviteLinkInfo,
     -- | Sponsor chat identifier; 0 if the sponsor chat is accessible through an invite link
     sponsor_chat_id :: Maybe Int,
+    -- | True, if the message needs to be labeled as "recommended" instead of "sponsored"
+    is_recommended :: Maybe Bool,
     -- | Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
     message_id :: Maybe Int
   }
@@ -33,6 +35,7 @@ instance Show SponsoredMessage where
         link = link_,
         sponsor_chat_info = sponsor_chat_info_,
         sponsor_chat_id = sponsor_chat_id_,
+        is_recommended = is_recommended_,
         message_id = message_id_
       } =
       "SponsoredMessage"
@@ -41,6 +44,7 @@ instance Show SponsoredMessage where
             U.p "link" link_,
             U.p "sponsor_chat_info" sponsor_chat_info_,
             U.p "sponsor_chat_id" sponsor_chat_id_,
+            U.p "is_recommended" is_recommended_,
             U.p "message_id" message_id_
           ]
 
@@ -58,8 +62,9 @@ instance T.FromJSON SponsoredMessage where
         link_ <- o A..:? "link"
         sponsor_chat_info_ <- o A..:? "sponsor_chat_info"
         sponsor_chat_id_ <- o A..:? "sponsor_chat_id"
+        is_recommended_ <- o A..:? "is_recommended"
         message_id_ <- o A..:? "message_id"
-        return $ SponsoredMessage {content = content_, link = link_, sponsor_chat_info = sponsor_chat_info_, sponsor_chat_id = sponsor_chat_id_, message_id = message_id_}
+        return $ SponsoredMessage {content = content_, link = link_, sponsor_chat_info = sponsor_chat_info_, sponsor_chat_id = sponsor_chat_id_, is_recommended = is_recommended_, message_id = message_id_}
   parseJSON _ = mempty
 
 instance T.ToJSON SponsoredMessage where
@@ -69,6 +74,7 @@ instance T.ToJSON SponsoredMessage where
         link = link_,
         sponsor_chat_info = sponsor_chat_info_,
         sponsor_chat_id = sponsor_chat_id_,
+        is_recommended = is_recommended_,
         message_id = message_id_
       } =
       A.object
@@ -77,5 +83,6 @@ instance T.ToJSON SponsoredMessage where
           "link" A..= link_,
           "sponsor_chat_info" A..= sponsor_chat_info_,
           "sponsor_chat_id" A..= sponsor_chat_id_,
+          "is_recommended" A..= is_recommended_,
           "message_id" A..= message_id_
         ]
