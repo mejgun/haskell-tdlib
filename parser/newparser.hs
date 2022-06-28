@@ -677,7 +677,7 @@ strip = LE.dropWhile isSpace . LE.dropWhileEnd isSpace
 myStripPrefix :: String -> String -> String
 myStripPrefix w t = do
   case LE.stripPrefix w t of
-    Nothing -> error $show t
+    Nothing -> error $ show t
     Just r -> r
 
 myStrip :: String -> String
