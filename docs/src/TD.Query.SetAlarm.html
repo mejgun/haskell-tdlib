@@ -14,7 +14,7 @@
 </span><span id="line-14"></span><span>    </span><span id="seconds"><span class="annot"><span class="annottext">SetAlarm -&gt; Maybe Float
 </span><a href="TD.Query.SetAlarm.html#seconds"><span class="hs-identifier hs-var hs-var">seconds</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span>
 </span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679384128"><span id="local-6989586621679384130"><span class="annot"><span class="annottext">SetAlarm -&gt; SetAlarm -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679384174"><span id="local-6989586621679384176"><span class="annot"><span class="annottext">SetAlarm -&gt; SetAlarm -&gt; Bool
 (SetAlarm -&gt; SetAlarm -&gt; Bool)
 -&gt; (SetAlarm -&gt; SetAlarm -&gt; Bool) -&gt; Eq SetAlarm
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -24,13 +24,13 @@ $c/= :: SetAlarm -&gt; SetAlarm -&gt; Bool
 $c== :: SetAlarm -&gt; SetAlarm -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384122"><span id="local-6989586621679384125"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679384120"><span class="annot"><span class="annottext">show :: SetAlarm -&gt; String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384168"><span id="local-6989586621679384171"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679384166"><span class="annot"><span class="annottext">show :: SetAlarm -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Query.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">seconds :: SetAlarm -&gt; Maybe Float
-</span><a href="TD.Query.SetAlarm.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384118"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679384118"><span class="hs-identifier hs-var">seconds_</span></a></span></span><span>
+</span><a href="TD.Query.SetAlarm.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384164"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679384164"><span class="hs-identifier hs-var">seconds_</span></a></span></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetAlarm&quot;</span></span><span>
@@ -42,16 +42,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;seconds&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679384118"><span class="hs-identifier hs-var">seconds_</span></a></span><span>
+</span><a href="#local-6989586621679384164"><span class="hs-identifier hs-var">seconds_</span></a></span><span>
 </span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384109"><span id="local-6989586621679384111"><span id="local-6989586621679384113"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679384107"><span class="annot"><span class="annottext">toJSON :: SetAlarm -&gt; Value
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384155"><span id="local-6989586621679384157"><span id="local-6989586621679384159"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679384153"><span class="annot"><span class="annottext">toJSON :: SetAlarm -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Query.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">seconds :: SetAlarm -&gt; Maybe Float
-</span><a href="TD.Query.SetAlarm.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384105"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679384105"><span class="hs-identifier hs-var">seconds_</span></a></span></span><span>
+</span><a href="TD.Query.SetAlarm.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384151"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679384151"><span class="hs-identifier hs-var">seconds_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -65,6 +65,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;seconds&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679384105"><span class="hs-identifier hs-var">seconds_</span></a></span><span>
+</span><a href="#local-6989586621679384151"><span class="hs-identifier hs-var">seconds_</span></a></span><span>
 </span><span id="line-36"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span></pre></body></html>

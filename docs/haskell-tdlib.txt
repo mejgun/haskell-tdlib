@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/mejgun/haskell-tdlib</a>
 @package haskell-tdlib
-@version 0.2.2.0
+@version 0.2.3.0
 
 module Utils
 p :: Show a => String -> Maybe a -> String
@@ -5541,7 +5541,8 @@ module TD.Query.AssignAppStoreTransaction
 
 -- | Informs server about a Telegram Premium purchase through App Store.
 --   For official applications only <tt>receipt App Store receipt
---   </tt>is_restore True, if this is restore of Premium purchase
+--   </tt>is_restore Pass true if this is a restore of a Telegram Premium
+--   purchase
 data AssignAppStoreTransaction
 AssignAppStoreTransaction :: Maybe Bool -> Maybe String -> AssignAppStoreTransaction
 
@@ -16422,7 +16423,11 @@ InternalLinkTypeBackground :: Maybe String -> InternalLinkType
 --   bot, show START button in the chat with the bot, and then call
 --   sendBotStartMessage with the given start parameter after the button is
 --   pressed
-InternalLinkTypeBotStart :: Maybe String -> Maybe String -> InternalLinkType
+InternalLinkTypeBotStart :: Maybe Bool -> Maybe String -> Maybe String -> InternalLinkType
+
+-- | True, if sendBotStartMessage must be called automatically without
+--   showing the START button
+[autostart] :: InternalLinkType -> Maybe Bool
 
 [start_parameter] :: InternalLinkType -> Maybe String
 
@@ -16663,9 +16668,7 @@ data PremiumFeatures
 PremiumFeatures :: Maybe InternalLinkType -> Maybe [PremiumLimit] -> Maybe [PremiumFeature] -> PremiumFeatures
 
 -- | An internal link to be opened to pay for Telegram Premium if store
---   payment isn't possible; may be null if direct payment isn't available.
---   If the link has type internalLinkTypeBotStart, then
---   sendBotStartMessage must be called automatically
+--   payment isn't possible; may be null if direct payment isn't available
 [payment_link] :: PremiumFeatures -> Maybe InternalLinkType
 
 [limits] :: PremiumFeatures -> Maybe [PremiumLimit]

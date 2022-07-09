@@ -20,7 +20,7 @@
 </span><span id="line-18"></span><span>    </span><span id="file_id"><span class="annot"><span class="annottext">ReadFilePart -&gt; Maybe Int
 </span><a href="TD.Query.ReadFilePart.html#file_id"><span class="hs-identifier hs-var hs-var">file_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679387138"><span id="local-6989586621679387140"><span class="annot"><span class="annottext">ReadFilePart -&gt; ReadFilePart -&gt; Bool
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679387184"><span id="local-6989586621679387186"><span class="annot"><span class="annottext">ReadFilePart -&gt; ReadFilePart -&gt; Bool
 (ReadFilePart -&gt; ReadFilePart -&gt; Bool)
 -&gt; (ReadFilePart -&gt; ReadFilePart -&gt; Bool) -&gt; Eq ReadFilePart
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -30,19 +30,19 @@ $c/= :: ReadFilePart -&gt; ReadFilePart -&gt; Bool
 $c== :: ReadFilePart -&gt; ReadFilePart -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387132"><span id="local-6989586621679387135"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ReadFilePart.html#ReadFilePart"><span class="hs-identifier hs-type">ReadFilePart</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679387130"><span class="annot"><span class="annottext">show :: ReadFilePart -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387178"><span id="local-6989586621679387181"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ReadFilePart.html#ReadFilePart"><span class="hs-identifier hs-type">ReadFilePart</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679387176"><span class="annot"><span class="annottext">show :: ReadFilePart -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.ReadFilePart.html#ReadFilePart"><span class="hs-identifier hs-type">ReadFilePart</span></a></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">count :: ReadFilePart -&gt; Maybe Int
-</span><a href="TD.Query.ReadFilePart.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387128"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387128"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ReadFilePart.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387174"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387174"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">offset :: ReadFilePart -&gt; Maybe Int
-</span><a href="TD.Query.ReadFilePart.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387127"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387127"><span class="hs-identifier hs-var">offset_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ReadFilePart.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387173"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387173"><span class="hs-identifier hs-var">offset_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">file_id :: ReadFilePart -&gt; Maybe Int
-</span><a href="TD.Query.ReadFilePart.html#file_id"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387126"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387126"><span class="hs-identifier hs-var">file_id_</span></a></span></span><span>
+</span><a href="TD.Query.ReadFilePart.html#file_id"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387172"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387172"><span class="hs-identifier hs-var">file_id_</span></a></span></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReadFilePart&quot;</span></span><span>
@@ -54,32 +54,32 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387128"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679387174"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387127"><span class="hs-identifier hs-var">offset_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679387173"><span class="hs-identifier hs-var">offset_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387126"><span class="hs-identifier hs-var">file_id_</span></a></span><span>
+</span><a href="#local-6989586621679387172"><span class="hs-identifier hs-var">file_id_</span></a></span><span>
 </span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387117"><span id="local-6989586621679387119"><span id="local-6989586621679387121"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ReadFilePart.html#ReadFilePart"><span class="hs-identifier hs-type">ReadFilePart</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>  </span><span id="local-6989586621679387115"><span class="annot"><span class="annottext">toJSON :: ReadFilePart -&gt; Value
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387163"><span id="local-6989586621679387165"><span id="local-6989586621679387167"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ReadFilePart.html#ReadFilePart"><span class="hs-identifier hs-type">ReadFilePart</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679387161"><span class="annot"><span class="annottext">toJSON :: ReadFilePart -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-38"></span><span>    </span><span class="annot"><a href="TD.Query.ReadFilePart.html#ReadFilePart"><span class="hs-identifier hs-type">ReadFilePart</span></a></span><span>
 </span><span id="line-39"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">count :: ReadFilePart -&gt; Maybe Int
-</span><a href="TD.Query.ReadFilePart.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387113"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387113"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ReadFilePart.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387159"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387159"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">offset :: ReadFilePart -&gt; Maybe Int
-</span><a href="TD.Query.ReadFilePart.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387112"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387112"><span class="hs-identifier hs-var">offset_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ReadFilePart.html#offset"><span class="hs-identifier hs-var">offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387158"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387158"><span class="hs-identifier hs-var">offset_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">file_id :: ReadFilePart -&gt; Maybe Int
-</span><a href="TD.Query.ReadFilePart.html#file_id"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387111"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387111"><span class="hs-identifier hs-var">file_id_</span></a></span></span><span>
+</span><a href="TD.Query.ReadFilePart.html#file_id"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387157"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679387157"><span class="hs-identifier hs-var">file_id_</span></a></span></span><span>
 </span><span id="line-42"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -93,16 +93,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387113"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679387159"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387112"><span class="hs-identifier hs-var">offset_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679387158"><span class="hs-identifier hs-var">offset_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;file_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679387111"><span class="hs-identifier hs-var">file_id_</span></a></span><span>
+</span><a href="#local-6989586621679387157"><span class="hs-identifier hs-var">file_id_</span></a></span><span>
 </span><span id="line-48"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-49"></span></pre></body></html>

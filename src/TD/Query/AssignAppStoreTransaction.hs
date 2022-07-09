@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Informs server about a Telegram Premium purchase through App Store. For official applications only @receipt App Store receipt @is_restore True, if this is restore of Premium purchase
+-- Informs server about a Telegram Premium purchase through App Store. For official applications only @receipt App Store receipt @is_restore Pass true if this is a restore of a Telegram Premium purchase
 data AssignAppStoreTransaction = AssignAppStoreTransaction
   { -- |
     is_restore :: Maybe Bool,

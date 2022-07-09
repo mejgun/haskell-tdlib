@@ -40,7 +40,9 @@ data InternalLinkType
   | -- | The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot,
     -- and then call sendBotStartMessage with the given start parameter after the button is pressed
     InternalLinkTypeBotStart
-      { -- |
+      { -- | True, if sendBotStartMessage must be called automatically without showing the START button
+        autostart :: Maybe Bool,
+        -- |
         start_parameter :: Maybe String,
         -- | Username of the bot @start_parameter The parameter to be passed to sendBotStartMessage
         bot_username :: Maybe String
@@ -224,12 +226,14 @@ instance Show InternalLinkType where
           ]
   show
     InternalLinkTypeBotStart
-      { start_parameter = start_parameter_,
+      { autostart = autostart_,
+        start_parameter = start_parameter_,
         bot_username = bot_username_
       } =
       "InternalLinkTypeBotStart"
         ++ U.cc
-          [ U.p "start_parameter" start_parameter_,
+          [ U.p "autostart" autostart_,
+            U.p "start_parameter" start_parameter_,
             U.p "bot_username" bot_username_
           ]
   show
@@ -497,9 +501,10 @@ instance T.FromJSON InternalLinkType where
 
       parseInternalLinkTypeBotStart :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeBotStart = A.withObject "InternalLinkTypeBotStart" $ \o -> do
+        autostart_ <- o A..:? "autostart"
         start_parameter_ <- o A..:? "start_parameter"
         bot_username_ <- o A..:? "bot_username"
-        return $ InternalLinkTypeBotStart {start_parameter = start_parameter_, bot_username = bot_username_}
+        return $ InternalLinkTypeBotStart {autostart = autostart_, start_parameter = start_parameter_, bot_username = bot_username_}
 
       parseInternalLinkTypeBotStartInGroup :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeBotStartInGroup = A.withObject "InternalLinkTypeBotStartInGroup" $ \o -> do
@@ -665,11 +670,13 @@ instance T.ToJSON InternalLinkType where
         ]
   toJSON
     InternalLinkTypeBotStart
-      { start_parameter = start_parameter_,
+      { autostart = autostart_,
+        start_parameter = start_parameter_,
         bot_username = bot_username_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeBotStart",
+          "autostart" A..= autostart_,
           "start_parameter" A..= start_parameter_,
           "bot_username" A..= bot_username_
         ]

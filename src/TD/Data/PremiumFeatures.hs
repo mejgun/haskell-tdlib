@@ -13,7 +13,7 @@ import qualified Utils as U
 -- |
 data PremiumFeatures = -- | Contains information about features, available to Premium users @features The list of available features @limits The list of limits, increased for Premium users
   PremiumFeatures
-  { -- | An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available. If the link has type internalLinkTypeBotStart, then sendBotStartMessage must be called automatically
+  { -- | An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available
     payment_link :: Maybe InternalLinkType.InternalLinkType,
     -- |
     limits :: Maybe [PremiumLimit.PremiumLimit],
