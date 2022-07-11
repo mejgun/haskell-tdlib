@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/mejgun/haskell-tdlib</a>
 @package haskell-tdlib
-@version 0.2.3.0
+@version 0.2.4.0
 
 module Utils
 p :: Show a => String -> Maybe a -> String
@@ -3090,7 +3090,8 @@ module TD.Query.GetOption
 
 -- | Returns the value of an option by its name. (Check the list of
 --   available options on <a>https://core.telegram.org/tdlib/options.)</a>
---   Can be called before authorization
+--   Can be called before authorization. Can be called synchronously for
+--   options "version" and "commit_hash"
 data GetOption
 GetOption :: Maybe String -> GetOption
 
