@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/mejgun/haskell-tdlib</a>
 @package haskell-tdlib
-@version 0.2.4.0
+@version 0.2.5.0
 
 module Utils
 p :: Show a => String -> Maybe a -> String
@@ -1572,7 +1572,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SearchChatRecentLocationMessage
 module TD.Query.SearchCallMessages
 
 -- | Searches for call messages. Returns the results in reverse
---   chronological order (i. e., in order of decreasing message_id). For
+--   chronological order (i.e., in order of decreasing message_id). For
 --   optimal performance, the number of returned messages is chosen by
 --   TDLib
 data SearchCallMessages
@@ -16261,7 +16261,7 @@ module TD.Query.GetChatEventLog
 -- | Returns a list of service actions taken by chat members and
 --   administrators in the last 48 hours. Available only for supergroups
 --   and channels. Requires administrator rights. Returns results in
---   reverse chronological order (i. e., in order of decreasing event_id)
+--   reverse chronological order (i.e., in order of decreasing event_id)
 data GetChatEventLog
 GetChatEventLog :: Maybe [Int] -> Maybe ChatEventLogFilters -> Maybe Int -> Maybe Int -> Maybe String -> Maybe Int -> GetChatEventLog
 
