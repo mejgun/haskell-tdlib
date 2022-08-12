@@ -5,90 +5,62 @@ module TD.Data.StickerType where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Data.MaskPosition as MaskPosition
 import qualified Utils as U
 
 -- | Describes type of a sticker
 data StickerType
-  = -- | The sticker is an image in WEBP format
-    StickerTypeStatic
-  | -- | The sticker is an animation in TGS format
-    StickerTypeAnimated
-  | -- | The sticker is a video in WEBM format
-    StickerTypeVideo
-  | -- | The sticker is a mask in WEBP format to be placed on photos or videos @mask_position Position where the mask is placed; may be null
+  = -- | The sticker is a regular sticker
+    StickerTypeRegular
+  | -- | The sticker is a mask in WEBP format to be placed on photos or videos
     StickerTypeMask
-      { -- |
-        mask_position :: Maybe MaskPosition.MaskPosition
-      }
+  | -- | The sticker is a custom emoji to be used inside message text and caption
+    StickerTypeCustomEmoji
   deriving (Eq)
 
 instance Show StickerType where
-  show StickerTypeStatic =
-    "StickerTypeStatic"
+  show StickerTypeRegular =
+    "StickerTypeRegular"
       ++ U.cc
         []
-  show StickerTypeAnimated =
-    "StickerTypeAnimated"
+  show StickerTypeMask =
+    "StickerTypeMask"
       ++ U.cc
         []
-  show StickerTypeVideo =
-    "StickerTypeVideo"
+  show StickerTypeCustomEmoji =
+    "StickerTypeCustomEmoji"
       ++ U.cc
         []
-  show
-    StickerTypeMask
-      { mask_position = mask_position_
-      } =
-      "StickerTypeMask"
-        ++ U.cc
-          [ U.p "mask_position" mask_position_
-          ]
 
 instance T.FromJSON StickerType where
   parseJSON v@(T.Object obj) = do
     t <- obj A..: "@type" :: T.Parser String
 
     case t of
-      "stickerTypeStatic" -> parseStickerTypeStatic v
-      "stickerTypeAnimated" -> parseStickerTypeAnimated v
-      "stickerTypeVideo" -> parseStickerTypeVideo v
+      "stickerTypeRegular" -> parseStickerTypeRegular v
       "stickerTypeMask" -> parseStickerTypeMask v
+      "stickerTypeCustomEmoji" -> parseStickerTypeCustomEmoji v
       _ -> mempty
     where
-      parseStickerTypeStatic :: A.Value -> T.Parser StickerType
-      parseStickerTypeStatic = A.withObject "StickerTypeStatic" $ \_ -> return StickerTypeStatic
-
-      parseStickerTypeAnimated :: A.Value -> T.Parser StickerType
-      parseStickerTypeAnimated = A.withObject "StickerTypeAnimated" $ \_ -> return StickerTypeAnimated
-
-      parseStickerTypeVideo :: A.Value -> T.Parser StickerType
-      parseStickerTypeVideo = A.withObject "StickerTypeVideo" $ \_ -> return StickerTypeVideo
+      parseStickerTypeRegular :: A.Value -> T.Parser StickerType
+      parseStickerTypeRegular = A.withObject "StickerTypeRegular" $ \_ -> return StickerTypeRegular
 
       parseStickerTypeMask :: A.Value -> T.Parser StickerType
-      parseStickerTypeMask = A.withObject "StickerTypeMask" $ \o -> do
-        mask_position_ <- o A..:? "mask_position"
-        return $ StickerTypeMask {mask_position = mask_position_}
+      parseStickerTypeMask = A.withObject "StickerTypeMask" $ \_ -> return StickerTypeMask
+
+      parseStickerTypeCustomEmoji :: A.Value -> T.Parser StickerType
+      parseStickerTypeCustomEmoji = A.withObject "StickerTypeCustomEmoji" $ \_ -> return StickerTypeCustomEmoji
   parseJSON _ = mempty
 
 instance T.ToJSON StickerType where
-  toJSON StickerTypeStatic =
+  toJSON StickerTypeRegular =
     A.object
-      [ "@type" A..= T.String "stickerTypeStatic"
+      [ "@type" A..= T.String "stickerTypeRegular"
       ]
-  toJSON StickerTypeAnimated =
+  toJSON StickerTypeMask =
     A.object
-      [ "@type" A..= T.String "stickerTypeAnimated"
+      [ "@type" A..= T.String "stickerTypeMask"
       ]
-  toJSON StickerTypeVideo =
+  toJSON StickerTypeCustomEmoji =
     A.object
-      [ "@type" A..= T.String "stickerTypeVideo"
+      [ "@type" A..= T.String "stickerTypeCustomEmoji"
       ]
-  toJSON
-    StickerTypeMask
-      { mask_position = mask_position_
-      } =
-      A.object
-        [ "@type" A..= T.String "stickerTypeMask",
-          "mask_position" A..= mask_position_
-        ]

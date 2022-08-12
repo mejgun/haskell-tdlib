@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.5.0
+version:        0.2.6.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -258,6 +258,7 @@ library
       TD.Data.PassportSuitableElement
       TD.Data.PasswordState
       TD.Data.PaymentForm
+      TD.Data.PaymentOption
       TD.Data.PaymentProvider
       TD.Data.PaymentReceipt
       TD.Data.PaymentResult
@@ -274,6 +275,7 @@ library
       TD.Data.PremiumFeature
       TD.Data.PremiumFeaturePromotionAnimation
       TD.Data.PremiumFeatures
+      TD.Data.PremiumGiftOption
       TD.Data.PremiumLimit
       TD.Data.PremiumLimitType
       TD.Data.PremiumSource
@@ -305,10 +307,12 @@ library
       TD.Data.Sessions
       TD.Data.SessionType
       TD.Data.ShippingOption
+      TD.Data.SpeechRecognitionResult
       TD.Data.SponsoredMessage
       TD.Data.StatisticalGraph
       TD.Data.StatisticalValue
       TD.Data.Sticker
+      TD.Data.StickerFormat
       TD.Data.Stickers
       TD.Data.StickerSet
       TD.Data.StickerSetInfo
@@ -318,6 +322,7 @@ library
       TD.Data.StorageStatisticsByChat
       TD.Data.StorageStatisticsByFileType
       TD.Data.StorageStatisticsFast
+      TD.Data.StorePaymentPurpose
       TD.Data.SuggestedAction
       TD.Data.Supergroup
       TD.Data.SupergroupFullInfo
@@ -400,7 +405,7 @@ library
       TD.Query.BlockMessageSenderFromReplies
       TD.Query.CancelDownloadFile
       TD.Query.CancelPasswordReset
-      TD.Query.CancelUploadFile
+      TD.Query.CancelPreliminaryUploadFile
       TD.Query.CanPurchasePremium
       TD.Query.CanTransferOwnership
       TD.Query.ChangeImportedContacts
@@ -495,7 +500,6 @@ library
       TD.Query.GetAccountTtl
       TD.Query.GetActiveLiveLocationMessages
       TD.Query.GetActiveSessions
-      TD.Query.GetAllAnimatedEmojis
       TD.Query.GetAllPassportElements
       TD.Query.GetAnimatedEmoji
       TD.Query.GetApplicationConfig
@@ -544,6 +548,7 @@ library
       TD.Query.GetCountryCode
       TD.Query.GetCreatedPublicChats
       TD.Query.GetCurrentState
+      TD.Query.GetCustomEmojiStickers
       TD.Query.GetDatabaseStatistics
       TD.Query.GetDeepLinkInfo
       TD.Query.GetEmojiSuggestionsUrl
@@ -612,6 +617,7 @@ library
       TD.Query.GetPremiumFeatures
       TD.Query.GetPremiumLimit
       TD.Query.GetPremiumState
+      TD.Query.GetPremiumStickerExamples
       TD.Query.GetPremiumStickers
       TD.Query.GetProxies
       TD.Query.GetProxyLink
@@ -677,6 +683,7 @@ library
       TD.Query.ParseTextEntities
       TD.Query.PinChatMessage
       TD.Query.PingProxy
+      TD.Query.PreliminaryUploadFile
       TD.Query.ProcessChatJoinRequest
       TD.Query.ProcessChatJoinRequests
       TD.Query.ProcessPushNotification
@@ -876,7 +883,6 @@ library
       TD.Query.UnpinAllChatMessages
       TD.Query.UnpinChatMessage
       TD.Query.UpgradeBasicGroupChatToSupergroupChat
-      TD.Query.UploadFile
       TD.Query.UploadStickerFile
       TD.Query.ValidateOrderInfo
       TD.Query.ViewMessages

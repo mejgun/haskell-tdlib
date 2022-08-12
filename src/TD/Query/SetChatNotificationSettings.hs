@@ -13,7 +13,7 @@ import qualified Utils as U
 data SetChatNotificationSettings = SetChatNotificationSettings
   { -- |
     notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings,
-    -- | Chat identifier @notification_settings New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
+    -- | Chat identifier @notification_settings New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
     chat_id :: Maybe Int
   }
   deriving (Eq)

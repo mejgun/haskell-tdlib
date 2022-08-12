@@ -154,6 +154,8 @@ data InternalLinkType
   | -- | The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to
     -- "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
     InternalLinkTypeQrCodeAuthentication
+  | -- | The link forces restore of App Store purchases when opened. For official iOS application only
+    InternalLinkTypeRestorePurchases
   | -- | The link is a link to application settings
     InternalLinkTypeSettings
   | -- | The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set @sticker_set_name Name of the sticker set
@@ -384,6 +386,10 @@ instance Show InternalLinkType where
     "InternalLinkTypeQrCodeAuthentication"
       ++ U.cc
         []
+  show InternalLinkTypeRestorePurchases =
+    "InternalLinkTypeRestorePurchases"
+      ++ U.cc
+        []
   show InternalLinkTypeSettings =
     "InternalLinkTypeSettings"
       ++ U.cc
@@ -469,6 +475,7 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeProxy" -> parseInternalLinkTypeProxy v
       "internalLinkTypePublicChat" -> parseInternalLinkTypePublicChat v
       "internalLinkTypeQrCodeAuthentication" -> parseInternalLinkTypeQrCodeAuthentication v
+      "internalLinkTypeRestorePurchases" -> parseInternalLinkTypeRestorePurchases v
       "internalLinkTypeSettings" -> parseInternalLinkTypeSettings v
       "internalLinkTypeStickerSet" -> parseInternalLinkTypeStickerSet v
       "internalLinkTypeTheme" -> parseInternalLinkTypeTheme v
@@ -597,6 +604,9 @@ instance T.FromJSON InternalLinkType where
 
       parseInternalLinkTypeQrCodeAuthentication :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeQrCodeAuthentication = A.withObject "InternalLinkTypeQrCodeAuthentication" $ \_ -> return InternalLinkTypeQrCodeAuthentication
+
+      parseInternalLinkTypeRestorePurchases :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeRestorePurchases = A.withObject "InternalLinkTypeRestorePurchases" $ \_ -> return InternalLinkTypeRestorePurchases
 
       parseInternalLinkTypeSettings :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeSettings = A.withObject "InternalLinkTypeSettings" $ \_ -> return InternalLinkTypeSettings
@@ -827,6 +837,10 @@ instance T.ToJSON InternalLinkType where
   toJSON InternalLinkTypeQrCodeAuthentication =
     A.object
       [ "@type" A..= T.String "internalLinkTypeQrCodeAuthentication"
+      ]
+  toJSON InternalLinkTypeRestorePurchases =
+    A.object
+      [ "@type" A..= T.String "internalLinkTypeRestorePurchases"
       ]
   toJSON InternalLinkTypeSettings =
     A.object

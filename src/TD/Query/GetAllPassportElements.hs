@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns all available Telegram Passport elements @password Password of the current user
+-- Returns all available Telegram Passport elements @password The 2-step verification password of the current user
 data GetAllPassportElements = GetAllPassportElements
   { -- |
     password :: Maybe String

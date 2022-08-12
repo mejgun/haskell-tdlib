@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Searches for stickers from public sticker sets that correspond to a given emoji @emoji String representation of emoji; must be non-empty @limit The maximum number of stickers to be returned</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Searches for stickers from public sticker sets that correspond to a given emoji @emoji String representation of emoji; must be non-empty @limit The maximum number of stickers to be returned; 0-100</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="SearchStickers"><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-var">SearchStickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SearchStickers"><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-var">SearchStickers</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="limit"><span class="annot"><span class="annottext">SearchStickers -&gt; Maybe Int
@@ -17,7 +17,7 @@
 </span><span id="line-16"></span><span>    </span><span id="emoji"><span class="annot"><span class="annottext">SearchStickers -&gt; Maybe String
 </span><a href="TD.Query.SearchStickers.html#emoji"><span class="hs-identifier hs-var hs-var">emoji</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679384629"><span id="local-6989586621679384631"><span class="annot"><span class="annottext">SearchStickers -&gt; SearchStickers -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679388325"><span id="local-6989586621679388327"><span class="annot"><span class="annottext">SearchStickers -&gt; SearchStickers -&gt; Bool
 (SearchStickers -&gt; SearchStickers -&gt; Bool)
 -&gt; (SearchStickers -&gt; SearchStickers -&gt; Bool) -&gt; Eq SearchStickers
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -27,16 +27,16 @@ $c/= :: SearchStickers -&gt; SearchStickers -&gt; Bool
 $c== :: SearchStickers -&gt; SearchStickers -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384623"><span id="local-6989586621679384626"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-type">SearchStickers</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679384621"><span class="annot"><span class="annottext">show :: SearchStickers -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679388319"><span id="local-6989586621679388322"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-type">SearchStickers</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679388317"><span class="annot"><span class="annottext">show :: SearchStickers -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-type">SearchStickers</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: SearchStickers -&gt; Maybe Int
-</span><a href="TD.Query.SearchStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384619"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679384619"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388315"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679388315"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">emoji :: SearchStickers -&gt; Maybe String
-</span><a href="TD.Query.SearchStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384618"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384618"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span>
+</span><a href="TD.Query.SearchStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388314"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679388314"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SearchStickers&quot;</span></span><span>
@@ -48,24 +48,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679384619"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679388315"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;emoji&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384618"><span class="hs-identifier hs-var">emoji_</span></a></span><span>
+</span><a href="#local-6989586621679388314"><span class="hs-identifier hs-var">emoji_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384609"><span id="local-6989586621679384611"><span id="local-6989586621679384613"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-type">SearchStickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679384607"><span class="annot"><span class="annottext">toJSON :: SearchStickers -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679388305"><span id="local-6989586621679388307"><span id="local-6989586621679388309"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-type">SearchStickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679388303"><span class="annot"><span class="annottext">toJSON :: SearchStickers -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.SearchStickers.html#SearchStickers"><span class="hs-identifier hs-type">SearchStickers</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: SearchStickers -&gt; Maybe Int
-</span><a href="TD.Query.SearchStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384605"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679384605"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388301"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679388301"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">emoji :: SearchStickers -&gt; Maybe String
-</span><a href="TD.Query.SearchStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384604"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384604"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span>
+</span><a href="TD.Query.SearchStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388300"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679388300"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -79,11 +79,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679384605"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679388301"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;emoji&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384604"><span class="hs-identifier hs-var">emoji_</span></a></span><span>
+</span><a href="#local-6989586621679388300"><span class="hs-identifier hs-var">emoji_</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

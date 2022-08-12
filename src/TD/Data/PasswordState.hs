@@ -11,7 +11,7 @@ import qualified Utils as U
 -- |
 data PasswordState = -- | Represents the current state of 2-step verification @has_password True, if a 2-step verification password is set @password_hint Hint for the password; may be empty
   PasswordState
-  { -- | If not 0, point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
+  { -- | If not 0, point in time (Unix timestamp) after which the 2-step verification password can be reset immediately using resetPassword
     pending_reset_date :: Maybe Int,
     -- | Information about the recovery email address to which the confirmation email was sent; may be null
     recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo,

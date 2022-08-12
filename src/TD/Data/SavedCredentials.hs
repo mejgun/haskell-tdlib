@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data SavedCredentials = -- | Contains information about saved card credentials @id Unique identifier of the saved credentials @title Title of the saved credentials
+data SavedCredentials = -- | Contains information about saved payment credentials @id Unique identifier of the saved credentials @title Title of the saved credentials
   SavedCredentials
   { -- |
     title :: Maybe String,

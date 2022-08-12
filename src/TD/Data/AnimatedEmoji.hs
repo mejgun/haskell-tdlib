@@ -10,13 +10,13 @@ import qualified TD.Data.Sticker as Sticker
 import qualified Utils as U
 
 -- |
-data AnimatedEmoji = -- | Describes an animated representation of an emoji
+data AnimatedEmoji = -- | Describes an animated or custom representation of an emoji
   AnimatedEmoji
-  { -- | File containing the sound to be played when the animated emoji is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container
+  { -- | File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container
     sound :: Maybe File.File,
     -- | Emoji modifier fitzpatrick type; 0-6; 0 if none
     fitzpatrick_type :: Maybe Int,
-    -- | Animated sticker for the emoji
+    -- | Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, it can have arbitrary format different from stickerFormatTgs
     sticker :: Maybe Sticker.Sticker
   }
   deriving (Eq)

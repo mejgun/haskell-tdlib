@@ -9,7 +9,7 @@ import qualified TD.Data.PassportElementType as PassportElementType
 import qualified Utils as U
 
 -- |
--- Returns one of the available Telegram Passport elements @type Telegram Passport element type @password Password of the current user
+-- Returns one of the available Telegram Passport elements @type Telegram Passport element type @password The 2-step verification password of the current user
 data GetPassportElement = GetPassportElement
   { -- |
     password :: Maybe String,

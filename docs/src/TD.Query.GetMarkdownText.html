@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span>    </span><span id="text"><span class="annot"><span class="annottext">GetMarkdownText -&gt; Maybe FormattedText
 </span><a href="TD.Query.GetMarkdownText.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span>
 </span><span id="line-16"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-17"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679416256"><span id="local-6989586621679416258"><span class="annot"><span class="annottext">GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
+</span><span id="line-17"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679420302"><span id="local-6989586621679420304"><span class="annot"><span class="annottext">GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
 (GetMarkdownText -&gt; GetMarkdownText -&gt; Bool)
 -&gt; (GetMarkdownText -&gt; GetMarkdownText -&gt; Bool)
 -&gt; Eq GetMarkdownText
@@ -26,13 +26,13 @@ $c/= :: GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
 $c== :: GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416250"><span id="local-6989586621679416253"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span>  </span><span id="local-6989586621679416248"><span class="annot"><span class="annottext">show :: GetMarkdownText -&gt; String
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420296"><span id="local-6989586621679420299"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679420294"><span class="annot"><span class="annottext">show :: GetMarkdownText -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-21"></span><span>    </span><span class="annot"><a href="TD.Query.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: GetMarkdownText -&gt; Maybe FormattedText
-</span><a href="TD.Query.GetMarkdownText.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416246"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679416246"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
+</span><a href="TD.Query.GetMarkdownText.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420292"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679420292"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetMarkdownText&quot;</span></span><span>
@@ -44,16 +44,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679416246"><span class="hs-identifier hs-var">text_</span></a></span><span>
+</span><a href="#local-6989586621679420292"><span class="hs-identifier hs-var">text_</span></a></span><span>
 </span><span id="line-27"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416237"><span id="local-6989586621679416239"><span id="local-6989586621679416241"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>  </span><span id="local-6989586621679416235"><span class="annot"><span class="annottext">toJSON :: GetMarkdownText -&gt; Value
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420283"><span id="local-6989586621679420285"><span id="local-6989586621679420287"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679420281"><span class="annot"><span class="annottext">toJSON :: GetMarkdownText -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-31"></span><span>    </span><span class="annot"><a href="TD.Query.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: GetMarkdownText -&gt; Maybe FormattedText
-</span><a href="TD.Query.GetMarkdownText.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416233"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679416233"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
+</span><a href="TD.Query.GetMarkdownText.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420279"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679420279"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
 </span><span id="line-33"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -67,6 +67,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679416233"><span class="hs-identifier hs-var">text_</span></a></span><span>
+</span><a href="#local-6989586621679420279"><span class="hs-identifier hs-var">text_</span></a></span><span>
 </span><span id="line-37"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-38"></span></pre></body></html>

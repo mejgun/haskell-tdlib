@@ -9,7 +9,7 @@
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Returns one of the available Telegram Passport elements @type Telegram Passport element type @password Password of the current user</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Returns one of the available Telegram Passport elements @type Telegram Passport element type @password The 2-step verification password of the current user</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetPassportElement"><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-var">GetPassportElement</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetPassportElement"><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-var">GetPassportElement</span></a></span></span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-15"></span><span>    </span><span id="password"><span class="annot"><span class="annottext">GetPassportElement -&gt; Maybe String
@@ -18,7 +18,7 @@
 </span><span id="line-17"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">GetPassportElement -&gt; Maybe PassportElementType
 </span><a href="TD.Query.GetPassportElement.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.PassportElementType.html#PassportElementType"><span class="hs-identifier hs-type">PassportElementType.PassportElementType</span></a></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405561"><span id="local-6989586621679405563"><span class="annot"><span class="annottext">GetPassportElement -&gt; GetPassportElement -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409683"><span id="local-6989586621679409685"><span class="annot"><span class="annottext">GetPassportElement -&gt; GetPassportElement -&gt; Bool
 (GetPassportElement -&gt; GetPassportElement -&gt; Bool)
 -&gt; (GetPassportElement -&gt; GetPassportElement -&gt; Bool)
 -&gt; Eq GetPassportElement
@@ -29,16 +29,16 @@ $c/= :: GetPassportElement -&gt; GetPassportElement -&gt; Bool
 $c== :: GetPassportElement -&gt; GetPassportElement -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405555"><span id="local-6989586621679405558"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-type">GetPassportElement</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679405553"><span class="annot"><span class="annottext">show :: GetPassportElement -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409677"><span id="local-6989586621679409680"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-type">GetPassportElement</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679409675"><span class="annot"><span class="annottext">show :: GetPassportElement -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-type">GetPassportElement</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">password :: GetPassportElement -&gt; Maybe String
-</span><a href="TD.Query.GetPassportElement.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405551"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405551"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportElement.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409673"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409673"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">_type :: GetPassportElement -&gt; Maybe PassportElementType
-</span><a href="TD.Query.GetPassportElement.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405550"><span class="annot"><span class="annottext">Maybe PassportElementType
-</span><a href="#local-6989586621679405550"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
+</span><a href="TD.Query.GetPassportElement.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409672"><span class="annot"><span class="annottext">Maybe PassportElementType
+</span><a href="#local-6989586621679409672"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetPassportElement&quot;</span></span><span>
@@ -50,24 +50,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405551"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409673"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe PassportElementType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe PassportElementType
-</span><a href="#local-6989586621679405550"><span class="hs-identifier hs-var">_type_</span></a></span><span>
+</span><a href="#local-6989586621679409672"><span class="hs-identifier hs-var">_type_</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405541"><span id="local-6989586621679405543"><span id="local-6989586621679405545"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-type">GetPassportElement</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679405539"><span class="annot"><span class="annottext">toJSON :: GetPassportElement -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409663"><span id="local-6989586621679409665"><span id="local-6989586621679409667"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-type">GetPassportElement</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679409661"><span class="annot"><span class="annottext">toJSON :: GetPassportElement -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.GetPassportElement.html#GetPassportElement"><span class="hs-identifier hs-type">GetPassportElement</span></a></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">password :: GetPassportElement -&gt; Maybe String
-</span><a href="TD.Query.GetPassportElement.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405537"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405537"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportElement.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409659"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409659"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">_type :: GetPassportElement -&gt; Maybe PassportElementType
-</span><a href="TD.Query.GetPassportElement.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405536"><span class="annot"><span class="annottext">Maybe PassportElementType
-</span><a href="#local-6989586621679405536"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
+</span><a href="TD.Query.GetPassportElement.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409658"><span class="annot"><span class="annottext">Maybe PassportElementType
+</span><a href="#local-6989586621679409658"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -81,11 +81,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405537"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409659"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe PassportElementType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe PassportElementType
-</span><a href="#local-6989586621679405536"><span class="hs-identifier hs-var">_type_</span></a></span><span>
+</span><a href="#local-6989586621679409658"><span class="hs-identifier hs-var">_type_</span></a></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span></pre></body></html>

@@ -35,7 +35,7 @@ data AuthorizationState
       { -- |
         terms_of_service :: Maybe TermsOfService.TermsOfService
       }
-  | -- | The user has been authorized, but needs to enter a password to start using the application @password_hint Hint for the password; may be empty @has_recovery_email_address True, if a recovery email address has been set up
+  | -- | The user has been authorized, but needs to enter a 2-step verification password to start using the application @password_hint Hint for the password; may be empty @has_recovery_email_address True, if a recovery email address has been set up
     AuthorizationStateWaitPassword
       { -- | Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
         recovery_email_address_pattern :: Maybe String,

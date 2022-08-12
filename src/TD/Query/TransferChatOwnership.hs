@@ -14,7 +14,7 @@ data TransferChatOwnership = TransferChatOwnership
     password :: Maybe String,
     -- |
     user_id :: Maybe Int,
-    -- | Chat identifier @user_id Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user @password The password of the current user
+    -- | Chat identifier @user_id Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user @password The 2-step verification password of the current user
     chat_id :: Maybe Int
   }
   deriving (Eq)

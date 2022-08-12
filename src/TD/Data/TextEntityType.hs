@@ -33,7 +33,7 @@ data TextEntityType
     TextEntityTypeUnderline
   | -- | A strikethrough text
     TextEntityTypeStrikethrough
-  | -- | A spoiler text. Not supported in secret chats
+  | -- | A spoiler text
     TextEntityTypeSpoiler
   | -- | Text that must be formatted as if inside a code HTML tag
     TextEntityTypeCode
@@ -53,6 +53,11 @@ data TextEntityType
     TextEntityTypeMentionName
       { -- |
         user_id :: Maybe Int
+      }
+  | -- | A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji @custom_emoji_id Unique identifier of the custom emoji
+    TextEntityTypeCustomEmoji
+      { -- |
+        custom_emoji_id :: Maybe Int
       }
   | -- | A media timestamp @media_timestamp Timestamp from which a video/audio/video note/voice note playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
     TextEntityTypeMediaTimestamp
@@ -147,6 +152,14 @@ instance Show TextEntityType where
           [ U.p "user_id" user_id_
           ]
   show
+    TextEntityTypeCustomEmoji
+      { custom_emoji_id = custom_emoji_id_
+      } =
+      "TextEntityTypeCustomEmoji"
+        ++ U.cc
+          [ U.p "custom_emoji_id" custom_emoji_id_
+          ]
+  show
     TextEntityTypeMediaTimestamp
       { media_timestamp = media_timestamp_
       } =
@@ -178,6 +191,7 @@ instance T.FromJSON TextEntityType where
       "textEntityTypePreCode" -> parseTextEntityTypePreCode v
       "textEntityTypeTextUrl" -> parseTextEntityTypeTextUrl v
       "textEntityTypeMentionName" -> parseTextEntityTypeMentionName v
+      "textEntityTypeCustomEmoji" -> parseTextEntityTypeCustomEmoji v
       "textEntityTypeMediaTimestamp" -> parseTextEntityTypeMediaTimestamp v
       _ -> mempty
     where
@@ -240,6 +254,11 @@ instance T.FromJSON TextEntityType where
       parseTextEntityTypeMentionName = A.withObject "TextEntityTypeMentionName" $ \o -> do
         user_id_ <- o A..:? "user_id"
         return $ TextEntityTypeMentionName {user_id = user_id_}
+
+      parseTextEntityTypeCustomEmoji :: A.Value -> T.Parser TextEntityType
+      parseTextEntityTypeCustomEmoji = A.withObject "TextEntityTypeCustomEmoji" $ \o -> do
+        custom_emoji_id_ <- U.rm <$> (o A..:? "custom_emoji_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
+        return $ TextEntityTypeCustomEmoji {custom_emoji_id = custom_emoji_id_}
 
       parseTextEntityTypeMediaTimestamp :: A.Value -> T.Parser TextEntityType
       parseTextEntityTypeMediaTimestamp = A.withObject "TextEntityTypeMediaTimestamp" $ \o -> do
@@ -331,6 +350,14 @@ instance T.ToJSON TextEntityType where
       A.object
         [ "@type" A..= T.String "textEntityTypeMentionName",
           "user_id" A..= user_id_
+        ]
+  toJSON
+    TextEntityTypeCustomEmoji
+      { custom_emoji_id = custom_emoji_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "textEntityTypeCustomEmoji",
+          "custom_emoji_id" A..= U.toS custom_emoji_id_
         ]
   toJSON
     TextEntityTypeMediaTimestamp

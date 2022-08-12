@@ -237,6 +237,7 @@ import qualified TD.Data.PassportRequiredElement as PassportRequiredElement
 import qualified TD.Data.PassportSuitableElement as PassportSuitableElement
 import qualified TD.Data.PasswordState as PasswordState
 import qualified TD.Data.PaymentForm as PaymentForm
+import qualified TD.Data.PaymentOption as PaymentOption
 import qualified TD.Data.PaymentProvider as PaymentProvider
 import qualified TD.Data.PaymentReceipt as PaymentReceipt
 import qualified TD.Data.PaymentResult as PaymentResult
@@ -253,6 +254,7 @@ import qualified TD.Data.PollType as PollType
 import qualified TD.Data.PremiumFeature as PremiumFeature
 import qualified TD.Data.PremiumFeaturePromotionAnimation as PremiumFeaturePromotionAnimation
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
+import qualified TD.Data.PremiumGiftOption as PremiumGiftOption
 import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumLimitType as PremiumLimitType
 import qualified TD.Data.PremiumSource as PremiumSource
@@ -284,10 +286,12 @@ import qualified TD.Data.Session as Session
 import qualified TD.Data.SessionType as SessionType
 import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.ShippingOption as ShippingOption
+import qualified TD.Data.SpeechRecognitionResult as SpeechRecognitionResult
 import qualified TD.Data.SponsoredMessage as SponsoredMessage
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.StatisticalValue as StatisticalValue
 import qualified TD.Data.Sticker as Sticker
+import qualified TD.Data.StickerFormat as StickerFormat
 import qualified TD.Data.StickerSet as StickerSet
 import qualified TD.Data.StickerSetInfo as StickerSetInfo
 import qualified TD.Data.StickerSets as StickerSets
@@ -297,6 +301,7 @@ import qualified TD.Data.StorageStatistics as StorageStatistics
 import qualified TD.Data.StorageStatisticsByChat as StorageStatisticsByChat
 import qualified TD.Data.StorageStatisticsByFileType as StorageStatisticsByFileType
 import qualified TD.Data.StorageStatisticsFast as StorageStatisticsFast
+import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
@@ -373,6 +378,7 @@ data GeneralResult
   | Thumbnail Thumbnail.Thumbnail
   | MaskPoint MaskPoint.MaskPoint
   | MaskPosition MaskPosition.MaskPosition
+  | StickerFormat StickerFormat.StickerFormat
   | StickerType StickerType.StickerType
   | ClosedVectorPath ClosedVectorPath.ClosedVectorPath
   | PollOption PollOption.PollOption
@@ -404,6 +410,7 @@ data GeneralResult
   | InputChatPhoto InputChatPhoto.InputChatPhoto
   | ChatPermissions ChatPermissions.ChatPermissions
   | ChatAdministratorRights ChatAdministratorRights.ChatAdministratorRights
+  | PremiumGiftOption PremiumGiftOption.PremiumGiftOption
   | User User.User
   | BotInfo BotInfo.BotInfo
   | UserFullInfo UserFullInfo.UserFullInfo
@@ -503,6 +510,7 @@ data GeneralResult
   | SavedCredentials SavedCredentials.SavedCredentials
   | InputCredentials InputCredentials.InputCredentials
   | PaymentProvider PaymentProvider.PaymentProvider
+  | PaymentOption PaymentOption.PaymentOption
   | PaymentForm PaymentForm.PaymentForm
   | ValidatedOrderInfo ValidatedOrderInfo.ValidatedOrderInfo
   | PaymentResult PaymentResult.PaymentResult
@@ -572,6 +580,7 @@ data GeneralResult
   | Animations Animations.Animations
   | DiceStickers DiceStickers.DiceStickers
   | ImportedContacts ImportedContacts.ImportedContacts
+  | SpeechRecognitionResult SpeechRecognitionResult.SpeechRecognitionResult
   | AttachmentMenuBotColor AttachmentMenuBotColor.AttachmentMenuBotColor
   | AttachmentMenuBot AttachmentMenuBot.AttachmentMenuBot
   | SentWebAppMessage SentWebAppMessage.SentWebAppMessage
@@ -600,6 +609,7 @@ data GeneralResult
   | PremiumSource PremiumSource.PremiumSource
   | PremiumFeaturePromotionAnimation PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation
   | PremiumState PremiumState.PremiumState
+  | StorePaymentPurpose StorePaymentPurpose.StorePaymentPurpose
   | DeviceToken DeviceToken.DeviceToken
   | PushReceiverId PushReceiverId.PushReceiverId
   | BackgroundFill BackgroundFill.BackgroundFill
@@ -784,6 +794,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result MaskPosition.MaskPosition) of
             T.Success a -> return $ MaskPosition a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result StickerFormat.StickerFormat) of
+            T.Success a -> return $ StickerFormat a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result StickerType.StickerType) of
             T.Success a -> return $ StickerType a
             _ -> mempty,
@@ -876,6 +889,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result ChatAdministratorRights.ChatAdministratorRights) of
             T.Success a -> return $ ChatAdministratorRights a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumGiftOption.PremiumGiftOption) of
+            T.Success a -> return $ PremiumGiftOption a
             _ -> mempty,
           case (T.fromJSON v :: T.Result User.User) of
             T.Success a -> return $ User a
@@ -1174,6 +1190,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result PaymentProvider.PaymentProvider) of
             T.Success a -> return $ PaymentProvider a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result PaymentOption.PaymentOption) of
+            T.Success a -> return $ PaymentOption a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result PaymentForm.PaymentForm) of
             T.Success a -> return $ PaymentForm a
             _ -> mempty,
@@ -1381,6 +1400,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ImportedContacts.ImportedContacts) of
             T.Success a -> return $ ImportedContacts a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result SpeechRecognitionResult.SpeechRecognitionResult) of
+            T.Success a -> return $ SpeechRecognitionResult a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result AttachmentMenuBotColor.AttachmentMenuBotColor) of
             T.Success a -> return $ AttachmentMenuBotColor a
             _ -> mempty,
@@ -1464,6 +1486,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result PremiumState.PremiumState) of
             T.Success a -> return $ PremiumState a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result StorePaymentPurpose.StorePaymentPurpose) of
+            T.Success a -> return $ StorePaymentPurpose a
             _ -> mempty,
           case (T.fromJSON v :: T.Result DeviceToken.DeviceToken) of
             T.Success a -> return $ DeviceToken a

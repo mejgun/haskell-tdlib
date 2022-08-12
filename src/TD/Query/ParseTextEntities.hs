@@ -9,7 +9,7 @@ import qualified TD.Data.TextParseMode as TextParseMode
 import qualified Utils as U
 
 -- |
--- Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously @text The text to parse @parse_mode Text parse mode
+-- Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously @text The text to parse @parse_mode Text parse mode
 data ParseTextEntities = ParseTextEntities
   { -- |
     parse_mode :: Maybe TextParseMode.TextParseMode,

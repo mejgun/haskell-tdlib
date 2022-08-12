@@ -15,7 +15,9 @@ data Audio = -- | Describes an audio file. Audio is usually in MP3 or M4A format
   Audio
   { -- |
     audio :: Maybe File.File,
-    -- | The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded file; may be null @audio File containing the audio
+    -- | Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate @audio File containing the audio
+    external_album_covers :: Maybe [Thumbnail.Thumbnail],
+    -- | The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null
     album_cover_thumbnail :: Maybe Thumbnail.Thumbnail,
     -- |
     album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail,
@@ -36,6 +38,7 @@ instance Show Audio where
   show
     Audio
       { audio = audio_,
+        external_album_covers = external_album_covers_,
         album_cover_thumbnail = album_cover_thumbnail_,
         album_cover_minithumbnail = album_cover_minithumbnail_,
         mime_type = mime_type_,
@@ -47,6 +50,7 @@ instance Show Audio where
       "Audio"
         ++ U.cc
           [ U.p "audio" audio_,
+            U.p "external_album_covers" external_album_covers_,
             U.p "album_cover_thumbnail" album_cover_thumbnail_,
             U.p "album_cover_minithumbnail" album_cover_minithumbnail_,
             U.p "mime_type" mime_type_,
@@ -67,6 +71,7 @@ instance T.FromJSON Audio where
       parseAudio :: A.Value -> T.Parser Audio
       parseAudio = A.withObject "Audio" $ \o -> do
         audio_ <- o A..:? "audio"
+        external_album_covers_ <- o A..:? "external_album_covers"
         album_cover_thumbnail_ <- o A..:? "album_cover_thumbnail"
         album_cover_minithumbnail_ <- o A..:? "album_cover_minithumbnail"
         mime_type_ <- o A..:? "mime_type"
@@ -74,13 +79,14 @@ instance T.FromJSON Audio where
         performer_ <- o A..:? "performer"
         title_ <- o A..:? "title"
         duration_ <- o A..:? "duration"
-        return $ Audio {audio = audio_, album_cover_thumbnail = album_cover_thumbnail_, album_cover_minithumbnail = album_cover_minithumbnail_, mime_type = mime_type_, file_name = file_name_, performer = performer_, title = title_, duration = duration_}
+        return $ Audio {audio = audio_, external_album_covers = external_album_covers_, album_cover_thumbnail = album_cover_thumbnail_, album_cover_minithumbnail = album_cover_minithumbnail_, mime_type = mime_type_, file_name = file_name_, performer = performer_, title = title_, duration = duration_}
   parseJSON _ = mempty
 
 instance T.ToJSON Audio where
   toJSON
     Audio
       { audio = audio_,
+        external_album_covers = external_album_covers_,
         album_cover_thumbnail = album_cover_thumbnail_,
         album_cover_minithumbnail = album_cover_minithumbnail_,
         mime_type = mime_type_,
@@ -92,6 +98,7 @@ instance T.ToJSON Audio where
       A.object
         [ "@type" A..= T.String "audio",
           "audio" A..= audio_,
+          "external_album_covers" A..= external_album_covers_,
           "album_cover_thumbnail" A..= album_cover_thumbnail_,
           "album_cover_minithumbnail" A..= album_cover_minithumbnail_,
           "mime_type" A..= mime_type_,

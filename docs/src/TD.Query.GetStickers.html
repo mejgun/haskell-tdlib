@@ -5,19 +5,26 @@
 </span><span id="line-5"></span><span>
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned @emoji String representation of emoji. If empty, returns all known installed stickers @limit The maximum number of stickers to be returned</span><span>
-</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="GetStickers"><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-var">GetStickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetStickers"><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-var">GetStickers</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-14"></span><span>    </span><span id="limit"><span class="annot"><span class="annottext">GetStickers -&gt; Maybe Int
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.StickerType.html"><span class="hs-identifier">TD.Data.StickerType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">StickerType</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, then favorite, recently used or trending stickers may also be returned</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetStickers"><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-var">GetStickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetStickers"><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-var">GetStickers</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Chat identifier for which to return stickers. Available custom emoji may be different for different chats</span><span>
+</span><span id="line-15"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">GetStickers -&gt; Maybe Int
+</span><a href="TD.Query.GetStickers.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | The maximum number of stickers to be returned</span><span>
+</span><span id="line-17"></span><span>    </span><span id="limit"><span class="annot"><span class="annottext">GetStickers -&gt; Maybe Int
 </span><a href="TD.Query.GetStickers.html#limit"><span class="hs-identifier hs-var hs-var">limit</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-16"></span><span>    </span><span id="emoji"><span class="annot"><span class="annottext">GetStickers -&gt; Maybe String
-</span><a href="TD.Query.GetStickers.html#emoji"><span class="hs-identifier hs-var hs-var">emoji</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679388899"><span id="local-6989586621679388901"><span class="annot"><span class="annottext">GetStickers -&gt; GetStickers -&gt; Bool
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | String representation of emoji. If empty, returns all known installed stickers</span><span>
+</span><span id="line-19"></span><span>    </span><span id="emoji"><span class="annot"><span class="annottext">GetStickers -&gt; Maybe String
+</span><a href="TD.Query.GetStickers.html#emoji"><span class="hs-identifier hs-var hs-var">emoji</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Type of the sticker sets to return</span><span>
+</span><span id="line-21"></span><span>    </span><span id="sticker_type"><span class="annot"><span class="annottext">GetStickers -&gt; Maybe StickerType
+</span><a href="TD.Query.GetStickers.html#sticker_type"><span class="hs-identifier hs-var hs-var">sticker_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.StickerType.html#StickerType"><span class="hs-identifier hs-type">StickerType.StickerType</span></a></span><span>
+</span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405556"><span id="local-6989586621679405558"><span class="annot"><span class="annottext">GetStickers -&gt; GetStickers -&gt; Bool
 (GetStickers -&gt; GetStickers -&gt; Bool)
 -&gt; (GetStickers -&gt; GetStickers -&gt; Bool) -&gt; Eq GetStickers
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -26,64 +33,96 @@ $c/= :: GetStickers -&gt; GetStickers -&gt; Bool
 == :: GetStickers -&gt; GetStickers -&gt; Bool
 $c== :: GetStickers -&gt; GetStickers -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679388893"><span id="local-6989586621679388896"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679388891"><span class="annot"><span class="annottext">show :: GetStickers -&gt; String
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405550"><span id="local-6989586621679405553"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679405548"><span class="annot"><span class="annottext">show :: GetStickers -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span><span>
-</span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetStickers -&gt; Maybe Int
-</span><a href="TD.Query.GetStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388889"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679388889"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">emoji :: GetStickers -&gt; Maybe String
-</span><a href="TD.Query.GetStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388888"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679388888"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span>
-</span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span><span>
+</span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: GetStickers -&gt; Maybe Int
+</span><a href="TD.Query.GetStickers.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405546"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679405546"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">limit :: GetStickers -&gt; Maybe Int
+</span><a href="TD.Query.GetStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405545"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679405545"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">emoji :: GetStickers -&gt; Maybe String
+</span><a href="TD.Query.GetStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405544"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405544"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">sticker_type :: GetStickers -&gt; Maybe StickerType
+</span><a href="TD.Query.GetStickers.html#sticker_type"><span class="hs-identifier hs-var">sticker_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405543"><span class="annot"><span class="annottext">Maybe StickerType
+</span><a href="#local-6989586621679405543"><span class="hs-identifier hs-var">sticker_type_</span></a></span></span><span>
+</span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetStickers&quot;</span></span><span>
-</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-28"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+</span><span id="line-35"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679405546"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679388889"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679405545"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;emoji&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679388888"><span class="hs-identifier hs-var">emoji_</span></a></span><span>
-</span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679388879"><span id="local-6989586621679388881"><span id="local-6989586621679388883"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679388877"><span class="annot"><span class="annottext">toJSON :: GetStickers -&gt; Value
+</span><a href="#local-6989586621679405544"><span class="hs-identifier hs-var">emoji_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe StickerType -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;sticker_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe StickerType
+</span><a href="#local-6989586621679405543"><span class="hs-identifier hs-var">sticker_type_</span></a></span><span>
+</span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405534"><span id="local-6989586621679405536"><span id="local-6989586621679405538"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679405532"><span class="annot"><span class="annottext">toJSON :: GetStickers -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span><span>
-</span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">limit :: GetStickers -&gt; Maybe Int
-</span><a href="TD.Query.GetStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388875"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679388875"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">emoji :: GetStickers -&gt; Maybe String
-</span><a href="TD.Query.GetStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679388874"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679388874"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span>
-</span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-43"></span><span>    </span><span class="annot"><a href="TD.Query.GetStickers.html#GetStickers"><span class="hs-identifier hs-type">GetStickers</span></a></span><span>
+</span><span id="line-44"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: GetStickers -&gt; Maybe Int
+</span><a href="TD.Query.GetStickers.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405530"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679405530"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">limit :: GetStickers -&gt; Maybe Int
+</span><a href="TD.Query.GetStickers.html#limit"><span class="hs-identifier hs-var">limit</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405529"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679405529"><span class="hs-identifier hs-var">limit_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">emoji :: GetStickers -&gt; Maybe String
+</span><a href="TD.Query.GetStickers.html#emoji"><span class="hs-identifier hs-var">emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405528"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405528"><span class="hs-identifier hs-var">emoji_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>        </span><span class="annot"><span class="annottext">sticker_type :: GetStickers -&gt; Maybe StickerType
+</span><a href="TD.Query.GetStickers.html#sticker_type"><span class="hs-identifier hs-var">sticker_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405527"><span class="annot"><span class="annottext">Maybe StickerType
+</span><a href="#local-6989586621679405527"><span class="hs-identifier hs-var">sticker_type_</span></a></span></span><span>
+</span><span id="line-48"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-39"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-50"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;getStickers&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-40"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-51"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679405530"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-52"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;limit&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679388875"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679405529"><span class="hs-identifier hs-var">limit_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;emoji&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679388874"><span class="hs-identifier hs-var">emoji_</span></a></span><span>
-</span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-43"></span></pre></body></html>
+</span><a href="#local-6989586621679405528"><span class="hs-identifier hs-var">emoji_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-54"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;sticker_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe StickerType -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe StickerType
+</span><a href="#local-6989586621679405527"><span class="hs-identifier hs-var">sticker_type_</span></a></span><span>
+</span><span id="line-55"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-56"></span></pre></body></html>

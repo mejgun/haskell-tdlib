@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Invoice as Invoice
 import qualified TD.Data.OrderInfo as OrderInfo
+import qualified TD.Data.PaymentOption as PaymentOption
 import qualified TD.Data.PaymentProvider as PaymentProvider
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.SavedCredentials as SavedCredentials
@@ -22,14 +23,16 @@ data PaymentForm = -- | Contains information about an invoice payment form
     product_description :: Maybe FormattedText.FormattedText,
     -- | Product title
     product_title :: Maybe String,
-    -- | True, if the user will be able to save credentials protected by a password they set up
+    -- | True, if the user will be able to save credentials, if sets up a 2-step verification password
     need_password :: Maybe Bool,
     -- | True, if the user can choose to save credentials
     can_save_credentials :: Maybe Bool,
-    -- | Information about saved card credentials; may be null
-    saved_credentials :: Maybe SavedCredentials.SavedCredentials,
+    -- | The list of saved payment credentials
+    saved_credentials :: Maybe [SavedCredentials.SavedCredentials],
     -- | Saved server-side order information; may be null
     saved_order_info :: Maybe OrderInfo.OrderInfo,
+    -- | The list of additional payment options
+    additional_payment_options :: Maybe [PaymentOption.PaymentOption],
     -- | Information about the payment provider
     payment_provider :: Maybe PaymentProvider.PaymentProvider,
     -- | User identifier of the payment provider bot
@@ -53,6 +56,7 @@ instance Show PaymentForm where
         can_save_credentials = can_save_credentials_,
         saved_credentials = saved_credentials_,
         saved_order_info = saved_order_info_,
+        additional_payment_options = additional_payment_options_,
         payment_provider = payment_provider_,
         payment_provider_user_id = payment_provider_user_id_,
         seller_bot_user_id = seller_bot_user_id_,
@@ -68,6 +72,7 @@ instance Show PaymentForm where
             U.p "can_save_credentials" can_save_credentials_,
             U.p "saved_credentials" saved_credentials_,
             U.p "saved_order_info" saved_order_info_,
+            U.p "additional_payment_options" additional_payment_options_,
             U.p "payment_provider" payment_provider_,
             U.p "payment_provider_user_id" payment_provider_user_id_,
             U.p "seller_bot_user_id" seller_bot_user_id_,
@@ -92,12 +97,13 @@ instance T.FromJSON PaymentForm where
         can_save_credentials_ <- o A..:? "can_save_credentials"
         saved_credentials_ <- o A..:? "saved_credentials"
         saved_order_info_ <- o A..:? "saved_order_info"
+        additional_payment_options_ <- o A..:? "additional_payment_options"
         payment_provider_ <- o A..:? "payment_provider"
         payment_provider_user_id_ <- o A..:? "payment_provider_user_id"
         seller_bot_user_id_ <- o A..:? "seller_bot_user_id"
         invoice_ <- o A..:? "invoice"
         _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ PaymentForm {product_photo = product_photo_, product_description = product_description_, product_title = product_title_, need_password = need_password_, can_save_credentials = can_save_credentials_, saved_credentials = saved_credentials_, saved_order_info = saved_order_info_, payment_provider = payment_provider_, payment_provider_user_id = payment_provider_user_id_, seller_bot_user_id = seller_bot_user_id_, invoice = invoice_, _id = _id_}
+        return $ PaymentForm {product_photo = product_photo_, product_description = product_description_, product_title = product_title_, need_password = need_password_, can_save_credentials = can_save_credentials_, saved_credentials = saved_credentials_, saved_order_info = saved_order_info_, additional_payment_options = additional_payment_options_, payment_provider = payment_provider_, payment_provider_user_id = payment_provider_user_id_, seller_bot_user_id = seller_bot_user_id_, invoice = invoice_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON PaymentForm where
@@ -110,6 +116,7 @@ instance T.ToJSON PaymentForm where
         can_save_credentials = can_save_credentials_,
         saved_credentials = saved_credentials_,
         saved_order_info = saved_order_info_,
+        additional_payment_options = additional_payment_options_,
         payment_provider = payment_provider_,
         payment_provider_user_id = payment_provider_user_id_,
         seller_bot_user_id = seller_bot_user_id_,
@@ -125,6 +132,7 @@ instance T.ToJSON PaymentForm where
           "can_save_credentials" A..= can_save_credentials_,
           "saved_credentials" A..= saved_credentials_,
           "saved_order_info" A..= saved_order_info_,
+          "additional_payment_options" A..= additional_payment_options_,
           "payment_provider" A..= payment_provider_,
           "payment_provider_user_id" A..= payment_provider_user_id_,
           "seller_bot_user_id" A..= seller_bot_user_id_,

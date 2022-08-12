@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/mejgun/haskell-tdlib</a>
 @package haskell-tdlib
-@version 0.2.5.0
+@version 0.2.6.0
 
 module Utils
 p :: Show a => String -> Maybe a -> String
@@ -164,7 +164,8 @@ TransferChatOwnership :: Maybe String -> Maybe Int -> Maybe Int -> TransferChatO
 
 -- | Chat identifier <tt>user_id Identifier of the user to which transfer
 --   the ownership. The ownership can't be transferred to a bot or to a
---   deleted user </tt>password The password of the current user
+--   deleted user </tt>password The 2-step verification password of the
+--   current user
 [chat_id] :: TransferChatOwnership -> Maybe Int
 instance GHC.Classes.Eq TD.Query.TransferChatOwnership.TransferChatOwnership
 instance GHC.Show.Show TD.Query.TransferChatOwnership.TransferChatOwnership
@@ -741,9 +742,9 @@ module TD.Query.SetRecoveryEmailAddress
 --   applied until the new recovery email address is confirmed. If
 --   new_recovery_email_address is the same as the email address that is
 --   currently set up, this call succeeds immediately and aborts all other
---   requests waiting for an email confirmation <tt>password Password of
---   the current user </tt>new_recovery_email_address New recovery email
---   address
+--   requests waiting for an email confirmation <tt>password The 2-step
+--   verification password of the current user
+--   </tt>new_recovery_email_address New recovery email address
 data SetRecoveryEmailAddress
 SetRecoveryEmailAddress :: Maybe String -> Maybe String -> SetRecoveryEmailAddress
 
@@ -779,9 +780,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SetPollAnswer.SetPollAnswer
 
 module TD.Query.SetPassword
 
--- | Changes the password for the current user. If a new recovery email
---   address is specified, then the change will not be applied until the
---   new recovery email address is confirmed
+-- | Changes the 2-step verification password for the current user. If a
+--   new recovery email address is specified, then the change will not be
+--   applied until the new recovery email address is confirmed
 data SetPassword
 SetPassword :: Maybe String -> Maybe Bool -> Maybe String -> Maybe String -> Maybe String -> SetPassword
 
@@ -793,11 +794,12 @@ SetPassword :: Maybe String -> Maybe Bool -> Maybe String -> Maybe String -> May
 
 [new_password] :: SetPassword -> Maybe String
 
--- | Previous password of the user <tt>new_password New password of the
---   user; may be empty to remove the password </tt>new_hint New password
---   hint; may be empty <tt>set_recovery_email_address Pass true to change
---   also the recovery email address </tt>new_recovery_email_address New
---   recovery email address; may be empty
+-- | Previous 2-step verification password of the user <tt>new_password New
+--   2-step verification password of the user; may be empty to remove the
+--   password </tt>new_hint New password hint; may be empty
+--   <tt>set_recovery_email_address Pass true to change also the recovery
+--   email address </tt>new_recovery_email_address New recovery email
+--   address; may be empty
 [old_password] :: SetPassword -> Maybe String
 instance GHC.Classes.Eq TD.Query.SetPassword.SetPassword
 instance GHC.Show.Show TD.Query.SetPassword.SetPassword
@@ -1332,7 +1334,8 @@ module TD.Query.SearchStickers
 
 -- | Searches for stickers from public sticker sets that correspond to a
 --   given emoji <tt>emoji String representation of emoji; must be
---   non-empty </tt>limit The maximum number of stickers to be returned
+--   non-empty </tt>limit The maximum number of stickers to be returned;
+--   0-100
 data SearchStickers
 SearchStickers :: Maybe Int -> Maybe String -> SearchStickers
 
@@ -1416,25 +1419,6 @@ SearchOutgoingDocumentMessages :: Maybe Int -> Maybe String -> SearchOutgoingDoc
 instance GHC.Classes.Eq TD.Query.SearchOutgoingDocumentMessages.SearchOutgoingDocumentMessages
 instance GHC.Show.Show TD.Query.SearchOutgoingDocumentMessages.SearchOutgoingDocumentMessages
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SearchOutgoingDocumentMessages.SearchOutgoingDocumentMessages
-
-
-module TD.Query.SearchInstalledStickerSets
-
--- | Searches for installed sticker sets by looking for specified query in
---   their title and name <tt>is_masks Pass true to return mask sticker
---   sets; pass false to return ordinary sticker sets </tt>query Query to
---   search for @limit The maximum number of sticker sets to return
-data SearchInstalledStickerSets
-SearchInstalledStickerSets :: Maybe Int -> Maybe String -> Maybe Bool -> SearchInstalledStickerSets
-
-[limit] :: SearchInstalledStickerSets -> Maybe Int
-
-[query] :: SearchInstalledStickerSets -> Maybe String
-
-[is_masks] :: SearchInstalledStickerSets -> Maybe Bool
-instance GHC.Classes.Eq TD.Query.SearchInstalledStickerSets.SearchInstalledStickerSets
-instance GHC.Show.Show TD.Query.SearchInstalledStickerSets.SearchInstalledStickerSets
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SearchInstalledStickerSets.SearchInstalledStickerSets
 
 
 module TD.Query.SearchHashtags
@@ -1809,9 +1793,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.RequestPasswordRecovery.Request
 
 module TD.Query.RequestAuthenticationPasswordRecovery
 
--- | Requests to send a password recovery code to an email address that was
---   previously set up. Works only when the current authorization state is
---   authorizationStateWaitPassword
+-- | Requests to send a 2-step verification password recovery code to an
+--   email address that was previously set up. Works only when the current
+--   authorization state is authorizationStateWaitPassword
 data RequestAuthenticationPasswordRecovery
 RequestAuthenticationPasswordRecovery :: RequestAuthenticationPasswordRecovery
 instance GHC.Classes.Eq TD.Query.RequestAuthenticationPasswordRecovery.RequestAuthenticationPasswordRecovery
@@ -1861,23 +1845,6 @@ ReplacePrimaryChatInviteLink :: Maybe Int -> ReplacePrimaryChatInviteLink
 instance GHC.Classes.Eq TD.Query.ReplacePrimaryChatInviteLink.ReplacePrimaryChatInviteLink
 instance GHC.Show.Show TD.Query.ReplacePrimaryChatInviteLink.ReplacePrimaryChatInviteLink
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ReplacePrimaryChatInviteLink.ReplacePrimaryChatInviteLink
-
-
-module TD.Query.ReorderInstalledStickerSets
-
--- | Changes the order of installed sticker sets <tt>is_masks Pass true to
---   change the order of mask sticker sets; pass false to change the order
---   of ordinary sticker sets </tt>sticker_set_ids Identifiers of installed
---   sticker sets in the new correct order
-data ReorderInstalledStickerSets
-ReorderInstalledStickerSets :: Maybe [Int] -> Maybe Bool -> ReorderInstalledStickerSets
-
-[sticker_set_ids] :: ReorderInstalledStickerSets -> Maybe [Int]
-
-[is_masks] :: ReorderInstalledStickerSets -> Maybe Bool
-instance GHC.Classes.Eq TD.Query.ReorderInstalledStickerSets.ReorderInstalledStickerSets
-instance GHC.Show.Show TD.Query.ReorderInstalledStickerSets.ReorderInstalledStickerSets
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ReorderInstalledStickerSets.ReorderInstalledStickerSets
 
 
 module TD.Query.ReorderChatFilters
@@ -2087,9 +2054,9 @@ RecoverPassword :: Maybe String -> Maybe String -> Maybe String -> RecoverPasswo
 
 [new_password] :: RecoverPassword -> Maybe String
 
--- | Recovery code to check <tt>new_password New password of the user; may
---   be empty to remove the password </tt>new_hint New password hint; may
---   be empty
+-- | Recovery code to check <tt>new_password New 2-step verification
+--   password of the user; may be empty to remove the password
+--   </tt>new_hint New password hint; may be empty
 [recovery_code] :: RecoverPassword -> Maybe String
 instance GHC.Classes.Eq TD.Query.RecoverPassword.RecoverPassword
 instance GHC.Show.Show TD.Query.RecoverPassword.RecoverPassword
@@ -2098,9 +2065,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.RecoverPassword.RecoverPassword
 
 module TD.Query.RecoverAuthenticationPassword
 
--- | Recovers the password with a password recovery code sent to an email
---   address that was previously set up. Works only when the current
---   authorization state is authorizationStateWaitPassword
+-- | Recovers the 2-step verification password with a password recovery
+--   code sent to an email address that was previously set up. Works only
+--   when the current authorization state is authorizationStateWaitPassword
 data RecoverAuthenticationPassword
 RecoverAuthenticationPassword :: Maybe String -> Maybe String -> Maybe String -> RecoverAuthenticationPassword
 
@@ -2108,9 +2075,9 @@ RecoverAuthenticationPassword :: Maybe String -> Maybe String -> Maybe String ->
 
 [new_password] :: RecoverAuthenticationPassword -> Maybe String
 
--- | Recovery code to check <tt>new_password New password of the user; may
---   be empty to remove the password </tt>new_hint New password hint; may
---   be empty
+-- | Recovery code to check <tt>new_password New 2-step verification
+--   password of the user; may be empty to remove the password
+--   </tt>new_hint New password hint; may be empty
 [recovery_code] :: RecoverAuthenticationPassword -> Maybe String
 instance GHC.Classes.Eq TD.Query.RecoverAuthenticationPassword.RecoverAuthenticationPassword
 instance GHC.Show.Show TD.Query.RecoverAuthenticationPassword.RecoverAuthenticationPassword
@@ -2526,26 +2493,6 @@ instance GHC.Show.Show TD.Query.GetUser.GetUser
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetUser.GetUser
 
 
-module TD.Query.GetTrendingStickerSets
-
--- | Returns a list of trending sticker sets. For optimal performance, the
---   number of returned sticker sets is chosen by TDLib
-data GetTrendingStickerSets
-GetTrendingStickerSets :: Maybe Int -> Maybe Int -> GetTrendingStickerSets
-
--- | The maximum number of sticker sets to be returned; up to 100. For
---   optimal performance, the number of returned sticker sets is chosen by
---   TDLib and can be smaller than the specified limit, even if the end of
---   the list has not been reached
-[limit] :: GetTrendingStickerSets -> Maybe Int
-
--- | The offset from which to return the sticker sets; must be non-negative
-[offset] :: GetTrendingStickerSets -> Maybe Int
-instance GHC.Classes.Eq TD.Query.GetTrendingStickerSets.GetTrendingStickerSets
-instance GHC.Show.Show TD.Query.GetTrendingStickerSets.GetTrendingStickerSets
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetTrendingStickerSets.GetTrendingStickerSets
-
-
 module TD.Query.GetTextEntities
 
 -- | Returns all entities (mentions, hashtags, cashtags, bot commands, bank
@@ -2679,24 +2626,6 @@ instance GHC.Show.Show TD.Query.GetStorageStatistics.GetStorageStatistics
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetStorageStatistics.GetStorageStatistics
 
 
-module TD.Query.GetStickers
-
--- | Returns stickers from the installed sticker sets that correspond to a
---   given emoji. If the emoji is non-empty, favorite and recently used
---   stickers may also be returned <tt>emoji String representation of
---   emoji. If empty, returns all known installed stickers </tt>limit The
---   maximum number of stickers to be returned
-data GetStickers
-GetStickers :: Maybe Int -> Maybe String -> GetStickers
-
-[limit] :: GetStickers -> Maybe Int
-
-[emoji] :: GetStickers -> Maybe String
-instance GHC.Classes.Eq TD.Query.GetStickers.GetStickers
-instance GHC.Show.Show TD.Query.GetStickers.GetStickers
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetStickers.GetStickers
-
-
 module TD.Query.GetStickerSet
 
 -- | Returns information about a sticker set by its identifier @set_id
@@ -2810,7 +2739,8 @@ module TD.Query.GetRecoveryEmailAddress
 
 -- | Returns a 2-step verification recovery email address that was
 --   previously set up. This method can be used to verify a password
---   provided by the user @password The password for the current user
+--   provided by the user @password The 2-step verification password for
+--   the current user
 data GetRecoveryEmailAddress
 GetRecoveryEmailAddress :: Maybe String -> GetRecoveryEmailAddress
 
@@ -2924,12 +2854,25 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetProxies.GetProxies
 
 module TD.Query.GetPremiumStickers
 
--- | Returns examples of premium stickers for demonstration purposes
+-- | Returns premium stickers from regular sticker sets @limit The maximum
+--   number of stickers to be returned; 0-100
 data GetPremiumStickers
-GetPremiumStickers :: GetPremiumStickers
+GetPremiumStickers :: Maybe Int -> GetPremiumStickers
+
+[limit] :: GetPremiumStickers -> Maybe Int
 instance GHC.Classes.Eq TD.Query.GetPremiumStickers.GetPremiumStickers
 instance GHC.Show.Show TD.Query.GetPremiumStickers.GetPremiumStickers
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPremiumStickers.GetPremiumStickers
+
+
+module TD.Query.GetPremiumStickerExamples
+
+-- | Returns examples of premium stickers for demonstration purposes
+data GetPremiumStickerExamples
+GetPremiumStickerExamples :: GetPremiumStickerExamples
+instance GHC.Classes.Eq TD.Query.GetPremiumStickerExamples.GetPremiumStickerExamples
+instance GHC.Show.Show TD.Query.GetPremiumStickerExamples.GetPremiumStickerExamples
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetPremiumStickerExamples.GetPremiumStickerExamples
 
 
 module TD.Query.GetPremiumState
@@ -3052,7 +2995,7 @@ module TD.Query.GetPassportAuthorizationFormAvailableElements
 --   completing a Telegram Passport authorization form. Result can be
 --   received only once for each authorization form
 --   <tt>autorization_form_id Authorization form identifier </tt>password
---   Password of the current user
+--   The 2-step verification password of the current user
 data GetPassportAuthorizationFormAvailableElements
 GetPassportAuthorizationFormAvailableElements :: Maybe String -> Maybe Int -> GetPassportAuthorizationFormAvailableElements
 
@@ -3368,9 +3311,7 @@ module TD.Query.GetMessageAvailableReactions
 
 -- | Returns reactions, which can be added to a message. The list can
 --   change after updateReactions, updateChatAvailableReactions for the
---   chat, or updateMessageInteractionInfo for the message. The method will
---   return Premium reactions, even the current user has no Premium
---   subscription
+--   chat, or updateMessageInteractionInfo for the message
 data GetMessageAvailableReactions
 GetMessageAvailableReactions :: Maybe Int -> Maybe Int -> GetMessageAvailableReactions
 
@@ -3644,19 +3585,6 @@ instance GHC.Show.Show TD.Query.GetInternalLinkType.GetInternalLinkType
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetInternalLinkType.GetInternalLinkType
 
 
-module TD.Query.GetInstalledStickerSets
-
--- | Returns a list of installed sticker sets @is_masks Pass true to return
---   mask sticker sets; pass false to return ordinary sticker sets
-data GetInstalledStickerSets
-GetInstalledStickerSets :: Maybe Bool -> GetInstalledStickerSets
-
-[is_masks] :: GetInstalledStickerSets -> Maybe Bool
-instance GHC.Classes.Eq TD.Query.GetInstalledStickerSets.GetInstalledStickerSets
-instance GHC.Show.Show TD.Query.GetInstalledStickerSets.GetInstalledStickerSets
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetInstalledStickerSets.GetInstalledStickerSets
-
-
 module TD.Query.GetInlineGameHighScores
 
 -- | Returns game high scores and some part of the high score table in the
@@ -3918,6 +3846,21 @@ GetDatabaseStatistics :: GetDatabaseStatistics
 instance GHC.Classes.Eq TD.Query.GetDatabaseStatistics.GetDatabaseStatistics
 instance GHC.Show.Show TD.Query.GetDatabaseStatistics.GetDatabaseStatistics
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetDatabaseStatistics.GetDatabaseStatistics
+
+
+module TD.Query.GetCustomEmojiStickers
+
+-- | Returns list of custom emoji stickers by their identifiers. Stickers
+--   are returned in arbitrary order. Only found stickers are returned
+--   @custom_emoji_ids Identifiers of custom emoji stickers. At most 200
+--   custom emoji stickers can be received simultaneously
+data GetCustomEmojiStickers
+GetCustomEmojiStickers :: Maybe [Int] -> GetCustomEmojiStickers
+
+[custom_emoji_ids] :: GetCustomEmojiStickers -> Maybe [Int]
+instance GHC.Classes.Eq TD.Query.GetCustomEmojiStickers.GetCustomEmojiStickers
+instance GHC.Show.Show TD.Query.GetCustomEmojiStickers.GetCustomEmojiStickers
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetCustomEmojiStickers.GetCustomEmojiStickers
 
 
 module TD.Query.GetCurrentState
@@ -4355,26 +4298,6 @@ instance GHC.Show.Show TD.Query.GetAttachedStickerSets.GetAttachedStickerSets
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetAttachedStickerSets.GetAttachedStickerSets
 
 
-module TD.Query.GetArchivedStickerSets
-
--- | Returns a list of archived sticker sets <tt>is_masks Pass true to
---   return mask stickers sets; pass false to return ordinary sticker sets
---   </tt>offset_sticker_set_id Identifier of the sticker set from which to
---   return the result @limit The maximum number of sticker sets to return;
---   up to 100
-data GetArchivedStickerSets
-GetArchivedStickerSets :: Maybe Int -> Maybe Int -> Maybe Bool -> GetArchivedStickerSets
-
-[limit] :: GetArchivedStickerSets -> Maybe Int
-
-[offset_sticker_set_id] :: GetArchivedStickerSets -> Maybe Int
-
-[is_masks] :: GetArchivedStickerSets -> Maybe Bool
-instance GHC.Classes.Eq TD.Query.GetArchivedStickerSets.GetArchivedStickerSets
-instance GHC.Show.Show TD.Query.GetArchivedStickerSets.GetArchivedStickerSets
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetArchivedStickerSets.GetArchivedStickerSets
-
-
 module TD.Query.GetApplicationDownloadLink
 
 -- | Returns the link for downloading official Telegram application to be
@@ -4412,8 +4335,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetAnimatedEmoji.GetAnimatedEmo
 
 module TD.Query.GetAllPassportElements
 
--- | Returns all available Telegram Passport elements @password Password of
---   the current user
+-- | Returns all available Telegram Passport elements @password The 2-step
+--   verification password of the current user
 data GetAllPassportElements
 GetAllPassportElements :: Maybe String -> GetAllPassportElements
 
@@ -4421,16 +4344,6 @@ GetAllPassportElements :: Maybe String -> GetAllPassportElements
 instance GHC.Classes.Eq TD.Query.GetAllPassportElements.GetAllPassportElements
 instance GHC.Show.Show TD.Query.GetAllPassportElements.GetAllPassportElements
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetAllPassportElements.GetAllPassportElements
-
-
-module TD.Query.GetAllAnimatedEmojis
-
--- | Returns all emojis, which has a corresponding animated emoji
-data GetAllAnimatedEmojis
-GetAllAnimatedEmojis :: GetAllAnimatedEmojis
-instance GHC.Classes.Eq TD.Query.GetAllAnimatedEmojis.GetAllAnimatedEmojis
-instance GHC.Show.Show TD.Query.GetAllAnimatedEmojis.GetAllAnimatedEmojis
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetAllAnimatedEmojis.GetAllAnimatedEmojis
 
 
 module TD.Query.GetActiveSessions
@@ -4887,10 +4800,14 @@ module TD.Query.DeleteAccount
 --   associated with the user from the server. The phone number of the
 --   account can be used to create a new account. Can be called before
 --   authorization when the current authorization state is
---   authorizationStateWaitPassword @reason The reason why the account was
---   deleted; optional
+--   authorizationStateWaitPassword <tt>reason The reason why the account
+--   was deleted; optional </tt>password The 2-step verification password
+--   of the current user. If not specified, account deletion can be
+--   canceled within one week
 data DeleteAccount
-DeleteAccount :: Maybe String -> DeleteAccount
+DeleteAccount :: Maybe String -> Maybe String -> DeleteAccount
+
+[password] :: DeleteAccount -> Maybe String
 
 [reason] :: DeleteAccount -> Maybe String
 instance GHC.Classes.Eq TD.Query.DeleteAccount.DeleteAccount
@@ -4928,9 +4845,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CreateVideoChat.CreateVideoChat
 module TD.Query.CreateTemporaryPassword
 
 -- | Creates a new temporary password for processing payments <tt>password
---   Persistent user password </tt>valid_for Time during which the
---   temporary password will be valid, in seconds; must be between 60 and
---   86400
+--   The 2-step verification password of the current user </tt>valid_for
+--   Time during which the temporary password will be valid, in seconds;
+--   must be between 60 and 86400
 data CreateTemporaryPassword
 CreateTemporaryPassword :: Maybe Int -> Maybe String -> CreateTemporaryPassword
 
@@ -5363,9 +5280,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CheckChangePhoneNumberCode.Chec
 
 module TD.Query.CheckAuthenticationPasswordRecoveryCode
 
--- | Checks whether a password recovery code sent to an email address is
---   valid. Works only when the current authorization state is
---   authorizationStateWaitPassword @recovery_code Recovery code to check
+-- | Checks whether a 2-step verification password recovery code sent to an
+--   email address is valid. Works only when the current authorization
+--   state is authorizationStateWaitPassword @recovery_code Recovery code
+--   to check
 data CheckAuthenticationPasswordRecoveryCode
 CheckAuthenticationPasswordRecoveryCode :: Maybe String -> CheckAuthenticationPasswordRecoveryCode
 
@@ -5377,9 +5295,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CheckAuthenticationPasswordReco
 
 module TD.Query.CheckAuthenticationPassword
 
--- | Checks the authentication password for correctness. Works only when
---   the current authorization state is authorizationStateWaitPassword
---   @password The password to check
+-- | Checks the 2-step verification password for correctness. Works only
+--   when the current authorization state is authorizationStateWaitPassword
+--   @password The 2-step verification password to check
 data CheckAuthenticationPassword
 CheckAuthenticationPassword :: Maybe String -> CheckAuthenticationPassword
 
@@ -5438,18 +5356,18 @@ instance GHC.Show.Show TD.Query.ChangeStickerSet.ChangeStickerSet
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ChangeStickerSet.ChangeStickerSet
 
 
-module TD.Query.CancelUploadFile
+module TD.Query.CancelPreliminaryUploadFile
 
--- | Stops the uploading of a file. Supported only for files uploaded by
---   using uploadFile. For other files the behavior is undefined @file_id
---   Identifier of the file to stop uploading
-data CancelUploadFile
-CancelUploadFile :: Maybe Int -> CancelUploadFile
+-- | Stops the preliminary uploading of a file. Supported only for files
+--   uploaded by using preliminaryUploadFile. For other files the behavior
+--   is undefined @file_id Identifier of the file to stop uploading
+data CancelPreliminaryUploadFile
+CancelPreliminaryUploadFile :: Maybe Int -> CancelPreliminaryUploadFile
 
-[file_id] :: CancelUploadFile -> Maybe Int
-instance GHC.Classes.Eq TD.Query.CancelUploadFile.CancelUploadFile
-instance GHC.Show.Show TD.Query.CancelUploadFile.CancelUploadFile
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CancelUploadFile.CancelUploadFile
+[file_id] :: CancelPreliminaryUploadFile -> Maybe Int
+instance GHC.Classes.Eq TD.Query.CancelPreliminaryUploadFile.CancelPreliminaryUploadFile
+instance GHC.Show.Show TD.Query.CancelPreliminaryUploadFile.CancelPreliminaryUploadFile
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CancelPreliminaryUploadFile.CancelPreliminaryUploadFile
 
 
 module TD.Query.CancelPasswordReset
@@ -5491,17 +5409,6 @@ instance GHC.Show.Show TD.Query.CanTransferOwnership.CanTransferOwnership
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CanTransferOwnership.CanTransferOwnership
 
 
-module TD.Query.CanPurchasePremium
-
--- | Checks whether Telegram Premium purchase is possible. Must be called
---   before in-store Premium purchase
-data CanPurchasePremium
-CanPurchasePremium :: CanPurchasePremium
-instance GHC.Classes.Eq TD.Query.CanPurchasePremium.CanPurchasePremium
-instance GHC.Show.Show TD.Query.CanPurchasePremium.CanPurchasePremium
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CanPurchasePremium.CanPurchasePremium
-
-
 module TD.Query.BlockMessageSenderFromReplies
 
 -- | Blocks an original sender of a message in the Replies chat
@@ -5522,37 +5429,6 @@ BlockMessageSenderFromReplies :: Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe
 instance GHC.Classes.Eq TD.Query.BlockMessageSenderFromReplies.BlockMessageSenderFromReplies
 instance GHC.Show.Show TD.Query.BlockMessageSenderFromReplies.BlockMessageSenderFromReplies
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.BlockMessageSenderFromReplies.BlockMessageSenderFromReplies
-
-
-module TD.Query.AssignGooglePlayTransaction
-
--- | Informs server about a Telegram Premium purchase through Google Play.
---   For official applications only @purchase_token Google Play purchase
---   token
-data AssignGooglePlayTransaction
-AssignGooglePlayTransaction :: Maybe String -> AssignGooglePlayTransaction
-
-[purchase_token] :: AssignGooglePlayTransaction -> Maybe String
-instance GHC.Classes.Eq TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
-instance GHC.Show.Show TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
-
-
-module TD.Query.AssignAppStoreTransaction
-
--- | Informs server about a Telegram Premium purchase through App Store.
---   For official applications only <tt>receipt App Store receipt
---   </tt>is_restore Pass true if this is a restore of a Telegram Premium
---   purchase
-data AssignAppStoreTransaction
-AssignAppStoreTransaction :: Maybe Bool -> Maybe String -> AssignAppStoreTransaction
-
-[is_restore] :: AssignAppStoreTransaction -> Maybe Bool
-
-[receipt] :: AssignAppStoreTransaction -> Maybe String
-instance GHC.Classes.Eq TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
-instance GHC.Show.Show TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
 
 
 module TD.Query.AnswerPreCheckoutQuery
@@ -5960,6 +5836,10 @@ UserPrivacySettingAllowPeerToPeerCalls :: UserPrivacySetting
 --   phone number. Checked only if the phone number is not known to the
 --   other user. Can be set only to "Allow contacts" or "Allow all"
 UserPrivacySettingAllowFindingByPhoneNumber :: UserPrivacySetting
+
+-- | A privacy setting for managing whether the user can receive voice and
+--   video messages in private chats
+UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages :: UserPrivacySetting
 instance GHC.Classes.Eq TD.Data.UserPrivacySetting.UserPrivacySetting
 instance GHC.Show.Show TD.Data.UserPrivacySetting.UserPrivacySetting
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.UserPrivacySetting.UserPrivacySetting
@@ -6216,10 +6096,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.TextParseMode.TextParseMode
 
 module TD.Query.ParseTextEntities
 
--- | Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre,
---   PreCode, TextUrl and MentionName entities contained in the text. Can
---   be called synchronously <tt>text The text to parse </tt>parse_mode
---   Text parse mode
+-- | Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji,
+--   Code, Pre, PreCode, TextUrl and MentionName entities contained in the
+--   text. Can be called synchronously <tt>text The text to parse
+--   </tt>parse_mode Text parse mode
 data ParseTextEntities
 ParseTextEntities :: Maybe TextParseMode -> Maybe String -> ParseTextEntities
 
@@ -6274,7 +6154,7 @@ TextEntityTypeUnderline :: TextEntityType
 -- | A strikethrough text
 TextEntityTypeStrikethrough :: TextEntityType
 
--- | A spoiler text. Not supported in secret chats
+-- | A spoiler text
 TextEntityTypeSpoiler :: TextEntityType
 
 -- | Text that must be formatted as if inside a code HTML tag
@@ -6300,6 +6180,13 @@ TextEntityTypeTextUrl :: Maybe String -> TextEntityType
 TextEntityTypeMentionName :: Maybe Int -> TextEntityType
 
 [user_id] :: TextEntityType -> Maybe Int
+
+-- | A custom emoji. The text behind a custom emoji must be an emoji. Only
+--   premium users can use premium custom emoji @custom_emoji_id Unique
+--   identifier of the custom emoji
+TextEntityTypeCustomEmoji :: Maybe Int -> TextEntityType
+
+[custom_emoji_id] :: TextEntityType -> Maybe Int
 
 -- | A media timestamp @media_timestamp Timestamp from which a
 --   video<i>audio</i>video note/voice note playing must start, in seconds.
@@ -6762,6 +6649,85 @@ instance GHC.Show.Show TD.Query.HideSuggestedAction.HideSuggestedAction
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.HideSuggestedAction.HideSuggestedAction
 
 
+module TD.Data.StorePaymentPurpose
+
+-- | Describes a purpose of an in-store payment
+data StorePaymentPurpose
+
+-- | The user subscribed to Telegram Premium @is_restore Pass true if this
+--   is a restore of a Telegram Premium purchase; only for App Store
+StorePaymentPurposePremiumSubscription :: Maybe Bool -> StorePaymentPurpose
+
+[is_restore] :: StorePaymentPurpose -> Maybe Bool
+
+-- | The user gifted Telegram Premium to another user <tt>user_id
+--   Identifier of the user for which Premium was gifted </tt>currency ISO
+--   4217 currency code of the payment currency @amount Paid amount, in the
+--   smallest units of the currency
+StorePaymentPurposeGiftedPremium :: Maybe Int -> Maybe String -> Maybe Int -> StorePaymentPurpose
+
+[amount] :: StorePaymentPurpose -> Maybe Int
+
+[currency] :: StorePaymentPurpose -> Maybe String
+
+[user_id] :: StorePaymentPurpose -> Maybe Int
+instance GHC.Classes.Eq TD.Data.StorePaymentPurpose.StorePaymentPurpose
+instance GHC.Show.Show TD.Data.StorePaymentPurpose.StorePaymentPurpose
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.StorePaymentPurpose.StorePaymentPurpose
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.StorePaymentPurpose.StorePaymentPurpose
+
+
+module TD.Query.CanPurchasePremium
+
+-- | Checks whether Telegram Premium purchase is possible. Must be called
+--   before in-store Premium purchase @purpose Transaction purpose
+data CanPurchasePremium
+CanPurchasePremium :: Maybe StorePaymentPurpose -> CanPurchasePremium
+
+[purpose] :: CanPurchasePremium -> Maybe StorePaymentPurpose
+instance GHC.Classes.Eq TD.Query.CanPurchasePremium.CanPurchasePremium
+instance GHC.Show.Show TD.Query.CanPurchasePremium.CanPurchasePremium
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.CanPurchasePremium.CanPurchasePremium
+
+
+module TD.Query.AssignGooglePlayTransaction
+
+-- | Informs server about a purchase through Google Play. For official
+--   applications only <tt>package_name Application package name
+--   </tt>store_product_id Identifier of the purchased store product
+--   <tt>purchase_token Google Play purchase token </tt>purpose Transaction
+--   purpose
+data AssignGooglePlayTransaction
+AssignGooglePlayTransaction :: Maybe StorePaymentPurpose -> Maybe String -> Maybe String -> Maybe String -> AssignGooglePlayTransaction
+
+[purpose] :: AssignGooglePlayTransaction -> Maybe StorePaymentPurpose
+
+[purchase_token] :: AssignGooglePlayTransaction -> Maybe String
+
+[store_product_id] :: AssignGooglePlayTransaction -> Maybe String
+
+[package_name] :: AssignGooglePlayTransaction -> Maybe String
+instance GHC.Classes.Eq TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
+instance GHC.Show.Show TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.AssignGooglePlayTransaction.AssignGooglePlayTransaction
+
+
+module TD.Query.AssignAppStoreTransaction
+
+-- | Informs server about a purchase through App Store. For official
+--   applications only <tt>receipt App Store receipt </tt>purpose
+--   Transaction purpose
+data AssignAppStoreTransaction
+AssignAppStoreTransaction :: Maybe StorePaymentPurpose -> Maybe String -> AssignAppStoreTransaction
+
+[purpose] :: AssignAppStoreTransaction -> Maybe StorePaymentPurpose
+
+[receipt] :: AssignAppStoreTransaction -> Maybe String
+instance GHC.Classes.Eq TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
+instance GHC.Show.Show TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.AssignAppStoreTransaction.AssignAppStoreTransaction
+
+
 module TD.Data.StorageStatisticsFast
 
 data StorageStatisticsFast
@@ -6786,6 +6752,161 @@ instance GHC.Classes.Eq TD.Data.StorageStatisticsFast.StorageStatisticsFast
 instance GHC.Show.Show TD.Data.StorageStatisticsFast.StorageStatisticsFast
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.StorageStatisticsFast.StorageStatisticsFast
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.StorageStatisticsFast.StorageStatisticsFast
+
+
+module TD.Data.StickerType
+
+-- | Describes type of a sticker
+data StickerType
+
+-- | The sticker is a regular sticker
+StickerTypeRegular :: StickerType
+
+-- | The sticker is a mask in WEBP format to be placed on photos or videos
+StickerTypeMask :: StickerType
+
+-- | The sticker is a custom emoji to be used inside message text and
+--   caption
+StickerTypeCustomEmoji :: StickerType
+instance GHC.Classes.Eq TD.Data.StickerType.StickerType
+instance GHC.Show.Show TD.Data.StickerType.StickerType
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.StickerType.StickerType
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.StickerType.StickerType
+
+
+module TD.Query.SearchInstalledStickerSets
+
+-- | Searches for installed sticker sets by looking for specified query in
+--   their title and name <tt>sticker_type Type of the sticker sets to
+--   search for </tt>query Query to search for @limit The maximum number of
+--   sticker sets to return
+data SearchInstalledStickerSets
+SearchInstalledStickerSets :: Maybe Int -> Maybe String -> Maybe StickerType -> SearchInstalledStickerSets
+
+[limit] :: SearchInstalledStickerSets -> Maybe Int
+
+[query] :: SearchInstalledStickerSets -> Maybe String
+
+[sticker_type] :: SearchInstalledStickerSets -> Maybe StickerType
+instance GHC.Classes.Eq TD.Query.SearchInstalledStickerSets.SearchInstalledStickerSets
+instance GHC.Show.Show TD.Query.SearchInstalledStickerSets.SearchInstalledStickerSets
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SearchInstalledStickerSets.SearchInstalledStickerSets
+
+
+module TD.Query.ReorderInstalledStickerSets
+
+-- | Changes the order of installed sticker sets <tt>sticker_type Type of
+--   the sticker sets to reorder </tt>sticker_set_ids Identifiers of
+--   installed sticker sets in the new correct order
+data ReorderInstalledStickerSets
+ReorderInstalledStickerSets :: Maybe [Int] -> Maybe StickerType -> ReorderInstalledStickerSets
+
+[sticker_set_ids] :: ReorderInstalledStickerSets -> Maybe [Int]
+
+[sticker_type] :: ReorderInstalledStickerSets -> Maybe StickerType
+instance GHC.Classes.Eq TD.Query.ReorderInstalledStickerSets.ReorderInstalledStickerSets
+instance GHC.Show.Show TD.Query.ReorderInstalledStickerSets.ReorderInstalledStickerSets
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.ReorderInstalledStickerSets.ReorderInstalledStickerSets
+
+
+module TD.Query.GetTrendingStickerSets
+
+-- | Returns a list of trending sticker sets. For optimal performance, the
+--   number of returned sticker sets is chosen by TDLib
+data GetTrendingStickerSets
+GetTrendingStickerSets :: Maybe Int -> Maybe Int -> Maybe StickerType -> GetTrendingStickerSets
+
+-- | The maximum number of sticker sets to be returned; up to 100. For
+--   optimal performance, the number of returned sticker sets is chosen by
+--   TDLib and can be smaller than the specified limit, even if the end of
+--   the list has not been reached
+[limit] :: GetTrendingStickerSets -> Maybe Int
+
+-- | The offset from which to return the sticker sets; must be non-negative
+[offset] :: GetTrendingStickerSets -> Maybe Int
+
+-- | Type of the sticker sets to return
+[sticker_type] :: GetTrendingStickerSets -> Maybe StickerType
+instance GHC.Classes.Eq TD.Query.GetTrendingStickerSets.GetTrendingStickerSets
+instance GHC.Show.Show TD.Query.GetTrendingStickerSets.GetTrendingStickerSets
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetTrendingStickerSets.GetTrendingStickerSets
+
+
+module TD.Query.GetStickers
+
+-- | Returns stickers from the installed sticker sets that correspond to a
+--   given emoji. If the emoji is non-empty, then favorite, recently used
+--   or trending stickers may also be returned
+data GetStickers
+GetStickers :: Maybe Int -> Maybe Int -> Maybe String -> Maybe StickerType -> GetStickers
+
+-- | Chat identifier for which to return stickers. Available custom emoji
+--   may be different for different chats
+[chat_id] :: GetStickers -> Maybe Int
+
+-- | The maximum number of stickers to be returned
+[limit] :: GetStickers -> Maybe Int
+
+-- | String representation of emoji. If empty, returns all known installed
+--   stickers
+[emoji] :: GetStickers -> Maybe String
+
+-- | Type of the sticker sets to return
+[sticker_type] :: GetStickers -> Maybe StickerType
+instance GHC.Classes.Eq TD.Query.GetStickers.GetStickers
+instance GHC.Show.Show TD.Query.GetStickers.GetStickers
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetStickers.GetStickers
+
+
+module TD.Query.GetInstalledStickerSets
+
+-- | Returns a list of installed sticker sets @sticker_type Type of the
+--   sticker sets to return
+data GetInstalledStickerSets
+GetInstalledStickerSets :: Maybe StickerType -> GetInstalledStickerSets
+
+[sticker_type] :: GetInstalledStickerSets -> Maybe StickerType
+instance GHC.Classes.Eq TD.Query.GetInstalledStickerSets.GetInstalledStickerSets
+instance GHC.Show.Show TD.Query.GetInstalledStickerSets.GetInstalledStickerSets
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetInstalledStickerSets.GetInstalledStickerSets
+
+
+module TD.Query.GetArchivedStickerSets
+
+-- | Returns a list of archived sticker sets <tt>sticker_type Type of the
+--   sticker sets to return </tt>offset_sticker_set_id Identifier of the
+--   sticker set from which to return the result @limit The maximum number
+--   of sticker sets to return; up to 100
+data GetArchivedStickerSets
+GetArchivedStickerSets :: Maybe Int -> Maybe Int -> Maybe StickerType -> GetArchivedStickerSets
+
+[limit] :: GetArchivedStickerSets -> Maybe Int
+
+[offset_sticker_set_id] :: GetArchivedStickerSets -> Maybe Int
+
+[sticker_type] :: GetArchivedStickerSets -> Maybe StickerType
+instance GHC.Classes.Eq TD.Query.GetArchivedStickerSets.GetArchivedStickerSets
+instance GHC.Show.Show TD.Query.GetArchivedStickerSets.GetArchivedStickerSets
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetArchivedStickerSets.GetArchivedStickerSets
+
+
+module TD.Data.StickerFormat
+
+-- | Describes format of a sticker
+data StickerFormat
+
+-- | The sticker is an image in WEBP format
+StickerFormatWebp :: StickerFormat
+
+-- | The sticker is an animation in TGS format
+StickerFormatTgs :: StickerFormat
+
+-- | The sticker is a video in WEBM format
+StickerFormatWebm :: StickerFormat
+instance GHC.Classes.Eq TD.Data.StickerFormat.StickerFormat
+instance GHC.Show.Show TD.Data.StickerFormat.StickerFormat
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.StickerFormat.StickerFormat
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.StickerFormat.StickerFormat
 
 
 module TD.Data.StatisticalValue
@@ -6959,7 +7080,8 @@ Session :: Maybe String -> Maybe String -> Maybe String -> Maybe Int -> Maybe In
 -- | True, if incoming secret chats can be accepted by the session
 [can_accept_secret_chats] :: Session -> Maybe Bool
 
--- | True, if a password is needed to complete authorization of the session
+-- | True, if a 2-step verification password is needed to complete
+--   authorization of the session
 [is_password_pending] :: Session -> Maybe Bool
 
 [is_current] :: Session -> Maybe Bool
@@ -7036,7 +7158,8 @@ SecretChat :: Maybe Int -> Maybe String -> Maybe Bool -> Maybe SecretChatState -
 -- | Secret chat layer; determines features supported by the chat partner's
 --   application. Nested text entities and underline and strikethrough
 --   entities are supported if the layer &gt;= 101, files bigger than
---   2000MB are supported if the layer &gt;= 143
+--   2000MB are supported if the layer &gt;= 143, spoiler and custom emoji
+--   text entities are supported if the layer &gt;= 144
 [layer] :: SecretChat -> Maybe Int
 
 -- | Hash of the currently used key for comparison with the hash of the
@@ -7293,7 +7416,7 @@ module TD.Data.SavedCredentials
 
 data SavedCredentials
 
--- | Contains information about saved card credentials <tt>id Unique
+-- | Contains information about saved payment credentials <tt>id Unique
 --   identifier of the saved credentials </tt>title Title of the saved
 --   credentials
 SavedCredentials :: Maybe String -> Maybe String -> SavedCredentials
@@ -7711,6 +7834,9 @@ PremiumFeatureUniqueReactions :: PremiumFeature
 -- | Allowed to use premium stickers with unique effects
 PremiumFeatureUniqueStickers :: PremiumFeature
 
+-- | Allowed to use custom emoji stickers in message texts and captions
+PremiumFeatureCustomEmoji :: PremiumFeature
+
 -- | Ability to change position of the main chat list, archive and mute all
 --   new chats from non-contacts, and completely disable notifications
 --   about the user's contacts joined Telegram
@@ -8027,6 +8153,23 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PaymentProvider.PaymentProvi
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PaymentProvider.PaymentProvider
 
 
+module TD.Data.PaymentOption
+
+data PaymentOption
+
+-- | Describes an additional payment option <tt>title Title for the payment
+--   option </tt>url Payment form URL to be opened in a web view
+PaymentOption :: Maybe String -> Maybe String -> PaymentOption
+
+[url] :: PaymentOption -> Maybe String
+
+[title] :: PaymentOption -> Maybe String
+instance GHC.Classes.Eq TD.Data.PaymentOption.PaymentOption
+instance GHC.Show.Show TD.Data.PaymentOption.PaymentOption
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PaymentOption.PaymentOption
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PaymentOption.PaymentOption
+
+
 module TD.Data.PassportElementType
 
 -- | Contains the type of a Telegram Passport element
@@ -8100,8 +8243,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SendPassportAuthorizationForm.S
 module TD.Query.GetPassportElement
 
 -- | Returns one of the available Telegram Passport elements <tt>type
---   Telegram Passport element type </tt>password Password of the current
---   user
+--   Telegram Passport element type </tt>password The 2-step verification
+--   password of the current user
 data GetPassportElement
 GetPassportElement :: Maybe String -> Maybe PassportElementType -> GetPassportElement
 
@@ -9367,31 +9510,6 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.MaskPosition.MaskPosition
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.MaskPosition.MaskPosition
 
 
-module TD.Data.StickerType
-
--- | Describes type of a sticker
-data StickerType
-
--- | The sticker is an image in WEBP format
-StickerTypeStatic :: StickerType
-
--- | The sticker is an animation in TGS format
-StickerTypeAnimated :: StickerType
-
--- | The sticker is a video in WEBM format
-StickerTypeVideo :: StickerType
-
--- | The sticker is a mask in WEBP format to be placed on photos or videos
---   @mask_position Position where the mask is placed; may be null
-StickerTypeMask :: Maybe MaskPosition -> StickerType
-
-[mask_position] :: StickerType -> Maybe MaskPosition
-instance GHC.Classes.Eq TD.Data.StickerType.StickerType
-instance GHC.Show.Show TD.Data.StickerType.StickerType
-instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.StickerType.StickerType
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.StickerType.StickerType
-
-
 module TD.Data.LoginUrlInfo
 
 -- | Contains information about an inline button of type
@@ -10534,7 +10652,8 @@ module TD.Query.AddRecentSticker
 -- | Manually adds a new sticker to the list of recently used stickers. The
 --   new sticker is added to the top of the list. If the sticker was
 --   already in the list, it is removed from the list first. Only stickers
---   belonging to a sticker set can be added to this list
+--   belonging to a sticker set can be added to this list. Emoji stickers
+--   can't be added to recent stickers
 data AddRecentSticker
 AddRecentSticker :: Maybe InputFile -> Maybe Bool -> AddRecentSticker
 
@@ -10554,7 +10673,8 @@ module TD.Query.AddFavoriteSticker
 -- | Adds a new sticker to the list of favorite stickers. The new sticker
 --   is added to the top of the list. If the sticker was already in the
 --   list, it is removed from the list first. Only stickers belonging to a
---   sticker set can be added to this list
+--   sticker set can be added to this list. Emoji stickers can't be added
+--   to favorite stickers
 data AddFavoriteSticker
 AddFavoriteSticker :: Maybe InputFile -> AddFavoriteSticker
 
@@ -10593,10 +10713,13 @@ module TD.Data.InputSticker
 data InputSticker
 
 -- | A sticker to be added to a sticker set
-InputSticker :: Maybe StickerType -> Maybe String -> Maybe InputFile -> InputSticker
+InputSticker :: Maybe MaskPosition -> Maybe StickerFormat -> Maybe String -> Maybe InputFile -> InputSticker
 
--- | Sticker type
-[_type] :: InputSticker -> Maybe StickerType
+-- | Position where the mask is placed; pass null if not specified
+[mask_position] :: InputSticker -> Maybe MaskPosition
+
+-- | Sticker format
+[format] :: InputSticker -> Maybe StickerFormat
 
 -- | Emojis corresponding to the sticker
 [emojis] :: InputSticker -> Maybe String
@@ -10634,7 +10757,7 @@ module TD.Query.CreateNewStickerSet
 
 -- | Creates a new sticker set. Returns the newly created sticker set
 data CreateNewStickerSet
-CreateNewStickerSet :: Maybe String -> Maybe [InputSticker] -> Maybe String -> Maybe String -> Maybe Int -> CreateNewStickerSet
+CreateNewStickerSet :: Maybe String -> Maybe [InputSticker] -> Maybe StickerType -> Maybe String -> Maybe String -> Maybe Int -> CreateNewStickerSet
 
 -- | Source of the sticker set; may be empty if unknown
 [source] :: CreateNewStickerSet -> Maybe String
@@ -10643,6 +10766,9 @@ CreateNewStickerSet :: Maybe String -> Maybe [InputSticker] -> Maybe String -> M
 --   stickers must have the same format. For TGS stickers,
 --   uploadStickerFile must be used before the sticker is shown
 [stickers] :: CreateNewStickerSet -> Maybe [InputSticker]
+
+-- | Type of the stickers in the set
+[sticker_type] :: CreateNewStickerSet -> Maybe StickerType
 
 -- | Sticker set name. Can contain only English letters, digits and
 --   underscores. Must end with *"_by_<a>username</a>"*
@@ -10884,9 +11010,9 @@ InlineKeyboardButtonTypeCallback :: Maybe String -> InlineKeyboardButtonType
 
 [_data] :: InlineKeyboardButtonType -> Maybe String
 
--- | A button that asks for password of the current user and then sends a
---   callback query to a bot @data Data to be sent to the bot via a
---   callback query
+-- | A button that asks for the 2-step verification password of the current
+--   user and then sends a callback query to a bot @data Data to be sent to
+--   the bot via a callback query
 InlineKeyboardButtonTypeCallbackWithPassword :: Maybe String -> InlineKeyboardButtonType
 
 [_data] :: InlineKeyboardButtonType -> Maybe String
@@ -11804,29 +11930,30 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.FileType.FileType
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.FileType.FileType
 
 
-module TD.Query.UploadFile
+module TD.Query.PreliminaryUploadFile
 
--- | Asynchronously uploads a file to the cloud without sending it in a
---   message. updateFile will be used to notify about upload progress and
---   successful completion of the upload. The file will not have a
---   persistent remote identifier until it will be sent in a message
-data UploadFile
-UploadFile :: Maybe Int -> Maybe FileType -> Maybe InputFile -> UploadFile
+-- | Preliminary uploads a file to the cloud before sending it in a
+--   message, which can be useful for uploading of being recorded voice and
+--   video notes. Updates updateFile will be used to notify about upload
+--   progress and successful completion of the upload. The file will not
+--   have a persistent remote identifier until it will be sent in a message
+data PreliminaryUploadFile
+PreliminaryUploadFile :: Maybe Int -> Maybe FileType -> Maybe InputFile -> PreliminaryUploadFile
 
 -- | Priority of the upload (1-32). The higher the priority, the earlier
 --   the file will be uploaded. If the priorities of two files are equal,
---   then the first one for which uploadFile was called will be uploaded
---   first
-[priority] :: UploadFile -> Maybe Int
+--   then the first one for which preliminaryUploadFile was called will be
+--   uploaded first
+[priority] :: PreliminaryUploadFile -> Maybe Int
 
 -- | File type; pass null if unknown
-[file_type] :: UploadFile -> Maybe FileType
+[file_type] :: PreliminaryUploadFile -> Maybe FileType
 
 -- | File to upload
-[file] :: UploadFile -> Maybe InputFile
-instance GHC.Classes.Eq TD.Query.UploadFile.UploadFile
-instance GHC.Show.Show TD.Query.UploadFile.UploadFile
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.UploadFile.UploadFile
+[file] :: PreliminaryUploadFile -> Maybe InputFile
+instance GHC.Classes.Eq TD.Query.PreliminaryUploadFile.PreliminaryUploadFile
+instance GHC.Show.Show TD.Query.PreliminaryUploadFile.PreliminaryUploadFile
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.PreliminaryUploadFile.PreliminaryUploadFile
 
 
 module TD.Query.OptimizeStorage
@@ -12098,39 +12225,6 @@ instance GHC.Classes.Eq TD.Data.File.File
 instance GHC.Show.Show TD.Data.File.File
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.File.File
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.File.File
-
-
-module TD.Data.VoiceNote
-
-data VoiceNote
-
--- | Describes a voice note. The voice note must be encoded with the Opus
---   codec, and stored inside an OGG container. Voice notes can have only a
---   single audio channel
-VoiceNote :: Maybe File -> Maybe String -> Maybe Bool -> Maybe String -> Maybe String -> Maybe Int -> VoiceNote
-
-[voice] :: VoiceNote -> Maybe File
-
--- | Recognized text of the voice note; Premium users only. Call
---   recognizeSpeech to get recognized text of the voice note @voice File
---   containing the voice note
-[recognized_text] :: VoiceNote -> Maybe String
-
-[is_recognized] :: VoiceNote -> Maybe Bool
-
--- | MIME type of the file; as defined by the sender @is_recognized True,
---   if speech recognition is completed; Premium users only
-[mime_type] :: VoiceNote -> Maybe String
-
-[waveform] :: VoiceNote -> Maybe String
-
--- | Duration of the voice note, in seconds; as defined by the sender
---   @waveform A waveform representation of the voice note in 5-bit format
-[duration] :: VoiceNote -> Maybe Int
-instance GHC.Classes.Eq TD.Data.VoiceNote.VoiceNote
-instance GHC.Show.Show TD.Data.VoiceNote.VoiceNote
-instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.VoiceNote.VoiceNote
-instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.VoiceNote.VoiceNote
 
 
 module TD.Data.Thumbnail
@@ -12502,6 +12596,61 @@ instance GHC.Show.Show TD.Query.FinishFileGeneration.FinishFileGeneration
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.FinishFileGeneration.FinishFileGeneration
 
 
+module TD.Data.SpeechRecognitionResult
+
+-- | Describes result of speech recognition in a voice note
+data SpeechRecognitionResult
+
+-- | The speech recognition is ongoing @partial_text Partially recognized
+--   text
+SpeechRecognitionResultPending :: Maybe String -> SpeechRecognitionResult
+
+[partial_text] :: SpeechRecognitionResult -> Maybe String
+
+-- | The speech recognition successfully finished @text Recognized text
+SpeechRecognitionResultText :: Maybe String -> SpeechRecognitionResult
+
+[text] :: SpeechRecognitionResult -> Maybe String
+
+-- | The speech recognition failed @error Received error
+SpeechRecognitionResultError :: Maybe Error -> SpeechRecognitionResult
+
+[_error] :: SpeechRecognitionResult -> Maybe Error
+instance GHC.Classes.Eq TD.Data.SpeechRecognitionResult.SpeechRecognitionResult
+instance GHC.Show.Show TD.Data.SpeechRecognitionResult.SpeechRecognitionResult
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.SpeechRecognitionResult.SpeechRecognitionResult
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.SpeechRecognitionResult.SpeechRecognitionResult
+
+
+module TD.Data.VoiceNote
+
+data VoiceNote
+
+-- | Describes a voice note. The voice note must be encoded with the Opus
+--   codec, and stored inside an OGG container. Voice notes can have only a
+--   single audio channel
+VoiceNote :: Maybe File -> Maybe SpeechRecognitionResult -> Maybe String -> Maybe String -> Maybe Int -> VoiceNote
+
+[voice] :: VoiceNote -> Maybe File
+
+[speech_recognition_result] :: VoiceNote -> Maybe SpeechRecognitionResult
+
+-- | MIME type of the file; as defined by the sender
+--   <tt>speech_recognition_result Result of speech recognition in the
+--   voice note; may be null </tt>voice File containing the voice note
+[mime_type] :: VoiceNote -> Maybe String
+
+[waveform] :: VoiceNote -> Maybe String
+
+-- | Duration of the voice note, in seconds; as defined by the sender
+--   @waveform A waveform representation of the voice note in 5-bit format
+[duration] :: VoiceNote -> Maybe Int
+instance GHC.Classes.Eq TD.Data.VoiceNote.VoiceNote
+instance GHC.Show.Show TD.Data.VoiceNote.VoiceNote
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.VoiceNote.VoiceNote
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.VoiceNote.VoiceNote
+
+
 module TD.Data.EncryptedCredentials
 
 data EncryptedCredentials
@@ -12564,8 +12713,8 @@ data PasswordState
 --   for the password; may be empty
 PasswordState :: Maybe Int -> Maybe EmailAddressAuthenticationCodeInfo -> Maybe Bool -> Maybe Bool -> Maybe String -> Maybe Bool -> PasswordState
 
--- | If not 0, point in time (Unix timestamp) after which the password can
---   be reset immediately using resetPassword
+-- | If not 0, point in time (Unix timestamp) after which the 2-step
+--   verification password can be reset immediately using resetPassword
 [pending_reset_date] :: PasswordState -> Maybe Int
 
 -- | Information about the recovery email address to which the confirmation
@@ -13355,8 +13504,8 @@ data InputMessageContent
 
 -- | A text message @text Formatted text to be sent;
 --   1-GetOption("message_text_length_max") characters. Only Bold, Italic,
---   Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and
---   MentionName entities are allowed to be specified manually
+--   Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode,
+--   TextUrl and MentionName entities are allowed to be specified manually
 InputMessageText :: Maybe Bool -> Maybe Bool -> Maybe FormattedText -> InputMessageContent
 
 [clear_draft] :: InputMessageContent -> Maybe Bool
@@ -14468,25 +14617,36 @@ data Sticker
 -- | Describes a sticker <tt>set_id The identifier of the sticker set to
 --   which the sticker belongs; 0 if none </tt>width Sticker width; as
 --   defined by the sender @height Sticker height; as defined by the sender
-Sticker :: Maybe File -> Maybe File -> Maybe Thumbnail -> Maybe [ClosedVectorPath] -> Maybe StickerType -> Maybe String -> Maybe Int -> Maybe Int -> Maybe Int -> Sticker
+Sticker :: Maybe File -> Maybe File -> Maybe Bool -> Maybe Thumbnail -> Maybe [ClosedVectorPath] -> Maybe Int -> Maybe MaskPosition -> Maybe StickerType -> Maybe StickerFormat -> Maybe String -> Maybe Int -> Maybe Int -> Maybe Int -> Sticker
 
 [sticker] :: Sticker -> Maybe File
 
 [premium_animation] :: Sticker -> Maybe File
 
--- | Sticker thumbnail in WEBP or JPEG format; may be null
---   <tt>premium_animation Premium animation of the sticker; may be null.
---   If present, only Premium users can send the sticker </tt>sticker File
---   containing the sticker
+[is_premium] :: Sticker -> Maybe Bool
+
+-- | Sticker thumbnail in WEBP or JPEG format; may be null <tt>is_premium
+--   True, if only Premium users can use the sticker </tt>premium_animation
+--   Premium animation of the sticker; may be null @sticker File containing
+--   the sticker
 [thumbnail] :: Sticker -> Maybe Thumbnail
 
+-- | Sticker's outline represented as a list of closed vector paths; may be
+--   empty. The coordinate system origin is in the upper-left corner
 [outline] :: Sticker -> Maybe [ClosedVectorPath]
+
+-- | Identifier of the emoji if the sticker is a custom emoji
+[custom_emoji_id] :: Sticker -> Maybe Int
+
+[mask_position] :: Sticker -> Maybe MaskPosition
 
 [_type] :: Sticker -> Maybe StickerType
 
--- | Emoji corresponding to the sticker <tt>type Sticker type </tt>outline
---   Sticker's outline represented as a list of closed vector paths; may be
---   empty. The coordinate system origin is in the upper-left corner
+[format] :: Sticker -> Maybe StickerFormat
+
+-- | Emoji corresponding to the sticker <tt>format Sticker format </tt>type
+--   Sticker type @mask_position Position where the mask is placed; may be
+--   null even the sticker is a mask
 [emoji] :: Sticker -> Maybe String
 
 [height] :: Sticker -> Maybe Int
@@ -14519,7 +14679,7 @@ module TD.Data.StickerSetInfo
 data StickerSetInfo
 
 -- | Represents short information about a sticker set
-StickerSetInfo :: Maybe [Sticker] -> Maybe Int -> Maybe Bool -> Maybe StickerType -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe [ClosedVectorPath] -> Maybe Thumbnail -> Maybe String -> Maybe String -> Maybe Int -> StickerSetInfo
+StickerSetInfo :: Maybe [Sticker] -> Maybe Int -> Maybe Bool -> Maybe StickerType -> Maybe StickerFormat -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe [ClosedVectorPath] -> Maybe Thumbnail -> Maybe String -> Maybe String -> Maybe Int -> StickerSetInfo
 
 [covers] :: StickerSetInfo -> Maybe [Sticker]
 
@@ -14532,9 +14692,11 @@ StickerSetInfo :: Maybe [Sticker] -> Maybe Int -> Maybe Bool -> Maybe StickerTyp
 
 [sticker_type] :: StickerSetInfo -> Maybe StickerType
 
--- | True, if the sticker set is official <tt>sticker_type Type of the
---   stickers in the set </tt>is_viewed True for already viewed trending
---   sticker sets
+[sticker_format] :: StickerSetInfo -> Maybe StickerFormat
+
+-- | True, if the sticker set is official <tt>sticker_format Format of the
+--   stickers in the set </tt>sticker_type Type of the stickers in the set
+--   @is_viewed True for already viewed trending sticker sets
 [is_official] :: StickerSetInfo -> Maybe Bool
 
 [is_archived] :: StickerSetInfo -> Maybe Bool
@@ -14608,7 +14770,7 @@ module TD.Data.StickerSet
 data StickerSet
 
 -- | Represents a sticker set
-StickerSet :: Maybe [Emojis] -> Maybe [Sticker] -> Maybe Bool -> Maybe StickerType -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe [ClosedVectorPath] -> Maybe Thumbnail -> Maybe String -> Maybe String -> Maybe Int -> StickerSet
+StickerSet :: Maybe [Emojis] -> Maybe [Sticker] -> Maybe Bool -> Maybe StickerType -> Maybe StickerFormat -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe [ClosedVectorPath] -> Maybe Thumbnail -> Maybe String -> Maybe String -> Maybe Int -> StickerSet
 
 [emojis] :: StickerSet -> Maybe [Emojis]
 
@@ -14622,9 +14784,11 @@ StickerSet :: Maybe [Emojis] -> Maybe [Sticker] -> Maybe Bool -> Maybe StickerTy
 
 [sticker_type] :: StickerSet -> Maybe StickerType
 
--- | True, if the sticker set is official <tt>sticker_type Type of the
---   stickers in the set </tt>is_viewed True for already viewed trending
---   sticker sets
+[sticker_format] :: StickerSet -> Maybe StickerFormat
+
+-- | True, if the sticker set is official <tt>sticker_format Format of the
+--   stickers in the set </tt>sticker_type Type of the stickers in the set
+--   @is_viewed True for already viewed trending sticker sets
 [is_official] :: StickerSet -> Maybe Bool
 
 [is_archived] :: StickerSet -> Maybe Bool
@@ -15286,8 +15450,8 @@ SetChatNotificationSettings :: Maybe ChatNotificationSettings -> Maybe Int -> Se
 [notification_settings] :: SetChatNotificationSettings -> Maybe ChatNotificationSettings
 
 -- | Chat identifier @notification_settings New notification settings for
---   the chat. If the chat is muted for more than 1 week, it is considered
---   to be muted forever
+--   the chat. If the chat is muted for more than 366 days, it is
+--   considered to be muted forever
 [chat_id] :: SetChatNotificationSettings -> Maybe Int
 instance GHC.Classes.Eq TD.Query.SetChatNotificationSettings.SetChatNotificationSettings
 instance GHC.Show.Show TD.Query.SetChatNotificationSettings.SetChatNotificationSettings
@@ -16605,6 +16769,10 @@ InternalLinkTypePublicChat :: Maybe String -> InternalLinkType
 --   &gt; Scan QR and scan the code" needs to be shown
 InternalLinkTypeQrCodeAuthentication :: InternalLinkType
 
+-- | The link forces restore of App Store purchases when opened. For
+--   official iOS application only
+InternalLinkTypeRestorePurchases :: InternalLinkType
+
 -- | The link is a link to application settings
 InternalLinkTypeSettings :: InternalLinkType
 
@@ -16657,6 +16825,38 @@ instance GHC.Classes.Eq TD.Data.InternalLinkType.InternalLinkType
 instance GHC.Show.Show TD.Data.InternalLinkType.InternalLinkType
 instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.InternalLinkType.InternalLinkType
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.InternalLinkType.InternalLinkType
+
+
+module TD.Data.PremiumGiftOption
+
+data PremiumGiftOption
+
+-- | Describes an option for gifting Telegram Premium to a user
+PremiumGiftOption :: Maybe InternalLinkType -> Maybe String -> Maybe Int -> Maybe Int -> Maybe Int -> Maybe String -> PremiumGiftOption
+
+-- | An internal link to be opened for gifting Telegram Premium to the user
+--   if store payment isn't possible; may be null if direct payment isn't
+--   available
+[payment_link] :: PremiumGiftOption -> Maybe InternalLinkType
+
+-- | Identifier of the store product associated with the option
+[store_product_id] :: PremiumGiftOption -> Maybe String
+
+-- | Number of month the Telegram Premium subscription will be active
+[month_count] :: PremiumGiftOption -> Maybe Int
+
+-- | The discount associated with this gift option, as a percentage
+[discount_percentage] :: PremiumGiftOption -> Maybe Int
+
+-- | The amount to pay, in the smallest units of the currency
+[amount] :: PremiumGiftOption -> Maybe Int
+
+-- | ISO 4217 currency code for Telegram Premium subscription payment
+[currency] :: PremiumGiftOption -> Maybe String
+instance GHC.Classes.Eq TD.Data.PremiumGiftOption.PremiumGiftOption
+instance GHC.Show.Show TD.Data.PremiumGiftOption.PremiumGiftOption
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.PremiumGiftOption.PremiumGiftOption
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.PremiumGiftOption.PremiumGiftOption
 
 
 module TD.Data.PremiumFeatures
@@ -17148,8 +17348,8 @@ CallbackQueryPayloadData :: Maybe String -> CallbackQueryPayload
 [_data] :: CallbackQueryPayload -> Maybe String
 
 -- | The payload for a callback button requiring password <tt>password The
---   password for the current user </tt>data Data that was attached to the
---   callback button
+--   2-step verification password for the current user </tt>data Data that
+--   was attached to the callback button
 CallbackQueryPayloadDataWithPassword :: Maybe String -> Maybe String -> CallbackQueryPayload
 
 [_data] :: CallbackQueryPayload -> Maybe String
@@ -18182,10 +18382,10 @@ AuthorizationStateWaitRegistration :: Maybe TermsOfService -> AuthorizationState
 
 [terms_of_service] :: AuthorizationState -> Maybe TermsOfService
 
--- | The user has been authorized, but needs to enter a password to start
---   using the application <tt>password_hint Hint for the password; may be
---   empty </tt>has_recovery_email_address True, if a recovery email
---   address has been set up
+-- | The user has been authorized, but needs to enter a 2-step verification
+--   password to start using the application <tt>password_hint Hint for the
+--   password; may be empty </tt>has_recovery_email_address True, if a
+--   recovery email address has been set up
 AuthorizationStateWaitPassword :: Maybe String -> Maybe Bool -> Maybe String -> AuthorizationState
 
 -- | Pattern of the email address to which the recovery email was sent;
@@ -18227,13 +18427,18 @@ data Audio
 --   <tt>duration Duration of the audio, in seconds; as defined by the
 --   sender </tt>title Title of the audio; as defined by the sender
 --   @performer Performer of the audio; as defined by the sender
-Audio :: Maybe File -> Maybe Thumbnail -> Maybe Minithumbnail -> Maybe String -> Maybe String -> Maybe String -> Maybe String -> Maybe Int -> Audio
+Audio :: Maybe File -> Maybe [Thumbnail] -> Maybe Thumbnail -> Maybe Minithumbnail -> Maybe String -> Maybe String -> Maybe String -> Maybe String -> Maybe Int -> Audio
 
 [audio] :: Audio -> Maybe File
 
+-- | Album cover variants to use if the downloaded audio file contains no
+--   album cover. Provided thumbnail dimensions are approximate @audio File
+--   containing the audio
+[external_album_covers] :: Audio -> Maybe [Thumbnail]
+
 -- | The thumbnail of the album cover in JPEG format; as defined by the
 --   sender. The full size thumbnail is supposed to be extracted from the
---   downloaded file; may be null @audio File containing the audio
+--   downloaded audio file; may be null
 [album_cover_thumbnail] :: Audio -> Maybe Thumbnail
 
 [album_cover_minithumbnail] :: Audio -> Maybe Minithumbnail
@@ -19310,18 +19515,20 @@ module TD.Data.AnimatedEmoji
 
 data AnimatedEmoji
 
--- | Describes an animated representation of an emoji
+-- | Describes an animated or custom representation of an emoji
 AnimatedEmoji :: Maybe File -> Maybe Int -> Maybe Sticker -> AnimatedEmoji
 
--- | File containing the sound to be played when the animated emoji is
---   clicked; may be null. The sound is encoded with the Opus codec, and
---   stored inside an OGG container
+-- | File containing the sound to be played when the sticker is clicked;
+--   may be null. The sound is encoded with the Opus codec, and stored
+--   inside an OGG container
 [sound] :: AnimatedEmoji -> Maybe File
 
 -- | Emoji modifier fitzpatrick type; 0-6; 0 if none
 [fitzpatrick_type] :: AnimatedEmoji -> Maybe Int
 
--- | Animated sticker for the emoji
+-- | Sticker for the emoji; may be null if yet unknown for a custom emoji.
+--   If the sticker is a custom emoji, it can have arbitrary format
+--   different from stickerFormatTgs
 [sticker] :: AnimatedEmoji -> Maybe Sticker
 instance GHC.Classes.Eq TD.Data.AnimatedEmoji.AnimatedEmoji
 instance GHC.Show.Show TD.Data.AnimatedEmoji.AnimatedEmoji
@@ -19387,7 +19594,7 @@ module TD.Data.UserFullInfo
 data UserFullInfo
 
 -- | Contains full information about a user
-UserFullInfo :: Maybe BotInfo -> Maybe Int -> Maybe FormattedText -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe ChatPhoto -> UserFullInfo
+UserFullInfo :: Maybe BotInfo -> Maybe Int -> Maybe [PremiumGiftOption] -> Maybe FormattedText -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe Bool -> Maybe ChatPhoto -> UserFullInfo
 
 -- | For bots, information about the bot; may be null
 [bot_info] :: UserFullInfo -> Maybe BotInfo
@@ -19396,12 +19603,18 @@ UserFullInfo :: Maybe BotInfo -> Maybe Int -> Maybe FormattedText -> Maybe Bool 
 --   are a member; 0 for the current user
 [group_in_common_count] :: UserFullInfo -> Maybe Int
 
+-- | The list of available options for gifting Telegram Premium to the user
+[premium_gift_options] :: UserFullInfo -> Maybe [PremiumGiftOption]
+
 -- | A short user bio; may be null for bots
 [bio] :: UserFullInfo -> Maybe FormattedText
 
 -- | True, if the current user needs to explicitly allow to share their
 --   phone number with the user when the method addContact is used
 [need_phone_number_privacy_exception] :: UserFullInfo -> Maybe Bool
+
+-- | True, if voice and video notes can't be sent or forwarded to the user
+[has_restricted_voice_and_video_note_messages] :: UserFullInfo -> Maybe Bool
 
 -- | True, if the user can't be linked in forwarded messages due to their
 --   privacy settings
@@ -19801,7 +20014,7 @@ module TD.Data.PaymentForm
 data PaymentForm
 
 -- | Contains information about an invoice payment form
-PaymentForm :: Maybe Photo -> Maybe FormattedText -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe SavedCredentials -> Maybe OrderInfo -> Maybe PaymentProvider -> Maybe Int -> Maybe Int -> Maybe Invoice -> Maybe Int -> PaymentForm
+PaymentForm :: Maybe Photo -> Maybe FormattedText -> Maybe String -> Maybe Bool -> Maybe Bool -> Maybe [SavedCredentials] -> Maybe OrderInfo -> Maybe [PaymentOption] -> Maybe PaymentProvider -> Maybe Int -> Maybe Int -> Maybe Invoice -> Maybe Int -> PaymentForm
 
 -- | Product photo; may be null
 [product_photo] :: PaymentForm -> Maybe Photo
@@ -19812,18 +20025,21 @@ PaymentForm :: Maybe Photo -> Maybe FormattedText -> Maybe String -> Maybe Bool 
 -- | Product title
 [product_title] :: PaymentForm -> Maybe String
 
--- | True, if the user will be able to save credentials protected by a
---   password they set up
+-- | True, if the user will be able to save credentials, if sets up a
+--   2-step verification password
 [need_password] :: PaymentForm -> Maybe Bool
 
 -- | True, if the user can choose to save credentials
 [can_save_credentials] :: PaymentForm -> Maybe Bool
 
--- | Information about saved card credentials; may be null
-[saved_credentials] :: PaymentForm -> Maybe SavedCredentials
+-- | The list of saved payment credentials
+[saved_credentials] :: PaymentForm -> Maybe [SavedCredentials]
 
 -- | Saved server-side order information; may be null
 [saved_order_info] :: PaymentForm -> Maybe OrderInfo
+
+-- | The list of additional payment options
+[additional_payment_options] :: PaymentForm -> Maybe [PaymentOption]
 
 -- | Information about the payment provider
 [payment_provider] :: PaymentForm -> Maybe PaymentProvider
@@ -20245,6 +20461,20 @@ MessagePaymentSuccessfulBot :: Maybe String -> Maybe String -> Maybe OrderInfo -
 
 [currency] :: MessageContent -> Maybe String
 
+-- | Telegram Premium was gifted to the user <tt>currency Currency for the
+--   paid amount </tt>amount The paid amount, in the smallest units of the
+--   currency @month_count Number of month the Telegram Premium
+--   subscription will be active
+MessageGiftedPremium :: Maybe Sticker -> Maybe Int -> Maybe Int -> Maybe String -> MessageContent
+
+[sticker] :: MessageContent -> Maybe Sticker
+
+[month_count] :: MessageContent -> Maybe Int
+
+[amount] :: MessageContent -> Maybe Int
+
+[currency] :: MessageContent -> Maybe String
+
 -- | A contact has registered with Telegram
 MessageContactRegistered :: MessageContent
 
@@ -20426,7 +20656,7 @@ Message :: Maybe ReplyMarkup -> Maybe MessageContent -> Maybe String -> Maybe In
 [can_get_viewers] :: Message -> Maybe Bool
 
 -- | True, if information about the message thread is available through
---   getMessageThread
+--   getMessageThread and getMessageThreadHistory
 [can_get_message_thread] :: Message -> Maybe Bool
 
 -- | True, if the message statistics are available through
@@ -21987,21 +22217,24 @@ UpdateStickerSet :: Maybe StickerSet -> Update
 
 [sticker_set] :: Update -> Maybe StickerSet
 
--- | The list of installed sticker sets was updated <tt>is_masks True, if
---   the list of installed mask sticker sets was updated
---   </tt>sticker_set_ids The new list of installed ordinary sticker sets
-UpdateInstalledStickerSets :: Maybe [Int] -> Maybe Bool -> Update
+-- | The list of installed sticker sets was updated <tt>sticker_type Type
+--   of the affected stickers </tt>sticker_set_ids The new list of
+--   installed ordinary sticker sets
+UpdateInstalledStickerSets :: Maybe [Int] -> Maybe StickerType -> Update
 
 [sticker_set_ids] :: Update -> Maybe [Int]
 
-[is_masks] :: Update -> Maybe Bool
+[sticker_type] :: Update -> Maybe StickerType
 
 -- | The list of trending sticker sets was updated or some of them were
---   viewed @sticker_sets The prefix of the list of trending sticker sets
---   with the newest trending sticker sets
-UpdateTrendingStickerSets :: Maybe TrendingStickerSets -> Update
+--   viewed <tt>sticker_type Type of the affected stickers
+--   </tt>sticker_sets The prefix of the list of trending sticker sets with
+--   the newest trending sticker sets
+UpdateTrendingStickerSets :: Maybe TrendingStickerSets -> Maybe StickerType -> Update
 
 [sticker_sets] :: Update -> Maybe TrendingStickerSets
+
+[sticker_type] :: Update -> Maybe StickerType
 
 -- | The list of recently used stickers was updated <tt>is_attached True,
 --   if the list of stickers attached to photo or video files was updated,
@@ -22438,7 +22671,8 @@ module TD.Query.SetPassportElement
 --   with a message <a>PHONE_VERIFICATION_NEEDED</a> or
 --   <a>EMAIL_VERIFICATION_NEEDED</a> if the chosen phone number or the
 --   chosen email address must be verified first <tt>element Input Telegram
---   Passport element </tt>password Password of the current user
+--   Passport element </tt>password The 2-step verification password of the
+--   current user
 data SetPassportElement
 SetPassportElement :: Maybe String -> Maybe InputPassportElement -> SetPassportElement
 
@@ -22545,6 +22779,7 @@ ThumbnailFormat :: ThumbnailFormat -> GeneralResult
 Thumbnail :: Thumbnail -> GeneralResult
 MaskPoint :: MaskPoint -> GeneralResult
 MaskPosition :: MaskPosition -> GeneralResult
+StickerFormat :: StickerFormat -> GeneralResult
 StickerType :: StickerType -> GeneralResult
 ClosedVectorPath :: ClosedVectorPath -> GeneralResult
 PollOption :: PollOption -> GeneralResult
@@ -22576,6 +22811,7 @@ ChatPhotos :: ChatPhotos -> GeneralResult
 InputChatPhoto :: InputChatPhoto -> GeneralResult
 ChatPermissions :: ChatPermissions -> GeneralResult
 ChatAdministratorRights :: ChatAdministratorRights -> GeneralResult
+PremiumGiftOption :: PremiumGiftOption -> GeneralResult
 User :: User -> GeneralResult
 BotInfo :: BotInfo -> GeneralResult
 UserFullInfo :: UserFullInfo -> GeneralResult
@@ -22675,6 +22911,7 @@ ShippingOption :: ShippingOption -> GeneralResult
 SavedCredentials :: SavedCredentials -> GeneralResult
 InputCredentials :: InputCredentials -> GeneralResult
 PaymentProvider :: PaymentProvider -> GeneralResult
+PaymentOption :: PaymentOption -> GeneralResult
 PaymentForm :: PaymentForm -> GeneralResult
 ValidatedOrderInfo :: ValidatedOrderInfo -> GeneralResult
 PaymentResult :: PaymentResult -> GeneralResult
@@ -22744,6 +22981,7 @@ Reaction :: Reaction -> GeneralResult
 Animations :: Animations -> GeneralResult
 DiceStickers :: DiceStickers -> GeneralResult
 ImportedContacts :: ImportedContacts -> GeneralResult
+SpeechRecognitionResult :: SpeechRecognitionResult -> GeneralResult
 AttachmentMenuBotColor :: AttachmentMenuBotColor -> GeneralResult
 AttachmentMenuBot :: AttachmentMenuBot -> GeneralResult
 SentWebAppMessage :: SentWebAppMessage -> GeneralResult
@@ -22772,6 +23010,7 @@ PremiumFeatures :: PremiumFeatures -> GeneralResult
 PremiumSource :: PremiumSource -> GeneralResult
 PremiumFeaturePromotionAnimation :: PremiumFeaturePromotionAnimation -> GeneralResult
 PremiumState :: PremiumState -> GeneralResult
+StorePaymentPurpose :: StorePaymentPurpose -> GeneralResult
 DeviceToken :: DeviceToken -> GeneralResult
 PushReceiverId :: PushReceiverId -> GeneralResult
 BackgroundFill :: BackgroundFill -> GeneralResult

@@ -41,7 +41,7 @@ data Session = -- | Contains information about one session in a Telegram applica
     can_accept_calls :: Maybe Bool,
     -- | True, if incoming secret chats can be accepted by the session
     can_accept_secret_chats :: Maybe Bool,
-    -- | True, if a password is needed to complete authorization of the session
+    -- | True, if a 2-step verification password is needed to complete authorization of the session
     is_password_pending :: Maybe Bool,
     -- |
     is_current :: Maybe Bool,

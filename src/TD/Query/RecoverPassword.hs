@@ -14,7 +14,7 @@ data RecoverPassword = RecoverPassword
     new_hint :: Maybe String,
     -- |
     new_password :: Maybe String,
-    -- | Recovery code to check @new_password New password of the user; may be empty to remove the password @new_hint New password hint; may be empty
+    -- | Recovery code to check @new_password New 2-step verification password of the user; may be empty to remove the password @new_hint New password hint; may be empty
     recovery_code :: Maybe String
   }
   deriving (Eq)

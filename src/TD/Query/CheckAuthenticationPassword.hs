@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword @password The password to check
+-- Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword @password The 2-step verification password to check
 data CheckAuthenticationPassword = CheckAuthenticationPassword
   { -- |
     password :: Maybe String

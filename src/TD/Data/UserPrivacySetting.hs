@@ -25,6 +25,8 @@ data UserPrivacySetting
     UserPrivacySettingAllowPeerToPeerCalls
   | -- | A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
     UserPrivacySettingAllowFindingByPhoneNumber
+  | -- | A privacy setting for managing whether the user can receive voice and video messages in private chats
+    UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
   deriving (Eq)
 
 instance Show UserPrivacySetting where
@@ -60,6 +62,10 @@ instance Show UserPrivacySetting where
     "UserPrivacySettingAllowFindingByPhoneNumber"
       ++ U.cc
         []
+  show UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages =
+    "UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
+      ++ U.cc
+        []
 
 instance T.FromJSON UserPrivacySetting where
   parseJSON v@(T.Object obj) = do
@@ -74,6 +80,7 @@ instance T.FromJSON UserPrivacySetting where
       "userPrivacySettingAllowCalls" -> parseUserPrivacySettingAllowCalls v
       "userPrivacySettingAllowPeerToPeerCalls" -> parseUserPrivacySettingAllowPeerToPeerCalls v
       "userPrivacySettingAllowFindingByPhoneNumber" -> parseUserPrivacySettingAllowFindingByPhoneNumber v
+      "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages" -> parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages v
       _ -> mempty
     where
       parseUserPrivacySettingShowStatus :: A.Value -> T.Parser UserPrivacySetting
@@ -99,6 +106,9 @@ instance T.FromJSON UserPrivacySetting where
 
       parseUserPrivacySettingAllowFindingByPhoneNumber :: A.Value -> T.Parser UserPrivacySetting
       parseUserPrivacySettingAllowFindingByPhoneNumber = A.withObject "UserPrivacySettingAllowFindingByPhoneNumber" $ \_ -> return UserPrivacySettingAllowFindingByPhoneNumber
+
+      parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages :: A.Value -> T.Parser UserPrivacySetting
+      parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages = A.withObject "UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages" $ \_ -> return UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
   parseJSON _ = mempty
 
 instance T.ToJSON UserPrivacySetting where
@@ -133,4 +143,8 @@ instance T.ToJSON UserPrivacySetting where
   toJSON UserPrivacySettingAllowFindingByPhoneNumber =
     A.object
       [ "@type" A..= T.String "userPrivacySettingAllowFindingByPhoneNumber"
+      ]
+  toJSON UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages =
+    A.object
+      [ "@type" A..= T.String "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
       ]

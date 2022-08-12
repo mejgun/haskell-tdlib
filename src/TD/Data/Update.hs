@@ -55,6 +55,7 @@ import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified TD.Data.SecretChat as SecretChat
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.StickerSet as StickerSet
+import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
@@ -615,17 +616,19 @@ data Update
       { -- |
         sticker_set :: Maybe StickerSet.StickerSet
       }
-  | -- | The list of installed sticker sets was updated @is_masks True, if the list of installed mask sticker sets was updated @sticker_set_ids The new list of installed ordinary sticker sets
+  | -- | The list of installed sticker sets was updated @sticker_type Type of the affected stickers @sticker_set_ids The new list of installed ordinary sticker sets
     UpdateInstalledStickerSets
       { -- |
         sticker_set_ids :: Maybe [Int],
         -- |
-        is_masks :: Maybe Bool
+        sticker_type :: Maybe StickerType.StickerType
       }
-  | -- | The list of trending sticker sets was updated or some of them were viewed @sticker_sets The prefix of the list of trending sticker sets with the newest trending sticker sets
+  | -- | The list of trending sticker sets was updated or some of them were viewed @sticker_type Type of the affected stickers @sticker_sets The prefix of the list of trending sticker sets with the newest trending sticker sets
     UpdateTrendingStickerSets
       { -- |
-        sticker_sets :: Maybe TrendingStickerSets.TrendingStickerSets
+        sticker_sets :: Maybe TrendingStickerSets.TrendingStickerSets,
+        -- |
+        sticker_type :: Maybe StickerType.StickerType
       }
   | -- | The list of recently used stickers was updated @is_attached True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated @sticker_ids The new list of file identifiers of recently used stickers
     UpdateRecentStickers
@@ -1632,20 +1635,22 @@ instance Show Update where
   show
     UpdateInstalledStickerSets
       { sticker_set_ids = sticker_set_ids_,
-        is_masks = is_masks_
+        sticker_type = sticker_type_
       } =
       "UpdateInstalledStickerSets"
         ++ U.cc
           [ U.p "sticker_set_ids" sticker_set_ids_,
-            U.p "is_masks" is_masks_
+            U.p "sticker_type" sticker_type_
           ]
   show
     UpdateTrendingStickerSets
-      { sticker_sets = sticker_sets_
+      { sticker_sets = sticker_sets_,
+        sticker_type = sticker_type_
       } =
       "UpdateTrendingStickerSets"
         ++ U.cc
-          [ U.p "sticker_sets" sticker_sets_
+          [ U.p "sticker_sets" sticker_sets_,
+            U.p "sticker_type" sticker_type_
           ]
   show
     UpdateRecentStickers
@@ -2539,13 +2544,14 @@ instance T.FromJSON Update where
       parseUpdateInstalledStickerSets :: A.Value -> T.Parser Update
       parseUpdateInstalledStickerSets = A.withObject "UpdateInstalledStickerSets" $ \o -> do
         sticker_set_ids_ <- U.rl <$> (o A..:? "sticker_set_ids" :: T.Parser (Maybe [String])) :: T.Parser (Maybe [Int])
-        is_masks_ <- o A..:? "is_masks"
-        return $ UpdateInstalledStickerSets {sticker_set_ids = sticker_set_ids_, is_masks = is_masks_}
+        sticker_type_ <- o A..:? "sticker_type"
+        return $ UpdateInstalledStickerSets {sticker_set_ids = sticker_set_ids_, sticker_type = sticker_type_}
 
       parseUpdateTrendingStickerSets :: A.Value -> T.Parser Update
       parseUpdateTrendingStickerSets = A.withObject "UpdateTrendingStickerSets" $ \o -> do
         sticker_sets_ <- o A..:? "sticker_sets"
-        return $ UpdateTrendingStickerSets {sticker_sets = sticker_sets_}
+        sticker_type_ <- o A..:? "sticker_type"
+        return $ UpdateTrendingStickerSets {sticker_sets = sticker_sets_, sticker_type = sticker_type_}
 
       parseUpdateRecentStickers :: A.Value -> T.Parser Update
       parseUpdateRecentStickers = A.withObject "UpdateRecentStickers" $ \o -> do
@@ -3504,20 +3510,22 @@ instance T.ToJSON Update where
   toJSON
     UpdateInstalledStickerSets
       { sticker_set_ids = sticker_set_ids_,
-        is_masks = is_masks_
+        sticker_type = sticker_type_
       } =
       A.object
         [ "@type" A..= T.String "updateInstalledStickerSets",
           "sticker_set_ids" A..= U.toLS sticker_set_ids_,
-          "is_masks" A..= is_masks_
+          "sticker_type" A..= sticker_type_
         ]
   toJSON
     UpdateTrendingStickerSets
-      { sticker_sets = sticker_sets_
+      { sticker_sets = sticker_sets_,
+        sticker_type = sticker_type_
       } =
       A.object
         [ "@type" A..= T.String "updateTrendingStickerSets",
-          "sticker_sets" A..= sticker_sets_
+          "sticker_sets" A..= sticker_sets_,
+          "sticker_type" A..= sticker_type_
         ]
   toJSON
     UpdateRecentStickers

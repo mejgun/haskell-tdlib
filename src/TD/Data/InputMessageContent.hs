@@ -18,7 +18,7 @@ import qualified Utils as U
 
 -- | The content of a message to send
 data InputMessageContent
-  = -- | A text message @text Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+  = -- | A text message @text Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     InputMessageText
       { -- |
         clear_draft :: Maybe Bool,

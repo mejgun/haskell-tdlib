@@ -14,7 +14,7 @@ data CallbackQueryPayload
       { -- |
         _data :: Maybe String
       }
-  | -- | The payload for a callback button requiring password @password The password for the current user @data Data that was attached to the callback button
+  | -- | The payload for a callback button requiring password @password The 2-step verification password for the current user @data Data that was attached to the callback button
     CallbackQueryPayloadDataWithPassword
       { -- |
         _data :: Maybe String,

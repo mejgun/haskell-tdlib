@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.ClosedVectorPath as ClosedVectorPath
 import qualified TD.Data.Sticker as Sticker
+import qualified TD.Data.StickerFormat as StickerFormat
 import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
@@ -22,7 +23,9 @@ data StickerSetInfo = -- | Represents short information about a sticker set
     is_viewed :: Maybe Bool,
     -- |
     sticker_type :: Maybe StickerType.StickerType,
-    -- | True, if the sticker set is official @sticker_type Type of the stickers in the set @is_viewed True for already viewed trending sticker sets
+    -- |
+    sticker_format :: Maybe StickerFormat.StickerFormat,
+    -- | True, if the sticker set is official @sticker_format Format of the stickers in the set @sticker_type Type of the stickers in the set @is_viewed True for already viewed trending sticker sets
     is_official :: Maybe Bool,
     -- |
     is_archived :: Maybe Bool,
@@ -48,6 +51,7 @@ instance Show StickerSetInfo where
         size = size_,
         is_viewed = is_viewed_,
         sticker_type = sticker_type_,
+        sticker_format = sticker_format_,
         is_official = is_official_,
         is_archived = is_archived_,
         is_installed = is_installed_,
@@ -63,6 +67,7 @@ instance Show StickerSetInfo where
             U.p "size" size_,
             U.p "is_viewed" is_viewed_,
             U.p "sticker_type" sticker_type_,
+            U.p "sticker_format" sticker_format_,
             U.p "is_official" is_official_,
             U.p "is_archived" is_archived_,
             U.p "is_installed" is_installed_,
@@ -87,6 +92,7 @@ instance T.FromJSON StickerSetInfo where
         size_ <- o A..:? "size"
         is_viewed_ <- o A..:? "is_viewed"
         sticker_type_ <- o A..:? "sticker_type"
+        sticker_format_ <- o A..:? "sticker_format"
         is_official_ <- o A..:? "is_official"
         is_archived_ <- o A..:? "is_archived"
         is_installed_ <- o A..:? "is_installed"
@@ -95,7 +101,7 @@ instance T.FromJSON StickerSetInfo where
         name_ <- o A..:? "name"
         title_ <- o A..:? "title"
         _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ StickerSetInfo {covers = covers_, size = size_, is_viewed = is_viewed_, sticker_type = sticker_type_, is_official = is_official_, is_archived = is_archived_, is_installed = is_installed_, thumbnail_outline = thumbnail_outline_, thumbnail = thumbnail_, name = name_, title = title_, _id = _id_}
+        return $ StickerSetInfo {covers = covers_, size = size_, is_viewed = is_viewed_, sticker_type = sticker_type_, sticker_format = sticker_format_, is_official = is_official_, is_archived = is_archived_, is_installed = is_installed_, thumbnail_outline = thumbnail_outline_, thumbnail = thumbnail_, name = name_, title = title_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON StickerSetInfo where
@@ -105,6 +111,7 @@ instance T.ToJSON StickerSetInfo where
         size = size_,
         is_viewed = is_viewed_,
         sticker_type = sticker_type_,
+        sticker_format = sticker_format_,
         is_official = is_official_,
         is_archived = is_archived_,
         is_installed = is_installed_,
@@ -120,6 +127,7 @@ instance T.ToJSON StickerSetInfo where
           "size" A..= size_,
           "is_viewed" A..= is_viewed_,
           "sticker_type" A..= sticker_type_,
+          "sticker_format" A..= sticker_format_,
           "is_official" A..= is_official_,
           "is_archived" A..= is_archived_,
           "is_installed" A..= is_installed_,

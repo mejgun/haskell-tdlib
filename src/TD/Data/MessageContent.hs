@@ -336,6 +336,17 @@ data MessageContent
         -- |
         currency :: Maybe String
       }
+  | -- | Telegram Premium was gifted to the user @currency Currency for the paid amount @amount The paid amount, in the smallest units of the currency @month_count Number of month the Telegram Premium subscription will be active
+    MessageGiftedPremium
+      { -- | A sticker to be shown in the message; may be null if unknown
+        sticker :: Maybe Sticker.Sticker,
+        -- |
+        month_count :: Maybe Int,
+        -- |
+        amount :: Maybe Int,
+        -- |
+        currency :: Maybe String
+      }
   | -- | A contact has registered with Telegram
     MessageContactRegistered
   | -- | The current user has connected a website by logging in using Telegram Login Widget on it @domain_name Domain name of the connected website
@@ -807,6 +818,20 @@ instance Show MessageContent where
             U.p "total_amount" total_amount_,
             U.p "currency" currency_
           ]
+  show
+    MessageGiftedPremium
+      { sticker = sticker_,
+        month_count = month_count_,
+        amount = amount_,
+        currency = currency_
+      } =
+      "MessageGiftedPremium"
+        ++ U.cc
+          [ U.p "sticker" sticker_,
+            U.p "month_count" month_count_,
+            U.p "amount" amount_,
+            U.p "currency" currency_
+          ]
   show MessageContactRegistered =
     "MessageContactRegistered"
       ++ U.cc
@@ -920,6 +945,7 @@ instance T.FromJSON MessageContent where
       "messageGameScore" -> parseMessageGameScore v
       "messagePaymentSuccessful" -> parseMessagePaymentSuccessful v
       "messagePaymentSuccessfulBot" -> parseMessagePaymentSuccessfulBot v
+      "messageGiftedPremium" -> parseMessageGiftedPremium v
       "messageContactRegistered" -> parseMessageContactRegistered v
       "messageWebsiteConnected" -> parseMessageWebsiteConnected v
       "messageWebAppDataSent" -> parseMessageWebAppDataSent v
@@ -1185,6 +1211,14 @@ instance T.FromJSON MessageContent where
         total_amount_ <- o A..:? "total_amount"
         currency_ <- o A..:? "currency"
         return $ MessagePaymentSuccessfulBot {provider_payment_charge_id = provider_payment_charge_id_, telegram_payment_charge_id = telegram_payment_charge_id_, order_info = order_info_, shipping_option_id = shipping_option_id_, invoice_payload = invoice_payload_, is_first_recurring = is_first_recurring_, is_recurring = is_recurring_, total_amount = total_amount_, currency = currency_}
+
+      parseMessageGiftedPremium :: A.Value -> T.Parser MessageContent
+      parseMessageGiftedPremium = A.withObject "MessageGiftedPremium" $ \o -> do
+        sticker_ <- o A..:? "sticker"
+        month_count_ <- o A..:? "month_count"
+        amount_ <- o A..:? "amount"
+        currency_ <- o A..:? "currency"
+        return $ MessageGiftedPremium {sticker = sticker_, month_count = month_count_, amount = amount_, currency = currency_}
 
       parseMessageContactRegistered :: A.Value -> T.Parser MessageContent
       parseMessageContactRegistered = A.withObject "MessageContactRegistered" $ \_ -> return MessageContactRegistered
@@ -1652,6 +1686,20 @@ instance T.ToJSON MessageContent where
           "is_first_recurring" A..= is_first_recurring_,
           "is_recurring" A..= is_recurring_,
           "total_amount" A..= total_amount_,
+          "currency" A..= currency_
+        ]
+  toJSON
+    MessageGiftedPremium
+      { sticker = sticker_,
+        month_count = month_count_,
+        amount = amount_,
+        currency = currency_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageGiftedPremium",
+          "sticker" A..= sticker_,
+          "month_count" A..= month_count_,
+          "amount" A..= amount_,
           "currency" A..= currency_
         ]
   toJSON MessageContactRegistered =

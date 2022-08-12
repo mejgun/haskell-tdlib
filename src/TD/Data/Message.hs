@@ -60,7 +60,7 @@ data Message = -- | Describes a message
     can_get_media_timestamp_links :: Maybe Bool,
     -- | True, if chat members already viewed the message can be received through getMessageViewers
     can_get_viewers :: Maybe Bool,
-    -- | True, if information about the message thread is available through getMessageThread
+    -- | True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
     can_get_message_thread :: Maybe Bool,
     -- | True, if the message statistics are available through getMessageStatistics
     can_get_statistics :: Maybe Bool,

@@ -23,6 +23,8 @@ data PremiumFeature
     PremiumFeatureUniqueReactions
   | -- | Allowed to use premium stickers with unique effects
     PremiumFeatureUniqueStickers
+  | -- | Allowed to use custom emoji stickers in message texts and captions
+    PremiumFeatureCustomEmoji
   | -- | Ability to change position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joined Telegram
     PremiumFeatureAdvancedChatManagement
   | -- | A badge in the user's profile
@@ -62,6 +64,10 @@ instance Show PremiumFeature where
     "PremiumFeatureUniqueStickers"
       ++ U.cc
         []
+  show PremiumFeatureCustomEmoji =
+    "PremiumFeatureCustomEmoji"
+      ++ U.cc
+        []
   show PremiumFeatureAdvancedChatManagement =
     "PremiumFeatureAdvancedChatManagement"
       ++ U.cc
@@ -91,6 +97,7 @@ instance T.FromJSON PremiumFeature where
       "premiumFeatureDisabledAds" -> parsePremiumFeatureDisabledAds v
       "premiumFeatureUniqueReactions" -> parsePremiumFeatureUniqueReactions v
       "premiumFeatureUniqueStickers" -> parsePremiumFeatureUniqueStickers v
+      "premiumFeatureCustomEmoji" -> parsePremiumFeatureCustomEmoji v
       "premiumFeatureAdvancedChatManagement" -> parsePremiumFeatureAdvancedChatManagement v
       "premiumFeatureProfileBadge" -> parsePremiumFeatureProfileBadge v
       "premiumFeatureAnimatedProfilePhoto" -> parsePremiumFeatureAnimatedProfilePhoto v
@@ -117,6 +124,9 @@ instance T.FromJSON PremiumFeature where
 
       parsePremiumFeatureUniqueStickers :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureUniqueStickers = A.withObject "PremiumFeatureUniqueStickers" $ \_ -> return PremiumFeatureUniqueStickers
+
+      parsePremiumFeatureCustomEmoji :: A.Value -> T.Parser PremiumFeature
+      parsePremiumFeatureCustomEmoji = A.withObject "PremiumFeatureCustomEmoji" $ \_ -> return PremiumFeatureCustomEmoji
 
       parsePremiumFeatureAdvancedChatManagement :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureAdvancedChatManagement = A.withObject "PremiumFeatureAdvancedChatManagement" $ \_ -> return PremiumFeatureAdvancedChatManagement
@@ -159,6 +169,10 @@ instance T.ToJSON PremiumFeature where
   toJSON PremiumFeatureUniqueStickers =
     A.object
       [ "@type" A..= T.String "premiumFeatureUniqueStickers"
+      ]
+  toJSON PremiumFeatureCustomEmoji =
+    A.object
+      [ "@type" A..= T.String "premiumFeatureCustomEmoji"
       ]
   toJSON PremiumFeatureAdvancedChatManagement =
     A.object
