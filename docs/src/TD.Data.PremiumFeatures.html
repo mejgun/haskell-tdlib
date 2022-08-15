@@ -23,7 +23,7 @@
 </span><span id="line-21"></span><span>    </span><span id="features"><span class="annot"><span class="annottext">PremiumFeatures -&gt; Maybe [PremiumFeature]
 </span><a href="TD.Data.PremiumFeatures.html#features"><span class="hs-identifier hs-var hs-var">features</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.PremiumFeature.html#PremiumFeature"><span class="hs-identifier hs-type">PremiumFeature.PremiumFeature</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434127"><span id="local-6989586621679434129"><span class="annot"><span class="annottext">PremiumFeatures -&gt; PremiumFeatures -&gt; Bool
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434995"><span id="local-6989586621679434997"><span class="annot"><span class="annottext">PremiumFeatures -&gt; PremiumFeatures -&gt; Bool
 (PremiumFeatures -&gt; PremiumFeatures -&gt; Bool)
 -&gt; (PremiumFeatures -&gt; PremiumFeatures -&gt; Bool)
 -&gt; Eq PremiumFeatures
@@ -34,19 +34,19 @@ $c/= :: PremiumFeatures -&gt; PremiumFeatures -&gt; Bool
 $c== :: PremiumFeatures -&gt; PremiumFeatures -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434121"><span id="local-6989586621679434124"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679434119"><span class="annot"><span class="annottext">show :: PremiumFeatures -&gt; String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434989"><span id="local-6989586621679434992"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679434987"><span class="annot"><span class="annottext">show :: PremiumFeatures -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">payment_link :: PremiumFeatures -&gt; Maybe InternalLinkType
-</span><a href="TD.Data.PremiumFeatures.html#payment_link"><span class="hs-identifier hs-var">payment_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434117"><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679434117"><span class="hs-identifier hs-var">payment_link_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumFeatures.html#payment_link"><span class="hs-identifier hs-var">payment_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434985"><span class="annot"><span class="annottext">Maybe InternalLinkType
+</span><a href="#local-6989586621679434985"><span class="hs-identifier hs-var">payment_link_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">limits :: PremiumFeatures -&gt; Maybe [PremiumLimit]
-</span><a href="TD.Data.PremiumFeatures.html#limits"><span class="hs-identifier hs-var">limits</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434116"><span class="annot"><span class="annottext">Maybe [PremiumLimit]
-</span><a href="#local-6989586621679434116"><span class="hs-identifier hs-var">limits_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumFeatures.html#limits"><span class="hs-identifier hs-var">limits</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434984"><span class="annot"><span class="annottext">Maybe [PremiumLimit]
+</span><a href="#local-6989586621679434984"><span class="hs-identifier hs-var">limits_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">features :: PremiumFeatures -&gt; Maybe [PremiumFeature]
-</span><a href="TD.Data.PremiumFeatures.html#features"><span class="hs-identifier hs-var">features</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434115"><span class="annot"><span class="annottext">Maybe [PremiumFeature]
-</span><a href="#local-6989586621679434115"><span class="hs-identifier hs-var">features_</span></a></span></span><span>
+</span><a href="TD.Data.PremiumFeatures.html#features"><span class="hs-identifier hs-var">features</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434983"><span class="annot"><span class="annottext">Maybe [PremiumFeature]
+</span><a href="#local-6989586621679434983"><span class="hs-identifier hs-var">features_</span></a></span></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PremiumFeatures&quot;</span></span><span>
@@ -58,45 +58,45 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;payment_link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679434117"><span class="hs-identifier hs-var">payment_link_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434985"><span class="hs-identifier hs-var">payment_link_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [PremiumLimit] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;limits&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumLimit]
-</span><a href="#local-6989586621679434116"><span class="hs-identifier hs-var">limits_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434984"><span class="hs-identifier hs-var">limits_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [PremiumFeature] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;features&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumFeature]
-</span><a href="#local-6989586621679434115"><span class="hs-identifier hs-var">features_</span></a></span><span>
+</span><a href="#local-6989586621679434983"><span class="hs-identifier hs-var">features_</span></a></span><span>
 </span><span id="line-37"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434110"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span>  </span><span id="local-6989586621679434108"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PremiumFeatures
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679434106"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679434106"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679434104"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679434104"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679434103"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679434103"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679434104"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434978"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span>  </span><span id="local-6989586621679434976"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PremiumFeatures
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679434974"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679434974"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679434972"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679434972"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679434971"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679434971"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679434972"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-42"></span><span>
 </span><span id="line-43"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679434103"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679434971"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-44"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;premiumFeatures&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PremiumFeatures
-</span><a href="#local-6989586621679434101"><span class="hs-identifier hs-var">parsePremiumFeatures</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679434106"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679434969"><span class="hs-identifier hs-var">parsePremiumFeatures</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679434974"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PremiumFeatures
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-46"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679434101"><span class="hs-identifier hs-type">parsePremiumFeatures</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span><span>
-</span><span id="line-48"></span><span>      </span><span id="local-6989586621679434101"><span class="annot"><span class="annottext">parsePremiumFeatures :: Value -&gt; Parser PremiumFeatures
-</span><a href="#local-6989586621679434101"><span class="hs-identifier hs-var hs-var">parsePremiumFeatures</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679434969"><span class="hs-identifier hs-type">parsePremiumFeatures</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span><span>
+</span><span id="line-48"></span><span>      </span><span id="local-6989586621679434969"><span class="annot"><span class="annottext">parsePremiumFeatures :: Value -&gt; Parser PremiumFeatures
+</span><a href="#local-6989586621679434969"><span class="hs-identifier hs-var hs-var">parsePremiumFeatures</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PremiumFeatures)
 -&gt; Value
 -&gt; Parser PremiumFeatures
@@ -108,23 +108,23 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PremiumFeatures
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679434099"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679434099"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-49"></span><span>        </span><span id="local-6989586621679434098"><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679434098"><span class="hs-identifier hs-var">payment_link_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679434099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InternalLinkType)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679434967"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679434967"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>        </span><span id="local-6989586621679434966"><span class="annot"><span class="annottext">Maybe InternalLinkType
+</span><a href="#local-6989586621679434966"><span class="hs-identifier hs-var">payment_link_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679434967"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InternalLinkType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;payment_link&quot;</span></span><span>
-</span><span id="line-50"></span><span>        </span><span id="local-6989586621679434096"><span class="annot"><span class="annottext">Maybe [PremiumLimit]
-</span><a href="#local-6989586621679434096"><span class="hs-identifier hs-var">limits_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679434099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumLimit])
+</span><span id="line-50"></span><span>        </span><span id="local-6989586621679434964"><span class="annot"><span class="annottext">Maybe [PremiumLimit]
+</span><a href="#local-6989586621679434964"><span class="hs-identifier hs-var">limits_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679434967"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumLimit])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;limits&quot;</span></span><span>
-</span><span id="line-51"></span><span>        </span><span id="local-6989586621679434095"><span class="annot"><span class="annottext">Maybe [PremiumFeature]
-</span><a href="#local-6989586621679434095"><span class="hs-identifier hs-var">features_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679434099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumFeature])
+</span><span id="line-51"></span><span>        </span><span id="local-6989586621679434963"><span class="annot"><span class="annottext">Maybe [PremiumFeature]
+</span><a href="#local-6989586621679434963"><span class="hs-identifier hs-var">features_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679434967"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumFeature])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;features&quot;</span></span><span>
@@ -139,29 +139,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PremiumFeatures
 </span><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">payment_link :: Maybe InternalLinkType
 </span><a href="TD.Data.PremiumFeatures.html#payment_link"><span class="hs-identifier hs-var">payment_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679434098"><span class="hs-identifier hs-var">payment_link_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">limits :: Maybe [PremiumLimit]
+</span><a href="#local-6989586621679434966"><span class="hs-identifier hs-var">payment_link_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">limits :: Maybe [PremiumLimit]
 </span><a href="TD.Data.PremiumFeatures.html#limits"><span class="hs-identifier hs-var">limits</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumLimit]
-</span><a href="#local-6989586621679434096"><span class="hs-identifier hs-var">limits_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">features :: Maybe [PremiumFeature]
+</span><a href="#local-6989586621679434964"><span class="hs-identifier hs-var">limits_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">features :: Maybe [PremiumFeature]
 </span><a href="TD.Data.PremiumFeatures.html#features"><span class="hs-identifier hs-var">features</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumFeature]
-</span><a href="#local-6989586621679434095"><span class="hs-identifier hs-var">features_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679434963"><span class="hs-identifier hs-var">features_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-53"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PremiumFeatures
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-54"></span><span>
-</span><span id="line-55"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434088"><span id="local-6989586621679434090"><span id="local-6989586621679434092"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-56"></span><span>  </span><span id="local-6989586621679434086"><span class="annot"><span class="annottext">toJSON :: PremiumFeatures -&gt; Value
+</span><span id="line-55"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434956"><span id="local-6989586621679434958"><span id="local-6989586621679434960"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-56"></span><span>  </span><span id="local-6989586621679434954"><span class="annot"><span class="annottext">toJSON :: PremiumFeatures -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-57"></span><span>    </span><span class="annot"><a href="TD.Data.PremiumFeatures.html#PremiumFeatures"><span class="hs-identifier hs-type">PremiumFeatures</span></a></span><span>
 </span><span id="line-58"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">payment_link :: PremiumFeatures -&gt; Maybe InternalLinkType
-</span><a href="TD.Data.PremiumFeatures.html#payment_link"><span class="hs-identifier hs-var">payment_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434084"><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679434084"><span class="hs-identifier hs-var">payment_link_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumFeatures.html#payment_link"><span class="hs-identifier hs-var">payment_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434952"><span class="annot"><span class="annottext">Maybe InternalLinkType
+</span><a href="#local-6989586621679434952"><span class="hs-identifier hs-var">payment_link_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">limits :: PremiumFeatures -&gt; Maybe [PremiumLimit]
-</span><a href="TD.Data.PremiumFeatures.html#limits"><span class="hs-identifier hs-var">limits</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434083"><span class="annot"><span class="annottext">Maybe [PremiumLimit]
-</span><a href="#local-6989586621679434083"><span class="hs-identifier hs-var">limits_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumFeatures.html#limits"><span class="hs-identifier hs-var">limits</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434951"><span class="annot"><span class="annottext">Maybe [PremiumLimit]
+</span><a href="#local-6989586621679434951"><span class="hs-identifier hs-var">limits_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>        </span><span class="annot"><span class="annottext">features :: PremiumFeatures -&gt; Maybe [PremiumFeature]
-</span><a href="TD.Data.PremiumFeatures.html#features"><span class="hs-identifier hs-var">features</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434082"><span class="annot"><span class="annottext">Maybe [PremiumFeature]
-</span><a href="#local-6989586621679434082"><span class="hs-identifier hs-var">features_</span></a></span></span><span>
+</span><a href="TD.Data.PremiumFeatures.html#features"><span class="hs-identifier hs-var">features</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434950"><span class="annot"><span class="annottext">Maybe [PremiumFeature]
+</span><a href="#local-6989586621679434950"><span class="hs-identifier hs-var">features_</span></a></span></span><span>
 </span><span id="line-61"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-62"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -175,16 +175,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;payment_link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InternalLinkType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InternalLinkType
-</span><a href="#local-6989586621679434084"><span class="hs-identifier hs-var">payment_link_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434952"><span class="hs-identifier hs-var">payment_link_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-65"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;limits&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PremiumLimit] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumLimit]
-</span><a href="#local-6989586621679434083"><span class="hs-identifier hs-var">limits_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434951"><span class="hs-identifier hs-var">limits_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;features&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PremiumFeature] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumFeature]
-</span><a href="#local-6989586621679434082"><span class="hs-identifier hs-var">features_</span></a></span><span>
+</span><a href="#local-6989586621679434950"><span class="hs-identifier hs-var">features_</span></a></span><span>
 </span><span id="line-67"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-68"></span></pre></body></html>

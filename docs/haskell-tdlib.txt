@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/mejgun/haskell-tdlib</a>
 @package haskell-tdlib
-@version 0.2.6.0
+@version 0.2.7.0
 
 module Utils
 p :: Show a => String -> Maybe a -> String
@@ -2444,6 +2444,19 @@ GetVideoChatAvailableParticipants :: Maybe Int -> GetVideoChatAvailableParticipa
 instance GHC.Classes.Eq TD.Query.GetVideoChatAvailableParticipants.GetVideoChatAvailableParticipants
 instance GHC.Show.Show TD.Query.GetVideoChatAvailableParticipants.GetVideoChatAvailableParticipants
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetVideoChatAvailableParticipants.GetVideoChatAvailableParticipants
+
+
+module TD.Query.GetUserSupportInfo
+
+-- | Returns support information for the given user; for Telegram support
+--   only @user_id User identifier
+data GetUserSupportInfo
+GetUserSupportInfo :: Maybe Int -> GetUserSupportInfo
+
+[user_id] :: GetUserSupportInfo -> Maybe Int
+instance GHC.Classes.Eq TD.Query.GetUserSupportInfo.GetUserSupportInfo
+instance GHC.Show.Show TD.Query.GetUserSupportInfo.GetUserSupportInfo
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.GetUserSupportInfo.GetUserSupportInfo
 
 
 module TD.Query.GetUserProfilePhotos
@@ -11662,6 +11675,21 @@ instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.FormattedText.FormattedText
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.FormattedText.FormattedText
 
 
+module TD.Query.SetUserSupportInfo
+
+-- | Sets support information for the given user; for Telegram support only
+--   <tt>user_id User identifier </tt>message New information message
+data SetUserSupportInfo
+SetUserSupportInfo :: Maybe FormattedText -> Maybe Int -> SetUserSupportInfo
+
+[message] :: SetUserSupportInfo -> Maybe FormattedText
+
+[user_id] :: SetUserSupportInfo -> Maybe Int
+instance GHC.Classes.Eq TD.Query.SetUserSupportInfo.SetUserSupportInfo
+instance GHC.Show.Show TD.Query.SetUserSupportInfo.SetUserSupportInfo
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.SetUserSupportInfo.SetUserSupportInfo
+
+
 module TD.Query.ParseMarkdown
 
 -- | Parses Markdown entities in a human-friendly format, ignoring markup
@@ -11748,6 +11776,25 @@ EditInlineMessageCaption :: Maybe FormattedText -> Maybe ReplyMarkup -> Maybe St
 instance GHC.Classes.Eq TD.Query.EditInlineMessageCaption.EditInlineMessageCaption
 instance GHC.Show.Show TD.Query.EditInlineMessageCaption.EditInlineMessageCaption
 instance Data.Aeson.Types.ToJSON.ToJSON TD.Query.EditInlineMessageCaption.EditInlineMessageCaption
+
+
+module TD.Data.UserSupportInfo
+
+data UserSupportInfo
+
+-- | Contains custom information about the user <tt>message Information
+--   message </tt>author Information author @date Information change date
+UserSupportInfo :: Maybe Int -> Maybe String -> Maybe FormattedText -> UserSupportInfo
+
+[date] :: UserSupportInfo -> Maybe Int
+
+[author] :: UserSupportInfo -> Maybe String
+
+[message] :: UserSupportInfo -> Maybe FormattedText
+instance GHC.Classes.Eq TD.Data.UserSupportInfo.UserSupportInfo
+instance GHC.Show.Show TD.Data.UserSupportInfo.UserSupportInfo
+instance Data.Aeson.Types.FromJSON.FromJSON TD.Data.UserSupportInfo.UserSupportInfo
+instance Data.Aeson.Types.ToJSON.ToJSON TD.Data.UserSupportInfo.UserSupportInfo
 
 
 module TD.Data.TermsOfService
@@ -23095,6 +23142,7 @@ Updates :: Updates -> GeneralResult
 LogStream :: LogStream -> GeneralResult
 LogVerbosityLevel :: LogVerbosityLevel -> GeneralResult
 LogTags :: LogTags -> GeneralResult
+UserSupportInfo :: UserSupportInfo -> GeneralResult
 TestInt :: TestInt -> GeneralResult
 TestString :: TestString -> GeneralResult
 TestBytes :: TestBytes -> GeneralResult

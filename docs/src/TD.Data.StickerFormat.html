@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span>    </span><span id="StickerFormatTgs"><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormatTgs"><span class="hs-identifier hs-var">StickerFormatTgs</span></a></span></span><span>
 </span><span id="line-16"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The sticker is a video in WEBM format</span><span>
 </span><span id="line-17"></span><span>    </span><span id="StickerFormatWebm"><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormatWebm"><span class="hs-identifier hs-var">StickerFormatWebm</span></a></span></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405726"><span id="local-6989586621679405728"><span class="annot"><span class="annottext">StickerFormat -&gt; StickerFormat -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406456"><span id="local-6989586621679406458"><span class="annot"><span class="annottext">StickerFormat -&gt; StickerFormat -&gt; Bool
 (StickerFormat -&gt; StickerFormat -&gt; Bool)
 -&gt; (StickerFormat -&gt; StickerFormat -&gt; Bool) -&gt; Eq StickerFormat
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -25,8 +25,8 @@ $c/= :: StickerFormat -&gt; StickerFormat -&gt; Bool
 $c== :: StickerFormat -&gt; StickerFormat -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405720"><span id="local-6989586621679405723"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679405718"><span class="annot"><span class="annottext">show :: StickerFormat -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406450"><span id="local-6989586621679406453"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679406448"><span class="annot"><span class="annottext">show :: StickerFormat -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">StickerFormat
 </span><a href="TD.Data.StickerFormat.html#StickerFormatWebp"><span class="hs-identifier hs-var">StickerFormatWebp</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -55,40 +55,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-32"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405713"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>  </span><span id="local-6989586621679405711"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StickerFormat
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679405709"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679405709"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679405707"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405707"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679405706"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405706"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405707"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406443"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679406441"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StickerFormat
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679406439"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679406439"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679406437"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679406437"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679406436"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679406436"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679406437"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405706"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679406436"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;stickerFormatWebp&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StickerFormat
-</span><a href="#local-6989586621679405704"><span class="hs-identifier hs-var">parseStickerFormatWebp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679405709"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679406434"><span class="hs-identifier hs-var">parseStickerFormatWebp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679406439"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-40"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;stickerFormatTgs&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StickerFormat
-</span><a href="#local-6989586621679405703"><span class="hs-identifier hs-var">parseStickerFormatTgs</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679405709"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679406433"><span class="hs-identifier hs-var">parseStickerFormatTgs</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679406439"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;stickerFormatWebm&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StickerFormat
-</span><a href="#local-6989586621679405702"><span class="hs-identifier hs-var">parseStickerFormatWebm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679405709"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679406432"><span class="hs-identifier hs-var">parseStickerFormatWebm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679406439"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser StickerFormat
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-43"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679405704"><span class="hs-identifier hs-type">parseStickerFormatWebp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span><span>
-</span><span id="line-45"></span><span>      </span><span id="local-6989586621679405704"><span class="annot"><span class="annottext">parseStickerFormatWebp :: Value -&gt; Parser StickerFormat
-</span><a href="#local-6989586621679405704"><span class="hs-identifier hs-var hs-var">parseStickerFormatWebp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679406434"><span class="hs-identifier hs-type">parseStickerFormatWebp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span><span>
+</span><span id="line-45"></span><span>      </span><span id="local-6989586621679406434"><span class="annot"><span class="annottext">parseStickerFormatWebp :: Value -&gt; Parser StickerFormat
+</span><a href="#local-6989586621679406434"><span class="hs-identifier hs-var hs-var">parseStickerFormatWebp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StickerFormat)
 -&gt; Value
 -&gt; Parser StickerFormat
@@ -105,9 +105,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">StickerFormat
 </span><a href="TD.Data.StickerFormat.html#StickerFormatWebp"><span class="hs-identifier hs-var">StickerFormatWebp</span></a></span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679405703"><span class="hs-identifier hs-type">parseStickerFormatTgs</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span><span>
-</span><span id="line-48"></span><span>      </span><span id="local-6989586621679405703"><span class="annot"><span class="annottext">parseStickerFormatTgs :: Value -&gt; Parser StickerFormat
-</span><a href="#local-6989586621679405703"><span class="hs-identifier hs-var hs-var">parseStickerFormatTgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679406433"><span class="hs-identifier hs-type">parseStickerFormatTgs</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span><span>
+</span><span id="line-48"></span><span>      </span><span id="local-6989586621679406433"><span class="annot"><span class="annottext">parseStickerFormatTgs :: Value -&gt; Parser StickerFormat
+</span><a href="#local-6989586621679406433"><span class="hs-identifier hs-var hs-var">parseStickerFormatTgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StickerFormat)
 -&gt; Value
 -&gt; Parser StickerFormat
@@ -124,9 +124,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">StickerFormat
 </span><a href="TD.Data.StickerFormat.html#StickerFormatTgs"><span class="hs-identifier hs-var">StickerFormatTgs</span></a></span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679405702"><span class="hs-identifier hs-type">parseStickerFormatWebm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span><span>
-</span><span id="line-51"></span><span>      </span><span id="local-6989586621679405702"><span class="annot"><span class="annottext">parseStickerFormatWebm :: Value -&gt; Parser StickerFormat
-</span><a href="#local-6989586621679405702"><span class="hs-identifier hs-var hs-var">parseStickerFormatWebm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679406432"><span class="hs-identifier hs-type">parseStickerFormatWebm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span><span>
+</span><span id="line-51"></span><span>      </span><span id="local-6989586621679406432"><span class="annot"><span class="annottext">parseStickerFormatWebm :: Value -&gt; Parser StickerFormat
+</span><a href="#local-6989586621679406432"><span class="hs-identifier hs-var hs-var">parseStickerFormatWebm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StickerFormat)
 -&gt; Value
 -&gt; Parser StickerFormat
@@ -147,8 +147,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405694"><span id="local-6989586621679405696"><span id="local-6989586621679405698"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span>  </span><span id="local-6989586621679405692"><span class="annot"><span class="annottext">toJSON :: StickerFormat -&gt; Value
+</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406424"><span id="local-6989586621679406426"><span id="local-6989586621679406428"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StickerFormat.html#StickerFormat"><span class="hs-identifier hs-type">StickerFormat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span>  </span><span id="local-6989586621679406422"><span class="annot"><span class="annottext">toJSON :: StickerFormat -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">StickerFormat
 </span><a href="TD.Data.StickerFormat.html#StickerFormatWebp"><span class="hs-identifier hs-var">StickerFormatWebp</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

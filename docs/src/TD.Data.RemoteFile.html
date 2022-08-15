@@ -28,7 +28,7 @@
 </span><span id="line-24"></span><span>    </span><span id="_id"><span class="annot"><span class="annottext">RemoteFile -&gt; Maybe String
 </span><a href="TD.Data.RemoteFile.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-25"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679407339"><span id="local-6989586621679407341"><span class="annot"><span class="annottext">RemoteFile -&gt; RemoteFile -&gt; Bool
+</span><span id="line-26"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408069"><span id="local-6989586621679408071"><span class="annot"><span class="annottext">RemoteFile -&gt; RemoteFile -&gt; Bool
 (RemoteFile -&gt; RemoteFile -&gt; Bool)
 -&gt; (RemoteFile -&gt; RemoteFile -&gt; Bool) -&gt; Eq RemoteFile
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -38,25 +38,25 @@ $c/= :: RemoteFile -&gt; RemoteFile -&gt; Bool
 $c== :: RemoteFile -&gt; RemoteFile -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407333"><span id="local-6989586621679407336"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679407331"><span class="annot"><span class="annottext">show :: RemoteFile -&gt; String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408063"><span id="local-6989586621679408066"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679408061"><span class="annot"><span class="annottext">show :: RemoteFile -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">uploaded_size :: RemoteFile -&gt; Maybe Int
-</span><a href="TD.Data.RemoteFile.html#uploaded_size"><span class="hs-identifier hs-var">uploaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407329"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679407329"><span class="hs-identifier hs-var">uploaded_size_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#uploaded_size"><span class="hs-identifier hs-var">uploaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408059"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408059"><span class="hs-identifier hs-var">uploaded_size_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">is_uploading_completed :: RemoteFile -&gt; Maybe Bool
-</span><a href="TD.Data.RemoteFile.html#is_uploading_completed"><span class="hs-identifier hs-var">is_uploading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407328"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407328"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#is_uploading_completed"><span class="hs-identifier hs-var">is_uploading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408058"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408058"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">is_uploading_active :: RemoteFile -&gt; Maybe Bool
-</span><a href="TD.Data.RemoteFile.html#is_uploading_active"><span class="hs-identifier hs-var">is_uploading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407327"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407327"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#is_uploading_active"><span class="hs-identifier hs-var">is_uploading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408057"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408057"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">unique_id :: RemoteFile -&gt; Maybe String
-</span><a href="TD.Data.RemoteFile.html#unique_id"><span class="hs-identifier hs-var">unique_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407326"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407326"><span class="hs-identifier hs-var">unique_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#unique_id"><span class="hs-identifier hs-var">unique_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408056"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679408056"><span class="hs-identifier hs-var">unique_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">_id :: RemoteFile -&gt; Maybe String
-</span><a href="TD.Data.RemoteFile.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407325"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407325"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
+</span><a href="TD.Data.RemoteFile.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408055"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679408055"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-37"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;RemoteFile&quot;</span></span><span>
@@ -68,90 +68,90 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;uploaded_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679407329"><span class="hs-identifier hs-var">uploaded_size_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408059"><span class="hs-identifier hs-var">uploaded_size_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_uploading_completed&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407328"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408058"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_uploading_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407327"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408057"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;unique_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407326"><span class="hs-identifier hs-var">unique_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408056"><span class="hs-identifier hs-var">unique_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407325"><span class="hs-identifier hs-var">_id_</span></a></span><span>
+</span><a href="#local-6989586621679408055"><span class="hs-identifier hs-var">_id_</span></a></span><span>
 </span><span id="line-44"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407320"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span>  </span><span id="local-6989586621679407318"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RemoteFile
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679407316"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679407316"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679407314"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407314"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-48"></span><span>    </span><span id="local-6989586621679407313"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679407313"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407314"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408050"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-47"></span><span>  </span><span id="local-6989586621679408048"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RemoteFile
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408046"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679408046"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408044"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408044"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679408043"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679408043"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408044"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-49"></span><span>
 </span><span id="line-50"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679407313"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679408043"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-51"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;remoteFile&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser RemoteFile
-</span><a href="#local-6989586621679407311"><span class="hs-identifier hs-var">parseRemoteFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679407316"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679408041"><span class="hs-identifier hs-var">parseRemoteFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679408046"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-52"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser RemoteFile
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-53"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679407311"><span class="hs-identifier hs-type">parseRemoteFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span><span>
-</span><span id="line-55"></span><span>      </span><span id="local-6989586621679407311"><span class="annot"><span class="annottext">parseRemoteFile :: Value -&gt; Parser RemoteFile
-</span><a href="#local-6989586621679407311"><span class="hs-identifier hs-var hs-var">parseRemoteFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679408041"><span class="hs-identifier hs-type">parseRemoteFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span><span>
+</span><span id="line-55"></span><span>      </span><span id="local-6989586621679408041"><span class="annot"><span class="annottext">parseRemoteFile :: Value -&gt; Parser RemoteFile
+</span><a href="#local-6989586621679408041"><span class="hs-identifier hs-var hs-var">parseRemoteFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser RemoteFile) -&gt; Value -&gt; Parser RemoteFile
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;RemoteFile&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser RemoteFile) -&gt; Value -&gt; Parser RemoteFile)
 -&gt; (Object -&gt; Parser RemoteFile) -&gt; Value -&gt; Parser RemoteFile
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407309"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407309"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>        </span><span id="local-6989586621679407308"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679407308"><span class="hs-identifier hs-var">uploaded_size_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407309"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408039"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408039"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>        </span><span id="local-6989586621679408038"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408038"><span class="hs-identifier hs-var">uploaded_size_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408039"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;uploaded_size&quot;</span></span><span>
-</span><span id="line-57"></span><span>        </span><span id="local-6989586621679407306"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407306"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407309"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-57"></span><span>        </span><span id="local-6989586621679408036"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408036"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408039"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_uploading_completed&quot;</span></span><span>
-</span><span id="line-58"></span><span>        </span><span id="local-6989586621679407305"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407305"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407309"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-58"></span><span>        </span><span id="local-6989586621679408035"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408035"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408039"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_uploading_active&quot;</span></span><span>
-</span><span id="line-59"></span><span>        </span><span id="local-6989586621679407304"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407304"><span class="hs-identifier hs-var">unique_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407309"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-59"></span><span>        </span><span id="local-6989586621679408034"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679408034"><span class="hs-identifier hs-var">unique_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408039"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;unique_id&quot;</span></span><span>
-</span><span id="line-60"></span><span>        </span><span id="local-6989586621679407303"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407303"><span class="hs-identifier hs-var">_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679407309"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-60"></span><span>        </span><span id="local-6989586621679408033"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679408033"><span class="hs-identifier hs-var">_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408039"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span>
@@ -168,39 +168,39 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; RemoteFile
 </span><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">uploaded_size :: Maybe Int
 </span><a href="TD.Data.RemoteFile.html#uploaded_size"><span class="hs-identifier hs-var">uploaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679407308"><span class="hs-identifier hs-var">uploaded_size_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_uploading_completed :: Maybe Bool
+</span><a href="#local-6989586621679408038"><span class="hs-identifier hs-var">uploaded_size_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_uploading_completed :: Maybe Bool
 </span><a href="TD.Data.RemoteFile.html#is_uploading_completed"><span class="hs-identifier hs-var">is_uploading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407306"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_uploading_active :: Maybe Bool
+</span><a href="#local-6989586621679408036"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_uploading_active :: Maybe Bool
 </span><a href="TD.Data.RemoteFile.html#is_uploading_active"><span class="hs-identifier hs-var">is_uploading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407305"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">unique_id :: Maybe String
+</span><a href="#local-6989586621679408035"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">unique_id :: Maybe String
 </span><a href="TD.Data.RemoteFile.html#unique_id"><span class="hs-identifier hs-var">unique_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407304"><span class="hs-identifier hs-var">unique_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe String
+</span><a href="#local-6989586621679408034"><span class="hs-identifier hs-var">unique_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe String
 </span><a href="TD.Data.RemoteFile.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407303"><span class="hs-identifier hs-var">_id_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679408033"><span class="hs-identifier hs-var">_id_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-62"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser RemoteFile
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407296"><span id="local-6989586621679407298"><span id="local-6989586621679407300"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-65"></span><span>  </span><span id="local-6989586621679407294"><span class="annot"><span class="annottext">toJSON :: RemoteFile -&gt; Value
+</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408026"><span id="local-6989586621679408028"><span id="local-6989586621679408030"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-65"></span><span>  </span><span id="local-6989586621679408024"><span class="annot"><span class="annottext">toJSON :: RemoteFile -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-66"></span><span>    </span><span class="annot"><a href="TD.Data.RemoteFile.html#RemoteFile"><span class="hs-identifier hs-type">RemoteFile</span></a></span><span>
 </span><span id="line-67"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">uploaded_size :: RemoteFile -&gt; Maybe Int
-</span><a href="TD.Data.RemoteFile.html#uploaded_size"><span class="hs-identifier hs-var">uploaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407292"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679407292"><span class="hs-identifier hs-var">uploaded_size_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#uploaded_size"><span class="hs-identifier hs-var">uploaded_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408022"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408022"><span class="hs-identifier hs-var">uploaded_size_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>        </span><span class="annot"><span class="annottext">is_uploading_completed :: RemoteFile -&gt; Maybe Bool
-</span><a href="TD.Data.RemoteFile.html#is_uploading_completed"><span class="hs-identifier hs-var">is_uploading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407291"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407291"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#is_uploading_completed"><span class="hs-identifier hs-var">is_uploading_completed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408021"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408021"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>        </span><span class="annot"><span class="annottext">is_uploading_active :: RemoteFile -&gt; Maybe Bool
-</span><a href="TD.Data.RemoteFile.html#is_uploading_active"><span class="hs-identifier hs-var">is_uploading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407290"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407290"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#is_uploading_active"><span class="hs-identifier hs-var">is_uploading_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408020"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679408020"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>        </span><span class="annot"><span class="annottext">unique_id :: RemoteFile -&gt; Maybe String
-</span><a href="TD.Data.RemoteFile.html#unique_id"><span class="hs-identifier hs-var">unique_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407289"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407289"><span class="hs-identifier hs-var">unique_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.RemoteFile.html#unique_id"><span class="hs-identifier hs-var">unique_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408019"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679408019"><span class="hs-identifier hs-var">unique_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>        </span><span class="annot"><span class="annottext">_id :: RemoteFile -&gt; Maybe String
-</span><a href="TD.Data.RemoteFile.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407288"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407288"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
+</span><a href="TD.Data.RemoteFile.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408018"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679408018"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
 </span><span id="line-72"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-73"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -214,26 +214,26 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;uploaded_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679407292"><span class="hs-identifier hs-var">uploaded_size_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408022"><span class="hs-identifier hs-var">uploaded_size_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-76"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_uploading_completed&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407291"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408021"><span class="hs-identifier hs-var">is_uploading_completed_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-77"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_uploading_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679407290"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408020"><span class="hs-identifier hs-var">is_uploading_active_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-78"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;unique_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407289"><span class="hs-identifier hs-var">unique_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408019"><span class="hs-identifier hs-var">unique_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-79"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679407288"><span class="hs-identifier hs-var">_id_</span></a></span><span>
+</span><a href="#local-6989586621679408018"><span class="hs-identifier hs-var">_id_</span></a></span><span>
 </span><span id="line-80"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-81"></span></pre></body></html>

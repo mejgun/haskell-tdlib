@@ -27,7 +27,7 @@
 </span><span id="line-27"></span><span>    </span><span id="UserPrivacySettingAllowFindingByPhoneNumber"><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingAllowFindingByPhoneNumber"><span class="hs-identifier hs-var">UserPrivacySettingAllowFindingByPhoneNumber</span></a></span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | A privacy setting for managing whether the user can receive voice and video messages in private chats</span><span>
 </span><span id="line-29"></span><span>    </span><span id="UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"><span class="hs-identifier hs-var">UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages</span></a></span></span><span>
-</span><span id="line-30"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679402416"><span id="local-6989586621679402418"><span class="annot"><span class="annottext">UserPrivacySetting -&gt; UserPrivacySetting -&gt; Bool
+</span><span id="line-30"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679403146"><span id="local-6989586621679403148"><span class="annot"><span class="annottext">UserPrivacySetting -&gt; UserPrivacySetting -&gt; Bool
 (UserPrivacySetting -&gt; UserPrivacySetting -&gt; Bool)
 -&gt; (UserPrivacySetting -&gt; UserPrivacySetting -&gt; Bool)
 -&gt; Eq UserPrivacySetting
@@ -38,8 +38,8 @@ $c/= :: UserPrivacySetting -&gt; UserPrivacySetting -&gt; Bool
 $c== :: UserPrivacySetting -&gt; UserPrivacySetting -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402410"><span id="local-6989586621679402413"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679402408"><span class="annot"><span class="annottext">show :: UserPrivacySetting -&gt; String
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679403140"><span id="local-6989586621679403143"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679403138"><span class="annot"><span class="annottext">show :: UserPrivacySetting -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingShowStatus"><span class="hs-identifier hs-var">UserPrivacySettingShowStatus</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -122,64 +122,64 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-68"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-69"></span><span>
-</span><span id="line-70"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402403"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-71"></span><span>  </span><span id="local-6989586621679402401"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UserPrivacySetting
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679402399"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679402397"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402397"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679402396"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679402396"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402397"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-70"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679403133"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-71"></span><span>  </span><span id="local-6989586621679403131"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UserPrivacySetting
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679403129"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679403127"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403127"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679403126"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679403126"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679403127"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-73"></span><span>
 </span><span id="line-74"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679402396"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679403126"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-75"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingShowStatus&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402394"><span class="hs-identifier hs-var">parseUserPrivacySettingShowStatus</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403124"><span class="hs-identifier hs-var">parseUserPrivacySettingShowStatus</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-76"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingShowProfilePhoto&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402393"><span class="hs-identifier hs-var">parseUserPrivacySettingShowProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403123"><span class="hs-identifier hs-var">parseUserPrivacySettingShowProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-77"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingShowLinkInForwardedMessages&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402392"><span class="hs-identifier hs-var">parseUserPrivacySettingShowLinkInForwardedMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403122"><span class="hs-identifier hs-var">parseUserPrivacySettingShowLinkInForwardedMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-78"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingShowPhoneNumber&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402391"><span class="hs-identifier hs-var">parseUserPrivacySettingShowPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403121"><span class="hs-identifier hs-var">parseUserPrivacySettingShowPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-79"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingAllowChatInvites&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402390"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowChatInvites</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403120"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowChatInvites</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-80"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingAllowCalls&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402389"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403119"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-81"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingAllowPeerToPeerCalls&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402388"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowPeerToPeerCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403118"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowPeerToPeerCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-82"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingAllowFindingByPhoneNumber&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402387"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowFindingByPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403117"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowFindingByPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-83"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402386"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402399"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679403116"><span class="hs-identifier hs-var">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679403129"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-84"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser UserPrivacySetting
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-85"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-86"></span><span>      </span><span class="annot"><a href="#local-6989586621679402394"><span class="hs-identifier hs-type">parseUserPrivacySettingShowStatus</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-87"></span><span>      </span><span id="local-6989586621679402394"><span class="annot"><span class="annottext">parseUserPrivacySettingShowStatus :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402394"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-86"></span><span>      </span><span class="annot"><a href="#local-6989586621679403124"><span class="hs-identifier hs-type">parseUserPrivacySettingShowStatus</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-87"></span><span>      </span><span id="local-6989586621679403124"><span class="annot"><span class="annottext">parseUserPrivacySettingShowStatus :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403124"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -197,9 +197,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingShowStatus"><span class="hs-identifier hs-var">UserPrivacySettingShowStatus</span></a></span><span>
 </span><span id="line-88"></span><span>
-</span><span id="line-89"></span><span>      </span><span class="annot"><a href="#local-6989586621679402393"><span class="hs-identifier hs-type">parseUserPrivacySettingShowProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-90"></span><span>      </span><span id="local-6989586621679402393"><span class="annot"><span class="annottext">parseUserPrivacySettingShowProfilePhoto :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402393"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-89"></span><span>      </span><span class="annot"><a href="#local-6989586621679403123"><span class="hs-identifier hs-type">parseUserPrivacySettingShowProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-90"></span><span>      </span><span id="local-6989586621679403123"><span class="annot"><span class="annottext">parseUserPrivacySettingShowProfilePhoto :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403123"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -217,9 +217,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingShowProfilePhoto"><span class="hs-identifier hs-var">UserPrivacySettingShowProfilePhoto</span></a></span><span>
 </span><span id="line-91"></span><span>
-</span><span id="line-92"></span><span>      </span><span class="annot"><a href="#local-6989586621679402392"><span class="hs-identifier hs-type">parseUserPrivacySettingShowLinkInForwardedMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-93"></span><span>      </span><span id="local-6989586621679402392"><span class="annot"><span class="annottext">parseUserPrivacySettingShowLinkInForwardedMessages :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402392"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowLinkInForwardedMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-92"></span><span>      </span><span class="annot"><a href="#local-6989586621679403122"><span class="hs-identifier hs-type">parseUserPrivacySettingShowLinkInForwardedMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-93"></span><span>      </span><span id="local-6989586621679403122"><span class="annot"><span class="annottext">parseUserPrivacySettingShowLinkInForwardedMessages :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403122"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowLinkInForwardedMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -237,9 +237,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingShowLinkInForwardedMessages"><span class="hs-identifier hs-var">UserPrivacySettingShowLinkInForwardedMessages</span></a></span><span>
 </span><span id="line-94"></span><span>
-</span><span id="line-95"></span><span>      </span><span class="annot"><a href="#local-6989586621679402391"><span class="hs-identifier hs-type">parseUserPrivacySettingShowPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-96"></span><span>      </span><span id="local-6989586621679402391"><span class="annot"><span class="annottext">parseUserPrivacySettingShowPhoneNumber :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402391"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-95"></span><span>      </span><span class="annot"><a href="#local-6989586621679403121"><span class="hs-identifier hs-type">parseUserPrivacySettingShowPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-96"></span><span>      </span><span id="local-6989586621679403121"><span class="annot"><span class="annottext">parseUserPrivacySettingShowPhoneNumber :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403121"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingShowPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -257,9 +257,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingShowPhoneNumber"><span class="hs-identifier hs-var">UserPrivacySettingShowPhoneNumber</span></a></span><span>
 </span><span id="line-97"></span><span>
-</span><span id="line-98"></span><span>      </span><span class="annot"><a href="#local-6989586621679402390"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowChatInvites</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-99"></span><span>      </span><span id="local-6989586621679402390"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowChatInvites :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402390"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowChatInvites</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-98"></span><span>      </span><span class="annot"><a href="#local-6989586621679403120"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowChatInvites</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-99"></span><span>      </span><span id="local-6989586621679403120"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowChatInvites :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403120"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowChatInvites</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -277,9 +277,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingAllowChatInvites"><span class="hs-identifier hs-var">UserPrivacySettingAllowChatInvites</span></a></span><span>
 </span><span id="line-100"></span><span>
-</span><span id="line-101"></span><span>      </span><span class="annot"><a href="#local-6989586621679402389"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-102"></span><span>      </span><span id="local-6989586621679402389"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowCalls :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402389"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-101"></span><span>      </span><span class="annot"><a href="#local-6989586621679403119"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-102"></span><span>      </span><span id="local-6989586621679403119"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowCalls :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403119"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -297,9 +297,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingAllowCalls"><span class="hs-identifier hs-var">UserPrivacySettingAllowCalls</span></a></span><span>
 </span><span id="line-103"></span><span>
-</span><span id="line-104"></span><span>      </span><span class="annot"><a href="#local-6989586621679402388"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowPeerToPeerCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-105"></span><span>      </span><span id="local-6989586621679402388"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowPeerToPeerCalls :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402388"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowPeerToPeerCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-104"></span><span>      </span><span class="annot"><a href="#local-6989586621679403118"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowPeerToPeerCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-105"></span><span>      </span><span id="local-6989586621679403118"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowPeerToPeerCalls :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403118"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowPeerToPeerCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -317,9 +317,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingAllowPeerToPeerCalls"><span class="hs-identifier hs-var">UserPrivacySettingAllowPeerToPeerCalls</span></a></span><span>
 </span><span id="line-106"></span><span>
-</span><span id="line-107"></span><span>      </span><span class="annot"><a href="#local-6989586621679402387"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowFindingByPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-108"></span><span>      </span><span id="local-6989586621679402387"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowFindingByPhoneNumber :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402387"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowFindingByPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-107"></span><span>      </span><span class="annot"><a href="#local-6989586621679403117"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowFindingByPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-108"></span><span>      </span><span id="local-6989586621679403117"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowFindingByPhoneNumber :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403117"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowFindingByPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -337,9 +337,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingAllowFindingByPhoneNumber"><span class="hs-identifier hs-var">UserPrivacySettingAllowFindingByPhoneNumber</span></a></span><span>
 </span><span id="line-109"></span><span>
-</span><span id="line-110"></span><span>      </span><span class="annot"><a href="#local-6989586621679402386"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
-</span><span id="line-111"></span><span>      </span><span id="local-6989586621679402386"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages :: Value -&gt; Parser UserPrivacySetting
-</span><a href="#local-6989586621679402386"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-110"></span><span>      </span><span class="annot"><a href="#local-6989586621679403116"><span class="hs-identifier hs-type">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span><span>
+</span><span id="line-111"></span><span>      </span><span id="local-6989586621679403116"><span class="annot"><span class="annottext">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages :: Value -&gt; Parser UserPrivacySetting
+</span><a href="#local-6989586621679403116"><span class="hs-identifier hs-var hs-var">parseUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserPrivacySetting)
 -&gt; Value
 -&gt; Parser UserPrivacySetting
@@ -361,8 +361,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-113"></span><span>
-</span><span id="line-114"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402378"><span id="local-6989586621679402380"><span id="local-6989586621679402382"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-115"></span><span>  </span><span id="local-6989586621679402376"><span class="annot"><span class="annottext">toJSON :: UserPrivacySetting -&gt; Value
+</span><span id="line-114"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679403108"><span id="local-6989586621679403110"><span id="local-6989586621679403112"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-115"></span><span>  </span><span id="local-6989586621679403106"><span class="annot"><span class="annottext">toJSON :: UserPrivacySetting -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
 </span><a href="TD.Data.UserPrivacySetting.html#UserPrivacySettingShowStatus"><span class="hs-identifier hs-var">UserPrivacySettingShowStatus</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-116"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

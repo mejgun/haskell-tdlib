@@ -340,6 +340,7 @@ import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRule as UserPrivacySettingRule
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.UserStatus as UserStatus
+import qualified TD.Data.UserSupportInfo as UserSupportInfo
 import qualified TD.Data.UserType as UserType
 import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
@@ -694,6 +695,7 @@ data GeneralResult
   | LogStream LogStream.LogStream
   | LogVerbosityLevel LogVerbosityLevel.LogVerbosityLevel
   | LogTags LogTags.LogTags
+  | UserSupportInfo UserSupportInfo.UserSupportInfo
   | TestInt TestInt.TestInt
   | TestString TestString.TestString
   | TestBytes TestBytes.TestBytes
@@ -1741,6 +1743,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result LogTags.LogTags) of
             T.Success a -> return $ LogTags a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result UserSupportInfo.UserSupportInfo) of
+            T.Success a -> return $ UserSupportInfo a
             _ -> mempty,
           case (T.fromJSON v :: T.Result TestInt.TestInt) of
             T.Success a -> return $ TestInt a

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="%24con2tag_8c7ewiS8UmF0QJkbjdX4yw"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="%24con2tag_C9RmzTlegf5HP9fpa6ZhfJ"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
 </span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Data.SearchMessagesFilter</span><span> </span><span class="hs-keyword">where</span><span>
@@ -43,7 +43,7 @@
 </span><span id="line-43"></span><span>    </span><span id="SearchMessagesFilterFailedToSend"><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-var">SearchMessagesFilterFailedToSend</span></a></span></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | Returns only pinned messages</span><span>
 </span><span id="line-45"></span><span>    </span><span id="SearchMessagesFilterPinned"><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterPinned"><span class="hs-identifier hs-var">SearchMessagesFilterPinned</span></a></span></span><span>
-</span><span id="line-46"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406656"><span id="local-6989586621679406658"><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
+</span><span id="line-46"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679407386"><span id="local-6989586621679407388"><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
 (SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool)
 -&gt; (SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool)
 -&gt; Eq SearchMessagesFilter
@@ -54,8 +54,8 @@ $c/= :: SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
 $c== :: SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406650"><span id="local-6989586621679406653"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>  </span><span id="local-6989586621679406648"><span class="annot"><span class="annottext">show :: SearchMessagesFilter -&gt; String
+</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407380"><span id="local-6989586621679407383"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-49"></span><span>  </span><span id="local-6989586621679407378"><span class="annot"><span class="annottext">show :: SearchMessagesFilter -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-var">SearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-50"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -210,96 +210,96 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-116"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-117"></span><span>
-</span><span id="line-118"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406643"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-119"></span><span>  </span><span id="local-6989586621679406641"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchMessagesFilter
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679406639"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679406637"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406637"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-120"></span><span>    </span><span id="local-6989586621679406636"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406636"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406637"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-118"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407373"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-119"></span><span>  </span><span id="local-6989586621679407371"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchMessagesFilter
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679407369"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679407367"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679407367"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-120"></span><span>    </span><span id="local-6989586621679407366"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679407366"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679407367"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-121"></span><span>
 </span><span id="line-122"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406636"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679407366"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-123"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterEmpty&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406634"><span class="hs-identifier hs-var">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407364"><span class="hs-identifier hs-var">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-124"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterAnimation&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406633"><span class="hs-identifier hs-var">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407363"><span class="hs-identifier hs-var">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-125"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterAudio&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406632"><span class="hs-identifier hs-var">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407362"><span class="hs-identifier hs-var">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-126"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterDocument&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406631"><span class="hs-identifier hs-var">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407361"><span class="hs-identifier hs-var">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-127"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterPhoto&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406630"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407360"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-128"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVideo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406629"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407359"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-129"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVoiceNote&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406628"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407358"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-130"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterPhotoAndVideo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406627"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407357"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-131"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterUrl&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406626"><span class="hs-identifier hs-var">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407356"><span class="hs-identifier hs-var">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-132"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterChatPhoto&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406625"><span class="hs-identifier hs-var">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407355"><span class="hs-identifier hs-var">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-133"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVideoNote&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406624"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407354"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-134"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVoiceAndVideoNote&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406623"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407353"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-135"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterMention&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406622"><span class="hs-identifier hs-var">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407352"><span class="hs-identifier hs-var">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-136"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterUnreadMention&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406621"><span class="hs-identifier hs-var">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407351"><span class="hs-identifier hs-var">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-137"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterUnreadReaction&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406620"><span class="hs-identifier hs-var">parseSearchMessagesFilterUnreadReaction</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407350"><span class="hs-identifier hs-var">parseSearchMessagesFilterUnreadReaction</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-138"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterFailedToSend&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406619"><span class="hs-identifier hs-var">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407349"><span class="hs-identifier hs-var">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-139"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterPinned&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406618"><span class="hs-identifier hs-var">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406639"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407348"><span class="hs-identifier hs-var">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407369"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-140"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SearchMessagesFilter
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-141"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-142"></span><span>      </span><span class="annot"><a href="#local-6989586621679406634"><span class="hs-identifier hs-type">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-143"></span><span>      </span><span id="local-6989586621679406634"><span class="annot"><span class="annottext">parseSearchMessagesFilterEmpty :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406634"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-142"></span><span>      </span><span class="annot"><a href="#local-6989586621679407364"><span class="hs-identifier hs-type">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-143"></span><span>      </span><span id="local-6989586621679407364"><span class="annot"><span class="annottext">parseSearchMessagesFilterEmpty :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407364"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -317,9 +317,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-var">SearchMessagesFilterEmpty</span></a></span><span>
 </span><span id="line-144"></span><span>
-</span><span id="line-145"></span><span>      </span><span class="annot"><a href="#local-6989586621679406633"><span class="hs-identifier hs-type">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-146"></span><span>      </span><span id="local-6989586621679406633"><span class="annot"><span class="annottext">parseSearchMessagesFilterAnimation :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406633"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-145"></span><span>      </span><span class="annot"><a href="#local-6989586621679407363"><span class="hs-identifier hs-type">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-146"></span><span>      </span><span id="local-6989586621679407363"><span class="annot"><span class="annottext">parseSearchMessagesFilterAnimation :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407363"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -337,9 +337,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterAnimation"><span class="hs-identifier hs-var">SearchMessagesFilterAnimation</span></a></span><span>
 </span><span id="line-147"></span><span>
-</span><span id="line-148"></span><span>      </span><span class="annot"><a href="#local-6989586621679406632"><span class="hs-identifier hs-type">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-149"></span><span>      </span><span id="local-6989586621679406632"><span class="annot"><span class="annottext">parseSearchMessagesFilterAudio :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406632"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAudio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-148"></span><span>      </span><span class="annot"><a href="#local-6989586621679407362"><span class="hs-identifier hs-type">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-149"></span><span>      </span><span id="local-6989586621679407362"><span class="annot"><span class="annottext">parseSearchMessagesFilterAudio :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407362"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAudio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -357,9 +357,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterAudio"><span class="hs-identifier hs-var">SearchMessagesFilterAudio</span></a></span><span>
 </span><span id="line-150"></span><span>
-</span><span id="line-151"></span><span>      </span><span class="annot"><a href="#local-6989586621679406631"><span class="hs-identifier hs-type">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-152"></span><span>      </span><span id="local-6989586621679406631"><span class="annot"><span class="annottext">parseSearchMessagesFilterDocument :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406631"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-151"></span><span>      </span><span class="annot"><a href="#local-6989586621679407361"><span class="hs-identifier hs-type">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-152"></span><span>      </span><span id="local-6989586621679407361"><span class="annot"><span class="annottext">parseSearchMessagesFilterDocument :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407361"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -377,9 +377,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterDocument"><span class="hs-identifier hs-var">SearchMessagesFilterDocument</span></a></span><span>
 </span><span id="line-153"></span><span>
-</span><span id="line-154"></span><span>      </span><span class="annot"><a href="#local-6989586621679406630"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-155"></span><span>      </span><span id="local-6989586621679406630"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhoto :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406630"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-154"></span><span>      </span><span class="annot"><a href="#local-6989586621679407360"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-155"></span><span>      </span><span id="local-6989586621679407360"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhoto :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407360"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -397,9 +397,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterPhoto"><span class="hs-identifier hs-var">SearchMessagesFilterPhoto</span></a></span><span>
 </span><span id="line-156"></span><span>
-</span><span id="line-157"></span><span>      </span><span class="annot"><a href="#local-6989586621679406629"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-158"></span><span>      </span><span id="local-6989586621679406629"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideo :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406629"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-157"></span><span>      </span><span class="annot"><a href="#local-6989586621679407359"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-158"></span><span>      </span><span id="local-6989586621679407359"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideo :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407359"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -417,9 +417,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterVideo"><span class="hs-identifier hs-var">SearchMessagesFilterVideo</span></a></span><span>
 </span><span id="line-159"></span><span>
-</span><span id="line-160"></span><span>      </span><span class="annot"><a href="#local-6989586621679406628"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-161"></span><span>      </span><span id="local-6989586621679406628"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceNote :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406628"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-160"></span><span>      </span><span class="annot"><a href="#local-6989586621679407358"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-161"></span><span>      </span><span id="local-6989586621679407358"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceNote :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407358"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -437,9 +437,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterVoiceNote"><span class="hs-identifier hs-var">SearchMessagesFilterVoiceNote</span></a></span><span>
 </span><span id="line-162"></span><span>
-</span><span id="line-163"></span><span>      </span><span class="annot"><a href="#local-6989586621679406627"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-164"></span><span>      </span><span id="local-6989586621679406627"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhotoAndVideo :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406627"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-163"></span><span>      </span><span class="annot"><a href="#local-6989586621679407357"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-164"></span><span>      </span><span id="local-6989586621679407357"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhotoAndVideo :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407357"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -457,9 +457,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterPhotoAndVideo"><span class="hs-identifier hs-var">SearchMessagesFilterPhotoAndVideo</span></a></span><span>
 </span><span id="line-165"></span><span>
-</span><span id="line-166"></span><span>      </span><span class="annot"><a href="#local-6989586621679406626"><span class="hs-identifier hs-type">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-167"></span><span>      </span><span id="local-6989586621679406626"><span class="annot"><span class="annottext">parseSearchMessagesFilterUrl :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406626"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-166"></span><span>      </span><span class="annot"><a href="#local-6989586621679407356"><span class="hs-identifier hs-type">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-167"></span><span>      </span><span id="local-6989586621679407356"><span class="annot"><span class="annottext">parseSearchMessagesFilterUrl :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407356"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -477,9 +477,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterUrl"><span class="hs-identifier hs-var">SearchMessagesFilterUrl</span></a></span><span>
 </span><span id="line-168"></span><span>
-</span><span id="line-169"></span><span>      </span><span class="annot"><a href="#local-6989586621679406625"><span class="hs-identifier hs-type">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-170"></span><span>      </span><span id="local-6989586621679406625"><span class="annot"><span class="annottext">parseSearchMessagesFilterChatPhoto :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406625"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-169"></span><span>      </span><span class="annot"><a href="#local-6989586621679407355"><span class="hs-identifier hs-type">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-170"></span><span>      </span><span id="local-6989586621679407355"><span class="annot"><span class="annottext">parseSearchMessagesFilterChatPhoto :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407355"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -497,9 +497,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterChatPhoto"><span class="hs-identifier hs-var">SearchMessagesFilterChatPhoto</span></a></span><span>
 </span><span id="line-171"></span><span>
-</span><span id="line-172"></span><span>      </span><span class="annot"><a href="#local-6989586621679406624"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-173"></span><span>      </span><span id="local-6989586621679406624"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideoNote :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406624"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-172"></span><span>      </span><span class="annot"><a href="#local-6989586621679407354"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-173"></span><span>      </span><span id="local-6989586621679407354"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideoNote :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407354"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -517,9 +517,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterVideoNote"><span class="hs-identifier hs-var">SearchMessagesFilterVideoNote</span></a></span><span>
 </span><span id="line-174"></span><span>
-</span><span id="line-175"></span><span>      </span><span class="annot"><a href="#local-6989586621679406623"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-176"></span><span>      </span><span id="local-6989586621679406623"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceAndVideoNote :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406623"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-175"></span><span>      </span><span class="annot"><a href="#local-6989586621679407353"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-176"></span><span>      </span><span id="local-6989586621679407353"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceAndVideoNote :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407353"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -537,9 +537,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterVoiceAndVideoNote"><span class="hs-identifier hs-var">SearchMessagesFilterVoiceAndVideoNote</span></a></span><span>
 </span><span id="line-177"></span><span>
-</span><span id="line-178"></span><span>      </span><span class="annot"><a href="#local-6989586621679406622"><span class="hs-identifier hs-type">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-179"></span><span>      </span><span id="local-6989586621679406622"><span class="annot"><span class="annottext">parseSearchMessagesFilterMention :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406622"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-178"></span><span>      </span><span class="annot"><a href="#local-6989586621679407352"><span class="hs-identifier hs-type">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-179"></span><span>      </span><span id="local-6989586621679407352"><span class="annot"><span class="annottext">parseSearchMessagesFilterMention :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407352"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -557,9 +557,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterMention"><span class="hs-identifier hs-var">SearchMessagesFilterMention</span></a></span><span>
 </span><span id="line-180"></span><span>
-</span><span id="line-181"></span><span>      </span><span class="annot"><a href="#local-6989586621679406621"><span class="hs-identifier hs-type">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-182"></span><span>      </span><span id="local-6989586621679406621"><span class="annot"><span class="annottext">parseSearchMessagesFilterUnreadMention :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406621"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUnreadMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-181"></span><span>      </span><span class="annot"><a href="#local-6989586621679407351"><span class="hs-identifier hs-type">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-182"></span><span>      </span><span id="local-6989586621679407351"><span class="annot"><span class="annottext">parseSearchMessagesFilterUnreadMention :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407351"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUnreadMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -577,9 +577,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterUnreadMention"><span class="hs-identifier hs-var">SearchMessagesFilterUnreadMention</span></a></span><span>
 </span><span id="line-183"></span><span>
-</span><span id="line-184"></span><span>      </span><span class="annot"><a href="#local-6989586621679406620"><span class="hs-identifier hs-type">parseSearchMessagesFilterUnreadReaction</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-185"></span><span>      </span><span id="local-6989586621679406620"><span class="annot"><span class="annottext">parseSearchMessagesFilterUnreadReaction :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406620"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUnreadReaction</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-184"></span><span>      </span><span class="annot"><a href="#local-6989586621679407350"><span class="hs-identifier hs-type">parseSearchMessagesFilterUnreadReaction</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-185"></span><span>      </span><span id="local-6989586621679407350"><span class="annot"><span class="annottext">parseSearchMessagesFilterUnreadReaction :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407350"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUnreadReaction</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -597,9 +597,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterUnreadReaction"><span class="hs-identifier hs-var">SearchMessagesFilterUnreadReaction</span></a></span><span>
 </span><span id="line-186"></span><span>
-</span><span id="line-187"></span><span>      </span><span class="annot"><a href="#local-6989586621679406619"><span class="hs-identifier hs-type">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-188"></span><span>      </span><span id="local-6989586621679406619"><span class="annot"><span class="annottext">parseSearchMessagesFilterFailedToSend :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406619"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterFailedToSend</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-187"></span><span>      </span><span class="annot"><a href="#local-6989586621679407349"><span class="hs-identifier hs-type">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-188"></span><span>      </span><span id="local-6989586621679407349"><span class="annot"><span class="annottext">parseSearchMessagesFilterFailedToSend :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407349"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterFailedToSend</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -617,9 +617,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-var">SearchMessagesFilterFailedToSend</span></a></span><span>
 </span><span id="line-189"></span><span>
-</span><span id="line-190"></span><span>      </span><span class="annot"><a href="#local-6989586621679406618"><span class="hs-identifier hs-type">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-191"></span><span>      </span><span id="local-6989586621679406618"><span class="annot"><span class="annottext">parseSearchMessagesFilterPinned :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679406618"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPinned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-190"></span><span>      </span><span class="annot"><a href="#local-6989586621679407348"><span class="hs-identifier hs-type">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-191"></span><span>      </span><span id="local-6989586621679407348"><span class="annot"><span class="annottext">parseSearchMessagesFilterPinned :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679407348"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPinned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -641,8 +641,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-193"></span><span>
-</span><span id="line-194"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406610"><span id="local-6989586621679406612"><span id="local-6989586621679406614"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-195"></span><span>  </span><span id="local-6989586621679406608"><span class="annot"><span class="annottext">toJSON :: SearchMessagesFilter -&gt; Value
+</span><span id="line-194"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407340"><span id="local-6989586621679407342"><span id="local-6989586621679407344"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-195"></span><span>  </span><span id="local-6989586621679407338"><span class="annot"><span class="annottext">toJSON :: SearchMessagesFilter -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilter
 </span><a href="TD.Data.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-var">SearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-196"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
