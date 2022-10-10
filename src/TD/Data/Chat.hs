@@ -6,6 +6,7 @@ module TD.Data.Chat where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatActionBar as ChatActionBar
+import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatJoinRequestsInfo as ChatJoinRequestsInfo
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatPermissions as ChatPermissions
@@ -37,8 +38,8 @@ data Chat = -- | A chat. (Can be a private chat, basic group, supergroup, or sec
     theme_name :: Maybe String,
     -- | Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
     message_ttl :: Maybe Int,
-    -- | List of reactions, available in the chat
-    available_reactions :: Maybe [String],
+    -- | Types of reaction, available in the chat
+    available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions,
     -- | Notification settings for the chat
     notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings,
     -- | Number of messages with unread reactions in the chat

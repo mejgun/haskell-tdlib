@@ -14,6 +14,8 @@ import qualified Utils as U
 data OpenWebApp = OpenWebApp
   { -- | Identifier of the replied message for the message sent by the Web App; 0 if none
     reply_to_message_id :: Maybe Int,
+    -- | Short name of the application; 0-64 English letters, digits, and underscores
+    application_name :: Maybe String,
     -- | Preferred Web App theme; pass null to use the default theme
     theme :: Maybe ThemeParameters.ThemeParameters,
     -- | The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
@@ -29,6 +31,7 @@ instance Show OpenWebApp where
   show
     OpenWebApp
       { reply_to_message_id = reply_to_message_id_,
+        application_name = application_name_,
         theme = theme_,
         url = url_,
         bot_user_id = bot_user_id_,
@@ -37,6 +40,7 @@ instance Show OpenWebApp where
       "OpenWebApp"
         ++ U.cc
           [ U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "application_name" application_name_,
             U.p "theme" theme_,
             U.p "url" url_,
             U.p "bot_user_id" bot_user_id_,
@@ -47,6 +51,7 @@ instance T.ToJSON OpenWebApp where
   toJSON
     OpenWebApp
       { reply_to_message_id = reply_to_message_id_,
+        application_name = application_name_,
         theme = theme_,
         url = url_,
         bot_user_id = bot_user_id_,
@@ -55,6 +60,7 @@ instance T.ToJSON OpenWebApp where
       A.object
         [ "@type" A..= T.String "openWebApp",
           "reply_to_message_id" A..= reply_to_message_id_,
+          "application_name" A..= application_name_,
           "theme" A..= theme_,
           "url" A..= url_,
           "bot_user_id" A..= bot_user_id_,

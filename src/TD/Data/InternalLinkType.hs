@@ -86,6 +86,11 @@ data InternalLinkType
         -- | Username of the bot that owns the game @game_short_name Short name of the game
         bot_username :: Maybe String
       }
+  | -- | The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link @url URL to be passed to getWebPageInstantView
+    InternalLinkTypeInstantView
+      { -- |
+        url :: Maybe String
+      }
   | -- | The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link @invoice_name Name of the invoice
     InternalLinkTypeInvoice
       { -- |
@@ -287,6 +292,14 @@ instance Show InternalLinkType where
             U.p "bot_username" bot_username_
           ]
   show
+    InternalLinkTypeInstantView
+      { url = url_
+      } =
+      "InternalLinkTypeInstantView"
+        ++ U.cc
+          [ U.p "url" url_
+          ]
+  show
     InternalLinkTypeInvoice
       { invoice_name = invoice_name_
       } =
@@ -463,6 +476,7 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeChatInvite" -> parseInternalLinkTypeChatInvite v
       "internalLinkTypeFilterSettings" -> parseInternalLinkTypeFilterSettings v
       "internalLinkTypeGame" -> parseInternalLinkTypeGame v
+      "internalLinkTypeInstantView" -> parseInternalLinkTypeInstantView v
       "internalLinkTypeInvoice" -> parseInternalLinkTypeInvoice v
       "internalLinkTypeLanguagePack" -> parseInternalLinkTypeLanguagePack v
       "internalLinkTypeLanguageSettings" -> parseInternalLinkTypeLanguageSettings v
@@ -542,6 +556,11 @@ instance T.FromJSON InternalLinkType where
         game_short_name_ <- o A..:? "game_short_name"
         bot_username_ <- o A..:? "bot_username"
         return $ InternalLinkTypeGame {game_short_name = game_short_name_, bot_username = bot_username_}
+
+      parseInternalLinkTypeInstantView :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeInstantView = A.withObject "InternalLinkTypeInstantView" $ \o -> do
+        url_ <- o A..:? "url"
+        return $ InternalLinkTypeInstantView {url = url_}
 
       parseInternalLinkTypeInvoice :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeInvoice = A.withObject "InternalLinkTypeInvoice" $ \o -> do
@@ -737,6 +756,14 @@ instance T.ToJSON InternalLinkType where
         [ "@type" A..= T.String "internalLinkTypeGame",
           "game_short_name" A..= game_short_name_,
           "bot_username" A..= bot_username_
+        ]
+  toJSON
+    InternalLinkTypeInstantView
+      { url = url_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypeInstantView",
+          "url" A..= url_
         ]
   toJSON
     InternalLinkTypeInvoice

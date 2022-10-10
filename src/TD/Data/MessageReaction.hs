@@ -6,6 +6,7 @@ module TD.Data.MessageReaction where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageSender as MessageSender
+import qualified TD.Data.ReactionType as ReactionType
 import qualified Utils as U
 
 -- |
@@ -17,8 +18,8 @@ data MessageReaction = -- | Contains information about a reaction to a message
     is_chosen :: Maybe Bool,
     -- | Number of times the reaction was added
     total_count :: Maybe Int,
-    -- | Text representation of the reaction
-    reaction :: Maybe String
+    -- | Type of the reaction
+    _type :: Maybe ReactionType.ReactionType
   }
   deriving (Eq)
 
@@ -28,14 +29,14 @@ instance Show MessageReaction where
       { recent_sender_ids = recent_sender_ids_,
         is_chosen = is_chosen_,
         total_count = total_count_,
-        reaction = reaction_
+        _type = _type_
       } =
       "MessageReaction"
         ++ U.cc
           [ U.p "recent_sender_ids" recent_sender_ids_,
             U.p "is_chosen" is_chosen_,
             U.p "total_count" total_count_,
-            U.p "reaction" reaction_
+            U.p "_type" _type_
           ]
 
 instance T.FromJSON MessageReaction where
@@ -51,8 +52,8 @@ instance T.FromJSON MessageReaction where
         recent_sender_ids_ <- o A..:? "recent_sender_ids"
         is_chosen_ <- o A..:? "is_chosen"
         total_count_ <- o A..:? "total_count"
-        reaction_ <- o A..:? "reaction"
-        return $ MessageReaction {recent_sender_ids = recent_sender_ids_, is_chosen = is_chosen_, total_count = total_count_, reaction = reaction_}
+        _type_ <- o A..:? "type"
+        return $ MessageReaction {recent_sender_ids = recent_sender_ids_, is_chosen = is_chosen_, total_count = total_count_, _type = _type_}
   parseJSON _ = mempty
 
 instance T.ToJSON MessageReaction where
@@ -61,12 +62,12 @@ instance T.ToJSON MessageReaction where
       { recent_sender_ids = recent_sender_ids_,
         is_chosen = is_chosen_,
         total_count = total_count_,
-        reaction = reaction_
+        _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "messageReaction",
           "recent_sender_ids" A..= recent_sender_ids_,
           "is_chosen" A..= is_chosen_,
           "total_count" A..= total_count_,
-          "reaction" A..= reaction_
+          "type" A..= _type_
         ]

@@ -5,6 +5,7 @@ module TD.Query.GetMessageAddedReactions where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.ReactionType as ReactionType
 import qualified Utils as U
 
 -- |
@@ -14,8 +15,8 @@ data GetMessageAddedReactions = GetMessageAddedReactions
     limit :: Maybe Int,
     -- | Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     offset :: Maybe String,
-    -- | If non-empty, only added reactions with the specified text representation will be returned
-    reaction :: Maybe String,
+    -- | Type of the reactions to return; pass null to return all added reactions
+    reaction_type :: Maybe ReactionType.ReactionType,
     -- | Identifier of the message
     message_id :: Maybe Int,
     -- | Identifier of the chat to which the message belongs
@@ -28,7 +29,7 @@ instance Show GetMessageAddedReactions where
     GetMessageAddedReactions
       { limit = limit_,
         offset = offset_,
-        reaction = reaction_,
+        reaction_type = reaction_type_,
         message_id = message_id_,
         chat_id = chat_id_
       } =
@@ -36,7 +37,7 @@ instance Show GetMessageAddedReactions where
         ++ U.cc
           [ U.p "limit" limit_,
             U.p "offset" offset_,
-            U.p "reaction" reaction_,
+            U.p "reaction_type" reaction_type_,
             U.p "message_id" message_id_,
             U.p "chat_id" chat_id_
           ]
@@ -46,7 +47,7 @@ instance T.ToJSON GetMessageAddedReactions where
     GetMessageAddedReactions
       { limit = limit_,
         offset = offset_,
-        reaction = reaction_,
+        reaction_type = reaction_type_,
         message_id = message_id_,
         chat_id = chat_id_
       } =
@@ -54,7 +55,7 @@ instance T.ToJSON GetMessageAddedReactions where
         [ "@type" A..= T.String "getMessageAddedReactions",
           "limit" A..= limit_,
           "offset" A..= offset_,
-          "reaction" A..= reaction_,
+          "reaction_type" A..= reaction_type_,
           "message_id" A..= message_id_,
           "chat_id" A..= chat_id_
         ]

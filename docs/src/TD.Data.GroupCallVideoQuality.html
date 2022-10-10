@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span>    </span><span id="GroupCallVideoQualityMedium"><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQualityMedium"><span class="hs-identifier hs-var">GroupCallVideoQualityMedium</span></a></span></span><span>
 </span><span id="line-16"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The best available video quality</span><span>
 </span><span id="line-17"></span><span>    </span><span id="GroupCallVideoQualityFull"><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQualityFull"><span class="hs-identifier hs-var">GroupCallVideoQualityFull</span></a></span></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419854"><span id="local-6989586621679419856"><span class="annot"><span class="annottext">GroupCallVideoQuality -&gt; GroupCallVideoQuality -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679424946"><span id="local-6989586621679424948"><span class="annot"><span class="annottext">GroupCallVideoQuality -&gt; GroupCallVideoQuality -&gt; Bool
 (GroupCallVideoQuality -&gt; GroupCallVideoQuality -&gt; Bool)
 -&gt; (GroupCallVideoQuality -&gt; GroupCallVideoQuality -&gt; Bool)
 -&gt; Eq GroupCallVideoQuality
@@ -26,8 +26,8 @@ $c/= :: GroupCallVideoQuality -&gt; GroupCallVideoQuality -&gt; Bool
 $c== :: GroupCallVideoQuality -&gt; GroupCallVideoQuality -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419848"><span id="local-6989586621679419851"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679419846"><span class="annot"><span class="annottext">show :: GroupCallVideoQuality -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424940"><span id="local-6989586621679424943"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679424938"><span class="annot"><span class="annottext">show :: GroupCallVideoQuality -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">GroupCallVideoQuality
 </span><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQualityThumbnail"><span class="hs-identifier hs-var">GroupCallVideoQualityThumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -56,40 +56,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-32"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419841"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>  </span><span id="local-6989586621679419839"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GroupCallVideoQuality
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679419837"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679419837"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679419835"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419835"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679419834"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419834"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419835"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424933"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679424931"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GroupCallVideoQuality
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679424929"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679424929"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679424927"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424927"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679424926"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679424926"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424927"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419834"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679424926"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;groupCallVideoQualityThumbnail&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GroupCallVideoQuality
-</span><a href="#local-6989586621679419832"><span class="hs-identifier hs-var">parseGroupCallVideoQualityThumbnail</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419837"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424924"><span class="hs-identifier hs-var">parseGroupCallVideoQualityThumbnail</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424929"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-40"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;groupCallVideoQualityMedium&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GroupCallVideoQuality
-</span><a href="#local-6989586621679419831"><span class="hs-identifier hs-var">parseGroupCallVideoQualityMedium</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419837"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424923"><span class="hs-identifier hs-var">parseGroupCallVideoQualityMedium</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424929"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;groupCallVideoQualityFull&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GroupCallVideoQuality
-</span><a href="#local-6989586621679419830"><span class="hs-identifier hs-var">parseGroupCallVideoQualityFull</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419837"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424922"><span class="hs-identifier hs-var">parseGroupCallVideoQualityFull</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424929"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GroupCallVideoQuality
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-43"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679419832"><span class="hs-identifier hs-type">parseGroupCallVideoQualityThumbnail</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span><span>
-</span><span id="line-45"></span><span>      </span><span id="local-6989586621679419832"><span class="annot"><span class="annottext">parseGroupCallVideoQualityThumbnail :: Value -&gt; Parser GroupCallVideoQuality
-</span><a href="#local-6989586621679419832"><span class="hs-identifier hs-var hs-var">parseGroupCallVideoQualityThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679424924"><span class="hs-identifier hs-type">parseGroupCallVideoQualityThumbnail</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span><span>
+</span><span id="line-45"></span><span>      </span><span id="local-6989586621679424924"><span class="annot"><span class="annottext">parseGroupCallVideoQualityThumbnail :: Value -&gt; Parser GroupCallVideoQuality
+</span><a href="#local-6989586621679424924"><span class="hs-identifier hs-var hs-var">parseGroupCallVideoQualityThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GroupCallVideoQuality)
 -&gt; Value
 -&gt; Parser GroupCallVideoQuality
@@ -107,9 +107,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">GroupCallVideoQuality
 </span><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQualityThumbnail"><span class="hs-identifier hs-var">GroupCallVideoQualityThumbnail</span></a></span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679419831"><span class="hs-identifier hs-type">parseGroupCallVideoQualityMedium</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span><span>
-</span><span id="line-48"></span><span>      </span><span id="local-6989586621679419831"><span class="annot"><span class="annottext">parseGroupCallVideoQualityMedium :: Value -&gt; Parser GroupCallVideoQuality
-</span><a href="#local-6989586621679419831"><span class="hs-identifier hs-var hs-var">parseGroupCallVideoQualityMedium</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679424923"><span class="hs-identifier hs-type">parseGroupCallVideoQualityMedium</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span><span>
+</span><span id="line-48"></span><span>      </span><span id="local-6989586621679424923"><span class="annot"><span class="annottext">parseGroupCallVideoQualityMedium :: Value -&gt; Parser GroupCallVideoQuality
+</span><a href="#local-6989586621679424923"><span class="hs-identifier hs-var hs-var">parseGroupCallVideoQualityMedium</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GroupCallVideoQuality)
 -&gt; Value
 -&gt; Parser GroupCallVideoQuality
@@ -127,9 +127,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">GroupCallVideoQuality
 </span><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQualityMedium"><span class="hs-identifier hs-var">GroupCallVideoQualityMedium</span></a></span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679419830"><span class="hs-identifier hs-type">parseGroupCallVideoQualityFull</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span><span>
-</span><span id="line-51"></span><span>      </span><span id="local-6989586621679419830"><span class="annot"><span class="annottext">parseGroupCallVideoQualityFull :: Value -&gt; Parser GroupCallVideoQuality
-</span><a href="#local-6989586621679419830"><span class="hs-identifier hs-var hs-var">parseGroupCallVideoQualityFull</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679424922"><span class="hs-identifier hs-type">parseGroupCallVideoQualityFull</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span><span>
+</span><span id="line-51"></span><span>      </span><span id="local-6989586621679424922"><span class="annot"><span class="annottext">parseGroupCallVideoQualityFull :: Value -&gt; Parser GroupCallVideoQuality
+</span><a href="#local-6989586621679424922"><span class="hs-identifier hs-var hs-var">parseGroupCallVideoQualityFull</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GroupCallVideoQuality)
 -&gt; Value
 -&gt; Parser GroupCallVideoQuality
@@ -151,8 +151,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419822"><span id="local-6989586621679419824"><span id="local-6989586621679419826"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span>  </span><span id="local-6989586621679419820"><span class="annot"><span class="annottext">toJSON :: GroupCallVideoQuality -&gt; Value
+</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424914"><span id="local-6989586621679424916"><span id="local-6989586621679424918"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQuality"><span class="hs-identifier hs-type">GroupCallVideoQuality</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span>  </span><span id="local-6989586621679424912"><span class="annot"><span class="annottext">toJSON :: GroupCallVideoQuality -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">GroupCallVideoQuality
 </span><a href="TD.Data.GroupCallVideoQuality.html#GroupCallVideoQualityThumbnail"><span class="hs-identifier hs-var">GroupCallVideoQualityThumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

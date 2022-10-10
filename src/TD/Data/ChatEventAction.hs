@@ -5,6 +5,7 @@ module TD.Data.ChatEventAction where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
@@ -87,9 +88,9 @@ data ChatEventAction
   | -- | The chat available reactions were changed @old_available_reactions Previous chat available reactions @new_available_reactions New chat available reactions
     ChatEventAvailableReactionsChanged
       { -- |
-        new_available_reactions :: Maybe [String],
+        new_available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions,
         -- |
-        old_available_reactions :: Maybe [String]
+        old_available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions
       }
   | -- | The chat description was changed @old_description Previous chat description @new_description New chat description
     ChatEventDescriptionChanged

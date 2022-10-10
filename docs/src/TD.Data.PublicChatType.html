@@ -13,7 +13,7 @@
 </span><span id="line-13"></span><span>    </span><span id="PublicChatTypeHasUsername"><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatTypeHasUsername"><span class="hs-identifier hs-var">PublicChatTypeHasUsername</span></a></span></span><span>
 </span><span id="line-14"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The chat is public, because it is a location-based supergroup</span><span>
 </span><span id="line-15"></span><span>    </span><span id="PublicChatTypeIsLocationBased"><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatTypeIsLocationBased"><span class="hs-identifier hs-var">PublicChatTypeIsLocationBased</span></a></span></span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408307"><span id="local-6989586621679408309"><span class="annot"><span class="annottext">PublicChatType -&gt; PublicChatType -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679413336"><span id="local-6989586621679413338"><span class="annot"><span class="annottext">PublicChatType -&gt; PublicChatType -&gt; Bool
 (PublicChatType -&gt; PublicChatType -&gt; Bool)
 -&gt; (PublicChatType -&gt; PublicChatType -&gt; Bool) -&gt; Eq PublicChatType
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -23,8 +23,8 @@ $c/= :: PublicChatType -&gt; PublicChatType -&gt; Bool
 $c== :: PublicChatType -&gt; PublicChatType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408301"><span id="local-6989586621679408304"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679408299"><span class="annot"><span class="annottext">show :: PublicChatType -&gt; String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679413330"><span id="local-6989586621679413333"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679413328"><span class="annot"><span class="annottext">show :: PublicChatType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">PublicChatType
 </span><a href="TD.Data.PublicChatType.html#PublicChatTypeHasUsername"><span class="hs-identifier hs-var">PublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-20"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -44,36 +44,36 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-26"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408294"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679408292"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PublicChatType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408290"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679408290"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408288"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408288"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679408287"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408287"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408288"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679413323"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679413321"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PublicChatType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679413319"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679413319"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679413317"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679413317"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679413316"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679413316"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679413317"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-31"></span><span>
 </span><span id="line-32"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408287"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679413316"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;publicChatTypeHasUsername&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679408285"><span class="hs-identifier hs-var">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408290"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679413314"><span class="hs-identifier hs-var">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679413319"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;publicChatTypeIsLocationBased&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679408284"><span class="hs-identifier hs-var">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408290"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679413313"><span class="hs-identifier hs-var">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679413319"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PublicChatType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-36"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>      </span><span class="annot"><a href="#local-6989586621679408285"><span class="hs-identifier hs-type">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
-</span><span id="line-38"></span><span>      </span><span id="local-6989586621679408285"><span class="annot"><span class="annottext">parsePublicChatTypeHasUsername :: Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679408285"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeHasUsername</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-37"></span><span>      </span><span class="annot"><a href="#local-6989586621679413314"><span class="hs-identifier hs-type">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
+</span><span id="line-38"></span><span>      </span><span id="local-6989586621679413314"><span class="annot"><span class="annottext">parsePublicChatTypeHasUsername :: Value -&gt; Parser PublicChatType
+</span><a href="#local-6989586621679413314"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeHasUsername</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PublicChatType)
 -&gt; Value
 -&gt; Parser PublicChatType
@@ -91,9 +91,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">PublicChatType
 </span><a href="TD.Data.PublicChatType.html#PublicChatTypeHasUsername"><span class="hs-identifier hs-var">PublicChatTypeHasUsername</span></a></span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span>      </span><span class="annot"><a href="#local-6989586621679408284"><span class="hs-identifier hs-type">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
-</span><span id="line-41"></span><span>      </span><span id="local-6989586621679408284"><span class="annot"><span class="annottext">parsePublicChatTypeIsLocationBased :: Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679408284"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeIsLocationBased</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-40"></span><span>      </span><span class="annot"><a href="#local-6989586621679413313"><span class="hs-identifier hs-type">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
+</span><span id="line-41"></span><span>      </span><span id="local-6989586621679413313"><span class="annot"><span class="annottext">parsePublicChatTypeIsLocationBased :: Value -&gt; Parser PublicChatType
+</span><a href="#local-6989586621679413313"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeIsLocationBased</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PublicChatType)
 -&gt; Value
 -&gt; Parser PublicChatType
@@ -115,8 +115,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408276"><span id="local-6989586621679408278"><span id="local-6989586621679408280"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>  </span><span id="local-6989586621679408274"><span class="annot"><span class="annottext">toJSON :: PublicChatType -&gt; Value
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679413305"><span id="local-6989586621679413307"><span id="local-6989586621679413309"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span>  </span><span id="local-6989586621679413303"><span class="annot"><span class="annottext">toJSON :: PublicChatType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">PublicChatType
 </span><a href="TD.Data.PublicChatType.html#PublicChatTypeHasUsername"><span class="hs-identifier hs-var">PublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-46"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

@@ -13,6 +13,8 @@ data PasswordState = -- | Represents the current state of 2-step verification @h
   PasswordState
   { -- | If not 0, point in time (Unix timestamp) after which the 2-step verification password can be reset immediately using resetPassword
     pending_reset_date :: Maybe Int,
+    -- | Pattern of the email address set up for logging in
+    login_email_address_pattern :: Maybe String,
     -- | Information about the recovery email address to which the confirmation email was sent; may be null
     recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo,
     -- |
@@ -30,6 +32,7 @@ instance Show PasswordState where
   show
     PasswordState
       { pending_reset_date = pending_reset_date_,
+        login_email_address_pattern = login_email_address_pattern_,
         recovery_email_address_code_info = recovery_email_address_code_info_,
         has_passport_data = has_passport_data_,
         has_recovery_email_address = has_recovery_email_address_,
@@ -39,6 +42,7 @@ instance Show PasswordState where
       "PasswordState"
         ++ U.cc
           [ U.p "pending_reset_date" pending_reset_date_,
+            U.p "login_email_address_pattern" login_email_address_pattern_,
             U.p "recovery_email_address_code_info" recovery_email_address_code_info_,
             U.p "has_passport_data" has_passport_data_,
             U.p "has_recovery_email_address" has_recovery_email_address_,
@@ -57,18 +61,20 @@ instance T.FromJSON PasswordState where
       parsePasswordState :: A.Value -> T.Parser PasswordState
       parsePasswordState = A.withObject "PasswordState" $ \o -> do
         pending_reset_date_ <- o A..:? "pending_reset_date"
+        login_email_address_pattern_ <- o A..:? "login_email_address_pattern"
         recovery_email_address_code_info_ <- o A..:? "recovery_email_address_code_info"
         has_passport_data_ <- o A..:? "has_passport_data"
         has_recovery_email_address_ <- o A..:? "has_recovery_email_address"
         password_hint_ <- o A..:? "password_hint"
         has_password_ <- o A..:? "has_password"
-        return $ PasswordState {pending_reset_date = pending_reset_date_, recovery_email_address_code_info = recovery_email_address_code_info_, has_passport_data = has_passport_data_, has_recovery_email_address = has_recovery_email_address_, password_hint = password_hint_, has_password = has_password_}
+        return $ PasswordState {pending_reset_date = pending_reset_date_, login_email_address_pattern = login_email_address_pattern_, recovery_email_address_code_info = recovery_email_address_code_info_, has_passport_data = has_passport_data_, has_recovery_email_address = has_recovery_email_address_, password_hint = password_hint_, has_password = has_password_}
   parseJSON _ = mempty
 
 instance T.ToJSON PasswordState where
   toJSON
     PasswordState
       { pending_reset_date = pending_reset_date_,
+        login_email_address_pattern = login_email_address_pattern_,
         recovery_email_address_code_info = recovery_email_address_code_info_,
         has_passport_data = has_passport_data_,
         has_recovery_email_address = has_recovery_email_address_,
@@ -78,6 +84,7 @@ instance T.ToJSON PasswordState where
       A.object
         [ "@type" A..= T.String "passwordState",
           "pending_reset_date" A..= pending_reset_date_,
+          "login_email_address_pattern" A..= login_email_address_pattern_,
           "recovery_email_address_code_info" A..= recovery_email_address_code_info_,
           "has_passport_data" A..= has_passport_data_,
           "has_recovery_email_address" A..= has_recovery_email_address_,

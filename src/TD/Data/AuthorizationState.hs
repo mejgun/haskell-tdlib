@@ -6,24 +6,38 @@ module TD.Data.AuthorizationState where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.AuthenticationCodeInfo as AuthenticationCodeInfo
+import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 import qualified TD.Data.TermsOfService as TermsOfService
 import qualified Utils as U
 
 -- | Represents the current authorization state of the TDLib client
 data AuthorizationState
-  = -- | TDLib needs TdlibParameters for initialization
+  = -- | Initializetion parameters are needed. Call `setTdlibParameters` to provide them
     AuthorizationStateWaitTdlibParameters
-  | -- | TDLib needs an encryption key to decrypt the local database @is_encrypted True, if the database is currently encrypted
-    AuthorizationStateWaitEncryptionKey
-      { -- |
-        is_encrypted :: Maybe Bool
-      }
   | -- | TDLib needs the user's phone number to authorize. Call `setAuthenticationPhoneNumber` to provide the phone number, or use `requestQrCodeAuthentication`, or `checkAuthenticationBotToken` for other authentication options
     AuthorizationStateWaitPhoneNumber
+  | -- | TDLib needs the user's email address to authorize. Call `setAuthenticationEmailAddress` to provide the email address, or directly call `checkAuthenticationEmailCode` with Apple ID/Google ID token if allowed
+    AuthorizationStateWaitEmailAddress
+      { -- |
+        allow_google_id :: Maybe Bool,
+        -- | True, if authorization through Apple ID is allowed @allow_google_id True, if authorization through Google ID is allowed
+        allow_apple_id :: Maybe Bool
+      }
+  | -- | TDLib needs the user's authentication code sent to an email address to authorize. Call `checkAuthenticationEmailCode` to provide the code
+    AuthorizationStateWaitEmailCode
+      { -- | Point in time (Unix timestamp) when the user will be able to authorize with a code sent to the user's phone number; 0 if unknown
+        next_phone_number_authorization_date :: Maybe Int,
+        -- | Information about the sent authentication code
+        code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo,
+        -- |
+        allow_google_id :: Maybe Bool,
+        -- | True, if authorization through Apple ID is allowed @allow_google_id True, if authorization through Google ID is allowed
+        allow_apple_id :: Maybe Bool
+      }
   | -- | TDLib needs the user's authentication code to authorize @code_info Information about the authorization code that was sent
     AuthorizationStateWaitCode
       { -- |
-        code_info :: Maybe AuthenticationCodeInfo.AuthenticationCodeInfo
+        _code_info :: Maybe AuthenticationCodeInfo.AuthenticationCodeInfo
       }
   | -- | The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link @link A tg:// URL for the QR code. The link will be updated frequently
     AuthorizationStateWaitOtherDeviceConfirmation
@@ -60,25 +74,41 @@ instance Show AuthorizationState where
     "AuthorizationStateWaitTdlibParameters"
       ++ U.cc
         []
-  show
-    AuthorizationStateWaitEncryptionKey
-      { is_encrypted = is_encrypted_
-      } =
-      "AuthorizationStateWaitEncryptionKey"
-        ++ U.cc
-          [ U.p "is_encrypted" is_encrypted_
-          ]
   show AuthorizationStateWaitPhoneNumber =
     "AuthorizationStateWaitPhoneNumber"
       ++ U.cc
         []
   show
+    AuthorizationStateWaitEmailAddress
+      { allow_google_id = allow_google_id_,
+        allow_apple_id = allow_apple_id_
+      } =
+      "AuthorizationStateWaitEmailAddress"
+        ++ U.cc
+          [ U.p "allow_google_id" allow_google_id_,
+            U.p "allow_apple_id" allow_apple_id_
+          ]
+  show
+    AuthorizationStateWaitEmailCode
+      { next_phone_number_authorization_date = next_phone_number_authorization_date_,
+        code_info = code_info_,
+        allow_google_id = allow_google_id_,
+        allow_apple_id = allow_apple_id_
+      } =
+      "AuthorizationStateWaitEmailCode"
+        ++ U.cc
+          [ U.p "next_phone_number_authorization_date" next_phone_number_authorization_date_,
+            U.p "code_info" code_info_,
+            U.p "allow_google_id" allow_google_id_,
+            U.p "allow_apple_id" allow_apple_id_
+          ]
+  show
     AuthorizationStateWaitCode
-      { code_info = code_info_
+      { _code_info = _code_info_
       } =
       "AuthorizationStateWaitCode"
         ++ U.cc
-          [ U.p "code_info" code_info_
+          [ U.p "_code_info" _code_info_
           ]
   show
     AuthorizationStateWaitOtherDeviceConfirmation
@@ -131,8 +161,9 @@ instance T.FromJSON AuthorizationState where
 
     case t of
       "authorizationStateWaitTdlibParameters" -> parseAuthorizationStateWaitTdlibParameters v
-      "authorizationStateWaitEncryptionKey" -> parseAuthorizationStateWaitEncryptionKey v
       "authorizationStateWaitPhoneNumber" -> parseAuthorizationStateWaitPhoneNumber v
+      "authorizationStateWaitEmailAddress" -> parseAuthorizationStateWaitEmailAddress v
+      "authorizationStateWaitEmailCode" -> parseAuthorizationStateWaitEmailCode v
       "authorizationStateWaitCode" -> parseAuthorizationStateWaitCode v
       "authorizationStateWaitOtherDeviceConfirmation" -> parseAuthorizationStateWaitOtherDeviceConfirmation v
       "authorizationStateWaitRegistration" -> parseAuthorizationStateWaitRegistration v
@@ -146,18 +177,27 @@ instance T.FromJSON AuthorizationState where
       parseAuthorizationStateWaitTdlibParameters :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitTdlibParameters = A.withObject "AuthorizationStateWaitTdlibParameters" $ \_ -> return AuthorizationStateWaitTdlibParameters
 
-      parseAuthorizationStateWaitEncryptionKey :: A.Value -> T.Parser AuthorizationState
-      parseAuthorizationStateWaitEncryptionKey = A.withObject "AuthorizationStateWaitEncryptionKey" $ \o -> do
-        is_encrypted_ <- o A..:? "is_encrypted"
-        return $ AuthorizationStateWaitEncryptionKey {is_encrypted = is_encrypted_}
-
       parseAuthorizationStateWaitPhoneNumber :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitPhoneNumber = A.withObject "AuthorizationStateWaitPhoneNumber" $ \_ -> return AuthorizationStateWaitPhoneNumber
 
+      parseAuthorizationStateWaitEmailAddress :: A.Value -> T.Parser AuthorizationState
+      parseAuthorizationStateWaitEmailAddress = A.withObject "AuthorizationStateWaitEmailAddress" $ \o -> do
+        allow_google_id_ <- o A..:? "allow_google_id"
+        allow_apple_id_ <- o A..:? "allow_apple_id"
+        return $ AuthorizationStateWaitEmailAddress {allow_google_id = allow_google_id_, allow_apple_id = allow_apple_id_}
+
+      parseAuthorizationStateWaitEmailCode :: A.Value -> T.Parser AuthorizationState
+      parseAuthorizationStateWaitEmailCode = A.withObject "AuthorizationStateWaitEmailCode" $ \o -> do
+        next_phone_number_authorization_date_ <- o A..:? "next_phone_number_authorization_date"
+        code_info_ <- o A..:? "code_info"
+        allow_google_id_ <- o A..:? "allow_google_id"
+        allow_apple_id_ <- o A..:? "allow_apple_id"
+        return $ AuthorizationStateWaitEmailCode {next_phone_number_authorization_date = next_phone_number_authorization_date_, code_info = code_info_, allow_google_id = allow_google_id_, allow_apple_id = allow_apple_id_}
+
       parseAuthorizationStateWaitCode :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitCode = A.withObject "AuthorizationStateWaitCode" $ \o -> do
-        code_info_ <- o A..:? "code_info"
-        return $ AuthorizationStateWaitCode {code_info = code_info_}
+        _code_info_ <- o A..:? "code_info"
+        return $ AuthorizationStateWaitCode {_code_info = _code_info_}
 
       parseAuthorizationStateWaitOtherDeviceConfirmation :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitOtherDeviceConfirmation = A.withObject "AuthorizationStateWaitOtherDeviceConfirmation" $ \o -> do
@@ -194,25 +234,41 @@ instance T.ToJSON AuthorizationState where
     A.object
       [ "@type" A..= T.String "authorizationStateWaitTdlibParameters"
       ]
-  toJSON
-    AuthorizationStateWaitEncryptionKey
-      { is_encrypted = is_encrypted_
-      } =
-      A.object
-        [ "@type" A..= T.String "authorizationStateWaitEncryptionKey",
-          "is_encrypted" A..= is_encrypted_
-        ]
   toJSON AuthorizationStateWaitPhoneNumber =
     A.object
       [ "@type" A..= T.String "authorizationStateWaitPhoneNumber"
       ]
   toJSON
+    AuthorizationStateWaitEmailAddress
+      { allow_google_id = allow_google_id_,
+        allow_apple_id = allow_apple_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "authorizationStateWaitEmailAddress",
+          "allow_google_id" A..= allow_google_id_,
+          "allow_apple_id" A..= allow_apple_id_
+        ]
+  toJSON
+    AuthorizationStateWaitEmailCode
+      { next_phone_number_authorization_date = next_phone_number_authorization_date_,
+        code_info = code_info_,
+        allow_google_id = allow_google_id_,
+        allow_apple_id = allow_apple_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "authorizationStateWaitEmailCode",
+          "next_phone_number_authorization_date" A..= next_phone_number_authorization_date_,
+          "code_info" A..= code_info_,
+          "allow_google_id" A..= allow_google_id_,
+          "allow_apple_id" A..= allow_apple_id_
+        ]
+  toJSON
     AuthorizationStateWaitCode
-      { code_info = code_info_
+      { _code_info = _code_info_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitCode",
-          "code_info" A..= code_info_
+          "code_info" A..= _code_info_
         ]
   toJSON
     AuthorizationStateWaitOtherDeviceConfirmation

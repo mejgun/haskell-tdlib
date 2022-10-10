@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.BotInfo as BotInfo
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.FormattedText as FormattedText
-import qualified TD.Data.PremiumGiftOption as PremiumGiftOption
+import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
 import qualified Utils as U
 
 -- |
@@ -19,7 +19,7 @@ data UserFullInfo = -- | Contains full information about a user
     -- | Number of group chats where both the other user and the current user are a member; 0 for the current user
     group_in_common_count :: Maybe Int,
     -- | The list of available options for gifting Telegram Premium to the user
-    premium_gift_options :: Maybe [PremiumGiftOption.PremiumGiftOption],
+    premium_gift_options :: Maybe [PremiumPaymentOption.PremiumPaymentOption],
     -- | A short user bio; may be null for bots
     bio :: Maybe FormattedText.FormattedText,
     -- | True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used

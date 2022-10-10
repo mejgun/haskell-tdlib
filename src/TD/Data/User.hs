@@ -5,6 +5,7 @@ module TD.Data.User where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.UserType as UserType
@@ -37,6 +38,8 @@ data User = -- | Represents a user
     is_mutual_contact :: Maybe Bool,
     -- | The user is a contact of the current user
     is_contact :: Maybe Bool,
+    -- | Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only
+    emoji_status :: Maybe EmojiStatus.EmojiStatus,
     -- | Profile photo of the user; may be null
     profile_photo :: Maybe ProfilePhoto.ProfilePhoto,
     -- | Current online status of the user
@@ -69,6 +72,7 @@ instance Show User where
         is_verified = is_verified_,
         is_mutual_contact = is_mutual_contact_,
         is_contact = is_contact_,
+        emoji_status = emoji_status_,
         profile_photo = profile_photo_,
         status = status_,
         phone_number = phone_number_,
@@ -91,6 +95,7 @@ instance Show User where
             U.p "is_verified" is_verified_,
             U.p "is_mutual_contact" is_mutual_contact_,
             U.p "is_contact" is_contact_,
+            U.p "emoji_status" emoji_status_,
             U.p "profile_photo" profile_photo_,
             U.p "status" status_,
             U.p "phone_number" phone_number_,
@@ -122,6 +127,7 @@ instance T.FromJSON User where
         is_verified_ <- o A..:? "is_verified"
         is_mutual_contact_ <- o A..:? "is_mutual_contact"
         is_contact_ <- o A..:? "is_contact"
+        emoji_status_ <- o A..:? "emoji_status"
         profile_photo_ <- o A..:? "profile_photo"
         status_ <- o A..:? "status"
         phone_number_ <- o A..:? "phone_number"
@@ -129,7 +135,7 @@ instance T.FromJSON User where
         last_name_ <- o A..:? "last_name"
         first_name_ <- o A..:? "first_name"
         _id_ <- o A..:? "id"
-        return $ User {added_to_attachment_menu = added_to_attachment_menu_, language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_premium = is_premium_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, username = username_, last_name = last_name_, first_name = first_name_, _id = _id_}
+        return $ User {added_to_attachment_menu = added_to_attachment_menu_, language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_premium = is_premium_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, emoji_status = emoji_status_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, username = username_, last_name = last_name_, first_name = first_name_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON User where
@@ -147,6 +153,7 @@ instance T.ToJSON User where
         is_verified = is_verified_,
         is_mutual_contact = is_mutual_contact_,
         is_contact = is_contact_,
+        emoji_status = emoji_status_,
         profile_photo = profile_photo_,
         status = status_,
         phone_number = phone_number_,
@@ -169,6 +176,7 @@ instance T.ToJSON User where
           "is_verified" A..= is_verified_,
           "is_mutual_contact" A..= is_mutual_contact_,
           "is_contact" A..= is_contact_,
+          "emoji_status" A..= emoji_status_,
           "profile_photo" A..= profile_photo_,
           "status" A..= status_,
           "phone_number" A..= phone_number_,

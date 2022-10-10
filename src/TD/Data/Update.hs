@@ -16,6 +16,7 @@ import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatAction as ChatAction
 import qualified TD.Data.ChatActionBar as ChatActionBar
+import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatFilterInfo as ChatFilterInfo
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
@@ -49,7 +50,7 @@ import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified TD.Data.OptionValue as OptionValue
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.Poll as Poll
-import qualified TD.Data.Reaction as Reaction
+import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified TD.Data.SecretChat as SecretChat
@@ -244,10 +245,10 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | The chat available reactions were changed @chat_id Chat identifier @available_reactions The new list of reactions, available in the chat
+  | -- | The chat available reactions were changed @chat_id Chat identifier @available_reactions The new reactions, available in the chat
     UpdateChatAvailableReactions
       { -- |
-        available_reactions :: Maybe [String],
+        available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions,
         -- |
         chat_id :: Maybe Int
       }
@@ -700,10 +701,15 @@ data Update
       { -- |
         web_app_launch_id :: Maybe Int
       }
-  | -- | The list of supported reactions has changed @reactions The new list of supported reactions
-    UpdateReactions
+  | -- | The list of active emoji reactions has changed @emojis The new list of active emoji reactions
+    UpdateActiveEmojiReactions
       { -- |
-        reactions :: Maybe [Reaction.Reaction]
+        emojis :: Maybe [String]
+      }
+  | -- | The type of default reaction has changed @reaction_type The new type of the default reaction
+    UpdateDefaultReactionType
+      { -- |
+        reaction_type :: Maybe ReactionType.ReactionType
       }
   | -- | The list of supported dice emojis has changed @emojis The new list of supported dice emojis
     UpdateDiceEmojis
@@ -1759,12 +1765,20 @@ instance Show Update where
           [ U.p "web_app_launch_id" web_app_launch_id_
           ]
   show
-    UpdateReactions
-      { reactions = reactions_
+    UpdateActiveEmojiReactions
+      { emojis = emojis_
       } =
-      "UpdateReactions"
+      "UpdateActiveEmojiReactions"
         ++ U.cc
-          [ U.p "reactions" reactions_
+          [ U.p "emojis" emojis_
+          ]
+  show
+    UpdateDefaultReactionType
+      { reaction_type = reaction_type_
+      } =
+      "UpdateDefaultReactionType"
+        ++ U.cc
+          [ U.p "reaction_type" reaction_type_
           ]
   show
     UpdateDiceEmojis
@@ -2070,7 +2084,8 @@ instance T.FromJSON Update where
       "updateUsersNearby" -> parseUpdateUsersNearby v
       "updateAttachmentMenuBots" -> parseUpdateAttachmentMenuBots v
       "updateWebAppMessageSent" -> parseUpdateWebAppMessageSent v
-      "updateReactions" -> parseUpdateReactions v
+      "updateActiveEmojiReactions" -> parseUpdateActiveEmojiReactions v
+      "updateDefaultReactionType" -> parseUpdateDefaultReactionType v
       "updateDiceEmojis" -> parseUpdateDiceEmojis v
       "updateAnimatedEmojiMessageClicked" -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters" -> parseUpdateAnimationSearchParameters v
@@ -2618,10 +2633,15 @@ instance T.FromJSON Update where
         web_app_launch_id_ <- U.rm <$> (o A..:? "web_app_launch_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ UpdateWebAppMessageSent {web_app_launch_id = web_app_launch_id_}
 
-      parseUpdateReactions :: A.Value -> T.Parser Update
-      parseUpdateReactions = A.withObject "UpdateReactions" $ \o -> do
-        reactions_ <- o A..:? "reactions"
-        return $ UpdateReactions {reactions = reactions_}
+      parseUpdateActiveEmojiReactions :: A.Value -> T.Parser Update
+      parseUpdateActiveEmojiReactions = A.withObject "UpdateActiveEmojiReactions" $ \o -> do
+        emojis_ <- o A..:? "emojis"
+        return $ UpdateActiveEmojiReactions {emojis = emojis_}
+
+      parseUpdateDefaultReactionType :: A.Value -> T.Parser Update
+      parseUpdateDefaultReactionType = A.withObject "UpdateDefaultReactionType" $ \o -> do
+        reaction_type_ <- o A..:? "reaction_type"
+        return $ UpdateDefaultReactionType {reaction_type = reaction_type_}
 
       parseUpdateDiceEmojis :: A.Value -> T.Parser Update
       parseUpdateDiceEmojis = A.withObject "UpdateDiceEmojis" $ \o -> do
@@ -3634,12 +3654,20 @@ instance T.ToJSON Update where
           "web_app_launch_id" A..= U.toS web_app_launch_id_
         ]
   toJSON
-    UpdateReactions
-      { reactions = reactions_
+    UpdateActiveEmojiReactions
+      { emojis = emojis_
       } =
       A.object
-        [ "@type" A..= T.String "updateReactions",
-          "reactions" A..= reactions_
+        [ "@type" A..= T.String "updateActiveEmojiReactions",
+          "emojis" A..= emojis_
+        ]
+  toJSON
+    UpdateDefaultReactionType
+      { reaction_type = reaction_type_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateDefaultReactionType",
+          "reaction_type" A..= reaction_type_
         ]
   toJSON
     UpdateDiceEmojis

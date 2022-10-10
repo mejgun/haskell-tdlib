@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Re-sends the code to verify a phone number to be added to a user's Telegram Passport
+-- Resends the code to verify a phone number to be added to a user's Telegram Passport
 data ResendPhoneNumberVerificationCode = ResendPhoneNumberVerificationCode
   {
   }

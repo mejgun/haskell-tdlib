@@ -5,13 +5,14 @@ module TD.Query.SetChatAvailableReactions where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified Utils as U
 
 -- |
--- Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right @chat_id Identifier of the chat @available_reactions New list of reactions, available in the chat. All reactions must be active
+-- Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right @chat_id Identifier of the chat @available_reactions Reactions available in the chat. All emoji reactions must be active
 data SetChatAvailableReactions = SetChatAvailableReactions
   { -- |
-    available_reactions :: Maybe [String],
+    available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions,
     -- |
     chat_id :: Maybe Int
   }

@@ -8,9 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+-- Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
 data GetMessageAvailableReactions = GetMessageAvailableReactions
-  { -- | Identifier of the message
+  { -- | Number of reaction per row, 5-25
+    row_size :: Maybe Int,
+    -- | Identifier of the message
     message_id :: Maybe Int,
     -- | Identifier of the chat to which the message belongs
     chat_id :: Maybe Int
@@ -20,23 +22,27 @@ data GetMessageAvailableReactions = GetMessageAvailableReactions
 instance Show GetMessageAvailableReactions where
   show
     GetMessageAvailableReactions
-      { message_id = message_id_,
+      { row_size = row_size_,
+        message_id = message_id_,
         chat_id = chat_id_
       } =
       "GetMessageAvailableReactions"
         ++ U.cc
-          [ U.p "message_id" message_id_,
+          [ U.p "row_size" row_size_,
+            U.p "message_id" message_id_,
             U.p "chat_id" chat_id_
           ]
 
 instance T.ToJSON GetMessageAvailableReactions where
   toJSON
     GetMessageAvailableReactions
-      { message_id = message_id_,
+      { row_size = row_size_,
+        message_id = message_id_,
         chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "getMessageAvailableReactions",
+          "row_size" A..= row_size_,
           "message_id" A..= message_id_,
           "chat_id" A..= chat_id_
         ]

@@ -14,7 +14,7 @@
 </span><span id="line-14"></span><span>    </span><span id="url"><span class="annot"><span class="annottext">HttpUrl -&gt; Maybe String
 </span><a href="TD.Data.HttpUrl.html#url"><span class="hs-identifier hs-var hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419623"><span id="local-6989586621679419625"><span class="annot"><span class="annottext">HttpUrl -&gt; HttpUrl -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679424715"><span id="local-6989586621679424717"><span class="annot"><span class="annottext">HttpUrl -&gt; HttpUrl -&gt; Bool
 (HttpUrl -&gt; HttpUrl -&gt; Bool)
 -&gt; (HttpUrl -&gt; HttpUrl -&gt; Bool) -&gt; Eq HttpUrl
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -24,13 +24,13 @@ $c/= :: HttpUrl -&gt; HttpUrl -&gt; Bool
 $c== :: HttpUrl -&gt; HttpUrl -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419617"><span id="local-6989586621679419620"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679419615"><span class="annot"><span class="annottext">show :: HttpUrl -&gt; String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424709"><span id="local-6989586621679424712"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679424707"><span class="annot"><span class="annottext">show :: HttpUrl -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">url :: HttpUrl -&gt; Maybe String
-</span><a href="TD.Data.HttpUrl.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419613"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419613"><span class="hs-identifier hs-var">url_</span></a></span></span><span>
+</span><a href="TD.Data.HttpUrl.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424705"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424705"><span class="hs-identifier hs-var">url_</span></a></span></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;HttpUrl&quot;</span></span><span>
@@ -42,45 +42,45 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419613"><span class="hs-identifier hs-var">url_</span></a></span><span>
+</span><a href="#local-6989586621679424705"><span class="hs-identifier hs-var">url_</span></a></span><span>
 </span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419608"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679419606"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser HttpUrl
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679419604"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679419604"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679419602"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419602"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679419601"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419601"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419602"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424700"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679424698"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser HttpUrl
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679424696"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679424696"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679424694"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424694"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679424693"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679424693"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424694"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-31"></span><span>
 </span><span id="line-32"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419601"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679424693"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;httpUrl&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser HttpUrl
-</span><a href="#local-6989586621679419599"><span class="hs-identifier hs-var">parseHttpUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419604"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424691"><span class="hs-identifier hs-var">parseHttpUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424696"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser HttpUrl
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>      </span><span class="annot"><a href="#local-6989586621679419599"><span class="hs-identifier hs-type">parseHttpUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span><span>
-</span><span id="line-37"></span><span>      </span><span id="local-6989586621679419599"><span class="annot"><span class="annottext">parseHttpUrl :: Value -&gt; Parser HttpUrl
-</span><a href="#local-6989586621679419599"><span class="hs-identifier hs-var hs-var">parseHttpUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser HttpUrl) -&gt; Value -&gt; Parser HttpUrl
+</span><span id="line-36"></span><span>      </span><span class="annot"><a href="#local-6989586621679424691"><span class="hs-identifier hs-type">parseHttpUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span><span>
+</span><span id="line-37"></span><span>      </span><span id="local-6989586621679424691"><span class="annot"><span class="annottext">parseHttpUrl :: Value -&gt; Parser HttpUrl
+</span><a href="#local-6989586621679424691"><span class="hs-identifier hs-var hs-var">parseHttpUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser HttpUrl) -&gt; Value -&gt; Parser HttpUrl
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;HttpUrl&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser HttpUrl) -&gt; Value -&gt; Parser HttpUrl)
 -&gt; (Object -&gt; Parser HttpUrl) -&gt; Value -&gt; Parser HttpUrl
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419597"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419597"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-38"></span><span>        </span><span id="local-6989586621679419596"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419596"><span class="hs-identifier hs-var">url_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419597"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679424689"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424689"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-38"></span><span>        </span><span id="local-6989586621679424688"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424688"><span class="hs-identifier hs-var">url_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424689"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;url&quot;</span></span><span>
@@ -91,19 +91,19 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">HttpUrl :: Maybe String -&gt; HttpUrl
 </span><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">url :: Maybe String
 </span><a href="TD.Data.HttpUrl.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419596"><span class="hs-identifier hs-var">url_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679424688"><span class="hs-identifier hs-var">url_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-40"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser HttpUrl
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419588"><span id="local-6989586621679419590"><span id="local-6989586621679419592"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679419586"><span class="annot"><span class="annottext">toJSON :: HttpUrl -&gt; Value
+</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424680"><span id="local-6989586621679424682"><span id="local-6989586621679424684"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679424678"><span class="annot"><span class="annottext">toJSON :: HttpUrl -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-44"></span><span>    </span><span class="annot"><a href="TD.Data.HttpUrl.html#HttpUrl"><span class="hs-identifier hs-type">HttpUrl</span></a></span><span>
 </span><span id="line-45"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">url :: HttpUrl -&gt; Maybe String
-</span><a href="TD.Data.HttpUrl.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419584"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419584"><span class="hs-identifier hs-var">url_</span></a></span></span><span>
+</span><a href="TD.Data.HttpUrl.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424676"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424676"><span class="hs-identifier hs-var">url_</span></a></span></span><span>
 </span><span id="line-46"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -117,6 +117,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419584"><span class="hs-identifier hs-var">url_</span></a></span><span>
+</span><a href="#local-6989586621679424676"><span class="hs-identifier hs-var">url_</span></a></span><span>
 </span><span id="line-50"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-51"></span></pre></body></html>

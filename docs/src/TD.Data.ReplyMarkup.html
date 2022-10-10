@@ -47,7 +47,7 @@
 </span><span id="line-42"></span><span>        </span><span id="_rows"><span class="annot"><span class="annottext">ReplyMarkup -&gt; Maybe [[InlineKeyboardButton]]
 </span><a href="TD.Data.ReplyMarkup.html#_rows"><span class="hs-identifier hs-var hs-var">_rows</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.InlineKeyboardButton.html#InlineKeyboardButton"><span class="hs-identifier hs-type">InlineKeyboardButton.InlineKeyboardButton</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>      </span><span class="hs-special">}</span><span>
-</span><span id="line-44"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419166"><span id="local-6989586621679419168"><span class="annot"><span class="annottext">ReplyMarkup -&gt; ReplyMarkup -&gt; Bool
+</span><span id="line-44"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679424258"><span id="local-6989586621679424260"><span class="annot"><span class="annottext">ReplyMarkup -&gt; ReplyMarkup -&gt; Bool
 (ReplyMarkup -&gt; ReplyMarkup -&gt; Bool)
 -&gt; (ReplyMarkup -&gt; ReplyMarkup -&gt; Bool) -&gt; Eq ReplyMarkup
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -57,13 +57,13 @@ $c/= :: ReplyMarkup -&gt; ReplyMarkup -&gt; Bool
 $c== :: ReplyMarkup -&gt; ReplyMarkup -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419160"><span id="local-6989586621679419163"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span>  </span><span id="local-6989586621679419158"><span class="annot"><span class="annottext">show :: ReplyMarkup -&gt; String
+</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424252"><span id="local-6989586621679424255"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-47"></span><span>  </span><span id="local-6989586621679424250"><span class="annot"><span class="annottext">show :: ReplyMarkup -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-48"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupRemoveKeyboard"><span class="hs-identifier hs-type">ReplyMarkupRemoveKeyboard</span></a></span><span>
 </span><span id="line-49"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_personal :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419156"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419156"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424248"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424248"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
 </span><span id="line-50"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-51"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupRemoveKeyboard&quot;</span></span><span>
@@ -75,16 +75,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419156"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
+</span><a href="#local-6989586621679424248"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
 </span><span id="line-54"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-55"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupForceReply"><span class="hs-identifier hs-type">ReplyMarkupForceReply</span></a></span><span>
 </span><span id="line-57"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_field_placeholder :: ReplyMarkup -&gt; Maybe String
-</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419153"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419153"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424245"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424245"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">is_personal :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419152"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419152"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424244"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424244"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
 </span><span id="line-59"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-60"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupForceReply&quot;</span></span><span>
@@ -96,30 +96,30 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;input_field_placeholder&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419153"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424245"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419152"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
+</span><a href="#local-6989586621679424244"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
 </span><span id="line-64"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-65"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-66"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupShowKeyboard"><span class="hs-identifier hs-type">ReplyMarkupShowKeyboard</span></a></span><span>
 </span><span id="line-67"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_field_placeholder :: ReplyMarkup -&gt; Maybe String
-</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419151"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419151"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424243"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424243"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>        </span><span class="annot"><span class="annottext">is_personal :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419150"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419150"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424242"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424242"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>        </span><span class="annot"><span class="annottext">one_time :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#one_time"><span class="hs-identifier hs-var">one_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419149"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419149"><span class="hs-identifier hs-var">one_time_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#one_time"><span class="hs-identifier hs-var">one_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424241"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424241"><span class="hs-identifier hs-var">one_time_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>        </span><span class="annot"><span class="annottext">resize_keyboard :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#resize_keyboard"><span class="hs-identifier hs-var">resize_keyboard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419148"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419148"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#resize_keyboard"><span class="hs-identifier hs-var">resize_keyboard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424240"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424240"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>        </span><span class="annot"><span class="annottext">rows :: ReplyMarkup -&gt; Maybe [[KeyboardButton]]
-</span><a href="TD.Data.ReplyMarkup.html#rows"><span class="hs-identifier hs-var">rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419147"><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
-</span><a href="#local-6989586621679419147"><span class="hs-identifier hs-var">rows_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#rows"><span class="hs-identifier hs-var">rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424239"><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
+</span><a href="#local-6989586621679424239"><span class="hs-identifier hs-var">rows_</span></a></span></span><span>
 </span><span id="line-72"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-73"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupShowKeyboard&quot;</span></span><span>
@@ -131,33 +131,33 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;input_field_placeholder&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419151"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424243"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-76"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419150"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424242"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-77"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;one_time&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419149"><span class="hs-identifier hs-var">one_time_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424241"><span class="hs-identifier hs-var">one_time_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-78"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;resize_keyboard&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419148"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424240"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-79"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [[KeyboardButton]] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;rows&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
-</span><a href="#local-6989586621679419147"><span class="hs-identifier hs-var">rows_</span></a></span><span>
+</span><a href="#local-6989586621679424239"><span class="hs-identifier hs-var">rows_</span></a></span><span>
 </span><span id="line-80"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-81"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-82"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupInlineKeyboard"><span class="hs-identifier hs-type">ReplyMarkupInlineKeyboard</span></a></span><span>
 </span><span id="line-83"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_rows :: ReplyMarkup -&gt; Maybe [[InlineKeyboardButton]]
-</span><a href="TD.Data.ReplyMarkup.html#_rows"><span class="hs-identifier hs-var">_rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419146"><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
-</span><a href="#local-6989586621679419146"><span class="hs-identifier hs-var">_rows_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#_rows"><span class="hs-identifier hs-var">_rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424238"><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
+</span><a href="#local-6989586621679424238"><span class="hs-identifier hs-var">_rows_</span></a></span></span><span>
 </span><span id="line-84"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-85"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupInlineKeyboard&quot;</span></span><span>
@@ -169,58 +169,58 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_rows&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
-</span><a href="#local-6989586621679419146"><span class="hs-identifier hs-var">_rows_</span></a></span><span>
+</span><a href="#local-6989586621679424238"><span class="hs-identifier hs-var">_rows_</span></a></span><span>
 </span><span id="line-88"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-89"></span><span>
-</span><span id="line-90"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419143"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-91"></span><span>  </span><span id="local-6989586621679419141"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ReplyMarkup
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679419139"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679419139"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679419137"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419137"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-92"></span><span>    </span><span id="local-6989586621679419136"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419136"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419137"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-90"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424235"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-91"></span><span>  </span><span id="local-6989586621679424233"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ReplyMarkup
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679424231"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679424231"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679424229"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424229"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-92"></span><span>    </span><span id="local-6989586621679424228"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679424228"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424229"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-93"></span><span>
 </span><span id="line-94"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419136"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679424228"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-95"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;replyMarkupRemoveKeyboard&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419134"><span class="hs-identifier hs-var">parseReplyMarkupRemoveKeyboard</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419139"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424226"><span class="hs-identifier hs-var">parseReplyMarkupRemoveKeyboard</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424231"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-96"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;replyMarkupForceReply&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419133"><span class="hs-identifier hs-var">parseReplyMarkupForceReply</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419139"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424225"><span class="hs-identifier hs-var">parseReplyMarkupForceReply</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424231"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-97"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;replyMarkupShowKeyboard&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419132"><span class="hs-identifier hs-var">parseReplyMarkupShowKeyboard</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419139"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424224"><span class="hs-identifier hs-var">parseReplyMarkupShowKeyboard</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424231"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-98"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;replyMarkupInlineKeyboard&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419131"><span class="hs-identifier hs-var">parseReplyMarkupInlineKeyboard</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419139"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679424223"><span class="hs-identifier hs-var">parseReplyMarkupInlineKeyboard</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679424231"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-99"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ReplyMarkup
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-100"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-101"></span><span>      </span><span class="annot"><a href="#local-6989586621679419134"><span class="hs-identifier hs-type">parseReplyMarkupRemoveKeyboard</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
-</span><span id="line-102"></span><span>      </span><span id="local-6989586621679419134"><span class="annot"><span class="annottext">parseReplyMarkupRemoveKeyboard :: Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419134"><span class="hs-identifier hs-var hs-var">parseReplyMarkupRemoveKeyboard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-101"></span><span>      </span><span class="annot"><a href="#local-6989586621679424226"><span class="hs-identifier hs-type">parseReplyMarkupRemoveKeyboard</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
+</span><span id="line-102"></span><span>      </span><span id="local-6989586621679424226"><span class="annot"><span class="annottext">parseReplyMarkupRemoveKeyboard :: Value -&gt; Parser ReplyMarkup
+</span><a href="#local-6989586621679424226"><span class="hs-identifier hs-var hs-var">parseReplyMarkupRemoveKeyboard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupRemoveKeyboard&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup)
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419129"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419129"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-103"></span><span>        </span><span id="local-6989586621679419128"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419128"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419129"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679424221"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424221"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-103"></span><span>        </span><span id="local-6989586621679424220"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424220"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424221"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span>
@@ -232,28 +232,28 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ReplyMarkupRemoveKeyboard :: Maybe Bool -&gt; ReplyMarkup
 </span><a href="TD.Data.ReplyMarkup.html#ReplyMarkupRemoveKeyboard"><span class="hs-identifier hs-type">ReplyMarkupRemoveKeyboard</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">is_personal :: Maybe Bool
 </span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419128"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679424220"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-105"></span><span>
-</span><span id="line-106"></span><span>      </span><span class="annot"><a href="#local-6989586621679419133"><span class="hs-identifier hs-type">parseReplyMarkupForceReply</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
-</span><span id="line-107"></span><span>      </span><span id="local-6989586621679419133"><span class="annot"><span class="annottext">parseReplyMarkupForceReply :: Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419133"><span class="hs-identifier hs-var hs-var">parseReplyMarkupForceReply</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-106"></span><span>      </span><span class="annot"><a href="#local-6989586621679424225"><span class="hs-identifier hs-type">parseReplyMarkupForceReply</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
+</span><span id="line-107"></span><span>      </span><span id="local-6989586621679424225"><span class="annot"><span class="annottext">parseReplyMarkupForceReply :: Value -&gt; Parser ReplyMarkup
+</span><a href="#local-6989586621679424225"><span class="hs-identifier hs-var hs-var">parseReplyMarkupForceReply</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupForceReply&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup)
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419126"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419126"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-108"></span><span>        </span><span id="local-6989586621679419125"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419125"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419126"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679424218"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424218"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-108"></span><span>        </span><span id="local-6989586621679424217"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424217"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424218"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;input_field_placeholder&quot;</span></span><span>
-</span><span id="line-109"></span><span>        </span><span id="local-6989586621679419124"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419124"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419126"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-109"></span><span>        </span><span id="local-6989586621679424216"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424216"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424218"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span>
@@ -265,48 +265,48 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ReplyMarkupForceReply :: Maybe String -&gt; Maybe Bool -&gt; ReplyMarkup
 </span><a href="TD.Data.ReplyMarkup.html#ReplyMarkupForceReply"><span class="hs-identifier hs-type">ReplyMarkupForceReply</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">input_field_placeholder :: Maybe String
 </span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419125"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: Maybe Bool
+</span><a href="#local-6989586621679424217"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: Maybe Bool
 </span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419124"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679424216"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-111"></span><span>
-</span><span id="line-112"></span><span>      </span><span class="annot"><a href="#local-6989586621679419132"><span class="hs-identifier hs-type">parseReplyMarkupShowKeyboard</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
-</span><span id="line-113"></span><span>      </span><span id="local-6989586621679419132"><span class="annot"><span class="annottext">parseReplyMarkupShowKeyboard :: Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419132"><span class="hs-identifier hs-var hs-var">parseReplyMarkupShowKeyboard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-112"></span><span>      </span><span class="annot"><a href="#local-6989586621679424224"><span class="hs-identifier hs-type">parseReplyMarkupShowKeyboard</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
+</span><span id="line-113"></span><span>      </span><span id="local-6989586621679424224"><span class="annot"><span class="annottext">parseReplyMarkupShowKeyboard :: Value -&gt; Parser ReplyMarkup
+</span><a href="#local-6989586621679424224"><span class="hs-identifier hs-var hs-var">parseReplyMarkupShowKeyboard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupShowKeyboard&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup)
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419123"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419123"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-114"></span><span>        </span><span id="local-6989586621679419122"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419122"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419123"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679424215"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424215"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-114"></span><span>        </span><span id="local-6989586621679424214"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424214"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;input_field_placeholder&quot;</span></span><span>
-</span><span id="line-115"></span><span>        </span><span id="local-6989586621679419121"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419121"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419123"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-115"></span><span>        </span><span id="local-6989586621679424213"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424213"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span>
-</span><span id="line-116"></span><span>        </span><span id="local-6989586621679419120"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419120"><span class="hs-identifier hs-var">one_time_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419123"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-116"></span><span>        </span><span id="local-6989586621679424212"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424212"><span class="hs-identifier hs-var">one_time_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;one_time&quot;</span></span><span>
-</span><span id="line-117"></span><span>        </span><span id="local-6989586621679419119"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419119"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419123"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-117"></span><span>        </span><span id="local-6989586621679424211"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424211"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;resize_keyboard&quot;</span></span><span>
-</span><span id="line-118"></span><span>        </span><span id="local-6989586621679419118"><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
-</span><a href="#local-6989586621679419118"><span class="hs-identifier hs-var">rows_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419123"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [[KeyboardButton]])
+</span><span id="line-118"></span><span>        </span><span id="local-6989586621679424210"><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
+</span><a href="#local-6989586621679424210"><span class="hs-identifier hs-var">rows_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [[KeyboardButton]])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;rows&quot;</span></span><span>
@@ -323,30 +323,30 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ReplyMarkup
 </span><a href="TD.Data.ReplyMarkup.html#ReplyMarkupShowKeyboard"><span class="hs-identifier hs-type">ReplyMarkupShowKeyboard</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">input_field_placeholder :: Maybe String
 </span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419122"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: Maybe Bool
+</span><a href="#local-6989586621679424214"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: Maybe Bool
 </span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419121"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">one_time :: Maybe Bool
+</span><a href="#local-6989586621679424213"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">one_time :: Maybe Bool
 </span><a href="TD.Data.ReplyMarkup.html#one_time"><span class="hs-identifier hs-var">one_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419120"><span class="hs-identifier hs-var">one_time_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">resize_keyboard :: Maybe Bool
+</span><a href="#local-6989586621679424212"><span class="hs-identifier hs-var">one_time_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">resize_keyboard :: Maybe Bool
 </span><a href="TD.Data.ReplyMarkup.html#resize_keyboard"><span class="hs-identifier hs-var">resize_keyboard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419119"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">rows :: Maybe [[KeyboardButton]]
+</span><a href="#local-6989586621679424211"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">rows :: Maybe [[KeyboardButton]]
 </span><a href="TD.Data.ReplyMarkup.html#rows"><span class="hs-identifier hs-var">rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
-</span><a href="#local-6989586621679419118"><span class="hs-identifier hs-var">rows_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679424210"><span class="hs-identifier hs-var">rows_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-120"></span><span>
-</span><span id="line-121"></span><span>      </span><span class="annot"><a href="#local-6989586621679419131"><span class="hs-identifier hs-type">parseReplyMarkupInlineKeyboard</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
-</span><span id="line-122"></span><span>      </span><span id="local-6989586621679419131"><span class="annot"><span class="annottext">parseReplyMarkupInlineKeyboard :: Value -&gt; Parser ReplyMarkup
-</span><a href="#local-6989586621679419131"><span class="hs-identifier hs-var hs-var">parseReplyMarkupInlineKeyboard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-121"></span><span>      </span><span class="annot"><a href="#local-6989586621679424223"><span class="hs-identifier hs-type">parseReplyMarkupInlineKeyboard</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span><span>
+</span><span id="line-122"></span><span>      </span><span id="local-6989586621679424223"><span class="annot"><span class="annottext">parseReplyMarkupInlineKeyboard :: Value -&gt; Parser ReplyMarkup
+</span><a href="#local-6989586621679424223"><span class="hs-identifier hs-var hs-var">parseReplyMarkupInlineKeyboard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReplyMarkupInlineKeyboard&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup)
 -&gt; (Object -&gt; Parser ReplyMarkup) -&gt; Value -&gt; Parser ReplyMarkup
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419117"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419117"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-123"></span><span>        </span><span id="local-6989586621679419116"><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
-</span><a href="#local-6989586621679419116"><span class="hs-identifier hs-var">_rows_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419117"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [[InlineKeyboardButton]])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679424209"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424209"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-123"></span><span>        </span><span id="local-6989586621679424208"><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
+</span><a href="#local-6989586621679424208"><span class="hs-identifier hs-var">_rows_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679424209"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [[InlineKeyboardButton]])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;rows&quot;</span></span><span>
@@ -358,19 +358,19 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ReplyMarkupInlineKeyboard :: Maybe [[InlineKeyboardButton]] -&gt; ReplyMarkup
 </span><a href="TD.Data.ReplyMarkup.html#ReplyMarkupInlineKeyboard"><span class="hs-identifier hs-type">ReplyMarkupInlineKeyboard</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">_rows :: Maybe [[InlineKeyboardButton]]
 </span><a href="TD.Data.ReplyMarkup.html#_rows"><span class="hs-identifier hs-var">_rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
-</span><a href="#local-6989586621679419116"><span class="hs-identifier hs-var">_rows_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679424208"><span class="hs-identifier hs-var">_rows_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-125"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ReplyMarkup
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-126"></span><span>
-</span><span id="line-127"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419109"><span id="local-6989586621679419111"><span id="local-6989586621679419113"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-128"></span><span>  </span><span id="local-6989586621679419107"><span class="annot"><span class="annottext">toJSON :: ReplyMarkup -&gt; Value
+</span><span id="line-127"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424201"><span id="local-6989586621679424203"><span id="local-6989586621679424205"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-128"></span><span>  </span><span id="local-6989586621679424199"><span class="annot"><span class="annottext">toJSON :: ReplyMarkup -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-129"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupRemoveKeyboard"><span class="hs-identifier hs-type">ReplyMarkupRemoveKeyboard</span></a></span><span>
 </span><span id="line-130"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_personal :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419105"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419105"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424197"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424197"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
 </span><span id="line-131"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-132"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -384,16 +384,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419105"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
+</span><a href="#local-6989586621679424197"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
 </span><span id="line-135"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-136"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-137"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupForceReply"><span class="hs-identifier hs-type">ReplyMarkupForceReply</span></a></span><span>
 </span><span id="line-138"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_field_placeholder :: ReplyMarkup -&gt; Maybe String
-</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419101"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419101"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424193"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424193"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-139"></span><span>        </span><span class="annot"><span class="annottext">is_personal :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419100"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419100"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424192"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424192"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span>
 </span><span id="line-140"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-141"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -407,30 +407,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;input_field_placeholder&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419101"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424193"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-144"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419100"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
+</span><a href="#local-6989586621679424192"><span class="hs-identifier hs-var">is_personal_</span></a></span><span>
 </span><span id="line-145"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-146"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-147"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupShowKeyboard"><span class="hs-identifier hs-type">ReplyMarkupShowKeyboard</span></a></span><span>
 </span><span id="line-148"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_field_placeholder :: ReplyMarkup -&gt; Maybe String
-</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419099"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419099"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#input_field_placeholder"><span class="hs-identifier hs-var">input_field_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424191"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424191"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-149"></span><span>        </span><span class="annot"><span class="annottext">is_personal :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419098"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419098"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424190"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424190"><span class="hs-identifier hs-var">is_personal_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-150"></span><span>        </span><span class="annot"><span class="annottext">one_time :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#one_time"><span class="hs-identifier hs-var">one_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419097"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419097"><span class="hs-identifier hs-var">one_time_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#one_time"><span class="hs-identifier hs-var">one_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424189"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424189"><span class="hs-identifier hs-var">one_time_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-151"></span><span>        </span><span class="annot"><span class="annottext">resize_keyboard :: ReplyMarkup -&gt; Maybe Bool
-</span><a href="TD.Data.ReplyMarkup.html#resize_keyboard"><span class="hs-identifier hs-var">resize_keyboard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419096"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419096"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ReplyMarkup.html#resize_keyboard"><span class="hs-identifier hs-var">resize_keyboard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424188"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679424188"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-152"></span><span>        </span><span class="annot"><span class="annottext">rows :: ReplyMarkup -&gt; Maybe [[KeyboardButton]]
-</span><a href="TD.Data.ReplyMarkup.html#rows"><span class="hs-identifier hs-var">rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419095"><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
-</span><a href="#local-6989586621679419095"><span class="hs-identifier hs-var">rows_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#rows"><span class="hs-identifier hs-var">rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424187"><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
+</span><a href="#local-6989586621679424187"><span class="hs-identifier hs-var">rows_</span></a></span></span><span>
 </span><span id="line-153"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-154"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -444,33 +444,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;input_field_placeholder&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419099"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424191"><span class="hs-identifier hs-var">input_field_placeholder_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-157"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419098"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424190"><span class="hs-identifier hs-var">is_personal_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-158"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;one_time&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419097"><span class="hs-identifier hs-var">one_time_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424189"><span class="hs-identifier hs-var">one_time_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-159"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;resize_keyboard&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679419096"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679424188"><span class="hs-identifier hs-var">resize_keyboard_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-160"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;rows&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [[KeyboardButton]] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [[KeyboardButton]]
-</span><a href="#local-6989586621679419095"><span class="hs-identifier hs-var">rows_</span></a></span><span>
+</span><a href="#local-6989586621679424187"><span class="hs-identifier hs-var">rows_</span></a></span><span>
 </span><span id="line-161"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-162"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-163"></span><span>    </span><span class="annot"><a href="TD.Data.ReplyMarkup.html#ReplyMarkupInlineKeyboard"><span class="hs-identifier hs-type">ReplyMarkupInlineKeyboard</span></a></span><span>
 </span><span id="line-164"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_rows :: ReplyMarkup -&gt; Maybe [[InlineKeyboardButton]]
-</span><a href="TD.Data.ReplyMarkup.html#_rows"><span class="hs-identifier hs-var">_rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419094"><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
-</span><a href="#local-6989586621679419094"><span class="hs-identifier hs-var">_rows_</span></a></span></span><span>
+</span><a href="TD.Data.ReplyMarkup.html#_rows"><span class="hs-identifier hs-var">_rows</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424186"><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
+</span><a href="#local-6989586621679424186"><span class="hs-identifier hs-var">_rows_</span></a></span></span><span>
 </span><span id="line-165"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-166"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -484,6 +484,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;rows&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [[InlineKeyboardButton]] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [[InlineKeyboardButton]]
-</span><a href="#local-6989586621679419094"><span class="hs-identifier hs-var">_rows_</span></a></span><span>
+</span><a href="#local-6989586621679424186"><span class="hs-identifier hs-var">_rows_</span></a></span><span>
 </span><span id="line-169"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-170"></span></pre></body></html>

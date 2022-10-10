@@ -53,6 +53,7 @@ import qualified TD.Data.ChatActionBar as ChatActionBar
 import qualified TD.Data.ChatAdministrator as ChatAdministrator
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
+import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatEvent as ChatEvent
 import qualified TD.Data.ChatEventAction as ChatEventAction
 import qualified TD.Data.ChatEventLogFilters as ChatEventLogFilters
@@ -115,7 +116,11 @@ import qualified TD.Data.DiceStickers as DiceStickers
 import qualified TD.Data.Document as Document
 import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.DraftMessage as DraftMessage
+import qualified TD.Data.EmailAddressAuthentication as EmailAddressAuthentication
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
+import qualified TD.Data.EmojiReaction as EmojiReaction
+import qualified TD.Data.EmojiStatus as EmojiStatus
+import qualified TD.Data.EmojiStatuses as EmojiStatuses
 import qualified TD.Data.Emojis as Emojis
 import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
 import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
@@ -125,6 +130,7 @@ import qualified TD.Data.FileDownload as FileDownload
 import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
 import qualified TD.Data.FilePart as FilePart
 import qualified TD.Data.FileType as FileType
+import qualified TD.Data.Files as Files
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
@@ -254,9 +260,9 @@ import qualified TD.Data.PollType as PollType
 import qualified TD.Data.PremiumFeature as PremiumFeature
 import qualified TD.Data.PremiumFeaturePromotionAnimation as PremiumFeaturePromotionAnimation
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
-import qualified TD.Data.PremiumGiftOption as PremiumGiftOption
 import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumLimitType as PremiumLimitType
+import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
 import qualified TD.Data.PremiumSource as PremiumSource
 import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
@@ -266,7 +272,7 @@ import qualified TD.Data.ProxyType as ProxyType
 import qualified TD.Data.PublicChatType as PublicChatType
 import qualified TD.Data.PushMessageContent as PushMessageContent
 import qualified TD.Data.PushReceiverId as PushReceiverId
-import qualified TD.Data.Reaction as Reaction
+import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.RecommendedChatFilter as RecommendedChatFilter
 import qualified TD.Data.RecommendedChatFilters as RecommendedChatFilters
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
@@ -310,7 +316,6 @@ import qualified TD.Data.TMeUrl as TMeUrl
 import qualified TD.Data.TMeUrlType as TMeUrlType
 import qualified TD.Data.TMeUrls as TMeUrls
 import qualified TD.Data.TargetChat as TargetChat
-import qualified TD.Data.TdlibParameters as TdlibParameters
 import qualified TD.Data.TemporaryPasswordState as TemporaryPasswordState
 import qualified TD.Data.TermsOfService as TermsOfService
 import qualified TD.Data.TestBytes as TestBytes
@@ -357,10 +362,10 @@ import qualified TD.Data.WebPageInstantView as WebPageInstantView
 data GeneralResult
   = Error Error.Error
   | Ok Ok.Ok
-  | TdlibParameters TdlibParameters.TdlibParameters
   | AuthenticationCodeType AuthenticationCodeType.AuthenticationCodeType
   | AuthenticationCodeInfo AuthenticationCodeInfo.AuthenticationCodeInfo
   | EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo
+  | EmailAddressAuthentication EmailAddressAuthentication.EmailAddressAuthentication
   | TextEntity TextEntity.TextEntity
   | TextEntities TextEntities.TextEntities
   | FormattedText FormattedText.FormattedText
@@ -372,6 +377,7 @@ data GeneralResult
   | LocalFile LocalFile.LocalFile
   | RemoteFile RemoteFile.RemoteFile
   | File File.File
+  | Files Files.Files
   | InputFile InputFile.InputFile
   | PhotoSize PhotoSize.PhotoSize
   | Minithumbnail Minithumbnail.Minithumbnail
@@ -411,7 +417,9 @@ data GeneralResult
   | InputChatPhoto InputChatPhoto.InputChatPhoto
   | ChatPermissions ChatPermissions.ChatPermissions
   | ChatAdministratorRights ChatAdministratorRights.ChatAdministratorRights
-  | PremiumGiftOption PremiumGiftOption.PremiumGiftOption
+  | PremiumPaymentOption PremiumPaymentOption.PremiumPaymentOption
+  | EmojiStatus EmojiStatus.EmojiStatus
+  | EmojiStatuses EmojiStatuses.EmojiStatuses
   | User User.User
   | BotInfo BotInfo.BotInfo
   | UserFullInfo UserFullInfo.UserFullInfo
@@ -442,6 +450,7 @@ data GeneralResult
   | MessageSender MessageSender.MessageSender
   | MessageSenders MessageSenders.MessageSenders
   | MessageForwardOrigin MessageForwardOrigin.MessageForwardOrigin
+  | ReactionType ReactionType.ReactionType
   | MessageForwardInfo MessageForwardInfo.MessageForwardInfo
   | MessageReplyInfo MessageReplyInfo.MessageReplyInfo
   | MessageReaction MessageReaction.MessageReaction
@@ -472,6 +481,7 @@ data GeneralResult
   | ChatLists ChatLists.ChatLists
   | ChatSource ChatSource.ChatSource
   | ChatPosition ChatPosition.ChatPosition
+  | ChatAvailableReactions ChatAvailableReactions.ChatAvailableReactions
   | VideoChat VideoChat.VideoChat
   | Chat Chat.Chat
   | Chats Chats.Chats
@@ -577,7 +587,7 @@ data GeneralResult
   | AddedReactions AddedReactions.AddedReactions
   | AvailableReaction AvailableReaction.AvailableReaction
   | AvailableReactions AvailableReactions.AvailableReactions
-  | Reaction Reaction.Reaction
+  | EmojiReaction EmojiReaction.EmojiReaction
   | Animations Animations.Animations
   | DiceStickers DiceStickers.DiceStickers
   | ImportedContacts ImportedContacts.ImportedContacts
@@ -730,9 +740,6 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result Ok.Ok) of
             T.Success a -> return $ Ok a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result TdlibParameters.TdlibParameters) of
-            T.Success a -> return $ TdlibParameters a
-            _ -> mempty,
           case (T.fromJSON v :: T.Result AuthenticationCodeType.AuthenticationCodeType) of
             T.Success a -> return $ AuthenticationCodeType a
             _ -> mempty,
@@ -741,6 +748,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo) of
             T.Success a -> return $ EmailAddressAuthenticationCodeInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result EmailAddressAuthentication.EmailAddressAuthentication) of
+            T.Success a -> return $ EmailAddressAuthentication a
             _ -> mempty,
           case (T.fromJSON v :: T.Result TextEntity.TextEntity) of
             T.Success a -> return $ TextEntity a
@@ -774,6 +784,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result File.File) of
             T.Success a -> return $ File a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result Files.Files) of
+            T.Success a -> return $ Files a
             _ -> mempty,
           case (T.fromJSON v :: T.Result InputFile.InputFile) of
             T.Success a -> return $ InputFile a
@@ -892,8 +905,14 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ChatAdministratorRights.ChatAdministratorRights) of
             T.Success a -> return $ ChatAdministratorRights a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result PremiumGiftOption.PremiumGiftOption) of
-            T.Success a -> return $ PremiumGiftOption a
+          case (T.fromJSON v :: T.Result PremiumPaymentOption.PremiumPaymentOption) of
+            T.Success a -> return $ PremiumPaymentOption a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result EmojiStatus.EmojiStatus) of
+            T.Success a -> return $ EmojiStatus a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result EmojiStatuses.EmojiStatuses) of
+            T.Success a -> return $ EmojiStatuses a
             _ -> mempty,
           case (T.fromJSON v :: T.Result User.User) of
             T.Success a -> return $ User a
@@ -985,6 +1004,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result MessageForwardOrigin.MessageForwardOrigin) of
             T.Success a -> return $ MessageForwardOrigin a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result ReactionType.ReactionType) of
+            T.Success a -> return $ ReactionType a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result MessageForwardInfo.MessageForwardInfo) of
             T.Success a -> return $ MessageForwardInfo a
             _ -> mempty,
@@ -1074,6 +1096,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result ChatPosition.ChatPosition) of
             T.Success a -> return $ ChatPosition a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatAvailableReactions.ChatAvailableReactions) of
+            T.Success a -> return $ ChatAvailableReactions a
             _ -> mempty,
           case (T.fromJSON v :: T.Result VideoChat.VideoChat) of
             T.Success a -> return $ VideoChat a
@@ -1390,8 +1415,8 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result AvailableReactions.AvailableReactions) of
             T.Success a -> return $ AvailableReactions a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result Reaction.Reaction) of
-            T.Success a -> return $ Reaction a
+          case (T.fromJSON v :: T.Result EmojiReaction.EmojiReaction) of
+            T.Success a -> return $ EmojiReaction a
             _ -> mempty,
           case (T.fromJSON v :: T.Result Animations.Animations) of
             T.Success a -> return $ Animations a

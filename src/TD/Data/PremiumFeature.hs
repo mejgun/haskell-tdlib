@@ -29,6 +29,8 @@ data PremiumFeature
     PremiumFeatureAdvancedChatManagement
   | -- | A badge in the user's profile
     PremiumFeatureProfileBadge
+  | -- | A emoji status shown along with the user's name
+    PremiumFeatureEmojiStatus
   | -- | Profile photo animation on message and chat screens
     PremiumFeatureAnimatedProfilePhoto
   | -- | Allowed to set a premium appllication icons
@@ -76,6 +78,10 @@ instance Show PremiumFeature where
     "PremiumFeatureProfileBadge"
       ++ U.cc
         []
+  show PremiumFeatureEmojiStatus =
+    "PremiumFeatureEmojiStatus"
+      ++ U.cc
+        []
   show PremiumFeatureAnimatedProfilePhoto =
     "PremiumFeatureAnimatedProfilePhoto"
       ++ U.cc
@@ -100,6 +106,7 @@ instance T.FromJSON PremiumFeature where
       "premiumFeatureCustomEmoji" -> parsePremiumFeatureCustomEmoji v
       "premiumFeatureAdvancedChatManagement" -> parsePremiumFeatureAdvancedChatManagement v
       "premiumFeatureProfileBadge" -> parsePremiumFeatureProfileBadge v
+      "premiumFeatureEmojiStatus" -> parsePremiumFeatureEmojiStatus v
       "premiumFeatureAnimatedProfilePhoto" -> parsePremiumFeatureAnimatedProfilePhoto v
       "premiumFeatureAppIcons" -> parsePremiumFeatureAppIcons v
       _ -> mempty
@@ -133,6 +140,9 @@ instance T.FromJSON PremiumFeature where
 
       parsePremiumFeatureProfileBadge :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureProfileBadge = A.withObject "PremiumFeatureProfileBadge" $ \_ -> return PremiumFeatureProfileBadge
+
+      parsePremiumFeatureEmojiStatus :: A.Value -> T.Parser PremiumFeature
+      parsePremiumFeatureEmojiStatus = A.withObject "PremiumFeatureEmojiStatus" $ \_ -> return PremiumFeatureEmojiStatus
 
       parsePremiumFeatureAnimatedProfilePhoto :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureAnimatedProfilePhoto = A.withObject "PremiumFeatureAnimatedProfilePhoto" $ \_ -> return PremiumFeatureAnimatedProfilePhoto
@@ -181,6 +191,10 @@ instance T.ToJSON PremiumFeature where
   toJSON PremiumFeatureProfileBadge =
     A.object
       [ "@type" A..= T.String "premiumFeatureProfileBadge"
+      ]
+  toJSON PremiumFeatureEmojiStatus =
+    A.object
+      [ "@type" A..= T.String "premiumFeatureEmojiStatus"
       ]
   toJSON PremiumFeatureAnimatedProfilePhoto =
     A.object

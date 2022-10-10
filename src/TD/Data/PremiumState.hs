@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.PremiumFeaturePromotionAnimation as PremiumFeaturePromotionAnimation
+import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
 import qualified Utils as U
 
 -- |
@@ -14,10 +15,8 @@ data PremiumState = -- | Contains state of Telegram Premium subscription and pro
   PremiumState
   { -- | The list of available promotion animations for Premium features
     animations :: Maybe [PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation],
-    -- | Monthly subscription payment for Telegram Premium subscription, in the smallest units of the currency
-    monthly_amount :: Maybe Int,
-    -- | ISO 4217 currency code for Telegram Premium subscription payment
-    currency :: Maybe String,
+    -- | The list of available options for buying Telegram Premium
+    payment_options :: Maybe [PremiumPaymentOption.PremiumPaymentOption],
     -- | Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
     state :: Maybe FormattedText.FormattedText
   }
@@ -27,15 +26,13 @@ instance Show PremiumState where
   show
     PremiumState
       { animations = animations_,
-        monthly_amount = monthly_amount_,
-        currency = currency_,
+        payment_options = payment_options_,
         state = state_
       } =
       "PremiumState"
         ++ U.cc
           [ U.p "animations" animations_,
-            U.p "monthly_amount" monthly_amount_,
-            U.p "currency" currency_,
+            U.p "payment_options" payment_options_,
             U.p "state" state_
           ]
 
@@ -50,24 +47,21 @@ instance T.FromJSON PremiumState where
       parsePremiumState :: A.Value -> T.Parser PremiumState
       parsePremiumState = A.withObject "PremiumState" $ \o -> do
         animations_ <- o A..:? "animations"
-        monthly_amount_ <- o A..:? "monthly_amount"
-        currency_ <- o A..:? "currency"
+        payment_options_ <- o A..:? "payment_options"
         state_ <- o A..:? "state"
-        return $ PremiumState {animations = animations_, monthly_amount = monthly_amount_, currency = currency_, state = state_}
+        return $ PremiumState {animations = animations_, payment_options = payment_options_, state = state_}
   parseJSON _ = mempty
 
 instance T.ToJSON PremiumState where
   toJSON
     PremiumState
       { animations = animations_,
-        monthly_amount = monthly_amount_,
-        currency = currency_,
+        payment_options = payment_options_,
         state = state_
       } =
       A.object
         [ "@type" A..= T.String "premiumState",
           "animations" A..= animations_,
-          "monthly_amount" A..= monthly_amount_,
-          "currency" A..= currency_,
+          "payment_options" A..= payment_options_,
           "state" A..= state_
         ]

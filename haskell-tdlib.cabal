@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.7.0
+version:        0.2.31.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -73,6 +73,7 @@ library
       TD.Data.ChatAdministrator
       TD.Data.ChatAdministratorRights
       TD.Data.ChatAdministrators
+      TD.Data.ChatAvailableReactions
       TD.Data.ChatEvent
       TD.Data.ChatEventAction
       TD.Data.ChatEventLogFilters
@@ -135,8 +136,12 @@ library
       TD.Data.Document
       TD.Data.DownloadedFileCounts
       TD.Data.DraftMessage
+      TD.Data.EmailAddressAuthentication
       TD.Data.EmailAddressAuthenticationCodeInfo
+      TD.Data.EmojiReaction
       TD.Data.Emojis
+      TD.Data.EmojiStatus
+      TD.Data.EmojiStatuses
       TD.Data.EncryptedCredentials
       TD.Data.EncryptedPassportElement
       TD.Data.Error
@@ -144,6 +149,7 @@ library
       TD.Data.FileDownload
       TD.Data.FileDownloadedPrefixSize
       TD.Data.FilePart
+      TD.Data.Files
       TD.Data.FileType
       TD.Data.FormattedText
       TD.Data.FoundFileDownloads
@@ -275,9 +281,9 @@ library
       TD.Data.PremiumFeature
       TD.Data.PremiumFeaturePromotionAnimation
       TD.Data.PremiumFeatures
-      TD.Data.PremiumGiftOption
       TD.Data.PremiumLimit
       TD.Data.PremiumLimitType
+      TD.Data.PremiumPaymentOption
       TD.Data.PremiumSource
       TD.Data.PremiumState
       TD.Data.ProfilePhoto
@@ -287,7 +293,7 @@ library
       TD.Data.PublicChatType
       TD.Data.PushMessageContent
       TD.Data.PushReceiverId
-      TD.Data.Reaction
+      TD.Data.ReactionType
       TD.Data.RecommendedChatFilter
       TD.Data.RecommendedChatFilters
       TD.Data.RecoveryEmailAddress
@@ -328,7 +334,6 @@ library
       TD.Data.SupergroupFullInfo
       TD.Data.SupergroupMembersFilter
       TD.Data.TargetChat
-      TD.Data.TdlibParameters
       TD.Data.TemporaryPasswordState
       TD.Data.TermsOfService
       TD.Data.TestBytes
@@ -374,7 +379,6 @@ library
       TD.Data.WebAppInfo
       TD.Data.WebPage
       TD.Data.WebPageInstantView
-      TD.Defaults
       TD.Lib
       TD.Query.AcceptCall
       TD.Query.AcceptTermsOfService
@@ -387,6 +391,7 @@ library
       TD.Query.AddFileToDownloads
       TD.Query.AddLocalMessage
       TD.Query.AddLogMessage
+      TD.Query.AddMessageReaction
       TD.Query.AddNetworkStatistics
       TD.Query.AddProxy
       TD.Query.AddRecentlyFoundChat
@@ -414,14 +419,15 @@ library
       TD.Query.ChangeStickerSet
       TD.Query.CheckAuthenticationBotToken
       TD.Query.CheckAuthenticationCode
+      TD.Query.CheckAuthenticationEmailCode
       TD.Query.CheckAuthenticationPassword
       TD.Query.CheckAuthenticationPasswordRecoveryCode
       TD.Query.CheckChangePhoneNumberCode
       TD.Query.CheckChatInviteLink
       TD.Query.CheckChatUsername
       TD.Query.CheckCreatedPublicChatsLimit
-      TD.Query.CheckDatabaseEncryptionKey
       TD.Query.CheckEmailAddressVerificationCode
+      TD.Query.CheckLoginEmailAddressCode
       TD.Query.CheckPasswordRecoveryCode
       TD.Query.CheckPhoneNumberConfirmationCode
       TD.Query.CheckPhoneNumberVerificationCode
@@ -430,7 +436,9 @@ library
       TD.Query.CleanFileName
       TD.Query.ClearAllDraftMessages
       TD.Query.ClearImportedContacts
+      TD.Query.ClearRecentEmojiStatuses
       TD.Query.ClearRecentlyFoundChats
+      TD.Query.ClearRecentReactions
       TD.Query.ClearRecentStickers
       TD.Query.ClickAnimatedEmojiMessage
       TD.Query.ClickPremiumSubscriptionButton
@@ -549,9 +557,12 @@ library
       TD.Query.GetCountryCode
       TD.Query.GetCreatedPublicChats
       TD.Query.GetCurrentState
+      TD.Query.GetCustomEmojiReactionAnimations
       TD.Query.GetCustomEmojiStickers
       TD.Query.GetDatabaseStatistics
       TD.Query.GetDeepLinkInfo
+      TD.Query.GetDefaultEmojiStatuses
+      TD.Query.GetEmojiReaction
       TD.Query.GetEmojiSuggestionsUrl
       TD.Query.GetExternalLink
       TD.Query.GetExternalLinkInfo
@@ -623,6 +634,7 @@ library
       TD.Query.GetProxies
       TD.Query.GetProxyLink
       TD.Query.GetPushReceiverId
+      TD.Query.GetRecentEmojiStatuses
       TD.Query.GetRecentInlineBots
       TD.Query.GetRecentlyOpenedChats
       TD.Query.GetRecentlyVisitedTMeUrls
@@ -652,6 +664,7 @@ library
       TD.Query.GetSupportUser
       TD.Query.GetTemporaryPasswordState
       TD.Query.GetTextEntities
+      TD.Query.GetThemedEmojiStatuses
       TD.Query.GetThemeParametersJsonString
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
@@ -704,6 +717,7 @@ library
       TD.Query.RemoveContacts
       TD.Query.RemoveFavoriteSticker
       TD.Query.RemoveFileFromDownloads
+      TD.Query.RemoveMessageReaction
       TD.Query.RemoveNotification
       TD.Query.RemoveNotificationGroup
       TD.Query.RemoveProxy
@@ -720,6 +734,7 @@ library
       TD.Query.ReplaceVideoChatRtmpUrl
       TD.Query.ReportChat
       TD.Query.ReportChatPhoto
+      TD.Query.ReportMessageReactions
       TD.Query.ReportSupergroupSpam
       TD.Query.RequestAuthenticationPasswordRecovery
       TD.Query.RequestPasswordRecovery
@@ -727,6 +742,7 @@ library
       TD.Query.ResendAuthenticationCode
       TD.Query.ResendChangePhoneNumberCode
       TD.Query.ResendEmailAddressVerificationCode
+      TD.Query.ResendLoginEmailAddressCode
       TD.Query.ResendMessages
       TD.Query.ResendPhoneNumberConfirmationCode
       TD.Query.ResendPhoneNumberVerificationCode
@@ -779,6 +795,7 @@ library
       TD.Query.SendWebAppData
       TD.Query.SetAccountTtl
       TD.Query.SetAlarm
+      TD.Query.SetAuthenticationEmailAddress
       TD.Query.SetAuthenticationPhoneNumber
       TD.Query.SetAutoDownloadSettings
       TD.Query.SetBackground
@@ -805,6 +822,8 @@ library
       TD.Query.SetDatabaseEncryptionKey
       TD.Query.SetDefaultChannelAdministratorRights
       TD.Query.SetDefaultGroupAdministratorRights
+      TD.Query.SetDefaultReactionType
+      TD.Query.SetEmojiStatus
       TD.Query.SetFileGenerationProgress
       TD.Query.SetGameScore
       TD.Query.SetGroupCallParticipantIsSpeaking
@@ -813,11 +832,11 @@ library
       TD.Query.SetInactiveSessionTtl
       TD.Query.SetInlineGameScore
       TD.Query.SetLocation
+      TD.Query.SetLoginEmailAddress
       TD.Query.SetLogStream
       TD.Query.SetLogTagVerbosityLevel
       TD.Query.SetLogVerbosityLevel
       TD.Query.SetMenuButton
-      TD.Query.SetMessageReaction
       TD.Query.SetName
       TD.Query.SetNetworkType
       TD.Query.SetOption
