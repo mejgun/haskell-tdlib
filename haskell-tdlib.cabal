@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.31.0
+version:        0.2.32.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -97,6 +97,8 @@ library
       TD.Data.ChatMembers
       TD.Data.ChatMembersFilter
       TD.Data.ChatMemberStatus
+      TD.Data.ChatMessageSender
+      TD.Data.ChatMessageSenders
       TD.Data.ChatNearby
       TD.Data.ChatNotificationSettings
       TD.Data.ChatPermissions
@@ -149,7 +151,6 @@ library
       TD.Data.FileDownload
       TD.Data.FileDownloadedPrefixSize
       TD.Data.FilePart
-      TD.Data.Files
       TD.Data.FileType
       TD.Data.FormattedText
       TD.Data.FoundFileDownloads
@@ -214,6 +215,7 @@ library
       TD.Data.MessageCalendarDay
       TD.Data.MessageContent
       TD.Data.MessageCopyOptions
+      TD.Data.MessageExtendedMedia
       TD.Data.MessageFileType
       TD.Data.MessageForwardInfo
       TD.Data.MessageForwardOrigin
@@ -543,6 +545,7 @@ library
       TD.Query.GetChatMessageByDate
       TD.Query.GetChatMessageCalendar
       TD.Query.GetChatMessageCount
+      TD.Query.GetChatMessagePosition
       TD.Query.GetChatNotificationSettingsExceptions
       TD.Query.GetChatPinnedMessage
       TD.Query.GetChats

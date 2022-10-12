@@ -32,7 +32,7 @@
 </span><span id="line-27"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">SendMessage -&gt; Maybe Int
 </span><a href="TD.Query.SendMessage.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-29"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679432928"><span id="local-6989586621679432930"><span class="annot"><span class="annottext">SendMessage -&gt; SendMessage -&gt; Bool
+</span><span id="line-29"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434698"><span id="local-6989586621679434700"><span class="annot"><span class="annottext">SendMessage -&gt; SendMessage -&gt; Bool
 (SendMessage -&gt; SendMessage -&gt; Bool)
 -&gt; (SendMessage -&gt; SendMessage -&gt; Bool) -&gt; Eq SendMessage
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -42,28 +42,28 @@ $c/= :: SendMessage -&gt; SendMessage -&gt; Bool
 $c== :: SendMessage -&gt; SendMessage -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679432922"><span id="local-6989586621679432925"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessage.html#SendMessage"><span class="hs-identifier hs-type">SendMessage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>  </span><span id="local-6989586621679432920"><span class="annot"><span class="annottext">show :: SendMessage -&gt; String
+</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434692"><span id="local-6989586621679434695"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessage.html#SendMessage"><span class="hs-identifier hs-type">SendMessage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span>  </span><span id="local-6989586621679434690"><span class="annot"><span class="annottext">show :: SendMessage -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-33"></span><span>    </span><span class="annot"><a href="TD.Query.SendMessage.html#SendMessage"><span class="hs-identifier hs-type">SendMessage</span></a></span><span>
 </span><span id="line-34"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_content :: SendMessage -&gt; Maybe InputMessageContent
-</span><a href="TD.Query.SendMessage.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432918"><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679432918"><span class="hs-identifier hs-var">input_message_content_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434688"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679434688"><span class="hs-identifier hs-var">input_message_content_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">reply_markup :: SendMessage -&gt; Maybe ReplyMarkup
-</span><a href="TD.Query.SendMessage.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432917"><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679432917"><span class="hs-identifier hs-var">reply_markup_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434687"><span class="annot"><span class="annottext">Maybe ReplyMarkup
+</span><a href="#local-6989586621679434687"><span class="hs-identifier hs-var">reply_markup_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">options :: SendMessage -&gt; Maybe MessageSendOptions
-</span><a href="TD.Query.SendMessage.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432916"><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679432916"><span class="hs-identifier hs-var">options_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434686"><span class="annot"><span class="annottext">Maybe MessageSendOptions
+</span><a href="#local-6989586621679434686"><span class="hs-identifier hs-var">options_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">reply_to_message_id :: SendMessage -&gt; Maybe Int
-</span><a href="TD.Query.SendMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432915"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432915"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434685"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434685"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: SendMessage -&gt; Maybe Int
-</span><a href="TD.Query.SendMessage.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432914"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432914"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434684"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434684"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendMessage -&gt; Maybe Int
-</span><a href="TD.Query.SendMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432913"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432913"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.SendMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434683"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434683"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-40"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SendMessage&quot;</span></span><span>
@@ -75,56 +75,56 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;input_message_content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679432918"><span class="hs-identifier hs-var">input_message_content_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434688"><span class="hs-identifier hs-var">input_message_content_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ReplyMarkup -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reply_markup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679432917"><span class="hs-identifier hs-var">reply_markup_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434687"><span class="hs-identifier hs-var">reply_markup_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSendOptions -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;options&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679432916"><span class="hs-identifier hs-var">options_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434686"><span class="hs-identifier hs-var">options_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432915"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434685"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_thread_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432914"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434684"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432913"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679434683"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-49"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-50"></span><span>
-</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679432904"><span id="local-6989586621679432906"><span id="local-6989586621679432908"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessage.html#SendMessage"><span class="hs-identifier hs-type">SendMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span>  </span><span id="local-6989586621679432902"><span class="annot"><span class="annottext">toJSON :: SendMessage -&gt; Value
+</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434674"><span id="local-6989586621679434676"><span id="local-6989586621679434678"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SendMessage.html#SendMessage"><span class="hs-identifier hs-type">SendMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-52"></span><span>  </span><span id="local-6989586621679434672"><span class="annot"><span class="annottext">toJSON :: SendMessage -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-53"></span><span>    </span><span class="annot"><a href="TD.Query.SendMessage.html#SendMessage"><span class="hs-identifier hs-type">SendMessage</span></a></span><span>
 </span><span id="line-54"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_content :: SendMessage -&gt; Maybe InputMessageContent
-</span><a href="TD.Query.SendMessage.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432900"><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679432900"><span class="hs-identifier hs-var">input_message_content_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434670"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679434670"><span class="hs-identifier hs-var">input_message_content_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">reply_markup :: SendMessage -&gt; Maybe ReplyMarkup
-</span><a href="TD.Query.SendMessage.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432899"><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679432899"><span class="hs-identifier hs-var">reply_markup_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434669"><span class="annot"><span class="annottext">Maybe ReplyMarkup
+</span><a href="#local-6989586621679434669"><span class="hs-identifier hs-var">reply_markup_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">options :: SendMessage -&gt; Maybe MessageSendOptions
-</span><a href="TD.Query.SendMessage.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432898"><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679432898"><span class="hs-identifier hs-var">options_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#options"><span class="hs-identifier hs-var">options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434668"><span class="annot"><span class="annottext">Maybe MessageSendOptions
+</span><a href="#local-6989586621679434668"><span class="hs-identifier hs-var">options_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">reply_to_message_id :: SendMessage -&gt; Maybe Int
-</span><a href="TD.Query.SendMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432897"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432897"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434667"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434667"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: SendMessage -&gt; Maybe Int
-</span><a href="TD.Query.SendMessage.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432896"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432896"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SendMessage.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434666"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434666"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SendMessage -&gt; Maybe Int
-</span><a href="TD.Query.SendMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679432895"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432895"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.SendMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434665"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434665"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-60"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-61"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -138,31 +138,31 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;input_message_content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputMessageContent -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679432900"><span class="hs-identifier hs-var">input_message_content_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434670"><span class="hs-identifier hs-var">input_message_content_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_markup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ReplyMarkup -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679432899"><span class="hs-identifier hs-var">reply_markup_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434669"><span class="hs-identifier hs-var">reply_markup_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-65"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;options&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSendOptions -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSendOptions
-</span><a href="#local-6989586621679432898"><span class="hs-identifier hs-var">options_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434668"><span class="hs-identifier hs-var">options_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432897"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434667"><span class="hs-identifier hs-var">reply_to_message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-67"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_thread_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432896"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434666"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679432895"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679434665"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-69"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-70"></span></pre></body></html>

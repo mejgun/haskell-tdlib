@@ -18,6 +18,7 @@ import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Game as Game
 import qualified TD.Data.Location as Location
+import qualified TD.Data.MessageExtendedMedia as MessageExtendedMedia
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.PassportElementType as PassportElementType
@@ -165,7 +166,9 @@ data MessageContent
       }
   | -- | A message with an invoice from a bot @title Product title @param_description Product description @photo Product photo; may be null @currency Currency for the product price @total_amount Product total price in the smallest units of the currency
     MessageInvoice
-      { -- |
+      { -- | Extended media attached to the invoice; may be null
+        extended_media :: Maybe MessageExtendedMedia.MessageExtendedMedia,
+        -- |
         receipt_message_id :: Maybe Int,
         -- | True, if the shipping address must be specified @receipt_message_id The identifier of the message with the receipt, after the product has been purchased
         need_shipping_address :: Maybe Bool,
@@ -576,7 +579,8 @@ instance Show MessageContent where
           ]
   show
     MessageInvoice
-      { receipt_message_id = receipt_message_id_,
+      { extended_media = extended_media_,
+        receipt_message_id = receipt_message_id_,
         need_shipping_address = need_shipping_address_,
         is_test = is_test_,
         start_parameter = start_parameter_,
@@ -588,7 +592,8 @@ instance Show MessageContent where
       } =
       "MessageInvoice"
         ++ U.cc
-          [ U.p "receipt_message_id" receipt_message_id_,
+          [ U.p "extended_media" extended_media_,
+            U.p "receipt_message_id" receipt_message_id_,
             U.p "need_shipping_address" need_shipping_address_,
             U.p "is_test" is_test_,
             U.p "start_parameter" start_parameter_,
@@ -1067,6 +1072,7 @@ instance T.FromJSON MessageContent where
 
       parseMessageInvoice :: A.Value -> T.Parser MessageContent
       parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
+        extended_media_ <- o A..:? "extended_media"
         receipt_message_id_ <- o A..:? "receipt_message_id"
         need_shipping_address_ <- o A..:? "need_shipping_address"
         is_test_ <- o A..:? "is_test"
@@ -1076,7 +1082,7 @@ instance T.FromJSON MessageContent where
         photo_ <- o A..:? "photo"
         description_ <- o A..:? "description"
         title_ <- o A..:? "title"
-        return $ MessageInvoice {receipt_message_id = receipt_message_id_, need_shipping_address = need_shipping_address_, is_test = is_test_, start_parameter = start_parameter_, total_amount = total_amount_, currency = currency_, photo = photo_, description = description_, title = title_}
+        return $ MessageInvoice {extended_media = extended_media_, receipt_message_id = receipt_message_id_, need_shipping_address = need_shipping_address_, is_test = is_test_, start_parameter = start_parameter_, total_amount = total_amount_, currency = currency_, photo = photo_, description = description_, title = title_}
 
       parseMessageCall :: A.Value -> T.Parser MessageContent
       parseMessageCall = A.withObject "MessageCall" $ \o -> do
@@ -1446,7 +1452,8 @@ instance T.ToJSON MessageContent where
         ]
   toJSON
     MessageInvoice
-      { receipt_message_id = receipt_message_id_,
+      { extended_media = extended_media_,
+        receipt_message_id = receipt_message_id_,
         need_shipping_address = need_shipping_address_,
         is_test = is_test_,
         start_parameter = start_parameter_,
@@ -1458,6 +1465,7 @@ instance T.ToJSON MessageContent where
       } =
       A.object
         [ "@type" A..= T.String "messageInvoice",
+          "extended_media" A..= extended_media_,
           "receipt_message_id" A..= receipt_message_id_,
           "need_shipping_address" A..= need_shipping_address_,
           "is_test" A..= is_test_,

@@ -86,9 +86,11 @@ data InternalLinkType
         -- | Username of the bot that owns the game @game_short_name Short name of the game
         bot_username :: Maybe String
       }
-  | -- | The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link @url URL to be passed to getWebPageInstantView
+  | -- | The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link @url URL to be passed to getWebPageInstantView @fallback_url An URL to open if getWebPageInstantView fails
     InternalLinkTypeInstantView
       { -- |
+        fallback_url :: Maybe String,
+        -- |
         url :: Maybe String
       }
   | -- | The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link @invoice_name Name of the invoice
@@ -293,11 +295,13 @@ instance Show InternalLinkType where
           ]
   show
     InternalLinkTypeInstantView
-      { url = url_
+      { fallback_url = fallback_url_,
+        url = url_
       } =
       "InternalLinkTypeInstantView"
         ++ U.cc
-          [ U.p "url" url_
+          [ U.p "fallback_url" fallback_url_,
+            U.p "url" url_
           ]
   show
     InternalLinkTypeInvoice
@@ -559,8 +563,9 @@ instance T.FromJSON InternalLinkType where
 
       parseInternalLinkTypeInstantView :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeInstantView = A.withObject "InternalLinkTypeInstantView" $ \o -> do
+        fallback_url_ <- o A..:? "fallback_url"
         url_ <- o A..:? "url"
-        return $ InternalLinkTypeInstantView {url = url_}
+        return $ InternalLinkTypeInstantView {fallback_url = fallback_url_, url = url_}
 
       parseInternalLinkTypeInvoice :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeInvoice = A.withObject "InternalLinkTypeInvoice" $ \o -> do
@@ -759,10 +764,12 @@ instance T.ToJSON InternalLinkType where
         ]
   toJSON
     InternalLinkTypeInstantView
-      { url = url_
+      { fallback_url = fallback_url_,
+        url = url_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeInstantView",
+          "fallback_url" A..= fallback_url_,
           "url" A..= url_
         ]
   toJSON

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
--- | Describe an invoice to process
+-- | Describes an invoice to process
 data InputInvoice
   = -- | An invoice from a message of the type messageInvoice @chat_id Chat identifier of the message @message_id Message identifier
     InputInvoiceMessage

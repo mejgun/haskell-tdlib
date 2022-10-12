@@ -77,6 +77,8 @@ import qualified TD.Data.ChatMember as ChatMember
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.ChatMembers as ChatMembers
 import qualified TD.Data.ChatMembersFilter as ChatMembersFilter
+import qualified TD.Data.ChatMessageSender as ChatMessageSender
+import qualified TD.Data.ChatMessageSenders as ChatMessageSenders
 import qualified TD.Data.ChatNearby as ChatNearby
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatPermissions as ChatPermissions
@@ -130,7 +132,6 @@ import qualified TD.Data.FileDownload as FileDownload
 import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
 import qualified TD.Data.FilePart as FilePart
 import qualified TD.Data.FileType as FileType
-import qualified TD.Data.Files as Files
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
@@ -193,6 +194,7 @@ import qualified TD.Data.MessageCalendar as MessageCalendar
 import qualified TD.Data.MessageCalendarDay as MessageCalendarDay
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
+import qualified TD.Data.MessageExtendedMedia as MessageExtendedMedia
 import qualified TD.Data.MessageFileType as MessageFileType
 import qualified TD.Data.MessageForwardInfo as MessageForwardInfo
 import qualified TD.Data.MessageForwardOrigin as MessageForwardOrigin
@@ -377,7 +379,6 @@ data GeneralResult
   | LocalFile LocalFile.LocalFile
   | RemoteFile RemoteFile.RemoteFile
   | File File.File
-  | Files Files.Files
   | InputFile InputFile.InputFile
   | PhotoSize PhotoSize.PhotoSize
   | Minithumbnail Minithumbnail.Minithumbnail
@@ -449,6 +450,8 @@ data GeneralResult
   | SecretChat SecretChat.SecretChat
   | MessageSender MessageSender.MessageSender
   | MessageSenders MessageSenders.MessageSenders
+  | ChatMessageSender ChatMessageSender.ChatMessageSender
+  | ChatMessageSenders ChatMessageSenders.ChatMessageSenders
   | MessageForwardOrigin MessageForwardOrigin.MessageForwardOrigin
   | ReactionType ReactionType.ReactionType
   | MessageForwardInfo MessageForwardInfo.MessageForwardInfo
@@ -527,6 +530,7 @@ data GeneralResult
   | PaymentResult PaymentResult.PaymentResult
   | PaymentReceipt PaymentReceipt.PaymentReceipt
   | InputInvoice InputInvoice.InputInvoice
+  | MessageExtendedMedia MessageExtendedMedia.MessageExtendedMedia
   | DatedFile DatedFile.DatedFile
   | PassportElementType PassportElementType.PassportElementType
   | Date Date.Date
@@ -785,9 +789,6 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result File.File) of
             T.Success a -> return $ File a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result Files.Files) of
-            T.Success a -> return $ Files a
-            _ -> mempty,
           case (T.fromJSON v :: T.Result InputFile.InputFile) of
             T.Success a -> return $ InputFile a
             _ -> mempty,
@@ -1000,6 +1001,12 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result MessageSenders.MessageSenders) of
             T.Success a -> return $ MessageSenders a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatMessageSender.ChatMessageSender) of
+            T.Success a -> return $ ChatMessageSender a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatMessageSenders.ChatMessageSenders) of
+            T.Success a -> return $ ChatMessageSenders a
             _ -> mempty,
           case (T.fromJSON v :: T.Result MessageForwardOrigin.MessageForwardOrigin) of
             T.Success a -> return $ MessageForwardOrigin a
@@ -1234,6 +1241,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result InputInvoice.InputInvoice) of
             T.Success a -> return $ InputInvoice a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageExtendedMedia.MessageExtendedMedia) of
+            T.Success a -> return $ MessageExtendedMedia a
             _ -> mempty,
           case (T.fromJSON v :: T.Result DatedFile.DatedFile) of
             T.Success a -> return $ DatedFile a

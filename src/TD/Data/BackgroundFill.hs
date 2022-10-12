@@ -16,7 +16,7 @@ data BackgroundFill
       }
   | -- | Describes a gradient fill of a background @top_color A top color of the background in the RGB24 format @bottom_color A bottom color of the background in the RGB24 format
     BackgroundFillGradient
-      { -- | Clockwise rotation angle of the gradient, in degrees; 0-359. Must be always divisible by 45
+      { -- | Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
         rotation_angle :: Maybe Int,
         -- |
         bottom_color :: Maybe Int,

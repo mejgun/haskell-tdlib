@@ -59,7 +59,7 @@ data InputMessageContent
         -- |
         audio :: Maybe InputFile.InputFile
       }
-  | -- | A document message (general file) @document Document to be sent @thumbnail Document thumbnail; pass null to skip thumbnail uploading @disable_content_type_detection If true, automatic file type detection will be disabled and the document will be always sent as file. Always true for files sent to secret chats @caption Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+  | -- | A document message (general file) @document Document to be sent @thumbnail Document thumbnail; pass null to skip thumbnail uploading @disable_content_type_detection If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats @caption Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     InputMessageDocument
       { -- |
         caption :: Maybe FormattedText.FormattedText,
@@ -180,7 +180,9 @@ data InputMessageContent
       }
   | -- | A message with an invoice; can be used only by bots @invoice Invoice @title Product title; 1-32 characters @param_description Product description; 0-255 characters
     InputMessageInvoice
-      { -- | Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
+      { -- | The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
+        extended_media_content :: Maybe InputMessageContent,
+        -- | Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
         start_parameter :: Maybe String,
         -- |
         provider_data :: Maybe String,
@@ -438,7 +440,8 @@ instance Show InputMessageContent where
           ]
   show
     InputMessageInvoice
-      { start_parameter = start_parameter_,
+      { extended_media_content = extended_media_content_,
+        start_parameter = start_parameter_,
         provider_data = provider_data_,
         provider_token = provider_token_,
         payload = payload_,
@@ -452,7 +455,8 @@ instance Show InputMessageContent where
       } =
       "InputMessageInvoice"
         ++ U.cc
-          [ U.p "start_parameter" start_parameter_,
+          [ U.p "extended_media_content" extended_media_content_,
+            U.p "start_parameter" start_parameter_,
             U.p "provider_data" provider_data_,
             U.p "provider_token" provider_token_,
             U.p "payload" payload_,
@@ -640,6 +644,7 @@ instance T.FromJSON InputMessageContent where
 
       parseInputMessageInvoice :: A.Value -> T.Parser InputMessageContent
       parseInputMessageInvoice = A.withObject "InputMessageInvoice" $ \o -> do
+        extended_media_content_ <- o A..:? "extended_media_content"
         start_parameter_ <- o A..:? "start_parameter"
         provider_data_ <- o A..:? "provider_data"
         provider_token_ <- o A..:? "provider_token"
@@ -651,7 +656,7 @@ instance T.FromJSON InputMessageContent where
         description_ <- o A..:? "description"
         title_ <- o A..:? "title"
         invoice_ <- o A..:? "invoice"
-        return $ InputMessageInvoice {start_parameter = start_parameter_, provider_data = provider_data_, provider_token = provider_token_, payload = payload_, photo_height = photo_height_, photo_width = photo_width_, photo_size = photo_size_, photo_url = photo_url_, description = description_, title = title_, invoice = invoice_}
+        return $ InputMessageInvoice {extended_media_content = extended_media_content_, start_parameter = start_parameter_, provider_data = provider_data_, provider_token = provider_token_, payload = payload_, photo_height = photo_height_, photo_width = photo_width_, photo_size = photo_size_, photo_url = photo_url_, description = description_, title = title_, invoice = invoice_}
 
       parseInputMessagePoll :: A.Value -> T.Parser InputMessageContent
       parseInputMessagePoll = A.withObject "InputMessagePoll" $ \o -> do
@@ -878,7 +883,8 @@ instance T.ToJSON InputMessageContent where
         ]
   toJSON
     InputMessageInvoice
-      { start_parameter = start_parameter_,
+      { extended_media_content = extended_media_content_,
+        start_parameter = start_parameter_,
         provider_data = provider_data_,
         provider_token = provider_token_,
         payload = payload_,
@@ -892,6 +898,7 @@ instance T.ToJSON InputMessageContent where
       } =
       A.object
         [ "@type" A..= T.String "inputMessageInvoice",
+          "extended_media_content" A..= extended_media_content_,
           "start_parameter" A..= start_parameter_,
           "provider_data" A..= provider_data_,
           "provider_token" A..= provider_token_,

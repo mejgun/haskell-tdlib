@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns TGS files with generic animations for custom emoji reactions
+-- Returns TGS stickers with generic animations for custom emoji reactions
 data GetCustomEmojiReactionAnimations = GetCustomEmojiReactionAnimations
   {
   }
