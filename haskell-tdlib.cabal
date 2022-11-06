@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.33.0
+version:        0.2.34.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -153,6 +153,9 @@ library
       TD.Data.FilePart
       TD.Data.FileType
       TD.Data.FormattedText
+      TD.Data.ForumTopic
+      TD.Data.ForumTopicIcon
+      TD.Data.ForumTopicInfo
       TD.Data.FoundFileDownloads
       TD.Data.FoundMessages
       TD.Data.Game
@@ -317,6 +320,7 @@ library
       TD.Data.ShippingOption
       TD.Data.SpeechRecognitionResult
       TD.Data.SponsoredMessage
+      TD.Data.SponsoredMessages
       TD.Data.StatisticalGraph
       TD.Data.StatisticalValue
       TD.Data.Sticker
@@ -364,6 +368,7 @@ library
       TD.Data.Updates
       TD.Data.User
       TD.Data.UserFullInfo
+      TD.Data.Usernames
       TD.Data.UserPrivacySetting
       TD.Data.UserPrivacySettingRule
       TD.Data.UserPrivacySettingRules
@@ -453,6 +458,7 @@ library
       TD.Query.CreateCall
       TD.Query.CreateChatFilter
       TD.Query.CreateChatInviteLink
+      TD.Query.CreateForumTopic
       TD.Query.CreateInvoiceLink
       TD.Query.CreateNewBasicGroupChat
       TD.Query.CreateNewSecretChat
@@ -474,6 +480,7 @@ library
       TD.Query.DeleteChatReplyMarkup
       TD.Query.DeleteCommands
       TD.Query.DeleteFile
+      TD.Query.DeleteForumTopic
       TD.Query.DeleteLanguagePack
       TD.Query.DeleteMessages
       TD.Query.DeletePassportElement
@@ -482,6 +489,7 @@ library
       TD.Query.DeleteSavedCredentials
       TD.Query.DeleteSavedOrderInfo
       TD.Query.Destroy
+      TD.Query.DisableAllSupergroupUsernames
       TD.Query.DisableProxy
       TD.Query.DiscardCall
       TD.Query.DisconnectAllWebsites
@@ -490,6 +498,7 @@ library
       TD.Query.EditChatFilter
       TD.Query.EditChatInviteLink
       TD.Query.EditCustomLanguagePackInfo
+      TD.Query.EditForumTopic
       TD.Query.EditInlineMessageCaption
       TD.Query.EditInlineMessageLiveLocation
       TD.Query.EditInlineMessageMedia
@@ -551,7 +560,7 @@ library
       TD.Query.GetChats
       TD.Query.GetChatScheduledMessages
       TD.Query.GetChatSparseMessagePositions
-      TD.Query.GetChatSponsoredMessage
+      TD.Query.GetChatSponsoredMessages
       TD.Query.GetChatStatistics
       TD.Query.GetCommands
       TD.Query.GetConnectedWebsites
@@ -574,6 +583,7 @@ library
       TD.Query.GetFileDownloadedPrefixSize
       TD.Query.GetFileExtension
       TD.Query.GetFileMimeType
+      TD.Query.GetForumTopicDefaultIcons
       TD.Query.GetGameHighScores
       TD.Query.GetGroupCall
       TD.Query.GetGroupCallInviteLink
@@ -708,6 +718,8 @@ library
       TD.Query.RateSpeechRecognition
       TD.Query.ReadAllChatMentions
       TD.Query.ReadAllChatReactions
+      TD.Query.ReadAllMessageThreadMentions
+      TD.Query.ReadAllMessageThreadReactions
       TD.Query.ReadFilePart
       TD.Query.RecognizeSpeech
       TD.Query.RecoverAuthenticationPassword
@@ -731,8 +743,10 @@ library
       TD.Query.RemoveSavedNotificationSound
       TD.Query.RemoveStickerFromSet
       TD.Query.RemoveTopChat
+      TD.Query.ReorderActiveUsernames
       TD.Query.ReorderChatFilters
       TD.Query.ReorderInstalledStickerSets
+      TD.Query.ReorderSupergroupActiveUsernames
       TD.Query.ReplacePrimaryChatInviteLink
       TD.Query.ReplaceVideoChatRtmpUrl
       TD.Query.ReportChat
@@ -888,6 +902,7 @@ library
       TD.Query.ToggleChatIsMarkedAsUnread
       TD.Query.ToggleChatIsPinned
       TD.Query.ToggleDownloadIsPaused
+      TD.Query.ToggleForumTopicIsClosed
       TD.Query.ToggleGroupCallEnabledStartNotification
       TD.Query.ToggleGroupCallIsMyVideoEnabled
       TD.Query.ToggleGroupCallIsMyVideoPaused
@@ -900,12 +915,16 @@ library
       TD.Query.ToggleSessionCanAcceptSecretChats
       TD.Query.ToggleSupergroupIsAllHistoryAvailable
       TD.Query.ToggleSupergroupIsBroadcastGroup
+      TD.Query.ToggleSupergroupIsForum
       TD.Query.ToggleSupergroupJoinByRequest
       TD.Query.ToggleSupergroupJoinToSendMessages
       TD.Query.ToggleSupergroupSignMessages
+      TD.Query.ToggleSupergroupUsernameIsActive
+      TD.Query.ToggleUsernameIsActive
       TD.Query.TransferChatOwnership
       TD.Query.TranslateText
       TD.Query.UnpinAllChatMessages
+      TD.Query.UnpinAllMessageThreadMessages
       TD.Query.UnpinChatMessage
       TD.Query.UpgradeBasicGroupChatToSupergroupChat
       TD.Query.UploadStickerFile

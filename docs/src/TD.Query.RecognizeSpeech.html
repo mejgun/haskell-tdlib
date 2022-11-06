@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message &quot;MSG_VOICE_TOO_LONG&quot; if the voice note is too long to be recognized</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message &quot;MSG_VOICE_TOO_LONG&quot; if media duration is too big to be recognized</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="RecognizeSpeech"><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-var">RecognizeSpeech</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="RecognizeSpeech"><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-var">RecognizeSpeech</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Identifier of the message</span><span>
 </span><span id="line-14"></span><span>    </span><span id="message_id"><span class="annot"><span class="annottext">RecognizeSpeech -&gt; Maybe Int
@@ -17,7 +17,7 @@
 </span><span id="line-16"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">RecognizeSpeech -&gt; Maybe Int
 </span><a href="TD.Query.RecognizeSpeech.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679397765"><span id="local-6989586621679397767"><span class="annot"><span class="annottext">RecognizeSpeech -&gt; RecognizeSpeech -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679404935"><span id="local-6989586621679404937"><span class="annot"><span class="annottext">RecognizeSpeech -&gt; RecognizeSpeech -&gt; Bool
 (RecognizeSpeech -&gt; RecognizeSpeech -&gt; Bool)
 -&gt; (RecognizeSpeech -&gt; RecognizeSpeech -&gt; Bool)
 -&gt; Eq RecognizeSpeech
@@ -28,16 +28,16 @@ $c/= :: RecognizeSpeech -&gt; RecognizeSpeech -&gt; Bool
 $c== :: RecognizeSpeech -&gt; RecognizeSpeech -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397759"><span id="local-6989586621679397762"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-type">RecognizeSpeech</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679397757"><span class="annot"><span class="annottext">show :: RecognizeSpeech -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404929"><span id="local-6989586621679404932"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-type">RecognizeSpeech</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679404927"><span class="annot"><span class="annottext">show :: RecognizeSpeech -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-type">RecognizeSpeech</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_id :: RecognizeSpeech -&gt; Maybe Int
-</span><a href="TD.Query.RecognizeSpeech.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397755"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397755"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.RecognizeSpeech.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404925"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404925"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: RecognizeSpeech -&gt; Maybe Int
-</span><a href="TD.Query.RecognizeSpeech.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397754"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397754"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.RecognizeSpeech.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404924"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404924"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;RecognizeSpeech&quot;</span></span><span>
@@ -49,24 +49,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397755"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404925"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397754"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679404924"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397745"><span id="local-6989586621679397747"><span id="local-6989586621679397749"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-type">RecognizeSpeech</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679397743"><span class="annot"><span class="annottext">toJSON :: RecognizeSpeech -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404915"><span id="local-6989586621679404917"><span id="local-6989586621679404919"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-type">RecognizeSpeech</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679404913"><span class="annot"><span class="annottext">toJSON :: RecognizeSpeech -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.RecognizeSpeech.html#RecognizeSpeech"><span class="hs-identifier hs-type">RecognizeSpeech</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_id :: RecognizeSpeech -&gt; Maybe Int
-</span><a href="TD.Query.RecognizeSpeech.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397741"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397741"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.RecognizeSpeech.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404911"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404911"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: RecognizeSpeech -&gt; Maybe Int
-</span><a href="TD.Query.RecognizeSpeech.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397740"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397740"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.RecognizeSpeech.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404910"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679404910"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397741"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679404911"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679397740"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679404910"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

@@ -52,6 +52,8 @@ data Message = -- | Describes a message
     date :: Maybe Int,
     -- | True, if the message contains an unread mention for the current user
     contains_unread_mention :: Maybe Bool,
+    -- | True, if the message is a forum topic message
+    is_topic_message :: Maybe Bool,
     -- | True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
     is_channel_post :: Maybe Bool,
     -- | True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
@@ -115,6 +117,7 @@ instance Show Message where
         edit_date = edit_date_,
         date = date_,
         contains_unread_mention = contains_unread_mention_,
+        is_topic_message = is_topic_message_,
         is_channel_post = is_channel_post_,
         has_timestamped_media = has_timestamped_media_,
         can_report_reactions = can_report_reactions_,
@@ -155,6 +158,7 @@ instance Show Message where
             U.p "edit_date" edit_date_,
             U.p "date" date_,
             U.p "contains_unread_mention" contains_unread_mention_,
+            U.p "is_topic_message" is_topic_message_,
             U.p "is_channel_post" is_channel_post_,
             U.p "has_timestamped_media" has_timestamped_media_,
             U.p "can_report_reactions" can_report_reactions_,
@@ -204,6 +208,7 @@ instance T.FromJSON Message where
         edit_date_ <- o A..:? "edit_date"
         date_ <- o A..:? "date"
         contains_unread_mention_ <- o A..:? "contains_unread_mention"
+        is_topic_message_ <- o A..:? "is_topic_message"
         is_channel_post_ <- o A..:? "is_channel_post"
         has_timestamped_media_ <- o A..:? "has_timestamped_media"
         can_report_reactions_ <- o A..:? "can_report_reactions"
@@ -224,7 +229,7 @@ instance T.FromJSON Message where
         chat_id_ <- o A..:? "chat_id"
         sender_id_ <- o A..:? "sender_id"
         _id_ <- o A..:? "id"
-        return $ Message {reply_markup = reply_markup_, content = content_, restriction_reason = restriction_reason_, media_album_id = media_album_id_, author_signature = author_signature_, via_bot_user_id = via_bot_user_id_, ttl_expires_in = ttl_expires_in_, ttl = ttl_, message_thread_id = message_thread_id_, reply_to_message_id = reply_to_message_id_, reply_in_chat_id = reply_in_chat_id_, unread_reactions = unread_reactions_, interaction_info = interaction_info_, forward_info = forward_info_, edit_date = edit_date_, date = date_, contains_unread_mention = contains_unread_mention_, is_channel_post = is_channel_post_, has_timestamped_media = has_timestamped_media_, can_report_reactions = can_report_reactions_, can_get_media_timestamp_links = can_get_media_timestamp_links_, can_get_viewers = can_get_viewers_, can_get_message_thread = can_get_message_thread_, can_get_statistics = can_get_statistics_, can_get_added_reactions = can_get_added_reactions_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, can_be_saved = can_be_saved_, can_be_forwarded = can_be_forwarded_, can_be_edited = can_be_edited_, is_pinned = is_pinned_, is_outgoing = is_outgoing_, scheduling_state = scheduling_state_, sending_state = sending_state_, chat_id = chat_id_, sender_id = sender_id_, _id = _id_}
+        return $ Message {reply_markup = reply_markup_, content = content_, restriction_reason = restriction_reason_, media_album_id = media_album_id_, author_signature = author_signature_, via_bot_user_id = via_bot_user_id_, ttl_expires_in = ttl_expires_in_, ttl = ttl_, message_thread_id = message_thread_id_, reply_to_message_id = reply_to_message_id_, reply_in_chat_id = reply_in_chat_id_, unread_reactions = unread_reactions_, interaction_info = interaction_info_, forward_info = forward_info_, edit_date = edit_date_, date = date_, contains_unread_mention = contains_unread_mention_, is_topic_message = is_topic_message_, is_channel_post = is_channel_post_, has_timestamped_media = has_timestamped_media_, can_report_reactions = can_report_reactions_, can_get_media_timestamp_links = can_get_media_timestamp_links_, can_get_viewers = can_get_viewers_, can_get_message_thread = can_get_message_thread_, can_get_statistics = can_get_statistics_, can_get_added_reactions = can_get_added_reactions_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, can_be_saved = can_be_saved_, can_be_forwarded = can_be_forwarded_, can_be_edited = can_be_edited_, is_pinned = is_pinned_, is_outgoing = is_outgoing_, scheduling_state = scheduling_state_, sending_state = sending_state_, chat_id = chat_id_, sender_id = sender_id_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Message where
@@ -247,6 +252,7 @@ instance T.ToJSON Message where
         edit_date = edit_date_,
         date = date_,
         contains_unread_mention = contains_unread_mention_,
+        is_topic_message = is_topic_message_,
         is_channel_post = is_channel_post_,
         has_timestamped_media = has_timestamped_media_,
         can_report_reactions = can_report_reactions_,
@@ -287,6 +293,7 @@ instance T.ToJSON Message where
           "edit_date" A..= edit_date_,
           "date" A..= date_,
           "contains_unread_mention" A..= contains_unread_mention_,
+          "is_topic_message" A..= is_topic_message_,
           "is_channel_post" A..= is_channel_post_,
           "has_timestamped_media" A..= has_timestamped_media_,
           "can_report_reactions" A..= can_report_reactions_,

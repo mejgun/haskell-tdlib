@@ -11,6 +11,7 @@ import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPhoto as ChatPhoto
+import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.Message as Message
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
@@ -155,12 +156,19 @@ data ChatEventAction
         -- |
         old_title :: Maybe String
       }
-  | -- | The chat username was changed @old_username Previous chat username @new_username New chat username
+  | -- | The chat editable username was changed @old_username Previous chat username @new_username New chat username
     ChatEventUsernameChanged
       { -- |
         new_username :: Maybe String,
         -- |
         old_username :: Maybe String
+      }
+  | -- | The chat active usernames were changed @old_usernames Previous list of active usernames @new_usernames New list of active usernames
+    ChatEventActiveUsernamesChanged
+      { -- |
+        new_usernames :: Maybe [String],
+        -- |
+        old_usernames :: Maybe [String]
       }
   | -- | The has_protected_content setting of a channel was toggled @has_protected_content New value of has_protected_content
     ChatEventHasProtectedContentToggled
@@ -227,6 +235,40 @@ data ChatEventAction
         volume_level :: Maybe Int,
         -- |
         participant_id :: Maybe MessageSender.MessageSender
+      }
+  | -- | The is_forum setting of a channel was toggled @is_forum New value of is_forum
+    ChatEventIsForumToggled
+      { -- |
+        is_forum :: Maybe Bool
+      }
+  | -- | A new forum topic was created @topic_info Information about the topic
+    ChatEventForumTopicCreated
+      { -- |
+        topic_info :: Maybe ForumTopicInfo.ForumTopicInfo
+      }
+  | -- | A forum topic was edited @old_topic_info Old information about the topic @new_topic_info New information about the topic
+    ChatEventForumTopicEdited
+      { -- |
+        new_topic_info :: Maybe ForumTopicInfo.ForumTopicInfo,
+        -- |
+        old_topic_info :: Maybe ForumTopicInfo.ForumTopicInfo
+      }
+  | -- | A forum topic was closed or reopened @topic_info New information about the topic
+    ChatEventForumTopicToggleIsClosed
+      { -- |
+        topic_info :: Maybe ForumTopicInfo.ForumTopicInfo
+      }
+  | -- | A forum topic was deleted @topic_info Information about the topic
+    ChatEventForumTopicDeleted
+      { -- |
+        topic_info :: Maybe ForumTopicInfo.ForumTopicInfo
+      }
+  | -- | A pinned forum topic was changed @old_topic_info Information about the old pinned topic; may be null @new_topic_info Information about the new pinned topic; may be null
+    ChatEventForumTopicPinned
+      { -- |
+        new_topic_info :: Maybe ForumTopicInfo.ForumTopicInfo,
+        -- |
+        old_topic_info :: Maybe ForumTopicInfo.ForumTopicInfo
       }
   deriving (Eq)
 
@@ -444,6 +486,16 @@ instance Show ChatEventAction where
             U.p "old_username" old_username_
           ]
   show
+    ChatEventActiveUsernamesChanged
+      { new_usernames = new_usernames_,
+        old_usernames = old_usernames_
+      } =
+      "ChatEventActiveUsernamesChanged"
+        ++ U.cc
+          [ U.p "new_usernames" new_usernames_,
+            U.p "old_usernames" old_usernames_
+          ]
+  show
     ChatEventHasProtectedContentToggled
       { has_protected_content = has_protected_content_
       } =
@@ -545,6 +597,58 @@ instance Show ChatEventAction where
           [ U.p "volume_level" volume_level_,
             U.p "participant_id" participant_id_
           ]
+  show
+    ChatEventIsForumToggled
+      { is_forum = is_forum_
+      } =
+      "ChatEventIsForumToggled"
+        ++ U.cc
+          [ U.p "is_forum" is_forum_
+          ]
+  show
+    ChatEventForumTopicCreated
+      { topic_info = topic_info_
+      } =
+      "ChatEventForumTopicCreated"
+        ++ U.cc
+          [ U.p "topic_info" topic_info_
+          ]
+  show
+    ChatEventForumTopicEdited
+      { new_topic_info = new_topic_info_,
+        old_topic_info = old_topic_info_
+      } =
+      "ChatEventForumTopicEdited"
+        ++ U.cc
+          [ U.p "new_topic_info" new_topic_info_,
+            U.p "old_topic_info" old_topic_info_
+          ]
+  show
+    ChatEventForumTopicToggleIsClosed
+      { topic_info = topic_info_
+      } =
+      "ChatEventForumTopicToggleIsClosed"
+        ++ U.cc
+          [ U.p "topic_info" topic_info_
+          ]
+  show
+    ChatEventForumTopicDeleted
+      { topic_info = topic_info_
+      } =
+      "ChatEventForumTopicDeleted"
+        ++ U.cc
+          [ U.p "topic_info" topic_info_
+          ]
+  show
+    ChatEventForumTopicPinned
+      { new_topic_info = new_topic_info_,
+        old_topic_info = old_topic_info_
+      } =
+      "ChatEventForumTopicPinned"
+        ++ U.cc
+          [ U.p "new_topic_info" new_topic_info_,
+            U.p "old_topic_info" old_topic_info_
+          ]
 
 instance T.FromJSON ChatEventAction where
   parseJSON v@(T.Object obj) = do
@@ -574,6 +678,7 @@ instance T.FromJSON ChatEventAction where
       "chatEventStickerSetChanged" -> parseChatEventStickerSetChanged v
       "chatEventTitleChanged" -> parseChatEventTitleChanged v
       "chatEventUsernameChanged" -> parseChatEventUsernameChanged v
+      "chatEventActiveUsernamesChanged" -> parseChatEventActiveUsernamesChanged v
       "chatEventHasProtectedContentToggled" -> parseChatEventHasProtectedContentToggled v
       "chatEventInvitesToggled" -> parseChatEventInvitesToggled v
       "chatEventIsAllHistoryAvailableToggled" -> parseChatEventIsAllHistoryAvailableToggled v
@@ -586,6 +691,12 @@ instance T.FromJSON ChatEventAction where
       "chatEventVideoChatMuteNewParticipantsToggled" -> parseChatEventVideoChatMuteNewParticipantsToggled v
       "chatEventVideoChatParticipantIsMutedToggled" -> parseChatEventVideoChatParticipantIsMutedToggled v
       "chatEventVideoChatParticipantVolumeLevelChanged" -> parseChatEventVideoChatParticipantVolumeLevelChanged v
+      "chatEventIsForumToggled" -> parseChatEventIsForumToggled v
+      "chatEventForumTopicCreated" -> parseChatEventForumTopicCreated v
+      "chatEventForumTopicEdited" -> parseChatEventForumTopicEdited v
+      "chatEventForumTopicToggleIsClosed" -> parseChatEventForumTopicToggleIsClosed v
+      "chatEventForumTopicDeleted" -> parseChatEventForumTopicDeleted v
+      "chatEventForumTopicPinned" -> parseChatEventForumTopicPinned v
       _ -> mempty
     where
       parseChatEventMessageEdited :: A.Value -> T.Parser ChatEventAction
@@ -717,6 +828,12 @@ instance T.FromJSON ChatEventAction where
         old_username_ <- o A..:? "old_username"
         return $ ChatEventUsernameChanged {new_username = new_username_, old_username = old_username_}
 
+      parseChatEventActiveUsernamesChanged :: A.Value -> T.Parser ChatEventAction
+      parseChatEventActiveUsernamesChanged = A.withObject "ChatEventActiveUsernamesChanged" $ \o -> do
+        new_usernames_ <- o A..:? "new_usernames"
+        old_usernames_ <- o A..:? "old_usernames"
+        return $ ChatEventActiveUsernamesChanged {new_usernames = new_usernames_, old_usernames = old_usernames_}
+
       parseChatEventHasProtectedContentToggled :: A.Value -> T.Parser ChatEventAction
       parseChatEventHasProtectedContentToggled = A.withObject "ChatEventHasProtectedContentToggled" $ \o -> do
         has_protected_content_ <- o A..:? "has_protected_content"
@@ -779,6 +896,38 @@ instance T.FromJSON ChatEventAction where
         volume_level_ <- o A..:? "volume_level"
         participant_id_ <- o A..:? "participant_id"
         return $ ChatEventVideoChatParticipantVolumeLevelChanged {volume_level = volume_level_, participant_id = participant_id_}
+
+      parseChatEventIsForumToggled :: A.Value -> T.Parser ChatEventAction
+      parseChatEventIsForumToggled = A.withObject "ChatEventIsForumToggled" $ \o -> do
+        is_forum_ <- o A..:? "is_forum"
+        return $ ChatEventIsForumToggled {is_forum = is_forum_}
+
+      parseChatEventForumTopicCreated :: A.Value -> T.Parser ChatEventAction
+      parseChatEventForumTopicCreated = A.withObject "ChatEventForumTopicCreated" $ \o -> do
+        topic_info_ <- o A..:? "topic_info"
+        return $ ChatEventForumTopicCreated {topic_info = topic_info_}
+
+      parseChatEventForumTopicEdited :: A.Value -> T.Parser ChatEventAction
+      parseChatEventForumTopicEdited = A.withObject "ChatEventForumTopicEdited" $ \o -> do
+        new_topic_info_ <- o A..:? "new_topic_info"
+        old_topic_info_ <- o A..:? "old_topic_info"
+        return $ ChatEventForumTopicEdited {new_topic_info = new_topic_info_, old_topic_info = old_topic_info_}
+
+      parseChatEventForumTopicToggleIsClosed :: A.Value -> T.Parser ChatEventAction
+      parseChatEventForumTopicToggleIsClosed = A.withObject "ChatEventForumTopicToggleIsClosed" $ \o -> do
+        topic_info_ <- o A..:? "topic_info"
+        return $ ChatEventForumTopicToggleIsClosed {topic_info = topic_info_}
+
+      parseChatEventForumTopicDeleted :: A.Value -> T.Parser ChatEventAction
+      parseChatEventForumTopicDeleted = A.withObject "ChatEventForumTopicDeleted" $ \o -> do
+        topic_info_ <- o A..:? "topic_info"
+        return $ ChatEventForumTopicDeleted {topic_info = topic_info_}
+
+      parseChatEventForumTopicPinned :: A.Value -> T.Parser ChatEventAction
+      parseChatEventForumTopicPinned = A.withObject "ChatEventForumTopicPinned" $ \o -> do
+        new_topic_info_ <- o A..:? "new_topic_info"
+        old_topic_info_ <- o A..:? "old_topic_info"
+        return $ ChatEventForumTopicPinned {new_topic_info = new_topic_info_, old_topic_info = old_topic_info_}
   parseJSON _ = mempty
 
 instance T.ToJSON ChatEventAction where
@@ -995,6 +1144,16 @@ instance T.ToJSON ChatEventAction where
           "old_username" A..= old_username_
         ]
   toJSON
+    ChatEventActiveUsernamesChanged
+      { new_usernames = new_usernames_,
+        old_usernames = old_usernames_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventActiveUsernamesChanged",
+          "new_usernames" A..= new_usernames_,
+          "old_usernames" A..= old_usernames_
+        ]
+  toJSON
     ChatEventHasProtectedContentToggled
       { has_protected_content = has_protected_content_
       } =
@@ -1095,4 +1254,56 @@ instance T.ToJSON ChatEventAction where
         [ "@type" A..= T.String "chatEventVideoChatParticipantVolumeLevelChanged",
           "volume_level" A..= volume_level_,
           "participant_id" A..= participant_id_
+        ]
+  toJSON
+    ChatEventIsForumToggled
+      { is_forum = is_forum_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventIsForumToggled",
+          "is_forum" A..= is_forum_
+        ]
+  toJSON
+    ChatEventForumTopicCreated
+      { topic_info = topic_info_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventForumTopicCreated",
+          "topic_info" A..= topic_info_
+        ]
+  toJSON
+    ChatEventForumTopicEdited
+      { new_topic_info = new_topic_info_,
+        old_topic_info = old_topic_info_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventForumTopicEdited",
+          "new_topic_info" A..= new_topic_info_,
+          "old_topic_info" A..= old_topic_info_
+        ]
+  toJSON
+    ChatEventForumTopicToggleIsClosed
+      { topic_info = topic_info_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventForumTopicToggleIsClosed",
+          "topic_info" A..= topic_info_
+        ]
+  toJSON
+    ChatEventForumTopicDeleted
+      { topic_info = topic_info_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventForumTopicDeleted",
+          "topic_info" A..= topic_info_
+        ]
+  toJSON
+    ChatEventForumTopicPinned
+      { new_topic_info = new_topic_info_,
+        old_topic_info = old_topic_info_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventForumTopicPinned",
+          "new_topic_info" A..= new_topic_info_,
+          "old_topic_info" A..= old_topic_info_
         ]

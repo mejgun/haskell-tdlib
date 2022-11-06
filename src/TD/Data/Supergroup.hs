@@ -6,6 +6,7 @@ module TD.Data.Supergroup where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
+import qualified TD.Data.Usernames as Usernames
 import qualified Utils as U
 
 -- |
@@ -19,6 +20,8 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
     restriction_reason :: Maybe String,
     -- | True, if the supergroup or channel is verified
     is_verified :: Maybe Bool,
+    -- | True, if the supergroup must be shown as a forum by default
+    is_forum :: Maybe Bool,
     -- | True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
     is_broadcast_group :: Maybe Bool,
     -- | True, if the supergroup is a channel
@@ -41,8 +44,8 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
     status :: Maybe ChatMemberStatus.ChatMemberStatus,
     -- | Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
     date :: Maybe Int,
-    -- | Username of the supergroup or channel; empty for private supergroups or channels
-    username :: Maybe String,
+    -- | Usernames of the supergroup or channel; may be null
+    usernames :: Maybe Usernames.Usernames,
     -- | Supergroup or channel identifier
     _id :: Maybe Int
   }
@@ -55,6 +58,7 @@ instance Show Supergroup where
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
         is_verified = is_verified_,
+        is_forum = is_forum_,
         is_broadcast_group = is_broadcast_group_,
         is_channel = is_channel_,
         is_slow_mode_enabled = is_slow_mode_enabled_,
@@ -66,7 +70,7 @@ instance Show Supergroup where
         member_count = member_count_,
         status = status_,
         date = date_,
-        username = username_,
+        usernames = usernames_,
         _id = _id_
       } =
       "Supergroup"
@@ -75,6 +79,7 @@ instance Show Supergroup where
             U.p "is_scam" is_scam_,
             U.p "restriction_reason" restriction_reason_,
             U.p "is_verified" is_verified_,
+            U.p "is_forum" is_forum_,
             U.p "is_broadcast_group" is_broadcast_group_,
             U.p "is_channel" is_channel_,
             U.p "is_slow_mode_enabled" is_slow_mode_enabled_,
@@ -86,7 +91,7 @@ instance Show Supergroup where
             U.p "member_count" member_count_,
             U.p "status" status_,
             U.p "date" date_,
-            U.p "username" username_,
+            U.p "usernames" usernames_,
             U.p "_id" _id_
           ]
 
@@ -104,6 +109,7 @@ instance T.FromJSON Supergroup where
         is_scam_ <- o A..:? "is_scam"
         restriction_reason_ <- o A..:? "restriction_reason"
         is_verified_ <- o A..:? "is_verified"
+        is_forum_ <- o A..:? "is_forum"
         is_broadcast_group_ <- o A..:? "is_broadcast_group"
         is_channel_ <- o A..:? "is_channel"
         is_slow_mode_enabled_ <- o A..:? "is_slow_mode_enabled"
@@ -115,9 +121,9 @@ instance T.FromJSON Supergroup where
         member_count_ <- o A..:? "member_count"
         status_ <- o A..:? "status"
         date_ <- o A..:? "date"
-        username_ <- o A..:? "username"
+        usernames_ <- o A..:? "usernames"
         _id_ <- o A..:? "id"
-        return $ Supergroup {is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_verified = is_verified_, is_broadcast_group = is_broadcast_group_, is_channel = is_channel_, is_slow_mode_enabled = is_slow_mode_enabled_, join_by_request = join_by_request_, join_to_send_messages = join_to_send_messages_, sign_messages = sign_messages_, has_location = has_location_, has_linked_chat = has_linked_chat_, member_count = member_count_, status = status_, date = date_, username = username_, _id = _id_}
+        return $ Supergroup {is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_verified = is_verified_, is_forum = is_forum_, is_broadcast_group = is_broadcast_group_, is_channel = is_channel_, is_slow_mode_enabled = is_slow_mode_enabled_, join_by_request = join_by_request_, join_to_send_messages = join_to_send_messages_, sign_messages = sign_messages_, has_location = has_location_, has_linked_chat = has_linked_chat_, member_count = member_count_, status = status_, date = date_, usernames = usernames_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Supergroup where
@@ -127,6 +133,7 @@ instance T.ToJSON Supergroup where
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
         is_verified = is_verified_,
+        is_forum = is_forum_,
         is_broadcast_group = is_broadcast_group_,
         is_channel = is_channel_,
         is_slow_mode_enabled = is_slow_mode_enabled_,
@@ -138,7 +145,7 @@ instance T.ToJSON Supergroup where
         member_count = member_count_,
         status = status_,
         date = date_,
-        username = username_,
+        usernames = usernames_,
         _id = _id_
       } =
       A.object
@@ -147,6 +154,7 @@ instance T.ToJSON Supergroup where
           "is_scam" A..= is_scam_,
           "restriction_reason" A..= restriction_reason_,
           "is_verified" A..= is_verified_,
+          "is_forum" A..= is_forum_,
           "is_broadcast_group" A..= is_broadcast_group_,
           "is_channel" A..= is_channel_,
           "is_slow_mode_enabled" A..= is_slow_mode_enabled_,
@@ -158,6 +166,6 @@ instance T.ToJSON Supergroup where
           "member_count" A..= member_count_,
           "status" A..= status_,
           "date" A..= date_,
-          "username" A..= username_,
+          "usernames" A..= usernames_,
           "id" A..= _id_
         ]

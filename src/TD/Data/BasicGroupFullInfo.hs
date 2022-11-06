@@ -24,7 +24,7 @@ data BasicGroupFullInfo = -- | Contains full information about a basic group
     creator_user_id :: Maybe Int,
     -- |
     description :: Maybe String,
-    -- | Chat photo; may be null
+    -- | Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
     photo :: Maybe ChatPhoto.ChatPhoto
   }
   deriving (Eq)

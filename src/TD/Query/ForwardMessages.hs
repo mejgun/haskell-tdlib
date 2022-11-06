@@ -23,6 +23,8 @@ data ForwardMessages = ForwardMessages
     message_ids :: Maybe [Int],
     -- | Identifier of the chat from which to forward messages
     from_chat_id :: Maybe Int,
+    -- | If not 0, a message thread identifier in which the message will be sent; for forum threads only
+    message_thread_id :: Maybe Int,
     -- | Identifier of the chat to which to forward messages
     chat_id :: Maybe Int
   }
@@ -37,6 +39,7 @@ instance Show ForwardMessages where
         options = options_,
         message_ids = message_ids_,
         from_chat_id = from_chat_id_,
+        message_thread_id = message_thread_id_,
         chat_id = chat_id_
       } =
       "ForwardMessages"
@@ -47,6 +50,7 @@ instance Show ForwardMessages where
             U.p "options" options_,
             U.p "message_ids" message_ids_,
             U.p "from_chat_id" from_chat_id_,
+            U.p "message_thread_id" message_thread_id_,
             U.p "chat_id" chat_id_
           ]
 
@@ -59,6 +63,7 @@ instance T.ToJSON ForwardMessages where
         options = options_,
         message_ids = message_ids_,
         from_chat_id = from_chat_id_,
+        message_thread_id = message_thread_id_,
         chat_id = chat_id_
       } =
       A.object
@@ -69,5 +74,6 @@ instance T.ToJSON ForwardMessages where
           "options" A..= options_,
           "message_ids" A..= message_ids_,
           "from_chat_id" A..= from_chat_id_,
+          "message_thread_id" A..= message_thread_id_,
           "chat_id" A..= chat_id_
         ]

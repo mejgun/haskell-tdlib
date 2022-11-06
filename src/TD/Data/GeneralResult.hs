@@ -133,6 +133,9 @@ import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
 import qualified TD.Data.FilePart as FilePart
 import qualified TD.Data.FileType as FileType
 import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.ForumTopic as ForumTopic
+import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
+import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.Game as Game
@@ -296,6 +299,7 @@ import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.ShippingOption as ShippingOption
 import qualified TD.Data.SpeechRecognitionResult as SpeechRecognitionResult
 import qualified TD.Data.SponsoredMessage as SponsoredMessage
+import qualified TD.Data.SponsoredMessages as SponsoredMessages
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.StatisticalValue as StatisticalValue
 import qualified TD.Data.Sticker as Sticker
@@ -349,6 +353,7 @@ import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.UserSupportInfo as UserSupportInfo
 import qualified TD.Data.UserType as UserType
+import qualified TD.Data.Usernames as Usernames
 import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
 import qualified TD.Data.VectorPathCommand as VectorPathCommand
@@ -421,6 +426,7 @@ data GeneralResult
   | PremiumPaymentOption PremiumPaymentOption.PremiumPaymentOption
   | EmojiStatus EmojiStatus.EmojiStatus
   | EmojiStatuses EmojiStatuses.EmojiStatuses
+  | Usernames Usernames.Usernames
   | User User.User
   | BotInfo BotInfo.BotInfo
   | UserFullInfo UserFullInfo.UserFullInfo
@@ -468,6 +474,7 @@ data GeneralResult
   | MessageCalendarDay MessageCalendarDay.MessageCalendarDay
   | MessageCalendar MessageCalendar.MessageCalendar
   | SponsoredMessage SponsoredMessage.SponsoredMessage
+  | SponsoredMessages SponsoredMessages.SponsoredMessages
   | FileDownload FileDownload.FileDownload
   | DownloadedFileCounts DownloadedFileCounts.DownloadedFileCounts
   | FoundFileDownloads FoundFileDownloads.FoundFileDownloads
@@ -500,6 +507,9 @@ data GeneralResult
   | LoginUrlInfo LoginUrlInfo.LoginUrlInfo
   | WebAppInfo WebAppInfo.WebAppInfo
   | MessageThreadInfo MessageThreadInfo.MessageThreadInfo
+  | ForumTopicIcon ForumTopicIcon.ForumTopicIcon
+  | ForumTopicInfo ForumTopicInfo.ForumTopicInfo
+  | ForumTopic ForumTopic.ForumTopic
   | RichText RichText.RichText
   | PageBlockCaption PageBlockCaption.PageBlockCaption
   | PageBlockListItem PageBlockListItem.PageBlockListItem
@@ -915,6 +925,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result EmojiStatuses.EmojiStatuses) of
             T.Success a -> return $ EmojiStatuses a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result Usernames.Usernames) of
+            T.Success a -> return $ Usernames a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result User.User) of
             T.Success a -> return $ User a
             _ -> mempty,
@@ -1056,6 +1069,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result SponsoredMessage.SponsoredMessage) of
             T.Success a -> return $ SponsoredMessage a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result SponsoredMessages.SponsoredMessages) of
+            T.Success a -> return $ SponsoredMessages a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result FileDownload.FileDownload) of
             T.Success a -> return $ FileDownload a
             _ -> mempty,
@@ -1151,6 +1167,15 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result MessageThreadInfo.MessageThreadInfo) of
             T.Success a -> return $ MessageThreadInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ForumTopicIcon.ForumTopicIcon) of
+            T.Success a -> return $ ForumTopicIcon a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ForumTopicInfo.ForumTopicInfo) of
+            T.Success a -> return $ ForumTopicInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ForumTopic.ForumTopic) of
+            T.Success a -> return $ ForumTopic a
             _ -> mempty,
           case (T.fromJSON v :: T.Result RichText.RichText) of
             T.Success a -> return $ RichText a

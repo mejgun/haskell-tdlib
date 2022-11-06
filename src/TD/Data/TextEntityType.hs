@@ -9,7 +9,7 @@ import qualified Utils as U
 
 -- | Represents a part of the text which must be formatted differently
 data TextEntityType
-  = -- | A mention of a user by their username
+  = -- | A mention of a user, a supergroup, or a channel by their username
     TextEntityTypeMention
   | -- | A hashtag text, beginning with "#"
     TextEntityTypeHashtag

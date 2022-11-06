@@ -35,6 +35,7 @@ import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.DraftMessage as DraftMessage
 import qualified TD.Data.File as File
 import qualified TD.Data.FileDownload as FileDownload
+import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallParticipant as GroupCallParticipant
 import qualified TD.Data.LanguagePackString as LanguagePackString
@@ -370,6 +371,13 @@ data Update
     UpdateChatOnlineMemberCount
       { -- |
         online_member_count :: Maybe Int,
+        -- |
+        chat_id :: Maybe Int
+      }
+  | -- | Basic information about a topic in a forum chat was changed @chat_id Chat identifier @info New information about the topic
+    UpdateForumTopicInfo
+      { -- |
+        info :: Maybe ForumTopicInfo.ForumTopicInfo,
         -- |
         chat_id :: Maybe Int
       }
@@ -1299,6 +1307,16 @@ instance Show Update where
             U.p "chat_id" chat_id_
           ]
   show
+    UpdateForumTopicInfo
+      { info = info_,
+        chat_id = chat_id_
+      } =
+      "UpdateForumTopicInfo"
+        ++ U.cc
+          [ U.p "info" info_,
+            U.p "chat_id" chat_id_
+          ]
+  show
     UpdateScopeNotificationSettings
       { _notification_settings = _notification_settings_,
         scope = scope_
@@ -2038,6 +2056,7 @@ instance T.FromJSON Update where
       "updateChatIsMarkedAsUnread" -> parseUpdateChatIsMarkedAsUnread v
       "updateChatFilters" -> parseUpdateChatFilters v
       "updateChatOnlineMemberCount" -> parseUpdateChatOnlineMemberCount v
+      "updateForumTopicInfo" -> parseUpdateForumTopicInfo v
       "updateScopeNotificationSettings" -> parseUpdateScopeNotificationSettings v
       "updateNotification" -> parseUpdateNotification v
       "updateNotificationGroup" -> parseUpdateNotificationGroup v
@@ -2353,6 +2372,12 @@ instance T.FromJSON Update where
         online_member_count_ <- o A..:? "online_member_count"
         chat_id_ <- o A..:? "chat_id"
         return $ UpdateChatOnlineMemberCount {online_member_count = online_member_count_, chat_id = chat_id_}
+
+      parseUpdateForumTopicInfo :: A.Value -> T.Parser Update
+      parseUpdateForumTopicInfo = A.withObject "UpdateForumTopicInfo" $ \o -> do
+        info_ <- o A..:? "info"
+        chat_id_ <- o A..:? "chat_id"
+        return $ UpdateForumTopicInfo {info = info_, chat_id = chat_id_}
 
       parseUpdateScopeNotificationSettings :: A.Value -> T.Parser Update
       parseUpdateScopeNotificationSettings = A.withObject "UpdateScopeNotificationSettings" $ \o -> do
@@ -3185,6 +3210,16 @@ instance T.ToJSON Update where
       A.object
         [ "@type" A..= T.String "updateChatOnlineMemberCount",
           "online_member_count" A..= online_member_count_,
+          "chat_id" A..= chat_id_
+        ]
+  toJSON
+    UpdateForumTopicInfo
+      { info = info_,
+        chat_id = chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateForumTopicInfo",
+          "info" A..= info_,
           "chat_id" A..= chat_id_
         ]
   toJSON

@@ -19,7 +19,7 @@ data MessageThreadInfo = -- | Contains information about a message thread
     messages :: Maybe [Message.Message],
     -- | Approximate number of unread messages in the message thread
     unread_message_count :: Maybe Int,
-    -- | Information about the message thread
+    -- | Information about the message thread; may be null for forum topic threads
     reply_info :: Maybe MessageReplyInfo.MessageReplyInfo,
     -- | Message thread identifier, unique within the chat
     message_thread_id :: Maybe Int,

@@ -9,7 +9,7 @@ import qualified Utils as U
 
 -- | Describes a type of public chats
 data PublicChatType
-  = -- | The chat is public, because it has username
+  = -- | The chat is public, because it has an active username
     PublicChatTypeHasUsername
   | -- | The chat is public, because it is a location-based supergroup
     PublicChatTypeIsLocationBased

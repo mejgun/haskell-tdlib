@@ -9,7 +9,7 @@ import qualified TD.Data.ChatMembersFilter as ChatMembersFilter
 import qualified Utils as U
 
 -- |
--- Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels
+-- Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
 data SearchChatMembers = SearchChatMembers
   { -- | The type of users to search for; pass null to search among all chat members
     _filter :: Maybe ChatMembersFilter.ChatMembersFilter,

@@ -132,7 +132,7 @@ data InputMessageContent
         -- |
         video_note :: Maybe InputFile.InputFile
       }
-  | -- | A voice note message @voice_note Voice note to be sent @duration Duration of the voice note, in seconds @waveform Waveform representation of the voice note, in 5-bit format @caption Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+  | -- | A voice note message @voice_note Voice note to be sent @duration Duration of the voice note, in seconds @waveform Waveform representation of the voice note in 5-bit format @caption Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     InputMessageVoiceNote
       { -- |
         caption :: Maybe FormattedText.FormattedText,

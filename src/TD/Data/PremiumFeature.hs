@@ -33,6 +33,8 @@ data PremiumFeature
     PremiumFeatureEmojiStatus
   | -- | Profile photo animation on message and chat screens
     PremiumFeatureAnimatedProfilePhoto
+  | -- | The ability to set a custom emoji as a forum topic icon
+    PremiumFeatureForumTopicIcon
   | -- | Allowed to set a premium appllication icons
     PremiumFeatureAppIcons
   deriving (Eq)
@@ -86,6 +88,10 @@ instance Show PremiumFeature where
     "PremiumFeatureAnimatedProfilePhoto"
       ++ U.cc
         []
+  show PremiumFeatureForumTopicIcon =
+    "PremiumFeatureForumTopicIcon"
+      ++ U.cc
+        []
   show PremiumFeatureAppIcons =
     "PremiumFeatureAppIcons"
       ++ U.cc
@@ -108,6 +114,7 @@ instance T.FromJSON PremiumFeature where
       "premiumFeatureProfileBadge" -> parsePremiumFeatureProfileBadge v
       "premiumFeatureEmojiStatus" -> parsePremiumFeatureEmojiStatus v
       "premiumFeatureAnimatedProfilePhoto" -> parsePremiumFeatureAnimatedProfilePhoto v
+      "premiumFeatureForumTopicIcon" -> parsePremiumFeatureForumTopicIcon v
       "premiumFeatureAppIcons" -> parsePremiumFeatureAppIcons v
       _ -> mempty
     where
@@ -146,6 +153,9 @@ instance T.FromJSON PremiumFeature where
 
       parsePremiumFeatureAnimatedProfilePhoto :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureAnimatedProfilePhoto = A.withObject "PremiumFeatureAnimatedProfilePhoto" $ \_ -> return PremiumFeatureAnimatedProfilePhoto
+
+      parsePremiumFeatureForumTopicIcon :: A.Value -> T.Parser PremiumFeature
+      parsePremiumFeatureForumTopicIcon = A.withObject "PremiumFeatureForumTopicIcon" $ \_ -> return PremiumFeatureForumTopicIcon
 
       parsePremiumFeatureAppIcons :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureAppIcons = A.withObject "PremiumFeatureAppIcons" $ \_ -> return PremiumFeatureAppIcons
@@ -199,6 +209,10 @@ instance T.ToJSON PremiumFeature where
   toJSON PremiumFeatureAnimatedProfilePhoto =
     A.object
       [ "@type" A..= T.String "premiumFeatureAnimatedProfilePhoto"
+      ]
+  toJSON PremiumFeatureForumTopicIcon =
+    A.object
+      [ "@type" A..= T.String "premiumFeatureForumTopicIcon"
       ]
   toJSON PremiumFeatureAppIcons =
     A.object

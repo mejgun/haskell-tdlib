@@ -18,7 +18,7 @@
 </span><span id="line-17"></span><span>    </span><span id="sender"><span class="annot"><span class="annottext">ChatMessageSender -&gt; Maybe MessageSender
 </span><a href="TD.Data.ChatMessageSender.html#sender"><span class="hs-identifier hs-var hs-var">sender</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSender.html#MessageSender"><span class="hs-identifier hs-type">MessageSender.MessageSender</span></a></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679438787"><span id="local-6989586621679438789"><span class="annot"><span class="annottext">ChatMessageSender -&gt; ChatMessageSender -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446615"><span id="local-6989586621679446617"><span class="annot"><span class="annottext">ChatMessageSender -&gt; ChatMessageSender -&gt; Bool
 (ChatMessageSender -&gt; ChatMessageSender -&gt; Bool)
 -&gt; (ChatMessageSender -&gt; ChatMessageSender -&gt; Bool)
 -&gt; Eq ChatMessageSender
@@ -29,16 +29,16 @@ $c/= :: ChatMessageSender -&gt; ChatMessageSender -&gt; Bool
 $c== :: ChatMessageSender -&gt; ChatMessageSender -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438781"><span id="local-6989586621679438784"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679438779"><span class="annot"><span class="annottext">show :: ChatMessageSender -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446609"><span id="local-6989586621679446612"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679446607"><span class="annot"><span class="annottext">show :: ChatMessageSender -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">needs_premium :: ChatMessageSender -&gt; Maybe Bool
-</span><a href="TD.Data.ChatMessageSender.html#needs_premium"><span class="hs-identifier hs-var">needs_premium</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438777"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438777"><span class="hs-identifier hs-var">needs_premium_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatMessageSender.html#needs_premium"><span class="hs-identifier hs-var">needs_premium</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446605"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679446605"><span class="hs-identifier hs-var">needs_premium_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">sender :: ChatMessageSender -&gt; Maybe MessageSender
-</span><a href="TD.Data.ChatMessageSender.html#sender"><span class="hs-identifier hs-var">sender</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438776"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679438776"><span class="hs-identifier hs-var">sender_</span></a></span></span><span>
+</span><a href="TD.Data.ChatMessageSender.html#sender"><span class="hs-identifier hs-var">sender</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446604"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679446604"><span class="hs-identifier hs-var">sender_</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChatMessageSender&quot;</span></span><span>
@@ -50,40 +50,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;needs_premium&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438777"><span class="hs-identifier hs-var">needs_premium_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446605"><span class="hs-identifier hs-var">needs_premium_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSender -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sender&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679438776"><span class="hs-identifier hs-var">sender_</span></a></span><span>
+</span><a href="#local-6989586621679446604"><span class="hs-identifier hs-var">sender_</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438771"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679438769"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatMessageSender
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679438767"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679438767"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679438765"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438765"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679438764"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438764"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438765"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446599"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679446597"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatMessageSender
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446595"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679446595"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446593"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446593"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679446592"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679446592"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446593"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-36"></span><span>
 </span><span id="line-37"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438764"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679446592"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chatMessageSender&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatMessageSender
-</span><a href="#local-6989586621679438762"><span class="hs-identifier hs-var">parseChatMessageSender</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679438767"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679446590"><span class="hs-identifier hs-var">parseChatMessageSender</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446595"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatMessageSender
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-40"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>      </span><span class="annot"><a href="#local-6989586621679438762"><span class="hs-identifier hs-type">parseChatMessageSender</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span><span>
-</span><span id="line-42"></span><span>      </span><span id="local-6989586621679438762"><span class="annot"><span class="annottext">parseChatMessageSender :: Value -&gt; Parser ChatMessageSender
-</span><a href="#local-6989586621679438762"><span class="hs-identifier hs-var hs-var">parseChatMessageSender</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-41"></span><span>      </span><span class="annot"><a href="#local-6989586621679446590"><span class="hs-identifier hs-type">parseChatMessageSender</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span><span>
+</span><span id="line-42"></span><span>      </span><span id="local-6989586621679446590"><span class="annot"><span class="annottext">parseChatMessageSender :: Value -&gt; Parser ChatMessageSender
+</span><a href="#local-6989586621679446590"><span class="hs-identifier hs-var hs-var">parseChatMessageSender</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatMessageSender)
 -&gt; Value
 -&gt; Parser ChatMessageSender
@@ -95,17 +95,17 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatMessageSender
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438760"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438760"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>        </span><span id="local-6989586621679438759"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438759"><span class="hs-identifier hs-var">needs_premium_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438760"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446588"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446588"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>        </span><span id="local-6989586621679446587"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679446587"><span class="hs-identifier hs-var">needs_premium_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446588"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;needs_premium&quot;</span></span><span>
-</span><span id="line-44"></span><span>        </span><span id="local-6989586621679438757"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679438757"><span class="hs-identifier hs-var">sender_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438760"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageSender)
+</span><span id="line-44"></span><span>        </span><span id="local-6989586621679446585"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679446585"><span class="hs-identifier hs-var">sender_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446588"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageSender)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sender&quot;</span></span><span>
@@ -117,24 +117,24 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatMessageSender :: Maybe Bool -&gt; Maybe MessageSender -&gt; ChatMessageSender
 </span><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">needs_premium :: Maybe Bool
 </span><a href="TD.Data.ChatMessageSender.html#needs_premium"><span class="hs-identifier hs-var">needs_premium</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438759"><span class="hs-identifier hs-var">needs_premium_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sender :: Maybe MessageSender
+</span><a href="#local-6989586621679446587"><span class="hs-identifier hs-var">needs_premium_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sender :: Maybe MessageSender
 </span><a href="TD.Data.ChatMessageSender.html#sender"><span class="hs-identifier hs-var">sender</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679438757"><span class="hs-identifier hs-var">sender_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679446585"><span class="hs-identifier hs-var">sender_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-46"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ChatMessageSender
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438750"><span id="local-6989586621679438752"><span id="local-6989586621679438754"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>  </span><span id="local-6989586621679438748"><span class="annot"><span class="annottext">toJSON :: ChatMessageSender -&gt; Value
+</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446578"><span id="local-6989586621679446580"><span id="local-6989586621679446582"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-49"></span><span>  </span><span id="local-6989586621679446576"><span class="annot"><span class="annottext">toJSON :: ChatMessageSender -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-50"></span><span>    </span><span class="annot"><a href="TD.Data.ChatMessageSender.html#ChatMessageSender"><span class="hs-identifier hs-type">ChatMessageSender</span></a></span><span>
 </span><span id="line-51"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">needs_premium :: ChatMessageSender -&gt; Maybe Bool
-</span><a href="TD.Data.ChatMessageSender.html#needs_premium"><span class="hs-identifier hs-var">needs_premium</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438746"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438746"><span class="hs-identifier hs-var">needs_premium_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatMessageSender.html#needs_premium"><span class="hs-identifier hs-var">needs_premium</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446574"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679446574"><span class="hs-identifier hs-var">needs_premium_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>        </span><span class="annot"><span class="annottext">sender :: ChatMessageSender -&gt; Maybe MessageSender
-</span><a href="TD.Data.ChatMessageSender.html#sender"><span class="hs-identifier hs-var">sender</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438745"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679438745"><span class="hs-identifier hs-var">sender_</span></a></span></span><span>
+</span><a href="TD.Data.ChatMessageSender.html#sender"><span class="hs-identifier hs-var">sender</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446573"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679446573"><span class="hs-identifier hs-var">sender_</span></a></span></span><span>
 </span><span id="line-53"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-54"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -148,11 +148,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;needs_premium&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438746"><span class="hs-identifier hs-var">needs_premium_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446574"><span class="hs-identifier hs-var">needs_premium_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sender&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSender -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679438745"><span class="hs-identifier hs-var">sender_</span></a></span><span>
+</span><a href="#local-6989586621679446573"><span class="hs-identifier hs-var">sender_</span></a></span><span>
 </span><span id="line-58"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-59"></span></pre></body></html>

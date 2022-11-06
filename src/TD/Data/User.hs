@@ -9,6 +9,7 @@ import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.UserType as UserType
+import qualified TD.Data.Usernames as Usernames
 import qualified Utils as U
 
 -- |
@@ -46,8 +47,8 @@ data User = -- | Represents a user
     status :: Maybe UserStatus.UserStatus,
     -- | Phone number of the user
     phone_number :: Maybe String,
-    -- | Username of the user
-    username :: Maybe String,
+    -- | Usernames of the user; may be null
+    usernames :: Maybe Usernames.Usernames,
     -- | Last name of the user
     last_name :: Maybe String,
     -- | First name of the user
@@ -76,7 +77,7 @@ instance Show User where
         profile_photo = profile_photo_,
         status = status_,
         phone_number = phone_number_,
-        username = username_,
+        usernames = usernames_,
         last_name = last_name_,
         first_name = first_name_,
         _id = _id_
@@ -99,7 +100,7 @@ instance Show User where
             U.p "profile_photo" profile_photo_,
             U.p "status" status_,
             U.p "phone_number" phone_number_,
-            U.p "username" username_,
+            U.p "usernames" usernames_,
             U.p "last_name" last_name_,
             U.p "first_name" first_name_,
             U.p "_id" _id_
@@ -131,11 +132,11 @@ instance T.FromJSON User where
         profile_photo_ <- o A..:? "profile_photo"
         status_ <- o A..:? "status"
         phone_number_ <- o A..:? "phone_number"
-        username_ <- o A..:? "username"
+        usernames_ <- o A..:? "usernames"
         last_name_ <- o A..:? "last_name"
         first_name_ <- o A..:? "first_name"
         _id_ <- o A..:? "id"
-        return $ User {added_to_attachment_menu = added_to_attachment_menu_, language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_premium = is_premium_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, emoji_status = emoji_status_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, username = username_, last_name = last_name_, first_name = first_name_, _id = _id_}
+        return $ User {added_to_attachment_menu = added_to_attachment_menu_, language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_premium = is_premium_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, emoji_status = emoji_status_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, usernames = usernames_, last_name = last_name_, first_name = first_name_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON User where
@@ -157,7 +158,7 @@ instance T.ToJSON User where
         profile_photo = profile_photo_,
         status = status_,
         phone_number = phone_number_,
-        username = username_,
+        usernames = usernames_,
         last_name = last_name_,
         first_name = first_name_,
         _id = _id_
@@ -180,7 +181,7 @@ instance T.ToJSON User where
           "profile_photo" A..= profile_photo_,
           "status" A..= status_,
           "phone_number" A..= phone_number_,
-          "username" A..= username_,
+          "usernames" A..= usernames_,
           "last_name" A..= last_name_,
           "first_name" A..= first_name_,
           "id" A..= _id_

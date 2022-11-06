@@ -36,7 +36,7 @@ data UserFullInfo = -- | Contains full information about a user
     can_be_called :: Maybe Bool,
     -- | True, if the user is blocked by the current user
     is_blocked :: Maybe Bool,
-    -- | User profile photo; may be null
+    -- | User profile photo; may be null if empty or unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo
     photo :: Maybe ChatPhoto.ChatPhoto
   }
   deriving (Eq)

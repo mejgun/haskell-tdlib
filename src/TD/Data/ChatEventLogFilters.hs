@@ -10,7 +10,9 @@ import qualified Utils as U
 -- |
 data ChatEventLogFilters = -- | Represents a set of filters used to obtain a chat event log
   ChatEventLogFilters
-  { -- | True, if video chat actions need to be returned
+  { -- | True, if forum-related actions need to be returned
+    forum_changes :: Maybe Bool,
+    -- | True, if video chat actions need to be returned
     video_chat_changes :: Maybe Bool,
     -- | True, if changes to invite links need to be returned
     invite_link_changes :: Maybe Bool,
@@ -40,7 +42,8 @@ data ChatEventLogFilters = -- | Represents a set of filters used to obtain a cha
 instance Show ChatEventLogFilters where
   show
     ChatEventLogFilters
-      { video_chat_changes = video_chat_changes_,
+      { forum_changes = forum_changes_,
+        video_chat_changes = video_chat_changes_,
         invite_link_changes = invite_link_changes_,
         setting_changes = setting_changes_,
         info_changes = info_changes_,
@@ -55,7 +58,8 @@ instance Show ChatEventLogFilters where
       } =
       "ChatEventLogFilters"
         ++ U.cc
-          [ U.p "video_chat_changes" video_chat_changes_,
+          [ U.p "forum_changes" forum_changes_,
+            U.p "video_chat_changes" video_chat_changes_,
             U.p "invite_link_changes" invite_link_changes_,
             U.p "setting_changes" setting_changes_,
             U.p "info_changes" info_changes_,
@@ -79,6 +83,7 @@ instance T.FromJSON ChatEventLogFilters where
     where
       parseChatEventLogFilters :: A.Value -> T.Parser ChatEventLogFilters
       parseChatEventLogFilters = A.withObject "ChatEventLogFilters" $ \o -> do
+        forum_changes_ <- o A..:? "forum_changes"
         video_chat_changes_ <- o A..:? "video_chat_changes"
         invite_link_changes_ <- o A..:? "invite_link_changes"
         setting_changes_ <- o A..:? "setting_changes"
@@ -91,13 +96,14 @@ instance T.FromJSON ChatEventLogFilters where
         message_pins_ <- o A..:? "message_pins"
         message_deletions_ <- o A..:? "message_deletions"
         message_edits_ <- o A..:? "message_edits"
-        return $ ChatEventLogFilters {video_chat_changes = video_chat_changes_, invite_link_changes = invite_link_changes_, setting_changes = setting_changes_, info_changes = info_changes_, member_restrictions = member_restrictions_, member_promotions = member_promotions_, member_invites = member_invites_, member_leaves = member_leaves_, member_joins = member_joins_, message_pins = message_pins_, message_deletions = message_deletions_, message_edits = message_edits_}
+        return $ ChatEventLogFilters {forum_changes = forum_changes_, video_chat_changes = video_chat_changes_, invite_link_changes = invite_link_changes_, setting_changes = setting_changes_, info_changes = info_changes_, member_restrictions = member_restrictions_, member_promotions = member_promotions_, member_invites = member_invites_, member_leaves = member_leaves_, member_joins = member_joins_, message_pins = message_pins_, message_deletions = message_deletions_, message_edits = message_edits_}
   parseJSON _ = mempty
 
 instance T.ToJSON ChatEventLogFilters where
   toJSON
     ChatEventLogFilters
-      { video_chat_changes = video_chat_changes_,
+      { forum_changes = forum_changes_,
+        video_chat_changes = video_chat_changes_,
         invite_link_changes = invite_link_changes_,
         setting_changes = setting_changes_,
         info_changes = info_changes_,
@@ -112,6 +118,7 @@ instance T.ToJSON ChatEventLogFilters where
       } =
       A.object
         [ "@type" A..= T.String "chatEventLogFilters",
+          "forum_changes" A..= forum_changes_,
           "video_chat_changes" A..= video_chat_changes_,
           "invite_link_changes" A..= invite_link_changes_,
           "setting_changes" A..= setting_changes_,

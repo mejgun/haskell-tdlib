@@ -16,6 +16,8 @@ data ChatAdministratorRights = -- | Describes rights of the administrator
     can_manage_video_chats :: Maybe Bool,
     -- | True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     can_promote_members :: Maybe Bool,
+    -- | True, if the administrator can manage topics; applicable to forum supergroups only
+    can_manage_topics :: Maybe Bool,
     -- | True, if the administrator can pin messages; applicable to basic groups and supergroups only
     can_pin_messages :: Maybe Bool,
     -- | True, if the administrator can restrict, ban, or unban chat members; always true for channels
@@ -41,6 +43,7 @@ instance Show ChatAdministratorRights where
       { is_anonymous = is_anonymous_,
         can_manage_video_chats = can_manage_video_chats_,
         can_promote_members = can_promote_members_,
+        can_manage_topics = can_manage_topics_,
         can_pin_messages = can_pin_messages_,
         can_restrict_members = can_restrict_members_,
         can_invite_users = can_invite_users_,
@@ -55,6 +58,7 @@ instance Show ChatAdministratorRights where
           [ U.p "is_anonymous" is_anonymous_,
             U.p "can_manage_video_chats" can_manage_video_chats_,
             U.p "can_promote_members" can_promote_members_,
+            U.p "can_manage_topics" can_manage_topics_,
             U.p "can_pin_messages" can_pin_messages_,
             U.p "can_restrict_members" can_restrict_members_,
             U.p "can_invite_users" can_invite_users_,
@@ -78,6 +82,7 @@ instance T.FromJSON ChatAdministratorRights where
         is_anonymous_ <- o A..:? "is_anonymous"
         can_manage_video_chats_ <- o A..:? "can_manage_video_chats"
         can_promote_members_ <- o A..:? "can_promote_members"
+        can_manage_topics_ <- o A..:? "can_manage_topics"
         can_pin_messages_ <- o A..:? "can_pin_messages"
         can_restrict_members_ <- o A..:? "can_restrict_members"
         can_invite_users_ <- o A..:? "can_invite_users"
@@ -86,7 +91,7 @@ instance T.FromJSON ChatAdministratorRights where
         can_post_messages_ <- o A..:? "can_post_messages"
         can_change_info_ <- o A..:? "can_change_info"
         can_manage_chat_ <- o A..:? "can_manage_chat"
-        return $ ChatAdministratorRights {is_anonymous = is_anonymous_, can_manage_video_chats = can_manage_video_chats_, can_promote_members = can_promote_members_, can_pin_messages = can_pin_messages_, can_restrict_members = can_restrict_members_, can_invite_users = can_invite_users_, can_delete_messages = can_delete_messages_, can_edit_messages = can_edit_messages_, can_post_messages = can_post_messages_, can_change_info = can_change_info_, can_manage_chat = can_manage_chat_}
+        return $ ChatAdministratorRights {is_anonymous = is_anonymous_, can_manage_video_chats = can_manage_video_chats_, can_promote_members = can_promote_members_, can_manage_topics = can_manage_topics_, can_pin_messages = can_pin_messages_, can_restrict_members = can_restrict_members_, can_invite_users = can_invite_users_, can_delete_messages = can_delete_messages_, can_edit_messages = can_edit_messages_, can_post_messages = can_post_messages_, can_change_info = can_change_info_, can_manage_chat = can_manage_chat_}
   parseJSON _ = mempty
 
 instance T.ToJSON ChatAdministratorRights where
@@ -95,6 +100,7 @@ instance T.ToJSON ChatAdministratorRights where
       { is_anonymous = is_anonymous_,
         can_manage_video_chats = can_manage_video_chats_,
         can_promote_members = can_promote_members_,
+        can_manage_topics = can_manage_topics_,
         can_pin_messages = can_pin_messages_,
         can_restrict_members = can_restrict_members_,
         can_invite_users = can_invite_users_,
@@ -109,6 +115,7 @@ instance T.ToJSON ChatAdministratorRights where
           "is_anonymous" A..= is_anonymous_,
           "can_manage_video_chats" A..= can_manage_video_chats_,
           "can_promote_members" A..= can_promote_members_,
+          "can_manage_topics" A..= can_manage_topics_,
           "can_pin_messages" A..= can_pin_messages_,
           "can_restrict_members" A..= can_restrict_members_,
           "can_invite_users" A..= can_invite_users_,

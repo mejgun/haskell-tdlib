@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Marks all reactions in a chat as read @chat_id Chat identifier
+-- Marks all reactions in a chat or a forum topic as read @chat_id Chat identifier
 data ReadAllChatReactions = ReadAllChatReactions
   { -- |
     chat_id :: Maybe Int

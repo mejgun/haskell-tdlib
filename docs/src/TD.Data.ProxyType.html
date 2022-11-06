@@ -34,7 +34,7 @@
 </span><span id="line-31"></span><span>        </span><span id="secret"><span class="annot"><span class="annottext">ProxyType -&gt; Maybe String
 </span><a href="TD.Data.ProxyType.html#secret"><span class="hs-identifier hs-var hs-var">secret</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span>
-</span><span id="line-33"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679415250"><span id="local-6989586621679415252"><span class="annot"><span class="annottext">ProxyType -&gt; ProxyType -&gt; Bool
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679422812"><span id="local-6989586621679422814"><span class="annot"><span class="annottext">ProxyType -&gt; ProxyType -&gt; Bool
 (ProxyType -&gt; ProxyType -&gt; Bool)
 -&gt; (ProxyType -&gt; ProxyType -&gt; Bool) -&gt; Eq ProxyType
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -44,16 +44,16 @@ $c/= :: ProxyType -&gt; ProxyType -&gt; Bool
 $c== :: ProxyType -&gt; ProxyType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415244"><span id="local-6989586621679415247"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>  </span><span id="local-6989586621679415242"><span class="annot"><span class="annottext">show :: ProxyType -&gt; String
+</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422806"><span id="local-6989586621679422809"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-36"></span><span>  </span><span id="local-6989586621679422804"><span class="annot"><span class="annottext">show :: ProxyType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-37"></span><span>    </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyTypeSocks5"><span class="hs-identifier hs-type">ProxyTypeSocks5</span></a></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">password :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415240"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415240"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422802"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422802"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">username :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415239"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415239"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
+</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422801"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422801"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
 </span><span id="line-40"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ProxyTypeSocks5&quot;</span></span><span>
@@ -65,24 +65,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415240"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679422802"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415239"><span class="hs-identifier hs-var">username_</span></a></span><span>
+</span><a href="#local-6989586621679422801"><span class="hs-identifier hs-var">username_</span></a></span><span>
 </span><span id="line-45"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-46"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-47"></span><span>    </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyTypeHttp"><span class="hs-identifier hs-type">ProxyTypeHttp</span></a></span><span>
 </span><span id="line-48"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">http_only :: ProxyType -&gt; Maybe Bool
-</span><a href="TD.Data.ProxyType.html#http_only"><span class="hs-identifier hs-var">http_only</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415236"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679415236"><span class="hs-identifier hs-var">http_only_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ProxyType.html#http_only"><span class="hs-identifier hs-var">http_only</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422798"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679422798"><span class="hs-identifier hs-var">http_only_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">password :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415235"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415235"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422797"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422797"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-50"></span><span>        </span><span class="annot"><span class="annottext">username :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415234"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415234"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
+</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422796"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422796"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
 </span><span id="line-51"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-52"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ProxyTypeHttp&quot;</span></span><span>
@@ -94,23 +94,23 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;http_only&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679415236"><span class="hs-identifier hs-var">http_only_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679422798"><span class="hs-identifier hs-var">http_only_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-55"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415235"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679422797"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415234"><span class="hs-identifier hs-var">username_</span></a></span><span>
+</span><a href="#local-6989586621679422796"><span class="hs-identifier hs-var">username_</span></a></span><span>
 </span><span id="line-57"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-58"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-59"></span><span>    </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyTypeMtproto"><span class="hs-identifier hs-type">ProxyTypeMtproto</span></a></span><span>
 </span><span id="line-60"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">secret :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#secret"><span class="hs-identifier hs-var">secret</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415233"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415233"><span class="hs-identifier hs-var">secret_</span></a></span></span><span>
+</span><a href="TD.Data.ProxyType.html#secret"><span class="hs-identifier hs-var">secret</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422795"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422795"><span class="hs-identifier hs-var">secret_</span></a></span></span><span>
 </span><span id="line-61"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-62"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ProxyTypeMtproto&quot;</span></span><span>
@@ -122,59 +122,59 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;secret&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415233"><span class="hs-identifier hs-var">secret_</span></a></span><span>
+</span><a href="#local-6989586621679422795"><span class="hs-identifier hs-var">secret_</span></a></span><span>
 </span><span id="line-65"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-66"></span><span>
-</span><span id="line-67"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415230"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-68"></span><span>  </span><span id="local-6989586621679415228"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ProxyType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679415226"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679415226"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679415224"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415224"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-69"></span><span>    </span><span id="local-6989586621679415223"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679415223"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415224"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-67"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422792"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-68"></span><span>  </span><span id="local-6989586621679422790"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ProxyType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679422788"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679422788"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679422786"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422786"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679422785"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679422785"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422786"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-70"></span><span>
 </span><span id="line-71"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679415223"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679422785"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-72"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;proxyTypeSocks5&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ProxyType
-</span><a href="#local-6989586621679415221"><span class="hs-identifier hs-var">parseProxyTypeSocks5</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679415226"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422783"><span class="hs-identifier hs-var">parseProxyTypeSocks5</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422788"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-73"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;proxyTypeHttp&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ProxyType
-</span><a href="#local-6989586621679415220"><span class="hs-identifier hs-var">parseProxyTypeHttp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679415226"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422782"><span class="hs-identifier hs-var">parseProxyTypeHttp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422788"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-74"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;proxyTypeMtproto&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ProxyType
-</span><a href="#local-6989586621679415219"><span class="hs-identifier hs-var">parseProxyTypeMtproto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679415226"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422781"><span class="hs-identifier hs-var">parseProxyTypeMtproto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422788"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-75"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ProxyType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-76"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-77"></span><span>      </span><span class="annot"><a href="#local-6989586621679415221"><span class="hs-identifier hs-type">parseProxyTypeSocks5</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span><span>
-</span><span id="line-78"></span><span>      </span><span id="local-6989586621679415221"><span class="annot"><span class="annottext">parseProxyTypeSocks5 :: Value -&gt; Parser ProxyType
-</span><a href="#local-6989586621679415221"><span class="hs-identifier hs-var hs-var">parseProxyTypeSocks5</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
+</span><span id="line-77"></span><span>      </span><span class="annot"><a href="#local-6989586621679422783"><span class="hs-identifier hs-type">parseProxyTypeSocks5</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span><span>
+</span><span id="line-78"></span><span>      </span><span id="local-6989586621679422783"><span class="annot"><span class="annottext">parseProxyTypeSocks5 :: Value -&gt; Parser ProxyType
+</span><a href="#local-6989586621679422783"><span class="hs-identifier hs-var hs-var">parseProxyTypeSocks5</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ProxyTypeSocks5&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType)
 -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679415217"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415217"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-79"></span><span>        </span><span id="local-6989586621679415216"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415216"><span class="hs-identifier hs-var">password_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415217"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679422779"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422779"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-79"></span><span>        </span><span id="local-6989586621679422778"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422778"><span class="hs-identifier hs-var">password_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422779"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;password&quot;</span></span><span>
-</span><span id="line-80"></span><span>        </span><span id="local-6989586621679415214"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415214"><span class="hs-identifier hs-var">username_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415217"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-80"></span><span>        </span><span id="local-6989586621679422776"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422776"><span class="hs-identifier hs-var">username_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422779"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;username&quot;</span></span><span>
@@ -185,35 +185,35 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ProxyTypeSocks5 :: Maybe String -&gt; Maybe String -&gt; ProxyType
 </span><a href="TD.Data.ProxyType.html#ProxyTypeSocks5"><span class="hs-identifier hs-type">ProxyTypeSocks5</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">password :: Maybe String
 </span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415216"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: Maybe String
+</span><a href="#local-6989586621679422778"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: Maybe String
 </span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415214"><span class="hs-identifier hs-var">username_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679422776"><span class="hs-identifier hs-var">username_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-82"></span><span>
-</span><span id="line-83"></span><span>      </span><span class="annot"><a href="#local-6989586621679415220"><span class="hs-identifier hs-type">parseProxyTypeHttp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span><span>
-</span><span id="line-84"></span><span>      </span><span id="local-6989586621679415220"><span class="annot"><span class="annottext">parseProxyTypeHttp :: Value -&gt; Parser ProxyType
-</span><a href="#local-6989586621679415220"><span class="hs-identifier hs-var hs-var">parseProxyTypeHttp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
+</span><span id="line-83"></span><span>      </span><span class="annot"><a href="#local-6989586621679422782"><span class="hs-identifier hs-type">parseProxyTypeHttp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span><span>
+</span><span id="line-84"></span><span>      </span><span id="local-6989586621679422782"><span class="annot"><span class="annottext">parseProxyTypeHttp :: Value -&gt; Parser ProxyType
+</span><a href="#local-6989586621679422782"><span class="hs-identifier hs-var hs-var">parseProxyTypeHttp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ProxyTypeHttp&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType)
 -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679415213"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415213"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-85"></span><span>        </span><span id="local-6989586621679415212"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679415212"><span class="hs-identifier hs-var">http_only_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415213"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679422775"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422775"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-85"></span><span>        </span><span id="local-6989586621679422774"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679422774"><span class="hs-identifier hs-var">http_only_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422775"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;http_only&quot;</span></span><span>
-</span><span id="line-86"></span><span>        </span><span id="local-6989586621679415211"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415211"><span class="hs-identifier hs-var">password_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415213"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-86"></span><span>        </span><span id="local-6989586621679422773"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422773"><span class="hs-identifier hs-var">password_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422775"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;password&quot;</span></span><span>
-</span><span id="line-87"></span><span>        </span><span id="local-6989586621679415210"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415210"><span class="hs-identifier hs-var">username_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415213"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-87"></span><span>        </span><span id="local-6989586621679422772"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422772"><span class="hs-identifier hs-var">username_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422775"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;username&quot;</span></span><span>
@@ -224,25 +224,25 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ProxyTypeHttp :: Maybe Bool -&gt; Maybe String -&gt; Maybe String -&gt; ProxyType
 </span><a href="TD.Data.ProxyType.html#ProxyTypeHttp"><span class="hs-identifier hs-type">ProxyTypeHttp</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">http_only :: Maybe Bool
 </span><a href="TD.Data.ProxyType.html#http_only"><span class="hs-identifier hs-var">http_only</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679415212"><span class="hs-identifier hs-var">http_only_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: Maybe String
+</span><a href="#local-6989586621679422774"><span class="hs-identifier hs-var">http_only_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password :: Maybe String
 </span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415211"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: Maybe String
+</span><a href="#local-6989586621679422773"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">username :: Maybe String
 </span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415210"><span class="hs-identifier hs-var">username_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679422772"><span class="hs-identifier hs-var">username_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-89"></span><span>
-</span><span id="line-90"></span><span>      </span><span class="annot"><a href="#local-6989586621679415219"><span class="hs-identifier hs-type">parseProxyTypeMtproto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span><span>
-</span><span id="line-91"></span><span>      </span><span id="local-6989586621679415219"><span class="annot"><span class="annottext">parseProxyTypeMtproto :: Value -&gt; Parser ProxyType
-</span><a href="#local-6989586621679415219"><span class="hs-identifier hs-var hs-var">parseProxyTypeMtproto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
+</span><span id="line-90"></span><span>      </span><span class="annot"><a href="#local-6989586621679422781"><span class="hs-identifier hs-type">parseProxyTypeMtproto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span><span>
+</span><span id="line-91"></span><span>      </span><span id="local-6989586621679422781"><span class="annot"><span class="annottext">parseProxyTypeMtproto :: Value -&gt; Parser ProxyType
+</span><a href="#local-6989586621679422781"><span class="hs-identifier hs-var hs-var">parseProxyTypeMtproto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ProxyTypeMtproto&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType)
 -&gt; (Object -&gt; Parser ProxyType) -&gt; Value -&gt; Parser ProxyType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679415209"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415209"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-92"></span><span>        </span><span id="local-6989586621679415208"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415208"><span class="hs-identifier hs-var">secret_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415209"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679422771"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422771"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-92"></span><span>        </span><span id="local-6989586621679422770"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422770"><span class="hs-identifier hs-var">secret_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;secret&quot;</span></span><span>
@@ -253,22 +253,22 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ProxyTypeMtproto :: Maybe String -&gt; ProxyType
 </span><a href="TD.Data.ProxyType.html#ProxyTypeMtproto"><span class="hs-identifier hs-type">ProxyTypeMtproto</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">secret :: Maybe String
 </span><a href="TD.Data.ProxyType.html#secret"><span class="hs-identifier hs-var">secret</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415208"><span class="hs-identifier hs-var">secret_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679422770"><span class="hs-identifier hs-var">secret_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-94"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ProxyType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-95"></span><span>
-</span><span id="line-96"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415201"><span id="local-6989586621679415203"><span id="local-6989586621679415205"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-97"></span><span>  </span><span id="local-6989586621679415199"><span class="annot"><span class="annottext">toJSON :: ProxyType -&gt; Value
+</span><span id="line-96"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422763"><span id="local-6989586621679422765"><span id="local-6989586621679422767"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-97"></span><span>  </span><span id="local-6989586621679422761"><span class="annot"><span class="annottext">toJSON :: ProxyType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-98"></span><span>    </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyTypeSocks5"><span class="hs-identifier hs-type">ProxyTypeSocks5</span></a></span><span>
 </span><span id="line-99"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">password :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415197"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415197"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422759"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422759"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-100"></span><span>        </span><span class="annot"><span class="annottext">username :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415196"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415196"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
+</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422758"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422758"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
 </span><span id="line-101"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-102"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -282,24 +282,24 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415197"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679422759"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-105"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415196"><span class="hs-identifier hs-var">username_</span></a></span><span>
+</span><a href="#local-6989586621679422758"><span class="hs-identifier hs-var">username_</span></a></span><span>
 </span><span id="line-106"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-107"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-108"></span><span>    </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyTypeHttp"><span class="hs-identifier hs-type">ProxyTypeHttp</span></a></span><span>
 </span><span id="line-109"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">http_only :: ProxyType -&gt; Maybe Bool
-</span><a href="TD.Data.ProxyType.html#http_only"><span class="hs-identifier hs-var">http_only</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415192"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679415192"><span class="hs-identifier hs-var">http_only_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ProxyType.html#http_only"><span class="hs-identifier hs-var">http_only</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422754"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679422754"><span class="hs-identifier hs-var">http_only_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-110"></span><span>        </span><span class="annot"><span class="annottext">password :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415191"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415191"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ProxyType.html#password"><span class="hs-identifier hs-var">password</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422753"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422753"><span class="hs-identifier hs-var">password_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-111"></span><span>        </span><span class="annot"><span class="annottext">username :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415190"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415190"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
+</span><a href="TD.Data.ProxyType.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422752"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422752"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
 </span><span id="line-112"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-113"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -313,23 +313,23 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;http_only&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679415192"><span class="hs-identifier hs-var">http_only_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679422754"><span class="hs-identifier hs-var">http_only_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-116"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;password&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415191"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679422753"><span class="hs-identifier hs-var">password_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-117"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415190"><span class="hs-identifier hs-var">username_</span></a></span><span>
+</span><a href="#local-6989586621679422752"><span class="hs-identifier hs-var">username_</span></a></span><span>
 </span><span id="line-118"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-119"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-120"></span><span>    </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyTypeMtproto"><span class="hs-identifier hs-type">ProxyTypeMtproto</span></a></span><span>
 </span><span id="line-121"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">secret :: ProxyType -&gt; Maybe String
-</span><a href="TD.Data.ProxyType.html#secret"><span class="hs-identifier hs-var">secret</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415189"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415189"><span class="hs-identifier hs-var">secret_</span></a></span></span><span>
+</span><a href="TD.Data.ProxyType.html#secret"><span class="hs-identifier hs-var">secret</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422751"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679422751"><span class="hs-identifier hs-var">secret_</span></a></span></span><span>
 </span><span id="line-122"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-123"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -343,6 +343,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;secret&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679415189"><span class="hs-identifier hs-var">secret_</span></a></span><span>
+</span><a href="#local-6989586621679422751"><span class="hs-identifier hs-var">secret_</span></a></span><span>
 </span><span id="line-126"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-127"></span></pre></body></html>

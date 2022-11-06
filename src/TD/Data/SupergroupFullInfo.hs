@@ -26,7 +26,7 @@ data SupergroupFullInfo = -- | Contains full information about a supergroup or c
     location :: Maybe ChatLocation.ChatLocation,
     -- | Identifier of the supergroup sticker set; 0 if none
     sticker_set_id :: Maybe Int,
-    -- | True, if new chat members will have access to old messages. In public or discussion groups and both public and private channels, old messages are always available, so this option affects only private supergroups without a linked chat. The value of this field is only available for chat administrators
+    -- | True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available for chat administrators
     is_all_history_available :: Maybe Bool,
     -- | True, if the supergroup or channel statistics are available
     can_get_statistics :: Maybe Bool,
@@ -54,7 +54,7 @@ data SupergroupFullInfo = -- | Contains full information about a supergroup or c
     member_count :: Maybe Int,
     -- |
     description :: Maybe String,
-    -- | Chat photo; may be null
+    -- | Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
     photo :: Maybe ChatPhoto.ChatPhoto
   }
   deriving (Eq)

@@ -16,6 +16,7 @@ import qualified TD.Data.Document as Document
 import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
 import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
 import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified TD.Data.Game as Game
 import qualified TD.Data.Location as Location
 import qualified TD.Data.MessageExtendedMedia as MessageExtendedMedia
@@ -287,6 +288,27 @@ data MessageContent
       { -- |
         ttl :: Maybe Int
       }
+  | -- | A forum topic has been created @name Name of the topic @icon Icon of the topic
+    MessageForumTopicCreated
+      { -- |
+        icon :: Maybe ForumTopicIcon.ForumTopicIcon,
+        -- |
+        name :: Maybe String
+      }
+  | -- | A forum topic has been edited @name If non-empty, the new name of the topic @edit_icon_custom_emoji_id True, if icon's custom_emoji_id is changed @icon_custom_emoji_id New unique identifier of the custom emoji shown on the topic icon; 0 if none. Must be ignored if edit_icon_custom_emoji_id is false
+    MessageForumTopicEdited
+      { -- |
+        icon_custom_emoji_id :: Maybe Int,
+        -- |
+        edit_icon_custom_emoji_id :: Maybe Bool,
+        -- |
+        name :: Maybe String
+      }
+  | -- | A forum topic has been closed or opened @is_closed True if the topic was closed or reopened
+    MessageForumTopicIsClosedToggled
+      { -- |
+        is_closed :: Maybe Bool
+      }
   | -- | A non-standard action has happened in the chat @text Message text to be shown in the chat
     MessageCustomServiceAction
       { -- |
@@ -301,7 +323,7 @@ data MessageContent
         -- |
         game_message_id :: Maybe Int
       }
-  | -- | A payment has been completed @invoice_chat_id Identifier of the chat, containing the corresponding invoice message; 0 if unknown @invoice_message_id Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
+  | -- | A payment has been completed @invoice_chat_id Identifier of the chat, containing the corresponding invoice message @invoice_message_id Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
     MessagePaymentSuccessful
       { -- |
         invoice_name :: Maybe String,
@@ -760,6 +782,36 @@ instance Show MessageContent where
           [ U.p "ttl" ttl_
           ]
   show
+    MessageForumTopicCreated
+      { icon = icon_,
+        name = name_
+      } =
+      "MessageForumTopicCreated"
+        ++ U.cc
+          [ U.p "icon" icon_,
+            U.p "name" name_
+          ]
+  show
+    MessageForumTopicEdited
+      { icon_custom_emoji_id = icon_custom_emoji_id_,
+        edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_,
+        name = name_
+      } =
+      "MessageForumTopicEdited"
+        ++ U.cc
+          [ U.p "icon_custom_emoji_id" icon_custom_emoji_id_,
+            U.p "edit_icon_custom_emoji_id" edit_icon_custom_emoji_id_,
+            U.p "name" name_
+          ]
+  show
+    MessageForumTopicIsClosedToggled
+      { is_closed = is_closed_
+      } =
+      "MessageForumTopicIsClosedToggled"
+        ++ U.cc
+          [ U.p "is_closed" is_closed_
+          ]
+  show
     MessageCustomServiceAction
       { _text = _text_
       } =
@@ -946,6 +998,9 @@ instance T.FromJSON MessageContent where
       "messageScreenshotTaken" -> parseMessageScreenshotTaken v
       "messageChatSetTheme" -> parseMessageChatSetTheme v
       "messageChatSetTtl" -> parseMessageChatSetTtl v
+      "messageForumTopicCreated" -> parseMessageForumTopicCreated v
+      "messageForumTopicEdited" -> parseMessageForumTopicEdited v
+      "messageForumTopicIsClosedToggled" -> parseMessageForumTopicIsClosedToggled v
       "messageCustomServiceAction" -> parseMessageCustomServiceAction v
       "messageGameScore" -> parseMessageGameScore v
       "messagePaymentSuccessful" -> parseMessagePaymentSuccessful v
@@ -1181,6 +1236,24 @@ instance T.FromJSON MessageContent where
       parseMessageChatSetTtl = A.withObject "MessageChatSetTtl" $ \o -> do
         ttl_ <- o A..:? "ttl"
         return $ MessageChatSetTtl {ttl = ttl_}
+
+      parseMessageForumTopicCreated :: A.Value -> T.Parser MessageContent
+      parseMessageForumTopicCreated = A.withObject "MessageForumTopicCreated" $ \o -> do
+        icon_ <- o A..:? "icon"
+        name_ <- o A..:? "name"
+        return $ MessageForumTopicCreated {icon = icon_, name = name_}
+
+      parseMessageForumTopicEdited :: A.Value -> T.Parser MessageContent
+      parseMessageForumTopicEdited = A.withObject "MessageForumTopicEdited" $ \o -> do
+        icon_custom_emoji_id_ <- U.rm <$> (o A..:? "icon_custom_emoji_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
+        edit_icon_custom_emoji_id_ <- o A..:? "edit_icon_custom_emoji_id"
+        name_ <- o A..:? "name"
+        return $ MessageForumTopicEdited {icon_custom_emoji_id = icon_custom_emoji_id_, edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_, name = name_}
+
+      parseMessageForumTopicIsClosedToggled :: A.Value -> T.Parser MessageContent
+      parseMessageForumTopicIsClosedToggled = A.withObject "MessageForumTopicIsClosedToggled" $ \o -> do
+        is_closed_ <- o A..:? "is_closed"
+        return $ MessageForumTopicIsClosedToggled {is_closed = is_closed_}
 
       parseMessageCustomServiceAction :: A.Value -> T.Parser MessageContent
       parseMessageCustomServiceAction = A.withObject "MessageCustomServiceAction" $ \o -> do
@@ -1631,6 +1704,36 @@ instance T.ToJSON MessageContent where
       A.object
         [ "@type" A..= T.String "messageChatSetTtl",
           "ttl" A..= ttl_
+        ]
+  toJSON
+    MessageForumTopicCreated
+      { icon = icon_,
+        name = name_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageForumTopicCreated",
+          "icon" A..= icon_,
+          "name" A..= name_
+        ]
+  toJSON
+    MessageForumTopicEdited
+      { icon_custom_emoji_id = icon_custom_emoji_id_,
+        edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_,
+        name = name_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageForumTopicEdited",
+          "icon_custom_emoji_id" A..= U.toS icon_custom_emoji_id_,
+          "edit_icon_custom_emoji_id" A..= edit_icon_custom_emoji_id_,
+          "name" A..= name_
+        ]
+  toJSON
+    MessageForumTopicIsClosedToggled
+      { is_closed = is_closed_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageForumTopicIsClosedToggled",
+          "is_closed" A..= is_closed_
         ]
   toJSON
     MessageCustomServiceAction

@@ -16,7 +16,7 @@
 </span><span id="line-16"></span><span>    </span><span id="contacts"><span class="annot"><span class="annottext">ChangeImportedContacts -&gt; Maybe [Contact]
 </span><a href="TD.Query.ChangeImportedContacts.html#contacts"><span class="hs-identifier hs-var hs-var">contacts</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.Contact.html#Contact"><span class="hs-identifier hs-type">Contact.Contact</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434090"><span id="local-6989586621679434092"><span class="annot"><span class="annottext">ChangeImportedContacts -&gt; ChangeImportedContacts -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679441914"><span id="local-6989586621679441916"><span class="annot"><span class="annottext">ChangeImportedContacts -&gt; ChangeImportedContacts -&gt; Bool
 (ChangeImportedContacts -&gt; ChangeImportedContacts -&gt; Bool)
 -&gt; (ChangeImportedContacts -&gt; ChangeImportedContacts -&gt; Bool)
 -&gt; Eq ChangeImportedContacts
@@ -27,13 +27,13 @@ $c/= :: ChangeImportedContacts -&gt; ChangeImportedContacts -&gt; Bool
 $c== :: ChangeImportedContacts -&gt; ChangeImportedContacts -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434084"><span id="local-6989586621679434087"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ChangeImportedContacts.html#ChangeImportedContacts"><span class="hs-identifier hs-type">ChangeImportedContacts</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679434082"><span class="annot"><span class="annottext">show :: ChangeImportedContacts -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679441908"><span id="local-6989586621679441911"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ChangeImportedContacts.html#ChangeImportedContacts"><span class="hs-identifier hs-type">ChangeImportedContacts</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679441906"><span class="annot"><span class="annottext">show :: ChangeImportedContacts -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.ChangeImportedContacts.html#ChangeImportedContacts"><span class="hs-identifier hs-type">ChangeImportedContacts</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">contacts :: ChangeImportedContacts -&gt; Maybe [Contact]
-</span><a href="TD.Query.ChangeImportedContacts.html#contacts"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434080"><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679434080"><span class="hs-identifier hs-var">contacts_</span></a></span></span><span>
+</span><a href="TD.Query.ChangeImportedContacts.html#contacts"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441904"><span class="annot"><span class="annottext">Maybe [Contact]
+</span><a href="#local-6989586621679441904"><span class="hs-identifier hs-var">contacts_</span></a></span></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-25"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChangeImportedContacts&quot;</span></span><span>
@@ -45,16 +45,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;contacts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679434080"><span class="hs-identifier hs-var">contacts_</span></a></span><span>
+</span><a href="#local-6989586621679441904"><span class="hs-identifier hs-var">contacts_</span></a></span><span>
 </span><span id="line-28"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434071"><span id="local-6989586621679434073"><span id="local-6989586621679434075"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ChangeImportedContacts.html#ChangeImportedContacts"><span class="hs-identifier hs-type">ChangeImportedContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679434069"><span class="annot"><span class="annottext">toJSON :: ChangeImportedContacts -&gt; Value
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679441895"><span id="local-6989586621679441897"><span id="local-6989586621679441899"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ChangeImportedContacts.html#ChangeImportedContacts"><span class="hs-identifier hs-type">ChangeImportedContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679441893"><span class="annot"><span class="annottext">toJSON :: ChangeImportedContacts -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-32"></span><span>    </span><span class="annot"><a href="TD.Query.ChangeImportedContacts.html#ChangeImportedContacts"><span class="hs-identifier hs-type">ChangeImportedContacts</span></a></span><span>
 </span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">contacts :: ChangeImportedContacts -&gt; Maybe [Contact]
-</span><a href="TD.Query.ChangeImportedContacts.html#contacts"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434067"><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679434067"><span class="hs-identifier hs-var">contacts_</span></a></span></span><span>
+</span><a href="TD.Query.ChangeImportedContacts.html#contacts"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441891"><span class="annot"><span class="annottext">Maybe [Contact]
+</span><a href="#local-6989586621679441891"><span class="hs-identifier hs-var">contacts_</span></a></span></span><span>
 </span><span id="line-34"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -68,6 +68,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;contacts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Contact] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679434067"><span class="hs-identifier hs-var">contacts_</span></a></span><span>
+</span><a href="#local-6989586621679441891"><span class="hs-identifier hs-var">contacts_</span></a></span><span>
 </span><span id="line-38"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span></pre></body></html>
