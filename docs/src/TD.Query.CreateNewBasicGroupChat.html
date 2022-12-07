@@ -8,16 +8,19 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat @user_ids Identifiers of users to be added to the basic group @title Title of the new basic group; 1-128 characters</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="CreateNewBasicGroupChat"><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-var">CreateNewBasicGroupChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="CreateNewBasicGroupChat"><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-var">CreateNewBasicGroupChat</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-14"></span><span>    </span><span id="title"><span class="annot"><span class="annottext">CreateNewBasicGroupChat -&gt; Maybe String
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Message TTL value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically</span><span>
+</span><span id="line-14"></span><span>    </span><span id="message_ttl"><span class="annot"><span class="annottext">CreateNewBasicGroupChat -&gt; Maybe Int
+</span><a href="TD.Query.CreateNewBasicGroupChat.html#message_ttl"><span class="hs-identifier hs-var hs-var">message_ttl</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | Title of the new basic group; 1-128 characters</span><span>
+</span><span id="line-16"></span><span>    </span><span id="title"><span class="annot"><span class="annottext">CreateNewBasicGroupChat -&gt; Maybe String
 </span><a href="TD.Query.CreateNewBasicGroupChat.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-16"></span><span>    </span><span id="user_ids"><span class="annot"><span class="annottext">CreateNewBasicGroupChat -&gt; Maybe [Int]
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Identifiers of users to be added to the basic group</span><span>
+</span><span id="line-18"></span><span>    </span><span id="user_ids"><span class="annot"><span class="annottext">CreateNewBasicGroupChat -&gt; Maybe [Int]
 </span><a href="TD.Query.CreateNewBasicGroupChat.html#user_ids"><span class="hs-identifier hs-var hs-var">user_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span>
-</span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414357"><span id="local-6989586621679414359"><span class="annot"><span class="annottext">CreateNewBasicGroupChat -&gt; CreateNewBasicGroupChat -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679418745"><span id="local-6989586621679418747"><span class="annot"><span class="annottext">CreateNewBasicGroupChat -&gt; CreateNewBasicGroupChat -&gt; Bool
 (CreateNewBasicGroupChat -&gt; CreateNewBasicGroupChat -&gt; Bool)
 -&gt; (CreateNewBasicGroupChat -&gt; CreateNewBasicGroupChat -&gt; Bool)
 -&gt; Eq CreateNewBasicGroupChat
@@ -27,64 +30,80 @@ $c/= :: CreateNewBasicGroupChat -&gt; CreateNewBasicGroupChat -&gt; Bool
 == :: CreateNewBasicGroupChat -&gt; CreateNewBasicGroupChat -&gt; Bool
 $c== :: CreateNewBasicGroupChat -&gt; CreateNewBasicGroupChat -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414351"><span id="local-6989586621679414354"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679414349"><span class="annot"><span class="annottext">show :: CreateNewBasicGroupChat -&gt; String
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418739"><span id="local-6989586621679418742"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679418737"><span class="annot"><span class="annottext">show :: CreateNewBasicGroupChat -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span><span>
-</span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">title :: CreateNewBasicGroupChat -&gt; Maybe String
-</span><a href="TD.Query.CreateNewBasicGroupChat.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414347"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414347"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">user_ids :: CreateNewBasicGroupChat -&gt; Maybe [Int]
-</span><a href="TD.Query.CreateNewBasicGroupChat.html#user_ids"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414346"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679414346"><span class="hs-identifier hs-var">user_ids_</span></a></span></span><span>
-</span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span><span>
+</span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_ttl :: CreateNewBasicGroupChat -&gt; Maybe Int
+</span><a href="TD.Query.CreateNewBasicGroupChat.html#message_ttl"><span class="hs-identifier hs-var">message_ttl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418735"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679418735"><span class="hs-identifier hs-var">message_ttl_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">title :: CreateNewBasicGroupChat -&gt; Maybe String
+</span><a href="TD.Query.CreateNewBasicGroupChat.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418734"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679418734"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">user_ids :: CreateNewBasicGroupChat -&gt; Maybe [Int]
+</span><a href="TD.Query.CreateNewBasicGroupChat.html#user_ids"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418733"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679418733"><span class="hs-identifier hs-var">user_ids_</span></a></span></span><span>
+</span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;CreateNewBasicGroupChat&quot;</span></span><span>
-</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-28"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><span id="line-31"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;message_ttl&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679418735"><span class="hs-identifier hs-var">message_ttl_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414347"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
+</span><a href="#local-6989586621679418734"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679414346"><span class="hs-identifier hs-var">user_ids_</span></a></span><span>
-</span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414337"><span id="local-6989586621679414339"><span id="local-6989586621679414341"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679414335"><span class="annot"><span class="annottext">toJSON :: CreateNewBasicGroupChat -&gt; Value
+</span><a href="#local-6989586621679418733"><span class="hs-identifier hs-var">user_ids_</span></a></span><span>
+</span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418724"><span id="local-6989586621679418726"><span id="local-6989586621679418728"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679418722"><span class="annot"><span class="annottext">toJSON :: CreateNewBasicGroupChat -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span><span>
-</span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">title :: CreateNewBasicGroupChat -&gt; Maybe String
-</span><a href="TD.Query.CreateNewBasicGroupChat.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414333"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414333"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">user_ids :: CreateNewBasicGroupChat -&gt; Maybe [Int]
-</span><a href="TD.Query.CreateNewBasicGroupChat.html#user_ids"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414332"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679414332"><span class="hs-identifier hs-var">user_ids_</span></a></span></span><span>
-</span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-38"></span><span>    </span><span class="annot"><a href="TD.Query.CreateNewBasicGroupChat.html#CreateNewBasicGroupChat"><span class="hs-identifier hs-type">CreateNewBasicGroupChat</span></a></span><span>
+</span><span id="line-39"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_ttl :: CreateNewBasicGroupChat -&gt; Maybe Int
+</span><a href="TD.Query.CreateNewBasicGroupChat.html#message_ttl"><span class="hs-identifier hs-var">message_ttl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418720"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679418720"><span class="hs-identifier hs-var">message_ttl_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">title :: CreateNewBasicGroupChat -&gt; Maybe String
+</span><a href="TD.Query.CreateNewBasicGroupChat.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418719"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679418719"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">user_ids :: CreateNewBasicGroupChat -&gt; Maybe [Int]
+</span><a href="TD.Query.CreateNewBasicGroupChat.html#user_ids"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418718"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679418718"><span class="hs-identifier hs-var">user_ids_</span></a></span></span><span>
+</span><span id="line-42"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-39"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-44"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;createNewBasicGroupChat&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-40"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-45"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;message_ttl&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679418720"><span class="hs-identifier hs-var">message_ttl_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414333"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679418719"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679414332"><span class="hs-identifier hs-var">user_ids_</span></a></span><span>
-</span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-43"></span></pre></body></html>
+</span><a href="#local-6989586621679418718"><span class="hs-identifier hs-var">user_ids_</span></a></span><span>
+</span><span id="line-48"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-49"></span></pre></body></html>

@@ -25,9 +25,11 @@ data ChatEventAction
         -- |
         old_message :: Maybe Message.Message
       }
-  | -- | A message was deleted @message Deleted message
+  | -- | A message was deleted @message Deleted message @can_report_anti_spam_false_positive True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive
     ChatEventMessageDeleted
       { -- |
+        can_report_anti_spam_false_positive :: Maybe Bool,
+        -- |
         message :: Maybe Message.Message
       }
   | -- | A message was pinned @message Pinned message
@@ -185,6 +187,11 @@ data ChatEventAction
       { -- |
         is_all_history_available :: Maybe Bool
       }
+  | -- | The is_aggressive_anti_spam_enabled setting of a supergroup was toggled @is_aggressive_anti_spam_enabled New value of is_aggressive_anti_spam_enabled
+    ChatEventIsAggressiveAntiSpamEnabledToggled
+      { -- |
+        is_aggressive_anti_spam_enabled :: Maybe Bool
+      }
   | -- | The sign_messages setting of a channel was toggled @sign_messages New value of sign_messages
     ChatEventSignMessagesToggled
       { -- |
@@ -258,6 +265,11 @@ data ChatEventAction
       { -- |
         topic_info :: Maybe ForumTopicInfo.ForumTopicInfo
       }
+  | -- | The General forum topic was hidden or unhidden @topic_info New information about the topic
+    ChatEventForumTopicToggleIsHidden
+      { -- |
+        topic_info :: Maybe ForumTopicInfo.ForumTopicInfo
+      }
   | -- | A forum topic was deleted @topic_info Information about the topic
     ChatEventForumTopicDeleted
       { -- |
@@ -285,11 +297,13 @@ instance Show ChatEventAction where
           ]
   show
     ChatEventMessageDeleted
-      { message = message_
+      { can_report_anti_spam_false_positive = can_report_anti_spam_false_positive_,
+        message = message_
       } =
       "ChatEventMessageDeleted"
         ++ U.cc
-          [ U.p "message" message_
+          [ U.p "can_report_anti_spam_false_positive" can_report_anti_spam_false_positive_,
+            U.p "message" message_
           ]
   show
     ChatEventMessagePinned
@@ -520,6 +534,14 @@ instance Show ChatEventAction where
           [ U.p "is_all_history_available" is_all_history_available_
           ]
   show
+    ChatEventIsAggressiveAntiSpamEnabledToggled
+      { is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_
+      } =
+      "ChatEventIsAggressiveAntiSpamEnabledToggled"
+        ++ U.cc
+          [ U.p "is_aggressive_anti_spam_enabled" is_aggressive_anti_spam_enabled_
+          ]
+  show
     ChatEventSignMessagesToggled
       { sign_messages = sign_messages_
       } =
@@ -632,6 +654,14 @@ instance Show ChatEventAction where
           [ U.p "topic_info" topic_info_
           ]
   show
+    ChatEventForumTopicToggleIsHidden
+      { topic_info = topic_info_
+      } =
+      "ChatEventForumTopicToggleIsHidden"
+        ++ U.cc
+          [ U.p "topic_info" topic_info_
+          ]
+  show
     ChatEventForumTopicDeleted
       { topic_info = topic_info_
       } =
@@ -682,6 +712,7 @@ instance T.FromJSON ChatEventAction where
       "chatEventHasProtectedContentToggled" -> parseChatEventHasProtectedContentToggled v
       "chatEventInvitesToggled" -> parseChatEventInvitesToggled v
       "chatEventIsAllHistoryAvailableToggled" -> parseChatEventIsAllHistoryAvailableToggled v
+      "chatEventIsAggressiveAntiSpamEnabledToggled" -> parseChatEventIsAggressiveAntiSpamEnabledToggled v
       "chatEventSignMessagesToggled" -> parseChatEventSignMessagesToggled v
       "chatEventInviteLinkEdited" -> parseChatEventInviteLinkEdited v
       "chatEventInviteLinkRevoked" -> parseChatEventInviteLinkRevoked v
@@ -695,6 +726,7 @@ instance T.FromJSON ChatEventAction where
       "chatEventForumTopicCreated" -> parseChatEventForumTopicCreated v
       "chatEventForumTopicEdited" -> parseChatEventForumTopicEdited v
       "chatEventForumTopicToggleIsClosed" -> parseChatEventForumTopicToggleIsClosed v
+      "chatEventForumTopicToggleIsHidden" -> parseChatEventForumTopicToggleIsHidden v
       "chatEventForumTopicDeleted" -> parseChatEventForumTopicDeleted v
       "chatEventForumTopicPinned" -> parseChatEventForumTopicPinned v
       _ -> mempty
@@ -707,8 +739,9 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventMessageDeleted :: A.Value -> T.Parser ChatEventAction
       parseChatEventMessageDeleted = A.withObject "ChatEventMessageDeleted" $ \o -> do
+        can_report_anti_spam_false_positive_ <- o A..:? "can_report_anti_spam_false_positive"
         message_ <- o A..:? "message"
-        return $ ChatEventMessageDeleted {message = message_}
+        return $ ChatEventMessageDeleted {can_report_anti_spam_false_positive = can_report_anti_spam_false_positive_, message = message_}
 
       parseChatEventMessagePinned :: A.Value -> T.Parser ChatEventAction
       parseChatEventMessagePinned = A.withObject "ChatEventMessagePinned" $ \o -> do
@@ -849,6 +882,11 @@ instance T.FromJSON ChatEventAction where
         is_all_history_available_ <- o A..:? "is_all_history_available"
         return $ ChatEventIsAllHistoryAvailableToggled {is_all_history_available = is_all_history_available_}
 
+      parseChatEventIsAggressiveAntiSpamEnabledToggled :: A.Value -> T.Parser ChatEventAction
+      parseChatEventIsAggressiveAntiSpamEnabledToggled = A.withObject "ChatEventIsAggressiveAntiSpamEnabledToggled" $ \o -> do
+        is_aggressive_anti_spam_enabled_ <- o A..:? "is_aggressive_anti_spam_enabled"
+        return $ ChatEventIsAggressiveAntiSpamEnabledToggled {is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_}
+
       parseChatEventSignMessagesToggled :: A.Value -> T.Parser ChatEventAction
       parseChatEventSignMessagesToggled = A.withObject "ChatEventSignMessagesToggled" $ \o -> do
         sign_messages_ <- o A..:? "sign_messages"
@@ -918,6 +956,11 @@ instance T.FromJSON ChatEventAction where
         topic_info_ <- o A..:? "topic_info"
         return $ ChatEventForumTopicToggleIsClosed {topic_info = topic_info_}
 
+      parseChatEventForumTopicToggleIsHidden :: A.Value -> T.Parser ChatEventAction
+      parseChatEventForumTopicToggleIsHidden = A.withObject "ChatEventForumTopicToggleIsHidden" $ \o -> do
+        topic_info_ <- o A..:? "topic_info"
+        return $ ChatEventForumTopicToggleIsHidden {topic_info = topic_info_}
+
       parseChatEventForumTopicDeleted :: A.Value -> T.Parser ChatEventAction
       parseChatEventForumTopicDeleted = A.withObject "ChatEventForumTopicDeleted" $ \o -> do
         topic_info_ <- o A..:? "topic_info"
@@ -943,10 +986,12 @@ instance T.ToJSON ChatEventAction where
         ]
   toJSON
     ChatEventMessageDeleted
-      { message = message_
+      { can_report_anti_spam_false_positive = can_report_anti_spam_false_positive_,
+        message = message_
       } =
       A.object
         [ "@type" A..= T.String "chatEventMessageDeleted",
+          "can_report_anti_spam_false_positive" A..= can_report_anti_spam_false_positive_,
           "message" A..= message_
         ]
   toJSON
@@ -1178,6 +1223,14 @@ instance T.ToJSON ChatEventAction where
           "is_all_history_available" A..= is_all_history_available_
         ]
   toJSON
+    ChatEventIsAggressiveAntiSpamEnabledToggled
+      { is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventIsAggressiveAntiSpamEnabledToggled",
+          "is_aggressive_anti_spam_enabled" A..= is_aggressive_anti_spam_enabled_
+        ]
+  toJSON
     ChatEventSignMessagesToggled
       { sign_messages = sign_messages_
       } =
@@ -1287,6 +1340,14 @@ instance T.ToJSON ChatEventAction where
       } =
       A.object
         [ "@type" A..= T.String "chatEventForumTopicToggleIsClosed",
+          "topic_info" A..= topic_info_
+        ]
+  toJSON
+    ChatEventForumTopicToggleIsHidden
+      { topic_info = topic_info_
+      } =
+      A.object
+        [ "@type" A..= T.String "chatEventForumTopicToggleIsHidden",
           "topic_info" A..= topic_info_
         ]
   toJSON

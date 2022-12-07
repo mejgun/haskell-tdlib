@@ -30,7 +30,7 @@ data ForumTopic = -- | Describes a forum topic
     unread_count :: Maybe Int,
     -- | True, if the topic is pinned in the topic list
     is_pinned :: Maybe Bool,
-    -- | Last message in the topic; may be null
+    -- | Last message in the topic; may be null if unknown
     last_message :: Maybe Message.Message,
     -- | Basic information about the topic
     info :: Maybe ForumTopicInfo.ForumTopicInfo

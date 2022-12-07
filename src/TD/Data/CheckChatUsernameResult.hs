@@ -15,8 +15,10 @@ data CheckChatUsernameResult
     CheckChatUsernameResultUsernameInvalid
   | -- | The username is occupied
     CheckChatUsernameResultUsernameOccupied
+  | -- | The username can be purchased at fragment.com
+    CheckChatUsernameResultUsernamePurchasable
   | -- | The user has too many chats with username, one of them must be made private first
-    CheckChatUsernameResultPublicChatsTooMuch
+    CheckChatUsernameResultPublicChatsTooMany
   | -- | The user can't be a member of a public supergroup
     CheckChatUsernameResultPublicGroupsUnavailable
   deriving (Eq)
@@ -34,8 +36,12 @@ instance Show CheckChatUsernameResult where
     "CheckChatUsernameResultUsernameOccupied"
       ++ U.cc
         []
-  show CheckChatUsernameResultPublicChatsTooMuch =
-    "CheckChatUsernameResultPublicChatsTooMuch"
+  show CheckChatUsernameResultUsernamePurchasable =
+    "CheckChatUsernameResultUsernamePurchasable"
+      ++ U.cc
+        []
+  show CheckChatUsernameResultPublicChatsTooMany =
+    "CheckChatUsernameResultPublicChatsTooMany"
       ++ U.cc
         []
   show CheckChatUsernameResultPublicGroupsUnavailable =
@@ -51,7 +57,8 @@ instance T.FromJSON CheckChatUsernameResult where
       "checkChatUsernameResultOk" -> parseCheckChatUsernameResultOk v
       "checkChatUsernameResultUsernameInvalid" -> parseCheckChatUsernameResultUsernameInvalid v
       "checkChatUsernameResultUsernameOccupied" -> parseCheckChatUsernameResultUsernameOccupied v
-      "checkChatUsernameResultPublicChatsTooMuch" -> parseCheckChatUsernameResultPublicChatsTooMuch v
+      "checkChatUsernameResultUsernamePurchasable" -> parseCheckChatUsernameResultUsernamePurchasable v
+      "checkChatUsernameResultPublicChatsTooMany" -> parseCheckChatUsernameResultPublicChatsTooMany v
       "checkChatUsernameResultPublicGroupsUnavailable" -> parseCheckChatUsernameResultPublicGroupsUnavailable v
       _ -> mempty
     where
@@ -64,8 +71,11 @@ instance T.FromJSON CheckChatUsernameResult where
       parseCheckChatUsernameResultUsernameOccupied :: A.Value -> T.Parser CheckChatUsernameResult
       parseCheckChatUsernameResultUsernameOccupied = A.withObject "CheckChatUsernameResultUsernameOccupied" $ \_ -> return CheckChatUsernameResultUsernameOccupied
 
-      parseCheckChatUsernameResultPublicChatsTooMuch :: A.Value -> T.Parser CheckChatUsernameResult
-      parseCheckChatUsernameResultPublicChatsTooMuch = A.withObject "CheckChatUsernameResultPublicChatsTooMuch" $ \_ -> return CheckChatUsernameResultPublicChatsTooMuch
+      parseCheckChatUsernameResultUsernamePurchasable :: A.Value -> T.Parser CheckChatUsernameResult
+      parseCheckChatUsernameResultUsernamePurchasable = A.withObject "CheckChatUsernameResultUsernamePurchasable" $ \_ -> return CheckChatUsernameResultUsernamePurchasable
+
+      parseCheckChatUsernameResultPublicChatsTooMany :: A.Value -> T.Parser CheckChatUsernameResult
+      parseCheckChatUsernameResultPublicChatsTooMany = A.withObject "CheckChatUsernameResultPublicChatsTooMany" $ \_ -> return CheckChatUsernameResultPublicChatsTooMany
 
       parseCheckChatUsernameResultPublicGroupsUnavailable :: A.Value -> T.Parser CheckChatUsernameResult
       parseCheckChatUsernameResultPublicGroupsUnavailable = A.withObject "CheckChatUsernameResultPublicGroupsUnavailable" $ \_ -> return CheckChatUsernameResultPublicGroupsUnavailable
@@ -84,9 +94,13 @@ instance T.ToJSON CheckChatUsernameResult where
     A.object
       [ "@type" A..= T.String "checkChatUsernameResultUsernameOccupied"
       ]
-  toJSON CheckChatUsernameResultPublicChatsTooMuch =
+  toJSON CheckChatUsernameResultUsernamePurchasable =
     A.object
-      [ "@type" A..= T.String "checkChatUsernameResultPublicChatsTooMuch"
+      [ "@type" A..= T.String "checkChatUsernameResultUsernamePurchasable"
+      ]
+  toJSON CheckChatUsernameResultPublicChatsTooMany =
+    A.object
+      [ "@type" A..= T.String "checkChatUsernameResultPublicChatsTooMany"
       ]
   toJSON CheckChatUsernameResultPublicGroupsUnavailable =
     A.object

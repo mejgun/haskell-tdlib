@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.35.0
+version:        0.2.36.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -156,6 +156,7 @@ library
       TD.Data.ForumTopic
       TD.Data.ForumTopicIcon
       TD.Data.ForumTopicInfo
+      TD.Data.ForumTopics
       TD.Data.FoundFileDownloads
       TD.Data.FoundMessages
       TD.Data.Game
@@ -237,6 +238,7 @@ library
       TD.Data.MessageSendOptions
       TD.Data.MessageStatistics
       TD.Data.MessageThreadInfo
+      TD.Data.MessageTtl
       TD.Data.Minithumbnail
       TD.Data.NetworkStatistics
       TD.Data.NetworkStatisticsEntry
@@ -368,6 +370,7 @@ library
       TD.Data.Updates
       TD.Data.User
       TD.Data.UserFullInfo
+      TD.Data.UserLink
       TD.Data.Usernames
       TD.Data.UserPrivacySetting
       TD.Data.UserPrivacySettingRule
@@ -574,6 +577,7 @@ library
       TD.Query.GetDatabaseStatistics
       TD.Query.GetDeepLinkInfo
       TD.Query.GetDefaultEmojiStatuses
+      TD.Query.GetDefaultMessageTtl
       TD.Query.GetEmojiReaction
       TD.Query.GetEmojiSuggestionsUrl
       TD.Query.GetExternalLink
@@ -583,7 +587,10 @@ library
       TD.Query.GetFileDownloadedPrefixSize
       TD.Query.GetFileExtension
       TD.Query.GetFileMimeType
+      TD.Query.GetForumTopic
       TD.Query.GetForumTopicDefaultIcons
+      TD.Query.GetForumTopicLink
+      TD.Query.GetForumTopics
       TD.Query.GetGameHighScores
       TD.Query.GetGroupCall
       TD.Query.GetGroupCallInviteLink
@@ -683,6 +690,7 @@ library
       TD.Query.GetTrendingStickerSets
       TD.Query.GetUser
       TD.Query.GetUserFullInfo
+      TD.Query.GetUserLink
       TD.Query.GetUserPrivacySettingRules
       TD.Query.GetUserProfilePhotos
       TD.Query.GetUserSupportInfo
@@ -752,6 +760,7 @@ library
       TD.Query.ReportChat
       TD.Query.ReportChatPhoto
       TD.Query.ReportMessageReactions
+      TD.Query.ReportSupergroupAntiSpamFalsePositive
       TD.Query.ReportSupergroupSpam
       TD.Query.RequestAuthenticationPasswordRecovery
       TD.Query.RequestPasswordRecovery
@@ -793,6 +802,7 @@ library
       TD.Query.SearchStickerSet
       TD.Query.SearchStickerSets
       TD.Query.SearchUserByPhoneNumber
+      TD.Query.SearchUserByToken
       TD.Query.SendBotStartMessage
       TD.Query.SendCallDebugInformation
       TD.Query.SendCallLog
@@ -839,9 +849,11 @@ library
       TD.Query.SetDatabaseEncryptionKey
       TD.Query.SetDefaultChannelAdministratorRights
       TD.Query.SetDefaultGroupAdministratorRights
+      TD.Query.SetDefaultMessageTtl
       TD.Query.SetDefaultReactionType
       TD.Query.SetEmojiStatus
       TD.Query.SetFileGenerationProgress
+      TD.Query.SetForumTopicNotificationSettings
       TD.Query.SetGameScore
       TD.Query.SetGroupCallParticipantIsSpeaking
       TD.Query.SetGroupCallParticipantVolumeLevel
@@ -903,6 +915,7 @@ library
       TD.Query.ToggleChatIsPinned
       TD.Query.ToggleDownloadIsPaused
       TD.Query.ToggleForumTopicIsClosed
+      TD.Query.ToggleGeneralForumTopicIsHidden
       TD.Query.ToggleGroupCallEnabledStartNotification
       TD.Query.ToggleGroupCallIsMyVideoEnabled
       TD.Query.ToggleGroupCallIsMyVideoPaused
@@ -913,6 +926,7 @@ library
       TD.Query.ToggleMessageSenderIsBlocked
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats
+      TD.Query.ToggleSupergroupIsAggressiveAntiSpamEnabled
       TD.Query.ToggleSupergroupIsAllHistoryAvailable
       TD.Query.ToggleSupergroupIsBroadcastGroup
       TD.Query.ToggleSupergroupIsForum

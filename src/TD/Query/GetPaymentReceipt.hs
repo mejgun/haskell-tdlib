@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns information about a successful payment @chat_id Chat identifier of the PaymentSuccessful message @message_id Message identifier
+-- Returns information about a successful payment @chat_id Chat identifier of the messagePaymentSuccessful message @message_id Message identifier
 data GetPaymentReceipt = GetPaymentReceipt
   { -- |
     message_id :: Maybe Int,

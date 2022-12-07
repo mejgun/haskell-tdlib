@@ -136,6 +136,7 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ForumTopic as ForumTopic
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
+import qualified TD.Data.ForumTopics as ForumTopics
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.Game as Game
@@ -215,6 +216,7 @@ import qualified TD.Data.MessageSenders as MessageSenders
 import qualified TD.Data.MessageSendingState as MessageSendingState
 import qualified TD.Data.MessageStatistics as MessageStatistics
 import qualified TD.Data.MessageThreadInfo as MessageThreadInfo
+import qualified TD.Data.MessageTtl as MessageTtl
 import qualified TD.Data.Messages as Messages
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.NetworkStatistics as NetworkStatistics
@@ -347,6 +349,7 @@ import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
 import qualified TD.Data.User as User
 import qualified TD.Data.UserFullInfo as UserFullInfo
+import qualified TD.Data.UserLink as UserLink
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRule as UserPrivacySettingRule
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
@@ -510,6 +513,7 @@ data GeneralResult
   | ForumTopicIcon ForumTopicIcon.ForumTopicIcon
   | ForumTopicInfo ForumTopicInfo.ForumTopicInfo
   | ForumTopic ForumTopic.ForumTopic
+  | ForumTopics ForumTopics.ForumTopics
   | RichText RichText.RichText
   | PageBlockCaption PageBlockCaption.PageBlockCaption
   | PageBlockListItem PageBlockListItem.PageBlockListItem
@@ -610,6 +614,7 @@ data GeneralResult
   | AttachmentMenuBot AttachmentMenuBot.AttachmentMenuBot
   | SentWebAppMessage SentWebAppMessage.SentWebAppMessage
   | HttpUrl HttpUrl.HttpUrl
+  | UserLink UserLink.UserLink
   | InputInlineQueryResult InputInlineQueryResult.InputInlineQueryResult
   | InlineQueryResult InlineQueryResult.InlineQueryResult
   | InlineQueryResults InlineQueryResults.InlineQueryResults
@@ -664,6 +669,7 @@ data GeneralResult
   | UserPrivacySettingRules UserPrivacySettingRules.UserPrivacySettingRules
   | UserPrivacySetting UserPrivacySetting.UserPrivacySetting
   | AccountTtl AccountTtl.AccountTtl
+  | MessageTtl MessageTtl.MessageTtl
   | SessionType SessionType.SessionType
   | Session Session.Session
   | Sessions Sessions.Sessions
@@ -1177,6 +1183,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ForumTopic.ForumTopic) of
             T.Success a -> return $ ForumTopic a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result ForumTopics.ForumTopics) of
+            T.Success a -> return $ ForumTopics a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result RichText.RichText) of
             T.Success a -> return $ RichText a
             _ -> mempty,
@@ -1477,6 +1486,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result HttpUrl.HttpUrl) of
             T.Success a -> return $ HttpUrl a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result UserLink.UserLink) of
+            T.Success a -> return $ UserLink a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result InputInlineQueryResult.InputInlineQueryResult) of
             T.Success a -> return $ InputInlineQueryResult a
             _ -> mempty,
@@ -1638,6 +1650,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result AccountTtl.AccountTtl) of
             T.Success a -> return $ AccountTtl a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageTtl.MessageTtl) of
+            T.Success a -> return $ MessageTtl a
             _ -> mempty,
           case (T.fromJSON v :: T.Result SessionType.SessionType) of
             T.Success a -> return $ SessionType a

@@ -9,7 +9,7 @@ import qualified TD.Data.Message as Message
 import qualified Utils as U
 
 -- |
-data MessageLinkInfo = -- | Contains information about a link to a message in a chat
+data MessageLinkInfo = -- | Contains information about a link to a message or a forum topic in a chat
   MessageLinkInfo
   { -- | True, if the whole media album to which the message belongs is linked
     for_album :: Maybe Bool,
@@ -17,7 +17,7 @@ data MessageLinkInfo = -- | Contains information about a link to a message in a 
     media_timestamp :: Maybe Int,
     -- | If found, the linked message; may be null
     message :: Maybe Message.Message,
-    -- | If found, identifier of the message thread in which to open the message, or which to open in case of a missing message
+    -- | If found, identifier of the message thread in which to open the message, or a forum topic to open if the message is missing
     message_thread_id :: Maybe Int,
     -- | If found, identifier of the chat to which the message belongs, 0 otherwise
     chat_id :: Maybe Int,

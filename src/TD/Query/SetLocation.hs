@@ -9,7 +9,7 @@ import qualified TD.Data.Location as Location
 import qualified Utils as U
 
 -- |
--- Changes the location of the current user. Needs to be called if GetOption("is_location_visible") is true and location changes for more than 1 kilometer @location The new location of the user
+-- Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer @location The new location of the user
 data SetLocation = SetLocation
   { -- |
     location :: Maybe Location.Location

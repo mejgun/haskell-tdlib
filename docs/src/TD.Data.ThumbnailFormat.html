@@ -23,7 +23,7 @@
 </span><span id="line-23"></span><span>    </span><span id="ThumbnailFormatWebm"><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatWebm"><span class="hs-identifier hs-var">ThumbnailFormatWebm</span></a></span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The thumbnail is in WEBP format. It will be used only for some stickers</span><span>
 </span><span id="line-25"></span><span>    </span><span id="ThumbnailFormatWebp"><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatWebp"><span class="hs-identifier hs-var">ThumbnailFormatWebp</span></a></span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679417645"><span id="local-6989586621679417647"><span class="annot"><span class="annottext">ThumbnailFormat -&gt; ThumbnailFormat -&gt; Bool
+</span><span id="line-26"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679422115"><span id="local-6989586621679422117"><span class="annot"><span class="annottext">ThumbnailFormat -&gt; ThumbnailFormat -&gt; Bool
 (ThumbnailFormat -&gt; ThumbnailFormat -&gt; Bool)
 -&gt; (ThumbnailFormat -&gt; ThumbnailFormat -&gt; Bool)
 -&gt; Eq ThumbnailFormat
@@ -34,8 +34,8 @@ $c/= :: ThumbnailFormat -&gt; ThumbnailFormat -&gt; Bool
 $c== :: ThumbnailFormat -&gt; ThumbnailFormat -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417639"><span id="local-6989586621679417642"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679417637"><span class="annot"><span class="annottext">show :: ThumbnailFormat -&gt; String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422109"><span id="local-6989586621679422112"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679422107"><span class="annot"><span class="annottext">show :: ThumbnailFormat -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatJpeg"><span class="hs-identifier hs-var">ThumbnailFormatJpeg</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -100,56 +100,56 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-56"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417632"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679417630"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ThumbnailFormat
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679417628"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679417626"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679417626"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-60"></span><span>    </span><span id="local-6989586621679417625"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679417625"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679417626"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422102"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679422100"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ThumbnailFormat
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679422098"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679422096"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422096"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-60"></span><span>    </span><span id="local-6989586621679422095"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679422095"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422096"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-61"></span><span>
 </span><span id="line-62"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679417625"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679422095"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-63"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnailFormatJpeg&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417623"><span class="hs-identifier hs-var">parseThumbnailFormatJpeg</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422093"><span class="hs-identifier hs-var">parseThumbnailFormatJpeg</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-64"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnailFormatGif&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417622"><span class="hs-identifier hs-var">parseThumbnailFormatGif</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422092"><span class="hs-identifier hs-var">parseThumbnailFormatGif</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-65"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnailFormatMpeg4&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417621"><span class="hs-identifier hs-var">parseThumbnailFormatMpeg4</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422091"><span class="hs-identifier hs-var">parseThumbnailFormatMpeg4</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-66"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnailFormatPng&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417620"><span class="hs-identifier hs-var">parseThumbnailFormatPng</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422090"><span class="hs-identifier hs-var">parseThumbnailFormatPng</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-67"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnailFormatTgs&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417619"><span class="hs-identifier hs-var">parseThumbnailFormatTgs</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422089"><span class="hs-identifier hs-var">parseThumbnailFormatTgs</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-68"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnailFormatWebm&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417618"><span class="hs-identifier hs-var">parseThumbnailFormatWebm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422088"><span class="hs-identifier hs-var">parseThumbnailFormatWebm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-69"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnailFormatWebp&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417617"><span class="hs-identifier hs-var">parseThumbnailFormatWebp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417628"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422087"><span class="hs-identifier hs-var">parseThumbnailFormatWebp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422098"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-70"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ThumbnailFormat
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-71"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-72"></span><span>      </span><span class="annot"><a href="#local-6989586621679417623"><span class="hs-identifier hs-type">parseThumbnailFormatJpeg</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
-</span><span id="line-73"></span><span>      </span><span id="local-6989586621679417623"><span class="annot"><span class="annottext">parseThumbnailFormatJpeg :: Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417623"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatJpeg</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-72"></span><span>      </span><span class="annot"><a href="#local-6989586621679422093"><span class="hs-identifier hs-type">parseThumbnailFormatJpeg</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
+</span><span id="line-73"></span><span>      </span><span id="local-6989586621679422093"><span class="annot"><span class="annottext">parseThumbnailFormatJpeg :: Value -&gt; Parser ThumbnailFormat
+</span><a href="#local-6989586621679422093"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatJpeg</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ThumbnailFormat)
 -&gt; Value
 -&gt; Parser ThumbnailFormat
@@ -167,9 +167,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatJpeg"><span class="hs-identifier hs-var">ThumbnailFormatJpeg</span></a></span><span>
 </span><span id="line-74"></span><span>
-</span><span id="line-75"></span><span>      </span><span class="annot"><a href="#local-6989586621679417622"><span class="hs-identifier hs-type">parseThumbnailFormatGif</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
-</span><span id="line-76"></span><span>      </span><span id="local-6989586621679417622"><span class="annot"><span class="annottext">parseThumbnailFormatGif :: Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417622"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatGif</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-75"></span><span>      </span><span class="annot"><a href="#local-6989586621679422092"><span class="hs-identifier hs-type">parseThumbnailFormatGif</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
+</span><span id="line-76"></span><span>      </span><span id="local-6989586621679422092"><span class="annot"><span class="annottext">parseThumbnailFormatGif :: Value -&gt; Parser ThumbnailFormat
+</span><a href="#local-6989586621679422092"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatGif</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ThumbnailFormat)
 -&gt; Value
 -&gt; Parser ThumbnailFormat
@@ -187,9 +187,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatGif"><span class="hs-identifier hs-var">ThumbnailFormatGif</span></a></span><span>
 </span><span id="line-77"></span><span>
-</span><span id="line-78"></span><span>      </span><span class="annot"><a href="#local-6989586621679417621"><span class="hs-identifier hs-type">parseThumbnailFormatMpeg4</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
-</span><span id="line-79"></span><span>      </span><span id="local-6989586621679417621"><span class="annot"><span class="annottext">parseThumbnailFormatMpeg4 :: Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417621"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatMpeg4</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-78"></span><span>      </span><span class="annot"><a href="#local-6989586621679422091"><span class="hs-identifier hs-type">parseThumbnailFormatMpeg4</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
+</span><span id="line-79"></span><span>      </span><span id="local-6989586621679422091"><span class="annot"><span class="annottext">parseThumbnailFormatMpeg4 :: Value -&gt; Parser ThumbnailFormat
+</span><a href="#local-6989586621679422091"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatMpeg4</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ThumbnailFormat)
 -&gt; Value
 -&gt; Parser ThumbnailFormat
@@ -207,9 +207,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatMpeg4"><span class="hs-identifier hs-var">ThumbnailFormatMpeg4</span></a></span><span>
 </span><span id="line-80"></span><span>
-</span><span id="line-81"></span><span>      </span><span class="annot"><a href="#local-6989586621679417620"><span class="hs-identifier hs-type">parseThumbnailFormatPng</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
-</span><span id="line-82"></span><span>      </span><span id="local-6989586621679417620"><span class="annot"><span class="annottext">parseThumbnailFormatPng :: Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417620"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatPng</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-81"></span><span>      </span><span class="annot"><a href="#local-6989586621679422090"><span class="hs-identifier hs-type">parseThumbnailFormatPng</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
+</span><span id="line-82"></span><span>      </span><span id="local-6989586621679422090"><span class="annot"><span class="annottext">parseThumbnailFormatPng :: Value -&gt; Parser ThumbnailFormat
+</span><a href="#local-6989586621679422090"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatPng</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ThumbnailFormat)
 -&gt; Value
 -&gt; Parser ThumbnailFormat
@@ -227,9 +227,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatPng"><span class="hs-identifier hs-var">ThumbnailFormatPng</span></a></span><span>
 </span><span id="line-83"></span><span>
-</span><span id="line-84"></span><span>      </span><span class="annot"><a href="#local-6989586621679417619"><span class="hs-identifier hs-type">parseThumbnailFormatTgs</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
-</span><span id="line-85"></span><span>      </span><span id="local-6989586621679417619"><span class="annot"><span class="annottext">parseThumbnailFormatTgs :: Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417619"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatTgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-84"></span><span>      </span><span class="annot"><a href="#local-6989586621679422089"><span class="hs-identifier hs-type">parseThumbnailFormatTgs</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
+</span><span id="line-85"></span><span>      </span><span id="local-6989586621679422089"><span class="annot"><span class="annottext">parseThumbnailFormatTgs :: Value -&gt; Parser ThumbnailFormat
+</span><a href="#local-6989586621679422089"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatTgs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ThumbnailFormat)
 -&gt; Value
 -&gt; Parser ThumbnailFormat
@@ -247,9 +247,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatTgs"><span class="hs-identifier hs-var">ThumbnailFormatTgs</span></a></span><span>
 </span><span id="line-86"></span><span>
-</span><span id="line-87"></span><span>      </span><span class="annot"><a href="#local-6989586621679417618"><span class="hs-identifier hs-type">parseThumbnailFormatWebm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
-</span><span id="line-88"></span><span>      </span><span id="local-6989586621679417618"><span class="annot"><span class="annottext">parseThumbnailFormatWebm :: Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417618"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatWebm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-87"></span><span>      </span><span class="annot"><a href="#local-6989586621679422088"><span class="hs-identifier hs-type">parseThumbnailFormatWebm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
+</span><span id="line-88"></span><span>      </span><span id="local-6989586621679422088"><span class="annot"><span class="annottext">parseThumbnailFormatWebm :: Value -&gt; Parser ThumbnailFormat
+</span><a href="#local-6989586621679422088"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatWebm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ThumbnailFormat)
 -&gt; Value
 -&gt; Parser ThumbnailFormat
@@ -267,9 +267,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatWebm"><span class="hs-identifier hs-var">ThumbnailFormatWebm</span></a></span><span>
 </span><span id="line-89"></span><span>
-</span><span id="line-90"></span><span>      </span><span class="annot"><a href="#local-6989586621679417617"><span class="hs-identifier hs-type">parseThumbnailFormatWebp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
-</span><span id="line-91"></span><span>      </span><span id="local-6989586621679417617"><span class="annot"><span class="annottext">parseThumbnailFormatWebp :: Value -&gt; Parser ThumbnailFormat
-</span><a href="#local-6989586621679417617"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatWebp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-90"></span><span>      </span><span class="annot"><a href="#local-6989586621679422087"><span class="hs-identifier hs-type">parseThumbnailFormatWebp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span><span>
+</span><span id="line-91"></span><span>      </span><span id="local-6989586621679422087"><span class="annot"><span class="annottext">parseThumbnailFormatWebp :: Value -&gt; Parser ThumbnailFormat
+</span><a href="#local-6989586621679422087"><span class="hs-identifier hs-var hs-var">parseThumbnailFormatWebp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ThumbnailFormat)
 -&gt; Value
 -&gt; Parser ThumbnailFormat
@@ -291,8 +291,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-93"></span><span>
-</span><span id="line-94"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417609"><span id="local-6989586621679417611"><span id="local-6989586621679417613"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-95"></span><span>  </span><span id="local-6989586621679417607"><span class="annot"><span class="annottext">toJSON :: ThumbnailFormat -&gt; Value
+</span><span id="line-94"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422079"><span id="local-6989586621679422081"><span id="local-6989586621679422083"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormat"><span class="hs-identifier hs-type">ThumbnailFormat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-95"></span><span>  </span><span id="local-6989586621679422077"><span class="annot"><span class="annottext">toJSON :: ThumbnailFormat -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">ThumbnailFormat
 </span><a href="TD.Data.ThumbnailFormat.html#ThumbnailFormatJpeg"><span class="hs-identifier hs-var">ThumbnailFormatJpeg</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-96"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

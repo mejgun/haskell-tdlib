@@ -12,7 +12,7 @@ import qualified Utils as U
 -- |
 -- Edits the message content caption. Returns the edited message after the edit is completed on the server side
 data EditMessageCaption = EditMessageCaption
-  { -- | New message content caption; 0-GetOption("message_caption_length_max") characters; pass null to remove caption
+  { -- | New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     caption :: Maybe FormattedText.FormattedText,
     -- | The new message reply markup; pass null if none; for bots only
     reply_markup :: Maybe ReplyMarkup.ReplyMarkup,

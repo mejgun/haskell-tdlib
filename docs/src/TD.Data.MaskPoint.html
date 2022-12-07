@@ -17,7 +17,7 @@
 </span><span id="line-17"></span><span>    </span><span id="MaskPointMouth"><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPointMouth"><span class="hs-identifier hs-var">MaskPointMouth</span></a></span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The mask is placed relatively to the chin</span><span>
 </span><span id="line-19"></span><span>    </span><span id="MaskPointChin"><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPointChin"><span class="hs-identifier hs-var">MaskPointChin</span></a></span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428626"><span id="local-6989586621679428628"><span class="annot"><span class="annottext">MaskPoint -&gt; MaskPoint -&gt; Bool
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679433222"><span id="local-6989586621679433224"><span class="annot"><span class="annottext">MaskPoint -&gt; MaskPoint -&gt; Bool
 (MaskPoint -&gt; MaskPoint -&gt; Bool)
 -&gt; (MaskPoint -&gt; MaskPoint -&gt; Bool) -&gt; Eq MaskPoint
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -27,8 +27,8 @@ $c/= :: MaskPoint -&gt; MaskPoint -&gt; Bool
 $c== :: MaskPoint -&gt; MaskPoint -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428620"><span id="local-6989586621679428623"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679428618"><span class="annot"><span class="annottext">show :: MaskPoint -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433216"><span id="local-6989586621679433219"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679433214"><span class="annot"><span class="annottext">show :: MaskPoint -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">MaskPoint
 </span><a href="TD.Data.MaskPoint.html#MaskPointForehead"><span class="hs-identifier hs-var">MaskPointForehead</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -66,44 +66,44 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-38"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428613"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679428611"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MaskPoint
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679428609"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679428609"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679428607"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428607"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>    </span><span id="local-6989586621679428606"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428606"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428607"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433209"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679433207"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MaskPoint
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679433205"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679433205"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679433203"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433203"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679433202"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679433202"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433203"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-43"></span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428606"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679433202"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;maskPointForehead&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428604"><span class="hs-identifier hs-var">parseMaskPointForehead</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679428609"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433200"><span class="hs-identifier hs-var">parseMaskPointForehead</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433205"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;maskPointEyes&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428603"><span class="hs-identifier hs-var">parseMaskPointEyes</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679428609"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433199"><span class="hs-identifier hs-var">parseMaskPointEyes</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433205"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;maskPointMouth&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428602"><span class="hs-identifier hs-var">parseMaskPointMouth</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679428609"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433198"><span class="hs-identifier hs-var">parseMaskPointMouth</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433205"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;maskPointChin&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428601"><span class="hs-identifier hs-var">parseMaskPointChin</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679428609"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433197"><span class="hs-identifier hs-var">parseMaskPointChin</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433205"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser MaskPoint
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-50"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span>      </span><span class="annot"><a href="#local-6989586621679428604"><span class="hs-identifier hs-type">parseMaskPointForehead</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
-</span><span id="line-52"></span><span>      </span><span id="local-6989586621679428604"><span class="annot"><span class="annottext">parseMaskPointForehead :: Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428604"><span class="hs-identifier hs-var hs-var">parseMaskPointForehead</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
+</span><span id="line-51"></span><span>      </span><span class="annot"><a href="#local-6989586621679433200"><span class="hs-identifier hs-type">parseMaskPointForehead</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
+</span><span id="line-52"></span><span>      </span><span id="local-6989586621679433200"><span class="annot"><span class="annottext">parseMaskPointForehead :: Value -&gt; Parser MaskPoint
+</span><a href="#local-6989586621679433200"><span class="hs-identifier hs-var hs-var">parseMaskPointForehead</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MaskPointForehead&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint)
@@ -115,9 +115,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MaskPoint
 </span><a href="TD.Data.MaskPoint.html#MaskPointForehead"><span class="hs-identifier hs-var">MaskPointForehead</span></a></span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679428603"><span class="hs-identifier hs-type">parseMaskPointEyes</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
-</span><span id="line-55"></span><span>      </span><span id="local-6989586621679428603"><span class="annot"><span class="annottext">parseMaskPointEyes :: Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428603"><span class="hs-identifier hs-var hs-var">parseMaskPointEyes</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
+</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679433199"><span class="hs-identifier hs-type">parseMaskPointEyes</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
+</span><span id="line-55"></span><span>      </span><span id="local-6989586621679433199"><span class="annot"><span class="annottext">parseMaskPointEyes :: Value -&gt; Parser MaskPoint
+</span><a href="#local-6989586621679433199"><span class="hs-identifier hs-var hs-var">parseMaskPointEyes</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MaskPointEyes&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint)
@@ -129,9 +129,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MaskPoint
 </span><a href="TD.Data.MaskPoint.html#MaskPointEyes"><span class="hs-identifier hs-var">MaskPointEyes</span></a></span><span>
 </span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span>      </span><span class="annot"><a href="#local-6989586621679428602"><span class="hs-identifier hs-type">parseMaskPointMouth</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
-</span><span id="line-58"></span><span>      </span><span id="local-6989586621679428602"><span class="annot"><span class="annottext">parseMaskPointMouth :: Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428602"><span class="hs-identifier hs-var hs-var">parseMaskPointMouth</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
+</span><span id="line-57"></span><span>      </span><span class="annot"><a href="#local-6989586621679433198"><span class="hs-identifier hs-type">parseMaskPointMouth</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
+</span><span id="line-58"></span><span>      </span><span id="local-6989586621679433198"><span class="annot"><span class="annottext">parseMaskPointMouth :: Value -&gt; Parser MaskPoint
+</span><a href="#local-6989586621679433198"><span class="hs-identifier hs-var hs-var">parseMaskPointMouth</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MaskPointMouth&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint)
@@ -143,9 +143,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MaskPoint
 </span><a href="TD.Data.MaskPoint.html#MaskPointMouth"><span class="hs-identifier hs-var">MaskPointMouth</span></a></span><span>
 </span><span id="line-59"></span><span>
-</span><span id="line-60"></span><span>      </span><span class="annot"><a href="#local-6989586621679428601"><span class="hs-identifier hs-type">parseMaskPointChin</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
-</span><span id="line-61"></span><span>      </span><span id="local-6989586621679428601"><span class="annot"><span class="annottext">parseMaskPointChin :: Value -&gt; Parser MaskPoint
-</span><a href="#local-6989586621679428601"><span class="hs-identifier hs-var hs-var">parseMaskPointChin</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
+</span><span id="line-60"></span><span>      </span><span class="annot"><a href="#local-6989586621679433197"><span class="hs-identifier hs-type">parseMaskPointChin</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span><span>
+</span><span id="line-61"></span><span>      </span><span id="local-6989586621679433197"><span class="annot"><span class="annottext">parseMaskPointChin :: Value -&gt; Parser MaskPoint
+</span><a href="#local-6989586621679433197"><span class="hs-identifier hs-var hs-var">parseMaskPointChin</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;MaskPointChin&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser MaskPoint) -&gt; Value -&gt; Parser MaskPoint)
@@ -161,8 +161,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428593"><span id="local-6989586621679428595"><span id="local-6989586621679428597"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-65"></span><span>  </span><span id="local-6989586621679428591"><span class="annot"><span class="annottext">toJSON :: MaskPoint -&gt; Value
+</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433189"><span id="local-6989586621679433191"><span id="local-6989586621679433193"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-65"></span><span>  </span><span id="local-6989586621679433187"><span class="annot"><span class="annottext">toJSON :: MaskPoint -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">MaskPoint
 </span><a href="TD.Data.MaskPoint.html#MaskPointForehead"><span class="hs-identifier hs-var">MaskPointForehead</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-66"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

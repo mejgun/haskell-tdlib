@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Toggles whether the supergroup is a forum; requires owner privileges in the supergroup @supergroup_id Identifier of the supergroup @is_forum New value of is_forum. A supergroup can be converted to a forum, only if it has at least GetOption("forum_member_count_min") members
+-- Toggles whether the supergroup is a forum; requires owner privileges in the supergroup @supergroup_id Identifier of the supergroup @is_forum New value of is_forum. A supergroup can be converted to a forum, only if it has at least getOption("forum_member_count_min") members
 data ToggleSupergroupIsForum = ToggleSupergroupIsForum
   { -- |
     is_forum :: Maybe Bool,

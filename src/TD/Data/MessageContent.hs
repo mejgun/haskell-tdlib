@@ -283,9 +283,11 @@ data MessageContent
       { -- |
         theme_name :: Maybe String
       }
-  | -- | The TTL (Time To Live) setting for messages in the chat has been changed @ttl New message TTL
+  | -- | The TTL (Time To Live) setting for messages in the chat has been changed @ttl New message TTL @from_user_id If not 0, a user identifier, which default setting was automatically applied
     MessageChatSetTtl
       { -- |
+        from_user_id :: Maybe Int,
+        -- |
         ttl :: Maybe Int
       }
   | -- | A forum topic has been created @name Name of the topic @icon Icon of the topic
@@ -304,10 +306,15 @@ data MessageContent
         -- |
         name :: Maybe String
       }
-  | -- | A forum topic has been closed or opened @is_closed True if the topic was closed or reopened
+  | -- | A forum topic has been closed or opened @is_closed True, if the topic was closed, otherwise the topic was reopened
     MessageForumTopicIsClosedToggled
       { -- |
         is_closed :: Maybe Bool
+      }
+  | -- | A General forum topic has been hidden or unhidden @is_hidden True, if the topic was hidden, otherwise the topic was unhidden
+    MessageForumTopicIsHiddenToggled
+      { -- |
+        is_hidden :: Maybe Bool
       }
   | -- | A non-standard action has happened in the chat @text Message text to be shown in the chat
     MessageCustomServiceAction
@@ -775,11 +782,13 @@ instance Show MessageContent where
           ]
   show
     MessageChatSetTtl
-      { ttl = ttl_
+      { from_user_id = from_user_id_,
+        ttl = ttl_
       } =
       "MessageChatSetTtl"
         ++ U.cc
-          [ U.p "ttl" ttl_
+          [ U.p "from_user_id" from_user_id_,
+            U.p "ttl" ttl_
           ]
   show
     MessageForumTopicCreated
@@ -810,6 +819,14 @@ instance Show MessageContent where
       "MessageForumTopicIsClosedToggled"
         ++ U.cc
           [ U.p "is_closed" is_closed_
+          ]
+  show
+    MessageForumTopicIsHiddenToggled
+      { is_hidden = is_hidden_
+      } =
+      "MessageForumTopicIsHiddenToggled"
+        ++ U.cc
+          [ U.p "is_hidden" is_hidden_
           ]
   show
     MessageCustomServiceAction
@@ -1001,6 +1018,7 @@ instance T.FromJSON MessageContent where
       "messageForumTopicCreated" -> parseMessageForumTopicCreated v
       "messageForumTopicEdited" -> parseMessageForumTopicEdited v
       "messageForumTopicIsClosedToggled" -> parseMessageForumTopicIsClosedToggled v
+      "messageForumTopicIsHiddenToggled" -> parseMessageForumTopicIsHiddenToggled v
       "messageCustomServiceAction" -> parseMessageCustomServiceAction v
       "messageGameScore" -> parseMessageGameScore v
       "messagePaymentSuccessful" -> parseMessagePaymentSuccessful v
@@ -1234,8 +1252,9 @@ instance T.FromJSON MessageContent where
 
       parseMessageChatSetTtl :: A.Value -> T.Parser MessageContent
       parseMessageChatSetTtl = A.withObject "MessageChatSetTtl" $ \o -> do
+        from_user_id_ <- o A..:? "from_user_id"
         ttl_ <- o A..:? "ttl"
-        return $ MessageChatSetTtl {ttl = ttl_}
+        return $ MessageChatSetTtl {from_user_id = from_user_id_, ttl = ttl_}
 
       parseMessageForumTopicCreated :: A.Value -> T.Parser MessageContent
       parseMessageForumTopicCreated = A.withObject "MessageForumTopicCreated" $ \o -> do
@@ -1254,6 +1273,11 @@ instance T.FromJSON MessageContent where
       parseMessageForumTopicIsClosedToggled = A.withObject "MessageForumTopicIsClosedToggled" $ \o -> do
         is_closed_ <- o A..:? "is_closed"
         return $ MessageForumTopicIsClosedToggled {is_closed = is_closed_}
+
+      parseMessageForumTopicIsHiddenToggled :: A.Value -> T.Parser MessageContent
+      parseMessageForumTopicIsHiddenToggled = A.withObject "MessageForumTopicIsHiddenToggled" $ \o -> do
+        is_hidden_ <- o A..:? "is_hidden"
+        return $ MessageForumTopicIsHiddenToggled {is_hidden = is_hidden_}
 
       parseMessageCustomServiceAction :: A.Value -> T.Parser MessageContent
       parseMessageCustomServiceAction = A.withObject "MessageCustomServiceAction" $ \o -> do
@@ -1699,10 +1723,12 @@ instance T.ToJSON MessageContent where
         ]
   toJSON
     MessageChatSetTtl
-      { ttl = ttl_
+      { from_user_id = from_user_id_,
+        ttl = ttl_
       } =
       A.object
         [ "@type" A..= T.String "messageChatSetTtl",
+          "from_user_id" A..= from_user_id_,
           "ttl" A..= ttl_
         ]
   toJSON
@@ -1734,6 +1760,14 @@ instance T.ToJSON MessageContent where
       A.object
         [ "@type" A..= T.String "messageForumTopicIsClosedToggled",
           "is_closed" A..= is_closed_
+        ]
+  toJSON
+    MessageForumTopicIsHiddenToggled
+      { is_hidden = is_hidden_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageForumTopicIsHiddenToggled",
+          "is_hidden" A..= is_hidden_
         ]
   toJSON
     MessageCustomServiceAction

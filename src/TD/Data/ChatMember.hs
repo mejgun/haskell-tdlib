@@ -14,7 +14,7 @@ data ChatMember = -- | Describes a user or a chat as a member of another chat
   ChatMember
   { -- | Status of the member in the chat
     status :: Maybe ChatMemberStatus.ChatMemberStatus,
-    -- | Point in time (Unix timestamp) when the user joined the chat
+    -- | Point in time (Unix timestamp) when the user joined/was promoted/was banned in the chat
     joined_chat_date :: Maybe Int,
     -- | Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
     inviter_user_id :: Maybe Int,

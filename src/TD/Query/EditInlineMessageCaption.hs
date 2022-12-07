@@ -12,7 +12,7 @@ import qualified Utils as U
 -- |
 -- Edits the caption of an inline message sent via a bot; for bots only
 data EditInlineMessageCaption = EditInlineMessageCaption
-  { -- | New message content caption; pass null to remove caption; 0-GetOption("message_caption_length_max") characters
+  { -- | New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     caption :: Maybe FormattedText.FormattedText,
     -- | The new message reply markup; pass null if none
     reply_markup :: Maybe ReplyMarkup.ReplyMarkup,

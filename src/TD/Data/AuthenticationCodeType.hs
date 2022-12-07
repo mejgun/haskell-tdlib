@@ -36,6 +36,13 @@ data AuthenticationCodeType
         -- |
         phone_number_prefix :: Maybe String
       }
+  | -- | An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT @url URL to open to receive the code @length Length of the code
+    AuthenticationCodeTypeFragment
+      { -- |
+        _length :: Maybe Int,
+        -- |
+        url :: Maybe String
+      }
   deriving (Eq)
 
 instance Show AuthenticationCodeType where
@@ -81,6 +88,16 @@ instance Show AuthenticationCodeType where
           [ U.p "_length" _length_,
             U.p "phone_number_prefix" phone_number_prefix_
           ]
+  show
+    AuthenticationCodeTypeFragment
+      { _length = _length_,
+        url = url_
+      } =
+      "AuthenticationCodeTypeFragment"
+        ++ U.cc
+          [ U.p "_length" _length_,
+            U.p "url" url_
+          ]
 
 instance T.FromJSON AuthenticationCodeType where
   parseJSON v@(T.Object obj) = do
@@ -92,6 +109,7 @@ instance T.FromJSON AuthenticationCodeType where
       "authenticationCodeTypeCall" -> parseAuthenticationCodeTypeCall v
       "authenticationCodeTypeFlashCall" -> parseAuthenticationCodeTypeFlashCall v
       "authenticationCodeTypeMissedCall" -> parseAuthenticationCodeTypeMissedCall v
+      "authenticationCodeTypeFragment" -> parseAuthenticationCodeTypeFragment v
       _ -> mempty
     where
       parseAuthenticationCodeTypeTelegramMessage :: A.Value -> T.Parser AuthenticationCodeType
@@ -119,6 +137,12 @@ instance T.FromJSON AuthenticationCodeType where
         _length_ <- o A..:? "length"
         phone_number_prefix_ <- o A..:? "phone_number_prefix"
         return $ AuthenticationCodeTypeMissedCall {_length = _length_, phone_number_prefix = phone_number_prefix_}
+
+      parseAuthenticationCodeTypeFragment :: A.Value -> T.Parser AuthenticationCodeType
+      parseAuthenticationCodeTypeFragment = A.withObject "AuthenticationCodeTypeFragment" $ \o -> do
+        _length_ <- o A..:? "length"
+        url_ <- o A..:? "url"
+        return $ AuthenticationCodeTypeFragment {_length = _length_, url = url_}
   parseJSON _ = mempty
 
 instance T.ToJSON AuthenticationCodeType where
@@ -163,4 +187,14 @@ instance T.ToJSON AuthenticationCodeType where
         [ "@type" A..= T.String "authenticationCodeTypeMissedCall",
           "length" A..= _length_,
           "phone_number_prefix" A..= phone_number_prefix_
+        ]
+  toJSON
+    AuthenticationCodeTypeFragment
+      { _length = _length_,
+        url = url_
+      } =
+      A.object
+        [ "@type" A..= T.String "authenticationCodeTypeFragment",
+          "length" A..= _length_,
+          "url" A..= url_
         ]

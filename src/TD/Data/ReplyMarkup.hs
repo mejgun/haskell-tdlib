@@ -11,7 +11,7 @@ import qualified Utils as U
 
 -- | Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 data ReplyMarkup
-  = -- | Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
+  = -- | Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
     ReplyMarkupRemoveKeyboard
       { -- | True, if the keyboard is removed only for the mentioned users or the target user of a reply
         is_personal :: Maybe Bool

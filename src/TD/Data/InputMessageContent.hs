@@ -18,7 +18,7 @@ import qualified Utils as U
 
 -- | The content of a message to send
 data InputMessageContent
-  = -- | A text message @text Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+  = -- | A text message @text Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     InputMessageText
       { -- |
         clear_draft :: Maybe Bool,
@@ -35,7 +35,7 @@ data InputMessageContent
         height :: Maybe Int,
         -- |
         width :: Maybe Int,
-        -- | Duration of the animation, in seconds @width Width of the animation; may be replaced by the server @height Height of the animation; may be replaced by the server @caption Animation caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+        -- | Duration of the animation, in seconds @width Width of the animation; may be replaced by the server @height Height of the animation; may be replaced by the server @caption Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         duration :: Maybe Int,
         -- |
         added_sticker_file_ids :: Maybe [Int],
@@ -48,7 +48,7 @@ data InputMessageContent
     InputMessageAudio
       { -- |
         caption :: Maybe FormattedText.FormattedText,
-        -- | Performer of the audio; 0-64 characters, may be replaced by the server @caption Audio caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+        -- | Performer of the audio; 0-64 characters, may be replaced by the server @caption Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         performer :: Maybe String,
         -- |
         title :: Maybe String,
@@ -59,7 +59,7 @@ data InputMessageContent
         -- |
         audio :: Maybe InputFile.InputFile
       }
-  | -- | A document message (general file) @document Document to be sent @thumbnail Document thumbnail; pass null to skip thumbnail uploading @disable_content_type_detection If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats @caption Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+  | -- | A document message (general file) @document Document to be sent @thumbnail Document thumbnail; pass null to skip thumbnail uploading @disable_content_type_detection If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats @caption Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     InputMessageDocument
       { -- |
         caption :: Maybe FormattedText.FormattedText,
@@ -70,7 +70,7 @@ data InputMessageContent
         -- |
         document :: Maybe InputFile.InputFile
       }
-  | -- | A photo message @photo Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20 @thumbnail Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats @added_sticker_file_ids File identifiers of the stickers added to the photo, if applicable @width Photo width @height Photo height @caption Photo caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+  | -- | A photo message @photo Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20 @thumbnail Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats @added_sticker_file_ids File identifiers of the stickers added to the photo, if applicable @width Photo width @height Photo height @caption Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     InputMessagePhoto
       { -- | Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
         ttl :: Maybe Int,
@@ -104,7 +104,7 @@ data InputMessageContent
     InputMessageVideo
       { -- |
         ttl :: Maybe Int,
-        -- | Video caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters @ttl Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+        -- | Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters @ttl Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
         caption :: Maybe FormattedText.FormattedText,
         -- |
         supports_streaming :: Maybe Bool,
@@ -132,7 +132,7 @@ data InputMessageContent
         -- |
         video_note :: Maybe InputFile.InputFile
       }
-  | -- | A voice note message @voice_note Voice note to be sent @duration Duration of the voice note, in seconds @waveform Waveform representation of the voice note in 5-bit format @caption Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
+  | -- | A voice note message @voice_note Voice note to be sent @duration Duration of the voice note, in seconds @waveform Waveform representation of the voice note in 5-bit format @caption Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     InputMessageVoiceNote
       { -- |
         caption :: Maybe FormattedText.FormattedText,

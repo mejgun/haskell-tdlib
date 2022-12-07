@@ -11,7 +11,7 @@ import qualified Utils as U
 -- |
 -- Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
 data SendInlineQueryResultMessage = SendInlineQueryResultMessage
-  { -- | Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
+  { -- | Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
     hide_via_bot :: Maybe Bool,
     -- | Identifier of the inline result
     result_id :: Maybe String,

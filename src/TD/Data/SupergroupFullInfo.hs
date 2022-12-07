@@ -26,6 +26,8 @@ data SupergroupFullInfo = -- | Contains full information about a supergroup or c
     location :: Maybe ChatLocation.ChatLocation,
     -- | Identifier of the supergroup sticker set; 0 if none
     sticker_set_id :: Maybe Int,
+    -- | True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available for chat administrators
+    is_aggressive_anti_spam_enabled :: Maybe Bool,
     -- | True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available for chat administrators
     is_all_history_available :: Maybe Bool,
     -- | True, if the supergroup or channel statistics are available
@@ -68,6 +70,7 @@ instance Show SupergroupFullInfo where
         invite_link = invite_link_,
         location = location_,
         sticker_set_id = sticker_set_id_,
+        is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_,
         is_all_history_available = is_all_history_available_,
         can_get_statistics = can_get_statistics_,
         can_set_location = can_set_location_,
@@ -92,6 +95,7 @@ instance Show SupergroupFullInfo where
             U.p "invite_link" invite_link_,
             U.p "location" location_,
             U.p "sticker_set_id" sticker_set_id_,
+            U.p "is_aggressive_anti_spam_enabled" is_aggressive_anti_spam_enabled_,
             U.p "is_all_history_available" is_all_history_available_,
             U.p "can_get_statistics" can_get_statistics_,
             U.p "can_set_location" can_set_location_,
@@ -125,6 +129,7 @@ instance T.FromJSON SupergroupFullInfo where
         invite_link_ <- o A..:? "invite_link"
         location_ <- o A..:? "location"
         sticker_set_id_ <- U.rm <$> (o A..:? "sticker_set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
+        is_aggressive_anti_spam_enabled_ <- o A..:? "is_aggressive_anti_spam_enabled"
         is_all_history_available_ <- o A..:? "is_all_history_available"
         can_get_statistics_ <- o A..:? "can_get_statistics"
         can_set_location_ <- o A..:? "can_set_location"
@@ -140,7 +145,7 @@ instance T.FromJSON SupergroupFullInfo where
         member_count_ <- o A..:? "member_count"
         description_ <- o A..:? "description"
         photo_ <- o A..:? "photo"
-        return $ SupergroupFullInfo {upgraded_from_max_message_id = upgraded_from_max_message_id_, upgraded_from_basic_group_id = upgraded_from_basic_group_id_, bot_commands = bot_commands_, invite_link = invite_link_, location = location_, sticker_set_id = sticker_set_id_, is_all_history_available = is_all_history_available_, can_get_statistics = can_get_statistics_, can_set_location = can_set_location_, can_set_sticker_set = can_set_sticker_set_, can_set_username = can_set_username_, can_get_members = can_get_members_, slow_mode_delay_expires_in = slow_mode_delay_expires_in_, slow_mode_delay = slow_mode_delay_, linked_chat_id = linked_chat_id_, banned_count = banned_count_, restricted_count = restricted_count_, administrator_count = administrator_count_, member_count = member_count_, description = description_, photo = photo_}
+        return $ SupergroupFullInfo {upgraded_from_max_message_id = upgraded_from_max_message_id_, upgraded_from_basic_group_id = upgraded_from_basic_group_id_, bot_commands = bot_commands_, invite_link = invite_link_, location = location_, sticker_set_id = sticker_set_id_, is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_, is_all_history_available = is_all_history_available_, can_get_statistics = can_get_statistics_, can_set_location = can_set_location_, can_set_sticker_set = can_set_sticker_set_, can_set_username = can_set_username_, can_get_members = can_get_members_, slow_mode_delay_expires_in = slow_mode_delay_expires_in_, slow_mode_delay = slow_mode_delay_, linked_chat_id = linked_chat_id_, banned_count = banned_count_, restricted_count = restricted_count_, administrator_count = administrator_count_, member_count = member_count_, description = description_, photo = photo_}
   parseJSON _ = mempty
 
 instance T.ToJSON SupergroupFullInfo where
@@ -152,6 +157,7 @@ instance T.ToJSON SupergroupFullInfo where
         invite_link = invite_link_,
         location = location_,
         sticker_set_id = sticker_set_id_,
+        is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_,
         is_all_history_available = is_all_history_available_,
         can_get_statistics = can_get_statistics_,
         can_set_location = can_set_location_,
@@ -176,6 +182,7 @@ instance T.ToJSON SupergroupFullInfo where
           "invite_link" A..= invite_link_,
           "location" A..= location_,
           "sticker_set_id" A..= U.toS sticker_set_id_,
+          "is_aggressive_anti_spam_enabled" A..= is_aggressive_anti_spam_enabled_,
           "is_all_history_available" A..= is_all_history_available_,
           "can_get_statistics" A..= can_get_statistics_,
           "can_set_location" A..= can_set_location_,

@@ -9,7 +9,7 @@ import qualified TD.Data.ChatList as ChatList
 import qualified Utils as U
 
 -- |
--- Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+-- Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
 data ToggleChatIsPinned = ToggleChatIsPinned
   { -- |
     is_pinned :: Maybe Bool,

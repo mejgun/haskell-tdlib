@@ -8,12 +8,12 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels
+-- Changes the message TTL in a chat. Requires change_info administrator right in basic groups, supergroups and channels
 -- Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
 data SetChatMessageTtl = SetChatMessageTtl
   { -- |
     ttl :: Maybe Int,
-    -- | Chat identifier @ttl New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400
+    -- | Chat identifier @ttl New TTL value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
--- | Describes the way the text needs to be parsed for TextEntities
+-- | Describes the way the text needs to be parsed for text entities
 data TextParseMode
   = -- | The text uses Markdown-style formatting
     TextParseModeMarkdown

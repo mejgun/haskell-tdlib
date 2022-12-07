@@ -733,7 +733,7 @@ data Update
         -- | Chat identifier @message_id Message identifier @sticker The animated sticker to be played
         chat_id :: Maybe Int
       }
-  | -- | The parameters of animation search through GetOption("animation_search_bot_username") bot has changed @provider Name of the animation search provider @emojis The new list of emojis suggested for searching
+  | -- | The parameters of animation search through getOption("animation_search_bot_username") bot has changed @provider Name of the animation search provider @emojis The new list of emojis suggested for searching
     UpdateAnimationSearchParameters
       { -- |
         emojis :: Maybe [String],

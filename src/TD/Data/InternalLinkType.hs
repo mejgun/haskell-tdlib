@@ -105,7 +105,7 @@ data InternalLinkType
       }
   | -- | The link is a link to the language settings section of the app
     InternalLinkTypeLanguageSettings
-  | -- | The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link @url URL to be passed to getMessageLinkInfo
+  | -- | The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link @url URL to be passed to getMessageLinkInfo
     InternalLinkTypeMessage
       { -- |
         url :: Maybe String
@@ -188,6 +188,11 @@ data InternalLinkType
     InternalLinkTypeUserPhoneNumber
       { -- |
         phone_number :: Maybe String
+      }
+  | -- | The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link @token The token
+    InternalLinkTypeUserToken
+      { -- |
+        token :: Maybe String
       }
   | -- | The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     InternalLinkTypeVideoChat
@@ -452,6 +457,14 @@ instance Show InternalLinkType where
           [ U.p "phone_number" phone_number_
           ]
   show
+    InternalLinkTypeUserToken
+      { token = token_
+      } =
+      "InternalLinkTypeUserToken"
+        ++ U.cc
+          [ U.p "token" token_
+          ]
+  show
     InternalLinkTypeVideoChat
       { is_live_stream = is_live_stream_,
         invite_hash = invite_hash_,
@@ -501,6 +514,7 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeUnknownDeepLink" -> parseInternalLinkTypeUnknownDeepLink v
       "internalLinkTypeUnsupportedProxy" -> parseInternalLinkTypeUnsupportedProxy v
       "internalLinkTypeUserPhoneNumber" -> parseInternalLinkTypeUserPhoneNumber v
+      "internalLinkTypeUserToken" -> parseInternalLinkTypeUserToken v
       "internalLinkTypeVideoChat" -> parseInternalLinkTypeVideoChat v
       _ -> mempty
     where
@@ -660,6 +674,11 @@ instance T.FromJSON InternalLinkType where
       parseInternalLinkTypeUserPhoneNumber = A.withObject "InternalLinkTypeUserPhoneNumber" $ \o -> do
         phone_number_ <- o A..:? "phone_number"
         return $ InternalLinkTypeUserPhoneNumber {phone_number = phone_number_}
+
+      parseInternalLinkTypeUserToken :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeUserToken = A.withObject "InternalLinkTypeUserToken" $ \o -> do
+        token_ <- o A..:? "token"
+        return $ InternalLinkTypeUserToken {token = token_}
 
       parseInternalLinkTypeVideoChat :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeVideoChat = A.withObject "InternalLinkTypeVideoChat" $ \o -> do
@@ -919,6 +938,14 @@ instance T.ToJSON InternalLinkType where
       A.object
         [ "@type" A..= T.String "internalLinkTypeUserPhoneNumber",
           "phone_number" A..= phone_number_
+        ]
+  toJSON
+    InternalLinkTypeUserToken
+      { token = token_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypeUserToken",
+          "token" A..= token_
         ]
   toJSON
     InternalLinkTypeVideoChat
