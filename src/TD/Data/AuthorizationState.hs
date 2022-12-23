@@ -12,18 +12,18 @@ import qualified Utils as U
 
 -- | Represents the current authorization state of the TDLib client
 data AuthorizationState
-  = -- | Initializetion parameters are needed. Call `setTdlibParameters` to provide them
+  = -- | Initializetion parameters are needed. Call setTdlibParameters to provide them
     AuthorizationStateWaitTdlibParameters
-  | -- | TDLib needs the user's phone number to authorize. Call `setAuthenticationPhoneNumber` to provide the phone number, or use `requestQrCodeAuthentication`, or `checkAuthenticationBotToken` for other authentication options
+  | -- | TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
     AuthorizationStateWaitPhoneNumber
-  | -- | TDLib needs the user's email address to authorize. Call `setAuthenticationEmailAddress` to provide the email address, or directly call `checkAuthenticationEmailCode` with Apple ID/Google ID token if allowed
+  | -- | TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
     AuthorizationStateWaitEmailAddress
       { -- |
         allow_google_id :: Maybe Bool,
         -- | True, if authorization through Apple ID is allowed @allow_google_id True, if authorization through Google ID is allowed
         allow_apple_id :: Maybe Bool
       }
-  | -- | TDLib needs the user's authentication code sent to an email address to authorize. Call `checkAuthenticationEmailCode` to provide the code
+  | -- | TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
     AuthorizationStateWaitEmailCode
       { -- | Point in time (Unix timestamp) when the user will be able to authorize with a code sent to the user's phone number; 0 if unknown
         next_phone_number_authorization_date :: Maybe Int,
@@ -34,7 +34,7 @@ data AuthorizationState
         -- | True, if authorization through Apple ID is allowed @allow_google_id True, if authorization through Google ID is allowed
         allow_apple_id :: Maybe Bool
       }
-  | -- | TDLib needs the user's authentication code to authorize @code_info Information about the authorization code that was sent
+  | -- | TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code @code_info Information about the authorization code that was sent
     AuthorizationStateWaitCode
       { -- |
         _code_info :: Maybe AuthenticationCodeInfo.AuthenticationCodeInfo
@@ -44,21 +44,22 @@ data AuthorizationState
       { -- |
         link :: Maybe String
       }
-  | -- | The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration @terms_of_service Telegram terms of service
+  | -- | The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data @terms_of_service Telegram terms of service
     AuthorizationStateWaitRegistration
       { -- |
         terms_of_service :: Maybe TermsOfService.TermsOfService
       }
-  | -- | The user has been authorized, but needs to enter a 2-step verification password to start using the application @password_hint Hint for the password; may be empty @has_recovery_email_address True, if a recovery email address has been set up
+  | -- | The user has been authorized, but needs to enter a 2-step verification password to start using the application.
+    -- Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
     AuthorizationStateWaitPassword
       { -- | Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
         recovery_email_address_pattern :: Maybe String,
         -- |
         has_recovery_email_address :: Maybe Bool,
-        -- |
+        -- | Hint for the password; may be empty @has_recovery_email_address True, if a recovery email address has been set up
         password_hint :: Maybe String
       }
-  | -- | The user has been successfully authorized. TDLib is now ready to answer queries
+  | -- | The user has been successfully authorized. TDLib is now ready to answer general requests
     AuthorizationStateReady
   | -- | The user is currently logging out
     AuthorizationStateLoggingOut
