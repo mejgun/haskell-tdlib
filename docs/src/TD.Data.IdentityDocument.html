@@ -10,28 +10,28 @@
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-11"></span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="IdentityDocument"><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-var">IdentityDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | An identity document @number Document number; 1-24 characters @expiry_date Document expiry date; may be null if not applicable @front_side Front side of the document</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="IdentityDocument"><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-var">IdentityDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | An identity document</span><span>
 </span><span id="line-14"></span><span>  </span><span id="IdentityDocument"><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-var">IdentityDocument</span></a></span></span><span>
-</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | List of files containing a certified English translation of the document</span><span>
 </span><span id="line-16"></span><span>    </span><span id="translation"><span class="annot"><span class="annottext">IdentityDocument -&gt; Maybe [DatedFile]
 </span><a href="TD.Data.IdentityDocument.html#translation"><span class="hs-identifier hs-var hs-var">translation</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.DatedFile.html#DatedFile"><span class="hs-identifier hs-type">DatedFile.DatedFile</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Selfie with the document; may be null</span><span>
 </span><span id="line-18"></span><span>    </span><span id="selfie"><span class="annot"><span class="annottext">IdentityDocument -&gt; Maybe DatedFile
 </span><a href="TD.Data.IdentityDocument.html#selfie"><span class="hs-identifier hs-var hs-var">selfie</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.DatedFile.html#DatedFile"><span class="hs-identifier hs-type">DatedFile.DatedFile</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Reverse side of the document; only for driver license and identity card; may be null @selfie Selfie with the document; may be null @translation List of files containing a certified English translation of the document</span><span>
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Reverse side of the document; only for driver license and identity card; may be null</span><span>
 </span><span id="line-20"></span><span>    </span><span id="reverse_side"><span class="annot"><span class="annottext">IdentityDocument -&gt; Maybe DatedFile
 </span><a href="TD.Data.IdentityDocument.html#reverse_side"><span class="hs-identifier hs-var hs-var">reverse_side</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.DatedFile.html#DatedFile"><span class="hs-identifier hs-type">DatedFile.DatedFile</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | Front side of the document</span><span>
 </span><span id="line-22"></span><span>    </span><span id="front_side"><span class="annot"><span class="annottext">IdentityDocument -&gt; Maybe DatedFile
 </span><a href="TD.Data.IdentityDocument.html#front_side"><span class="hs-identifier hs-var hs-var">front_side</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.DatedFile.html#DatedFile"><span class="hs-identifier hs-type">DatedFile.DatedFile</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- | Document expiry date; may be null if not applicable</span><span>
 </span><span id="line-24"></span><span>    </span><span id="expiry_date"><span class="annot"><span class="annottext">IdentityDocument -&gt; Maybe Date
 </span><a href="TD.Data.IdentityDocument.html#expiry_date"><span class="hs-identifier hs-var hs-var">expiry_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.Date.html#Date"><span class="hs-identifier hs-type">Date.Date</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-25"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-25"></span><span>    </span><span class="hs-comment">-- | Document number; 1-24 characters</span><span>
 </span><span id="line-26"></span><span>    </span><span id="number"><span class="annot"><span class="annottext">IdentityDocument -&gt; Maybe String
 </span><a href="TD.Data.IdentityDocument.html#number"><span class="hs-identifier hs-var hs-var">number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679445824"><span id="local-6989586621679445826"><span class="annot"><span class="annottext">IdentityDocument -&gt; IdentityDocument -&gt; Bool
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679449169"><span id="local-6989586621679449171"><span class="annot"><span class="annottext">IdentityDocument -&gt; IdentityDocument -&gt; Bool
 (IdentityDocument -&gt; IdentityDocument -&gt; Bool)
 -&gt; (IdentityDocument -&gt; IdentityDocument -&gt; Bool)
 -&gt; Eq IdentityDocument
@@ -42,28 +42,28 @@ $c/= :: IdentityDocument -&gt; IdentityDocument -&gt; Bool
 $c== :: IdentityDocument -&gt; IdentityDocument -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445818"><span id="local-6989586621679445821"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679445816"><span class="annot"><span class="annottext">show :: IdentityDocument -&gt; String
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449163"><span id="local-6989586621679449166"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679449161"><span class="annot"><span class="annottext">show :: IdentityDocument -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-32"></span><span>    </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span><span>
 </span><span id="line-33"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">translation :: IdentityDocument -&gt; Maybe [DatedFile]
-</span><a href="TD.Data.IdentityDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445814"><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679445814"><span class="hs-identifier hs-var">translation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449159"><span class="annot"><span class="annottext">Maybe [DatedFile]
+</span><a href="#local-6989586621679449159"><span class="hs-identifier hs-var">translation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">selfie :: IdentityDocument -&gt; Maybe DatedFile
-</span><a href="TD.Data.IdentityDocument.html#selfie"><span class="hs-identifier hs-var">selfie</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445813"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445813"><span class="hs-identifier hs-var">selfie_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#selfie"><span class="hs-identifier hs-var">selfie</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449158"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449158"><span class="hs-identifier hs-var">selfie_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">reverse_side :: IdentityDocument -&gt; Maybe DatedFile
-</span><a href="TD.Data.IdentityDocument.html#reverse_side"><span class="hs-identifier hs-var">reverse_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445812"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445812"><span class="hs-identifier hs-var">reverse_side_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#reverse_side"><span class="hs-identifier hs-var">reverse_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449157"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449157"><span class="hs-identifier hs-var">reverse_side_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">front_side :: IdentityDocument -&gt; Maybe DatedFile
-</span><a href="TD.Data.IdentityDocument.html#front_side"><span class="hs-identifier hs-var">front_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445811"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445811"><span class="hs-identifier hs-var">front_side_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#front_side"><span class="hs-identifier hs-var">front_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449156"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449156"><span class="hs-identifier hs-var">front_side_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">expiry_date :: IdentityDocument -&gt; Maybe Date
-</span><a href="TD.Data.IdentityDocument.html#expiry_date"><span class="hs-identifier hs-var">expiry_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445810"><span class="annot"><span class="annottext">Maybe Date
-</span><a href="#local-6989586621679445810"><span class="hs-identifier hs-var">expiry_date_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#expiry_date"><span class="hs-identifier hs-var">expiry_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449155"><span class="annot"><span class="annottext">Maybe Date
+</span><a href="#local-6989586621679449155"><span class="hs-identifier hs-var">expiry_date_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">number :: IdentityDocument -&gt; Maybe String
-</span><a href="TD.Data.IdentityDocument.html#number"><span class="hs-identifier hs-var">number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445809"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679445809"><span class="hs-identifier hs-var">number_</span></a></span></span><span>
+</span><a href="TD.Data.IdentityDocument.html#number"><span class="hs-identifier hs-var">number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449154"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679449154"><span class="hs-identifier hs-var">number_</span></a></span></span><span>
 </span><span id="line-39"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-40"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;IdentityDocument&quot;</span></span><span>
@@ -75,60 +75,60 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;translation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679445814"><span class="hs-identifier hs-var">translation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449159"><span class="hs-identifier hs-var">translation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe DatedFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;selfie&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445813"><span class="hs-identifier hs-var">selfie_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449158"><span class="hs-identifier hs-var">selfie_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe DatedFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reverse_side&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445812"><span class="hs-identifier hs-var">reverse_side_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449157"><span class="hs-identifier hs-var">reverse_side_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe DatedFile -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;front_side&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445811"><span class="hs-identifier hs-var">front_side_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449156"><span class="hs-identifier hs-var">front_side_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Date -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;expiry_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Date
-</span><a href="#local-6989586621679445810"><span class="hs-identifier hs-var">expiry_date_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449155"><span class="hs-identifier hs-var">expiry_date_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679445809"><span class="hs-identifier hs-var">number_</span></a></span><span>
+</span><a href="#local-6989586621679449154"><span class="hs-identifier hs-var">number_</span></a></span><span>
 </span><span id="line-48"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445804"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span>  </span><span id="local-6989586621679445802"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser IdentityDocument
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679445800"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679445800"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679445798"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445798"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679445797"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679445797"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445798"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449149"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-51"></span><span>  </span><span id="local-6989586621679449147"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser IdentityDocument
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679449145"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679449145"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679449143"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449143"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679449142"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679449142"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449143"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-53"></span><span>
 </span><span id="line-54"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679445797"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679449142"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-55"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;identityDocument&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser IdentityDocument
-</span><a href="#local-6989586621679445795"><span class="hs-identifier hs-var">parseIdentityDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679445800"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679449140"><span class="hs-identifier hs-var">parseIdentityDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679449145"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-56"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser IdentityDocument
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-57"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span>      </span><span class="annot"><a href="#local-6989586621679445795"><span class="hs-identifier hs-type">parseIdentityDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span><span>
-</span><span id="line-59"></span><span>      </span><span id="local-6989586621679445795"><span class="annot"><span class="annottext">parseIdentityDocument :: Value -&gt; Parser IdentityDocument
-</span><a href="#local-6989586621679445795"><span class="hs-identifier hs-var hs-var">parseIdentityDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>      </span><span class="annot"><a href="#local-6989586621679449140"><span class="hs-identifier hs-type">parseIdentityDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span><span>
+</span><span id="line-59"></span><span>      </span><span id="local-6989586621679449140"><span class="annot"><span class="annottext">parseIdentityDocument :: Value -&gt; Parser IdentityDocument
+</span><a href="#local-6989586621679449140"><span class="hs-identifier hs-var hs-var">parseIdentityDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser IdentityDocument)
 -&gt; Value
 -&gt; Parser IdentityDocument
@@ -140,41 +140,41 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser IdentityDocument
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679445793"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445793"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-60"></span><span>        </span><span id="local-6989586621679445792"><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679445792"><span class="hs-identifier hs-var">translation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445793"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [DatedFile])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679449138"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449138"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-60"></span><span>        </span><span id="local-6989586621679449137"><span class="annot"><span class="annottext">Maybe [DatedFile]
+</span><a href="#local-6989586621679449137"><span class="hs-identifier hs-var">translation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449138"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [DatedFile])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;translation&quot;</span></span><span>
-</span><span id="line-61"></span><span>        </span><span id="local-6989586621679445790"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445790"><span class="hs-identifier hs-var">selfie_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445793"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe DatedFile)
+</span><span id="line-61"></span><span>        </span><span id="local-6989586621679449135"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449135"><span class="hs-identifier hs-var">selfie_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449138"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe DatedFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;selfie&quot;</span></span><span>
-</span><span id="line-62"></span><span>        </span><span id="local-6989586621679445789"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445789"><span class="hs-identifier hs-var">reverse_side_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445793"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe DatedFile)
+</span><span id="line-62"></span><span>        </span><span id="local-6989586621679449134"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449134"><span class="hs-identifier hs-var">reverse_side_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449138"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe DatedFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reverse_side&quot;</span></span><span>
-</span><span id="line-63"></span><span>        </span><span id="local-6989586621679445788"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445788"><span class="hs-identifier hs-var">front_side_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445793"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe DatedFile)
+</span><span id="line-63"></span><span>        </span><span id="local-6989586621679449133"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449133"><span class="hs-identifier hs-var">front_side_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449138"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe DatedFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;front_side&quot;</span></span><span>
-</span><span id="line-64"></span><span>        </span><span id="local-6989586621679445787"><span class="annot"><span class="annottext">Maybe Date
-</span><a href="#local-6989586621679445787"><span class="hs-identifier hs-var">expiry_date_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445793"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Date)
+</span><span id="line-64"></span><span>        </span><span id="local-6989586621679449132"><span class="annot"><span class="annottext">Maybe Date
+</span><a href="#local-6989586621679449132"><span class="hs-identifier hs-var">expiry_date_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449138"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Date)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;expiry_date&quot;</span></span><span>
-</span><span id="line-65"></span><span>        </span><span id="local-6989586621679445786"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679445786"><span class="hs-identifier hs-var">number_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445793"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-65"></span><span>        </span><span id="local-6989586621679449131"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679449131"><span class="hs-identifier hs-var">number_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449138"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;number&quot;</span></span><span>
@@ -192,44 +192,44 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; IdentityDocument
 </span><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">translation :: Maybe [DatedFile]
 </span><a href="TD.Data.IdentityDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679445792"><span class="hs-identifier hs-var">translation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">selfie :: Maybe DatedFile
+</span><a href="#local-6989586621679449137"><span class="hs-identifier hs-var">translation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">selfie :: Maybe DatedFile
 </span><a href="TD.Data.IdentityDocument.html#selfie"><span class="hs-identifier hs-var">selfie</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445790"><span class="hs-identifier hs-var">selfie_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reverse_side :: Maybe DatedFile
+</span><a href="#local-6989586621679449135"><span class="hs-identifier hs-var">selfie_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reverse_side :: Maybe DatedFile
 </span><a href="TD.Data.IdentityDocument.html#reverse_side"><span class="hs-identifier hs-var">reverse_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445789"><span class="hs-identifier hs-var">reverse_side_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">front_side :: Maybe DatedFile
+</span><a href="#local-6989586621679449134"><span class="hs-identifier hs-var">reverse_side_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">front_side :: Maybe DatedFile
 </span><a href="TD.Data.IdentityDocument.html#front_side"><span class="hs-identifier hs-var">front_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445788"><span class="hs-identifier hs-var">front_side_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expiry_date :: Maybe Date
+</span><a href="#local-6989586621679449133"><span class="hs-identifier hs-var">front_side_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">expiry_date :: Maybe Date
 </span><a href="TD.Data.IdentityDocument.html#expiry_date"><span class="hs-identifier hs-var">expiry_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Date
-</span><a href="#local-6989586621679445787"><span class="hs-identifier hs-var">expiry_date_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">number :: Maybe String
+</span><a href="#local-6989586621679449132"><span class="hs-identifier hs-var">expiry_date_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">number :: Maybe String
 </span><a href="TD.Data.IdentityDocument.html#number"><span class="hs-identifier hs-var">number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679445786"><span class="hs-identifier hs-var">number_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679449131"><span class="hs-identifier hs-var">number_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-67"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser IdentityDocument
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-68"></span><span>
-</span><span id="line-69"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445779"><span id="local-6989586621679445781"><span id="local-6989586621679445783"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-70"></span><span>  </span><span id="local-6989586621679445777"><span class="annot"><span class="annottext">toJSON :: IdentityDocument -&gt; Value
+</span><span id="line-69"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449124"><span id="local-6989586621679449126"><span id="local-6989586621679449128"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-70"></span><span>  </span><span id="local-6989586621679449122"><span class="annot"><span class="annottext">toJSON :: IdentityDocument -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-71"></span><span>    </span><span class="annot"><a href="TD.Data.IdentityDocument.html#IdentityDocument"><span class="hs-identifier hs-type">IdentityDocument</span></a></span><span>
 </span><span id="line-72"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">translation :: IdentityDocument -&gt; Maybe [DatedFile]
-</span><a href="TD.Data.IdentityDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445775"><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679445775"><span class="hs-identifier hs-var">translation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449120"><span class="annot"><span class="annottext">Maybe [DatedFile]
+</span><a href="#local-6989586621679449120"><span class="hs-identifier hs-var">translation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-73"></span><span>        </span><span class="annot"><span class="annottext">selfie :: IdentityDocument -&gt; Maybe DatedFile
-</span><a href="TD.Data.IdentityDocument.html#selfie"><span class="hs-identifier hs-var">selfie</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445774"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445774"><span class="hs-identifier hs-var">selfie_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#selfie"><span class="hs-identifier hs-var">selfie</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449119"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449119"><span class="hs-identifier hs-var">selfie_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-74"></span><span>        </span><span class="annot"><span class="annottext">reverse_side :: IdentityDocument -&gt; Maybe DatedFile
-</span><a href="TD.Data.IdentityDocument.html#reverse_side"><span class="hs-identifier hs-var">reverse_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445773"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445773"><span class="hs-identifier hs-var">reverse_side_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#reverse_side"><span class="hs-identifier hs-var">reverse_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449118"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449118"><span class="hs-identifier hs-var">reverse_side_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-75"></span><span>        </span><span class="annot"><span class="annottext">front_side :: IdentityDocument -&gt; Maybe DatedFile
-</span><a href="TD.Data.IdentityDocument.html#front_side"><span class="hs-identifier hs-var">front_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445772"><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445772"><span class="hs-identifier hs-var">front_side_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#front_side"><span class="hs-identifier hs-var">front_side</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449117"><span class="annot"><span class="annottext">Maybe DatedFile
+</span><a href="#local-6989586621679449117"><span class="hs-identifier hs-var">front_side_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-76"></span><span>        </span><span class="annot"><span class="annottext">expiry_date :: IdentityDocument -&gt; Maybe Date
-</span><a href="TD.Data.IdentityDocument.html#expiry_date"><span class="hs-identifier hs-var">expiry_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445771"><span class="annot"><span class="annottext">Maybe Date
-</span><a href="#local-6989586621679445771"><span class="hs-identifier hs-var">expiry_date_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.IdentityDocument.html#expiry_date"><span class="hs-identifier hs-var">expiry_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449116"><span class="annot"><span class="annottext">Maybe Date
+</span><a href="#local-6989586621679449116"><span class="hs-identifier hs-var">expiry_date_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-77"></span><span>        </span><span class="annot"><span class="annottext">number :: IdentityDocument -&gt; Maybe String
-</span><a href="TD.Data.IdentityDocument.html#number"><span class="hs-identifier hs-var">number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445770"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679445770"><span class="hs-identifier hs-var">number_</span></a></span></span><span>
+</span><a href="TD.Data.IdentityDocument.html#number"><span class="hs-identifier hs-var">number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449115"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679449115"><span class="hs-identifier hs-var">number_</span></a></span></span><span>
 </span><span id="line-78"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-79"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -243,31 +243,31 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;translation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [DatedFile] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679445775"><span class="hs-identifier hs-var">translation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449120"><span class="hs-identifier hs-var">translation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-82"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;selfie&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe DatedFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445774"><span class="hs-identifier hs-var">selfie_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449119"><span class="hs-identifier hs-var">selfie_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-83"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reverse_side&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe DatedFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445773"><span class="hs-identifier hs-var">reverse_side_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449118"><span class="hs-identifier hs-var">reverse_side_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-84"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;front_side&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe DatedFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe DatedFile
-</span><a href="#local-6989586621679445772"><span class="hs-identifier hs-var">front_side_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449117"><span class="hs-identifier hs-var">front_side_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-85"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;expiry_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Date -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Date
-</span><a href="#local-6989586621679445771"><span class="hs-identifier hs-var">expiry_date_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679449116"><span class="hs-identifier hs-var">expiry_date_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-86"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679445770"><span class="hs-identifier hs-var">number_</span></a></span><span>
+</span><a href="#local-6989586621679449115"><span class="hs-identifier hs-var">number_</span></a></span><span>
 </span><span id="line-87"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-88"></span></pre></body></html>

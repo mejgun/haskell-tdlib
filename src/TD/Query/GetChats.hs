@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
 data GetChats = GetChats
-  { -- |
+  { -- | The maximum number of chats to be returned
     limit :: Maybe Int,
-    -- | The chat list in which to return chats; pass null to get chats from the main chat list @limit The maximum number of chats to be returned
+    -- | The chat list in which to return chats; pass null to get chats from the main chat list
     chat_list :: Maybe ChatList.ChatList
   }
   deriving (Eq)

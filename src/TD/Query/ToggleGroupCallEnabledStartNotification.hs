@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
 data ToggleGroupCallEnabledStartNotification = ToggleGroupCallEnabledStartNotification
-  { -- |
+  { -- | New value of the enabled_start_notification setting
     enabled_start_notification :: Maybe Bool,
-    -- | Group call identifier @enabled_start_notification New value of the enabled_start_notification setting
+    -- | Group call identifier
     group_call_id :: Maybe Int
   }
   deriving (Eq)

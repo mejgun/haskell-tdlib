@@ -19,9 +19,9 @@ data MessageLinkInfo = -- | Contains information about a link to a message or a 
     message :: Maybe Message.Message,
     -- | If found, identifier of the message thread in which to open the message, or a forum topic to open if the message is missing
     message_thread_id :: Maybe Int,
-    -- | If found, identifier of the chat to which the message belongs, 0 otherwise
+    -- | If found, identifier of the chat to which the link points, 0 otherwise
     chat_id :: Maybe Int,
-    -- | True, if the link is a public link for a message in a chat
+    -- | True, if the link is a public link for a message or a forum topic in a chat
     is_public :: Maybe Bool
   }
   deriving (Eq)

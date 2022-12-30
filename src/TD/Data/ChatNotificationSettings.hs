@@ -10,25 +10,25 @@ import qualified Utils as U
 -- |
 data ChatNotificationSettings = -- | Contains information about notification settings for a chat or a froum topic
   ChatNotificationSettings
-  { -- |
+  { -- | If true, notifications for messages with mentions will be created as for an ordinary unread message
     disable_mention_notifications :: Maybe Bool,
-    -- | If true, disable_mention_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead @disable_mention_notifications If true, notifications for messages with mentions will be created as for an ordinary unread message
+    -- | If true, disable_mention_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
     use_default_disable_mention_notifications :: Maybe Bool,
-    -- |
+    -- | If true, notifications for incoming pinned messages will be created as for an ordinary unread message
     disable_pinned_message_notifications :: Maybe Bool,
-    -- | If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead @disable_pinned_message_notifications If true, notifications for incoming pinned messages will be created as for an ordinary unread message
+    -- | If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
     use_default_disable_pinned_message_notifications :: Maybe Bool,
-    -- |
+    -- | True, if message content must be displayed in notifications
     show_preview :: Maybe Bool,
-    -- | If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead @show_preview True, if message content must be displayed in notifications
+    -- | If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
     use_default_show_preview :: Maybe Bool,
-    -- |
+    -- | Identifier of the notification sound to be played; 0 if sound is disabled
     sound_id :: Maybe Int,
-    -- | If true, the value for the relevant type of chat or the forum chat is used instead of sound_id @sound_id Identifier of the notification sound to be played; 0 if sound is disabled
+    -- | If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
     use_default_sound :: Maybe Bool,
-    -- |
+    -- | Time left before notifications will be unmuted, in seconds
     mute_for :: Maybe Int,
-    -- | If true, mute_for is ignored and the value for the relevant type of chat or the forum chat is used instead @mute_for Time left before notifications will be unmuted, in seconds
+    -- | If true, mute_for is ignored and the value for the relevant type of chat or the forum chat is used instead
     use_default_mute_for :: Maybe Bool
   }
   deriving (Eq)

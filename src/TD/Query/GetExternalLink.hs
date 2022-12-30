@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
 data GetExternalLink = GetExternalLink
-  { -- |
+  { -- | Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
     allow_write_access :: Maybe Bool,
-    -- | The HTTP link @allow_write_access Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+    -- | The HTTP link
     link :: Maybe String
   }
   deriving (Eq)

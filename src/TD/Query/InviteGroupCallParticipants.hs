@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
 data InviteGroupCallParticipants = InviteGroupCallParticipants
-  { -- |
+  { -- | User identifiers. At most 10 users can be invited simultaneously
     user_ids :: Maybe [Int],
-    -- | Group call identifier @user_ids User identifiers. At most 10 users can be invited simultaneously
+    -- | Group call identifier
     group_call_id :: Maybe Int
   }
   deriving (Eq)

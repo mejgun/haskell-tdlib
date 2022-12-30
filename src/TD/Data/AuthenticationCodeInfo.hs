@@ -9,15 +9,15 @@ import qualified TD.Data.AuthenticationCodeType as AuthenticationCodeType
 import qualified Utils as U
 
 -- |
-data AuthenticationCodeInfo = -- | Information about the authentication code that was sent @phone_number A phone number that is being authenticated @type The way the code was sent to the user @next_type The way the next code will be sent to the user; may be null @timeout Timeout before the code can be re-sent, in seconds
+data AuthenticationCodeInfo = -- | Information about the authentication code that was sent
   AuthenticationCodeInfo
-  { -- |
+  { -- | Timeout before the code can be re-sent, in seconds
     timeout :: Maybe Int,
-    -- |
+    -- | The way the next code will be sent to the user; may be null
     next_type :: Maybe AuthenticationCodeType.AuthenticationCodeType,
-    -- |
+    -- | The way the code was sent to the user
     _type :: Maybe AuthenticationCodeType.AuthenticationCodeType,
-    -- |
+    -- | A phone number that is being authenticated
     phone_number :: Maybe String
   }
   deriving (Eq)

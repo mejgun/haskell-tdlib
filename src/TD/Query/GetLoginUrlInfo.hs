@@ -10,11 +10,11 @@ import qualified Utils as U
 -- |
 -- Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
 data GetLoginUrlInfo = GetLoginUrlInfo
-  { -- |
+  { -- | Button identifier
     button_id :: Maybe Int,
-    -- |
+    -- | Message identifier of the message with the button
     message_id :: Maybe Int,
-    -- | Chat identifier of the message with the button @message_id Message identifier of the message with the button @button_id Button identifier
+    -- | Chat identifier of the message with the button
     chat_id :: Maybe Int
   }
   deriving (Eq)

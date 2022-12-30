@@ -8,13 +8,13 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Searches for emojis by keywords. Supported only if the file database is enabled @text Text to search for @exact_match Pass true if only emojis, which exactly match the text, needs to be returned @input_language_codes List of possible IETF language tags of the user's input language; may be empty if unknown
+-- Searches for emojis by keywords. Supported only if the file database is enabled
 data SearchEmojis = SearchEmojis
-  { -- |
+  { -- | List of possible IETF language tags of the user's input language; may be empty if unknown
     input_language_codes :: Maybe [String],
-    -- |
+    -- | Pass true if only emojis, which exactly match the text, needs to be returned
     exact_match :: Maybe Bool,
-    -- |
+    -- | Text to search for
     text :: Maybe String
   }
   deriving (Eq)

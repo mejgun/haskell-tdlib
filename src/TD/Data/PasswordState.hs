@@ -9,7 +9,7 @@ import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthe
 import qualified Utils as U
 
 -- |
-data PasswordState = -- | Represents the current state of 2-step verification @has_password True, if a 2-step verification password is set @password_hint Hint for the password; may be empty
+data PasswordState = -- | Represents the current state of 2-step verification
   PasswordState
   { -- | If not 0, point in time (Unix timestamp) after which the 2-step verification password can be reset immediately using resetPassword
     pending_reset_date :: Maybe Int,
@@ -17,13 +17,13 @@ data PasswordState = -- | Represents the current state of 2-step verification @h
     login_email_address_pattern :: Maybe String,
     -- | Information about the recovery email address to which the confirmation email was sent; may be null
     recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo,
-    -- |
+    -- | True, if some Telegram Passport elements were saved
     has_passport_data :: Maybe Bool,
-    -- | True, if a recovery email is set @has_passport_data True, if some Telegram Passport elements were saved
+    -- | True, if a recovery email is set
     has_recovery_email_address :: Maybe Bool,
-    -- |
+    -- | Hint for the password; may be empty
     password_hint :: Maybe String,
-    -- |
+    -- | True, if a 2-step verification password is set
     has_password :: Maybe Bool
   }
   deriving (Eq)

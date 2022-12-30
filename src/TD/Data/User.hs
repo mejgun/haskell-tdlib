@@ -29,8 +29,6 @@ data User = -- | Represents a user
     is_scam :: Maybe Bool,
     -- | If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
     restriction_reason :: Maybe String,
-    -- | True, if the user's phone number was bought on Fragment and isn't tied to a SIM card
-    has_anonymous_phone_number :: Maybe Bool,
     -- | True, if the user is Telegram support account
     is_support :: Maybe Bool,
     -- | True, if the user is a Telegram Premium user
@@ -70,7 +68,6 @@ instance Show User where
         is_fake = is_fake_,
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
-        has_anonymous_phone_number = has_anonymous_phone_number_,
         is_support = is_support_,
         is_premium = is_premium_,
         is_verified = is_verified_,
@@ -94,7 +91,6 @@ instance Show User where
             U.p "is_fake" is_fake_,
             U.p "is_scam" is_scam_,
             U.p "restriction_reason" restriction_reason_,
-            U.p "has_anonymous_phone_number" has_anonymous_phone_number_,
             U.p "is_support" is_support_,
             U.p "is_premium" is_premium_,
             U.p "is_verified" is_verified_,
@@ -127,7 +123,6 @@ instance T.FromJSON User where
         is_fake_ <- o A..:? "is_fake"
         is_scam_ <- o A..:? "is_scam"
         restriction_reason_ <- o A..:? "restriction_reason"
-        has_anonymous_phone_number_ <- o A..:? "has_anonymous_phone_number"
         is_support_ <- o A..:? "is_support"
         is_premium_ <- o A..:? "is_premium"
         is_verified_ <- o A..:? "is_verified"
@@ -141,7 +136,7 @@ instance T.FromJSON User where
         last_name_ <- o A..:? "last_name"
         first_name_ <- o A..:? "first_name"
         _id_ <- o A..:? "id"
-        return $ User {added_to_attachment_menu = added_to_attachment_menu_, language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, has_anonymous_phone_number = has_anonymous_phone_number_, is_support = is_support_, is_premium = is_premium_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, emoji_status = emoji_status_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, usernames = usernames_, last_name = last_name_, first_name = first_name_, _id = _id_}
+        return $ User {added_to_attachment_menu = added_to_attachment_menu_, language_code = language_code_, _type = _type_, have_access = have_access_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_support = is_support_, is_premium = is_premium_, is_verified = is_verified_, is_mutual_contact = is_mutual_contact_, is_contact = is_contact_, emoji_status = emoji_status_, profile_photo = profile_photo_, status = status_, phone_number = phone_number_, usernames = usernames_, last_name = last_name_, first_name = first_name_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON User where
@@ -154,7 +149,6 @@ instance T.ToJSON User where
         is_fake = is_fake_,
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
-        has_anonymous_phone_number = has_anonymous_phone_number_,
         is_support = is_support_,
         is_premium = is_premium_,
         is_verified = is_verified_,
@@ -178,7 +172,6 @@ instance T.ToJSON User where
           "is_fake" A..= is_fake_,
           "is_scam" A..= is_scam_,
           "restriction_reason" A..= restriction_reason_,
-          "has_anonymous_phone_number" A..= has_anonymous_phone_number_,
           "is_support" A..= is_support_,
           "is_premium" A..= is_premium_,
           "is_verified" A..= is_verified_,

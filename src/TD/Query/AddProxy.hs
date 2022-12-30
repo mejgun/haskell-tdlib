@@ -9,15 +9,15 @@ import qualified TD.Data.ProxyType as ProxyType
 import qualified Utils as U
 
 -- |
--- Adds a proxy server for network requests. Can be called before authorization @server Proxy server IP address @port Proxy server port @enable Pass true to immediately enable the proxy @type Proxy type
+-- Adds a proxy server for network requests. Can be called before authorization
 data AddProxy = AddProxy
-  { -- |
+  { -- | Proxy type
     _type :: Maybe ProxyType.ProxyType,
-    -- |
+    -- | Pass true to immediately enable the proxy
     enable :: Maybe Bool,
-    -- |
+    -- | Proxy server port
     port :: Maybe Int,
-    -- |
+    -- | Proxy server IP address
     server :: Maybe String
   }
   deriving (Eq)

@@ -36,8 +36,12 @@ data UserFullInfo = -- | Contains full information about a user
     can_be_called :: Maybe Bool,
     -- | True, if the user is blocked by the current user
     is_blocked :: Maybe Bool,
-    -- | User profile photo; may be null if empty or unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo
-    photo :: Maybe ChatPhoto.ChatPhoto
+    -- | User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty, otherwise unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+    public_photo :: Maybe ChatPhoto.ChatPhoto,
+    -- | User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty, otherwise unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
+    photo :: Maybe ChatPhoto.ChatPhoto,
+    -- | User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty, otherwise unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+    personal_photo :: Maybe ChatPhoto.ChatPhoto
   }
   deriving (Eq)
 
@@ -55,7 +59,9 @@ instance Show UserFullInfo where
         supports_video_calls = supports_video_calls_,
         can_be_called = can_be_called_,
         is_blocked = is_blocked_,
-        photo = photo_
+        public_photo = public_photo_,
+        photo = photo_,
+        personal_photo = personal_photo_
       } =
       "UserFullInfo"
         ++ U.cc
@@ -70,7 +76,9 @@ instance Show UserFullInfo where
             U.p "supports_video_calls" supports_video_calls_,
             U.p "can_be_called" can_be_called_,
             U.p "is_blocked" is_blocked_,
-            U.p "photo" photo_
+            U.p "public_photo" public_photo_,
+            U.p "photo" photo_,
+            U.p "personal_photo" personal_photo_
           ]
 
 instance T.FromJSON UserFullInfo where
@@ -94,8 +102,10 @@ instance T.FromJSON UserFullInfo where
         supports_video_calls_ <- o A..:? "supports_video_calls"
         can_be_called_ <- o A..:? "can_be_called"
         is_blocked_ <- o A..:? "is_blocked"
+        public_photo_ <- o A..:? "public_photo"
         photo_ <- o A..:? "photo"
-        return $ UserFullInfo {bot_info = bot_info_, group_in_common_count = group_in_common_count_, premium_gift_options = premium_gift_options_, bio = bio_, need_phone_number_privacy_exception = need_phone_number_privacy_exception_, has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_, has_private_forwards = has_private_forwards_, has_private_calls = has_private_calls_, supports_video_calls = supports_video_calls_, can_be_called = can_be_called_, is_blocked = is_blocked_, photo = photo_}
+        personal_photo_ <- o A..:? "personal_photo"
+        return $ UserFullInfo {bot_info = bot_info_, group_in_common_count = group_in_common_count_, premium_gift_options = premium_gift_options_, bio = bio_, need_phone_number_privacy_exception = need_phone_number_privacy_exception_, has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_, has_private_forwards = has_private_forwards_, has_private_calls = has_private_calls_, supports_video_calls = supports_video_calls_, can_be_called = can_be_called_, is_blocked = is_blocked_, public_photo = public_photo_, photo = photo_, personal_photo = personal_photo_}
   parseJSON _ = mempty
 
 instance T.ToJSON UserFullInfo where
@@ -112,7 +122,9 @@ instance T.ToJSON UserFullInfo where
         supports_video_calls = supports_video_calls_,
         can_be_called = can_be_called_,
         is_blocked = is_blocked_,
-        photo = photo_
+        public_photo = public_photo_,
+        photo = photo_,
+        personal_photo = personal_photo_
       } =
       A.object
         [ "@type" A..= T.String "userFullInfo",
@@ -127,5 +139,7 @@ instance T.ToJSON UserFullInfo where
           "supports_video_calls" A..= supports_video_calls_,
           "can_be_called" A..= can_be_called_,
           "is_blocked" A..= is_blocked_,
-          "photo" A..= photo_
+          "public_photo" A..= public_photo_,
+          "photo" A..= photo_,
+          "personal_photo" A..= personal_photo_
         ]

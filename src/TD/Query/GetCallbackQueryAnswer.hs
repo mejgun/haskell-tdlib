@@ -9,13 +9,13 @@ import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
 import qualified Utils as U
 
 -- |
--- Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires @chat_id Identifier of the chat with the message @message_id Identifier of the message from which the query originated @payload Query payload
+-- Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
 data GetCallbackQueryAnswer = GetCallbackQueryAnswer
-  { -- |
+  { -- | Query payload
     payload :: Maybe CallbackQueryPayload.CallbackQueryPayload,
-    -- |
+    -- | Identifier of the message from which the query originated
     message_id :: Maybe Int,
-    -- |
+    -- | Identifier of the chat with the message
     chat_id :: Maybe Int
   }
   deriving (Eq)

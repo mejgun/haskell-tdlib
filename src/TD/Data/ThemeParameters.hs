@@ -8,21 +8,21 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data ThemeParameters = -- | Contains parameters of the application theme @background_color A color of the background in the RGB24 format @secondary_background_color A secondary color for the background in the RGB24 format
+data ThemeParameters = -- | Contains parameters of the application theme
   ThemeParameters
   { -- | A color of text on the buttons in the RGB24 format
     button_text_color :: Maybe Int,
-    -- |
+    -- | A color of the buttons in the RGB24 format
     button_color :: Maybe Int,
-    -- |
+    -- | A color of links in the RGB24 format
     link_color :: Maybe Int,
-    -- |
+    -- | A color of hints in the RGB24 format
     hint_color :: Maybe Int,
-    -- | A color of text in the RGB24 format @hint_color A color of hints in the RGB24 format @link_color A color of links in the RGB24 format @button_color A color of the buttons in the RGB24 format
+    -- | A color of text in the RGB24 format
     text_color :: Maybe Int,
-    -- |
+    -- | A secondary color for the background in the RGB24 format
     secondary_background_color :: Maybe Int,
-    -- |
+    -- | A color of the background in the RGB24 format
     background_color :: Maybe Int
   }
   deriving (Eq)

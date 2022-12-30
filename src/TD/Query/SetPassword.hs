@@ -10,15 +10,15 @@ import qualified Utils as U
 -- |
 -- Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
 data SetPassword = SetPassword
-  { -- |
+  { -- | New recovery email address; may be empty
     new_recovery_email_address :: Maybe String,
-    -- |
+    -- | Pass true to change also the recovery email address
     set_recovery_email_address :: Maybe Bool,
-    -- |
+    -- | New password hint; may be empty
     new_hint :: Maybe String,
-    -- |
+    -- | New 2-step verification password of the user; may be empty to remove the password
     new_password :: Maybe String,
-    -- | Previous 2-step verification password of the user @new_password New 2-step verification password of the user; may be empty to remove the password @new_hint New password hint; may be empty @set_recovery_email_address Pass true to change also the recovery email address @new_recovery_email_address New recovery email address; may be empty
+    -- | Previous 2-step verification password of the user
     old_password :: Maybe String
   }
   deriving (Eq)

@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
 data SetStickerPositionInSet = SetStickerPositionInSet
-  { -- |
+  { -- | New position of the sticker in the set, 0-based
     position :: Maybe Int,
-    -- | Sticker @position New position of the sticker in the set, 0-based
+    -- | Sticker
     sticker :: Maybe InputFile.InputFile
   }
   deriving (Eq)

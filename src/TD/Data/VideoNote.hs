@@ -12,21 +12,21 @@ import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
 -- |
-data VideoNote = -- | Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format @duration Duration of the video, in seconds; as defined by the sender
+data VideoNote = -- | Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format
   VideoNote
-  { -- |
+  { -- | File containing the video
     video :: Maybe File.File,
-    -- |
+    -- | Result of speech recognition in the video note; may be null
     speech_recognition_result :: Maybe SpeechRecognitionResult.SpeechRecognitionResult,
-    -- | Video thumbnail in JPEG format; as defined by the sender; may be null @speech_recognition_result Result of speech recognition in the video note; may be null @video File containing the video
+    -- | Video thumbnail in JPEG format; as defined by the sender; may be null
     thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- |
+    -- | Video minithumbnail; may be null
     minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- |
+    -- | Video width and height; as defined by the sender
     _length :: Maybe Int,
-    -- | A waveform representation of the video note's audio in 5-bit format; may be empty if unknown @length Video width and height; as defined by the sender @minithumbnail Video minithumbnail; may be null
+    -- | A waveform representation of the video note's audio in 5-bit format; may be empty if unknown
     waveform :: Maybe String,
-    -- |
+    -- | Duration of the video, in seconds; as defined by the sender
     duration :: Maybe Int
   }
   deriving (Eq)

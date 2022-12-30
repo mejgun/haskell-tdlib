@@ -20,228 +20,228 @@ data InputInlineQueryResult
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Height of the video
         video_height :: Maybe Int,
-        -- |
+        -- | Width of the video
         video_width :: Maybe Int,
-        -- | Duration of the video, in seconds @video_width Width of the video @video_height Height of the video
+        -- | Duration of the video, in seconds
         video_duration :: Maybe Int,
-        -- |
+        -- | MIME type of the video file. Must be one of "image/gif" and "video/mp4"
         video_mime_type :: Maybe String,
-        -- | The URL of the video file (file size must not exceed 1MB) @video_mime_type MIME type of the video file. Must be one of "image/gif" and "video/mp4"
+        -- | The URL of the video file (file size must not exceed 1MB)
         video_url :: Maybe String,
-        -- |
+        -- | MIME type of the video thumbnail. If non-empty, must be one of "image/jpeg", "image/gif" and "video/mp4"
         thumbnail_mime_type :: Maybe String,
-        -- | URL of the result thumbnail (JPEG, GIF, or MPEG4), if it exists @thumbnail_mime_type MIME type of the video thumbnail. If non-empty, must be one of "image/jpeg", "image/gif" and "video/mp4"
+        -- | URL of the result thumbnail (JPEG, GIF, or MPEG4), if it exists
         thumbnail_url :: Maybe String,
-        -- |
+        -- | Title of the query result
         title :: Maybe String,
-        -- | Unique identifier of the query result @title Title of the query result
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a link to an article or web page @id Unique identifier of the query result @url URL of the result, if it exists @hide_url True, if the URL must be not shown @title Title of the result
+  | -- | Represents a link to an article or web page
     InputInlineQueryResultArticle
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Thumbnail height, if known
         thumbnail_height :: Maybe Int,
-        -- |
+        -- | Thumbnail width, if known
         thumbnail_width :: Maybe Int,
-        -- |
+        -- | URL of the result thumbnail, if it exists
         thumbnail_url :: Maybe String,
         -- |
         description :: Maybe String,
-        -- |
+        -- | Title of the result
         title :: Maybe String,
-        -- |
+        -- | True, if the URL must be not shown
         hide_url :: Maybe Bool,
-        -- |
+        -- | URL of the result, if it exists
         url :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a link to an MP3 audio file @id Unique identifier of the query result @title Title of the audio file @performer Performer of the audio file
+  | -- | Represents a link to an MP3 audio file
     InputInlineQueryResultAudio
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Audio file duration, in seconds
         audio_duration :: Maybe Int,
-        -- | The URL of the audio file @audio_duration Audio file duration, in seconds
+        -- | The URL of the audio file
         audio_url :: Maybe String,
-        -- |
+        -- | Performer of the audio file
         performer :: Maybe String,
-        -- |
+        -- | Title of the audio file
         title :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a user contact @id Unique identifier of the query result @contact User contact @thumbnail_url URL of the result thumbnail, if it exists @thumbnail_width Thumbnail width, if known @thumbnail_height Thumbnail height, if known
+  | -- | Represents a user contact
     InputInlineQueryResultContact
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Thumbnail height, if known
         thumbnail_height :: Maybe Int,
-        -- |
+        -- | Thumbnail width, if known
         thumbnail_width :: Maybe Int,
-        -- |
+        -- | URL of the result thumbnail, if it exists
         thumbnail_url :: Maybe String,
-        -- |
+        -- | User contact
         contact :: Maybe Contact.Contact,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a link to a file @id Unique identifier of the query result @title Title of the resulting file @param_description Short description of the result, if known @document_url URL of the file @mime_type MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
+  | -- | Represents a link to a file
     InputInlineQueryResultDocument
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Height of the thumbnail
         thumbnail_height :: Maybe Int,
-        -- |
+        -- | Width of the thumbnail
         thumbnail_width :: Maybe Int,
-        -- | The URL of the file thumbnail, if it exists @thumbnail_width Width of the thumbnail @thumbnail_height Height of the thumbnail
+        -- | The URL of the file thumbnail, if it exists
         thumbnail_url :: Maybe String,
-        -- |
+        -- | MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
         mime_type :: Maybe String,
-        -- |
+        -- | URL of the file
         document_url :: Maybe String,
         -- |
         description :: Maybe String,
-        -- |
+        -- | Title of the resulting file
         title :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a game @id Unique identifier of the query result @game_short_name Short name of the game @reply_markup The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+  | -- | Represents a game
     InputInlineQueryResultGame
-      { -- |
+      { -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Short name of the game
         game_short_name :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a point on the map @id Unique identifier of the query result @location Location result
+  | -- | Represents a point on the map
     InputInlineQueryResultLocation
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Thumbnail height, if known
         thumbnail_height :: Maybe Int,
-        -- |
+        -- | Thumbnail width, if known
         thumbnail_width :: Maybe Int,
-        -- |
+        -- | URL of the result thumbnail, if it exists
         thumbnail_url :: Maybe String,
-        -- | Title of the result @thumbnail_url URL of the result thumbnail, if it exists @thumbnail_width Thumbnail width, if known @thumbnail_height Thumbnail height, if known
+        -- | Title of the result
         title :: Maybe String,
         -- | Amount of time relative to the message sent time until the location can be updated, in seconds
         live_period :: Maybe Int,
-        -- |
+        -- | Location result
         location :: Maybe Location.Location,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents link to a JPEG image @id Unique identifier of the query result @title Title of the result, if known @param_description A short description of the result, if known @thumbnail_url URL of the photo thumbnail, if it exists
+  | -- | Represents link to a JPEG image
     InputInlineQueryResultPhoto
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Height of the photo
         photo_height :: Maybe Int,
-        -- |
+        -- | Width of the photo
         photo_width :: Maybe Int,
-        -- | The URL of the JPEG photo (photo size must not exceed 5MB) @photo_width Width of the photo @photo_height Height of the photo
+        -- | The URL of the JPEG photo (photo size must not exceed 5MB)
         photo_url :: Maybe String,
-        -- |
+        -- | URL of the photo thumbnail, if it exists
         thumbnail_url :: Maybe String,
         -- |
         description :: Maybe String,
-        -- |
+        -- | Title of the result, if known
         title :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a link to a WEBP, TGS, or WEBM sticker @id Unique identifier of the query result @thumbnail_url URL of the sticker thumbnail, if it exists
+  | -- | Represents a link to a WEBP, TGS, or WEBM sticker
     InputInlineQueryResultSticker
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Height of the sticker
         sticker_height :: Maybe Int,
-        -- |
+        -- | Width of the sticker
         sticker_width :: Maybe Int,
-        -- | The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB) @sticker_width Width of the sticker @sticker_height Height of the sticker
+        -- | The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB)
         sticker_url :: Maybe String,
-        -- |
+        -- | URL of the sticker thumbnail, if it exists
         thumbnail_url :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents information about a venue @id Unique identifier of the query result @venue Venue result @thumbnail_url URL of the result thumbnail, if it exists @thumbnail_width Thumbnail width, if known @thumbnail_height Thumbnail height, if known
+  | -- | Represents information about a venue
     InputInlineQueryResultVenue
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Thumbnail height, if known
         thumbnail_height :: Maybe Int,
-        -- |
+        -- | Thumbnail width, if known
         thumbnail_width :: Maybe Int,
-        -- |
+        -- | URL of the result thumbnail, if it exists
         thumbnail_url :: Maybe String,
-        -- |
+        -- | Venue result
         venue :: Maybe Venue.Venue,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a link to a page containing an embedded video player or a video file @id Unique identifier of the query result @title Title of the result @param_description A short description of the result, if known
+  | -- | Represents a link to a page containing an embedded video player or a video file
     InputInlineQueryResultVideo
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Video duration, in seconds
         video_duration :: Maybe Int,
-        -- |
+        -- | Height of the video
         video_height :: Maybe Int,
-        -- | Width of the video @video_height Height of the video @video_duration Video duration, in seconds
+        -- | Width of the video
         video_width :: Maybe Int,
-        -- |
+        -- | MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
         mime_type :: Maybe String,
-        -- |
+        -- | URL of the embedded video player or video file
         video_url :: Maybe String,
-        -- | The URL of the video thumbnail (JPEG), if it exists @video_url URL of the embedded video player or video file @mime_type MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
+        -- | The URL of the video thumbnail (JPEG), if it exists
         thumbnail_url :: Maybe String,
         -- |
         description :: Maybe String,
-        -- |
+        -- | Title of the result
         title :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a link to an opus-encoded audio file within an OGG container, single channel audio @id Unique identifier of the query result @title Title of the voice note
+  | -- | Represents a link to an opus-encoded audio file within an OGG container, single channel audio
     InputInlineQueryResultVoiceNote
       { -- | The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         input_message_content :: Maybe InputMessageContent.InputMessageContent,
         -- | The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Duration of the voice note, in seconds
         voice_note_duration :: Maybe Int,
-        -- | The URL of the voice note file @voice_note_duration Duration of the voice note, in seconds
+        -- | The URL of the voice note file
         voice_note_url :: Maybe String,
-        -- |
+        -- | Title of the voice note
         title :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
   deriving (Eq)

@@ -8,9 +8,10 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization @language_pack_id Identifier of the language pack to delete
+-- Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted.
+-- Can be called before authorization
 data DeleteLanguagePack = DeleteLanguagePack
-  { -- |
+  { -- | Identifier of the language pack to delete
     language_pack_id :: Maybe String
   }
   deriving (Eq)

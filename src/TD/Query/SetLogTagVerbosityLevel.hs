@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
 data SetLogTagVerbosityLevel = SetLogTagVerbosityLevel
-  { -- |
+  { -- | New verbosity level; 1-1024
     new_verbosity_level :: Maybe Int,
-    -- | Logging tag to change verbosity level @new_verbosity_level New verbosity level; 1-1024
+    -- | Logging tag to change verbosity level
     tag :: Maybe String
   }
   deriving (Eq)

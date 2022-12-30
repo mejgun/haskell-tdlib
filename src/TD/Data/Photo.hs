@@ -10,13 +10,13 @@ import qualified TD.Data.PhotoSize as PhotoSize
 import qualified Utils as U
 
 -- |
-data Photo = -- | Describes a photo @has_stickers True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
+data Photo = -- | Describes a photo
   Photo
-  { -- |
+  { -- | Available variants of the photo, in different sizes
     sizes :: Maybe [PhotoSize.PhotoSize],
-    -- | Photo minithumbnail; may be null @sizes Available variants of the photo, in different sizes
+    -- | Photo minithumbnail; may be null
     minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- |
+    -- | True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
     has_stickers :: Maybe Bool
   }
   deriving (Eq)

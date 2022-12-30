@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
 data SetChatPermissions = SetChatPermissions
-  { -- |
+  { -- | New non-administrator members permissions in the chat
     permissions :: Maybe ChatPermissions.ChatPermissions,
-    -- | Chat identifier @permissions New non-administrator members permissions in the chat
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

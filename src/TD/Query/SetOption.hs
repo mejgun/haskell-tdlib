@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
 data SetOption = SetOption
-  { -- |
+  { -- | The new value of the option; pass null to reset option value to a default value
     value :: Maybe OptionValue.OptionValue,
-    -- | The name of the option @value The new value of the option; pass null to reset option value to a default value
+    -- | The name of the option
     name :: Maybe String
   }
   deriving (Eq)

@@ -9,13 +9,13 @@ import qualified TD.Data.FileType as FileType
 import qualified Utils as U
 
 -- |
-data StorageStatisticsByFileType = -- | Contains the storage usage statistics for a specific file type @file_type File type @size Total size of the files, in bytes @count Total number of files
+data StorageStatisticsByFileType = -- | Contains the storage usage statistics for a specific file type
   StorageStatisticsByFileType
-  { -- |
+  { -- | Total number of files
     count :: Maybe Int,
-    -- |
+    -- | Total size of the files, in bytes
     size :: Maybe Int,
-    -- |
+    -- | File type
     file_type :: Maybe FileType.FileType
   }
   deriving (Eq)

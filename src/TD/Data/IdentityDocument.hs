@@ -10,19 +10,19 @@ import qualified TD.Data.DatedFile as DatedFile
 import qualified Utils as U
 
 -- |
-data IdentityDocument = -- | An identity document @number Document number; 1-24 characters @expiry_date Document expiry date; may be null if not applicable @front_side Front side of the document
+data IdentityDocument = -- | An identity document
   IdentityDocument
-  { -- |
+  { -- | List of files containing a certified English translation of the document
     translation :: Maybe [DatedFile.DatedFile],
-    -- |
+    -- | Selfie with the document; may be null
     selfie :: Maybe DatedFile.DatedFile,
-    -- | Reverse side of the document; only for driver license and identity card; may be null @selfie Selfie with the document; may be null @translation List of files containing a certified English translation of the document
+    -- | Reverse side of the document; only for driver license and identity card; may be null
     reverse_side :: Maybe DatedFile.DatedFile,
-    -- |
+    -- | Front side of the document
     front_side :: Maybe DatedFile.DatedFile,
-    -- |
+    -- | Document expiry date; may be null if not applicable
     expiry_date :: Maybe Date.Date,
-    -- |
+    -- | Document number; 1-24 characters
     number :: Maybe String
   }
   deriving (Eq)

@@ -10,11 +10,11 @@ import qualified Utils as U
 -- |
 -- Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 data RecoverAuthenticationPassword = RecoverAuthenticationPassword
-  { -- |
+  { -- | New password hint; may be empty
     new_hint :: Maybe String,
-    -- |
+    -- | New 2-step verification password of the user; may be empty to remove the password
     new_password :: Maybe String,
-    -- | Recovery code to check @new_password New 2-step verification password of the user; may be empty to remove the password @new_hint New password hint; may be empty
+    -- | Recovery code to check
     recovery_code :: Maybe String
   }
   deriving (Eq)

@@ -11,19 +11,19 @@ import qualified TD.Data.RichText as RichText
 import qualified Utils as U
 
 -- |
-data PageBlockTableCell = -- | Represents a cell of a table @text Cell text; may be null. If the text is null, then the cell must be invisible @is_header True, if it is a header cell
+data PageBlockTableCell = -- | Represents a cell of a table
   PageBlockTableCell
-  { -- |
+  { -- | Vertical cell content alignment
     valign :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment,
-    -- | Horizontal cell content alignment @valign Vertical cell content alignment
+    -- | Horizontal cell content alignment
     align :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment,
-    -- |
+    -- | The number of rows the cell spans
     rowspan :: Maybe Int,
-    -- | The number of columns the cell spans @rowspan The number of rows the cell spans
+    -- | The number of columns the cell spans
     colspan :: Maybe Int,
-    -- |
+    -- | True, if it is a header cell
     is_header :: Maybe Bool,
-    -- |
+    -- | Cell text; may be null. If the text is null, then the cell must be invisible
     text :: Maybe RichText.RichText
   }
   deriving (Eq)

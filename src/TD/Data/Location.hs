@@ -8,13 +8,13 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data Location = -- | Describes a location on planet Earth @latitude Latitude of the location in degrees; as defined by the sender @longitude Longitude of the location, in degrees; as defined by the sender
+data Location = -- | Describes a location on planet Earth
   Location
   { -- | The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
     horizontal_accuracy :: Maybe Float,
-    -- |
+    -- | Longitude of the location, in degrees; as defined by the sender
     longitude :: Maybe Float,
-    -- |
+    -- | Latitude of the location in degrees; as defined by the sender
     latitude :: Maybe Float
   }
   deriving (Eq)

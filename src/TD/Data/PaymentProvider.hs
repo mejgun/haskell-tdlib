@@ -14,15 +14,15 @@ data PaymentProvider
       { -- |
         public_token :: Maybe String
       }
-  | -- | Stripe payment provider @publishable_key Stripe API publishable key @need_country True, if the user country must be provided @need_postal_code True, if the user ZIP/postal code must be provided @need_cardholder_name True, if the cardholder name must be provided
+  | -- | Stripe payment provider
     PaymentProviderStripe
-      { -- |
+      { -- | True, if the cardholder name must be provided
         need_cardholder_name :: Maybe Bool,
-        -- |
+        -- | True, if the user ZIP/postal code must be provided
         need_postal_code :: Maybe Bool,
-        -- |
+        -- | True, if the user country must be provided
         need_country :: Maybe Bool,
-        -- |
+        -- | Stripe API publishable key
         publishable_key :: Maybe String
       }
   | -- | Some other payment provider, for which a web payment form must be shown @url Payment form URL

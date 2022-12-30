@@ -8,15 +8,15 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Starts recording of an active group call. Requires groupCall.can_be_managed group call flag @group_call_id Group call identifier @title Group call recording title; 0-64 characters
+-- Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
 data StartGroupCallRecording = StartGroupCallRecording
-  { -- |
+  { -- | Pass true to use portrait orientation for video instead of landscape one
     use_portrait_orientation :: Maybe Bool,
-    -- | Pass true to record a video file instead of an audio file @use_portrait_orientation Pass true to use portrait orientation for video instead of landscape one
+    -- | Pass true to record a video file instead of an audio file
     record_video :: Maybe Bool,
-    -- |
+    -- | Group call recording title; 0-64 characters
     title :: Maybe String,
-    -- |
+    -- | Group call identifier
     group_call_id :: Maybe Int
   }
   deriving (Eq)

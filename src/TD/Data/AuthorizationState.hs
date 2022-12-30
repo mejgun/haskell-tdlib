@@ -18,9 +18,9 @@ data AuthorizationState
     AuthorizationStateWaitPhoneNumber
   | -- | TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
     AuthorizationStateWaitEmailAddress
-      { -- |
+      { -- | True, if authorization through Google ID is allowed
         allow_google_id :: Maybe Bool,
-        -- | True, if authorization through Apple ID is allowed @allow_google_id True, if authorization through Google ID is allowed
+        -- | True, if authorization through Apple ID is allowed
         allow_apple_id :: Maybe Bool
       }
   | -- | TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
@@ -29,9 +29,9 @@ data AuthorizationState
         next_phone_number_authorization_date :: Maybe Int,
         -- | Information about the sent authentication code
         code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo,
-        -- |
+        -- | True, if authorization through Google ID is allowed
         allow_google_id :: Maybe Bool,
-        -- | True, if authorization through Apple ID is allowed @allow_google_id True, if authorization through Google ID is allowed
+        -- | True, if authorization through Apple ID is allowed
         allow_apple_id :: Maybe Bool
       }
   | -- | TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code @code_info Information about the authorization code that was sent
@@ -54,9 +54,9 @@ data AuthorizationState
     AuthorizationStateWaitPassword
       { -- | Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
         recovery_email_address_pattern :: Maybe String,
-        -- |
+        -- | True, if a recovery email address has been set up
         has_recovery_email_address :: Maybe Bool,
-        -- | Hint for the password; may be empty @has_recovery_email_address True, if a recovery email address has been set up
+        -- | Hint for the password; may be empty
         password_hint :: Maybe String
       }
   | -- | The user has been successfully authorized. TDLib is now ready to answer general requests

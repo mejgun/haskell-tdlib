@@ -8,15 +8,15 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns a Telegram Passport authorization form for sharing data with a service @bot_user_id User identifier of the service's bot @scope Telegram Passport element types requested by the service @public_key Service's public key @nonce Unique request identifier provided by the service
+-- Returns a Telegram Passport authorization form for sharing data with a service
 data GetPassportAuthorizationForm = GetPassportAuthorizationForm
-  { -- |
+  { -- | Unique request identifier provided by the service
     nonce :: Maybe String,
-    -- |
+    -- | Service's public key
     public_key :: Maybe String,
-    -- |
+    -- | Telegram Passport element types requested by the service
     scope :: Maybe String,
-    -- |
+    -- | User identifier of the service's bot
     bot_user_id :: Maybe Int
   }
   deriving (Eq)

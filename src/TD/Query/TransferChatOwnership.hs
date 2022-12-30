@@ -10,11 +10,11 @@ import qualified Utils as U
 -- |
 -- Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
 data TransferChatOwnership = TransferChatOwnership
-  { -- |
+  { -- | The 2-step verification password of the current user
     password :: Maybe String,
-    -- |
+    -- | Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
     user_id :: Maybe Int,
-    -- | Chat identifier @user_id Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user @password The 2-step verification password of the current user
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

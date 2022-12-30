@@ -82,163 +82,163 @@ data PageBlock
       { -- |
         items :: Maybe [PageBlockListItem.PageBlockListItem]
       }
-  | -- | A block quote @text Quote text @credit Quote credit
+  | -- | A block quote
     PageBlockBlockQuote
-      { -- |
+      { -- | Quote credit
         credit :: Maybe RichText.RichText,
-        -- |
+        -- | Quote text
         text :: Maybe RichText.RichText
       }
-  | -- | A pull quote @text Quote text @credit Quote credit
+  | -- | A pull quote
     PageBlockPullQuote
-      { -- |
+      { -- | Quote credit
         credit :: Maybe RichText.RichText,
-        -- |
+        -- | Quote text
         text :: Maybe RichText.RichText
       }
-  | -- | An animation @animation Animation file; may be null @caption Animation caption @need_autoplay True, if the animation must be played automatically
+  | -- | An animation
     PageBlockAnimation
-      { -- |
+      { -- | True, if the animation must be played automatically
         need_autoplay :: Maybe Bool,
-        -- |
+        -- | Animation caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Animation file; may be null
         animation :: Maybe Animation.Animation
       }
-  | -- | An audio file @audio Audio file; may be null @caption Audio file caption
+  | -- | An audio file
     PageBlockAudio
-      { -- |
+      { -- | Audio file caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Audio file; may be null
         audio :: Maybe Audio.Audio
       }
-  | -- | A photo @photo Photo file; may be null @caption Photo caption @url URL that needs to be opened when the photo is clicked
+  | -- | A photo
     PageBlockPhoto
-      { -- |
+      { -- | URL that needs to be opened when the photo is clicked
         url :: Maybe String,
-        -- |
+        -- | Photo caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Photo file; may be null
         photo :: Maybe Photo.Photo
       }
-  | -- | A video @video Video file; may be null @caption Video caption @need_autoplay True, if the video must be played automatically @is_looped True, if the video must be looped
+  | -- | A video
     PageBlockVideo
-      { -- |
+      { -- | True, if the video must be looped
         is_looped :: Maybe Bool,
-        -- |
+        -- | True, if the video must be played automatically
         need_autoplay :: Maybe Bool,
-        -- |
+        -- | Video caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Video file; may be null
         video :: Maybe Video.Video
       }
-  | -- | A voice note @voice_note Voice note; may be null @caption Voice note caption
+  | -- | A voice note
     PageBlockVoiceNote
-      { -- |
+      { -- | Voice note caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Voice note; may be null
         voice_note :: Maybe VoiceNote.VoiceNote
       }
-  | -- | A page cover @cover Cover
+  | -- | A page cover
     PageBlockCover
-      { -- |
+      { -- | Cover
         cover :: Maybe PageBlock
       }
-  | -- | An embedded web page @url Web page URL, if available @html HTML-markup of the embedded page @poster_photo Poster photo, if available; may be null @width Block width; 0 if unknown @height Block height; 0 if unknown @caption Block caption @is_full_width True, if the block must be full width @allow_scrolling True, if scrolling needs to be allowed
+  | -- | An embedded web page
     PageBlockEmbedded
-      { -- |
+      { -- | True, if scrolling needs to be allowed
         allow_scrolling :: Maybe Bool,
-        -- |
+        -- | True, if the block must be full width
         is_full_width :: Maybe Bool,
-        -- |
+        -- | Block caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Block height; 0 if unknown
         height :: Maybe Int,
-        -- |
+        -- | Block width; 0 if unknown
         width :: Maybe Int,
-        -- |
+        -- | Poster photo, if available; may be null
         poster_photo :: Maybe Photo.Photo,
-        -- |
+        -- | HTML-markup of the embedded page
         html :: Maybe String,
-        -- |
+        -- | Web page URL, if available
         url :: Maybe String
       }
-  | -- | An embedded post @url Web page URL @author Post author @author_photo Post author photo; may be null @date Point in time (Unix timestamp) when the post was created; 0 if unknown @page_blocks Post content @caption Post caption
+  | -- | An embedded post
     PageBlockEmbeddedPost
-      { -- |
+      { -- | Post caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Post content
         page_blocks :: Maybe [PageBlock],
-        -- |
+        -- | Point in time (Unix timestamp) when the post was created; 0 if unknown
         date :: Maybe Int,
-        -- |
+        -- | Post author photo; may be null
         author_photo :: Maybe Photo.Photo,
-        -- |
+        -- | Post author
         _author :: Maybe String,
-        -- |
+        -- | Web page URL
         url :: Maybe String
       }
-  | -- | A collage @page_blocks Collage item contents @caption Block caption
+  | -- | A collage
     PageBlockCollage
-      { -- |
+      { -- | Block caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Collage item contents
         page_blocks :: Maybe [PageBlock]
       }
-  | -- | A slideshow @page_blocks Slideshow item contents @caption Block caption
+  | -- | A slideshow
     PageBlockSlideshow
-      { -- |
+      { -- | Block caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Slideshow item contents
         page_blocks :: Maybe [PageBlock]
       }
-  | -- | A link to a chat @title Chat title @photo Chat photo; may be null @username Chat username by which all other information about the chat can be resolved
+  | -- | A link to a chat
     PageBlockChatLink
-      { -- |
+      { -- | Chat username by which all other information about the chat can be resolved
         username :: Maybe String,
-        -- |
+        -- | Chat photo; may be null
         _photo :: Maybe ChatPhotoInfo.ChatPhotoInfo,
-        -- |
+        -- | Chat title
         _title :: Maybe String
       }
-  | -- | A table @caption Table caption @cells Table cells @is_bordered True, if the table is bordered @is_striped True, if the table is striped
+  | -- | A table
     PageBlockTable
-      { -- |
+      { -- | True, if the table is striped
         is_striped :: Maybe Bool,
-        -- |
+        -- | True, if the table is bordered
         is_bordered :: Maybe Bool,
-        -- |
+        -- | Table cells
         cells :: Maybe [[PageBlockTableCell.PageBlockTableCell]],
-        -- |
+        -- | Table caption
         _caption :: Maybe RichText.RichText
       }
-  | -- | A collapsible block @header Always visible heading for the block @page_blocks Block contents @is_open True, if the block is open by default
+  | -- | A collapsible block
     PageBlockDetails
-      { -- |
+      { -- | True, if the block is open by default
         is_open :: Maybe Bool,
-        -- |
+        -- | Block contents
         page_blocks :: Maybe [PageBlock],
-        -- |
+        -- | Always visible heading for the block
         header :: Maybe RichText.RichText
       }
-  | -- | Related articles @header Block header @articles List of related articles
+  | -- | Related articles
     PageBlockRelatedArticles
-      { -- |
+      { -- | List of related articles
         articles :: Maybe [PageBlockRelatedArticle.PageBlockRelatedArticle],
-        -- |
+        -- | Block header
         header :: Maybe RichText.RichText
       }
-  | -- | A map @location Location of the map center @zoom Map zoom level @width Map width @height Map height @caption Block caption
+  | -- | A map
     PageBlockMap
-      { -- |
+      { -- | Block caption
         caption :: Maybe PageBlockCaption.PageBlockCaption,
-        -- |
+        -- | Map height
         height :: Maybe Int,
-        -- |
+        -- | Map width
         width :: Maybe Int,
-        -- |
+        -- | Map zoom level
         zoom :: Maybe Int,
-        -- |
+        -- | Location of the map center
         location :: Maybe Location.Location
       }
   deriving (Eq)

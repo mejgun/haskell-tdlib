@@ -11,11 +11,11 @@ import qualified Utils as U
 -- |
 -- Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
 data ReportMessageReactions = ReportMessageReactions
-  { -- |
+  { -- | Identifier of the sender, which added the reaction
     sender_id :: Maybe MessageSender.MessageSender,
-    -- |
+    -- | Message identifier
     message_id :: Maybe Int,
-    -- | Chat identifier @message_id Message identifier @sender_id Identifier of the sender, which added the reaction
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

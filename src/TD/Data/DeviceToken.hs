@@ -47,13 +47,13 @@ data DeviceToken
       { -- |
         channel_uri :: Maybe String
       }
-  | -- | A token for web Push API @endpoint Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
+  | -- | A token for web Push API
     DeviceTokenWebPush
-      { -- |
+      { -- | Base64url-encoded authentication secret
         auth_base64url :: Maybe String,
-        -- | Base64url-encoded P-256 elliptic curve Diffie-Hellman public key @auth_base64url Base64url-encoded authentication secret
+        -- | Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
         p256dh_base64url :: Maybe String,
-        -- |
+        -- | Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
         endpoint :: Maybe String
       }
   | -- | A token for Simple Push API for Firefox OS @endpoint Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device

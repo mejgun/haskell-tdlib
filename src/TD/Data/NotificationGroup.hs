@@ -10,17 +10,17 @@ import qualified TD.Data.NotificationGroupType as NotificationGroupType
 import qualified Utils as U
 
 -- |
-data NotificationGroup = -- | Describes a group of notifications @id Unique persistent auto-incremented from 1 identifier of the notification group @type Type of the group
+data NotificationGroup = -- | Describes a group of notifications
   NotificationGroup
-  { -- |
+  { -- | The list of active notifications
     notifications :: Maybe [Notification.Notification],
-    -- | Total number of active notifications in the group @notifications The list of active notifications
+    -- | Total number of active notifications in the group
     total_count :: Maybe Int,
     -- | Identifier of a chat to which all notifications in the group belong
     chat_id :: Maybe Int,
-    -- |
+    -- | Type of the group
     _type :: Maybe NotificationGroupType.NotificationGroupType,
-    -- |
+    -- | Unique persistent auto-incremented from 1 identifier of the notification group
     _id :: Maybe Int
   }
   deriving (Eq)

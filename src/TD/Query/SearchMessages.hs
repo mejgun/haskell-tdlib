@@ -21,12 +21,8 @@ data SearchMessages = SearchMessages
     _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter,
     -- | The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     limit :: Maybe Int,
-    -- | The message identifier of the last found message, or 0 for the first request
-    offset_message_id :: Maybe Int,
-    -- | The chat identifier of the last found message, or 0 for the first request
-    offset_chat_id :: Maybe Int,
-    -- | The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
-    offset_date :: Maybe Int,
+    -- | Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    offset :: Maybe String,
     -- | Query to search for
     query :: Maybe String,
     -- | Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
@@ -41,9 +37,7 @@ instance Show SearchMessages where
         min_date = min_date_,
         _filter = _filter_,
         limit = limit_,
-        offset_message_id = offset_message_id_,
-        offset_chat_id = offset_chat_id_,
-        offset_date = offset_date_,
+        offset = offset_,
         query = query_,
         chat_list = chat_list_
       } =
@@ -53,9 +47,7 @@ instance Show SearchMessages where
             U.p "min_date" min_date_,
             U.p "_filter" _filter_,
             U.p "limit" limit_,
-            U.p "offset_message_id" offset_message_id_,
-            U.p "offset_chat_id" offset_chat_id_,
-            U.p "offset_date" offset_date_,
+            U.p "offset" offset_,
             U.p "query" query_,
             U.p "chat_list" chat_list_
           ]
@@ -67,9 +59,7 @@ instance T.ToJSON SearchMessages where
         min_date = min_date_,
         _filter = _filter_,
         limit = limit_,
-        offset_message_id = offset_message_id_,
-        offset_chat_id = offset_chat_id_,
-        offset_date = offset_date_,
+        offset = offset_,
         query = query_,
         chat_list = chat_list_
       } =
@@ -79,9 +69,7 @@ instance T.ToJSON SearchMessages where
           "min_date" A..= min_date_,
           "filter" A..= _filter_,
           "limit" A..= limit_,
-          "offset_message_id" A..= offset_message_id_,
-          "offset_chat_id" A..= offset_chat_id_,
-          "offset_date" A..= offset_date_,
+          "offset" A..= offset_,
           "query" A..= query_,
           "chat_list" A..= chat_list_
         ]

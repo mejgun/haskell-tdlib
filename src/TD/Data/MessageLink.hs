@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data MessageLink = -- | Contains an HTTPS link to a message in a supergroup or channel @link Message link @is_public True, if the link will work for non-members of the chat
+data MessageLink = -- | Contains an HTTPS link to a message in a supergroup or channel, or a forum topic @link The link @is_public True, if the link will work for non-members of the chat
   MessageLink
   { -- |
     is_public :: Maybe Bool,

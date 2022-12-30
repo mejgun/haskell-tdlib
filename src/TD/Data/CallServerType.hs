@@ -16,15 +16,15 @@ data CallServerType
         -- |
         peer_tag :: Maybe String
       }
-  | -- | A WebRTC server @username Username to be used for authentication @password Authentication password @supports_turn True, if the server supports TURN @supports_stun True, if the server supports STUN
+  | -- | A WebRTC server
     CallServerTypeWebrtc
-      { -- |
+      { -- | True, if the server supports STUN
         supports_stun :: Maybe Bool,
-        -- |
+        -- | True, if the server supports TURN
         supports_turn :: Maybe Bool,
-        -- |
+        -- | Authentication password
         password :: Maybe String,
-        -- |
+        -- | Username to be used for authentication
         username :: Maybe String
       }
   deriving (Eq)

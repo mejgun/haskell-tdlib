@@ -10,7 +10,8 @@ import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
 -- |
--- Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+-- Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used
+-- to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
 data PreliminaryUploadFile = PreliminaryUploadFile
   { -- | Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
     priority :: Maybe Int,

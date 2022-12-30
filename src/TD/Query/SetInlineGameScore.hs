@@ -8,17 +8,17 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Updates the game score of the specified user in a game; for bots only @inline_message_id Inline message identifier @edit_message Pass true to edit the game message to include the current scoreboard @user_id User identifier @score The new score
+-- Updates the game score of the specified user in a game; for bots only
 data SetInlineGameScore = SetInlineGameScore
   { -- | Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
     force :: Maybe Bool,
-    -- |
+    -- | The new score
     score :: Maybe Int,
-    -- |
+    -- | User identifier
     user_id :: Maybe Int,
-    -- |
+    -- | Pass true to edit the game message to include the current scoreboard
     edit_message :: Maybe Bool,
-    -- |
+    -- | Inline message identifier
     inline_message_id :: Maybe String
   }
   deriving (Eq)

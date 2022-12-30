@@ -17,7 +17,7 @@
 </span><span id="line-17"></span><span>    </span><span id="NotificationGroupTypeSecretChat"><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupTypeSecretChat"><span class="hs-identifier hs-var">NotificationGroupTypeSecretChat</span></a></span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | A group containing notifications of type notificationTypeNewCall</span><span>
 </span><span id="line-19"></span><span>    </span><span id="NotificationGroupTypeCalls"><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupTypeCalls"><span class="hs-identifier hs-var">NotificationGroupTypeCalls</span></a></span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430433"><span id="local-6989586621679430435"><span class="annot"><span class="annottext">NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679433562"><span id="local-6989586621679433564"><span class="annot"><span class="annottext">NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
 (NotificationGroupType -&gt; NotificationGroupType -&gt; Bool)
 -&gt; (NotificationGroupType -&gt; NotificationGroupType -&gt; Bool)
 -&gt; Eq NotificationGroupType
@@ -28,8 +28,8 @@ $c/= :: NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
 $c== :: NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430427"><span id="local-6989586621679430430"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679430425"><span class="annot"><span class="annottext">show :: NotificationGroupType -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433556"><span id="local-6989586621679433559"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679433554"><span class="annot"><span class="annottext">show :: NotificationGroupType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupType
 </span><a href="TD.Data.NotificationGroupType.html#NotificationGroupTypeMessages"><span class="hs-identifier hs-var">NotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -67,44 +67,44 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-38"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430420"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679430418"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationGroupType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679430416"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679430416"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679430414"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679430414"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>    </span><span id="local-6989586621679430413"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679430413"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679430414"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433549"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679433547"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationGroupType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679433545"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679433545"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679433543"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433543"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679433542"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679433542"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679433543"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-43"></span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679430413"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679433542"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;notificationGroupTypeMessages&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430411"><span class="hs-identifier hs-var">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679430416"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433540"><span class="hs-identifier hs-var">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433545"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;notificationGroupTypeMentions&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430410"><span class="hs-identifier hs-var">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679430416"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433539"><span class="hs-identifier hs-var">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433545"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;notificationGroupTypeSecretChat&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430409"><span class="hs-identifier hs-var">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679430416"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433538"><span class="hs-identifier hs-var">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433545"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;notificationGroupTypeCalls&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430408"><span class="hs-identifier hs-var">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679430416"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679433537"><span class="hs-identifier hs-var">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679433545"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser NotificationGroupType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-50"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span>      </span><span class="annot"><a href="#local-6989586621679430411"><span class="hs-identifier hs-type">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-52"></span><span>      </span><span id="local-6989586621679430411"><span class="annot"><span class="annottext">parseNotificationGroupTypeMessages :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430411"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-51"></span><span>      </span><span class="annot"><a href="#local-6989586621679433540"><span class="hs-identifier hs-type">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-52"></span><span>      </span><span id="local-6989586621679433540"><span class="annot"><span class="annottext">parseNotificationGroupTypeMessages :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679433540"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
@@ -122,9 +122,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupType
 </span><a href="TD.Data.NotificationGroupType.html#NotificationGroupTypeMessages"><span class="hs-identifier hs-var">NotificationGroupTypeMessages</span></a></span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679430410"><span class="hs-identifier hs-type">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-55"></span><span>      </span><span id="local-6989586621679430410"><span class="annot"><span class="annottext">parseNotificationGroupTypeMentions :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430410"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMentions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679433539"><span class="hs-identifier hs-type">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-55"></span><span>      </span><span id="local-6989586621679433539"><span class="annot"><span class="annottext">parseNotificationGroupTypeMentions :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679433539"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMentions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
@@ -142,9 +142,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupType
 </span><a href="TD.Data.NotificationGroupType.html#NotificationGroupTypeMentions"><span class="hs-identifier hs-var">NotificationGroupTypeMentions</span></a></span><span>
 </span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span>      </span><span class="annot"><a href="#local-6989586621679430409"><span class="hs-identifier hs-type">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-58"></span><span>      </span><span id="local-6989586621679430409"><span class="annot"><span class="annottext">parseNotificationGroupTypeSecretChat :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430409"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeSecretChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-57"></span><span>      </span><span class="annot"><a href="#local-6989586621679433538"><span class="hs-identifier hs-type">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-58"></span><span>      </span><span id="local-6989586621679433538"><span class="annot"><span class="annottext">parseNotificationGroupTypeSecretChat :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679433538"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeSecretChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
@@ -162,9 +162,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupType
 </span><a href="TD.Data.NotificationGroupType.html#NotificationGroupTypeSecretChat"><span class="hs-identifier hs-var">NotificationGroupTypeSecretChat</span></a></span><span>
 </span><span id="line-59"></span><span>
-</span><span id="line-60"></span><span>      </span><span class="annot"><a href="#local-6989586621679430408"><span class="hs-identifier hs-type">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-61"></span><span>      </span><span id="local-6989586621679430408"><span class="annot"><span class="annottext">parseNotificationGroupTypeCalls :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679430408"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-60"></span><span>      </span><span class="annot"><a href="#local-6989586621679433537"><span class="hs-identifier hs-type">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-61"></span><span>      </span><span id="local-6989586621679433537"><span class="annot"><span class="annottext">parseNotificationGroupTypeCalls :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679433537"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
@@ -186,8 +186,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430400"><span id="local-6989586621679430402"><span id="local-6989586621679430404"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-65"></span><span>  </span><span id="local-6989586621679430398"><span class="annot"><span class="annottext">toJSON :: NotificationGroupType -&gt; Value
+</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433529"><span id="local-6989586621679433531"><span id="local-6989586621679433533"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-65"></span><span>  </span><span id="local-6989586621679433527"><span class="annot"><span class="annottext">toJSON :: NotificationGroupType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupType
 </span><a href="TD.Data.NotificationGroupType.html#NotificationGroupTypeMessages"><span class="hs-identifier hs-var">NotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-66"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

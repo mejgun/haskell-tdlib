@@ -11,13 +11,13 @@ import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified Utils as U
 
 -- |
-data PremiumFeatures = -- | Contains information about features, available to Premium users @features The list of available features @limits The list of limits, increased for Premium users
+data PremiumFeatures = -- | Contains information about features, available to Premium users
   PremiumFeatures
   { -- | An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available
     payment_link :: Maybe InternalLinkType.InternalLinkType,
-    -- |
+    -- | The list of limits, increased for Premium users
     limits :: Maybe [PremiumLimit.PremiumLimit],
-    -- |
+    -- | The list of available features
     features :: Maybe [PremiumFeature.PremiumFeature]
   }
   deriving (Eq)

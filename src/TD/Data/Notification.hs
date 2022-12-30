@@ -9,15 +9,15 @@ import qualified TD.Data.NotificationType as NotificationType
 import qualified Utils as U
 
 -- |
-data Notification = -- | Contains information about a notification @id Unique persistent identifier of this notification @date Notification date
+data Notification = -- | Contains information about a notification
   Notification
-  { -- |
+  { -- | Notification type
     _type :: Maybe NotificationType.NotificationType,
-    -- | True, if the notification was explicitly sent without sound @type Notification type
+    -- | True, if the notification was explicitly sent without sound
     is_silent :: Maybe Bool,
-    -- |
+    -- | Notification date
     date :: Maybe Int,
-    -- |
+    -- | Unique persistent identifier of this notification
     _id :: Maybe Int
   }
   deriving (Eq)

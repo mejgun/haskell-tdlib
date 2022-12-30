@@ -9,13 +9,13 @@ import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 import qualified Utils as U
 
 -- |
--- Returns approximate number of messages of the specified type in the chat @chat_id Identifier of the chat in which to count messages @filter Filter for message content; searchMessagesFilterEmpty is unsupported in this function @return_local Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+-- Returns approximate number of messages of the specified type in the chat
 data GetChatMessageCount = GetChatMessageCount
-  { -- |
+  { -- | Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     return_local :: Maybe Bool,
-    -- |
+    -- | Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter,
-    -- |
+    -- | Identifier of the chat in which to count messages
     chat_id :: Maybe Int
   }
   deriving (Eq)

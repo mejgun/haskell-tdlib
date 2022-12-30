@@ -9,11 +9,12 @@ import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
 -- |
--- Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
+-- Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
+-- Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
 data AddRecentSticker = AddRecentSticker
-  { -- |
+  { -- | Sticker file to add
     sticker :: Maybe InputFile.InputFile,
-    -- | Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers @sticker Sticker file to add
+    -- | Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     is_attached :: Maybe Bool
   }
   deriving (Eq)

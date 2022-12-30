@@ -8,19 +8,19 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Searches for emojis by keywords. Supported only if the file database is enabled @text Text to search for @exact_match Pass true if only emojis, which exactly match the text, needs to be returned @input_language_codes List of possible IETF language tags of the user's input language; may be empty if unknown</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Searches for emojis by keywords. Supported only if the file database is enabled</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="SearchEmojis"><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-var">SearchEmojis</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SearchEmojis"><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-var">SearchEmojis</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | List of possible IETF language tags of the user's input language; may be empty if unknown</span><span>
 </span><span id="line-14"></span><span>    </span><span id="input_language_codes"><span class="annot"><span class="annottext">SearchEmojis -&gt; Maybe [String]
 </span><a href="TD.Query.SearchEmojis.html#input_language_codes"><span class="hs-identifier hs-var hs-var">input_language_codes</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | Pass true if only emojis, which exactly match the text, needs to be returned</span><span>
 </span><span id="line-16"></span><span>    </span><span id="exact_match"><span class="annot"><span class="annottext">SearchEmojis -&gt; Maybe Bool
 </span><a href="TD.Query.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var hs-var">exact_match</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Text to search for</span><span>
 </span><span id="line-18"></span><span>    </span><span id="text"><span class="annot"><span class="annottext">SearchEmojis -&gt; Maybe String
 </span><a href="TD.Query.SearchEmojis.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406883"><span id="local-6989586621679406885"><span class="annot"><span class="annottext">SearchEmojis -&gt; SearchEmojis -&gt; Bool
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679410012"><span id="local-6989586621679410014"><span class="annot"><span class="annottext">SearchEmojis -&gt; SearchEmojis -&gt; Bool
 (SearchEmojis -&gt; SearchEmojis -&gt; Bool)
 -&gt; (SearchEmojis -&gt; SearchEmojis -&gt; Bool) -&gt; Eq SearchEmojis
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -30,19 +30,19 @@ $c/= :: SearchEmojis -&gt; SearchEmojis -&gt; Bool
 $c== :: SearchEmojis -&gt; SearchEmojis -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406877"><span id="local-6989586621679406880"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679406875"><span class="annot"><span class="annottext">show :: SearchEmojis -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410006"><span id="local-6989586621679410009"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679410004"><span class="annot"><span class="annottext">show :: SearchEmojis -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_language_codes :: SearchEmojis -&gt; Maybe [String]
-</span><a href="TD.Query.SearchEmojis.html#input_language_codes"><span class="hs-identifier hs-var">input_language_codes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406873"><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679406873"><span class="hs-identifier hs-var">input_language_codes_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchEmojis.html#input_language_codes"><span class="hs-identifier hs-var">input_language_codes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410002"><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679410002"><span class="hs-identifier hs-var">input_language_codes_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">exact_match :: SearchEmojis -&gt; Maybe Bool
-</span><a href="TD.Query.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var">exact_match</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406872"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679406872"><span class="hs-identifier hs-var">exact_match_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var">exact_match</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410001"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679410001"><span class="hs-identifier hs-var">exact_match_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">text :: SearchEmojis -&gt; Maybe String
-</span><a href="TD.Query.SearchEmojis.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406871"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679406871"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
+</span><a href="TD.Query.SearchEmojis.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410000"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679410000"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SearchEmojis&quot;</span></span><span>
@@ -54,32 +54,32 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;input_language_codes&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679406873"><span class="hs-identifier hs-var">input_language_codes_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679410002"><span class="hs-identifier hs-var">input_language_codes_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;exact_match&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679406872"><span class="hs-identifier hs-var">exact_match_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679410001"><span class="hs-identifier hs-var">exact_match_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679406871"><span class="hs-identifier hs-var">text_</span></a></span><span>
+</span><a href="#local-6989586621679410000"><span class="hs-identifier hs-var">text_</span></a></span><span>
 </span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406862"><span id="local-6989586621679406864"><span id="local-6989586621679406866"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>  </span><span id="local-6989586621679406860"><span class="annot"><span class="annottext">toJSON :: SearchEmojis -&gt; Value
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409991"><span id="local-6989586621679409993"><span id="local-6989586621679409995"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679409989"><span class="annot"><span class="annottext">toJSON :: SearchEmojis -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-38"></span><span>    </span><span class="annot"><a href="TD.Query.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span><span>
 </span><span id="line-39"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_language_codes :: SearchEmojis -&gt; Maybe [String]
-</span><a href="TD.Query.SearchEmojis.html#input_language_codes"><span class="hs-identifier hs-var">input_language_codes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406858"><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679406858"><span class="hs-identifier hs-var">input_language_codes_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchEmojis.html#input_language_codes"><span class="hs-identifier hs-var">input_language_codes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409987"><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679409987"><span class="hs-identifier hs-var">input_language_codes_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">exact_match :: SearchEmojis -&gt; Maybe Bool
-</span><a href="TD.Query.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var">exact_match</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406857"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679406857"><span class="hs-identifier hs-var">exact_match_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var">exact_match</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409986"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409986"><span class="hs-identifier hs-var">exact_match_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">text :: SearchEmojis -&gt; Maybe String
-</span><a href="TD.Query.SearchEmojis.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406856"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679406856"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
+</span><a href="TD.Query.SearchEmojis.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409985"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409985"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
 </span><span id="line-42"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -93,16 +93,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;input_language_codes&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [String] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679406858"><span class="hs-identifier hs-var">input_language_codes_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409987"><span class="hs-identifier hs-var">input_language_codes_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exact_match&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679406857"><span class="hs-identifier hs-var">exact_match_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679409986"><span class="hs-identifier hs-var">exact_match_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679406856"><span class="hs-identifier hs-var">text_</span></a></span><span>
+</span><a href="#local-6989586621679409985"><span class="hs-identifier hs-var">text_</span></a></span><span>
 </span><span id="line-48"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-49"></span></pre></body></html>

@@ -20,11 +20,11 @@ data InternalLinkType
     -- If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it.
     -- If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     InternalLinkTypeAttachmentMenuBot
-      { -- |
+      { -- | URL to be passed to openWebApp
         url :: Maybe String,
-        -- |
+        -- | Username of the bot
         bot_username :: Maybe String,
-        -- | Target chat to be opened @bot_username Username of the bot @url URL to be passed to openWebApp
+        -- | Target chat to be opened
         target_chat :: Maybe TargetChat.TargetChat
       }
   | -- | The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode @code The authentication code
@@ -42,9 +42,9 @@ data InternalLinkType
     InternalLinkTypeBotStart
       { -- | True, if sendBotStartMessage must be called automatically without showing the START button
         autostart :: Maybe Bool,
-        -- |
+        -- | The parameter to be passed to sendBotStartMessage
         start_parameter :: Maybe String,
-        -- | Username of the bot @start_parameter The parameter to be passed to sendBotStartMessage
+        -- | Username of the bot
         bot_username :: Maybe String
       }
   | -- | The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups,
@@ -54,20 +54,20 @@ data InternalLinkType
     -- and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat.
     -- Then if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat, otherwise just send /start message with bot's username added to the chat.
     InternalLinkTypeBotStartInGroup
-      { -- |
+      { -- | Expected administrator rights for the bot; may be null
         administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights,
-        -- |
+        -- | The parameter to be passed to sendBotStartMessage
         start_parameter :: Maybe String,
-        -- | Username of the bot @start_parameter The parameter to be passed to sendBotStartMessage @administrator_rights Expected administrator rights for the bot; may be null
+        -- | Username of the bot
         bot_username :: Maybe String
       }
   | -- | The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot,
     -- ask the current user to select a channel chat to add the bot to as an administrator. Then call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator,
     -- check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
     InternalLinkTypeBotAddToChannel
-      { -- |
+      { -- | Expected administrator rights for the bot
         administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights,
-        -- | Username of the bot @administrator_rights Expected administrator rights for the bot
+        -- | Username of the bot
         bot_username :: Maybe String
       }
   | -- | The link is a link to the change phone number section of the app
@@ -77,13 +77,17 @@ data InternalLinkType
       { -- |
         invite_link :: Maybe String
       }
-  | -- | The link is a link to the filter settings section of the app
+  | -- | The link is a link to the default message auto-delete timer settings section of the app settings
+    InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+  | -- | The link is a link to the edit profile section of the app settings
+    InternalLinkTypeEditProfileSettings
+  | -- | The link is a link to the filter section of the app settings
     InternalLinkTypeFilterSettings
   | -- | The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     InternalLinkTypeGame
-      { -- |
+      { -- | Short name of the game
         game_short_name :: Maybe String,
-        -- | Username of the bot that owns the game @game_short_name Short name of the game
+        -- | Username of the bot that owns the game
         bot_username :: Maybe String
       }
   | -- | The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link @url URL to be passed to getWebPageInstantView @fallback_url An URL to open if getWebPageInstantView fails
@@ -103,7 +107,7 @@ data InternalLinkType
       { -- |
         language_pack_id :: Maybe String
       }
-  | -- | The link is a link to the language settings section of the app
+  | -- | The link is a link to the language section of the app settings
     InternalLinkTypeLanguageSettings
   | -- | The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link @url URL to be passed to getMessageLinkInfo
     InternalLinkTypeMessage
@@ -112,29 +116,29 @@ data InternalLinkType
       }
   | -- | The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
     InternalLinkTypeMessageDraft
-      { -- |
+      { -- | True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
         contains_link :: Maybe Bool,
-        -- | Message draft text @contains_link True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
+        -- | Message draft text
         text :: Maybe FormattedText.FormattedText
       }
   | -- | The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application, otherwise ignore it
     InternalLinkTypePassportDataRequest
       { -- | An HTTP URL to open once the request is finished or canceled with the parameter tg_passport=success or tg_passport=cancel respectively. If empty, then the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel needs to be opened instead
         callback_url :: Maybe String,
-        -- |
+        -- | Unique request identifier provided by the service
         nonce :: Maybe String,
-        -- |
+        -- | Service's public key
         public_key :: Maybe String,
-        -- |
+        -- | Telegram Passport element types requested by the service
         scope :: Maybe String,
-        -- | User identifier of the service's bot @scope Telegram Passport element types requested by the service @public_key Service's public key @nonce Unique request identifier provided by the service
+        -- | User identifier of the service's bot
         bot_user_id :: Maybe Int
       }
   | -- | The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
     InternalLinkTypePhoneNumberConfirmation
-      { -- |
+      { -- | Phone number value from the link
         phone_number :: Maybe String,
-        -- | Hash value from the link @phone_number Phone number value from the link
+        -- | Hash value from the link
         hash :: Maybe String
       }
   | -- | The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link @referrer Referrer specified in the link
@@ -142,15 +146,15 @@ data InternalLinkType
       { -- |
         referrer :: Maybe String
       }
-  | -- | The link is a link to the privacy and security settings section of the app
+  | -- | The link is a link to the privacy and security section of the app settings
     InternalLinkTypePrivacyAndSecuritySettings
   | -- | The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     InternalLinkTypeProxy
-      { -- |
+      { -- | Type of the proxy
         _type :: Maybe ProxyType.ProxyType,
-        -- |
+        -- | Proxy server port
         port :: Maybe Int,
-        -- | Proxy server IP address @port Proxy server port @type Type of the proxy
+        -- | Proxy server IP address
         server :: Maybe String
       }
   | -- | The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link @chat_username Username of the chat
@@ -165,9 +169,11 @@ data InternalLinkType
     InternalLinkTypeRestorePurchases
   | -- | The link is a link to application settings
     InternalLinkTypeSettings
-  | -- | The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set @sticker_set_name Name of the sticker set
+  | -- | The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
     InternalLinkTypeStickerSet
-      { -- |
+      { -- | True, if the sticker set is expected to contain custom emoji
+        expect_custom_emoji :: Maybe Bool,
+        -- | Name of the sticker set
         sticker_set_name :: Maybe String
       }
   | -- | The link is a link to a theme. TDLib has no theme support yet @theme_name Name of the theme
@@ -175,7 +181,7 @@ data InternalLinkType
       { -- |
         theme_name :: Maybe String
       }
-  | -- | The link is a link to the theme settings section of the app
+  | -- | The link is a link to the theme section of the app settings
     InternalLinkTypeThemeSettings
   | -- | The link is an unknown tg: link. Call getDeepLinkInfo to process the link @link Link to be passed to getDeepLinkInfo
     InternalLinkTypeUnknownDeepLink
@@ -198,9 +204,9 @@ data InternalLinkType
     InternalLinkTypeVideoChat
       { -- | True, if the video chat is expected to be a live stream in a channel or a broadcast group
         is_live_stream :: Maybe Bool,
-        -- |
+        -- | If non-empty, invite hash to be used to join the video chat without being muted by administrators
         invite_hash :: Maybe String,
-        -- | Username of the chat with the video chat @invite_hash If non-empty, invite hash to be used to join the video chat without being muted by administrators
+        -- | Username of the chat with the video chat
         chat_username :: Maybe String
       }
   deriving (Eq)
@@ -284,6 +290,14 @@ instance Show InternalLinkType where
         ++ U.cc
           [ U.p "invite_link" invite_link_
           ]
+  show InternalLinkTypeDefaultMessageAutoDeleteTimerSettings =
+    "InternalLinkTypeDefaultMessageAutoDeleteTimerSettings"
+      ++ U.cc
+        []
+  show InternalLinkTypeEditProfileSettings =
+    "InternalLinkTypeEditProfileSettings"
+      ++ U.cc
+        []
   show InternalLinkTypeFilterSettings =
     "InternalLinkTypeFilterSettings"
       ++ U.cc
@@ -418,11 +432,13 @@ instance Show InternalLinkType where
         []
   show
     InternalLinkTypeStickerSet
-      { sticker_set_name = sticker_set_name_
+      { expect_custom_emoji = expect_custom_emoji_,
+        sticker_set_name = sticker_set_name_
       } =
       "InternalLinkTypeStickerSet"
         ++ U.cc
-          [ U.p "sticker_set_name" sticker_set_name_
+          [ U.p "expect_custom_emoji" expect_custom_emoji_,
+            U.p "sticker_set_name" sticker_set_name_
           ]
   show
     InternalLinkTypeTheme
@@ -491,6 +507,8 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeBotAddToChannel" -> parseInternalLinkTypeBotAddToChannel v
       "internalLinkTypeChangePhoneNumber" -> parseInternalLinkTypeChangePhoneNumber v
       "internalLinkTypeChatInvite" -> parseInternalLinkTypeChatInvite v
+      "internalLinkTypeDefaultMessageAutoDeleteTimerSettings" -> parseInternalLinkTypeDefaultMessageAutoDeleteTimerSettings v
+      "internalLinkTypeEditProfileSettings" -> parseInternalLinkTypeEditProfileSettings v
       "internalLinkTypeFilterSettings" -> parseInternalLinkTypeFilterSettings v
       "internalLinkTypeGame" -> parseInternalLinkTypeGame v
       "internalLinkTypeInstantView" -> parseInternalLinkTypeInstantView v
@@ -565,6 +583,12 @@ instance T.FromJSON InternalLinkType where
       parseInternalLinkTypeChatInvite = A.withObject "InternalLinkTypeChatInvite" $ \o -> do
         invite_link_ <- o A..:? "invite_link"
         return $ InternalLinkTypeChatInvite {invite_link = invite_link_}
+
+      parseInternalLinkTypeDefaultMessageAutoDeleteTimerSettings :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeDefaultMessageAutoDeleteTimerSettings = A.withObject "InternalLinkTypeDefaultMessageAutoDeleteTimerSettings" $ \_ -> return InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+
+      parseInternalLinkTypeEditProfileSettings :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeEditProfileSettings = A.withObject "InternalLinkTypeEditProfileSettings" $ \_ -> return InternalLinkTypeEditProfileSettings
 
       parseInternalLinkTypeFilterSettings :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeFilterSettings = A.withObject "InternalLinkTypeFilterSettings" $ \_ -> return InternalLinkTypeFilterSettings
@@ -651,8 +675,9 @@ instance T.FromJSON InternalLinkType where
 
       parseInternalLinkTypeStickerSet :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeStickerSet = A.withObject "InternalLinkTypeStickerSet" $ \o -> do
+        expect_custom_emoji_ <- o A..:? "expect_custom_emoji"
         sticker_set_name_ <- o A..:? "sticker_set_name"
-        return $ InternalLinkTypeStickerSet {sticker_set_name = sticker_set_name_}
+        return $ InternalLinkTypeStickerSet {expect_custom_emoji = expect_custom_emoji_, sticker_set_name = sticker_set_name_}
 
       parseInternalLinkTypeTheme :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeTheme = A.withObject "InternalLinkTypeTheme" $ \o -> do
@@ -767,6 +792,14 @@ instance T.ToJSON InternalLinkType where
         [ "@type" A..= T.String "internalLinkTypeChatInvite",
           "invite_link" A..= invite_link_
         ]
+  toJSON InternalLinkTypeDefaultMessageAutoDeleteTimerSettings =
+    A.object
+      [ "@type" A..= T.String "internalLinkTypeDefaultMessageAutoDeleteTimerSettings"
+      ]
+  toJSON InternalLinkTypeEditProfileSettings =
+    A.object
+      [ "@type" A..= T.String "internalLinkTypeEditProfileSettings"
+      ]
   toJSON InternalLinkTypeFilterSettings =
     A.object
       [ "@type" A..= T.String "internalLinkTypeFilterSettings"
@@ -901,10 +934,12 @@ instance T.ToJSON InternalLinkType where
       ]
   toJSON
     InternalLinkTypeStickerSet
-      { sticker_set_name = sticker_set_name_
+      { expect_custom_emoji = expect_custom_emoji_,
+        sticker_set_name = sticker_set_name_
       } =
       A.object
         [ "@type" A..= T.String "internalLinkTypeStickerSet",
+          "expect_custom_emoji" A..= expect_custom_emoji_,
           "sticker_set_name" A..= sticker_set_name_
         ]
   toJSON

@@ -9,15 +9,15 @@ import qualified TD.Data.Address as Address
 import qualified Utils as U
 
 -- |
-data OrderInfo = -- | Order information @name Name of the user @phone_number Phone number of the user @email_address Email address of the user @shipping_address Shipping address for this order; may be null
+data OrderInfo = -- | Order information
   OrderInfo
-  { -- |
+  { -- | Shipping address for this order; may be null
     shipping_address :: Maybe Address.Address,
-    -- |
+    -- | Email address of the user
     email_address :: Maybe String,
-    -- |
+    -- | Phone number of the user
     phone_number :: Maybe String,
-    -- |
+    -- | Name of the user
     name :: Maybe String
   }
   deriving (Eq)

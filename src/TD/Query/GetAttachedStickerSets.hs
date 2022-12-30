@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets @file_id File identifier
+-- Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets @file_id File identifier
 data GetAttachedStickerSets = GetAttachedStickerSets
   { -- |
     file_id :: Maybe Int

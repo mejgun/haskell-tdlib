@@ -84,11 +84,12 @@ data Update
       { -- |
         message :: Maybe Message.Message
       }
-  | -- | A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
+  | -- | A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed.
+    -- This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
     UpdateMessageSendAcknowledged
-      { -- |
+      { -- | A temporary message identifier
         message_id :: Maybe Int,
-        -- | The chat identifier of the sent message @message_id A temporary message identifier
+        -- | The chat identifier of the sent message
         chat_id :: Maybe Int
       }
   | -- | A message has been successfully sent @message The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change @old_message_id The previous temporary message identifier
@@ -100,13 +101,13 @@ data Update
       }
   | -- | A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
     UpdateMessageSendFailed
-      { -- |
+      { -- | Error message
         error_message :: Maybe String,
-        -- |
+        -- | An error code
         error_code :: Maybe Int,
-        -- |
+        -- | The previous temporary message identifier
         old_message_id :: Maybe Int,
-        -- | The failed to send message @old_message_id The previous temporary message identifier @error_code An error code @error_message Error message
+        -- | The failed to send message
         message :: Maybe Message.Message
       }
   | -- | The message content has changed @chat_id Chat identifier @message_id Message identifier @new_content New message content
@@ -118,15 +119,15 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | A message was edited. Changes in the message content will come in a separate updateMessageContent @chat_id Chat identifier @message_id Message identifier @edit_date Point in time (Unix timestamp) when the message was edited @reply_markup New message reply markup; may be null
+  | -- | A message was edited. Changes in the message content will come in a separate updateMessageContent
     UpdateMessageEdited
-      { -- |
+      { -- | New message reply markup; may be null
         reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-        -- |
+        -- | Point in time (Unix timestamp) when the message was edited
         edit_date :: Maybe Int,
-        -- |
+        -- | Message identifier
         message_id :: Maybe Int,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | The message pinned state was changed @chat_id Chat identifier @message_id The message identifier @is_pinned True, if the message is pinned
@@ -147,7 +148,7 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages @chat_id Chat identifier @message_id Message identifier
+  | -- | The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer @chat_id Chat identifier @message_id Message identifier
     UpdateMessageContentOpened
       { -- |
         message_id :: Maybe Int,
@@ -163,22 +164,22 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | The list of unread reactions added to a message was changed @chat_id Chat identifier @message_id Message identifier @unread_reactions The new list of unread reactions @unread_reaction_count The new number of messages with unread reactions left in the chat
+  | -- | The list of unread reactions added to a message was changed
     UpdateMessageUnreadReactions
-      { -- |
+      { -- | The new number of messages with unread reactions left in the chat
         unread_reaction_count :: Maybe Int,
-        -- |
+        -- | The new list of unread reactions
         unread_reactions :: Maybe [UnreadReaction.UnreadReaction],
-        -- |
+        -- | Message identifier
         message_id :: Maybe Int,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | A message with a live location was viewed. When the update is received, the application is supposed to update the live location
     UpdateMessageLiveLocationViewed
-      { -- |
+      { -- | Identifier of the message with live location
         message_id :: Maybe Int,
-        -- | Identifier of the chat with the live location message @message_id Identifier of the message with live location
+        -- | Identifier of the chat with the live location message
         chat_id :: Maybe Int
       }
   | -- | A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates @chat The chat
@@ -207,20 +208,20 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case @chat_id Chat identifier @last_message The new last message in the chat; may be null @positions The new chat positions in the chat lists
+  | -- | The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
     UpdateChatLastMessage
-      { -- |
+      { -- | The new chat positions in the chat lists
         positions :: Maybe [ChatPosition.ChatPosition],
-        -- |
+        -- | The new last message in the chat; may be null
         last_message :: Maybe Message.Message,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
-  | -- | The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent @chat_id Chat identifier @position New chat position. If new order is 0, then the chat needs to be removed from the list
+  | -- | The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
     UpdateChatPosition
-      { -- |
+      { -- | New chat position. If new order is 0, then the chat needs to be removed from the list
         position :: Maybe ChatPosition.ChatPosition,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | Incoming messages were read or the number of unread messages has been changed @chat_id Chat identifier @last_read_inbox_message_id Identifier of the last read incoming message @unread_count The number of unread messages left in the chat
@@ -253,13 +254,13 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied @chat_id Chat identifier @draft_message The new draft message; may be null @positions The new chat positions in the chat lists
+  | -- | A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
     UpdateChatDraftMessage
-      { -- |
+      { -- | The new chat positions in the chat lists
         positions :: Maybe [ChatPosition.ChatPosition],
-        -- |
+        -- | The new draft message; may be null
         draft_message :: Maybe DraftMessage.DraftMessage,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | The message sender that is selected to send messages in a chat has changed @chat_id Chat identifier @message_sender_id New value of message_sender_id; may be null if the user can't change message sender
@@ -269,10 +270,10 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | The message Time To Live setting for a chat was changed @chat_id Chat identifier @message_ttl New value of message_ttl
-    UpdateChatMessageTtl
+  | -- | The message auto-delete or self-destruct timer setting for a chat was changed @chat_id Chat identifier @message_auto_delete_time New value of message_auto_delete_time
+    UpdateChatMessageAutoDeleteTime
       { -- |
-        message_ttl :: Maybe Int,
+        message_auto_delete_time :: Maybe Int,
         -- |
         chat_id :: Maybe Int
       }
@@ -292,9 +293,9 @@ data Update
       }
   | -- | The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
     UpdateChatReplyMarkup
-      { -- |
+      { -- | Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
         reply_markup_message_id :: Maybe Int,
-        -- | Chat identifier @reply_markup_message_id Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | The chat theme was changed @chat_id Chat identifier @theme_name The new name of the chat theme; may be empty if theme was reset to default
@@ -367,11 +368,12 @@ data Update
         -- |
         chat_filters :: Maybe [ChatFilterInfo.ChatFilterInfo]
       }
-  | -- | The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed @chat_id Identifier of the chat @online_member_count New number of online members in the chat, or 0 if unknown
+  | -- | The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats.
+    -- There is no guarantee that it will be sent just after the number of online users has changed
     UpdateChatOnlineMemberCount
-      { -- |
+      { -- | New number of online members in the chat, or 0 if unknown
         online_member_count :: Maybe Int,
-        -- |
+        -- | Identifier of the chat
         chat_id :: Maybe Int
       }
   | -- | Basic information about a topic in a forum chat was changed @chat_id Chat identifier @info New information about the topic
@@ -397,9 +399,9 @@ data Update
       }
   | -- | A list of active notifications in a notification group has changed
     UpdateNotificationGroup
-      { -- |
+      { -- | Identifiers of removed group notifications, sorted by notification ID
         removed_notification_ids :: Maybe [Int],
-        -- | List of added group notifications, sorted by notification ID @removed_notification_ids Identifiers of removed group notifications, sorted by notification ID
+        -- | List of added group notifications, sorted by notification ID
         added_notifications :: Maybe [Notification.Notification],
         -- | Total number of unread notifications in the group, can be bigger than number of active notifications
         total_count :: Maybe Int,
@@ -426,26 +428,26 @@ data Update
         -- | True, if there are some delayed notification updates, which will be sent soon
         have_delayed_notifications :: Maybe Bool
       }
-  | -- | Some messages were deleted @chat_id Chat identifier @message_ids Identifiers of the deleted messages
+  | -- | Some messages were deleted
     UpdateDeleteMessages
       { -- | True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
         from_cache :: Maybe Bool,
         -- | True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible)
         is_permanent :: Maybe Bool,
-        -- |
+        -- | Identifiers of the deleted messages
         message_ids :: Maybe [Int],
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
-  | -- | A message sender activity in the chat has changed @chat_id Chat identifier @message_thread_id If not 0, a message thread identifier in which the action was performed @sender_id Identifier of a message sender performing the action @action The action
+  | -- | A message sender activity in the chat has changed
     UpdateChatAction
-      { -- |
+      { -- | The action
         action :: Maybe ChatAction.ChatAction,
-        -- |
+        -- | Identifier of a message sender performing the action
         sender_id :: Maybe MessageSender.MessageSender,
-        -- |
+        -- | If not 0, a message thread identifier in which the action was performed
         message_thread_id :: Maybe Int,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | The user went online or offline @user_id User identifier @status New status of the user
@@ -540,7 +542,7 @@ data Update
         -- |
         file_download :: Maybe FileDownload.FileDownload
       }
-  | -- | A file download was changed. This update is sent only after file download list is loaded for the first time @file_id File identifier
+  | -- | A file download was changed. This update is sent only after file download list is loaded for the first time
     UpdateFileDownload
       { -- | New number of being downloaded and recently downloaded files found
         counts :: Maybe DownloadedFileCounts.DownloadedFileCounts,
@@ -548,7 +550,7 @@ data Update
         is_paused :: Maybe Bool,
         -- | Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
         complete_date :: Maybe Int,
-        -- |
+        -- | File identifier
         file_id :: Maybe Int
       }
   | -- | A file was removed from the file download list. This update is sent only after file download list is loaded for the first time @file_id File identifier @counts New number of being downloaded and recently downloaded files found
@@ -570,9 +572,9 @@ data Update
       }
   | -- | Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
     UpdateGroupCallParticipant
-      { -- |
+      { -- | New data about a participant
         participant :: Maybe GroupCallParticipant.GroupCallParticipant,
-        -- | Identifier of group call @participant New data about a participant
+        -- | Identifier of group call
         group_call_id :: Maybe Int
       }
   | -- | New call signaling data arrived @call_id The call identifier @data The data
@@ -589,24 +591,24 @@ data Update
         -- |
         setting :: Maybe UserPrivacySetting.UserPrivacySetting
       }
-  | -- | Number of unread messages in a chat list has changed. This update is sent only if the message database is used @chat_list The chat list with changed number of unread messages
+  | -- | Number of unread messages in a chat list has changed. This update is sent only if the message database is used
     UpdateUnreadMessageCount
-      { -- |
+      { -- | Total number of unread messages in unmuted chats
         unread_unmuted_count :: Maybe Int,
-        -- | Total number of unread messages @unread_unmuted_count Total number of unread messages in unmuted chats
+        -- | Total number of unread messages
         unread_count :: Maybe Int,
-        -- |
+        -- | The chat list with changed number of unread messages
         chat_list :: Maybe ChatList.ChatList
       }
   | -- | Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
     UpdateUnreadChatCount
-      { -- |
+      { -- | Total number of unmuted chats marked as unread
         marked_as_unread_unmuted_count :: Maybe Int,
-        -- | Total number of chats marked as unread @marked_as_unread_unmuted_count Total number of unmuted chats marked as unread
+        -- | Total number of chats marked as unread
         marked_as_unread_count :: Maybe Int,
-        -- |
+        -- | Total number of unread unmuted chats
         unread_unmuted_count :: Maybe Int,
-        -- | Total number of unread chats @unread_unmuted_count Total number of unread unmuted chats
+        -- | Total number of unread chats
         unread_count :: Maybe Int,
         -- | Approximate total number of chats in the chat list
         total_count :: Maybe Int,
@@ -726,11 +728,11 @@ data Update
       }
   | -- | Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     UpdateAnimatedEmojiMessageClicked
-      { -- |
+      { -- | The animated sticker to be played
         sticker :: Maybe Sticker.Sticker,
-        -- |
+        -- | Message identifier
         message_id :: Maybe Int,
-        -- | Chat identifier @message_id Message identifier @sticker The animated sticker to be played
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | The parameters of animation search through getOption("animation_search_bot_username") bot has changed @provider Name of the animation search provider @emojis The new list of emojis suggested for searching
@@ -747,88 +749,88 @@ data Update
         -- |
         added_actions :: Maybe [SuggestedAction.SuggestedAction]
       }
-  | -- | A new incoming inline query; for bots only @id Unique query identifier @sender_user_id Identifier of the user who sent the query @user_location User location; may be null
+  | -- | A new incoming inline query; for bots only
     UpdateNewInlineQuery
-      { -- |
+      { -- | Offset of the first entry to return
         offset :: Maybe String,
-        -- |
+        -- | Text of the query
         query :: Maybe String,
-        -- | The type of the chat from which the query originated; may be null if unknown @query Text of the query @offset Offset of the first entry to return
+        -- | The type of the chat from which the query originated; may be null if unknown
         chat_type :: Maybe ChatType.ChatType,
-        -- |
+        -- | User location; may be null
         user_location :: Maybe Location.Location,
-        -- |
+        -- | Identifier of the user who sent the query
         sender_user_id :: Maybe Int,
-        -- |
+        -- | Unique query identifier
         _id :: Maybe Int
       }
-  | -- | The user has chosen a result of an inline query; for bots only @sender_user_id Identifier of the user who sent the query @user_location User location; may be null
+  | -- | The user has chosen a result of an inline query; for bots only
     UpdateNewChosenInlineResult
-      { -- |
+      { -- | Identifier of the sent inline message, if known
         inline_message_id :: Maybe String,
-        -- |
+        -- | Identifier of the chosen result
         result_id :: Maybe String,
-        -- | Text of the query @result_id Identifier of the chosen result @inline_message_id Identifier of the sent inline message, if known
+        -- | Text of the query
         query :: Maybe String,
-        -- |
+        -- | User location; may be null
         user_location :: Maybe Location.Location,
-        -- |
+        -- | Identifier of the user who sent the query
         sender_user_id :: Maybe Int
       }
-  | -- | A new incoming callback query; for bots only @id Unique query identifier @sender_user_id Identifier of the user who sent the query
+  | -- | A new incoming callback query; for bots only
     UpdateNewCallbackQuery
-      { -- |
+      { -- | Query payload
         payload :: Maybe CallbackQueryPayload.CallbackQueryPayload,
-        -- | Identifier that uniquely corresponds to the chat to which the message was sent @payload Query payload
+        -- | Identifier that uniquely corresponds to the chat to which the message was sent
         chat_instance :: Maybe Int,
-        -- |
+        -- | Identifier of the message from which the query originated
         message_id :: Maybe Int,
-        -- | Identifier of the chat where the query was sent @message_id Identifier of the message from which the query originated
+        -- | Identifier of the chat where the query was sent
         chat_id :: Maybe Int,
-        -- |
+        -- | Identifier of the user who sent the query
         sender_user_id :: Maybe Int,
-        -- |
+        -- | Unique query identifier
         _id :: Maybe Int
       }
-  | -- | A new incoming callback query from a message sent via a bot; for bots only @id Unique query identifier @sender_user_id Identifier of the user who sent the query @inline_message_id Identifier of the inline message from which the query originated
+  | -- | A new incoming callback query from a message sent via a bot; for bots only
     UpdateNewInlineCallbackQuery
-      { -- |
+      { -- | Query payload
         payload :: Maybe CallbackQueryPayload.CallbackQueryPayload,
-        -- | An identifier uniquely corresponding to the chat a message was sent to @payload Query payload
+        -- | An identifier uniquely corresponding to the chat a message was sent to
         chat_instance :: Maybe Int,
-        -- |
+        -- | Identifier of the inline message from which the query originated
         inline_message_id :: Maybe String,
-        -- |
+        -- | Identifier of the user who sent the query
         sender_user_id :: Maybe Int,
-        -- |
+        -- | Unique query identifier
         _id :: Maybe Int
       }
-  | -- | A new incoming shipping query; for bots only. Only for invoices with flexible price @id Unique query identifier @sender_user_id Identifier of the user who sent the query @invoice_payload Invoice payload @shipping_address User shipping address
+  | -- | A new incoming shipping query; for bots only. Only for invoices with flexible price
     UpdateNewShippingQuery
-      { -- |
+      { -- | User shipping address
         shipping_address :: Maybe Address.Address,
-        -- |
+        -- | Invoice payload
         invoice_payload :: Maybe String,
-        -- |
+        -- | Identifier of the user who sent the query
         sender_user_id :: Maybe Int,
-        -- |
+        -- | Unique query identifier
         _id :: Maybe Int
       }
-  | -- | A new incoming pre-checkout query; for bots only. Contains full information about a checkout @id Unique query identifier @sender_user_id Identifier of the user who sent the query @currency Currency for the product price @total_amount Total price for the product, in the smallest units of the currency
+  | -- | A new incoming pre-checkout query; for bots only. Contains full information about a checkout
     UpdateNewPreCheckoutQuery
-      { -- |
+      { -- | Information about the order; may be null
         order_info :: Maybe OrderInfo.OrderInfo,
-        -- |
+        -- | Identifier of a shipping option chosen by the user; may be empty if not applicable
         shipping_option_id :: Maybe String,
-        -- | Invoice payload @shipping_option_id Identifier of a shipping option chosen by the user; may be empty if not applicable @order_info Information about the order; may be null
+        -- | Invoice payload
         _invoice_payload :: Maybe String,
-        -- |
+        -- | Total price for the product, in the smallest units of the currency
         total_amount :: Maybe Int,
-        -- |
+        -- | Currency for the product price
         currency :: Maybe String,
-        -- |
+        -- | Identifier of the user who sent the query
         sender_user_id :: Maybe Int,
-        -- |
+        -- | Unique query identifier
         _id :: Maybe Int
       }
   | -- | A new incoming event; for bots only @event A JSON-serialized event
@@ -859,19 +861,19 @@ data Update
         -- |
         poll_id :: Maybe Int
       }
-  | -- | User rights changed in a chat; for bots only @chat_id Chat identifier @actor_user_id Identifier of the user, changing the rights
+  | -- | User rights changed in a chat; for bots only
     UpdateChatMember
-      { -- |
+      { -- | New chat member
         new_chat_member :: Maybe ChatMember.ChatMember,
-        -- | Previous chat member @new_chat_member New chat member
+        -- | Previous chat member
         old_chat_member :: Maybe ChatMember.ChatMember,
-        -- |
+        -- | If user has joined the chat using an invite link, the invite link; may be null
         invite_link :: Maybe ChatInviteLink.ChatInviteLink,
-        -- | Point in time (Unix timestamp) when the user rights was changed @invite_link If user has joined the chat using an invite link, the invite link; may be null
+        -- | Point in time (Unix timestamp) when the user rights was changed
         date :: Maybe Int,
-        -- |
+        -- | Identifier of the user, changing the rights
         actor_user_id :: Maybe Int,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   | -- | A user sent a join request to a chat; for bots only @chat_id Chat identifier @request Join request @invite_link The invite link, which was used to send join request; may be null
@@ -1157,13 +1159,13 @@ instance Show Update where
             U.p "chat_id" chat_id_
           ]
   show
-    UpdateChatMessageTtl
-      { message_ttl = message_ttl_,
+    UpdateChatMessageAutoDeleteTime
+      { message_auto_delete_time = message_auto_delete_time_,
         chat_id = chat_id_
       } =
-      "UpdateChatMessageTtl"
+      "UpdateChatMessageAutoDeleteTime"
         ++ U.cc
-          [ U.p "message_ttl" message_ttl_,
+          [ U.p "message_auto_delete_time" message_auto_delete_time_,
             U.p "chat_id" chat_id_
           ]
   show
@@ -2041,7 +2043,7 @@ instance T.FromJSON Update where
       "updateChatAvailableReactions" -> parseUpdateChatAvailableReactions v
       "updateChatDraftMessage" -> parseUpdateChatDraftMessage v
       "updateChatMessageSender" -> parseUpdateChatMessageSender v
-      "updateChatMessageTtl" -> parseUpdateChatMessageTtl v
+      "updateChatMessageAutoDeleteTime" -> parseUpdateChatMessageAutoDeleteTime v
       "updateChatNotificationSettings" -> parseUpdateChatNotificationSettings v
       "updateChatPendingJoinRequests" -> parseUpdateChatPendingJoinRequests v
       "updateChatReplyMarkup" -> parseUpdateChatReplyMarkup v
@@ -2283,11 +2285,11 @@ instance T.FromJSON Update where
         chat_id_ <- o A..:? "chat_id"
         return $ UpdateChatMessageSender {message_sender_id = message_sender_id_, chat_id = chat_id_}
 
-      parseUpdateChatMessageTtl :: A.Value -> T.Parser Update
-      parseUpdateChatMessageTtl = A.withObject "UpdateChatMessageTtl" $ \o -> do
-        message_ttl_ <- o A..:? "message_ttl"
+      parseUpdateChatMessageAutoDeleteTime :: A.Value -> T.Parser Update
+      parseUpdateChatMessageAutoDeleteTime = A.withObject "UpdateChatMessageAutoDeleteTime" $ \o -> do
+        message_auto_delete_time_ <- o A..:? "message_auto_delete_time"
         chat_id_ <- o A..:? "chat_id"
-        return $ UpdateChatMessageTtl {message_ttl = message_ttl_, chat_id = chat_id_}
+        return $ UpdateChatMessageAutoDeleteTime {message_auto_delete_time = message_auto_delete_time_, chat_id = chat_id_}
 
       parseUpdateChatNotificationSettings :: A.Value -> T.Parser Update
       parseUpdateChatNotificationSettings = A.withObject "UpdateChatNotificationSettings" $ \o -> do
@@ -3063,13 +3065,13 @@ instance T.ToJSON Update where
           "chat_id" A..= chat_id_
         ]
   toJSON
-    UpdateChatMessageTtl
-      { message_ttl = message_ttl_,
+    UpdateChatMessageAutoDeleteTime
+      { message_auto_delete_time = message_auto_delete_time_,
         chat_id = chat_id_
       } =
       A.object
-        [ "@type" A..= T.String "updateChatMessageTtl",
-          "message_ttl" A..= message_ttl_,
+        [ "@type" A..= T.String "updateChatMessageAutoDeleteTime",
+          "message_auto_delete_time" A..= message_auto_delete_time_,
           "chat_id" A..= chat_id_
         ]
   toJSON

@@ -9,19 +9,19 @@ import qualified TD.Data.Photo as Photo
 import qualified Utils as U
 
 -- |
-data PageBlockRelatedArticle = -- | Contains information about a related article @url Related article URL @title Article title; may be empty @param_description Article description; may be empty
+data PageBlockRelatedArticle = -- | Contains information about a related article
   PageBlockRelatedArticle
-  { -- |
+  { -- | Point in time (Unix timestamp) when the article was published; 0 if unknown
     publish_date :: Maybe Int,
-    -- |
+    -- | Article author; may be empty
     author :: Maybe String,
-    -- | Article photo; may be null @author Article author; may be empty @publish_date Point in time (Unix timestamp) when the article was published; 0 if unknown
+    -- | Article photo; may be null
     photo :: Maybe Photo.Photo,
     -- |
     description :: Maybe String,
-    -- |
+    -- | Article title; may be empty
     title :: Maybe String,
-    -- |
+    -- | Related article URL
     url :: Maybe String
   }
   deriving (Eq)

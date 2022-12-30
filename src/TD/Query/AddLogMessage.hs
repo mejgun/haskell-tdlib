@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Adds a message to TDLib internal log. Can be called synchronously
 data AddLogMessage = AddLogMessage
-  { -- |
+  { -- | Text of a message to log
     text :: Maybe String,
-    -- | The minimum verbosity level needed for the message to be logged; 0-1023 @text Text of a message to log
+    -- | The minimum verbosity level needed for the message to be logged; 0-1023
     verbosity_level :: Maybe Int
   }
   deriving (Eq)

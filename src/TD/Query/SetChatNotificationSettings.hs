@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
 data SetChatNotificationSettings = SetChatNotificationSettings
-  { -- |
+  { -- | New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
     notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings,
-    -- | Chat identifier @notification_settings New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -9,13 +9,13 @@ import qualified TD.Data.LabeledPricePart as LabeledPricePart
 import qualified Utils as U
 
 -- |
-data ShippingOption = -- | One shipping option @id Shipping option identifier @title Option title @price_parts A list of objects used to calculate the total shipping costs
+data ShippingOption = -- | One shipping option
   ShippingOption
-  { -- |
+  { -- | A list of objects used to calculate the total shipping costs
     price_parts :: Maybe [LabeledPricePart.LabeledPricePart],
-    -- |
+    -- | Option title
     title :: Maybe String,
-    -- |
+    -- | Shipping option identifier
     _id :: Maybe String
   }
   deriving (Eq)

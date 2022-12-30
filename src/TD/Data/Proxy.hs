@@ -9,19 +9,19 @@ import qualified TD.Data.ProxyType as ProxyType
 import qualified Utils as U
 
 -- |
-data Proxy = -- | Contains information about a proxy server @id Unique identifier of the proxy @server Proxy server IP address @port Proxy server port @last_used_date Point in time (Unix timestamp) when the proxy was last used; 0 if never @is_enabled True, if the proxy is enabled now @type Type of the proxy
+data Proxy = -- | Contains information about a proxy server
   Proxy
-  { -- |
+  { -- | Type of the proxy
     _type :: Maybe ProxyType.ProxyType,
-    -- |
+    -- | True, if the proxy is enabled now
     is_enabled :: Maybe Bool,
-    -- |
+    -- | Point in time (Unix timestamp) when the proxy was last used; 0 if never
     last_used_date :: Maybe Int,
-    -- |
+    -- | Proxy server port
     port :: Maybe Int,
-    -- |
+    -- | Proxy server IP address
     server :: Maybe String,
-    -- |
+    -- | Unique identifier of the proxy
     _id :: Maybe Int
   }
   deriving (Eq)

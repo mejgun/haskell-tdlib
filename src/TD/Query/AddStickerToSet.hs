@@ -11,11 +11,11 @@ import qualified Utils as U
 -- |
 -- Adds a new sticker to a set; for bots only. Returns the sticker set
 data AddStickerToSet = AddStickerToSet
-  { -- |
+  { -- | Sticker to add to the set
     sticker :: Maybe InputSticker.InputSticker,
-    -- |
+    -- | Sticker set name
     name :: Maybe String,
-    -- | Sticker set owner @name Sticker set name @sticker Sticker to add to the set
+    -- | Sticker set owner
     user_id :: Maybe Int
   }
   deriving (Eq)

@@ -10,19 +10,19 @@ import qualified TD.Data.InputInvoice as InputInvoice
 import qualified Utils as U
 
 -- |
--- Sends a filled-out payment form to the bot for final verification @input_invoice The invoice
+-- Sends a filled-out payment form to the bot for final verification
 data SendPaymentForm = SendPaymentForm
-  { -- |
+  { -- | Chosen by the user amount of tip in the smallest units of the currency
     tip_amount :: Maybe Int,
-    -- | The credentials chosen by user for payment @tip_amount Chosen by the user amount of tip in the smallest units of the currency
+    -- | The credentials chosen by user for payment
     credentials :: Maybe InputCredentials.InputCredentials,
-    -- |
+    -- | Identifier of a chosen shipping option, if applicable
     shipping_option_id :: Maybe String,
-    -- |
+    -- | Identifier returned by validateOrderInfo, or an empty string
     order_info_id :: Maybe String,
-    -- | Payment form identifier returned by getPaymentForm @order_info_id Identifier returned by validateOrderInfo, or an empty string @shipping_option_id Identifier of a chosen shipping option, if applicable
+    -- | Payment form identifier returned by getPaymentForm
     payment_form_id :: Maybe Int,
-    -- |
+    -- | The invoice
     input_invoice :: Maybe InputInvoice.InputInvoice
   }
   deriving (Eq)

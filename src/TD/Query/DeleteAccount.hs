@@ -8,11 +8,12 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword @reason The reason why the account was deleted; optional @password The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
+-- Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
+-- Can be called before authorization when the current authorization state is authorizationStateWaitPassword
 data DeleteAccount = DeleteAccount
-  { -- |
+  { -- | The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
     password :: Maybe String,
-    -- |
+    -- | The reason why the account was deleted; optional
     reason :: Maybe String
   }
   deriving (Eq)

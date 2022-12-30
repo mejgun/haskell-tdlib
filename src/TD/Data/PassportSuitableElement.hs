@@ -9,15 +9,15 @@ import qualified TD.Data.PassportElementType as PassportElementType
 import qualified Utils as U
 
 -- |
-data PassportSuitableElement = -- | Contains information about a Telegram Passport element that was requested by a service @type Type of the element @is_selfie_required True, if a selfie is required with the identity document
+data PassportSuitableElement = -- | Contains information about a Telegram Passport element that was requested by a service
   PassportSuitableElement
-  { -- |
+  { -- | True, if personal details must include the user's name in the language of their country of residence
     is_native_name_required :: Maybe Bool,
-    -- | True, if a certified English translation is required with the document @is_native_name_required True, if personal details must include the user's name in the language of their country of residence
+    -- | True, if a certified English translation is required with the document
     is_translation_required :: Maybe Bool,
-    -- |
+    -- | True, if a selfie is required with the identity document
     is_selfie_required :: Maybe Bool,
-    -- |
+    -- | Type of the element
     _type :: Maybe PassportElementType.PassportElementType
   }
   deriving (Eq)

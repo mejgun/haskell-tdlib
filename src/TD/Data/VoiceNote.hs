@@ -12,15 +12,15 @@ import qualified Utils as U
 -- |
 data VoiceNote = -- | Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel
   VoiceNote
-  { -- |
+  { -- | File containing the voice note
     voice :: Maybe File.File,
-    -- |
+    -- | Result of speech recognition in the voice note; may be null
     speech_recognition_result :: Maybe SpeechRecognitionResult.SpeechRecognitionResult,
-    -- | MIME type of the file; as defined by the sender @speech_recognition_result Result of speech recognition in the voice note; may be null @voice File containing the voice note
+    -- | MIME type of the file; as defined by the sender
     mime_type :: Maybe String,
-    -- |
+    -- | A waveform representation of the voice note in 5-bit format
     waveform :: Maybe String,
-    -- | Duration of the voice note, in seconds; as defined by the sender @waveform A waveform representation of the voice note in 5-bit format
+    -- | Duration of the voice note, in seconds; as defined by the sender
     duration :: Maybe Int
   }
   deriving (Eq)

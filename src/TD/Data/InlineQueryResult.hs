@@ -21,120 +21,120 @@ import qualified Utils as U
 
 -- | Represents a single result of an inline query
 data InlineQueryResult
-  = -- | Represents a link to an article or web page @id Unique identifier of the query result @url URL of the result, if it exists @hide_url True, if the URL must be not shown @title Title of the result
+  = -- | Represents a link to an article or web page
     InlineQueryResultArticle
-      { -- |
+      { -- | Result thumbnail in JPEG format; may be null
         thumbnail :: Maybe Thumbnail.Thumbnail,
         -- |
         description :: Maybe String,
-        -- |
+        -- | Title of the result
         title :: Maybe String,
-        -- |
+        -- | True, if the URL must be not shown
         hide_url :: Maybe Bool,
-        -- |
+        -- | URL of the result, if it exists
         url :: Maybe String,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a user contact @id Unique identifier of the query result @contact A user contact @thumbnail Result thumbnail in JPEG format; may be null
+  | -- | Represents a user contact
     InlineQueryResultContact
-      { -- |
+      { -- | Result thumbnail in JPEG format; may be null
         thumbnail :: Maybe Thumbnail.Thumbnail,
-        -- |
+        -- | A user contact
         contact :: Maybe Contact.Contact,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a point on the map @id Unique identifier of the query result @location Location result @title Title of the result @thumbnail Result thumbnail in JPEG format; may be null
+  | -- | Represents a point on the map
     InlineQueryResultLocation
-      { -- |
+      { -- | Result thumbnail in JPEG format; may be null
         thumbnail :: Maybe Thumbnail.Thumbnail,
-        -- |
+        -- | Title of the result
         title :: Maybe String,
-        -- |
+        -- | Location result
         location :: Maybe Location.Location,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents information about a venue @id Unique identifier of the query result @venue Venue result @thumbnail Result thumbnail in JPEG format; may be null
+  | -- | Represents information about a venue
     InlineQueryResultVenue
-      { -- |
+      { -- | Result thumbnail in JPEG format; may be null
         thumbnail :: Maybe Thumbnail.Thumbnail,
-        -- |
+        -- | Venue result
         venue :: Maybe Venue.Venue,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents information about a game @id Unique identifier of the query result @game Game result
+  | -- | Represents information about a game
     InlineQueryResultGame
-      { -- |
+      { -- | Game result
         game :: Maybe Game.Game,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents an animation file @id Unique identifier of the query result @animation Animation file @title Animation title
+  | -- | Represents an animation file
     InlineQueryResultAnimation
-      { -- |
+      { -- | Animation title
         title :: Maybe String,
-        -- |
+        -- | Animation file
         animation :: Maybe Animation.Animation,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents an audio file @id Unique identifier of the query result @audio Audio file
+  | -- | Represents an audio file
     InlineQueryResultAudio
-      { -- |
+      { -- | Audio file
         audio :: Maybe Audio.Audio,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a document @id Unique identifier of the query result @document Document @title Document title @param_description Document description
+  | -- | Represents a document
     InlineQueryResultDocument
       { -- |
         description :: Maybe String,
-        -- |
+        -- | Document title
         title :: Maybe String,
-        -- |
+        -- | Document
         document :: Maybe Document.Document,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a photo @id Unique identifier of the query result @photo Photo @title Title of the result, if known @param_description A short description of the result, if known
+  | -- | Represents a photo
     InlineQueryResultPhoto
       { -- |
         description :: Maybe String,
-        -- |
+        -- | Title of the result, if known
         title :: Maybe String,
-        -- |
+        -- | Photo
         photo :: Maybe Photo.Photo,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a sticker @id Unique identifier of the query result @sticker Sticker
+  | -- | Represents a sticker
     InlineQueryResultSticker
-      { -- |
+      { -- | Sticker
         sticker :: Maybe Sticker.Sticker,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a video @id Unique identifier of the query result @video Video @title Title of the video @param_description Description of the video
+  | -- | Represents a video
     InlineQueryResultVideo
       { -- |
         description :: Maybe String,
-        -- |
+        -- | Title of the video
         title :: Maybe String,
-        -- |
+        -- | Video
         video :: Maybe Video.Video,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
-  | -- | Represents a voice note @id Unique identifier of the query result @voice_note Voice note @title Title of the voice note
+  | -- | Represents a voice note
     InlineQueryResultVoiceNote
-      { -- |
+      { -- | Title of the voice note
         title :: Maybe String,
-        -- |
+        -- | Voice note
         voice_note :: Maybe VoiceNote.VoiceNote,
-        -- |
+        -- | Unique identifier of the query result
         _id :: Maybe String
       }
   deriving (Eq)

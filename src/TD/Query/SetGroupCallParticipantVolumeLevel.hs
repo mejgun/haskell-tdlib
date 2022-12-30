@@ -11,11 +11,11 @@ import qualified Utils as U
 -- |
 -- Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
 data SetGroupCallParticipantVolumeLevel = SetGroupCallParticipantVolumeLevel
-  { -- |
+  { -- | New participant's volume level; 1-20000 in hundreds of percents
     volume_level :: Maybe Int,
-    -- |
+    -- | Participant identifier
     participant_id :: Maybe MessageSender.MessageSender,
-    -- | Group call identifier @participant_id Participant identifier @volume_level New participant's volume level; 1-20000 in hundreds of percents
+    -- | Group call identifier
     group_call_id :: Maybe Int
   }
   deriving (Eq)

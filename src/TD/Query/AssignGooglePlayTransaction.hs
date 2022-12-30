@@ -9,15 +9,15 @@ import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
 import qualified Utils as U
 
 -- |
--- Informs server about a purchase through Google Play. For official applications only @package_name Application package name @store_product_id Identifier of the purchased store product @purchase_token Google Play purchase token @purpose Transaction purpose
+-- Informs server about a purchase through Google Play. For official applications only
 data AssignGooglePlayTransaction = AssignGooglePlayTransaction
-  { -- |
+  { -- | Transaction purpose
     purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose,
-    -- |
+    -- | Google Play purchase token
     purchase_token :: Maybe String,
-    -- |
+    -- | Identifier of the purchased store product
     store_product_id :: Maybe String,
-    -- |
+    -- | Application package name
     package_name :: Maybe String
   }
   deriving (Eq)

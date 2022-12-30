@@ -10,7 +10,7 @@ import qualified TD.Data.File as File
 import qualified Utils as U
 
 -- |
-data AttachmentMenuBot = -- | Represents a bot added to attachment menu
+data AttachmentMenuBot = -- | Represents a bot, which can be added to attachment menu
   AttachmentMenuBot
   { -- | Default placeholder for opened Web Apps in SVG format; may be null
     web_app_placeholder :: Maybe File.File,
@@ -30,6 +30,8 @@ data AttachmentMenuBot = -- | Represents a bot added to attachment menu
     name_color :: Maybe AttachmentMenuBotColor.AttachmentMenuBotColor,
     -- | Name for the bot in attachment menu
     name :: Maybe String,
+    -- | True, if the user needs to be requested to give the permission to the bot to send them messages
+    request_write_access :: Maybe Bool,
     -- | True, if the bot supports "settings_button_pressed" event
     supports_settings :: Maybe Bool,
     -- | True, if the bot supports opening from attachment menu in channel chats
@@ -59,6 +61,7 @@ instance Show AttachmentMenuBot where
         default_icon = default_icon_,
         name_color = name_color_,
         name = name_,
+        request_write_access = request_write_access_,
         supports_settings = supports_settings_,
         supports_channel_chats = supports_channel_chats_,
         supports_group_chats = supports_group_chats_,
@@ -78,6 +81,7 @@ instance Show AttachmentMenuBot where
             U.p "default_icon" default_icon_,
             U.p "name_color" name_color_,
             U.p "name" name_,
+            U.p "request_write_access" request_write_access_,
             U.p "supports_settings" supports_settings_,
             U.p "supports_channel_chats" supports_channel_chats_,
             U.p "supports_group_chats" supports_group_chats_,
@@ -106,6 +110,7 @@ instance T.FromJSON AttachmentMenuBot where
         default_icon_ <- o A..:? "default_icon"
         name_color_ <- o A..:? "name_color"
         name_ <- o A..:? "name"
+        request_write_access_ <- o A..:? "request_write_access"
         supports_settings_ <- o A..:? "supports_settings"
         supports_channel_chats_ <- o A..:? "supports_channel_chats"
         supports_group_chats_ <- o A..:? "supports_group_chats"
@@ -113,7 +118,7 @@ instance T.FromJSON AttachmentMenuBot where
         supports_user_chats_ <- o A..:? "supports_user_chats"
         supports_self_chat_ <- o A..:? "supports_self_chat"
         bot_user_id_ <- o A..:? "bot_user_id"
-        return $ AttachmentMenuBot {web_app_placeholder = web_app_placeholder_, icon_color = icon_color_, macos_icon = macos_icon_, android_icon = android_icon_, ios_animated_icon = ios_animated_icon_, ios_static_icon = ios_static_icon_, default_icon = default_icon_, name_color = name_color_, name = name_, supports_settings = supports_settings_, supports_channel_chats = supports_channel_chats_, supports_group_chats = supports_group_chats_, supports_bot_chats = supports_bot_chats_, supports_user_chats = supports_user_chats_, supports_self_chat = supports_self_chat_, bot_user_id = bot_user_id_}
+        return $ AttachmentMenuBot {web_app_placeholder = web_app_placeholder_, icon_color = icon_color_, macos_icon = macos_icon_, android_icon = android_icon_, ios_animated_icon = ios_animated_icon_, ios_static_icon = ios_static_icon_, default_icon = default_icon_, name_color = name_color_, name = name_, request_write_access = request_write_access_, supports_settings = supports_settings_, supports_channel_chats = supports_channel_chats_, supports_group_chats = supports_group_chats_, supports_bot_chats = supports_bot_chats_, supports_user_chats = supports_user_chats_, supports_self_chat = supports_self_chat_, bot_user_id = bot_user_id_}
   parseJSON _ = mempty
 
 instance T.ToJSON AttachmentMenuBot where
@@ -128,6 +133,7 @@ instance T.ToJSON AttachmentMenuBot where
         default_icon = default_icon_,
         name_color = name_color_,
         name = name_,
+        request_write_access = request_write_access_,
         supports_settings = supports_settings_,
         supports_channel_chats = supports_channel_chats_,
         supports_group_chats = supports_group_chats_,
@@ -147,6 +153,7 @@ instance T.ToJSON AttachmentMenuBot where
           "default_icon" A..= default_icon_,
           "name_color" A..= name_color_,
           "name" A..= name_,
+          "request_write_access" A..= request_write_access_,
           "supports_settings" A..= supports_settings_,
           "supports_channel_chats" A..= supports_channel_chats_,
           "supports_group_chats" A..= supports_group_chats_,

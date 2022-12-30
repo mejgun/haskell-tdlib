@@ -32,7 +32,8 @@ data ChatFilter = -- | Represents a filter of user chats
     included_chat_ids :: Maybe [Int],
     -- | The chat identifiers of pinned chats in the filtered chat list. There can be up to getOption("chat_filter_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium
     pinned_chat_ids :: Maybe [Int],
-    -- | The chosen icon name for short filter representation. If non-empty, must be one of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work", "Airplane", "Book", "Light", "Like", "Money", "Note", "Palette".
+    -- | The chosen icon name for short filter representation. If non-empty, must be one of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown",
+    -- "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work", "Airplane", "Book", "Light", "Like", "Money", "Note", "Palette".
     -- If empty, use getChatFilterDefaultIconName to get default icon name for the filter
     icon_name :: Maybe String,
     -- | The title of the filter; 1-12 characters without line feeds

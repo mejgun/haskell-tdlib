@@ -11,25 +11,25 @@ import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
 -- |
-data Audio = -- | Describes an audio file. Audio is usually in MP3 or M4A format @duration Duration of the audio, in seconds; as defined by the sender @title Title of the audio; as defined by the sender @performer Performer of the audio; as defined by the sender
+data Audio = -- | Describes an audio file. Audio is usually in MP3 or M4A format
   Audio
-  { -- |
+  { -- | File containing the audio
     audio :: Maybe File.File,
-    -- | Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate @audio File containing the audio
+    -- | Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
     external_album_covers :: Maybe [Thumbnail.Thumbnail],
     -- | The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null
     album_cover_thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- |
+    -- | The minithumbnail of the album cover; may be null
     album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- |
+    -- | The MIME type of the file; as defined by the sender
     mime_type :: Maybe String,
-    -- | Original name of the file; as defined by the sender @mime_type The MIME type of the file; as defined by the sender @album_cover_minithumbnail The minithumbnail of the album cover; may be null
+    -- | Original name of the file; as defined by the sender
     file_name :: Maybe String,
-    -- |
+    -- | Performer of the audio; as defined by the sender
     performer :: Maybe String,
-    -- |
+    -- | Title of the audio; as defined by the sender
     title :: Maybe String,
-    -- |
+    -- | Duration of the audio, in seconds; as defined by the sender
     duration :: Maybe Int
   }
   deriving (Eq)

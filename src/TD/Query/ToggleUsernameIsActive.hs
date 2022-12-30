@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached @username The username to change @is_active Pass true to activate the username; pass false to disable it
+-- Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
 data ToggleUsernameIsActive = ToggleUsernameIsActive
-  { -- |
+  { -- | Pass true to activate the username; pass false to disable it
     is_active :: Maybe Bool,
-    -- |
+    -- | The username to change
     username :: Maybe String
   }
   deriving (Eq)

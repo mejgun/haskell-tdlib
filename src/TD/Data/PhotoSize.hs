@@ -9,17 +9,17 @@ import qualified TD.Data.File as File
 import qualified Utils as U
 
 -- |
-data PhotoSize = -- | Describes an image in JPEG format @type Image type (see https://core.telegram.org/constructor/photoSize)
+data PhotoSize = -- | Describes an image in JPEG format
   PhotoSize
   { -- | Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
     progressive_sizes :: Maybe [Int],
-    -- |
+    -- | Image height
     height :: Maybe Int,
-    -- |
+    -- | Image width
     width :: Maybe Int,
-    -- | Information about the image file @width Image width @height Image height
+    -- | Information about the image file
     photo :: Maybe File.File,
-    -- |
+    -- | Image type (see https://core.telegram.org/constructor/photoSize)
     _type :: Maybe String
   }
   deriving (Eq)

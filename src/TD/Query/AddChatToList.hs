@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
 data AddChatToList = AddChatToList
-  { -- |
+  { -- | The chat list. Use getChatListsToAddChat to get suitable chat lists
     chat_list :: Maybe ChatList.ChatList,
-    -- | Chat identifier @chat_list The chat list. Use getChatListsToAddChat to get suitable chat lists
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

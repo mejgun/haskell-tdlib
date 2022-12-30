@@ -9,9 +9,10 @@ import qualified TD.Data.Location as Location
 import qualified Utils as U
 
 -- |
--- Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats @location Current user location
+-- Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby.
+-- The request must be sent again every 25 seconds with adjusted location to not miss new chats
 data SearchChatsNearby = SearchChatsNearby
-  { -- |
+  { -- | Current user location
     location :: Maybe Location.Location
   }
   deriving (Eq)

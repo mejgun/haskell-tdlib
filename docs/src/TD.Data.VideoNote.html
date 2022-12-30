@@ -12,31 +12,31 @@
 </span><span id="line-12"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-13"></span><span>
 </span><span id="line-14"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="VideoNote"><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-var">VideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format @duration Duration of the video, in seconds; as defined by the sender</span><span>
+</span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="VideoNote"><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-var">VideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format</span><span>
 </span><span id="line-16"></span><span>  </span><span id="VideoNote"><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-var">VideoNote</span></a></span></span><span>
-</span><span id="line-17"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | File containing the video</span><span>
 </span><span id="line-18"></span><span>    </span><span id="video"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe File
 </span><a href="TD.Data.VideoNote.html#video"><span class="hs-identifier hs-var hs-var">video</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.File.html#File"><span class="hs-identifier hs-type">File.File</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Result of speech recognition in the video note; may be null</span><span>
 </span><span id="line-20"></span><span>    </span><span id="speech_recognition_result"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe SpeechRecognitionResult
 </span><a href="TD.Data.VideoNote.html#speech_recognition_result"><span class="hs-identifier hs-var hs-var">speech_recognition_result</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.SpeechRecognitionResult.html#SpeechRecognitionResult"><span class="hs-identifier hs-type">SpeechRecognitionResult.SpeechRecognitionResult</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | Video thumbnail in JPEG format; as defined by the sender; may be null @speech_recognition_result Result of speech recognition in the video note; may be null @video File containing the video</span><span>
+</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | Video thumbnail in JPEG format; as defined by the sender; may be null</span><span>
 </span><span id="line-22"></span><span>    </span><span id="thumbnail"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe Thumbnail
 </span><a href="TD.Data.VideoNote.html#thumbnail"><span class="hs-identifier hs-var hs-var">thumbnail</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.Thumbnail.html#Thumbnail"><span class="hs-identifier hs-type">Thumbnail.Thumbnail</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- | Video minithumbnail; may be null</span><span>
 </span><span id="line-24"></span><span>    </span><span id="minithumbnail"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe Minithumbnail
 </span><a href="TD.Data.VideoNote.html#minithumbnail"><span class="hs-identifier hs-var hs-var">minithumbnail</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.Minithumbnail.html#Minithumbnail"><span class="hs-identifier hs-type">Minithumbnail.Minithumbnail</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-25"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-25"></span><span>    </span><span class="hs-comment">-- | Video width and height; as defined by the sender</span><span>
 </span><span id="line-26"></span><span>    </span><span id="_length"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe Int
 </span><a href="TD.Data.VideoNote.html#_length"><span class="hs-identifier hs-var hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-27"></span><span>    </span><span class="hs-comment">-- | A waveform representation of the video note's audio in 5-bit format; may be empty if unknown @length Video width and height; as defined by the sender @minithumbnail Video minithumbnail; may be null</span><span>
+</span><span id="line-27"></span><span>    </span><span class="hs-comment">-- | A waveform representation of the video note's audio in 5-bit format; may be empty if unknown</span><span>
 </span><span id="line-28"></span><span>    </span><span id="waveform"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe String
 </span><a href="TD.Data.VideoNote.html#waveform"><span class="hs-identifier hs-var hs-var">waveform</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-29"></span><span>    </span><span class="hs-comment">-- | Duration of the video, in seconds; as defined by the sender</span><span>
 </span><span id="line-30"></span><span>    </span><span id="duration"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe Int
 </span><a href="TD.Data.VideoNote.html#duration"><span class="hs-identifier hs-var hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-31"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679443282"><span id="local-6989586621679443284"><span class="annot"><span class="annottext">VideoNote -&gt; VideoNote -&gt; Bool
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446631"><span id="local-6989586621679446633"><span class="annot"><span class="annottext">VideoNote -&gt; VideoNote -&gt; Bool
 (VideoNote -&gt; VideoNote -&gt; Bool)
 -&gt; (VideoNote -&gt; VideoNote -&gt; Bool) -&gt; Eq VideoNote
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -46,31 +46,31 @@ $c/= :: VideoNote -&gt; VideoNote -&gt; Bool
 $c== :: VideoNote -&gt; VideoNote -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443276"><span id="local-6989586621679443279"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>  </span><span id="local-6989586621679443274"><span class="annot"><span class="annottext">show :: VideoNote -&gt; String
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446625"><span id="local-6989586621679446628"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679446623"><span class="annot"><span class="annottext">show :: VideoNote -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-36"></span><span>    </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">video :: VideoNote -&gt; Maybe File
-</span><a href="TD.Data.VideoNote.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443272"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679443272"><span class="hs-identifier hs-var">video_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446621"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679446621"><span class="hs-identifier hs-var">video_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>        </span><span class="annot"><span class="annottext">speech_recognition_result :: VideoNote -&gt; Maybe SpeechRecognitionResult
-</span><a href="TD.Data.VideoNote.html#speech_recognition_result"><span class="hs-identifier hs-var">speech_recognition_result</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443271"><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
-</span><a href="#local-6989586621679443271"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#speech_recognition_result"><span class="hs-identifier hs-var">speech_recognition_result</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446620"><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
+</span><a href="#local-6989586621679446620"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>        </span><span class="annot"><span class="annottext">thumbnail :: VideoNote -&gt; Maybe Thumbnail
-</span><a href="TD.Data.VideoNote.html#thumbnail"><span class="hs-identifier hs-var">thumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443270"><span class="annot"><span class="annottext">Maybe Thumbnail
-</span><a href="#local-6989586621679443270"><span class="hs-identifier hs-var">thumbnail_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#thumbnail"><span class="hs-identifier hs-var">thumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446619"><span class="annot"><span class="annottext">Maybe Thumbnail
+</span><a href="#local-6989586621679446619"><span class="hs-identifier hs-var">thumbnail_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">minithumbnail :: VideoNote -&gt; Maybe Minithumbnail
-</span><a href="TD.Data.VideoNote.html#minithumbnail"><span class="hs-identifier hs-var">minithumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443269"><span class="annot"><span class="annottext">Maybe Minithumbnail
-</span><a href="#local-6989586621679443269"><span class="hs-identifier hs-var">minithumbnail_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#minithumbnail"><span class="hs-identifier hs-var">minithumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446618"><span class="annot"><span class="annottext">Maybe Minithumbnail
+</span><a href="#local-6989586621679446618"><span class="hs-identifier hs-var">minithumbnail_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">_length :: VideoNote -&gt; Maybe Int
-</span><a href="TD.Data.VideoNote.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443268"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443268"><span class="hs-identifier hs-var">_length_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446617"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679446617"><span class="hs-identifier hs-var">_length_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">waveform :: VideoNote -&gt; Maybe String
-</span><a href="TD.Data.VideoNote.html#waveform"><span class="hs-identifier hs-var">waveform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443267"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679443267"><span class="hs-identifier hs-var">waveform_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#waveform"><span class="hs-identifier hs-var">waveform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446616"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446616"><span class="hs-identifier hs-var">waveform_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-43"></span><span>        </span><span class="annot"><span class="annottext">duration :: VideoNote -&gt; Maybe Int
-</span><a href="TD.Data.VideoNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443266"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443266"><span class="hs-identifier hs-var">duration_</span></a></span></span><span>
+</span><a href="TD.Data.VideoNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446615"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679446615"><span class="hs-identifier hs-var">duration_</span></a></span></span><span>
 </span><span id="line-44"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;VideoNote&quot;</span></span><span>
@@ -82,111 +82,111 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;video&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679443272"><span class="hs-identifier hs-var">video_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446621"><span class="hs-identifier hs-var">video_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe SpeechRecognitionResult -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;speech_recognition_result&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
-</span><a href="#local-6989586621679443271"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446620"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Thumbnail -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;thumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Thumbnail
-</span><a href="#local-6989586621679443270"><span class="hs-identifier hs-var">thumbnail_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446619"><span class="hs-identifier hs-var">thumbnail_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-50"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Minithumbnail -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;minithumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Minithumbnail
-</span><a href="#local-6989586621679443269"><span class="hs-identifier hs-var">minithumbnail_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446618"><span class="hs-identifier hs-var">minithumbnail_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_length&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443268"><span class="hs-identifier hs-var">_length_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446617"><span class="hs-identifier hs-var">_length_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;waveform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679443267"><span class="hs-identifier hs-var">waveform_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446616"><span class="hs-identifier hs-var">waveform_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-53"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443266"><span class="hs-identifier hs-var">duration_</span></a></span><span>
+</span><a href="#local-6989586621679446615"><span class="hs-identifier hs-var">duration_</span></a></span><span>
 </span><span id="line-54"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-55"></span><span>
-</span><span id="line-56"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443261"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-57"></span><span>  </span><span id="local-6989586621679443259"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser VideoNote
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679443257"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679443257"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679443255"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443255"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679443254"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443254"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443255"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-56"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446610"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-57"></span><span>  </span><span id="local-6989586621679446608"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser VideoNote
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446606"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679446606"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446604"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446604"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-58"></span><span>    </span><span id="local-6989586621679446603"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679446603"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446604"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-59"></span><span>
 </span><span id="line-60"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443254"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679446603"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-61"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;videoNote&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser VideoNote
-</span><a href="#local-6989586621679443252"><span class="hs-identifier hs-var">parseVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443257"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679446601"><span class="hs-identifier hs-var">parseVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446606"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-62"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser VideoNote
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-63"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-64"></span><span>      </span><span class="annot"><a href="#local-6989586621679443252"><span class="hs-identifier hs-type">parseVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span>
-</span><span id="line-65"></span><span>      </span><span id="local-6989586621679443252"><span class="annot"><span class="annottext">parseVideoNote :: Value -&gt; Parser VideoNote
-</span><a href="#local-6989586621679443252"><span class="hs-identifier hs-var hs-var">parseVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser VideoNote) -&gt; Value -&gt; Parser VideoNote
+</span><span id="line-64"></span><span>      </span><span class="annot"><a href="#local-6989586621679446601"><span class="hs-identifier hs-type">parseVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span>
+</span><span id="line-65"></span><span>      </span><span id="local-6989586621679446601"><span class="annot"><span class="annottext">parseVideoNote :: Value -&gt; Parser VideoNote
+</span><a href="#local-6989586621679446601"><span class="hs-identifier hs-var hs-var">parseVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser VideoNote) -&gt; Value -&gt; Parser VideoNote
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;VideoNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser VideoNote) -&gt; Value -&gt; Parser VideoNote)
 -&gt; (Object -&gt; Parser VideoNote) -&gt; Value -&gt; Parser VideoNote
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443250"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-66"></span><span>        </span><span id="local-6989586621679443249"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679443249"><span class="hs-identifier hs-var">video_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446599"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-66"></span><span>        </span><span id="local-6989586621679446598"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679446598"><span class="hs-identifier hs-var">video_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;video&quot;</span></span><span>
-</span><span id="line-67"></span><span>        </span><span id="local-6989586621679443247"><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
-</span><a href="#local-6989586621679443247"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe SpeechRecognitionResult)
+</span><span id="line-67"></span><span>        </span><span id="local-6989586621679446596"><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
+</span><a href="#local-6989586621679446596"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe SpeechRecognitionResult)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;speech_recognition_result&quot;</span></span><span>
-</span><span id="line-68"></span><span>        </span><span id="local-6989586621679443246"><span class="annot"><span class="annottext">Maybe Thumbnail
-</span><a href="#local-6989586621679443246"><span class="hs-identifier hs-var">thumbnail_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Thumbnail)
+</span><span id="line-68"></span><span>        </span><span id="local-6989586621679446595"><span class="annot"><span class="annottext">Maybe Thumbnail
+</span><a href="#local-6989586621679446595"><span class="hs-identifier hs-var">thumbnail_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Thumbnail)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;thumbnail&quot;</span></span><span>
-</span><span id="line-69"></span><span>        </span><span id="local-6989586621679443245"><span class="annot"><span class="annottext">Maybe Minithumbnail
-</span><a href="#local-6989586621679443245"><span class="hs-identifier hs-var">minithumbnail_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Minithumbnail)
+</span><span id="line-69"></span><span>        </span><span id="local-6989586621679446594"><span class="annot"><span class="annottext">Maybe Minithumbnail
+</span><a href="#local-6989586621679446594"><span class="hs-identifier hs-var">minithumbnail_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Minithumbnail)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;minithumbnail&quot;</span></span><span>
-</span><span id="line-70"></span><span>        </span><span id="local-6989586621679443244"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443244"><span class="hs-identifier hs-var">_length_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-70"></span><span>        </span><span id="local-6989586621679446593"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679446593"><span class="hs-identifier hs-var">_length_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;length&quot;</span></span><span>
-</span><span id="line-71"></span><span>        </span><span id="local-6989586621679443243"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679443243"><span class="hs-identifier hs-var">waveform_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-71"></span><span>        </span><span id="local-6989586621679446592"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446592"><span class="hs-identifier hs-var">waveform_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;waveform&quot;</span></span><span>
-</span><span id="line-72"></span><span>        </span><span id="local-6989586621679443242"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443242"><span class="hs-identifier hs-var">duration_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443250"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-72"></span><span>        </span><span id="local-6989586621679446591"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679446591"><span class="hs-identifier hs-var">duration_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;duration&quot;</span></span><span>
@@ -204,49 +204,49 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; VideoNote
 </span><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">video :: Maybe File
 </span><a href="TD.Data.VideoNote.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679443249"><span class="hs-identifier hs-var">video_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">speech_recognition_result :: Maybe SpeechRecognitionResult
+</span><a href="#local-6989586621679446598"><span class="hs-identifier hs-var">video_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">speech_recognition_result :: Maybe SpeechRecognitionResult
 </span><a href="TD.Data.VideoNote.html#speech_recognition_result"><span class="hs-identifier hs-var">speech_recognition_result</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
-</span><a href="#local-6989586621679443247"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">thumbnail :: Maybe Thumbnail
+</span><a href="#local-6989586621679446596"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">thumbnail :: Maybe Thumbnail
 </span><a href="TD.Data.VideoNote.html#thumbnail"><span class="hs-identifier hs-var">thumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Thumbnail
-</span><a href="#local-6989586621679443246"><span class="hs-identifier hs-var">thumbnail_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">minithumbnail :: Maybe Minithumbnail
+</span><a href="#local-6989586621679446595"><span class="hs-identifier hs-var">thumbnail_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">minithumbnail :: Maybe Minithumbnail
 </span><a href="TD.Data.VideoNote.html#minithumbnail"><span class="hs-identifier hs-var">minithumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Minithumbnail
-</span><a href="#local-6989586621679443245"><span class="hs-identifier hs-var">minithumbnail_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_length :: Maybe Int
+</span><a href="#local-6989586621679446594"><span class="hs-identifier hs-var">minithumbnail_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_length :: Maybe Int
 </span><a href="TD.Data.VideoNote.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443244"><span class="hs-identifier hs-var">_length_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">waveform :: Maybe String
+</span><a href="#local-6989586621679446593"><span class="hs-identifier hs-var">_length_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">waveform :: Maybe String
 </span><a href="TD.Data.VideoNote.html#waveform"><span class="hs-identifier hs-var">waveform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679443243"><span class="hs-identifier hs-var">waveform_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: Maybe Int
+</span><a href="#local-6989586621679446592"><span class="hs-identifier hs-var">waveform_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: Maybe Int
 </span><a href="TD.Data.VideoNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443242"><span class="hs-identifier hs-var">duration_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679446591"><span class="hs-identifier hs-var">duration_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-74"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser VideoNote
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-75"></span><span>
-</span><span id="line-76"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443235"><span id="local-6989586621679443237"><span id="local-6989586621679443239"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-77"></span><span>  </span><span id="local-6989586621679443233"><span class="annot"><span class="annottext">toJSON :: VideoNote -&gt; Value
+</span><span id="line-76"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446584"><span id="local-6989586621679446586"><span id="local-6989586621679446588"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-77"></span><span>  </span><span id="local-6989586621679446582"><span class="annot"><span class="annottext">toJSON :: VideoNote -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-78"></span><span>    </span><span class="annot"><a href="TD.Data.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span>
 </span><span id="line-79"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">video :: VideoNote -&gt; Maybe File
-</span><a href="TD.Data.VideoNote.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443231"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679443231"><span class="hs-identifier hs-var">video_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446580"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679446580"><span class="hs-identifier hs-var">video_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-80"></span><span>        </span><span class="annot"><span class="annottext">speech_recognition_result :: VideoNote -&gt; Maybe SpeechRecognitionResult
-</span><a href="TD.Data.VideoNote.html#speech_recognition_result"><span class="hs-identifier hs-var">speech_recognition_result</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443230"><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
-</span><a href="#local-6989586621679443230"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#speech_recognition_result"><span class="hs-identifier hs-var">speech_recognition_result</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446579"><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
+</span><a href="#local-6989586621679446579"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-81"></span><span>        </span><span class="annot"><span class="annottext">thumbnail :: VideoNote -&gt; Maybe Thumbnail
-</span><a href="TD.Data.VideoNote.html#thumbnail"><span class="hs-identifier hs-var">thumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443229"><span class="annot"><span class="annottext">Maybe Thumbnail
-</span><a href="#local-6989586621679443229"><span class="hs-identifier hs-var">thumbnail_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#thumbnail"><span class="hs-identifier hs-var">thumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446578"><span class="annot"><span class="annottext">Maybe Thumbnail
+</span><a href="#local-6989586621679446578"><span class="hs-identifier hs-var">thumbnail_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-82"></span><span>        </span><span class="annot"><span class="annottext">minithumbnail :: VideoNote -&gt; Maybe Minithumbnail
-</span><a href="TD.Data.VideoNote.html#minithumbnail"><span class="hs-identifier hs-var">minithumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443228"><span class="annot"><span class="annottext">Maybe Minithumbnail
-</span><a href="#local-6989586621679443228"><span class="hs-identifier hs-var">minithumbnail_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#minithumbnail"><span class="hs-identifier hs-var">minithumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446577"><span class="annot"><span class="annottext">Maybe Minithumbnail
+</span><a href="#local-6989586621679446577"><span class="hs-identifier hs-var">minithumbnail_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-83"></span><span>        </span><span class="annot"><span class="annottext">_length :: VideoNote -&gt; Maybe Int
-</span><a href="TD.Data.VideoNote.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443227"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443227"><span class="hs-identifier hs-var">_length_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446576"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679446576"><span class="hs-identifier hs-var">_length_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-84"></span><span>        </span><span class="annot"><span class="annottext">waveform :: VideoNote -&gt; Maybe String
-</span><a href="TD.Data.VideoNote.html#waveform"><span class="hs-identifier hs-var">waveform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443226"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679443226"><span class="hs-identifier hs-var">waveform_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.VideoNote.html#waveform"><span class="hs-identifier hs-var">waveform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446575"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446575"><span class="hs-identifier hs-var">waveform_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-85"></span><span>        </span><span class="annot"><span class="annottext">duration :: VideoNote -&gt; Maybe Int
-</span><a href="TD.Data.VideoNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443225"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443225"><span class="hs-identifier hs-var">duration_</span></a></span></span><span>
+</span><a href="TD.Data.VideoNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446574"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679446574"><span class="hs-identifier hs-var">duration_</span></a></span></span><span>
 </span><span id="line-86"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-87"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -260,36 +260,36 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;video&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679443231"><span class="hs-identifier hs-var">video_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446580"><span class="hs-identifier hs-var">video_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-90"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;speech_recognition_result&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe SpeechRecognitionResult -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe SpeechRecognitionResult
-</span><a href="#local-6989586621679443230"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446579"><span class="hs-identifier hs-var">speech_recognition_result_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-91"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;thumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Thumbnail -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Thumbnail
-</span><a href="#local-6989586621679443229"><span class="hs-identifier hs-var">thumbnail_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446578"><span class="hs-identifier hs-var">thumbnail_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-92"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;minithumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Minithumbnail -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Minithumbnail
-</span><a href="#local-6989586621679443228"><span class="hs-identifier hs-var">minithumbnail_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446577"><span class="hs-identifier hs-var">minithumbnail_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-93"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;length&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443227"><span class="hs-identifier hs-var">_length_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446576"><span class="hs-identifier hs-var">_length_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-94"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;waveform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679443226"><span class="hs-identifier hs-var">waveform_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679446575"><span class="hs-identifier hs-var">waveform_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-95"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679443225"><span class="hs-identifier hs-var">duration_</span></a></span><span>
+</span><a href="#local-6989586621679446574"><span class="hs-identifier hs-var">duration_</span></a></span><span>
 </span><span id="line-96"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-97"></span></pre></body></html>

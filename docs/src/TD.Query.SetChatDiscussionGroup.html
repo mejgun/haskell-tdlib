@@ -8,17 +8,17 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified @chat_id Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup) @discussion_chat_id Identifier of a new channel's discussion group. Use 0 to remove the discussion group.</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SetChatDiscussionGroup"><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-var">SetChatDiscussionGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetChatDiscussionGroup"><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-var">SetChatDiscussionGroup</span></a></span></span><span>
-</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="SetChatDiscussionGroup"><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-var">SetChatDiscussionGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetChatDiscussionGroup"><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-var">SetChatDiscussionGroup</span></a></span></span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.</span><span>
+</span><span id="line-14"></span><span>    </span><span class="hs-comment">-- Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that</span><span>
 </span><span id="line-15"></span><span>    </span><span id="discussion_chat_id"><span class="annot"><span class="annottext">SetChatDiscussionGroup -&gt; Maybe Int
 </span><a href="TD.Query.SetChatDiscussionGroup.html#discussion_chat_id"><span class="hs-identifier hs-var hs-var">discussion_chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)</span><span>
 </span><span id="line-17"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">SetChatDiscussionGroup -&gt; Maybe Int
 </span><a href="TD.Query.SetChatDiscussionGroup.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405675"><span id="local-6989586621679405677"><span class="annot"><span class="annottext">SetChatDiscussionGroup -&gt; SetChatDiscussionGroup -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408804"><span id="local-6989586621679408806"><span class="annot"><span class="annottext">SetChatDiscussionGroup -&gt; SetChatDiscussionGroup -&gt; Bool
 (SetChatDiscussionGroup -&gt; SetChatDiscussionGroup -&gt; Bool)
 -&gt; (SetChatDiscussionGroup -&gt; SetChatDiscussionGroup -&gt; Bool)
 -&gt; Eq SetChatDiscussionGroup
@@ -29,16 +29,16 @@ $c/= :: SetChatDiscussionGroup -&gt; SetChatDiscussionGroup -&gt; Bool
 $c== :: SetChatDiscussionGroup -&gt; SetChatDiscussionGroup -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405669"><span id="local-6989586621679405672"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-type">SetChatDiscussionGroup</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679405667"><span class="annot"><span class="annottext">show :: SetChatDiscussionGroup -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408798"><span id="local-6989586621679408801"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-type">SetChatDiscussionGroup</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679408796"><span class="annot"><span class="annottext">show :: SetChatDiscussionGroup -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-type">SetChatDiscussionGroup</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">discussion_chat_id :: SetChatDiscussionGroup -&gt; Maybe Int
-</span><a href="TD.Query.SetChatDiscussionGroup.html#discussion_chat_id"><span class="hs-identifier hs-var">discussion_chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405665"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405665"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatDiscussionGroup.html#discussion_chat_id"><span class="hs-identifier hs-var">discussion_chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408794"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408794"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SetChatDiscussionGroup -&gt; Maybe Int
-</span><a href="TD.Query.SetChatDiscussionGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405664"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405664"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.SetChatDiscussionGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408793"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408793"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetChatDiscussionGroup&quot;</span></span><span>
@@ -50,24 +50,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;discussion_chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405665"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408794"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405664"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679408793"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405655"><span id="local-6989586621679405657"><span id="local-6989586621679405659"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-type">SetChatDiscussionGroup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679405653"><span class="annot"><span class="annottext">toJSON :: SetChatDiscussionGroup -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408784"><span id="local-6989586621679408786"><span id="local-6989586621679408788"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-type">SetChatDiscussionGroup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679408782"><span class="annot"><span class="annottext">toJSON :: SetChatDiscussionGroup -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.SetChatDiscussionGroup.html#SetChatDiscussionGroup"><span class="hs-identifier hs-type">SetChatDiscussionGroup</span></a></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">discussion_chat_id :: SetChatDiscussionGroup -&gt; Maybe Int
-</span><a href="TD.Query.SetChatDiscussionGroup.html#discussion_chat_id"><span class="hs-identifier hs-var">discussion_chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405651"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405651"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetChatDiscussionGroup.html#discussion_chat_id"><span class="hs-identifier hs-var">discussion_chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408780"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408780"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: SetChatDiscussionGroup -&gt; Maybe Int
-</span><a href="TD.Query.SetChatDiscussionGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405650"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405650"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.SetChatDiscussionGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408779"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408779"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -81,11 +81,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;discussion_chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405651"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679408780"><span class="hs-identifier hs-var">discussion_chat_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405650"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679408779"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span></pre></body></html>

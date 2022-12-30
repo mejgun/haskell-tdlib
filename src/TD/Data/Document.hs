@@ -11,17 +11,17 @@ import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
 -- |
-data Document = -- | Describes a document of any type @file_name Original name of the file; as defined by the sender @mime_type MIME type of the file; as defined by the sender
+data Document = -- | Describes a document of any type
   Document
-  { -- |
+  { -- | File containing the document
     document :: Maybe File.File,
-    -- |
+    -- | Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
     thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- | Document minithumbnail; may be null @thumbnail Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null @document File containing the document
+    -- | Document minithumbnail; may be null
     minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- |
+    -- | MIME type of the file; as defined by the sender
     mime_type :: Maybe String,
-    -- |
+    -- | Original name of the file; as defined by the sender
     file_name :: Maybe String
   }
   deriving (Eq)

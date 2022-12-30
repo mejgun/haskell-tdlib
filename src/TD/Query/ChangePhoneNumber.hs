@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
 data ChangePhoneNumber = ChangePhoneNumber
-  { -- |
+  { -- | Settings for the authentication of the user's phone number; pass null to use default settings
     settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,
-    -- | The new phone number of the user in international format @settings Settings for the authentication of the user's phone number; pass null to use default settings
+    -- | The new phone number of the user in international format
     phone_number :: Maybe String
   }
   deriving (Eq)

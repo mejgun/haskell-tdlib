@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
 data ToggleChatHasProtectedContent = ToggleChatHasProtectedContent
-  { -- |
+  { -- | New value of has_protected_content
     has_protected_content :: Maybe Bool,
-    -- | Chat identifier @has_protected_content New value of has_protected_content
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

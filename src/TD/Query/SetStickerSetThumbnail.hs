@@ -13,9 +13,9 @@ import qualified Utils as U
 data SetStickerSetThumbnail = SetStickerSetThumbnail
   { -- | Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     thumbnail :: Maybe InputFile.InputFile,
-    -- |
+    -- | Sticker set name
     name :: Maybe String,
-    -- | Sticker set owner @name Sticker set name
+    -- | Sticker set owner
     user_id :: Maybe Int
   }
   deriving (Eq)

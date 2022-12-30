@@ -9,7 +9,7 @@ import qualified TD.Data.MaskPoint as MaskPoint
 import qualified Utils as U
 
 -- |
-data MaskPosition = -- | Position on a photo where a mask is placed @point Part of the face, relative to which the mask is placed
+data MaskPosition = -- | Position on a photo where a mask is placed
   MaskPosition
   { -- | Mask scaling coefficient. (For example, 2.0 means a doubled size)
     scale :: Maybe Float,
@@ -17,7 +17,7 @@ data MaskPosition = -- | Position on a photo where a mask is placed @point Part 
     y_shift :: Maybe Float,
     -- | Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position)
     x_shift :: Maybe Float,
-    -- |
+    -- | Part of the face, relative to which the mask is placed
     point :: Maybe MaskPoint.MaskPoint
   }
   deriving (Eq)

@@ -33,6 +33,8 @@ data ReplyMarkup
         one_time :: Maybe Bool,
         -- | True, if the application needs to resize the keyboard vertically
         resize_keyboard :: Maybe Bool,
+        -- | True, if the keyboard is supposed to be always shown when the ordinary keyboard is hidden
+        is_persistent :: Maybe Bool,
         -- | A list of rows of bot keyboard buttons
         rows :: Maybe [[KeyboardButton.KeyboardButton]]
       }
@@ -68,6 +70,7 @@ instance Show ReplyMarkup where
         is_personal = is_personal_,
         one_time = one_time_,
         resize_keyboard = resize_keyboard_,
+        is_persistent = is_persistent_,
         rows = rows_
       } =
       "ReplyMarkupShowKeyboard"
@@ -76,6 +79,7 @@ instance Show ReplyMarkup where
             U.p "is_personal" is_personal_,
             U.p "one_time" one_time_,
             U.p "resize_keyboard" resize_keyboard_,
+            U.p "is_persistent" is_persistent_,
             U.p "rows" rows_
           ]
   show
@@ -115,8 +119,9 @@ instance T.FromJSON ReplyMarkup where
         is_personal_ <- o A..:? "is_personal"
         one_time_ <- o A..:? "one_time"
         resize_keyboard_ <- o A..:? "resize_keyboard"
+        is_persistent_ <- o A..:? "is_persistent"
         rows_ <- o A..:? "rows"
-        return $ ReplyMarkupShowKeyboard {input_field_placeholder = input_field_placeholder_, is_personal = is_personal_, one_time = one_time_, resize_keyboard = resize_keyboard_, rows = rows_}
+        return $ ReplyMarkupShowKeyboard {input_field_placeholder = input_field_placeholder_, is_personal = is_personal_, one_time = one_time_, resize_keyboard = resize_keyboard_, is_persistent = is_persistent_, rows = rows_}
 
       parseReplyMarkupInlineKeyboard :: A.Value -> T.Parser ReplyMarkup
       parseReplyMarkupInlineKeyboard = A.withObject "ReplyMarkupInlineKeyboard" $ \o -> do
@@ -149,6 +154,7 @@ instance T.ToJSON ReplyMarkup where
         is_personal = is_personal_,
         one_time = one_time_,
         resize_keyboard = resize_keyboard_,
+        is_persistent = is_persistent_,
         rows = rows_
       } =
       A.object
@@ -157,6 +163,7 @@ instance T.ToJSON ReplyMarkup where
           "is_personal" A..= is_personal_,
           "one_time" A..= one_time_,
           "resize_keyboard" A..= resize_keyboard_,
+          "is_persistent" A..= is_persistent_,
           "rows" A..= rows_
         ]
   toJSON

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+-- Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
 data ToggleForumTopicIsClosed = ToggleForumTopicIsClosed
   { -- | Pass true to close the topic; pass false to reopen it
     is_closed :: Maybe Bool,

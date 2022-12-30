@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup
+-- Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
 data ToggleGeneralForumTopicIsHidden = ToggleGeneralForumTopicIsHidden
   { -- | Pass true to hide and close the General topic; pass false to unhide it
     is_hidden :: Maybe Bool,

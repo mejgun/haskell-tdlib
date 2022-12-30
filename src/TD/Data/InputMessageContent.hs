@@ -18,140 +18,146 @@ import qualified Utils as U
 
 -- | The content of a message to send
 data InputMessageContent
-  = -- | A text message @text Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+  = -- | A text message
     InputMessageText
-      { -- |
+      { -- | True, if a chat message draft must be deleted
         clear_draft :: Maybe Bool,
-        -- | True, if rich web page previews for URLs in the message text must be disabled @clear_draft True, if a chat message draft must be deleted
+        -- | True, if rich web page previews for URLs in the message text must be disabled
         disable_web_page_preview :: Maybe Bool,
-        -- |
+        -- | Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
         text :: Maybe FormattedText.FormattedText
       }
-  | -- | An animation message (GIF-style). @animation Animation file to be sent @thumbnail Animation thumbnail; pass null to skip thumbnail uploading @added_sticker_file_ids File identifiers of the stickers added to the animation, if applicable
+  | -- | An animation message (GIF-style).
     InputMessageAnimation
-      { -- |
+      { -- | True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
+        has_spoiler :: Maybe Bool,
+        -- | Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
-        -- |
+        -- | Height of the animation; may be replaced by the server
         height :: Maybe Int,
-        -- |
+        -- | Width of the animation; may be replaced by the server
         width :: Maybe Int,
-        -- | Duration of the animation, in seconds @width Width of the animation; may be replaced by the server @height Height of the animation; may be replaced by the server @caption Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+        -- | Duration of the animation, in seconds
         duration :: Maybe Int,
-        -- |
+        -- | File identifiers of the stickers added to the animation, if applicable
         added_sticker_file_ids :: Maybe [Int],
-        -- |
+        -- | Animation thumbnail; pass null to skip thumbnail uploading
         thumbnail :: Maybe InputThumbnail.InputThumbnail,
-        -- |
+        -- | Animation file to be sent
         animation :: Maybe InputFile.InputFile
       }
-  | -- | An audio message @audio Audio file to be sent @album_cover_thumbnail Thumbnail of the cover for the album; pass null to skip thumbnail uploading @duration Duration of the audio, in seconds; may be replaced by the server @title Title of the audio; 0-64 characters; may be replaced by the server
+  | -- | An audio message
     InputMessageAudio
-      { -- |
+      { -- | Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
-        -- | Performer of the audio; 0-64 characters, may be replaced by the server @caption Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+        -- | Performer of the audio; 0-64 characters, may be replaced by the server
         performer :: Maybe String,
-        -- |
+        -- | Title of the audio; 0-64 characters; may be replaced by the server
         title :: Maybe String,
-        -- |
+        -- | Duration of the audio, in seconds; may be replaced by the server
         duration :: Maybe Int,
-        -- |
+        -- | Thumbnail of the cover for the album; pass null to skip thumbnail uploading
         album_cover_thumbnail :: Maybe InputThumbnail.InputThumbnail,
-        -- |
+        -- | Audio file to be sent
         audio :: Maybe InputFile.InputFile
       }
-  | -- | A document message (general file) @document Document to be sent @thumbnail Document thumbnail; pass null to skip thumbnail uploading @disable_content_type_detection If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats @caption Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+  | -- | A document message (general file)
     InputMessageDocument
-      { -- |
+      { -- | Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
-        -- |
+        -- | If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats
         disable_content_type_detection :: Maybe Bool,
-        -- |
+        -- | Document thumbnail; pass null to skip thumbnail uploading
         thumbnail :: Maybe InputThumbnail.InputThumbnail,
-        -- |
+        -- | Document to be sent
         document :: Maybe InputFile.InputFile
       }
-  | -- | A photo message @photo Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20 @thumbnail Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats @added_sticker_file_ids File identifiers of the stickers added to the photo, if applicable @width Photo width @height Photo height @caption Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+  | -- | A photo message
     InputMessagePhoto
-      { -- | Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
-        ttl :: Maybe Int,
-        -- |
+      { -- | True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
+        has_spoiler :: Maybe Bool,
+        -- | Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
+        self_destruct_time :: Maybe Int,
+        -- | Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
-        -- |
+        -- | Photo height
         height :: Maybe Int,
-        -- |
+        -- | Photo width
         width :: Maybe Int,
-        -- |
+        -- | File identifiers of the stickers added to the photo, if applicable
         added_sticker_file_ids :: Maybe [Int],
-        -- |
+        -- | Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
         thumbnail :: Maybe InputThumbnail.InputThumbnail,
-        -- |
+        -- | Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
         photo :: Maybe InputFile.InputFile
       }
-  | -- | A sticker message @sticker Sticker to be sent @thumbnail Sticker thumbnail; pass null to skip thumbnail uploading @width Sticker width @height Sticker height @emoji Emoji used to choose the sticker
+  | -- | A sticker message
     InputMessageSticker
-      { -- |
+      { -- | Emoji used to choose the sticker
         emoji :: Maybe String,
-        -- |
+        -- | Sticker height
         height :: Maybe Int,
-        -- |
+        -- | Sticker width
         width :: Maybe Int,
-        -- |
+        -- | Sticker thumbnail; pass null to skip thumbnail uploading
         thumbnail :: Maybe InputThumbnail.InputThumbnail,
-        -- |
+        -- | Sticker to be sent
         sticker :: Maybe InputFile.InputFile
       }
-  | -- | A video message @video Video to be sent @thumbnail Video thumbnail; pass null to skip thumbnail uploading @added_sticker_file_ids File identifiers of the stickers added to the video, if applicable
+  | -- | A video message
     InputMessageVideo
-      { -- |
-        ttl :: Maybe Int,
-        -- | Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters @ttl Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+      { -- | True, if the video preview must be covered by a spoiler animation; not supported in secret chats
+        has_spoiler :: Maybe Bool,
+        -- | Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
+        self_destruct_time :: Maybe Int,
+        -- | Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
-        -- |
+        -- | True, if the video is supposed to be streamed
         supports_streaming :: Maybe Bool,
-        -- |
+        -- | Video height
         height :: Maybe Int,
-        -- |
+        -- | Video width
         width :: Maybe Int,
-        -- | Duration of the video, in seconds @width Video width @height Video height @supports_streaming True, if the video is supposed to be streamed
+        -- | Duration of the video, in seconds
         duration :: Maybe Int,
-        -- |
+        -- | File identifiers of the stickers added to the video, if applicable
         added_sticker_file_ids :: Maybe [Int],
-        -- |
+        -- | Video thumbnail; pass null to skip thumbnail uploading
         thumbnail :: Maybe InputThumbnail.InputThumbnail,
-        -- |
+        -- | Video to be sent
         video :: Maybe InputFile.InputFile
       }
-  | -- | A video note message @video_note Video note to be sent @thumbnail Video thumbnail; pass null to skip thumbnail uploading @duration Duration of the video, in seconds @length Video width and height; must be positive and not greater than 640
+  | -- | A video note message
     InputMessageVideoNote
-      { -- |
+      { -- | Video width and height; must be positive and not greater than 640
         _length :: Maybe Int,
-        -- |
+        -- | Duration of the video, in seconds
         duration :: Maybe Int,
-        -- |
+        -- | Video thumbnail; pass null to skip thumbnail uploading
         thumbnail :: Maybe InputThumbnail.InputThumbnail,
-        -- |
+        -- | Video note to be sent
         video_note :: Maybe InputFile.InputFile
       }
-  | -- | A voice note message @voice_note Voice note to be sent @duration Duration of the voice note, in seconds @waveform Waveform representation of the voice note in 5-bit format @caption Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+  | -- | A voice note message
     InputMessageVoiceNote
-      { -- |
+      { -- | Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
-        -- |
+        -- | Waveform representation of the voice note in 5-bit format
         waveform :: Maybe String,
-        -- |
+        -- | Duration of the voice note, in seconds
         duration :: Maybe Int,
-        -- |
+        -- | Voice note to be sent
         voice_note :: Maybe InputFile.InputFile
       }
-  | -- | A message with a location @location Location to be sent @live_period Period for which the location can be updated, in seconds; must be between 60 and 86400 for a live location and 0 otherwise
+  | -- | A message with a location
     InputMessageLocation
       { -- | For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages
         proximity_alert_radius :: Maybe Int,
         -- | For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
         heading :: Maybe Int,
-        -- |
+        -- | Period for which the location can be updated, in seconds; must be between 60 and 86400 for a live location and 0 otherwise
         live_period :: Maybe Int,
-        -- |
+        -- | Location to be sent
         location :: Maybe Location.Location
       }
   | -- | A message with information about a venue @venue Venue to send
@@ -178,34 +184,34 @@ data InputMessageContent
         -- |
         bot_user_id :: Maybe Int
       }
-  | -- | A message with an invoice; can be used only by bots @invoice Invoice @title Product title; 1-32 characters @param_description Product description; 0-255 characters
+  | -- | A message with an invoice; can be used only by bots
     InputMessageInvoice
       { -- | The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
         extended_media_content :: Maybe InputMessageContent,
         -- | Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
         start_parameter :: Maybe String,
-        -- |
+        -- | JSON-encoded data about the invoice, which will be shared with the payment provider
         provider_data :: Maybe String,
-        -- |
+        -- | Payment provider token
         provider_token :: Maybe String,
-        -- | The invoice payload @provider_token Payment provider token @provider_data JSON-encoded data about the invoice, which will be shared with the payment provider
+        -- | The invoice payload
         payload :: Maybe String,
-        -- |
+        -- | Product photo height
         photo_height :: Maybe Int,
-        -- |
+        -- | Product photo width
         photo_width :: Maybe Int,
-        -- |
+        -- | Product photo size
         photo_size :: Maybe Int,
-        -- | Product photo URL; optional @photo_size Product photo size @photo_width Product photo width @photo_height Product photo height
+        -- | Product photo URL; optional
         photo_url :: Maybe String,
         -- |
         description :: Maybe String,
-        -- |
+        -- | Product title; 1-32 characters
         title :: Maybe String,
-        -- |
+        -- | Invoice
         invoice :: Maybe Invoice.Invoice
       }
-  | -- | A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot @question Poll question; 1-255 characters (up to 300 characters for bots) @options List of poll answer options, 2-10 strings 1-100 characters each
+  | -- | A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
     InputMessagePoll
       { -- | True, if the poll needs to be sent already closed; for bots only
         is_closed :: Maybe Bool,
@@ -213,24 +219,24 @@ data InputMessageContent
         close_date :: Maybe Int,
         -- | Amount of time the poll will be active after creation, in seconds; for bots only
         open_period :: Maybe Int,
-        -- |
+        -- | Type of the poll
         _type :: Maybe PollType.PollType,
-        -- | True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels @type Type of the poll
+        -- | True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
         is_anonymous :: Maybe Bool,
-        -- |
+        -- | List of poll answer options, 2-10 strings 1-100 characters each
         options :: Maybe [String],
-        -- |
+        -- | Poll question; 1-255 characters (up to 300 characters for bots)
         question :: Maybe String
       }
-  | -- | A forwarded message @from_chat_id Identifier for the chat this forwarded message came from @message_id Identifier of the message to forward
+  | -- | A forwarded message
     InputMessageForwarded
       { -- | Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
         copy_options :: Maybe MessageCopyOptions.MessageCopyOptions,
         -- | True, if a game message is being shared from a launched game; applies only to game messages
         in_game_share :: Maybe Bool,
-        -- |
+        -- | Identifier of the message to forward
         message_id :: Maybe Int,
-        -- |
+        -- | Identifier for the chat this forwarded message came from
         from_chat_id :: Maybe Int
       }
   deriving (Eq)
@@ -250,7 +256,8 @@ instance Show InputMessageContent where
           ]
   show
     InputMessageAnimation
-      { caption = caption_,
+      { has_spoiler = has_spoiler_,
+        caption = caption_,
         height = height_,
         width = width_,
         duration = duration_,
@@ -260,7 +267,8 @@ instance Show InputMessageContent where
       } =
       "InputMessageAnimation"
         ++ U.cc
-          [ U.p "caption" caption_,
+          [ U.p "has_spoiler" has_spoiler_,
+            U.p "caption" caption_,
             U.p "height" height_,
             U.p "width" width_,
             U.p "duration" duration_,
@@ -302,7 +310,8 @@ instance Show InputMessageContent where
           ]
   show
     InputMessagePhoto
-      { ttl = ttl_,
+      { has_spoiler = has_spoiler_,
+        self_destruct_time = self_destruct_time_,
         caption = caption_,
         height = height_,
         width = width_,
@@ -312,7 +321,8 @@ instance Show InputMessageContent where
       } =
       "InputMessagePhoto"
         ++ U.cc
-          [ U.p "ttl" ttl_,
+          [ U.p "has_spoiler" has_spoiler_,
+            U.p "self_destruct_time" self_destruct_time_,
             U.p "caption" caption_,
             U.p "height" height_,
             U.p "width" width_,
@@ -338,7 +348,8 @@ instance Show InputMessageContent where
           ]
   show
     InputMessageVideo
-      { ttl = ttl_,
+      { has_spoiler = has_spoiler_,
+        self_destruct_time = self_destruct_time_,
         caption = caption_,
         supports_streaming = supports_streaming_,
         height = height_,
@@ -350,7 +361,8 @@ instance Show InputMessageContent where
       } =
       "InputMessageVideo"
         ++ U.cc
-          [ U.p "ttl" ttl_,
+          [ U.p "has_spoiler" has_spoiler_,
+            U.p "self_destruct_time" self_destruct_time_,
             U.p "caption" caption_,
             U.p "supports_streaming" supports_streaming_,
             U.p "height" height_,
@@ -536,6 +548,7 @@ instance T.FromJSON InputMessageContent where
 
       parseInputMessageAnimation :: A.Value -> T.Parser InputMessageContent
       parseInputMessageAnimation = A.withObject "InputMessageAnimation" $ \o -> do
+        has_spoiler_ <- o A..:? "has_spoiler"
         caption_ <- o A..:? "caption"
         height_ <- o A..:? "height"
         width_ <- o A..:? "width"
@@ -543,7 +556,7 @@ instance T.FromJSON InputMessageContent where
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         animation_ <- o A..:? "animation"
-        return $ InputMessageAnimation {caption = caption_, height = height_, width = width_, duration = duration_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, animation = animation_}
+        return $ InputMessageAnimation {has_spoiler = has_spoiler_, caption = caption_, height = height_, width = width_, duration = duration_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, animation = animation_}
 
       parseInputMessageAudio :: A.Value -> T.Parser InputMessageContent
       parseInputMessageAudio = A.withObject "InputMessageAudio" $ \o -> do
@@ -565,14 +578,15 @@ instance T.FromJSON InputMessageContent where
 
       parseInputMessagePhoto :: A.Value -> T.Parser InputMessageContent
       parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
-        ttl_ <- o A..:? "ttl"
+        has_spoiler_ <- o A..:? "has_spoiler"
+        self_destruct_time_ <- o A..:? "self_destruct_time"
         caption_ <- o A..:? "caption"
         height_ <- o A..:? "height"
         width_ <- o A..:? "width"
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         photo_ <- o A..:? "photo"
-        return $ InputMessagePhoto {ttl = ttl_, caption = caption_, height = height_, width = width_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, photo = photo_}
+        return $ InputMessagePhoto {has_spoiler = has_spoiler_, self_destruct_time = self_destruct_time_, caption = caption_, height = height_, width = width_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, photo = photo_}
 
       parseInputMessageSticker :: A.Value -> T.Parser InputMessageContent
       parseInputMessageSticker = A.withObject "InputMessageSticker" $ \o -> do
@@ -585,7 +599,8 @@ instance T.FromJSON InputMessageContent where
 
       parseInputMessageVideo :: A.Value -> T.Parser InputMessageContent
       parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
-        ttl_ <- o A..:? "ttl"
+        has_spoiler_ <- o A..:? "has_spoiler"
+        self_destruct_time_ <- o A..:? "self_destruct_time"
         caption_ <- o A..:? "caption"
         supports_streaming_ <- o A..:? "supports_streaming"
         height_ <- o A..:? "height"
@@ -594,7 +609,7 @@ instance T.FromJSON InputMessageContent where
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         video_ <- o A..:? "video"
-        return $ InputMessageVideo {ttl = ttl_, caption = caption_, supports_streaming = supports_streaming_, height = height_, width = width_, duration = duration_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, video = video_}
+        return $ InputMessageVideo {has_spoiler = has_spoiler_, self_destruct_time = self_destruct_time_, caption = caption_, supports_streaming = supports_streaming_, height = height_, width = width_, duration = duration_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, video = video_}
 
       parseInputMessageVideoNote :: A.Value -> T.Parser InputMessageContent
       parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
@@ -693,7 +708,8 @@ instance T.ToJSON InputMessageContent where
         ]
   toJSON
     InputMessageAnimation
-      { caption = caption_,
+      { has_spoiler = has_spoiler_,
+        caption = caption_,
         height = height_,
         width = width_,
         duration = duration_,
@@ -703,6 +719,7 @@ instance T.ToJSON InputMessageContent where
       } =
       A.object
         [ "@type" A..= T.String "inputMessageAnimation",
+          "has_spoiler" A..= has_spoiler_,
           "caption" A..= caption_,
           "height" A..= height_,
           "width" A..= width_,
@@ -745,7 +762,8 @@ instance T.ToJSON InputMessageContent where
         ]
   toJSON
     InputMessagePhoto
-      { ttl = ttl_,
+      { has_spoiler = has_spoiler_,
+        self_destruct_time = self_destruct_time_,
         caption = caption_,
         height = height_,
         width = width_,
@@ -755,7 +773,8 @@ instance T.ToJSON InputMessageContent where
       } =
       A.object
         [ "@type" A..= T.String "inputMessagePhoto",
-          "ttl" A..= ttl_,
+          "has_spoiler" A..= has_spoiler_,
+          "self_destruct_time" A..= self_destruct_time_,
           "caption" A..= caption_,
           "height" A..= height_,
           "width" A..= width_,
@@ -781,7 +800,8 @@ instance T.ToJSON InputMessageContent where
         ]
   toJSON
     InputMessageVideo
-      { ttl = ttl_,
+      { has_spoiler = has_spoiler_,
+        self_destruct_time = self_destruct_time_,
         caption = caption_,
         supports_streaming = supports_streaming_,
         height = height_,
@@ -793,7 +813,8 @@ instance T.ToJSON InputMessageContent where
       } =
       A.object
         [ "@type" A..= T.String "inputMessageVideo",
-          "ttl" A..= ttl_,
+          "has_spoiler" A..= has_spoiler_,
+          "self_destruct_time" A..= self_destruct_time_,
           "caption" A..= caption_,
           "supports_streaming" A..= supports_streaming_,
           "height" A..= height_,

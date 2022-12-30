@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="EditForumTopic"><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-var">EditForumTopic</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="EditForumTopic"><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-var">EditForumTopic</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons</span><span>
 </span><span id="line-14"></span><span>    </span><span id="icon_custom_emoji_id"><span class="annot"><span class="annottext">EditForumTopic -&gt; Maybe Int
@@ -26,7 +26,7 @@
 </span><span id="line-22"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">EditForumTopic -&gt; Maybe Int
 </span><a href="TD.Query.EditForumTopic.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679417169"><span id="local-6989586621679417171"><span class="annot"><span class="annottext">EditForumTopic -&gt; EditForumTopic -&gt; Bool
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679420298"><span id="local-6989586621679420300"><span class="annot"><span class="annottext">EditForumTopic -&gt; EditForumTopic -&gt; Bool
 (EditForumTopic -&gt; EditForumTopic -&gt; Bool)
 -&gt; (EditForumTopic -&gt; EditForumTopic -&gt; Bool) -&gt; Eq EditForumTopic
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -36,25 +36,25 @@ $c/= :: EditForumTopic -&gt; EditForumTopic -&gt; Bool
 $c== :: EditForumTopic -&gt; EditForumTopic -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417163"><span id="local-6989586621679417166"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-type">EditForumTopic</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679417161"><span class="annot"><span class="annottext">show :: EditForumTopic -&gt; String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420292"><span id="local-6989586621679420295"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-type">EditForumTopic</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679420290"><span class="annot"><span class="annottext">show :: EditForumTopic -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-type">EditForumTopic</span></a></span><span>
 </span><span id="line-29"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">icon_custom_emoji_id :: EditForumTopic -&gt; Maybe Int
-</span><a href="TD.Query.EditForumTopic.html#icon_custom_emoji_id"><span class="hs-identifier hs-var">icon_custom_emoji_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417159"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417159"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#icon_custom_emoji_id"><span class="hs-identifier hs-var">icon_custom_emoji_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420288"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679420288"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">edit_icon_custom_emoji :: EditForumTopic -&gt; Maybe Bool
-</span><a href="TD.Query.EditForumTopic.html#edit_icon_custom_emoji"><span class="hs-identifier hs-var">edit_icon_custom_emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417158"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679417158"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#edit_icon_custom_emoji"><span class="hs-identifier hs-var">edit_icon_custom_emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420287"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679420287"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">name :: EditForumTopic -&gt; Maybe String
-</span><a href="TD.Query.EditForumTopic.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417157"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679417157"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420286"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679420286"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: EditForumTopic -&gt; Maybe Int
-</span><a href="TD.Query.EditForumTopic.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417156"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417156"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420285"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679420285"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: EditForumTopic -&gt; Maybe Int
-</span><a href="TD.Query.EditForumTopic.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417155"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417155"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.EditForumTopic.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420284"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679420284"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-34"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;EditForumTopic&quot;</span></span><span>
@@ -66,48 +66,48 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;icon_custom_emoji_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417159"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420288"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;edit_icon_custom_emoji&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679417158"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420287"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679417157"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420286"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_thread_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417156"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420285"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417155"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679420284"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-42"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417146"><span id="local-6989586621679417148"><span id="local-6989586621679417150"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-type">EditForumTopic</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>  </span><span id="local-6989586621679417144"><span class="annot"><span class="annottext">toJSON :: EditForumTopic -&gt; Value
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679420275"><span id="local-6989586621679420277"><span id="local-6989586621679420279"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-type">EditForumTopic</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span>  </span><span id="local-6989586621679420273"><span class="annot"><span class="annottext">toJSON :: EditForumTopic -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-46"></span><span>    </span><span class="annot"><a href="TD.Query.EditForumTopic.html#EditForumTopic"><span class="hs-identifier hs-type">EditForumTopic</span></a></span><span>
 </span><span id="line-47"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">icon_custom_emoji_id :: EditForumTopic -&gt; Maybe Int
-</span><a href="TD.Query.EditForumTopic.html#icon_custom_emoji_id"><span class="hs-identifier hs-var">icon_custom_emoji_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417142"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417142"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#icon_custom_emoji_id"><span class="hs-identifier hs-var">icon_custom_emoji_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420271"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679420271"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>        </span><span class="annot"><span class="annottext">edit_icon_custom_emoji :: EditForumTopic -&gt; Maybe Bool
-</span><a href="TD.Query.EditForumTopic.html#edit_icon_custom_emoji"><span class="hs-identifier hs-var">edit_icon_custom_emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417141"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679417141"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#edit_icon_custom_emoji"><span class="hs-identifier hs-var">edit_icon_custom_emoji</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420270"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679420270"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">name :: EditForumTopic -&gt; Maybe String
-</span><a href="TD.Query.EditForumTopic.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417140"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679417140"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420269"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679420269"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-50"></span><span>        </span><span class="annot"><span class="annottext">message_thread_id :: EditForumTopic -&gt; Maybe Int
-</span><a href="TD.Query.EditForumTopic.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417139"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417139"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditForumTopic.html#message_thread_id"><span class="hs-identifier hs-var">message_thread_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420268"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679420268"><span class="hs-identifier hs-var">message_thread_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: EditForumTopic -&gt; Maybe Int
-</span><a href="TD.Query.EditForumTopic.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417138"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417138"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.EditForumTopic.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679420267"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679420267"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-52"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-53"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -123,26 +123,26 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int -&gt; Value
 forall a. Show a =&gt; Maybe a -&gt; Value
 </span><a href="Utils.html#toS"><span class="hs-identifier hs-var">U.toS</span></a></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417142"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420271"><span class="hs-identifier hs-var">icon_custom_emoji_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;edit_icon_custom_emoji&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679417141"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420270"><span class="hs-identifier hs-var">edit_icon_custom_emoji_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679417140"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420269"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_thread_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417139"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679420268"><span class="hs-identifier hs-var">message_thread_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679417138"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679420267"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-60"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-61"></span></pre></body></html>

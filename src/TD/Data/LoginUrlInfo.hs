@@ -16,15 +16,15 @@ data LoginUrlInfo
         -- |
         url :: Maybe String
       }
-  | -- | An authorization confirmation dialog needs to be shown to the user @url An HTTP URL to be opened @domain A domain of the URL
+  | -- | An authorization confirmation dialog needs to be shown to the user
     LoginUrlInfoRequestConfirmation
-      { -- |
+      { -- | True, if the user needs to be requested to give the permission to the bot to send them messages
         request_write_access :: Maybe Bool,
-        -- | User identifier of a bot linked with the website @request_write_access True, if the user needs to be requested to give the permission to the bot to send them messages
+        -- | User identifier of a bot linked with the website
         bot_user_id :: Maybe Int,
-        -- |
+        -- | A domain of the URL
         domain :: Maybe String,
-        -- |
+        -- | An HTTP URL to be opened
         url :: Maybe String
       }
   deriving (Eq)

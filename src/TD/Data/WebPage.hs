@@ -19,7 +19,7 @@ import qualified Utils as U
 -- |
 data WebPage = -- | Describes a web page preview
   WebPage
-  { -- | Version of instant view, available for the web page (currently, can be 1 or 2), 0 if none
+  { -- | Version of web page instant view (currently, can be 1 or 2); 0 if none
     instant_view_version :: Maybe Int,
     -- | Preview of the content as a voice note, if available; may be null
     voice_note :: Maybe VoiceNote.VoiceNote,

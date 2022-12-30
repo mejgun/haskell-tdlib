@@ -10,15 +10,15 @@ import qualified TD.Data.ThumbnailFormat as ThumbnailFormat
 import qualified Utils as U
 
 -- |
-data Thumbnail = -- | Represents a thumbnail @format Thumbnail format @width Thumbnail width @height Thumbnail height @file The thumbnail
+data Thumbnail = -- | Represents a thumbnail
   Thumbnail
-  { -- |
+  { -- | The thumbnail
     file :: Maybe File.File,
-    -- |
+    -- | Thumbnail height
     height :: Maybe Int,
-    -- |
+    -- | Thumbnail width
     width :: Maybe Int,
-    -- |
+    -- | Thumbnail format
     format :: Maybe ThumbnailFormat.ThumbnailFormat
   }
   deriving (Eq)

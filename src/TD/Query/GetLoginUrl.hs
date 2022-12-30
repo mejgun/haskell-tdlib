@@ -13,11 +13,11 @@ import qualified Utils as U
 data GetLoginUrl = GetLoginUrl
   { -- | Pass true to allow the bot to send messages to the current user
     allow_write_access :: Maybe Bool,
-    -- |
+    -- | Button identifier
     button_id :: Maybe Int,
-    -- |
+    -- | Message identifier of the message with the button
     message_id :: Maybe Int,
-    -- | Chat identifier of the message with the button @message_id Message identifier of the message with the button @button_id Button identifier
+    -- | Chat identifier of the message with the button
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup @chat_id Identifier of the chat
+-- Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
 data UnpinAllMessageThreadMessages = UnpinAllMessageThreadMessages
   { -- | Message thread identifier in which messages will be unpinned
     message_thread_id :: Maybe Int,
-    -- |
+    -- | Identifier of the chat
     chat_id :: Maybe Int
   }
   deriving (Eq)

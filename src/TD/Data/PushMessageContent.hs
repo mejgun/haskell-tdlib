@@ -84,35 +84,35 @@ data PushMessageContent
         -- |
         is_live :: Maybe Bool
       }
-  | -- | A photo message @photo Message content; may be null @caption Photo caption @is_secret True, if the photo is secret @is_pinned True, if the message is a pinned message with the specified content
+  | -- | A photo message
     PushMessageContentPhoto
-      { -- |
+      { -- | True, if the message is a pinned message with the specified content
         is_pinned :: Maybe Bool,
-        -- |
+        -- | True, if the photo is secret
         is_secret :: Maybe Bool,
-        -- |
+        -- | Photo caption
         caption :: Maybe String,
-        -- |
+        -- | Message content; may be null
         photo :: Maybe Photo.Photo
       }
-  | -- | A message with a poll @question Poll question @is_regular True, if the poll is regular and not in quiz mode @is_pinned True, if the message is a pinned message with the specified content
+  | -- | A message with a poll
     PushMessageContentPoll
-      { -- |
+      { -- | True, if the message is a pinned message with the specified content
         is_pinned :: Maybe Bool,
-        -- |
+        -- | True, if the poll is regular and not in quiz mode
         is_regular :: Maybe Bool,
-        -- |
+        -- | Poll question
         question :: Maybe String
       }
   | -- | A screenshot of a message in the chat has been taken
     PushMessageContentScreenshotTaken
-  | -- | A message with a sticker @sticker Message content; may be null @emoji Emoji corresponding to the sticker; may be empty @is_pinned True, if the message is a pinned message with the specified content
+  | -- | A message with a sticker
     PushMessageContentSticker
-      { -- |
+      { -- | True, if the message is a pinned message with the specified content
         is_pinned :: Maybe Bool,
-        -- |
+        -- | Emoji corresponding to the sticker; may be empty
         emoji :: Maybe String,
-        -- |
+        -- | Message content; may be null
         sticker :: Maybe Sticker.Sticker
       }
   | -- | A text message @text Message text @is_pinned True, if the message is a pinned message with the specified content
@@ -122,15 +122,15 @@ data PushMessageContent
         -- |
         text :: Maybe String
       }
-  | -- | A video message @video Message content; may be null @caption Video caption @is_secret True, if the video is secret @is_pinned True, if the message is a pinned message with the specified content
+  | -- | A video message
     PushMessageContentVideo
-      { -- |
+      { -- | True, if the message is a pinned message with the specified content
         is_pinned :: Maybe Bool,
-        -- |
+        -- | True, if the video is secret
         is_secret :: Maybe Bool,
-        -- |
+        -- | Video caption
         caption :: Maybe String,
-        -- |
+        -- | Message content; may be null
         video :: Maybe Video.Video
       }
   | -- | A video note message @video_note Message content; may be null @is_pinned True, if the message is a pinned message with the specified content
@@ -149,13 +149,13 @@ data PushMessageContent
       }
   | -- | A newly created basic group
     PushMessageContentBasicGroupChatCreate
-  | -- | New chat members were invited to a group @member_name Name of the added member @is_current_user True, if the current user was added to the group
+  | -- | New chat members were invited to a group
     PushMessageContentChatAddMembers
       { -- | True, if the user has returned to the group themselves
         is_returned :: Maybe Bool,
-        -- |
+        -- | True, if the current user was added to the group
         is_current_user :: Maybe Bool,
-        -- |
+        -- | Name of the added member
         member_name :: Maybe String
       }
   | -- | A chat photo was edited
@@ -170,13 +170,13 @@ data PushMessageContent
       { -- |
         theme_name :: Maybe String
       }
-  | -- | A chat member was deleted @member_name Name of the deleted member @is_current_user True, if the current user was deleted from the group
+  | -- | A chat member was deleted
     PushMessageContentChatDeleteMember
       { -- | True, if the user has left the group themselves
         is_left :: Maybe Bool,
-        -- |
+        -- | True, if the current user was deleted from the group
         is_current_user :: Maybe Bool,
-        -- |
+        -- | Name of the deleted member
         member_name :: Maybe String
       }
   | -- | A new member joined the chat via an invite link
@@ -188,22 +188,24 @@ data PushMessageContent
       { -- |
         amount :: Maybe String
       }
+  | -- | A profile photo was suggested to the user
+    PushMessageContentSuggestProfilePhoto
   | -- | A forwarded messages @total_count Number of forwarded messages
     PushMessageContentMessageForwards
       { -- |
         total_count :: Maybe Int
       }
-  | -- | A media album @total_count Number of messages in the album @has_photos True, if the album has at least one photo @has_videos True, if the album has at least one video
+  | -- | A media album
     PushMessageContentMediaAlbum
-      { -- |
+      { -- | True, if the album has at least one document
         has_documents :: Maybe Bool,
-        -- | True, if the album has at least one audio file @has_documents True, if the album has at least one document
+        -- | True, if the album has at least one audio file
         has_audios :: Maybe Bool,
-        -- |
+        -- | True, if the album has at least one video file
         has_videos :: Maybe Bool,
-        -- |
+        -- | True, if the album has at least one photo
         has_photos :: Maybe Bool,
-        -- |
+        -- | Number of messages in the album
         total_count :: Maybe Int
       }
   deriving (Eq)
@@ -455,6 +457,10 @@ instance Show PushMessageContent where
         ++ U.cc
           [ U.p "amount" amount_
           ]
+  show PushMessageContentSuggestProfilePhoto =
+    "PushMessageContentSuggestProfilePhoto"
+      ++ U.cc
+        []
   show
     PushMessageContentMessageForwards
       { total_count = total_count_
@@ -512,6 +518,7 @@ instance T.FromJSON PushMessageContent where
       "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
       "pushMessageContentChatJoinByRequest" -> parsePushMessageContentChatJoinByRequest v
       "pushMessageContentRecurringPayment" -> parsePushMessageContentRecurringPayment v
+      "pushMessageContentSuggestProfilePhoto" -> parsePushMessageContentSuggestProfilePhoto v
       "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
       "pushMessageContentMediaAlbum" -> parsePushMessageContentMediaAlbum v
       _ -> mempty
@@ -665,6 +672,9 @@ instance T.FromJSON PushMessageContent where
       parsePushMessageContentRecurringPayment = A.withObject "PushMessageContentRecurringPayment" $ \o -> do
         amount_ <- o A..:? "amount"
         return $ PushMessageContentRecurringPayment {amount = amount_}
+
+      parsePushMessageContentSuggestProfilePhoto :: A.Value -> T.Parser PushMessageContent
+      parsePushMessageContentSuggestProfilePhoto = A.withObject "PushMessageContentSuggestProfilePhoto" $ \_ -> return PushMessageContentSuggestProfilePhoto
 
       parsePushMessageContentMessageForwards :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do
@@ -928,6 +938,10 @@ instance T.ToJSON PushMessageContent where
         [ "@type" A..= T.String "pushMessageContentRecurringPayment",
           "amount" A..= amount_
         ]
+  toJSON PushMessageContentSuggestProfilePhoto =
+    A.object
+      [ "@type" A..= T.String "pushMessageContentSuggestProfilePhoto"
+      ]
   toJSON
     PushMessageContentMessageForwards
       { total_count = total_count_

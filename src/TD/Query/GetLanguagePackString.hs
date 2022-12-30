@@ -10,13 +10,13 @@ import qualified Utils as U
 -- |
 -- Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
 data GetLanguagePackString = GetLanguagePackString
-  { -- |
+  { -- | Language pack key of the string to be returned
     key :: Maybe String,
-    -- |
+    -- | Language pack identifier
     language_pack_id :: Maybe String,
-    -- |
+    -- | Localization target to which the language pack belongs
     localization_target :: Maybe String,
-    -- | Path to the language pack database in which strings are stored @localization_target Localization target to which the language pack belongs @language_pack_id Language pack identifier @key Language pack key of the string to be returned
+    -- | Path to the language pack database in which strings are stored
     language_pack_database_path :: Maybe String
   }
   deriving (Eq)

@@ -9,25 +9,25 @@
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Edits an existing proxy server for network requests. Can be called before authorization @proxy_id Proxy identifier @server Proxy server IP address @port Proxy server port @enable Pass true to immediately enable the proxy @type Proxy type</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Edits an existing proxy server for network requests. Can be called before authorization</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="EditProxy"><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-var">EditProxy</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="EditProxy"><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-var">EditProxy</span></a></span></span><span>
-</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Proxy type</span><span>
 </span><span id="line-15"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">EditProxy -&gt; Maybe ProxyType
 </span><a href="TD.Query.EditProxy.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ProxyType.html#ProxyType"><span class="hs-identifier hs-type">ProxyType.ProxyType</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Pass true to immediately enable the proxy</span><span>
 </span><span id="line-17"></span><span>    </span><span id="enable"><span class="annot"><span class="annottext">EditProxy -&gt; Maybe Bool
 </span><a href="TD.Query.EditProxy.html#enable"><span class="hs-identifier hs-var hs-var">enable</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
-</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | Proxy server port</span><span>
 </span><span id="line-19"></span><span>    </span><span id="port"><span class="annot"><span class="annottext">EditProxy -&gt; Maybe Int
 </span><a href="TD.Query.EditProxy.html#port"><span class="hs-identifier hs-var hs-var">port</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-20"></span><span>    </span><span class="hs-comment">-- | Proxy server IP address</span><span>
 </span><span id="line-21"></span><span>    </span><span id="server"><span class="annot"><span class="annottext">EditProxy -&gt; Maybe String
 </span><a href="TD.Query.EditProxy.html#server"><span class="hs-identifier hs-var hs-var">server</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-22"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-22"></span><span>    </span><span class="hs-comment">-- | Proxy identifier</span><span>
 </span><span id="line-23"></span><span>    </span><span id="proxy_id"><span class="annot"><span class="annottext">EditProxy -&gt; Maybe Int
 </span><a href="TD.Query.EditProxy.html#proxy_id"><span class="hs-identifier hs-var hs-var">proxy_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-25"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679427417"><span id="local-6989586621679427419"><span class="annot"><span class="annottext">EditProxy -&gt; EditProxy -&gt; Bool
+</span><span id="line-25"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430546"><span id="local-6989586621679430548"><span class="annot"><span class="annottext">EditProxy -&gt; EditProxy -&gt; Bool
 (EditProxy -&gt; EditProxy -&gt; Bool)
 -&gt; (EditProxy -&gt; EditProxy -&gt; Bool) -&gt; Eq EditProxy
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -37,25 +37,25 @@ $c/= :: EditProxy -&gt; EditProxy -&gt; Bool
 $c== :: EditProxy -&gt; EditProxy -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427411"><span id="local-6989586621679427414"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-type">EditProxy</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>  </span><span id="local-6989586621679427409"><span class="annot"><span class="annottext">show :: EditProxy -&gt; String
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430540"><span id="local-6989586621679430543"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-type">EditProxy</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679430538"><span class="annot"><span class="annottext">show :: EditProxy -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-type">EditProxy</span></a></span><span>
 </span><span id="line-30"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: EditProxy -&gt; Maybe ProxyType
-</span><a href="TD.Query.EditProxy.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427407"><span class="annot"><span class="annottext">Maybe ProxyType
-</span><a href="#local-6989586621679427407"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430536"><span class="annot"><span class="annottext">Maybe ProxyType
+</span><a href="#local-6989586621679430536"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">enable :: EditProxy -&gt; Maybe Bool
-</span><a href="TD.Query.EditProxy.html#enable"><span class="hs-identifier hs-var">enable</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427406"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679427406"><span class="hs-identifier hs-var">enable_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#enable"><span class="hs-identifier hs-var">enable</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430535"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679430535"><span class="hs-identifier hs-var">enable_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">port :: EditProxy -&gt; Maybe Int
-</span><a href="TD.Query.EditProxy.html#port"><span class="hs-identifier hs-var">port</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427405"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427405"><span class="hs-identifier hs-var">port_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#port"><span class="hs-identifier hs-var">port</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430534"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430534"><span class="hs-identifier hs-var">port_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">server :: EditProxy -&gt; Maybe String
-</span><a href="TD.Query.EditProxy.html#server"><span class="hs-identifier hs-var">server</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427404"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427404"><span class="hs-identifier hs-var">server_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#server"><span class="hs-identifier hs-var">server</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430533"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430533"><span class="hs-identifier hs-var">server_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">proxy_id :: EditProxy -&gt; Maybe Int
-</span><a href="TD.Query.EditProxy.html#proxy_id"><span class="hs-identifier hs-var">proxy_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427403"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427403"><span class="hs-identifier hs-var">proxy_id_</span></a></span></span><span>
+</span><a href="TD.Query.EditProxy.html#proxy_id"><span class="hs-identifier hs-var">proxy_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430532"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430532"><span class="hs-identifier hs-var">proxy_id_</span></a></span></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;EditProxy&quot;</span></span><span>
@@ -67,48 +67,48 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ProxyType
-</span><a href="#local-6989586621679427407"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430536"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;enable&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679427406"><span class="hs-identifier hs-var">enable_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430535"><span class="hs-identifier hs-var">enable_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;port&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427405"><span class="hs-identifier hs-var">port_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430534"><span class="hs-identifier hs-var">port_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;server&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427404"><span class="hs-identifier hs-var">server_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430533"><span class="hs-identifier hs-var">server_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;proxy_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427403"><span class="hs-identifier hs-var">proxy_id_</span></a></span><span>
+</span><a href="#local-6989586621679430532"><span class="hs-identifier hs-var">proxy_id_</span></a></span><span>
 </span><span id="line-43"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679427394"><span id="local-6989586621679427396"><span id="local-6989586621679427398"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-type">EditProxy</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-46"></span><span>  </span><span id="local-6989586621679427392"><span class="annot"><span class="annottext">toJSON :: EditProxy -&gt; Value
+</span><span id="line-45"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430523"><span id="local-6989586621679430525"><span id="local-6989586621679430527"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-type">EditProxy</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-46"></span><span>  </span><span id="local-6989586621679430521"><span class="annot"><span class="annottext">toJSON :: EditProxy -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-47"></span><span>    </span><span class="annot"><a href="TD.Query.EditProxy.html#EditProxy"><span class="hs-identifier hs-type">EditProxy</span></a></span><span>
 </span><span id="line-48"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: EditProxy -&gt; Maybe ProxyType
-</span><a href="TD.Query.EditProxy.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427390"><span class="annot"><span class="annottext">Maybe ProxyType
-</span><a href="#local-6989586621679427390"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430519"><span class="annot"><span class="annottext">Maybe ProxyType
+</span><a href="#local-6989586621679430519"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">enable :: EditProxy -&gt; Maybe Bool
-</span><a href="TD.Query.EditProxy.html#enable"><span class="hs-identifier hs-var">enable</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427389"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679427389"><span class="hs-identifier hs-var">enable_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#enable"><span class="hs-identifier hs-var">enable</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430518"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679430518"><span class="hs-identifier hs-var">enable_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-50"></span><span>        </span><span class="annot"><span class="annottext">port :: EditProxy -&gt; Maybe Int
-</span><a href="TD.Query.EditProxy.html#port"><span class="hs-identifier hs-var">port</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427388"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427388"><span class="hs-identifier hs-var">port_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#port"><span class="hs-identifier hs-var">port</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430517"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430517"><span class="hs-identifier hs-var">port_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>        </span><span class="annot"><span class="annottext">server :: EditProxy -&gt; Maybe String
-</span><a href="TD.Query.EditProxy.html#server"><span class="hs-identifier hs-var">server</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427387"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427387"><span class="hs-identifier hs-var">server_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.EditProxy.html#server"><span class="hs-identifier hs-var">server</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430516"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430516"><span class="hs-identifier hs-var">server_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>        </span><span class="annot"><span class="annottext">proxy_id :: EditProxy -&gt; Maybe Int
-</span><a href="TD.Query.EditProxy.html#proxy_id"><span class="hs-identifier hs-var">proxy_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679427386"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427386"><span class="hs-identifier hs-var">proxy_id_</span></a></span></span><span>
+</span><a href="TD.Query.EditProxy.html#proxy_id"><span class="hs-identifier hs-var">proxy_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430515"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430515"><span class="hs-identifier hs-var">proxy_id_</span></a></span></span><span>
 </span><span id="line-53"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-54"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -122,26 +122,26 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ProxyType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ProxyType
-</span><a href="#local-6989586621679427390"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430519"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;enable&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679427389"><span class="hs-identifier hs-var">enable_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430518"><span class="hs-identifier hs-var">enable_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;port&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427388"><span class="hs-identifier hs-var">port_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430517"><span class="hs-identifier hs-var">port_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;server&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679427387"><span class="hs-identifier hs-var">server_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679430516"><span class="hs-identifier hs-var">server_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;proxy_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679427386"><span class="hs-identifier hs-var">proxy_id_</span></a></span><span>
+</span><a href="#local-6989586621679430515"><span class="hs-identifier hs-var">proxy_id_</span></a></span><span>
 </span><span id="line-61"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-62"></span></pre></body></html>

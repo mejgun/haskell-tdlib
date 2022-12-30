@@ -9,38 +9,38 @@ import qualified Utils as U
 
 -- | Provides information about the method by which an authentication code is delivered to the user
 data AuthenticationCodeType
-  = -- | An authentication code is delivered via a private Telegram message, which can be viewed from another active session @length Length of the code
+  = -- | An authentication code is delivered via a private Telegram message, which can be viewed from another active session
     AuthenticationCodeTypeTelegramMessage
-      { -- |
+      { -- | Length of the code
         _length :: Maybe Int
       }
-  | -- | An authentication code is delivered via an SMS message to the specified phone number @length Length of the code
+  | -- | An authentication code is delivered via an SMS message to the specified phone number
     AuthenticationCodeTypeSms
-      { -- |
+      { -- | Length of the code
         _length :: Maybe Int
       }
-  | -- | An authentication code is delivered via a phone call to the specified phone number @length Length of the code
+  | -- | An authentication code is delivered via a phone call to the specified phone number
     AuthenticationCodeTypeCall
-      { -- |
+      { -- | Length of the code
         _length :: Maybe Int
       }
-  | -- | An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically @pattern Pattern of the phone number from which the call will be made
+  | -- | An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
     AuthenticationCodeTypeFlashCall
-      { -- |
+      { -- | Pattern of the phone number from which the call will be made
         pattern :: Maybe String
       }
-  | -- | An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user @phone_number_prefix Prefix of the phone number from which the call will be made @length Number of digits in the code, excluding the prefix
+  | -- | An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
     AuthenticationCodeTypeMissedCall
-      { -- |
+      { -- | Number of digits in the code, excluding the prefix
         _length :: Maybe Int,
-        -- |
+        -- | Prefix of the phone number from which the call will be made
         phone_number_prefix :: Maybe String
       }
-  | -- | An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT @url URL to open to receive the code @length Length of the code
+  | -- | An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
     AuthenticationCodeTypeFragment
-      { -- |
+      { -- | Length of the code
         _length :: Maybe Int,
-        -- |
+        -- | URL to open to receive the code
         url :: Maybe String
       }
   deriving (Eq)

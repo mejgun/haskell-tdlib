@@ -16,31 +16,31 @@ import qualified Utils as U
 -- |
 data StickerSet = -- | Represents a sticker set
   StickerSet
-  { -- |
+  { -- | A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
     emojis :: Maybe [Emojis.Emojis],
-    -- | List of stickers in this set @emojis A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
+    -- | List of stickers in this set
     stickers :: Maybe [Sticker.Sticker],
-    -- |
+    -- | True for already viewed trending sticker sets
     is_viewed :: Maybe Bool,
-    -- |
+    -- | Type of the stickers in the set
     sticker_type :: Maybe StickerType.StickerType,
-    -- |
+    -- | Format of the stickers in the set
     sticker_format :: Maybe StickerFormat.StickerFormat,
-    -- | True, if the sticker set is official @sticker_format Format of the stickers in the set @sticker_type Type of the stickers in the set @is_viewed True for already viewed trending sticker sets
+    -- | True, if the sticker set is official
     is_official :: Maybe Bool,
-    -- |
+    -- | True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
     is_archived :: Maybe Bool,
-    -- | True, if the sticker set has been installed by the current user @is_archived True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+    -- | True, if the sticker set has been installed by the current user
     is_installed :: Maybe Bool,
     -- | Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
     thumbnail_outline :: Maybe [ClosedVectorPath.ClosedVectorPath],
-    -- |
+    -- | Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
     thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- |
+    -- | Name of the sticker set
     name :: Maybe String,
-    -- |
+    -- | Title of the sticker set
     title :: Maybe String,
-    -- | Identifier of the sticker set @title Title of the sticker set @name Name of the sticker set @thumbnail Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
+    -- | Identifier of the sticker set
     _id :: Maybe Int
   }
   deriving (Eq)

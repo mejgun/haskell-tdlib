@@ -8,17 +8,17 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Discards a call @call_id Call identifier @is_disconnected Pass true if the user was disconnected @duration The call duration, in seconds @is_video Pass true if the call was a video call @connection_id Identifier of the connection used during the call
+-- Discards a call
 data DiscardCall = DiscardCall
-  { -- |
+  { -- | Identifier of the connection used during the call
     connection_id :: Maybe Int,
-    -- |
+    -- | Pass true if the call was a video call
     is_video :: Maybe Bool,
-    -- |
+    -- | The call duration, in seconds
     duration :: Maybe Int,
-    -- |
+    -- | Pass true if the user was disconnected
     is_disconnected :: Maybe Bool,
-    -- |
+    -- | Call identifier
     call_id :: Maybe Int
   }
   deriving (Eq)

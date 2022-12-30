@@ -11,13 +11,13 @@ import qualified Utils as U
 -- |
 -- Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
 data ReportChat = ReportChat
-  { -- |
+  { -- | Additional report details; 0-1024 characters
     text :: Maybe String,
-    -- |
+    -- | The reason for reporting the chat
     reason :: Maybe ChatReportReason.ChatReportReason,
-    -- |
+    -- | Identifiers of reported messages; may be empty to report the whole chat
     message_ids :: Maybe [Int],
-    -- | Chat identifier @message_ids Identifiers of reported messages; may be empty to report the whole chat @reason The reason for reporting the chat @text Additional report details; 0-1024 characters
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

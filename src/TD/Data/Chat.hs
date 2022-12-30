@@ -36,8 +36,8 @@ data Chat = -- | A chat. (Can be a private chat, basic group, supergroup, or sec
     action_bar :: Maybe ChatActionBar.ChatActionBar,
     -- | If non-empty, name of a theme, set for the chat
     theme_name :: Maybe String,
-    -- | Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
-    message_ttl :: Maybe Int,
+    -- | Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date
+    message_auto_delete_time :: Maybe Int,
     -- | Types of reaction, available in the chat
     available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions,
     -- | Notification settings for the chat
@@ -97,7 +97,7 @@ instance Show Chat where
         video_chat = video_chat_,
         action_bar = action_bar_,
         theme_name = theme_name_,
-        message_ttl = message_ttl_,
+        message_auto_delete_time = message_auto_delete_time_,
         available_reactions = available_reactions_,
         notification_settings = notification_settings_,
         unread_reaction_count = unread_reaction_count_,
@@ -131,7 +131,7 @@ instance Show Chat where
             U.p "video_chat" video_chat_,
             U.p "action_bar" action_bar_,
             U.p "theme_name" theme_name_,
-            U.p "message_ttl" message_ttl_,
+            U.p "message_auto_delete_time" message_auto_delete_time_,
             U.p "available_reactions" available_reactions_,
             U.p "notification_settings" notification_settings_,
             U.p "unread_reaction_count" unread_reaction_count_,
@@ -174,7 +174,7 @@ instance T.FromJSON Chat where
         video_chat_ <- o A..:? "video_chat"
         action_bar_ <- o A..:? "action_bar"
         theme_name_ <- o A..:? "theme_name"
-        message_ttl_ <- o A..:? "message_ttl"
+        message_auto_delete_time_ <- o A..:? "message_auto_delete_time"
         available_reactions_ <- o A..:? "available_reactions"
         notification_settings_ <- o A..:? "notification_settings"
         unread_reaction_count_ <- o A..:? "unread_reaction_count"
@@ -198,7 +198,7 @@ instance T.FromJSON Chat where
         title_ <- o A..:? "title"
         _type_ <- o A..:? "type"
         _id_ <- o A..:? "id"
-        return $ Chat {client_data = client_data_, draft_message = draft_message_, reply_markup_message_id = reply_markup_message_id_, pending_join_requests = pending_join_requests_, video_chat = video_chat_, action_bar = action_bar_, theme_name = theme_name_, message_ttl = message_ttl_, available_reactions = available_reactions_, notification_settings = notification_settings_, unread_reaction_count = unread_reaction_count_, unread_mention_count = unread_mention_count_, last_read_outbox_message_id = last_read_outbox_message_id_, last_read_inbox_message_id = last_read_inbox_message_id_, unread_count = unread_count_, default_disable_notification = default_disable_notification_, can_be_reported = can_be_reported_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, has_scheduled_messages = has_scheduled_messages_, is_blocked = is_blocked_, is_marked_as_unread = is_marked_as_unread_, has_protected_content = has_protected_content_, message_sender_id = message_sender_id_, positions = positions_, last_message = last_message_, permissions = permissions_, photo = photo_, title = title_, _type = _type_, _id = _id_}
+        return $ Chat {client_data = client_data_, draft_message = draft_message_, reply_markup_message_id = reply_markup_message_id_, pending_join_requests = pending_join_requests_, video_chat = video_chat_, action_bar = action_bar_, theme_name = theme_name_, message_auto_delete_time = message_auto_delete_time_, available_reactions = available_reactions_, notification_settings = notification_settings_, unread_reaction_count = unread_reaction_count_, unread_mention_count = unread_mention_count_, last_read_outbox_message_id = last_read_outbox_message_id_, last_read_inbox_message_id = last_read_inbox_message_id_, unread_count = unread_count_, default_disable_notification = default_disable_notification_, can_be_reported = can_be_reported_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, has_scheduled_messages = has_scheduled_messages_, is_blocked = is_blocked_, is_marked_as_unread = is_marked_as_unread_, has_protected_content = has_protected_content_, message_sender_id = message_sender_id_, positions = positions_, last_message = last_message_, permissions = permissions_, photo = photo_, title = title_, _type = _type_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Chat where
@@ -211,7 +211,7 @@ instance T.ToJSON Chat where
         video_chat = video_chat_,
         action_bar = action_bar_,
         theme_name = theme_name_,
-        message_ttl = message_ttl_,
+        message_auto_delete_time = message_auto_delete_time_,
         available_reactions = available_reactions_,
         notification_settings = notification_settings_,
         unread_reaction_count = unread_reaction_count_,
@@ -245,7 +245,7 @@ instance T.ToJSON Chat where
           "video_chat" A..= video_chat_,
           "action_bar" A..= action_bar_,
           "theme_name" A..= theme_name_,
-          "message_ttl" A..= message_ttl_,
+          "message_auto_delete_time" A..= message_auto_delete_time_,
           "available_reactions" A..= available_reactions_,
           "notification_settings" A..= notification_settings_,
           "unread_reaction_count" A..= unread_reaction_count_,

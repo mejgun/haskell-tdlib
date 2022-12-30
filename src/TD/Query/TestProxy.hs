@@ -9,17 +9,17 @@ import qualified TD.Data.ProxyType as ProxyType
 import qualified Utils as U
 
 -- |
--- Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization @server Proxy server IP address @port Proxy server port @type Proxy type
+-- Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
 data TestProxy = TestProxy
-  { -- |
+  { -- | The maximum overall timeout for the request
     timeout :: Maybe Float,
-    -- | Identifier of a datacenter with which to test connection @timeout The maximum overall timeout for the request
+    -- | Identifier of a datacenter with which to test connection
     dc_id :: Maybe Int,
-    -- |
+    -- | Proxy type
     _type :: Maybe ProxyType.ProxyType,
-    -- |
+    -- | Proxy server port
     port :: Maybe Int,
-    -- |
+    -- | Proxy server IP address
     server :: Maybe String
   }
   deriving (Eq)

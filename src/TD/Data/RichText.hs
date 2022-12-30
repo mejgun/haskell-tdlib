@@ -78,13 +78,13 @@ data RichText
         -- |
         _text :: Maybe RichText
       }
-  | -- | A small image inside the text @document The image represented as a document. The image can be in GIF, JPEG or PNG format
+  | -- | A small image inside the text
     RichTextIcon
       { -- | Height of a bounding box in which the image must be shown; 0 if unknown
         height :: Maybe Int,
         -- | Width of a bounding box in which the image must be shown; 0 if unknown
         width :: Maybe Int,
-        -- |
+        -- | The image represented as a document. The image can be in GIF, JPEG or PNG format
         document :: Maybe Document.Document
       }
   | -- | A reference to a richTexts object on the same web page @text The text @anchor_name The name of a richTextAnchor object, which is the first element of the target richTexts object @url An HTTP URL, opening the reference

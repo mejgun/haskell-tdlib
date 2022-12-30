@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Sends a code to verify a phone number to be added to a user's Telegram Passport
 data SendPhoneNumberVerificationCode = SendPhoneNumberVerificationCode
-  { -- |
+  { -- | Settings for the authentication of the user's phone number; pass null to use default settings
     settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,
-    -- | The phone number of the user, in international format @settings Settings for the authentication of the user's phone number; pass null to use default settings
+    -- | The phone number of the user, in international format
     phone_number :: Maybe String
   }
   deriving (Eq)

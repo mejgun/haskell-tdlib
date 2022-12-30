@@ -12,11 +12,11 @@ import qualified Utils as U
 -- |
 -- Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
 data SetChatMemberStatus = SetChatMemberStatus
-  { -- |
+  { -- | The new status of the member in the chat
     status :: Maybe ChatMemberStatus.ChatMemberStatus,
-    -- |
+    -- | Member identifier. Chats can be only banned and unbanned in supergroups and channels
     member_id :: Maybe MessageSender.MessageSender,
-    -- | Chat identifier @member_id Member identifier. Chats can be only banned and unbanned in supergroups and channels @status The new status of the member in the chat
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

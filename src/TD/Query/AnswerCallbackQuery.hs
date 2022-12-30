@@ -8,17 +8,17 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Sets the result of a callback query; for bots only @callback_query_id Identifier of the callback query @text Text of the answer @show_alert Pass true to show an alert to the user instead of a toast notification @url URL to be opened @cache_time Time during which the result of the query can be cached, in seconds
+-- Sets the result of a callback query; for bots only
 data AnswerCallbackQuery = AnswerCallbackQuery
-  { -- |
+  { -- | Time during which the result of the query can be cached, in seconds
     cache_time :: Maybe Int,
-    -- |
+    -- | URL to be opened
     url :: Maybe String,
-    -- |
+    -- | Pass true to show an alert to the user instead of a toast notification
     show_alert :: Maybe Bool,
-    -- |
+    -- | Text of the answer
     text :: Maybe String,
-    -- |
+    -- | Identifier of the callback query
     callback_query_id :: Maybe Int
   }
   deriving (Eq)

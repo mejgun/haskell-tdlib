@@ -8,22 +8,22 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Returns a Telegram Passport authorization form for sharing data with a service @bot_user_id User identifier of the service's bot @scope Telegram Passport element types requested by the service @public_key Service's public key @nonce Unique request identifier provided by the service</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Returns a Telegram Passport authorization form for sharing data with a service</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="GetPassportAuthorizationForm"><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-var">GetPassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="GetPassportAuthorizationForm"><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-var">GetPassportAuthorizationForm</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Unique request identifier provided by the service</span><span>
 </span><span id="line-14"></span><span>    </span><span id="nonce"><span class="annot"><span class="annottext">GetPassportAuthorizationForm -&gt; Maybe String
 </span><a href="TD.Query.GetPassportAuthorizationForm.html#nonce"><span class="hs-identifier hs-var hs-var">nonce</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | Service's public key</span><span>
 </span><span id="line-16"></span><span>    </span><span id="public_key"><span class="annot"><span class="annottext">GetPassportAuthorizationForm -&gt; Maybe String
 </span><a href="TD.Query.GetPassportAuthorizationForm.html#public_key"><span class="hs-identifier hs-var hs-var">public_key</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Telegram Passport element types requested by the service</span><span>
 </span><span id="line-18"></span><span>    </span><span id="scope"><span class="annot"><span class="annottext">GetPassportAuthorizationForm -&gt; Maybe String
 </span><a href="TD.Query.GetPassportAuthorizationForm.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | User identifier of the service's bot</span><span>
 </span><span id="line-20"></span><span>    </span><span id="bot_user_id"><span class="annot"><span class="annottext">GetPassportAuthorizationForm -&gt; Maybe Int
 </span><a href="TD.Query.GetPassportAuthorizationForm.html#bot_user_id"><span class="hs-identifier hs-var hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412362"><span id="local-6989586621679412364"><span class="annot"><span class="annottext">GetPassportAuthorizationForm
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679415491"><span id="local-6989586621679415493"><span class="annot"><span class="annottext">GetPassportAuthorizationForm
 -&gt; GetPassportAuthorizationForm -&gt; Bool
 (GetPassportAuthorizationForm
  -&gt; GetPassportAuthorizationForm -&gt; Bool)
@@ -41,22 +41,22 @@ $c== :: GetPassportAuthorizationForm
 -&gt; GetPassportAuthorizationForm -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412356"><span id="local-6989586621679412359"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-type">GetPassportAuthorizationForm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679412354"><span class="annot"><span class="annottext">show :: GetPassportAuthorizationForm -&gt; String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415485"><span id="local-6989586621679415488"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-type">GetPassportAuthorizationForm</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679415483"><span class="annot"><span class="annottext">show :: GetPassportAuthorizationForm -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-type">GetPassportAuthorizationForm</span></a></span><span>
 </span><span id="line-27"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">nonce :: GetPassportAuthorizationForm -&gt; Maybe String
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#nonce"><span class="hs-identifier hs-var">nonce</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412352"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412352"><span class="hs-identifier hs-var">nonce_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#nonce"><span class="hs-identifier hs-var">nonce</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415481"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415481"><span class="hs-identifier hs-var">nonce_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">public_key :: GetPassportAuthorizationForm -&gt; Maybe String
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#public_key"><span class="hs-identifier hs-var">public_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412351"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412351"><span class="hs-identifier hs-var">public_key_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#public_key"><span class="hs-identifier hs-var">public_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415480"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415480"><span class="hs-identifier hs-var">public_key_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">scope :: GetPassportAuthorizationForm -&gt; Maybe String
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412350"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412350"><span class="hs-identifier hs-var">scope_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415479"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415479"><span class="hs-identifier hs-var">scope_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: GetPassportAuthorizationForm -&gt; Maybe Int
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412349"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679412349"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415478"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415478"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;GetPassportAuthorizationForm&quot;</span></span><span>
@@ -68,40 +68,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;nonce&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412352"><span class="hs-identifier hs-var">nonce_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415481"><span class="hs-identifier hs-var">nonce_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;public_key&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412351"><span class="hs-identifier hs-var">public_key_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415480"><span class="hs-identifier hs-var">public_key_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412350"><span class="hs-identifier hs-var">scope_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415479"><span class="hs-identifier hs-var">scope_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679412349"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><a href="#local-6989586621679415478"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
 </span><span id="line-38"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412340"><span id="local-6989586621679412342"><span id="local-6989586621679412344"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-type">GetPassportAuthorizationForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679412338"><span class="annot"><span class="annottext">toJSON :: GetPassportAuthorizationForm -&gt; Value
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415469"><span id="local-6989586621679415471"><span id="local-6989586621679415473"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-type">GetPassportAuthorizationForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679415467"><span class="annot"><span class="annottext">toJSON :: GetPassportAuthorizationForm -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-42"></span><span>    </span><span class="annot"><a href="TD.Query.GetPassportAuthorizationForm.html#GetPassportAuthorizationForm"><span class="hs-identifier hs-type">GetPassportAuthorizationForm</span></a></span><span>
 </span><span id="line-43"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">nonce :: GetPassportAuthorizationForm -&gt; Maybe String
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#nonce"><span class="hs-identifier hs-var">nonce</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412336"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412336"><span class="hs-identifier hs-var">nonce_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#nonce"><span class="hs-identifier hs-var">nonce</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415465"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415465"><span class="hs-identifier hs-var">nonce_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>        </span><span class="annot"><span class="annottext">public_key :: GetPassportAuthorizationForm -&gt; Maybe String
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#public_key"><span class="hs-identifier hs-var">public_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412335"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412335"><span class="hs-identifier hs-var">public_key_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#public_key"><span class="hs-identifier hs-var">public_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415464"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415464"><span class="hs-identifier hs-var">public_key_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">scope :: GetPassportAuthorizationForm -&gt; Maybe String
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412334"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412334"><span class="hs-identifier hs-var">scope_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415463"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679415463"><span class="hs-identifier hs-var">scope_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: GetPassportAuthorizationForm -&gt; Maybe Int
-</span><a href="TD.Query.GetPassportAuthorizationForm.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412333"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679412333"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><a href="TD.Query.GetPassportAuthorizationForm.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415462"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679415462"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
 </span><span id="line-47"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -115,21 +115,21 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;nonce&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412336"><span class="hs-identifier hs-var">nonce_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415465"><span class="hs-identifier hs-var">nonce_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;public_key&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412335"><span class="hs-identifier hs-var">public_key_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415464"><span class="hs-identifier hs-var">public_key_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412334"><span class="hs-identifier hs-var">scope_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679415463"><span class="hs-identifier hs-var">scope_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679412333"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><a href="#local-6989586621679415462"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
 </span><span id="line-54"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-55"></span></pre></body></html>

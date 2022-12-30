@@ -8,13 +8,14 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached @supergroup_id Identifier of the supergroup or channel @username The username to change @is_active Pass true to activate the username; pass false to disable it
+-- Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled.
+-- May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
 data ToggleSupergroupUsernameIsActive = ToggleSupergroupUsernameIsActive
-  { -- |
+  { -- | Pass true to activate the username; pass false to disable it
     is_active :: Maybe Bool,
-    -- |
+    -- | The username to change
     username :: Maybe String,
-    -- |
+    -- | Identifier of the supergroup or channel
     supergroup_id :: Maybe Int
   }
   deriving (Eq)

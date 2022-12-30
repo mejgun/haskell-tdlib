@@ -10,27 +10,27 @@ import qualified TD.Data.PollType as PollType
 import qualified Utils as U
 
 -- |
-data Poll = -- | Describes a poll @id Unique poll identifier @question Poll question; 1-300 characters @options List of poll answer options
+data Poll = -- | Describes a poll
   Poll
-  { -- |
+  { -- | True, if the poll is closed
     is_closed :: Maybe Bool,
-    -- |
+    -- | Point in time (Unix timestamp) when the poll will automatically be closed
     close_date :: Maybe Int,
-    -- | Amount of time the poll will be active after creation, in seconds @close_date Point in time (Unix timestamp) when the poll will automatically be closed @is_closed True, if the poll is closed
+    -- | Amount of time the poll will be active after creation, in seconds
     open_period :: Maybe Int,
-    -- |
+    -- | Type of the poll
     _type :: Maybe PollType.PollType,
-    -- | True, if the poll is anonymous @type Type of the poll
+    -- | True, if the poll is anonymous
     is_anonymous :: Maybe Bool,
-    -- |
+    -- | User identifiers of recent voters, if the poll is non-anonymous
     recent_voter_user_ids :: Maybe [Int],
-    -- | Total number of voters, participating in the poll @recent_voter_user_ids User identifiers of recent voters, if the poll is non-anonymous
+    -- | Total number of voters, participating in the poll
     total_voter_count :: Maybe Int,
-    -- |
+    -- | List of poll answer options
     options :: Maybe [PollOption.PollOption],
-    -- |
+    -- | Poll question; 1-300 characters
     question :: Maybe String,
-    -- |
+    -- | Unique poll identifier
     _id :: Maybe Int
   }
   deriving (Eq)

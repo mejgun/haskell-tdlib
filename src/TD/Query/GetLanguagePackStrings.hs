@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns strings from a language pack in the current localization target by their keys. Can be called before authorization @language_pack_id Language pack identifier of the strings to be returned @keys Language pack keys of the strings to be returned; leave empty to request all available strings
+-- Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
 data GetLanguagePackStrings = GetLanguagePackStrings
-  { -- |
+  { -- | Language pack keys of the strings to be returned; leave empty to request all available strings
     keys :: Maybe [String],
-    -- |
+    -- | Language pack identifier of the strings to be returned
     language_pack_id :: Maybe String
   }
   deriving (Eq)

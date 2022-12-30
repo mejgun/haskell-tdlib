@@ -10,11 +10,11 @@ import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified Utils as U
 
 -- |
--- Adds or changes a custom local language pack to the current localization target @info Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization @strings Strings of the new language pack
+-- Adds or changes a custom local language pack to the current localization target
 data SetCustomLanguagePack = SetCustomLanguagePack
-  { -- |
+  { -- | Strings of the new language pack
     strings :: Maybe [LanguagePackString.LanguagePackString],
-    -- |
+    -- | Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     info :: Maybe LanguagePackInfo.LanguagePackInfo
   }
   deriving (Eq)

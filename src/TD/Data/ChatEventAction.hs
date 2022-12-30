@@ -116,12 +116,12 @@ data ChatEventAction
         -- |
         old_location :: Maybe ChatLocation.ChatLocation
       }
-  | -- | The message TTL was changed @old_message_ttl Previous value of message_ttl @new_message_ttl New value of message_ttl
-    ChatEventMessageTtlChanged
+  | -- | The message auto-delete timer was changed @old_message_auto_delete_time Previous value of message_auto_delete_time @new_message_auto_delete_time New value of message_auto_delete_time
+    ChatEventMessageAutoDeleteTimeChanged
       { -- |
-        new_message_ttl :: Maybe Int,
+        new_message_auto_delete_time :: Maybe Int,
         -- |
-        old_message_ttl :: Maybe Int
+        old_message_auto_delete_time :: Maybe Int
       }
   | -- | The chat permissions was changed @old_permissions Previous chat permissions @new_permissions New chat permissions
     ChatEventPermissionsChanged
@@ -187,10 +187,10 @@ data ChatEventAction
       { -- |
         is_all_history_available :: Maybe Bool
       }
-  | -- | The is_aggressive_anti_spam_enabled setting of a supergroup was toggled @is_aggressive_anti_spam_enabled New value of is_aggressive_anti_spam_enabled
-    ChatEventIsAggressiveAntiSpamEnabledToggled
+  | -- | The has_aggressive_anti_spam_enabled setting of a supergroup was toggled @has_aggressive_anti_spam_enabled New value of has_aggressive_anti_spam_enabled
+    ChatEventHasAggressiveAntiSpamEnabledToggled
       { -- |
-        is_aggressive_anti_spam_enabled :: Maybe Bool
+        has_aggressive_anti_spam_enabled :: Maybe Bool
       }
   | -- | The sign_messages setting of a channel was toggled @sign_messages New value of sign_messages
     ChatEventSignMessagesToggled
@@ -430,14 +430,14 @@ instance Show ChatEventAction where
             U.p "old_location" old_location_
           ]
   show
-    ChatEventMessageTtlChanged
-      { new_message_ttl = new_message_ttl_,
-        old_message_ttl = old_message_ttl_
+    ChatEventMessageAutoDeleteTimeChanged
+      { new_message_auto_delete_time = new_message_auto_delete_time_,
+        old_message_auto_delete_time = old_message_auto_delete_time_
       } =
-      "ChatEventMessageTtlChanged"
+      "ChatEventMessageAutoDeleteTimeChanged"
         ++ U.cc
-          [ U.p "new_message_ttl" new_message_ttl_,
-            U.p "old_message_ttl" old_message_ttl_
+          [ U.p "new_message_auto_delete_time" new_message_auto_delete_time_,
+            U.p "old_message_auto_delete_time" old_message_auto_delete_time_
           ]
   show
     ChatEventPermissionsChanged
@@ -534,12 +534,12 @@ instance Show ChatEventAction where
           [ U.p "is_all_history_available" is_all_history_available_
           ]
   show
-    ChatEventIsAggressiveAntiSpamEnabledToggled
-      { is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_
+    ChatEventHasAggressiveAntiSpamEnabledToggled
+      { has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
       } =
-      "ChatEventIsAggressiveAntiSpamEnabledToggled"
+      "ChatEventHasAggressiveAntiSpamEnabledToggled"
         ++ U.cc
-          [ U.p "is_aggressive_anti_spam_enabled" is_aggressive_anti_spam_enabled_
+          [ U.p "has_aggressive_anti_spam_enabled" has_aggressive_anti_spam_enabled_
           ]
   show
     ChatEventSignMessagesToggled
@@ -701,7 +701,7 @@ instance T.FromJSON ChatEventAction where
       "chatEventDescriptionChanged" -> parseChatEventDescriptionChanged v
       "chatEventLinkedChatChanged" -> parseChatEventLinkedChatChanged v
       "chatEventLocationChanged" -> parseChatEventLocationChanged v
-      "chatEventMessageTtlChanged" -> parseChatEventMessageTtlChanged v
+      "chatEventMessageAutoDeleteTimeChanged" -> parseChatEventMessageAutoDeleteTimeChanged v
       "chatEventPermissionsChanged" -> parseChatEventPermissionsChanged v
       "chatEventPhotoChanged" -> parseChatEventPhotoChanged v
       "chatEventSlowModeDelayChanged" -> parseChatEventSlowModeDelayChanged v
@@ -712,7 +712,7 @@ instance T.FromJSON ChatEventAction where
       "chatEventHasProtectedContentToggled" -> parseChatEventHasProtectedContentToggled v
       "chatEventInvitesToggled" -> parseChatEventInvitesToggled v
       "chatEventIsAllHistoryAvailableToggled" -> parseChatEventIsAllHistoryAvailableToggled v
-      "chatEventIsAggressiveAntiSpamEnabledToggled" -> parseChatEventIsAggressiveAntiSpamEnabledToggled v
+      "chatEventHasAggressiveAntiSpamEnabledToggled" -> parseChatEventHasAggressiveAntiSpamEnabledToggled v
       "chatEventSignMessagesToggled" -> parseChatEventSignMessagesToggled v
       "chatEventInviteLinkEdited" -> parseChatEventInviteLinkEdited v
       "chatEventInviteLinkRevoked" -> parseChatEventInviteLinkRevoked v
@@ -819,11 +819,11 @@ instance T.FromJSON ChatEventAction where
         old_location_ <- o A..:? "old_location"
         return $ ChatEventLocationChanged {new_location = new_location_, old_location = old_location_}
 
-      parseChatEventMessageTtlChanged :: A.Value -> T.Parser ChatEventAction
-      parseChatEventMessageTtlChanged = A.withObject "ChatEventMessageTtlChanged" $ \o -> do
-        new_message_ttl_ <- o A..:? "new_message_ttl"
-        old_message_ttl_ <- o A..:? "old_message_ttl"
-        return $ ChatEventMessageTtlChanged {new_message_ttl = new_message_ttl_, old_message_ttl = old_message_ttl_}
+      parseChatEventMessageAutoDeleteTimeChanged :: A.Value -> T.Parser ChatEventAction
+      parseChatEventMessageAutoDeleteTimeChanged = A.withObject "ChatEventMessageAutoDeleteTimeChanged" $ \o -> do
+        new_message_auto_delete_time_ <- o A..:? "new_message_auto_delete_time"
+        old_message_auto_delete_time_ <- o A..:? "old_message_auto_delete_time"
+        return $ ChatEventMessageAutoDeleteTimeChanged {new_message_auto_delete_time = new_message_auto_delete_time_, old_message_auto_delete_time = old_message_auto_delete_time_}
 
       parseChatEventPermissionsChanged :: A.Value -> T.Parser ChatEventAction
       parseChatEventPermissionsChanged = A.withObject "ChatEventPermissionsChanged" $ \o -> do
@@ -882,10 +882,10 @@ instance T.FromJSON ChatEventAction where
         is_all_history_available_ <- o A..:? "is_all_history_available"
         return $ ChatEventIsAllHistoryAvailableToggled {is_all_history_available = is_all_history_available_}
 
-      parseChatEventIsAggressiveAntiSpamEnabledToggled :: A.Value -> T.Parser ChatEventAction
-      parseChatEventIsAggressiveAntiSpamEnabledToggled = A.withObject "ChatEventIsAggressiveAntiSpamEnabledToggled" $ \o -> do
-        is_aggressive_anti_spam_enabled_ <- o A..:? "is_aggressive_anti_spam_enabled"
-        return $ ChatEventIsAggressiveAntiSpamEnabledToggled {is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_}
+      parseChatEventHasAggressiveAntiSpamEnabledToggled :: A.Value -> T.Parser ChatEventAction
+      parseChatEventHasAggressiveAntiSpamEnabledToggled = A.withObject "ChatEventHasAggressiveAntiSpamEnabledToggled" $ \o -> do
+        has_aggressive_anti_spam_enabled_ <- o A..:? "has_aggressive_anti_spam_enabled"
+        return $ ChatEventHasAggressiveAntiSpamEnabledToggled {has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_}
 
       parseChatEventSignMessagesToggled :: A.Value -> T.Parser ChatEventAction
       parseChatEventSignMessagesToggled = A.withObject "ChatEventSignMessagesToggled" $ \o -> do
@@ -1119,14 +1119,14 @@ instance T.ToJSON ChatEventAction where
           "old_location" A..= old_location_
         ]
   toJSON
-    ChatEventMessageTtlChanged
-      { new_message_ttl = new_message_ttl_,
-        old_message_ttl = old_message_ttl_
+    ChatEventMessageAutoDeleteTimeChanged
+      { new_message_auto_delete_time = new_message_auto_delete_time_,
+        old_message_auto_delete_time = old_message_auto_delete_time_
       } =
       A.object
-        [ "@type" A..= T.String "chatEventMessageTtlChanged",
-          "new_message_ttl" A..= new_message_ttl_,
-          "old_message_ttl" A..= old_message_ttl_
+        [ "@type" A..= T.String "chatEventMessageAutoDeleteTimeChanged",
+          "new_message_auto_delete_time" A..= new_message_auto_delete_time_,
+          "old_message_auto_delete_time" A..= old_message_auto_delete_time_
         ]
   toJSON
     ChatEventPermissionsChanged
@@ -1223,12 +1223,12 @@ instance T.ToJSON ChatEventAction where
           "is_all_history_available" A..= is_all_history_available_
         ]
   toJSON
-    ChatEventIsAggressiveAntiSpamEnabledToggled
-      { is_aggressive_anti_spam_enabled = is_aggressive_anti_spam_enabled_
+    ChatEventHasAggressiveAntiSpamEnabledToggled
+      { has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
       } =
       A.object
-        [ "@type" A..= T.String "chatEventIsAggressiveAntiSpamEnabledToggled",
-          "is_aggressive_anti_spam_enabled" A..= is_aggressive_anti_spam_enabled_
+        [ "@type" A..= T.String "chatEventHasAggressiveAntiSpamEnabledToggled",
+          "has_aggressive_anti_spam_enabled" A..= has_aggressive_anti_spam_enabled_
         ]
   toJSON
     ChatEventSignMessagesToggled

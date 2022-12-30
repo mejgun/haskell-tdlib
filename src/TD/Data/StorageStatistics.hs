@@ -9,13 +9,13 @@ import qualified TD.Data.StorageStatisticsByChat as StorageStatisticsByChat
 import qualified Utils as U
 
 -- |
-data StorageStatistics = -- | Contains the exact storage usage statistics split by chats and file type @size Total size of files, in bytes @count Total number of files @by_chat Statistics split by chats
+data StorageStatistics = -- | Contains the exact storage usage statistics split by chats and file type
   StorageStatistics
-  { -- |
+  { -- | Statistics split by chats
     by_chat :: Maybe [StorageStatisticsByChat.StorageStatisticsByChat],
-    -- |
+    -- | Total number of files
     count :: Maybe Int,
-    -- |
+    -- | Total size of files, in bytes
     size :: Maybe Int
   }
   deriving (Eq)

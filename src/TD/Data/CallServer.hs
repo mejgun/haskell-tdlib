@@ -9,17 +9,17 @@ import qualified TD.Data.CallServerType as CallServerType
 import qualified Utils as U
 
 -- |
-data CallServer = -- | Describes a server for relaying call data @id Server identifier @ip_address Server IPv4 address @ipv6_address Server IPv6 address @port Server port number @type Server type
+data CallServer = -- | Describes a server for relaying call data
   CallServer
-  { -- |
+  { -- | Server type
     _type :: Maybe CallServerType.CallServerType,
-    -- |
+    -- | Server port number
     port :: Maybe Int,
-    -- |
+    -- | Server IPv6 address
     ipv6_address :: Maybe String,
-    -- |
+    -- | Server IPv4 address
     ip_address :: Maybe String,
-    -- |
+    -- | Server identifier
     _id :: Maybe Int
   }
   deriving (Eq)

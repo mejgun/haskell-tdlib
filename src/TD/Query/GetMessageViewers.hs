@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true @chat_id Chat identifier @message_id Identifier of the message
+-- Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
 data GetMessageViewers = GetMessageViewers
-  { -- |
+  { -- | Identifier of the message
     message_id :: Maybe Int,
-    -- |
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

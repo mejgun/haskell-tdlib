@@ -11,29 +11,29 @@ import qualified Utils as U
 -- |
 data Session = -- | Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
   Session
-  { -- |
+  { -- | Region code from which the session was created, based on the IP address
     region :: Maybe String,
-    -- | A two-letter country code for the country from which the session was created, based on the IP address @region Region code from which the session was created, based on the IP address
+    -- | A two-letter country code for the country from which the session was created, based on the IP address
     country :: Maybe String,
-    -- |
+    -- | IP address from which the session was created, in human-readable format
     ip :: Maybe String,
-    -- | Point in time (Unix timestamp) when the session was last used @ip IP address from which the session was created, in human-readable format
+    -- | Point in time (Unix timestamp) when the session was last used
     last_active_date :: Maybe Int,
-    -- |
+    -- | Point in time (Unix timestamp) when the user has logged in
     log_in_date :: Maybe Int,
-    -- | Version of the operating system the application has been run or is running on, as provided by the application @log_in_date Point in time (Unix timestamp) when the user has logged in
+    -- | Version of the operating system the application has been run or is running on, as provided by the application
     system_version :: Maybe String,
-    -- |
+    -- | Operating system the application has been run or is running on, as provided by the application
     platform :: Maybe String,
-    -- | Model of the device the application has been run or is running on, as provided by the application @platform Operating system the application has been run or is running on, as provided by the application
+    -- | Model of the device the application has been run or is running on, as provided by the application
     device_model :: Maybe String,
-    -- |
+    -- | True, if the application is an official application or uses the api_id of an official application
     is_official_application :: Maybe Bool,
-    -- | The version of the application, as provided by the application @is_official_application True, if the application is an official application or uses the api_id of an official application
+    -- | The version of the application, as provided by the application
     application_version :: Maybe String,
-    -- |
+    -- | Name of the application, as provided by the application
     application_name :: Maybe String,
-    -- | Telegram API identifier, as provided by the application @application_name Name of the application, as provided by the application
+    -- | Telegram API identifier, as provided by the application
     api_id :: Maybe Int,
     -- | Session type based on the system and application version, which can be used to display a corresponding icon
     _type :: Maybe SessionType.SessionType,
@@ -43,9 +43,9 @@ data Session = -- | Contains information about one session in a Telegram applica
     can_accept_secret_chats :: Maybe Bool,
     -- | True, if a 2-step verification password is needed to complete authorization of the session
     is_password_pending :: Maybe Bool,
-    -- |
+    -- | True, if this session is the current session
     is_current :: Maybe Bool,
-    -- | Session identifier @is_current True, if this session is the current session
+    -- | Session identifier
     _id :: Maybe Int
   }
   deriving (Eq)

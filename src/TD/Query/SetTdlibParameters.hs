@@ -34,7 +34,7 @@ data SetTdlibParameters = SetTdlibParameters
     use_chat_info_database :: Maybe Bool,
     -- | Pass true to keep information about downloaded and uploaded files between application restarts
     use_file_database :: Maybe Bool,
-    -- | Encryption key for the database
+    -- | Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
     database_encryption_key :: Maybe String,
     -- | The path to the directory for storing files; if empty, database_directory will be used
     files_directory :: Maybe String,

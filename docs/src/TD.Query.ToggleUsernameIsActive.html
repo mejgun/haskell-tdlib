@@ -8,16 +8,16 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message &quot;USERNAMES_ACTIVE_TOO_MUCH&quot; if the maximum number of active usernames has been reached @username The username to change @is_active Pass true to activate the username; pass false to disable it</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message &quot;USERNAMES_ACTIVE_TOO_MUCH&quot; if the maximum number of active usernames has been reached</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="ToggleUsernameIsActive"><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-var">ToggleUsernameIsActive</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="ToggleUsernameIsActive"><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-var">ToggleUsernameIsActive</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Pass true to activate the username; pass false to disable it</span><span>
 </span><span id="line-14"></span><span>    </span><span id="is_active"><span class="annot"><span class="annottext">ToggleUsernameIsActive -&gt; Maybe Bool
 </span><a href="TD.Query.ToggleUsernameIsActive.html#is_active"><span class="hs-identifier hs-var hs-var">is_active</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | The username to change</span><span>
 </span><span id="line-16"></span><span>    </span><span id="username"><span class="annot"><span class="annottext">ToggleUsernameIsActive -&gt; Maybe String
 </span><a href="TD.Query.ToggleUsernameIsActive.html#username"><span class="hs-identifier hs-var hs-var">username</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679402490"><span id="local-6989586621679402492"><span class="annot"><span class="annottext">ToggleUsernameIsActive -&gt; ToggleUsernameIsActive -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405460"><span id="local-6989586621679405462"><span class="annot"><span class="annottext">ToggleUsernameIsActive -&gt; ToggleUsernameIsActive -&gt; Bool
 (ToggleUsernameIsActive -&gt; ToggleUsernameIsActive -&gt; Bool)
 -&gt; (ToggleUsernameIsActive -&gt; ToggleUsernameIsActive -&gt; Bool)
 -&gt; Eq ToggleUsernameIsActive
@@ -28,16 +28,16 @@ $c/= :: ToggleUsernameIsActive -&gt; ToggleUsernameIsActive -&gt; Bool
 $c== :: ToggleUsernameIsActive -&gt; ToggleUsernameIsActive -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402484"><span id="local-6989586621679402487"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-type">ToggleUsernameIsActive</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679402482"><span class="annot"><span class="annottext">show :: ToggleUsernameIsActive -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405454"><span id="local-6989586621679405457"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-type">ToggleUsernameIsActive</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679405452"><span class="annot"><span class="annottext">show :: ToggleUsernameIsActive -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-type">ToggleUsernameIsActive</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_active :: ToggleUsernameIsActive -&gt; Maybe Bool
-</span><a href="TD.Query.ToggleUsernameIsActive.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402480"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679402480"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ToggleUsernameIsActive.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405450"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405450"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">username :: ToggleUsernameIsActive -&gt; Maybe String
-</span><a href="TD.Query.ToggleUsernameIsActive.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402479"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402479"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
+</span><a href="TD.Query.ToggleUsernameIsActive.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405449"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405449"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ToggleUsernameIsActive&quot;</span></span><span>
@@ -49,24 +49,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679402480"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679405450"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402479"><span class="hs-identifier hs-var">username_</span></a></span><span>
+</span><a href="#local-6989586621679405449"><span class="hs-identifier hs-var">username_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402470"><span id="local-6989586621679402472"><span id="local-6989586621679402474"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-type">ToggleUsernameIsActive</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679402468"><span class="annot"><span class="annottext">toJSON :: ToggleUsernameIsActive -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405440"><span id="local-6989586621679405442"><span id="local-6989586621679405444"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-type">ToggleUsernameIsActive</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679405438"><span class="annot"><span class="annottext">toJSON :: ToggleUsernameIsActive -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.ToggleUsernameIsActive.html#ToggleUsernameIsActive"><span class="hs-identifier hs-type">ToggleUsernameIsActive</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_active :: ToggleUsernameIsActive -&gt; Maybe Bool
-</span><a href="TD.Query.ToggleUsernameIsActive.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402466"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679402466"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ToggleUsernameIsActive.html#is_active"><span class="hs-identifier hs-var">is_active</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405436"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405436"><span class="hs-identifier hs-var">is_active_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">username :: ToggleUsernameIsActive -&gt; Maybe String
-</span><a href="TD.Query.ToggleUsernameIsActive.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402465"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402465"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
+</span><a href="TD.Query.ToggleUsernameIsActive.html#username"><span class="hs-identifier hs-var">username</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405435"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679405435"><span class="hs-identifier hs-var">username_</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_active&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679402466"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679405436"><span class="hs-identifier hs-var">is_active_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;username&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402465"><span class="hs-identifier hs-var">username_</span></a></span><span>
+</span><a href="#local-6989586621679405435"><span class="hs-identifier hs-var">username_</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

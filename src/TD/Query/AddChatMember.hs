@@ -10,11 +10,11 @@ import qualified Utils as U
 -- |
 -- Adds a new member to a chat. Members can't be added to private or secret chats
 data AddChatMember = AddChatMember
-  { -- |
+  { -- | The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     forward_limit :: Maybe Int,
-    -- |
+    -- | Identifier of the user
     user_id :: Maybe Int,
-    -- | Chat identifier @user_id Identifier of the user @forward_limit The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -8,13 +8,13 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns a list of common group chats with a given user. Chats are sorted by their type and creation date @user_id User identifier @offset_chat_id Chat identifier starting from which to return chats; use 0 for the first request @limit The maximum number of chats to be returned; up to 100
+-- Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
 data GetGroupsInCommon = GetGroupsInCommon
-  { -- |
+  { -- | The maximum number of chats to be returned; up to 100
     limit :: Maybe Int,
-    -- |
+    -- | Chat identifier starting from which to return chats; use 0 for the first request
     offset_chat_id :: Maybe Int,
-    -- |
+    -- | User identifier
     user_id :: Maybe Int
   }
   deriving (Eq)

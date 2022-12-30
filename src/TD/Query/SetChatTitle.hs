@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
 data SetChatTitle = SetChatTitle
-  { -- |
+  { -- | New title of the chat; 1-128 characters
     title :: Maybe String,
-    -- | Chat identifier @title New title of the chat; 1-128 characters
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -18,6 +18,10 @@ data BasicGroupFullInfo = -- | Contains full information about a basic group
     bot_commands :: Maybe [BotCommands.BotCommands],
     -- | Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened
     invite_link :: Maybe ChatInviteLink.ChatInviteLink,
+    -- | True, if aggressive anti-spam checks can be enabled or disabled in the supergroup after upgrading the basic group to a supergroup
+    can_toggle_aggressive_anti_spam :: Maybe Bool,
+    -- | True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading the basic group to a supergroup
+    can_hide_members :: Maybe Bool,
     -- | Group members
     members :: Maybe [ChatMember.ChatMember],
     -- | User identifier of the creator of the group; 0 if unknown
@@ -34,6 +38,8 @@ instance Show BasicGroupFullInfo where
     BasicGroupFullInfo
       { bot_commands = bot_commands_,
         invite_link = invite_link_,
+        can_toggle_aggressive_anti_spam = can_toggle_aggressive_anti_spam_,
+        can_hide_members = can_hide_members_,
         members = members_,
         creator_user_id = creator_user_id_,
         description = description_,
@@ -43,6 +49,8 @@ instance Show BasicGroupFullInfo where
         ++ U.cc
           [ U.p "bot_commands" bot_commands_,
             U.p "invite_link" invite_link_,
+            U.p "can_toggle_aggressive_anti_spam" can_toggle_aggressive_anti_spam_,
+            U.p "can_hide_members" can_hide_members_,
             U.p "members" members_,
             U.p "creator_user_id" creator_user_id_,
             U.p "description" description_,
@@ -61,11 +69,13 @@ instance T.FromJSON BasicGroupFullInfo where
       parseBasicGroupFullInfo = A.withObject "BasicGroupFullInfo" $ \o -> do
         bot_commands_ <- o A..:? "bot_commands"
         invite_link_ <- o A..:? "invite_link"
+        can_toggle_aggressive_anti_spam_ <- o A..:? "can_toggle_aggressive_anti_spam"
+        can_hide_members_ <- o A..:? "can_hide_members"
         members_ <- o A..:? "members"
         creator_user_id_ <- o A..:? "creator_user_id"
         description_ <- o A..:? "description"
         photo_ <- o A..:? "photo"
-        return $ BasicGroupFullInfo {bot_commands = bot_commands_, invite_link = invite_link_, members = members_, creator_user_id = creator_user_id_, description = description_, photo = photo_}
+        return $ BasicGroupFullInfo {bot_commands = bot_commands_, invite_link = invite_link_, can_toggle_aggressive_anti_spam = can_toggle_aggressive_anti_spam_, can_hide_members = can_hide_members_, members = members_, creator_user_id = creator_user_id_, description = description_, photo = photo_}
   parseJSON _ = mempty
 
 instance T.ToJSON BasicGroupFullInfo where
@@ -73,6 +83,8 @@ instance T.ToJSON BasicGroupFullInfo where
     BasicGroupFullInfo
       { bot_commands = bot_commands_,
         invite_link = invite_link_,
+        can_toggle_aggressive_anti_spam = can_toggle_aggressive_anti_spam_,
+        can_hide_members = can_hide_members_,
         members = members_,
         creator_user_id = creator_user_id_,
         description = description_,
@@ -82,6 +94,8 @@ instance T.ToJSON BasicGroupFullInfo where
         [ "@type" A..= T.String "basicGroupFullInfo",
           "bot_commands" A..= bot_commands_,
           "invite_link" A..= invite_link_,
+          "can_toggle_aggressive_anti_spam" A..= can_toggle_aggressive_anti_spam_,
+          "can_hide_members" A..= can_hide_members_,
           "members" A..= members_,
           "creator_user_id" A..= creator_user_id_,
           "description" A..= description_,

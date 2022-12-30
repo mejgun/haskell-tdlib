@@ -8,11 +8,12 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed @chat_id Chat identifier of the message @message_id Identifier of the message with the opened content
+-- Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
+-- An updateMessageContentOpened update will be generated if something has changed
 data OpenMessageContent = OpenMessageContent
-  { -- |
+  { -- | Identifier of the message with the opened content
     message_id :: Maybe Int,
-    -- |
+    -- | Chat identifier of the message
     chat_id :: Maybe Int
   }
   deriving (Eq)

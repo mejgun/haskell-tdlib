@@ -11,25 +11,25 @@ import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
 -- |
-data Animation = -- | Describes an animation file. The animation must be encoded in GIF or MPEG4 format @duration Duration of the animation, in seconds; as defined by the sender @width Width of the animation @height Height of the animation
+data Animation = -- | Describes an animation file. The animation must be encoded in GIF or MPEG4 format
   Animation
-  { -- |
+  { -- | File containing the animation
     animation :: Maybe File.File,
-    -- |
+    -- | Animation thumbnail in JPEG or MPEG4 format; may be null
     thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- | Animation minithumbnail; may be null @thumbnail Animation thumbnail in JPEG or MPEG4 format; may be null @animation File containing the animation
+    -- | Animation minithumbnail; may be null
     minithumbnail :: Maybe Minithumbnail.Minithumbnail,
     -- | True, if stickers were added to the animation. The list of corresponding sticker set can be received using getAttachedStickerSets
     has_stickers :: Maybe Bool,
-    -- |
+    -- | MIME type of the file, usually "image/gif" or "video/mp4"
     mime_type :: Maybe String,
-    -- | Original name of the file; as defined by the sender @mime_type MIME type of the file, usually "image/gif" or "video/mp4"
+    -- | Original name of the file; as defined by the sender
     file_name :: Maybe String,
-    -- |
+    -- | Height of the animation
     height :: Maybe Int,
-    -- |
+    -- | Width of the animation
     width :: Maybe Int,
-    -- |
+    -- | Duration of the animation, in seconds; as defined by the sender
     duration :: Maybe Int
   }
   deriving (Eq)

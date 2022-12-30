@@ -8,9 +8,9 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Changes the editable username of the current user @username The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+-- Changes the editable username of the current user
 data SetUsername = SetUsername
-  { -- |
+  { -- | The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     username :: Maybe String
   }
   deriving (Eq)

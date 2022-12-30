@@ -10,25 +10,25 @@
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-11"></span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="NotificationGroup"><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-var">NotificationGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Describes a group of notifications @id Unique persistent auto-incremented from 1 identifier of the notification group @type Type of the group</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="NotificationGroup"><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-var">NotificationGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Describes a group of notifications</span><span>
 </span><span id="line-14"></span><span>  </span><span id="NotificationGroup"><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-var">NotificationGroup</span></a></span></span><span>
-</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | The list of active notifications</span><span>
 </span><span id="line-16"></span><span>    </span><span id="notifications"><span class="annot"><span class="annottext">NotificationGroup -&gt; Maybe [Notification]
 </span><a href="TD.Data.NotificationGroup.html#notifications"><span class="hs-identifier hs-var hs-var">notifications</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="TD.Data.Notification.html#Notification"><span class="hs-identifier hs-type">Notification.Notification</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Total number of active notifications in the group @notifications The list of active notifications</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Total number of active notifications in the group</span><span>
 </span><span id="line-18"></span><span>    </span><span id="total_count"><span class="annot"><span class="annottext">NotificationGroup -&gt; Maybe Int
 </span><a href="TD.Data.NotificationGroup.html#total_count"><span class="hs-identifier hs-var hs-var">total_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
 </span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Identifier of a chat to which all notifications in the group belong</span><span>
 </span><span id="line-20"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">NotificationGroup -&gt; Maybe Int
 </span><a href="TD.Data.NotificationGroup.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | Type of the group</span><span>
 </span><span id="line-22"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">NotificationGroup -&gt; Maybe NotificationGroupType
 </span><a href="TD.Data.NotificationGroup.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType.NotificationGroupType</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-23"></span><span>    </span><span class="hs-comment">-- | Unique persistent auto-incremented from 1 identifier of the notification group</span><span>
 </span><span id="line-24"></span><span>    </span><span id="_id"><span class="annot"><span class="annottext">NotificationGroup -&gt; Maybe Int
 </span><a href="TD.Data.NotificationGroup.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-25"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679464962"><span id="local-6989586621679464964"><span class="annot"><span class="annottext">NotificationGroup -&gt; NotificationGroup -&gt; Bool
+</span><span id="line-26"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679468367"><span id="local-6989586621679468369"><span class="annot"><span class="annottext">NotificationGroup -&gt; NotificationGroup -&gt; Bool
 (NotificationGroup -&gt; NotificationGroup -&gt; Bool)
 -&gt; (NotificationGroup -&gt; NotificationGroup -&gt; Bool)
 -&gt; Eq NotificationGroup
@@ -39,25 +39,25 @@ $c/= :: NotificationGroup -&gt; NotificationGroup -&gt; Bool
 $c== :: NotificationGroup -&gt; NotificationGroup -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679464956"><span id="local-6989586621679464959"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679464954"><span class="annot"><span class="annottext">show :: NotificationGroup -&gt; String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679468361"><span id="local-6989586621679468364"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679468359"><span class="annot"><span class="annottext">show :: NotificationGroup -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">notifications :: NotificationGroup -&gt; Maybe [Notification]
-</span><a href="TD.Data.NotificationGroup.html#notifications"><span class="hs-identifier hs-var">notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464952"><span class="annot"><span class="annottext">Maybe [Notification]
-</span><a href="#local-6989586621679464952"><span class="hs-identifier hs-var">notifications_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#notifications"><span class="hs-identifier hs-var">notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468357"><span class="annot"><span class="annottext">Maybe [Notification]
+</span><a href="#local-6989586621679468357"><span class="hs-identifier hs-var">notifications_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">total_count :: NotificationGroup -&gt; Maybe Int
-</span><a href="TD.Data.NotificationGroup.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464951"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464951"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468356"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468356"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: NotificationGroup -&gt; Maybe Int
-</span><a href="TD.Data.NotificationGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464950"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464950"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468355"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468355"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">_type :: NotificationGroup -&gt; Maybe NotificationGroupType
-</span><a href="TD.Data.NotificationGroup.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464949"><span class="annot"><span class="annottext">Maybe NotificationGroupType
-</span><a href="#local-6989586621679464949"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468354"><span class="annot"><span class="annottext">Maybe NotificationGroupType
+</span><a href="#local-6989586621679468354"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>        </span><span class="annot"><span class="annottext">_id :: NotificationGroup -&gt; Maybe Int
-</span><a href="TD.Data.NotificationGroup.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464948"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464948"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
+</span><a href="TD.Data.NotificationGroup.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468353"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468353"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-37"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;NotificationGroup&quot;</span></span><span>
@@ -69,55 +69,55 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Notification]
-</span><a href="#local-6989586621679464952"><span class="hs-identifier hs-var">notifications_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468357"><span class="hs-identifier hs-var">notifications_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;total_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464951"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468356"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464950"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468355"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe NotificationGroupType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe NotificationGroupType
-</span><a href="#local-6989586621679464949"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468354"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-43"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464948"><span class="hs-identifier hs-var">_id_</span></a></span><span>
+</span><a href="#local-6989586621679468353"><span class="hs-identifier hs-var">_id_</span></a></span><span>
 </span><span id="line-44"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679464943"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span>  </span><span id="local-6989586621679464941"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationGroup
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679464939"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679464939"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679464937"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464937"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-48"></span><span>    </span><span id="local-6989586621679464936"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679464936"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464937"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-46"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679468348"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-47"></span><span>  </span><span id="local-6989586621679468346"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationGroup
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679468344"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679468344"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679468342"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468342"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679468341"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679468341"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468342"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-49"></span><span>
 </span><span id="line-50"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679464936"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679468341"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-51"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;notificationGroup&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroup
-</span><a href="#local-6989586621679464934"><span class="hs-identifier hs-var">parseNotificationGroup</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679464939"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679468339"><span class="hs-identifier hs-var">parseNotificationGroup</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679468344"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-52"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser NotificationGroup
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-53"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679464934"><span class="hs-identifier hs-type">parseNotificationGroup</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span><span>
-</span><span id="line-55"></span><span>      </span><span id="local-6989586621679464934"><span class="annot"><span class="annottext">parseNotificationGroup :: Value -&gt; Parser NotificationGroup
-</span><a href="#local-6989586621679464934"><span class="hs-identifier hs-var hs-var">parseNotificationGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>      </span><span class="annot"><a href="#local-6989586621679468339"><span class="hs-identifier hs-type">parseNotificationGroup</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span><span>
+</span><span id="line-55"></span><span>      </span><span id="local-6989586621679468339"><span class="annot"><span class="annottext">parseNotificationGroup :: Value -&gt; Parser NotificationGroup
+</span><a href="#local-6989586621679468339"><span class="hs-identifier hs-var hs-var">parseNotificationGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroup)
 -&gt; Value
 -&gt; Parser NotificationGroup
@@ -129,35 +129,35 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser NotificationGroup
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679464932"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464932"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>        </span><span id="local-6989586621679464931"><span class="annot"><span class="annottext">Maybe [Notification]
-</span><a href="#local-6989586621679464931"><span class="hs-identifier hs-var">notifications_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464932"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Notification])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679468337"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468337"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>        </span><span id="local-6989586621679468336"><span class="annot"><span class="annottext">Maybe [Notification]
+</span><a href="#local-6989586621679468336"><span class="hs-identifier hs-var">notifications_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468337"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Notification])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;notifications&quot;</span></span><span>
-</span><span id="line-57"></span><span>        </span><span id="local-6989586621679464929"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464929"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464932"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-57"></span><span>        </span><span id="local-6989586621679468334"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468334"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468337"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;total_count&quot;</span></span><span>
-</span><span id="line-58"></span><span>        </span><span id="local-6989586621679464928"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464928"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464932"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-58"></span><span>        </span><span id="local-6989586621679468333"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468333"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468337"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span>
-</span><span id="line-59"></span><span>        </span><span id="local-6989586621679464927"><span class="annot"><span class="annottext">Maybe NotificationGroupType
-</span><a href="#local-6989586621679464927"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464932"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NotificationGroupType)
+</span><span id="line-59"></span><span>        </span><span id="local-6989586621679468332"><span class="annot"><span class="annottext">Maybe NotificationGroupType
+</span><a href="#local-6989586621679468332"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468337"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NotificationGroupType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-60"></span><span>        </span><span id="local-6989586621679464926"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464926"><span class="hs-identifier hs-var">_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464932"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-60"></span><span>        </span><span id="local-6989586621679468331"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468331"><span class="hs-identifier hs-var">_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468337"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span>
@@ -174,39 +174,39 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; NotificationGroup
 </span><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">notifications :: Maybe [Notification]
 </span><a href="TD.Data.NotificationGroup.html#notifications"><span class="hs-identifier hs-var">notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Notification]
-</span><a href="#local-6989586621679464931"><span class="hs-identifier hs-var">notifications_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">total_count :: Maybe Int
+</span><a href="#local-6989586621679468336"><span class="hs-identifier hs-var">notifications_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">total_count :: Maybe Int
 </span><a href="TD.Data.NotificationGroup.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464929"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679468334"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="TD.Data.NotificationGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464928"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe NotificationGroupType
+</span><a href="#local-6989586621679468333"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe NotificationGroupType
 </span><a href="TD.Data.NotificationGroup.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe NotificationGroupType
-</span><a href="#local-6989586621679464927"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="#local-6989586621679468332"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
 </span><a href="TD.Data.NotificationGroup.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464926"><span class="hs-identifier hs-var">_id_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679468331"><span class="hs-identifier hs-var">_id_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-62"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser NotificationGroup
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679464919"><span id="local-6989586621679464921"><span id="local-6989586621679464923"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-65"></span><span>  </span><span id="local-6989586621679464917"><span class="annot"><span class="annottext">toJSON :: NotificationGroup -&gt; Value
+</span><span id="line-64"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679468324"><span id="local-6989586621679468326"><span id="local-6989586621679468328"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-65"></span><span>  </span><span id="local-6989586621679468322"><span class="annot"><span class="annottext">toJSON :: NotificationGroup -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-66"></span><span>    </span><span class="annot"><a href="TD.Data.NotificationGroup.html#NotificationGroup"><span class="hs-identifier hs-type">NotificationGroup</span></a></span><span>
 </span><span id="line-67"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">notifications :: NotificationGroup -&gt; Maybe [Notification]
-</span><a href="TD.Data.NotificationGroup.html#notifications"><span class="hs-identifier hs-var">notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464915"><span class="annot"><span class="annottext">Maybe [Notification]
-</span><a href="#local-6989586621679464915"><span class="hs-identifier hs-var">notifications_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#notifications"><span class="hs-identifier hs-var">notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468320"><span class="annot"><span class="annottext">Maybe [Notification]
+</span><a href="#local-6989586621679468320"><span class="hs-identifier hs-var">notifications_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>        </span><span class="annot"><span class="annottext">total_count :: NotificationGroup -&gt; Maybe Int
-</span><a href="TD.Data.NotificationGroup.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464914"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464914"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468319"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468319"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: NotificationGroup -&gt; Maybe Int
-</span><a href="TD.Data.NotificationGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464913"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464913"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468318"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468318"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>        </span><span class="annot"><span class="annottext">_type :: NotificationGroup -&gt; Maybe NotificationGroupType
-</span><a href="TD.Data.NotificationGroup.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464912"><span class="annot"><span class="annottext">Maybe NotificationGroupType
-</span><a href="#local-6989586621679464912"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.NotificationGroup.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468317"><span class="annot"><span class="annottext">Maybe NotificationGroupType
+</span><a href="#local-6989586621679468317"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>        </span><span class="annot"><span class="annottext">_id :: NotificationGroup -&gt; Maybe Int
-</span><a href="TD.Data.NotificationGroup.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464911"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464911"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
+</span><a href="TD.Data.NotificationGroup.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468316"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679468316"><span class="hs-identifier hs-var">_id_</span></a></span></span><span>
 </span><span id="line-72"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-73"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -220,26 +220,26 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Notification] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Notification]
-</span><a href="#local-6989586621679464915"><span class="hs-identifier hs-var">notifications_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468320"><span class="hs-identifier hs-var">notifications_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-76"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;total_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464914"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468319"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-77"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464913"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468318"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-78"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NotificationGroupType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe NotificationGroupType
-</span><a href="#local-6989586621679464912"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679468317"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-79"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464911"><span class="hs-identifier hs-var">_id_</span></a></span><span>
+</span><a href="#local-6989586621679468316"><span class="hs-identifier hs-var">_id_</span></a></span><span>
 </span><span id="line-80"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-81"></span></pre></body></html>

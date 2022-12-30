@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator rights in the supergroup unless the user is creator of the topic
+-- Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
 data EditForumTopic = EditForumTopic
   { -- | Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     icon_custom_emoji_id :: Maybe Int,

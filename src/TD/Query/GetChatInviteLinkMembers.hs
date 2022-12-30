@@ -9,15 +9,15 @@ import qualified TD.Data.ChatInviteLinkMember as ChatInviteLinkMember
 import qualified Utils as U
 
 -- |
--- Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links @chat_id Chat identifier @invite_link Invite link for which to return chat members
+-- Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 data GetChatInviteLinkMembers = GetChatInviteLinkMembers
-  { -- |
+  { -- | The maximum number of chat members to return; up to 100
     limit :: Maybe Int,
-    -- | A chat member from which to return next chat members; pass null to get results from the beginning @limit The maximum number of chat members to return; up to 100
+    -- | A chat member from which to return next chat members; pass null to get results from the beginning
     offset_member :: Maybe ChatInviteLinkMember.ChatInviteLinkMember,
-    -- |
+    -- | Invite link for which to return chat members
     invite_link :: Maybe String,
-    -- |
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

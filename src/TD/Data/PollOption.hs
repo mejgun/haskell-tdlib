@@ -8,17 +8,17 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data PollOption = -- | Describes one answer option of a poll @text Option text; 1-100 characters @voter_count Number of voters for this option, available only for closed or voted polls @vote_percentage The percentage of votes for this option; 0-100
+data PollOption = -- | Describes one answer option of a poll
   PollOption
-  { -- |
+  { -- | True, if the option is being chosen by a pending setPollAnswer request
     is_being_chosen :: Maybe Bool,
-    -- | True, if the option was chosen by the user @is_being_chosen True, if the option is being chosen by a pending setPollAnswer request
+    -- | True, if the option was chosen by the user
     is_chosen :: Maybe Bool,
-    -- |
+    -- | The percentage of votes for this option; 0-100
     vote_percentage :: Maybe Int,
-    -- |
+    -- | Number of voters for this option, available only for closed or voted polls
     voter_count :: Maybe Int,
-    -- |
+    -- | Option text; 1-100 characters
     text :: Maybe String
   }
   deriving (Eq)

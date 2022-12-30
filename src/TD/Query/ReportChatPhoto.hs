@@ -11,13 +11,13 @@ import qualified Utils as U
 -- |
 -- Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
 data ReportChatPhoto = ReportChatPhoto
-  { -- |
+  { -- | Additional report details; 0-1024 characters
     text :: Maybe String,
-    -- |
+    -- | The reason for reporting the chat photo
     reason :: Maybe ChatReportReason.ChatReportReason,
-    -- |
+    -- | Identifier of the photo to report. Only full photos from chatPhoto can be reported
     file_id :: Maybe Int,
-    -- | Chat identifier @file_id Identifier of the photo to report. Only full photos from chatPhoto can be reported @reason The reason for reporting the chat photo @text Additional report details; 0-1024 characters
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

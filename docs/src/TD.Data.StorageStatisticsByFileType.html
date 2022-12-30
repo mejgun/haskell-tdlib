@@ -9,19 +9,19 @@
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="StorageStatisticsByFileType"><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-var">StorageStatisticsByFileType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains the storage usage statistics for a specific file type @file_type File type @size Total size of the files, in bytes @count Total number of files</span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="StorageStatisticsByFileType"><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-var">StorageStatisticsByFileType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Contains the storage usage statistics for a specific file type</span><span>
 </span><span id="line-13"></span><span>  </span><span id="StorageStatisticsByFileType"><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-var">StorageStatisticsByFileType</span></a></span></span><span>
-</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Total number of files</span><span>
 </span><span id="line-15"></span><span>    </span><span id="count"><span class="annot"><span class="annottext">StorageStatisticsByFileType -&gt; Maybe Int
 </span><a href="TD.Data.StorageStatisticsByFileType.html#count"><span class="hs-identifier hs-var hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Total size of the files, in bytes</span><span>
 </span><span id="line-17"></span><span>    </span><span id="size"><span class="annot"><span class="annottext">StorageStatisticsByFileType -&gt; Maybe Int
 </span><a href="TD.Data.StorageStatisticsByFileType.html#size"><span class="hs-identifier hs-var hs-var">size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-comment">-- | File type</span><span>
 </span><span id="line-19"></span><span>    </span><span id="file_type"><span class="annot"><span class="annottext">StorageStatisticsByFileType -&gt; Maybe FileType
 </span><a href="TD.Data.StorageStatisticsByFileType.html#file_type"><span class="hs-identifier hs-var hs-var">file_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.FileType.html#FileType"><span class="hs-identifier hs-type">FileType.FileType</span></a></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679441254"><span id="local-6989586621679441256"><span class="annot"><span class="annottext">StorageStatisticsByFileType -&gt; StorageStatisticsByFileType -&gt; Bool
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679444494"><span id="local-6989586621679444496"><span class="annot"><span class="annottext">StorageStatisticsByFileType -&gt; StorageStatisticsByFileType -&gt; Bool
 (StorageStatisticsByFileType
  -&gt; StorageStatisticsByFileType -&gt; Bool)
 -&gt; (StorageStatisticsByFileType
@@ -34,19 +34,19 @@ $c/= :: StorageStatisticsByFileType -&gt; StorageStatisticsByFileType -&gt; Bool
 $c== :: StorageStatisticsByFileType -&gt; StorageStatisticsByFileType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679441248"><span id="local-6989586621679441251"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679441246"><span class="annot"><span class="annottext">show :: StorageStatisticsByFileType -&gt; String
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444488"><span id="local-6989586621679444491"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>  </span><span id="local-6989586621679444486"><span class="annot"><span class="annottext">show :: StorageStatisticsByFileType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">count :: StorageStatisticsByFileType -&gt; Maybe Int
-</span><a href="TD.Data.StorageStatisticsByFileType.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441244"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441244"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StorageStatisticsByFileType.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444484"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444484"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">size :: StorageStatisticsByFileType -&gt; Maybe Int
-</span><a href="TD.Data.StorageStatisticsByFileType.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441243"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441243"><span class="hs-identifier hs-var">size_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StorageStatisticsByFileType.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444483"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444483"><span class="hs-identifier hs-var">size_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">file_type :: StorageStatisticsByFileType -&gt; Maybe FileType
-</span><a href="TD.Data.StorageStatisticsByFileType.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441242"><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679441242"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span>
+</span><a href="TD.Data.StorageStatisticsByFileType.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444482"><span class="annot"><span class="annottext">Maybe FileType
+</span><a href="#local-6989586621679444482"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span>
 </span><span id="line-29"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-30"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;StorageStatisticsByFileType&quot;</span></span><span>
@@ -58,45 +58,45 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441244"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679444484"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441243"><span class="hs-identifier hs-var">size_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679444483"><span class="hs-identifier hs-var">size_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe FileType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;file_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679441242"><span class="hs-identifier hs-var">file_type_</span></a></span><span>
+</span><a href="#local-6989586621679444482"><span class="hs-identifier hs-var">file_type_</span></a></span><span>
 </span><span id="line-35"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679441237"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span>  </span><span id="local-6989586621679441235"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StorageStatisticsByFileType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679441233"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679441233"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679441231"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679441231"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679441230"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679441230"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679441231"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444477"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span>  </span><span id="local-6989586621679444475"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StorageStatisticsByFileType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679444473"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679444473"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679444471"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444471"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679444470"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679444470"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444471"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-40"></span><span>
 </span><span id="line-41"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679441230"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679444470"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;storageStatisticsByFileType&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StorageStatisticsByFileType
-</span><a href="#local-6989586621679441228"><span class="hs-identifier hs-var">parseStorageStatisticsByFileType</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679441233"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679444468"><span class="hs-identifier hs-var">parseStorageStatisticsByFileType</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679444473"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser StorageStatisticsByFileType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>      </span><span class="annot"><a href="#local-6989586621679441228"><span class="hs-identifier hs-type">parseStorageStatisticsByFileType</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span><span>
-</span><span id="line-46"></span><span>      </span><span id="local-6989586621679441228"><span class="annot"><span class="annottext">parseStorageStatisticsByFileType :: Value -&gt; Parser StorageStatisticsByFileType
-</span><a href="#local-6989586621679441228"><span class="hs-identifier hs-var hs-var">parseStorageStatisticsByFileType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>      </span><span class="annot"><a href="#local-6989586621679444468"><span class="hs-identifier hs-type">parseStorageStatisticsByFileType</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span><span>
+</span><span id="line-46"></span><span>      </span><span id="local-6989586621679444468"><span class="annot"><span class="annottext">parseStorageStatisticsByFileType :: Value -&gt; Parser StorageStatisticsByFileType
+</span><a href="#local-6989586621679444468"><span class="hs-identifier hs-var hs-var">parseStorageStatisticsByFileType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StorageStatisticsByFileType)
 -&gt; Value
 -&gt; Parser StorageStatisticsByFileType
@@ -108,23 +108,23 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser StorageStatisticsByFileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679441226"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679441226"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-47"></span><span>        </span><span id="local-6989586621679441225"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441225"><span class="hs-identifier hs-var">count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679441226"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679444466"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444466"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>        </span><span id="local-6989586621679444465"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444465"><span class="hs-identifier hs-var">count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444466"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;count&quot;</span></span><span>
-</span><span id="line-48"></span><span>        </span><span id="local-6989586621679441223"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441223"><span class="hs-identifier hs-var">size_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679441226"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-48"></span><span>        </span><span id="local-6989586621679444463"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444463"><span class="hs-identifier hs-var">size_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444466"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span>
-</span><span id="line-49"></span><span>        </span><span id="local-6989586621679441222"><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679441222"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679441226"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FileType)
+</span><span id="line-49"></span><span>        </span><span id="local-6989586621679444462"><span class="annot"><span class="annottext">Maybe FileType
+</span><a href="#local-6989586621679444462"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444466"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FileType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;file_type&quot;</span></span><span>
@@ -138,29 +138,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe Int -&gt; Maybe FileType -&gt; StorageStatisticsByFileType
 </span><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">count :: Maybe Int
 </span><a href="TD.Data.StorageStatisticsByFileType.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441225"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: Maybe Int
+</span><a href="#local-6989586621679444465"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">size :: Maybe Int
 </span><a href="TD.Data.StorageStatisticsByFileType.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441223"><span class="hs-identifier hs-var">size_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_type :: Maybe FileType
+</span><a href="#local-6989586621679444463"><span class="hs-identifier hs-var">size_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_type :: Maybe FileType
 </span><a href="TD.Data.StorageStatisticsByFileType.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679441222"><span class="hs-identifier hs-var">file_type_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679444462"><span class="hs-identifier hs-var">file_type_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-51"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser StorageStatisticsByFileType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-52"></span><span>
-</span><span id="line-53"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679441215"><span id="local-6989586621679441217"><span id="local-6989586621679441219"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-54"></span><span>  </span><span id="local-6989586621679441213"><span class="annot"><span class="annottext">toJSON :: StorageStatisticsByFileType -&gt; Value
+</span><span id="line-53"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444455"><span id="local-6989586621679444457"><span id="local-6989586621679444459"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-54"></span><span>  </span><span id="local-6989586621679444453"><span class="annot"><span class="annottext">toJSON :: StorageStatisticsByFileType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-55"></span><span>    </span><span class="annot"><a href="TD.Data.StorageStatisticsByFileType.html#StorageStatisticsByFileType"><span class="hs-identifier hs-type">StorageStatisticsByFileType</span></a></span><span>
 </span><span id="line-56"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">count :: StorageStatisticsByFileType -&gt; Maybe Int
-</span><a href="TD.Data.StorageStatisticsByFileType.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441211"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441211"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StorageStatisticsByFileType.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444451"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444451"><span class="hs-identifier hs-var">count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">size :: StorageStatisticsByFileType -&gt; Maybe Int
-</span><a href="TD.Data.StorageStatisticsByFileType.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441210"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441210"><span class="hs-identifier hs-var">size_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.StorageStatisticsByFileType.html#size"><span class="hs-identifier hs-var">size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444450"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444450"><span class="hs-identifier hs-var">size_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">file_type :: StorageStatisticsByFileType -&gt; Maybe FileType
-</span><a href="TD.Data.StorageStatisticsByFileType.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441209"><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679441209"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span>
+</span><a href="TD.Data.StorageStatisticsByFileType.html#file_type"><span class="hs-identifier hs-var">file_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444449"><span class="annot"><span class="annottext">Maybe FileType
+</span><a href="#local-6989586621679444449"><span class="hs-identifier hs-var">file_type_</span></a></span></span><span>
 </span><span id="line-59"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-60"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -174,16 +174,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441211"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679444451"><span class="hs-identifier hs-var">count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441210"><span class="hs-identifier hs-var">size_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679444450"><span class="hs-identifier hs-var">size_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;file_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FileType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FileType
-</span><a href="#local-6989586621679441209"><span class="hs-identifier hs-var">file_type_</span></a></span><span>
+</span><a href="#local-6989586621679444449"><span class="hs-identifier hs-var">file_type_</span></a></span><span>
 </span><span id="line-65"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-66"></span></pre></body></html>

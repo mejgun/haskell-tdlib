@@ -11,25 +11,25 @@ import qualified Utils as U
 -- |
 data PersonalDetails = -- | Contains the user's personal details
   PersonalDetails
-  { -- |
+  { -- | A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
     residence_country_code :: Maybe String,
-    -- |
+    -- | A two-letter ISO 3166-1 alpha-2 country code of the user's country
     country_code :: Maybe String,
-    -- |
+    -- | Gender of the user, "male" or "female"
     gender :: Maybe String,
-    -- | Birthdate of the user @gender Gender of the user, "male" or "female" @country_code A two-letter ISO 3166-1 alpha-2 country code of the user's country @residence_country_code A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
+    -- | Birthdate of the user
     birthdate :: Maybe Date.Date,
-    -- |
+    -- | Native last name of the user; 1-255 characters
     native_last_name :: Maybe String,
-    -- |
+    -- | Native middle name of the user; 0-255 characters
     native_middle_name :: Maybe String,
-    -- | Native first name of the user; 1-255 characters @native_middle_name Native middle name of the user; 0-255 characters @native_last_name Native last name of the user; 1-255 characters
+    -- | Native first name of the user; 1-255 characters
     native_first_name :: Maybe String,
-    -- |
+    -- | Last name of the user written in English; 1-255 characters
     last_name :: Maybe String,
-    -- |
+    -- | Middle name of the user written in English; 0-255 characters
     middle_name :: Maybe String,
-    -- | First name of the user written in English; 1-255 characters @middle_name Middle name of the user written in English; 0-255 characters @last_name Last name of the user written in English; 1-255 characters
+    -- | First name of the user written in English; 1-255 characters
     first_name :: Maybe String
   }
   deriving (Eq)

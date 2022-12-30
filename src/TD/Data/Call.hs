@@ -9,17 +9,17 @@ import qualified TD.Data.CallState as CallState
 import qualified Utils as U
 
 -- |
-data Call = -- | Describes a call @id Call identifier, not persistent @user_id Peer user identifier @is_outgoing True, if the call is outgoing @is_video True, if the call is a video call @state Call state
+data Call = -- | Describes a call
   Call
-  { -- |
+  { -- | Call state
     state :: Maybe CallState.CallState,
-    -- |
+    -- | True, if the call is a video call
     is_video :: Maybe Bool,
-    -- |
+    -- | True, if the call is outgoing
     is_outgoing :: Maybe Bool,
-    -- |
+    -- | Peer user identifier
     user_id :: Maybe Int,
-    -- |
+    -- | Call identifier, not persistent
     _id :: Maybe Int
   }
   deriving (Eq)

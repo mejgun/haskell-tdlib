@@ -9,17 +9,17 @@ import qualified TD.Data.InlineQueryResult as InlineQueryResult
 import qualified Utils as U
 
 -- |
-data InlineQueryResults = -- | Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query @inline_query_id Unique identifier of the inline query @next_offset The offset for the next request. If empty, there are no more results @results Results of the query
+data InlineQueryResults = -- | Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
   InlineQueryResults
-  { -- |
+  { -- | Parameter for the bot start message
     switch_pm_parameter :: Maybe String,
-    -- | If non-empty, this text must be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter @switch_pm_parameter Parameter for the bot start message
+    -- | If non-empty, this text must be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
     switch_pm_text :: Maybe String,
-    -- |
+    -- | Results of the query
     results :: Maybe [InlineQueryResult.InlineQueryResult],
-    -- |
+    -- | The offset for the next request. If empty, there are no more results
     next_offset :: Maybe String,
-    -- |
+    -- | Unique identifier of the inline query
     inline_query_id :: Maybe Int
   }
   deriving (Eq)

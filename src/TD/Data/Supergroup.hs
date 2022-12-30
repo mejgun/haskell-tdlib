@@ -10,7 +10,9 @@ import qualified TD.Data.Usernames as Usernames
 import qualified Utils as U
 
 -- |
-data Supergroup = -- | Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
+data Supergroup = -- | Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup:
+  -- only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos.
+  -- Unlike supergroups, channels can have an unlimited number of subscribers
   Supergroup
   { -- | True, if many users reported this supergroup or channel as a fake account
     is_fake :: Maybe Bool,
@@ -38,7 +40,8 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
     has_location :: Maybe Bool,
     -- | True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     has_linked_chat :: Maybe Bool,
-    -- | Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
+    -- | Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received
+    -- through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
     member_count :: Maybe Int,
     -- | Status of the current user in the supergroup or channel; custom title will always be empty
     status :: Maybe ChatMemberStatus.ChatMemberStatus,

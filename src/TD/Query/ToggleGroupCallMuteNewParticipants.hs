@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
 data ToggleGroupCallMuteNewParticipants = ToggleGroupCallMuteNewParticipants
-  { -- |
+  { -- | New value of the mute_new_participants setting
     mute_new_participants :: Maybe Bool,
-    -- | Group call identifier @mute_new_participants New value of the mute_new_participants setting
+    -- | Group call identifier
     group_call_id :: Maybe Int
   }
   deriving (Eq)

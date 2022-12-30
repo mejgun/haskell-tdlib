@@ -11,11 +11,11 @@ import qualified Utils as U
 -- |
 -- Changes the notification settings of a forum topic
 data SetForumTopicNotificationSettings = SetForumTopicNotificationSettings
-  { -- |
+  { -- | New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
     notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings,
-    -- |
+    -- | Message thread identifier of the forum topic
     message_thread_id :: Maybe Int,
-    -- | Chat identifier @message_thread_id Message thread identifier of the forum topic @notification_settings New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -11,7 +11,7 @@ import qualified Utils as U
 data MessageSendingState
   = -- | The message is being sent now, but has not yet been delivered to the server
     MessageSendingStatePending
-  | -- | The message failed to be sent @error_code An error code; 0 if unknown @error_message Error message
+  | -- | The message failed to be sent
     MessageSendingStateFailed
       { -- | Time left before the message can be re-sent, in seconds. No update is sent when this field changes
         retry_after :: Maybe Float,
@@ -19,9 +19,9 @@ data MessageSendingState
         need_another_sender :: Maybe Bool,
         -- | True, if the message can be re-sent
         can_retry :: Maybe Bool,
-        -- |
+        -- | Error message
         error_message :: Maybe String,
-        -- |
+        -- | An error code; 0 if unknown
         error_code :: Maybe Int
       }
   deriving (Eq)

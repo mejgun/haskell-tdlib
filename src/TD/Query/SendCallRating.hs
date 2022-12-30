@@ -9,15 +9,15 @@ import qualified TD.Data.CallProblem as CallProblem
 import qualified Utils as U
 
 -- |
--- Sends a call rating @call_id Call identifier @rating Call rating; 1-5 @comment An optional user comment if the rating is less than 5 @problems List of the exact types of problems with the call, specified by the user
+-- Sends a call rating
 data SendCallRating = SendCallRating
-  { -- |
+  { -- | List of the exact types of problems with the call, specified by the user
     problems :: Maybe [CallProblem.CallProblem],
-    -- |
+    -- | An optional user comment if the rating is less than 5
     comment :: Maybe String,
-    -- |
+    -- | Call rating; 1-5
     rating :: Maybe Int,
-    -- |
+    -- | Call identifier
     call_id :: Maybe Int
   }
   deriving (Eq)

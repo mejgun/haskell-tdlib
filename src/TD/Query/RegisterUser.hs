@@ -10,9 +10,9 @@ import qualified Utils as U
 -- |
 -- Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
 data RegisterUser = RegisterUser
-  { -- |
+  { -- | The last name of the user; 0-64 characters
     last_name :: Maybe String,
-    -- | The first name of the user; 1-64 characters @last_name The last name of the user; 0-64 characters
+    -- | The first name of the user; 1-64 characters
     first_name :: Maybe String
   }
   deriving (Eq)

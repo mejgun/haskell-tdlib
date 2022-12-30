@@ -10,13 +10,13 @@ import qualified Utils as U
 -- |
 -- Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
 data DeleteChatMessagesByDate = DeleteChatMessagesByDate
-  { -- |
+  { -- | Pass true to delete chat messages for all users; private chats only
     revoke :: Maybe Bool,
-    -- |
+    -- | The maximum date of the messages to delete
     max_date :: Maybe Int,
-    -- |
+    -- | The minimum date of the messages to delete
     min_date :: Maybe Int,
-    -- | Chat identifier @min_date The minimum date of the messages to delete @max_date The maximum date of the messages to delete @revoke Pass true to delete chat messages for all users; private chats only
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

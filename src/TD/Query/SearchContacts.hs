@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Searches for the specified query in the first names, last names and usernames of the known user contacts @query Query to search for; may be empty to return all contacts @limit The maximum number of users to be returned
+-- Searches for the specified query in the first names, last names and usernames of the known user contacts
 data SearchContacts = SearchContacts
-  { -- |
+  { -- | The maximum number of users to be returned
     limit :: Maybe Int,
-    -- |
+    -- | Query to search for; may be empty to return all contacts
     query :: Maybe String
   }
   deriving (Eq)

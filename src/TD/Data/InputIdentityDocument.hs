@@ -10,19 +10,19 @@ import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
 -- |
-data InputIdentityDocument = -- | An identity document to be saved to Telegram Passport @number Document number; 1-24 characters @expiry_date Document expiry date; pass null if not applicable @front_side Front side of the document
+data InputIdentityDocument = -- | An identity document to be saved to Telegram Passport
   InputIdentityDocument
-  { -- |
+  { -- | List of files containing a certified English translation of the document
     translation :: Maybe [InputFile.InputFile],
-    -- |
+    -- | Selfie with the document; pass null if unavailable
     selfie :: Maybe InputFile.InputFile,
-    -- | Reverse side of the document; only for driver license and identity card; pass null otherwise @selfie Selfie with the document; pass null if unavailable @translation List of files containing a certified English translation of the document
+    -- | Reverse side of the document; only for driver license and identity card; pass null otherwise
     reverse_side :: Maybe InputFile.InputFile,
-    -- |
+    -- | Front side of the document
     front_side :: Maybe InputFile.InputFile,
-    -- |
+    -- | Document expiry date; pass null if not applicable
     expiry_date :: Maybe Date.Date,
-    -- |
+    -- | Document number; 1-24 characters
     number :: Maybe String
   }
   deriving (Eq)

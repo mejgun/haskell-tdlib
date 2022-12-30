@@ -10,25 +10,25 @@ import qualified TD.Data.PassportElementType as PassportElementType
 import qualified Utils as U
 
 -- |
-data EncryptedPassportElement = -- | Contains information about an encrypted Telegram Passport element; for bots only @type Type of Telegram Passport element @data Encrypted JSON-encoded data about the user @front_side The front side of an identity document @reverse_side The reverse side of an identity document; may be null @selfie Selfie with the document; may be null @translation List of files containing a certified English translation of the document @files List of attached files @value Unencrypted data, phone number or email address @hash Hash of the entire element
+data EncryptedPassportElement = -- | Contains information about an encrypted Telegram Passport element; for bots only
   EncryptedPassportElement
-  { -- |
+  { -- | Hash of the entire element
     hash :: Maybe String,
-    -- |
+    -- | Unencrypted data, phone number or email address
     value :: Maybe String,
-    -- |
+    -- | List of attached files
     files :: Maybe [DatedFile.DatedFile],
-    -- |
+    -- | List of files containing a certified English translation of the document
     translation :: Maybe [DatedFile.DatedFile],
-    -- |
+    -- | Selfie with the document; may be null
     selfie :: Maybe DatedFile.DatedFile,
-    -- |
+    -- | The reverse side of an identity document; may be null
     reverse_side :: Maybe DatedFile.DatedFile,
-    -- |
+    -- | The front side of an identity document
     front_side :: Maybe DatedFile.DatedFile,
-    -- |
+    -- | Encrypted JSON-encoded data about the user
     _data :: Maybe String,
-    -- |
+    -- | Type of Telegram Passport element
     _type :: Maybe PassportElementType.PassportElementType
   }
   deriving (Eq)

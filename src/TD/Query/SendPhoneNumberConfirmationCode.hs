@@ -9,13 +9,13 @@ import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthent
 import qualified Utils as U
 
 -- |
--- Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation @hash Hash value from the link @phone_number Phone number value from the link @settings Settings for the authentication of the user's phone number; pass null to use default settings
+-- Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
 data SendPhoneNumberConfirmationCode = SendPhoneNumberConfirmationCode
-  { -- |
+  { -- | Settings for the authentication of the user's phone number; pass null to use default settings
     settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,
-    -- |
+    -- | Phone number value from the link
     phone_number :: Maybe String,
-    -- |
+    -- | Hash value from the link
     hash :: Maybe String
   }
   deriving (Eq)

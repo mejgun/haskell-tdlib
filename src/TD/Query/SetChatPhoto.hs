@@ -11,9 +11,9 @@ import qualified Utils as U
 -- |
 -- Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
 data SetChatPhoto = SetChatPhoto
-  { -- |
+  { -- | New chat photo; pass null to delete the chat photo
     photo :: Maybe InputChatPhoto.InputChatPhoto,
-    -- | Chat identifier @photo New chat photo; pass null to delete the chat photo
+    -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -15,9 +15,9 @@ data GetChatMessagePosition = GetChatMessagePosition
     message_thread_id :: Maybe Int,
     -- | Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter,
-    -- |
+    -- | Message identifier
     message_id :: Maybe Int,
-    -- | Identifier of the chat in which to find message position @message_id Message identifier
+    -- | Identifier of the chat in which to find message position
     chat_id :: Maybe Int
   }
   deriving (Eq)

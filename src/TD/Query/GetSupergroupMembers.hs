@@ -9,15 +9,15 @@ import qualified TD.Data.SupergroupMembersFilter as SupergroupMembersFilter
 import qualified Utils as U
 
 -- |
--- Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters @supergroup_id Identifier of the supergroup or channel
+-- Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
 data GetSupergroupMembers = GetSupergroupMembers
-  { -- |
+  { -- | The maximum number of users be returned; up to 200
     limit :: Maybe Int,
-    -- |
+    -- | Number of users to skip
     offset :: Maybe Int,
-    -- | The type of users to return; pass null to use supergroupMembersFilterRecent @offset Number of users to skip @limit The maximum number of users be returned; up to 200
+    -- | The type of users to return; pass null to use supergroupMembersFilterRecent
     _filter :: Maybe SupergroupMembersFilter.SupergroupMembersFilter,
-    -- |
+    -- | Identifier of the supergroup or channel
     supergroup_id :: Maybe Int
   }
   deriving (Eq)

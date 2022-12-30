@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data EmailAddressAuthenticationCodeInfo = -- | Information about the email address authentication code that was sent @email_address_pattern Pattern of the email address to which an authentication code was sent @length Length of the code; 0 if unknown
+data EmailAddressAuthenticationCodeInfo = -- | Information about the email address authentication code that was sent
   EmailAddressAuthenticationCodeInfo
-  { -- |
+  { -- | Length of the code; 0 if unknown
     _length :: Maybe Int,
-    -- |
+    -- | Pattern of the email address to which an authentication code was sent
     email_address_pattern :: Maybe String
   }
   deriving (Eq)

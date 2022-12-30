@@ -13,9 +13,9 @@ import qualified Utils as U
 data ToggleGroupCallParticipantIsHandRaised = ToggleGroupCallParticipantIsHandRaised
   { -- | Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
     is_hand_raised :: Maybe Bool,
-    -- |
+    -- | Participant identifier
     participant_id :: Maybe MessageSender.MessageSender,
-    -- | Group call identifier @participant_id Participant identifier
+    -- | Group call identifier
     group_call_id :: Maybe Int
   }
   deriving (Eq)

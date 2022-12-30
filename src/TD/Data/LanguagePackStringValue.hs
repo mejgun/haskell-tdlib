@@ -16,17 +16,17 @@ data LanguagePackStringValue
       }
   | -- | A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
     LanguagePackStringValuePluralized
-      { -- |
+      { -- | Default value
         other_value :: Maybe String,
-        -- |
+        -- | Value for many objects
         many_value :: Maybe String,
-        -- | Value for few objects @many_value Value for many objects @other_value Default value
+        -- | Value for few objects
         few_value :: Maybe String,
-        -- |
+        -- | Value for two objects
         two_value :: Maybe String,
-        -- |
+        -- | Value for one object
         one_value :: Maybe String,
-        -- | Value for zero objects @one_value Value for one object @two_value Value for two objects
+        -- | Value for zero objects
         zero_value :: Maybe String
       }
   | -- | A deleted language pack string, the value must be taken from the built-in English language pack

@@ -22,32 +22,32 @@ data CallState
       }
   | -- | The call has been answered and encryption keys are being exchanged
     CallStateExchangingKeys
-  | -- | The call is ready to use @protocol Call protocols supported by the peer @servers List of available call servers @config A JSON-encoded call config @encryption_key Call encryption key @emojis Encryption key emojis fingerprint @allow_p2p True, if peer-to-peer connection is allowed by users privacy settings
+  | -- | The call is ready to use
     CallStateReady
-      { -- |
+      { -- | True, if peer-to-peer connection is allowed by users privacy settings
         allow_p2p :: Maybe Bool,
-        -- |
+        -- | Encryption key emojis fingerprint
         emojis :: Maybe [String],
-        -- |
+        -- | Call encryption key
         encryption_key :: Maybe String,
-        -- |
+        -- | A JSON-encoded call config
         config :: Maybe String,
-        -- |
+        -- | List of available call servers
         servers :: Maybe [CallServer.CallServer],
-        -- |
+        -- | Call protocols supported by the peer
         protocol :: Maybe CallProtocol.CallProtocol
       }
   | -- | The call is hanging up after discardCall has been called
     CallStateHangingUp
-  | -- | The call has ended successfully @reason The reason, why the call has ended @need_rating True, if the call rating must be sent to the server @need_debug_information True, if the call debug information must be sent to the server @need_log True, if the call log must be sent to the server
+  | -- | The call has ended successfully
     CallStateDiscarded
-      { -- |
+      { -- | True, if the call log must be sent to the server
         need_log :: Maybe Bool,
-        -- |
+        -- | True, if the call debug information must be sent to the server
         need_debug_information :: Maybe Bool,
-        -- |
+        -- | True, if the call rating must be sent to the server
         need_rating :: Maybe Bool,
-        -- |
+        -- | The reason, why the call has ended
         reason :: Maybe CallDiscardReason.CallDiscardReason
       }
   | -- | The call has ended with an error @error Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout

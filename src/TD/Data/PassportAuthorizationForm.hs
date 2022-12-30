@@ -9,13 +9,13 @@ import qualified TD.Data.PassportRequiredElement as PassportRequiredElement
 import qualified Utils as U
 
 -- |
-data PassportAuthorizationForm = -- | Contains information about a Telegram Passport authorization form that was requested @id Unique identifier of the authorization form
+data PassportAuthorizationForm = -- | Contains information about a Telegram Passport authorization form that was requested
   PassportAuthorizationForm
   { -- | URL for the privacy policy of the service; may be empty
     privacy_policy_url :: Maybe String,
     -- | Telegram Passport elements that must be provided to complete the form
     required_elements :: Maybe [PassportRequiredElement.PassportRequiredElement],
-    -- |
+    -- | Unique identifier of the authorization form
     _id :: Maybe Int
   }
   deriving (Eq)

@@ -24,7 +24,7 @@
 </span><span id="line-21"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">BanChatMember -&gt; Maybe Int
 </span><a href="TD.Query.BanChatMember.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679431714"><span id="local-6989586621679431716"><span class="annot"><span class="annottext">BanChatMember -&gt; BanChatMember -&gt; Bool
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434717"><span id="local-6989586621679434719"><span class="annot"><span class="annottext">BanChatMember -&gt; BanChatMember -&gt; Bool
 (BanChatMember -&gt; BanChatMember -&gt; Bool)
 -&gt; (BanChatMember -&gt; BanChatMember -&gt; Bool) -&gt; Eq BanChatMember
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -34,22 +34,22 @@ $c/= :: BanChatMember -&gt; BanChatMember -&gt; Bool
 $c== :: BanChatMember -&gt; BanChatMember -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431708"><span id="local-6989586621679431711"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.BanChatMember.html#BanChatMember"><span class="hs-identifier hs-type">BanChatMember</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679431706"><span class="annot"><span class="annottext">show :: BanChatMember -&gt; String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434711"><span id="local-6989586621679434714"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.BanChatMember.html#BanChatMember"><span class="hs-identifier hs-type">BanChatMember</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679434709"><span class="annot"><span class="annottext">show :: BanChatMember -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Query.BanChatMember.html#BanChatMember"><span class="hs-identifier hs-type">BanChatMember</span></a></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">revoke_messages :: BanChatMember -&gt; Maybe Bool
-</span><a href="TD.Query.BanChatMember.html#revoke_messages"><span class="hs-identifier hs-var">revoke_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431704"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679431704"><span class="hs-identifier hs-var">revoke_messages_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.BanChatMember.html#revoke_messages"><span class="hs-identifier hs-var">revoke_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434707"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679434707"><span class="hs-identifier hs-var">revoke_messages_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">banned_until_date :: BanChatMember -&gt; Maybe Int
-</span><a href="TD.Query.BanChatMember.html#banned_until_date"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431703"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431703"><span class="hs-identifier hs-var">banned_until_date_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.BanChatMember.html#banned_until_date"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434706"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434706"><span class="hs-identifier hs-var">banned_until_date_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">member_id :: BanChatMember -&gt; Maybe MessageSender
-</span><a href="TD.Query.BanChatMember.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431702"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679431702"><span class="hs-identifier hs-var">member_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.BanChatMember.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434705"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679434705"><span class="hs-identifier hs-var">member_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: BanChatMember -&gt; Maybe Int
-</span><a href="TD.Query.BanChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431701"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431701"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.BanChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434704"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434704"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;BanChatMember&quot;</span></span><span>
@@ -61,40 +61,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;revoke_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679431704"><span class="hs-identifier hs-var">revoke_messages_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434707"><span class="hs-identifier hs-var">revoke_messages_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;banned_until_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431703"><span class="hs-identifier hs-var">banned_until_date_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434706"><span class="hs-identifier hs-var">banned_until_date_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSender -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;member_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679431702"><span class="hs-identifier hs-var">member_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434705"><span class="hs-identifier hs-var">member_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431701"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679434704"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431692"><span id="local-6989586621679431694"><span id="local-6989586621679431696"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.BanChatMember.html#BanChatMember"><span class="hs-identifier hs-type">BanChatMember</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>  </span><span id="local-6989586621679431690"><span class="annot"><span class="annottext">toJSON :: BanChatMember -&gt; Value
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434695"><span id="local-6989586621679434697"><span id="local-6989586621679434699"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.BanChatMember.html#BanChatMember"><span class="hs-identifier hs-type">BanChatMember</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679434693"><span class="annot"><span class="annottext">toJSON :: BanChatMember -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-43"></span><span>    </span><span class="annot"><a href="TD.Query.BanChatMember.html#BanChatMember"><span class="hs-identifier hs-type">BanChatMember</span></a></span><span>
 </span><span id="line-44"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">revoke_messages :: BanChatMember -&gt; Maybe Bool
-</span><a href="TD.Query.BanChatMember.html#revoke_messages"><span class="hs-identifier hs-var">revoke_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431688"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679431688"><span class="hs-identifier hs-var">revoke_messages_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.BanChatMember.html#revoke_messages"><span class="hs-identifier hs-var">revoke_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434691"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679434691"><span class="hs-identifier hs-var">revoke_messages_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">banned_until_date :: BanChatMember -&gt; Maybe Int
-</span><a href="TD.Query.BanChatMember.html#banned_until_date"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431687"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431687"><span class="hs-identifier hs-var">banned_until_date_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.BanChatMember.html#banned_until_date"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434690"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434690"><span class="hs-identifier hs-var">banned_until_date_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">member_id :: BanChatMember -&gt; Maybe MessageSender
-</span><a href="TD.Query.BanChatMember.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431686"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679431686"><span class="hs-identifier hs-var">member_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.BanChatMember.html#member_id"><span class="hs-identifier hs-var">member_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434689"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679434689"><span class="hs-identifier hs-var">member_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: BanChatMember -&gt; Maybe Int
-</span><a href="TD.Query.BanChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431685"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431685"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.BanChatMember.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434688"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679434688"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-48"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -108,21 +108,21 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;revoke_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679431688"><span class="hs-identifier hs-var">revoke_messages_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434691"><span class="hs-identifier hs-var">revoke_messages_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;banned_until_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431687"><span class="hs-identifier hs-var">banned_until_date_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434690"><span class="hs-identifier hs-var">banned_until_date_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-53"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;member_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSender -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679431686"><span class="hs-identifier hs-var">member_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679434689"><span class="hs-identifier hs-var">member_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-54"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679431685"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679434688"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-55"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-56"></span></pre></body></html>

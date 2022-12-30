@@ -8,16 +8,16 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true @supergroup_id Supergroup identifier @message_id Identifier of the erroneously deleted message</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="ReportSupergroupAntiSpamFalsePositive"><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-var">ReportSupergroupAntiSpamFalsePositive</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="ReportSupergroupAntiSpamFalsePositive"><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-var">ReportSupergroupAntiSpamFalsePositive</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Identifier of the erroneously deleted message</span><span>
 </span><span id="line-14"></span><span>    </span><span id="message_id"><span class="annot"><span class="annottext">ReportSupergroupAntiSpamFalsePositive -&gt; Maybe Int
 </span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#message_id"><span class="hs-identifier hs-var hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | Supergroup identifier</span><span>
 </span><span id="line-16"></span><span>    </span><span id="supergroup_id"><span class="annot"><span class="annottext">ReportSupergroupAntiSpamFalsePositive -&gt; Maybe Int
 </span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#supergroup_id"><span class="hs-identifier hs-var hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408062"><span id="local-6989586621679408064"><span class="annot"><span class="annottext">ReportSupergroupAntiSpamFalsePositive
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679411191"><span id="local-6989586621679411193"><span class="annot"><span class="annottext">ReportSupergroupAntiSpamFalsePositive
 -&gt; ReportSupergroupAntiSpamFalsePositive -&gt; Bool
 (ReportSupergroupAntiSpamFalsePositive
  -&gt; ReportSupergroupAntiSpamFalsePositive -&gt; Bool)
@@ -35,16 +35,16 @@ $c== :: ReportSupergroupAntiSpamFalsePositive
 -&gt; ReportSupergroupAntiSpamFalsePositive -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408056"><span id="local-6989586621679408059"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-type">ReportSupergroupAntiSpamFalsePositive</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679408054"><span class="annot"><span class="annottext">show :: ReportSupergroupAntiSpamFalsePositive -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411185"><span id="local-6989586621679411188"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-type">ReportSupergroupAntiSpamFalsePositive</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679411183"><span class="annot"><span class="annottext">show :: ReportSupergroupAntiSpamFalsePositive -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-type">ReportSupergroupAntiSpamFalsePositive</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_id :: ReportSupergroupAntiSpamFalsePositive -&gt; Maybe Int
-</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408052"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408052"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411181"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679411181"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">supergroup_id :: ReportSupergroupAntiSpamFalsePositive -&gt; Maybe Int
-</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408051"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408051"><span class="hs-identifier hs-var">supergroup_id_</span></a></span></span><span>
+</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411180"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679411180"><span class="hs-identifier hs-var">supergroup_id_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ReportSupergroupAntiSpamFalsePositive&quot;</span></span><span>
@@ -56,24 +56,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408052"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679411181"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408051"><span class="hs-identifier hs-var">supergroup_id_</span></a></span><span>
+</span><a href="#local-6989586621679411180"><span class="hs-identifier hs-var">supergroup_id_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408042"><span id="local-6989586621679408044"><span id="local-6989586621679408046"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-type">ReportSupergroupAntiSpamFalsePositive</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679408040"><span class="annot"><span class="annottext">toJSON :: ReportSupergroupAntiSpamFalsePositive -&gt; Value
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411171"><span id="local-6989586621679411173"><span id="local-6989586621679411175"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-type">ReportSupergroupAntiSpamFalsePositive</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679411169"><span class="annot"><span class="annottext">toJSON :: ReportSupergroupAntiSpamFalsePositive -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#ReportSupergroupAntiSpamFalsePositive"><span class="hs-identifier hs-type">ReportSupergroupAntiSpamFalsePositive</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_id :: ReportSupergroupAntiSpamFalsePositive -&gt; Maybe Int
-</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408038"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408038"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411167"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679411167"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">supergroup_id :: ReportSupergroupAntiSpamFalsePositive -&gt; Maybe Int
-</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408037"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408037"><span class="hs-identifier hs-var">supergroup_id_</span></a></span></span><span>
+</span><a href="TD.Query.ReportSupergroupAntiSpamFalsePositive.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411166"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679411166"><span class="hs-identifier hs-var">supergroup_id_</span></a></span></span><span>
 </span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -87,11 +87,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408038"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679411167"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679408037"><span class="hs-identifier hs-var">supergroup_id_</span></a></span><span>
+</span><a href="#local-6989586621679411166"><span class="hs-identifier hs-var">supergroup_id_</span></a></span><span>
 </span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span></pre></body></html>

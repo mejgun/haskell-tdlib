@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true @supergroup_id Supergroup identifier @message_id Identifier of the erroneously deleted message
+-- Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
 data ReportSupergroupAntiSpamFalsePositive = ReportSupergroupAntiSpamFalsePositive
-  { -- |
+  { -- | Identifier of the erroneously deleted message
     message_id :: Maybe Int,
-    -- |
+    -- | Supergroup identifier
     supergroup_id :: Maybe Int
   }
   deriving (Eq)

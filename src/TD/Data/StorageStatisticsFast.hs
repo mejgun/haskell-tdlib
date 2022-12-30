@@ -8,17 +8,17 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data StorageStatisticsFast = -- | Contains approximate storage usage statistics, excluding files of unknown file type @files_size Approximate total size of files, in bytes @file_count Approximate number of files
+data StorageStatisticsFast = -- | Contains approximate storage usage statistics, excluding files of unknown file type
   StorageStatisticsFast
-  { -- |
+  { -- | Size of the TDLib internal log
     log_size :: Maybe Int,
-    -- |
+    -- | Size of the language pack database
     language_pack_database_size :: Maybe Int,
-    -- | Size of the database @language_pack_database_size Size of the language pack database @log_size Size of the TDLib internal log
+    -- | Size of the database
     database_size :: Maybe Int,
-    -- |
+    -- | Approximate number of files
     file_count :: Maybe Int,
-    -- |
+    -- | Approximate total size of files, in bytes
     files_size :: Maybe Int
   }
   deriving (Eq)

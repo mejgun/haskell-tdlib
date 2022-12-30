@@ -8,33 +8,33 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data LanguagePackInfo = -- | Contains information about a language pack @id Unique language pack identifier
+data LanguagePackInfo = -- | Contains information about a language pack
   LanguagePackInfo
-  { -- |
+  { -- | Link to language translation interface; empty for custom local language packs
     translation_url :: Maybe String,
-    -- | Total number of non-deleted strings from the language pack available locally @translation_url Link to language translation interface; empty for custom local language packs
+    -- | Total number of non-deleted strings from the language pack available locally
     local_string_count :: Maybe Int,
-    -- |
+    -- | Total number of translated strings from the language pack
     translated_string_count :: Maybe Int,
-    -- | Total number of non-deleted strings from the language pack @translated_string_count Total number of translated strings from the language pack
+    -- | Total number of non-deleted strings from the language pack
     total_string_count :: Maybe Int,
     -- | True, if the language pack is installed by the current user
     is_installed :: Maybe Bool,
-    -- |
+    -- | True, if the language pack is a beta language pack
     is_beta :: Maybe Bool,
-    -- |
+    -- | True, if the language pack strings are RTL
     is_rtl :: Maybe Bool,
-    -- | True, if the language pack is official @is_rtl True, if the language pack strings are RTL @is_beta True, if the language pack is a beta language pack
+    -- | True, if the language pack is official
     is_official :: Maybe Bool,
     -- | A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
     plural_code :: Maybe String,
-    -- |
+    -- | Name of the language in that language
     native_name :: Maybe String,
-    -- | Language name @native_name Name of the language in that language
+    -- | Language name
     name :: Maybe String,
     -- | Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack. Unsupported in custom language packs
     base_language_pack_id :: Maybe String,
-    -- |
+    -- | Unique language pack identifier
     _id :: Maybe String
   }
   deriving (Eq)

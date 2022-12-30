@@ -14,13 +14,13 @@ data BackgroundFill
       { -- |
         color :: Maybe Int
       }
-  | -- | Describes a gradient fill of a background @top_color A top color of the background in the RGB24 format @bottom_color A bottom color of the background in the RGB24 format
+  | -- | Describes a gradient fill of a background
     BackgroundFillGradient
       { -- | Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
         rotation_angle :: Maybe Int,
-        -- |
+        -- | A bottom color of the background in the RGB24 format
         bottom_color :: Maybe Int,
-        -- |
+        -- | A top color of the background in the RGB24 format
         top_color :: Maybe Int
       }
   | -- | Describes a freeform gradient fill of a background @colors A list of 3 or 4 colors of the freeform gradients in the RGB24 format

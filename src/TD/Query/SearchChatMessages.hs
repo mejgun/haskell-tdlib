@@ -18,7 +18,8 @@ data SearchChatMessages = SearchChatMessages
     message_thread_id :: Maybe Int,
     -- | Additional filter for messages to search; pass null to search for all messages
     _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter,
-    -- | The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    -- | The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.
+    -- For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     limit :: Maybe Int,
     -- | Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
     offset :: Maybe Int,

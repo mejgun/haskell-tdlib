@@ -10,9 +10,11 @@ import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified Utils as U
 
 -- |
-data ProfilePhoto = -- | Describes a user profile photo @id Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
+data ProfilePhoto = -- | Describes a user profile photo
   ProfilePhoto
-  { -- | True, if the photo has animated variant
+  { -- | True, if the photo is visible only for the current user
+    is_personal :: Maybe Bool,
+    -- | True, if the photo has animated variant
     has_animation :: Maybe Bool,
     -- | User profile photo minithumbnail; may be null
     minithumbnail :: Maybe Minithumbnail.Minithumbnail,
@@ -20,7 +22,7 @@ data ProfilePhoto = -- | Describes a user profile photo @id Photo identifier; 0 
     big :: Maybe File.File,
     -- | A small (160x160) user profile photo. The file can be downloaded only before the photo is changed
     small :: Maybe File.File,
-    -- |
+    -- | Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
     _id :: Maybe Int
   }
   deriving (Eq)
@@ -28,7 +30,8 @@ data ProfilePhoto = -- | Describes a user profile photo @id Photo identifier; 0 
 instance Show ProfilePhoto where
   show
     ProfilePhoto
-      { has_animation = has_animation_,
+      { is_personal = is_personal_,
+        has_animation = has_animation_,
         minithumbnail = minithumbnail_,
         big = big_,
         small = small_,
@@ -36,7 +39,8 @@ instance Show ProfilePhoto where
       } =
       "ProfilePhoto"
         ++ U.cc
-          [ U.p "has_animation" has_animation_,
+          [ U.p "is_personal" is_personal_,
+            U.p "has_animation" has_animation_,
             U.p "minithumbnail" minithumbnail_,
             U.p "big" big_,
             U.p "small" small_,
@@ -53,18 +57,20 @@ instance T.FromJSON ProfilePhoto where
     where
       parseProfilePhoto :: A.Value -> T.Parser ProfilePhoto
       parseProfilePhoto = A.withObject "ProfilePhoto" $ \o -> do
+        is_personal_ <- o A..:? "is_personal"
         has_animation_ <- o A..:? "has_animation"
         minithumbnail_ <- o A..:? "minithumbnail"
         big_ <- o A..:? "big"
         small_ <- o A..:? "small"
         _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ ProfilePhoto {has_animation = has_animation_, minithumbnail = minithumbnail_, big = big_, small = small_, _id = _id_}
+        return $ ProfilePhoto {is_personal = is_personal_, has_animation = has_animation_, minithumbnail = minithumbnail_, big = big_, small = small_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON ProfilePhoto where
   toJSON
     ProfilePhoto
-      { has_animation = has_animation_,
+      { is_personal = is_personal_,
+        has_animation = has_animation_,
         minithumbnail = minithumbnail_,
         big = big_,
         small = small_,
@@ -72,6 +78,7 @@ instance T.ToJSON ProfilePhoto where
       } =
       A.object
         [ "@type" A..= T.String "profilePhoto",
+          "is_personal" A..= is_personal_,
           "has_animation" A..= has_animation_,
           "minithumbnail" A..= minithumbnail_,
           "big" A..= big_,

@@ -11,27 +11,27 @@ import qualified TD.Data.Thumbnail as Thumbnail
 import qualified Utils as U
 
 -- |
-data Video = -- | Describes a video file @duration Duration of the video, in seconds; as defined by the sender @width Video width; as defined by the sender @height Video height; as defined by the sender
+data Video = -- | Describes a video file
   Video
-  { -- |
+  { -- | File containing the video
     video :: Maybe File.File,
-    -- | Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null @video File containing the video
+    -- | Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null
     thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- |
+    -- | Video minithumbnail; may be null
     minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- | True, if the video is supposed to be streamed @minithumbnail Video minithumbnail; may be null
+    -- | True, if the video is supposed to be streamed
     supports_streaming :: Maybe Bool,
     -- | True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
     has_stickers :: Maybe Bool,
-    -- |
+    -- | MIME type of the file; as defined by the sender
     mime_type :: Maybe String,
-    -- | Original name of the file; as defined by the sender @mime_type MIME type of the file; as defined by the sender
+    -- | Original name of the file; as defined by the sender
     file_name :: Maybe String,
-    -- |
+    -- | Video height; as defined by the sender
     height :: Maybe Int,
-    -- |
+    -- | Video width; as defined by the sender
     width :: Maybe Int,
-    -- |
+    -- | Duration of the video, in seconds; as defined by the sender
     duration :: Maybe Int
   }
   deriving (Eq)

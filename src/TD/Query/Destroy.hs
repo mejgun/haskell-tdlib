@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
+-- Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
+-- After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
 data Destroy = Destroy
   {
   }

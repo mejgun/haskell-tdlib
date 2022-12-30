@@ -8,25 +8,25 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="PollOption"><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-var">PollOption</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Describes one answer option of a poll @text Option text; 1-100 characters @voter_count Number of voters for this option, available only for closed or voted polls @vote_percentage The percentage of votes for this option; 0-100</span><span>
+</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="PollOption"><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-var">PollOption</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-comment">-- | Describes one answer option of a poll</span><span>
 </span><span id="line-12"></span><span>  </span><span id="PollOption"><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-var">PollOption</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | True, if the option is being chosen by a pending setPollAnswer request</span><span>
 </span><span id="line-14"></span><span>    </span><span id="is_being_chosen"><span class="annot"><span class="annottext">PollOption -&gt; Maybe Bool
 </span><a href="TD.Data.PollOption.html#is_being_chosen"><span class="hs-identifier hs-var hs-var">is_being_chosen</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | True, if the option was chosen by the user @is_being_chosen True, if the option is being chosen by a pending setPollAnswer request</span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | True, if the option was chosen by the user</span><span>
 </span><span id="line-16"></span><span>    </span><span id="is_chosen"><span class="annot"><span class="annottext">PollOption -&gt; Maybe Bool
 </span><a href="TD.Data.PollOption.html#is_chosen"><span class="hs-identifier hs-var hs-var">is_chosen</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
-</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | The percentage of votes for this option; 0-100</span><span>
 </span><span id="line-18"></span><span>    </span><span id="vote_percentage"><span class="annot"><span class="annottext">PollOption -&gt; Maybe Int
 </span><a href="TD.Data.PollOption.html#vote_percentage"><span class="hs-identifier hs-var hs-var">vote_percentage</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-19"></span><span>    </span><span class="hs-comment">-- | Number of voters for this option, available only for closed or voted polls</span><span>
 </span><span id="line-20"></span><span>    </span><span id="voter_count"><span class="annot"><span class="annottext">PollOption -&gt; Maybe Int
 </span><a href="TD.Data.PollOption.html#voter_count"><span class="hs-identifier hs-var hs-var">voter_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span>
-</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-21"></span><span>    </span><span class="hs-comment">-- | Option text; 1-100 characters</span><span>
 </span><span id="line-22"></span><span>    </span><span id="text"><span class="annot"><span class="annottext">PollOption -&gt; Maybe String
 </span><a href="TD.Data.PollOption.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428244"><span id="local-6989586621679428246"><span class="annot"><span class="annottext">PollOption -&gt; PollOption -&gt; Bool
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679431373"><span id="local-6989586621679431375"><span class="annot"><span class="annottext">PollOption -&gt; PollOption -&gt; Bool
 (PollOption -&gt; PollOption -&gt; Bool)
 -&gt; (PollOption -&gt; PollOption -&gt; Bool) -&gt; Eq PollOption
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -36,25 +36,25 @@ $c/= :: PollOption -&gt; PollOption -&gt; Bool
 $c== :: PollOption -&gt; PollOption -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428238"><span id="local-6989586621679428241"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679428236"><span class="annot"><span class="annottext">show :: PollOption -&gt; String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431367"><span id="local-6989586621679431370"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679431365"><span class="annot"><span class="annottext">show :: PollOption -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span><span>
 </span><span id="line-29"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_being_chosen :: PollOption -&gt; Maybe Bool
-</span><a href="TD.Data.PollOption.html#is_being_chosen"><span class="hs-identifier hs-var">is_being_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428234"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428234"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#is_being_chosen"><span class="hs-identifier hs-var">is_being_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431363"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679431363"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">is_chosen :: PollOption -&gt; Maybe Bool
-</span><a href="TD.Data.PollOption.html#is_chosen"><span class="hs-identifier hs-var">is_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428233"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428233"><span class="hs-identifier hs-var">is_chosen_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#is_chosen"><span class="hs-identifier hs-var">is_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431362"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679431362"><span class="hs-identifier hs-var">is_chosen_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">vote_percentage :: PollOption -&gt; Maybe Int
-</span><a href="TD.Data.PollOption.html#vote_percentage"><span class="hs-identifier hs-var">vote_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428232"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428232"><span class="hs-identifier hs-var">vote_percentage_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#vote_percentage"><span class="hs-identifier hs-var">vote_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431361"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431361"><span class="hs-identifier hs-var">vote_percentage_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">voter_count :: PollOption -&gt; Maybe Int
-</span><a href="TD.Data.PollOption.html#voter_count"><span class="hs-identifier hs-var">voter_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428231"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428231"><span class="hs-identifier hs-var">voter_count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#voter_count"><span class="hs-identifier hs-var">voter_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431360"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431360"><span class="hs-identifier hs-var">voter_count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">text :: PollOption -&gt; Maybe String
-</span><a href="TD.Data.PollOption.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428230"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679428230"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
+</span><a href="TD.Data.PollOption.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431359"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431359"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
 </span><span id="line-34"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PollOption&quot;</span></span><span>
@@ -66,90 +66,90 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_being_chosen&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428234"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431363"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_chosen&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428233"><span class="hs-identifier hs-var">is_chosen_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431362"><span class="hs-identifier hs-var">is_chosen_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;vote_percentage&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428232"><span class="hs-identifier hs-var">vote_percentage_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431361"><span class="hs-identifier hs-var">vote_percentage_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;voter_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428231"><span class="hs-identifier hs-var">voter_count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431360"><span class="hs-identifier hs-var">voter_count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679428230"><span class="hs-identifier hs-var">text_</span></a></span><span>
+</span><a href="#local-6989586621679431359"><span class="hs-identifier hs-var">text_</span></a></span><span>
 </span><span id="line-42"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428225"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>  </span><span id="local-6989586621679428223"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PollOption
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679428221"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679428221"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679428219"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428219"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>    </span><span id="local-6989586621679428218"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428218"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428219"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431354"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span>  </span><span id="local-6989586621679431352"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PollOption
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679431350"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679431350"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679431348"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431348"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679431347"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679431347"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431348"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-47"></span><span>
 </span><span id="line-48"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428218"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679431347"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;pollOption&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PollOption
-</span><a href="#local-6989586621679428216"><span class="hs-identifier hs-var">parsePollOption</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679428221"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679431345"><span class="hs-identifier hs-var">parsePollOption</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679431350"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-50"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PollOption
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-51"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span>      </span><span class="annot"><a href="#local-6989586621679428216"><span class="hs-identifier hs-type">parsePollOption</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span><span>
-</span><span id="line-53"></span><span>      </span><span id="local-6989586621679428216"><span class="annot"><span class="annottext">parsePollOption :: Value -&gt; Parser PollOption
-</span><a href="#local-6989586621679428216"><span class="hs-identifier hs-var hs-var">parsePollOption</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-52"></span><span>      </span><span class="annot"><a href="#local-6989586621679431345"><span class="hs-identifier hs-type">parsePollOption</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span><span>
+</span><span id="line-53"></span><span>      </span><span id="local-6989586621679431345"><span class="annot"><span class="annottext">parsePollOption :: Value -&gt; Parser PollOption
+</span><a href="#local-6989586621679431345"><span class="hs-identifier hs-var hs-var">parsePollOption</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PollOption) -&gt; Value -&gt; Parser PollOption
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PollOption&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PollOption) -&gt; Value -&gt; Parser PollOption)
 -&gt; (Object -&gt; Parser PollOption) -&gt; Value -&gt; Parser PollOption
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679428214"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428214"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-54"></span><span>        </span><span id="local-6989586621679428213"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428213"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428214"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679431343"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431343"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679431342"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679431342"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431343"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_being_chosen&quot;</span></span><span>
-</span><span id="line-55"></span><span>        </span><span id="local-6989586621679428211"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428211"><span class="hs-identifier hs-var">is_chosen_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428214"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-55"></span><span>        </span><span id="local-6989586621679431340"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679431340"><span class="hs-identifier hs-var">is_chosen_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431343"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_chosen&quot;</span></span><span>
-</span><span id="line-56"></span><span>        </span><span id="local-6989586621679428210"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428210"><span class="hs-identifier hs-var">vote_percentage_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428214"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-56"></span><span>        </span><span id="local-6989586621679431339"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431339"><span class="hs-identifier hs-var">vote_percentage_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431343"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;vote_percentage&quot;</span></span><span>
-</span><span id="line-57"></span><span>        </span><span id="local-6989586621679428209"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428209"><span class="hs-identifier hs-var">voter_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428214"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-57"></span><span>        </span><span id="local-6989586621679431338"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431338"><span class="hs-identifier hs-var">voter_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431343"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;voter_count&quot;</span></span><span>
-</span><span id="line-58"></span><span>        </span><span id="local-6989586621679428208"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679428208"><span class="hs-identifier hs-var">text_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428214"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-58"></span><span>        </span><span id="local-6989586621679431337"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431337"><span class="hs-identifier hs-var">text_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431343"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;text&quot;</span></span><span>
@@ -166,39 +166,39 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PollOption
 </span><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">is_being_chosen :: Maybe Bool
 </span><a href="TD.Data.PollOption.html#is_being_chosen"><span class="hs-identifier hs-var">is_being_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428213"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_chosen :: Maybe Bool
+</span><a href="#local-6989586621679431342"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_chosen :: Maybe Bool
 </span><a href="TD.Data.PollOption.html#is_chosen"><span class="hs-identifier hs-var">is_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428211"><span class="hs-identifier hs-var">is_chosen_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">vote_percentage :: Maybe Int
+</span><a href="#local-6989586621679431340"><span class="hs-identifier hs-var">is_chosen_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">vote_percentage :: Maybe Int
 </span><a href="TD.Data.PollOption.html#vote_percentage"><span class="hs-identifier hs-var">vote_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428210"><span class="hs-identifier hs-var">vote_percentage_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">voter_count :: Maybe Int
+</span><a href="#local-6989586621679431339"><span class="hs-identifier hs-var">vote_percentage_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">voter_count :: Maybe Int
 </span><a href="TD.Data.PollOption.html#voter_count"><span class="hs-identifier hs-var">voter_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428209"><span class="hs-identifier hs-var">voter_count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: Maybe String
+</span><a href="#local-6989586621679431338"><span class="hs-identifier hs-var">voter_count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: Maybe String
 </span><a href="TD.Data.PollOption.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679428208"><span class="hs-identifier hs-var">text_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679431337"><span class="hs-identifier hs-var">text_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-60"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PollOption
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-61"></span><span>
-</span><span id="line-62"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428201"><span id="local-6989586621679428203"><span id="local-6989586621679428205"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-63"></span><span>  </span><span id="local-6989586621679428199"><span class="annot"><span class="annottext">toJSON :: PollOption -&gt; Value
+</span><span id="line-62"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431330"><span id="local-6989586621679431332"><span id="local-6989586621679431334"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-63"></span><span>  </span><span id="local-6989586621679431328"><span class="annot"><span class="annottext">toJSON :: PollOption -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-64"></span><span>    </span><span class="annot"><a href="TD.Data.PollOption.html#PollOption"><span class="hs-identifier hs-type">PollOption</span></a></span><span>
 </span><span id="line-65"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_being_chosen :: PollOption -&gt; Maybe Bool
-</span><a href="TD.Data.PollOption.html#is_being_chosen"><span class="hs-identifier hs-var">is_being_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428197"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428197"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#is_being_chosen"><span class="hs-identifier hs-var">is_being_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431326"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679431326"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>        </span><span class="annot"><span class="annottext">is_chosen :: PollOption -&gt; Maybe Bool
-</span><a href="TD.Data.PollOption.html#is_chosen"><span class="hs-identifier hs-var">is_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428196"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428196"><span class="hs-identifier hs-var">is_chosen_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#is_chosen"><span class="hs-identifier hs-var">is_chosen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431325"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679431325"><span class="hs-identifier hs-var">is_chosen_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-67"></span><span>        </span><span class="annot"><span class="annottext">vote_percentage :: PollOption -&gt; Maybe Int
-</span><a href="TD.Data.PollOption.html#vote_percentage"><span class="hs-identifier hs-var">vote_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428195"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428195"><span class="hs-identifier hs-var">vote_percentage_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#vote_percentage"><span class="hs-identifier hs-var">vote_percentage</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431324"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431324"><span class="hs-identifier hs-var">vote_percentage_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>        </span><span class="annot"><span class="annottext">voter_count :: PollOption -&gt; Maybe Int
-</span><a href="TD.Data.PollOption.html#voter_count"><span class="hs-identifier hs-var">voter_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428194"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428194"><span class="hs-identifier hs-var">voter_count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PollOption.html#voter_count"><span class="hs-identifier hs-var">voter_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431323"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431323"><span class="hs-identifier hs-var">voter_count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>        </span><span class="annot"><span class="annottext">text :: PollOption -&gt; Maybe String
-</span><a href="TD.Data.PollOption.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428193"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679428193"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
+</span><a href="TD.Data.PollOption.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431322"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431322"><span class="hs-identifier hs-var">text_</span></a></span></span><span>
 </span><span id="line-70"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-71"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -212,26 +212,26 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_being_chosen&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428197"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431326"><span class="hs-identifier hs-var">is_being_chosen_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-74"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_chosen&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428196"><span class="hs-identifier hs-var">is_chosen_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431325"><span class="hs-identifier hs-var">is_chosen_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-75"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;vote_percentage&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428195"><span class="hs-identifier hs-var">vote_percentage_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431324"><span class="hs-identifier hs-var">vote_percentage_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-76"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;voter_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679428194"><span class="hs-identifier hs-var">voter_count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679431323"><span class="hs-identifier hs-var">voter_count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-77"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679428193"><span class="hs-identifier hs-var">text_</span></a></span><span>
+</span><a href="#local-6989586621679431322"><span class="hs-identifier hs-var">text_</span></a></span><span>
 </span><span id="line-78"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-79"></span></pre></body></html>

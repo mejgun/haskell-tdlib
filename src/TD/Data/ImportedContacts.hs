@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data ImportedContacts = -- | Represents the result of an importContacts request @user_ids User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
+data ImportedContacts = -- | Represents the result of an importContacts request
   ImportedContacts
   { -- | The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
     importer_count :: Maybe [Int],
-    -- |
+    -- | User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
     user_ids :: Maybe [Int]
   }
   deriving (Eq)

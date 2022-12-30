@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.38.0
+version:        0.2.39.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -157,6 +157,7 @@ library
       TD.Data.ForumTopicIcon
       TD.Data.ForumTopicInfo
       TD.Data.ForumTopics
+      TD.Data.FoundChatMessages
       TD.Data.FoundFileDownloads
       TD.Data.FoundMessages
       TD.Data.Game
@@ -215,6 +216,7 @@ library
       TD.Data.MaskPoint
       TD.Data.MaskPosition
       TD.Data.Message
+      TD.Data.MessageAutoDeleteTime
       TD.Data.MessageCalendar
       TD.Data.MessageCalendarDay
       TD.Data.MessageContent
@@ -238,7 +240,6 @@ library
       TD.Data.MessageSendOptions
       TD.Data.MessageStatistics
       TD.Data.MessageThreadInfo
-      TD.Data.MessageTtl
       TD.Data.Minithumbnail
       TD.Data.NetworkStatistics
       TD.Data.NetworkStatisticsEntry
@@ -327,6 +328,7 @@ library
       TD.Data.StatisticalValue
       TD.Data.Sticker
       TD.Data.StickerFormat
+      TD.Data.StickerFullType
       TD.Data.Stickers
       TD.Data.StickerSet
       TD.Data.StickerSetInfo
@@ -577,7 +579,7 @@ library
       TD.Query.GetDatabaseStatistics
       TD.Query.GetDeepLinkInfo
       TD.Query.GetDefaultEmojiStatuses
-      TD.Query.GetDefaultMessageTtl
+      TD.Query.GetDefaultMessageAutoDeleteTime
       TD.Query.GetEmojiReaction
       TD.Query.GetEmojiSuggestionsUrl
       TD.Query.GetExternalLink
@@ -835,8 +837,8 @@ library
       TD.Query.SetChatDraftMessage
       TD.Query.SetChatLocation
       TD.Query.SetChatMemberStatus
+      TD.Query.SetChatMessageAutoDeleteTime
       TD.Query.SetChatMessageSender
-      TD.Query.SetChatMessageTtl
       TD.Query.SetChatNotificationSettings
       TD.Query.SetChatPermissions
       TD.Query.SetChatPhoto
@@ -849,7 +851,7 @@ library
       TD.Query.SetDatabaseEncryptionKey
       TD.Query.SetDefaultChannelAdministratorRights
       TD.Query.SetDefaultGroupAdministratorRights
-      TD.Query.SetDefaultMessageTtl
+      TD.Query.SetDefaultMessageAutoDeleteTime
       TD.Query.SetDefaultReactionType
       TD.Query.SetEmojiStatus
       TD.Query.SetFileGenerationProgress
@@ -873,6 +875,7 @@ library
       TD.Query.SetPassportElementErrors
       TD.Query.SetPassword
       TD.Query.SetPinnedChats
+      TD.Query.SetPinnedForumTopics
       TD.Query.SetPollAnswer
       TD.Query.SetProfilePhoto
       TD.Query.SetRecoveryEmailAddress
@@ -883,6 +886,7 @@ library
       TD.Query.SetSupergroupUsername
       TD.Query.SetTdlibParameters
       TD.Query.SetUsername
+      TD.Query.SetUserPersonalProfilePhoto
       TD.Query.SetUserPrivacySettingRules
       TD.Query.SetUserSupportInfo
       TD.Query.SetVideoChatDefaultParticipant
@@ -891,6 +895,7 @@ library
       TD.Query.StartGroupCallScreenSharing
       TD.Query.StartScheduledGroupCall
       TD.Query.StopPoll
+      TD.Query.SuggestUserProfilePhoto
       TD.Query.SynchronizeLanguagePack
       TD.Query.TerminateAllOtherSessions
       TD.Query.TerminateSession
@@ -915,6 +920,7 @@ library
       TD.Query.ToggleChatIsPinned
       TD.Query.ToggleDownloadIsPaused
       TD.Query.ToggleForumTopicIsClosed
+      TD.Query.ToggleForumTopicIsPinned
       TD.Query.ToggleGeneralForumTopicIsHidden
       TD.Query.ToggleGroupCallEnabledStartNotification
       TD.Query.ToggleGroupCallIsMyVideoEnabled
@@ -926,7 +932,8 @@ library
       TD.Query.ToggleMessageSenderIsBlocked
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats
-      TD.Query.ToggleSupergroupIsAggressiveAntiSpamEnabled
+      TD.Query.ToggleSupergroupHasAggressiveAntiSpamEnabled
+      TD.Query.ToggleSupergroupHasHiddenMembers
       TD.Query.ToggleSupergroupIsAllHistoryAvailable
       TD.Query.ToggleSupergroupIsBroadcastGroup
       TD.Query.ToggleSupergroupIsForum

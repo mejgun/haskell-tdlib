@@ -13,9 +13,9 @@ import qualified Utils as U
 data NetworkStatisticsEntry
   = -- | Contains information about the total amount of data that was used to send and receive files
     NetworkStatisticsEntryFile
-      { -- |
+      { -- | Total number of bytes received
         received_bytes :: Maybe Int,
-        -- | Total number of bytes sent @received_bytes Total number of bytes received
+        -- | Total number of bytes sent
         sent_bytes :: Maybe Int,
         -- | Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
         network_type :: Maybe NetworkType.NetworkType,

@@ -9,15 +9,15 @@ import qualified TD.Data.StorageStatisticsByFileType as StorageStatisticsByFileT
 import qualified Utils as U
 
 -- |
-data StorageStatisticsByChat = -- | Contains the storage usage statistics for a specific chat @chat_id Chat identifier; 0 if none @size Total size of the files in the chat, in bytes @count Total number of files in the chat @by_file_type Statistics split by file types
+data StorageStatisticsByChat = -- | Contains the storage usage statistics for a specific chat
   StorageStatisticsByChat
-  { -- |
+  { -- | Statistics split by file types
     by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType],
-    -- |
+    -- | Total number of files in the chat
     count :: Maybe Int,
-    -- |
+    -- | Total size of the files in the chat, in bytes
     size :: Maybe Int,
-    -- |
+    -- | Chat identifier; 0 if none
     chat_id :: Maybe Int
   }
   deriving (Eq)

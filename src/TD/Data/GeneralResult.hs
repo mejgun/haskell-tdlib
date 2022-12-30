@@ -137,6 +137,7 @@ import qualified TD.Data.ForumTopic as ForumTopic
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.ForumTopics as ForumTopics
+import qualified TD.Data.FoundChatMessages as FoundChatMessages
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.Game as Game
@@ -194,6 +195,7 @@ import qualified TD.Data.LoginUrlInfo as LoginUrlInfo
 import qualified TD.Data.MaskPoint as MaskPoint
 import qualified TD.Data.MaskPosition as MaskPosition
 import qualified TD.Data.Message as Message
+import qualified TD.Data.MessageAutoDeleteTime as MessageAutoDeleteTime
 import qualified TD.Data.MessageCalendar as MessageCalendar
 import qualified TD.Data.MessageCalendarDay as MessageCalendarDay
 import qualified TD.Data.MessageContent as MessageContent
@@ -216,7 +218,6 @@ import qualified TD.Data.MessageSenders as MessageSenders
 import qualified TD.Data.MessageSendingState as MessageSendingState
 import qualified TD.Data.MessageStatistics as MessageStatistics
 import qualified TD.Data.MessageThreadInfo as MessageThreadInfo
-import qualified TD.Data.MessageTtl as MessageTtl
 import qualified TD.Data.Messages as Messages
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.NetworkStatistics as NetworkStatistics
@@ -306,6 +307,7 @@ import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.StatisticalValue as StatisticalValue
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.StickerFormat as StickerFormat
+import qualified TD.Data.StickerFullType as StickerFullType
 import qualified TD.Data.StickerSet as StickerSet
 import qualified TD.Data.StickerSetInfo as StickerSetInfo
 import qualified TD.Data.StickerSets as StickerSets
@@ -396,6 +398,7 @@ data GeneralResult
   | MaskPosition MaskPosition.MaskPosition
   | StickerFormat StickerFormat.StickerFormat
   | StickerType StickerType.StickerType
+  | StickerFullType StickerFullType.StickerFullType
   | ClosedVectorPath ClosedVectorPath.ClosedVectorPath
   | PollOption PollOption.PollOption
   | PollType PollType.PollType
@@ -472,6 +475,7 @@ data GeneralResult
   | Message Message.Message
   | Messages Messages.Messages
   | FoundMessages FoundMessages.FoundMessages
+  | FoundChatMessages FoundChatMessages.FoundChatMessages
   | MessagePosition MessagePosition.MessagePosition
   | MessagePositions MessagePositions.MessagePositions
   | MessageCalendarDay MessageCalendarDay.MessageCalendarDay
@@ -669,7 +673,7 @@ data GeneralResult
   | UserPrivacySettingRules UserPrivacySettingRules.UserPrivacySettingRules
   | UserPrivacySetting UserPrivacySetting.UserPrivacySetting
   | AccountTtl AccountTtl.AccountTtl
-  | MessageTtl MessageTtl.MessageTtl
+  | MessageAutoDeleteTime MessageAutoDeleteTime.MessageAutoDeleteTime
   | SessionType SessionType.SessionType
   | Session Session.Session
   | Sessions Sessions.Sessions
@@ -831,6 +835,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result StickerType.StickerType) of
             T.Success a -> return $ StickerType a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result StickerFullType.StickerFullType) of
+            T.Success a -> return $ StickerFullType a
             _ -> mempty,
           case (T.fromJSON v :: T.Result ClosedVectorPath.ClosedVectorPath) of
             T.Success a -> return $ ClosedVectorPath a
@@ -1059,6 +1066,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result FoundMessages.FoundMessages) of
             T.Success a -> return $ FoundMessages a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result FoundChatMessages.FoundChatMessages) of
+            T.Success a -> return $ FoundChatMessages a
             _ -> mempty,
           case (T.fromJSON v :: T.Result MessagePosition.MessagePosition) of
             T.Success a -> return $ MessagePosition a
@@ -1651,8 +1661,8 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result AccountTtl.AccountTtl) of
             T.Success a -> return $ AccountTtl a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result MessageTtl.MessageTtl) of
-            T.Success a -> return $ MessageTtl a
+          case (T.fromJSON v :: T.Result MessageAutoDeleteTime.MessageAutoDeleteTime) of
+            T.Success a -> return $ MessageAutoDeleteTime a
             _ -> mempty,
           case (T.fromJSON v :: T.Result SessionType.SessionType) of
             T.Success a -> return $ SessionType a
