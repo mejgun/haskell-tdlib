@@ -9,7 +9,7 @@ import qualified Utils as U
 
 -- | Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
 data LoginUrlInfo
-  = -- | An HTTP url needs to be open @url The URL to open @skip_confirm True, if there is no need to show an ordinary open URL confirm
+  = -- | An HTTP URL needs to be open @url The URL to open @skip_confirm True, if there is no need to show an ordinary open URL confirm
     LoginUrlInfoOpen
       { -- |
         skip_confirm :: Maybe Bool,

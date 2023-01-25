@@ -10,7 +10,7 @@ import qualified Utils as U
 -- |
 data Contact = -- | Describes a user contact
   Contact
-  { -- | Identifier of the user, if known; otherwise 0
+  { -- | Identifier of the user, if known; 0 otherwise
     user_id :: Maybe Int,
     -- | Additional data about the user in a form of vCard; 0-2048 bytes in length
     vcard :: Maybe String,

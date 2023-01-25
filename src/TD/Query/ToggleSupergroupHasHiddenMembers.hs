@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true @supergroup_id Identifier of the supergroup @has_hidden_members New value of has_hidden_members
+-- Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
 data ToggleSupergroupHasHiddenMembers = ToggleSupergroupHasHiddenMembers
-  { -- |
+  { -- | New value of has_hidden_members
     has_hidden_members :: Maybe Bool,
-    -- |
+    -- | Identifier of the supergroup
     supergroup_id :: Maybe Int
   }
   deriving (Eq)

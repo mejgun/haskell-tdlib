@@ -36,11 +36,14 @@ data UserFullInfo = -- | Contains full information about a user
     can_be_called :: Maybe Bool,
     -- | True, if the user is blocked by the current user
     is_blocked :: Maybe Bool,
-    -- | User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty, otherwise unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+    -- | User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.
+    -- If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public_photo :: Maybe ChatPhoto.ChatPhoto,
-    -- | User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty, otherwise unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
+    -- | User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.
+    -- If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
     photo :: Maybe ChatPhoto.ChatPhoto,
-    -- | User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty, otherwise unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+    -- | User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.
+    -- If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     personal_photo :: Maybe ChatPhoto.ChatPhoto
   }
   deriving (Eq)

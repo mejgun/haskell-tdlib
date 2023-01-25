@@ -26,7 +26,7 @@ data ChatPermissions = -- | Describes actions that a user is allowed to take in 
     can_send_polls :: Maybe Bool,
     -- | True, if the user can send audio files, documents, photos, videos, video notes, and voice notes. Implies can_send_messages permissions
     can_send_media_messages :: Maybe Bool,
-    -- | True, if the user can send text messages, contacts, locations, and venues
+    -- | True, if the user can send text messages, contacts, invoices, locations, and venues
     can_send_messages :: Maybe Bool
   }
   deriving (Eq)

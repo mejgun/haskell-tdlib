@@ -9,7 +9,7 @@ import qualified TD.Data.ShippingOption as ShippingOption
 import qualified Utils as U
 
 -- |
-data ValidatedOrderInfo = -- | Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options @order_info_id Temporary identifier of the order information @shipping_options Available shipping options
+data ValidatedOrderInfo = -- | Contains a temporary identifier of validated order information, which is stored for one hour, and the available shipping options @order_info_id Temporary identifier of the order information @shipping_options Available shipping options
   ValidatedOrderInfo
   { -- |
     shipping_options :: Maybe [ShippingOption.ShippingOption],

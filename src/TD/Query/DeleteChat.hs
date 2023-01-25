@@ -8,9 +8,10 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat @chat_id Chat identifier
+-- Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
+-- Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
 data DeleteChat = DeleteChat
-  { -- |
+  { -- | Chat identifier
     chat_id :: Maybe Int
   }
   deriving (Eq)

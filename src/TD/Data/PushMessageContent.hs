@@ -165,7 +165,7 @@ data PushMessageContent
       { -- |
         title :: Maybe String
       }
-  | -- | A chat theme was edited @theme_name If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+  | -- | A chat theme was edited @theme_name If non-empty, name of a new theme, set for the chat. Otherwise, the chat theme was reset to the default one
     PushMessageContentChatSetTheme
       { -- |
         theme_name :: Maybe String

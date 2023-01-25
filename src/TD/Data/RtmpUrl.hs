@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data RtmpUrl = -- | Represents an RTMP url @url The URL @stream_key Stream key
+data RtmpUrl = -- | Represents an RTMP URL @url The URL @stream_key Stream key
   RtmpUrl
   { -- |
     stream_key :: Maybe String,

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, the invoice message, and the topic creation message for messages
+-- Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages
 -- of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
 data GetRepliedMessage = GetRepliedMessage
   { -- | Identifier of the reply message

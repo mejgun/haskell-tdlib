@@ -284,7 +284,7 @@ data MessageContent
       }
   | -- | A screenshot of a message in the chat has been taken
     MessageScreenshotTaken
-  | -- | A theme in the chat has been changed @theme_name If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+  | -- | A theme in the chat has been changed @theme_name If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
     MessageChatSetTheme
       { -- |
         theme_name :: Maybe String
@@ -312,12 +312,12 @@ data MessageContent
         -- | If non-empty, the new name of the topic
         name :: Maybe String
       }
-  | -- | A forum topic has been closed or opened @is_closed True, if the topic was closed, otherwise the topic was reopened
+  | -- | A forum topic has been closed or opened @is_closed True, if the topic was closed; otherwise, the topic was reopened
     MessageForumTopicIsClosedToggled
       { -- |
         is_closed :: Maybe Bool
       }
-  | -- | A General forum topic has been hidden or unhidden @is_hidden True, if the topic was hidden, otherwise the topic was unhidden
+  | -- | A General forum topic has been hidden or unhidden @is_hidden True, if the topic was hidden; otherwise, the topic was unhidden
     MessageForumTopicIsHiddenToggled
       { -- |
         is_hidden :: Maybe Bool

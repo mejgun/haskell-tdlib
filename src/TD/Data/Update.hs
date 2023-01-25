@@ -217,7 +217,7 @@ data Update
         -- | Chat identifier
         chat_id :: Maybe Int
       }
-  | -- | The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
+  | -- | The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
     UpdateChatPosition
       { -- | New chat position. If new order is 0, then the chat needs to be removed from the list
         position :: Maybe ChatPosition.ChatPosition,
@@ -641,7 +641,7 @@ data Update
         -- |
         sticker_type :: Maybe StickerType.StickerType
       }
-  | -- | The list of recently used stickers was updated @is_attached True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated @sticker_ids The new list of file identifiers of recently used stickers
+  | -- | The list of recently used stickers was updated @is_attached True, if the list of stickers attached to photo or video files was updated; otherwise, the list of sent stickers is updated @sticker_ids The new list of file identifiers of recently used stickers
     UpdateRecentStickers
       { -- |
         sticker_ids :: Maybe [Int],

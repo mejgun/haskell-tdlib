@@ -33,7 +33,7 @@ data ReplyMarkup
         one_time :: Maybe Bool,
         -- | True, if the application needs to resize the keyboard vertically
         resize_keyboard :: Maybe Bool,
-        -- | True, if the keyboard is supposed to be always shown when the ordinary keyboard is hidden
+        -- | True, if the keyboard is supposed to always be shown when the ordinary keyboard is hidden
         is_persistent :: Maybe Bool,
         -- | A list of rows of bot keyboard buttons
         rows :: Maybe [[KeyboardButton.KeyboardButton]]
