@@ -542,6 +542,10 @@ getArgTypeModule _ = Nothing
 insertComments :: (Maybe Entry, Maybe Arg, [Entry]) -> Entry -> (Maybe Entry, Maybe Arg, [Entry])
 insertComments (Nothing, Nothing, acc) q@(ClassComment _ _) =
   (Nothing, Nothing, acc ++ [q])
+insertComments (Nothing, Nothing, acc) (Comment t) =
+  case last acc of
+    (ClassComment n c) -> (Nothing, Nothing, init acc ++ [ClassComment n (c ++ " " ++ t)])
+    _ -> error "TL parse error"
 insertComments (Nothing, Nothing, acc) (CommentStart t) =
   (Just Item {comments = [t], constructor = "", args = [], class_ = ""}, Nothing, acc)
 insertComments (Just item, Nothing, acc) (Comment t) =
