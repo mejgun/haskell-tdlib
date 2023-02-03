@@ -23,7 +23,8 @@ data StickerFullType
       }
   | -- | The sticker is a custom emoji to be used inside message text and caption. Currently, only Telegram Premium users can use custom emoji
     StickerFullTypeCustomEmoji
-      { -- | True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, or another appropriate color in other places
+      { -- | True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, or another appropriate color in other places.
+        -- The sticker must not be repainted on chat photos
         needs_repainting :: Maybe Bool,
         -- | Identifier of the custom emoji
         custom_emoji_id :: Maybe Int

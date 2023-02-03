@@ -43,6 +43,22 @@ data AuthenticationCodeType
         -- | URL to open to receive the code
         url :: Maybe String
       }
+  | -- | An authentication code is delivered via Firebase Authentication to the official Android application
+    AuthenticationCodeTypeFirebaseAndroid
+      { -- | Length of the code
+        _length :: Maybe Int,
+        -- | Nonce to pass to the SafetyNet Attestation API
+        nonce :: Maybe String
+      }
+  | -- | An authentication code is delivered via Firebase Authentication to the official iOS application
+    AuthenticationCodeTypeFirebaseIos
+      { -- | Length of the code
+        _length :: Maybe Int,
+        -- | Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
+        push_timeout :: Maybe Int,
+        -- | Receipt of successful applikation token validation to compare with receipt from push notification
+        receipt :: Maybe String
+      }
   deriving (Eq)
 
 instance Show AuthenticationCodeType where
@@ -98,6 +114,28 @@ instance Show AuthenticationCodeType where
           [ U.p "_length" _length_,
             U.p "url" url_
           ]
+  show
+    AuthenticationCodeTypeFirebaseAndroid
+      { _length = _length_,
+        nonce = nonce_
+      } =
+      "AuthenticationCodeTypeFirebaseAndroid"
+        ++ U.cc
+          [ U.p "_length" _length_,
+            U.p "nonce" nonce_
+          ]
+  show
+    AuthenticationCodeTypeFirebaseIos
+      { _length = _length_,
+        push_timeout = push_timeout_,
+        receipt = receipt_
+      } =
+      "AuthenticationCodeTypeFirebaseIos"
+        ++ U.cc
+          [ U.p "_length" _length_,
+            U.p "push_timeout" push_timeout_,
+            U.p "receipt" receipt_
+          ]
 
 instance T.FromJSON AuthenticationCodeType where
   parseJSON v@(T.Object obj) = do
@@ -110,6 +148,8 @@ instance T.FromJSON AuthenticationCodeType where
       "authenticationCodeTypeFlashCall" -> parseAuthenticationCodeTypeFlashCall v
       "authenticationCodeTypeMissedCall" -> parseAuthenticationCodeTypeMissedCall v
       "authenticationCodeTypeFragment" -> parseAuthenticationCodeTypeFragment v
+      "authenticationCodeTypeFirebaseAndroid" -> parseAuthenticationCodeTypeFirebaseAndroid v
+      "authenticationCodeTypeFirebaseIos" -> parseAuthenticationCodeTypeFirebaseIos v
       _ -> mempty
     where
       parseAuthenticationCodeTypeTelegramMessage :: A.Value -> T.Parser AuthenticationCodeType
@@ -143,6 +183,19 @@ instance T.FromJSON AuthenticationCodeType where
         _length_ <- o A..:? "length"
         url_ <- o A..:? "url"
         return $ AuthenticationCodeTypeFragment {_length = _length_, url = url_}
+
+      parseAuthenticationCodeTypeFirebaseAndroid :: A.Value -> T.Parser AuthenticationCodeType
+      parseAuthenticationCodeTypeFirebaseAndroid = A.withObject "AuthenticationCodeTypeFirebaseAndroid" $ \o -> do
+        _length_ <- o A..:? "length"
+        nonce_ <- o A..:? "nonce"
+        return $ AuthenticationCodeTypeFirebaseAndroid {_length = _length_, nonce = nonce_}
+
+      parseAuthenticationCodeTypeFirebaseIos :: A.Value -> T.Parser AuthenticationCodeType
+      parseAuthenticationCodeTypeFirebaseIos = A.withObject "AuthenticationCodeTypeFirebaseIos" $ \o -> do
+        _length_ <- o A..:? "length"
+        push_timeout_ <- o A..:? "push_timeout"
+        receipt_ <- o A..:? "receipt"
+        return $ AuthenticationCodeTypeFirebaseIos {_length = _length_, push_timeout = push_timeout_, receipt = receipt_}
   parseJSON _ = mempty
 
 instance T.ToJSON AuthenticationCodeType where
@@ -197,4 +250,26 @@ instance T.ToJSON AuthenticationCodeType where
         [ "@type" A..= T.String "authenticationCodeTypeFragment",
           "length" A..= _length_,
           "url" A..= url_
+        ]
+  toJSON
+    AuthenticationCodeTypeFirebaseAndroid
+      { _length = _length_,
+        nonce = nonce_
+      } =
+      A.object
+        [ "@type" A..= T.String "authenticationCodeTypeFirebaseAndroid",
+          "length" A..= _length_,
+          "nonce" A..= nonce_
+        ]
+  toJSON
+    AuthenticationCodeTypeFirebaseIos
+      { _length = _length_,
+        push_timeout = push_timeout_,
+        receipt = receipt_
+      } =
+      A.object
+        [ "@type" A..= T.String "authenticationCodeTypeFirebaseIos",
+          "length" A..= _length_,
+          "push_timeout" A..= push_timeout_,
+          "receipt" A..= receipt_
         ]

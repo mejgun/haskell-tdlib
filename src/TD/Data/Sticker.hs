@@ -32,7 +32,9 @@ data Sticker = -- | Describes a sticker
     -- | Sticker width; as defined by the sender
     width :: Maybe Int,
     -- | The identifier of the sticker set to which the sticker belongs; 0 if none
-    set_id :: Maybe Int
+    set_id :: Maybe Int,
+    -- | Unique sticker identifier within the set; 0 if none
+    _id :: Maybe Int
   }
   deriving (Eq)
 
@@ -47,7 +49,8 @@ instance Show Sticker where
         emoji = emoji_,
         height = height_,
         width = width_,
-        set_id = set_id_
+        set_id = set_id_,
+        _id = _id_
       } =
       "Sticker"
         ++ U.cc
@@ -59,7 +62,8 @@ instance Show Sticker where
             U.p "emoji" emoji_,
             U.p "height" height_,
             U.p "width" width_,
-            U.p "set_id" set_id_
+            U.p "set_id" set_id_,
+            U.p "_id" _id_
           ]
 
 instance T.FromJSON Sticker where
@@ -81,7 +85,8 @@ instance T.FromJSON Sticker where
         height_ <- o A..:? "height"
         width_ <- o A..:? "width"
         set_id_ <- U.rm <$> (o A..:? "set_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ Sticker {sticker = sticker_, thumbnail = thumbnail_, outline = outline_, full_type = full_type_, format = format_, emoji = emoji_, height = height_, width = width_, set_id = set_id_}
+        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
+        return $ Sticker {sticker = sticker_, thumbnail = thumbnail_, outline = outline_, full_type = full_type_, format = format_, emoji = emoji_, height = height_, width = width_, set_id = set_id_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Sticker where
@@ -95,7 +100,8 @@ instance T.ToJSON Sticker where
         emoji = emoji_,
         height = height_,
         width = width_,
-        set_id = set_id_
+        set_id = set_id_,
+        _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "sticker",
@@ -107,5 +113,6 @@ instance T.ToJSON Sticker where
           "emoji" A..= emoji_,
           "height" A..= height_,
           "width" A..= width_,
-          "set_id" A..= U.toS set_id_
+          "set_id" A..= U.toS set_id_,
+          "id" A..= U.toS _id_
         ]

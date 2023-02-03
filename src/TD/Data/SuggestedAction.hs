@@ -22,11 +22,15 @@ data SuggestedAction
       { -- |
         supergroup_id :: Maybe Int
       }
-  | -- | Suggests the user to set a 2-step verification password to be able to log in again @authorization_delay The number of days to pass between consecutive authorizations if the user declines to set password
+  | -- | Suggests the user to set a 2-step verification password to be able to log in again
     SuggestedActionSetPassword
-      { -- |
+      { -- | The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons
         authorization_delay :: Maybe Int
       }
+  | -- | Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
+    SuggestedActionUpgradePremium
+  | -- | Suggests the user to subscribe to the Premium subscription with annual payments
+    SuggestedActionSubscribeToAnnualPremium
   deriving (Eq)
 
 instance Show SuggestedAction where
@@ -62,6 +66,14 @@ instance Show SuggestedAction where
         ++ U.cc
           [ U.p "authorization_delay" authorization_delay_
           ]
+  show SuggestedActionUpgradePremium =
+    "SuggestedActionUpgradePremium"
+      ++ U.cc
+        []
+  show SuggestedActionSubscribeToAnnualPremium =
+    "SuggestedActionSubscribeToAnnualPremium"
+      ++ U.cc
+        []
 
 instance T.FromJSON SuggestedAction where
   parseJSON v@(T.Object obj) = do
@@ -74,6 +86,8 @@ instance T.FromJSON SuggestedAction where
       "suggestedActionViewChecksHint" -> parseSuggestedActionViewChecksHint v
       "suggestedActionConvertToBroadcastGroup" -> parseSuggestedActionConvertToBroadcastGroup v
       "suggestedActionSetPassword" -> parseSuggestedActionSetPassword v
+      "suggestedActionUpgradePremium" -> parseSuggestedActionUpgradePremium v
+      "suggestedActionSubscribeToAnnualPremium" -> parseSuggestedActionSubscribeToAnnualPremium v
       _ -> mempty
     where
       parseSuggestedActionEnableArchiveAndMuteNewChats :: A.Value -> T.Parser SuggestedAction
@@ -97,6 +111,12 @@ instance T.FromJSON SuggestedAction where
       parseSuggestedActionSetPassword = A.withObject "SuggestedActionSetPassword" $ \o -> do
         authorization_delay_ <- o A..:? "authorization_delay"
         return $ SuggestedActionSetPassword {authorization_delay = authorization_delay_}
+
+      parseSuggestedActionUpgradePremium :: A.Value -> T.Parser SuggestedAction
+      parseSuggestedActionUpgradePremium = A.withObject "SuggestedActionUpgradePremium" $ \_ -> return SuggestedActionUpgradePremium
+
+      parseSuggestedActionSubscribeToAnnualPremium :: A.Value -> T.Parser SuggestedAction
+      parseSuggestedActionSubscribeToAnnualPremium = A.withObject "SuggestedActionSubscribeToAnnualPremium" $ \_ -> return SuggestedActionSubscribeToAnnualPremium
   parseJSON _ = mempty
 
 instance T.ToJSON SuggestedAction where
@@ -132,3 +152,11 @@ instance T.ToJSON SuggestedAction where
         [ "@type" A..= T.String "suggestedActionSetPassword",
           "authorization_delay" A..= authorization_delay_
         ]
+  toJSON SuggestedActionUpgradePremium =
+    A.object
+      [ "@type" A..= T.String "suggestedActionUpgradePremium"
+      ]
+  toJSON SuggestedActionSubscribeToAnnualPremium =
+    A.object
+      [ "@type" A..= T.String "suggestedActionSubscribeToAnnualPremium"
+      ]

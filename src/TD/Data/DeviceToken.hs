@@ -76,6 +76,13 @@ data DeviceToken
       { -- |
         reg_id :: Maybe String
       }
+  | -- | A token for HUAWEI Push Service @token Device registration token; may be empty to deregister a device @encrypt True, if push notifications must be additionally encrypted
+    DeviceTokenHuaweiPush
+      { -- |
+        encrypt :: Maybe Bool,
+        -- |
+        token :: Maybe String
+      }
   deriving (Eq)
 
 instance Show DeviceToken where
@@ -179,6 +186,16 @@ instance Show DeviceToken where
         ++ U.cc
           [ U.p "reg_id" reg_id_
           ]
+  show
+    DeviceTokenHuaweiPush
+      { encrypt = encrypt_,
+        token = token_
+      } =
+      "DeviceTokenHuaweiPush"
+        ++ U.cc
+          [ U.p "encrypt" encrypt_,
+            U.p "token" token_
+          ]
 
 instance T.FromJSON DeviceToken where
   parseJSON v@(T.Object obj) = do
@@ -196,6 +213,7 @@ instance T.FromJSON DeviceToken where
       "deviceTokenUbuntuPush" -> parseDeviceTokenUbuntuPush v
       "deviceTokenBlackBerryPush" -> parseDeviceTokenBlackBerryPush v
       "deviceTokenTizenPush" -> parseDeviceTokenTizenPush v
+      "deviceTokenHuaweiPush" -> parseDeviceTokenHuaweiPush v
       _ -> mempty
     where
       parseDeviceTokenFirebaseCloudMessaging :: A.Value -> T.Parser DeviceToken
@@ -258,6 +276,12 @@ instance T.FromJSON DeviceToken where
       parseDeviceTokenTizenPush = A.withObject "DeviceTokenTizenPush" $ \o -> do
         reg_id_ <- o A..:? "reg_id"
         return $ DeviceTokenTizenPush {reg_id = reg_id_}
+
+      parseDeviceTokenHuaweiPush :: A.Value -> T.Parser DeviceToken
+      parseDeviceTokenHuaweiPush = A.withObject "DeviceTokenHuaweiPush" $ \o -> do
+        encrypt_ <- o A..:? "encrypt"
+        token_ <- o A..:? "token"
+        return $ DeviceTokenHuaweiPush {encrypt = encrypt_, token = token_}
   parseJSON _ = mempty
 
 instance T.ToJSON DeviceToken where
@@ -360,4 +384,14 @@ instance T.ToJSON DeviceToken where
       A.object
         [ "@type" A..= T.String "deviceTokenTizenPush",
           "reg_id" A..= reg_id_
+        ]
+  toJSON
+    DeviceTokenHuaweiPush
+      { encrypt = encrypt_,
+        token = token_
+      } =
+      A.object
+        [ "@type" A..= T.String "deviceTokenHuaweiPush",
+          "encrypt" A..= encrypt_,
+          "token" A..= token_
         ]

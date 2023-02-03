@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.Address as Address
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.AuthorizationState as AuthorizationState
+import qualified TD.Data.AutosaveSettingsScope as AutosaveSettingsScope
 import qualified TD.Data.Background as Background
 import qualified TD.Data.BasicGroup as BasicGroup
 import qualified TD.Data.BasicGroupFullInfo as BasicGroupFullInfo
@@ -53,6 +54,7 @@ import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.Poll as Poll
 import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified TD.Data.SecretChat as SecretChat
 import qualified TD.Data.Sticker as Sticker
@@ -340,10 +342,17 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | A chat's has_scheduled_messages field has changed @chat_id Chat identifier @has_scheduled_messages New value of has_scheduled_messages
-    UpdateChatHasScheduledMessages
+  | -- | Translation of chat messages was enabled or disabled @chat_id Chat identifier @is_translatable New value of is_translatable
+    UpdateChatIsTranslatable
       { -- |
-        has_scheduled_messages :: Maybe Bool,
+        is_translatable :: Maybe Bool,
+        -- |
+        chat_id :: Maybe Int
+      }
+  | -- | A chat was marked as unread or was read @chat_id Chat identifier @is_marked_as_unread New value of is_marked_as_unread
+    UpdateChatIsMarkedAsUnread
+      { -- |
+        is_marked_as_unread :: Maybe Bool,
         -- |
         chat_id :: Maybe Int
       }
@@ -354,10 +363,10 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | A chat was marked as unread or was read @chat_id Chat identifier @is_marked_as_unread New value of is_marked_as_unread
-    UpdateChatIsMarkedAsUnread
+  | -- | A chat's has_scheduled_messages field has changed @chat_id Chat identifier @has_scheduled_messages New value of has_scheduled_messages
+    UpdateChatHasScheduledMessages
       { -- |
-        is_marked_as_unread :: Maybe Bool,
+        has_scheduled_messages :: Maybe Bool,
         -- |
         chat_id :: Maybe Int
       }
@@ -749,6 +758,13 @@ data Update
         -- |
         added_actions :: Maybe [SuggestedAction.SuggestedAction]
       }
+  | -- | Autosave settings for some type of chats were updated @scope Type of chats for which autosave settings were updated @settings The new autosave settings
+    UpdateAutosaveSettings
+      { -- |
+        settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings,
+        -- |
+        _scope :: Maybe AutosaveSettingsScope.AutosaveSettingsScope
+      }
   | -- | A new incoming inline query; for bots only
     UpdateNewInlineQuery
       { -- | Offset of the first entry to return
@@ -876,13 +892,15 @@ data Update
         -- | Chat identifier
         chat_id :: Maybe Int
       }
-  | -- | A user sent a join request to a chat; for bots only @chat_id Chat identifier @request Join request @invite_link The invite link, which was used to send join request; may be null
+  | -- | A user sent a join request to a chat; for bots only
     UpdateNewChatJoinRequest
-      { -- |
+      { -- | The invite link, which was used to send join request; may be null
         invite_link :: Maybe ChatInviteLink.ChatInviteLink,
-        -- |
+        -- | Chat identifier of the private chat with the user
+        user_chat_id :: Maybe Int,
+        -- | Join request
         request :: Maybe ChatJoinRequest.ChatJoinRequest,
-        -- |
+        -- | Chat identifier
         chat_id :: Maybe Int
       }
   deriving (Eq)
@@ -1259,13 +1277,23 @@ instance Show Update where
             U.p "chat_id" chat_id_
           ]
   show
-    UpdateChatHasScheduledMessages
-      { has_scheduled_messages = has_scheduled_messages_,
+    UpdateChatIsTranslatable
+      { is_translatable = is_translatable_,
         chat_id = chat_id_
       } =
-      "UpdateChatHasScheduledMessages"
+      "UpdateChatIsTranslatable"
         ++ U.cc
-          [ U.p "has_scheduled_messages" has_scheduled_messages_,
+          [ U.p "is_translatable" is_translatable_,
+            U.p "chat_id" chat_id_
+          ]
+  show
+    UpdateChatIsMarkedAsUnread
+      { is_marked_as_unread = is_marked_as_unread_,
+        chat_id = chat_id_
+      } =
+      "UpdateChatIsMarkedAsUnread"
+        ++ U.cc
+          [ U.p "is_marked_as_unread" is_marked_as_unread_,
             U.p "chat_id" chat_id_
           ]
   show
@@ -1279,13 +1307,13 @@ instance Show Update where
             U.p "chat_id" chat_id_
           ]
   show
-    UpdateChatIsMarkedAsUnread
-      { is_marked_as_unread = is_marked_as_unread_,
+    UpdateChatHasScheduledMessages
+      { has_scheduled_messages = has_scheduled_messages_,
         chat_id = chat_id_
       } =
-      "UpdateChatIsMarkedAsUnread"
+      "UpdateChatHasScheduledMessages"
         ++ U.cc
-          [ U.p "is_marked_as_unread" is_marked_as_unread_,
+          [ U.p "has_scheduled_messages" has_scheduled_messages_,
             U.p "chat_id" chat_id_
           ]
   show
@@ -1841,6 +1869,16 @@ instance Show Update where
             U.p "added_actions" added_actions_
           ]
   show
+    UpdateAutosaveSettings
+      { settings = settings_,
+        _scope = _scope_
+      } =
+      "UpdateAutosaveSettings"
+        ++ U.cc
+          [ U.p "settings" settings_,
+            U.p "_scope" _scope_
+          ]
+  show
     UpdateNewInlineQuery
       { offset = offset_,
         query = query_,
@@ -2003,12 +2041,14 @@ instance Show Update where
   show
     UpdateNewChatJoinRequest
       { invite_link = invite_link_,
+        user_chat_id = user_chat_id_,
         request = request_,
         chat_id = chat_id_
       } =
       "UpdateNewChatJoinRequest"
         ++ U.cc
           [ U.p "invite_link" invite_link_,
+            U.p "user_chat_id" user_chat_id_,
             U.p "request" request_,
             U.p "chat_id" chat_id_
           ]
@@ -2053,9 +2093,10 @@ instance T.FromJSON Update where
       "updateChatVideoChat" -> parseUpdateChatVideoChat v
       "updateChatDefaultDisableNotification" -> parseUpdateChatDefaultDisableNotification v
       "updateChatHasProtectedContent" -> parseUpdateChatHasProtectedContent v
-      "updateChatHasScheduledMessages" -> parseUpdateChatHasScheduledMessages v
-      "updateChatIsBlocked" -> parseUpdateChatIsBlocked v
+      "updateChatIsTranslatable" -> parseUpdateChatIsTranslatable v
       "updateChatIsMarkedAsUnread" -> parseUpdateChatIsMarkedAsUnread v
+      "updateChatIsBlocked" -> parseUpdateChatIsBlocked v
+      "updateChatHasScheduledMessages" -> parseUpdateChatHasScheduledMessages v
       "updateChatFilters" -> parseUpdateChatFilters v
       "updateChatOnlineMemberCount" -> parseUpdateChatOnlineMemberCount v
       "updateForumTopicInfo" -> parseUpdateForumTopicInfo v
@@ -2111,6 +2152,7 @@ instance T.FromJSON Update where
       "updateAnimatedEmojiMessageClicked" -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters" -> parseUpdateAnimationSearchParameters v
       "updateSuggestedActions" -> parseUpdateSuggestedActions v
+      "updateAutosaveSettings" -> parseUpdateAutosaveSettings v
       "updateNewInlineQuery" -> parseUpdateNewInlineQuery v
       "updateNewChosenInlineResult" -> parseUpdateNewChosenInlineResult v
       "updateNewCallbackQuery" -> parseUpdateNewCallbackQuery v
@@ -2345,11 +2387,17 @@ instance T.FromJSON Update where
         chat_id_ <- o A..:? "chat_id"
         return $ UpdateChatHasProtectedContent {has_protected_content = has_protected_content_, chat_id = chat_id_}
 
-      parseUpdateChatHasScheduledMessages :: A.Value -> T.Parser Update
-      parseUpdateChatHasScheduledMessages = A.withObject "UpdateChatHasScheduledMessages" $ \o -> do
-        has_scheduled_messages_ <- o A..:? "has_scheduled_messages"
+      parseUpdateChatIsTranslatable :: A.Value -> T.Parser Update
+      parseUpdateChatIsTranslatable = A.withObject "UpdateChatIsTranslatable" $ \o -> do
+        is_translatable_ <- o A..:? "is_translatable"
         chat_id_ <- o A..:? "chat_id"
-        return $ UpdateChatHasScheduledMessages {has_scheduled_messages = has_scheduled_messages_, chat_id = chat_id_}
+        return $ UpdateChatIsTranslatable {is_translatable = is_translatable_, chat_id = chat_id_}
+
+      parseUpdateChatIsMarkedAsUnread :: A.Value -> T.Parser Update
+      parseUpdateChatIsMarkedAsUnread = A.withObject "UpdateChatIsMarkedAsUnread" $ \o -> do
+        is_marked_as_unread_ <- o A..:? "is_marked_as_unread"
+        chat_id_ <- o A..:? "chat_id"
+        return $ UpdateChatIsMarkedAsUnread {is_marked_as_unread = is_marked_as_unread_, chat_id = chat_id_}
 
       parseUpdateChatIsBlocked :: A.Value -> T.Parser Update
       parseUpdateChatIsBlocked = A.withObject "UpdateChatIsBlocked" $ \o -> do
@@ -2357,11 +2405,11 @@ instance T.FromJSON Update where
         chat_id_ <- o A..:? "chat_id"
         return $ UpdateChatIsBlocked {is_blocked = is_blocked_, chat_id = chat_id_}
 
-      parseUpdateChatIsMarkedAsUnread :: A.Value -> T.Parser Update
-      parseUpdateChatIsMarkedAsUnread = A.withObject "UpdateChatIsMarkedAsUnread" $ \o -> do
-        is_marked_as_unread_ <- o A..:? "is_marked_as_unread"
+      parseUpdateChatHasScheduledMessages :: A.Value -> T.Parser Update
+      parseUpdateChatHasScheduledMessages = A.withObject "UpdateChatHasScheduledMessages" $ \o -> do
+        has_scheduled_messages_ <- o A..:? "has_scheduled_messages"
         chat_id_ <- o A..:? "chat_id"
-        return $ UpdateChatIsMarkedAsUnread {is_marked_as_unread = is_marked_as_unread_, chat_id = chat_id_}
+        return $ UpdateChatHasScheduledMessages {has_scheduled_messages = has_scheduled_messages_, chat_id = chat_id_}
 
       parseUpdateChatFilters :: A.Value -> T.Parser Update
       parseUpdateChatFilters = A.withObject "UpdateChatFilters" $ \o -> do
@@ -2694,6 +2742,12 @@ instance T.FromJSON Update where
         added_actions_ <- o A..:? "added_actions"
         return $ UpdateSuggestedActions {removed_actions = removed_actions_, added_actions = added_actions_}
 
+      parseUpdateAutosaveSettings :: A.Value -> T.Parser Update
+      parseUpdateAutosaveSettings = A.withObject "UpdateAutosaveSettings" $ \o -> do
+        settings_ <- o A..:? "settings"
+        _scope_ <- o A..:? "scope"
+        return $ UpdateAutosaveSettings {settings = settings_, _scope = _scope_}
+
       parseUpdateNewInlineQuery :: A.Value -> T.Parser Update
       parseUpdateNewInlineQuery = A.withObject "UpdateNewInlineQuery" $ \o -> do
         offset_ <- o A..:? "offset"
@@ -2788,9 +2842,10 @@ instance T.FromJSON Update where
       parseUpdateNewChatJoinRequest :: A.Value -> T.Parser Update
       parseUpdateNewChatJoinRequest = A.withObject "UpdateNewChatJoinRequest" $ \o -> do
         invite_link_ <- o A..:? "invite_link"
+        user_chat_id_ <- o A..:? "user_chat_id"
         request_ <- o A..:? "request"
         chat_id_ <- o A..:? "chat_id"
-        return $ UpdateNewChatJoinRequest {invite_link = invite_link_, request = request_, chat_id = chat_id_}
+        return $ UpdateNewChatJoinRequest {invite_link = invite_link_, user_chat_id = user_chat_id_, request = request_, chat_id = chat_id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Update where
@@ -3165,13 +3220,23 @@ instance T.ToJSON Update where
           "chat_id" A..= chat_id_
         ]
   toJSON
-    UpdateChatHasScheduledMessages
-      { has_scheduled_messages = has_scheduled_messages_,
+    UpdateChatIsTranslatable
+      { is_translatable = is_translatable_,
         chat_id = chat_id_
       } =
       A.object
-        [ "@type" A..= T.String "updateChatHasScheduledMessages",
-          "has_scheduled_messages" A..= has_scheduled_messages_,
+        [ "@type" A..= T.String "updateChatIsTranslatable",
+          "is_translatable" A..= is_translatable_,
+          "chat_id" A..= chat_id_
+        ]
+  toJSON
+    UpdateChatIsMarkedAsUnread
+      { is_marked_as_unread = is_marked_as_unread_,
+        chat_id = chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateChatIsMarkedAsUnread",
+          "is_marked_as_unread" A..= is_marked_as_unread_,
           "chat_id" A..= chat_id_
         ]
   toJSON
@@ -3185,13 +3250,13 @@ instance T.ToJSON Update where
           "chat_id" A..= chat_id_
         ]
   toJSON
-    UpdateChatIsMarkedAsUnread
-      { is_marked_as_unread = is_marked_as_unread_,
+    UpdateChatHasScheduledMessages
+      { has_scheduled_messages = has_scheduled_messages_,
         chat_id = chat_id_
       } =
       A.object
-        [ "@type" A..= T.String "updateChatIsMarkedAsUnread",
-          "is_marked_as_unread" A..= is_marked_as_unread_,
+        [ "@type" A..= T.String "updateChatHasScheduledMessages",
+          "has_scheduled_messages" A..= has_scheduled_messages_,
           "chat_id" A..= chat_id_
         ]
   toJSON
@@ -3747,6 +3812,16 @@ instance T.ToJSON Update where
           "added_actions" A..= added_actions_
         ]
   toJSON
+    UpdateAutosaveSettings
+      { settings = settings_,
+        _scope = _scope_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateAutosaveSettings",
+          "settings" A..= settings_,
+          "scope" A..= _scope_
+        ]
+  toJSON
     UpdateNewInlineQuery
       { offset = offset_,
         query = query_,
@@ -3909,12 +3984,14 @@ instance T.ToJSON Update where
   toJSON
     UpdateNewChatJoinRequest
       { invite_link = invite_link_,
+        user_chat_id = user_chat_id_,
         request = request_,
         chat_id = chat_id_
       } =
       A.object
         [ "@type" A..= T.String "updateNewChatJoinRequest",
           "invite_link" A..= invite_link_,
+          "user_chat_id" A..= user_chat_id_,
           "request" A..= request_,
           "chat_id" A..= chat_id_
         ]

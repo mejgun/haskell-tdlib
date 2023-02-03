@@ -19,8 +19,10 @@ data CreateNewSupergroupChat = CreateNewSupergroupChat
     location :: Maybe ChatLocation.ChatLocation,
     -- |
     description :: Maybe String,
-    -- | Pass true to create a channel chat
+    -- | Pass true to create a channel chat; ignored if a forum is created
     is_channel :: Maybe Bool,
+    -- | Pass true to create a forum supergroup chat
+    is_forum :: Maybe Bool,
     -- | Title of the new chat; 1-128 characters
     title :: Maybe String
   }
@@ -34,6 +36,7 @@ instance Show CreateNewSupergroupChat where
         location = location_,
         description = description_,
         is_channel = is_channel_,
+        is_forum = is_forum_,
         title = title_
       } =
       "CreateNewSupergroupChat"
@@ -43,6 +46,7 @@ instance Show CreateNewSupergroupChat where
             U.p "location" location_,
             U.p "description" description_,
             U.p "is_channel" is_channel_,
+            U.p "is_forum" is_forum_,
             U.p "title" title_
           ]
 
@@ -54,6 +58,7 @@ instance T.ToJSON CreateNewSupergroupChat where
         location = location_,
         description = description_,
         is_channel = is_channel_,
+        is_forum = is_forum_,
         title = title_
       } =
       A.object
@@ -63,5 +68,6 @@ instance T.ToJSON CreateNewSupergroupChat where
           "location" A..= location_,
           "description" A..= description_,
           "is_channel" A..= is_channel_,
+          "is_forum" A..= is_forum_,
           "title" A..= title_
         ]

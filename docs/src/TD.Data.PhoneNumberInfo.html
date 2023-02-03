@@ -24,7 +24,7 @@
 </span><span id="line-21"></span><span>    </span><span id="country"><span class="annot"><span class="annottext">PhoneNumberInfo -&gt; Maybe CountryInfo
 </span><a href="TD.Data.PhoneNumberInfo.html#country"><span class="hs-identifier hs-var hs-var">country</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.CountryInfo.html#CountryInfo"><span class="hs-identifier hs-type">CountryInfo.CountryInfo</span></a></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679449509"><span id="local-6989586621679449511"><span class="annot"><span class="annottext">PhoneNumberInfo -&gt; PhoneNumberInfo -&gt; Bool
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679458156"><span id="local-6989586621679458158"><span class="annot"><span class="annottext">PhoneNumberInfo -&gt; PhoneNumberInfo -&gt; Bool
 (PhoneNumberInfo -&gt; PhoneNumberInfo -&gt; Bool)
 -&gt; (PhoneNumberInfo -&gt; PhoneNumberInfo -&gt; Bool)
 -&gt; Eq PhoneNumberInfo
@@ -35,22 +35,22 @@ $c/= :: PhoneNumberInfo -&gt; PhoneNumberInfo -&gt; Bool
 $c== :: PhoneNumberInfo -&gt; PhoneNumberInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449503"><span id="local-6989586621679449506"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679449501"><span class="annot"><span class="annottext">show :: PhoneNumberInfo -&gt; String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458150"><span id="local-6989586621679458153"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679458148"><span class="annot"><span class="annottext">show :: PhoneNumberInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_anonymous :: PhoneNumberInfo -&gt; Maybe Bool
-</span><a href="TD.Data.PhoneNumberInfo.html#is_anonymous"><span class="hs-identifier hs-var">is_anonymous</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449499"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679449499"><span class="hs-identifier hs-var">is_anonymous_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#is_anonymous"><span class="hs-identifier hs-var">is_anonymous</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458146"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679458146"><span class="hs-identifier hs-var">is_anonymous_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">formatted_phone_number :: PhoneNumberInfo -&gt; Maybe String
-</span><a href="TD.Data.PhoneNumberInfo.html#formatted_phone_number"><span class="hs-identifier hs-var">formatted_phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449498"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449498"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#formatted_phone_number"><span class="hs-identifier hs-var">formatted_phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458145"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679458145"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">country_calling_code :: PhoneNumberInfo -&gt; Maybe String
-</span><a href="TD.Data.PhoneNumberInfo.html#country_calling_code"><span class="hs-identifier hs-var">country_calling_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449497"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449497"><span class="hs-identifier hs-var">country_calling_code_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#country_calling_code"><span class="hs-identifier hs-var">country_calling_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458144"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679458144"><span class="hs-identifier hs-var">country_calling_code_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">country :: PhoneNumberInfo -&gt; Maybe CountryInfo
-</span><a href="TD.Data.PhoneNumberInfo.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449496"><span class="annot"><span class="annottext">Maybe CountryInfo
-</span><a href="#local-6989586621679449496"><span class="hs-identifier hs-var">country_</span></a></span></span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458143"><span class="annot"><span class="annottext">Maybe CountryInfo
+</span><a href="#local-6989586621679458143"><span class="hs-identifier hs-var">country_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PhoneNumberInfo&quot;</span></span><span>
@@ -62,50 +62,50 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_anonymous&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679449499"><span class="hs-identifier hs-var">is_anonymous_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679458146"><span class="hs-identifier hs-var">is_anonymous_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;formatted_phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449498"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679458145"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;country_calling_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449497"><span class="hs-identifier hs-var">country_calling_code_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679458144"><span class="hs-identifier hs-var">country_calling_code_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe CountryInfo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;country&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe CountryInfo
-</span><a href="#local-6989586621679449496"><span class="hs-identifier hs-var">country_</span></a></span><span>
+</span><a href="#local-6989586621679458143"><span class="hs-identifier hs-var">country_</span></a></span><span>
 </span><span id="line-39"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449491"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>  </span><span id="local-6989586621679449489"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PhoneNumberInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679449487"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679449487"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679449485"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449485"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>    </span><span id="local-6989586621679449484"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679449484"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449485"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458138"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679458136"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PhoneNumberInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679458134"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679458134"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679458132"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458132"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679458131"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679458131"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458132"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-44"></span><span>
 </span><span id="line-45"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679449484"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679458131"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-46"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;phoneNumberInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PhoneNumberInfo
-</span><a href="#local-6989586621679449482"><span class="hs-identifier hs-var">parsePhoneNumberInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679449487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679458129"><span class="hs-identifier hs-var">parsePhoneNumberInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679458134"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PhoneNumberInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-48"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>      </span><span class="annot"><a href="#local-6989586621679449482"><span class="hs-identifier hs-type">parsePhoneNumberInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span><span>
-</span><span id="line-50"></span><span>      </span><span id="local-6989586621679449482"><span class="annot"><span class="annottext">parsePhoneNumberInfo :: Value -&gt; Parser PhoneNumberInfo
-</span><a href="#local-6989586621679449482"><span class="hs-identifier hs-var hs-var">parsePhoneNumberInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-49"></span><span>      </span><span class="annot"><a href="#local-6989586621679458129"><span class="hs-identifier hs-type">parsePhoneNumberInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span><span>
+</span><span id="line-50"></span><span>      </span><span id="local-6989586621679458129"><span class="annot"><span class="annottext">parsePhoneNumberInfo :: Value -&gt; Parser PhoneNumberInfo
+</span><a href="#local-6989586621679458129"><span class="hs-identifier hs-var hs-var">parsePhoneNumberInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PhoneNumberInfo)
 -&gt; Value
 -&gt; Parser PhoneNumberInfo
@@ -117,29 +117,29 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PhoneNumberInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679449480"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449480"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-51"></span><span>        </span><span id="local-6989586621679449479"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679449479"><span class="hs-identifier hs-var">is_anonymous_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679458127"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458127"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-51"></span><span>        </span><span id="local-6989586621679458126"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679458126"><span class="hs-identifier hs-var">is_anonymous_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458127"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_anonymous&quot;</span></span><span>
-</span><span id="line-52"></span><span>        </span><span id="local-6989586621679449477"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449477"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-52"></span><span>        </span><span id="local-6989586621679458124"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679458124"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458127"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;formatted_phone_number&quot;</span></span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679449476"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449476"><span class="hs-identifier hs-var">country_calling_code_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679458123"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679458123"><span class="hs-identifier hs-var">country_calling_code_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458127"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;country_calling_code&quot;</span></span><span>
-</span><span id="line-54"></span><span>        </span><span id="local-6989586621679449475"><span class="annot"><span class="annottext">Maybe CountryInfo
-</span><a href="#local-6989586621679449475"><span class="hs-identifier hs-var">country_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe CountryInfo)
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679458122"><span class="annot"><span class="annottext">Maybe CountryInfo
+</span><a href="#local-6989586621679458122"><span class="hs-identifier hs-var">country_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458127"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe CountryInfo)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;country&quot;</span></span><span>
@@ -155,34 +155,34 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PhoneNumberInfo
 </span><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">is_anonymous :: Maybe Bool
 </span><a href="TD.Data.PhoneNumberInfo.html#is_anonymous"><span class="hs-identifier hs-var">is_anonymous</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679449479"><span class="hs-identifier hs-var">is_anonymous_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">formatted_phone_number :: Maybe String
+</span><a href="#local-6989586621679458126"><span class="hs-identifier hs-var">is_anonymous_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">formatted_phone_number :: Maybe String
 </span><a href="TD.Data.PhoneNumberInfo.html#formatted_phone_number"><span class="hs-identifier hs-var">formatted_phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449477"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">country_calling_code :: Maybe String
+</span><a href="#local-6989586621679458124"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">country_calling_code :: Maybe String
 </span><a href="TD.Data.PhoneNumberInfo.html#country_calling_code"><span class="hs-identifier hs-var">country_calling_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449476"><span class="hs-identifier hs-var">country_calling_code_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">country :: Maybe CountryInfo
+</span><a href="#local-6989586621679458123"><span class="hs-identifier hs-var">country_calling_code_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">country :: Maybe CountryInfo
 </span><a href="TD.Data.PhoneNumberInfo.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe CountryInfo
-</span><a href="#local-6989586621679449475"><span class="hs-identifier hs-var">country_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679458122"><span class="hs-identifier hs-var">country_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-56"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PhoneNumberInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449468"><span id="local-6989586621679449470"><span id="local-6989586621679449472"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679449466"><span class="annot"><span class="annottext">toJSON :: PhoneNumberInfo -&gt; Value
+</span><span id="line-58"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458115"><span id="local-6989586621679458117"><span id="local-6989586621679458119"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679458113"><span class="annot"><span class="annottext">toJSON :: PhoneNumberInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-60"></span><span>    </span><span class="annot"><a href="TD.Data.PhoneNumberInfo.html#PhoneNumberInfo"><span class="hs-identifier hs-type">PhoneNumberInfo</span></a></span><span>
 </span><span id="line-61"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_anonymous :: PhoneNumberInfo -&gt; Maybe Bool
-</span><a href="TD.Data.PhoneNumberInfo.html#is_anonymous"><span class="hs-identifier hs-var">is_anonymous</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449464"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679449464"><span class="hs-identifier hs-var">is_anonymous_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#is_anonymous"><span class="hs-identifier hs-var">is_anonymous</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458111"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679458111"><span class="hs-identifier hs-var">is_anonymous_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">formatted_phone_number :: PhoneNumberInfo -&gt; Maybe String
-</span><a href="TD.Data.PhoneNumberInfo.html#formatted_phone_number"><span class="hs-identifier hs-var">formatted_phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449463"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449463"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#formatted_phone_number"><span class="hs-identifier hs-var">formatted_phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458110"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679458110"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">country_calling_code :: PhoneNumberInfo -&gt; Maybe String
-</span><a href="TD.Data.PhoneNumberInfo.html#country_calling_code"><span class="hs-identifier hs-var">country_calling_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449462"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449462"><span class="hs-identifier hs-var">country_calling_code_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#country_calling_code"><span class="hs-identifier hs-var">country_calling_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458109"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679458109"><span class="hs-identifier hs-var">country_calling_code_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">country :: PhoneNumberInfo -&gt; Maybe CountryInfo
-</span><a href="TD.Data.PhoneNumberInfo.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449461"><span class="annot"><span class="annottext">Maybe CountryInfo
-</span><a href="#local-6989586621679449461"><span class="hs-identifier hs-var">country_</span></a></span></span><span>
+</span><a href="TD.Data.PhoneNumberInfo.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458108"><span class="annot"><span class="annottext">Maybe CountryInfo
+</span><a href="#local-6989586621679458108"><span class="hs-identifier hs-var">country_</span></a></span></span><span>
 </span><span id="line-65"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-66"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -196,21 +196,21 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_anonymous&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679449464"><span class="hs-identifier hs-var">is_anonymous_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679458111"><span class="hs-identifier hs-var">is_anonymous_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;formatted_phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449463"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679458110"><span class="hs-identifier hs-var">formatted_phone_number_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;country_calling_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449462"><span class="hs-identifier hs-var">country_calling_code_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679458109"><span class="hs-identifier hs-var">country_calling_code_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;country&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe CountryInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe CountryInfo
-</span><a href="#local-6989586621679449461"><span class="hs-identifier hs-var">country_</span></a></span><span>
+</span><a href="#local-6989586621679458108"><span class="hs-identifier hs-var">country_</span></a></span><span>
 </span><span id="line-72"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-73"></span></pre></body></html>

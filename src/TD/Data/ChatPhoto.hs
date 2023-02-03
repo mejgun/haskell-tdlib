@@ -6,6 +6,7 @@ module TD.Data.ChatPhoto where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.AnimatedChatPhoto as AnimatedChatPhoto
+import qualified TD.Data.ChatPhotoSticker as ChatPhotoSticker
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.PhotoSize as PhotoSize
 import qualified Utils as U
@@ -13,9 +14,11 @@ import qualified Utils as U
 -- |
 data ChatPhoto = -- | Describes a chat or user profile photo
   ChatPhoto
-  { -- | A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available
+  { -- | Sticker-based version of the chat photo; may be null
+    sticker :: Maybe ChatPhotoSticker.ChatPhotoSticker,
+    -- | A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available
     small_animation :: Maybe AnimatedChatPhoto.AnimatedChatPhoto,
-    -- | A big (640x640) animated variant of the photo in MPEG4 format; may be null
+    -- | A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null
     animation :: Maybe AnimatedChatPhoto.AnimatedChatPhoto,
     -- | Available variants of the photo in JPEG format, in different size
     sizes :: Maybe [PhotoSize.PhotoSize],
@@ -31,7 +34,8 @@ data ChatPhoto = -- | Describes a chat or user profile photo
 instance Show ChatPhoto where
   show
     ChatPhoto
-      { small_animation = small_animation_,
+      { sticker = sticker_,
+        small_animation = small_animation_,
         animation = animation_,
         sizes = sizes_,
         minithumbnail = minithumbnail_,
@@ -40,7 +44,8 @@ instance Show ChatPhoto where
       } =
       "ChatPhoto"
         ++ U.cc
-          [ U.p "small_animation" small_animation_,
+          [ U.p "sticker" sticker_,
+            U.p "small_animation" small_animation_,
             U.p "animation" animation_,
             U.p "sizes" sizes_,
             U.p "minithumbnail" minithumbnail_,
@@ -58,19 +63,21 @@ instance T.FromJSON ChatPhoto where
     where
       parseChatPhoto :: A.Value -> T.Parser ChatPhoto
       parseChatPhoto = A.withObject "ChatPhoto" $ \o -> do
+        sticker_ <- o A..:? "sticker"
         small_animation_ <- o A..:? "small_animation"
         animation_ <- o A..:? "animation"
         sizes_ <- o A..:? "sizes"
         minithumbnail_ <- o A..:? "minithumbnail"
         added_date_ <- o A..:? "added_date"
         _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ ChatPhoto {small_animation = small_animation_, animation = animation_, sizes = sizes_, minithumbnail = minithumbnail_, added_date = added_date_, _id = _id_}
+        return $ ChatPhoto {sticker = sticker_, small_animation = small_animation_, animation = animation_, sizes = sizes_, minithumbnail = minithumbnail_, added_date = added_date_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON ChatPhoto where
   toJSON
     ChatPhoto
-      { small_animation = small_animation_,
+      { sticker = sticker_,
+        small_animation = small_animation_,
         animation = animation_,
         sizes = sizes_,
         minithumbnail = minithumbnail_,
@@ -79,6 +86,7 @@ instance T.ToJSON ChatPhoto where
       } =
       A.object
         [ "@type" A..= T.String "chatPhoto",
+          "sticker" A..= sticker_,
           "small_animation" A..= small_animation_,
           "animation" A..= animation_,
           "sizes" A..= sizes_,

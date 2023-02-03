@@ -392,6 +392,20 @@ data MessageContent
       }
   | -- | A contact has registered with Telegram
     MessageContactRegistered
+  | -- | The current user shared a user, which was requested by the bot @user_id Identifier of the shared user @button_id Identifier of the keyboard button with the request
+    MessageUserShared
+      { -- |
+        button_id :: Maybe Int,
+        -- |
+        user_id :: Maybe Int
+      }
+  | -- | The current user shared a chat, which was requested by the bot @chat_id Identifier of the shared chat @button_id Identifier of the keyboard button with the request
+    MessageChatShared
+      { -- |
+        button_id :: Maybe Int,
+        -- |
+        chat_id :: Maybe Int
+      }
   | -- | The current user has connected a website by logging in using Telegram Login Widget on it @domain_name Domain name of the connected website
     MessageWebsiteConnected
       { -- |
@@ -938,6 +952,26 @@ instance Show MessageContent where
       ++ U.cc
         []
   show
+    MessageUserShared
+      { button_id = button_id_,
+        user_id = user_id_
+      } =
+      "MessageUserShared"
+        ++ U.cc
+          [ U.p "button_id" button_id_,
+            U.p "user_id" user_id_
+          ]
+  show
+    MessageChatShared
+      { button_id = button_id_,
+        chat_id = chat_id_
+      } =
+      "MessageChatShared"
+        ++ U.cc
+          [ U.p "button_id" button_id_,
+            U.p "chat_id" chat_id_
+          ]
+  show
     MessageWebsiteConnected
       { domain_name = domain_name_
       } =
@@ -1057,6 +1091,8 @@ instance T.FromJSON MessageContent where
       "messagePaymentSuccessfulBot" -> parseMessagePaymentSuccessfulBot v
       "messageGiftedPremium" -> parseMessageGiftedPremium v
       "messageContactRegistered" -> parseMessageContactRegistered v
+      "messageUserShared" -> parseMessageUserShared v
+      "messageChatShared" -> parseMessageChatShared v
       "messageWebsiteConnected" -> parseMessageWebsiteConnected v
       "messageBotWriteAccessAllowed" -> parseMessageBotWriteAccessAllowed v
       "messageWebAppDataSent" -> parseMessageWebAppDataSent v
@@ -1366,6 +1402,18 @@ instance T.FromJSON MessageContent where
 
       parseMessageContactRegistered :: A.Value -> T.Parser MessageContent
       parseMessageContactRegistered = A.withObject "MessageContactRegistered" $ \_ -> return MessageContactRegistered
+
+      parseMessageUserShared :: A.Value -> T.Parser MessageContent
+      parseMessageUserShared = A.withObject "MessageUserShared" $ \o -> do
+        button_id_ <- o A..:? "button_id"
+        user_id_ <- o A..:? "user_id"
+        return $ MessageUserShared {button_id = button_id_, user_id = user_id_}
+
+      parseMessageChatShared :: A.Value -> T.Parser MessageContent
+      parseMessageChatShared = A.withObject "MessageChatShared" $ \o -> do
+        button_id_ <- o A..:? "button_id"
+        chat_id_ <- o A..:? "chat_id"
+        return $ MessageChatShared {button_id = button_id_, chat_id = chat_id_}
 
       parseMessageWebsiteConnected :: A.Value -> T.Parser MessageContent
       parseMessageWebsiteConnected = A.withObject "MessageWebsiteConnected" $ \o -> do
@@ -1909,6 +1957,26 @@ instance T.ToJSON MessageContent where
     A.object
       [ "@type" A..= T.String "messageContactRegistered"
       ]
+  toJSON
+    MessageUserShared
+      { button_id = button_id_,
+        user_id = user_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageUserShared",
+          "button_id" A..= button_id_,
+          "user_id" A..= user_id_
+        ]
+  toJSON
+    MessageChatShared
+      { button_id = button_id_,
+        chat_id = chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageChatShared",
+          "button_id" A..= button_id_,
+          "chat_id" A..= chat_id_
+        ]
   toJSON
     MessageWebsiteConnected
       { domain_name = domain_name_

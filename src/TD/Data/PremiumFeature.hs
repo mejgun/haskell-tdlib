@@ -37,6 +37,8 @@ data PremiumFeature
     PremiumFeatureForumTopicIcon
   | -- | Allowed to set a premium appllication icons
     PremiumFeatureAppIcons
+  | -- | Allowed to translate chat messages real-time
+    PremiumFeatureRealTimeChatTranslation
   deriving (Eq)
 
 instance Show PremiumFeature where
@@ -96,6 +98,10 @@ instance Show PremiumFeature where
     "PremiumFeatureAppIcons"
       ++ U.cc
         []
+  show PremiumFeatureRealTimeChatTranslation =
+    "PremiumFeatureRealTimeChatTranslation"
+      ++ U.cc
+        []
 
 instance T.FromJSON PremiumFeature where
   parseJSON v@(T.Object obj) = do
@@ -116,6 +122,7 @@ instance T.FromJSON PremiumFeature where
       "premiumFeatureAnimatedProfilePhoto" -> parsePremiumFeatureAnimatedProfilePhoto v
       "premiumFeatureForumTopicIcon" -> parsePremiumFeatureForumTopicIcon v
       "premiumFeatureAppIcons" -> parsePremiumFeatureAppIcons v
+      "premiumFeatureRealTimeChatTranslation" -> parsePremiumFeatureRealTimeChatTranslation v
       _ -> mempty
     where
       parsePremiumFeatureIncreasedLimits :: A.Value -> T.Parser PremiumFeature
@@ -159,6 +166,9 @@ instance T.FromJSON PremiumFeature where
 
       parsePremiumFeatureAppIcons :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureAppIcons = A.withObject "PremiumFeatureAppIcons" $ \_ -> return PremiumFeatureAppIcons
+
+      parsePremiumFeatureRealTimeChatTranslation :: A.Value -> T.Parser PremiumFeature
+      parsePremiumFeatureRealTimeChatTranslation = A.withObject "PremiumFeatureRealTimeChatTranslation" $ \_ -> return PremiumFeatureRealTimeChatTranslation
   parseJSON _ = mempty
 
 instance T.ToJSON PremiumFeature where
@@ -217,4 +227,8 @@ instance T.ToJSON PremiumFeature where
   toJSON PremiumFeatureAppIcons =
     A.object
       [ "@type" A..= T.String "premiumFeatureAppIcons"
+      ]
+  toJSON PremiumFeatureRealTimeChatTranslation =
+    A.object
+      [ "@type" A..= T.String "premiumFeatureRealTimeChatTranslation"
       ]

@@ -9,13 +9,13 @@ import qualified TD.Data.StickerType as StickerType
 import qualified Utils as U
 
 -- |
--- Returns stickers from the installed sticker sets that correspond to a given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+-- Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
 data GetStickers = GetStickers
   { -- | Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     chat_id :: Maybe Int,
     -- | The maximum number of stickers to be returned
     limit :: Maybe Int,
-    -- | Search query; an emoji or a keyword prefix. If empty, returns all known installed stickers
+    -- | Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
     query :: Maybe String,
     -- | Type of the stickers to return
     sticker_type :: Maybe StickerType.StickerType

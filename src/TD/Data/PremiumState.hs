@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.PremiumFeaturePromotionAnimation as PremiumFeaturePromotionAnimation
-import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
+import qualified TD.Data.PremiumStatePaymentOption as PremiumStatePaymentOption
 import qualified Utils as U
 
 -- |
@@ -16,7 +16,7 @@ data PremiumState = -- | Contains state of Telegram Premium subscription and pro
   { -- | The list of available promotion animations for Premium features
     animations :: Maybe [PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation],
     -- | The list of available options for buying Telegram Premium
-    payment_options :: Maybe [PremiumPaymentOption.PremiumPaymentOption],
+    payment_options :: Maybe [PremiumStatePaymentOption.PremiumStatePaymentOption],
     -- | Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
     state :: Maybe FormattedText.FormattedText
   }

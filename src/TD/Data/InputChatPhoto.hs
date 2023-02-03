@@ -5,6 +5,7 @@ module TD.Data.InputChatPhoto where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.ChatPhotoSticker as ChatPhotoSticker
 import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
@@ -20,12 +21,17 @@ data InputChatPhoto
       { -- |
         photo :: Maybe InputFile.InputFile
       }
-  | -- | An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 800 and be at most 2MB in size
+  | -- | An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 1280 and be at most 2MB in size
     InputChatPhotoAnimation
       { -- | Timestamp of the frame, which will be used as static chat photo
         main_frame_timestamp :: Maybe Float,
         -- | Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
         animation :: Maybe InputFile.InputFile
+      }
+  | -- | A sticker on a custom background @sticker Information about the sticker
+    InputChatPhotoSticker
+      { -- |
+        sticker :: Maybe ChatPhotoSticker.ChatPhotoSticker
       }
   deriving (Eq)
 
@@ -56,6 +62,14 @@ instance Show InputChatPhoto where
           [ U.p "main_frame_timestamp" main_frame_timestamp_,
             U.p "animation" animation_
           ]
+  show
+    InputChatPhotoSticker
+      { sticker = sticker_
+      } =
+      "InputChatPhotoSticker"
+        ++ U.cc
+          [ U.p "sticker" sticker_
+          ]
 
 instance T.FromJSON InputChatPhoto where
   parseJSON v@(T.Object obj) = do
@@ -65,6 +79,7 @@ instance T.FromJSON InputChatPhoto where
       "inputChatPhotoPrevious" -> parseInputChatPhotoPrevious v
       "inputChatPhotoStatic" -> parseInputChatPhotoStatic v
       "inputChatPhotoAnimation" -> parseInputChatPhotoAnimation v
+      "inputChatPhotoSticker" -> parseInputChatPhotoSticker v
       _ -> mempty
     where
       parseInputChatPhotoPrevious :: A.Value -> T.Parser InputChatPhoto
@@ -82,6 +97,11 @@ instance T.FromJSON InputChatPhoto where
         main_frame_timestamp_ <- o A..:? "main_frame_timestamp"
         animation_ <- o A..:? "animation"
         return $ InputChatPhotoAnimation {main_frame_timestamp = main_frame_timestamp_, animation = animation_}
+
+      parseInputChatPhotoSticker :: A.Value -> T.Parser InputChatPhoto
+      parseInputChatPhotoSticker = A.withObject "InputChatPhotoSticker" $ \o -> do
+        sticker_ <- o A..:? "sticker"
+        return $ InputChatPhotoSticker {sticker = sticker_}
   parseJSON _ = mempty
 
 instance T.ToJSON InputChatPhoto where
@@ -110,4 +130,12 @@ instance T.ToJSON InputChatPhoto where
         [ "@type" A..= T.String "inputChatPhotoAnimation",
           "main_frame_timestamp" A..= main_frame_timestamp_,
           "animation" A..= animation_
+        ]
+  toJSON
+    InputChatPhotoSticker
+      { sticker = sticker_
+      } =
+      A.object
+        [ "@type" A..= T.String "inputChatPhotoSticker",
+          "sticker" A..= sticker_
         ]

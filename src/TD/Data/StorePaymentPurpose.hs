@@ -9,9 +9,11 @@ import qualified Utils as U
 
 -- | Describes a purpose of an in-store payment
 data StorePaymentPurpose
-  = -- | The user subscribed to Telegram Premium @is_restore Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+  = -- | The user subscribed to Telegram Premium @is_restore Pass true if this is a restore of a Telegram Premium purchase; only for App Store @is_upgrade Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store
     StorePaymentPurposePremiumSubscription
       { -- |
+        is_upgrade :: Maybe Bool,
+        -- |
         is_restore :: Maybe Bool
       }
   | -- | The user gifted Telegram Premium to another user @user_id Identifier of the user for which Premium was gifted @currency ISO 4217 currency code of the payment currency @amount Paid amount, in the smallest units of the currency
@@ -28,11 +30,13 @@ data StorePaymentPurpose
 instance Show StorePaymentPurpose where
   show
     StorePaymentPurposePremiumSubscription
-      { is_restore = is_restore_
+      { is_upgrade = is_upgrade_,
+        is_restore = is_restore_
       } =
       "StorePaymentPurposePremiumSubscription"
         ++ U.cc
-          [ U.p "is_restore" is_restore_
+          [ U.p "is_upgrade" is_upgrade_,
+            U.p "is_restore" is_restore_
           ]
   show
     StorePaymentPurposeGiftedPremium
@@ -58,8 +62,9 @@ instance T.FromJSON StorePaymentPurpose where
     where
       parseStorePaymentPurposePremiumSubscription :: A.Value -> T.Parser StorePaymentPurpose
       parseStorePaymentPurposePremiumSubscription = A.withObject "StorePaymentPurposePremiumSubscription" $ \o -> do
+        is_upgrade_ <- o A..:? "is_upgrade"
         is_restore_ <- o A..:? "is_restore"
-        return $ StorePaymentPurposePremiumSubscription {is_restore = is_restore_}
+        return $ StorePaymentPurposePremiumSubscription {is_upgrade = is_upgrade_, is_restore = is_restore_}
 
       parseStorePaymentPurposeGiftedPremium :: A.Value -> T.Parser StorePaymentPurpose
       parseStorePaymentPurposeGiftedPremium = A.withObject "StorePaymentPurposeGiftedPremium" $ \o -> do
@@ -72,10 +77,12 @@ instance T.FromJSON StorePaymentPurpose where
 instance T.ToJSON StorePaymentPurpose where
   toJSON
     StorePaymentPurposePremiumSubscription
-      { is_restore = is_restore_
+      { is_upgrade = is_upgrade_,
+        is_restore = is_restore_
       } =
       A.object
         [ "@type" A..= T.String "storePaymentPurposePremiumSubscription",
+          "is_upgrade" A..= is_upgrade_,
           "is_restore" A..= is_restore_
         ]
   toJSON

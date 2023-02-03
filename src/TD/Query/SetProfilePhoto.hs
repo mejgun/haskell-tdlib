@@ -9,11 +9,11 @@ import qualified TD.Data.InputChatPhoto as InputChatPhoto
 import qualified Utils as U
 
 -- |
--- Changes a profile photo for the current user @photo Profile photo to set @is_public Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+-- Changes a profile photo for the current user
 data SetProfilePhoto = SetProfilePhoto
-  { -- |
+  { -- | Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
     is_public :: Maybe Bool,
-    -- |
+    -- | Profile photo to set
     photo :: Maybe InputChatPhoto.InputChatPhoto
   }
   deriving (Eq)

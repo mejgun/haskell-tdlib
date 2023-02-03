@@ -21,6 +21,9 @@ import qualified TD.Data.AuthenticationCodeType as AuthenticationCodeType
 import qualified TD.Data.AuthorizationState as AuthorizationState
 import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
 import qualified TD.Data.AutoDownloadSettingsPresets as AutoDownloadSettingsPresets
+import qualified TD.Data.AutosaveSettings as AutosaveSettings
+import qualified TD.Data.AutosaveSettingsException as AutosaveSettingsException
+import qualified TD.Data.AutosaveSettingsScope as AutosaveSettingsScope
 import qualified TD.Data.AvailableReaction as AvailableReaction
 import qualified TD.Data.AvailableReactions as AvailableReactions
 import qualified TD.Data.Background as Background
@@ -84,6 +87,8 @@ import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
+import qualified TD.Data.ChatPhotoSticker as ChatPhotoSticker
+import qualified TD.Data.ChatPhotoStickerType as ChatPhotoStickerType
 import qualified TD.Data.ChatPhotos as ChatPhotos
 import qualified TD.Data.ChatPosition as ChatPosition
 import qualified TD.Data.ChatReportReason as ChatReportReason
@@ -120,6 +125,9 @@ import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.DraftMessage as DraftMessage
 import qualified TD.Data.EmailAddressAuthentication as EmailAddressAuthentication
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
+import qualified TD.Data.EmojiCategories as EmojiCategories
+import qualified TD.Data.EmojiCategory as EmojiCategory
+import qualified TD.Data.EmojiCategoryType as EmojiCategoryType
 import qualified TD.Data.EmojiReaction as EmojiReaction
 import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.EmojiStatuses as EmojiStatuses
@@ -132,6 +140,7 @@ import qualified TD.Data.FileDownload as FileDownload
 import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
 import qualified TD.Data.FilePart as FilePart
 import qualified TD.Data.FileType as FileType
+import qualified TD.Data.FirebaseAuthenticationSettings as FirebaseAuthenticationSettings
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ForumTopic as ForumTopic
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
@@ -273,6 +282,7 @@ import qualified TD.Data.PremiumLimitType as PremiumLimitType
 import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
 import qualified TD.Data.PremiumSource as PremiumSource
 import qualified TD.Data.PremiumState as PremiumState
+import qualified TD.Data.PremiumStatePaymentOption as PremiumStatePaymentOption
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
 import qualified TD.Data.Proxies as Proxies
 import qualified TD.Data.Proxy as Proxy
@@ -290,6 +300,7 @@ import qualified TD.Data.ResetPasswordResult as ResetPasswordResult
 import qualified TD.Data.RichText as RichText
 import qualified TD.Data.RtmpUrl as RtmpUrl
 import qualified TD.Data.SavedCredentials as SavedCredentials
+import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 import qualified TD.Data.Seconds as Seconds
@@ -423,6 +434,8 @@ data GeneralResult
   | BotCommands BotCommands.BotCommands
   | BotMenuButton BotMenuButton.BotMenuButton
   | ChatLocation ChatLocation.ChatLocation
+  | ChatPhotoStickerType ChatPhotoStickerType.ChatPhotoStickerType
+  | ChatPhotoSticker ChatPhotoSticker.ChatPhotoSticker
   | AnimatedChatPhoto AnimatedChatPhoto.AnimatedChatPhoto
   | ChatPhoto ChatPhoto.ChatPhoto
   | ChatPhotos ChatPhotos.ChatPhotos
@@ -430,6 +443,7 @@ data GeneralResult
   | ChatPermissions ChatPermissions.ChatPermissions
   | ChatAdministratorRights ChatAdministratorRights.ChatAdministratorRights
   | PremiumPaymentOption PremiumPaymentOption.PremiumPaymentOption
+  | PremiumStatePaymentOption PremiumStatePaymentOption.PremiumStatePaymentOption
   | EmojiStatus EmojiStatus.EmojiStatus
   | EmojiStatuses EmojiStatuses.EmojiStatuses
   | Usernames Usernames.Usernames
@@ -586,6 +600,9 @@ data GeneralResult
   | StickerSetInfo StickerSetInfo.StickerSetInfo
   | StickerSets StickerSets.StickerSets
   | TrendingStickerSets TrendingStickerSets.TrendingStickerSets
+  | EmojiCategory EmojiCategory.EmojiCategory
+  | EmojiCategories EmojiCategories.EmojiCategories
+  | EmojiCategoryType EmojiCategoryType.EmojiCategoryType
   | CallDiscardReason CallDiscardReason.CallDiscardReason
   | CallProtocol CallProtocol.CallProtocol
   | CallServerType CallServerType.CallServerType
@@ -604,6 +621,7 @@ data GeneralResult
   | GroupCallParticipant GroupCallParticipant.GroupCallParticipant
   | CallProblem CallProblem.CallProblem
   | Call Call.Call
+  | FirebaseAuthenticationSettings FirebaseAuthenticationSettings.FirebaseAuthenticationSettings
   | PhoneNumberAuthenticationSettings PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings
   | AddedReaction AddedReaction.AddedReaction
   | AddedReactions AddedReactions.AddedReactions
@@ -696,6 +714,10 @@ data GeneralResult
   | NetworkStatistics NetworkStatistics.NetworkStatistics
   | AutoDownloadSettings AutoDownloadSettings.AutoDownloadSettings
   | AutoDownloadSettingsPresets AutoDownloadSettingsPresets.AutoDownloadSettingsPresets
+  | AutosaveSettingsScope AutosaveSettingsScope.AutosaveSettingsScope
+  | ScopeAutosaveSettings ScopeAutosaveSettings.ScopeAutosaveSettings
+  | AutosaveSettingsException AutosaveSettingsException.AutosaveSettingsException
+  | AutosaveSettings AutosaveSettings.AutosaveSettings
   | ConnectionState ConnectionState.ConnectionState
   | TopChatCategory TopChatCategory.TopChatCategory
   | TMeUrlType TMeUrlType.TMeUrlType
@@ -911,6 +933,12 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ChatLocation.ChatLocation) of
             T.Success a -> return $ ChatLocation a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatPhotoStickerType.ChatPhotoStickerType) of
+            T.Success a -> return $ ChatPhotoStickerType a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatPhotoSticker.ChatPhotoSticker) of
+            T.Success a -> return $ ChatPhotoSticker a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result AnimatedChatPhoto.AnimatedChatPhoto) of
             T.Success a -> return $ AnimatedChatPhoto a
             _ -> mempty,
@@ -931,6 +959,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result PremiumPaymentOption.PremiumPaymentOption) of
             T.Success a -> return $ PremiumPaymentOption a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result PremiumStatePaymentOption.PremiumStatePaymentOption) of
+            T.Success a -> return $ PremiumStatePaymentOption a
             _ -> mempty,
           case (T.fromJSON v :: T.Result EmojiStatus.EmojiStatus) of
             T.Success a -> return $ EmojiStatus a
@@ -1400,6 +1431,15 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result TrendingStickerSets.TrendingStickerSets) of
             T.Success a -> return $ TrendingStickerSets a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result EmojiCategory.EmojiCategory) of
+            T.Success a -> return $ EmojiCategory a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result EmojiCategories.EmojiCategories) of
+            T.Success a -> return $ EmojiCategories a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result EmojiCategoryType.EmojiCategoryType) of
+            T.Success a -> return $ EmojiCategoryType a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result CallDiscardReason.CallDiscardReason) of
             T.Success a -> return $ CallDiscardReason a
             _ -> mempty,
@@ -1453,6 +1493,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result Call.Call) of
             T.Success a -> return $ Call a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result FirebaseAuthenticationSettings.FirebaseAuthenticationSettings) of
+            T.Success a -> return $ FirebaseAuthenticationSettings a
             _ -> mempty,
           case (T.fromJSON v :: T.Result PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings) of
             T.Success a -> return $ PhoneNumberAuthenticationSettings a
@@ -1729,6 +1772,18 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result AutoDownloadSettingsPresets.AutoDownloadSettingsPresets) of
             T.Success a -> return $ AutoDownloadSettingsPresets a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result AutosaveSettingsScope.AutosaveSettingsScope) of
+            T.Success a -> return $ AutosaveSettingsScope a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ScopeAutosaveSettings.ScopeAutosaveSettings) of
+            T.Success a -> return $ ScopeAutosaveSettings a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result AutosaveSettingsException.AutosaveSettingsException) of
+            T.Success a -> return $ AutosaveSettingsException a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result AutosaveSettings.AutosaveSettings) of
+            T.Success a -> return $ AutosaveSettings a
             _ -> mempty,
           case (T.fromJSON v :: T.Result ConnectionState.ConnectionState) of
             T.Success a -> return $ ConnectionState a

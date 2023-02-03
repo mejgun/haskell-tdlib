@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.40.0
+version:        0.2.41.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -41,6 +41,9 @@ library
       TD.Data.AuthorizationState
       TD.Data.AutoDownloadSettings
       TD.Data.AutoDownloadSettingsPresets
+      TD.Data.AutosaveSettings
+      TD.Data.AutosaveSettingsException
+      TD.Data.AutosaveSettingsScope
       TD.Data.AvailableReaction
       TD.Data.AvailableReactions
       TD.Data.Background
@@ -105,6 +108,8 @@ library
       TD.Data.ChatPhoto
       TD.Data.ChatPhotoInfo
       TD.Data.ChatPhotos
+      TD.Data.ChatPhotoSticker
+      TD.Data.ChatPhotoStickerType
       TD.Data.ChatPosition
       TD.Data.ChatReportReason
       TD.Data.Chats
@@ -140,6 +145,9 @@ library
       TD.Data.DraftMessage
       TD.Data.EmailAddressAuthentication
       TD.Data.EmailAddressAuthenticationCodeInfo
+      TD.Data.EmojiCategories
+      TD.Data.EmojiCategory
+      TD.Data.EmojiCategoryType
       TD.Data.EmojiReaction
       TD.Data.Emojis
       TD.Data.EmojiStatus
@@ -152,6 +160,7 @@ library
       TD.Data.FileDownloadedPrefixSize
       TD.Data.FilePart
       TD.Data.FileType
+      TD.Data.FirebaseAuthenticationSettings
       TD.Data.FormattedText
       TD.Data.ForumTopic
       TD.Data.ForumTopicIcon
@@ -294,6 +303,7 @@ library
       TD.Data.PremiumPaymentOption
       TD.Data.PremiumSource
       TD.Data.PremiumState
+      TD.Data.PremiumStatePaymentOption
       TD.Data.ProfilePhoto
       TD.Data.Proxies
       TD.Data.Proxy
@@ -311,6 +321,7 @@ library
       TD.Data.RichText
       TD.Data.RtmpUrl
       TD.Data.SavedCredentials
+      TD.Data.ScopeAutosaveSettings
       TD.Data.ScopeNotificationSettings
       TD.Data.SearchMessagesFilter
       TD.Data.Seconds
@@ -447,6 +458,7 @@ library
       TD.Query.CheckStickerSetName
       TD.Query.CleanFileName
       TD.Query.ClearAllDraftMessages
+      TD.Query.ClearAutosaveSettingsExceptions
       TD.Query.ClearImportedContacts
       TD.Query.ClearRecentEmojiStatuses
       TD.Query.ClearRecentlyFoundChats
@@ -534,6 +546,7 @@ library
       TD.Query.GetAttachmentMenuBot
       TD.Query.GetAuthorizationState
       TD.Query.GetAutoDownloadSettingsPresets
+      TD.Query.GetAutosaveSettings
       TD.Query.GetBackgrounds
       TD.Query.GetBackgroundUrl
       TD.Query.GetBankCardInfo
@@ -578,8 +591,11 @@ library
       TD.Query.GetCustomEmojiStickers
       TD.Query.GetDatabaseStatistics
       TD.Query.GetDeepLinkInfo
+      TD.Query.GetDefaultChatPhotoCustomEmojiStickers
       TD.Query.GetDefaultEmojiStatuses
       TD.Query.GetDefaultMessageAutoDeleteTime
+      TD.Query.GetDefaultProfilePhotoCustomEmojiStickers
+      TD.Query.GetEmojiCategories
       TD.Query.GetEmojiReaction
       TD.Query.GetEmojiSuggestionsUrl
       TD.Query.GetExternalLink
@@ -805,6 +821,7 @@ library
       TD.Query.SearchStickerSets
       TD.Query.SearchUserByPhoneNumber
       TD.Query.SearchUserByToken
+      TD.Query.SendAuthenticationFirebaseSms
       TD.Query.SendBotStartMessage
       TD.Query.SendCallDebugInformation
       TD.Query.SendCallLog
@@ -827,6 +844,7 @@ library
       TD.Query.SetAuthenticationEmailAddress
       TD.Query.SetAuthenticationPhoneNumber
       TD.Query.SetAutoDownloadSettings
+      TD.Query.SetAutosaveSettings
       TD.Query.SetBackground
       TD.Query.SetBio
       TD.Query.SetBotUpdatesStatus
@@ -890,7 +908,9 @@ library
       TD.Query.SetUserPrivacySettingRules
       TD.Query.SetUserSupportInfo
       TD.Query.SetVideoChatDefaultParticipant
+      TD.Query.ShareChatWithBot
       TD.Query.SharePhoneNumber
+      TD.Query.ShareUserWithBot
       TD.Query.StartGroupCallRecording
       TD.Query.StartGroupCallScreenSharing
       TD.Query.StartScheduledGroupCall
@@ -918,6 +938,7 @@ library
       TD.Query.ToggleChatHasProtectedContent
       TD.Query.ToggleChatIsMarkedAsUnread
       TD.Query.ToggleChatIsPinned
+      TD.Query.ToggleChatIsTranslatable
       TD.Query.ToggleDownloadIsPaused
       TD.Query.ToggleForumTopicIsClosed
       TD.Query.ToggleForumTopicIsPinned
@@ -943,6 +964,7 @@ library
       TD.Query.ToggleSupergroupUsernameIsActive
       TD.Query.ToggleUsernameIsActive
       TD.Query.TransferChatOwnership
+      TD.Query.TranslateMessageText
       TD.Query.TranslateText
       TD.Query.UnpinAllChatMessages
       TD.Query.UnpinAllMessageThreadMessages
