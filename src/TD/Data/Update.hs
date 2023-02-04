@@ -758,7 +758,7 @@ data Update
         -- |
         added_actions :: Maybe [SuggestedAction.SuggestedAction]
       }
-  | -- | Autosave settings for some type of chats were updated @scope Type of chats for which autosave settings were updated @settings The new autosave settings
+  | -- | Autosave settings for some type of chats were updated @scope Type of chats for which autosave settings were updated @settings The new autosave settings; may be null if the settings are reset to default
     UpdateAutosaveSettings
       { -- |
         settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings,
