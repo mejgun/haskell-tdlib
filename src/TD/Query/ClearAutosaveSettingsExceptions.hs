@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Clears the list of all autosave settings exceptions
+-- Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
 data ClearAutosaveSettingsExceptions = ClearAutosaveSettingsExceptions
   {
   }

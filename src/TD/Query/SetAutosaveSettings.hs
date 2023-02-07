@@ -10,7 +10,7 @@ import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
 import qualified Utils as U
 
 -- |
--- Sets autosave settings for the given scope @scope Autosave settings scope @settings New autosave settings for the scope; pass null to set autosave settings to default
+-- Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings @scope Autosave settings scope @settings New autosave settings for the scope; pass null to set autosave settings to default
 data SetAutosaveSettings = SetAutosaveSettings
   { -- |
     settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings,
