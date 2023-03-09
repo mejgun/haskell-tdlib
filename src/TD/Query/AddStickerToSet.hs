@@ -9,7 +9,7 @@ import qualified TD.Data.InputSticker as InputSticker
 import qualified Utils as U
 
 -- |
--- Adds a new sticker to a set; for bots only. Returns the sticker set
+-- Adds a new sticker to a set; for bots only
 data AddStickerToSet = AddStickerToSet
   { -- | Sticker to add to the set
     sticker :: Maybe InputSticker.InputSticker,

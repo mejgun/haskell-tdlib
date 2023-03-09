@@ -54,6 +54,8 @@ data AuthorizationState
     AuthorizationStateWaitPassword
       { -- | Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
         recovery_email_address_pattern :: Maybe String,
+        -- | True, if some Telegram Passport elements were saved
+        has_passport_data :: Maybe Bool,
         -- | True, if a recovery email address has been set up
         has_recovery_email_address :: Maybe Bool,
         -- | Hint for the password; may be empty
@@ -130,12 +132,14 @@ instance Show AuthorizationState where
   show
     AuthorizationStateWaitPassword
       { recovery_email_address_pattern = recovery_email_address_pattern_,
+        has_passport_data = has_passport_data_,
         has_recovery_email_address = has_recovery_email_address_,
         password_hint = password_hint_
       } =
       "AuthorizationStateWaitPassword"
         ++ U.cc
           [ U.p "recovery_email_address_pattern" recovery_email_address_pattern_,
+            U.p "has_passport_data" has_passport_data_,
             U.p "has_recovery_email_address" has_recovery_email_address_,
             U.p "password_hint" password_hint_
           ]
@@ -213,9 +217,10 @@ instance T.FromJSON AuthorizationState where
       parseAuthorizationStateWaitPassword :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitPassword = A.withObject "AuthorizationStateWaitPassword" $ \o -> do
         recovery_email_address_pattern_ <- o A..:? "recovery_email_address_pattern"
+        has_passport_data_ <- o A..:? "has_passport_data"
         has_recovery_email_address_ <- o A..:? "has_recovery_email_address"
         password_hint_ <- o A..:? "password_hint"
-        return $ AuthorizationStateWaitPassword {recovery_email_address_pattern = recovery_email_address_pattern_, has_recovery_email_address = has_recovery_email_address_, password_hint = password_hint_}
+        return $ AuthorizationStateWaitPassword {recovery_email_address_pattern = recovery_email_address_pattern_, has_passport_data = has_passport_data_, has_recovery_email_address = has_recovery_email_address_, password_hint = password_hint_}
 
       parseAuthorizationStateReady :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateReady = A.withObject "AuthorizationStateReady" $ \_ -> return AuthorizationStateReady
@@ -290,12 +295,14 @@ instance T.ToJSON AuthorizationState where
   toJSON
     AuthorizationStateWaitPassword
       { recovery_email_address_pattern = recovery_email_address_pattern_,
+        has_passport_data = has_passport_data_,
         has_recovery_email_address = has_recovery_email_address_,
         password_hint = password_hint_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitPassword",
           "recovery_email_address_pattern" A..= recovery_email_address_pattern_,
+          "has_passport_data" A..= has_passport_data_,
           "has_recovery_email_address" A..= has_recovery_email_address_,
           "password_hint" A..= password_hint_
         ]

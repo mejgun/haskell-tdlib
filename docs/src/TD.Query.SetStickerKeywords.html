@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Query.SetStickerKeywords</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="TD.Data.InputFile.html"><span class="hs-identifier">TD.Data.InputFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputFile</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SetStickerKeywords"><span class="annot"><a href="TD.Query.SetStickerKeywords.html#SetStickerKeywords"><span class="hs-identifier hs-var">SetStickerKeywords</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetStickerKeywords"><span class="annot"><a href="TD.Query.SetStickerKeywords.html#SetStickerKeywords"><span class="hs-identifier hs-var">SetStickerKeywords</span></a></span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker</span><span>
+</span><span id="line-15"></span><span>    </span><span id="keywords"><span class="annot"><span class="annottext">SetStickerKeywords -&gt; Maybe [String]
+</span><a href="TD.Query.SetStickerKeywords.html#keywords"><span class="hs-identifier hs-var hs-var">keywords</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-comment">-- | Sticker</span><span>
+</span><span id="line-17"></span><span>    </span><span id="sticker"><span class="annot"><span class="annottext">SetStickerKeywords -&gt; Maybe InputFile
+</span><a href="TD.Query.SetStickerKeywords.html#sticker"><span class="hs-identifier hs-var hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679455138"><span id="local-6989586621679455140"><span class="annot"><span class="annottext">SetStickerKeywords -&gt; SetStickerKeywords -&gt; Bool
+(SetStickerKeywords -&gt; SetStickerKeywords -&gt; Bool)
+-&gt; (SetStickerKeywords -&gt; SetStickerKeywords -&gt; Bool)
+-&gt; Eq SetStickerKeywords
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: SetStickerKeywords -&gt; SetStickerKeywords -&gt; Bool
+$c/= :: SetStickerKeywords -&gt; SetStickerKeywords -&gt; Bool
+== :: SetStickerKeywords -&gt; SetStickerKeywords -&gt; Bool
+$c== :: SetStickerKeywords -&gt; SetStickerKeywords -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679455132"><span id="local-6989586621679455135"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetStickerKeywords.html#SetStickerKeywords"><span class="hs-identifier hs-type">SetStickerKeywords</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679455130"><span class="annot"><span class="annottext">show :: SetStickerKeywords -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
+</span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.SetStickerKeywords.html#SetStickerKeywords"><span class="hs-identifier hs-type">SetStickerKeywords</span></a></span><span>
+</span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">keywords :: SetStickerKeywords -&gt; Maybe [String]
+</span><a href="TD.Query.SetStickerKeywords.html#keywords"><span class="hs-identifier hs-var">keywords</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679455128"><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679455128"><span class="hs-identifier hs-var">keywords_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">sticker :: SetStickerKeywords -&gt; Maybe InputFile
+</span><a href="TD.Query.SetStickerKeywords.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679455127"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679455127"><span class="hs-identifier hs-var">sticker_</span></a></span></span><span>
+</span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SetStickerKeywords&quot;</span></span><span>
+</span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
+</span><span id="line-29"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe [String] -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;keywords&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679455128"><span class="hs-identifier hs-var">keywords_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe InputFile -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679455127"><span class="hs-identifier hs-var">sticker_</span></a></span><span>
+</span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679455118"><span id="local-6989586621679455120"><span id="local-6989586621679455122"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetStickerKeywords.html#SetStickerKeywords"><span class="hs-identifier hs-type">SetStickerKeywords</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679455116"><span class="annot"><span class="annottext">toJSON :: SetStickerKeywords -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
+</span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.SetStickerKeywords.html#SetStickerKeywords"><span class="hs-identifier hs-type">SetStickerKeywords</span></a></span><span>
+</span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">keywords :: SetStickerKeywords -&gt; Maybe [String]
+</span><a href="TD.Query.SetStickerKeywords.html#keywords"><span class="hs-identifier hs-var">keywords</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679455114"><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679455114"><span class="hs-identifier hs-var">keywords_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">sticker :: SetStickerKeywords -&gt; Maybe InputFile
+</span><a href="TD.Query.SetStickerKeywords.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679455113"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679455113"><span class="hs-identifier hs-var">sticker_</span></a></span></span><span>
+</span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span>
+</span><span id="line-40"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;setStickerKeywords&quot;</span></span><span class="hs-special">,</span><span>
+</span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;keywords&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [String] -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679455114"><span class="hs-identifier hs-var">keywords_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputFile -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679455113"><span class="hs-identifier hs-var">sticker_</span></a></span><span>
+</span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-44"></span></pre></body></html>

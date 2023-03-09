@@ -30,6 +30,7 @@ import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Video as Video
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
+import qualified TD.Data.WebApp as WebApp
 import qualified TD.Data.WebPage as WebPage
 import qualified Utils as U
 
@@ -171,7 +172,7 @@ data MessageContent
       { -- |
         poll :: Maybe Poll.Poll
       }
-  | -- | A message with an invoice from a bot
+  | -- | A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
     MessageInvoice
       { -- | Extended media attached to the invoice; may be null
         extended_media :: Maybe MessageExtendedMedia.MessageExtendedMedia,
@@ -181,7 +182,7 @@ data MessageContent
         need_shipping_address :: Maybe Bool,
         -- | True, if the invoice is a test invoice
         is_test :: Maybe Bool,
-        -- | Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
+        -- | Unique invoice bot start_parameter to be passed to getInternalLink
         start_parameter :: Maybe String,
         -- | Product total price in the smallest units of the currency
         total_amount :: Maybe Int,
@@ -411,8 +412,11 @@ data MessageContent
       { -- |
         domain_name :: Maybe String
       }
-  | -- | The user allowed the bot to send messages
+  | -- | The user allowed the bot to send messages @web_app Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
     MessageBotWriteAccessAllowed
+      { -- |
+        web_app :: Maybe WebApp.WebApp
+      }
   | -- | Data from a Web App has been sent to a bot @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App
     MessageWebAppDataSent
       { -- |
@@ -979,10 +983,14 @@ instance Show MessageContent where
         ++ U.cc
           [ U.p "domain_name" domain_name_
           ]
-  show MessageBotWriteAccessAllowed =
-    "MessageBotWriteAccessAllowed"
-      ++ U.cc
-        []
+  show
+    MessageBotWriteAccessAllowed
+      { web_app = web_app_
+      } =
+      "MessageBotWriteAccessAllowed"
+        ++ U.cc
+          [ U.p "web_app" web_app_
+          ]
   show
     MessageWebAppDataSent
       { button_text = button_text_
@@ -1421,7 +1429,9 @@ instance T.FromJSON MessageContent where
         return $ MessageWebsiteConnected {domain_name = domain_name_}
 
       parseMessageBotWriteAccessAllowed :: A.Value -> T.Parser MessageContent
-      parseMessageBotWriteAccessAllowed = A.withObject "MessageBotWriteAccessAllowed" $ \_ -> return MessageBotWriteAccessAllowed
+      parseMessageBotWriteAccessAllowed = A.withObject "MessageBotWriteAccessAllowed" $ \o -> do
+        web_app_ <- o A..:? "web_app"
+        return $ MessageBotWriteAccessAllowed {web_app = web_app_}
 
       parseMessageWebAppDataSent :: A.Value -> T.Parser MessageContent
       parseMessageWebAppDataSent = A.withObject "MessageWebAppDataSent" $ \o -> do
@@ -1985,10 +1995,14 @@ instance T.ToJSON MessageContent where
         [ "@type" A..= T.String "messageWebsiteConnected",
           "domain_name" A..= domain_name_
         ]
-  toJSON MessageBotWriteAccessAllowed =
-    A.object
-      [ "@type" A..= T.String "messageBotWriteAccessAllowed"
-      ]
+  toJSON
+    MessageBotWriteAccessAllowed
+      { web_app = web_app_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageBotWriteAccessAllowed",
+          "web_app" A..= web_app_
+        ]
   toJSON
     MessageWebAppDataSent
       { button_text = button_text_

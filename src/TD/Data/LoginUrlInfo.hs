@@ -9,16 +9,16 @@ import qualified Utils as U
 
 -- | Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
 data LoginUrlInfo
-  = -- | An HTTP URL needs to be open @url The URL to open @skip_confirm True, if there is no need to show an ordinary open URL confirm
+  = -- | An HTTP URL needs to be open @url The URL to open @skip_confirmation True, if there is no need to show an ordinary open URL confirmation
     LoginUrlInfoOpen
       { -- |
-        skip_confirm :: Maybe Bool,
+        skip_confirmation :: Maybe Bool,
         -- |
         url :: Maybe String
       }
   | -- | An authorization confirmation dialog needs to be shown to the user
     LoginUrlInfoRequestConfirmation
-      { -- | True, if the user needs to be requested to give the permission to the bot to send them messages
+      { -- | True, if the user must be asked for the permission to the bot to send them messages
         request_write_access :: Maybe Bool,
         -- | User identifier of a bot linked with the website
         bot_user_id :: Maybe Int,
@@ -32,12 +32,12 @@ data LoginUrlInfo
 instance Show LoginUrlInfo where
   show
     LoginUrlInfoOpen
-      { skip_confirm = skip_confirm_,
+      { skip_confirmation = skip_confirmation_,
         url = url_
       } =
       "LoginUrlInfoOpen"
         ++ U.cc
-          [ U.p "skip_confirm" skip_confirm_,
+          [ U.p "skip_confirmation" skip_confirmation_,
             U.p "url" url_
           ]
   show
@@ -66,9 +66,9 @@ instance T.FromJSON LoginUrlInfo where
     where
       parseLoginUrlInfoOpen :: A.Value -> T.Parser LoginUrlInfo
       parseLoginUrlInfoOpen = A.withObject "LoginUrlInfoOpen" $ \o -> do
-        skip_confirm_ <- o A..:? "skip_confirm"
+        skip_confirmation_ <- o A..:? "skip_confirmation"
         url_ <- o A..:? "url"
-        return $ LoginUrlInfoOpen {skip_confirm = skip_confirm_, url = url_}
+        return $ LoginUrlInfoOpen {skip_confirmation = skip_confirmation_, url = url_}
 
       parseLoginUrlInfoRequestConfirmation :: A.Value -> T.Parser LoginUrlInfo
       parseLoginUrlInfoRequestConfirmation = A.withObject "LoginUrlInfoRequestConfirmation" $ \o -> do
@@ -82,12 +82,12 @@ instance T.FromJSON LoginUrlInfo where
 instance T.ToJSON LoginUrlInfo where
   toJSON
     LoginUrlInfoOpen
-      { skip_confirm = skip_confirm_,
+      { skip_confirmation = skip_confirmation_,
         url = url_
       } =
       A.object
         [ "@type" A..= T.String "loginUrlInfoOpen",
-          "skip_confirm" A..= skip_confirm_,
+          "skip_confirmation" A..= skip_confirmation_,
           "url" A..= url_
         ]
   toJSON

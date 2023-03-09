@@ -30,7 +30,7 @@ data BotInfo = -- | Contains information about a bot
     -- |
     description :: Maybe String,
     -- | The text that is shown on the bot's profile page and is sent together with the link when users share the bot
-    share_text :: Maybe String
+    short_description :: Maybe String
   }
   deriving (Eq)
 
@@ -44,7 +44,7 @@ instance Show BotInfo where
         animation = animation_,
         photo = photo_,
         description = description_,
-        share_text = share_text_
+        short_description = short_description_
       } =
       "BotInfo"
         ++ U.cc
@@ -55,7 +55,7 @@ instance Show BotInfo where
             U.p "animation" animation_,
             U.p "photo" photo_,
             U.p "description" description_,
-            U.p "share_text" share_text_
+            U.p "short_description" short_description_
           ]
 
 instance T.FromJSON BotInfo where
@@ -75,8 +75,8 @@ instance T.FromJSON BotInfo where
         animation_ <- o A..:? "animation"
         photo_ <- o A..:? "photo"
         description_ <- o A..:? "description"
-        share_text_ <- o A..:? "share_text"
-        return $ BotInfo {default_channel_administrator_rights = default_channel_administrator_rights_, default_group_administrator_rights = default_group_administrator_rights_, commands = commands_, menu_button = menu_button_, animation = animation_, photo = photo_, description = description_, share_text = share_text_}
+        short_description_ <- o A..:? "short_description"
+        return $ BotInfo {default_channel_administrator_rights = default_channel_administrator_rights_, default_group_administrator_rights = default_group_administrator_rights_, commands = commands_, menu_button = menu_button_, animation = animation_, photo = photo_, description = description_, short_description = short_description_}
   parseJSON _ = mempty
 
 instance T.ToJSON BotInfo where
@@ -89,7 +89,7 @@ instance T.ToJSON BotInfo where
         animation = animation_,
         photo = photo_,
         description = description_,
-        share_text = share_text_
+        short_description = short_description_
       } =
       A.object
         [ "@type" A..= T.String "botInfo",
@@ -100,5 +100,5 @@ instance T.ToJSON BotInfo where
           "animation" A..= animation_,
           "photo" A..= photo_,
           "description" A..= description_,
-          "share_text" A..= share_text_
+          "short_description" A..= short_description_
         ]

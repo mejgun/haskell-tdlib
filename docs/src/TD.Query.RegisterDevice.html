@@ -18,7 +18,7 @@
 </span><span id="line-17"></span><span>    </span><span id="device_token"><span class="annot"><span class="annottext">RegisterDevice -&gt; Maybe DeviceToken
 </span><a href="TD.Query.RegisterDevice.html#device_token"><span class="hs-identifier hs-var hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken.DeviceToken</span></a></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679456999"><span id="local-6989586621679457001"><span class="annot"><span class="annottext">RegisterDevice -&gt; RegisterDevice -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679463892"><span id="local-6989586621679463894"><span class="annot"><span class="annottext">RegisterDevice -&gt; RegisterDevice -&gt; Bool
 (RegisterDevice -&gt; RegisterDevice -&gt; Bool)
 -&gt; (RegisterDevice -&gt; RegisterDevice -&gt; Bool) -&gt; Eq RegisterDevice
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -28,16 +28,16 @@ $c/= :: RegisterDevice -&gt; RegisterDevice -&gt; Bool
 $c== :: RegisterDevice -&gt; RegisterDevice -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679456993"><span id="local-6989586621679456996"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679456991"><span class="annot"><span class="annottext">show :: RegisterDevice -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679463886"><span id="local-6989586621679463889"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679463884"><span class="annot"><span class="annottext">show :: RegisterDevice -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">other_user_ids :: RegisterDevice -&gt; Maybe [Int]
-</span><a href="TD.Query.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456989"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679456989"><span class="hs-identifier hs-var">other_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679463882"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679463882"><span class="hs-identifier hs-var">other_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">device_token :: RegisterDevice -&gt; Maybe DeviceToken
-</span><a href="TD.Query.RegisterDevice.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456988"><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679456988"><span class="hs-identifier hs-var">device_token_</span></a></span></span><span>
+</span><a href="TD.Query.RegisterDevice.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679463881"><span class="annot"><span class="annottext">Maybe DeviceToken
+</span><a href="#local-6989586621679463881"><span class="hs-identifier hs-var">device_token_</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;RegisterDevice&quot;</span></span><span>
@@ -49,24 +49,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;other_user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679456989"><span class="hs-identifier hs-var">other_user_ids_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679463882"><span class="hs-identifier hs-var">other_user_ids_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe DeviceToken -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679456988"><span class="hs-identifier hs-var">device_token_</span></a></span><span>
+</span><a href="#local-6989586621679463881"><span class="hs-identifier hs-var">device_token_</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679456979"><span id="local-6989586621679456981"><span id="local-6989586621679456983"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679456977"><span class="annot"><span class="annottext">toJSON :: RegisterDevice -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679463872"><span id="local-6989586621679463874"><span id="local-6989586621679463876"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679463870"><span class="annot"><span class="annottext">toJSON :: RegisterDevice -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">other_user_ids :: RegisterDevice -&gt; Maybe [Int]
-</span><a href="TD.Query.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456975"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679456975"><span class="hs-identifier hs-var">other_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679463868"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679463868"><span class="hs-identifier hs-var">other_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">device_token :: RegisterDevice -&gt; Maybe DeviceToken
-</span><a href="TD.Query.RegisterDevice.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456974"><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679456974"><span class="hs-identifier hs-var">device_token_</span></a></span></span><span>
+</span><a href="TD.Query.RegisterDevice.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679463867"><span class="annot"><span class="annottext">Maybe DeviceToken
+</span><a href="#local-6989586621679463867"><span class="hs-identifier hs-var">device_token_</span></a></span></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;other_user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679456975"><span class="hs-identifier hs-var">other_user_ids_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679463868"><span class="hs-identifier hs-var">other_user_ids_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe DeviceToken -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679456974"><span class="hs-identifier hs-var">device_token_</span></a></span><span>
+</span><a href="#local-6989586621679463867"><span class="hs-identifier hs-var">device_token_</span></a></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span></pre></body></html>

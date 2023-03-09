@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="TranslateMessageText"><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-var">TranslateMessageText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="TranslateMessageText"><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-var">TranslateMessageText</span></a></span></span><span>
-</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | ISO language code of the language to which the message is translated. Must be one of</span><span>
+</span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Language code of the language to which the message is translated. Must be one of</span><span>
 </span><span id="line-14"></span><span>    </span><span class="hs-comment">-- &quot;af&quot;, &quot;sq&quot;, &quot;am&quot;, &quot;ar&quot;, &quot;hy&quot;, &quot;az&quot;, &quot;eu&quot;, &quot;be&quot;, &quot;bn&quot;, &quot;bs&quot;, &quot;bg&quot;, &quot;ca&quot;, &quot;ceb&quot;, &quot;zh-CN&quot;, &quot;zh&quot;, &quot;zh-Hans&quot;, &quot;zh-TW&quot;, &quot;zh-Hant&quot;, &quot;co&quot;, &quot;hr&quot;, &quot;cs&quot;, &quot;da&quot;, &quot;nl&quot;, &quot;en&quot;, &quot;eo&quot;, &quot;et&quot;,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- &quot;fi&quot;, &quot;fr&quot;, &quot;fy&quot;, &quot;gl&quot;, &quot;ka&quot;, &quot;de&quot;, &quot;el&quot;, &quot;gu&quot;, &quot;ht&quot;, &quot;ha&quot;, &quot;haw&quot;, &quot;he&quot;, &quot;iw&quot;, &quot;hi&quot;, &quot;hmn&quot;, &quot;hu&quot;, &quot;is&quot;, &quot;ig&quot;, &quot;id&quot;, &quot;in&quot;, &quot;ga&quot;, &quot;it&quot;, &quot;ja&quot;, &quot;jv&quot;, &quot;kn&quot;, &quot;kk&quot;, &quot;km&quot;, &quot;rw&quot;, &quot;ko&quot;,</span><span>
 </span><span id="line-16"></span><span>    </span><span class="hs-comment">-- &quot;ku&quot;, &quot;ky&quot;, &quot;lo&quot;, &quot;la&quot;, &quot;lv&quot;, &quot;lt&quot;, &quot;lb&quot;, &quot;mk&quot;, &quot;mg&quot;, &quot;ms&quot;, &quot;ml&quot;, &quot;mt&quot;, &quot;mi&quot;, &quot;mr&quot;, &quot;mn&quot;, &quot;my&quot;, &quot;ne&quot;, &quot;no&quot;, &quot;ny&quot;, &quot;or&quot;, &quot;ps&quot;, &quot;fa&quot;, &quot;pl&quot;, &quot;pt&quot;, &quot;pa&quot;, &quot;ro&quot;, &quot;ru&quot;, &quot;sm&quot;, &quot;gd&quot;, &quot;sr&quot;,</span><span>
@@ -24,7 +24,7 @@
 </span><span id="line-22"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">TranslateMessageText -&gt; Maybe Int
 </span><a href="TD.Query.TranslateMessageText.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414078"><span id="local-6989586621679414080"><span class="annot"><span class="annottext">TranslateMessageText -&gt; TranslateMessageText -&gt; Bool
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419983"><span id="local-6989586621679419985"><span class="annot"><span class="annottext">TranslateMessageText -&gt; TranslateMessageText -&gt; Bool
 (TranslateMessageText -&gt; TranslateMessageText -&gt; Bool)
 -&gt; (TranslateMessageText -&gt; TranslateMessageText -&gt; Bool)
 -&gt; Eq TranslateMessageText
@@ -35,19 +35,19 @@ $c/= :: TranslateMessageText -&gt; TranslateMessageText -&gt; Bool
 $c== :: TranslateMessageText -&gt; TranslateMessageText -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414072"><span id="local-6989586621679414075"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-type">TranslateMessageText</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679414070"><span class="annot"><span class="annottext">show :: TranslateMessageText -&gt; String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419977"><span id="local-6989586621679419980"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-type">TranslateMessageText</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679419975"><span class="annot"><span class="annottext">show :: TranslateMessageText -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-type">TranslateMessageText</span></a></span><span>
 </span><span id="line-29"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">to_language_code :: TranslateMessageText -&gt; Maybe String
-</span><a href="TD.Query.TranslateMessageText.html#to_language_code"><span class="hs-identifier hs-var">to_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414068"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414068"><span class="hs-identifier hs-var">to_language_code_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.TranslateMessageText.html#to_language_code"><span class="hs-identifier hs-var">to_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419973"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679419973"><span class="hs-identifier hs-var">to_language_code_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">message_id :: TranslateMessageText -&gt; Maybe Int
-</span><a href="TD.Query.TranslateMessageText.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414067"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414067"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.TranslateMessageText.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419972"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679419972"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: TranslateMessageText -&gt; Maybe Int
-</span><a href="TD.Query.TranslateMessageText.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414066"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414066"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.TranslateMessageText.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419971"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679419971"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;TranslateMessageText&quot;</span></span><span>
@@ -59,32 +59,32 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;to_language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414068"><span class="hs-identifier hs-var">to_language_code_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679419973"><span class="hs-identifier hs-var">to_language_code_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414067"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679419972"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414066"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679419971"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-38"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414057"><span id="local-6989586621679414059"><span id="local-6989586621679414061"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-type">TranslateMessageText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679414055"><span class="annot"><span class="annottext">toJSON :: TranslateMessageText -&gt; Value
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419962"><span id="local-6989586621679419964"><span id="local-6989586621679419966"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-type">TranslateMessageText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679419960"><span class="annot"><span class="annottext">toJSON :: TranslateMessageText -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-42"></span><span>    </span><span class="annot"><a href="TD.Query.TranslateMessageText.html#TranslateMessageText"><span class="hs-identifier hs-type">TranslateMessageText</span></a></span><span>
 </span><span id="line-43"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">to_language_code :: TranslateMessageText -&gt; Maybe String
-</span><a href="TD.Query.TranslateMessageText.html#to_language_code"><span class="hs-identifier hs-var">to_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414053"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414053"><span class="hs-identifier hs-var">to_language_code_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.TranslateMessageText.html#to_language_code"><span class="hs-identifier hs-var">to_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419958"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679419958"><span class="hs-identifier hs-var">to_language_code_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>        </span><span class="annot"><span class="annottext">message_id :: TranslateMessageText -&gt; Maybe Int
-</span><a href="TD.Query.TranslateMessageText.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414052"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414052"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.TranslateMessageText.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419957"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679419957"><span class="hs-identifier hs-var">message_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: TranslateMessageText -&gt; Maybe Int
-</span><a href="TD.Query.TranslateMessageText.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414051"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414051"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Query.TranslateMessageText.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419956"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679419956"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-46"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -98,16 +98,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;to_language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414053"><span class="hs-identifier hs-var">to_language_code_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679419958"><span class="hs-identifier hs-var">to_language_code_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-50"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414052"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679419957"><span class="hs-identifier hs-var">message_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414051"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679419956"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-52"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-53"></span></pre></body></html>

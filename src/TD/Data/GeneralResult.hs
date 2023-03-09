@@ -149,6 +149,7 @@ import qualified TD.Data.ForumTopics as ForumTopics
 import qualified TD.Data.FoundChatMessages as FoundChatMessages
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
+import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.Game as Game
 import qualified TD.Data.GameHighScore as GameHighScore
 import qualified TD.Data.GameHighScores as GameHighScores
@@ -169,6 +170,8 @@ import qualified TD.Data.InlineKeyboardButton as InlineKeyboardButton
 import qualified TD.Data.InlineKeyboardButtonType as InlineKeyboardButtonType
 import qualified TD.Data.InlineQueryResult as InlineQueryResult
 import qualified TD.Data.InlineQueryResults as InlineQueryResults
+import qualified TD.Data.InlineQueryResultsButton as InlineQueryResultsButton
+import qualified TD.Data.InlineQueryResultsButtonType as InlineQueryResultsButtonType
 import qualified TD.Data.InputBackground as InputBackground
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
 import qualified TD.Data.InputCredentials as InputCredentials
@@ -225,8 +228,11 @@ import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.MessageSenders as MessageSenders
 import qualified TD.Data.MessageSendingState as MessageSendingState
+import qualified TD.Data.MessageSource as MessageSource
 import qualified TD.Data.MessageStatistics as MessageStatistics
 import qualified TD.Data.MessageThreadInfo as MessageThreadInfo
+import qualified TD.Data.MessageViewer as MessageViewer
+import qualified TD.Data.MessageViewers as MessageViewers
 import qualified TD.Data.Messages as Messages
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.NetworkStatistics as NetworkStatistics
@@ -378,6 +384,7 @@ import qualified TD.Data.Video as Video
 import qualified TD.Data.VideoChat as VideoChat
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
+import qualified TD.Data.WebApp as WebApp
 import qualified TD.Data.WebAppInfo as WebAppInfo
 import qualified TD.Data.WebPage as WebPage
 import qualified TD.Data.WebPageInstantView as WebPageInstantView
@@ -426,6 +433,7 @@ data GeneralResult
   | Location Location.Location
   | Venue Venue.Venue
   | Game Game.Game
+  | WebApp WebApp.WebApp
   | Poll Poll.Poll
   | ProfilePhoto ProfilePhoto.ProfilePhoto
   | ChatPhotoInfo ChatPhotoInfo.ChatPhotoInfo
@@ -478,6 +486,8 @@ data GeneralResult
   | MessageSenders MessageSenders.MessageSenders
   | ChatMessageSender ChatMessageSender.ChatMessageSender
   | ChatMessageSenders ChatMessageSenders.ChatMessageSenders
+  | MessageViewer MessageViewer.MessageViewer
+  | MessageViewers MessageViewers.MessageViewers
   | MessageForwardOrigin MessageForwardOrigin.MessageForwardOrigin
   | ReactionType ReactionType.ReactionType
   | MessageForwardInfo MessageForwardInfo.MessageForwardInfo
@@ -494,6 +504,7 @@ data GeneralResult
   | MessagePositions MessagePositions.MessagePositions
   | MessageCalendarDay MessageCalendarDay.MessageCalendarDay
   | MessageCalendar MessageCalendar.MessageCalendar
+  | MessageSource MessageSource.MessageSource
   | SponsoredMessage SponsoredMessage.SponsoredMessage
   | SponsoredMessages SponsoredMessages.SponsoredMessages
   | FileDownload FileDownload.FileDownload
@@ -526,6 +537,7 @@ data GeneralResult
   | InlineKeyboardButton InlineKeyboardButton.InlineKeyboardButton
   | ReplyMarkup ReplyMarkup.ReplyMarkup
   | LoginUrlInfo LoginUrlInfo.LoginUrlInfo
+  | FoundWebApp FoundWebApp.FoundWebApp
   | WebAppInfo WebAppInfo.WebAppInfo
   | MessageThreadInfo MessageThreadInfo.MessageThreadInfo
   | ForumTopicIcon ForumTopicIcon.ForumTopicIcon
@@ -639,6 +651,8 @@ data GeneralResult
   | UserLink UserLink.UserLink
   | InputInlineQueryResult InputInlineQueryResult.InputInlineQueryResult
   | InlineQueryResult InlineQueryResult.InlineQueryResult
+  | InlineQueryResultsButtonType InlineQueryResultsButtonType.InlineQueryResultsButtonType
+  | InlineQueryResultsButton InlineQueryResultsButton.InlineQueryResultsButton
   | InlineQueryResults InlineQueryResults.InlineQueryResults
   | CallbackQueryPayload CallbackQueryPayload.CallbackQueryPayload
   | CallbackQueryAnswer CallbackQueryAnswer.CallbackQueryAnswer
@@ -909,6 +923,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result Game.Game) of
             T.Success a -> return $ Game a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result WebApp.WebApp) of
+            T.Success a -> return $ WebApp a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result Poll.Poll) of
             T.Success a -> return $ Poll a
             _ -> mempty,
@@ -1065,6 +1082,12 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ChatMessageSenders.ChatMessageSenders) of
             T.Success a -> return $ ChatMessageSenders a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageViewer.MessageViewer) of
+            T.Success a -> return $ MessageViewer a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageViewers.MessageViewers) of
+            T.Success a -> return $ MessageViewers a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result MessageForwardOrigin.MessageForwardOrigin) of
             T.Success a -> return $ MessageForwardOrigin a
             _ -> mempty,
@@ -1112,6 +1135,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result MessageCalendar.MessageCalendar) of
             T.Success a -> return $ MessageCalendar a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageSource.MessageSource) of
+            T.Success a -> return $ MessageSource a
             _ -> mempty,
           case (T.fromJSON v :: T.Result SponsoredMessage.SponsoredMessage) of
             T.Success a -> return $ SponsoredMessage a
@@ -1208,6 +1234,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result LoginUrlInfo.LoginUrlInfo) of
             T.Success a -> return $ LoginUrlInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result FoundWebApp.FoundWebApp) of
+            T.Success a -> return $ FoundWebApp a
             _ -> mempty,
           case (T.fromJSON v :: T.Result WebAppInfo.WebAppInfo) of
             T.Success a -> return $ WebAppInfo a
@@ -1547,6 +1576,12 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result InlineQueryResult.InlineQueryResult) of
             T.Success a -> return $ InlineQueryResult a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result InlineQueryResultsButtonType.InlineQueryResultsButtonType) of
+            T.Success a -> return $ InlineQueryResultsButtonType a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result InlineQueryResultsButton.InlineQueryResultsButton) of
+            T.Success a -> return $ InlineQueryResultsButton a
             _ -> mempty,
           case (T.fromJSON v :: T.Result InlineQueryResults.InlineQueryResults) of
             T.Success a -> return $ InlineQueryResults a

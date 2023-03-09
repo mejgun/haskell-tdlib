@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.44.0
+version:        0.2.45.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -169,6 +169,7 @@ library
       TD.Data.FoundChatMessages
       TD.Data.FoundFileDownloads
       TD.Data.FoundMessages
+      TD.Data.FoundWebApp
       TD.Data.Game
       TD.Data.GameHighScore
       TD.Data.GameHighScores
@@ -190,6 +191,8 @@ library
       TD.Data.InlineKeyboardButtonType
       TD.Data.InlineQueryResult
       TD.Data.InlineQueryResults
+      TD.Data.InlineQueryResultsButton
+      TD.Data.InlineQueryResultsButtonType
       TD.Data.InputBackground
       TD.Data.InputChatPhoto
       TD.Data.InputCredentials
@@ -247,8 +250,11 @@ library
       TD.Data.MessageSenders
       TD.Data.MessageSendingState
       TD.Data.MessageSendOptions
+      TD.Data.MessageSource
       TD.Data.MessageStatistics
       TD.Data.MessageThreadInfo
+      TD.Data.MessageViewer
+      TD.Data.MessageViewers
       TD.Data.Minithumbnail
       TD.Data.NetworkStatistics
       TD.Data.NetworkStatisticsEntry
@@ -399,12 +405,14 @@ library
       TD.Data.VideoChat
       TD.Data.VideoNote
       TD.Data.VoiceNote
+      TD.Data.WebApp
       TD.Data.WebAppInfo
       TD.Data.WebPage
       TD.Data.WebPageInstantView
       TD.Lib
       TD.Query.AcceptCall
       TD.Query.AcceptTermsOfService
+      TD.Query.AddApplicationChangelog
       TD.Query.AddChatMember
       TD.Query.AddChatMembers
       TD.Query.AddChatToList
@@ -505,6 +513,7 @@ library
       TD.Query.DeleteRevokedChatInviteLink
       TD.Query.DeleteSavedCredentials
       TD.Query.DeleteSavedOrderInfo
+      TD.Query.DeleteStickerSet
       TD.Query.Destroy
       TD.Query.DisableAllSupergroupUsernames
       TD.Query.DisableProxy
@@ -553,6 +562,8 @@ library
       TD.Query.GetBasicGroup
       TD.Query.GetBasicGroupFullInfo
       TD.Query.GetBlockedMessageSenders
+      TD.Query.GetBotInfoDescription
+      TD.Query.GetBotInfoShortDescription
       TD.Query.GetCallbackQueryAnswer
       TD.Query.GetCallbackQueryMessage
       TD.Query.GetChat
@@ -620,6 +631,7 @@ library
       TD.Query.GetInlineGameHighScores
       TD.Query.GetInlineQueryResults
       TD.Query.GetInstalledStickerSets
+      TD.Query.GetInternalLink
       TD.Query.GetInternalLinkType
       TD.Query.GetJsonString
       TD.Query.GetJsonValue
@@ -714,6 +726,7 @@ library
       TD.Query.GetUserSupportInfo
       TD.Query.GetVideoChatAvailableParticipants
       TD.Query.GetVideoChatRtmpUrl
+      TD.Query.GetWebAppLinkUrl
       TD.Query.GetWebAppUrl
       TD.Query.GetWebPageInstantView
       TD.Query.GetWebPagePreview
@@ -821,6 +834,7 @@ library
       TD.Query.SearchStickerSets
       TD.Query.SearchUserByPhoneNumber
       TD.Query.SearchUserByToken
+      TD.Query.SearchWebApp
       TD.Query.SendAuthenticationFirebaseSms
       TD.Query.SendBotStartMessage
       TD.Query.SendCallDebugInformation
@@ -847,6 +861,8 @@ library
       TD.Query.SetAutosaveSettings
       TD.Query.SetBackground
       TD.Query.SetBio
+      TD.Query.SetBotInfoDescription
+      TD.Query.SetBotInfoShortDescription
       TD.Query.SetBotUpdatesStatus
       TD.Query.SetChatAvailableReactions
       TD.Query.SetChatClientData
@@ -864,6 +880,7 @@ library
       TD.Query.SetChatTheme
       TD.Query.SetChatTitle
       TD.Query.SetCommands
+      TD.Query.SetCustomEmojiStickerSetThumbnail
       TD.Query.SetCustomLanguagePack
       TD.Query.SetCustomLanguagePackString
       TD.Query.SetDatabaseEncryptionKey
@@ -898,8 +915,12 @@ library
       TD.Query.SetProfilePhoto
       TD.Query.SetRecoveryEmailAddress
       TD.Query.SetScopeNotificationSettings
+      TD.Query.SetStickerEmojis
+      TD.Query.SetStickerKeywords
+      TD.Query.SetStickerMaskPosition
       TD.Query.SetStickerPositionInSet
       TD.Query.SetStickerSetThumbnail
+      TD.Query.SetStickerSetTitle
       TD.Query.SetSupergroupStickerSet
       TD.Query.SetSupergroupUsername
       TD.Query.SetTdlibParameters

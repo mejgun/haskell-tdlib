@@ -39,7 +39,7 @@
 </span><span id="line-31"></span><span>    </span><span class="hs-comment">-- | Name for the bot in attachment menu</span><span>
 </span><span id="line-32"></span><span>    </span><span id="name"><span class="annot"><span class="annottext">AttachmentMenuBot -&gt; Maybe String
 </span><a href="TD.Data.AttachmentMenuBot.html#name"><span class="hs-identifier hs-var hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
-</span><span id="line-33"></span><span>    </span><span class="hs-comment">-- | True, if the user needs to be requested to give the permission to the bot to send them messages</span><span>
+</span><span id="line-33"></span><span>    </span><span class="hs-comment">-- | True, if the user must be asked for the permission to the bot to send them messages</span><span>
 </span><span id="line-34"></span><span>    </span><span id="request_write_access"><span class="annot"><span class="annottext">AttachmentMenuBot -&gt; Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#request_write_access"><span class="hs-identifier hs-var hs-var">request_write_access</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>    </span><span class="hs-comment">-- | True, if the bot supports &quot;settings_button_pressed&quot; event</span><span>
@@ -64,7 +64,7 @@
 </span><span id="line-48"></span><span>    </span><span id="bot_user_id"><span class="annot"><span class="annottext">AttachmentMenuBot -&gt; Maybe Int
 </span><a href="TD.Data.AttachmentMenuBot.html#bot_user_id"><span class="hs-identifier hs-var hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-49"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-50"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679473677"><span id="local-6989586621679473679"><span class="annot"><span class="annottext">AttachmentMenuBot -&gt; AttachmentMenuBot -&gt; Bool
+</span><span id="line-50"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679480801"><span id="local-6989586621679480803"><span class="annot"><span class="annottext">AttachmentMenuBot -&gt; AttachmentMenuBot -&gt; Bool
 (AttachmentMenuBot -&gt; AttachmentMenuBot -&gt; Bool)
 -&gt; (AttachmentMenuBot -&gt; AttachmentMenuBot -&gt; Bool)
 -&gt; Eq AttachmentMenuBot
@@ -75,61 +75,61 @@ $c/= :: AttachmentMenuBot -&gt; AttachmentMenuBot -&gt; Bool
 $c== :: AttachmentMenuBot -&gt; AttachmentMenuBot -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679473671"><span id="local-6989586621679473674"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-53"></span><span>  </span><span id="local-6989586621679473669"><span class="annot"><span class="annottext">show :: AttachmentMenuBot -&gt; String
+</span><span id="line-52"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679480795"><span id="local-6989586621679480798"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-53"></span><span>  </span><span id="local-6989586621679480793"><span class="annot"><span class="annottext">show :: AttachmentMenuBot -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-54"></span><span>    </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span><span>
 </span><span id="line-55"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">web_app_placeholder :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#web_app_placeholder"><span class="hs-identifier hs-var">web_app_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473667"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473667"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#web_app_placeholder"><span class="hs-identifier hs-var">web_app_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480791"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480791"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">icon_color :: AttachmentMenuBot -&gt; Maybe AttachmentMenuBotColor
-</span><a href="TD.Data.AttachmentMenuBot.html#icon_color"><span class="hs-identifier hs-var">icon_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473666"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473666"><span class="hs-identifier hs-var">icon_color_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#icon_color"><span class="hs-identifier hs-var">icon_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480790"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480790"><span class="hs-identifier hs-var">icon_color_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">macos_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#macos_icon"><span class="hs-identifier hs-var">macos_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473665"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473665"><span class="hs-identifier hs-var">macos_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#macos_icon"><span class="hs-identifier hs-var">macos_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480789"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480789"><span class="hs-identifier hs-var">macos_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">android_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#android_icon"><span class="hs-identifier hs-var">android_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473664"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473664"><span class="hs-identifier hs-var">android_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#android_icon"><span class="hs-identifier hs-var">android_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480788"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480788"><span class="hs-identifier hs-var">android_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">ios_animated_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#ios_animated_icon"><span class="hs-identifier hs-var">ios_animated_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473663"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473663"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#ios_animated_icon"><span class="hs-identifier hs-var">ios_animated_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480787"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480787"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>        </span><span class="annot"><span class="annottext">ios_static_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#ios_static_icon"><span class="hs-identifier hs-var">ios_static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473662"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473662"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#ios_static_icon"><span class="hs-identifier hs-var">ios_static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480786"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480786"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-61"></span><span>        </span><span class="annot"><span class="annottext">default_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#default_icon"><span class="hs-identifier hs-var">default_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473661"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473661"><span class="hs-identifier hs-var">default_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#default_icon"><span class="hs-identifier hs-var">default_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480785"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480785"><span class="hs-identifier hs-var">default_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-62"></span><span>        </span><span class="annot"><span class="annottext">name_color :: AttachmentMenuBot -&gt; Maybe AttachmentMenuBotColor
-</span><a href="TD.Data.AttachmentMenuBot.html#name_color"><span class="hs-identifier hs-var">name_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473660"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473660"><span class="hs-identifier hs-var">name_color_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#name_color"><span class="hs-identifier hs-var">name_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480784"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480784"><span class="hs-identifier hs-var">name_color_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">name :: AttachmentMenuBot -&gt; Maybe String
-</span><a href="TD.Data.AttachmentMenuBot.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473659"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679473659"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480783"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679480783"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">request_write_access :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473658"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473658"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480782"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480782"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-65"></span><span>        </span><span class="annot"><span class="annottext">supports_settings :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_settings"><span class="hs-identifier hs-var">supports_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473657"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473657"><span class="hs-identifier hs-var">supports_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_settings"><span class="hs-identifier hs-var">supports_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480781"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480781"><span class="hs-identifier hs-var">supports_settings_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>        </span><span class="annot"><span class="annottext">supports_channel_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_channel_chats"><span class="hs-identifier hs-var">supports_channel_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473656"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473656"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_channel_chats"><span class="hs-identifier hs-var">supports_channel_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480780"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480780"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-67"></span><span>        </span><span class="annot"><span class="annottext">supports_group_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_group_chats"><span class="hs-identifier hs-var">supports_group_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473655"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473655"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_group_chats"><span class="hs-identifier hs-var">supports_group_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480779"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480779"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>        </span><span class="annot"><span class="annottext">supports_bot_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_bot_chats"><span class="hs-identifier hs-var">supports_bot_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473654"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473654"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_bot_chats"><span class="hs-identifier hs-var">supports_bot_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480778"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480778"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>        </span><span class="annot"><span class="annottext">supports_user_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_user_chats"><span class="hs-identifier hs-var">supports_user_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473653"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473653"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_user_chats"><span class="hs-identifier hs-var">supports_user_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480777"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480777"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>        </span><span class="annot"><span class="annottext">supports_self_chat :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_self_chat"><span class="hs-identifier hs-var">supports_self_chat</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473652"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473652"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_self_chat"><span class="hs-identifier hs-var">supports_self_chat</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480776"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480776"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: AttachmentMenuBot -&gt; Maybe Int
-</span><a href="TD.Data.AttachmentMenuBot.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473651"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679473651"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480775"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679480775"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
 </span><span id="line-72"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-73"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;AttachmentMenuBot&quot;</span></span><span>
@@ -141,115 +141,115 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;web_app_placeholder&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473667"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480791"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-76"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe AttachmentMenuBotColor -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;icon_color&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473666"><span class="hs-identifier hs-var">icon_color_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480790"><span class="hs-identifier hs-var">icon_color_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-77"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe File -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;macos_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473665"><span class="hs-identifier hs-var">macos_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480789"><span class="hs-identifier hs-var">macos_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-78"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe File -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;android_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473664"><span class="hs-identifier hs-var">android_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480788"><span class="hs-identifier hs-var">android_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-79"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe File -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ios_animated_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473663"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480787"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-80"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe File -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ios_static_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473662"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480786"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-81"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe File -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;default_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473661"><span class="hs-identifier hs-var">default_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480785"><span class="hs-identifier hs-var">default_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-82"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe AttachmentMenuBotColor -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;name_color&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473660"><span class="hs-identifier hs-var">name_color_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480784"><span class="hs-identifier hs-var">name_color_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-83"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679473659"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480783"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-84"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;request_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473658"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480782"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-85"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473657"><span class="hs-identifier hs-var">supports_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480781"><span class="hs-identifier hs-var">supports_settings_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-86"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_channel_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473656"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480780"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-87"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_group_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473655"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480779"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-88"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_bot_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473654"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480778"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-89"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_user_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473653"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480777"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-90"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;supports_self_chat&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473652"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480776"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-91"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679473651"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><a href="#local-6989586621679480775"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
 </span><span id="line-92"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-93"></span><span>
-</span><span id="line-94"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679473646"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-95"></span><span>  </span><span id="local-6989586621679473644"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AttachmentMenuBot
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679473642"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679473642"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679473640"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473640"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-96"></span><span>    </span><span id="local-6989586621679473639"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679473639"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473640"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-94"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679480770"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-95"></span><span>  </span><span id="local-6989586621679480768"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AttachmentMenuBot
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679480766"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679480766"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679480764"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480764"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-96"></span><span>    </span><span id="local-6989586621679480763"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679480763"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480764"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-97"></span><span>
 </span><span id="line-98"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679473639"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679480763"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-99"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;attachmentMenuBot&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AttachmentMenuBot
-</span><a href="#local-6989586621679473637"><span class="hs-identifier hs-var">parseAttachmentMenuBot</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679473642"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679480761"><span class="hs-identifier hs-var">parseAttachmentMenuBot</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679480766"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-100"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AttachmentMenuBot
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-101"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-102"></span><span>      </span><span class="annot"><a href="#local-6989586621679473637"><span class="hs-identifier hs-type">parseAttachmentMenuBot</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span><span>
-</span><span id="line-103"></span><span>      </span><span id="local-6989586621679473637"><span class="annot"><span class="annottext">parseAttachmentMenuBot :: Value -&gt; Parser AttachmentMenuBot
-</span><a href="#local-6989586621679473637"><span class="hs-identifier hs-var hs-var">parseAttachmentMenuBot</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-102"></span><span>      </span><span class="annot"><a href="#local-6989586621679480761"><span class="hs-identifier hs-type">parseAttachmentMenuBot</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span><span>
+</span><span id="line-103"></span><span>      </span><span id="local-6989586621679480761"><span class="annot"><span class="annottext">parseAttachmentMenuBot :: Value -&gt; Parser AttachmentMenuBot
+</span><a href="#local-6989586621679480761"><span class="hs-identifier hs-var hs-var">parseAttachmentMenuBot</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AttachmentMenuBot)
 -&gt; Value
 -&gt; Parser AttachmentMenuBot
@@ -261,107 +261,107 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AttachmentMenuBot
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679473635"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-104"></span><span>        </span><span id="local-6989586621679473634"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473634"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679480759"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-104"></span><span>        </span><span id="local-6989586621679480758"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480758"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;web_app_placeholder&quot;</span></span><span>
-</span><span id="line-105"></span><span>        </span><span id="local-6989586621679473632"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473632"><span class="hs-identifier hs-var">icon_color_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AttachmentMenuBotColor)
+</span><span id="line-105"></span><span>        </span><span id="local-6989586621679480756"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480756"><span class="hs-identifier hs-var">icon_color_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AttachmentMenuBotColor)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;icon_color&quot;</span></span><span>
-</span><span id="line-106"></span><span>        </span><span id="local-6989586621679473631"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473631"><span class="hs-identifier hs-var">macos_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+</span><span id="line-106"></span><span>        </span><span id="local-6989586621679480755"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480755"><span class="hs-identifier hs-var">macos_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;macos_icon&quot;</span></span><span>
-</span><span id="line-107"></span><span>        </span><span id="local-6989586621679473630"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473630"><span class="hs-identifier hs-var">android_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+</span><span id="line-107"></span><span>        </span><span id="local-6989586621679480754"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480754"><span class="hs-identifier hs-var">android_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;android_icon&quot;</span></span><span>
-</span><span id="line-108"></span><span>        </span><span id="local-6989586621679473629"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473629"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+</span><span id="line-108"></span><span>        </span><span id="local-6989586621679480753"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480753"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;ios_animated_icon&quot;</span></span><span>
-</span><span id="line-109"></span><span>        </span><span id="local-6989586621679473628"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473628"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+</span><span id="line-109"></span><span>        </span><span id="local-6989586621679480752"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480752"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;ios_static_icon&quot;</span></span><span>
-</span><span id="line-110"></span><span>        </span><span id="local-6989586621679473627"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473627"><span class="hs-identifier hs-var">default_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
+</span><span id="line-110"></span><span>        </span><span id="local-6989586621679480751"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480751"><span class="hs-identifier hs-var">default_icon_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;default_icon&quot;</span></span><span>
-</span><span id="line-111"></span><span>        </span><span id="local-6989586621679473626"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473626"><span class="hs-identifier hs-var">name_color_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AttachmentMenuBotColor)
+</span><span id="line-111"></span><span>        </span><span id="local-6989586621679480750"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480750"><span class="hs-identifier hs-var">name_color_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AttachmentMenuBotColor)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;name_color&quot;</span></span><span>
-</span><span id="line-112"></span><span>        </span><span id="local-6989586621679473625"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679473625"><span class="hs-identifier hs-var">name_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-112"></span><span>        </span><span id="local-6989586621679480749"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679480749"><span class="hs-identifier hs-var">name_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;name&quot;</span></span><span>
-</span><span id="line-113"></span><span>        </span><span id="local-6989586621679473624"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473624"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-113"></span><span>        </span><span id="local-6989586621679480748"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480748"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;request_write_access&quot;</span></span><span>
-</span><span id="line-114"></span><span>        </span><span id="local-6989586621679473623"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473623"><span class="hs-identifier hs-var">supports_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-114"></span><span>        </span><span id="local-6989586621679480747"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480747"><span class="hs-identifier hs-var">supports_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_settings&quot;</span></span><span>
-</span><span id="line-115"></span><span>        </span><span id="local-6989586621679473622"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473622"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-115"></span><span>        </span><span id="local-6989586621679480746"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480746"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_channel_chats&quot;</span></span><span>
-</span><span id="line-116"></span><span>        </span><span id="local-6989586621679473621"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473621"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-116"></span><span>        </span><span id="local-6989586621679480745"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480745"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_group_chats&quot;</span></span><span>
-</span><span id="line-117"></span><span>        </span><span id="local-6989586621679473620"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473620"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-117"></span><span>        </span><span id="local-6989586621679480744"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480744"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_bot_chats&quot;</span></span><span>
-</span><span id="line-118"></span><span>        </span><span id="local-6989586621679473619"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473619"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-118"></span><span>        </span><span id="local-6989586621679480743"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480743"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_user_chats&quot;</span></span><span>
-</span><span id="line-119"></span><span>        </span><span id="local-6989586621679473618"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473618"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-119"></span><span>        </span><span id="local-6989586621679480742"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480742"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_self_chat&quot;</span></span><span>
-</span><span id="line-120"></span><span>        </span><span id="local-6989586621679473617"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679473617"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679473635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-120"></span><span>        </span><span id="local-6989586621679480741"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679480741"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480759"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span>
@@ -390,99 +390,99 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; AttachmentMenuBot
 </span><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">web_app_placeholder :: Maybe File
 </span><a href="TD.Data.AttachmentMenuBot.html#web_app_placeholder"><span class="hs-identifier hs-var">web_app_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473634"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_color :: Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480758"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">icon_color :: Maybe AttachmentMenuBotColor
 </span><a href="TD.Data.AttachmentMenuBot.html#icon_color"><span class="hs-identifier hs-var">icon_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473632"><span class="hs-identifier hs-var">icon_color_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">macos_icon :: Maybe File
+</span><a href="#local-6989586621679480756"><span class="hs-identifier hs-var">icon_color_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">macos_icon :: Maybe File
 </span><a href="TD.Data.AttachmentMenuBot.html#macos_icon"><span class="hs-identifier hs-var">macos_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473631"><span class="hs-identifier hs-var">macos_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">android_icon :: Maybe File
+</span><a href="#local-6989586621679480755"><span class="hs-identifier hs-var">macos_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">android_icon :: Maybe File
 </span><a href="TD.Data.AttachmentMenuBot.html#android_icon"><span class="hs-identifier hs-var">android_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473630"><span class="hs-identifier hs-var">android_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ios_animated_icon :: Maybe File
+</span><a href="#local-6989586621679480754"><span class="hs-identifier hs-var">android_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ios_animated_icon :: Maybe File
 </span><a href="TD.Data.AttachmentMenuBot.html#ios_animated_icon"><span class="hs-identifier hs-var">ios_animated_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473629"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ios_static_icon :: Maybe File
+</span><a href="#local-6989586621679480753"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ios_static_icon :: Maybe File
 </span><a href="TD.Data.AttachmentMenuBot.html#ios_static_icon"><span class="hs-identifier hs-var">ios_static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473628"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">default_icon :: Maybe File
+</span><a href="#local-6989586621679480752"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">default_icon :: Maybe File
 </span><a href="TD.Data.AttachmentMenuBot.html#default_icon"><span class="hs-identifier hs-var">default_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473627"><span class="hs-identifier hs-var">default_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name_color :: Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480751"><span class="hs-identifier hs-var">default_icon_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name_color :: Maybe AttachmentMenuBotColor
 </span><a href="TD.Data.AttachmentMenuBot.html#name_color"><span class="hs-identifier hs-var">name_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473626"><span class="hs-identifier hs-var">name_color_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: Maybe String
+</span><a href="#local-6989586621679480750"><span class="hs-identifier hs-var">name_color_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: Maybe String
 </span><a href="TD.Data.AttachmentMenuBot.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679473625"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">request_write_access :: Maybe Bool
+</span><a href="#local-6989586621679480749"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">request_write_access :: Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473624"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_settings :: Maybe Bool
+</span><a href="#local-6989586621679480748"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_settings :: Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#supports_settings"><span class="hs-identifier hs-var">supports_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473623"><span class="hs-identifier hs-var">supports_settings_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_channel_chats :: Maybe Bool
+</span><a href="#local-6989586621679480747"><span class="hs-identifier hs-var">supports_settings_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_channel_chats :: Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#supports_channel_chats"><span class="hs-identifier hs-var">supports_channel_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473622"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_group_chats :: Maybe Bool
+</span><a href="#local-6989586621679480746"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_group_chats :: Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#supports_group_chats"><span class="hs-identifier hs-var">supports_group_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473621"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_bot_chats :: Maybe Bool
+</span><a href="#local-6989586621679480745"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_bot_chats :: Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#supports_bot_chats"><span class="hs-identifier hs-var">supports_bot_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473620"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_user_chats :: Maybe Bool
+</span><a href="#local-6989586621679480744"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_user_chats :: Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#supports_user_chats"><span class="hs-identifier hs-var">supports_user_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473619"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_self_chat :: Maybe Bool
+</span><a href="#local-6989586621679480743"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supports_self_chat :: Maybe Bool
 </span><a href="TD.Data.AttachmentMenuBot.html#supports_self_chat"><span class="hs-identifier hs-var">supports_self_chat</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473618"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: Maybe Int
+</span><a href="#local-6989586621679480742"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: Maybe Int
 </span><a href="TD.Data.AttachmentMenuBot.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679473617"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679480741"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-122"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser AttachmentMenuBot
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-123"></span><span>
-</span><span id="line-124"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679473610"><span id="local-6989586621679473612"><span id="local-6989586621679473614"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-125"></span><span>  </span><span id="local-6989586621679473608"><span class="annot"><span class="annottext">toJSON :: AttachmentMenuBot -&gt; Value
+</span><span id="line-124"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679480734"><span id="local-6989586621679480736"><span id="local-6989586621679480738"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-125"></span><span>  </span><span id="local-6989586621679480732"><span class="annot"><span class="annottext">toJSON :: AttachmentMenuBot -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-126"></span><span>    </span><span class="annot"><a href="TD.Data.AttachmentMenuBot.html#AttachmentMenuBot"><span class="hs-identifier hs-type">AttachmentMenuBot</span></a></span><span>
 </span><span id="line-127"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">web_app_placeholder :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#web_app_placeholder"><span class="hs-identifier hs-var">web_app_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473606"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473606"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#web_app_placeholder"><span class="hs-identifier hs-var">web_app_placeholder</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480730"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480730"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-128"></span><span>        </span><span class="annot"><span class="annottext">icon_color :: AttachmentMenuBot -&gt; Maybe AttachmentMenuBotColor
-</span><a href="TD.Data.AttachmentMenuBot.html#icon_color"><span class="hs-identifier hs-var">icon_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473605"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473605"><span class="hs-identifier hs-var">icon_color_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#icon_color"><span class="hs-identifier hs-var">icon_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480729"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480729"><span class="hs-identifier hs-var">icon_color_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-129"></span><span>        </span><span class="annot"><span class="annottext">macos_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#macos_icon"><span class="hs-identifier hs-var">macos_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473604"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473604"><span class="hs-identifier hs-var">macos_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#macos_icon"><span class="hs-identifier hs-var">macos_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480728"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480728"><span class="hs-identifier hs-var">macos_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-130"></span><span>        </span><span class="annot"><span class="annottext">android_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#android_icon"><span class="hs-identifier hs-var">android_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473603"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473603"><span class="hs-identifier hs-var">android_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#android_icon"><span class="hs-identifier hs-var">android_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480727"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480727"><span class="hs-identifier hs-var">android_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-131"></span><span>        </span><span class="annot"><span class="annottext">ios_animated_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#ios_animated_icon"><span class="hs-identifier hs-var">ios_animated_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473602"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473602"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#ios_animated_icon"><span class="hs-identifier hs-var">ios_animated_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480726"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480726"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-132"></span><span>        </span><span class="annot"><span class="annottext">ios_static_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#ios_static_icon"><span class="hs-identifier hs-var">ios_static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473601"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473601"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#ios_static_icon"><span class="hs-identifier hs-var">ios_static_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480725"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480725"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-133"></span><span>        </span><span class="annot"><span class="annottext">default_icon :: AttachmentMenuBot -&gt; Maybe File
-</span><a href="TD.Data.AttachmentMenuBot.html#default_icon"><span class="hs-identifier hs-var">default_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473600"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473600"><span class="hs-identifier hs-var">default_icon_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#default_icon"><span class="hs-identifier hs-var">default_icon</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480724"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679480724"><span class="hs-identifier hs-var">default_icon_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-134"></span><span>        </span><span class="annot"><span class="annottext">name_color :: AttachmentMenuBot -&gt; Maybe AttachmentMenuBotColor
-</span><a href="TD.Data.AttachmentMenuBot.html#name_color"><span class="hs-identifier hs-var">name_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473599"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473599"><span class="hs-identifier hs-var">name_color_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#name_color"><span class="hs-identifier hs-var">name_color</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480723"><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
+</span><a href="#local-6989586621679480723"><span class="hs-identifier hs-var">name_color_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-135"></span><span>        </span><span class="annot"><span class="annottext">name :: AttachmentMenuBot -&gt; Maybe String
-</span><a href="TD.Data.AttachmentMenuBot.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473598"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679473598"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480722"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679480722"><span class="hs-identifier hs-var">name_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-136"></span><span>        </span><span class="annot"><span class="annottext">request_write_access :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473597"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473597"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480721"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480721"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-137"></span><span>        </span><span class="annot"><span class="annottext">supports_settings :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_settings"><span class="hs-identifier hs-var">supports_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473596"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473596"><span class="hs-identifier hs-var">supports_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_settings"><span class="hs-identifier hs-var">supports_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480720"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480720"><span class="hs-identifier hs-var">supports_settings_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-138"></span><span>        </span><span class="annot"><span class="annottext">supports_channel_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_channel_chats"><span class="hs-identifier hs-var">supports_channel_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473595"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473595"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_channel_chats"><span class="hs-identifier hs-var">supports_channel_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480719"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480719"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-139"></span><span>        </span><span class="annot"><span class="annottext">supports_group_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_group_chats"><span class="hs-identifier hs-var">supports_group_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473594"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473594"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_group_chats"><span class="hs-identifier hs-var">supports_group_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480718"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480718"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-140"></span><span>        </span><span class="annot"><span class="annottext">supports_bot_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_bot_chats"><span class="hs-identifier hs-var">supports_bot_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473593"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473593"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_bot_chats"><span class="hs-identifier hs-var">supports_bot_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480717"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480717"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-141"></span><span>        </span><span class="annot"><span class="annottext">supports_user_chats :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_user_chats"><span class="hs-identifier hs-var">supports_user_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473592"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473592"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_user_chats"><span class="hs-identifier hs-var">supports_user_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480716"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480716"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-142"></span><span>        </span><span class="annot"><span class="annottext">supports_self_chat :: AttachmentMenuBot -&gt; Maybe Bool
-</span><a href="TD.Data.AttachmentMenuBot.html#supports_self_chat"><span class="hs-identifier hs-var">supports_self_chat</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473591"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473591"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#supports_self_chat"><span class="hs-identifier hs-var">supports_self_chat</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480715"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679480715"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-143"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: AttachmentMenuBot -&gt; Maybe Int
-</span><a href="TD.Data.AttachmentMenuBot.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473590"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679473590"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><a href="TD.Data.AttachmentMenuBot.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480714"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679480714"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
 </span><span id="line-144"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-145"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -496,86 +496,86 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;web_app_placeholder&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473606"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480730"><span class="hs-identifier hs-var">web_app_placeholder_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-148"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;icon_color&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AttachmentMenuBotColor -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473605"><span class="hs-identifier hs-var">icon_color_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480729"><span class="hs-identifier hs-var">icon_color_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-149"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;macos_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473604"><span class="hs-identifier hs-var">macos_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480728"><span class="hs-identifier hs-var">macos_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-150"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;android_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473603"><span class="hs-identifier hs-var">android_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480727"><span class="hs-identifier hs-var">android_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-151"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;ios_animated_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473602"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480726"><span class="hs-identifier hs-var">ios_animated_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-152"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;ios_static_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473601"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480725"><span class="hs-identifier hs-var">ios_static_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-153"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;default_icon&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679473600"><span class="hs-identifier hs-var">default_icon_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480724"><span class="hs-identifier hs-var">default_icon_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-154"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;name_color&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AttachmentMenuBotColor -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AttachmentMenuBotColor
-</span><a href="#local-6989586621679473599"><span class="hs-identifier hs-var">name_color_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480723"><span class="hs-identifier hs-var">name_color_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-155"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679473598"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480722"><span class="hs-identifier hs-var">name_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-156"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;request_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473597"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480721"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-157"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473596"><span class="hs-identifier hs-var">supports_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480720"><span class="hs-identifier hs-var">supports_settings_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-158"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_channel_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473595"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480719"><span class="hs-identifier hs-var">supports_channel_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-159"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_group_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473594"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480718"><span class="hs-identifier hs-var">supports_group_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-160"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_bot_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473593"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480717"><span class="hs-identifier hs-var">supports_bot_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-161"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_user_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473592"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480716"><span class="hs-identifier hs-var">supports_user_chats_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-162"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supports_self_chat&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679473591"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679480715"><span class="hs-identifier hs-var">supports_self_chat_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-163"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679473590"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><a href="#local-6989586621679480714"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
 </span><span id="line-164"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-165"></span></pre></body></html>

@@ -30,7 +30,7 @@ data AttachmentMenuBot = -- | Represents a bot, which can be added to attachment
     name_color :: Maybe AttachmentMenuBotColor.AttachmentMenuBotColor,
     -- | Name for the bot in attachment menu
     name :: Maybe String,
-    -- | True, if the user needs to be requested to give the permission to the bot to send them messages
+    -- | True, if the user must be asked for the permission to the bot to send them messages
     request_write_access :: Maybe Bool,
     -- | True, if the bot supports "settings_button_pressed" event
     supports_settings :: Maybe Bool,

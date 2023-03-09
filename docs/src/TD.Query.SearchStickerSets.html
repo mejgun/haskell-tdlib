@@ -14,7 +14,7 @@
 </span><span id="line-14"></span><span>    </span><span id="query"><span class="annot"><span class="annottext">SearchStickerSets -&gt; Maybe String
 </span><a href="TD.Query.SearchStickerSets.html#query"><span class="hs-identifier hs-var hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-15"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679418546"><span id="local-6989586621679418548"><span class="annot"><span class="annottext">SearchStickerSets -&gt; SearchStickerSets -&gt; Bool
+</span><span id="line-16"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679424708"><span id="local-6989586621679424710"><span class="annot"><span class="annottext">SearchStickerSets -&gt; SearchStickerSets -&gt; Bool
 (SearchStickerSets -&gt; SearchStickerSets -&gt; Bool)
 -&gt; (SearchStickerSets -&gt; SearchStickerSets -&gt; Bool)
 -&gt; Eq SearchStickerSets
@@ -25,13 +25,13 @@ $c/= :: SearchStickerSets -&gt; SearchStickerSets -&gt; Bool
 $c== :: SearchStickerSets -&gt; SearchStickerSets -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418540"><span id="local-6989586621679418543"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickerSets.html#SearchStickerSets"><span class="hs-identifier hs-type">SearchStickerSets</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679418538"><span class="annot"><span class="annottext">show :: SearchStickerSets -&gt; String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424702"><span id="local-6989586621679424705"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickerSets.html#SearchStickerSets"><span class="hs-identifier hs-type">SearchStickerSets</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679424700"><span class="annot"><span class="annottext">show :: SearchStickerSets -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-20"></span><span>    </span><span class="annot"><a href="TD.Query.SearchStickerSets.html#SearchStickerSets"><span class="hs-identifier hs-type">SearchStickerSets</span></a></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SearchStickerSets -&gt; Maybe String
-</span><a href="TD.Query.SearchStickerSets.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418536"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679418536"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
+</span><a href="TD.Query.SearchStickerSets.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424698"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424698"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
 </span><span id="line-22"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SearchStickerSets&quot;</span></span><span>
@@ -43,16 +43,16 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679418536"><span class="hs-identifier hs-var">query_</span></a></span><span>
+</span><a href="#local-6989586621679424698"><span class="hs-identifier hs-var">query_</span></a></span><span>
 </span><span id="line-26"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679418527"><span id="local-6989586621679418529"><span id="local-6989586621679418531"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickerSets.html#SearchStickerSets"><span class="hs-identifier hs-type">SearchStickerSets</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679418525"><span class="annot"><span class="annottext">toJSON :: SearchStickerSets -&gt; Value
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424689"><span id="local-6989586621679424691"><span id="local-6989586621679424693"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SearchStickerSets.html#SearchStickerSets"><span class="hs-identifier hs-type">SearchStickerSets</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679424687"><span class="annot"><span class="annottext">toJSON :: SearchStickerSets -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><a href="TD.Query.SearchStickerSets.html#SearchStickerSets"><span class="hs-identifier hs-type">SearchStickerSets</span></a></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SearchStickerSets -&gt; Maybe String
-</span><a href="TD.Query.SearchStickerSets.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679418523"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679418523"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
+</span><a href="TD.Query.SearchStickerSets.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424685"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679424685"><span class="hs-identifier hs-var">query_</span></a></span></span><span>
 </span><span id="line-32"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -66,6 +66,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679418523"><span class="hs-identifier hs-var">query_</span></a></span><span>
+</span><a href="#local-6989586621679424685"><span class="hs-identifier hs-var">query_</span></a></span><span>
 </span><span id="line-36"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span></pre></body></html>

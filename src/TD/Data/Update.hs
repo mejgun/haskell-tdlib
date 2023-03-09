@@ -758,6 +758,13 @@ data Update
         -- |
         added_actions :: Maybe [SuggestedAction.SuggestedAction]
       }
+  | -- | Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate @chat_id Chat identifier @user_ids Identifiers of users, which weren't added because of their privacy settings
+    UpdateAddChatMembersPrivacyForbidden
+      { -- |
+        user_ids :: Maybe [Int],
+        -- |
+        chat_id :: Maybe Int
+      }
   | -- | Autosave settings for some type of chats were updated @scope Type of chats for which autosave settings were updated @settings The new autosave settings; may be null if the settings are reset to default
     UpdateAutosaveSettings
       { -- |
@@ -1869,6 +1876,16 @@ instance Show Update where
             U.p "added_actions" added_actions_
           ]
   show
+    UpdateAddChatMembersPrivacyForbidden
+      { user_ids = user_ids_,
+        chat_id = chat_id_
+      } =
+      "UpdateAddChatMembersPrivacyForbidden"
+        ++ U.cc
+          [ U.p "user_ids" user_ids_,
+            U.p "chat_id" chat_id_
+          ]
+  show
     UpdateAutosaveSettings
       { settings = settings_,
         _scope = _scope_
@@ -2152,6 +2169,7 @@ instance T.FromJSON Update where
       "updateAnimatedEmojiMessageClicked" -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters" -> parseUpdateAnimationSearchParameters v
       "updateSuggestedActions" -> parseUpdateSuggestedActions v
+      "updateAddChatMembersPrivacyForbidden" -> parseUpdateAddChatMembersPrivacyForbidden v
       "updateAutosaveSettings" -> parseUpdateAutosaveSettings v
       "updateNewInlineQuery" -> parseUpdateNewInlineQuery v
       "updateNewChosenInlineResult" -> parseUpdateNewChosenInlineResult v
@@ -2741,6 +2759,12 @@ instance T.FromJSON Update where
         removed_actions_ <- o A..:? "removed_actions"
         added_actions_ <- o A..:? "added_actions"
         return $ UpdateSuggestedActions {removed_actions = removed_actions_, added_actions = added_actions_}
+
+      parseUpdateAddChatMembersPrivacyForbidden :: A.Value -> T.Parser Update
+      parseUpdateAddChatMembersPrivacyForbidden = A.withObject "UpdateAddChatMembersPrivacyForbidden" $ \o -> do
+        user_ids_ <- o A..:? "user_ids"
+        chat_id_ <- o A..:? "chat_id"
+        return $ UpdateAddChatMembersPrivacyForbidden {user_ids = user_ids_, chat_id = chat_id_}
 
       parseUpdateAutosaveSettings :: A.Value -> T.Parser Update
       parseUpdateAutosaveSettings = A.withObject "UpdateAutosaveSettings" $ \o -> do
@@ -3810,6 +3834,16 @@ instance T.ToJSON Update where
         [ "@type" A..= T.String "updateSuggestedActions",
           "removed_actions" A..= removed_actions_,
           "added_actions" A..= added_actions_
+        ]
+  toJSON
+    UpdateAddChatMembersPrivacyForbidden
+      { user_ids = user_ids_,
+        chat_id = chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateAddChatMembersPrivacyForbidden",
+          "user_ids" A..= user_ids_,
+          "chat_id" A..= chat_id_
         ]
   toJSON
     UpdateAutosaveSettings

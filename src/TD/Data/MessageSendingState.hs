@@ -9,8 +9,11 @@ import qualified Utils as U
 
 -- | Contains information about the sending state of the message
 data MessageSendingState
-  = -- | The message is being sent now, but has not yet been delivered to the server
+  = -- | The message is being sent now, but has not yet been delivered to the server @sending_id Non-persistent message sending identifier, specified by the application
     MessageSendingStatePending
+      { -- |
+        sending_id :: Maybe Int
+      }
   | -- | The message failed to be sent
     MessageSendingStateFailed
       { -- | Time left before the message can be re-sent, in seconds. No update is sent when this field changes
@@ -27,10 +30,14 @@ data MessageSendingState
   deriving (Eq)
 
 instance Show MessageSendingState where
-  show MessageSendingStatePending =
-    "MessageSendingStatePending"
-      ++ U.cc
-        []
+  show
+    MessageSendingStatePending
+      { sending_id = sending_id_
+      } =
+      "MessageSendingStatePending"
+        ++ U.cc
+          [ U.p "sending_id" sending_id_
+          ]
   show
     MessageSendingStateFailed
       { retry_after = retry_after_,
@@ -58,7 +65,9 @@ instance T.FromJSON MessageSendingState where
       _ -> mempty
     where
       parseMessageSendingStatePending :: A.Value -> T.Parser MessageSendingState
-      parseMessageSendingStatePending = A.withObject "MessageSendingStatePending" $ \_ -> return MessageSendingStatePending
+      parseMessageSendingStatePending = A.withObject "MessageSendingStatePending" $ \o -> do
+        sending_id_ <- o A..:? "sending_id"
+        return $ MessageSendingStatePending {sending_id = sending_id_}
 
       parseMessageSendingStateFailed :: A.Value -> T.Parser MessageSendingState
       parseMessageSendingStateFailed = A.withObject "MessageSendingStateFailed" $ \o -> do
@@ -71,10 +80,14 @@ instance T.FromJSON MessageSendingState where
   parseJSON _ = mempty
 
 instance T.ToJSON MessageSendingState where
-  toJSON MessageSendingStatePending =
-    A.object
-      [ "@type" A..= T.String "messageSendingStatePending"
-      ]
+  toJSON
+    MessageSendingStatePending
+      { sending_id = sending_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageSendingStatePending",
+          "sending_id" A..= sending_id_
+        ]
   toJSON
     MessageSendingStateFailed
       { retry_after = retry_after_,

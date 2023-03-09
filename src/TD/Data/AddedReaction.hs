@@ -10,9 +10,11 @@ import qualified TD.Data.ReactionType as ReactionType
 import qualified Utils as U
 
 -- |
-data AddedReaction = -- | Represents a reaction applied to a message @type Type of the reaction @sender_id Identifier of the chat member, applied the reaction
+data AddedReaction = -- | Represents a reaction applied to a message @type Type of the reaction @sender_id Identifier of the chat member, applied the reaction @date Point in time (Unix timestamp) when the reaction was added
   AddedReaction
   { -- |
+    date :: Maybe Int,
+    -- |
     sender_id :: Maybe MessageSender.MessageSender,
     -- |
     _type :: Maybe ReactionType.ReactionType
@@ -22,12 +24,14 @@ data AddedReaction = -- | Represents a reaction applied to a message @type Type 
 instance Show AddedReaction where
   show
     AddedReaction
-      { sender_id = sender_id_,
+      { date = date_,
+        sender_id = sender_id_,
         _type = _type_
       } =
       "AddedReaction"
         ++ U.cc
-          [ U.p "sender_id" sender_id_,
+          [ U.p "date" date_,
+            U.p "sender_id" sender_id_,
             U.p "_type" _type_
           ]
 
@@ -41,19 +45,22 @@ instance T.FromJSON AddedReaction where
     where
       parseAddedReaction :: A.Value -> T.Parser AddedReaction
       parseAddedReaction = A.withObject "AddedReaction" $ \o -> do
+        date_ <- o A..:? "date"
         sender_id_ <- o A..:? "sender_id"
         _type_ <- o A..:? "type"
-        return $ AddedReaction {sender_id = sender_id_, _type = _type_}
+        return $ AddedReaction {date = date_, sender_id = sender_id_, _type = _type_}
   parseJSON _ = mempty
 
 instance T.ToJSON AddedReaction where
   toJSON
     AddedReaction
-      { sender_id = sender_id_,
+      { date = date_,
+        sender_id = sender_id_,
         _type = _type_
       } =
       A.object
         [ "@type" A..= T.String "addedReaction",
+          "date" A..= date_,
           "sender_id" A..= sender_id_,
           "type" A..= _type_
         ]

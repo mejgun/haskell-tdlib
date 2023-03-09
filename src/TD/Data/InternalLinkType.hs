@@ -37,6 +37,15 @@ data InternalLinkType
       { -- |
         background_name :: Maybe String
       }
+  | -- | The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot,
+    -- ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator,
+    -- check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+    InternalLinkTypeBotAddToChannel
+      { -- | Expected administrator rights for the bot
+        administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights,
+        -- | Username of the bot
+        bot_username :: Maybe String
+      }
   | -- | The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot,
     -- and then call sendBotStartMessage with the given start parameter after the button is pressed
     InternalLinkTypeBotStart
@@ -58,15 +67,6 @@ data InternalLinkType
         administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights,
         -- | The parameter to be passed to sendBotStartMessage
         start_parameter :: Maybe String,
-        -- | Username of the bot
-        bot_username :: Maybe String
-      }
-  | -- | The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot,
-    -- ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator,
-    -- check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
-    InternalLinkTypeBotAddToChannel
-      { -- | Expected administrator rights for the bot
-        administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights,
         -- | Username of the bot
         bot_username :: Maybe String
       }
@@ -142,7 +142,7 @@ data InternalLinkType
         -- | Hash value from the link
         hash :: Maybe String
       }
-  | -- | The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link @referrer Referrer specified in the link
+  | -- | The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link @referrer Referrer specified in the link
     InternalLinkTypePremiumFeatures
       { -- |
         referrer :: Maybe String
@@ -210,6 +210,16 @@ data InternalLinkType
         -- | Username of the chat with the video chat
         chat_username :: Maybe String
       }
+  | -- | The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name.
+    -- Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
+    InternalLinkTypeWebApp
+      { -- | Start parameter to be passed to getWebAppLinkUrl
+        start_parameter :: Maybe String,
+        -- | Short name of the Web App
+        web_app_short_name :: Maybe String,
+        -- | Username of the bot that owns the Web App
+        bot_username :: Maybe String
+      }
   deriving (Eq)
 
 instance Show InternalLinkType where
@@ -246,6 +256,16 @@ instance Show InternalLinkType where
           [ U.p "background_name" background_name_
           ]
   show
+    InternalLinkTypeBotAddToChannel
+      { administrator_rights = administrator_rights_,
+        bot_username = bot_username_
+      } =
+      "InternalLinkTypeBotAddToChannel"
+        ++ U.cc
+          [ U.p "administrator_rights" administrator_rights_,
+            U.p "bot_username" bot_username_
+          ]
+  show
     InternalLinkTypeBotStart
       { autostart = autostart_,
         start_parameter = start_parameter_,
@@ -267,16 +287,6 @@ instance Show InternalLinkType where
         ++ U.cc
           [ U.p "administrator_rights" administrator_rights_,
             U.p "start_parameter" start_parameter_,
-            U.p "bot_username" bot_username_
-          ]
-  show
-    InternalLinkTypeBotAddToChannel
-      { administrator_rights = administrator_rights_,
-        bot_username = bot_username_
-      } =
-      "InternalLinkTypeBotAddToChannel"
-        ++ U.cc
-          [ U.p "administrator_rights" administrator_rights_,
             U.p "bot_username" bot_username_
           ]
   show InternalLinkTypeChangePhoneNumber =
@@ -493,6 +503,18 @@ instance Show InternalLinkType where
             U.p "invite_hash" invite_hash_,
             U.p "chat_username" chat_username_
           ]
+  show
+    InternalLinkTypeWebApp
+      { start_parameter = start_parameter_,
+        web_app_short_name = web_app_short_name_,
+        bot_username = bot_username_
+      } =
+      "InternalLinkTypeWebApp"
+        ++ U.cc
+          [ U.p "start_parameter" start_parameter_,
+            U.p "web_app_short_name" web_app_short_name_,
+            U.p "bot_username" bot_username_
+          ]
 
 instance T.FromJSON InternalLinkType where
   parseJSON v@(T.Object obj) = do
@@ -503,9 +525,9 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeAttachmentMenuBot" -> parseInternalLinkTypeAttachmentMenuBot v
       "internalLinkTypeAuthenticationCode" -> parseInternalLinkTypeAuthenticationCode v
       "internalLinkTypeBackground" -> parseInternalLinkTypeBackground v
+      "internalLinkTypeBotAddToChannel" -> parseInternalLinkTypeBotAddToChannel v
       "internalLinkTypeBotStart" -> parseInternalLinkTypeBotStart v
       "internalLinkTypeBotStartInGroup" -> parseInternalLinkTypeBotStartInGroup v
-      "internalLinkTypeBotAddToChannel" -> parseInternalLinkTypeBotAddToChannel v
       "internalLinkTypeChangePhoneNumber" -> parseInternalLinkTypeChangePhoneNumber v
       "internalLinkTypeChatInvite" -> parseInternalLinkTypeChatInvite v
       "internalLinkTypeDefaultMessageAutoDeleteTimerSettings" -> parseInternalLinkTypeDefaultMessageAutoDeleteTimerSettings v
@@ -535,6 +557,7 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeUserPhoneNumber" -> parseInternalLinkTypeUserPhoneNumber v
       "internalLinkTypeUserToken" -> parseInternalLinkTypeUserToken v
       "internalLinkTypeVideoChat" -> parseInternalLinkTypeVideoChat v
+      "internalLinkTypeWebApp" -> parseInternalLinkTypeWebApp v
       _ -> mempty
     where
       parseInternalLinkTypeActiveSessions :: A.Value -> T.Parser InternalLinkType
@@ -557,6 +580,12 @@ instance T.FromJSON InternalLinkType where
         background_name_ <- o A..:? "background_name"
         return $ InternalLinkTypeBackground {background_name = background_name_}
 
+      parseInternalLinkTypeBotAddToChannel :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeBotAddToChannel = A.withObject "InternalLinkTypeBotAddToChannel" $ \o -> do
+        administrator_rights_ <- o A..:? "administrator_rights"
+        bot_username_ <- o A..:? "bot_username"
+        return $ InternalLinkTypeBotAddToChannel {administrator_rights = administrator_rights_, bot_username = bot_username_}
+
       parseInternalLinkTypeBotStart :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeBotStart = A.withObject "InternalLinkTypeBotStart" $ \o -> do
         autostart_ <- o A..:? "autostart"
@@ -570,12 +599,6 @@ instance T.FromJSON InternalLinkType where
         start_parameter_ <- o A..:? "start_parameter"
         bot_username_ <- o A..:? "bot_username"
         return $ InternalLinkTypeBotStartInGroup {administrator_rights = administrator_rights_, start_parameter = start_parameter_, bot_username = bot_username_}
-
-      parseInternalLinkTypeBotAddToChannel :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeBotAddToChannel = A.withObject "InternalLinkTypeBotAddToChannel" $ \o -> do
-        administrator_rights_ <- o A..:? "administrator_rights"
-        bot_username_ <- o A..:? "bot_username"
-        return $ InternalLinkTypeBotAddToChannel {administrator_rights = administrator_rights_, bot_username = bot_username_}
 
       parseInternalLinkTypeChangePhoneNumber :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeChangePhoneNumber = A.withObject "InternalLinkTypeChangePhoneNumber" $ \_ -> return InternalLinkTypeChangePhoneNumber
@@ -712,6 +735,13 @@ instance T.FromJSON InternalLinkType where
         invite_hash_ <- o A..:? "invite_hash"
         chat_username_ <- o A..:? "chat_username"
         return $ InternalLinkTypeVideoChat {is_live_stream = is_live_stream_, invite_hash = invite_hash_, chat_username = chat_username_}
+
+      parseInternalLinkTypeWebApp :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeWebApp = A.withObject "InternalLinkTypeWebApp" $ \o -> do
+        start_parameter_ <- o A..:? "start_parameter"
+        web_app_short_name_ <- o A..:? "web_app_short_name"
+        bot_username_ <- o A..:? "bot_username"
+        return $ InternalLinkTypeWebApp {start_parameter = start_parameter_, web_app_short_name = web_app_short_name_, bot_username = bot_username_}
   parseJSON _ = mempty
 
 instance T.ToJSON InternalLinkType where
@@ -748,6 +778,16 @@ instance T.ToJSON InternalLinkType where
           "background_name" A..= background_name_
         ]
   toJSON
+    InternalLinkTypeBotAddToChannel
+      { administrator_rights = administrator_rights_,
+        bot_username = bot_username_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypeBotAddToChannel",
+          "administrator_rights" A..= administrator_rights_,
+          "bot_username" A..= bot_username_
+        ]
+  toJSON
     InternalLinkTypeBotStart
       { autostart = autostart_,
         start_parameter = start_parameter_,
@@ -769,16 +809,6 @@ instance T.ToJSON InternalLinkType where
         [ "@type" A..= T.String "internalLinkTypeBotStartInGroup",
           "administrator_rights" A..= administrator_rights_,
           "start_parameter" A..= start_parameter_,
-          "bot_username" A..= bot_username_
-        ]
-  toJSON
-    InternalLinkTypeBotAddToChannel
-      { administrator_rights = administrator_rights_,
-        bot_username = bot_username_
-      } =
-      A.object
-        [ "@type" A..= T.String "internalLinkTypeBotAddToChannel",
-          "administrator_rights" A..= administrator_rights_,
           "bot_username" A..= bot_username_
         ]
   toJSON InternalLinkTypeChangePhoneNumber =
@@ -994,4 +1024,16 @@ instance T.ToJSON InternalLinkType where
           "is_live_stream" A..= is_live_stream_,
           "invite_hash" A..= invite_hash_,
           "chat_username" A..= chat_username_
+        ]
+  toJSON
+    InternalLinkTypeWebApp
+      { start_parameter = start_parameter_,
+        web_app_short_name = web_app_short_name_,
+        bot_username = bot_username_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypeWebApp",
+          "start_parameter" A..= start_parameter_,
+          "web_app_short_name" A..= web_app_short_name_,
+          "bot_username" A..= bot_username_
         ]

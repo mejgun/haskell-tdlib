@@ -17,7 +17,7 @@
 </span><span id="line-16"></span><span>    </span><span id="x"><span class="annot"><span class="annottext">Point -&gt; Maybe Float
 </span><a href="TD.Data.Point.html#x"><span class="hs-identifier hs-var hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679440675"><span id="local-6989586621679440677"><span class="annot"><span class="annottext">Point -&gt; Point -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679447096"><span id="local-6989586621679447098"><span class="annot"><span class="annottext">Point -&gt; Point -&gt; Bool
 (Point -&gt; Point -&gt; Bool) -&gt; (Point -&gt; Point -&gt; Bool) -&gt; Eq Point
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Point -&gt; Point -&gt; Bool
@@ -26,16 +26,16 @@ $c/= :: Point -&gt; Point -&gt; Bool
 $c== :: Point -&gt; Point -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440669"><span id="local-6989586621679440672"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679440667"><span class="annot"><span class="annottext">show :: Point -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679447090"><span id="local-6989586621679447093"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679447088"><span class="annot"><span class="annottext">show :: Point -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">y :: Point -&gt; Maybe Float
-</span><a href="TD.Data.Point.html#y"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440665"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440665"><span class="hs-identifier hs-var">y_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Point.html#y"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679447086"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679447086"><span class="hs-identifier hs-var">y_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">x :: Point -&gt; Maybe Float
-</span><a href="TD.Data.Point.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440664"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440664"><span class="hs-identifier hs-var">x_</span></a></span></span><span>
+</span><a href="TD.Data.Point.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679447085"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679447085"><span class="hs-identifier hs-var">x_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Point&quot;</span></span><span>
@@ -47,56 +47,56 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;y&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440665"><span class="hs-identifier hs-var">y_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679447086"><span class="hs-identifier hs-var">y_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Float -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;x&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440664"><span class="hs-identifier hs-var">x_</span></a></span><span>
+</span><a href="#local-6989586621679447085"><span class="hs-identifier hs-var">x_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440659"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679440657"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Point
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679440655"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679440655"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679440653"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679440653"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679440652"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679440652"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679440653"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679447080"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679447078"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Point
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679447076"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679447076"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679447074"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679447074"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679447073"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679447073"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679447074"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679440652"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679447073"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-37"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;point&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Point
-</span><a href="#local-6989586621679440650"><span class="hs-identifier hs-var">parsePoint</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679440655"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679447071"><span class="hs-identifier hs-var">parsePoint</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679447076"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Point
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-39"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span>      </span><span class="annot"><a href="#local-6989586621679440650"><span class="hs-identifier hs-type">parsePoint</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span><span>
-</span><span id="line-41"></span><span>      </span><span id="local-6989586621679440650"><span class="annot"><span class="annottext">parsePoint :: Value -&gt; Parser Point
-</span><a href="#local-6989586621679440650"><span class="hs-identifier hs-var hs-var">parsePoint</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Point) -&gt; Value -&gt; Parser Point
+</span><span id="line-40"></span><span>      </span><span class="annot"><a href="#local-6989586621679447071"><span class="hs-identifier hs-type">parsePoint</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span><span>
+</span><span id="line-41"></span><span>      </span><span id="local-6989586621679447071"><span class="annot"><span class="annottext">parsePoint :: Value -&gt; Parser Point
+</span><a href="#local-6989586621679447071"><span class="hs-identifier hs-var hs-var">parsePoint</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Point) -&gt; Value -&gt; Parser Point
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Point&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Point) -&gt; Value -&gt; Parser Point)
 -&gt; (Object -&gt; Parser Point) -&gt; Value -&gt; Parser Point
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679440648"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679440648"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>        </span><span id="local-6989586621679440647"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440647"><span class="hs-identifier hs-var">y_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679440648"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679447069"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679447069"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>        </span><span id="local-6989586621679447068"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679447068"><span class="hs-identifier hs-var">y_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679447069"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;y&quot;</span></span><span>
-</span><span id="line-43"></span><span>        </span><span id="local-6989586621679440645"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440645"><span class="hs-identifier hs-var">x_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679440648"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
+</span><span id="line-43"></span><span>        </span><span id="local-6989586621679447066"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679447066"><span class="hs-identifier hs-var">x_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679447069"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;x&quot;</span></span><span>
@@ -107,24 +107,24 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Point :: Maybe Float -&gt; Maybe Float -&gt; Point
 </span><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">y :: Maybe Float
 </span><a href="TD.Data.Point.html#y"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440647"><span class="hs-identifier hs-var">y_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">x :: Maybe Float
+</span><a href="#local-6989586621679447068"><span class="hs-identifier hs-var">y_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">x :: Maybe Float
 </span><a href="TD.Data.Point.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440645"><span class="hs-identifier hs-var">x_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679447066"><span class="hs-identifier hs-var">x_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-45"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser Point
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440638"><span id="local-6989586621679440640"><span id="local-6989586621679440642"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>  </span><span id="local-6989586621679440636"><span class="annot"><span class="annottext">toJSON :: Point -&gt; Value
+</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679447059"><span id="local-6989586621679447061"><span id="local-6989586621679447063"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span>  </span><span id="local-6989586621679447057"><span class="annot"><span class="annottext">toJSON :: Point -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-49"></span><span>    </span><span class="annot"><a href="TD.Data.Point.html#Point"><span class="hs-identifier hs-type">Point</span></a></span><span>
 </span><span id="line-50"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">y :: Point -&gt; Maybe Float
-</span><a href="TD.Data.Point.html#y"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440634"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440634"><span class="hs-identifier hs-var">y_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Point.html#y"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679447055"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679447055"><span class="hs-identifier hs-var">y_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>        </span><span class="annot"><span class="annottext">x :: Point -&gt; Maybe Float
-</span><a href="TD.Data.Point.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440633"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440633"><span class="hs-identifier hs-var">x_</span></a></span></span><span>
+</span><a href="TD.Data.Point.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679447054"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679447054"><span class="hs-identifier hs-var">x_</span></a></span></span><span>
 </span><span id="line-52"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-53"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -138,11 +138,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;y&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440634"><span class="hs-identifier hs-var">y_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679447055"><span class="hs-identifier hs-var">y_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;x&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679440633"><span class="hs-identifier hs-var">x_</span></a></span><span>
+</span><a href="#local-6989586621679447054"><span class="hs-identifier hs-var">x_</span></a></span><span>
 </span><span id="line-57"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-58"></span></pre></body></html>

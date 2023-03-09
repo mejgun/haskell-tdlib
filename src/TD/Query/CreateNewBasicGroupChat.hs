@@ -14,7 +14,7 @@ data CreateNewBasicGroupChat = CreateNewBasicGroupChat
     message_auto_delete_time :: Maybe Int,
     -- | Title of the new basic group; 1-128 characters
     title :: Maybe String,
-    -- | Identifiers of users to be added to the basic group
+    -- | Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
     user_ids :: Maybe [Int]
   }
   deriving (Eq)

@@ -9,7 +9,7 @@ import qualified TD.Data.InputFile as InputFile
 import qualified Utils as U
 
 -- |
--- Sets a sticker set thumbnail; for bots only. Returns the sticker set
+-- Sets a sticker set thumbnail; for bots only
 data SetStickerSetThumbnail = SetStickerSetThumbnail
   { -- | Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     thumbnail :: Maybe InputFile.InputFile,

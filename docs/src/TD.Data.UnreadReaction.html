@@ -22,7 +22,7 @@
 </span><span id="line-20"></span><span>    </span><span id="_type"><span class="annot"><span class="annottext">UnreadReaction -&gt; Maybe ReactionType
 </span><a href="TD.Data.UnreadReaction.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ReactionType.html#ReactionType"><span class="hs-identifier hs-type">ReactionType.ReactionType</span></a></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679443791"><span id="local-6989586621679443793"><span class="annot"><span class="annottext">UnreadReaction -&gt; UnreadReaction -&gt; Bool
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679450518"><span id="local-6989586621679450520"><span class="annot"><span class="annottext">UnreadReaction -&gt; UnreadReaction -&gt; Bool
 (UnreadReaction -&gt; UnreadReaction -&gt; Bool)
 -&gt; (UnreadReaction -&gt; UnreadReaction -&gt; Bool) -&gt; Eq UnreadReaction
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -32,19 +32,19 @@ $c/= :: UnreadReaction -&gt; UnreadReaction -&gt; Bool
 $c== :: UnreadReaction -&gt; UnreadReaction -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443785"><span id="local-6989586621679443788"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679443783"><span class="annot"><span class="annottext">show :: UnreadReaction -&gt; String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450512"><span id="local-6989586621679450515"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679450510"><span class="annot"><span class="annottext">show :: UnreadReaction -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span><span>
 </span><span id="line-27"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_big :: UnreadReaction -&gt; Maybe Bool
-</span><a href="TD.Data.UnreadReaction.html#is_big"><span class="hs-identifier hs-var">is_big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443781"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443781"><span class="hs-identifier hs-var">is_big_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.UnreadReaction.html#is_big"><span class="hs-identifier hs-var">is_big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450508"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679450508"><span class="hs-identifier hs-var">is_big_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">sender_id :: UnreadReaction -&gt; Maybe MessageSender
-</span><a href="TD.Data.UnreadReaction.html#sender_id"><span class="hs-identifier hs-var">sender_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443780"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679443780"><span class="hs-identifier hs-var">sender_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.UnreadReaction.html#sender_id"><span class="hs-identifier hs-var">sender_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450507"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679450507"><span class="hs-identifier hs-var">sender_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">_type :: UnreadReaction -&gt; Maybe ReactionType
-</span><a href="TD.Data.UnreadReaction.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443779"><span class="annot"><span class="annottext">Maybe ReactionType
-</span><a href="#local-6989586621679443779"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
+</span><a href="TD.Data.UnreadReaction.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450506"><span class="annot"><span class="annottext">Maybe ReactionType
+</span><a href="#local-6989586621679450506"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
 </span><span id="line-30"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-31"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UnreadReaction&quot;</span></span><span>
@@ -56,45 +56,45 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_big&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443781"><span class="hs-identifier hs-var">is_big_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679450508"><span class="hs-identifier hs-var">is_big_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe MessageSender -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sender_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679443780"><span class="hs-identifier hs-var">sender_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679450507"><span class="hs-identifier hs-var">sender_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ReactionType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ReactionType
-</span><a href="#local-6989586621679443779"><span class="hs-identifier hs-var">_type_</span></a></span><span>
+</span><a href="#local-6989586621679450506"><span class="hs-identifier hs-var">_type_</span></a></span><span>
 </span><span id="line-36"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443774"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span>  </span><span id="local-6989586621679443772"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UnreadReaction
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679443770"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679443770"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679443768"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443768"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679443767"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443767"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443768"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450501"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679450499"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UnreadReaction
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679450497"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679450497"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679450495"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450495"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679450494"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679450494"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450495"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-41"></span><span>
 </span><span id="line-42"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443767"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679450494"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;unreadReaction&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UnreadReaction
-</span><a href="#local-6989586621679443765"><span class="hs-identifier hs-var">parseUnreadReaction</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443770"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450492"><span class="hs-identifier hs-var">parseUnreadReaction</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450497"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-44"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser UnreadReaction
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-45"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-46"></span><span>      </span><span class="annot"><a href="#local-6989586621679443765"><span class="hs-identifier hs-type">parseUnreadReaction</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span><span>
-</span><span id="line-47"></span><span>      </span><span id="local-6989586621679443765"><span class="annot"><span class="annottext">parseUnreadReaction :: Value -&gt; Parser UnreadReaction
-</span><a href="#local-6989586621679443765"><span class="hs-identifier hs-var hs-var">parseUnreadReaction</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>      </span><span class="annot"><a href="#local-6989586621679450492"><span class="hs-identifier hs-type">parseUnreadReaction</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span><span>
+</span><span id="line-47"></span><span>      </span><span id="local-6989586621679450492"><span class="annot"><span class="annottext">parseUnreadReaction :: Value -&gt; Parser UnreadReaction
+</span><a href="#local-6989586621679450492"><span class="hs-identifier hs-var hs-var">parseUnreadReaction</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UnreadReaction)
 -&gt; Value
 -&gt; Parser UnreadReaction
@@ -106,23 +106,23 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser UnreadReaction
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443763"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443763"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-48"></span><span>        </span><span id="local-6989586621679443762"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443762"><span class="hs-identifier hs-var">is_big_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443763"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450490"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450490"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-48"></span><span>        </span><span id="local-6989586621679450489"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679450489"><span class="hs-identifier hs-var">is_big_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450490"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_big&quot;</span></span><span>
-</span><span id="line-49"></span><span>        </span><span id="local-6989586621679443760"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679443760"><span class="hs-identifier hs-var">sender_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443763"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageSender)
+</span><span id="line-49"></span><span>        </span><span id="local-6989586621679450487"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679450487"><span class="hs-identifier hs-var">sender_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450490"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageSender)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sender_id&quot;</span></span><span>
-</span><span id="line-50"></span><span>        </span><span id="local-6989586621679443759"><span class="annot"><span class="annottext">Maybe ReactionType
-</span><a href="#local-6989586621679443759"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443763"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ReactionType)
+</span><span id="line-50"></span><span>        </span><span id="local-6989586621679450486"><span class="annot"><span class="annottext">Maybe ReactionType
+</span><a href="#local-6989586621679450486"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450490"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ReactionType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span>
@@ -135,29 +135,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe MessageSender -&gt; Maybe ReactionType -&gt; UnreadReaction
 </span><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">is_big :: Maybe Bool
 </span><a href="TD.Data.UnreadReaction.html#is_big"><span class="hs-identifier hs-var">is_big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443762"><span class="hs-identifier hs-var">is_big_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sender_id :: Maybe MessageSender
+</span><a href="#local-6989586621679450489"><span class="hs-identifier hs-var">is_big_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sender_id :: Maybe MessageSender
 </span><a href="TD.Data.UnreadReaction.html#sender_id"><span class="hs-identifier hs-var">sender_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679443760"><span class="hs-identifier hs-var">sender_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe ReactionType
+</span><a href="#local-6989586621679450487"><span class="hs-identifier hs-var">sender_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe ReactionType
 </span><a href="TD.Data.UnreadReaction.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ReactionType
-</span><a href="#local-6989586621679443759"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679450486"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-52"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser UnreadReaction
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443752"><span id="local-6989586621679443754"><span id="local-6989586621679443756"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span>  </span><span id="local-6989586621679443750"><span class="annot"><span class="annottext">toJSON :: UnreadReaction -&gt; Value
+</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450479"><span id="local-6989586621679450481"><span id="local-6989586621679450483"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span>  </span><span id="local-6989586621679450477"><span class="annot"><span class="annottext">toJSON :: UnreadReaction -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><a href="TD.Data.UnreadReaction.html#UnreadReaction"><span class="hs-identifier hs-type">UnreadReaction</span></a></span><span>
 </span><span id="line-57"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_big :: UnreadReaction -&gt; Maybe Bool
-</span><a href="TD.Data.UnreadReaction.html#is_big"><span class="hs-identifier hs-var">is_big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443748"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443748"><span class="hs-identifier hs-var">is_big_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.UnreadReaction.html#is_big"><span class="hs-identifier hs-var">is_big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450475"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679450475"><span class="hs-identifier hs-var">is_big_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">sender_id :: UnreadReaction -&gt; Maybe MessageSender
-</span><a href="TD.Data.UnreadReaction.html#sender_id"><span class="hs-identifier hs-var">sender_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443747"><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679443747"><span class="hs-identifier hs-var">sender_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.UnreadReaction.html#sender_id"><span class="hs-identifier hs-var">sender_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450474"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679450474"><span class="hs-identifier hs-var">sender_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">_type :: UnreadReaction -&gt; Maybe ReactionType
-</span><a href="TD.Data.UnreadReaction.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443746"><span class="annot"><span class="annottext">Maybe ReactionType
-</span><a href="#local-6989586621679443746"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
+</span><a href="TD.Data.UnreadReaction.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450473"><span class="annot"><span class="annottext">Maybe ReactionType
+</span><a href="#local-6989586621679450473"><span class="hs-identifier hs-var">_type_</span></a></span></span><span>
 </span><span id="line-60"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-61"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -171,16 +171,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_big&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443748"><span class="hs-identifier hs-var">is_big_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679450475"><span class="hs-identifier hs-var">is_big_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sender_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSender -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
-</span><a href="#local-6989586621679443747"><span class="hs-identifier hs-var">sender_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679450474"><span class="hs-identifier hs-var">sender_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-65"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ReactionType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ReactionType
-</span><a href="#local-6989586621679443746"><span class="hs-identifier hs-var">_type_</span></a></span><span>
+</span><a href="#local-6989586621679450473"><span class="hs-identifier hs-var">_type_</span></a></span><span>
 </span><span id="line-66"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-67"></span></pre></body></html>

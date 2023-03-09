@@ -13,7 +13,11 @@ import qualified Utils as U
 -- |
 data SponsoredMessage = -- | Describes a sponsored message
   SponsoredMessage
-  { -- | Content of the message. Currently, can be only of the type messageText
+  { -- | If non-empty, additional information about the sponsored message to be shown along with the message
+    additional_info :: Maybe String,
+    -- | If non-empty, information about the sponsor to be shown along with the message
+    sponsor_info :: Maybe String,
+    -- | Content of the message. Currently, can be only of the type messageText
     content :: Maybe MessageContent.MessageContent,
     -- | An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead
     link :: Maybe InternalLinkType.InternalLinkType,
@@ -33,7 +37,9 @@ data SponsoredMessage = -- | Describes a sponsored message
 instance Show SponsoredMessage where
   show
     SponsoredMessage
-      { content = content_,
+      { additional_info = additional_info_,
+        sponsor_info = sponsor_info_,
+        content = content_,
         link = link_,
         show_chat_photo = show_chat_photo_,
         sponsor_chat_info = sponsor_chat_info_,
@@ -43,7 +49,9 @@ instance Show SponsoredMessage where
       } =
       "SponsoredMessage"
         ++ U.cc
-          [ U.p "content" content_,
+          [ U.p "additional_info" additional_info_,
+            U.p "sponsor_info" sponsor_info_,
+            U.p "content" content_,
             U.p "link" link_,
             U.p "show_chat_photo" show_chat_photo_,
             U.p "sponsor_chat_info" sponsor_chat_info_,
@@ -62,6 +70,8 @@ instance T.FromJSON SponsoredMessage where
     where
       parseSponsoredMessage :: A.Value -> T.Parser SponsoredMessage
       parseSponsoredMessage = A.withObject "SponsoredMessage" $ \o -> do
+        additional_info_ <- o A..:? "additional_info"
+        sponsor_info_ <- o A..:? "sponsor_info"
         content_ <- o A..:? "content"
         link_ <- o A..:? "link"
         show_chat_photo_ <- o A..:? "show_chat_photo"
@@ -69,13 +79,15 @@ instance T.FromJSON SponsoredMessage where
         sponsor_chat_id_ <- o A..:? "sponsor_chat_id"
         is_recommended_ <- o A..:? "is_recommended"
         message_id_ <- o A..:? "message_id"
-        return $ SponsoredMessage {content = content_, link = link_, show_chat_photo = show_chat_photo_, sponsor_chat_info = sponsor_chat_info_, sponsor_chat_id = sponsor_chat_id_, is_recommended = is_recommended_, message_id = message_id_}
+        return $ SponsoredMessage {additional_info = additional_info_, sponsor_info = sponsor_info_, content = content_, link = link_, show_chat_photo = show_chat_photo_, sponsor_chat_info = sponsor_chat_info_, sponsor_chat_id = sponsor_chat_id_, is_recommended = is_recommended_, message_id = message_id_}
   parseJSON _ = mempty
 
 instance T.ToJSON SponsoredMessage where
   toJSON
     SponsoredMessage
-      { content = content_,
+      { additional_info = additional_info_,
+        sponsor_info = sponsor_info_,
+        content = content_,
         link = link_,
         show_chat_photo = show_chat_photo_,
         sponsor_chat_info = sponsor_chat_info_,
@@ -85,6 +97,8 @@ instance T.ToJSON SponsoredMessage where
       } =
       A.object
         [ "@type" A..= T.String "sponsoredMessage",
+          "additional_info" A..= additional_info_,
+          "sponsor_info" A..= sponsor_info_,
           "content" A..= content_,
           "link" A..= link_,
           "show_chat_photo" A..= show_chat_photo_,

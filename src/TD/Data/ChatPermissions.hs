@@ -37,7 +37,7 @@ data ChatPermissions = -- | Describes actions that a user is allowed to take in 
     -- | True, if the user can send music files
     can_send_audios :: Maybe Bool,
     -- | True, if the user can send text messages, contacts, invoices, locations, and venues
-    can_send_messages :: Maybe Bool
+    can_send_basic_messages :: Maybe Bool
   }
   deriving (Eq)
 
@@ -57,7 +57,7 @@ instance Show ChatPermissions where
         can_send_photos = can_send_photos_,
         can_send_documents = can_send_documents_,
         can_send_audios = can_send_audios_,
-        can_send_messages = can_send_messages_
+        can_send_basic_messages = can_send_basic_messages_
       } =
       "ChatPermissions"
         ++ U.cc
@@ -74,7 +74,7 @@ instance Show ChatPermissions where
             U.p "can_send_photos" can_send_photos_,
             U.p "can_send_documents" can_send_documents_,
             U.p "can_send_audios" can_send_audios_,
-            U.p "can_send_messages" can_send_messages_
+            U.p "can_send_basic_messages" can_send_basic_messages_
           ]
 
 instance T.FromJSON ChatPermissions where
@@ -100,8 +100,8 @@ instance T.FromJSON ChatPermissions where
         can_send_photos_ <- o A..:? "can_send_photos"
         can_send_documents_ <- o A..:? "can_send_documents"
         can_send_audios_ <- o A..:? "can_send_audios"
-        can_send_messages_ <- o A..:? "can_send_messages"
-        return $ ChatPermissions {can_manage_topics = can_manage_topics_, can_pin_messages = can_pin_messages_, can_invite_users = can_invite_users_, can_change_info = can_change_info_, can_add_web_page_previews = can_add_web_page_previews_, can_send_other_messages = can_send_other_messages_, can_send_polls = can_send_polls_, can_send_voice_notes = can_send_voice_notes_, can_send_video_notes = can_send_video_notes_, can_send_videos = can_send_videos_, can_send_photos = can_send_photos_, can_send_documents = can_send_documents_, can_send_audios = can_send_audios_, can_send_messages = can_send_messages_}
+        can_send_basic_messages_ <- o A..:? "can_send_basic_messages"
+        return $ ChatPermissions {can_manage_topics = can_manage_topics_, can_pin_messages = can_pin_messages_, can_invite_users = can_invite_users_, can_change_info = can_change_info_, can_add_web_page_previews = can_add_web_page_previews_, can_send_other_messages = can_send_other_messages_, can_send_polls = can_send_polls_, can_send_voice_notes = can_send_voice_notes_, can_send_video_notes = can_send_video_notes_, can_send_videos = can_send_videos_, can_send_photos = can_send_photos_, can_send_documents = can_send_documents_, can_send_audios = can_send_audios_, can_send_basic_messages = can_send_basic_messages_}
   parseJSON _ = mempty
 
 instance T.ToJSON ChatPermissions where
@@ -120,7 +120,7 @@ instance T.ToJSON ChatPermissions where
         can_send_photos = can_send_photos_,
         can_send_documents = can_send_documents_,
         can_send_audios = can_send_audios_,
-        can_send_messages = can_send_messages_
+        can_send_basic_messages = can_send_basic_messages_
       } =
       A.object
         [ "@type" A..= T.String "chatPermissions",
@@ -137,5 +137,5 @@ instance T.ToJSON ChatPermissions where
           "can_send_photos" A..= can_send_photos_,
           "can_send_documents" A..= can_send_documents_,
           "can_send_audios" A..= can_send_audios_,
-          "can_send_messages" A..= can_send_messages_
+          "can_send_basic_messages" A..= can_send_basic_messages_
         ]

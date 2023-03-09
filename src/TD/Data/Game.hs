@@ -11,7 +11,7 @@ import qualified TD.Data.Photo as Photo
 import qualified Utils as U
 
 -- |
-data Game = -- | Describes a game
+data Game = -- | Describes a game. Use getInternalLink with internalLinkTypeGame to share the game
   Game
   { -- | Game animation; may be null
     animation :: Maybe Animation.Animation,
@@ -23,7 +23,7 @@ data Game = -- | Describes a game
     text :: Maybe FormattedText.FormattedText,
     -- | Game title
     title :: Maybe String,
-    -- | Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name}
+    -- | Game short name
     short_name :: Maybe String,
     -- | Unique game identifier
     _id :: Maybe Int
