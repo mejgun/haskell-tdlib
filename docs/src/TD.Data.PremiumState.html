@@ -23,7 +23,7 @@
 </span><span id="line-21"></span><span>    </span><span id="state"><span class="annot"><span class="annottext">PremiumState -&gt; Maybe FormattedText
 </span><a href="TD.Data.PremiumState.html#state"><span class="hs-identifier hs-var hs-var">state</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679481799"><span id="local-6989586621679481801"><span class="annot"><span class="annottext">PremiumState -&gt; PremiumState -&gt; Bool
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679482562"><span id="local-6989586621679482564"><span class="annot"><span class="annottext">PremiumState -&gt; PremiumState -&gt; Bool
 (PremiumState -&gt; PremiumState -&gt; Bool)
 -&gt; (PremiumState -&gt; PremiumState -&gt; Bool) -&gt; Eq PremiumState
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -33,19 +33,19 @@ $c/= :: PremiumState -&gt; PremiumState -&gt; Bool
 $c== :: PremiumState -&gt; PremiumState -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679481793"><span id="local-6989586621679481796"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679481791"><span class="annot"><span class="annottext">show :: PremiumState -&gt; String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679482556"><span id="local-6989586621679482559"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679482554"><span class="annot"><span class="annottext">show :: PremiumState -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">animations :: PremiumState -&gt; Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="TD.Data.PremiumState.html#animations"><span class="hs-identifier hs-var">animations</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481789"><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="#local-6989586621679481789"><span class="hs-identifier hs-var">animations_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumState.html#animations"><span class="hs-identifier hs-var">animations</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482552"><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
+</span><a href="#local-6989586621679482552"><span class="hs-identifier hs-var">animations_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>        </span><span class="annot"><span class="annottext">payment_options :: PremiumState -&gt; Maybe [PremiumStatePaymentOption]
-</span><a href="TD.Data.PremiumState.html#payment_options"><span class="hs-identifier hs-var">payment_options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481788"><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
-</span><a href="#local-6989586621679481788"><span class="hs-identifier hs-var">payment_options_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumState.html#payment_options"><span class="hs-identifier hs-var">payment_options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482551"><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
+</span><a href="#local-6989586621679482551"><span class="hs-identifier hs-var">payment_options_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">state :: PremiumState -&gt; Maybe FormattedText
-</span><a href="TD.Data.PremiumState.html#state"><span class="hs-identifier hs-var">state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481787"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679481787"><span class="hs-identifier hs-var">state_</span></a></span></span><span>
+</span><a href="TD.Data.PremiumState.html#state"><span class="hs-identifier hs-var">state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482550"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679482550"><span class="hs-identifier hs-var">state_</span></a></span></span><span>
 </span><span id="line-31"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PremiumState&quot;</span></span><span>
@@ -57,68 +57,68 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;animations&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="#local-6989586621679481789"><span class="hs-identifier hs-var">animations_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679482552"><span class="hs-identifier hs-var">animations_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-35"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [PremiumStatePaymentOption] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;payment_options&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
-</span><a href="#local-6989586621679481788"><span class="hs-identifier hs-var">payment_options_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679482551"><span class="hs-identifier hs-var">payment_options_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-36"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe FormattedText -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;state&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679481787"><span class="hs-identifier hs-var">state_</span></a></span><span>
+</span><a href="#local-6989586621679482550"><span class="hs-identifier hs-var">state_</span></a></span><span>
 </span><span id="line-37"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679481782"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span>  </span><span id="local-6989586621679481780"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PremiumState
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679481778"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679481778"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679481776"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481776"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679481775"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679481775"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481776"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679482545"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span>  </span><span id="local-6989586621679482543"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PremiumState
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679482541"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679482541"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679482539"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482539"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679482538"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679482538"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482539"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-42"></span><span>
 </span><span id="line-43"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679481775"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679482538"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-44"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;premiumState&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PremiumState
-</span><a href="#local-6989586621679481773"><span class="hs-identifier hs-var">parsePremiumState</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679481778"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679482536"><span class="hs-identifier hs-var">parsePremiumState</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679482541"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-45"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PremiumState
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-46"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679481773"><span class="hs-identifier hs-type">parsePremiumState</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span><span>
-</span><span id="line-48"></span><span>      </span><span id="local-6989586621679481773"><span class="annot"><span class="annottext">parsePremiumState :: Value -&gt; Parser PremiumState
-</span><a href="#local-6989586621679481773"><span class="hs-identifier hs-var hs-var">parsePremiumState</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679482536"><span class="hs-identifier hs-type">parsePremiumState</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span><span>
+</span><span id="line-48"></span><span>      </span><span id="local-6989586621679482536"><span class="annot"><span class="annottext">parsePremiumState :: Value -&gt; Parser PremiumState
+</span><a href="#local-6989586621679482536"><span class="hs-identifier hs-var hs-var">parsePremiumState</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PremiumState) -&gt; Value -&gt; Parser PremiumState
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PremiumState&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PremiumState) -&gt; Value -&gt; Parser PremiumState)
 -&gt; (Object -&gt; Parser PremiumState) -&gt; Value -&gt; Parser PremiumState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679481771"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481771"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-49"></span><span>        </span><span id="local-6989586621679481770"><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="#local-6989586621679481770"><span class="hs-identifier hs-var">animations_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumFeaturePromotionAnimation])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679482534"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482534"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>        </span><span id="local-6989586621679482533"><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
+</span><a href="#local-6989586621679482533"><span class="hs-identifier hs-var">animations_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumFeaturePromotionAnimation])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;animations&quot;</span></span><span>
-</span><span id="line-50"></span><span>        </span><span id="local-6989586621679481768"><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
-</span><a href="#local-6989586621679481768"><span class="hs-identifier hs-var">payment_options_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumStatePaymentOption])
+</span><span id="line-50"></span><span>        </span><span id="local-6989586621679482531"><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
+</span><a href="#local-6989586621679482531"><span class="hs-identifier hs-var">payment_options_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PremiumStatePaymentOption])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;payment_options&quot;</span></span><span>
-</span><span id="line-51"></span><span>        </span><span id="local-6989586621679481767"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679481767"><span class="hs-identifier hs-var">state_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481771"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FormattedText)
+</span><span id="line-51"></span><span>        </span><span id="local-6989586621679482530"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679482530"><span class="hs-identifier hs-var">state_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FormattedText)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;state&quot;</span></span><span>
@@ -133,29 +133,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PremiumState
 </span><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">animations :: Maybe [PremiumFeaturePromotionAnimation]
 </span><a href="TD.Data.PremiumState.html#animations"><span class="hs-identifier hs-var">animations</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="#local-6989586621679481770"><span class="hs-identifier hs-var">animations_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">payment_options :: Maybe [PremiumStatePaymentOption]
+</span><a href="#local-6989586621679482533"><span class="hs-identifier hs-var">animations_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">payment_options :: Maybe [PremiumStatePaymentOption]
 </span><a href="TD.Data.PremiumState.html#payment_options"><span class="hs-identifier hs-var">payment_options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
-</span><a href="#local-6989586621679481768"><span class="hs-identifier hs-var">payment_options_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">state :: Maybe FormattedText
+</span><a href="#local-6989586621679482531"><span class="hs-identifier hs-var">payment_options_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">state :: Maybe FormattedText
 </span><a href="TD.Data.PremiumState.html#state"><span class="hs-identifier hs-var">state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679481767"><span class="hs-identifier hs-var">state_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679482530"><span class="hs-identifier hs-var">state_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-53"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PremiumState
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-54"></span><span>
-</span><span id="line-55"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679481760"><span id="local-6989586621679481762"><span id="local-6989586621679481764"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-56"></span><span>  </span><span id="local-6989586621679481758"><span class="annot"><span class="annottext">toJSON :: PremiumState -&gt; Value
+</span><span id="line-55"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679482523"><span id="local-6989586621679482525"><span id="local-6989586621679482527"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-56"></span><span>  </span><span id="local-6989586621679482521"><span class="annot"><span class="annottext">toJSON :: PremiumState -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-57"></span><span>    </span><span class="annot"><a href="TD.Data.PremiumState.html#PremiumState"><span class="hs-identifier hs-type">PremiumState</span></a></span><span>
 </span><span id="line-58"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">animations :: PremiumState -&gt; Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="TD.Data.PremiumState.html#animations"><span class="hs-identifier hs-var">animations</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481756"><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="#local-6989586621679481756"><span class="hs-identifier hs-var">animations_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumState.html#animations"><span class="hs-identifier hs-var">animations</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482519"><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
+</span><a href="#local-6989586621679482519"><span class="hs-identifier hs-var">animations_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>        </span><span class="annot"><span class="annottext">payment_options :: PremiumState -&gt; Maybe [PremiumStatePaymentOption]
-</span><a href="TD.Data.PremiumState.html#payment_options"><span class="hs-identifier hs-var">payment_options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481755"><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
-</span><a href="#local-6989586621679481755"><span class="hs-identifier hs-var">payment_options_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PremiumState.html#payment_options"><span class="hs-identifier hs-var">payment_options</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482518"><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
+</span><a href="#local-6989586621679482518"><span class="hs-identifier hs-var">payment_options_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>        </span><span class="annot"><span class="annottext">state :: PremiumState -&gt; Maybe FormattedText
-</span><a href="TD.Data.PremiumState.html#state"><span class="hs-identifier hs-var">state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481754"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679481754"><span class="hs-identifier hs-var">state_</span></a></span></span><span>
+</span><a href="TD.Data.PremiumState.html#state"><span class="hs-identifier hs-var">state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482517"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679482517"><span class="hs-identifier hs-var">state_</span></a></span></span><span>
 </span><span id="line-61"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-62"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -169,16 +169,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;animations&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PremiumFeaturePromotionAnimation] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumFeaturePromotionAnimation]
-</span><a href="#local-6989586621679481756"><span class="hs-identifier hs-var">animations_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679482519"><span class="hs-identifier hs-var">animations_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-65"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;payment_options&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PremiumStatePaymentOption] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PremiumStatePaymentOption]
-</span><a href="#local-6989586621679481755"><span class="hs-identifier hs-var">payment_options_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679482518"><span class="hs-identifier hs-var">payment_options_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;state&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679481754"><span class="hs-identifier hs-var">state_</span></a></span><span>
+</span><a href="#local-6989586621679482517"><span class="hs-identifier hs-var">state_</span></a></span><span>
 </span><span id="line-67"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-68"></span></pre></body></html>

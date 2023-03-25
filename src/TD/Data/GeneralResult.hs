@@ -125,6 +125,7 @@ import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.DraftMessage as DraftMessage
 import qualified TD.Data.EmailAddressAuthentication as EmailAddressAuthentication
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
+import qualified TD.Data.EmailAddressResetState as EmailAddressResetState
 import qualified TD.Data.EmojiCategories as EmojiCategories
 import qualified TD.Data.EmojiCategory as EmojiCategory
 import qualified TD.Data.EmojiCategoryType as EmojiCategoryType
@@ -396,6 +397,7 @@ data GeneralResult
   | AuthenticationCodeInfo AuthenticationCodeInfo.AuthenticationCodeInfo
   | EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo
   | EmailAddressAuthentication EmailAddressAuthentication.EmailAddressAuthentication
+  | EmailAddressResetState EmailAddressResetState.EmailAddressResetState
   | TextEntity TextEntity.TextEntity
   | TextEntities TextEntities.TextEntities
   | FormattedText FormattedText.FormattedText
@@ -811,6 +813,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result EmailAddressAuthentication.EmailAddressAuthentication) of
             T.Success a -> return $ EmailAddressAuthentication a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result EmailAddressResetState.EmailAddressResetState) of
+            T.Success a -> return $ EmailAddressResetState a
             _ -> mempty,
           case (T.fromJSON v :: T.Result TextEntity.TextEntity) of
             T.Success a -> return $ TextEntity a

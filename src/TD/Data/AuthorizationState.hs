@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.AuthenticationCodeInfo as AuthenticationCodeInfo
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
+import qualified TD.Data.EmailAddressResetState as EmailAddressResetState
 import qualified TD.Data.TermsOfService as TermsOfService
 import qualified Utils as U
 
@@ -25,8 +26,8 @@ data AuthorizationState
       }
   | -- | TDLib needs the user's authentication code sent to an email address to authorize. Call checkAuthenticationEmailCode to provide the code
     AuthorizationStateWaitEmailCode
-      { -- | Point in time (Unix timestamp) when the user will be able to authorize with a code sent to the user's phone number; 0 if unknown
-        next_phone_number_authorization_date :: Maybe Int,
+      { -- | Reset state of the email address; may be null if the email address can't be reset
+        email_address_reset_state :: Maybe EmailAddressResetState.EmailAddressResetState,
         -- | Information about the sent authentication code
         code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo,
         -- | True, if authorization through Google ID is allowed
@@ -93,14 +94,14 @@ instance Show AuthorizationState where
           ]
   show
     AuthorizationStateWaitEmailCode
-      { next_phone_number_authorization_date = next_phone_number_authorization_date_,
+      { email_address_reset_state = email_address_reset_state_,
         code_info = code_info_,
         allow_google_id = allow_google_id_,
         allow_apple_id = allow_apple_id_
       } =
       "AuthorizationStateWaitEmailCode"
         ++ U.cc
-          [ U.p "next_phone_number_authorization_date" next_phone_number_authorization_date_,
+          [ U.p "email_address_reset_state" email_address_reset_state_,
             U.p "code_info" code_info_,
             U.p "allow_google_id" allow_google_id_,
             U.p "allow_apple_id" allow_apple_id_
@@ -193,11 +194,11 @@ instance T.FromJSON AuthorizationState where
 
       parseAuthorizationStateWaitEmailCode :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitEmailCode = A.withObject "AuthorizationStateWaitEmailCode" $ \o -> do
-        next_phone_number_authorization_date_ <- o A..:? "next_phone_number_authorization_date"
+        email_address_reset_state_ <- o A..:? "email_address_reset_state"
         code_info_ <- o A..:? "code_info"
         allow_google_id_ <- o A..:? "allow_google_id"
         allow_apple_id_ <- o A..:? "allow_apple_id"
-        return $ AuthorizationStateWaitEmailCode {next_phone_number_authorization_date = next_phone_number_authorization_date_, code_info = code_info_, allow_google_id = allow_google_id_, allow_apple_id = allow_apple_id_}
+        return $ AuthorizationStateWaitEmailCode {email_address_reset_state = email_address_reset_state_, code_info = code_info_, allow_google_id = allow_google_id_, allow_apple_id = allow_apple_id_}
 
       parseAuthorizationStateWaitCode :: A.Value -> T.Parser AuthorizationState
       parseAuthorizationStateWaitCode = A.withObject "AuthorizationStateWaitCode" $ \o -> do
@@ -256,14 +257,14 @@ instance T.ToJSON AuthorizationState where
         ]
   toJSON
     AuthorizationStateWaitEmailCode
-      { next_phone_number_authorization_date = next_phone_number_authorization_date_,
+      { email_address_reset_state = email_address_reset_state_,
         code_info = code_info_,
         allow_google_id = allow_google_id_,
         allow_apple_id = allow_apple_id_
       } =
       A.object
         [ "@type" A..= T.String "authorizationStateWaitEmailCode",
-          "next_phone_number_authorization_date" A..= next_phone_number_authorization_date_,
+          "email_address_reset_state" A..= email_address_reset_state_,
           "code_info" A..= code_info_,
           "allow_google_id" A..= allow_google_id_,
           "allow_apple_id" A..= allow_apple_id_

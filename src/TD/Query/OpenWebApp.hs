@@ -24,7 +24,7 @@ data OpenWebApp = OpenWebApp
     url :: Maybe String,
     -- | Identifier of the bot, providing the Web App
     bot_user_id :: Maybe Int,
-    -- | Identifier of the chat in which the Web App is opened
+    -- | Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
     chat_id :: Maybe Int
   }
   deriving (Eq)

@@ -14,7 +14,7 @@ data AuthenticationCodeType
       { -- | Length of the code
         _length :: Maybe Int
       }
-  | -- | An authentication code is delivered via an SMS message to the specified phone number
+  | -- | An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
     AuthenticationCodeTypeSms
       { -- | Length of the code
         _length :: Maybe Int
@@ -56,7 +56,7 @@ data AuthenticationCodeType
         _length :: Maybe Int,
         -- | Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
         push_timeout :: Maybe Int,
-        -- | Receipt of successful applikation token validation to compare with receipt from push notification
+        -- | Receipt of successful application token validation to compare with receipt from push notification
         receipt :: Maybe String
       }
   deriving (Eq)

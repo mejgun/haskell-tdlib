@@ -21,7 +21,7 @@
 </span><span id="line-19"></span><span>    </span><span id="web_app"><span class="annot"><span class="annottext">FoundWebApp -&gt; Maybe WebApp
 </span><a href="TD.Data.FoundWebApp.html#web_app"><span class="hs-identifier hs-var hs-var">web_app</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.WebApp.html#WebApp"><span class="hs-identifier hs-type">WebApp.WebApp</span></a></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679481275"><span id="local-6989586621679481277"><span class="annot"><span class="annottext">FoundWebApp -&gt; FoundWebApp -&gt; Bool
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679482038"><span id="local-6989586621679482040"><span class="annot"><span class="annottext">FoundWebApp -&gt; FoundWebApp -&gt; Bool
 (FoundWebApp -&gt; FoundWebApp -&gt; Bool)
 -&gt; (FoundWebApp -&gt; FoundWebApp -&gt; Bool) -&gt; Eq FoundWebApp
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -31,19 +31,19 @@ $c/= :: FoundWebApp -&gt; FoundWebApp -&gt; Bool
 $c== :: FoundWebApp -&gt; FoundWebApp -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679481269"><span id="local-6989586621679481272"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679481267"><span class="annot"><span class="annottext">show :: FoundWebApp -&gt; String
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679482032"><span id="local-6989586621679482035"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>  </span><span id="local-6989586621679482030"><span class="annot"><span class="annottext">show :: FoundWebApp -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">skip_confirmation :: FoundWebApp -&gt; Maybe Bool
-</span><a href="TD.Data.FoundWebApp.html#skip_confirmation"><span class="hs-identifier hs-var">skip_confirmation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481265"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481265"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.FoundWebApp.html#skip_confirmation"><span class="hs-identifier hs-var">skip_confirmation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482028"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679482028"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">request_write_access :: FoundWebApp -&gt; Maybe Bool
-</span><a href="TD.Data.FoundWebApp.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481264"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481264"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.FoundWebApp.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482027"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679482027"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-28"></span><span>        </span><span class="annot"><span class="annottext">web_app :: FoundWebApp -&gt; Maybe WebApp
-</span><a href="TD.Data.FoundWebApp.html#web_app"><span class="hs-identifier hs-var">web_app</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481263"><span class="annot"><span class="annottext">Maybe WebApp
-</span><a href="#local-6989586621679481263"><span class="hs-identifier hs-var">web_app_</span></a></span></span><span>
+</span><a href="TD.Data.FoundWebApp.html#web_app"><span class="hs-identifier hs-var">web_app</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679482026"><span class="annot"><span class="annottext">Maybe WebApp
+</span><a href="#local-6989586621679482026"><span class="hs-identifier hs-var">web_app_</span></a></span></span><span>
 </span><span id="line-29"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-30"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;FoundWebApp&quot;</span></span><span>
@@ -55,68 +55,68 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;skip_confirmation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481265"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679482028"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;request_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481264"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679482027"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-34"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe WebApp -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;web_app&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe WebApp
-</span><a href="#local-6989586621679481263"><span class="hs-identifier hs-var">web_app_</span></a></span><span>
+</span><a href="#local-6989586621679482026"><span class="hs-identifier hs-var">web_app_</span></a></span><span>
 </span><span id="line-35"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679481258"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span>  </span><span id="local-6989586621679481256"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser FoundWebApp
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679481254"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679481254"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679481252"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481252"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679481251"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679481251"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481252"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679482021"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span>  </span><span id="local-6989586621679482019"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser FoundWebApp
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679482017"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679482017"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679482015"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482015"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679482014"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679482014"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482015"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-40"></span><span>
 </span><span id="line-41"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679481251"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679482014"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;foundWebApp&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FoundWebApp
-</span><a href="#local-6989586621679481249"><span class="hs-identifier hs-var">parseFoundWebApp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679481254"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679482012"><span class="hs-identifier hs-var">parseFoundWebApp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679482017"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser FoundWebApp
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span>      </span><span class="annot"><a href="#local-6989586621679481249"><span class="hs-identifier hs-type">parseFoundWebApp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span><span>
-</span><span id="line-46"></span><span>      </span><span id="local-6989586621679481249"><span class="annot"><span class="annottext">parseFoundWebApp :: Value -&gt; Parser FoundWebApp
-</span><a href="#local-6989586621679481249"><span class="hs-identifier hs-var hs-var">parseFoundWebApp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>      </span><span class="annot"><a href="#local-6989586621679482012"><span class="hs-identifier hs-type">parseFoundWebApp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span><span>
+</span><span id="line-46"></span><span>      </span><span id="local-6989586621679482012"><span class="annot"><span class="annottext">parseFoundWebApp :: Value -&gt; Parser FoundWebApp
+</span><a href="#local-6989586621679482012"><span class="hs-identifier hs-var hs-var">parseFoundWebApp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser FoundWebApp) -&gt; Value -&gt; Parser FoundWebApp
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;FoundWebApp&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FoundWebApp) -&gt; Value -&gt; Parser FoundWebApp)
 -&gt; (Object -&gt; Parser FoundWebApp) -&gt; Value -&gt; Parser FoundWebApp
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679481247"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481247"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-47"></span><span>        </span><span id="local-6989586621679481246"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481246"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481247"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679482010"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482010"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>        </span><span id="local-6989586621679482009"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679482009"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482010"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;skip_confirmation&quot;</span></span><span>
-</span><span id="line-48"></span><span>        </span><span id="local-6989586621679481244"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481244"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481247"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-48"></span><span>        </span><span id="local-6989586621679482007"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679482007"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482010"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;request_write_access&quot;</span></span><span>
-</span><span id="line-49"></span><span>        </span><span id="local-6989586621679481243"><span class="annot"><span class="annottext">Maybe WebApp
-</span><a href="#local-6989586621679481243"><span class="hs-identifier hs-var">web_app_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679481247"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe WebApp)
+</span><span id="line-49"></span><span>        </span><span id="local-6989586621679482006"><span class="annot"><span class="annottext">Maybe WebApp
+</span><a href="#local-6989586621679482006"><span class="hs-identifier hs-var">web_app_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679482010"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe WebApp)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;web_app&quot;</span></span><span>
@@ -128,29 +128,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FoundWebApp :: Maybe Bool -&gt; Maybe Bool -&gt; Maybe WebApp -&gt; FoundWebApp
 </span><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">skip_confirmation :: Maybe Bool
 </span><a href="TD.Data.FoundWebApp.html#skip_confirmation"><span class="hs-identifier hs-var">skip_confirmation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481246"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">request_write_access :: Maybe Bool
+</span><a href="#local-6989586621679482009"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">request_write_access :: Maybe Bool
 </span><a href="TD.Data.FoundWebApp.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481244"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">web_app :: Maybe WebApp
+</span><a href="#local-6989586621679482007"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">web_app :: Maybe WebApp
 </span><a href="TD.Data.FoundWebApp.html#web_app"><span class="hs-identifier hs-var">web_app</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe WebApp
-</span><a href="#local-6989586621679481243"><span class="hs-identifier hs-var">web_app_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679482006"><span class="hs-identifier hs-var">web_app_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-51"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser FoundWebApp
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-52"></span><span>
-</span><span id="line-53"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679481236"><span id="local-6989586621679481238"><span id="local-6989586621679481240"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-54"></span><span>  </span><span id="local-6989586621679481234"><span class="annot"><span class="annottext">toJSON :: FoundWebApp -&gt; Value
+</span><span id="line-53"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679481999"><span id="local-6989586621679482001"><span id="local-6989586621679482003"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-54"></span><span>  </span><span id="local-6989586621679481997"><span class="annot"><span class="annottext">toJSON :: FoundWebApp -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-55"></span><span>    </span><span class="annot"><a href="TD.Data.FoundWebApp.html#FoundWebApp"><span class="hs-identifier hs-type">FoundWebApp</span></a></span><span>
 </span><span id="line-56"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">skip_confirmation :: FoundWebApp -&gt; Maybe Bool
-</span><a href="TD.Data.FoundWebApp.html#skip_confirmation"><span class="hs-identifier hs-var">skip_confirmation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481232"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481232"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.FoundWebApp.html#skip_confirmation"><span class="hs-identifier hs-var">skip_confirmation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481995"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679481995"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>        </span><span class="annot"><span class="annottext">request_write_access :: FoundWebApp -&gt; Maybe Bool
-</span><a href="TD.Data.FoundWebApp.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481231"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481231"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.FoundWebApp.html#request_write_access"><span class="hs-identifier hs-var">request_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481994"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679481994"><span class="hs-identifier hs-var">request_write_access_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>        </span><span class="annot"><span class="annottext">web_app :: FoundWebApp -&gt; Maybe WebApp
-</span><a href="TD.Data.FoundWebApp.html#web_app"><span class="hs-identifier hs-var">web_app</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481230"><span class="annot"><span class="annottext">Maybe WebApp
-</span><a href="#local-6989586621679481230"><span class="hs-identifier hs-var">web_app_</span></a></span></span><span>
+</span><a href="TD.Data.FoundWebApp.html#web_app"><span class="hs-identifier hs-var">web_app</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679481993"><span class="annot"><span class="annottext">Maybe WebApp
+</span><a href="#local-6989586621679481993"><span class="hs-identifier hs-var">web_app_</span></a></span></span><span>
 </span><span id="line-59"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-60"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -164,16 +164,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;skip_confirmation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481232"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679481995"><span class="hs-identifier hs-var">skip_confirmation_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;request_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679481231"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679481994"><span class="hs-identifier hs-var">request_write_access_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;web_app&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe WebApp -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe WebApp
-</span><a href="#local-6989586621679481230"><span class="hs-identifier hs-var">web_app_</span></a></span><span>
+</span><a href="#local-6989586621679481993"><span class="hs-identifier hs-var">web_app_</span></a></span><span>
 </span><span id="line-65"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-66"></span></pre></body></html>
