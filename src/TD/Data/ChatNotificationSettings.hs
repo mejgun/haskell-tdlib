@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
-data ChatNotificationSettings = -- | Contains information about notification settings for a chat or a froum topic
+data ChatNotificationSettings = -- | Contains information about notification settings for a chat or a forum topic
   ChatNotificationSettings
   { -- | If true, notifications for messages with mentions will be created as for an ordinary unread message
     disable_mention_notifications :: Maybe Bool,

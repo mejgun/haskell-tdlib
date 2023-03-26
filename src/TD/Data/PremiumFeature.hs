@@ -35,7 +35,7 @@ data PremiumFeature
     PremiumFeatureAnimatedProfilePhoto
   | -- | The ability to set a custom emoji as a forum topic icon
     PremiumFeatureForumTopicIcon
-  | -- | Allowed to set a premium appllication icons
+  | -- | Allowed to set a premium application icons
     PremiumFeatureAppIcons
   | -- | Allowed to translate chat messages real-time
     PremiumFeatureRealTimeChatTranslation

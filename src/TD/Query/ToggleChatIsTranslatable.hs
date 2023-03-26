@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Changes the tranlatable state of a chat; for Telegram Premium users only @chat_id Chat identifier @is_translatable New value of is_translatable
+-- Changes the translatable state of a chat; for Telegram Premium users only @chat_id Chat identifier @is_translatable New value of is_translatable
 data ToggleChatIsTranslatable = ToggleChatIsTranslatable
   { -- |
     is_translatable :: Maybe Bool,

@@ -40,7 +40,7 @@ data MessageExtendedMedia
         -- |
         video :: Maybe Video.Video
       }
-  | -- | The media is unuspported @caption Media caption
+  | -- | The media is unsupported @caption Media caption
     MessageExtendedMediaUnsupported
       { -- |
         caption :: Maybe FormattedText.FormattedText

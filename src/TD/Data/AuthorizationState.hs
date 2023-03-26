@@ -13,7 +13,7 @@ import qualified Utils as U
 
 -- | Represents the current authorization state of the TDLib client
 data AuthorizationState
-  = -- | Initializetion parameters are needed. Call setTdlibParameters to provide them
+  = -- | Initialization parameters are needed. Call setTdlibParameters to provide them
     AuthorizationStateWaitTdlibParameters
   | -- | TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
     AuthorizationStateWaitPhoneNumber
