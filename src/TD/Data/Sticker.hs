@@ -31,7 +31,7 @@ data Sticker = -- | Describes a sticker
     height :: Maybe Int,
     -- | Sticker width; as defined by the sender
     width :: Maybe Int,
-    -- | The identifier of the sticker set to which the sticker belongs; 0 if none
+    -- | Identifier of the sticker set to which the sticker belongs; 0 if none
     set_id :: Maybe Int,
     -- | Unique sticker identifier within the set; 0 if none
     _id :: Maybe Int

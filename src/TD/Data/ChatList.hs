@@ -13,10 +13,10 @@ data ChatList
     ChatListMain
   | -- | A list of chats usually located at the top of the main chat list. Unmuted chats are automatically moved from the Archive to the Main chat list when a new message arrives
     ChatListArchive
-  | -- | A list of chats belonging to a chat filter @chat_filter_id Chat filter identifier
-    ChatListFilter
+  | -- | A list of chats added to a chat folder @chat_folder_id Chat folder identifier
+    ChatListFolder
       { -- |
-        chat_filter_id :: Maybe Int
+        chat_folder_id :: Maybe Int
       }
   deriving (Eq)
 
@@ -30,12 +30,12 @@ instance Show ChatList where
       ++ U.cc
         []
   show
-    ChatListFilter
-      { chat_filter_id = chat_filter_id_
+    ChatListFolder
+      { chat_folder_id = chat_folder_id_
       } =
-      "ChatListFilter"
+      "ChatListFolder"
         ++ U.cc
-          [ U.p "chat_filter_id" chat_filter_id_
+          [ U.p "chat_folder_id" chat_folder_id_
           ]
 
 instance T.FromJSON ChatList where
@@ -45,7 +45,7 @@ instance T.FromJSON ChatList where
     case t of
       "chatListMain" -> parseChatListMain v
       "chatListArchive" -> parseChatListArchive v
-      "chatListFilter" -> parseChatListFilter v
+      "chatListFolder" -> parseChatListFolder v
       _ -> mempty
     where
       parseChatListMain :: A.Value -> T.Parser ChatList
@@ -54,10 +54,10 @@ instance T.FromJSON ChatList where
       parseChatListArchive :: A.Value -> T.Parser ChatList
       parseChatListArchive = A.withObject "ChatListArchive" $ \_ -> return ChatListArchive
 
-      parseChatListFilter :: A.Value -> T.Parser ChatList
-      parseChatListFilter = A.withObject "ChatListFilter" $ \o -> do
-        chat_filter_id_ <- o A..:? "chat_filter_id"
-        return $ ChatListFilter {chat_filter_id = chat_filter_id_}
+      parseChatListFolder :: A.Value -> T.Parser ChatList
+      parseChatListFolder = A.withObject "ChatListFolder" $ \o -> do
+        chat_folder_id_ <- o A..:? "chat_folder_id"
+        return $ ChatListFolder {chat_folder_id = chat_folder_id_}
   parseJSON _ = mempty
 
 instance T.ToJSON ChatList where
@@ -70,10 +70,10 @@ instance T.ToJSON ChatList where
       [ "@type" A..= T.String "chatListArchive"
       ]
   toJSON
-    ChatListFilter
-      { chat_filter_id = chat_filter_id_
+    ChatListFolder
+      { chat_folder_id = chat_folder_id_
       } =
       A.object
-        [ "@type" A..= T.String "chatListFilter",
-          "chat_filter_id" A..= chat_filter_id_
+        [ "@type" A..= T.String "chatListFolder",
+          "chat_folder_id" A..= chat_folder_id_
         ]

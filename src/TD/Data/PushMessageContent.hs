@@ -165,6 +165,11 @@ data PushMessageContent
       { -- |
         title :: Maybe String
       }
+  | -- | A chat background was edited @is_same True, if the set background is the same as the background of the current user
+    PushMessageContentChatSetBackground
+      { -- |
+        is_same :: Maybe Bool
+      }
   | -- | A chat theme was edited @theme_name If non-empty, name of a new theme, set for the chat. Otherwise, the chat theme was reset to the default one
     PushMessageContentChatSetTheme
       { -- |
@@ -422,6 +427,14 @@ instance Show PushMessageContent where
           [ U.p "title" title_
           ]
   show
+    PushMessageContentChatSetBackground
+      { is_same = is_same_
+      } =
+      "PushMessageContentChatSetBackground"
+        ++ U.cc
+          [ U.p "is_same" is_same_
+          ]
+  show
     PushMessageContentChatSetTheme
       { theme_name = theme_name_
       } =
@@ -513,6 +526,7 @@ instance T.FromJSON PushMessageContent where
       "pushMessageContentChatAddMembers" -> parsePushMessageContentChatAddMembers v
       "pushMessageContentChatChangePhoto" -> parsePushMessageContentChatChangePhoto v
       "pushMessageContentChatChangeTitle" -> parsePushMessageContentChatChangeTitle v
+      "pushMessageContentChatSetBackground" -> parsePushMessageContentChatSetBackground v
       "pushMessageContentChatSetTheme" -> parsePushMessageContentChatSetTheme v
       "pushMessageContentChatDeleteMember" -> parsePushMessageContentChatDeleteMember v
       "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
@@ -649,6 +663,11 @@ instance T.FromJSON PushMessageContent where
       parsePushMessageContentChatChangeTitle = A.withObject "PushMessageContentChatChangeTitle" $ \o -> do
         title_ <- o A..:? "title"
         return $ PushMessageContentChatChangeTitle {title = title_}
+
+      parsePushMessageContentChatSetBackground :: A.Value -> T.Parser PushMessageContent
+      parsePushMessageContentChatSetBackground = A.withObject "PushMessageContentChatSetBackground" $ \o -> do
+        is_same_ <- o A..:? "is_same"
+        return $ PushMessageContentChatSetBackground {is_same = is_same_}
 
       parsePushMessageContentChatSetTheme :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentChatSetTheme = A.withObject "PushMessageContentChatSetTheme" $ \o -> do
@@ -901,6 +920,14 @@ instance T.ToJSON PushMessageContent where
       A.object
         [ "@type" A..= T.String "pushMessageContentChatChangeTitle",
           "title" A..= title_
+        ]
+  toJSON
+    PushMessageContentChatSetBackground
+      { is_same = is_same_
+      } =
+      A.object
+        [ "@type" A..= T.String "pushMessageContentChatSetBackground",
+          "is_same" A..= is_same_
         ]
   toJSON
     PushMessageContentChatSetTheme

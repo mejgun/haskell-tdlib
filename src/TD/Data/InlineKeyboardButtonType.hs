@@ -5,6 +5,7 @@ module TD.Data.InlineKeyboardButtonType where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.TargetChat as TargetChat
 import qualified Utils as U
 
 -- | Describes the type of an inline keyboard button
@@ -40,10 +41,10 @@ data InlineKeyboardButtonType
       }
   | -- | A button with a game that sends a callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
     InlineKeyboardButtonTypeCallbackGame
-  | -- | A button that forces an inline query to the bot to be inserted in the input field @query Inline query to be sent to the bot @in_current_chat True, if the inline query must be sent from the current chat
+  | -- | A button that forces an inline query to the bot to be inserted in the input field @query Inline query to be sent to the bot @target_chat Target chat from which to send the inline query
     InlineKeyboardButtonTypeSwitchInline
       { -- |
-        in_current_chat :: Maybe Bool,
+        target_chat :: Maybe TargetChat.TargetChat,
         -- |
         query :: Maybe String
       }
@@ -107,12 +108,12 @@ instance Show InlineKeyboardButtonType where
         []
   show
     InlineKeyboardButtonTypeSwitchInline
-      { in_current_chat = in_current_chat_,
+      { target_chat = target_chat_,
         query = query_
       } =
       "InlineKeyboardButtonTypeSwitchInline"
         ++ U.cc
-          [ U.p "in_current_chat" in_current_chat_,
+          [ U.p "target_chat" target_chat_,
             U.p "query" query_
           ]
   show InlineKeyboardButtonTypeBuy =
@@ -176,9 +177,9 @@ instance T.FromJSON InlineKeyboardButtonType where
 
       parseInlineKeyboardButtonTypeSwitchInline :: A.Value -> T.Parser InlineKeyboardButtonType
       parseInlineKeyboardButtonTypeSwitchInline = A.withObject "InlineKeyboardButtonTypeSwitchInline" $ \o -> do
-        in_current_chat_ <- o A..:? "in_current_chat"
+        target_chat_ <- o A..:? "target_chat"
         query_ <- o A..:? "query"
-        return $ InlineKeyboardButtonTypeSwitchInline {in_current_chat = in_current_chat_, query = query_}
+        return $ InlineKeyboardButtonTypeSwitchInline {target_chat = target_chat_, query = query_}
 
       parseInlineKeyboardButtonTypeBuy :: A.Value -> T.Parser InlineKeyboardButtonType
       parseInlineKeyboardButtonTypeBuy = A.withObject "InlineKeyboardButtonTypeBuy" $ \_ -> return InlineKeyboardButtonTypeBuy
@@ -240,12 +241,12 @@ instance T.ToJSON InlineKeyboardButtonType where
       ]
   toJSON
     InlineKeyboardButtonTypeSwitchInline
-      { in_current_chat = in_current_chat_,
+      { target_chat = target_chat_,
         query = query_
       } =
       A.object
         [ "@type" A..= T.String "inlineKeyboardButtonTypeSwitchInline",
-          "in_current_chat" A..= in_current_chat_,
+          "target_chat" A..= target_chat_,
           "query" A..= query_
         ]
   toJSON InlineKeyboardButtonTypeBuy =

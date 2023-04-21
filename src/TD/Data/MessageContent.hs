@@ -9,6 +9,7 @@ import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Audio as Audio
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
+import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.DiceStickers as DiceStickers
@@ -285,6 +286,13 @@ data MessageContent
       }
   | -- | A screenshot of a message in the chat has been taken
     MessageScreenshotTaken
+  | -- | A new background was set in the chat @old_background_message_id Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message @background The new background
+    MessageChatSetBackground
+      { -- |
+        background :: Maybe ChatBackground.ChatBackground,
+        -- |
+        old_background_message_id :: Maybe Int
+      }
   | -- | A theme in the chat has been changed @theme_name If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
     MessageChatSetTheme
       { -- |
@@ -386,10 +394,16 @@ data MessageContent
         sticker :: Maybe Sticker.Sticker,
         -- | Number of month the Telegram Premium subscription will be active
         month_count :: Maybe Int,
+        -- | The paid amount, in the smallest units of the cryptocurrency
+        cryptocurrency_amount :: Maybe Int,
+        -- | Cryptocurrency used to pay for the gift; may be empty if none
+        cryptocurrency :: Maybe String,
         -- | The paid amount, in the smallest units of the currency
         amount :: Maybe Int,
         -- | Currency for the paid amount
-        currency :: Maybe String
+        currency :: Maybe String,
+        -- | The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
+        gifter_user_id :: Maybe Int
       }
   | -- | A contact has registered with Telegram
     MessageContactRegistered
@@ -422,7 +436,7 @@ data MessageContent
       { -- |
         button_text :: Maybe String
       }
-  | -- | Data from a Web App has been received; for bots only @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App @data Received data
+  | -- | Data from a Web App has been received; for bots only @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App @data The data
     MessageWebAppDataReceived
       { -- |
         _data :: Maybe String,
@@ -810,6 +824,16 @@ instance Show MessageContent where
       ++ U.cc
         []
   show
+    MessageChatSetBackground
+      { background = background_,
+        old_background_message_id = old_background_message_id_
+      } =
+      "MessageChatSetBackground"
+        ++ U.cc
+          [ U.p "background" background_,
+            U.p "old_background_message_id" old_background_message_id_
+          ]
+  show
     MessageChatSetTheme
       { theme_name = theme_name_
       } =
@@ -941,15 +965,21 @@ instance Show MessageContent where
     MessageGiftedPremium
       { sticker = sticker_,
         month_count = month_count_,
+        cryptocurrency_amount = cryptocurrency_amount_,
+        cryptocurrency = cryptocurrency_,
         amount = amount_,
-        currency = currency_
+        currency = currency_,
+        gifter_user_id = gifter_user_id_
       } =
       "MessageGiftedPremium"
         ++ U.cc
           [ U.p "sticker" sticker_,
             U.p "month_count" month_count_,
+            U.p "cryptocurrency_amount" cryptocurrency_amount_,
+            U.p "cryptocurrency" cryptocurrency_,
             U.p "amount" amount_,
-            U.p "currency" currency_
+            U.p "currency" currency_,
+            U.p "gifter_user_id" gifter_user_id_
           ]
   show MessageContactRegistered =
     "MessageContactRegistered"
@@ -1086,6 +1116,7 @@ instance T.FromJSON MessageContent where
       "messageChatUpgradeFrom" -> parseMessageChatUpgradeFrom v
       "messagePinMessage" -> parseMessagePinMessage v
       "messageScreenshotTaken" -> parseMessageScreenshotTaken v
+      "messageChatSetBackground" -> parseMessageChatSetBackground v
       "messageChatSetTheme" -> parseMessageChatSetTheme v
       "messageChatSetMessageAutoDeleteTime" -> parseMessageChatSetMessageAutoDeleteTime v
       "messageForumTopicCreated" -> parseMessageForumTopicCreated v
@@ -1325,6 +1356,12 @@ instance T.FromJSON MessageContent where
       parseMessageScreenshotTaken :: A.Value -> T.Parser MessageContent
       parseMessageScreenshotTaken = A.withObject "MessageScreenshotTaken" $ \_ -> return MessageScreenshotTaken
 
+      parseMessageChatSetBackground :: A.Value -> T.Parser MessageContent
+      parseMessageChatSetBackground = A.withObject "MessageChatSetBackground" $ \o -> do
+        background_ <- o A..:? "background"
+        old_background_message_id_ <- o A..:? "old_background_message_id"
+        return $ MessageChatSetBackground {background = background_, old_background_message_id = old_background_message_id_}
+
       parseMessageChatSetTheme :: A.Value -> T.Parser MessageContent
       parseMessageChatSetTheme = A.withObject "MessageChatSetTheme" $ \o -> do
         theme_name_ <- o A..:? "theme_name"
@@ -1404,9 +1441,12 @@ instance T.FromJSON MessageContent where
       parseMessageGiftedPremium = A.withObject "MessageGiftedPremium" $ \o -> do
         sticker_ <- o A..:? "sticker"
         month_count_ <- o A..:? "month_count"
+        cryptocurrency_amount_ <- U.rm <$> (o A..:? "cryptocurrency_amount" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
+        cryptocurrency_ <- o A..:? "cryptocurrency"
         amount_ <- o A..:? "amount"
         currency_ <- o A..:? "currency"
-        return $ MessageGiftedPremium {sticker = sticker_, month_count = month_count_, amount = amount_, currency = currency_}
+        gifter_user_id_ <- o A..:? "gifter_user_id"
+        return $ MessageGiftedPremium {sticker = sticker_, month_count = month_count_, cryptocurrency_amount = cryptocurrency_amount_, cryptocurrency = cryptocurrency_, amount = amount_, currency = currency_, gifter_user_id = gifter_user_id_}
 
       parseMessageContactRegistered :: A.Value -> T.Parser MessageContent
       parseMessageContactRegistered = A.withObject "MessageContactRegistered" $ \_ -> return MessageContactRegistered
@@ -1822,6 +1862,16 @@ instance T.ToJSON MessageContent where
       [ "@type" A..= T.String "messageScreenshotTaken"
       ]
   toJSON
+    MessageChatSetBackground
+      { background = background_,
+        old_background_message_id = old_background_message_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageChatSetBackground",
+          "background" A..= background_,
+          "old_background_message_id" A..= old_background_message_id_
+        ]
+  toJSON
     MessageChatSetTheme
       { theme_name = theme_name_
       } =
@@ -1953,15 +2003,21 @@ instance T.ToJSON MessageContent where
     MessageGiftedPremium
       { sticker = sticker_,
         month_count = month_count_,
+        cryptocurrency_amount = cryptocurrency_amount_,
+        cryptocurrency = cryptocurrency_,
         amount = amount_,
-        currency = currency_
+        currency = currency_,
+        gifter_user_id = gifter_user_id_
       } =
       A.object
         [ "@type" A..= T.String "messageGiftedPremium",
           "sticker" A..= sticker_,
           "month_count" A..= month_count_,
+          "cryptocurrency_amount" A..= U.toS cryptocurrency_amount_,
+          "cryptocurrency" A..= cryptocurrency_,
           "amount" A..= amount_,
-          "currency" A..= currency_
+          "currency" A..= currency_,
+          "gifter_user_id" A..= gifter_user_id_
         ]
   toJSON MessageContactRegistered =
     A.object

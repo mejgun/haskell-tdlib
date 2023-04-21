@@ -57,12 +57,17 @@ import qualified TD.Data.ChatAdministrator as ChatAdministrator
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
+import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ChatEvent as ChatEvent
 import qualified TD.Data.ChatEventAction as ChatEventAction
 import qualified TD.Data.ChatEventLogFilters as ChatEventLogFilters
 import qualified TD.Data.ChatEvents as ChatEvents
-import qualified TD.Data.ChatFilter as ChatFilter
-import qualified TD.Data.ChatFilterInfo as ChatFilterInfo
+import qualified TD.Data.ChatFolder as ChatFolder
+import qualified TD.Data.ChatFolderIcon as ChatFolderIcon
+import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
+import qualified TD.Data.ChatFolderInviteLink as ChatFolderInviteLink
+import qualified TD.Data.ChatFolderInviteLinkInfo as ChatFolderInviteLinkInfo
+import qualified TD.Data.ChatFolderInviteLinks as ChatFolderInviteLinks
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatInviteLinkCount as ChatInviteLinkCount
 import qualified TD.Data.ChatInviteLinkCounts as ChatInviteLinkCounts
@@ -298,8 +303,8 @@ import qualified TD.Data.PublicChatType as PublicChatType
 import qualified TD.Data.PushMessageContent as PushMessageContent
 import qualified TD.Data.PushReceiverId as PushReceiverId
 import qualified TD.Data.ReactionType as ReactionType
-import qualified TD.Data.RecommendedChatFilter as RecommendedChatFilter
-import qualified TD.Data.RecommendedChatFilters as RecommendedChatFilters
+import qualified TD.Data.RecommendedChatFolder as RecommendedChatFolder
+import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
 import qualified TD.Data.RemoteFile as RemoteFile
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
@@ -437,6 +442,9 @@ data GeneralResult
   | Game Game.Game
   | WebApp WebApp.WebApp
   | Poll Poll.Poll
+  | Background Background.Background
+  | Backgrounds Backgrounds.Backgrounds
+  | ChatBackground ChatBackground.ChatBackground
   | ProfilePhoto ProfilePhoto.ProfilePhoto
   | ChatPhotoInfo ChatPhotoInfo.ChatPhotoInfo
   | UserType UserType.UserType
@@ -517,10 +525,14 @@ data GeneralResult
   | ScopeNotificationSettings ScopeNotificationSettings.ScopeNotificationSettings
   | DraftMessage DraftMessage.DraftMessage
   | ChatType ChatType.ChatType
-  | ChatFilter ChatFilter.ChatFilter
-  | ChatFilterInfo ChatFilterInfo.ChatFilterInfo
-  | RecommendedChatFilter RecommendedChatFilter.RecommendedChatFilter
-  | RecommendedChatFilters RecommendedChatFilters.RecommendedChatFilters
+  | ChatFolderIcon ChatFolderIcon.ChatFolderIcon
+  | ChatFolder ChatFolder.ChatFolder
+  | ChatFolderInfo ChatFolderInfo.ChatFolderInfo
+  | ChatFolderInviteLink ChatFolderInviteLink.ChatFolderInviteLink
+  | ChatFolderInviteLinks ChatFolderInviteLinks.ChatFolderInviteLinks
+  | ChatFolderInviteLinkInfo ChatFolderInviteLinkInfo.ChatFolderInviteLinkInfo
+  | RecommendedChatFolder RecommendedChatFolder.RecommendedChatFolder
+  | RecommendedChatFolders RecommendedChatFolders.RecommendedChatFolders
   | ChatList ChatList.ChatList
   | ChatLists ChatLists.ChatLists
   | ChatSource ChatSource.ChatSource
@@ -682,8 +694,6 @@ data GeneralResult
   | PushReceiverId PushReceiverId.PushReceiverId
   | BackgroundFill BackgroundFill.BackgroundFill
   | BackgroundType BackgroundType.BackgroundType
-  | Background Background.Background
-  | Backgrounds Backgrounds.Backgrounds
   | InputBackground InputBackground.InputBackground
   | ThemeSettings ThemeSettings.ThemeSettings
   | ChatTheme ChatTheme.ChatTheme
@@ -934,6 +944,15 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result Poll.Poll) of
             T.Success a -> return $ Poll a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result Background.Background) of
+            T.Success a -> return $ Background a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result Backgrounds.Backgrounds) of
+            T.Success a -> return $ Backgrounds a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatBackground.ChatBackground) of
+            T.Success a -> return $ ChatBackground a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result ProfilePhoto.ProfilePhoto) of
             T.Success a -> return $ ProfilePhoto a
             _ -> mempty,
@@ -1174,17 +1193,29 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ChatType.ChatType) of
             T.Success a -> return $ ChatType a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result ChatFilter.ChatFilter) of
-            T.Success a -> return $ ChatFilter a
+          case (T.fromJSON v :: T.Result ChatFolderIcon.ChatFolderIcon) of
+            T.Success a -> return $ ChatFolderIcon a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result ChatFilterInfo.ChatFilterInfo) of
-            T.Success a -> return $ ChatFilterInfo a
+          case (T.fromJSON v :: T.Result ChatFolder.ChatFolder) of
+            T.Success a -> return $ ChatFolder a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result RecommendedChatFilter.RecommendedChatFilter) of
-            T.Success a -> return $ RecommendedChatFilter a
+          case (T.fromJSON v :: T.Result ChatFolderInfo.ChatFolderInfo) of
+            T.Success a -> return $ ChatFolderInfo a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result RecommendedChatFilters.RecommendedChatFilters) of
-            T.Success a -> return $ RecommendedChatFilters a
+          case (T.fromJSON v :: T.Result ChatFolderInviteLink.ChatFolderInviteLink) of
+            T.Success a -> return $ ChatFolderInviteLink a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatFolderInviteLinks.ChatFolderInviteLinks) of
+            T.Success a -> return $ ChatFolderInviteLinks a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatFolderInviteLinkInfo.ChatFolderInviteLinkInfo) of
+            T.Success a -> return $ ChatFolderInviteLinkInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result RecommendedChatFolder.RecommendedChatFolder) of
+            T.Success a -> return $ RecommendedChatFolder a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result RecommendedChatFolders.RecommendedChatFolders) of
+            T.Success a -> return $ RecommendedChatFolders a
             _ -> mempty,
           case (T.fromJSON v :: T.Result ChatList.ChatList) of
             T.Success a -> return $ ChatList a
@@ -1668,12 +1699,6 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result BackgroundType.BackgroundType) of
             T.Success a -> return $ BackgroundType a
-            _ -> mempty,
-          case (T.fromJSON v :: T.Result Background.Background) of
-            T.Success a -> return $ Background a
-            _ -> mempty,
-          case (T.fromJSON v :: T.Result Backgrounds.Backgrounds) of
-            T.Success a -> return $ Backgrounds a
             _ -> mempty,
           case (T.fromJSON v :: T.Result InputBackground.InputBackground) of
             T.Success a -> return $ InputBackground a

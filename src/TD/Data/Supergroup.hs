@@ -41,7 +41,7 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
     -- | True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     has_linked_chat :: Maybe Bool,
     -- | Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received
-    -- through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
+    -- through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, getUserPrivacySettingRules, or in chatFolderInviteLinkInfo.missing_chat_ids
     member_count :: Maybe Int,
     -- | Status of the current user in the supergroup or channel; custom title will always be empty
     status :: Maybe ChatMemberStatus.ChatMemberStatus,

@@ -8,16 +8,19 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Sets the text shown in the chat with the bot if the chat is empty; bots only</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="SetBotInfoDescription"><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-var">SetBotInfoDescription</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="SetBotInfoDescription"><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-var">SetBotInfoDescription</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-14"></span><span>    </span><span id="description"><span class="annot"><span class="annottext">SetBotInfoDescription -&gt; Maybe String
 </span><a href="TD.Query.SetBotInfoDescription.html#description"><span class="hs-identifier hs-var hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
 </span><span id="line-15"></span><span>    </span><span class="hs-comment">-- | A two-letter ISO 639-1 language code. If empty, the description will be shown to all users, for which language there are no dedicated description</span><span>
 </span><span id="line-16"></span><span>    </span><span id="language_code"><span class="annot"><span class="annottext">SetBotInfoDescription -&gt; Maybe String
-</span><a href="TD.Query.SetBotInfoDescription.html#language_code"><span class="hs-identifier hs-var hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679424553"><span id="local-6989586621679424555"><span class="annot"><span class="annottext">SetBotInfoDescription -&gt; SetBotInfoDescription -&gt; Bool
+</span><a href="TD.Query.SetBotInfoDescription.html#language_code"><span class="hs-identifier hs-var hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-comment">-- | Identifier of the target bot</span><span>
+</span><span id="line-18"></span><span>    </span><span id="bot_user_id"><span class="annot"><span class="annottext">SetBotInfoDescription -&gt; Maybe Int
+</span><a href="TD.Query.SetBotInfoDescription.html#bot_user_id"><span class="hs-identifier hs-var hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430988"><span id="local-6989586621679430990"><span class="annot"><span class="annottext">SetBotInfoDescription -&gt; SetBotInfoDescription -&gt; Bool
 (SetBotInfoDescription -&gt; SetBotInfoDescription -&gt; Bool)
 -&gt; (SetBotInfoDescription -&gt; SetBotInfoDescription -&gt; Bool)
 -&gt; Eq SetBotInfoDescription
@@ -27,64 +30,80 @@ $c/= :: SetBotInfoDescription -&gt; SetBotInfoDescription -&gt; Bool
 == :: SetBotInfoDescription -&gt; SetBotInfoDescription -&gt; Bool
 $c== :: SetBotInfoDescription -&gt; SetBotInfoDescription -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424547"><span id="local-6989586621679424550"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679424545"><span class="annot"><span class="annottext">show :: SetBotInfoDescription -&gt; String
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430982"><span id="local-6989586621679430985"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679430980"><span class="annot"><span class="annottext">show :: SetBotInfoDescription -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
-</span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span><span>
-</span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">description :: SetBotInfoDescription -&gt; Maybe String
-</span><a href="TD.Query.SetBotInfoDescription.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424543"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424543"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">language_code :: SetBotInfoDescription -&gt; Maybe String
-</span><a href="TD.Query.SetBotInfoDescription.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424542"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424542"><span class="hs-identifier hs-var">language_code_</span></a></span></span><span>
-</span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span><span>
+</span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">description :: SetBotInfoDescription -&gt; Maybe String
+</span><a href="TD.Query.SetBotInfoDescription.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430978"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430978"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">language_code :: SetBotInfoDescription -&gt; Maybe String
+</span><a href="TD.Query.SetBotInfoDescription.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430977"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430977"><span class="hs-identifier hs-var">language_code_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: SetBotInfoDescription -&gt; Maybe Int
+</span><a href="TD.Query.SetBotInfoDescription.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430976"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430976"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetBotInfoDescription&quot;</span></span><span>
-</span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
-</span><span id="line-28"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><span id="line-31"></span><span>          </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424543"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679430978"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424542"><span class="hs-identifier hs-var">language_code_</span></a></span><span>
-</span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
-</span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679424533"><span id="local-6989586621679424535"><span id="local-6989586621679424537"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679424531"><span class="annot"><span class="annottext">toJSON :: SetBotInfoDescription -&gt; Value
+</span><a href="#local-6989586621679430977"><span class="hs-identifier hs-var">language_code_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430976"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430967"><span id="local-6989586621679430969"><span id="local-6989586621679430971"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679430965"><span class="annot"><span class="annottext">toJSON :: SetBotInfoDescription -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
-</span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span><span>
-</span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">description :: SetBotInfoDescription -&gt; Maybe String
-</span><a href="TD.Query.SetBotInfoDescription.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424529"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424529"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
-</span><span id="line-36"></span><span>        </span><span class="annot"><span class="annottext">language_code :: SetBotInfoDescription -&gt; Maybe String
-</span><a href="TD.Query.SetBotInfoDescription.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679424528"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424528"><span class="hs-identifier hs-var">language_code_</span></a></span></span><span>
-</span><span id="line-37"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-38"></span><span>    </span><span class="annot"><a href="TD.Query.SetBotInfoDescription.html#SetBotInfoDescription"><span class="hs-identifier hs-type">SetBotInfoDescription</span></a></span><span>
+</span><span id="line-39"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">description :: SetBotInfoDescription -&gt; Maybe String
+</span><a href="TD.Query.SetBotInfoDescription.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430963"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430963"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">language_code :: SetBotInfoDescription -&gt; Maybe String
+</span><a href="TD.Query.SetBotInfoDescription.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430962"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430962"><span class="hs-identifier hs-var">language_code_</span></a></span></span><span class="hs-special">,</span><span>
+</span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: SetBotInfoDescription -&gt; Maybe Int
+</span><a href="TD.Query.SetBotInfoDescription.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430961"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430961"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><span id="line-42"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
-</span><span id="line-39"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span id="line-44"></span><span>        </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;setBotInfoDescription&quot;</span></span><span class="hs-special">,</span><span>
-</span><span id="line-40"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span id="line-45"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424529"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
-</span><span id="line-41"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679430963"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679424528"><span class="hs-identifier hs-var">language_code_</span></a></span><span>
-</span><span id="line-42"></span><span>        </span><span class="hs-special">]</span><span>
-</span><span id="line-43"></span></pre></body></html>
+</span><a href="#local-6989586621679430962"><span class="hs-identifier hs-var">language_code_</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679430961"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><span id="line-48"></span><span>        </span><span class="hs-special">]</span><span>
+</span><span id="line-49"></span></pre></body></html>

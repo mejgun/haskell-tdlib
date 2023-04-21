@@ -9,13 +9,22 @@ import qualified TD.Data.Animation as Animation
 import qualified TD.Data.BotCommand as BotCommand
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
+import qualified TD.Data.InternalLinkType as InternalLinkType
 import qualified TD.Data.Photo as Photo
 import qualified Utils as U
 
 -- |
 data BotInfo = -- | Contains information about a bot
   BotInfo
-  { -- | Default administrator rights for adding the bot to channels; may be null
+  { -- | The internal link, which can be used to edit bot settings; may be null
+    edit_settings_link :: Maybe InternalLinkType.InternalLinkType,
+    -- | The internal link, which can be used to edit the photo or animation shown in the chat with the bot if the chat is empty; may be null
+    edit_description_media_link :: Maybe InternalLinkType.InternalLinkType,
+    -- | The internal link, which can be used to edit bot description; may be null
+    edit_description_link :: Maybe InternalLinkType.InternalLinkType,
+    -- | The internal link, which can be used to edit bot commands; may be null
+    edit_commands_link :: Maybe InternalLinkType.InternalLinkType,
+    -- | Default administrator rights for adding the bot to channels; may be null
     default_channel_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights,
     -- | Default administrator rights for adding the bot to basic group and supergroup chats; may be null
     default_group_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights,
@@ -37,7 +46,11 @@ data BotInfo = -- | Contains information about a bot
 instance Show BotInfo where
   show
     BotInfo
-      { default_channel_administrator_rights = default_channel_administrator_rights_,
+      { edit_settings_link = edit_settings_link_,
+        edit_description_media_link = edit_description_media_link_,
+        edit_description_link = edit_description_link_,
+        edit_commands_link = edit_commands_link_,
+        default_channel_administrator_rights = default_channel_administrator_rights_,
         default_group_administrator_rights = default_group_administrator_rights_,
         commands = commands_,
         menu_button = menu_button_,
@@ -48,7 +61,11 @@ instance Show BotInfo where
       } =
       "BotInfo"
         ++ U.cc
-          [ U.p "default_channel_administrator_rights" default_channel_administrator_rights_,
+          [ U.p "edit_settings_link" edit_settings_link_,
+            U.p "edit_description_media_link" edit_description_media_link_,
+            U.p "edit_description_link" edit_description_link_,
+            U.p "edit_commands_link" edit_commands_link_,
+            U.p "default_channel_administrator_rights" default_channel_administrator_rights_,
             U.p "default_group_administrator_rights" default_group_administrator_rights_,
             U.p "commands" commands_,
             U.p "menu_button" menu_button_,
@@ -68,6 +85,10 @@ instance T.FromJSON BotInfo where
     where
       parseBotInfo :: A.Value -> T.Parser BotInfo
       parseBotInfo = A.withObject "BotInfo" $ \o -> do
+        edit_settings_link_ <- o A..:? "edit_settings_link"
+        edit_description_media_link_ <- o A..:? "edit_description_media_link"
+        edit_description_link_ <- o A..:? "edit_description_link"
+        edit_commands_link_ <- o A..:? "edit_commands_link"
         default_channel_administrator_rights_ <- o A..:? "default_channel_administrator_rights"
         default_group_administrator_rights_ <- o A..:? "default_group_administrator_rights"
         commands_ <- o A..:? "commands"
@@ -76,13 +97,17 @@ instance T.FromJSON BotInfo where
         photo_ <- o A..:? "photo"
         description_ <- o A..:? "description"
         short_description_ <- o A..:? "short_description"
-        return $ BotInfo {default_channel_administrator_rights = default_channel_administrator_rights_, default_group_administrator_rights = default_group_administrator_rights_, commands = commands_, menu_button = menu_button_, animation = animation_, photo = photo_, description = description_, short_description = short_description_}
+        return $ BotInfo {edit_settings_link = edit_settings_link_, edit_description_media_link = edit_description_media_link_, edit_description_link = edit_description_link_, edit_commands_link = edit_commands_link_, default_channel_administrator_rights = default_channel_administrator_rights_, default_group_administrator_rights = default_group_administrator_rights_, commands = commands_, menu_button = menu_button_, animation = animation_, photo = photo_, description = description_, short_description = short_description_}
   parseJSON _ = mempty
 
 instance T.ToJSON BotInfo where
   toJSON
     BotInfo
-      { default_channel_administrator_rights = default_channel_administrator_rights_,
+      { edit_settings_link = edit_settings_link_,
+        edit_description_media_link = edit_description_media_link_,
+        edit_description_link = edit_description_link_,
+        edit_commands_link = edit_commands_link_,
+        default_channel_administrator_rights = default_channel_administrator_rights_,
         default_group_administrator_rights = default_group_administrator_rights_,
         commands = commands_,
         menu_button = menu_button_,
@@ -93,6 +118,10 @@ instance T.ToJSON BotInfo where
       } =
       A.object
         [ "@type" A..= T.String "botInfo",
+          "edit_settings_link" A..= edit_settings_link_,
+          "edit_description_media_link" A..= edit_description_media_link_,
+          "edit_description_link" A..= edit_description_link_,
+          "edit_commands_link" A..= edit_commands_link_,
           "default_channel_administrator_rights" A..= default_channel_administrator_rights_,
           "default_group_administrator_rights" A..= default_group_administrator_rights_,
           "commands" A..= commands_,

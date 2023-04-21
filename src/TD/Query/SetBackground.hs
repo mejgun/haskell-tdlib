@@ -16,7 +16,7 @@ data SetBackground = SetBackground
     for_dark_theme :: Maybe Bool,
     -- | Background type; pass null to use the default type of the remote background or to remove the current background
     _type :: Maybe BackgroundType.BackgroundType,
-    -- | The input background to use; pass null to create a new filled backgrounds or to remove the current background
+    -- | The input background to use; pass null to create a new filled background or to remove the current background
     background :: Maybe InputBackground.InputBackground
   }
   deriving (Eq)

@@ -20,7 +20,7 @@ data SpeechRecognitionResult
       { -- |
         text :: Maybe String
       }
-  | -- | The speech recognition failed @error Received error
+  | -- | The speech recognition failed @error Recognition error
     SpeechRecognitionResultError
       { -- |
         _error :: Maybe Error.Error

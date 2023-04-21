@@ -18,7 +18,7 @@
 </span><span id="line-17"></span><span>    </span><span id="total_count"><span class="annot"><span class="annottext">ChatPhotos -&gt; Maybe Int
 </span><a href="TD.Data.ChatPhotos.html#total_count"><span class="hs-identifier hs-var hs-var">total_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679484426"><span id="local-6989586621679484428"><span class="annot"><span class="annottext">ChatPhotos -&gt; ChatPhotos -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679492106"><span id="local-6989586621679492108"><span class="annot"><span class="annottext">ChatPhotos -&gt; ChatPhotos -&gt; Bool
 (ChatPhotos -&gt; ChatPhotos -&gt; Bool)
 -&gt; (ChatPhotos -&gt; ChatPhotos -&gt; Bool) -&gt; Eq ChatPhotos
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -28,16 +28,16 @@ $c/= :: ChatPhotos -&gt; ChatPhotos -&gt; Bool
 $c== :: ChatPhotos -&gt; ChatPhotos -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679484420"><span id="local-6989586621679484423"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679484418"><span class="annot"><span class="annottext">show :: ChatPhotos -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679492100"><span id="local-6989586621679492103"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679492098"><span class="annot"><span class="annottext">show :: ChatPhotos -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photos :: ChatPhotos -&gt; Maybe [ChatPhoto]
-</span><a href="TD.Data.ChatPhotos.html#photos"><span class="hs-identifier hs-var">photos</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484416"><span class="annot"><span class="annottext">Maybe [ChatPhoto]
-</span><a href="#local-6989586621679484416"><span class="hs-identifier hs-var">photos_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatPhotos.html#photos"><span class="hs-identifier hs-var">photos</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679492096"><span class="annot"><span class="annottext">Maybe [ChatPhoto]
+</span><a href="#local-6989586621679492096"><span class="hs-identifier hs-var">photos_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">total_count :: ChatPhotos -&gt; Maybe Int
-</span><a href="TD.Data.ChatPhotos.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484415"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679484415"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span>
+</span><a href="TD.Data.ChatPhotos.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679492095"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679492095"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChatPhotos&quot;</span></span><span>
@@ -49,57 +49,57 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photos&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatPhoto]
-</span><a href="#local-6989586621679484416"><span class="hs-identifier hs-var">photos_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679492096"><span class="hs-identifier hs-var">photos_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;total_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679484415"><span class="hs-identifier hs-var">total_count_</span></a></span><span>
+</span><a href="#local-6989586621679492095"><span class="hs-identifier hs-var">total_count_</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679484410"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679484408"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatPhotos
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679484406"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679484406"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679484404"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679484404"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679484403"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679484403"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679484404"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679492090"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679492088"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatPhotos
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679492086"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679492086"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679492084"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679492084"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679492083"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679492083"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679492084"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-36"></span><span>
 </span><span id="line-37"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679484403"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679492083"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chatPhotos&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatPhotos
-</span><a href="#local-6989586621679484401"><span class="hs-identifier hs-var">parseChatPhotos</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679484406"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679492081"><span class="hs-identifier hs-var">parseChatPhotos</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679492086"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatPhotos
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-40"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span>      </span><span class="annot"><a href="#local-6989586621679484401"><span class="hs-identifier hs-type">parseChatPhotos</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span><span>
-</span><span id="line-42"></span><span>      </span><span id="local-6989586621679484401"><span class="annot"><span class="annottext">parseChatPhotos :: Value -&gt; Parser ChatPhotos
-</span><a href="#local-6989586621679484401"><span class="hs-identifier hs-var hs-var">parseChatPhotos</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-41"></span><span>      </span><span class="annot"><a href="#local-6989586621679492081"><span class="hs-identifier hs-type">parseChatPhotos</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span><span>
+</span><span id="line-42"></span><span>      </span><span id="local-6989586621679492081"><span class="annot"><span class="annottext">parseChatPhotos :: Value -&gt; Parser ChatPhotos
+</span><a href="#local-6989586621679492081"><span class="hs-identifier hs-var hs-var">parseChatPhotos</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatPhotos) -&gt; Value -&gt; Parser ChatPhotos
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChatPhotos&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ChatPhotos) -&gt; Value -&gt; Parser ChatPhotos)
 -&gt; (Object -&gt; Parser ChatPhotos) -&gt; Value -&gt; Parser ChatPhotos
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679484399"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679484399"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>        </span><span id="local-6989586621679484398"><span class="annot"><span class="annottext">Maybe [ChatPhoto]
-</span><a href="#local-6989586621679484398"><span class="hs-identifier hs-var">photos_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679484399"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatPhoto])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679492079"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679492079"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>        </span><span id="local-6989586621679492078"><span class="annot"><span class="annottext">Maybe [ChatPhoto]
+</span><a href="#local-6989586621679492078"><span class="hs-identifier hs-var">photos_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679492079"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatPhoto])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photos&quot;</span></span><span>
-</span><span id="line-44"></span><span>        </span><span id="local-6989586621679484396"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679484396"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679484399"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-44"></span><span>        </span><span id="local-6989586621679492076"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679492076"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679492079"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;total_count&quot;</span></span><span>
@@ -111,24 +111,24 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatPhotos :: Maybe [ChatPhoto] -&gt; Maybe Int -&gt; ChatPhotos
 </span><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">photos :: Maybe [ChatPhoto]
 </span><a href="TD.Data.ChatPhotos.html#photos"><span class="hs-identifier hs-var">photos</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [ChatPhoto]
-</span><a href="#local-6989586621679484398"><span class="hs-identifier hs-var">photos_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">total_count :: Maybe Int
+</span><a href="#local-6989586621679492078"><span class="hs-identifier hs-var">photos_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">total_count :: Maybe Int
 </span><a href="TD.Data.ChatPhotos.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679484396"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679492076"><span class="hs-identifier hs-var">total_count_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-46"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ChatPhotos
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679484389"><span id="local-6989586621679484391"><span id="local-6989586621679484393"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>  </span><span id="local-6989586621679484387"><span class="annot"><span class="annottext">toJSON :: ChatPhotos -&gt; Value
+</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679492069"><span id="local-6989586621679492071"><span id="local-6989586621679492073"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-49"></span><span>  </span><span id="local-6989586621679492067"><span class="annot"><span class="annottext">toJSON :: ChatPhotos -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-50"></span><span>    </span><span class="annot"><a href="TD.Data.ChatPhotos.html#ChatPhotos"><span class="hs-identifier hs-type">ChatPhotos</span></a></span><span>
 </span><span id="line-51"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photos :: ChatPhotos -&gt; Maybe [ChatPhoto]
-</span><a href="TD.Data.ChatPhotos.html#photos"><span class="hs-identifier hs-var">photos</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484385"><span class="annot"><span class="annottext">Maybe [ChatPhoto]
-</span><a href="#local-6989586621679484385"><span class="hs-identifier hs-var">photos_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatPhotos.html#photos"><span class="hs-identifier hs-var">photos</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679492065"><span class="annot"><span class="annottext">Maybe [ChatPhoto]
+</span><a href="#local-6989586621679492065"><span class="hs-identifier hs-var">photos_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>        </span><span class="annot"><span class="annottext">total_count :: ChatPhotos -&gt; Maybe Int
-</span><a href="TD.Data.ChatPhotos.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484384"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679484384"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span>
+</span><a href="TD.Data.ChatPhotos.html#total_count"><span class="hs-identifier hs-var">total_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679492064"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679492064"><span class="hs-identifier hs-var">total_count_</span></a></span></span><span>
 </span><span id="line-53"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-54"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -142,11 +142,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;photos&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [ChatPhoto] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatPhoto]
-</span><a href="#local-6989586621679484385"><span class="hs-identifier hs-var">photos_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679492065"><span class="hs-identifier hs-var">photos_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;total_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679484384"><span class="hs-identifier hs-var">total_count_</span></a></span><span>
+</span><a href="#local-6989586621679492064"><span class="hs-identifier hs-var">total_count_</span></a></span><span>
 </span><span id="line-58"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-59"></span></pre></body></html>

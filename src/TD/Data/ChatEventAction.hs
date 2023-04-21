@@ -49,9 +49,11 @@ data ChatEventAction
       }
   | -- | A new member joined the chat
     ChatEventMemberJoined
-  | -- | A new member joined the chat via an invite link @invite_link Invite link used to join the chat
+  | -- | A new member joined the chat via an invite link @invite_link Invite link used to join the chat @via_chat_folder_invite_link True, if the user has joined the chat using an invite link for a chat folder
     ChatEventMemberJoinedByInviteLink
       { -- |
+        via_chat_folder_invite_link :: Maybe Bool,
+        -- |
         invite_link :: Maybe ChatInviteLink.ChatInviteLink
       }
   | -- | A new member was accepted to the chat by an administrator @approver_user_id User identifier of the chat administrator, approved user join request @invite_link Invite link used to join the chat; may be null
@@ -335,11 +337,13 @@ instance Show ChatEventAction where
         []
   show
     ChatEventMemberJoinedByInviteLink
-      { invite_link = invite_link_
+      { via_chat_folder_invite_link = via_chat_folder_invite_link_,
+        invite_link = invite_link_
       } =
       "ChatEventMemberJoinedByInviteLink"
         ++ U.cc
-          [ U.p "invite_link" invite_link_
+          [ U.p "via_chat_folder_invite_link" via_chat_folder_invite_link_,
+            U.p "invite_link" invite_link_
           ]
   show
     ChatEventMemberJoinedByRequest
@@ -763,8 +767,9 @@ instance T.FromJSON ChatEventAction where
 
       parseChatEventMemberJoinedByInviteLink :: A.Value -> T.Parser ChatEventAction
       parseChatEventMemberJoinedByInviteLink = A.withObject "ChatEventMemberJoinedByInviteLink" $ \o -> do
+        via_chat_folder_invite_link_ <- o A..:? "via_chat_folder_invite_link"
         invite_link_ <- o A..:? "invite_link"
-        return $ ChatEventMemberJoinedByInviteLink {invite_link = invite_link_}
+        return $ ChatEventMemberJoinedByInviteLink {via_chat_folder_invite_link = via_chat_folder_invite_link_, invite_link = invite_link_}
 
       parseChatEventMemberJoinedByRequest :: A.Value -> T.Parser ChatEventAction
       parseChatEventMemberJoinedByRequest = A.withObject "ChatEventMemberJoinedByRequest" $ \o -> do
@@ -1024,10 +1029,12 @@ instance T.ToJSON ChatEventAction where
       ]
   toJSON
     ChatEventMemberJoinedByInviteLink
-      { invite_link = invite_link_
+      { via_chat_folder_invite_link = via_chat_folder_invite_link_,
+        invite_link = invite_link_
       } =
       A.object
         [ "@type" A..= T.String "chatEventMemberJoinedByInviteLink",
+          "via_chat_folder_invite_link" A..= via_chat_folder_invite_link_,
           "invite_link" A..= invite_link_
         ]
   toJSON

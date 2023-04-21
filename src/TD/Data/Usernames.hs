@@ -10,11 +10,11 @@ import qualified Utils as U
 -- |
 data Usernames = -- | Describes usernames assigned to a user, a supergroup, or a channel
   Usernames
-  { -- | The active username, which can be changed with setUsername/setSupergroupUsername
+  { -- | The active username, which can be changed with setUsername or setSupergroupUsername
     editable_username :: Maybe String,
-    -- | List of currently disabled usernames; the username can be activated with toggleUsernameIsActive/toggleSupergroupUsernameIsActive
+    -- | List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or toggleSupergroupUsernameIsActive
     disabled_usernames :: Maybe [String],
-    -- | List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames or reorderSupergroupActiveUsernames
+    -- | List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames, reorderBotActiveUsernames or reorderSupergroupActiveUsernames
     active_usernames :: Maybe [String]
   }
   deriving (Eq)

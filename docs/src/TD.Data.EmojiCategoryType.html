@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span>    </span><span id="EmojiCategoryTypeEmojiStatus"><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryTypeEmojiStatus"><span class="hs-identifier hs-var">EmojiCategoryTypeEmojiStatus</span></a></span></span><span>
 </span><span id="line-16"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The category must be used for chat photo emoji selection</span><span>
 </span><span id="line-17"></span><span>    </span><span id="EmojiCategoryTypeChatPhoto"><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryTypeChatPhoto"><span class="hs-identifier hs-var">EmojiCategoryTypeChatPhoto</span></a></span></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679463336"><span id="local-6989586621679463338"><span class="annot"><span class="annottext">EmojiCategoryType -&gt; EmojiCategoryType -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679470404"><span id="local-6989586621679470406"><span class="annot"><span class="annottext">EmojiCategoryType -&gt; EmojiCategoryType -&gt; Bool
 (EmojiCategoryType -&gt; EmojiCategoryType -&gt; Bool)
 -&gt; (EmojiCategoryType -&gt; EmojiCategoryType -&gt; Bool)
 -&gt; Eq EmojiCategoryType
@@ -26,8 +26,8 @@ $c/= :: EmojiCategoryType -&gt; EmojiCategoryType -&gt; Bool
 $c== :: EmojiCategoryType -&gt; EmojiCategoryType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679463330"><span id="local-6989586621679463333"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679463328"><span class="annot"><span class="annottext">show :: EmojiCategoryType -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679470398"><span id="local-6989586621679470401"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679470396"><span class="annot"><span class="annottext">show :: EmojiCategoryType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">EmojiCategoryType
 </span><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryTypeDefault"><span class="hs-identifier hs-var">EmojiCategoryTypeDefault</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -56,40 +56,40 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-32"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679463323"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>  </span><span id="local-6989586621679463321"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EmojiCategoryType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679463319"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679463319"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679463317"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679463317"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679463316"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679463316"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679463317"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679470391"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679470389"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EmojiCategoryType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679470387"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679470387"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679470385"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470385"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679470384"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679470384"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470385"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679463316"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679470384"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;emojiCategoryTypeDefault&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EmojiCategoryType
-</span><a href="#local-6989586621679463314"><span class="hs-identifier hs-var">parseEmojiCategoryTypeDefault</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679463319"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679470382"><span class="hs-identifier hs-var">parseEmojiCategoryTypeDefault</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679470387"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-40"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;emojiCategoryTypeEmojiStatus&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EmojiCategoryType
-</span><a href="#local-6989586621679463313"><span class="hs-identifier hs-var">parseEmojiCategoryTypeEmojiStatus</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679463319"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679470381"><span class="hs-identifier hs-var">parseEmojiCategoryTypeEmojiStatus</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679470387"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-41"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;emojiCategoryTypeChatPhoto&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EmojiCategoryType
-</span><a href="#local-6989586621679463312"><span class="hs-identifier hs-var">parseEmojiCategoryTypeChatPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679463319"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679470380"><span class="hs-identifier hs-var">parseEmojiCategoryTypeChatPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679470387"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-42"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser EmojiCategoryType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-43"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679463314"><span class="hs-identifier hs-type">parseEmojiCategoryTypeDefault</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span><span>
-</span><span id="line-45"></span><span>      </span><span id="local-6989586621679463314"><span class="annot"><span class="annottext">parseEmojiCategoryTypeDefault :: Value -&gt; Parser EmojiCategoryType
-</span><a href="#local-6989586621679463314"><span class="hs-identifier hs-var hs-var">parseEmojiCategoryTypeDefault</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>      </span><span class="annot"><a href="#local-6989586621679470382"><span class="hs-identifier hs-type">parseEmojiCategoryTypeDefault</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span><span>
+</span><span id="line-45"></span><span>      </span><span id="local-6989586621679470382"><span class="annot"><span class="annottext">parseEmojiCategoryTypeDefault :: Value -&gt; Parser EmojiCategoryType
+</span><a href="#local-6989586621679470382"><span class="hs-identifier hs-var hs-var">parseEmojiCategoryTypeDefault</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser EmojiCategoryType)
 -&gt; Value
 -&gt; Parser EmojiCategoryType
@@ -107,9 +107,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">EmojiCategoryType
 </span><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryTypeDefault"><span class="hs-identifier hs-var">EmojiCategoryTypeDefault</span></a></span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679463313"><span class="hs-identifier hs-type">parseEmojiCategoryTypeEmojiStatus</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span><span>
-</span><span id="line-48"></span><span>      </span><span id="local-6989586621679463313"><span class="annot"><span class="annottext">parseEmojiCategoryTypeEmojiStatus :: Value -&gt; Parser EmojiCategoryType
-</span><a href="#local-6989586621679463313"><span class="hs-identifier hs-var hs-var">parseEmojiCategoryTypeEmojiStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>      </span><span class="annot"><a href="#local-6989586621679470381"><span class="hs-identifier hs-type">parseEmojiCategoryTypeEmojiStatus</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span><span>
+</span><span id="line-48"></span><span>      </span><span id="local-6989586621679470381"><span class="annot"><span class="annottext">parseEmojiCategoryTypeEmojiStatus :: Value -&gt; Parser EmojiCategoryType
+</span><a href="#local-6989586621679470381"><span class="hs-identifier hs-var hs-var">parseEmojiCategoryTypeEmojiStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser EmojiCategoryType)
 -&gt; Value
 -&gt; Parser EmojiCategoryType
@@ -127,9 +127,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">EmojiCategoryType
 </span><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryTypeEmojiStatus"><span class="hs-identifier hs-var">EmojiCategoryTypeEmojiStatus</span></a></span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679463312"><span class="hs-identifier hs-type">parseEmojiCategoryTypeChatPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span><span>
-</span><span id="line-51"></span><span>      </span><span id="local-6989586621679463312"><span class="annot"><span class="annottext">parseEmojiCategoryTypeChatPhoto :: Value -&gt; Parser EmojiCategoryType
-</span><a href="#local-6989586621679463312"><span class="hs-identifier hs-var hs-var">parseEmojiCategoryTypeChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679470380"><span class="hs-identifier hs-type">parseEmojiCategoryTypeChatPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span><span>
+</span><span id="line-51"></span><span>      </span><span id="local-6989586621679470380"><span class="annot"><span class="annottext">parseEmojiCategoryTypeChatPhoto :: Value -&gt; Parser EmojiCategoryType
+</span><a href="#local-6989586621679470380"><span class="hs-identifier hs-var hs-var">parseEmojiCategoryTypeChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser EmojiCategoryType)
 -&gt; Value
 -&gt; Parser EmojiCategoryType
@@ -151,8 +151,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679463304"><span id="local-6989586621679463306"><span id="local-6989586621679463308"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span>  </span><span id="local-6989586621679463302"><span class="annot"><span class="annottext">toJSON :: EmojiCategoryType -&gt; Value
+</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679470372"><span id="local-6989586621679470374"><span id="local-6989586621679470376"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryType"><span class="hs-identifier hs-type">EmojiCategoryType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-55"></span><span>  </span><span id="local-6989586621679470370"><span class="annot"><span class="annottext">toJSON :: EmojiCategoryType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">EmojiCategoryType
 </span><a href="TD.Data.EmojiCategoryType.html#EmojiCategoryTypeDefault"><span class="hs-identifier hs-var">EmojiCategoryTypeDefault</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

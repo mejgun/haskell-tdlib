@@ -72,6 +72,13 @@ data InternalLinkType
       }
   | -- | The link is a link to the change phone number section of the app
     InternalLinkTypeChangePhoneNumber
+  | -- | The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link @invite_link Internal representation of the invite link
+    InternalLinkTypeChatFolderInvite
+      { -- |
+        invite_link :: Maybe String
+      }
+  | -- | The link is a link to the folder section of the app settings
+    InternalLinkTypeChatFolderSettings
   | -- | The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link @invite_link Internal representation of the invite link
     InternalLinkTypeChatInvite
       { -- |
@@ -81,8 +88,6 @@ data InternalLinkType
     InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
   | -- | The link is a link to the edit profile section of the app settings
     InternalLinkTypeEditProfileSettings
-  | -- | The link is a link to the filter section of the app settings
-    InternalLinkTypeFilterSettings
   | -- | The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     InternalLinkTypeGame
       { -- | Short name of the game
@@ -294,6 +299,18 @@ instance Show InternalLinkType where
       ++ U.cc
         []
   show
+    InternalLinkTypeChatFolderInvite
+      { invite_link = invite_link_
+      } =
+      "InternalLinkTypeChatFolderInvite"
+        ++ U.cc
+          [ U.p "invite_link" invite_link_
+          ]
+  show InternalLinkTypeChatFolderSettings =
+    "InternalLinkTypeChatFolderSettings"
+      ++ U.cc
+        []
+  show
     InternalLinkTypeChatInvite
       { invite_link = invite_link_
       } =
@@ -307,10 +324,6 @@ instance Show InternalLinkType where
         []
   show InternalLinkTypeEditProfileSettings =
     "InternalLinkTypeEditProfileSettings"
-      ++ U.cc
-        []
-  show InternalLinkTypeFilterSettings =
-    "InternalLinkTypeFilterSettings"
       ++ U.cc
         []
   show
@@ -529,10 +542,11 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeBotStart" -> parseInternalLinkTypeBotStart v
       "internalLinkTypeBotStartInGroup" -> parseInternalLinkTypeBotStartInGroup v
       "internalLinkTypeChangePhoneNumber" -> parseInternalLinkTypeChangePhoneNumber v
+      "internalLinkTypeChatFolderInvite" -> parseInternalLinkTypeChatFolderInvite v
+      "internalLinkTypeChatFolderSettings" -> parseInternalLinkTypeChatFolderSettings v
       "internalLinkTypeChatInvite" -> parseInternalLinkTypeChatInvite v
       "internalLinkTypeDefaultMessageAutoDeleteTimerSettings" -> parseInternalLinkTypeDefaultMessageAutoDeleteTimerSettings v
       "internalLinkTypeEditProfileSettings" -> parseInternalLinkTypeEditProfileSettings v
-      "internalLinkTypeFilterSettings" -> parseInternalLinkTypeFilterSettings v
       "internalLinkTypeGame" -> parseInternalLinkTypeGame v
       "internalLinkTypeInstantView" -> parseInternalLinkTypeInstantView v
       "internalLinkTypeInvoice" -> parseInternalLinkTypeInvoice v
@@ -603,6 +617,14 @@ instance T.FromJSON InternalLinkType where
       parseInternalLinkTypeChangePhoneNumber :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeChangePhoneNumber = A.withObject "InternalLinkTypeChangePhoneNumber" $ \_ -> return InternalLinkTypeChangePhoneNumber
 
+      parseInternalLinkTypeChatFolderInvite :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeChatFolderInvite = A.withObject "InternalLinkTypeChatFolderInvite" $ \o -> do
+        invite_link_ <- o A..:? "invite_link"
+        return $ InternalLinkTypeChatFolderInvite {invite_link = invite_link_}
+
+      parseInternalLinkTypeChatFolderSettings :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeChatFolderSettings = A.withObject "InternalLinkTypeChatFolderSettings" $ \_ -> return InternalLinkTypeChatFolderSettings
+
       parseInternalLinkTypeChatInvite :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeChatInvite = A.withObject "InternalLinkTypeChatInvite" $ \o -> do
         invite_link_ <- o A..:? "invite_link"
@@ -613,9 +635,6 @@ instance T.FromJSON InternalLinkType where
 
       parseInternalLinkTypeEditProfileSettings :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeEditProfileSettings = A.withObject "InternalLinkTypeEditProfileSettings" $ \_ -> return InternalLinkTypeEditProfileSettings
-
-      parseInternalLinkTypeFilterSettings :: A.Value -> T.Parser InternalLinkType
-      parseInternalLinkTypeFilterSettings = A.withObject "InternalLinkTypeFilterSettings" $ \_ -> return InternalLinkTypeFilterSettings
 
       parseInternalLinkTypeGame :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeGame = A.withObject "InternalLinkTypeGame" $ \o -> do
@@ -816,6 +835,18 @@ instance T.ToJSON InternalLinkType where
       [ "@type" A..= T.String "internalLinkTypeChangePhoneNumber"
       ]
   toJSON
+    InternalLinkTypeChatFolderInvite
+      { invite_link = invite_link_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypeChatFolderInvite",
+          "invite_link" A..= invite_link_
+        ]
+  toJSON InternalLinkTypeChatFolderSettings =
+    A.object
+      [ "@type" A..= T.String "internalLinkTypeChatFolderSettings"
+      ]
+  toJSON
     InternalLinkTypeChatInvite
       { invite_link = invite_link_
       } =
@@ -830,10 +861,6 @@ instance T.ToJSON InternalLinkType where
   toJSON InternalLinkTypeEditProfileSettings =
     A.object
       [ "@type" A..= T.String "internalLinkTypeEditProfileSettings"
-      ]
-  toJSON InternalLinkTypeFilterSettings =
-    A.object
-      [ "@type" A..= T.String "internalLinkTypeFilterSettings"
       ]
   toJSON
     InternalLinkTypeGame

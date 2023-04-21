@@ -19,16 +19,20 @@ data PremiumLimitType
     PremiumLimitTypeSavedAnimationCount
   | -- | The maximum number of favorite stickers
     PremiumLimitTypeFavoriteStickerCount
-  | -- | The maximum number of chat filters
-    PremiumLimitTypeChatFilterCount
-  | -- | The maximum number of pinned and always included, or always excluded chats in a chat filter
-    PremiumLimitTypeChatFilterChosenChatCount
+  | -- | The maximum number of chat folders
+    PremiumLimitTypeChatFolderCount
+  | -- | The maximum number of pinned and always included, or always excluded chats in a chat folder
+    PremiumLimitTypeChatFolderChosenChatCount
   | -- | The maximum number of pinned chats in the archive chat list
     PremiumLimitTypePinnedArchivedChatCount
   | -- | The maximum length of sent media caption
     PremiumLimitTypeCaptionLength
   | -- | The maximum length of the user's bio
     PremiumLimitTypeBioLength
+  | -- | The maximum number of invite links for a chat folder
+    PremiumLimitTypeChatFolderInviteLinkCount
+  | -- | The maximum number of added shareable chat folders
+    PremiumLimitTypeShareableChatFolderCount
   deriving (Eq)
 
 instance Show PremiumLimitType where
@@ -52,12 +56,12 @@ instance Show PremiumLimitType where
     "PremiumLimitTypeFavoriteStickerCount"
       ++ U.cc
         []
-  show PremiumLimitTypeChatFilterCount =
-    "PremiumLimitTypeChatFilterCount"
+  show PremiumLimitTypeChatFolderCount =
+    "PremiumLimitTypeChatFolderCount"
       ++ U.cc
         []
-  show PremiumLimitTypeChatFilterChosenChatCount =
-    "PremiumLimitTypeChatFilterChosenChatCount"
+  show PremiumLimitTypeChatFolderChosenChatCount =
+    "PremiumLimitTypeChatFolderChosenChatCount"
       ++ U.cc
         []
   show PremiumLimitTypePinnedArchivedChatCount =
@@ -72,6 +76,14 @@ instance Show PremiumLimitType where
     "PremiumLimitTypeBioLength"
       ++ U.cc
         []
+  show PremiumLimitTypeChatFolderInviteLinkCount =
+    "PremiumLimitTypeChatFolderInviteLinkCount"
+      ++ U.cc
+        []
+  show PremiumLimitTypeShareableChatFolderCount =
+    "PremiumLimitTypeShareableChatFolderCount"
+      ++ U.cc
+        []
 
 instance T.FromJSON PremiumLimitType where
   parseJSON v@(T.Object obj) = do
@@ -83,11 +95,13 @@ instance T.FromJSON PremiumLimitType where
       "premiumLimitTypeCreatedPublicChatCount" -> parsePremiumLimitTypeCreatedPublicChatCount v
       "premiumLimitTypeSavedAnimationCount" -> parsePremiumLimitTypeSavedAnimationCount v
       "premiumLimitTypeFavoriteStickerCount" -> parsePremiumLimitTypeFavoriteStickerCount v
-      "premiumLimitTypeChatFilterCount" -> parsePremiumLimitTypeChatFilterCount v
-      "premiumLimitTypeChatFilterChosenChatCount" -> parsePremiumLimitTypeChatFilterChosenChatCount v
+      "premiumLimitTypeChatFolderCount" -> parsePremiumLimitTypeChatFolderCount v
+      "premiumLimitTypeChatFolderChosenChatCount" -> parsePremiumLimitTypeChatFolderChosenChatCount v
       "premiumLimitTypePinnedArchivedChatCount" -> parsePremiumLimitTypePinnedArchivedChatCount v
       "premiumLimitTypeCaptionLength" -> parsePremiumLimitTypeCaptionLength v
       "premiumLimitTypeBioLength" -> parsePremiumLimitTypeBioLength v
+      "premiumLimitTypeChatFolderInviteLinkCount" -> parsePremiumLimitTypeChatFolderInviteLinkCount v
+      "premiumLimitTypeShareableChatFolderCount" -> parsePremiumLimitTypeShareableChatFolderCount v
       _ -> mempty
     where
       parsePremiumLimitTypeSupergroupCount :: A.Value -> T.Parser PremiumLimitType
@@ -105,11 +119,11 @@ instance T.FromJSON PremiumLimitType where
       parsePremiumLimitTypeFavoriteStickerCount :: A.Value -> T.Parser PremiumLimitType
       parsePremiumLimitTypeFavoriteStickerCount = A.withObject "PremiumLimitTypeFavoriteStickerCount" $ \_ -> return PremiumLimitTypeFavoriteStickerCount
 
-      parsePremiumLimitTypeChatFilterCount :: A.Value -> T.Parser PremiumLimitType
-      parsePremiumLimitTypeChatFilterCount = A.withObject "PremiumLimitTypeChatFilterCount" $ \_ -> return PremiumLimitTypeChatFilterCount
+      parsePremiumLimitTypeChatFolderCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeChatFolderCount = A.withObject "PremiumLimitTypeChatFolderCount" $ \_ -> return PremiumLimitTypeChatFolderCount
 
-      parsePremiumLimitTypeChatFilterChosenChatCount :: A.Value -> T.Parser PremiumLimitType
-      parsePremiumLimitTypeChatFilterChosenChatCount = A.withObject "PremiumLimitTypeChatFilterChosenChatCount" $ \_ -> return PremiumLimitTypeChatFilterChosenChatCount
+      parsePremiumLimitTypeChatFolderChosenChatCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeChatFolderChosenChatCount = A.withObject "PremiumLimitTypeChatFolderChosenChatCount" $ \_ -> return PremiumLimitTypeChatFolderChosenChatCount
 
       parsePremiumLimitTypePinnedArchivedChatCount :: A.Value -> T.Parser PremiumLimitType
       parsePremiumLimitTypePinnedArchivedChatCount = A.withObject "PremiumLimitTypePinnedArchivedChatCount" $ \_ -> return PremiumLimitTypePinnedArchivedChatCount
@@ -119,6 +133,12 @@ instance T.FromJSON PremiumLimitType where
 
       parsePremiumLimitTypeBioLength :: A.Value -> T.Parser PremiumLimitType
       parsePremiumLimitTypeBioLength = A.withObject "PremiumLimitTypeBioLength" $ \_ -> return PremiumLimitTypeBioLength
+
+      parsePremiumLimitTypeChatFolderInviteLinkCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeChatFolderInviteLinkCount = A.withObject "PremiumLimitTypeChatFolderInviteLinkCount" $ \_ -> return PremiumLimitTypeChatFolderInviteLinkCount
+
+      parsePremiumLimitTypeShareableChatFolderCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeShareableChatFolderCount = A.withObject "PremiumLimitTypeShareableChatFolderCount" $ \_ -> return PremiumLimitTypeShareableChatFolderCount
   parseJSON _ = mempty
 
 instance T.ToJSON PremiumLimitType where
@@ -142,13 +162,13 @@ instance T.ToJSON PremiumLimitType where
     A.object
       [ "@type" A..= T.String "premiumLimitTypeFavoriteStickerCount"
       ]
-  toJSON PremiumLimitTypeChatFilterCount =
+  toJSON PremiumLimitTypeChatFolderCount =
     A.object
-      [ "@type" A..= T.String "premiumLimitTypeChatFilterCount"
+      [ "@type" A..= T.String "premiumLimitTypeChatFolderCount"
       ]
-  toJSON PremiumLimitTypeChatFilterChosenChatCount =
+  toJSON PremiumLimitTypeChatFolderChosenChatCount =
     A.object
-      [ "@type" A..= T.String "premiumLimitTypeChatFilterChosenChatCount"
+      [ "@type" A..= T.String "premiumLimitTypeChatFolderChosenChatCount"
       ]
   toJSON PremiumLimitTypePinnedArchivedChatCount =
     A.object
@@ -161,4 +181,12 @@ instance T.ToJSON PremiumLimitType where
   toJSON PremiumLimitTypeBioLength =
     A.object
       [ "@type" A..= T.String "premiumLimitTypeBioLength"
+      ]
+  toJSON PremiumLimitTypeChatFolderInviteLinkCount =
+    A.object
+      [ "@type" A..= T.String "premiumLimitTypeChatFolderInviteLinkCount"
+      ]
+  toJSON PremiumLimitTypeShareableChatFolderCount =
+    A.object
+      [ "@type" A..= T.String "premiumLimitTypeShareableChatFolderCount"
       ]

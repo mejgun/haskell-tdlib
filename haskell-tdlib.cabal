@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.47.0
+version:        0.2.48.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -77,12 +77,17 @@ library
       TD.Data.ChatAdministratorRights
       TD.Data.ChatAdministrators
       TD.Data.ChatAvailableReactions
+      TD.Data.ChatBackground
       TD.Data.ChatEvent
       TD.Data.ChatEventAction
       TD.Data.ChatEventLogFilters
       TD.Data.ChatEvents
-      TD.Data.ChatFilter
-      TD.Data.ChatFilterInfo
+      TD.Data.ChatFolder
+      TD.Data.ChatFolderIcon
+      TD.Data.ChatFolderInfo
+      TD.Data.ChatFolderInviteLink
+      TD.Data.ChatFolderInviteLinkInfo
+      TD.Data.ChatFolderInviteLinks
       TD.Data.ChatInviteLink
       TD.Data.ChatInviteLinkCount
       TD.Data.ChatInviteLinkCounts
@@ -319,8 +324,8 @@ library
       TD.Data.PushMessageContent
       TD.Data.PushReceiverId
       TD.Data.ReactionType
-      TD.Data.RecommendedChatFilter
-      TD.Data.RecommendedChatFilters
+      TD.Data.RecommendedChatFolder
+      TD.Data.RecommendedChatFolders
       TD.Data.RecoveryEmailAddress
       TD.Data.RemoteFile
       TD.Data.ReplyMarkup
@@ -414,6 +419,7 @@ library
       TD.Query.AcceptCall
       TD.Query.AcceptTermsOfService
       TD.Query.AddApplicationChangelog
+      TD.Query.AddChatFolderByInviteLink
       TD.Query.AddChatMember
       TD.Query.AddChatMembers
       TD.Query.AddChatToList
@@ -455,6 +461,7 @@ library
       TD.Query.CheckAuthenticationPassword
       TD.Query.CheckAuthenticationPasswordRecoveryCode
       TD.Query.CheckChangePhoneNumberCode
+      TD.Query.CheckChatFolderInviteLink
       TD.Query.CheckChatInviteLink
       TD.Query.CheckChatUsername
       TD.Query.CheckCreatedPublicChatsLimit
@@ -482,7 +489,8 @@ library
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.CreateBasicGroupChat
       TD.Query.CreateCall
-      TD.Query.CreateChatFilter
+      TD.Query.CreateChatFolder
+      TD.Query.CreateChatFolderInviteLink
       TD.Query.CreateChatInviteLink
       TD.Query.CreateForumTopic
       TD.Query.CreateInvoiceLink
@@ -499,7 +507,8 @@ library
       TD.Query.DeleteAllCallMessages
       TD.Query.DeleteAllRevokedChatInviteLinks
       TD.Query.DeleteChat
-      TD.Query.DeleteChatFilter
+      TD.Query.DeleteChatFolder
+      TD.Query.DeleteChatFolderInviteLink
       TD.Query.DeleteChatHistory
       TD.Query.DeleteChatMessagesByDate
       TD.Query.DeleteChatMessagesBySender
@@ -522,7 +531,8 @@ library
       TD.Query.DisconnectAllWebsites
       TD.Query.DisconnectWebsite
       TD.Query.DownloadFile
-      TD.Query.EditChatFilter
+      TD.Query.EditChatFolder
+      TD.Query.EditChatFolderInviteLink
       TD.Query.EditChatInviteLink
       TD.Query.EditCustomLanguagePackInfo
       TD.Query.EditForumTopic
@@ -565,14 +575,18 @@ library
       TD.Query.GetBlockedMessageSenders
       TD.Query.GetBotInfoDescription
       TD.Query.GetBotInfoShortDescription
+      TD.Query.GetBotName
       TD.Query.GetCallbackQueryAnswer
       TD.Query.GetCallbackQueryMessage
       TD.Query.GetChat
       TD.Query.GetChatAdministrators
       TD.Query.GetChatAvailableMessageSenders
       TD.Query.GetChatEventLog
-      TD.Query.GetChatFilter
-      TD.Query.GetChatFilterDefaultIconName
+      TD.Query.GetChatFolder
+      TD.Query.GetChatFolderChatsToLeave
+      TD.Query.GetChatFolderDefaultIconName
+      TD.Query.GetChatFolderInviteLinks
+      TD.Query.GetChatFolderNewChats
       TD.Query.GetChatHistory
       TD.Query.GetChatInviteLink
       TD.Query.GetChatInviteLinkCounts
@@ -589,6 +603,7 @@ library
       TD.Query.GetChatPinnedMessage
       TD.Query.GetChats
       TD.Query.GetChatScheduledMessages
+      TD.Query.GetChatsForChatFolderInviteLink
       TD.Query.GetChatSparseMessagePositions
       TD.Query.GetChatSponsoredMessages
       TD.Query.GetChatStatistics
@@ -690,7 +705,7 @@ library
       TD.Query.GetRecentlyOpenedChats
       TD.Query.GetRecentlyVisitedTMeUrls
       TD.Query.GetRecentStickers
-      TD.Query.GetRecommendedChatFilters
+      TD.Query.GetRecommendedChatFolders
       TD.Query.GetRecoveryEmailAddress
       TD.Query.GetRemoteFile
       TD.Query.GetRepliedMessage
@@ -753,6 +768,7 @@ library
       TD.Query.PinChatMessage
       TD.Query.PingProxy
       TD.Query.PreliminaryUploadFile
+      TD.Query.ProcessChatFolderNewChats
       TD.Query.ProcessChatJoinRequest
       TD.Query.ProcessChatJoinRequests
       TD.Query.ProcessPushNotification
@@ -761,6 +777,7 @@ library
       TD.Query.ReadAllChatReactions
       TD.Query.ReadAllMessageThreadMentions
       TD.Query.ReadAllMessageThreadReactions
+      TD.Query.ReadChatList
       TD.Query.ReadFilePart
       TD.Query.RecognizeSpeech
       TD.Query.RecoverAuthenticationPassword
@@ -784,8 +801,9 @@ library
       TD.Query.RemoveSavedNotificationSound
       TD.Query.RemoveStickerFromSet
       TD.Query.RemoveTopChat
+      TD.Query.ReorderActiveBotUsernames
       TD.Query.ReorderActiveUsernames
-      TD.Query.ReorderChatFilters
+      TD.Query.ReorderChatFolders
       TD.Query.ReorderInstalledStickerSets
       TD.Query.ReorderSupergroupActiveUsernames
       TD.Query.ReplacePrimaryChatInviteLink
@@ -866,8 +884,11 @@ library
       TD.Query.SetBio
       TD.Query.SetBotInfoDescription
       TD.Query.SetBotInfoShortDescription
+      TD.Query.SetBotName
+      TD.Query.SetBotProfilePhoto
       TD.Query.SetBotUpdatesStatus
       TD.Query.SetChatAvailableReactions
+      TD.Query.SetChatBackground
       TD.Query.SetChatClientData
       TD.Query.SetChatDescription
       TD.Query.SetChatDiscussionGroup
@@ -958,6 +979,7 @@ library
       TD.Query.TestUseUpdate
       TD.Query.ToggleAllDownloadsArePaused
       TD.Query.ToggleBotIsAddedToAttachmentMenu
+      TD.Query.ToggleBotUsernameIsActive
       TD.Query.ToggleChatDefaultDisableNotification
       TD.Query.ToggleChatHasProtectedContent
       TD.Query.ToggleChatIsMarkedAsUnread

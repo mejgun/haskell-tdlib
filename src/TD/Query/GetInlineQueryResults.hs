@@ -19,7 +19,7 @@ data GetInlineQueryResults = GetInlineQueryResults
     user_location :: Maybe Location.Location,
     -- | Identifier of the chat where the query was sent
     chat_id :: Maybe Int,
-    -- | The identifier of the target bot
+    -- | Identifier of the target bot
     bot_user_id :: Maybe Int
   }
   deriving (Eq)

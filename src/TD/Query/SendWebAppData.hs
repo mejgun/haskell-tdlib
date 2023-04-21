@@ -10,7 +10,7 @@ import qualified Utils as U
 -- |
 -- Sends data received from a keyboardButtonTypeWebApp Web App to a bot
 data SendWebAppData = SendWebAppData
-  { -- | Received data
+  { -- | The data
     _data :: Maybe String,
     -- | Text of the keyboardButtonTypeWebApp button, which opened the Web App
     button_text :: Maybe String,

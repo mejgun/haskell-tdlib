@@ -18,7 +18,8 @@ import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatAction as ChatAction
 import qualified TD.Data.ChatActionBar as ChatActionBar
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
-import qualified TD.Data.ChatFilterInfo as ChatFilterInfo
+import qualified TD.Data.ChatBackground as ChatBackground
+import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
 import qualified TD.Data.ChatJoinRequestsInfo as ChatJoinRequestsInfo
@@ -300,6 +301,13 @@ data Update
         -- | Chat identifier
         chat_id :: Maybe Int
       }
+  | -- | The chat background was changed @chat_id Chat identifier @background The new chat background; may be null if background was reset to default
+    UpdateChatBackground
+      { -- |
+        background :: Maybe ChatBackground.ChatBackground,
+        -- |
+        chat_id :: Maybe Int
+      }
   | -- | The chat theme was changed @chat_id Chat identifier @theme_name The new name of the chat theme; may be empty if theme was reset to default
     UpdateChatTheme
       { -- |
@@ -370,12 +378,12 @@ data Update
         -- |
         chat_id :: Maybe Int
       }
-  | -- | The list of chat filters or a chat filter has changed @chat_filters The new list of chat filters @main_chat_list_position Position of the main chat list among chat filters, 0-based
-    UpdateChatFilters
+  | -- | The list of chat folders or a chat folder has changed @chat_folders The new list of chat folders @main_chat_list_position Position of the main chat list among chat folders, 0-based
+    UpdateChatFolders
       { -- |
         main_chat_list_position :: Maybe Int,
         -- |
-        chat_filters :: Maybe [ChatFilterInfo.ChatFilterInfo]
+        chat_folders :: Maybe [ChatFolderInfo.ChatFolderInfo]
       }
   | -- | The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats.
     -- There is no guarantee that it will be sent just after the number of online users has changed
@@ -675,7 +683,7 @@ data Update
   | -- | The selected background has changed @for_dark_theme True, if background for dark theme has changed @background The new selected background; may be null
     UpdateSelectedBackground
       { -- |
-        background :: Maybe Background.Background,
+        _background :: Maybe Background.Background,
         -- |
         for_dark_theme :: Maybe Bool
       }
@@ -890,6 +898,8 @@ data Update
         new_chat_member :: Maybe ChatMember.ChatMember,
         -- | Previous chat member
         old_chat_member :: Maybe ChatMember.ChatMember,
+        -- | True, if the user has joined the chat using an invite link for a chat folder
+        via_chat_folder_invite_link :: Maybe Bool,
         -- | If user has joined the chat using an invite link, the invite link; may be null
         invite_link :: Maybe ChatInviteLink.ChatInviteLink,
         -- | Point in time (Unix timestamp) when the user rights was changed
@@ -1224,6 +1234,16 @@ instance Show Update where
             U.p "chat_id" chat_id_
           ]
   show
+    UpdateChatBackground
+      { background = background_,
+        chat_id = chat_id_
+      } =
+      "UpdateChatBackground"
+        ++ U.cc
+          [ U.p "background" background_,
+            U.p "chat_id" chat_id_
+          ]
+  show
     UpdateChatTheme
       { theme_name = theme_name_,
         chat_id = chat_id_
@@ -1324,14 +1344,14 @@ instance Show Update where
             U.p "chat_id" chat_id_
           ]
   show
-    UpdateChatFilters
+    UpdateChatFolders
       { main_chat_list_position = main_chat_list_position_,
-        chat_filters = chat_filters_
+        chat_folders = chat_folders_
       } =
-      "UpdateChatFilters"
+      "UpdateChatFolders"
         ++ U.cc
           [ U.p "main_chat_list_position" main_chat_list_position_,
-            U.p "chat_filters" chat_filters_
+            U.p "chat_folders" chat_folders_
           ]
   show
     UpdateChatOnlineMemberCount
@@ -1749,12 +1769,12 @@ instance Show Update where
           ]
   show
     UpdateSelectedBackground
-      { background = background_,
+      { _background = _background_,
         for_dark_theme = for_dark_theme_
       } =
       "UpdateSelectedBackground"
         ++ U.cc
-          [ U.p "background" background_,
+          [ U.p "_background" _background_,
             U.p "for_dark_theme" for_dark_theme_
           ]
   show
@@ -2041,6 +2061,7 @@ instance Show Update where
     UpdateChatMember
       { new_chat_member = new_chat_member_,
         old_chat_member = old_chat_member_,
+        via_chat_folder_invite_link = via_chat_folder_invite_link_,
         invite_link = invite_link_,
         date = date_,
         actor_user_id = actor_user_id_,
@@ -2050,6 +2071,7 @@ instance Show Update where
         ++ U.cc
           [ U.p "new_chat_member" new_chat_member_,
             U.p "old_chat_member" old_chat_member_,
+            U.p "via_chat_folder_invite_link" via_chat_folder_invite_link_,
             U.p "invite_link" invite_link_,
             U.p "date" date_,
             U.p "actor_user_id" actor_user_id_,
@@ -2104,6 +2126,7 @@ instance T.FromJSON Update where
       "updateChatNotificationSettings" -> parseUpdateChatNotificationSettings v
       "updateChatPendingJoinRequests" -> parseUpdateChatPendingJoinRequests v
       "updateChatReplyMarkup" -> parseUpdateChatReplyMarkup v
+      "updateChatBackground" -> parseUpdateChatBackground v
       "updateChatTheme" -> parseUpdateChatTheme v
       "updateChatUnreadMentionCount" -> parseUpdateChatUnreadMentionCount v
       "updateChatUnreadReactionCount" -> parseUpdateChatUnreadReactionCount v
@@ -2114,7 +2137,7 @@ instance T.FromJSON Update where
       "updateChatIsMarkedAsUnread" -> parseUpdateChatIsMarkedAsUnread v
       "updateChatIsBlocked" -> parseUpdateChatIsBlocked v
       "updateChatHasScheduledMessages" -> parseUpdateChatHasScheduledMessages v
-      "updateChatFilters" -> parseUpdateChatFilters v
+      "updateChatFolders" -> parseUpdateChatFolders v
       "updateChatOnlineMemberCount" -> parseUpdateChatOnlineMemberCount v
       "updateForumTopicInfo" -> parseUpdateForumTopicInfo v
       "updateScopeNotificationSettings" -> parseUpdateScopeNotificationSettings v
@@ -2369,6 +2392,12 @@ instance T.FromJSON Update where
         chat_id_ <- o A..:? "chat_id"
         return $ UpdateChatReplyMarkup {reply_markup_message_id = reply_markup_message_id_, chat_id = chat_id_}
 
+      parseUpdateChatBackground :: A.Value -> T.Parser Update
+      parseUpdateChatBackground = A.withObject "UpdateChatBackground" $ \o -> do
+        background_ <- o A..:? "background"
+        chat_id_ <- o A..:? "chat_id"
+        return $ UpdateChatBackground {background = background_, chat_id = chat_id_}
+
       parseUpdateChatTheme :: A.Value -> T.Parser Update
       parseUpdateChatTheme = A.withObject "UpdateChatTheme" $ \o -> do
         theme_name_ <- o A..:? "theme_name"
@@ -2429,11 +2458,11 @@ instance T.FromJSON Update where
         chat_id_ <- o A..:? "chat_id"
         return $ UpdateChatHasScheduledMessages {has_scheduled_messages = has_scheduled_messages_, chat_id = chat_id_}
 
-      parseUpdateChatFilters :: A.Value -> T.Parser Update
-      parseUpdateChatFilters = A.withObject "UpdateChatFilters" $ \o -> do
+      parseUpdateChatFolders :: A.Value -> T.Parser Update
+      parseUpdateChatFolders = A.withObject "UpdateChatFolders" $ \o -> do
         main_chat_list_position_ <- o A..:? "main_chat_list_position"
-        chat_filters_ <- o A..:? "chat_filters"
-        return $ UpdateChatFilters {main_chat_list_position = main_chat_list_position_, chat_filters = chat_filters_}
+        chat_folders_ <- o A..:? "chat_folders"
+        return $ UpdateChatFolders {main_chat_list_position = main_chat_list_position_, chat_folders = chat_folders_}
 
       parseUpdateChatOnlineMemberCount :: A.Value -> T.Parser Update
       parseUpdateChatOnlineMemberCount = A.withObject "UpdateChatOnlineMemberCount" $ \o -> do
@@ -2684,9 +2713,9 @@ instance T.FromJSON Update where
 
       parseUpdateSelectedBackground :: A.Value -> T.Parser Update
       parseUpdateSelectedBackground = A.withObject "UpdateSelectedBackground" $ \o -> do
-        background_ <- o A..:? "background"
+        _background_ <- o A..:? "background"
         for_dark_theme_ <- o A..:? "for_dark_theme"
-        return $ UpdateSelectedBackground {background = background_, for_dark_theme = for_dark_theme_}
+        return $ UpdateSelectedBackground {_background = _background_, for_dark_theme = for_dark_theme_}
 
       parseUpdateChatThemes :: A.Value -> T.Parser Update
       parseUpdateChatThemes = A.withObject "UpdateChatThemes" $ \o -> do
@@ -2857,11 +2886,12 @@ instance T.FromJSON Update where
       parseUpdateChatMember = A.withObject "UpdateChatMember" $ \o -> do
         new_chat_member_ <- o A..:? "new_chat_member"
         old_chat_member_ <- o A..:? "old_chat_member"
+        via_chat_folder_invite_link_ <- o A..:? "via_chat_folder_invite_link"
         invite_link_ <- o A..:? "invite_link"
         date_ <- o A..:? "date"
         actor_user_id_ <- o A..:? "actor_user_id"
         chat_id_ <- o A..:? "chat_id"
-        return $ UpdateChatMember {new_chat_member = new_chat_member_, old_chat_member = old_chat_member_, invite_link = invite_link_, date = date_, actor_user_id = actor_user_id_, chat_id = chat_id_}
+        return $ UpdateChatMember {new_chat_member = new_chat_member_, old_chat_member = old_chat_member_, via_chat_folder_invite_link = via_chat_folder_invite_link_, invite_link = invite_link_, date = date_, actor_user_id = actor_user_id_, chat_id = chat_id_}
 
       parseUpdateNewChatJoinRequest :: A.Value -> T.Parser Update
       parseUpdateNewChatJoinRequest = A.withObject "UpdateNewChatJoinRequest" $ \o -> do
@@ -3184,6 +3214,16 @@ instance T.ToJSON Update where
           "chat_id" A..= chat_id_
         ]
   toJSON
+    UpdateChatBackground
+      { background = background_,
+        chat_id = chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateChatBackground",
+          "background" A..= background_,
+          "chat_id" A..= chat_id_
+        ]
+  toJSON
     UpdateChatTheme
       { theme_name = theme_name_,
         chat_id = chat_id_
@@ -3284,14 +3324,14 @@ instance T.ToJSON Update where
           "chat_id" A..= chat_id_
         ]
   toJSON
-    UpdateChatFilters
+    UpdateChatFolders
       { main_chat_list_position = main_chat_list_position_,
-        chat_filters = chat_filters_
+        chat_folders = chat_folders_
       } =
       A.object
-        [ "@type" A..= T.String "updateChatFilters",
+        [ "@type" A..= T.String "updateChatFolders",
           "main_chat_list_position" A..= main_chat_list_position_,
-          "chat_filters" A..= chat_filters_
+          "chat_folders" A..= chat_folders_
         ]
   toJSON
     UpdateChatOnlineMemberCount
@@ -3709,12 +3749,12 @@ instance T.ToJSON Update where
         ]
   toJSON
     UpdateSelectedBackground
-      { background = background_,
+      { _background = _background_,
         for_dark_theme = for_dark_theme_
       } =
       A.object
         [ "@type" A..= T.String "updateSelectedBackground",
-          "background" A..= background_,
+          "background" A..= _background_,
           "for_dark_theme" A..= for_dark_theme_
         ]
   toJSON
@@ -4001,6 +4041,7 @@ instance T.ToJSON Update where
     UpdateChatMember
       { new_chat_member = new_chat_member_,
         old_chat_member = old_chat_member_,
+        via_chat_folder_invite_link = via_chat_folder_invite_link_,
         invite_link = invite_link_,
         date = date_,
         actor_user_id = actor_user_id_,
@@ -4010,6 +4051,7 @@ instance T.ToJSON Update where
         [ "@type" A..= T.String "updateChatMember",
           "new_chat_member" A..= new_chat_member_,
           "old_chat_member" A..= old_chat_member_,
+          "via_chat_folder_invite_link" A..= via_chat_folder_invite_link_,
           "invite_link" A..= invite_link_,
           "date" A..= date_,
           "actor_user_id" A..= actor_user_id_,

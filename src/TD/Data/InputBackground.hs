@@ -20,6 +20,11 @@ data InputBackground
       { -- |
         background_id :: Maybe Int
       }
+  | -- | A background previously set in the chat; for chat backgrounds only @message_id Identifier of the message with the background
+    InputBackgroundPrevious
+      { -- |
+        message_id :: Maybe Int
+      }
   deriving (Eq)
 
 instance Show InputBackground where
@@ -39,6 +44,14 @@ instance Show InputBackground where
         ++ U.cc
           [ U.p "background_id" background_id_
           ]
+  show
+    InputBackgroundPrevious
+      { message_id = message_id_
+      } =
+      "InputBackgroundPrevious"
+        ++ U.cc
+          [ U.p "message_id" message_id_
+          ]
 
 instance T.FromJSON InputBackground where
   parseJSON v@(T.Object obj) = do
@@ -47,6 +60,7 @@ instance T.FromJSON InputBackground where
     case t of
       "inputBackgroundLocal" -> parseInputBackgroundLocal v
       "inputBackgroundRemote" -> parseInputBackgroundRemote v
+      "inputBackgroundPrevious" -> parseInputBackgroundPrevious v
       _ -> mempty
     where
       parseInputBackgroundLocal :: A.Value -> T.Parser InputBackground
@@ -58,6 +72,11 @@ instance T.FromJSON InputBackground where
       parseInputBackgroundRemote = A.withObject "InputBackgroundRemote" $ \o -> do
         background_id_ <- U.rm <$> (o A..:? "background_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
         return $ InputBackgroundRemote {background_id = background_id_}
+
+      parseInputBackgroundPrevious :: A.Value -> T.Parser InputBackground
+      parseInputBackgroundPrevious = A.withObject "InputBackgroundPrevious" $ \o -> do
+        message_id_ <- o A..:? "message_id"
+        return $ InputBackgroundPrevious {message_id = message_id_}
   parseJSON _ = mempty
 
 instance T.ToJSON InputBackground where
@@ -76,4 +95,12 @@ instance T.ToJSON InputBackground where
       A.object
         [ "@type" A..= T.String "inputBackgroundRemote",
           "background_id" A..= U.toS background_id_
+        ]
+  toJSON
+    InputBackgroundPrevious
+      { message_id = message_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "inputBackgroundPrevious",
+          "message_id" A..= message_id_
         ]

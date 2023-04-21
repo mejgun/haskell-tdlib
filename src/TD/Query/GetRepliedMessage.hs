@@ -9,7 +9,7 @@ import qualified Utils as U
 
 -- |
 -- Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages
--- of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, and topic messages without replied message respectively
+-- of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
 data GetRepliedMessage = GetRepliedMessage
   { -- | Identifier of the reply message
     message_id :: Maybe Int,
