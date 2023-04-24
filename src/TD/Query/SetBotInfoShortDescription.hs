@@ -12,7 +12,7 @@ import qualified Utils as U
 data SetBotInfoShortDescription = SetBotInfoShortDescription
   { -- | New bot's short description on the specified language
     short_description :: Maybe String,
-    -- | A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users, for which language there are no dedicated description
+    -- | A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
     language_code :: Maybe String,
     -- | Identifier of the target bot
     bot_user_id :: Maybe Int
