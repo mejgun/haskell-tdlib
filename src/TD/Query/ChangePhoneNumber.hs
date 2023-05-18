@@ -9,7 +9,7 @@ import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthent
 import qualified Utils as U
 
 -- |
--- Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
+-- Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
 data ChangePhoneNumber = ChangePhoneNumber
   { -- | Settings for the authentication of the user's phone number; pass null to use default settings
     settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,

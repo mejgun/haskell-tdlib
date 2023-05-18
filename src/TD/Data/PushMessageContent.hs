@@ -188,7 +188,7 @@ data PushMessageContent
     PushMessageContentChatJoinByLink
   | -- | A new member was accepted to the chat by an administrator
     PushMessageContentChatJoinByRequest
-  | -- | A new recurrent payment was made by the current user @amount The paid amount
+  | -- | A new recurring payment was made by the current user @amount The paid amount
     PushMessageContentRecurringPayment
       { -- |
         amount :: Maybe String
