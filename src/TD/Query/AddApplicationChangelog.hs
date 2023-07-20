@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Adds server-provided application changelog as messages to the chat 777000 (Telegram); for official applications only. Returns a 404 error if nothing changed @previous_application_version The previous application version
+-- Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed @previous_application_version The previous application version
 data AddApplicationChangelog = AddApplicationChangelog
   { -- |
     previous_application_version :: Maybe String

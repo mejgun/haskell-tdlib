@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns information about a chat by its identifier, this is an offline request if the current user is not a bot @chat_id Chat identifier
+-- Returns information about a chat by its identifier; this is an offline request if the current user is not a bot @chat_id Chat identifier
 data GetChat = GetChat
   { -- |
     chat_id :: Maybe Int

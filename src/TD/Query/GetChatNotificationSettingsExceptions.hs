@@ -9,7 +9,7 @@ import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified Utils as U
 
 -- |
--- Returns list of chats with non-default notification settings
+-- Returns list of chats with non-default notification settings for new messages
 data GetChatNotificationSettingsExceptions = GetChatNotificationSettingsExceptions
   { -- | Pass true to include in the response chats with only non-default sound
     compare_sound :: Maybe Bool,

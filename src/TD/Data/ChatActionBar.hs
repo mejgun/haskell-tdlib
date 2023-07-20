@@ -9,12 +9,12 @@ import qualified Utils as U
 
 -- | Describes actions which must be possible to do through a chat action bar
 data ChatActionBar
-  = -- | The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+  = -- | The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     ChatActionBarReportSpam
       { -- | If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
         can_unarchive :: Maybe Bool
       }
-  | -- | The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason chatReportReasonUnrelatedLocation
+  | -- | The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason reportReasonUnrelatedLocation
     ChatActionBarReportUnrelatedLocation
   | -- | The chat is a recently created group chat to which new members can be invited
     ChatActionBarInviteMembers

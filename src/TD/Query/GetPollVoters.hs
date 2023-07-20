@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+-- Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
 data GetPollVoters = GetPollVoters
-  { -- | The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+  { -- | The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
     limit :: Maybe Int,
-    -- | Number of users to skip in the result; must be non-negative
+    -- | Number of voters to skip in the result; must be non-negative
     offset :: Maybe Int,
     -- | 0-based identifier of the answer option
     option_id :: Maybe Int,

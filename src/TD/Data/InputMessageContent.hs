@@ -228,6 +228,13 @@ data InputMessageContent
         -- | Poll question; 1-255 characters (up to 300 characters for bots)
         question :: Maybe String
       }
+  | -- | A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
+    InputMessageStory
+      { -- | Story identifier
+        story_id :: Maybe Int,
+        -- | Identifier of the chat that posted the story
+        story_sender_chat_id :: Maybe Int
+      }
   | -- | A forwarded message
     InputMessageForwarded
       { -- | Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
@@ -501,6 +508,16 @@ instance Show InputMessageContent where
             U.p "question" question_
           ]
   show
+    InputMessageStory
+      { story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_
+      } =
+      "InputMessageStory"
+        ++ U.cc
+          [ U.p "story_id" story_id_,
+            U.p "story_sender_chat_id" story_sender_chat_id_
+          ]
+  show
     InputMessageForwarded
       { copy_options = copy_options_,
         in_game_share = in_game_share_,
@@ -536,6 +553,7 @@ instance T.FromJSON InputMessageContent where
       "inputMessageGame" -> parseInputMessageGame v
       "inputMessageInvoice" -> parseInputMessageInvoice v
       "inputMessagePoll" -> parseInputMessagePoll v
+      "inputMessageStory" -> parseInputMessageStory v
       "inputMessageForwarded" -> parseInputMessageForwarded v
       _ -> mempty
     where
@@ -683,6 +701,12 @@ instance T.FromJSON InputMessageContent where
         options_ <- o A..:? "options"
         question_ <- o A..:? "question"
         return $ InputMessagePoll {is_closed = is_closed_, close_date = close_date_, open_period = open_period_, _type = _type_, is_anonymous = is_anonymous_, options = options_, question = question_}
+
+      parseInputMessageStory :: A.Value -> T.Parser InputMessageContent
+      parseInputMessageStory = A.withObject "InputMessageStory" $ \o -> do
+        story_id_ <- o A..:? "story_id"
+        story_sender_chat_id_ <- o A..:? "story_sender_chat_id"
+        return $ InputMessageStory {story_id = story_id_, story_sender_chat_id = story_sender_chat_id_}
 
       parseInputMessageForwarded :: A.Value -> T.Parser InputMessageContent
       parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do
@@ -951,6 +975,16 @@ instance T.ToJSON InputMessageContent where
           "is_anonymous" A..= is_anonymous_,
           "options" A..= options_,
           "question" A..= question_
+        ]
+  toJSON
+    InputMessageStory
+      { story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "inputMessageStory",
+          "story_id" A..= story_id_,
+          "story_sender_chat_id" A..= story_sender_chat_id_
         ]
   toJSON
     InputMessageForwarded

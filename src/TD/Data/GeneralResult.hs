@@ -13,6 +13,7 @@ import qualified TD.Data.AnimatedChatPhoto as AnimatedChatPhoto
 import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Animations as Animations
+import qualified TD.Data.ArchiveChatListSettings as ArchiveChatListSettings
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.AttachmentMenuBotColor as AttachmentMenuBotColor
 import qualified TD.Data.Audio as Audio
@@ -53,6 +54,7 @@ import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResul
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatAction as ChatAction
 import qualified TD.Data.ChatActionBar as ChatActionBar
+import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.ChatAdministrator as ChatAdministrator
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
@@ -96,7 +98,6 @@ import qualified TD.Data.ChatPhotoSticker as ChatPhotoSticker
 import qualified TD.Data.ChatPhotoStickerType as ChatPhotoStickerType
 import qualified TD.Data.ChatPhotos as ChatPhotos
 import qualified TD.Data.ChatPosition as ChatPosition
-import qualified TD.Data.ChatReportReason as ChatReportReason
 import qualified TD.Data.ChatSource as ChatSource
 import qualified TD.Data.ChatStatistics as ChatStatistics
 import qualified TD.Data.ChatStatisticsAdministratorActionsInfo as ChatStatisticsAdministratorActionsInfo
@@ -191,6 +192,7 @@ import qualified TD.Data.InputPassportElementError as InputPassportElementError
 import qualified TD.Data.InputPassportElementErrorSource as InputPassportElementErrorSource
 import qualified TD.Data.InputPersonalDocument as InputPersonalDocument
 import qualified TD.Data.InputSticker as InputSticker
+import qualified TD.Data.InputStoryContent as InputStoryContent
 import qualified TD.Data.InputThumbnail as InputThumbnail
 import qualified TD.Data.InternalLinkType as InternalLinkType
 import qualified TD.Data.Invoice as Invoice
@@ -229,12 +231,15 @@ import qualified TD.Data.MessagePosition as MessagePosition
 import qualified TD.Data.MessagePositions as MessagePositions
 import qualified TD.Data.MessageReaction as MessageReaction
 import qualified TD.Data.MessageReplyInfo as MessageReplyInfo
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.MessageSenders as MessageSenders
 import qualified TD.Data.MessageSendingState as MessageSendingState
 import qualified TD.Data.MessageSource as MessageSource
+import qualified TD.Data.MessageSponsor as MessageSponsor
+import qualified TD.Data.MessageSponsorType as MessageSponsorType
 import qualified TD.Data.MessageStatistics as MessageStatistics
 import qualified TD.Data.MessageThreadInfo as MessageThreadInfo
 import qualified TD.Data.MessageViewer as MessageViewer
@@ -308,6 +313,7 @@ import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
 import qualified TD.Data.RemoteFile as RemoteFile
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.ReportReason as ReportReason
 import qualified TD.Data.ResetPasswordResult as ResetPasswordResult
 import qualified TD.Data.RichText as RichText
 import qualified TD.Data.RtmpUrl as RtmpUrl
@@ -341,6 +347,14 @@ import qualified TD.Data.StorageStatisticsByChat as StorageStatisticsByChat
 import qualified TD.Data.StorageStatisticsByFileType as StorageStatisticsByFileType
 import qualified TD.Data.StorageStatisticsFast as StorageStatisticsFast
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
+import qualified TD.Data.Stories as Stories
+import qualified TD.Data.Story as Story
+import qualified TD.Data.StoryContent as StoryContent
+import qualified TD.Data.StoryInfo as StoryInfo
+import qualified TD.Data.StoryInteractionInfo as StoryInteractionInfo
+import qualified TD.Data.StoryList as StoryList
+import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
+import qualified TD.Data.StoryVideo as StoryVideo
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
@@ -506,6 +520,7 @@ data GeneralResult
   | MessageInteractionInfo MessageInteractionInfo.MessageInteractionInfo
   | UnreadReaction UnreadReaction.UnreadReaction
   | MessageSendingState MessageSendingState.MessageSendingState
+  | MessageReplyTo MessageReplyTo.MessageReplyTo
   | Message Message.Message
   | Messages Messages.Messages
   | FoundMessages FoundMessages.FoundMessages
@@ -515,6 +530,8 @@ data GeneralResult
   | MessageCalendarDay MessageCalendarDay.MessageCalendarDay
   | MessageCalendar MessageCalendar.MessageCalendar
   | MessageSource MessageSource.MessageSource
+  | MessageSponsorType MessageSponsorType.MessageSponsorType
+  | MessageSponsor MessageSponsor.MessageSponsor
   | SponsoredMessage SponsoredMessage.SponsoredMessage
   | SponsoredMessages SponsoredMessages.SponsoredMessages
   | FileDownload FileDownload.FileDownload
@@ -533,6 +550,7 @@ data GeneralResult
   | ChatFolderInviteLinkInfo ChatFolderInviteLinkInfo.ChatFolderInviteLinkInfo
   | RecommendedChatFolder RecommendedChatFolder.RecommendedChatFolder
   | RecommendedChatFolders RecommendedChatFolders.RecommendedChatFolders
+  | ArchiveChatListSettings ArchiveChatListSettings.ArchiveChatListSettings
   | ChatList ChatList.ChatList
   | ChatLists ChatLists.ChatLists
   | ChatSource ChatSource.ChatSource
@@ -713,6 +731,7 @@ data GeneralResult
   | OptionValue OptionValue.OptionValue
   | JsonObjectMember JsonObjectMember.JsonObjectMember
   | JsonValue JsonValue.JsonValue
+  | StoryPrivacySettings StoryPrivacySettings.StoryPrivacySettings
   | UserPrivacySettingRule UserPrivacySettingRule.UserPrivacySettingRule
   | UserPrivacySettingRules UserPrivacySettingRules.UserPrivacySettingRules
   | UserPrivacySetting UserPrivacySetting.UserPrivacySetting
@@ -723,11 +742,20 @@ data GeneralResult
   | Sessions Sessions.Sessions
   | ConnectedWebsite ConnectedWebsite.ConnectedWebsite
   | ConnectedWebsites ConnectedWebsites.ConnectedWebsites
-  | ChatReportReason ChatReportReason.ChatReportReason
+  | ReportReason ReportReason.ReportReason
   | TargetChat TargetChat.TargetChat
   | InternalLinkType InternalLinkType.InternalLinkType
   | MessageLink MessageLink.MessageLink
   | MessageLinkInfo MessageLinkInfo.MessageLinkInfo
+  | StoryVideo StoryVideo.StoryVideo
+  | StoryContent StoryContent.StoryContent
+  | InputStoryContent InputStoryContent.InputStoryContent
+  | StoryList StoryList.StoryList
+  | StoryInteractionInfo StoryInteractionInfo.StoryInteractionInfo
+  | Story Story.Story
+  | Stories Stories.Stories
+  | StoryInfo StoryInfo.StoryInfo
+  | ChatActiveStories ChatActiveStories.ChatActiveStories
   | FilePart FilePart.FilePart
   | FileType FileType.FileType
   | StorageStatisticsByFileType StorageStatisticsByFileType.StorageStatisticsByFileType
@@ -1136,6 +1164,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result MessageSendingState.MessageSendingState) of
             T.Success a -> return $ MessageSendingState a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageReplyTo.MessageReplyTo) of
+            T.Success a -> return $ MessageReplyTo a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result Message.Message) of
             T.Success a -> return $ Message a
             _ -> mempty,
@@ -1162,6 +1193,12 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result MessageSource.MessageSource) of
             T.Success a -> return $ MessageSource a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageSponsorType.MessageSponsorType) of
+            T.Success a -> return $ MessageSponsorType a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result MessageSponsor.MessageSponsor) of
+            T.Success a -> return $ MessageSponsor a
             _ -> mempty,
           case (T.fromJSON v :: T.Result SponsoredMessage.SponsoredMessage) of
             T.Success a -> return $ SponsoredMessage a
@@ -1216,6 +1253,9 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result RecommendedChatFolders.RecommendedChatFolders) of
             T.Success a -> return $ RecommendedChatFolders a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ArchiveChatListSettings.ArchiveChatListSettings) of
+            T.Success a -> return $ ArchiveChatListSettings a
             _ -> mempty,
           case (T.fromJSON v :: T.Result ChatList.ChatList) of
             T.Success a -> return $ ChatList a
@@ -1757,6 +1797,9 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result JsonValue.JsonValue) of
             T.Success a -> return $ JsonValue a
             _ -> mempty,
+          case (T.fromJSON v :: T.Result StoryPrivacySettings.StoryPrivacySettings) of
+            T.Success a -> return $ StoryPrivacySettings a
+            _ -> mempty,
           case (T.fromJSON v :: T.Result UserPrivacySettingRule.UserPrivacySettingRule) of
             T.Success a -> return $ UserPrivacySettingRule a
             _ -> mempty,
@@ -1787,8 +1830,8 @@ instance T.FromJSON GeneralResult where
           case (T.fromJSON v :: T.Result ConnectedWebsites.ConnectedWebsites) of
             T.Success a -> return $ ConnectedWebsites a
             _ -> mempty,
-          case (T.fromJSON v :: T.Result ChatReportReason.ChatReportReason) of
-            T.Success a -> return $ ChatReportReason a
+          case (T.fromJSON v :: T.Result ReportReason.ReportReason) of
+            T.Success a -> return $ ReportReason a
             _ -> mempty,
           case (T.fromJSON v :: T.Result TargetChat.TargetChat) of
             T.Success a -> return $ TargetChat a
@@ -1801,6 +1844,33 @@ instance T.FromJSON GeneralResult where
             _ -> mempty,
           case (T.fromJSON v :: T.Result MessageLinkInfo.MessageLinkInfo) of
             T.Success a -> return $ MessageLinkInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result StoryVideo.StoryVideo) of
+            T.Success a -> return $ StoryVideo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result StoryContent.StoryContent) of
+            T.Success a -> return $ StoryContent a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result InputStoryContent.InputStoryContent) of
+            T.Success a -> return $ InputStoryContent a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result StoryList.StoryList) of
+            T.Success a -> return $ StoryList a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result StoryInteractionInfo.StoryInteractionInfo) of
+            T.Success a -> return $ StoryInteractionInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result Story.Story) of
+            T.Success a -> return $ Story a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result Stories.Stories) of
+            T.Success a -> return $ Stories a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result StoryInfo.StoryInfo) of
+            T.Success a -> return $ StoryInfo a
+            _ -> mempty,
+          case (T.fromJSON v :: T.Result ChatActiveStories.ChatActiveStories) of
+            T.Success a -> return $ ChatActiveStories a
             _ -> mempty,
           case (T.fromJSON v :: T.Result FilePart.FilePart) of
             T.Success a -> return $ FilePart a

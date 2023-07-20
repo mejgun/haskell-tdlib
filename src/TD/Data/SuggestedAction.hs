@@ -9,7 +9,7 @@ import qualified Utils as U
 
 -- | Describes an action suggested to the current user
 data SuggestedAction
-  = -- | Suggests the user to enable "archive_and_mute_new_chats_from_unknown_users" option
+  = -- | Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
     SuggestedActionEnableArchiveAndMuteNewChats
   | -- | Suggests the user to check whether they still remember their 2-step verification password
     SuggestedActionCheckPassword
@@ -29,6 +29,8 @@ data SuggestedAction
       }
   | -- | Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
     SuggestedActionUpgradePremium
+  | -- | Suggests the user to restore a recently expired Premium subscription
+    SuggestedActionRestorePremium
   | -- | Suggests the user to subscribe to the Premium subscription with annual payments
     SuggestedActionSubscribeToAnnualPremium
   deriving (Eq)
@@ -70,6 +72,10 @@ instance Show SuggestedAction where
     "SuggestedActionUpgradePremium"
       ++ U.cc
         []
+  show SuggestedActionRestorePremium =
+    "SuggestedActionRestorePremium"
+      ++ U.cc
+        []
   show SuggestedActionSubscribeToAnnualPremium =
     "SuggestedActionSubscribeToAnnualPremium"
       ++ U.cc
@@ -87,6 +93,7 @@ instance T.FromJSON SuggestedAction where
       "suggestedActionConvertToBroadcastGroup" -> parseSuggestedActionConvertToBroadcastGroup v
       "suggestedActionSetPassword" -> parseSuggestedActionSetPassword v
       "suggestedActionUpgradePremium" -> parseSuggestedActionUpgradePremium v
+      "suggestedActionRestorePremium" -> parseSuggestedActionRestorePremium v
       "suggestedActionSubscribeToAnnualPremium" -> parseSuggestedActionSubscribeToAnnualPremium v
       _ -> mempty
     where
@@ -114,6 +121,9 @@ instance T.FromJSON SuggestedAction where
 
       parseSuggestedActionUpgradePremium :: A.Value -> T.Parser SuggestedAction
       parseSuggestedActionUpgradePremium = A.withObject "SuggestedActionUpgradePremium" $ \_ -> return SuggestedActionUpgradePremium
+
+      parseSuggestedActionRestorePremium :: A.Value -> T.Parser SuggestedAction
+      parseSuggestedActionRestorePremium = A.withObject "SuggestedActionRestorePremium" $ \_ -> return SuggestedActionRestorePremium
 
       parseSuggestedActionSubscribeToAnnualPremium :: A.Value -> T.Parser SuggestedAction
       parseSuggestedActionSubscribeToAnnualPremium = A.withObject "SuggestedActionSubscribeToAnnualPremium" $ \_ -> return SuggestedActionSubscribeToAnnualPremium
@@ -155,6 +165,10 @@ instance T.ToJSON SuggestedAction where
   toJSON SuggestedActionUpgradePremium =
     A.object
       [ "@type" A..= T.String "suggestedActionUpgradePremium"
+      ]
+  toJSON SuggestedActionRestorePremium =
+    A.object
+      [ "@type" A..= T.String "suggestedActionRestorePremium"
       ]
   toJSON SuggestedActionSubscribeToAnnualPremium =
     A.object

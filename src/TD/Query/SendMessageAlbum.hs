@@ -6,6 +6,7 @@ module TD.Query.SendMessageAlbum where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified Utils as U
 
@@ -18,8 +19,8 @@ data SendMessageAlbum = SendMessageAlbum
     input_message_contents :: Maybe [InputMessageContent.InputMessageContent],
     -- | Options to be used to send the messages; pass null to use default options
     options :: Maybe MessageSendOptions.MessageSendOptions,
-    -- | Identifier of a replied message; 0 if none
-    reply_to_message_id :: Maybe Int,
+    -- | Identifier of the replied message or story; pass null if none
+    reply_to :: Maybe MessageReplyTo.MessageReplyTo,
     -- | If not 0, a message thread identifier in which the messages will be sent
     message_thread_id :: Maybe Int,
     -- | Target chat
@@ -33,7 +34,7 @@ instance Show SendMessageAlbum where
       { only_preview = only_preview_,
         input_message_contents = input_message_contents_,
         options = options_,
-        reply_to_message_id = reply_to_message_id_,
+        reply_to = reply_to_,
         message_thread_id = message_thread_id_,
         chat_id = chat_id_
       } =
@@ -42,7 +43,7 @@ instance Show SendMessageAlbum where
           [ U.p "only_preview" only_preview_,
             U.p "input_message_contents" input_message_contents_,
             U.p "options" options_,
-            U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "reply_to" reply_to_,
             U.p "message_thread_id" message_thread_id_,
             U.p "chat_id" chat_id_
           ]
@@ -53,7 +54,7 @@ instance T.ToJSON SendMessageAlbum where
       { only_preview = only_preview_,
         input_message_contents = input_message_contents_,
         options = options_,
-        reply_to_message_id = reply_to_message_id_,
+        reply_to = reply_to_,
         message_thread_id = message_thread_id_,
         chat_id = chat_id_
       } =
@@ -62,7 +63,7 @@ instance T.ToJSON SendMessageAlbum where
           "only_preview" A..= only_preview_,
           "input_message_contents" A..= input_message_contents_,
           "options" A..= options_,
-          "reply_to_message_id" A..= reply_to_message_id_,
+          "reply_to" A..= reply_to_,
           "message_thread_id" A..= message_thread_id_,
           "chat_id" A..= chat_id_
         ]

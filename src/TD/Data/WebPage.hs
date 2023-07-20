@@ -21,6 +21,10 @@ data WebPage = -- | Describes a web page preview
   WebPage
   { -- | Version of web page instant view (currently, can be 1 or 2); 0 if none
     instant_view_version :: Maybe Int,
+    -- | The identifier of the previewed story; 0 if none
+    story_id :: Maybe Int,
+    -- | The identifier of the sender of the previewed story; 0 if none
+    story_sender_chat_id :: Maybe Int,
     -- | Preview of the content as a voice note, if available; may be null
     voice_note :: Maybe VoiceNote.VoiceNote,
     -- | Preview of the content as a video note, if available; may be null
@@ -68,6 +72,8 @@ instance Show WebPage where
   show
     WebPage
       { instant_view_version = instant_view_version_,
+        story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_,
         voice_note = voice_note_,
         video_note = video_note_,
         video = video_,
@@ -92,6 +98,8 @@ instance Show WebPage where
       "WebPage"
         ++ U.cc
           [ U.p "instant_view_version" instant_view_version_,
+            U.p "story_id" story_id_,
+            U.p "story_sender_chat_id" story_sender_chat_id_,
             U.p "voice_note" voice_note_,
             U.p "video_note" video_note_,
             U.p "video" video_,
@@ -125,6 +133,8 @@ instance T.FromJSON WebPage where
       parseWebPage :: A.Value -> T.Parser WebPage
       parseWebPage = A.withObject "WebPage" $ \o -> do
         instant_view_version_ <- o A..:? "instant_view_version"
+        story_id_ <- o A..:? "story_id"
+        story_sender_chat_id_ <- o A..:? "story_sender_chat_id"
         voice_note_ <- o A..:? "voice_note"
         video_note_ <- o A..:? "video_note"
         video_ <- o A..:? "video"
@@ -145,13 +155,15 @@ instance T.FromJSON WebPage where
         _type_ <- o A..:? "type"
         display_url_ <- o A..:? "display_url"
         url_ <- o A..:? "url"
-        return $ WebPage {instant_view_version = instant_view_version_, voice_note = voice_note_, video_note = video_note_, video = video_, sticker = sticker_, document = document_, audio = audio_, animation = animation_, author = author_, duration = duration_, embed_height = embed_height_, embed_width = embed_width_, embed_type = embed_type_, embed_url = embed_url_, photo = photo_, description = description_, title = title_, site_name = site_name_, _type = _type_, display_url = display_url_, url = url_}
+        return $ WebPage {instant_view_version = instant_view_version_, story_id = story_id_, story_sender_chat_id = story_sender_chat_id_, voice_note = voice_note_, video_note = video_note_, video = video_, sticker = sticker_, document = document_, audio = audio_, animation = animation_, author = author_, duration = duration_, embed_height = embed_height_, embed_width = embed_width_, embed_type = embed_type_, embed_url = embed_url_, photo = photo_, description = description_, title = title_, site_name = site_name_, _type = _type_, display_url = display_url_, url = url_}
   parseJSON _ = mempty
 
 instance T.ToJSON WebPage where
   toJSON
     WebPage
       { instant_view_version = instant_view_version_,
+        story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_,
         voice_note = voice_note_,
         video_note = video_note_,
         video = video_,
@@ -176,6 +188,8 @@ instance T.ToJSON WebPage where
       A.object
         [ "@type" A..= T.String "webPage",
           "instant_view_version" A..= instant_view_version_,
+          "story_id" A..= story_id_,
+          "story_sender_chat_id" A..= story_sender_chat_id_,
           "voice_note" A..= voice_note_,
           "video_note" A..= video_note_,
           "video" A..= video_,

@@ -18,7 +18,7 @@
 </span><span id="line-17"></span><span>    </span><span id="photo"><span class="annot"><span class="annottext">SetProfilePhoto -&gt; Maybe InputChatPhoto
 </span><a href="TD.Query.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.InputChatPhoto.html#InputChatPhoto"><span class="hs-identifier hs-type">InputChatPhoto.InputChatPhoto</span></a></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679486977"><span id="local-6989586621679486979"><span class="annot"><span class="annottext">SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679502284"><span id="local-6989586621679502286"><span class="annot"><span class="annottext">SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
 (SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool)
 -&gt; (SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool)
 -&gt; Eq SetProfilePhoto
@@ -29,16 +29,16 @@ $c/= :: SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
 $c== :: SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679486971"><span id="local-6989586621679486974"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679486969"><span class="annot"><span class="annottext">show :: SetProfilePhoto -&gt; String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679502278"><span id="local-6989586621679502281"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679502276"><span class="annot"><span class="annottext">show :: SetProfilePhoto -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-23"></span><span>    </span><span class="annot"><a href="TD.Query.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span><span>
 </span><span id="line-24"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_public :: SetProfilePhoto -&gt; Maybe Bool
-</span><a href="TD.Query.SetProfilePhoto.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486967"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679486967"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetProfilePhoto.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502274"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679502274"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-25"></span><span>        </span><span class="annot"><span class="annottext">photo :: SetProfilePhoto -&gt; Maybe InputChatPhoto
-</span><a href="TD.Query.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486966"><span class="annot"><span class="annottext">Maybe InputChatPhoto
-</span><a href="#local-6989586621679486966"><span class="hs-identifier hs-var">photo_</span></a></span></span><span>
+</span><a href="TD.Query.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502273"><span class="annot"><span class="annottext">Maybe InputChatPhoto
+</span><a href="#local-6989586621679502273"><span class="hs-identifier hs-var">photo_</span></a></span></span><span>
 </span><span id="line-26"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetProfilePhoto&quot;</span></span><span>
@@ -50,24 +50,24 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_public&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679486967"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679502274"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe InputChatPhoto -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputChatPhoto
-</span><a href="#local-6989586621679486966"><span class="hs-identifier hs-var">photo_</span></a></span><span>
+</span><a href="#local-6989586621679502273"><span class="hs-identifier hs-var">photo_</span></a></span><span>
 </span><span id="line-31"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679486957"><span id="local-6989586621679486959"><span id="local-6989586621679486961"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679486955"><span class="annot"><span class="annottext">toJSON :: SetProfilePhoto -&gt; Value
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679502264"><span id="local-6989586621679502266"><span id="local-6989586621679502268"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679502262"><span class="annot"><span class="annottext">toJSON :: SetProfilePhoto -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="TD.Query.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_public :: SetProfilePhoto -&gt; Maybe Bool
-</span><a href="TD.Query.SetProfilePhoto.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486953"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679486953"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.SetProfilePhoto.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502260"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679502260"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>        </span><span class="annot"><span class="annottext">photo :: SetProfilePhoto -&gt; Maybe InputChatPhoto
-</span><a href="TD.Query.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486952"><span class="annot"><span class="annottext">Maybe InputChatPhoto
-</span><a href="#local-6989586621679486952"><span class="hs-identifier hs-var">photo_</span></a></span></span><span>
+</span><a href="TD.Query.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502259"><span class="annot"><span class="annottext">Maybe InputChatPhoto
+</span><a href="#local-6989586621679502259"><span class="hs-identifier hs-var">photo_</span></a></span></span><span>
 </span><span id="line-38"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -81,11 +81,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_public&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679486953"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679502260"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputChatPhoto -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputChatPhoto
-</span><a href="#local-6989586621679486952"><span class="hs-identifier hs-var">photo_</span></a></span><span>
+</span><a href="#local-6989586621679502259"><span class="hs-identifier hs-var">photo_</span></a></span><span>
 </span><span id="line-43"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span></pre></body></html>

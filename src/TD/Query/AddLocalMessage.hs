@@ -6,6 +6,7 @@ module TD.Query.AddLocalMessage where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Utils as U
 
@@ -16,8 +17,8 @@ data AddLocalMessage = AddLocalMessage
     input_message_content :: Maybe InputMessageContent.InputMessageContent,
     -- | Pass true to disable notification for the message
     disable_notification :: Maybe Bool,
-    -- | Identifier of the replied message; 0 if none
-    reply_to_message_id :: Maybe Int,
+    -- | Identifier of the replied message or story; pass null if none
+    reply_to :: Maybe MessageReplyTo.MessageReplyTo,
     -- | Identifier of the sender of the message
     sender_id :: Maybe MessageSender.MessageSender,
     -- | Target chat
@@ -30,7 +31,7 @@ instance Show AddLocalMessage where
     AddLocalMessage
       { input_message_content = input_message_content_,
         disable_notification = disable_notification_,
-        reply_to_message_id = reply_to_message_id_,
+        reply_to = reply_to_,
         sender_id = sender_id_,
         chat_id = chat_id_
       } =
@@ -38,7 +39,7 @@ instance Show AddLocalMessage where
         ++ U.cc
           [ U.p "input_message_content" input_message_content_,
             U.p "disable_notification" disable_notification_,
-            U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "reply_to" reply_to_,
             U.p "sender_id" sender_id_,
             U.p "chat_id" chat_id_
           ]
@@ -48,7 +49,7 @@ instance T.ToJSON AddLocalMessage where
     AddLocalMessage
       { input_message_content = input_message_content_,
         disable_notification = disable_notification_,
-        reply_to_message_id = reply_to_message_id_,
+        reply_to = reply_to_,
         sender_id = sender_id_,
         chat_id = chat_id_
       } =
@@ -56,7 +57,7 @@ instance T.ToJSON AddLocalMessage where
         [ "@type" A..= T.String "addLocalMessage",
           "input_message_content" A..= input_message_content_,
           "disable_notification" A..= disable_notification_,
-          "reply_to_message_id" A..= reply_to_message_id_,
+          "reply_to" A..= reply_to_,
           "sender_id" A..= sender_id_,
           "chat_id" A..= chat_id_
         ]

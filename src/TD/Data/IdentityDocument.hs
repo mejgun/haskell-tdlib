@@ -20,8 +20,8 @@ data IdentityDocument = -- | An identity document
     reverse_side :: Maybe DatedFile.DatedFile,
     -- | Front side of the document
     front_side :: Maybe DatedFile.DatedFile,
-    -- | Document expiry date; may be null if not applicable
-    expiry_date :: Maybe Date.Date,
+    -- | Document expiration date; may be null if not applicable
+    expiration_date :: Maybe Date.Date,
     -- | Document number; 1-24 characters
     number :: Maybe String
   }
@@ -34,7 +34,7 @@ instance Show IdentityDocument where
         selfie = selfie_,
         reverse_side = reverse_side_,
         front_side = front_side_,
-        expiry_date = expiry_date_,
+        expiration_date = expiration_date_,
         number = number_
       } =
       "IdentityDocument"
@@ -43,7 +43,7 @@ instance Show IdentityDocument where
             U.p "selfie" selfie_,
             U.p "reverse_side" reverse_side_,
             U.p "front_side" front_side_,
-            U.p "expiry_date" expiry_date_,
+            U.p "expiration_date" expiration_date_,
             U.p "number" number_
           ]
 
@@ -61,9 +61,9 @@ instance T.FromJSON IdentityDocument where
         selfie_ <- o A..:? "selfie"
         reverse_side_ <- o A..:? "reverse_side"
         front_side_ <- o A..:? "front_side"
-        expiry_date_ <- o A..:? "expiry_date"
+        expiration_date_ <- o A..:? "expiration_date"
         number_ <- o A..:? "number"
-        return $ IdentityDocument {translation = translation_, selfie = selfie_, reverse_side = reverse_side_, front_side = front_side_, expiry_date = expiry_date_, number = number_}
+        return $ IdentityDocument {translation = translation_, selfie = selfie_, reverse_side = reverse_side_, front_side = front_side_, expiration_date = expiration_date_, number = number_}
   parseJSON _ = mempty
 
 instance T.ToJSON IdentityDocument where
@@ -73,7 +73,7 @@ instance T.ToJSON IdentityDocument where
         selfie = selfie_,
         reverse_side = reverse_side_,
         front_side = front_side_,
-        expiry_date = expiry_date_,
+        expiration_date = expiration_date_,
         number = number_
       } =
       A.object
@@ -82,6 +82,6 @@ instance T.ToJSON IdentityDocument where
           "selfie" A..= selfie_,
           "reverse_side" A..= reverse_side_,
           "front_side" A..= front_side_,
-          "expiry_date" A..= expiry_date_,
+          "expiration_date" A..= expiration_date_,
           "number" A..= number_
         ]

@@ -182,6 +182,13 @@ data InternalLinkType
         -- | Name of the sticker set
         sticker_set_name :: Maybe String
       }
+  | -- | The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+    InternalLinkTypeStory
+      { -- | Story identifier
+        story_id :: Maybe Int,
+        -- | Username of the sender of the story
+        story_sender_username :: Maybe String
+      }
   | -- | The link is a link to a theme. TDLib has no theme support yet @theme_name Name of the theme
     InternalLinkTypeTheme
       { -- |
@@ -465,6 +472,16 @@ instance Show InternalLinkType where
             U.p "sticker_set_name" sticker_set_name_
           ]
   show
+    InternalLinkTypeStory
+      { story_id = story_id_,
+        story_sender_username = story_sender_username_
+      } =
+      "InternalLinkTypeStory"
+        ++ U.cc
+          [ U.p "story_id" story_id_,
+            U.p "story_sender_username" story_sender_username_
+          ]
+  show
     InternalLinkTypeTheme
       { theme_name = theme_name_
       } =
@@ -564,6 +581,7 @@ instance T.FromJSON InternalLinkType where
       "internalLinkTypeRestorePurchases" -> parseInternalLinkTypeRestorePurchases v
       "internalLinkTypeSettings" -> parseInternalLinkTypeSettings v
       "internalLinkTypeStickerSet" -> parseInternalLinkTypeStickerSet v
+      "internalLinkTypeStory" -> parseInternalLinkTypeStory v
       "internalLinkTypeTheme" -> parseInternalLinkTypeTheme v
       "internalLinkTypeThemeSettings" -> parseInternalLinkTypeThemeSettings v
       "internalLinkTypeUnknownDeepLink" -> parseInternalLinkTypeUnknownDeepLink v
@@ -721,6 +739,12 @@ instance T.FromJSON InternalLinkType where
         expect_custom_emoji_ <- o A..:? "expect_custom_emoji"
         sticker_set_name_ <- o A..:? "sticker_set_name"
         return $ InternalLinkTypeStickerSet {expect_custom_emoji = expect_custom_emoji_, sticker_set_name = sticker_set_name_}
+
+      parseInternalLinkTypeStory :: A.Value -> T.Parser InternalLinkType
+      parseInternalLinkTypeStory = A.withObject "InternalLinkTypeStory" $ \o -> do
+        story_id_ <- o A..:? "story_id"
+        story_sender_username_ <- o A..:? "story_sender_username"
+        return $ InternalLinkTypeStory {story_id = story_id_, story_sender_username = story_sender_username_}
 
       parseInternalLinkTypeTheme :: A.Value -> T.Parser InternalLinkType
       parseInternalLinkTypeTheme = A.withObject "InternalLinkTypeTheme" $ \o -> do
@@ -999,6 +1023,16 @@ instance T.ToJSON InternalLinkType where
         [ "@type" A..= T.String "internalLinkTypeStickerSet",
           "expect_custom_emoji" A..= expect_custom_emoji_,
           "sticker_set_name" A..= sticker_set_name_
+        ]
+  toJSON
+    InternalLinkTypeStory
+      { story_id = story_id_,
+        story_sender_username = story_sender_username_
+      } =
+      A.object
+        [ "@type" A..= T.String "internalLinkTypeStory",
+          "story_id" A..= story_id_,
+          "story_sender_username" A..= story_sender_username_
         ]
   toJSON
     InternalLinkTypeTheme

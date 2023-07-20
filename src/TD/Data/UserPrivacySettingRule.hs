@@ -7,11 +7,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
--- | Represents a single rule for managing privacy settings
+-- | Represents a single rule for managing user privacy settings
 data UserPrivacySettingRule
   = -- | A rule to allow all users to do something
     UserPrivacySettingRuleAllowAll
-  | -- | A rule to allow all of a user's contacts to do something
+  | -- | A rule to allow all contacts of the user to do something
     UserPrivacySettingRuleAllowContacts
   | -- | A rule to allow certain specified users to do something @user_ids The user identifiers, total number of users in all rules must not exceed 1000
     UserPrivacySettingRuleAllowUsers
@@ -25,7 +25,7 @@ data UserPrivacySettingRule
       }
   | -- | A rule to restrict all users from doing something
     UserPrivacySettingRuleRestrictAll
-  | -- | A rule to restrict all contacts of a user from doing something
+  | -- | A rule to restrict all contacts of the user from doing something
     UserPrivacySettingRuleRestrictContacts
   | -- | A rule to restrict all specified users from doing something @user_ids The user identifiers, total number of users in all rules must not exceed 1000
     UserPrivacySettingRuleRestrictUsers

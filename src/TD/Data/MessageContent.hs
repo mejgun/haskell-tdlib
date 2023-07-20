@@ -173,6 +173,15 @@ data MessageContent
       { -- |
         poll :: Maybe Poll.Poll
       }
+  | -- | A message with a forwarded story
+    MessageStory
+      { -- | True, if the story was automatically forwarded because of a mention of the user
+        via_mention :: Maybe Bool,
+        -- | Story identifier
+        story_id :: Maybe Int,
+        -- | Identifier of the chat that posted the story
+        story_sender_chat_id :: Maybe Int
+      }
   | -- | A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
     MessageInvoice
       { -- | Extended media attached to the invoice; may be null
@@ -464,7 +473,7 @@ data MessageContent
         -- |
         traveler_id :: Maybe MessageSender.MessageSender
       }
-  | -- | Message content that is not supported in the current TDLib version
+  | -- | A message content that is not supported in the current TDLib version
     MessageUnsupported
   deriving (Eq)
 
@@ -656,6 +665,18 @@ instance Show MessageContent where
       "MessagePoll"
         ++ U.cc
           [ U.p "poll" poll_
+          ]
+  show
+    MessageStory
+      { via_mention = via_mention_,
+        story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_
+      } =
+      "MessageStory"
+        ++ U.cc
+          [ U.p "via_mention" via_mention_,
+            U.p "story_id" story_id_,
+            U.p "story_sender_chat_id" story_sender_chat_id_
           ]
   show
     MessageInvoice
@@ -1097,6 +1118,7 @@ instance T.FromJSON MessageContent where
       "messageDice" -> parseMessageDice v
       "messageGame" -> parseMessageGame v
       "messagePoll" -> parseMessagePoll v
+      "messageStory" -> parseMessageStory v
       "messageInvoice" -> parseMessageInvoice v
       "messageCall" -> parseMessageCall v
       "messageVideoChatScheduled" -> parseMessageVideoChatScheduled v
@@ -1253,6 +1275,13 @@ instance T.FromJSON MessageContent where
       parseMessagePoll = A.withObject "MessagePoll" $ \o -> do
         poll_ <- o A..:? "poll"
         return $ MessagePoll {poll = poll_}
+
+      parseMessageStory :: A.Value -> T.Parser MessageContent
+      parseMessageStory = A.withObject "MessageStory" $ \o -> do
+        via_mention_ <- o A..:? "via_mention"
+        story_id_ <- o A..:? "story_id"
+        story_sender_chat_id_ <- o A..:? "story_sender_chat_id"
+        return $ MessageStory {via_mention = via_mention_, story_id = story_id_, story_sender_chat_id = story_sender_chat_id_}
 
       parseMessageInvoice :: A.Value -> T.Parser MessageContent
       parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
@@ -1694,6 +1723,18 @@ instance T.ToJSON MessageContent where
       A.object
         [ "@type" A..= T.String "messagePoll",
           "poll" A..= poll_
+        ]
+  toJSON
+    MessageStory
+      { via_mention = via_mention_,
+        story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "messageStory",
+          "via_mention" A..= via_mention_,
+          "story_id" A..= story_id_,
+          "story_sender_chat_id" A..= story_sender_chat_id_
         ]
   toJSON
     MessageInvoice

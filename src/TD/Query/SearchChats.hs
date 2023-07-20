@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
+-- Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
 data SearchChats = SearchChats
   { -- | The maximum number of chats to be returned
     limit :: Maybe Int,

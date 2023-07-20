@@ -6,6 +6,7 @@ module TD.Query.SendMessage where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified Utils as U
@@ -19,8 +20,8 @@ data SendMessage = SendMessage
     reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
     -- | Options to be used to send the message; pass null to use default options
     options :: Maybe MessageSendOptions.MessageSendOptions,
-    -- | Identifier of the replied message; 0 if none
-    reply_to_message_id :: Maybe Int,
+    -- | Identifier of the replied message or story; pass null if none
+    reply_to :: Maybe MessageReplyTo.MessageReplyTo,
     -- | If not 0, a message thread identifier in which the message will be sent
     message_thread_id :: Maybe Int,
     -- | Target chat
@@ -34,7 +35,7 @@ instance Show SendMessage where
       { input_message_content = input_message_content_,
         reply_markup = reply_markup_,
         options = options_,
-        reply_to_message_id = reply_to_message_id_,
+        reply_to = reply_to_,
         message_thread_id = message_thread_id_,
         chat_id = chat_id_
       } =
@@ -43,7 +44,7 @@ instance Show SendMessage where
           [ U.p "input_message_content" input_message_content_,
             U.p "reply_markup" reply_markup_,
             U.p "options" options_,
-            U.p "reply_to_message_id" reply_to_message_id_,
+            U.p "reply_to" reply_to_,
             U.p "message_thread_id" message_thread_id_,
             U.p "chat_id" chat_id_
           ]
@@ -54,7 +55,7 @@ instance T.ToJSON SendMessage where
       { input_message_content = input_message_content_,
         reply_markup = reply_markup_,
         options = options_,
-        reply_to_message_id = reply_to_message_id_,
+        reply_to = reply_to_,
         message_thread_id = message_thread_id_,
         chat_id = chat_id_
       } =
@@ -63,7 +64,7 @@ instance T.ToJSON SendMessage where
           "input_message_content" A..= input_message_content_,
           "reply_markup" A..= reply_markup_,
           "options" A..= options_,
-          "reply_to_message_id" A..= reply_to_message_id_,
+          "reply_to" A..= reply_to_,
           "message_thread_id" A..= message_thread_id_,
           "chat_id" A..= chat_id_
         ]

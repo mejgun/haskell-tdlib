@@ -24,6 +24,8 @@ data UserFullInfo = -- | Contains full information about a user
     bio :: Maybe FormattedText.FormattedText,
     -- | True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     need_phone_number_privacy_exception :: Maybe Bool,
+    -- | True, if the user has pinned stories
+    has_pinned_stories :: Maybe Bool,
     -- | True, if voice and video notes can't be sent or forwarded to the user
     has_restricted_voice_and_video_note_messages :: Maybe Bool,
     -- | True, if the user can't be linked in forwarded messages due to their privacy settings
@@ -56,6 +58,7 @@ instance Show UserFullInfo where
         premium_gift_options = premium_gift_options_,
         bio = bio_,
         need_phone_number_privacy_exception = need_phone_number_privacy_exception_,
+        has_pinned_stories = has_pinned_stories_,
         has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_,
         has_private_forwards = has_private_forwards_,
         has_private_calls = has_private_calls_,
@@ -73,6 +76,7 @@ instance Show UserFullInfo where
             U.p "premium_gift_options" premium_gift_options_,
             U.p "bio" bio_,
             U.p "need_phone_number_privacy_exception" need_phone_number_privacy_exception_,
+            U.p "has_pinned_stories" has_pinned_stories_,
             U.p "has_restricted_voice_and_video_note_messages" has_restricted_voice_and_video_note_messages_,
             U.p "has_private_forwards" has_private_forwards_,
             U.p "has_private_calls" has_private_calls_,
@@ -99,6 +103,7 @@ instance T.FromJSON UserFullInfo where
         premium_gift_options_ <- o A..:? "premium_gift_options"
         bio_ <- o A..:? "bio"
         need_phone_number_privacy_exception_ <- o A..:? "need_phone_number_privacy_exception"
+        has_pinned_stories_ <- o A..:? "has_pinned_stories"
         has_restricted_voice_and_video_note_messages_ <- o A..:? "has_restricted_voice_and_video_note_messages"
         has_private_forwards_ <- o A..:? "has_private_forwards"
         has_private_calls_ <- o A..:? "has_private_calls"
@@ -108,7 +113,7 @@ instance T.FromJSON UserFullInfo where
         public_photo_ <- o A..:? "public_photo"
         photo_ <- o A..:? "photo"
         personal_photo_ <- o A..:? "personal_photo"
-        return $ UserFullInfo {bot_info = bot_info_, group_in_common_count = group_in_common_count_, premium_gift_options = premium_gift_options_, bio = bio_, need_phone_number_privacy_exception = need_phone_number_privacy_exception_, has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_, has_private_forwards = has_private_forwards_, has_private_calls = has_private_calls_, supports_video_calls = supports_video_calls_, can_be_called = can_be_called_, is_blocked = is_blocked_, public_photo = public_photo_, photo = photo_, personal_photo = personal_photo_}
+        return $ UserFullInfo {bot_info = bot_info_, group_in_common_count = group_in_common_count_, premium_gift_options = premium_gift_options_, bio = bio_, need_phone_number_privacy_exception = need_phone_number_privacy_exception_, has_pinned_stories = has_pinned_stories_, has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_, has_private_forwards = has_private_forwards_, has_private_calls = has_private_calls_, supports_video_calls = supports_video_calls_, can_be_called = can_be_called_, is_blocked = is_blocked_, public_photo = public_photo_, photo = photo_, personal_photo = personal_photo_}
   parseJSON _ = mempty
 
 instance T.ToJSON UserFullInfo where
@@ -119,6 +124,7 @@ instance T.ToJSON UserFullInfo where
         premium_gift_options = premium_gift_options_,
         bio = bio_,
         need_phone_number_privacy_exception = need_phone_number_privacy_exception_,
+        has_pinned_stories = has_pinned_stories_,
         has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_,
         has_private_forwards = has_private_forwards_,
         has_private_calls = has_private_calls_,
@@ -136,6 +142,7 @@ instance T.ToJSON UserFullInfo where
           "premium_gift_options" A..= premium_gift_options_,
           "bio" A..= bio_,
           "need_phone_number_privacy_exception" A..= need_phone_number_privacy_exception_,
+          "has_pinned_stories" A..= has_pinned_stories_,
           "has_restricted_voice_and_video_note_messages" A..= has_restricted_voice_and_video_note_messages_,
           "has_private_forwards" A..= has_private_forwards_,
           "has_private_calls" A..= has_private_calls_,

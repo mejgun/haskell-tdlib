@@ -12,7 +12,7 @@ data CallProtocol = -- | Specifies the supported call protocols
   CallProtocol
   { -- | List of supported tgcalls versions
     library_versions :: Maybe [String],
-    -- | The maximum supported API layer; use 65
+    -- | The maximum supported API layer; use 92
     max_layer :: Maybe Int,
     -- | The minimum supported API layer; use 65
     min_layer :: Maybe Int,

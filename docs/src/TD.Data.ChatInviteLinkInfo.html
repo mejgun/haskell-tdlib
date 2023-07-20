@@ -43,7 +43,7 @@
 </span><span id="line-34"></span><span>    </span><span id="chat_id"><span class="annot"><span class="annottext">ChatInviteLinkInfo -&gt; Maybe Int
 </span><a href="TD.Data.ChatInviteLinkInfo.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-35"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-36"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679479137"><span id="local-6989586621679479139"><span class="annot"><span class="annottext">ChatInviteLinkInfo -&gt; ChatInviteLinkInfo -&gt; Bool
+</span><span id="line-36"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679494083"><span id="local-6989586621679494085"><span class="annot"><span class="annottext">ChatInviteLinkInfo -&gt; ChatInviteLinkInfo -&gt; Bool
 (ChatInviteLinkInfo -&gt; ChatInviteLinkInfo -&gt; Bool)
 -&gt; (ChatInviteLinkInfo -&gt; ChatInviteLinkInfo -&gt; Bool)
 -&gt; Eq ChatInviteLinkInfo
@@ -54,40 +54,40 @@ $c/= :: ChatInviteLinkInfo -&gt; ChatInviteLinkInfo -&gt; Bool
 $c== :: ChatInviteLinkInfo -&gt; ChatInviteLinkInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679479131"><span id="local-6989586621679479134"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span>  </span><span id="local-6989586621679479129"><span class="annot"><span class="annottext">show :: ChatInviteLinkInfo -&gt; String
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494077"><span id="local-6989586621679494080"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679494075"><span class="annot"><span class="annottext">show :: ChatInviteLinkInfo -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-40"></span><span>    </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span><span>
 </span><span id="line-41"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_public :: ChatInviteLinkInfo -&gt; Maybe Bool
-</span><a href="TD.Data.ChatInviteLinkInfo.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479127"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479127"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494073"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494073"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-42"></span><span>        </span><span class="annot"><span class="annottext">creates_join_request :: ChatInviteLinkInfo -&gt; Maybe Bool
-</span><a href="TD.Data.ChatInviteLinkInfo.html#creates_join_request"><span class="hs-identifier hs-var">creates_join_request</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479126"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479126"><span class="hs-identifier hs-var">creates_join_request_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#creates_join_request"><span class="hs-identifier hs-var">creates_join_request</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494072"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494072"><span class="hs-identifier hs-var">creates_join_request_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-43"></span><span>        </span><span class="annot"><span class="annottext">member_user_ids :: ChatInviteLinkInfo -&gt; Maybe [Int]
-</span><a href="TD.Data.ChatInviteLinkInfo.html#member_user_ids"><span class="hs-identifier hs-var">member_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479125"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679479125"><span class="hs-identifier hs-var">member_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#member_user_ids"><span class="hs-identifier hs-var">member_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494071"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679494071"><span class="hs-identifier hs-var">member_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-44"></span><span>        </span><span class="annot"><span class="annottext">member_count :: ChatInviteLinkInfo -&gt; Maybe Int
-</span><a href="TD.Data.ChatInviteLinkInfo.html#member_count"><span class="hs-identifier hs-var">member_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479124"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479124"><span class="hs-identifier hs-var">member_count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#member_count"><span class="hs-identifier hs-var">member_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494070"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494070"><span class="hs-identifier hs-var">member_count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-45"></span><span>        </span><span class="annot"><span class="annottext">description :: ChatInviteLinkInfo -&gt; Maybe String
-</span><a href="TD.Data.ChatInviteLinkInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479123"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479123"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494069"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494069"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>        </span><span class="annot"><span class="annottext">photo :: ChatInviteLinkInfo -&gt; Maybe ChatPhotoInfo
-</span><a href="TD.Data.ChatInviteLinkInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479122"><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
-</span><a href="#local-6989586621679479122"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494068"><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
+</span><a href="#local-6989586621679494068"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>        </span><span class="annot"><span class="annottext">title :: ChatInviteLinkInfo -&gt; Maybe String
-</span><a href="TD.Data.ChatInviteLinkInfo.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479121"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479121"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494067"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494067"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>        </span><span class="annot"><span class="annottext">_type :: ChatInviteLinkInfo -&gt; Maybe ChatType
-</span><a href="TD.Data.ChatInviteLinkInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479120"><span class="annot"><span class="annottext">Maybe ChatType
-</span><a href="#local-6989586621679479120"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494066"><span class="annot"><span class="annottext">Maybe ChatType
+</span><a href="#local-6989586621679494066"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">accessible_for :: ChatInviteLinkInfo -&gt; Maybe Int
-</span><a href="TD.Data.ChatInviteLinkInfo.html#accessible_for"><span class="hs-identifier hs-var">accessible_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479119"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479119"><span class="hs-identifier hs-var">accessible_for_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#accessible_for"><span class="hs-identifier hs-var">accessible_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494065"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494065"><span class="hs-identifier hs-var">accessible_for_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-50"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: ChatInviteLinkInfo -&gt; Maybe Int
-</span><a href="TD.Data.ChatInviteLinkInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479118"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479118"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494064"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494064"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-51"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-52"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ChatInviteLinkInfo&quot;</span></span><span>
@@ -99,80 +99,80 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_public&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479127"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494073"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-55"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;creates_join_request&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479126"><span class="hs-identifier hs-var">creates_join_request_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494072"><span class="hs-identifier hs-var">creates_join_request_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe [Int] -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;member_user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679479125"><span class="hs-identifier hs-var">member_user_ids_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494071"><span class="hs-identifier hs-var">member_user_ids_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-57"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;member_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479124"><span class="hs-identifier hs-var">member_count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494070"><span class="hs-identifier hs-var">member_count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-58"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479123"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494069"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-59"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatPhotoInfo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
-</span><a href="#local-6989586621679479122"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494068"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-60"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479121"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494067"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-61"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ChatType -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatType
-</span><a href="#local-6989586621679479120"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494066"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-62"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;accessible_for&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479119"><span class="hs-identifier hs-var">accessible_for_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494065"><span class="hs-identifier hs-var">accessible_for_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479118"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679494064"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-64"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-65"></span><span>
-</span><span id="line-66"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679479113"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-67"></span><span>  </span><span id="local-6989586621679479111"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatInviteLinkInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679479109"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679479109"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679479107"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479107"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-68"></span><span>    </span><span id="local-6989586621679479106"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679479106"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479107"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-66"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494059"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-67"></span><span>  </span><span id="local-6989586621679494057"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatInviteLinkInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679494055"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679494055"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679494053"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494053"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679494052"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679494052"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494053"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-69"></span><span>
 </span><span id="line-70"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679479106"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679494052"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-71"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chatInviteLinkInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatInviteLinkInfo
-</span><a href="#local-6989586621679479104"><span class="hs-identifier hs-var">parseChatInviteLinkInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679479109"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679494050"><span class="hs-identifier hs-var">parseChatInviteLinkInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679494055"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-72"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatInviteLinkInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-73"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-74"></span><span>      </span><span class="annot"><a href="#local-6989586621679479104"><span class="hs-identifier hs-type">parseChatInviteLinkInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span><span>
-</span><span id="line-75"></span><span>      </span><span id="local-6989586621679479104"><span class="annot"><span class="annottext">parseChatInviteLinkInfo :: Value -&gt; Parser ChatInviteLinkInfo
-</span><a href="#local-6989586621679479104"><span class="hs-identifier hs-var hs-var">parseChatInviteLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-74"></span><span>      </span><span class="annot"><a href="#local-6989586621679494050"><span class="hs-identifier hs-type">parseChatInviteLinkInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span><span>
+</span><span id="line-75"></span><span>      </span><span id="local-6989586621679494050"><span class="annot"><span class="annottext">parseChatInviteLinkInfo :: Value -&gt; Parser ChatInviteLinkInfo
+</span><a href="#local-6989586621679494050"><span class="hs-identifier hs-var hs-var">parseChatInviteLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatInviteLinkInfo)
 -&gt; Value
 -&gt; Parser ChatInviteLinkInfo
@@ -184,65 +184,65 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatInviteLinkInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679479102"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-76"></span><span>        </span><span id="local-6989586621679479101"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479101"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679494048"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-76"></span><span>        </span><span id="local-6989586621679494047"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494047"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_public&quot;</span></span><span>
-</span><span id="line-77"></span><span>        </span><span id="local-6989586621679479099"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479099"><span class="hs-identifier hs-var">creates_join_request_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-77"></span><span>        </span><span id="local-6989586621679494045"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494045"><span class="hs-identifier hs-var">creates_join_request_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;creates_join_request&quot;</span></span><span>
-</span><span id="line-78"></span><span>        </span><span id="local-6989586621679479098"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679479098"><span class="hs-identifier hs-var">member_user_ids_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span id="line-78"></span><span>        </span><span id="local-6989586621679494044"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679494044"><span class="hs-identifier hs-var">member_user_ids_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;member_user_ids&quot;</span></span><span>
-</span><span id="line-79"></span><span>        </span><span id="local-6989586621679479097"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479097"><span class="hs-identifier hs-var">member_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-79"></span><span>        </span><span id="local-6989586621679494043"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494043"><span class="hs-identifier hs-var">member_count_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;member_count&quot;</span></span><span>
-</span><span id="line-80"></span><span>        </span><span id="local-6989586621679479096"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479096"><span class="hs-identifier hs-var">description_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-80"></span><span>        </span><span id="local-6989586621679494042"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494042"><span class="hs-identifier hs-var">description_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span>
-</span><span id="line-81"></span><span>        </span><span id="local-6989586621679479095"><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
-</span><a href="#local-6989586621679479095"><span class="hs-identifier hs-var">photo_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatPhotoInfo)
+</span><span id="line-81"></span><span>        </span><span id="local-6989586621679494041"><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
+</span><a href="#local-6989586621679494041"><span class="hs-identifier hs-var">photo_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatPhotoInfo)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span>
-</span><span id="line-82"></span><span>        </span><span id="local-6989586621679479094"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479094"><span class="hs-identifier hs-var">title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-82"></span><span>        </span><span id="local-6989586621679494040"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494040"><span class="hs-identifier hs-var">title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span>
-</span><span id="line-83"></span><span>        </span><span id="local-6989586621679479093"><span class="annot"><span class="annottext">Maybe ChatType
-</span><a href="#local-6989586621679479093"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatType)
+</span><span id="line-83"></span><span>        </span><span id="local-6989586621679494039"><span class="annot"><span class="annottext">Maybe ChatType
+</span><a href="#local-6989586621679494039"><span class="hs-identifier hs-var">_type_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-84"></span><span>        </span><span id="local-6989586621679479092"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479092"><span class="hs-identifier hs-var">accessible_for_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-84"></span><span>        </span><span id="local-6989586621679494038"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494038"><span class="hs-identifier hs-var">accessible_for_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;accessible_for&quot;</span></span><span>
-</span><span id="line-85"></span><span>        </span><span id="local-6989586621679479091"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479091"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679479102"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-85"></span><span>        </span><span id="local-6989586621679494037"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494037"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679494048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span>
@@ -264,64 +264,64 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ChatInviteLinkInfo
 </span><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">is_public :: Maybe Bool
 </span><a href="TD.Data.ChatInviteLinkInfo.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479101"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">creates_join_request :: Maybe Bool
+</span><a href="#local-6989586621679494047"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">creates_join_request :: Maybe Bool
 </span><a href="TD.Data.ChatInviteLinkInfo.html#creates_join_request"><span class="hs-identifier hs-var">creates_join_request</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479099"><span class="hs-identifier hs-var">creates_join_request_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">member_user_ids :: Maybe [Int]
+</span><a href="#local-6989586621679494045"><span class="hs-identifier hs-var">creates_join_request_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">member_user_ids :: Maybe [Int]
 </span><a href="TD.Data.ChatInviteLinkInfo.html#member_user_ids"><span class="hs-identifier hs-var">member_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679479098"><span class="hs-identifier hs-var">member_user_ids_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">member_count :: Maybe Int
+</span><a href="#local-6989586621679494044"><span class="hs-identifier hs-var">member_user_ids_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">member_count :: Maybe Int
 </span><a href="TD.Data.ChatInviteLinkInfo.html#member_count"><span class="hs-identifier hs-var">member_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479097"><span class="hs-identifier hs-var">member_count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe String
+</span><a href="#local-6989586621679494043"><span class="hs-identifier hs-var">member_count_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe String
 </span><a href="TD.Data.ChatInviteLinkInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479096"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe ChatPhotoInfo
+</span><a href="#local-6989586621679494042"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe ChatPhotoInfo
 </span><a href="TD.Data.ChatInviteLinkInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
-</span><a href="#local-6989586621679479095"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
+</span><a href="#local-6989586621679494041"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
 </span><a href="TD.Data.ChatInviteLinkInfo.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479094"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe ChatType
+</span><a href="#local-6989586621679494040"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe ChatType
 </span><a href="TD.Data.ChatInviteLinkInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatType
-</span><a href="#local-6989586621679479093"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">accessible_for :: Maybe Int
+</span><a href="#local-6989586621679494039"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">accessible_for :: Maybe Int
 </span><a href="TD.Data.ChatInviteLinkInfo.html#accessible_for"><span class="hs-identifier hs-var">accessible_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479092"><span class="hs-identifier hs-var">accessible_for_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679494038"><span class="hs-identifier hs-var">accessible_for_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="TD.Data.ChatInviteLinkInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479091"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679494037"><span class="hs-identifier hs-var">chat_id_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-87"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ChatInviteLinkInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-88"></span><span>
-</span><span id="line-89"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679479084"><span id="local-6989586621679479086"><span id="local-6989586621679479088"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-90"></span><span>  </span><span id="local-6989586621679479082"><span class="annot"><span class="annottext">toJSON :: ChatInviteLinkInfo -&gt; Value
+</span><span id="line-89"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494030"><span id="local-6989586621679494032"><span id="local-6989586621679494034"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-90"></span><span>  </span><span id="local-6989586621679494028"><span class="annot"><span class="annottext">toJSON :: ChatInviteLinkInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-91"></span><span>    </span><span class="annot"><a href="TD.Data.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo</span></a></span><span>
 </span><span id="line-92"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_public :: ChatInviteLinkInfo -&gt; Maybe Bool
-</span><a href="TD.Data.ChatInviteLinkInfo.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479080"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479080"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#is_public"><span class="hs-identifier hs-var">is_public</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494026"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494026"><span class="hs-identifier hs-var">is_public_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-93"></span><span>        </span><span class="annot"><span class="annottext">creates_join_request :: ChatInviteLinkInfo -&gt; Maybe Bool
-</span><a href="TD.Data.ChatInviteLinkInfo.html#creates_join_request"><span class="hs-identifier hs-var">creates_join_request</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479079"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479079"><span class="hs-identifier hs-var">creates_join_request_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#creates_join_request"><span class="hs-identifier hs-var">creates_join_request</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494025"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679494025"><span class="hs-identifier hs-var">creates_join_request_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-94"></span><span>        </span><span class="annot"><span class="annottext">member_user_ids :: ChatInviteLinkInfo -&gt; Maybe [Int]
-</span><a href="TD.Data.ChatInviteLinkInfo.html#member_user_ids"><span class="hs-identifier hs-var">member_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479078"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679479078"><span class="hs-identifier hs-var">member_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#member_user_ids"><span class="hs-identifier hs-var">member_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494024"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679494024"><span class="hs-identifier hs-var">member_user_ids_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-95"></span><span>        </span><span class="annot"><span class="annottext">member_count :: ChatInviteLinkInfo -&gt; Maybe Int
-</span><a href="TD.Data.ChatInviteLinkInfo.html#member_count"><span class="hs-identifier hs-var">member_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479077"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479077"><span class="hs-identifier hs-var">member_count_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#member_count"><span class="hs-identifier hs-var">member_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494023"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494023"><span class="hs-identifier hs-var">member_count_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-96"></span><span>        </span><span class="annot"><span class="annottext">description :: ChatInviteLinkInfo -&gt; Maybe String
-</span><a href="TD.Data.ChatInviteLinkInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479076"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479076"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494022"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494022"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-97"></span><span>        </span><span class="annot"><span class="annottext">photo :: ChatInviteLinkInfo -&gt; Maybe ChatPhotoInfo
-</span><a href="TD.Data.ChatInviteLinkInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479075"><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
-</span><a href="#local-6989586621679479075"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494021"><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
+</span><a href="#local-6989586621679494021"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-98"></span><span>        </span><span class="annot"><span class="annottext">title :: ChatInviteLinkInfo -&gt; Maybe String
-</span><a href="TD.Data.ChatInviteLinkInfo.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479074"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479074"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494020"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679494020"><span class="hs-identifier hs-var">title_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-99"></span><span>        </span><span class="annot"><span class="annottext">_type :: ChatInviteLinkInfo -&gt; Maybe ChatType
-</span><a href="TD.Data.ChatInviteLinkInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479073"><span class="annot"><span class="annottext">Maybe ChatType
-</span><a href="#local-6989586621679479073"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494019"><span class="annot"><span class="annottext">Maybe ChatType
+</span><a href="#local-6989586621679494019"><span class="hs-identifier hs-var">_type_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-100"></span><span>        </span><span class="annot"><span class="annottext">accessible_for :: ChatInviteLinkInfo -&gt; Maybe Int
-</span><a href="TD.Data.ChatInviteLinkInfo.html#accessible_for"><span class="hs-identifier hs-var">accessible_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479072"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479072"><span class="hs-identifier hs-var">accessible_for_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#accessible_for"><span class="hs-identifier hs-var">accessible_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494018"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494018"><span class="hs-identifier hs-var">accessible_for_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-101"></span><span>        </span><span class="annot"><span class="annottext">chat_id :: ChatInviteLinkInfo -&gt; Maybe Int
-</span><a href="TD.Data.ChatInviteLinkInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479071"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479071"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
+</span><a href="TD.Data.ChatInviteLinkInfo.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494017"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679494017"><span class="hs-identifier hs-var">chat_id_</span></a></span></span><span>
 </span><span id="line-102"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-103"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -335,51 +335,51 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_public&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479080"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494026"><span class="hs-identifier hs-var">is_public_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-106"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;creates_join_request&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679479079"><span class="hs-identifier hs-var">creates_join_request_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494025"><span class="hs-identifier hs-var">creates_join_request_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-107"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;member_user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679479078"><span class="hs-identifier hs-var">member_user_ids_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494024"><span class="hs-identifier hs-var">member_user_ids_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-108"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;member_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479077"><span class="hs-identifier hs-var">member_count_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494023"><span class="hs-identifier hs-var">member_count_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-109"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479076"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494022"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-110"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatPhotoInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatPhotoInfo
-</span><a href="#local-6989586621679479075"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494021"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-111"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679479074"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494020"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-112"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatType
-</span><a href="#local-6989586621679479073"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494019"><span class="hs-identifier hs-var">_type_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-113"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;accessible_for&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479072"><span class="hs-identifier hs-var">accessible_for_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679494018"><span class="hs-identifier hs-var">accessible_for_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-114"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679479071"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
+</span><a href="#local-6989586621679494017"><span class="hs-identifier hs-var">chat_id_</span></a></span><span>
 </span><span id="line-115"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-116"></span></pre></body></html>

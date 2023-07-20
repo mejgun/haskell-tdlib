@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns recently opened chats, this is an offline request. Returns chats in the order of last opening @limit The maximum number of chats to be returned
+-- Returns recently opened chats; this is an offline request. Returns chats in the order of last opening @limit The maximum number of chats to be returned
 data GetRecentlyOpenedChats = GetRecentlyOpenedChats
   { -- |
     limit :: Maybe Int

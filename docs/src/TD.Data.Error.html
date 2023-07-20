@@ -17,7 +17,7 @@
 </span><span id="line-16"></span><span>    </span><span id="code"><span class="annot"><span class="annottext">Error -&gt; Maybe Int
 </span><a href="TD.Data.Error.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-17"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679469400"><span id="local-6989586621679469402"><span class="annot"><span class="annottext">Error -&gt; Error -&gt; Bool
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679484492"><span id="local-6989586621679484494"><span class="annot"><span class="annottext">Error -&gt; Error -&gt; Bool
 (Error -&gt; Error -&gt; Bool) -&gt; (Error -&gt; Error -&gt; Bool) -&gt; Eq Error
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Error -&gt; Error -&gt; Bool
@@ -26,16 +26,16 @@ $c/= :: Error -&gt; Error -&gt; Bool
 $c== :: Error -&gt; Error -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679469394"><span id="local-6989586621679469397"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679469392"><span class="annot"><span class="annottext">show :: Error -&gt; String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679484486"><span id="local-6989586621679484489"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span>  </span><span id="local-6989586621679484484"><span class="annot"><span class="annottext">show :: Error -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-22"></span><span>    </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span><span>
 </span><span id="line-23"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message :: Error -&gt; Maybe String
-</span><a href="TD.Data.Error.html#message"><span class="hs-identifier hs-var">message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679469390"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679469390"><span class="hs-identifier hs-var">message_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Error.html#message"><span class="hs-identifier hs-var">message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484482"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679484482"><span class="hs-identifier hs-var">message_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-24"></span><span>        </span><span class="annot"><span class="annottext">code :: Error -&gt; Maybe Int
-</span><a href="TD.Data.Error.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679469389"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679469389"><span class="hs-identifier hs-var">code_</span></a></span></span><span>
+</span><a href="TD.Data.Error.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484481"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679484481"><span class="hs-identifier hs-var">code_</span></a></span></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Error&quot;</span></span><span>
@@ -47,56 +47,56 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;message&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679469390"><span class="hs-identifier hs-var">message_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679484482"><span class="hs-identifier hs-var">message_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-29"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679469389"><span class="hs-identifier hs-var">code_</span></a></span><span>
+</span><a href="#local-6989586621679484481"><span class="hs-identifier hs-var">code_</span></a></span><span>
 </span><span id="line-30"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679469384"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679469382"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Error
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679469380"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679469380"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679469378"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679469378"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679469377"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679469377"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679469378"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679484476"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679484474"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Error
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679484472"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679484472"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679484470"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679484470"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679484469"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679484469"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679484470"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679469377"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679484469"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-37"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;error&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Error
-</span><a href="#local-6989586621679469375"><span class="hs-identifier hs-var">parseError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679469380"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679484467"><span class="hs-identifier hs-var">parseError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679484472"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-38"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Error
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-39"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span>      </span><span class="annot"><a href="#local-6989586621679469375"><span class="hs-identifier hs-type">parseError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span><span>
-</span><span id="line-41"></span><span>      </span><span id="local-6989586621679469375"><span class="annot"><span class="annottext">parseError :: Value -&gt; Parser Error
-</span><a href="#local-6989586621679469375"><span class="hs-identifier hs-var hs-var">parseError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Error) -&gt; Value -&gt; Parser Error
+</span><span id="line-40"></span><span>      </span><span class="annot"><a href="#local-6989586621679484467"><span class="hs-identifier hs-type">parseError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span><span>
+</span><span id="line-41"></span><span>      </span><span id="local-6989586621679484467"><span class="annot"><span class="annottext">parseError :: Value -&gt; Parser Error
+</span><a href="#local-6989586621679484467"><span class="hs-identifier hs-var hs-var">parseError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Error) -&gt; Value -&gt; Parser Error
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;Error&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Error) -&gt; Value -&gt; Parser Error)
 -&gt; (Object -&gt; Parser Error) -&gt; Value -&gt; Parser Error
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679469373"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679469373"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>        </span><span id="local-6989586621679469372"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679469372"><span class="hs-identifier hs-var">message_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679469373"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679484465"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679484465"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>        </span><span id="local-6989586621679484464"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679484464"><span class="hs-identifier hs-var">message_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679484465"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;message&quot;</span></span><span>
-</span><span id="line-43"></span><span>        </span><span id="local-6989586621679469370"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679469370"><span class="hs-identifier hs-var">code_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679469373"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-43"></span><span>        </span><span id="local-6989586621679484462"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679484462"><span class="hs-identifier hs-var">code_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679484465"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;code&quot;</span></span><span>
@@ -107,24 +107,24 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Error :: Maybe String -&gt; Maybe Int -&gt; Error
 </span><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">message :: Maybe String
 </span><a href="TD.Data.Error.html#message"><span class="hs-identifier hs-var">message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679469372"><span class="hs-identifier hs-var">message_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">code :: Maybe Int
+</span><a href="#local-6989586621679484464"><span class="hs-identifier hs-var">message_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">code :: Maybe Int
 </span><a href="TD.Data.Error.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679469370"><span class="hs-identifier hs-var">code_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679484462"><span class="hs-identifier hs-var">code_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-45"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser Error
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679469363"><span id="local-6989586621679469365"><span id="local-6989586621679469367"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>  </span><span id="local-6989586621679469361"><span class="annot"><span class="annottext">toJSON :: Error -&gt; Value
+</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679484455"><span id="local-6989586621679484457"><span id="local-6989586621679484459"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span>  </span><span id="local-6989586621679484453"><span class="annot"><span class="annottext">toJSON :: Error -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-49"></span><span>    </span><span class="annot"><a href="TD.Data.Error.html#Error"><span class="hs-identifier hs-type">Error</span></a></span><span>
 </span><span id="line-50"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message :: Error -&gt; Maybe String
-</span><a href="TD.Data.Error.html#message"><span class="hs-identifier hs-var">message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679469359"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679469359"><span class="hs-identifier hs-var">message_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.Error.html#message"><span class="hs-identifier hs-var">message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484451"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679484451"><span class="hs-identifier hs-var">message_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>        </span><span class="annot"><span class="annottext">code :: Error -&gt; Maybe Int
-</span><a href="TD.Data.Error.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679469358"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679469358"><span class="hs-identifier hs-var">code_</span></a></span></span><span>
+</span><a href="TD.Data.Error.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679484450"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679484450"><span class="hs-identifier hs-var">code_</span></a></span></span><span>
 </span><span id="line-52"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-53"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -138,11 +138,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;message&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679469359"><span class="hs-identifier hs-var">message_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679484451"><span class="hs-identifier hs-var">message_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679469358"><span class="hs-identifier hs-var">code_</span></a></span><span>
+</span><a href="#local-6989586621679484450"><span class="hs-identifier hs-var">code_</span></a></span><span>
 </span><span id="line-57"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-58"></span></pre></body></html>

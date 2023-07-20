@@ -39,8 +39,6 @@ data SupergroupFullInfo = -- | Contains full information about a supergroup or c
     can_set_location :: Maybe Bool,
     -- | True, if the supergroup sticker set can be changed
     can_set_sticker_set :: Maybe Bool,
-    -- | True, if the chat username can be changed
-    can_set_username :: Maybe Bool,
     -- | True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators
     can_hide_members :: Maybe Bool,
     -- | True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
@@ -83,7 +81,6 @@ instance Show SupergroupFullInfo where
         can_get_statistics = can_get_statistics_,
         can_set_location = can_set_location_,
         can_set_sticker_set = can_set_sticker_set_,
-        can_set_username = can_set_username_,
         can_hide_members = can_hide_members_,
         has_hidden_members = has_hidden_members_,
         can_get_members = can_get_members_,
@@ -111,7 +108,6 @@ instance Show SupergroupFullInfo where
             U.p "can_get_statistics" can_get_statistics_,
             U.p "can_set_location" can_set_location_,
             U.p "can_set_sticker_set" can_set_sticker_set_,
-            U.p "can_set_username" can_set_username_,
             U.p "can_hide_members" can_hide_members_,
             U.p "has_hidden_members" has_hidden_members_,
             U.p "can_get_members" can_get_members_,
@@ -148,7 +144,6 @@ instance T.FromJSON SupergroupFullInfo where
         can_get_statistics_ <- o A..:? "can_get_statistics"
         can_set_location_ <- o A..:? "can_set_location"
         can_set_sticker_set_ <- o A..:? "can_set_sticker_set"
-        can_set_username_ <- o A..:? "can_set_username"
         can_hide_members_ <- o A..:? "can_hide_members"
         has_hidden_members_ <- o A..:? "has_hidden_members"
         can_get_members_ <- o A..:? "can_get_members"
@@ -161,7 +156,7 @@ instance T.FromJSON SupergroupFullInfo where
         member_count_ <- o A..:? "member_count"
         description_ <- o A..:? "description"
         photo_ <- o A..:? "photo"
-        return $ SupergroupFullInfo {upgraded_from_max_message_id = upgraded_from_max_message_id_, upgraded_from_basic_group_id = upgraded_from_basic_group_id_, bot_commands = bot_commands_, invite_link = invite_link_, location = location_, sticker_set_id = sticker_set_id_, has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_, is_all_history_available = is_all_history_available_, can_toggle_aggressive_anti_spam = can_toggle_aggressive_anti_spam_, can_get_statistics = can_get_statistics_, can_set_location = can_set_location_, can_set_sticker_set = can_set_sticker_set_, can_set_username = can_set_username_, can_hide_members = can_hide_members_, has_hidden_members = has_hidden_members_, can_get_members = can_get_members_, slow_mode_delay_expires_in = slow_mode_delay_expires_in_, slow_mode_delay = slow_mode_delay_, linked_chat_id = linked_chat_id_, banned_count = banned_count_, restricted_count = restricted_count_, administrator_count = administrator_count_, member_count = member_count_, description = description_, photo = photo_}
+        return $ SupergroupFullInfo {upgraded_from_max_message_id = upgraded_from_max_message_id_, upgraded_from_basic_group_id = upgraded_from_basic_group_id_, bot_commands = bot_commands_, invite_link = invite_link_, location = location_, sticker_set_id = sticker_set_id_, has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_, is_all_history_available = is_all_history_available_, can_toggle_aggressive_anti_spam = can_toggle_aggressive_anti_spam_, can_get_statistics = can_get_statistics_, can_set_location = can_set_location_, can_set_sticker_set = can_set_sticker_set_, can_hide_members = can_hide_members_, has_hidden_members = has_hidden_members_, can_get_members = can_get_members_, slow_mode_delay_expires_in = slow_mode_delay_expires_in_, slow_mode_delay = slow_mode_delay_, linked_chat_id = linked_chat_id_, banned_count = banned_count_, restricted_count = restricted_count_, administrator_count = administrator_count_, member_count = member_count_, description = description_, photo = photo_}
   parseJSON _ = mempty
 
 instance T.ToJSON SupergroupFullInfo where
@@ -179,7 +174,6 @@ instance T.ToJSON SupergroupFullInfo where
         can_get_statistics = can_get_statistics_,
         can_set_location = can_set_location_,
         can_set_sticker_set = can_set_sticker_set_,
-        can_set_username = can_set_username_,
         can_hide_members = can_hide_members_,
         has_hidden_members = has_hidden_members_,
         can_get_members = can_get_members_,
@@ -207,7 +201,6 @@ instance T.ToJSON SupergroupFullInfo where
           "can_get_statistics" A..= can_get_statistics_,
           "can_set_location" A..= can_set_location_,
           "can_set_sticker_set" A..= can_set_sticker_set_,
-          "can_set_username" A..= can_set_username_,
           "can_hide_members" A..= can_hide_members_,
           "has_hidden_members" A..= has_hidden_members_,
           "can_get_members" A..= can_get_members_,

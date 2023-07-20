@@ -21,6 +21,8 @@ data FileType
     FileTypeNotificationSound
   | -- | The file is a photo
     FileTypePhoto
+  | -- | The file is a photo published as a story
+    FileTypePhotoStory
   | -- | The file is a profile photo
     FileTypeProfilePhoto
   | -- | The file was sent to a secret chat (the file type is not known to the server)
@@ -39,6 +41,8 @@ data FileType
     FileTypeVideo
   | -- | The file is a video note
     FileTypeVideoNote
+  | -- | The file is a video published as a story
+    FileTypeVideoStory
   | -- | The file is a voice note
     FileTypeVoiceNote
   | -- | The file is a wallpaper or a background pattern
@@ -68,6 +72,10 @@ instance Show FileType where
         []
   show FileTypePhoto =
     "FileTypePhoto"
+      ++ U.cc
+        []
+  show FileTypePhotoStory =
+    "FileTypePhotoStory"
       ++ U.cc
         []
   show FileTypeProfilePhoto =
@@ -106,6 +114,10 @@ instance Show FileType where
     "FileTypeVideoNote"
       ++ U.cc
         []
+  show FileTypeVideoStory =
+    "FileTypeVideoStory"
+      ++ U.cc
+        []
   show FileTypeVoiceNote =
     "FileTypeVoiceNote"
       ++ U.cc
@@ -126,6 +138,7 @@ instance T.FromJSON FileType where
       "fileTypeDocument" -> parseFileTypeDocument v
       "fileTypeNotificationSound" -> parseFileTypeNotificationSound v
       "fileTypePhoto" -> parseFileTypePhoto v
+      "fileTypePhotoStory" -> parseFileTypePhotoStory v
       "fileTypeProfilePhoto" -> parseFileTypeProfilePhoto v
       "fileTypeSecret" -> parseFileTypeSecret v
       "fileTypeSecretThumbnail" -> parseFileTypeSecretThumbnail v
@@ -135,6 +148,7 @@ instance T.FromJSON FileType where
       "fileTypeUnknown" -> parseFileTypeUnknown v
       "fileTypeVideo" -> parseFileTypeVideo v
       "fileTypeVideoNote" -> parseFileTypeVideoNote v
+      "fileTypeVideoStory" -> parseFileTypeVideoStory v
       "fileTypeVoiceNote" -> parseFileTypeVoiceNote v
       "fileTypeWallpaper" -> parseFileTypeWallpaper v
       _ -> mempty
@@ -156,6 +170,9 @@ instance T.FromJSON FileType where
 
       parseFileTypePhoto :: A.Value -> T.Parser FileType
       parseFileTypePhoto = A.withObject "FileTypePhoto" $ \_ -> return FileTypePhoto
+
+      parseFileTypePhotoStory :: A.Value -> T.Parser FileType
+      parseFileTypePhotoStory = A.withObject "FileTypePhotoStory" $ \_ -> return FileTypePhotoStory
 
       parseFileTypeProfilePhoto :: A.Value -> T.Parser FileType
       parseFileTypeProfilePhoto = A.withObject "FileTypeProfilePhoto" $ \_ -> return FileTypeProfilePhoto
@@ -183,6 +200,9 @@ instance T.FromJSON FileType where
 
       parseFileTypeVideoNote :: A.Value -> T.Parser FileType
       parseFileTypeVideoNote = A.withObject "FileTypeVideoNote" $ \_ -> return FileTypeVideoNote
+
+      parseFileTypeVideoStory :: A.Value -> T.Parser FileType
+      parseFileTypeVideoStory = A.withObject "FileTypeVideoStory" $ \_ -> return FileTypeVideoStory
 
       parseFileTypeVoiceNote :: A.Value -> T.Parser FileType
       parseFileTypeVoiceNote = A.withObject "FileTypeVoiceNote" $ \_ -> return FileTypeVoiceNote
@@ -215,6 +235,10 @@ instance T.ToJSON FileType where
   toJSON FileTypePhoto =
     A.object
       [ "@type" A..= T.String "fileTypePhoto"
+      ]
+  toJSON FileTypePhotoStory =
+    A.object
+      [ "@type" A..= T.String "fileTypePhotoStory"
       ]
   toJSON FileTypeProfilePhoto =
     A.object
@@ -251,6 +275,10 @@ instance T.ToJSON FileType where
   toJSON FileTypeVideoNote =
     A.object
       [ "@type" A..= T.String "fileTypeVideoNote"
+      ]
+  toJSON FileTypeVideoStory =
+    A.object
+      [ "@type" A..= T.String "fileTypeVideoStory"
       ]
   toJSON FileTypeVoiceNote =
     A.object

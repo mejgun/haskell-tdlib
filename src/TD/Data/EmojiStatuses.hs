@@ -5,25 +5,24 @@ module TD.Data.EmojiStatuses where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified Utils as U
 
 -- |
-data EmojiStatuses = -- | Contains a list of emoji statuses @emoji_statuses The list of emoji statuses
+data EmojiStatuses = -- | Contains a list of custom emoji identifiers, which can be set as emoji statuses @custom_emoji_ids The list of custom emoji identifiers
   EmojiStatuses
   { -- |
-    emoji_statuses :: Maybe [EmojiStatus.EmojiStatus]
+    custom_emoji_ids :: Maybe [Int]
   }
   deriving (Eq)
 
 instance Show EmojiStatuses where
   show
     EmojiStatuses
-      { emoji_statuses = emoji_statuses_
+      { custom_emoji_ids = custom_emoji_ids_
       } =
       "EmojiStatuses"
         ++ U.cc
-          [ U.p "emoji_statuses" emoji_statuses_
+          [ U.p "custom_emoji_ids" custom_emoji_ids_
           ]
 
 instance T.FromJSON EmojiStatuses where
@@ -36,16 +35,16 @@ instance T.FromJSON EmojiStatuses where
     where
       parseEmojiStatuses :: A.Value -> T.Parser EmojiStatuses
       parseEmojiStatuses = A.withObject "EmojiStatuses" $ \o -> do
-        emoji_statuses_ <- o A..:? "emoji_statuses"
-        return $ EmojiStatuses {emoji_statuses = emoji_statuses_}
+        custom_emoji_ids_ <- U.rl <$> (o A..:? "custom_emoji_ids" :: T.Parser (Maybe [String])) :: T.Parser (Maybe [Int])
+        return $ EmojiStatuses {custom_emoji_ids = custom_emoji_ids_}
   parseJSON _ = mempty
 
 instance T.ToJSON EmojiStatuses where
   toJSON
     EmojiStatuses
-      { emoji_statuses = emoji_statuses_
+      { custom_emoji_ids = custom_emoji_ids_
       } =
       A.object
         [ "@type" A..= T.String "emojiStatuses",
-          "emoji_statuses" A..= emoji_statuses_
+          "custom_emoji_ids" A..= U.toLS custom_emoji_ids_
         ]

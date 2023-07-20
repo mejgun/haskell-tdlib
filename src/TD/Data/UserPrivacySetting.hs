@@ -17,6 +17,8 @@ data UserPrivacySetting
     UserPrivacySettingShowLinkInForwardedMessages
   | -- | A privacy setting for managing whether the user's phone number is visible
     UserPrivacySettingShowPhoneNumber
+  | -- | A privacy setting for managing whether the user's bio is visible
+    UserPrivacySettingShowBio
   | -- | A privacy setting for managing whether the user can be invited to chats
     UserPrivacySettingAllowChatInvites
   | -- | A privacy setting for managing whether the user can be called
@@ -44,6 +46,10 @@ instance Show UserPrivacySetting where
         []
   show UserPrivacySettingShowPhoneNumber =
     "UserPrivacySettingShowPhoneNumber"
+      ++ U.cc
+        []
+  show UserPrivacySettingShowBio =
+    "UserPrivacySettingShowBio"
       ++ U.cc
         []
   show UserPrivacySettingAllowChatInvites =
@@ -76,6 +82,7 @@ instance T.FromJSON UserPrivacySetting where
       "userPrivacySettingShowProfilePhoto" -> parseUserPrivacySettingShowProfilePhoto v
       "userPrivacySettingShowLinkInForwardedMessages" -> parseUserPrivacySettingShowLinkInForwardedMessages v
       "userPrivacySettingShowPhoneNumber" -> parseUserPrivacySettingShowPhoneNumber v
+      "userPrivacySettingShowBio" -> parseUserPrivacySettingShowBio v
       "userPrivacySettingAllowChatInvites" -> parseUserPrivacySettingAllowChatInvites v
       "userPrivacySettingAllowCalls" -> parseUserPrivacySettingAllowCalls v
       "userPrivacySettingAllowPeerToPeerCalls" -> parseUserPrivacySettingAllowPeerToPeerCalls v
@@ -94,6 +101,9 @@ instance T.FromJSON UserPrivacySetting where
 
       parseUserPrivacySettingShowPhoneNumber :: A.Value -> T.Parser UserPrivacySetting
       parseUserPrivacySettingShowPhoneNumber = A.withObject "UserPrivacySettingShowPhoneNumber" $ \_ -> return UserPrivacySettingShowPhoneNumber
+
+      parseUserPrivacySettingShowBio :: A.Value -> T.Parser UserPrivacySetting
+      parseUserPrivacySettingShowBio = A.withObject "UserPrivacySettingShowBio" $ \_ -> return UserPrivacySettingShowBio
 
       parseUserPrivacySettingAllowChatInvites :: A.Value -> T.Parser UserPrivacySetting
       parseUserPrivacySettingAllowChatInvites = A.withObject "UserPrivacySettingAllowChatInvites" $ \_ -> return UserPrivacySettingAllowChatInvites
@@ -127,6 +137,10 @@ instance T.ToJSON UserPrivacySetting where
   toJSON UserPrivacySettingShowPhoneNumber =
     A.object
       [ "@type" A..= T.String "userPrivacySettingShowPhoneNumber"
+      ]
+  toJSON UserPrivacySettingShowBio =
+    A.object
+      [ "@type" A..= T.String "userPrivacySettingShowBio"
       ]
   toJSON UserPrivacySettingAllowChatInvites =
     A.object

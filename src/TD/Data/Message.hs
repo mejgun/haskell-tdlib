@@ -8,6 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.MessageForwardInfo as MessageForwardInfo
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.MessageSendingState as MessageSendingState
@@ -38,10 +39,8 @@ data Message = -- | Describes a message
     self_destruct_time :: Maybe Int,
     -- | If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     message_thread_id :: Maybe Int,
-    -- | If non-zero, the identifier of the message this message is replying to; can be the identifier of a deleted message
-    reply_to_message_id :: Maybe Int,
-    -- | If non-zero, the identifier of the chat to which the replied message belongs; Currently, only messages in the Replies chat can have different reply_in_chat_id and chat_id
-    reply_in_chat_id :: Maybe Int,
+    -- | Information about the message or the story this message is replying to; may be null if none
+    reply_to :: Maybe MessageReplyTo.MessageReplyTo,
     -- | Information about unread reactions added to the message
     unread_reactions :: Maybe [UnreadReaction.UnreadReaction],
     -- | Information about interactions with the message; may be null
@@ -112,8 +111,7 @@ instance Show Message where
         self_destruct_in = self_destruct_in_,
         self_destruct_time = self_destruct_time_,
         message_thread_id = message_thread_id_,
-        reply_to_message_id = reply_to_message_id_,
-        reply_in_chat_id = reply_in_chat_id_,
+        reply_to = reply_to_,
         unread_reactions = unread_reactions_,
         interaction_info = interaction_info_,
         forward_info = forward_info_,
@@ -154,8 +152,7 @@ instance Show Message where
             U.p "self_destruct_in" self_destruct_in_,
             U.p "self_destruct_time" self_destruct_time_,
             U.p "message_thread_id" message_thread_id_,
-            U.p "reply_to_message_id" reply_to_message_id_,
-            U.p "reply_in_chat_id" reply_in_chat_id_,
+            U.p "reply_to" reply_to_,
             U.p "unread_reactions" unread_reactions_,
             U.p "interaction_info" interaction_info_,
             U.p "forward_info" forward_info_,
@@ -205,8 +202,7 @@ instance T.FromJSON Message where
         self_destruct_in_ <- o A..:? "self_destruct_in"
         self_destruct_time_ <- o A..:? "self_destruct_time"
         message_thread_id_ <- o A..:? "message_thread_id"
-        reply_to_message_id_ <- o A..:? "reply_to_message_id"
-        reply_in_chat_id_ <- o A..:? "reply_in_chat_id"
+        reply_to_ <- o A..:? "reply_to"
         unread_reactions_ <- o A..:? "unread_reactions"
         interaction_info_ <- o A..:? "interaction_info"
         forward_info_ <- o A..:? "forward_info"
@@ -234,7 +230,7 @@ instance T.FromJSON Message where
         chat_id_ <- o A..:? "chat_id"
         sender_id_ <- o A..:? "sender_id"
         _id_ <- o A..:? "id"
-        return $ Message {reply_markup = reply_markup_, content = content_, restriction_reason = restriction_reason_, media_album_id = media_album_id_, author_signature = author_signature_, via_bot_user_id = via_bot_user_id_, auto_delete_in = auto_delete_in_, self_destruct_in = self_destruct_in_, self_destruct_time = self_destruct_time_, message_thread_id = message_thread_id_, reply_to_message_id = reply_to_message_id_, reply_in_chat_id = reply_in_chat_id_, unread_reactions = unread_reactions_, interaction_info = interaction_info_, forward_info = forward_info_, edit_date = edit_date_, date = date_, contains_unread_mention = contains_unread_mention_, is_topic_message = is_topic_message_, is_channel_post = is_channel_post_, has_timestamped_media = has_timestamped_media_, can_report_reactions = can_report_reactions_, can_get_media_timestamp_links = can_get_media_timestamp_links_, can_get_viewers = can_get_viewers_, can_get_message_thread = can_get_message_thread_, can_get_statistics = can_get_statistics_, can_get_added_reactions = can_get_added_reactions_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, can_be_saved = can_be_saved_, can_be_forwarded = can_be_forwarded_, can_be_edited = can_be_edited_, is_pinned = is_pinned_, is_outgoing = is_outgoing_, scheduling_state = scheduling_state_, sending_state = sending_state_, chat_id = chat_id_, sender_id = sender_id_, _id = _id_}
+        return $ Message {reply_markup = reply_markup_, content = content_, restriction_reason = restriction_reason_, media_album_id = media_album_id_, author_signature = author_signature_, via_bot_user_id = via_bot_user_id_, auto_delete_in = auto_delete_in_, self_destruct_in = self_destruct_in_, self_destruct_time = self_destruct_time_, message_thread_id = message_thread_id_, reply_to = reply_to_, unread_reactions = unread_reactions_, interaction_info = interaction_info_, forward_info = forward_info_, edit_date = edit_date_, date = date_, contains_unread_mention = contains_unread_mention_, is_topic_message = is_topic_message_, is_channel_post = is_channel_post_, has_timestamped_media = has_timestamped_media_, can_report_reactions = can_report_reactions_, can_get_media_timestamp_links = can_get_media_timestamp_links_, can_get_viewers = can_get_viewers_, can_get_message_thread = can_get_message_thread_, can_get_statistics = can_get_statistics_, can_get_added_reactions = can_get_added_reactions_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, can_be_saved = can_be_saved_, can_be_forwarded = can_be_forwarded_, can_be_edited = can_be_edited_, is_pinned = is_pinned_, is_outgoing = is_outgoing_, scheduling_state = scheduling_state_, sending_state = sending_state_, chat_id = chat_id_, sender_id = sender_id_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Message where
@@ -250,8 +246,7 @@ instance T.ToJSON Message where
         self_destruct_in = self_destruct_in_,
         self_destruct_time = self_destruct_time_,
         message_thread_id = message_thread_id_,
-        reply_to_message_id = reply_to_message_id_,
-        reply_in_chat_id = reply_in_chat_id_,
+        reply_to = reply_to_,
         unread_reactions = unread_reactions_,
         interaction_info = interaction_info_,
         forward_info = forward_info_,
@@ -292,8 +287,7 @@ instance T.ToJSON Message where
           "self_destruct_in" A..= self_destruct_in_,
           "self_destruct_time" A..= self_destruct_time_,
           "message_thread_id" A..= message_thread_id_,
-          "reply_to_message_id" A..= reply_to_message_id_,
-          "reply_in_chat_id" A..= reply_in_chat_id_,
+          "reply_to" A..= reply_to_,
           "unread_reactions" A..= unread_reactions_,
           "interaction_info" A..= interaction_info_,
           "forward_info" A..= forward_info_,

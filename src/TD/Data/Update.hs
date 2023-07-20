@@ -17,6 +17,7 @@ import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatAction as ChatAction
 import qualified TD.Data.ChatActionBar as ChatActionBar
+import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
@@ -61,6 +62,8 @@ import qualified TD.Data.SecretChat as SecretChat
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.StickerSet as StickerSet
 import qualified TD.Data.StickerType as StickerType
+import qualified TD.Data.Story as Story
+import qualified TD.Data.StoryList as StoryList
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
@@ -632,6 +635,30 @@ data Update
         -- | The chat list with changed number of unread messages
         chat_list :: Maybe ChatList.ChatList
       }
+  | -- | A story was changed @story The new information about the story
+    UpdateStory
+      { -- |
+        story :: Maybe Story.Story
+      }
+  | -- | A story became inaccessible @story_sender_chat_id Identifier of the chat that posted the story @story_id Story identifier
+    UpdateStoryDeleted
+      { -- |
+        story_id :: Maybe Int,
+        -- |
+        story_sender_chat_id :: Maybe Int
+      }
+  | -- | The list of active stories posted by a specific chat has changed
+    UpdateChatActiveStories
+      { -- | The new list of active stories
+        active_stories :: Maybe ChatActiveStories.ChatActiveStories
+      }
+  | -- | Number of chats in a story list has changed @story_list The story list @chat_count Approximate total number of chats with active stories in the list
+    UpdateStoryListChatCount
+      { -- |
+        chat_count :: Maybe Int,
+        -- |
+        story_list :: Maybe StoryList.StoryList
+      }
   | -- | An option changed its value @name The option name @value The new option value
     UpdateOption
       { -- |
@@ -883,13 +910,13 @@ data Update
       { -- |
         poll :: Maybe Poll.Poll
       }
-  | -- | A user changed the answer to a poll; for bots only @poll_id Unique poll identifier @user_id The user, who changed the answer to the poll @option_ids 0-based identifiers of answer options, chosen by the user
+  | -- | A user changed the answer to a poll; for bots only
     UpdatePollAnswer
-      { -- |
+      { -- | 0-based identifiers of answer options, chosen by the user
         option_ids :: Maybe [Int],
-        -- |
-        user_id :: Maybe Int,
-        -- |
+        -- | Identifier of the message sender that changed the answer to the poll
+        voter_id :: Maybe MessageSender.MessageSender,
+        -- | Unique poll identifier
         poll_id :: Maybe Int
       }
   | -- | User rights changed in a chat; for bots only
@@ -1696,6 +1723,42 @@ instance Show Update where
             U.p "chat_list" chat_list_
           ]
   show
+    UpdateStory
+      { story = story_
+      } =
+      "UpdateStory"
+        ++ U.cc
+          [ U.p "story" story_
+          ]
+  show
+    UpdateStoryDeleted
+      { story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_
+      } =
+      "UpdateStoryDeleted"
+        ++ U.cc
+          [ U.p "story_id" story_id_,
+            U.p "story_sender_chat_id" story_sender_chat_id_
+          ]
+  show
+    UpdateChatActiveStories
+      { active_stories = active_stories_
+      } =
+      "UpdateChatActiveStories"
+        ++ U.cc
+          [ U.p "active_stories" active_stories_
+          ]
+  show
+    UpdateStoryListChatCount
+      { chat_count = chat_count_,
+        story_list = story_list_
+      } =
+      "UpdateStoryListChatCount"
+        ++ U.cc
+          [ U.p "chat_count" chat_count_,
+            U.p "story_list" story_list_
+          ]
+  show
     UpdateOption
       { value = value_,
         name = name_
@@ -2048,13 +2111,13 @@ instance Show Update where
   show
     UpdatePollAnswer
       { option_ids = option_ids_,
-        user_id = user_id_,
+        voter_id = voter_id_,
         poll_id = poll_id_
       } =
       "UpdatePollAnswer"
         ++ U.cc
           [ U.p "option_ids" option_ids_,
-            U.p "user_id" user_id_,
+            U.p "voter_id" voter_id_,
             U.p "poll_id" poll_id_
           ]
   show
@@ -2170,6 +2233,10 @@ instance T.FromJSON Update where
       "updateUserPrivacySettingRules" -> parseUpdateUserPrivacySettingRules v
       "updateUnreadMessageCount" -> parseUpdateUnreadMessageCount v
       "updateUnreadChatCount" -> parseUpdateUnreadChatCount v
+      "updateStory" -> parseUpdateStory v
+      "updateStoryDeleted" -> parseUpdateStoryDeleted v
+      "updateChatActiveStories" -> parseUpdateChatActiveStories v
+      "updateStoryListChatCount" -> parseUpdateStoryListChatCount v
       "updateOption" -> parseUpdateOption v
       "updateStickerSet" -> parseUpdateStickerSet v
       "updateInstalledStickerSets" -> parseUpdateInstalledStickerSets v
@@ -2667,6 +2734,28 @@ instance T.FromJSON Update where
         chat_list_ <- o A..:? "chat_list"
         return $ UpdateUnreadChatCount {marked_as_unread_unmuted_count = marked_as_unread_unmuted_count_, marked_as_unread_count = marked_as_unread_count_, unread_unmuted_count = unread_unmuted_count_, unread_count = unread_count_, total_count = total_count_, chat_list = chat_list_}
 
+      parseUpdateStory :: A.Value -> T.Parser Update
+      parseUpdateStory = A.withObject "UpdateStory" $ \o -> do
+        story_ <- o A..:? "story"
+        return $ UpdateStory {story = story_}
+
+      parseUpdateStoryDeleted :: A.Value -> T.Parser Update
+      parseUpdateStoryDeleted = A.withObject "UpdateStoryDeleted" $ \o -> do
+        story_id_ <- o A..:? "story_id"
+        story_sender_chat_id_ <- o A..:? "story_sender_chat_id"
+        return $ UpdateStoryDeleted {story_id = story_id_, story_sender_chat_id = story_sender_chat_id_}
+
+      parseUpdateChatActiveStories :: A.Value -> T.Parser Update
+      parseUpdateChatActiveStories = A.withObject "UpdateChatActiveStories" $ \o -> do
+        active_stories_ <- o A..:? "active_stories"
+        return $ UpdateChatActiveStories {active_stories = active_stories_}
+
+      parseUpdateStoryListChatCount :: A.Value -> T.Parser Update
+      parseUpdateStoryListChatCount = A.withObject "UpdateStoryListChatCount" $ \o -> do
+        chat_count_ <- o A..:? "chat_count"
+        story_list_ <- o A..:? "story_list"
+        return $ UpdateStoryListChatCount {chat_count = chat_count_, story_list = story_list_}
+
       parseUpdateOption :: A.Value -> T.Parser Update
       parseUpdateOption = A.withObject "UpdateOption" $ \o -> do
         value_ <- o A..:? "value"
@@ -2878,9 +2967,9 @@ instance T.FromJSON Update where
       parseUpdatePollAnswer :: A.Value -> T.Parser Update
       parseUpdatePollAnswer = A.withObject "UpdatePollAnswer" $ \o -> do
         option_ids_ <- o A..:? "option_ids"
-        user_id_ <- o A..:? "user_id"
+        voter_id_ <- o A..:? "voter_id"
         poll_id_ <- U.rm <$> (o A..:? "poll_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ UpdatePollAnswer {option_ids = option_ids_, user_id = user_id_, poll_id = poll_id_}
+        return $ UpdatePollAnswer {option_ids = option_ids_, voter_id = voter_id_, poll_id = poll_id_}
 
       parseUpdateChatMember :: A.Value -> T.Parser Update
       parseUpdateChatMember = A.withObject "UpdateChatMember" $ \o -> do
@@ -3676,6 +3765,42 @@ instance T.ToJSON Update where
           "chat_list" A..= chat_list_
         ]
   toJSON
+    UpdateStory
+      { story = story_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateStory",
+          "story" A..= story_
+        ]
+  toJSON
+    UpdateStoryDeleted
+      { story_id = story_id_,
+        story_sender_chat_id = story_sender_chat_id_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateStoryDeleted",
+          "story_id" A..= story_id_,
+          "story_sender_chat_id" A..= story_sender_chat_id_
+        ]
+  toJSON
+    UpdateChatActiveStories
+      { active_stories = active_stories_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateChatActiveStories",
+          "active_stories" A..= active_stories_
+        ]
+  toJSON
+    UpdateStoryListChatCount
+      { chat_count = chat_count_,
+        story_list = story_list_
+      } =
+      A.object
+        [ "@type" A..= T.String "updateStoryListChatCount",
+          "chat_count" A..= chat_count_,
+          "story_list" A..= story_list_
+        ]
+  toJSON
     UpdateOption
       { value = value_,
         name = name_
@@ -4028,13 +4153,13 @@ instance T.ToJSON Update where
   toJSON
     UpdatePollAnswer
       { option_ids = option_ids_,
-        user_id = user_id_,
+        voter_id = voter_id_,
         poll_id = poll_id_
       } =
       A.object
         [ "@type" A..= T.String "updatePollAnswer",
           "option_ids" A..= option_ids_,
-          "user_id" A..= user_id_,
+          "voter_id" A..= voter_id_,
           "poll_id" A..= U.toS poll_id_
         ]
   toJSON

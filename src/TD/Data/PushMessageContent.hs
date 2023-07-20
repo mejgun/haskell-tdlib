@@ -115,6 +115,11 @@ data PushMessageContent
         -- | Message content; may be null
         sticker :: Maybe Sticker.Sticker
       }
+  | -- | A message with a story @is_pinned True, if the message is a pinned message with the specified content
+    PushMessageContentStory
+      { -- |
+        is_pinned :: Maybe Bool
+      }
   | -- | A text message @text Message text @is_pinned True, if the message is a pinned message with the specified content
     PushMessageContentText
       { -- |
@@ -355,6 +360,14 @@ instance Show PushMessageContent where
             U.p "sticker" sticker_
           ]
   show
+    PushMessageContentStory
+      { is_pinned = is_pinned_
+      } =
+      "PushMessageContentStory"
+        ++ U.cc
+          [ U.p "is_pinned" is_pinned_
+          ]
+  show
     PushMessageContentText
       { is_pinned = is_pinned_,
         text = text_
@@ -518,6 +531,7 @@ instance T.FromJSON PushMessageContent where
       "pushMessageContentPoll" -> parsePushMessageContentPoll v
       "pushMessageContentScreenshotTaken" -> parsePushMessageContentScreenshotTaken v
       "pushMessageContentSticker" -> parsePushMessageContentSticker v
+      "pushMessageContentStory" -> parsePushMessageContentStory v
       "pushMessageContentText" -> parsePushMessageContentText v
       "pushMessageContentVideo" -> parsePushMessageContentVideo v
       "pushMessageContentVideoNote" -> parsePushMessageContentVideoNote v
@@ -619,6 +633,11 @@ instance T.FromJSON PushMessageContent where
         emoji_ <- o A..:? "emoji"
         sticker_ <- o A..:? "sticker"
         return $ PushMessageContentSticker {is_pinned = is_pinned_, emoji = emoji_, sticker = sticker_}
+
+      parsePushMessageContentStory :: A.Value -> T.Parser PushMessageContent
+      parsePushMessageContentStory = A.withObject "PushMessageContentStory" $ \o -> do
+        is_pinned_ <- o A..:? "is_pinned"
+        return $ PushMessageContentStory {is_pinned = is_pinned_}
 
       parsePushMessageContentText :: A.Value -> T.Parser PushMessageContent
       parsePushMessageContentText = A.withObject "PushMessageContentText" $ \o -> do
@@ -848,6 +867,14 @@ instance T.ToJSON PushMessageContent where
           "is_pinned" A..= is_pinned_,
           "emoji" A..= emoji_,
           "sticker" A..= sticker_
+        ]
+  toJSON
+    PushMessageContentStory
+      { is_pinned = is_pinned_
+      } =
+      A.object
+        [ "@type" A..= T.String "pushMessageContentStory",
+          "is_pinned" A..= is_pinned_
         ]
   toJSON
     PushMessageContentText

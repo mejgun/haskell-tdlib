@@ -25,6 +25,8 @@ data MessageSource
     MessageSourceChatEventLog
   | -- | The message is from a notification
     MessageSourceNotification
+  | -- | The message was screenshotted; the source must be used only if the message content was visible during the screenshot
+    MessageSourceScreenshot
   | -- | The message is from some other source
     MessageSourceOther
   deriving (Eq)
@@ -62,6 +64,10 @@ instance Show MessageSource where
     "MessageSourceNotification"
       ++ U.cc
         []
+  show MessageSourceScreenshot =
+    "MessageSourceScreenshot"
+      ++ U.cc
+        []
   show MessageSourceOther =
     "MessageSourceOther"
       ++ U.cc
@@ -80,6 +86,7 @@ instance T.FromJSON MessageSource where
       "messageSourceSearch" -> parseMessageSourceSearch v
       "messageSourceChatEventLog" -> parseMessageSourceChatEventLog v
       "messageSourceNotification" -> parseMessageSourceNotification v
+      "messageSourceScreenshot" -> parseMessageSourceScreenshot v
       "messageSourceOther" -> parseMessageSourceOther v
       _ -> mempty
     where
@@ -106,6 +113,9 @@ instance T.FromJSON MessageSource where
 
       parseMessageSourceNotification :: A.Value -> T.Parser MessageSource
       parseMessageSourceNotification = A.withObject "MessageSourceNotification" $ \_ -> return MessageSourceNotification
+
+      parseMessageSourceScreenshot :: A.Value -> T.Parser MessageSource
+      parseMessageSourceScreenshot = A.withObject "MessageSourceScreenshot" $ \_ -> return MessageSourceScreenshot
 
       parseMessageSourceOther :: A.Value -> T.Parser MessageSource
       parseMessageSourceOther = A.withObject "MessageSourceOther" $ \_ -> return MessageSourceOther
@@ -143,6 +153,10 @@ instance T.ToJSON MessageSource where
   toJSON MessageSourceNotification =
     A.object
       [ "@type" A..= T.String "messageSourceNotification"
+      ]
+  toJSON MessageSourceScreenshot =
+    A.object
+      [ "@type" A..= T.String "messageSourceScreenshot"
       ]
   toJSON MessageSourceOther =
     A.object

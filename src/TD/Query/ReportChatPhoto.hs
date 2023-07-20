@@ -5,7 +5,7 @@ module TD.Query.ReportChatPhoto where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Data.ChatReportReason as ChatReportReason
+import qualified TD.Data.ReportReason as ReportReason
 import qualified Utils as U
 
 -- |
@@ -14,7 +14,7 @@ data ReportChatPhoto = ReportChatPhoto
   { -- | Additional report details; 0-1024 characters
     text :: Maybe String,
     -- | The reason for reporting the chat photo
-    reason :: Maybe ChatReportReason.ChatReportReason,
+    reason :: Maybe ReportReason.ReportReason,
     -- | Identifier of the photo to report. Only full photos from chatPhoto can be reported
     file_id :: Maybe Int,
     -- | Chat identifier

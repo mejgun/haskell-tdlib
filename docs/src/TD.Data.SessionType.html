@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="%24con2tag_Bj2nyl3Lo0QAg78XH5Lmui"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="%24con2tag_2iirBYRhjW15kKbx0CudOA"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-2"></span><span>
 </span><span id="line-3"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">TD.Data.SessionType</span><span> </span><span class="hs-keyword">where</span><span>
@@ -43,7 +43,7 @@
 </span><span id="line-43"></span><span>    </span><span id="SessionTypeWindows"><span class="annot"><a href="TD.Data.SessionType.html#SessionTypeWindows"><span class="hs-identifier hs-var">SessionTypeWindows</span></a></span></span><span>
 </span><span id="line-44"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The session is running on an Xbox console</span><span>
 </span><span id="line-45"></span><span>    </span><span id="SessionTypeXbox"><span class="annot"><a href="TD.Data.SessionType.html#SessionTypeXbox"><span class="hs-identifier hs-var">SessionTypeXbox</span></a></span></span><span>
-</span><span id="line-46"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679451543"><span id="local-6989586621679451545"><span class="annot"><span class="annottext">SessionType -&gt; SessionType -&gt; Bool
+</span><span id="line-46"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679465487"><span id="local-6989586621679465489"><span class="annot"><span class="annottext">SessionType -&gt; SessionType -&gt; Bool
 (SessionType -&gt; SessionType -&gt; Bool)
 -&gt; (SessionType -&gt; SessionType -&gt; Bool) -&gt; Eq SessionType
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -53,8 +53,8 @@ $c/= :: SessionType -&gt; SessionType -&gt; Bool
 $c== :: SessionType -&gt; SessionType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679451537"><span id="local-6989586621679451540"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>  </span><span id="local-6989586621679451535"><span class="annot"><span class="annottext">show :: SessionType -&gt; String
+</span><span id="line-48"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465481"><span id="local-6989586621679465484"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-49"></span><span>  </span><span id="local-6989586621679465479"><span class="annot"><span class="annottext">show :: SessionType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeAndroid"><span class="hs-identifier hs-var">SessionTypeAndroid</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-50"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -209,96 +209,96 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-116"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-117"></span><span>
-</span><span id="line-118"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679451530"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-119"></span><span>  </span><span id="local-6989586621679451528"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SessionType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679451526"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679451524"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679451524"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-120"></span><span>    </span><span id="local-6989586621679451523"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679451523"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679451524"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-118"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465474"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-119"></span><span>  </span><span id="local-6989586621679465472"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SessionType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679465470"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679465468"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465468"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-120"></span><span>    </span><span id="local-6989586621679465467"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679465467"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465468"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-121"></span><span>
 </span><span id="line-122"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679451523"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679465467"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-123"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeAndroid&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451521"><span class="hs-identifier hs-var">parseSessionTypeAndroid</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465465"><span class="hs-identifier hs-var">parseSessionTypeAndroid</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-124"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeApple&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451520"><span class="hs-identifier hs-var">parseSessionTypeApple</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465464"><span class="hs-identifier hs-var">parseSessionTypeApple</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-125"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeBrave&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451519"><span class="hs-identifier hs-var">parseSessionTypeBrave</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465463"><span class="hs-identifier hs-var">parseSessionTypeBrave</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-126"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeChrome&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451518"><span class="hs-identifier hs-var">parseSessionTypeChrome</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465462"><span class="hs-identifier hs-var">parseSessionTypeChrome</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-127"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeEdge&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451517"><span class="hs-identifier hs-var">parseSessionTypeEdge</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465461"><span class="hs-identifier hs-var">parseSessionTypeEdge</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-128"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeFirefox&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451516"><span class="hs-identifier hs-var">parseSessionTypeFirefox</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465460"><span class="hs-identifier hs-var">parseSessionTypeFirefox</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-129"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeIpad&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451515"><span class="hs-identifier hs-var">parseSessionTypeIpad</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465459"><span class="hs-identifier hs-var">parseSessionTypeIpad</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-130"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeIphone&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451514"><span class="hs-identifier hs-var">parseSessionTypeIphone</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465458"><span class="hs-identifier hs-var">parseSessionTypeIphone</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-131"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeLinux&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451513"><span class="hs-identifier hs-var">parseSessionTypeLinux</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465457"><span class="hs-identifier hs-var">parseSessionTypeLinux</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-132"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeMac&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451512"><span class="hs-identifier hs-var">parseSessionTypeMac</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465456"><span class="hs-identifier hs-var">parseSessionTypeMac</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-133"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeOpera&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451511"><span class="hs-identifier hs-var">parseSessionTypeOpera</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465455"><span class="hs-identifier hs-var">parseSessionTypeOpera</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-134"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeSafari&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451510"><span class="hs-identifier hs-var">parseSessionTypeSafari</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465454"><span class="hs-identifier hs-var">parseSessionTypeSafari</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-135"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeUbuntu&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451509"><span class="hs-identifier hs-var">parseSessionTypeUbuntu</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465453"><span class="hs-identifier hs-var">parseSessionTypeUbuntu</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-136"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeUnknown&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451508"><span class="hs-identifier hs-var">parseSessionTypeUnknown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465452"><span class="hs-identifier hs-var">parseSessionTypeUnknown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-137"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeVivaldi&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451507"><span class="hs-identifier hs-var">parseSessionTypeVivaldi</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465451"><span class="hs-identifier hs-var">parseSessionTypeVivaldi</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-138"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeWindows&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451506"><span class="hs-identifier hs-var">parseSessionTypeWindows</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465450"><span class="hs-identifier hs-var">parseSessionTypeWindows</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-139"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sessionTypeXbox&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451505"><span class="hs-identifier hs-var">parseSessionTypeXbox</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679451526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679465449"><span class="hs-identifier hs-var">parseSessionTypeXbox</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465470"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-140"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SessionType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-141"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-142"></span><span>      </span><span class="annot"><a href="#local-6989586621679451521"><span class="hs-identifier hs-type">parseSessionTypeAndroid</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-143"></span><span>      </span><span id="local-6989586621679451521"><span class="annot"><span class="annottext">parseSessionTypeAndroid :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451521"><span class="hs-identifier hs-var hs-var">parseSessionTypeAndroid</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-142"></span><span>      </span><span class="annot"><a href="#local-6989586621679465465"><span class="hs-identifier hs-type">parseSessionTypeAndroid</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-143"></span><span>      </span><span id="local-6989586621679465465"><span class="annot"><span class="annottext">parseSessionTypeAndroid :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465465"><span class="hs-identifier hs-var hs-var">parseSessionTypeAndroid</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -311,9 +311,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeAndroid"><span class="hs-identifier hs-var">SessionTypeAndroid</span></a></span><span>
 </span><span id="line-144"></span><span>
-</span><span id="line-145"></span><span>      </span><span class="annot"><a href="#local-6989586621679451520"><span class="hs-identifier hs-type">parseSessionTypeApple</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-146"></span><span>      </span><span id="local-6989586621679451520"><span class="annot"><span class="annottext">parseSessionTypeApple :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451520"><span class="hs-identifier hs-var hs-var">parseSessionTypeApple</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-145"></span><span>      </span><span class="annot"><a href="#local-6989586621679465464"><span class="hs-identifier hs-type">parseSessionTypeApple</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-146"></span><span>      </span><span id="local-6989586621679465464"><span class="annot"><span class="annottext">parseSessionTypeApple :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465464"><span class="hs-identifier hs-var hs-var">parseSessionTypeApple</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -326,9 +326,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeApple"><span class="hs-identifier hs-var">SessionTypeApple</span></a></span><span>
 </span><span id="line-147"></span><span>
-</span><span id="line-148"></span><span>      </span><span class="annot"><a href="#local-6989586621679451519"><span class="hs-identifier hs-type">parseSessionTypeBrave</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-149"></span><span>      </span><span id="local-6989586621679451519"><span class="annot"><span class="annottext">parseSessionTypeBrave :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451519"><span class="hs-identifier hs-var hs-var">parseSessionTypeBrave</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-148"></span><span>      </span><span class="annot"><a href="#local-6989586621679465463"><span class="hs-identifier hs-type">parseSessionTypeBrave</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-149"></span><span>      </span><span id="local-6989586621679465463"><span class="annot"><span class="annottext">parseSessionTypeBrave :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465463"><span class="hs-identifier hs-var hs-var">parseSessionTypeBrave</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -341,9 +341,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeBrave"><span class="hs-identifier hs-var">SessionTypeBrave</span></a></span><span>
 </span><span id="line-150"></span><span>
-</span><span id="line-151"></span><span>      </span><span class="annot"><a href="#local-6989586621679451518"><span class="hs-identifier hs-type">parseSessionTypeChrome</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-152"></span><span>      </span><span id="local-6989586621679451518"><span class="annot"><span class="annottext">parseSessionTypeChrome :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451518"><span class="hs-identifier hs-var hs-var">parseSessionTypeChrome</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-151"></span><span>      </span><span class="annot"><a href="#local-6989586621679465462"><span class="hs-identifier hs-type">parseSessionTypeChrome</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-152"></span><span>      </span><span id="local-6989586621679465462"><span class="annot"><span class="annottext">parseSessionTypeChrome :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465462"><span class="hs-identifier hs-var hs-var">parseSessionTypeChrome</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -356,9 +356,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeChrome"><span class="hs-identifier hs-var">SessionTypeChrome</span></a></span><span>
 </span><span id="line-153"></span><span>
-</span><span id="line-154"></span><span>      </span><span class="annot"><a href="#local-6989586621679451517"><span class="hs-identifier hs-type">parseSessionTypeEdge</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-155"></span><span>      </span><span id="local-6989586621679451517"><span class="annot"><span class="annottext">parseSessionTypeEdge :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451517"><span class="hs-identifier hs-var hs-var">parseSessionTypeEdge</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-154"></span><span>      </span><span class="annot"><a href="#local-6989586621679465461"><span class="hs-identifier hs-type">parseSessionTypeEdge</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-155"></span><span>      </span><span id="local-6989586621679465461"><span class="annot"><span class="annottext">parseSessionTypeEdge :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465461"><span class="hs-identifier hs-var hs-var">parseSessionTypeEdge</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -371,9 +371,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeEdge"><span class="hs-identifier hs-var">SessionTypeEdge</span></a></span><span>
 </span><span id="line-156"></span><span>
-</span><span id="line-157"></span><span>      </span><span class="annot"><a href="#local-6989586621679451516"><span class="hs-identifier hs-type">parseSessionTypeFirefox</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-158"></span><span>      </span><span id="local-6989586621679451516"><span class="annot"><span class="annottext">parseSessionTypeFirefox :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451516"><span class="hs-identifier hs-var hs-var">parseSessionTypeFirefox</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-157"></span><span>      </span><span class="annot"><a href="#local-6989586621679465460"><span class="hs-identifier hs-type">parseSessionTypeFirefox</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-158"></span><span>      </span><span id="local-6989586621679465460"><span class="annot"><span class="annottext">parseSessionTypeFirefox :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465460"><span class="hs-identifier hs-var hs-var">parseSessionTypeFirefox</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -386,9 +386,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeFirefox"><span class="hs-identifier hs-var">SessionTypeFirefox</span></a></span><span>
 </span><span id="line-159"></span><span>
-</span><span id="line-160"></span><span>      </span><span class="annot"><a href="#local-6989586621679451515"><span class="hs-identifier hs-type">parseSessionTypeIpad</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-161"></span><span>      </span><span id="local-6989586621679451515"><span class="annot"><span class="annottext">parseSessionTypeIpad :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451515"><span class="hs-identifier hs-var hs-var">parseSessionTypeIpad</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-160"></span><span>      </span><span class="annot"><a href="#local-6989586621679465459"><span class="hs-identifier hs-type">parseSessionTypeIpad</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-161"></span><span>      </span><span id="local-6989586621679465459"><span class="annot"><span class="annottext">parseSessionTypeIpad :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465459"><span class="hs-identifier hs-var hs-var">parseSessionTypeIpad</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -401,9 +401,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeIpad"><span class="hs-identifier hs-var">SessionTypeIpad</span></a></span><span>
 </span><span id="line-162"></span><span>
-</span><span id="line-163"></span><span>      </span><span class="annot"><a href="#local-6989586621679451514"><span class="hs-identifier hs-type">parseSessionTypeIphone</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-164"></span><span>      </span><span id="local-6989586621679451514"><span class="annot"><span class="annottext">parseSessionTypeIphone :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451514"><span class="hs-identifier hs-var hs-var">parseSessionTypeIphone</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-163"></span><span>      </span><span class="annot"><a href="#local-6989586621679465458"><span class="hs-identifier hs-type">parseSessionTypeIphone</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-164"></span><span>      </span><span id="local-6989586621679465458"><span class="annot"><span class="annottext">parseSessionTypeIphone :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465458"><span class="hs-identifier hs-var hs-var">parseSessionTypeIphone</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -416,9 +416,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeIphone"><span class="hs-identifier hs-var">SessionTypeIphone</span></a></span><span>
 </span><span id="line-165"></span><span>
-</span><span id="line-166"></span><span>      </span><span class="annot"><a href="#local-6989586621679451513"><span class="hs-identifier hs-type">parseSessionTypeLinux</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-167"></span><span>      </span><span id="local-6989586621679451513"><span class="annot"><span class="annottext">parseSessionTypeLinux :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451513"><span class="hs-identifier hs-var hs-var">parseSessionTypeLinux</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-166"></span><span>      </span><span class="annot"><a href="#local-6989586621679465457"><span class="hs-identifier hs-type">parseSessionTypeLinux</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-167"></span><span>      </span><span id="local-6989586621679465457"><span class="annot"><span class="annottext">parseSessionTypeLinux :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465457"><span class="hs-identifier hs-var hs-var">parseSessionTypeLinux</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -431,9 +431,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeLinux"><span class="hs-identifier hs-var">SessionTypeLinux</span></a></span><span>
 </span><span id="line-168"></span><span>
-</span><span id="line-169"></span><span>      </span><span class="annot"><a href="#local-6989586621679451512"><span class="hs-identifier hs-type">parseSessionTypeMac</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-170"></span><span>      </span><span id="local-6989586621679451512"><span class="annot"><span class="annottext">parseSessionTypeMac :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451512"><span class="hs-identifier hs-var hs-var">parseSessionTypeMac</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-169"></span><span>      </span><span class="annot"><a href="#local-6989586621679465456"><span class="hs-identifier hs-type">parseSessionTypeMac</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-170"></span><span>      </span><span id="local-6989586621679465456"><span class="annot"><span class="annottext">parseSessionTypeMac :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465456"><span class="hs-identifier hs-var hs-var">parseSessionTypeMac</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -446,9 +446,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeMac"><span class="hs-identifier hs-var">SessionTypeMac</span></a></span><span>
 </span><span id="line-171"></span><span>
-</span><span id="line-172"></span><span>      </span><span class="annot"><a href="#local-6989586621679451511"><span class="hs-identifier hs-type">parseSessionTypeOpera</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-173"></span><span>      </span><span id="local-6989586621679451511"><span class="annot"><span class="annottext">parseSessionTypeOpera :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451511"><span class="hs-identifier hs-var hs-var">parseSessionTypeOpera</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-172"></span><span>      </span><span class="annot"><a href="#local-6989586621679465455"><span class="hs-identifier hs-type">parseSessionTypeOpera</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-173"></span><span>      </span><span id="local-6989586621679465455"><span class="annot"><span class="annottext">parseSessionTypeOpera :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465455"><span class="hs-identifier hs-var hs-var">parseSessionTypeOpera</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -461,9 +461,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeOpera"><span class="hs-identifier hs-var">SessionTypeOpera</span></a></span><span>
 </span><span id="line-174"></span><span>
-</span><span id="line-175"></span><span>      </span><span class="annot"><a href="#local-6989586621679451510"><span class="hs-identifier hs-type">parseSessionTypeSafari</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-176"></span><span>      </span><span id="local-6989586621679451510"><span class="annot"><span class="annottext">parseSessionTypeSafari :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451510"><span class="hs-identifier hs-var hs-var">parseSessionTypeSafari</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-175"></span><span>      </span><span class="annot"><a href="#local-6989586621679465454"><span class="hs-identifier hs-type">parseSessionTypeSafari</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-176"></span><span>      </span><span id="local-6989586621679465454"><span class="annot"><span class="annottext">parseSessionTypeSafari :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465454"><span class="hs-identifier hs-var hs-var">parseSessionTypeSafari</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -476,9 +476,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeSafari"><span class="hs-identifier hs-var">SessionTypeSafari</span></a></span><span>
 </span><span id="line-177"></span><span>
-</span><span id="line-178"></span><span>      </span><span class="annot"><a href="#local-6989586621679451509"><span class="hs-identifier hs-type">parseSessionTypeUbuntu</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-179"></span><span>      </span><span id="local-6989586621679451509"><span class="annot"><span class="annottext">parseSessionTypeUbuntu :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451509"><span class="hs-identifier hs-var hs-var">parseSessionTypeUbuntu</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-178"></span><span>      </span><span class="annot"><a href="#local-6989586621679465453"><span class="hs-identifier hs-type">parseSessionTypeUbuntu</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-179"></span><span>      </span><span id="local-6989586621679465453"><span class="annot"><span class="annottext">parseSessionTypeUbuntu :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465453"><span class="hs-identifier hs-var hs-var">parseSessionTypeUbuntu</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -491,9 +491,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeUbuntu"><span class="hs-identifier hs-var">SessionTypeUbuntu</span></a></span><span>
 </span><span id="line-180"></span><span>
-</span><span id="line-181"></span><span>      </span><span class="annot"><a href="#local-6989586621679451508"><span class="hs-identifier hs-type">parseSessionTypeUnknown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-182"></span><span>      </span><span id="local-6989586621679451508"><span class="annot"><span class="annottext">parseSessionTypeUnknown :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451508"><span class="hs-identifier hs-var hs-var">parseSessionTypeUnknown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-181"></span><span>      </span><span class="annot"><a href="#local-6989586621679465452"><span class="hs-identifier hs-type">parseSessionTypeUnknown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-182"></span><span>      </span><span id="local-6989586621679465452"><span class="annot"><span class="annottext">parseSessionTypeUnknown :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465452"><span class="hs-identifier hs-var hs-var">parseSessionTypeUnknown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -506,9 +506,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeUnknown"><span class="hs-identifier hs-var">SessionTypeUnknown</span></a></span><span>
 </span><span id="line-183"></span><span>
-</span><span id="line-184"></span><span>      </span><span class="annot"><a href="#local-6989586621679451507"><span class="hs-identifier hs-type">parseSessionTypeVivaldi</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-185"></span><span>      </span><span id="local-6989586621679451507"><span class="annot"><span class="annottext">parseSessionTypeVivaldi :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451507"><span class="hs-identifier hs-var hs-var">parseSessionTypeVivaldi</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-184"></span><span>      </span><span class="annot"><a href="#local-6989586621679465451"><span class="hs-identifier hs-type">parseSessionTypeVivaldi</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-185"></span><span>      </span><span id="local-6989586621679465451"><span class="annot"><span class="annottext">parseSessionTypeVivaldi :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465451"><span class="hs-identifier hs-var hs-var">parseSessionTypeVivaldi</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -521,9 +521,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeVivaldi"><span class="hs-identifier hs-var">SessionTypeVivaldi</span></a></span><span>
 </span><span id="line-186"></span><span>
-</span><span id="line-187"></span><span>      </span><span class="annot"><a href="#local-6989586621679451506"><span class="hs-identifier hs-type">parseSessionTypeWindows</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-188"></span><span>      </span><span id="local-6989586621679451506"><span class="annot"><span class="annottext">parseSessionTypeWindows :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451506"><span class="hs-identifier hs-var hs-var">parseSessionTypeWindows</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-187"></span><span>      </span><span class="annot"><a href="#local-6989586621679465450"><span class="hs-identifier hs-type">parseSessionTypeWindows</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-188"></span><span>      </span><span id="local-6989586621679465450"><span class="annot"><span class="annottext">parseSessionTypeWindows :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465450"><span class="hs-identifier hs-var hs-var">parseSessionTypeWindows</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -536,9 +536,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeWindows"><span class="hs-identifier hs-var">SessionTypeWindows</span></a></span><span>
 </span><span id="line-189"></span><span>
-</span><span id="line-190"></span><span>      </span><span class="annot"><a href="#local-6989586621679451505"><span class="hs-identifier hs-type">parseSessionTypeXbox</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
-</span><span id="line-191"></span><span>      </span><span id="local-6989586621679451505"><span class="annot"><span class="annottext">parseSessionTypeXbox :: Value -&gt; Parser SessionType
-</span><a href="#local-6989586621679451505"><span class="hs-identifier hs-var hs-var">parseSessionTypeXbox</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-190"></span><span>      </span><span class="annot"><a href="#local-6989586621679465449"><span class="hs-identifier hs-type">parseSessionTypeXbox</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span><span>
+</span><span id="line-191"></span><span>      </span><span id="local-6989586621679465449"><span class="annot"><span class="annottext">parseSessionTypeXbox :: Value -&gt; Parser SessionType
+</span><a href="#local-6989586621679465449"><span class="hs-identifier hs-var hs-var">parseSessionTypeXbox</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SessionType) -&gt; Value -&gt; Parser SessionType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
@@ -555,8 +555,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-193"></span><span>
-</span><span id="line-194"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679451497"><span id="local-6989586621679451499"><span id="local-6989586621679451501"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-195"></span><span>  </span><span id="local-6989586621679451495"><span class="annot"><span class="annottext">toJSON :: SessionType -&gt; Value
+</span><span id="line-194"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465441"><span id="local-6989586621679465443"><span id="local-6989586621679465445"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.SessionType.html#SessionType"><span class="hs-identifier hs-type">SessionType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-195"></span><span>  </span><span id="local-6989586621679465439"><span class="annot"><span class="annottext">toJSON :: SessionType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">SessionType
 </span><a href="TD.Data.SessionType.html#SessionTypeAndroid"><span class="hs-identifier hs-var">SessionTypeAndroid</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-196"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

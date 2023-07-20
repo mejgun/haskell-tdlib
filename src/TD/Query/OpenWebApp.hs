@@ -5,6 +5,7 @@ module TD.Query.OpenWebApp where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.ThemeParameters as ThemeParameters
 import qualified Utils as U
 
@@ -12,8 +13,8 @@ import qualified Utils as U
 -- Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
 -- For each bot, a confirmation alert about data sent to the bot must be shown once
 data OpenWebApp = OpenWebApp
-  { -- | Identifier of the replied message for the message sent by the Web App; 0 if none
-    reply_to_message_id :: Maybe Int,
+  { -- | Identifier of the replied message or story for the message sent by the Web App; pass null if none
+    reply_to :: Maybe MessageReplyTo.MessageReplyTo,
     -- | If not 0, a message thread identifier in which the message will be sent
     message_thread_id :: Maybe Int,
     -- | Short name of the application; 0-64 English letters, digits, and underscores
@@ -32,7 +33,7 @@ data OpenWebApp = OpenWebApp
 instance Show OpenWebApp where
   show
     OpenWebApp
-      { reply_to_message_id = reply_to_message_id_,
+      { reply_to = reply_to_,
         message_thread_id = message_thread_id_,
         application_name = application_name_,
         theme = theme_,
@@ -42,7 +43,7 @@ instance Show OpenWebApp where
       } =
       "OpenWebApp"
         ++ U.cc
-          [ U.p "reply_to_message_id" reply_to_message_id_,
+          [ U.p "reply_to" reply_to_,
             U.p "message_thread_id" message_thread_id_,
             U.p "application_name" application_name_,
             U.p "theme" theme_,
@@ -54,7 +55,7 @@ instance Show OpenWebApp where
 instance T.ToJSON OpenWebApp where
   toJSON
     OpenWebApp
-      { reply_to_message_id = reply_to_message_id_,
+      { reply_to = reply_to_,
         message_thread_id = message_thread_id_,
         application_name = application_name_,
         theme = theme_,
@@ -64,7 +65,7 @@ instance T.ToJSON OpenWebApp where
       } =
       A.object
         [ "@type" A..= T.String "openWebApp",
-          "reply_to_message_id" A..= reply_to_message_id_,
+          "reply_to" A..= reply_to_,
           "message_thread_id" A..= message_thread_id_,
           "application_name" A..= application_name_,
           "theme" A..= theme_,

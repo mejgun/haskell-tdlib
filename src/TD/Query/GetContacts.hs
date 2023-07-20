@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns all user contacts
+-- Returns all contacts of the user
 data GetContacts = GetContacts
   {
   }

@@ -33,6 +33,8 @@ data PremiumLimitType
     PremiumLimitTypeChatFolderInviteLinkCount
   | -- | The maximum number of added shareable chat folders
     PremiumLimitTypeShareableChatFolderCount
+  | -- | The maximum number of active stories
+    PremiumLimitTypeActiveStoryCount
   deriving (Eq)
 
 instance Show PremiumLimitType where
@@ -84,6 +86,10 @@ instance Show PremiumLimitType where
     "PremiumLimitTypeShareableChatFolderCount"
       ++ U.cc
         []
+  show PremiumLimitTypeActiveStoryCount =
+    "PremiumLimitTypeActiveStoryCount"
+      ++ U.cc
+        []
 
 instance T.FromJSON PremiumLimitType where
   parseJSON v@(T.Object obj) = do
@@ -102,6 +108,7 @@ instance T.FromJSON PremiumLimitType where
       "premiumLimitTypeBioLength" -> parsePremiumLimitTypeBioLength v
       "premiumLimitTypeChatFolderInviteLinkCount" -> parsePremiumLimitTypeChatFolderInviteLinkCount v
       "premiumLimitTypeShareableChatFolderCount" -> parsePremiumLimitTypeShareableChatFolderCount v
+      "premiumLimitTypeActiveStoryCount" -> parsePremiumLimitTypeActiveStoryCount v
       _ -> mempty
     where
       parsePremiumLimitTypeSupergroupCount :: A.Value -> T.Parser PremiumLimitType
@@ -139,6 +146,9 @@ instance T.FromJSON PremiumLimitType where
 
       parsePremiumLimitTypeShareableChatFolderCount :: A.Value -> T.Parser PremiumLimitType
       parsePremiumLimitTypeShareableChatFolderCount = A.withObject "PremiumLimitTypeShareableChatFolderCount" $ \_ -> return PremiumLimitTypeShareableChatFolderCount
+
+      parsePremiumLimitTypeActiveStoryCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeActiveStoryCount = A.withObject "PremiumLimitTypeActiveStoryCount" $ \_ -> return PremiumLimitTypeActiveStoryCount
   parseJSON _ = mempty
 
 instance T.ToJSON PremiumLimitType where
@@ -189,4 +199,8 @@ instance T.ToJSON PremiumLimitType where
   toJSON PremiumLimitTypeShareableChatFolderCount =
     A.object
       [ "@type" A..= T.String "premiumLimitTypeShareableChatFolderCount"
+      ]
+  toJSON PremiumLimitTypeActiveStoryCount =
+    A.object
+      [ "@type" A..= T.String "premiumLimitTypeActiveStoryCount"
       ]

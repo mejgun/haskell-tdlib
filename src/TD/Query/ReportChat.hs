@@ -5,7 +5,7 @@ module TD.Query.ReportChat where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Data.ChatReportReason as ChatReportReason
+import qualified TD.Data.ReportReason as ReportReason
 import qualified Utils as U
 
 -- |
@@ -14,7 +14,7 @@ data ReportChat = ReportChat
   { -- | Additional report details; 0-1024 characters
     text :: Maybe String,
     -- | The reason for reporting the chat
-    reason :: Maybe ChatReportReason.ChatReportReason,
+    reason :: Maybe ReportReason.ReportReason,
     -- | Identifiers of reported messages; may be empty to report the whole chat
     message_ids :: Maybe [Int],
     -- | Chat identifier

@@ -11,7 +11,7 @@ import qualified Utils as U
 -- |
 -- Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
 data ToggleGroupCallParticipantIsMuted = ToggleGroupCallParticipantIsMuted
-  { -- | Pass true to mute the user; pass false to unmute the them
+  { -- | Pass true to mute the user; pass false to unmute them
     is_muted :: Maybe Bool,
     -- | Participant identifier
     participant_id :: Maybe MessageSender.MessageSender,

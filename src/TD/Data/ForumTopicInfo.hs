@@ -22,7 +22,7 @@ data ForumTopicInfo = -- | Contains basic information about a forum topic
     is_general :: Maybe Bool,
     -- | Identifier of the creator of the topic
     creator_id :: Maybe MessageSender.MessageSender,
-    -- | Date the topic was created
+    -- | Point in time (Unix timestamp) when the topic was created
     creation_date :: Maybe Int,
     -- | Icon of the topic
     icon :: Maybe ForumTopicIcon.ForumTopicIcon,
