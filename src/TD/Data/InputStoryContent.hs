@@ -14,7 +14,7 @@ data InputStoryContent
     InputStoryContentPhoto
       { -- | File identifiers of the stickers added to the photo, if applicable
         added_sticker_file_ids :: Maybe [Int],
-        -- | Photo to send. The photo must be at most 10 MB in size. The photo size must be 720x1280
+        -- | Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920
         photo :: Maybe InputFile.InputFile
       }
   | -- | A video story
