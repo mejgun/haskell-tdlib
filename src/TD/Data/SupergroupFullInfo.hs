@@ -22,7 +22,7 @@ data SupergroupFullInfo = -- | Contains full information about a supergroup or c
     bot_commands :: Maybe [BotCommands.BotCommands],
     -- | Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     invite_link :: Maybe ChatInviteLink.ChatInviteLink,
-    -- | Location to which the supergroup is connected; may be null
+    -- | Location to which the supergroup is connected; may be null if none
     location :: Maybe ChatLocation.ChatLocation,
     -- | Identifier of the supergroup sticker set; 0 if none
     sticker_set_id :: Maybe Int,

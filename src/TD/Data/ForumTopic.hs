@@ -14,7 +14,7 @@ import qualified Utils as U
 -- |
 data ForumTopic = -- | Describes a forum topic
   ForumTopic
-  { -- | A draft of a message in the topic; may be null
+  { -- | A draft of a message in the topic; may be null if none
     draft_message :: Maybe DraftMessage.DraftMessage,
     -- | Notification settings for the topic
     notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings,

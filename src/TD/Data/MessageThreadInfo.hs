@@ -13,7 +13,7 @@ import qualified Utils as U
 -- |
 data MessageThreadInfo = -- | Contains information about a message thread
   MessageThreadInfo
-  { -- | A draft of a message in the message thread; may be null
+  { -- | A draft of a message in the message thread; may be null if none
     draft_message :: Maybe DraftMessage.DraftMessage,
     -- | The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     messages :: Maybe [Message.Message],

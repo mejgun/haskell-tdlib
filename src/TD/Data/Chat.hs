@@ -25,15 +25,15 @@ data Chat = -- | A chat. (Can be a private chat, basic group, supergroup, or sec
   Chat
   { -- | Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
     client_data :: Maybe String,
-    -- | A draft of a message in the chat; may be null
+    -- | A draft of a message in the chat; may be null if none
     draft_message :: Maybe DraftMessage.DraftMessage,
     -- | Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
     reply_markup_message_id :: Maybe Int,
-    -- | Information about pending join requests; may be null
+    -- | Information about pending join requests; may be null if none
     pending_join_requests :: Maybe ChatJoinRequestsInfo.ChatJoinRequestsInfo,
     -- | Information about video chat of the chat
     video_chat :: Maybe VideoChat.VideoChat,
-    -- | Information about actions which must be possible to do through the chat action bar; may be null
+    -- | Information about actions which must be possible to do through the chat action bar; may be null if none
     action_bar :: Maybe ChatActionBar.ChatActionBar,
     -- | If non-empty, name of a theme, set for the chat
     theme_name :: Maybe String,
@@ -77,7 +77,7 @@ data Chat = -- | A chat. (Can be a private chat, basic group, supergroup, or sec
     message_sender_id :: Maybe MessageSender.MessageSender,
     -- | Positions of the chat in chat lists
     positions :: Maybe [ChatPosition.ChatPosition],
-    -- | Last message in the chat; may be null
+    -- | Last message in the chat; may be null if none or unknown
     last_message :: Maybe Message.Message,
     -- | Actions that non-administrator chat members are allowed to take in the chat
     permissions :: Maybe ChatPermissions.ChatPermissions,

@@ -9,7 +9,7 @@ import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified Utils as U
 
 -- |
--- Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only @default_group_administrator_rights Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+-- Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only @default_group_administrator_rights Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
 data SetDefaultGroupAdministratorRights = SetDefaultGroupAdministratorRights
   { -- |
     default_group_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights

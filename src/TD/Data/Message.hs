@@ -19,7 +19,7 @@ import qualified Utils as U
 -- |
 data Message = -- | Describes a message
   Message
-  { -- | Reply markup for the message; may be null
+  { -- | Reply markup for the message; may be null if none
     reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
     -- | Content of the message
     content :: Maybe MessageContent.MessageContent,
@@ -43,9 +43,9 @@ data Message = -- | Describes a message
     reply_to :: Maybe MessageReplyTo.MessageReplyTo,
     -- | Information about unread reactions added to the message
     unread_reactions :: Maybe [UnreadReaction.UnreadReaction],
-    -- | Information about interactions with the message; may be null
+    -- | Information about interactions with the message; may be null if none
     interaction_info :: Maybe MessageInteractionInfo.MessageInteractionInfo,
-    -- | Information about the initial message sender; may be null
+    -- | Information about the initial message sender; may be null if none or unknown
     forward_info :: Maybe MessageForwardInfo.MessageForwardInfo,
     -- | Point in time (Unix timestamp) when the message was last edited
     edit_date :: Maybe Int,
@@ -85,9 +85,9 @@ data Message = -- | Describes a message
     is_pinned :: Maybe Bool,
     -- | True, if the message is outgoing
     is_outgoing :: Maybe Bool,
-    -- | The scheduling state of the message; may be null
+    -- | The scheduling state of the message; may be null if the message isn't scheduled
     scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState,
-    -- | The sending state of the message; may be null
+    -- | The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
     sending_state :: Maybe MessageSendingState.MessageSendingState,
     -- | Chat identifier
     chat_id :: Maybe Int,
