@@ -12,9 +12,10 @@ module TD.Lib
 where
 
 import qualified Data.Aeson as A
+import qualified Data.Aeson.Key as K
+import qualified Data.Aeson.KeyMap as KM
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Lazy as BL
-import qualified Data.HashMap.Strict as H
 import qualified Data.Text as T
 import qualified Data.Time.Clock.System as Time
 import Foreign (Ptr, nullPtr)
@@ -38,7 +39,9 @@ create :: IO Client
 create = c_create
 
 send :: (A.ToJSON a) => Client -> a -> IO ()
-send c d = B.useAsCString enc (c_send c) where enc = BL.toStrict (A.encode d)
+send c d = B.useAsCString enc (c_send c)
+  where
+    enc = BL.toStrict (A.encode d)
 
 sendWExtra :: (A.ToJSON a) => Client -> a -> IO String
 sendWExtra c d = do
@@ -47,18 +50,21 @@ sendWExtra c d = do
   return extra
   where
     enc :: String -> B.ByteString
-    enc xtr = do
+    enc xtr =
       BL.toStrict $ A.encode (addExtra d xtr)
-    addExtra :: (A.ToJSON a) => a -> String -> H.HashMap T.Text A.Value
+
+    addExtra :: (A.ToJSON a) => a -> String -> KM.KeyMap A.Value
     addExtra dd s =
-      let A.Object t = A.toJSON dd
-       in H.insert (T.pack "@extra") (A.String (T.pack s)) t
+      case A.toJSON dd of
+        A.Object t -> KM.insert (K.fromString "@extra") (A.String (T.pack s)) t
+        _ -> error $ "error. not object: " <> show (A.encode dd)
+
     getUnixTime :: IO String
-    getUnixTime = do
+    getUnixTime =
       let s = show . Time.systemSeconds <$> Time.getSystemTime
-      let ns = show . Time.systemNanoseconds <$> Time.getSystemTime
-      let str = (++) <$> s <*> ns
-      str
+          ns = show . Time.systemNanoseconds <$> Time.getSystemTime
+          str = (++) <$> s <*> ns
+       in str
 
 receive :: Client -> IO (Maybe GeneralResult.ResultWithExtra)
 receive c = dec $ c_receive c 1.0
