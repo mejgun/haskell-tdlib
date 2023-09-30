@@ -9,7 +9,7 @@ import qualified TD.Data.TopChatCategory as TopChatCategory
 import qualified Utils as U
 
 -- |
--- Returns a list of frequently used chats. Supported only if the chat info database is enabled @category Category of chats to be returned @limit The maximum number of chats to be returned; up to 30
+-- Returns a list of frequently used chats @category Category of chats to be returned @limit The maximum number of chats to be returned; up to 30
 data GetTopChats = GetTopChats
   { -- |
     limit :: Maybe Int,

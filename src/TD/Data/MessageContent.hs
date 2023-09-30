@@ -435,9 +435,11 @@ data MessageContent
       { -- |
         domain_name :: Maybe String
       }
-  | -- | The user allowed the bot to send messages @web_app Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
+  | -- | The user allowed the bot to send messages
     MessageBotWriteAccessAllowed
-      { -- |
+      { -- | True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
+        by_request :: Maybe Bool,
+        -- | Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
         web_app :: Maybe WebApp.WebApp
       }
   | -- | Data from a Web App has been sent to a bot @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App
@@ -1036,11 +1038,13 @@ instance Show MessageContent where
           ]
   show
     MessageBotWriteAccessAllowed
-      { web_app = web_app_
+      { by_request = by_request_,
+        web_app = web_app_
       } =
       "MessageBotWriteAccessAllowed"
         ++ U.cc
-          [ U.p "web_app" web_app_
+          [ U.p "by_request" by_request_,
+            U.p "web_app" web_app_
           ]
   show
     MessageWebAppDataSent
@@ -1499,8 +1503,9 @@ instance T.FromJSON MessageContent where
 
       parseMessageBotWriteAccessAllowed :: A.Value -> T.Parser MessageContent
       parseMessageBotWriteAccessAllowed = A.withObject "MessageBotWriteAccessAllowed" $ \o -> do
+        by_request_ <- o A..:? "by_request"
         web_app_ <- o A..:? "web_app"
-        return $ MessageBotWriteAccessAllowed {web_app = web_app_}
+        return $ MessageBotWriteAccessAllowed {by_request = by_request_, web_app = web_app_}
 
       parseMessageWebAppDataSent :: A.Value -> T.Parser MessageContent
       parseMessageWebAppDataSent = A.withObject "MessageWebAppDataSent" $ \o -> do
@@ -2094,10 +2099,12 @@ instance T.ToJSON MessageContent where
         ]
   toJSON
     MessageBotWriteAccessAllowed
-      { web_app = web_app_
+      { by_request = by_request_,
+        web_app = web_app_
       } =
       A.object
         [ "@type" A..= T.String "messageBotWriteAccessAllowed",
+          "by_request" A..= by_request_,
           "web_app" A..= web_app_
         ]
   toJSON

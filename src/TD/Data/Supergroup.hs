@@ -14,7 +14,11 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
   -- only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos.
   -- Unlike supergroups, channels can have an unlimited number of subscribers
   Supergroup
-  { -- | True, if many users reported this supergroup or channel as a fake account
+  { -- | True, if the channel has unread non-expired stories available to the current user
+    has_unread_active_stories :: Maybe Bool,
+    -- | True, if the channel has non-expired stories available to the current user
+    has_active_stories :: Maybe Bool,
+    -- | True, if many users reported this supergroup or channel as a fake account
     is_fake :: Maybe Bool,
     -- | True, if many users reported this supergroup or channel as a scam
     is_scam :: Maybe Bool,
@@ -57,7 +61,9 @@ data Supergroup = -- | Represents a supergroup or channel with zero or more memb
 instance Show Supergroup where
   show
     Supergroup
-      { is_fake = is_fake_,
+      { has_unread_active_stories = has_unread_active_stories_,
+        has_active_stories = has_active_stories_,
+        is_fake = is_fake_,
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
         is_verified = is_verified_,
@@ -78,7 +84,9 @@ instance Show Supergroup where
       } =
       "Supergroup"
         ++ U.cc
-          [ U.p "is_fake" is_fake_,
+          [ U.p "has_unread_active_stories" has_unread_active_stories_,
+            U.p "has_active_stories" has_active_stories_,
+            U.p "is_fake" is_fake_,
             U.p "is_scam" is_scam_,
             U.p "restriction_reason" restriction_reason_,
             U.p "is_verified" is_verified_,
@@ -108,6 +116,8 @@ instance T.FromJSON Supergroup where
     where
       parseSupergroup :: A.Value -> T.Parser Supergroup
       parseSupergroup = A.withObject "Supergroup" $ \o -> do
+        has_unread_active_stories_ <- o A..:? "has_unread_active_stories"
+        has_active_stories_ <- o A..:? "has_active_stories"
         is_fake_ <- o A..:? "is_fake"
         is_scam_ <- o A..:? "is_scam"
         restriction_reason_ <- o A..:? "restriction_reason"
@@ -126,13 +136,15 @@ instance T.FromJSON Supergroup where
         date_ <- o A..:? "date"
         usernames_ <- o A..:? "usernames"
         _id_ <- o A..:? "id"
-        return $ Supergroup {is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_verified = is_verified_, is_forum = is_forum_, is_broadcast_group = is_broadcast_group_, is_channel = is_channel_, is_slow_mode_enabled = is_slow_mode_enabled_, join_by_request = join_by_request_, join_to_send_messages = join_to_send_messages_, sign_messages = sign_messages_, has_location = has_location_, has_linked_chat = has_linked_chat_, member_count = member_count_, status = status_, date = date_, usernames = usernames_, _id = _id_}
+        return $ Supergroup {has_unread_active_stories = has_unread_active_stories_, has_active_stories = has_active_stories_, is_fake = is_fake_, is_scam = is_scam_, restriction_reason = restriction_reason_, is_verified = is_verified_, is_forum = is_forum_, is_broadcast_group = is_broadcast_group_, is_channel = is_channel_, is_slow_mode_enabled = is_slow_mode_enabled_, join_by_request = join_by_request_, join_to_send_messages = join_to_send_messages_, sign_messages = sign_messages_, has_location = has_location_, has_linked_chat = has_linked_chat_, member_count = member_count_, status = status_, date = date_, usernames = usernames_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Supergroup where
   toJSON
     Supergroup
-      { is_fake = is_fake_,
+      { has_unread_active_stories = has_unread_active_stories_,
+        has_active_stories = has_active_stories_,
+        is_fake = is_fake_,
         is_scam = is_scam_,
         restriction_reason = restriction_reason_,
         is_verified = is_verified_,
@@ -153,6 +165,8 @@ instance T.ToJSON Supergroup where
       } =
       A.object
         [ "@type" A..= T.String "supergroup",
+          "has_unread_active_stories" A..= has_unread_active_stories_,
+          "has_active_stories" A..= has_active_stories_,
           "is_fake" A..= is_fake_,
           "is_scam" A..= is_scam_,
           "restriction_reason" A..= restriction_reason_,

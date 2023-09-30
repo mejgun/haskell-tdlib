@@ -11,7 +11,7 @@ import qualified Utils as U
 -- |
 -- Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
 data GetInlineQueryResults = GetInlineQueryResults
-  { -- | Offset of the first entry to return
+  { -- | Offset of the first entry to return; use empty string to get the first chunk of results
     offset :: Maybe String,
     -- | Text of the query
     query :: Maybe String,

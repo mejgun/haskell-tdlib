@@ -35,6 +35,14 @@ data PremiumLimitType
     PremiumLimitTypeShareableChatFolderCount
   | -- | The maximum number of active stories
     PremiumLimitTypeActiveStoryCount
+  | -- | The maximum number of stories sent per week
+    PremiumLimitTypeWeeklySentStoryCount
+  | -- | The maximum number of stories sent per month
+    PremiumLimitTypeMonthlySentStoryCount
+  | -- | The maximum length of captions of sent stories
+    PremiumLimitTypeStoryCaptionLength
+  | -- | The maximum number of suggested reaction areas on a story
+    PremiumLimitTypeStorySuggestedReactionAreaCount
   deriving (Eq)
 
 instance Show PremiumLimitType where
@@ -90,6 +98,22 @@ instance Show PremiumLimitType where
     "PremiumLimitTypeActiveStoryCount"
       ++ U.cc
         []
+  show PremiumLimitTypeWeeklySentStoryCount =
+    "PremiumLimitTypeWeeklySentStoryCount"
+      ++ U.cc
+        []
+  show PremiumLimitTypeMonthlySentStoryCount =
+    "PremiumLimitTypeMonthlySentStoryCount"
+      ++ U.cc
+        []
+  show PremiumLimitTypeStoryCaptionLength =
+    "PremiumLimitTypeStoryCaptionLength"
+      ++ U.cc
+        []
+  show PremiumLimitTypeStorySuggestedReactionAreaCount =
+    "PremiumLimitTypeStorySuggestedReactionAreaCount"
+      ++ U.cc
+        []
 
 instance T.FromJSON PremiumLimitType where
   parseJSON v@(T.Object obj) = do
@@ -109,6 +133,10 @@ instance T.FromJSON PremiumLimitType where
       "premiumLimitTypeChatFolderInviteLinkCount" -> parsePremiumLimitTypeChatFolderInviteLinkCount v
       "premiumLimitTypeShareableChatFolderCount" -> parsePremiumLimitTypeShareableChatFolderCount v
       "premiumLimitTypeActiveStoryCount" -> parsePremiumLimitTypeActiveStoryCount v
+      "premiumLimitTypeWeeklySentStoryCount" -> parsePremiumLimitTypeWeeklySentStoryCount v
+      "premiumLimitTypeMonthlySentStoryCount" -> parsePremiumLimitTypeMonthlySentStoryCount v
+      "premiumLimitTypeStoryCaptionLength" -> parsePremiumLimitTypeStoryCaptionLength v
+      "premiumLimitTypeStorySuggestedReactionAreaCount" -> parsePremiumLimitTypeStorySuggestedReactionAreaCount v
       _ -> mempty
     where
       parsePremiumLimitTypeSupergroupCount :: A.Value -> T.Parser PremiumLimitType
@@ -149,6 +177,18 @@ instance T.FromJSON PremiumLimitType where
 
       parsePremiumLimitTypeActiveStoryCount :: A.Value -> T.Parser PremiumLimitType
       parsePremiumLimitTypeActiveStoryCount = A.withObject "PremiumLimitTypeActiveStoryCount" $ \_ -> return PremiumLimitTypeActiveStoryCount
+
+      parsePremiumLimitTypeWeeklySentStoryCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeWeeklySentStoryCount = A.withObject "PremiumLimitTypeWeeklySentStoryCount" $ \_ -> return PremiumLimitTypeWeeklySentStoryCount
+
+      parsePremiumLimitTypeMonthlySentStoryCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeMonthlySentStoryCount = A.withObject "PremiumLimitTypeMonthlySentStoryCount" $ \_ -> return PremiumLimitTypeMonthlySentStoryCount
+
+      parsePremiumLimitTypeStoryCaptionLength :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeStoryCaptionLength = A.withObject "PremiumLimitTypeStoryCaptionLength" $ \_ -> return PremiumLimitTypeStoryCaptionLength
+
+      parsePremiumLimitTypeStorySuggestedReactionAreaCount :: A.Value -> T.Parser PremiumLimitType
+      parsePremiumLimitTypeStorySuggestedReactionAreaCount = A.withObject "PremiumLimitTypeStorySuggestedReactionAreaCount" $ \_ -> return PremiumLimitTypeStorySuggestedReactionAreaCount
   parseJSON _ = mempty
 
 instance T.ToJSON PremiumLimitType where
@@ -203,4 +243,20 @@ instance T.ToJSON PremiumLimitType where
   toJSON PremiumLimitTypeActiveStoryCount =
     A.object
       [ "@type" A..= T.String "premiumLimitTypeActiveStoryCount"
+      ]
+  toJSON PremiumLimitTypeWeeklySentStoryCount =
+    A.object
+      [ "@type" A..= T.String "premiumLimitTypeWeeklySentStoryCount"
+      ]
+  toJSON PremiumLimitTypeMonthlySentStoryCount =
+    A.object
+      [ "@type" A..= T.String "premiumLimitTypeMonthlySentStoryCount"
+      ]
+  toJSON PremiumLimitTypeStoryCaptionLength =
+    A.object
+      [ "@type" A..= T.String "premiumLimitTypeStoryCaptionLength"
+      ]
+  toJSON PremiumLimitTypeStorySuggestedReactionAreaCount =
+    A.object
+      [ "@type" A..= T.String "premiumLimitTypeStorySuggestedReactionAreaCount"
       ]

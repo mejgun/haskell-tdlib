@@ -18,9 +18,9 @@ data ScopeNotificationSettings = -- | Contains information about notification se
     show_story_sender :: Maybe Bool,
     -- | Identifier of the notification sound to be played for stories; 0 if sound is disabled
     story_sound_id :: Maybe Int,
-    -- | True, if story notifications are received without sound
+    -- | True, if story notifications are disabled for the chat
     mute_stories :: Maybe Bool,
-    -- | If true, mute_stories is ignored and stories are unmuted only for the first 5 chats from topChatCategoryUsers
+    -- | If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
     use_default_mute_stories :: Maybe Bool,
     -- | True, if message content must be displayed in notifications
     show_preview :: Maybe Bool,

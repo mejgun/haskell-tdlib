@@ -25,7 +25,7 @@
 </span><span id="line-22"></span><span>    </span><span id="private_chat_settings"><span class="annot"><span class="annottext">AutosaveSettings -&gt; Maybe ScopeAutosaveSettings
 </span><a href="TD.Data.AutosaveSettings.html#private_chat_settings"><span class="hs-identifier hs-var hs-var">private_chat_settings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="TD.Data.ScopeAutosaveSettings.html#ScopeAutosaveSettings"><span class="hs-identifier hs-type">ScopeAutosaveSettings.ScopeAutosaveSettings</span></a></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679503575"><span id="local-6989586621679503577"><span class="annot"><span class="annottext">AutosaveSettings -&gt; AutosaveSettings -&gt; Bool
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679521414"><span id="local-6989586621679521416"><span class="annot"><span class="annottext">AutosaveSettings -&gt; AutosaveSettings -&gt; Bool
 (AutosaveSettings -&gt; AutosaveSettings -&gt; Bool)
 -&gt; (AutosaveSettings -&gt; AutosaveSettings -&gt; Bool)
 -&gt; Eq AutosaveSettings
@@ -36,22 +36,22 @@ $c/= :: AutosaveSettings -&gt; AutosaveSettings -&gt; Bool
 $c== :: AutosaveSettings -&gt; AutosaveSettings -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679503569"><span id="local-6989586621679503572"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679503567"><span class="annot"><span class="annottext">show :: AutosaveSettings -&gt; String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679521408"><span id="local-6989586621679521411"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679521406"><span class="annot"><span class="annottext">show :: AutosaveSettings -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span><span>
 </span><span id="line-29"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">exceptions :: AutosaveSettings -&gt; Maybe [AutosaveSettingsException]
-</span><a href="TD.Data.AutosaveSettings.html#exceptions"><span class="hs-identifier hs-var">exceptions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503565"><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
-</span><a href="#local-6989586621679503565"><span class="hs-identifier hs-var">exceptions_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AutosaveSettings.html#exceptions"><span class="hs-identifier hs-var">exceptions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521404"><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
+</span><a href="#local-6989586621679521404"><span class="hs-identifier hs-var">exceptions_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-30"></span><span>        </span><span class="annot"><span class="annottext">channel_settings :: AutosaveSettings -&gt; Maybe ScopeAutosaveSettings
-</span><a href="TD.Data.AutosaveSettings.html#channel_settings"><span class="hs-identifier hs-var">channel_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503564"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503564"><span class="hs-identifier hs-var">channel_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AutosaveSettings.html#channel_settings"><span class="hs-identifier hs-var">channel_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521403"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521403"><span class="hs-identifier hs-var">channel_settings_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-31"></span><span>        </span><span class="annot"><span class="annottext">group_settings :: AutosaveSettings -&gt; Maybe ScopeAutosaveSettings
-</span><a href="TD.Data.AutosaveSettings.html#group_settings"><span class="hs-identifier hs-var">group_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503563"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503563"><span class="hs-identifier hs-var">group_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AutosaveSettings.html#group_settings"><span class="hs-identifier hs-var">group_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521402"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521402"><span class="hs-identifier hs-var">group_settings_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>        </span><span class="annot"><span class="annottext">private_chat_settings :: AutosaveSettings -&gt; Maybe ScopeAutosaveSettings
-</span><a href="TD.Data.AutosaveSettings.html#private_chat_settings"><span class="hs-identifier hs-var">private_chat_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503562"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503562"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span></span><span>
+</span><a href="TD.Data.AutosaveSettings.html#private_chat_settings"><span class="hs-identifier hs-var">private_chat_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521401"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521401"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span></span><span>
 </span><span id="line-33"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;AutosaveSettings&quot;</span></span><span>
@@ -63,50 +63,50 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;exceptions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
-</span><a href="#local-6989586621679503565"><span class="hs-identifier hs-var">exceptions_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679521404"><span class="hs-identifier hs-var">exceptions_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-37"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ScopeAutosaveSettings -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;channel_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503564"><span class="hs-identifier hs-var">channel_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679521403"><span class="hs-identifier hs-var">channel_settings_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-38"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ScopeAutosaveSettings -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;group_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503563"><span class="hs-identifier hs-var">group_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679521402"><span class="hs-identifier hs-var">group_settings_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-39"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ScopeAutosaveSettings -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;private_chat_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503562"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span><span>
+</span><a href="#local-6989586621679521401"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span><span>
 </span><span id="line-40"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679503557"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679503555"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AutosaveSettings
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679503553"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679503553"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679503551"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679503551"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-44"></span><span>    </span><span id="local-6989586621679503550"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679503550"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679503551"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679521396"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679521394"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AutosaveSettings
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679521392"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679521392"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679521390"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679521390"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679521389"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679521389"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679521390"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-45"></span><span>
 </span><span id="line-46"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679503550"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679521389"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;autosaveSettings&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AutosaveSettings
-</span><a href="#local-6989586621679503548"><span class="hs-identifier hs-var">parseAutosaveSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679503553"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679521387"><span class="hs-identifier hs-var">parseAutosaveSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679521392"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AutosaveSettings
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-49"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679503548"><span class="hs-identifier hs-type">parseAutosaveSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span><span>
-</span><span id="line-51"></span><span>      </span><span id="local-6989586621679503548"><span class="annot"><span class="annottext">parseAutosaveSettings :: Value -&gt; Parser AutosaveSettings
-</span><a href="#local-6989586621679503548"><span class="hs-identifier hs-var hs-var">parseAutosaveSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>      </span><span class="annot"><a href="#local-6989586621679521387"><span class="hs-identifier hs-type">parseAutosaveSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span><span>
+</span><span id="line-51"></span><span>      </span><span id="local-6989586621679521387"><span class="annot"><span class="annottext">parseAutosaveSettings :: Value -&gt; Parser AutosaveSettings
+</span><a href="#local-6989586621679521387"><span class="hs-identifier hs-var hs-var">parseAutosaveSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AutosaveSettings)
 -&gt; Value
 -&gt; Parser AutosaveSettings
@@ -118,29 +118,29 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AutosaveSettings
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679503546"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679503546"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-52"></span><span>        </span><span id="local-6989586621679503545"><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
-</span><a href="#local-6989586621679503545"><span class="hs-identifier hs-var">exceptions_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679503546"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [AutosaveSettingsException])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679521385"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679521385"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-52"></span><span>        </span><span id="local-6989586621679521384"><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
+</span><a href="#local-6989586621679521384"><span class="hs-identifier hs-var">exceptions_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679521385"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [AutosaveSettingsException])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;exceptions&quot;</span></span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679503543"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503543"><span class="hs-identifier hs-var">channel_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679503546"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ScopeAutosaveSettings)
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679521382"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521382"><span class="hs-identifier hs-var">channel_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679521385"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ScopeAutosaveSettings)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;channel_settings&quot;</span></span><span>
-</span><span id="line-54"></span><span>        </span><span id="local-6989586621679503542"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503542"><span class="hs-identifier hs-var">group_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679503546"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ScopeAutosaveSettings)
+</span><span id="line-54"></span><span>        </span><span id="local-6989586621679521381"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521381"><span class="hs-identifier hs-var">group_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679521385"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ScopeAutosaveSettings)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_settings&quot;</span></span><span>
-</span><span id="line-55"></span><span>        </span><span id="local-6989586621679503541"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503541"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679503546"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ScopeAutosaveSettings)
+</span><span id="line-55"></span><span>        </span><span id="local-6989586621679521380"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521380"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679521385"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ScopeAutosaveSettings)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;private_chat_settings&quot;</span></span><span>
@@ -156,34 +156,34 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; AutosaveSettings
 </span><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">exceptions :: Maybe [AutosaveSettingsException]
 </span><a href="TD.Data.AutosaveSettings.html#exceptions"><span class="hs-identifier hs-var">exceptions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
-</span><a href="#local-6989586621679503545"><span class="hs-identifier hs-var">exceptions_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_settings :: Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521384"><span class="hs-identifier hs-var">exceptions_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">channel_settings :: Maybe ScopeAutosaveSettings
 </span><a href="TD.Data.AutosaveSettings.html#channel_settings"><span class="hs-identifier hs-var">channel_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503543"><span class="hs-identifier hs-var">channel_settings_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_settings :: Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521382"><span class="hs-identifier hs-var">channel_settings_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_settings :: Maybe ScopeAutosaveSettings
 </span><a href="TD.Data.AutosaveSettings.html#group_settings"><span class="hs-identifier hs-var">group_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503542"><span class="hs-identifier hs-var">group_settings_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">private_chat_settings :: Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521381"><span class="hs-identifier hs-var">group_settings_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">private_chat_settings :: Maybe ScopeAutosaveSettings
 </span><a href="TD.Data.AutosaveSettings.html#private_chat_settings"><span class="hs-identifier hs-var">private_chat_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503541"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679521380"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-57"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser AutosaveSettings
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-58"></span><span>
-</span><span id="line-59"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679503534"><span id="local-6989586621679503536"><span id="local-6989586621679503538"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-60"></span><span>  </span><span id="local-6989586621679503532"><span class="annot"><span class="annottext">toJSON :: AutosaveSettings -&gt; Value
+</span><span id="line-59"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679521373"><span id="local-6989586621679521375"><span id="local-6989586621679521377"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-60"></span><span>  </span><span id="local-6989586621679521371"><span class="annot"><span class="annottext">toJSON :: AutosaveSettings -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-61"></span><span>    </span><span class="annot"><a href="TD.Data.AutosaveSettings.html#AutosaveSettings"><span class="hs-identifier hs-type">AutosaveSettings</span></a></span><span>
 </span><span id="line-62"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">exceptions :: AutosaveSettings -&gt; Maybe [AutosaveSettingsException]
-</span><a href="TD.Data.AutosaveSettings.html#exceptions"><span class="hs-identifier hs-var">exceptions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503530"><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
-</span><a href="#local-6989586621679503530"><span class="hs-identifier hs-var">exceptions_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AutosaveSettings.html#exceptions"><span class="hs-identifier hs-var">exceptions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521369"><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
+</span><a href="#local-6989586621679521369"><span class="hs-identifier hs-var">exceptions_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>        </span><span class="annot"><span class="annottext">channel_settings :: AutosaveSettings -&gt; Maybe ScopeAutosaveSettings
-</span><a href="TD.Data.AutosaveSettings.html#channel_settings"><span class="hs-identifier hs-var">channel_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503529"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503529"><span class="hs-identifier hs-var">channel_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AutosaveSettings.html#channel_settings"><span class="hs-identifier hs-var">channel_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521368"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521368"><span class="hs-identifier hs-var">channel_settings_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>        </span><span class="annot"><span class="annottext">group_settings :: AutosaveSettings -&gt; Maybe ScopeAutosaveSettings
-</span><a href="TD.Data.AutosaveSettings.html#group_settings"><span class="hs-identifier hs-var">group_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503528"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503528"><span class="hs-identifier hs-var">group_settings_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.AutosaveSettings.html#group_settings"><span class="hs-identifier hs-var">group_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521367"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521367"><span class="hs-identifier hs-var">group_settings_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-65"></span><span>        </span><span class="annot"><span class="annottext">private_chat_settings :: AutosaveSettings -&gt; Maybe ScopeAutosaveSettings
-</span><a href="TD.Data.AutosaveSettings.html#private_chat_settings"><span class="hs-identifier hs-var">private_chat_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503527"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503527"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span></span><span>
+</span><a href="TD.Data.AutosaveSettings.html#private_chat_settings"><span class="hs-identifier hs-var">private_chat_settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679521366"><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
+</span><a href="#local-6989586621679521366"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span></span><span>
 </span><span id="line-66"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-67"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -197,21 +197,21 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;exceptions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [AutosaveSettingsException] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [AutosaveSettingsException]
-</span><a href="#local-6989586621679503530"><span class="hs-identifier hs-var">exceptions_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679521369"><span class="hs-identifier hs-var">exceptions_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;channel_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ScopeAutosaveSettings -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503529"><span class="hs-identifier hs-var">channel_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679521368"><span class="hs-identifier hs-var">channel_settings_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-71"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;group_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ScopeAutosaveSettings -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503528"><span class="hs-identifier hs-var">group_settings_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679521367"><span class="hs-identifier hs-var">group_settings_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-72"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;private_chat_settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ScopeAutosaveSettings -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ScopeAutosaveSettings
-</span><a href="#local-6989586621679503527"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span><span>
+</span><a href="#local-6989586621679521366"><span class="hs-identifier hs-var">private_chat_settings_</span></a></span><span>
 </span><span id="line-73"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-74"></span></pre></body></html>

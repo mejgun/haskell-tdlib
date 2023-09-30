@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Returns information about a bot that can be added to attachment menu @bot_user_id Bot's user identifier
+-- Returns information about a bot that can be added to attachment or side menu @bot_user_id Bot's user identifier
 data GetAttachmentMenuBot = GetAttachmentMenuBot
   { -- |
     bot_user_id :: Maybe Int

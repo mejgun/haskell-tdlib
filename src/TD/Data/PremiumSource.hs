@@ -7,6 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.PremiumFeature as PremiumFeature
 import qualified TD.Data.PremiumLimitType as PremiumLimitType
+import qualified TD.Data.PremiumStoryFeature as PremiumStoryFeature
 import qualified Utils as U
 
 -- | Describes a source from which the Premium features screen is opened
@@ -20,6 +21,11 @@ data PremiumSource
     PremiumSourceFeature
       { -- |
         feature :: Maybe PremiumFeature.PremiumFeature
+      }
+  | -- | A user tried to use a Premium story feature @feature The used feature
+    PremiumSourceStoryFeature
+      { -- |
+        _feature :: Maybe PremiumStoryFeature.PremiumStoryFeature
       }
   | -- | A user opened an internal link of the type internalLinkTypePremiumFeatures @referrer The referrer from the link
     PremiumSourceLink
@@ -48,6 +54,14 @@ instance Show PremiumSource where
           [ U.p "feature" feature_
           ]
   show
+    PremiumSourceStoryFeature
+      { _feature = _feature_
+      } =
+      "PremiumSourceStoryFeature"
+        ++ U.cc
+          [ U.p "_feature" _feature_
+          ]
+  show
     PremiumSourceLink
       { referrer = referrer_
       } =
@@ -67,6 +81,7 @@ instance T.FromJSON PremiumSource where
     case t of
       "premiumSourceLimitExceeded" -> parsePremiumSourceLimitExceeded v
       "premiumSourceFeature" -> parsePremiumSourceFeature v
+      "premiumSourceStoryFeature" -> parsePremiumSourceStoryFeature v
       "premiumSourceLink" -> parsePremiumSourceLink v
       "premiumSourceSettings" -> parsePremiumSourceSettings v
       _ -> mempty
@@ -80,6 +95,11 @@ instance T.FromJSON PremiumSource where
       parsePremiumSourceFeature = A.withObject "PremiumSourceFeature" $ \o -> do
         feature_ <- o A..:? "feature"
         return $ PremiumSourceFeature {feature = feature_}
+
+      parsePremiumSourceStoryFeature :: A.Value -> T.Parser PremiumSource
+      parsePremiumSourceStoryFeature = A.withObject "PremiumSourceStoryFeature" $ \o -> do
+        _feature_ <- o A..:? "feature"
+        return $ PremiumSourceStoryFeature {_feature = _feature_}
 
       parsePremiumSourceLink :: A.Value -> T.Parser PremiumSource
       parsePremiumSourceLink = A.withObject "PremiumSourceLink" $ \o -> do
@@ -106,6 +126,14 @@ instance T.ToJSON PremiumSource where
       A.object
         [ "@type" A..= T.String "premiumSourceFeature",
           "feature" A..= feature_
+        ]
+  toJSON
+    PremiumSourceStoryFeature
+      { _feature = _feature_
+      } =
+      A.object
+        [ "@type" A..= T.String "premiumSourceStoryFeature",
+          "feature" A..= _feature_
         ]
   toJSON
     PremiumSourceLink

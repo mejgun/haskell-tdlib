@@ -5,6 +5,7 @@ module TD.Data.UserFullInfo where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.BotInfo as BotInfo
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.FormattedText as FormattedText
@@ -36,8 +37,8 @@ data UserFullInfo = -- | Contains full information about a user
     supports_video_calls :: Maybe Bool,
     -- | True, if the user can be called
     can_be_called :: Maybe Bool,
-    -- | True, if the user is blocked by the current user
-    is_blocked :: Maybe Bool,
+    -- | Block list to which the user is added; may be null if none
+    block_list :: Maybe BlockList.BlockList,
     -- | User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.
     -- If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     public_photo :: Maybe ChatPhoto.ChatPhoto,
@@ -64,7 +65,7 @@ instance Show UserFullInfo where
         has_private_calls = has_private_calls_,
         supports_video_calls = supports_video_calls_,
         can_be_called = can_be_called_,
-        is_blocked = is_blocked_,
+        block_list = block_list_,
         public_photo = public_photo_,
         photo = photo_,
         personal_photo = personal_photo_
@@ -82,7 +83,7 @@ instance Show UserFullInfo where
             U.p "has_private_calls" has_private_calls_,
             U.p "supports_video_calls" supports_video_calls_,
             U.p "can_be_called" can_be_called_,
-            U.p "is_blocked" is_blocked_,
+            U.p "block_list" block_list_,
             U.p "public_photo" public_photo_,
             U.p "photo" photo_,
             U.p "personal_photo" personal_photo_
@@ -109,11 +110,11 @@ instance T.FromJSON UserFullInfo where
         has_private_calls_ <- o A..:? "has_private_calls"
         supports_video_calls_ <- o A..:? "supports_video_calls"
         can_be_called_ <- o A..:? "can_be_called"
-        is_blocked_ <- o A..:? "is_blocked"
+        block_list_ <- o A..:? "block_list"
         public_photo_ <- o A..:? "public_photo"
         photo_ <- o A..:? "photo"
         personal_photo_ <- o A..:? "personal_photo"
-        return $ UserFullInfo {bot_info = bot_info_, group_in_common_count = group_in_common_count_, premium_gift_options = premium_gift_options_, bio = bio_, need_phone_number_privacy_exception = need_phone_number_privacy_exception_, has_pinned_stories = has_pinned_stories_, has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_, has_private_forwards = has_private_forwards_, has_private_calls = has_private_calls_, supports_video_calls = supports_video_calls_, can_be_called = can_be_called_, is_blocked = is_blocked_, public_photo = public_photo_, photo = photo_, personal_photo = personal_photo_}
+        return $ UserFullInfo {bot_info = bot_info_, group_in_common_count = group_in_common_count_, premium_gift_options = premium_gift_options_, bio = bio_, need_phone_number_privacy_exception = need_phone_number_privacy_exception_, has_pinned_stories = has_pinned_stories_, has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_, has_private_forwards = has_private_forwards_, has_private_calls = has_private_calls_, supports_video_calls = supports_video_calls_, can_be_called = can_be_called_, block_list = block_list_, public_photo = public_photo_, photo = photo_, personal_photo = personal_photo_}
   parseJSON _ = mempty
 
 instance T.ToJSON UserFullInfo where
@@ -130,7 +131,7 @@ instance T.ToJSON UserFullInfo where
         has_private_calls = has_private_calls_,
         supports_video_calls = supports_video_calls_,
         can_be_called = can_be_called_,
-        is_blocked = is_blocked_,
+        block_list = block_list_,
         public_photo = public_photo_,
         photo = photo_,
         personal_photo = personal_photo_
@@ -148,7 +149,7 @@ instance T.ToJSON UserFullInfo where
           "has_private_calls" A..= has_private_calls_,
           "supports_video_calls" A..= supports_video_calls_,
           "can_be_called" A..= can_be_called_,
-          "is_blocked" A..= is_blocked_,
+          "block_list" A..= block_list_,
           "public_photo" A..= public_photo_,
           "photo" A..= photo_,
           "personal_photo" A..= personal_photo_

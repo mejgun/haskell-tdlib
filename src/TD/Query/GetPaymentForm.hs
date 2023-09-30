@@ -10,7 +10,7 @@ import qualified TD.Data.ThemeParameters as ThemeParameters
 import qualified Utils as U
 
 -- |
--- Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+-- Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
 data GetPaymentForm = GetPaymentForm
   { -- | Preferred payment form theme; pass null to use the default theme
     theme :: Maybe ThemeParameters.ThemeParameters,

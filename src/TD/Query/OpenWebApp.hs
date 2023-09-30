@@ -10,7 +10,7 @@ import qualified TD.Data.ThemeParameters as ThemeParameters
 import qualified Utils as U
 
 -- |
--- Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
+-- Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
 -- For each bot, a confirmation alert about data sent to the bot must be shown once
 data OpenWebApp = OpenWebApp
   { -- | Identifier of the replied message or story for the message sent by the Web App; pass null if none
@@ -21,7 +21,7 @@ data OpenWebApp = OpenWebApp
     application_name :: Maybe String,
     -- | Preferred Web App theme; pass null to use the default theme
     theme :: Maybe ThemeParameters.ThemeParameters,
-    -- | The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+    -- | The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     url :: Maybe String,
     -- | Identifier of the bot, providing the Web App
     bot_user_id :: Maybe Int,

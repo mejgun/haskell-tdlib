@@ -9,27 +9,34 @@ import qualified Utils as U
 
 -- | Describes privacy settings of a story
 data StoryPrivacySettings
-  = -- | The story can be viewed by everyone
+  = -- | The story can be viewed by everyone @except_user_ids Identifiers of the users that can't see the story; always unknown and empty for non-owned stories
     StoryPrivacySettingsEveryone
-  | -- | The story can be viewed by all contacts except chosen users @except_user_ids User identifiers of the contacts that can't see the story; always empty for non-owned stories
+      { -- |
+        except_user_ids :: Maybe [Int]
+      }
+  | -- | The story can be viewed by all contacts except chosen users @except_user_ids User identifiers of the contacts that can't see the story; always unknown and empty for non-owned stories
     StoryPrivacySettingsContacts
       { -- |
         except_user_ids :: Maybe [Int]
       }
   | -- | The story can be viewed by all close friends
     StoryPrivacySettingsCloseFriends
-  | -- | The story can be viewed by certain specified users @user_ids Identifiers of the users; always empty for non-owned stories
-    StoryPrivacySettingsSelectedContacts
+  | -- | The story can be viewed by certain specified users @user_ids Identifiers of the users; always unknown and empty for non-owned stories
+    StoryPrivacySettingsSelectedUsers
       { -- |
         user_ids :: Maybe [Int]
       }
   deriving (Eq)
 
 instance Show StoryPrivacySettings where
-  show StoryPrivacySettingsEveryone =
-    "StoryPrivacySettingsEveryone"
-      ++ U.cc
-        []
+  show
+    StoryPrivacySettingsEveryone
+      { except_user_ids = except_user_ids_
+      } =
+      "StoryPrivacySettingsEveryone"
+        ++ U.cc
+          [ U.p "except_user_ids" except_user_ids_
+          ]
   show
     StoryPrivacySettingsContacts
       { except_user_ids = except_user_ids_
@@ -43,10 +50,10 @@ instance Show StoryPrivacySettings where
       ++ U.cc
         []
   show
-    StoryPrivacySettingsSelectedContacts
+    StoryPrivacySettingsSelectedUsers
       { user_ids = user_ids_
       } =
-      "StoryPrivacySettingsSelectedContacts"
+      "StoryPrivacySettingsSelectedUsers"
         ++ U.cc
           [ U.p "user_ids" user_ids_
           ]
@@ -59,11 +66,13 @@ instance T.FromJSON StoryPrivacySettings where
       "storyPrivacySettingsEveryone" -> parseStoryPrivacySettingsEveryone v
       "storyPrivacySettingsContacts" -> parseStoryPrivacySettingsContacts v
       "storyPrivacySettingsCloseFriends" -> parseStoryPrivacySettingsCloseFriends v
-      "storyPrivacySettingsSelectedContacts" -> parseStoryPrivacySettingsSelectedContacts v
+      "storyPrivacySettingsSelectedUsers" -> parseStoryPrivacySettingsSelectedUsers v
       _ -> mempty
     where
       parseStoryPrivacySettingsEveryone :: A.Value -> T.Parser StoryPrivacySettings
-      parseStoryPrivacySettingsEveryone = A.withObject "StoryPrivacySettingsEveryone" $ \_ -> return StoryPrivacySettingsEveryone
+      parseStoryPrivacySettingsEveryone = A.withObject "StoryPrivacySettingsEveryone" $ \o -> do
+        except_user_ids_ <- o A..:? "except_user_ids"
+        return $ StoryPrivacySettingsEveryone {except_user_ids = except_user_ids_}
 
       parseStoryPrivacySettingsContacts :: A.Value -> T.Parser StoryPrivacySettings
       parseStoryPrivacySettingsContacts = A.withObject "StoryPrivacySettingsContacts" $ \o -> do
@@ -73,17 +82,21 @@ instance T.FromJSON StoryPrivacySettings where
       parseStoryPrivacySettingsCloseFriends :: A.Value -> T.Parser StoryPrivacySettings
       parseStoryPrivacySettingsCloseFriends = A.withObject "StoryPrivacySettingsCloseFriends" $ \_ -> return StoryPrivacySettingsCloseFriends
 
-      parseStoryPrivacySettingsSelectedContacts :: A.Value -> T.Parser StoryPrivacySettings
-      parseStoryPrivacySettingsSelectedContacts = A.withObject "StoryPrivacySettingsSelectedContacts" $ \o -> do
+      parseStoryPrivacySettingsSelectedUsers :: A.Value -> T.Parser StoryPrivacySettings
+      parseStoryPrivacySettingsSelectedUsers = A.withObject "StoryPrivacySettingsSelectedUsers" $ \o -> do
         user_ids_ <- o A..:? "user_ids"
-        return $ StoryPrivacySettingsSelectedContacts {user_ids = user_ids_}
+        return $ StoryPrivacySettingsSelectedUsers {user_ids = user_ids_}
   parseJSON _ = mempty
 
 instance T.ToJSON StoryPrivacySettings where
-  toJSON StoryPrivacySettingsEveryone =
-    A.object
-      [ "@type" A..= T.String "storyPrivacySettingsEveryone"
-      ]
+  toJSON
+    StoryPrivacySettingsEveryone
+      { except_user_ids = except_user_ids_
+      } =
+      A.object
+        [ "@type" A..= T.String "storyPrivacySettingsEveryone",
+          "except_user_ids" A..= except_user_ids_
+        ]
   toJSON
     StoryPrivacySettingsContacts
       { except_user_ids = except_user_ids_
@@ -97,10 +110,10 @@ instance T.ToJSON StoryPrivacySettings where
       [ "@type" A..= T.String "storyPrivacySettingsCloseFriends"
       ]
   toJSON
-    StoryPrivacySettingsSelectedContacts
+    StoryPrivacySettingsSelectedUsers
       { user_ids = user_ids_
       } =
       A.object
-        [ "@type" A..= T.String "storyPrivacySettingsSelectedContacts",
+        [ "@type" A..= T.String "storyPrivacySettingsSelectedUsers",
           "user_ids" A..= user_ids_
         ]

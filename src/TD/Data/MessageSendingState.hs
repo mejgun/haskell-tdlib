@@ -5,6 +5,7 @@ module TD.Data.MessageSendingState where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.Error as Error
 import qualified Utils as U
 
 -- | Contains information about the sending state of the message
@@ -22,10 +23,8 @@ data MessageSendingState
         need_another_sender :: Maybe Bool,
         -- | True, if the message can be re-sent
         can_retry :: Maybe Bool,
-        -- | Error message
-        error_message :: Maybe String,
-        -- | An error code; 0 if unknown
-        error_code :: Maybe Int
+        -- | The cause of the message sending failure
+        _error :: Maybe Error.Error
       }
   deriving (Eq)
 
@@ -43,16 +42,14 @@ instance Show MessageSendingState where
       { retry_after = retry_after_,
         need_another_sender = need_another_sender_,
         can_retry = can_retry_,
-        error_message = error_message_,
-        error_code = error_code_
+        _error = _error_
       } =
       "MessageSendingStateFailed"
         ++ U.cc
           [ U.p "retry_after" retry_after_,
             U.p "need_another_sender" need_another_sender_,
             U.p "can_retry" can_retry_,
-            U.p "error_message" error_message_,
-            U.p "error_code" error_code_
+            U.p "_error" _error_
           ]
 
 instance T.FromJSON MessageSendingState where
@@ -74,9 +71,8 @@ instance T.FromJSON MessageSendingState where
         retry_after_ <- o A..:? "retry_after"
         need_another_sender_ <- o A..:? "need_another_sender"
         can_retry_ <- o A..:? "can_retry"
-        error_message_ <- o A..:? "error_message"
-        error_code_ <- o A..:? "error_code"
-        return $ MessageSendingStateFailed {retry_after = retry_after_, need_another_sender = need_another_sender_, can_retry = can_retry_, error_message = error_message_, error_code = error_code_}
+        _error_ <- o A..:? "error"
+        return $ MessageSendingStateFailed {retry_after = retry_after_, need_another_sender = need_another_sender_, can_retry = can_retry_, _error = _error_}
   parseJSON _ = mempty
 
 instance T.ToJSON MessageSendingState where
@@ -93,14 +89,12 @@ instance T.ToJSON MessageSendingState where
       { retry_after = retry_after_,
         need_another_sender = need_another_sender_,
         can_retry = can_retry_,
-        error_message = error_message_,
-        error_code = error_code_
+        _error = _error_
       } =
       A.object
         [ "@type" A..= T.String "messageSendingStateFailed",
           "retry_after" A..= retry_after_,
           "need_another_sender" A..= need_another_sender_,
           "can_retry" A..= can_retry_,
-          "error_message" A..= error_message_,
-          "error_code" A..= error_code_
+          "error" A..= _error_
         ]

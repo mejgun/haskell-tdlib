@@ -49,7 +49,7 @@
 </span><span id="line-39"></span><span>    </span><span id="title"><span class="annot"><span class="annottext">PaymentReceipt -&gt; Maybe String
 </span><a href="TD.Data.PaymentReceipt.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-40"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-41"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679508352"><span id="local-6989586621679508354"><span class="annot"><span class="annottext">PaymentReceipt -&gt; PaymentReceipt -&gt; Bool
+</span><span id="line-41"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679526228"><span id="local-6989586621679526230"><span class="annot"><span class="annottext">PaymentReceipt -&gt; PaymentReceipt -&gt; Bool
 (PaymentReceipt -&gt; PaymentReceipt -&gt; Bool)
 -&gt; (PaymentReceipt -&gt; PaymentReceipt -&gt; Bool) -&gt; Eq PaymentReceipt
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -59,43 +59,43 @@ $c/= :: PaymentReceipt -&gt; PaymentReceipt -&gt; Bool
 $c== :: PaymentReceipt -&gt; PaymentReceipt -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679508346"><span id="local-6989586621679508349"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span>  </span><span id="local-6989586621679508344"><span class="annot"><span class="annottext">show :: PaymentReceipt -&gt; String
+</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679526222"><span id="local-6989586621679526225"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span>  </span><span id="local-6989586621679526220"><span class="annot"><span class="annottext">show :: PaymentReceipt -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-45"></span><span>    </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span><span>
 </span><span id="line-46"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">tip_amount :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508342"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508342"><span class="hs-identifier hs-var">tip_amount_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526218"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526218"><span class="hs-identifier hs-var">tip_amount_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>        </span><span class="annot"><span class="annottext">credentials_title :: PaymentReceipt -&gt; Maybe String
-</span><a href="TD.Data.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var">credentials_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508341"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508341"><span class="hs-identifier hs-var">credentials_title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var">credentials_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526217"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679526217"><span class="hs-identifier hs-var">credentials_title_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-48"></span><span>        </span><span class="annot"><span class="annottext">shipping_option :: PaymentReceipt -&gt; Maybe ShippingOption
-</span><a href="TD.Data.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var">shipping_option</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508340"><span class="annot"><span class="annottext">Maybe ShippingOption
-</span><a href="#local-6989586621679508340"><span class="hs-identifier hs-var">shipping_option_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var">shipping_option</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526216"><span class="annot"><span class="annottext">Maybe ShippingOption
+</span><a href="#local-6989586621679526216"><span class="hs-identifier hs-var">shipping_option_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>        </span><span class="annot"><span class="annottext">order_info :: PaymentReceipt -&gt; Maybe OrderInfo
-</span><a href="TD.Data.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508339"><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679508339"><span class="hs-identifier hs-var">order_info_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526215"><span class="annot"><span class="annottext">Maybe OrderInfo
+</span><a href="#local-6989586621679526215"><span class="hs-identifier hs-var">order_info_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-50"></span><span>        </span><span class="annot"><span class="annottext">invoice :: PaymentReceipt -&gt; Maybe Invoice
-</span><a href="TD.Data.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var">invoice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508338"><span class="annot"><span class="annottext">Maybe Invoice
-</span><a href="#local-6989586621679508338"><span class="hs-identifier hs-var">invoice_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var">invoice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526214"><span class="annot"><span class="annottext">Maybe Invoice
+</span><a href="#local-6989586621679526214"><span class="hs-identifier hs-var">invoice_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-51"></span><span>        </span><span class="annot"><span class="annottext">payment_provider_user_id :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#payment_provider_user_id"><span class="hs-identifier hs-var">payment_provider_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508337"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508337"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#payment_provider_user_id"><span class="hs-identifier hs-var">payment_provider_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526213"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526213"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-52"></span><span>        </span><span class="annot"><span class="annottext">seller_bot_user_id :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#seller_bot_user_id"><span class="hs-identifier hs-var">seller_bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508336"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508336"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#seller_bot_user_id"><span class="hs-identifier hs-var">seller_bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526212"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526212"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-53"></span><span>        </span><span class="annot"><span class="annottext">date :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508335"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508335"><span class="hs-identifier hs-var">date_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526211"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526211"><span class="hs-identifier hs-var">date_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-54"></span><span>        </span><span class="annot"><span class="annottext">photo :: PaymentReceipt -&gt; Maybe Photo
-</span><a href="TD.Data.PaymentReceipt.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508334"><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679508334"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526210"><span class="annot"><span class="annottext">Maybe Photo
+</span><a href="#local-6989586621679526210"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-55"></span><span>        </span><span class="annot"><span class="annottext">description :: PaymentReceipt -&gt; Maybe FormattedText
-</span><a href="TD.Data.PaymentReceipt.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508333"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679508333"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526209"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679526209"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-56"></span><span>        </span><span class="annot"><span class="annottext">title :: PaymentReceipt -&gt; Maybe String
-</span><a href="TD.Data.PaymentReceipt.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508332"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508332"><span class="hs-identifier hs-var">title_</span></a></span></span><span>
+</span><a href="TD.Data.PaymentReceipt.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526208"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679526208"><span class="hs-identifier hs-var">title_</span></a></span></span><span>
 </span><span id="line-57"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-58"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PaymentReceipt&quot;</span></span><span>
@@ -107,85 +107,85 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;tip_amount&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508342"><span class="hs-identifier hs-var">tip_amount_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526218"><span class="hs-identifier hs-var">tip_amount_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-61"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;credentials_title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508341"><span class="hs-identifier hs-var">credentials_title_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526217"><span class="hs-identifier hs-var">credentials_title_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-62"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe ShippingOption -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;shipping_option&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe ShippingOption
-</span><a href="#local-6989586621679508340"><span class="hs-identifier hs-var">shipping_option_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526216"><span class="hs-identifier hs-var">shipping_option_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-63"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe OrderInfo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;order_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679508339"><span class="hs-identifier hs-var">order_info_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526215"><span class="hs-identifier hs-var">order_info_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-64"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Invoice -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;invoice&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Invoice
-</span><a href="#local-6989586621679508338"><span class="hs-identifier hs-var">invoice_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526214"><span class="hs-identifier hs-var">invoice_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-65"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;payment_provider_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508337"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526213"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-66"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;seller_bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508336"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526212"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-67"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508335"><span class="hs-identifier hs-var">date_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526211"><span class="hs-identifier hs-var">date_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-68"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Photo -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679508334"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526210"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-69"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe FormattedText -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679508333"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526209"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-70"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508332"><span class="hs-identifier hs-var">title_</span></a></span><span>
+</span><a href="#local-6989586621679526208"><span class="hs-identifier hs-var">title_</span></a></span><span>
 </span><span id="line-71"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-72"></span><span>
-</span><span id="line-73"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679508327"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-74"></span><span>  </span><span id="local-6989586621679508325"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PaymentReceipt
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679508323"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679508323"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679508321"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508321"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-75"></span><span>    </span><span id="local-6989586621679508320"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679508320"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508321"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-73"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679526203"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-74"></span><span>  </span><span id="local-6989586621679526201"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PaymentReceipt
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679526199"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679526199"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679526197"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526197"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679526196"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679526196"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526197"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-76"></span><span>
 </span><span id="line-77"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679508320"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679526196"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-78"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;paymentReceipt&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PaymentReceipt
-</span><a href="#local-6989586621679508318"><span class="hs-identifier hs-var">parsePaymentReceipt</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679508323"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679526194"><span class="hs-identifier hs-var">parsePaymentReceipt</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679526199"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-79"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PaymentReceipt
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-80"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-81"></span><span>      </span><span class="annot"><a href="#local-6989586621679508318"><span class="hs-identifier hs-type">parsePaymentReceipt</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span><span>
-</span><span id="line-82"></span><span>      </span><span id="local-6989586621679508318"><span class="annot"><span class="annottext">parsePaymentReceipt :: Value -&gt; Parser PaymentReceipt
-</span><a href="#local-6989586621679508318"><span class="hs-identifier hs-var hs-var">parsePaymentReceipt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-81"></span><span>      </span><span class="annot"><a href="#local-6989586621679526194"><span class="hs-identifier hs-type">parsePaymentReceipt</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span><span>
+</span><span id="line-82"></span><span>      </span><span id="local-6989586621679526194"><span class="annot"><span class="annottext">parsePaymentReceipt :: Value -&gt; Parser PaymentReceipt
+</span><a href="#local-6989586621679526194"><span class="hs-identifier hs-var hs-var">parsePaymentReceipt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PaymentReceipt)
 -&gt; Value
 -&gt; Parser PaymentReceipt
@@ -197,71 +197,71 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PaymentReceipt
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679508316"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-83"></span><span>        </span><span id="local-6989586621679508315"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508315"><span class="hs-identifier hs-var">tip_amount_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679526192"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-83"></span><span>        </span><span id="local-6989586621679526191"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526191"><span class="hs-identifier hs-var">tip_amount_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;tip_amount&quot;</span></span><span>
-</span><span id="line-84"></span><span>        </span><span id="local-6989586621679508313"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508313"><span class="hs-identifier hs-var">credentials_title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-84"></span><span>        </span><span id="local-6989586621679526189"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679526189"><span class="hs-identifier hs-var">credentials_title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;credentials_title&quot;</span></span><span>
-</span><span id="line-85"></span><span>        </span><span id="local-6989586621679508312"><span class="annot"><span class="annottext">Maybe ShippingOption
-</span><a href="#local-6989586621679508312"><span class="hs-identifier hs-var">shipping_option_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ShippingOption)
+</span><span id="line-85"></span><span>        </span><span id="local-6989586621679526188"><span class="annot"><span class="annottext">Maybe ShippingOption
+</span><a href="#local-6989586621679526188"><span class="hs-identifier hs-var">shipping_option_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ShippingOption)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;shipping_option&quot;</span></span><span>
-</span><span id="line-86"></span><span>        </span><span id="local-6989586621679508311"><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679508311"><span class="hs-identifier hs-var">order_info_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe OrderInfo)
+</span><span id="line-86"></span><span>        </span><span id="local-6989586621679526187"><span class="annot"><span class="annottext">Maybe OrderInfo
+</span><a href="#local-6989586621679526187"><span class="hs-identifier hs-var">order_info_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe OrderInfo)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;order_info&quot;</span></span><span>
-</span><span id="line-87"></span><span>        </span><span id="local-6989586621679508310"><span class="annot"><span class="annottext">Maybe Invoice
-</span><a href="#local-6989586621679508310"><span class="hs-identifier hs-var">invoice_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Invoice)
+</span><span id="line-87"></span><span>        </span><span id="local-6989586621679526186"><span class="annot"><span class="annottext">Maybe Invoice
+</span><a href="#local-6989586621679526186"><span class="hs-identifier hs-var">invoice_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Invoice)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;invoice&quot;</span></span><span>
-</span><span id="line-88"></span><span>        </span><span id="local-6989586621679508309"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508309"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-88"></span><span>        </span><span id="local-6989586621679526185"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526185"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;payment_provider_user_id&quot;</span></span><span>
-</span><span id="line-89"></span><span>        </span><span id="local-6989586621679508308"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508308"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-89"></span><span>        </span><span id="local-6989586621679526184"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526184"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;seller_bot_user_id&quot;</span></span><span>
-</span><span id="line-90"></span><span>        </span><span id="local-6989586621679508307"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508307"><span class="hs-identifier hs-var">date_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-90"></span><span>        </span><span id="local-6989586621679526183"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526183"><span class="hs-identifier hs-var">date_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;date&quot;</span></span><span>
-</span><span id="line-91"></span><span>        </span><span id="local-6989586621679508306"><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679508306"><span class="hs-identifier hs-var">photo_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Photo)
+</span><span id="line-91"></span><span>        </span><span id="local-6989586621679526182"><span class="annot"><span class="annottext">Maybe Photo
+</span><a href="#local-6989586621679526182"><span class="hs-identifier hs-var">photo_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Photo)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span>
-</span><span id="line-92"></span><span>        </span><span id="local-6989586621679508305"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679508305"><span class="hs-identifier hs-var">description_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FormattedText)
+</span><span id="line-92"></span><span>        </span><span id="local-6989586621679526181"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679526181"><span class="hs-identifier hs-var">description_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FormattedText)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span>
-</span><span id="line-93"></span><span>        </span><span id="local-6989586621679508304"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508304"><span class="hs-identifier hs-var">title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679508316"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-93"></span><span>        </span><span id="local-6989586621679526180"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679526180"><span class="hs-identifier hs-var">title_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679526192"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span>
@@ -284,69 +284,69 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PaymentReceipt
 </span><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">tip_amount :: Maybe Int
 </span><a href="TD.Data.PaymentReceipt.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508315"><span class="hs-identifier hs-var">tip_amount_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">credentials_title :: Maybe String
+</span><a href="#local-6989586621679526191"><span class="hs-identifier hs-var">tip_amount_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">credentials_title :: Maybe String
 </span><a href="TD.Data.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var">credentials_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508313"><span class="hs-identifier hs-var">credentials_title_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option :: Maybe ShippingOption
+</span><a href="#local-6989586621679526189"><span class="hs-identifier hs-var">credentials_title_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option :: Maybe ShippingOption
 </span><a href="TD.Data.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var">shipping_option</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ShippingOption
-</span><a href="#local-6989586621679508312"><span class="hs-identifier hs-var">shipping_option_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info :: Maybe OrderInfo
+</span><a href="#local-6989586621679526188"><span class="hs-identifier hs-var">shipping_option_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info :: Maybe OrderInfo
 </span><a href="TD.Data.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679508311"><span class="hs-identifier hs-var">order_info_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">invoice :: Maybe Invoice
+</span><a href="#local-6989586621679526187"><span class="hs-identifier hs-var">order_info_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">invoice :: Maybe Invoice
 </span><a href="TD.Data.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var">invoice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Invoice
-</span><a href="#local-6989586621679508310"><span class="hs-identifier hs-var">invoice_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">payment_provider_user_id :: Maybe Int
+</span><a href="#local-6989586621679526186"><span class="hs-identifier hs-var">invoice_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">payment_provider_user_id :: Maybe Int
 </span><a href="TD.Data.PaymentReceipt.html#payment_provider_user_id"><span class="hs-identifier hs-var">payment_provider_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508309"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">seller_bot_user_id :: Maybe Int
+</span><a href="#local-6989586621679526185"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">seller_bot_user_id :: Maybe Int
 </span><a href="TD.Data.PaymentReceipt.html#seller_bot_user_id"><span class="hs-identifier hs-var">seller_bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508308"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Maybe Int
+</span><a href="#local-6989586621679526184"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Maybe Int
 </span><a href="TD.Data.PaymentReceipt.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508307"><span class="hs-identifier hs-var">date_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe Photo
+</span><a href="#local-6989586621679526183"><span class="hs-identifier hs-var">date_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe Photo
 </span><a href="TD.Data.PaymentReceipt.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679508306"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe FormattedText
+</span><a href="#local-6989586621679526182"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: Maybe FormattedText
 </span><a href="TD.Data.PaymentReceipt.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679508305"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
+</span><a href="#local-6989586621679526181"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
 </span><a href="TD.Data.PaymentReceipt.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508304"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679526180"><span class="hs-identifier hs-var">title_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-95"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PaymentReceipt
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-96"></span><span>
-</span><span id="line-97"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679508297"><span id="local-6989586621679508299"><span id="local-6989586621679508301"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-98"></span><span>  </span><span id="local-6989586621679508295"><span class="annot"><span class="annottext">toJSON :: PaymentReceipt -&gt; Value
+</span><span id="line-97"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679526173"><span id="local-6989586621679526175"><span id="local-6989586621679526177"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-98"></span><span>  </span><span id="local-6989586621679526171"><span class="annot"><span class="annottext">toJSON :: PaymentReceipt -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-99"></span><span>    </span><span class="annot"><a href="TD.Data.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span><span>
 </span><span id="line-100"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">tip_amount :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508293"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508293"><span class="hs-identifier hs-var">tip_amount_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#tip_amount"><span class="hs-identifier hs-var">tip_amount</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526169"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526169"><span class="hs-identifier hs-var">tip_amount_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-101"></span><span>        </span><span class="annot"><span class="annottext">credentials_title :: PaymentReceipt -&gt; Maybe String
-</span><a href="TD.Data.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var">credentials_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508292"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508292"><span class="hs-identifier hs-var">credentials_title_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var">credentials_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526168"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679526168"><span class="hs-identifier hs-var">credentials_title_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-102"></span><span>        </span><span class="annot"><span class="annottext">shipping_option :: PaymentReceipt -&gt; Maybe ShippingOption
-</span><a href="TD.Data.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var">shipping_option</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508291"><span class="annot"><span class="annottext">Maybe ShippingOption
-</span><a href="#local-6989586621679508291"><span class="hs-identifier hs-var">shipping_option_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var">shipping_option</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526167"><span class="annot"><span class="annottext">Maybe ShippingOption
+</span><a href="#local-6989586621679526167"><span class="hs-identifier hs-var">shipping_option_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-103"></span><span>        </span><span class="annot"><span class="annottext">order_info :: PaymentReceipt -&gt; Maybe OrderInfo
-</span><a href="TD.Data.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508290"><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679508290"><span class="hs-identifier hs-var">order_info_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526166"><span class="annot"><span class="annottext">Maybe OrderInfo
+</span><a href="#local-6989586621679526166"><span class="hs-identifier hs-var">order_info_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-104"></span><span>        </span><span class="annot"><span class="annottext">invoice :: PaymentReceipt -&gt; Maybe Invoice
-</span><a href="TD.Data.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var">invoice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508289"><span class="annot"><span class="annottext">Maybe Invoice
-</span><a href="#local-6989586621679508289"><span class="hs-identifier hs-var">invoice_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var">invoice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526165"><span class="annot"><span class="annottext">Maybe Invoice
+</span><a href="#local-6989586621679526165"><span class="hs-identifier hs-var">invoice_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-105"></span><span>        </span><span class="annot"><span class="annottext">payment_provider_user_id :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#payment_provider_user_id"><span class="hs-identifier hs-var">payment_provider_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508288"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508288"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#payment_provider_user_id"><span class="hs-identifier hs-var">payment_provider_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526164"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526164"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-106"></span><span>        </span><span class="annot"><span class="annottext">seller_bot_user_id :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#seller_bot_user_id"><span class="hs-identifier hs-var">seller_bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508287"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508287"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#seller_bot_user_id"><span class="hs-identifier hs-var">seller_bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526163"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526163"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-107"></span><span>        </span><span class="annot"><span class="annottext">date :: PaymentReceipt -&gt; Maybe Int
-</span><a href="TD.Data.PaymentReceipt.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508286"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508286"><span class="hs-identifier hs-var">date_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526162"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679526162"><span class="hs-identifier hs-var">date_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-108"></span><span>        </span><span class="annot"><span class="annottext">photo :: PaymentReceipt -&gt; Maybe Photo
-</span><a href="TD.Data.PaymentReceipt.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508285"><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679508285"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526161"><span class="annot"><span class="annottext">Maybe Photo
+</span><a href="#local-6989586621679526161"><span class="hs-identifier hs-var">photo_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-109"></span><span>        </span><span class="annot"><span class="annottext">description :: PaymentReceipt -&gt; Maybe FormattedText
-</span><a href="TD.Data.PaymentReceipt.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508284"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679508284"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Data.PaymentReceipt.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526160"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679526160"><span class="hs-identifier hs-var">description_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-110"></span><span>        </span><span class="annot"><span class="annottext">title :: PaymentReceipt -&gt; Maybe String
-</span><a href="TD.Data.PaymentReceipt.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679508283"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508283"><span class="hs-identifier hs-var">title_</span></a></span></span><span>
+</span><a href="TD.Data.PaymentReceipt.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679526159"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679526159"><span class="hs-identifier hs-var">title_</span></a></span></span><span>
 </span><span id="line-111"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-112"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -360,56 +360,56 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;tip_amount&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508293"><span class="hs-identifier hs-var">tip_amount_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526169"><span class="hs-identifier hs-var">tip_amount_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-115"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;credentials_title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508292"><span class="hs-identifier hs-var">credentials_title_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526168"><span class="hs-identifier hs-var">credentials_title_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-116"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;shipping_option&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ShippingOption -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ShippingOption
-</span><a href="#local-6989586621679508291"><span class="hs-identifier hs-var">shipping_option_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526167"><span class="hs-identifier hs-var">shipping_option_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-117"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;order_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe OrderInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe OrderInfo
-</span><a href="#local-6989586621679508290"><span class="hs-identifier hs-var">order_info_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526166"><span class="hs-identifier hs-var">order_info_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-118"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;invoice&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Invoice -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Invoice
-</span><a href="#local-6989586621679508289"><span class="hs-identifier hs-var">invoice_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526165"><span class="hs-identifier hs-var">invoice_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-119"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;payment_provider_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508288"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526164"><span class="hs-identifier hs-var">payment_provider_user_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-120"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;seller_bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508287"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526163"><span class="hs-identifier hs-var">seller_bot_user_id_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-121"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679508286"><span class="hs-identifier hs-var">date_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526162"><span class="hs-identifier hs-var">date_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-122"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Photo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Photo
-</span><a href="#local-6989586621679508285"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526161"><span class="hs-identifier hs-var">photo_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-123"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679508284"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679526160"><span class="hs-identifier hs-var">description_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-124"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679508283"><span class="hs-identifier hs-var">title_</span></a></span><span>
+</span><a href="#local-6989586621679526159"><span class="hs-identifier hs-var">title_</span></a></span><span>
 </span><span id="line-125"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-126"></span></pre></body></html>

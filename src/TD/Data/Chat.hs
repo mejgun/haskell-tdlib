@@ -5,6 +5,7 @@ module TD.Data.Chat where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatActionBar as ChatActionBar
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatBackground as ChatBackground
@@ -65,14 +66,14 @@ data Chat = -- | A chat. (Can be a private chat, basic group, supergroup, or sec
     can_be_deleted_only_for_self :: Maybe Bool,
     -- | True, if the chat has scheduled messages
     has_scheduled_messages :: Maybe Bool,
-    -- | True, if the chat is blocked by the current user and private messages from the chat can't be received
-    is_blocked :: Maybe Bool,
     -- | True, if the chat is marked as unread
     is_marked_as_unread :: Maybe Bool,
     -- | True, if translation of all messages in the chat must be suggested to the user
     is_translatable :: Maybe Bool,
     -- | True, if chat content can't be saved locally, forwarded, or copied
     has_protected_content :: Maybe Bool,
+    -- | Block list to which the chat is added; may be null if none
+    block_list :: Maybe BlockList.BlockList,
     -- | Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
     message_sender_id :: Maybe MessageSender.MessageSender,
     -- | Positions of the chat in chat lists
@@ -116,10 +117,10 @@ instance Show Chat where
         can_be_deleted_for_all_users = can_be_deleted_for_all_users_,
         can_be_deleted_only_for_self = can_be_deleted_only_for_self_,
         has_scheduled_messages = has_scheduled_messages_,
-        is_blocked = is_blocked_,
         is_marked_as_unread = is_marked_as_unread_,
         is_translatable = is_translatable_,
         has_protected_content = has_protected_content_,
+        block_list = block_list_,
         message_sender_id = message_sender_id_,
         positions = positions_,
         last_message = last_message_,
@@ -152,10 +153,10 @@ instance Show Chat where
             U.p "can_be_deleted_for_all_users" can_be_deleted_for_all_users_,
             U.p "can_be_deleted_only_for_self" can_be_deleted_only_for_self_,
             U.p "has_scheduled_messages" has_scheduled_messages_,
-            U.p "is_blocked" is_blocked_,
             U.p "is_marked_as_unread" is_marked_as_unread_,
             U.p "is_translatable" is_translatable_,
             U.p "has_protected_content" has_protected_content_,
+            U.p "block_list" block_list_,
             U.p "message_sender_id" message_sender_id_,
             U.p "positions" positions_,
             U.p "last_message" last_message_,
@@ -197,10 +198,10 @@ instance T.FromJSON Chat where
         can_be_deleted_for_all_users_ <- o A..:? "can_be_deleted_for_all_users"
         can_be_deleted_only_for_self_ <- o A..:? "can_be_deleted_only_for_self"
         has_scheduled_messages_ <- o A..:? "has_scheduled_messages"
-        is_blocked_ <- o A..:? "is_blocked"
         is_marked_as_unread_ <- o A..:? "is_marked_as_unread"
         is_translatable_ <- o A..:? "is_translatable"
         has_protected_content_ <- o A..:? "has_protected_content"
+        block_list_ <- o A..:? "block_list"
         message_sender_id_ <- o A..:? "message_sender_id"
         positions_ <- o A..:? "positions"
         last_message_ <- o A..:? "last_message"
@@ -209,7 +210,7 @@ instance T.FromJSON Chat where
         title_ <- o A..:? "title"
         _type_ <- o A..:? "type"
         _id_ <- o A..:? "id"
-        return $ Chat {client_data = client_data_, draft_message = draft_message_, reply_markup_message_id = reply_markup_message_id_, pending_join_requests = pending_join_requests_, video_chat = video_chat_, action_bar = action_bar_, theme_name = theme_name_, background = background_, message_auto_delete_time = message_auto_delete_time_, available_reactions = available_reactions_, notification_settings = notification_settings_, unread_reaction_count = unread_reaction_count_, unread_mention_count = unread_mention_count_, last_read_outbox_message_id = last_read_outbox_message_id_, last_read_inbox_message_id = last_read_inbox_message_id_, unread_count = unread_count_, default_disable_notification = default_disable_notification_, can_be_reported = can_be_reported_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, has_scheduled_messages = has_scheduled_messages_, is_blocked = is_blocked_, is_marked_as_unread = is_marked_as_unread_, is_translatable = is_translatable_, has_protected_content = has_protected_content_, message_sender_id = message_sender_id_, positions = positions_, last_message = last_message_, permissions = permissions_, photo = photo_, title = title_, _type = _type_, _id = _id_}
+        return $ Chat {client_data = client_data_, draft_message = draft_message_, reply_markup_message_id = reply_markup_message_id_, pending_join_requests = pending_join_requests_, video_chat = video_chat_, action_bar = action_bar_, theme_name = theme_name_, background = background_, message_auto_delete_time = message_auto_delete_time_, available_reactions = available_reactions_, notification_settings = notification_settings_, unread_reaction_count = unread_reaction_count_, unread_mention_count = unread_mention_count_, last_read_outbox_message_id = last_read_outbox_message_id_, last_read_inbox_message_id = last_read_inbox_message_id_, unread_count = unread_count_, default_disable_notification = default_disable_notification_, can_be_reported = can_be_reported_, can_be_deleted_for_all_users = can_be_deleted_for_all_users_, can_be_deleted_only_for_self = can_be_deleted_only_for_self_, has_scheduled_messages = has_scheduled_messages_, is_marked_as_unread = is_marked_as_unread_, is_translatable = is_translatable_, has_protected_content = has_protected_content_, block_list = block_list_, message_sender_id = message_sender_id_, positions = positions_, last_message = last_message_, permissions = permissions_, photo = photo_, title = title_, _type = _type_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Chat where
@@ -236,10 +237,10 @@ instance T.ToJSON Chat where
         can_be_deleted_for_all_users = can_be_deleted_for_all_users_,
         can_be_deleted_only_for_self = can_be_deleted_only_for_self_,
         has_scheduled_messages = has_scheduled_messages_,
-        is_blocked = is_blocked_,
         is_marked_as_unread = is_marked_as_unread_,
         is_translatable = is_translatable_,
         has_protected_content = has_protected_content_,
+        block_list = block_list_,
         message_sender_id = message_sender_id_,
         positions = positions_,
         last_message = last_message_,
@@ -272,10 +273,10 @@ instance T.ToJSON Chat where
           "can_be_deleted_for_all_users" A..= can_be_deleted_for_all_users_,
           "can_be_deleted_only_for_self" A..= can_be_deleted_only_for_self_,
           "has_scheduled_messages" A..= has_scheduled_messages_,
-          "is_blocked" A..= is_blocked_,
           "is_marked_as_unread" A..= is_marked_as_unread_,
           "is_translatable" A..= is_translatable_,
           "has_protected_content" A..= has_protected_content_,
+          "block_list" A..= block_list_,
           "message_sender_id" A..= message_sender_id_,
           "positions" A..= positions_,
           "last_message" A..= last_message_,

@@ -13,7 +13,7 @@ data ConnectedWebsite = -- | Contains information about one website the current 
   { -- | Human-readable description of a country and a region from which the user was logged in, based on the IP address
     location :: Maybe String,
     -- | IP address from which the user was logged in, in human-readable format
-    ip :: Maybe String,
+    ip_address :: Maybe String,
     -- | Point in time (Unix timestamp) when obtained authorization was last used
     last_active_date :: Maybe Int,
     -- | Point in time (Unix timestamp) when the user was logged in
@@ -35,7 +35,7 @@ instance Show ConnectedWebsite where
   show
     ConnectedWebsite
       { location = location_,
-        ip = ip_,
+        ip_address = ip_address_,
         last_active_date = last_active_date_,
         log_in_date = log_in_date_,
         platform = platform_,
@@ -47,7 +47,7 @@ instance Show ConnectedWebsite where
       "ConnectedWebsite"
         ++ U.cc
           [ U.p "location" location_,
-            U.p "ip" ip_,
+            U.p "ip_address" ip_address_,
             U.p "last_active_date" last_active_date_,
             U.p "log_in_date" log_in_date_,
             U.p "platform" platform_,
@@ -68,7 +68,7 @@ instance T.FromJSON ConnectedWebsite where
       parseConnectedWebsite :: A.Value -> T.Parser ConnectedWebsite
       parseConnectedWebsite = A.withObject "ConnectedWebsite" $ \o -> do
         location_ <- o A..:? "location"
-        ip_ <- o A..:? "ip"
+        ip_address_ <- o A..:? "ip_address"
         last_active_date_ <- o A..:? "last_active_date"
         log_in_date_ <- o A..:? "log_in_date"
         platform_ <- o A..:? "platform"
@@ -76,14 +76,14 @@ instance T.FromJSON ConnectedWebsite where
         bot_user_id_ <- o A..:? "bot_user_id"
         domain_name_ <- o A..:? "domain_name"
         _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ ConnectedWebsite {location = location_, ip = ip_, last_active_date = last_active_date_, log_in_date = log_in_date_, platform = platform_, browser = browser_, bot_user_id = bot_user_id_, domain_name = domain_name_, _id = _id_}
+        return $ ConnectedWebsite {location = location_, ip_address = ip_address_, last_active_date = last_active_date_, log_in_date = log_in_date_, platform = platform_, browser = browser_, bot_user_id = bot_user_id_, domain_name = domain_name_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON ConnectedWebsite where
   toJSON
     ConnectedWebsite
       { location = location_,
-        ip = ip_,
+        ip_address = ip_address_,
         last_active_date = last_active_date_,
         log_in_date = log_in_date_,
         platform = platform_,
@@ -95,7 +95,7 @@ instance T.ToJSON ConnectedWebsite where
       A.object
         [ "@type" A..= T.String "connectedWebsite",
           "location" A..= location_,
-          "ip" A..= ip_,
+          "ip_address" A..= ip_address_,
           "last_active_date" A..= last_active_date_,
           "log_in_date" A..= log_in_date_,
           "platform" A..= platform_,

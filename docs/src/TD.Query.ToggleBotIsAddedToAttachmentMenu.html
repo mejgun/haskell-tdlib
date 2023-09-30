@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="Utils.html"><span class="hs-identifier">Utils</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">U</span></span><span>
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true</span><span>
 </span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="ToggleBotIsAddedToAttachmentMenu"><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-var">ToggleBotIsAddedToAttachmentMenu</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="ToggleBotIsAddedToAttachmentMenu"><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-var">ToggleBotIsAddedToAttachmentMenu</span></a></span></span><span>
 </span><span id="line-13"></span><span>  </span><span class="hs-special">{</span><span> </span><span class="hs-comment">-- | Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false</span><span>
 </span><span id="line-14"></span><span>    </span><span id="allow_write_access"><span class="annot"><span class="annottext">ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Bool
@@ -20,7 +20,7 @@
 </span><span id="line-18"></span><span>    </span><span id="bot_user_id"><span class="annot"><span class="annottext">ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Int
 </span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#bot_user_id"><span class="hs-identifier hs-var hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679441279"><span id="local-6989586621679441281"><span class="annot"><span class="annottext">ToggleBotIsAddedToAttachmentMenu
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679456280"><span id="local-6989586621679456282"><span class="annot"><span class="annottext">ToggleBotIsAddedToAttachmentMenu
 -&gt; ToggleBotIsAddedToAttachmentMenu -&gt; Bool
 (ToggleBotIsAddedToAttachmentMenu
  -&gt; ToggleBotIsAddedToAttachmentMenu -&gt; Bool)
@@ -38,19 +38,19 @@ $c== :: ToggleBotIsAddedToAttachmentMenu
 -&gt; ToggleBotIsAddedToAttachmentMenu -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679441273"><span id="local-6989586621679441276"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-type">ToggleBotIsAddedToAttachmentMenu</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679441271"><span class="annot"><span class="annottext">show :: ToggleBotIsAddedToAttachmentMenu -&gt; String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679456274"><span id="local-6989586621679456277"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-type">ToggleBotIsAddedToAttachmentMenu</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679456272"><span class="annot"><span class="annottext">show :: ToggleBotIsAddedToAttachmentMenu -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-type">ToggleBotIsAddedToAttachmentMenu</span></a></span><span>
 </span><span id="line-25"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_write_access :: ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Bool
-</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441269"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441269"><span class="hs-identifier hs-var">allow_write_access_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456270"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679456270"><span class="hs-identifier hs-var">allow_write_access_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-26"></span><span>        </span><span class="annot"><span class="annottext">is_added :: ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Bool
-</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#is_added"><span class="hs-identifier hs-var">is_added</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441268"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441268"><span class="hs-identifier hs-var">is_added_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#is_added"><span class="hs-identifier hs-var">is_added</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456269"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679456269"><span class="hs-identifier hs-var">is_added_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-27"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Int
-</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441267"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441267"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456268"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679456268"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ToggleBotIsAddedToAttachmentMenu&quot;</span></span><span>
@@ -62,32 +62,32 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;allow_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441269"><span class="hs-identifier hs-var">allow_write_access_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679456270"><span class="hs-identifier hs-var">allow_write_access_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-32"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;is_added&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441268"><span class="hs-identifier hs-var">is_added_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679456269"><span class="hs-identifier hs-var">is_added_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-33"></span><span>            </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441267"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><a href="#local-6989586621679456268"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
 </span><span id="line-34"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679441258"><span id="local-6989586621679441260"><span id="local-6989586621679441262"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-type">ToggleBotIsAddedToAttachmentMenu</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>  </span><span id="local-6989586621679441256"><span class="annot"><span class="annottext">toJSON :: ToggleBotIsAddedToAttachmentMenu -&gt; Value
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679456259"><span id="local-6989586621679456261"><span id="local-6989586621679456263"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-type">ToggleBotIsAddedToAttachmentMenu</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679456257"><span class="annot"><span class="annottext">toJSON :: ToggleBotIsAddedToAttachmentMenu -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-38"></span><span>    </span><span class="annot"><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#ToggleBotIsAddedToAttachmentMenu"><span class="hs-identifier hs-type">ToggleBotIsAddedToAttachmentMenu</span></a></span><span>
 </span><span id="line-39"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_write_access :: ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Bool
-</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441254"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441254"><span class="hs-identifier hs-var">allow_write_access_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#allow_write_access"><span class="hs-identifier hs-var">allow_write_access</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456255"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679456255"><span class="hs-identifier hs-var">allow_write_access_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-40"></span><span>        </span><span class="annot"><span class="annottext">is_added :: ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Bool
-</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#is_added"><span class="hs-identifier hs-var">is_added</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441253"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441253"><span class="hs-identifier hs-var">is_added_</span></a></span></span><span class="hs-special">,</span><span>
+</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#is_added"><span class="hs-identifier hs-var">is_added</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456254"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679456254"><span class="hs-identifier hs-var">is_added_</span></a></span></span><span class="hs-special">,</span><span>
 </span><span id="line-41"></span><span>        </span><span class="annot"><span class="annottext">bot_user_id :: ToggleBotIsAddedToAttachmentMenu -&gt; Maybe Int
-</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679441252"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441252"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
+</span><a href="TD.Query.ToggleBotIsAddedToAttachmentMenu.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679456253"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679456253"><span class="hs-identifier hs-var">bot_user_id_</span></a></span></span><span>
 </span><span id="line-42"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-43"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -101,16 +101,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;allow_write_access&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441254"><span class="hs-identifier hs-var">allow_write_access_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679456255"><span class="hs-identifier hs-var">allow_write_access_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-46"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_added&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679441253"><span class="hs-identifier hs-var">is_added_</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679456254"><span class="hs-identifier hs-var">is_added_</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-47"></span><span>          </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679441252"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
+</span><a href="#local-6989586621679456253"><span class="hs-identifier hs-var">bot_user_id_</span></a></span><span>
 </span><span id="line-48"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-49"></span></pre></body></html>

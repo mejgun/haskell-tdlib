@@ -28,9 +28,9 @@ data ChatPermissions = -- | Describes actions that a user is allowed to take in 
     can_send_voice_notes :: Maybe Bool,
     -- | True, if the user can send video notes
     can_send_video_notes :: Maybe Bool,
-    -- | True, if the user can send audio videos
+    -- | True, if the user can send videos
     can_send_videos :: Maybe Bool,
-    -- | True, if the user can send audio photos
+    -- | True, if the user can send photos
     can_send_photos :: Maybe Bool,
     -- | True, if the user can send documents
     can_send_documents :: Maybe Bool,

@@ -12,6 +12,7 @@ import qualified TD.Data.InputThumbnail as InputThumbnail
 import qualified TD.Data.Invoice as Invoice
 import qualified TD.Data.Location as Location
 import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
+import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified TD.Data.PollType as PollType
 import qualified TD.Data.Venue as Venue
 import qualified Utils as U
@@ -76,8 +77,8 @@ data InputMessageContent
     InputMessagePhoto
       { -- | True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
         has_spoiler :: Maybe Bool,
-        -- | Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-        self_destruct_time :: Maybe Int,
+        -- | Photo self-destruct type; pass null if none; private chats only
+        self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType,
         -- | Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
         -- | Photo height
@@ -108,8 +109,8 @@ data InputMessageContent
     InputMessageVideo
       { -- | True, if the video preview must be covered by a spoiler animation; not supported in secret chats
         has_spoiler :: Maybe Bool,
-        -- | Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-        self_destruct_time :: Maybe Int,
+        -- | Video self-destruct type; pass null if none; private chats only
+        self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType,
         -- | Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
         caption :: Maybe FormattedText.FormattedText,
         -- | True, if the video is supposed to be streamed
@@ -318,7 +319,7 @@ instance Show InputMessageContent where
   show
     InputMessagePhoto
       { has_spoiler = has_spoiler_,
-        self_destruct_time = self_destruct_time_,
+        self_destruct_type = self_destruct_type_,
         caption = caption_,
         height = height_,
         width = width_,
@@ -329,7 +330,7 @@ instance Show InputMessageContent where
       "InputMessagePhoto"
         ++ U.cc
           [ U.p "has_spoiler" has_spoiler_,
-            U.p "self_destruct_time" self_destruct_time_,
+            U.p "self_destruct_type" self_destruct_type_,
             U.p "caption" caption_,
             U.p "height" height_,
             U.p "width" width_,
@@ -356,7 +357,7 @@ instance Show InputMessageContent where
   show
     InputMessageVideo
       { has_spoiler = has_spoiler_,
-        self_destruct_time = self_destruct_time_,
+        self_destruct_type = self_destruct_type_,
         caption = caption_,
         supports_streaming = supports_streaming_,
         height = height_,
@@ -369,7 +370,7 @@ instance Show InputMessageContent where
       "InputMessageVideo"
         ++ U.cc
           [ U.p "has_spoiler" has_spoiler_,
-            U.p "self_destruct_time" self_destruct_time_,
+            U.p "self_destruct_type" self_destruct_type_,
             U.p "caption" caption_,
             U.p "supports_streaming" supports_streaming_,
             U.p "height" height_,
@@ -597,14 +598,14 @@ instance T.FromJSON InputMessageContent where
       parseInputMessagePhoto :: A.Value -> T.Parser InputMessageContent
       parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
         has_spoiler_ <- o A..:? "has_spoiler"
-        self_destruct_time_ <- o A..:? "self_destruct_time"
+        self_destruct_type_ <- o A..:? "self_destruct_type"
         caption_ <- o A..:? "caption"
         height_ <- o A..:? "height"
         width_ <- o A..:? "width"
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         photo_ <- o A..:? "photo"
-        return $ InputMessagePhoto {has_spoiler = has_spoiler_, self_destruct_time = self_destruct_time_, caption = caption_, height = height_, width = width_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, photo = photo_}
+        return $ InputMessagePhoto {has_spoiler = has_spoiler_, self_destruct_type = self_destruct_type_, caption = caption_, height = height_, width = width_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, photo = photo_}
 
       parseInputMessageSticker :: A.Value -> T.Parser InputMessageContent
       parseInputMessageSticker = A.withObject "InputMessageSticker" $ \o -> do
@@ -618,7 +619,7 @@ instance T.FromJSON InputMessageContent where
       parseInputMessageVideo :: A.Value -> T.Parser InputMessageContent
       parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
         has_spoiler_ <- o A..:? "has_spoiler"
-        self_destruct_time_ <- o A..:? "self_destruct_time"
+        self_destruct_type_ <- o A..:? "self_destruct_type"
         caption_ <- o A..:? "caption"
         supports_streaming_ <- o A..:? "supports_streaming"
         height_ <- o A..:? "height"
@@ -627,7 +628,7 @@ instance T.FromJSON InputMessageContent where
         added_sticker_file_ids_ <- o A..:? "added_sticker_file_ids"
         thumbnail_ <- o A..:? "thumbnail"
         video_ <- o A..:? "video"
-        return $ InputMessageVideo {has_spoiler = has_spoiler_, self_destruct_time = self_destruct_time_, caption = caption_, supports_streaming = supports_streaming_, height = height_, width = width_, duration = duration_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, video = video_}
+        return $ InputMessageVideo {has_spoiler = has_spoiler_, self_destruct_type = self_destruct_type_, caption = caption_, supports_streaming = supports_streaming_, height = height_, width = width_, duration = duration_, added_sticker_file_ids = added_sticker_file_ids_, thumbnail = thumbnail_, video = video_}
 
       parseInputMessageVideoNote :: A.Value -> T.Parser InputMessageContent
       parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
@@ -787,7 +788,7 @@ instance T.ToJSON InputMessageContent where
   toJSON
     InputMessagePhoto
       { has_spoiler = has_spoiler_,
-        self_destruct_time = self_destruct_time_,
+        self_destruct_type = self_destruct_type_,
         caption = caption_,
         height = height_,
         width = width_,
@@ -798,7 +799,7 @@ instance T.ToJSON InputMessageContent where
       A.object
         [ "@type" A..= T.String "inputMessagePhoto",
           "has_spoiler" A..= has_spoiler_,
-          "self_destruct_time" A..= self_destruct_time_,
+          "self_destruct_type" A..= self_destruct_type_,
           "caption" A..= caption_,
           "height" A..= height_,
           "width" A..= width_,
@@ -825,7 +826,7 @@ instance T.ToJSON InputMessageContent where
   toJSON
     InputMessageVideo
       { has_spoiler = has_spoiler_,
-        self_destruct_time = self_destruct_time_,
+        self_destruct_type = self_destruct_type_,
         caption = caption_,
         supports_streaming = supports_streaming_,
         height = height_,
@@ -838,7 +839,7 @@ instance T.ToJSON InputMessageContent where
       A.object
         [ "@type" A..= T.String "inputMessageVideo",
           "has_spoiler" A..= has_spoiler_,
-          "self_destruct_time" A..= self_destruct_time_,
+          "self_destruct_type" A..= self_destruct_type_,
           "caption" A..= caption_,
           "supports_streaming" A..= supports_streaming_,
           "height" A..= height_,

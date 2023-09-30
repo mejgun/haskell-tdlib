@@ -9,12 +9,12 @@ import qualified Utils as U
 
 -- | Points to a file
 data InputFile
-  = -- | A file defined by its unique ID @id Unique file identifier
+  = -- | A file defined by its unique identifier @id Unique file identifier
     InputFileId
       { -- |
         _id :: Maybe Int
       }
-  | -- | A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.
+  | -- | A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.
     -- For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
     InputFileRemote
       { -- | Remote file identifier

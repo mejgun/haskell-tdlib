@@ -73,7 +73,7 @@ data ChatStatistics
         join_graph :: Maybe StatisticalGraph.StatisticalGraph,
         -- | A graph containing number of members in the chat
         member_count_graph :: Maybe StatisticalGraph.StatisticalGraph,
-        -- | A percentage of users with enabled notifications for the chat
+        -- | A percentage of users with enabled notifications for the chat; 0-100
         enabled_notifications_percentage :: Maybe Float,
         -- | Mean number of times the recently sent messages was shared
         mean_share_count :: Maybe StatisticalValue.StatisticalValue,

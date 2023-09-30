@@ -17,7 +17,7 @@ data EditProxy = EditProxy
     enable :: Maybe Bool,
     -- | Proxy server port
     port :: Maybe Int,
-    -- | Proxy server IP address
+    -- | Proxy server domain or IP address
     server :: Maybe String,
     -- | Proxy identifier
     proxy_id :: Maybe Int

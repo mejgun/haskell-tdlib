@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import qualified Utils as U
 
 -- |
--- Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+-- Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
 data ToggleBotIsAddedToAttachmentMenu = ToggleBotIsAddedToAttachmentMenu
   { -- | Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
     allow_write_access :: Maybe Bool,

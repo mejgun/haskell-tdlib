@@ -29,7 +29,7 @@
 </span><span id="line-29"></span><span>    </span><span id="MessageSourceScreenshot"><span class="annot"><a href="TD.Data.MessageSource.html#MessageSourceScreenshot"><span class="hs-identifier hs-var">MessageSourceScreenshot</span></a></span></span><span>
 </span><span id="line-30"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-comment">-- | The message is from some other source</span><span>
 </span><span id="line-31"></span><span>    </span><span id="MessageSourceOther"><span class="annot"><a href="TD.Data.MessageSource.html#MessageSourceOther"><span class="hs-identifier hs-var">MessageSourceOther</span></a></span></span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679471442"><span id="local-6989586621679471444"><span class="annot"><span class="annottext">MessageSource -&gt; MessageSource -&gt; Bool
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679487561"><span id="local-6989586621679487563"><span class="annot"><span class="annottext">MessageSource -&gt; MessageSource -&gt; Bool
 (MessageSource -&gt; MessageSource -&gt; Bool)
 -&gt; (MessageSource -&gt; MessageSource -&gt; Bool) -&gt; Eq MessageSource
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -39,8 +39,8 @@ $c/= :: MessageSource -&gt; MessageSource -&gt; Bool
 $c== :: MessageSource -&gt; MessageSource -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679471436"><span id="local-6989586621679471439"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>  </span><span id="local-6989586621679471434"><span class="annot"><span class="annottext">show :: MessageSource -&gt; String
+</span><span id="line-34"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679487555"><span id="local-6989586621679487558"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679487553"><span class="annot"><span class="annottext">show :: MessageSource -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceChatHistory"><span class="hs-identifier hs-var">MessageSourceChatHistory</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">String
@@ -132,68 +132,68 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="Utils.html#cc"><span class="hs-identifier hs-var">U.cc</span></a></span><span>
 </span><span id="line-74"></span><span>        </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
 </span><span id="line-75"></span><span>
-</span><span id="line-76"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679471429"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-77"></span><span>  </span><span id="local-6989586621679471427"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageSource
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679471425"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679471423"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679471423"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-78"></span><span>    </span><span id="local-6989586621679471422"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679471422"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679471423"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-76"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679487548"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-77"></span><span>  </span><span id="local-6989586621679487546"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageSource
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679487544"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679487542"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679487542"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-78"></span><span>    </span><span id="local-6989586621679487541"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679487541"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679487542"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-79"></span><span>
 </span><span id="line-80"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679471422"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679487541"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-81"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceChatHistory&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471420"><span class="hs-identifier hs-var">parseMessageSourceChatHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487539"><span class="hs-identifier hs-var">parseMessageSourceChatHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-82"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceMessageThreadHistory&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471419"><span class="hs-identifier hs-var">parseMessageSourceMessageThreadHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487538"><span class="hs-identifier hs-var">parseMessageSourceMessageThreadHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-83"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceForumTopicHistory&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471418"><span class="hs-identifier hs-var">parseMessageSourceForumTopicHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487537"><span class="hs-identifier hs-var">parseMessageSourceForumTopicHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-84"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceHistoryPreview&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471417"><span class="hs-identifier hs-var">parseMessageSourceHistoryPreview</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487536"><span class="hs-identifier hs-var">parseMessageSourceHistoryPreview</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-85"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceChatList&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471416"><span class="hs-identifier hs-var">parseMessageSourceChatList</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487535"><span class="hs-identifier hs-var">parseMessageSourceChatList</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-86"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceSearch&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471415"><span class="hs-identifier hs-var">parseMessageSourceSearch</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487534"><span class="hs-identifier hs-var">parseMessageSourceSearch</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-87"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceChatEventLog&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471414"><span class="hs-identifier hs-var">parseMessageSourceChatEventLog</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487533"><span class="hs-identifier hs-var">parseMessageSourceChatEventLog</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-88"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceNotification&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471413"><span class="hs-identifier hs-var">parseMessageSourceNotification</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487532"><span class="hs-identifier hs-var">parseMessageSourceNotification</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-89"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceScreenshot&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471412"><span class="hs-identifier hs-var">parseMessageSourceScreenshot</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487531"><span class="hs-identifier hs-var">parseMessageSourceScreenshot</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-90"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;messageSourceOther&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471411"><span class="hs-identifier hs-var">parseMessageSourceOther</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679471425"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679487530"><span class="hs-identifier hs-var">parseMessageSourceOther</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679487544"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-91"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser MessageSource
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-92"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-93"></span><span>      </span><span class="annot"><a href="#local-6989586621679471420"><span class="hs-identifier hs-type">parseMessageSourceChatHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-94"></span><span>      </span><span id="local-6989586621679471420"><span class="annot"><span class="annottext">parseMessageSourceChatHistory :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471420"><span class="hs-identifier hs-var hs-var">parseMessageSourceChatHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-93"></span><span>      </span><span class="annot"><a href="#local-6989586621679487539"><span class="hs-identifier hs-type">parseMessageSourceChatHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-94"></span><span>      </span><span id="local-6989586621679487539"><span class="annot"><span class="annottext">parseMessageSourceChatHistory :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487539"><span class="hs-identifier hs-var hs-var">parseMessageSourceChatHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -210,9 +210,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceChatHistory"><span class="hs-identifier hs-var">MessageSourceChatHistory</span></a></span><span>
 </span><span id="line-95"></span><span>
-</span><span id="line-96"></span><span>      </span><span class="annot"><a href="#local-6989586621679471419"><span class="hs-identifier hs-type">parseMessageSourceMessageThreadHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-97"></span><span>      </span><span id="local-6989586621679471419"><span class="annot"><span class="annottext">parseMessageSourceMessageThreadHistory :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471419"><span class="hs-identifier hs-var hs-var">parseMessageSourceMessageThreadHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-96"></span><span>      </span><span class="annot"><a href="#local-6989586621679487538"><span class="hs-identifier hs-type">parseMessageSourceMessageThreadHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-97"></span><span>      </span><span id="local-6989586621679487538"><span class="annot"><span class="annottext">parseMessageSourceMessageThreadHistory :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487538"><span class="hs-identifier hs-var hs-var">parseMessageSourceMessageThreadHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -229,9 +229,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceMessageThreadHistory"><span class="hs-identifier hs-var">MessageSourceMessageThreadHistory</span></a></span><span>
 </span><span id="line-98"></span><span>
-</span><span id="line-99"></span><span>      </span><span class="annot"><a href="#local-6989586621679471418"><span class="hs-identifier hs-type">parseMessageSourceForumTopicHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-100"></span><span>      </span><span id="local-6989586621679471418"><span class="annot"><span class="annottext">parseMessageSourceForumTopicHistory :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471418"><span class="hs-identifier hs-var hs-var">parseMessageSourceForumTopicHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-99"></span><span>      </span><span class="annot"><a href="#local-6989586621679487537"><span class="hs-identifier hs-type">parseMessageSourceForumTopicHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-100"></span><span>      </span><span id="local-6989586621679487537"><span class="annot"><span class="annottext">parseMessageSourceForumTopicHistory :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487537"><span class="hs-identifier hs-var hs-var">parseMessageSourceForumTopicHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -248,9 +248,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceForumTopicHistory"><span class="hs-identifier hs-var">MessageSourceForumTopicHistory</span></a></span><span>
 </span><span id="line-101"></span><span>
-</span><span id="line-102"></span><span>      </span><span class="annot"><a href="#local-6989586621679471417"><span class="hs-identifier hs-type">parseMessageSourceHistoryPreview</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-103"></span><span>      </span><span id="local-6989586621679471417"><span class="annot"><span class="annottext">parseMessageSourceHistoryPreview :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471417"><span class="hs-identifier hs-var hs-var">parseMessageSourceHistoryPreview</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-102"></span><span>      </span><span class="annot"><a href="#local-6989586621679487536"><span class="hs-identifier hs-type">parseMessageSourceHistoryPreview</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-103"></span><span>      </span><span id="local-6989586621679487536"><span class="annot"><span class="annottext">parseMessageSourceHistoryPreview :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487536"><span class="hs-identifier hs-var hs-var">parseMessageSourceHistoryPreview</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -267,9 +267,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceHistoryPreview"><span class="hs-identifier hs-var">MessageSourceHistoryPreview</span></a></span><span>
 </span><span id="line-104"></span><span>
-</span><span id="line-105"></span><span>      </span><span class="annot"><a href="#local-6989586621679471416"><span class="hs-identifier hs-type">parseMessageSourceChatList</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-106"></span><span>      </span><span id="local-6989586621679471416"><span class="annot"><span class="annottext">parseMessageSourceChatList :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471416"><span class="hs-identifier hs-var hs-var">parseMessageSourceChatList</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-105"></span><span>      </span><span class="annot"><a href="#local-6989586621679487535"><span class="hs-identifier hs-type">parseMessageSourceChatList</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-106"></span><span>      </span><span id="local-6989586621679487535"><span class="annot"><span class="annottext">parseMessageSourceChatList :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487535"><span class="hs-identifier hs-var hs-var">parseMessageSourceChatList</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -286,9 +286,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceChatList"><span class="hs-identifier hs-var">MessageSourceChatList</span></a></span><span>
 </span><span id="line-107"></span><span>
-</span><span id="line-108"></span><span>      </span><span class="annot"><a href="#local-6989586621679471415"><span class="hs-identifier hs-type">parseMessageSourceSearch</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-109"></span><span>      </span><span id="local-6989586621679471415"><span class="annot"><span class="annottext">parseMessageSourceSearch :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471415"><span class="hs-identifier hs-var hs-var">parseMessageSourceSearch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-108"></span><span>      </span><span class="annot"><a href="#local-6989586621679487534"><span class="hs-identifier hs-type">parseMessageSourceSearch</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-109"></span><span>      </span><span id="local-6989586621679487534"><span class="annot"><span class="annottext">parseMessageSourceSearch :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487534"><span class="hs-identifier hs-var hs-var">parseMessageSourceSearch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -305,9 +305,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceSearch"><span class="hs-identifier hs-var">MessageSourceSearch</span></a></span><span>
 </span><span id="line-110"></span><span>
-</span><span id="line-111"></span><span>      </span><span class="annot"><a href="#local-6989586621679471414"><span class="hs-identifier hs-type">parseMessageSourceChatEventLog</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-112"></span><span>      </span><span id="local-6989586621679471414"><span class="annot"><span class="annottext">parseMessageSourceChatEventLog :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471414"><span class="hs-identifier hs-var hs-var">parseMessageSourceChatEventLog</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-111"></span><span>      </span><span class="annot"><a href="#local-6989586621679487533"><span class="hs-identifier hs-type">parseMessageSourceChatEventLog</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-112"></span><span>      </span><span id="local-6989586621679487533"><span class="annot"><span class="annottext">parseMessageSourceChatEventLog :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487533"><span class="hs-identifier hs-var hs-var">parseMessageSourceChatEventLog</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -324,9 +324,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceChatEventLog"><span class="hs-identifier hs-var">MessageSourceChatEventLog</span></a></span><span>
 </span><span id="line-113"></span><span>
-</span><span id="line-114"></span><span>      </span><span class="annot"><a href="#local-6989586621679471413"><span class="hs-identifier hs-type">parseMessageSourceNotification</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-115"></span><span>      </span><span id="local-6989586621679471413"><span class="annot"><span class="annottext">parseMessageSourceNotification :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471413"><span class="hs-identifier hs-var hs-var">parseMessageSourceNotification</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-114"></span><span>      </span><span class="annot"><a href="#local-6989586621679487532"><span class="hs-identifier hs-type">parseMessageSourceNotification</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-115"></span><span>      </span><span id="local-6989586621679487532"><span class="annot"><span class="annottext">parseMessageSourceNotification :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487532"><span class="hs-identifier hs-var hs-var">parseMessageSourceNotification</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -343,9 +343,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceNotification"><span class="hs-identifier hs-var">MessageSourceNotification</span></a></span><span>
 </span><span id="line-116"></span><span>
-</span><span id="line-117"></span><span>      </span><span class="annot"><a href="#local-6989586621679471412"><span class="hs-identifier hs-type">parseMessageSourceScreenshot</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-118"></span><span>      </span><span id="local-6989586621679471412"><span class="annot"><span class="annottext">parseMessageSourceScreenshot :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471412"><span class="hs-identifier hs-var hs-var">parseMessageSourceScreenshot</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-117"></span><span>      </span><span class="annot"><a href="#local-6989586621679487531"><span class="hs-identifier hs-type">parseMessageSourceScreenshot</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-118"></span><span>      </span><span id="local-6989586621679487531"><span class="annot"><span class="annottext">parseMessageSourceScreenshot :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487531"><span class="hs-identifier hs-var hs-var">parseMessageSourceScreenshot</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -362,9 +362,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceScreenshot"><span class="hs-identifier hs-var">MessageSourceScreenshot</span></a></span><span>
 </span><span id="line-119"></span><span>
-</span><span id="line-120"></span><span>      </span><span class="annot"><a href="#local-6989586621679471411"><span class="hs-identifier hs-type">parseMessageSourceOther</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
-</span><span id="line-121"></span><span>      </span><span id="local-6989586621679471411"><span class="annot"><span class="annottext">parseMessageSourceOther :: Value -&gt; Parser MessageSource
-</span><a href="#local-6989586621679471411"><span class="hs-identifier hs-var hs-var">parseMessageSourceOther</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-120"></span><span>      </span><span class="annot"><a href="#local-6989586621679487530"><span class="hs-identifier hs-type">parseMessageSourceOther</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span><span>
+</span><span id="line-121"></span><span>      </span><span id="local-6989586621679487530"><span class="annot"><span class="annottext">parseMessageSourceOther :: Value -&gt; Parser MessageSource
+</span><a href="#local-6989586621679487530"><span class="hs-identifier hs-var hs-var">parseMessageSourceOther</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser MessageSource)
 -&gt; Value
 -&gt; Parser MessageSource
@@ -385,8 +385,8 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-123"></span><span>
-</span><span id="line-124"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679471403"><span id="local-6989586621679471405"><span id="local-6989586621679471407"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-125"></span><span>  </span><span id="local-6989586621679471401"><span class="annot"><span class="annottext">toJSON :: MessageSource -&gt; Value
+</span><span id="line-124"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679487522"><span id="local-6989586621679487524"><span id="local-6989586621679487526"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.MessageSource.html#MessageSource"><span class="hs-identifier hs-type">MessageSource</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-125"></span><span>  </span><span id="local-6989586621679487520"><span class="annot"><span class="annottext">toJSON :: MessageSource -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><span class="annottext">MessageSource
 </span><a href="TD.Data.MessageSource.html#MessageSourceChatHistory"><span class="hs-identifier hs-var">MessageSourceChatHistory</span></a></span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-126"></span><span>    </span><span class="annot"><span class="annottext">[Pair] -&gt; Value

@@ -15,7 +15,7 @@ data UserType
     UserTypeDeleted
   | -- | A bot (see https://core.telegram.org/bots)
     UserTypeBot
-      { -- | True, if the bot can be added to attachment menu
+      { -- | True, if the bot can be added to attachment or side menu
         can_be_added_to_attachment_menu :: Maybe Bool,
         -- | True, if the location of the user is expected to be sent with every inline query to this bot
         need_location :: Maybe Bool,

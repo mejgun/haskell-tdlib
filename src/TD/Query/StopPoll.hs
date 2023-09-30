@@ -9,7 +9,7 @@ import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified Utils as U
 
 -- |
--- Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+-- Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
 data StopPoll = StopPoll
   { -- | The new message reply markup; pass null if none; for bots only
     reply_markup :: Maybe ReplyMarkup.ReplyMarkup,

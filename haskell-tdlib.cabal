@@ -1,11 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.2.
 --
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        0.2.53.0
+version:        0.2.54.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -55,6 +55,7 @@ library
       TD.Data.BankCardInfo
       TD.Data.BasicGroup
       TD.Data.BasicGroupFullInfo
+      TD.Data.BlockList
       TD.Data.BotCommand
       TD.Data.BotCommands
       TD.Data.BotCommandScope
@@ -70,6 +71,8 @@ library
       TD.Data.CallServer
       TD.Data.CallServerType
       TD.Data.CallState
+      TD.Data.CanBoostChatResult
+      TD.Data.CanSendStoryResult
       TD.Data.CanTransferOwnershipResult
       TD.Data.Chat
       TD.Data.ChatAction
@@ -80,6 +83,10 @@ library
       TD.Data.ChatAdministrators
       TD.Data.ChatAvailableReactions
       TD.Data.ChatBackground
+      TD.Data.ChatBoost
+      TD.Data.ChatBoostLink
+      TD.Data.ChatBoostLinkInfo
+      TD.Data.ChatBoostStatus
       TD.Data.ChatEvent
       TD.Data.ChatEventAction
       TD.Data.ChatEventLogFilters
@@ -173,9 +180,11 @@ library
       TD.Data.ForumTopicIcon
       TD.Data.ForumTopicInfo
       TD.Data.ForumTopics
+      TD.Data.FoundChatBoosts
       TD.Data.FoundChatMessages
       TD.Data.FoundFileDownloads
       TD.Data.FoundMessages
+      TD.Data.FoundPositions
       TD.Data.FoundWebApp
       TD.Data.Game
       TD.Data.GameHighScore
@@ -213,9 +222,13 @@ library
       TD.Data.InputPassportElementErrorSource
       TD.Data.InputPersonalDocument
       TD.Data.InputSticker
+      TD.Data.InputStoryArea
+      TD.Data.InputStoryAreas
+      TD.Data.InputStoryAreaType
       TD.Data.InputStoryContent
       TD.Data.InputThumbnail
       TD.Data.InternalLinkType
+      TD.Data.InviteLinkChatType
       TD.Data.Invoice
       TD.Data.JsonObjectMember
       TD.Data.JsonValue
@@ -255,6 +268,7 @@ library
       TD.Data.MessageReplyTo
       TD.Data.Messages
       TD.Data.MessageSchedulingState
+      TD.Data.MessageSelfDestructType
       TD.Data.MessageSender
       TD.Data.MessageSenders
       TD.Data.MessageSendingState
@@ -321,6 +335,7 @@ library
       TD.Data.PremiumSource
       TD.Data.PremiumState
       TD.Data.PremiumStatePaymentOption
+      TD.Data.PremiumStoryFeature
       TD.Data.ProfilePhoto
       TD.Data.Proxies
       TD.Data.Proxy
@@ -370,12 +385,17 @@ library
       TD.Data.StorePaymentPurpose
       TD.Data.Stories
       TD.Data.Story
+      TD.Data.StoryArea
+      TD.Data.StoryAreaPosition
+      TD.Data.StoryAreaType
       TD.Data.StoryContent
       TD.Data.StoryInfo
       TD.Data.StoryInteractionInfo
       TD.Data.StoryList
       TD.Data.StoryPrivacySettings
       TD.Data.StoryVideo
+      TD.Data.StoryViewer
+      TD.Data.StoryViewers
       TD.Data.SuggestedAction
       TD.Data.Supergroup
       TD.Data.SupergroupFullInfo
@@ -404,6 +424,7 @@ library
       TD.Data.TMeUrlType
       TD.Data.TopChatCategory
       TD.Data.TrendingStickerSets
+      TD.Data.UnconfirmedSession
       TD.Data.UnreadReaction
       TD.Data.Update
       TD.Data.Updates
@@ -432,6 +453,7 @@ library
       TD.Lib
       TD.Query.AcceptCall
       TD.Query.AcceptTermsOfService
+      TD.Query.ActivateStoryStealthMode
       TD.Query.AddApplicationChangelog
       TD.Query.AddChatFolderByInviteLink
       TD.Query.AddChatMember
@@ -451,6 +473,7 @@ library
       TD.Query.AddSavedAnimation
       TD.Query.AddSavedNotificationSound
       TD.Query.AddStickerToSet
+      TD.Query.AllowBotToSendMessages
       TD.Query.AnswerCallbackQuery
       TD.Query.AnswerCustomQuery
       TD.Query.AnswerInlineQuery
@@ -461,10 +484,14 @@ library
       TD.Query.AssignGooglePlayTransaction
       TD.Query.BanChatMember
       TD.Query.BlockMessageSenderFromReplies
+      TD.Query.BoostChat
+      TD.Query.CanBoostChat
+      TD.Query.CanBotSendMessages
       TD.Query.CancelDownloadFile
       TD.Query.CancelPasswordReset
       TD.Query.CancelPreliminaryUploadFile
       TD.Query.CanPurchasePremium
+      TD.Query.CanSendStory
       TD.Query.CanTransferOwnership
       TD.Query.ChangeImportedContacts
       TD.Query.ChangePhoneNumber
@@ -503,6 +530,7 @@ library
       TD.Query.CloseStory
       TD.Query.CloseWebApp
       TD.Query.ConfirmQrCodeAuthentication
+      TD.Query.ConfirmSession
       TD.Query.CreateBasicGroupChat
       TD.Query.CreateCall
       TD.Query.CreateChatFolder
@@ -576,12 +604,12 @@ library
       TD.Query.GetActiveLiveLocationMessages
       TD.Query.GetActiveSessions
       TD.Query.GetAllPassportElements
+      TD.Query.GetAllStickerEmojis
       TD.Query.GetAnimatedEmoji
       TD.Query.GetApplicationConfig
       TD.Query.GetApplicationDownloadLink
       TD.Query.GetArchiveChatListSettings
       TD.Query.GetArchivedStickerSets
-      TD.Query.GetArchivedStories
       TD.Query.GetAttachedStickerSets
       TD.Query.GetAttachmentMenuBot
       TD.Query.GetAuthorizationState
@@ -601,7 +629,12 @@ library
       TD.Query.GetChat
       TD.Query.GetChatActiveStories
       TD.Query.GetChatAdministrators
+      TD.Query.GetChatArchivedStories
       TD.Query.GetChatAvailableMessageSenders
+      TD.Query.GetChatBoostLink
+      TD.Query.GetChatBoostLinkInfo
+      TD.Query.GetChatBoosts
+      TD.Query.GetChatBoostStatus
       TD.Query.GetChatEventLog
       TD.Query.GetChatFolder
       TD.Query.GetChatFolderChatCount
@@ -630,6 +663,7 @@ library
       TD.Query.GetChatSparseMessagePositions
       TD.Query.GetChatSponsoredMessages
       TD.Query.GetChatStatistics
+      TD.Query.GetChatsToSendStories
       TD.Query.GetCloseFriends
       TD.Query.GetCommands
       TD.Query.GetConnectedWebsites
@@ -746,6 +780,7 @@ library
       TD.Query.GetStorageStatistics
       TD.Query.GetStorageStatisticsFast
       TD.Query.GetStory
+      TD.Query.GetStoryAvailableReactions
       TD.Query.GetStoryNotificationSettingsExceptions
       TD.Query.GetStoryViewers
       TD.Query.GetSuggestedFileName
@@ -884,6 +919,7 @@ library
       TD.Query.SearchStickers
       TD.Query.SearchStickerSet
       TD.Query.SearchStickerSets
+      TD.Query.SearchStringsByPrefix
       TD.Query.SearchUserByPhoneNumber
       TD.Query.SearchUserByToken
       TD.Query.SearchWebApp
@@ -904,6 +940,7 @@ library
       TD.Query.SendPhoneNumberConfirmationCode
       TD.Query.SendPhoneNumberVerificationCode
       TD.Query.SendStory
+      TD.Query.SendWebAppCustomRequest
       TD.Query.SendWebAppData
       TD.Query.SetAccountTtl
       TD.Query.SetAlarm
@@ -961,6 +998,7 @@ library
       TD.Query.SetLogTagVerbosityLevel
       TD.Query.SetLogVerbosityLevel
       TD.Query.SetMenuButton
+      TD.Query.SetMessageSenderBlockList
       TD.Query.SetName
       TD.Query.SetNetworkType
       TD.Query.SetOption
@@ -980,6 +1018,7 @@ library
       TD.Query.SetStickerSetThumbnail
       TD.Query.SetStickerSetTitle
       TD.Query.SetStoryPrivacySettings
+      TD.Query.SetStoryReaction
       TD.Query.SetSupergroupStickerSet
       TD.Query.SetSupergroupUsername
       TD.Query.SetTdlibParameters
@@ -1031,7 +1070,6 @@ library
       TD.Query.ToggleGroupCallParticipantIsHandRaised
       TD.Query.ToggleGroupCallParticipantIsMuted
       TD.Query.ToggleGroupCallScreenSharingIsPaused
-      TD.Query.ToggleMessageSenderIsBlocked
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats
       TD.Query.ToggleStoryIsPinned

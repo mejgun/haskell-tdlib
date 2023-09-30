@@ -11,7 +11,7 @@ import qualified Utils as U
 data ThumbnailFormat
   = -- | The thumbnail is in JPEG format
     ThumbnailFormatJpeg
-  | -- | The thumbnail is in static GIF format. It will be used only for some bot inline results
+  | -- | The thumbnail is in static GIF format. It will be used only for some bot inline query results
     ThumbnailFormatGif
   | -- | The thumbnail is in MPEG4 format. It will be used only for some animations and videos
     ThumbnailFormatMpeg4

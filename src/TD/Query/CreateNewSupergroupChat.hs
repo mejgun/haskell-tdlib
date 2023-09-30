@@ -11,7 +11,7 @@ import qualified Utils as U
 -- |
 -- Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
 data CreateNewSupergroupChat = CreateNewSupergroupChat
-  { -- | Pass true to create a supergroup for importing messages using importMessage
+  { -- | Pass true to create a supergroup for importing messages using importMessages
     for_import :: Maybe Bool,
     -- | Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     message_auto_delete_time :: Maybe Int,

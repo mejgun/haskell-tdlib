@@ -21,7 +21,7 @@
 </span><span id="line-20"></span><span>        </span><span id="reset_in"><span class="annot"><span class="annottext">EmailAddressResetState -&gt; Maybe Int
 </span><a href="TD.Data.EmailAddressResetState.html#reset_in"><span class="hs-identifier hs-var hs-var">reset_in</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-21"></span><span>      </span><span class="hs-special">}</span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679485647"><span id="local-6989586621679485649"><span class="annot"><span class="annottext">EmailAddressResetState -&gt; EmailAddressResetState -&gt; Bool
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679502463"><span id="local-6989586621679502465"><span class="annot"><span class="annottext">EmailAddressResetState -&gt; EmailAddressResetState -&gt; Bool
 (EmailAddressResetState -&gt; EmailAddressResetState -&gt; Bool)
 -&gt; (EmailAddressResetState -&gt; EmailAddressResetState -&gt; Bool)
 -&gt; Eq EmailAddressResetState
@@ -32,13 +32,13 @@ $c/= :: EmailAddressResetState -&gt; EmailAddressResetState -&gt; Bool
 $c== :: EmailAddressResetState -&gt; EmailAddressResetState -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679485641"><span id="local-6989586621679485644"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679485639"><span class="annot"><span class="annottext">show :: EmailAddressResetState -&gt; String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679502457"><span id="local-6989586621679502460"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679502455"><span class="annot"><span class="annottext">show :: EmailAddressResetState -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetStateAvailable"><span class="hs-identifier hs-type">EmailAddressResetStateAvailable</span></a></span><span>
 </span><span id="line-27"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">wait_period :: EmailAddressResetState -&gt; Maybe Int
-</span><a href="TD.Data.EmailAddressResetState.html#wait_period"><span class="hs-identifier hs-var">wait_period</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679485637"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485637"><span class="hs-identifier hs-var">wait_period_</span></a></span></span><span>
+</span><a href="TD.Data.EmailAddressResetState.html#wait_period"><span class="hs-identifier hs-var">wait_period</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502453"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679502453"><span class="hs-identifier hs-var">wait_period_</span></a></span></span><span>
 </span><span id="line-28"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;EmailAddressResetStateAvailable&quot;</span></span><span>
@@ -50,13 +50,13 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;wait_period&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485637"><span class="hs-identifier hs-var">wait_period_</span></a></span><span>
+</span><a href="#local-6989586621679502453"><span class="hs-identifier hs-var">wait_period_</span></a></span><span>
 </span><span id="line-32"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-33"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetStatePending"><span class="hs-identifier hs-type">EmailAddressResetStatePending</span></a></span><span>
 </span><span id="line-35"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reset_in :: EmailAddressResetState -&gt; Maybe Int
-</span><a href="TD.Data.EmailAddressResetState.html#reset_in"><span class="hs-identifier hs-var">reset_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679485634"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485634"><span class="hs-identifier hs-var">reset_in_</span></a></span></span><span>
+</span><a href="TD.Data.EmailAddressResetState.html#reset_in"><span class="hs-identifier hs-var">reset_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502450"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679502450"><span class="hs-identifier hs-var">reset_in_</span></a></span></span><span>
 </span><span id="line-36"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-37"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;EmailAddressResetStatePending&quot;</span></span><span>
@@ -68,39 +68,39 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="Utils.html#p"><span class="hs-identifier hs-var">U.p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;reset_in&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485634"><span class="hs-identifier hs-var">reset_in_</span></a></span><span>
+</span><a href="#local-6989586621679502450"><span class="hs-identifier hs-var">reset_in_</span></a></span><span>
 </span><span id="line-40"></span><span>          </span><span class="hs-special">]</span><span>
 </span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679485631"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679485629"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EmailAddressResetState
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679485627"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679485627"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679485625"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485625"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-44"></span><span>    </span><span id="local-6989586621679485624"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679485624"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485625"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679502447"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679502445"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EmailAddressResetState
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679502443"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679502443"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679502441"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679502441"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679502440"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679502440"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679502441"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-45"></span><span>
 </span><span id="line-46"></span><span>    </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679485624"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679502440"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-47"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;emailAddressResetStateAvailable&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EmailAddressResetState
-</span><a href="#local-6989586621679485622"><span class="hs-identifier hs-var">parseEmailAddressResetStateAvailable</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485627"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679502438"><span class="hs-identifier hs-var">parseEmailAddressResetStateAvailable</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679502443"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;emailAddressResetStatePending&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EmailAddressResetState
-</span><a href="#local-6989586621679485621"><span class="hs-identifier hs-var">parseEmailAddressResetStatePending</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485627"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679502437"><span class="hs-identifier hs-var">parseEmailAddressResetStatePending</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679502443"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>      </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser EmailAddressResetState
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-50"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span>      </span><span class="annot"><a href="#local-6989586621679485622"><span class="hs-identifier hs-type">parseEmailAddressResetStateAvailable</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span><span>
-</span><span id="line-52"></span><span>      </span><span id="local-6989586621679485622"><span class="annot"><span class="annottext">parseEmailAddressResetStateAvailable :: Value -&gt; Parser EmailAddressResetState
-</span><a href="#local-6989586621679485622"><span class="hs-identifier hs-var hs-var">parseEmailAddressResetStateAvailable</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-51"></span><span>      </span><span class="annot"><a href="#local-6989586621679502438"><span class="hs-identifier hs-type">parseEmailAddressResetStateAvailable</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span><span>
+</span><span id="line-52"></span><span>      </span><span id="local-6989586621679502438"><span class="annot"><span class="annottext">parseEmailAddressResetStateAvailable :: Value -&gt; Parser EmailAddressResetState
+</span><a href="#local-6989586621679502438"><span class="hs-identifier hs-var hs-var">parseEmailAddressResetStateAvailable</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser EmailAddressResetState)
 -&gt; Value
 -&gt; Parser EmailAddressResetState
@@ -112,11 +112,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser EmailAddressResetState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485619"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485619"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679485618"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485618"><span class="hs-identifier hs-var">wait_period_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485619"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679502435"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679502435"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679502434"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679502434"><span class="hs-identifier hs-var">wait_period_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679502435"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;wait_period&quot;</span></span><span>
@@ -128,11 +128,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">EmailAddressResetStateAvailable :: Maybe Int -&gt; EmailAddressResetState
 </span><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetStateAvailable"><span class="hs-identifier hs-type">EmailAddressResetStateAvailable</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">wait_period :: Maybe Int
 </span><a href="TD.Data.EmailAddressResetState.html#wait_period"><span class="hs-identifier hs-var">wait_period</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485618"><span class="hs-identifier hs-var">wait_period_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679502434"><span class="hs-identifier hs-var">wait_period_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-55"></span><span>
-</span><span id="line-56"></span><span>      </span><span class="annot"><a href="#local-6989586621679485621"><span class="hs-identifier hs-type">parseEmailAddressResetStatePending</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span><span>
-</span><span id="line-57"></span><span>      </span><span id="local-6989586621679485621"><span class="annot"><span class="annottext">parseEmailAddressResetStatePending :: Value -&gt; Parser EmailAddressResetState
-</span><a href="#local-6989586621679485621"><span class="hs-identifier hs-var hs-var">parseEmailAddressResetStatePending</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-56"></span><span>      </span><span class="annot"><a href="#local-6989586621679502437"><span class="hs-identifier hs-type">parseEmailAddressResetStatePending</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span><span>
+</span><span id="line-57"></span><span>      </span><span id="local-6989586621679502437"><span class="annot"><span class="annottext">parseEmailAddressResetStatePending :: Value -&gt; Parser EmailAddressResetState
+</span><a href="#local-6989586621679502437"><span class="hs-identifier hs-var hs-var">parseEmailAddressResetStatePending</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser EmailAddressResetState)
 -&gt; Value
 -&gt; Parser EmailAddressResetState
@@ -144,11 +144,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser EmailAddressResetState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485616"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485616"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-58"></span><span>        </span><span id="local-6989586621679485615"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485615"><span class="hs-identifier hs-var">reset_in_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485616"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679502432"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679502432"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-58"></span><span>        </span><span id="local-6989586621679502431"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679502431"><span class="hs-identifier hs-var">reset_in_</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679502432"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reset_in&quot;</span></span><span>
@@ -160,19 +160,19 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">EmailAddressResetStatePending :: Maybe Int -&gt; EmailAddressResetState
 </span><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetStatePending"><span class="hs-identifier hs-type">EmailAddressResetStatePending</span></a></span><span> </span><span class="hs-special">{</span><span class="annot"><span class="annottext">reset_in :: Maybe Int
 </span><a href="TD.Data.EmailAddressResetState.html#reset_in"><span class="hs-identifier hs-var">reset_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485615"><span class="hs-identifier hs-var">reset_in_</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679502431"><span class="hs-identifier hs-var">reset_in_</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-60"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser EmailAddressResetState
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-61"></span><span>
-</span><span id="line-62"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679485608"><span id="local-6989586621679485610"><span id="local-6989586621679485612"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-63"></span><span>  </span><span id="local-6989586621679485606"><span class="annot"><span class="annottext">toJSON :: EmailAddressResetState -&gt; Value
+</span><span id="line-62"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679502424"><span id="local-6989586621679502426"><span id="local-6989586621679502428"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetState"><span class="hs-identifier hs-type">EmailAddressResetState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-63"></span><span>  </span><span id="local-6989586621679502422"><span class="annot"><span class="annottext">toJSON :: EmailAddressResetState -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span>
 </span><span id="line-64"></span><span>    </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetStateAvailable"><span class="hs-identifier hs-type">EmailAddressResetStateAvailable</span></a></span><span>
 </span><span id="line-65"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">wait_period :: EmailAddressResetState -&gt; Maybe Int
-</span><a href="TD.Data.EmailAddressResetState.html#wait_period"><span class="hs-identifier hs-var">wait_period</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679485604"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485604"><span class="hs-identifier hs-var">wait_period_</span></a></span></span><span>
+</span><a href="TD.Data.EmailAddressResetState.html#wait_period"><span class="hs-identifier hs-var">wait_period</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502420"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679502420"><span class="hs-identifier hs-var">wait_period_</span></a></span></span><span>
 </span><span id="line-66"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-67"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -186,13 +186,13 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;wait_period&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485604"><span class="hs-identifier hs-var">wait_period_</span></a></span><span>
+</span><a href="#local-6989586621679502420"><span class="hs-identifier hs-var">wait_period_</span></a></span><span>
 </span><span id="line-70"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-71"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span>
 </span><span id="line-72"></span><span>    </span><span class="annot"><a href="TD.Data.EmailAddressResetState.html#EmailAddressResetStatePending"><span class="hs-identifier hs-type">EmailAddressResetStatePending</span></a></span><span>
 </span><span id="line-73"></span><span>      </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reset_in :: EmailAddressResetState -&gt; Maybe Int
-</span><a href="TD.Data.EmailAddressResetState.html#reset_in"><span class="hs-identifier hs-var">reset_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679485600"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485600"><span class="hs-identifier hs-var">reset_in_</span></a></span></span><span>
+</span><a href="TD.Data.EmailAddressResetState.html#reset_in"><span class="hs-identifier hs-var">reset_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679502416"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679502416"><span class="hs-identifier hs-var">reset_in_</span></a></span></span><span>
 </span><span id="line-74"></span><span>      </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-75"></span><span>      </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span>
@@ -206,6 +206,6 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;reset_in&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679485600"><span class="hs-identifier hs-var">reset_in_</span></a></span><span>
+</span><a href="#local-6989586621679502416"><span class="hs-identifier hs-var">reset_in_</span></a></span><span>
 </span><span id="line-78"></span><span>        </span><span class="hs-special">]</span><span>
 </span><span id="line-79"></span></pre></body></html>

@@ -5,18 +5,21 @@ module TD.Query.GetStoryViewers where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import qualified TD.Data.MessageViewer as MessageViewer
 import qualified Utils as U
 
 -- |
--- Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date)
--- For optimal performance, the number of returned stories is chosen by TDLib
+-- Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
 data GetStoryViewers = GetStoryViewers
   { -- | The maximum number of story viewers to return
-    -- For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     limit :: Maybe Int,
-    -- | A viewer from which to return next viewers; pass null to get results from the beginning
-    offset_viewer :: Maybe MessageViewer.MessageViewer,
+    -- | Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    offset :: Maybe String,
+    -- | Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
+    prefer_with_reaction :: Maybe Bool,
+    -- | Pass true to get only contacts; pass false to get all relevant viewers
+    only_contacts :: Maybe Bool,
+    -- | Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
+    query :: Maybe String,
     -- | Story identifier
     story_id :: Maybe Int
   }
@@ -26,13 +29,19 @@ instance Show GetStoryViewers where
   show
     GetStoryViewers
       { limit = limit_,
-        offset_viewer = offset_viewer_,
+        offset = offset_,
+        prefer_with_reaction = prefer_with_reaction_,
+        only_contacts = only_contacts_,
+        query = query_,
         story_id = story_id_
       } =
       "GetStoryViewers"
         ++ U.cc
           [ U.p "limit" limit_,
-            U.p "offset_viewer" offset_viewer_,
+            U.p "offset" offset_,
+            U.p "prefer_with_reaction" prefer_with_reaction_,
+            U.p "only_contacts" only_contacts_,
+            U.p "query" query_,
             U.p "story_id" story_id_
           ]
 
@@ -40,12 +49,18 @@ instance T.ToJSON GetStoryViewers where
   toJSON
     GetStoryViewers
       { limit = limit_,
-        offset_viewer = offset_viewer_,
+        offset = offset_,
+        prefer_with_reaction = prefer_with_reaction_,
+        only_contacts = only_contacts_,
+        query = query_,
         story_id = story_id_
       } =
       A.object
         [ "@type" A..= T.String "getStoryViewers",
           "limit" A..= limit_,
-          "offset_viewer" A..= offset_viewer_,
+          "offset" A..= offset_,
+          "prefer_with_reaction" A..= prefer_with_reaction_,
+          "only_contacts" A..= only_contacts_,
+          "query" A..= query_,
           "story_id" A..= story_id_
         ]

@@ -9,13 +9,13 @@ import qualified TD.Data.ThemeParameters as ThemeParameters
 import qualified Utils as U
 
 -- |
--- Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+-- Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
 data GetWebAppUrl = GetWebAppUrl
   { -- | Short name of the application; 0-64 English letters, digits, and underscores
     application_name :: Maybe String,
     -- | Preferred Web App theme; pass null to use the default theme
     theme :: Maybe ThemeParameters.ThemeParameters,
-    -- | The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
+    -- | The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
     url :: Maybe String,
     -- | Identifier of the target bot
     bot_user_id :: Maybe Int

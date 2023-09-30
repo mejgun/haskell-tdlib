@@ -17,7 +17,7 @@ data AddProxy = AddProxy
     enable :: Maybe Bool,
     -- | Proxy server port
     port :: Maybe Int,
-    -- | Proxy server IP address
+    -- | Proxy server domain or IP address
     server :: Maybe String
   }
   deriving (Eq)

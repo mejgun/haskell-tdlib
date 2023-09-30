@@ -29,7 +29,7 @@ data PremiumFeature
     PremiumFeatureAdvancedChatManagement
   | -- | A badge in the user's profile
     PremiumFeatureProfileBadge
-  | -- | A emoji status shown along with the user's name
+  | -- | An emoji status shown along with the user's name
     PremiumFeatureEmojiStatus
   | -- | Profile photo animation on message and chat screens
     PremiumFeatureAnimatedProfilePhoto
@@ -39,6 +39,10 @@ data PremiumFeature
     PremiumFeatureAppIcons
   | -- | Allowed to translate chat messages real-time
     PremiumFeatureRealTimeChatTranslation
+  | -- | Allowed to use many additional features for stories
+    PremiumFeatureUpgradedStories
+  | -- | The ability to boost chats
+    PremiumFeatureChatBoost
   deriving (Eq)
 
 instance Show PremiumFeature where
@@ -102,6 +106,14 @@ instance Show PremiumFeature where
     "PremiumFeatureRealTimeChatTranslation"
       ++ U.cc
         []
+  show PremiumFeatureUpgradedStories =
+    "PremiumFeatureUpgradedStories"
+      ++ U.cc
+        []
+  show PremiumFeatureChatBoost =
+    "PremiumFeatureChatBoost"
+      ++ U.cc
+        []
 
 instance T.FromJSON PremiumFeature where
   parseJSON v@(T.Object obj) = do
@@ -123,6 +135,8 @@ instance T.FromJSON PremiumFeature where
       "premiumFeatureForumTopicIcon" -> parsePremiumFeatureForumTopicIcon v
       "premiumFeatureAppIcons" -> parsePremiumFeatureAppIcons v
       "premiumFeatureRealTimeChatTranslation" -> parsePremiumFeatureRealTimeChatTranslation v
+      "premiumFeatureUpgradedStories" -> parsePremiumFeatureUpgradedStories v
+      "premiumFeatureChatBoost" -> parsePremiumFeatureChatBoost v
       _ -> mempty
     where
       parsePremiumFeatureIncreasedLimits :: A.Value -> T.Parser PremiumFeature
@@ -169,6 +183,12 @@ instance T.FromJSON PremiumFeature where
 
       parsePremiumFeatureRealTimeChatTranslation :: A.Value -> T.Parser PremiumFeature
       parsePremiumFeatureRealTimeChatTranslation = A.withObject "PremiumFeatureRealTimeChatTranslation" $ \_ -> return PremiumFeatureRealTimeChatTranslation
+
+      parsePremiumFeatureUpgradedStories :: A.Value -> T.Parser PremiumFeature
+      parsePremiumFeatureUpgradedStories = A.withObject "PremiumFeatureUpgradedStories" $ \_ -> return PremiumFeatureUpgradedStories
+
+      parsePremiumFeatureChatBoost :: A.Value -> T.Parser PremiumFeature
+      parsePremiumFeatureChatBoost = A.withObject "PremiumFeatureChatBoost" $ \_ -> return PremiumFeatureChatBoost
   parseJSON _ = mempty
 
 instance T.ToJSON PremiumFeature where
@@ -231,4 +251,12 @@ instance T.ToJSON PremiumFeature where
   toJSON PremiumFeatureRealTimeChatTranslation =
     A.object
       [ "@type" A..= T.String "premiumFeatureRealTimeChatTranslation"
+      ]
+  toJSON PremiumFeatureUpgradedStories =
+    A.object
+      [ "@type" A..= T.String "premiumFeatureUpgradedStories"
+      ]
+  toJSON PremiumFeatureChatBoost =
+    A.object
+      [ "@type" A..= T.String "premiumFeatureChatBoost"
       ]

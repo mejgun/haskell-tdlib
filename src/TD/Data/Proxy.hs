@@ -19,7 +19,7 @@ data Proxy = -- | Contains information about a proxy server
     last_used_date :: Maybe Int,
     -- | Proxy server port
     port :: Maybe Int,
-    -- | Proxy server IP address
+    -- | Proxy server domain or IP address
     server :: Maybe String,
     -- | Unique identifier of the proxy
     _id :: Maybe Int

@@ -14,7 +14,7 @@ data GetMessageLink = GetMessageLink
     in_message_thread :: Maybe Bool,
     -- | Pass true to create a link for the whole media album
     for_album :: Maybe Bool,
-    -- | If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
+    -- | If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
     media_timestamp :: Maybe Int,
     -- | Identifier of the message
     message_id :: Maybe Int,

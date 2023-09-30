@@ -11,12 +11,10 @@ import qualified Utils as U
 -- |
 data Session = -- | Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
   Session
-  { -- | Region code from which the session was created, based on the IP address
-    region :: Maybe String,
-    -- | A two-letter country code for the country from which the session was created, based on the IP address
-    country :: Maybe String,
+  { -- | A human-readable description of the location from which the session was created, based on the IP address
+    location :: Maybe String,
     -- | IP address from which the session was created, in human-readable format
-    ip :: Maybe String,
+    ip_address :: Maybe String,
     -- | Point in time (Unix timestamp) when the session was last used
     last_active_date :: Maybe Int,
     -- | Point in time (Unix timestamp) when the user has logged in
@@ -41,6 +39,8 @@ data Session = -- | Contains information about one session in a Telegram applica
     can_accept_calls :: Maybe Bool,
     -- | True, if incoming secret chats can be accepted by the session
     can_accept_secret_chats :: Maybe Bool,
+    -- | True, if the session wasn't confirmed from another session
+    is_unconfirmed :: Maybe Bool,
     -- | True, if a 2-step verification password is needed to complete authorization of the session
     is_password_pending :: Maybe Bool,
     -- | True, if this session is the current session
@@ -53,9 +53,8 @@ data Session = -- | Contains information about one session in a Telegram applica
 instance Show Session where
   show
     Session
-      { region = region_,
-        country = country_,
-        ip = ip_,
+      { location = location_,
+        ip_address = ip_address_,
         last_active_date = last_active_date_,
         log_in_date = log_in_date_,
         system_version = system_version_,
@@ -68,15 +67,15 @@ instance Show Session where
         _type = _type_,
         can_accept_calls = can_accept_calls_,
         can_accept_secret_chats = can_accept_secret_chats_,
+        is_unconfirmed = is_unconfirmed_,
         is_password_pending = is_password_pending_,
         is_current = is_current_,
         _id = _id_
       } =
       "Session"
         ++ U.cc
-          [ U.p "region" region_,
-            U.p "country" country_,
-            U.p "ip" ip_,
+          [ U.p "location" location_,
+            U.p "ip_address" ip_address_,
             U.p "last_active_date" last_active_date_,
             U.p "log_in_date" log_in_date_,
             U.p "system_version" system_version_,
@@ -89,6 +88,7 @@ instance Show Session where
             U.p "_type" _type_,
             U.p "can_accept_calls" can_accept_calls_,
             U.p "can_accept_secret_chats" can_accept_secret_chats_,
+            U.p "is_unconfirmed" is_unconfirmed_,
             U.p "is_password_pending" is_password_pending_,
             U.p "is_current" is_current_,
             U.p "_id" _id_
@@ -104,9 +104,8 @@ instance T.FromJSON Session where
     where
       parseSession :: A.Value -> T.Parser Session
       parseSession = A.withObject "Session" $ \o -> do
-        region_ <- o A..:? "region"
-        country_ <- o A..:? "country"
-        ip_ <- o A..:? "ip"
+        location_ <- o A..:? "location"
+        ip_address_ <- o A..:? "ip_address"
         last_active_date_ <- o A..:? "last_active_date"
         log_in_date_ <- o A..:? "log_in_date"
         system_version_ <- o A..:? "system_version"
@@ -119,18 +118,18 @@ instance T.FromJSON Session where
         _type_ <- o A..:? "type"
         can_accept_calls_ <- o A..:? "can_accept_calls"
         can_accept_secret_chats_ <- o A..:? "can_accept_secret_chats"
+        is_unconfirmed_ <- o A..:? "is_unconfirmed"
         is_password_pending_ <- o A..:? "is_password_pending"
         is_current_ <- o A..:? "is_current"
         _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ Session {region = region_, country = country_, ip = ip_, last_active_date = last_active_date_, log_in_date = log_in_date_, system_version = system_version_, platform = platform_, device_model = device_model_, is_official_application = is_official_application_, application_version = application_version_, application_name = application_name_, api_id = api_id_, _type = _type_, can_accept_calls = can_accept_calls_, can_accept_secret_chats = can_accept_secret_chats_, is_password_pending = is_password_pending_, is_current = is_current_, _id = _id_}
+        return $ Session {location = location_, ip_address = ip_address_, last_active_date = last_active_date_, log_in_date = log_in_date_, system_version = system_version_, platform = platform_, device_model = device_model_, is_official_application = is_official_application_, application_version = application_version_, application_name = application_name_, api_id = api_id_, _type = _type_, can_accept_calls = can_accept_calls_, can_accept_secret_chats = can_accept_secret_chats_, is_unconfirmed = is_unconfirmed_, is_password_pending = is_password_pending_, is_current = is_current_, _id = _id_}
   parseJSON _ = mempty
 
 instance T.ToJSON Session where
   toJSON
     Session
-      { region = region_,
-        country = country_,
-        ip = ip_,
+      { location = location_,
+        ip_address = ip_address_,
         last_active_date = last_active_date_,
         log_in_date = log_in_date_,
         system_version = system_version_,
@@ -143,15 +142,15 @@ instance T.ToJSON Session where
         _type = _type_,
         can_accept_calls = can_accept_calls_,
         can_accept_secret_chats = can_accept_secret_chats_,
+        is_unconfirmed = is_unconfirmed_,
         is_password_pending = is_password_pending_,
         is_current = is_current_,
         _id = _id_
       } =
       A.object
         [ "@type" A..= T.String "session",
-          "region" A..= region_,
-          "country" A..= country_,
-          "ip" A..= ip_,
+          "location" A..= location_,
+          "ip_address" A..= ip_address_,
           "last_active_date" A..= last_active_date_,
           "log_in_date" A..= log_in_date_,
           "system_version" A..= system_version_,
@@ -164,6 +163,7 @@ instance T.ToJSON Session where
           "type" A..= _type_,
           "can_accept_calls" A..= can_accept_calls_,
           "can_accept_secret_chats" A..= can_accept_secret_chats_,
+          "is_unconfirmed" A..= is_unconfirmed_,
           "is_password_pending" A..= is_password_pending_,
           "is_current" A..= is_current_,
           "id" A..= U.toS _id_

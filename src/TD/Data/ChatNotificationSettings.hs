@@ -26,7 +26,7 @@ data ChatNotificationSettings = -- | Contains information about notification set
     story_sound_id :: Maybe Int,
     -- | If true, the value for the relevant type of chat is used instead of story_sound_id
     use_default_story_sound :: Maybe Bool,
-    -- | True, if story notifications are received without sound
+    -- | True, if story notifications are disabled for the chat
     mute_stories :: Maybe Bool,
     -- | If true, mute_stories is ignored and the value for the relevant type of chat is used instead
     use_default_mute_stories :: Maybe Bool,
