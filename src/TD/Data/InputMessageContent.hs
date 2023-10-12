@@ -827,7 +827,7 @@ instance AT.ToJSON InputMessageContent where
         [ "@type"      A..= AT.String "inputMessageVoiceNote"
         , "voice_note" A..= voice_note_
         , "duration"   A..= duration_
-        , "waveform"   A..= I.toB waveform_
+        , "waveform"   A..= fmap I.writeBytes  waveform_
         , "caption"    A..= caption_
         ]
   toJSON InputMessageLocation
@@ -898,7 +898,7 @@ instance AT.ToJSON InputMessageContent where
         , "photo_size"             A..= photo_size_
         , "photo_width"            A..= photo_width_
         , "photo_height"           A..= photo_height_
-        , "payload"                A..= I.toB payload_
+        , "payload"                A..= fmap I.writeBytes  payload_
         , "provider_token"         A..= provider_token_
         , "provider_data"          A..= provider_data_
         , "start_parameter"        A..= start_parameter_

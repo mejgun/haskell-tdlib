@@ -49,5 +49,5 @@ instance AT.ToJSON EditForumTopic where
           , "message_thread_id"      A..= message_thread_id_
           , "name"                   A..= name_
           , "edit_icon_custom_emoji" A..= edit_icon_custom_emoji_
-          , "icon_custom_emoji_id"   A..= I.toS icon_custom_emoji_id_
+          , "icon_custom_emoji_id"   A..= fmap I.writeInt64  icon_custom_emoji_id_
           ]

@@ -172,7 +172,7 @@ instance AT.ToJSON CallState where
         , "protocol"       A..= protocol_
         , "servers"        A..= servers_
         , "config"         A..= config_
-        , "encryption_key" A..= I.toB encryption_key_
+        , "encryption_key" A..= fmap I.writeBytes  encryption_key_
         , "emojis"         A..= emojis_
         , "allow_p2p"      A..= allow_p2p_
         ]

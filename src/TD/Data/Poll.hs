@@ -100,7 +100,7 @@ instance AT.ToJSON Poll where
     }
       = A.object
         [ "@type"             A..= AT.String "poll"
-        , "id"                A..= I.toS _id_
+        , "id"                A..= fmap I.writeInt64  _id_
         , "question"          A..= question_
         , "options"           A..= options_
         , "total_voter_count" A..= total_voter_count_

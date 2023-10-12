@@ -64,7 +64,7 @@ instance AT.ToJSON ChatPosition where
       = A.object
         [ "@type"     A..= AT.String "chatPosition"
         , "list"      A..= list_
-        , "order"     A..= I.toS order_
+        , "order"     A..= fmap I.writeInt64  order_
         , "is_pinned" A..= is_pinned_
         , "source"    A..= source_
         ]

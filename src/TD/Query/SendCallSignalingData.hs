@@ -34,5 +34,5 @@ instance AT.ToJSON SendCallSignalingData where
         = A.object
           [ "@type"   A..= AT.String "sendCallSignalingData"
           , "call_id" A..= call_id_
-          , "data"    A..= I.toB _data_
+          , "data"    A..= fmap I.writeBytes  _data_
           ]

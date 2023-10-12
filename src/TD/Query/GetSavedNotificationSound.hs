@@ -29,5 +29,5 @@ instance AT.ToJSON GetSavedNotificationSound where
       }
         = A.object
           [ "@type"                 A..= AT.String "getSavedNotificationSound"
-          , "notification_sound_id" A..= I.toS notification_sound_id_
+          , "notification_sound_id" A..= fmap I.writeInt64  notification_sound_id_
           ]

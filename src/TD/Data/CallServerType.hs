@@ -81,7 +81,7 @@ instance AT.ToJSON CallServerType where
     }
       = A.object
         [ "@type"    A..= AT.String "callServerTypeTelegramReflector"
-        , "peer_tag" A..= I.toB peer_tag_
+        , "peer_tag" A..= fmap I.writeBytes  peer_tag_
         , "is_tcp"   A..= is_tcp_
         ]
   toJSON CallServerTypeWebrtc

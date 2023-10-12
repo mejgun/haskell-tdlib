@@ -33,6 +33,6 @@ instance AT.ToJSON AnswerPreCheckoutQuery where
       }
         = A.object
           [ "@type"                 A..= AT.String "answerPreCheckoutQuery"
-          , "pre_checkout_query_id" A..= I.toS pre_checkout_query_id_
+          , "pre_checkout_query_id" A..= fmap I.writeInt64  pre_checkout_query_id_
           , "error_message"         A..= error_message_
           ]

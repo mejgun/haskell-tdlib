@@ -194,14 +194,14 @@ instance AT.ToJSON InlineKeyboardButtonType where
     }
       = A.object
         [ "@type" A..= AT.String "inlineKeyboardButtonTypeCallback"
-        , "data"  A..= I.toB _data_
+        , "data"  A..= fmap I.writeBytes  _data_
         ]
   toJSON InlineKeyboardButtonTypeCallbackWithPassword
     { _data = _data_
     }
       = A.object
         [ "@type" A..= AT.String "inlineKeyboardButtonTypeCallbackWithPassword"
-        , "data"  A..= I.toB _data_
+        , "data"  A..= fmap I.writeBytes  _data_
         ]
   toJSON InlineKeyboardButtonTypeCallbackGame
       = A.object

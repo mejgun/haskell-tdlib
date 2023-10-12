@@ -52,7 +52,7 @@ instance AT.ToJSON GetChatEventLog where
           [ "@type"         A..= AT.String "getChatEventLog"
           , "chat_id"       A..= chat_id_
           , "query"         A..= query_
-          , "from_event_id" A..= I.toS from_event_id_
+          , "from_event_id" A..= fmap I.writeInt64  from_event_id_
           , "limit"         A..= limit_
           , "filters"       A..= filters_
           , "user_ids"      A..= user_ids_

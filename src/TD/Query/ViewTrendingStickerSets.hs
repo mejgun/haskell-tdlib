@@ -29,5 +29,5 @@ instance AT.ToJSON ViewTrendingStickerSets where
       }
         = A.object
           [ "@type"           A..= AT.String "viewTrendingStickerSets"
-          , "sticker_set_ids" A..= sticker_set_ids_
+          , "sticker_set_ids" A..= fmap (fmap I.writeInt64 ) sticker_set_ids_
           ]

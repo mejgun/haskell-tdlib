@@ -57,5 +57,5 @@ instance AT.ToJSON Minithumbnail where
         [ "@type"  A..= AT.String "minithumbnail"
         , "width"  A..= width_
         , "height" A..= height_
-        , "data"   A..= I.toB _data_
+        , "data"   A..= fmap I.writeBytes  _data_
         ]

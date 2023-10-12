@@ -136,13 +136,13 @@ instance AT.ToJSON ChatNotificationSettings where
         , "use_default_mute_for"                             A..= use_default_mute_for_
         , "mute_for"                                         A..= mute_for_
         , "use_default_sound"                                A..= use_default_sound_
-        , "sound_id"                                         A..= I.toS sound_id_
+        , "sound_id"                                         A..= fmap I.writeInt64  sound_id_
         , "use_default_show_preview"                         A..= use_default_show_preview_
         , "show_preview"                                     A..= show_preview_
         , "use_default_mute_stories"                         A..= use_default_mute_stories_
         , "mute_stories"                                     A..= mute_stories_
         , "use_default_story_sound"                          A..= use_default_story_sound_
-        , "story_sound_id"                                   A..= I.toS story_sound_id_
+        , "story_sound_id"                                   A..= fmap I.writeInt64  story_sound_id_
         , "use_default_show_story_sender"                    A..= use_default_show_story_sender_
         , "show_story_sender"                                A..= show_story_sender_
         , "use_default_disable_pinned_message_notifications" A..= use_default_disable_pinned_message_notifications_

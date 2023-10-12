@@ -92,11 +92,11 @@ instance AT.ToJSON ScopeNotificationSettings where
       = A.object
         [ "@type"                                A..= AT.String "scopeNotificationSettings"
         , "mute_for"                             A..= mute_for_
-        , "sound_id"                             A..= I.toS sound_id_
+        , "sound_id"                             A..= fmap I.writeInt64  sound_id_
         , "show_preview"                         A..= show_preview_
         , "use_default_mute_stories"             A..= use_default_mute_stories_
         , "mute_stories"                         A..= mute_stories_
-        , "story_sound_id"                       A..= I.toS story_sound_id_
+        , "story_sound_id"                       A..= fmap I.writeInt64  story_sound_id_
         , "show_story_sender"                    A..= show_story_sender_
         , "disable_pinned_message_notifications" A..= disable_pinned_message_notifications_
         , "disable_mention_notifications"        A..= disable_mention_notifications_

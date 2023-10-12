@@ -29,5 +29,5 @@ instance AT.ToJSON TerminateSession where
       }
         = A.object
           [ "@type"      A..= AT.String "terminateSession"
-          , "session_id" A..= I.toS session_id_
+          , "session_id" A..= fmap I.writeInt64  session_id_
           ]

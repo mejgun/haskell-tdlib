@@ -29,5 +29,5 @@ instance AT.ToJSON CloseWebApp where
       }
         = A.object
           [ "@type"             A..= AT.String "closeWebApp"
-          , "web_app_launch_id" A..= I.toS web_app_launch_id_
+          , "web_app_launch_id" A..= fmap I.writeInt64  web_app_launch_id_
           ]

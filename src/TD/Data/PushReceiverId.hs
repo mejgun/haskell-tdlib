@@ -43,5 +43,5 @@ instance AT.ToJSON PushReceiverId where
     }
       = A.object
         [ "@type" A..= AT.String "pushReceiverId"
-        , "id"    A..= I.toS _id_
+        , "id"    A..= fmap I.writeInt64  _id_
         ]

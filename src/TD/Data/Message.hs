@@ -308,7 +308,7 @@ instance AT.ToJSON Message where
         , "auto_delete_in"                A..= auto_delete_in_
         , "via_bot_user_id"               A..= via_bot_user_id_
         , "author_signature"              A..= author_signature_
-        , "media_album_id"                A..= I.toS media_album_id_
+        , "media_album_id"                A..= fmap I.writeInt64  media_album_id_
         , "restriction_reason"            A..= restriction_reason_
         , "content"                       A..= content_
         , "reply_markup"                  A..= reply_markup_

@@ -101,7 +101,7 @@ instance AT.ToJSON InputChatPhoto where
     }
       = A.object
         [ "@type"         A..= AT.String "inputChatPhotoPrevious"
-        , "chat_photo_id" A..= I.toS chat_photo_id_
+        , "chat_photo_id" A..= fmap I.writeInt64  chat_photo_id_
         ]
   toJSON InputChatPhotoStatic
     { photo = photo_

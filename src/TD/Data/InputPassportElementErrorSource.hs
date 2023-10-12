@@ -184,7 +184,7 @@ instance AT.ToJSON InputPassportElementErrorSource where
     }
       = A.object
         [ "@type"        A..= AT.String "inputPassportElementErrorSourceUnspecified"
-        , "element_hash" A..= I.toB element_hash_
+        , "element_hash" A..= fmap I.writeBytes  element_hash_
         ]
   toJSON InputPassportElementErrorSourceDataField
     { field_name = field_name_
@@ -193,54 +193,54 @@ instance AT.ToJSON InputPassportElementErrorSource where
       = A.object
         [ "@type"      A..= AT.String "inputPassportElementErrorSourceDataField"
         , "field_name" A..= field_name_
-        , "data_hash"  A..= I.toB data_hash_
+        , "data_hash"  A..= fmap I.writeBytes  data_hash_
         ]
   toJSON InputPassportElementErrorSourceFrontSide
     { file_hash = file_hash_
     }
       = A.object
         [ "@type"     A..= AT.String "inputPassportElementErrorSourceFrontSide"
-        , "file_hash" A..= I.toB file_hash_
+        , "file_hash" A..= fmap I.writeBytes  file_hash_
         ]
   toJSON InputPassportElementErrorSourceReverseSide
     { file_hash = file_hash_
     }
       = A.object
         [ "@type"     A..= AT.String "inputPassportElementErrorSourceReverseSide"
-        , "file_hash" A..= I.toB file_hash_
+        , "file_hash" A..= fmap I.writeBytes  file_hash_
         ]
   toJSON InputPassportElementErrorSourceSelfie
     { file_hash = file_hash_
     }
       = A.object
         [ "@type"     A..= AT.String "inputPassportElementErrorSourceSelfie"
-        , "file_hash" A..= I.toB file_hash_
+        , "file_hash" A..= fmap I.writeBytes  file_hash_
         ]
   toJSON InputPassportElementErrorSourceTranslationFile
     { file_hash = file_hash_
     }
       = A.object
         [ "@type"     A..= AT.String "inputPassportElementErrorSourceTranslationFile"
-        , "file_hash" A..= I.toB file_hash_
+        , "file_hash" A..= fmap I.writeBytes  file_hash_
         ]
   toJSON InputPassportElementErrorSourceTranslationFiles
     { file_hashes = file_hashes_
     }
       = A.object
         [ "@type"       A..= AT.String "inputPassportElementErrorSourceTranslationFiles"
-        , "file_hashes" A..= I.toLB file_hashes_
+        , "file_hashes" A..= fmap (fmap I.writeBytes ) file_hashes_
         ]
   toJSON InputPassportElementErrorSourceFile
     { file_hash = file_hash_
     }
       = A.object
         [ "@type"     A..= AT.String "inputPassportElementErrorSourceFile"
-        , "file_hash" A..= I.toB file_hash_
+        , "file_hash" A..= fmap I.writeBytes  file_hash_
         ]
   toJSON InputPassportElementErrorSourceFiles
     { file_hashes = file_hashes_
     }
       = A.object
         [ "@type"       A..= AT.String "inputPassportElementErrorSourceFiles"
-        , "file_hashes" A..= I.toLB file_hashes_
+        , "file_hashes" A..= fmap (fmap I.writeBytes ) file_hashes_
         ]

@@ -39,5 +39,5 @@ instance AT.ToJSON GetCallbackQueryMessage where
           [ "@type"             A..= AT.String "getCallbackQueryMessage"
           , "chat_id"           A..= chat_id_
           , "message_id"        A..= message_id_
-          , "callback_query_id" A..= I.toS callback_query_id_
+          , "callback_query_id" A..= fmap I.writeInt64  callback_query_id_
           ]

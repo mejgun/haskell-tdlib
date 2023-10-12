@@ -1071,6 +1071,7 @@ library
   build-depends:
       aeson
     , base >=4.7 && <5
+    , base64-bytestring
     , bytestring
     , containers
     , text
@@ -1084,6 +1085,10 @@ executable haskell-tdlib-exe
       Paths_haskell_tdlib
   hs-source-dirs:
       app
+  default-extensions:
+      DuplicateRecordFields
+      NoFieldSelectors
+      OverloadedStrings
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -W -Wall -Werror
   build-depends:
       base >=4.7 && <5

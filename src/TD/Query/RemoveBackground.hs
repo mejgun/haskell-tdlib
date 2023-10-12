@@ -29,5 +29,5 @@ instance AT.ToJSON RemoveBackground where
       }
         = A.object
           [ "@type"         A..= AT.String "removeBackground"
-          , "background_id" A..= I.toS background_id_
+          , "background_id" A..= fmap I.writeInt64  background_id_
           ]

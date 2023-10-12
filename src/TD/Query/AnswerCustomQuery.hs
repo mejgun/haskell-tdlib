@@ -33,6 +33,6 @@ instance AT.ToJSON AnswerCustomQuery where
       }
         = A.object
           [ "@type"           A..= AT.String "answerCustomQuery"
-          , "custom_query_id" A..= I.toS custom_query_id_
+          , "custom_query_id" A..= fmap I.writeInt64  custom_query_id_
           , "data"            A..= _data_
           ]

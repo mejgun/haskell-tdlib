@@ -45,7 +45,7 @@ instance AT.ToJSON AnswerCallbackQuery where
       }
         = A.object
           [ "@type"             A..= AT.String "answerCallbackQuery"
-          , "callback_query_id" A..= I.toS callback_query_id_
+          , "callback_query_id" A..= fmap I.writeInt64  callback_query_id_
           , "text"              A..= text_
           , "show_alert"        A..= show_alert_
           , "url"               A..= url_

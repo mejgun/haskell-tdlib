@@ -84,7 +84,7 @@ instance AT.ToJSON VideoNote where
       = A.object
         [ "@type"                     A..= AT.String "videoNote"
         , "duration"                  A..= duration_
-        , "waveform"                  A..= I.toB waveform_
+        , "waveform"                  A..= fmap I.writeBytes  waveform_
         , "length"                    A..= _length_
         , "minithumbnail"             A..= minithumbnail_
         , "thumbnail"                 A..= thumbnail_

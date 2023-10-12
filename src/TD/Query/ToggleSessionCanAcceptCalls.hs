@@ -33,6 +33,6 @@ instance AT.ToJSON ToggleSessionCanAcceptCalls where
       }
         = A.object
           [ "@type"            A..= AT.String "toggleSessionCanAcceptCalls"
-          , "session_id"       A..= I.toS session_id_
+          , "session_id"       A..= fmap I.writeInt64  session_id_
           , "can_accept_calls" A..= can_accept_calls_
           ]

@@ -29,5 +29,5 @@ instance AT.ToJSON GetCustomEmojiStickers where
       }
         = A.object
           [ "@type"            A..= AT.String "getCustomEmojiStickers"
-          , "custom_emoji_ids" A..= custom_emoji_ids_
+          , "custom_emoji_ids" A..= fmap (fmap I.writeInt64 ) custom_emoji_ids_
           ]

@@ -146,7 +146,7 @@ instance AT.ToJSON Session where
     }
       = A.object
         [ "@type"                   A..= AT.String "session"
-        , "id"                      A..= I.toS _id_
+        , "id"                      A..= fmap I.writeInt64  _id_
         , "is_current"              A..= is_current_
         , "is_password_pending"     A..= is_password_pending_
         , "can_accept_secret_chats" A..= can_accept_secret_chats_

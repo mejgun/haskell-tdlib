@@ -34,5 +34,5 @@ instance AT.ToJSON SetCustomEmojiStickerSetThumbnail where
         = A.object
           [ "@type"           A..= AT.String "setCustomEmojiStickerSetThumbnail"
           , "name"            A..= name_
-          , "custom_emoji_id" A..= I.toS custom_emoji_id_
+          , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
           ]

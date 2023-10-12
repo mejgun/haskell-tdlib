@@ -35,5 +35,5 @@ instance AT.ToJSON ReorderInstalledStickerSets where
         = A.object
           [ "@type"           A..= AT.String "reorderInstalledStickerSets"
           , "sticker_type"    A..= sticker_type_
-          , "sticker_set_ids" A..= sticker_set_ids_
+          , "sticker_set_ids" A..= fmap (fmap I.writeInt64 ) sticker_set_ids_
           ]

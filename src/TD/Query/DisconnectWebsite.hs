@@ -29,5 +29,5 @@ instance AT.ToJSON DisconnectWebsite where
       }
         = A.object
           [ "@type"      A..= AT.String "disconnectWebsite"
-          , "website_id" A..= I.toS website_id_
+          , "website_id" A..= fmap I.writeInt64  website_id_
           ]

@@ -83,7 +83,7 @@ instance AT.ToJSON ChatPhoto where
     }
       = A.object
         [ "@type"           A..= AT.String "chatPhoto"
-        , "id"              A..= I.toS _id_
+        , "id"              A..= fmap I.writeInt64  _id_
         , "added_date"      A..= added_date_
         , "minithumbnail"   A..= minithumbnail_
         , "sizes"           A..= sizes_

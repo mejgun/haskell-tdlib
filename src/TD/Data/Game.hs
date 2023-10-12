@@ -82,7 +82,7 @@ instance AT.ToJSON Game where
     }
       = A.object
         [ "@type"       A..= AT.String "game"
-        , "id"          A..= I.toS _id_
+        , "id"          A..= fmap I.writeInt64  _id_
         , "short_name"  A..= short_name_
         , "title"       A..= title_
         , "text"        A..= text_

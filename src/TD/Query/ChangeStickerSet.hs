@@ -37,7 +37,7 @@ instance AT.ToJSON ChangeStickerSet where
       }
         = A.object
           [ "@type"        A..= AT.String "changeStickerSet"
-          , "set_id"       A..= I.toS set_id_
+          , "set_id"       A..= fmap I.writeInt64  set_id_
           , "is_installed" A..= is_installed_
           , "is_archived"  A..= is_archived_
           ]

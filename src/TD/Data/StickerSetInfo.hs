@@ -120,7 +120,7 @@ instance AT.ToJSON StickerSetInfo where
     }
       = A.object
         [ "@type"             A..= AT.String "stickerSetInfo"
-        , "id"                A..= I.toS _id_
+        , "id"                A..= fmap I.writeInt64  _id_
         , "title"             A..= title_
         , "name"              A..= name_
         , "thumbnail"         A..= thumbnail_

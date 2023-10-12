@@ -85,7 +85,7 @@ instance AT.ToJSON InputBackground where
     }
       = A.object
         [ "@type"         A..= AT.String "inputBackgroundRemote"
-        , "background_id" A..= I.toS background_id_
+        , "background_id" A..= fmap I.writeInt64  background_id_
         ]
   toJSON InputBackgroundPrevious
     { message_id = message_id_

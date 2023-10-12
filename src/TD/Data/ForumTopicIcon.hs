@@ -50,5 +50,5 @@ instance AT.ToJSON ForumTopicIcon where
       = A.object
         [ "@type"           A..= AT.String "forumTopicIcon"
         , "color"           A..= color_
-        , "custom_emoji_id" A..= I.toS custom_emoji_id_
+        , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         ]

@@ -74,7 +74,7 @@ instance AT.ToJSON NotificationSound where
     }
       = A.object
         [ "@type"    A..= AT.String "notificationSound"
-        , "id"       A..= I.toS _id_
+        , "id"       A..= fmap I.writeInt64  _id_
         , "duration" A..= duration_
         , "date"     A..= date_
         , "title"    A..= title_

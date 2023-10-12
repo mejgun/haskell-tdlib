@@ -94,7 +94,7 @@ instance AT.ToJSON EncryptedPassportElement where
       = A.object
         [ "@type"        A..= AT.String "encryptedPassportElement"
         , "type"         A..= _type_
-        , "data"         A..= I.toB _data_
+        , "data"         A..= fmap I.writeBytes  _data_
         , "front_side"   A..= front_side_
         , "reverse_side" A..= reverse_side_
         , "selfie"       A..= selfie_

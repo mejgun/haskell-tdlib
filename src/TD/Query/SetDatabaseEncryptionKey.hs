@@ -29,5 +29,5 @@ instance AT.ToJSON SetDatabaseEncryptionKey where
       }
         = A.object
           [ "@type"              A..= AT.String "setDatabaseEncryptionKey"
-          , "new_encryption_key" A..= I.toB new_encryption_key_
+          , "new_encryption_key" A..= fmap I.writeBytes  new_encryption_key_
           ]

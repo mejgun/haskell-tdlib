@@ -34,6 +34,6 @@ instance AT.ToJSON AssignAppStoreTransaction where
       }
         = A.object
           [ "@type"   A..= AT.String "assignAppStoreTransaction"
-          , "receipt" A..= I.toB receipt_
+          , "receipt" A..= fmap I.writeBytes  receipt_
           , "purpose" A..= purpose_
           ]

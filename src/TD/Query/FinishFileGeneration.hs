@@ -34,6 +34,6 @@ instance AT.ToJSON FinishFileGeneration where
       }
         = A.object
           [ "@type"         A..= AT.String "finishFileGeneration"
-          , "generation_id" A..= I.toS generation_id_
+          , "generation_id" A..= fmap I.writeInt64  generation_id_
           , "error"         A..= _error_
           ]

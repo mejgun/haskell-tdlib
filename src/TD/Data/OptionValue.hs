@@ -92,7 +92,7 @@ instance AT.ToJSON OptionValue where
     }
       = A.object
         [ "@type" A..= AT.String "optionValueInteger"
-        , "value" A..= I.toS _value_
+        , "value" A..= fmap I.writeInt64  _value_
         ]
   toJSON OptionValueString
     { __value = __value_

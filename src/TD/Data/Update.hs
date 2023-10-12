@@ -3204,7 +3204,7 @@ instance AT.ToJSON Update where
         , "type"                          A..= _type_
         , "chat_id"                       A..= chat_id_
         , "notification_settings_chat_id" A..= notification_settings_chat_id_
-        , "notification_sound_id"         A..= I.toS notification_sound_id_
+        , "notification_sound_id"         A..= fmap I.writeInt64  notification_sound_id_
         , "total_count"                   A..= total_count_
         , "added_notifications"           A..= added_notifications_
         , "removed_notification_ids"      A..= removed_notification_ids_
@@ -3339,7 +3339,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"            A..= AT.String "updateFileGenerationStart"
-        , "generation_id"    A..= I.toS generation_id_
+        , "generation_id"    A..= fmap I.writeInt64  generation_id_
         , "original_path"    A..= original_path_
         , "destination_path" A..= destination_path_
         , "conversion"       A..= conversion_
@@ -3349,7 +3349,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"         A..= AT.String "updateFileGenerationStop"
-        , "generation_id" A..= I.toS generation_id_
+        , "generation_id" A..= fmap I.writeInt64  generation_id_
         ]
   toJSON UpdateFileDownloads
     { total_size      = total_size_
@@ -3423,7 +3423,7 @@ instance AT.ToJSON Update where
       = A.object
         [ "@type"   A..= AT.String "updateNewCallSignalingData"
         , "call_id" A..= call_id_
-        , "data"    A..= I.toB _data_
+        , "data"    A..= fmap I.writeBytes  _data_
         ]
   toJSON UpdateUserPrivacySettingRules
     { setting = setting_
@@ -3517,7 +3517,7 @@ instance AT.ToJSON Update where
       = A.object
         [ "@type"           A..= AT.String "updateInstalledStickerSets"
         , "sticker_type"    A..= sticker_type_
-        , "sticker_set_ids" A..= sticker_set_ids_
+        , "sticker_set_ids" A..= fmap (fmap I.writeInt64 ) sticker_set_ids_
         ]
   toJSON UpdateTrendingStickerSets
     { sticker_type = sticker_type_
@@ -3556,7 +3556,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"                  A..= AT.String "updateSavedNotificationSounds"
-        , "notification_sound_ids" A..= notification_sound_ids_
+        , "notification_sound_ids" A..= fmap (fmap I.writeInt64 ) notification_sound_ids_
         ]
   toJSON UpdateSelectedBackground
     { for_dark_theme = for_dark_theme_
@@ -3620,7 +3620,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"             A..= AT.String "updateWebAppMessageSent"
-        , "web_app_launch_id" A..= I.toS web_app_launch_id_
+        , "web_app_launch_id" A..= fmap I.writeInt64  web_app_launch_id_
         ]
   toJSON UpdateActiveEmojiReactions
     { emojis = emojis_
@@ -3700,7 +3700,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"          A..= AT.String "updateNewInlineQuery"
-        , "id"             A..= I.toS _id_
+        , "id"             A..= fmap I.writeInt64  _id_
         , "sender_user_id" A..= sender_user_id_
         , "user_location"  A..= user_location_
         , "chat_type"      A..= chat_type_
@@ -3732,11 +3732,11 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"          A..= AT.String "updateNewCallbackQuery"
-        , "id"             A..= I.toS _id_
+        , "id"             A..= fmap I.writeInt64  _id_
         , "sender_user_id" A..= sender_user_id_
         , "chat_id"        A..= chat_id_
         , "message_id"     A..= message_id_
-        , "chat_instance"  A..= I.toS chat_instance_
+        , "chat_instance"  A..= fmap I.writeInt64  chat_instance_
         , "payload"        A..= payload_
         ]
   toJSON UpdateNewInlineCallbackQuery
@@ -3748,10 +3748,10 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"             A..= AT.String "updateNewInlineCallbackQuery"
-        , "id"                A..= I.toS _id_
+        , "id"                A..= fmap I.writeInt64  _id_
         , "sender_user_id"    A..= sender_user_id_
         , "inline_message_id" A..= inline_message_id_
-        , "chat_instance"     A..= I.toS chat_instance_
+        , "chat_instance"     A..= fmap I.writeInt64  chat_instance_
         , "payload"           A..= payload_
         ]
   toJSON UpdateNewShippingQuery
@@ -3762,7 +3762,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"            A..= AT.String "updateNewShippingQuery"
-        , "id"               A..= I.toS _id_
+        , "id"               A..= fmap I.writeInt64  _id_
         , "sender_user_id"   A..= sender_user_id_
         , "invoice_payload"  A..= invoice_payload_
         , "shipping_address" A..= shipping_address_
@@ -3778,11 +3778,11 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"              A..= AT.String "updateNewPreCheckoutQuery"
-        , "id"                 A..= I.toS _id_
+        , "id"                 A..= fmap I.writeInt64  _id_
         , "sender_user_id"     A..= sender_user_id_
         , "currency"           A..= currency_
         , "total_amount"       A..= total_amount_
-        , "invoice_payload"    A..= I.toB _invoice_payload_
+        , "invoice_payload"    A..= fmap I.writeBytes  _invoice_payload_
         , "shipping_option_id" A..= shipping_option_id_
         , "order_info"         A..= order_info_
         ]
@@ -3800,7 +3800,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"   A..= AT.String "updateNewCustomQuery"
-        , "id"      A..= I.toS _id_
+        , "id"      A..= fmap I.writeInt64  _id_
         , "data"    A..= __data_
         , "timeout" A..= timeout_
         ]
@@ -3818,7 +3818,7 @@ instance AT.ToJSON Update where
     }
       = A.object
         [ "@type"      A..= AT.String "updatePollAnswer"
-        , "poll_id"    A..= I.toS poll_id_
+        , "poll_id"    A..= fmap I.writeInt64  poll_id_
         , "voter_id"   A..= voter_id_
         , "option_ids" A..= option_ids_
         ]

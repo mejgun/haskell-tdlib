@@ -122,7 +122,7 @@ instance AT.ToJSON PaymentForm where
     }
       = A.object
         [ "@type"                      A..= AT.String "paymentForm"
-        , "id"                         A..= I.toS _id_
+        , "id"                         A..= fmap I.writeInt64  _id_
         , "invoice"                    A..= invoice_
         , "seller_bot_user_id"         A..= seller_bot_user_id_
         , "payment_provider_user_id"   A..= payment_provider_user_id_

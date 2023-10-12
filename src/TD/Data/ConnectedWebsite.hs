@@ -91,7 +91,7 @@ instance AT.ToJSON ConnectedWebsite where
     }
       = A.object
         [ "@type"            A..= AT.String "connectedWebsite"
-        , "id"               A..= I.toS _id_
+        , "id"               A..= fmap I.writeInt64  _id_
         , "domain_name"      A..= domain_name_
         , "bot_user_id"      A..= bot_user_id_
         , "browser"          A..= browser_

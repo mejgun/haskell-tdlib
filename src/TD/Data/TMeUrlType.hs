@@ -116,5 +116,5 @@ instance AT.ToJSON TMeUrlType where
     }
       = A.object
         [ "@type"          A..= AT.String "tMeUrlTypeStickerSet"
-        , "sticker_set_id" A..= I.toS sticker_set_id_
+        , "sticker_set_id" A..= fmap I.writeInt64  sticker_set_id_
         ]

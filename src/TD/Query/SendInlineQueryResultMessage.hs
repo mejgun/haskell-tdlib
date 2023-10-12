@@ -59,7 +59,7 @@ instance AT.ToJSON SendInlineQueryResultMessage where
           , "message_thread_id" A..= message_thread_id_
           , "reply_to"          A..= reply_to_
           , "options"           A..= options_
-          , "query_id"          A..= I.toS query_id_
+          , "query_id"          A..= fmap I.writeInt64  query_id_
           , "result_id"         A..= result_id_
           , "hide_via_bot"      A..= hide_via_bot_
           ]

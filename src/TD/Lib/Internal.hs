@@ -3,8 +3,10 @@ module TD.Lib.Internal where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified Data.ByteString as BS
+import qualified Data.ByteString.Base64 as B64
 import Data.List (intercalate)
 import qualified Data.Text as T
+import qualified Data.Text.Encoding as TE
 import qualified Text.Read as TR (readMaybe)
 
 newtype Extra = Extra String
@@ -29,26 +31,11 @@ readListInt64 = fmap (map read)
 
 -- decode base64 string as bytestring
 readBytes :: String -> BS.ByteString
-readBytes = undefined
-
--- decode base64 string as bytestring
-readListBytes :: Maybe [String] -> Maybe [BS.ByteString]
-readListBytes = undefined
+readBytes = B64.decodeLenient . TE.encodeUtf8 . T.pack
 
 -- encode bytestring as base64 string
-toB :: Maybe BS.ByteString -> AT.Value
-toB (Just x) = undefined
-toB Nothing = AT.Null
+writeBytes :: BS.ByteString -> AT.Value
+writeBytes x = AT.String . TE.decodeUtf8 $ B64.encode x
 
--- encode bytestring list as base64 string
-toLB :: Maybe [BS.ByteString] -> AT.Value
-toLB (Just xs) = undefined
-toLB Nothing = AT.Null
-
-toS :: (Show a) => Maybe a -> AT.Value
-toS (Just x) = AT.String . T.pack $ show x
-toS Nothing = AT.Null
-
-toLS :: (Show a) => Maybe [a] -> [AT.Value]
-toLS (Just xs) = map (AT.String . T.pack . show) xs
-toLS Nothing = []
+writeInt64 :: Int -> AT.Value
+writeInt64 = AT.String . T.pack . show

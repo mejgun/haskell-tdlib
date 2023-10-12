@@ -43,5 +43,5 @@ instance AT.ToJSON FilePart where
     }
       = A.object
         [ "@type" A..= AT.String "filePart"
-        , "data"  A..= I.toB _data_
+        , "data"  A..= fmap I.writeBytes  _data_
         ]

@@ -66,13 +66,13 @@ instance AT.ToJSON ChatPhotoStickerType where
     }
       = A.object
         [ "@type"          A..= AT.String "chatPhotoStickerTypeRegularOrMask"
-        , "sticker_set_id" A..= I.toS sticker_set_id_
-        , "sticker_id"     A..= I.toS sticker_id_
+        , "sticker_set_id" A..= fmap I.writeInt64  sticker_set_id_
+        , "sticker_id"     A..= fmap I.writeInt64  sticker_id_
         ]
   toJSON ChatPhotoStickerTypeCustomEmoji
     { custom_emoji_id = custom_emoji_id_
     }
       = A.object
         [ "@type"           A..= AT.String "chatPhotoStickerTypeCustomEmoji"
-        , "custom_emoji_id" A..= I.toS custom_emoji_id_
+        , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         ]

@@ -82,7 +82,7 @@ instance AT.ToJSON CallbackQueryPayload where
     }
       = A.object
         [ "@type" A..= AT.String "callbackQueryPayloadData"
-        , "data"  A..= I.toB _data_
+        , "data"  A..= fmap I.writeBytes  _data_
         ]
   toJSON CallbackQueryPayloadDataWithPassword
     { password = password_
@@ -91,7 +91,7 @@ instance AT.ToJSON CallbackQueryPayload where
       = A.object
         [ "@type"    A..= AT.String "callbackQueryPayloadDataWithPassword"
         , "password" A..= password_
-        , "data"     A..= I.toB _data_
+        , "data"     A..= fmap I.writeBytes  _data_
         ]
   toJSON CallbackQueryPayloadGame
     { game_short_name = game_short_name_

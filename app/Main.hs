@@ -4,6 +4,8 @@ import Control.Monad (when)
 import TD.Lib
 import TD.Query.GetCurrentState
 import TD.Query.SetLogVerbosityLevel
+import TD.Query.TestCallBytes
+import TD.Query.TestCallString
 
 main :: IO ()
 main = do
@@ -15,6 +17,8 @@ main = do
         { new_verbosity_level = Just 2
         }
   extra2 <- sendWExtra client TD.Query.GetCurrentState.GetCurrentState
+  send client TD.Query.TestCallBytes.TestCallBytes {x = Just "qwerty"}
+  send client TD.Query.TestCallString.TestCallString {x = Just "qwerty"}
   _ <- live client extra1 extra2
   destroy client
   where

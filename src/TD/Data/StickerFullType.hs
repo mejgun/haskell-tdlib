@@ -99,6 +99,6 @@ instance AT.ToJSON StickerFullType where
     }
       = A.object
         [ "@type"            A..= AT.String "stickerFullTypeCustomEmoji"
-        , "custom_emoji_id"  A..= I.toS custom_emoji_id_
+        , "custom_emoji_id"  A..= fmap I.writeInt64  custom_emoji_id_
         , "needs_repainting" A..= needs_repainting_
         ]

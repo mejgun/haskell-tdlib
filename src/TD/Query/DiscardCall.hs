@@ -49,5 +49,5 @@ instance AT.ToJSON DiscardCall where
           , "is_disconnected" A..= is_disconnected_
           , "duration"        A..= duration_
           , "is_video"        A..= is_video_
-          , "connection_id"   A..= I.toS connection_id_
+          , "connection_id"   A..= fmap I.writeInt64  connection_id_
           ]

@@ -70,7 +70,7 @@ instance AT.ToJSON VoiceNote where
       = A.object
         [ "@type"                     A..= AT.String "voiceNote"
         , "duration"                  A..= duration_
-        , "waveform"                  A..= I.toB waveform_
+        , "waveform"                  A..= fmap I.writeBytes  waveform_
         , "mime_type"                 A..= mime_type_
         , "speech_recognition_result" A..= speech_recognition_result_
         , "voice"                     A..= voice_

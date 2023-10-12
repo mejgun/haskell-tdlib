@@ -29,5 +29,5 @@ instance AT.ToJSON TestCallBytes where
       }
         = A.object
           [ "@type" A..= AT.String "testCallBytes"
-          , "x"     A..= I.toB x_
+          , "x"     A..= fmap I.writeBytes  x_
           ]

@@ -92,7 +92,7 @@ instance AT.ToJSON SetTdlibParameters where
           , "use_test_dc"              A..= use_test_dc_
           , "database_directory"       A..= database_directory_
           , "files_directory"          A..= files_directory_
-          , "database_encryption_key"  A..= I.toB database_encryption_key_
+          , "database_encryption_key"  A..= fmap I.writeBytes  database_encryption_key_
           , "use_file_database"        A..= use_file_database_
           , "use_chat_info_database"   A..= use_chat_info_database_
           , "use_message_database"     A..= use_message_database_

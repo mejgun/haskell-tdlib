@@ -234,7 +234,7 @@ instance AT.ToJSON AuthenticationCodeType where
     }
       = A.object
         [ "@type"  A..= AT.String "authenticationCodeTypeFirebaseAndroid"
-        , "nonce"  A..= I.toB nonce_
+        , "nonce"  A..= fmap I.writeBytes  nonce_
         , "length" A..= _length_
         ]
   toJSON AuthenticationCodeTypeFirebaseIos

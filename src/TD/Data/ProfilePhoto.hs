@@ -75,7 +75,7 @@ instance AT.ToJSON ProfilePhoto where
     }
       = A.object
         [ "@type"         A..= AT.String "profilePhoto"
-        , "id"            A..= I.toS _id_
+        , "id"            A..= fmap I.writeInt64  _id_
         , "small"         A..= small_
         , "big"           A..= big_
         , "minithumbnail" A..= minithumbnail_

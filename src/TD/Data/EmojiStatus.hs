@@ -49,6 +49,6 @@ instance AT.ToJSON EmojiStatus where
     }
       = A.object
         [ "@type"           A..= AT.String "emojiStatus"
-        , "custom_emoji_id" A..= I.toS custom_emoji_id_
+        , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         , "expiration_date" A..= expiration_date_
         ]

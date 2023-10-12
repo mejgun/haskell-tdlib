@@ -78,6 +78,6 @@ instance AT.ToJSON SecretChat where
         , "user_id"     A..= user_id_
         , "state"       A..= state_
         , "is_outbound" A..= is_outbound_
-        , "key_hash"    A..= I.toB key_hash_
+        , "key_hash"    A..= fmap I.writeBytes  key_hash_
         , "layer"       A..= layer_
         ]

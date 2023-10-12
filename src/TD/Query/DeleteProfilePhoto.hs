@@ -29,5 +29,5 @@ instance AT.ToJSON DeleteProfilePhoto where
       }
         = A.object
           [ "@type"            A..= AT.String "deleteProfilePhoto"
-          , "profile_photo_id" A..= I.toS profile_photo_id_
+          , "profile_photo_id" A..= fmap I.writeInt64  profile_photo_id_
           ]

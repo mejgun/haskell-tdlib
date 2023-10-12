@@ -1756,7 +1756,7 @@ instance AT.ToJSON MessageContent where
         [ "@type"                     A..= AT.String "messageForumTopicEdited"
         , "name"                      A..= name_
         , "edit_icon_custom_emoji_id" A..= edit_icon_custom_emoji_id_
-        , "icon_custom_emoji_id"      A..= I.toS icon_custom_emoji_id_
+        , "icon_custom_emoji_id"      A..= fmap I.writeInt64  icon_custom_emoji_id_
         ]
   toJSON MessageForumTopicIsClosedToggled
     { is_closed = is_closed_
@@ -1794,7 +1794,7 @@ instance AT.ToJSON MessageContent where
       = A.object
         [ "@type"           A..= AT.String "messageGameScore"
         , "game_message_id" A..= game_message_id_
-        , "game_id"         A..= I.toS game_id_
+        , "game_id"         A..= fmap I.writeInt64  game_id_
         , "score"           A..= score_
         ]
   toJSON MessagePaymentSuccessful
@@ -1833,7 +1833,7 @@ instance AT.ToJSON MessageContent where
         , "total_amount"               A..= total_amount_
         , "is_recurring"               A..= is_recurring_
         , "is_first_recurring"         A..= is_first_recurring_
-        , "invoice_payload"            A..= I.toB invoice_payload_
+        , "invoice_payload"            A..= fmap I.writeBytes  invoice_payload_
         , "shipping_option_id"         A..= shipping_option_id_
         , "order_info"                 A..= order_info_
         , "telegram_payment_charge_id" A..= telegram_payment_charge_id_
@@ -1854,7 +1854,7 @@ instance AT.ToJSON MessageContent where
         , "currency"              A..= currency_
         , "amount"                A..= amount_
         , "cryptocurrency"        A..= cryptocurrency_
-        , "cryptocurrency_amount" A..= I.toS cryptocurrency_amount_
+        , "cryptocurrency_amount" A..= fmap I.writeInt64  cryptocurrency_amount_
         , "month_count"           A..= month_count_
         , "sticker"               A..= sticker_
         ]

@@ -75,7 +75,7 @@ instance AT.ToJSON Background where
     }
       = A.object
         [ "@type"      A..= AT.String "background"
-        , "id"         A..= I.toS _id_
+        , "id"         A..= fmap I.writeInt64  _id_
         , "is_default" A..= is_default_
         , "is_dark"    A..= is_dark_
         , "name"       A..= name_

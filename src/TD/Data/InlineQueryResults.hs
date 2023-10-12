@@ -63,7 +63,7 @@ instance AT.ToJSON InlineQueryResults where
     }
       = A.object
         [ "@type"           A..= AT.String "inlineQueryResults"
-        , "inline_query_id" A..= I.toS inline_query_id_
+        , "inline_query_id" A..= fmap I.writeInt64  inline_query_id_
         , "button"          A..= button_
         , "results"         A..= results_
         , "next_offset"     A..= next_offset_

@@ -68,7 +68,7 @@ instance AT.ToJSON CallServer where
     }
       = A.object
         [ "@type"        A..= AT.String "callServer"
-        , "id"           A..= I.toS _id_
+        , "id"           A..= fmap I.writeInt64  _id_
         , "ip_address"   A..= ip_address_
         , "ipv6_address" A..= ipv6_address_
         , "port"         A..= port_

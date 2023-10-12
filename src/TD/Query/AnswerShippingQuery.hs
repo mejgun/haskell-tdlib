@@ -38,7 +38,7 @@ instance AT.ToJSON AnswerShippingQuery where
       }
         = A.object
           [ "@type"             A..= AT.String "answerShippingQuery"
-          , "shipping_query_id" A..= I.toS shipping_query_id_
+          , "shipping_query_id" A..= fmap I.writeInt64  shipping_query_id_
           , "shipping_options"  A..= shipping_options_
           , "error_message"     A..= error_message_
           ]

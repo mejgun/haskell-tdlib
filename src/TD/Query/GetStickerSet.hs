@@ -29,5 +29,5 @@ instance AT.ToJSON GetStickerSet where
       }
         = A.object
           [ "@type"  A..= AT.String "getStickerSet"
-          , "set_id" A..= I.toS set_id_
+          , "set_id" A..= fmap I.writeInt64  set_id_
           ]

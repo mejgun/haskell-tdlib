@@ -203,7 +203,7 @@ instance AT.ToJSON SupergroupFullInfo where
         , "can_toggle_aggressive_anti_spam"  A..= can_toggle_aggressive_anti_spam_
         , "is_all_history_available"         A..= is_all_history_available_
         , "has_aggressive_anti_spam_enabled" A..= has_aggressive_anti_spam_enabled_
-        , "sticker_set_id"                   A..= I.toS sticker_set_id_
+        , "sticker_set_id"                   A..= fmap I.writeInt64  sticker_set_id_
         , "location"                         A..= location_
         , "invite_link"                      A..= invite_link_
         , "bot_commands"                     A..= bot_commands_

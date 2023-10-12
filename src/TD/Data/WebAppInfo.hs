@@ -49,6 +49,6 @@ instance AT.ToJSON WebAppInfo where
     }
       = A.object
         [ "@type"     A..= AT.String "webAppInfo"
-        , "launch_id" A..= I.toS launch_id_
+        , "launch_id" A..= fmap I.writeInt64  launch_id_
         , "url"       A..= url_
         ]

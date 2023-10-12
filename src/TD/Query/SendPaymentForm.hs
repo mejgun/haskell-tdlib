@@ -52,7 +52,7 @@ instance AT.ToJSON SendPaymentForm where
         = A.object
           [ "@type"              A..= AT.String "sendPaymentForm"
           , "input_invoice"      A..= input_invoice_
-          , "payment_form_id"    A..= I.toS payment_form_id_
+          , "payment_form_id"    A..= fmap I.writeInt64  payment_form_id_
           , "order_info_id"      A..= order_info_id_
           , "shipping_option_id" A..= shipping_option_id_
           , "credentials"        A..= credentials_

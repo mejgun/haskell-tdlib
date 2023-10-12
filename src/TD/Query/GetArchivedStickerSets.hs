@@ -39,6 +39,6 @@ instance AT.ToJSON GetArchivedStickerSets where
         = A.object
           [ "@type"                 A..= AT.String "getArchivedStickerSets"
           , "sticker_type"          A..= sticker_type_
-          , "offset_sticker_set_id" A..= I.toS offset_sticker_set_id_
+          , "offset_sticker_set_id" A..= fmap I.writeInt64  offset_sticker_set_id_
           , "limit"                 A..= limit_
           ]

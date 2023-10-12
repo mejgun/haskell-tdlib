@@ -102,8 +102,8 @@ instance AT.ToJSON Sticker where
     }
       = A.object
         [ "@type"     A..= AT.String "sticker"
-        , "id"        A..= I.toS _id_
-        , "set_id"    A..= I.toS set_id_
+        , "id"        A..= fmap I.writeInt64  _id_
+        , "set_id"    A..= fmap I.writeInt64  set_id_
         , "width"     A..= width_
         , "height"    A..= height_
         , "emoji"     A..= emoji_

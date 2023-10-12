@@ -55,7 +55,7 @@ instance AT.ToJSON EncryptedCredentials where
     }
       = A.object
         [ "@type"  A..= AT.String "encryptedCredentials"
-        , "data"   A..= I.toB _data_
-        , "hash"   A..= I.toB hash_
-        , "secret" A..= I.toB secret_
+        , "data"   A..= fmap I.writeBytes  _data_
+        , "hash"   A..= fmap I.writeBytes  hash_
+        , "secret" A..= fmap I.writeBytes  secret_
         ]

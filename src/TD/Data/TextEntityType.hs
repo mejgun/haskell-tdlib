@@ -252,7 +252,7 @@ instance AT.ToJSON TextEntityType where
     }
       = A.object
         [ "@type"           A..= AT.String "textEntityTypeCustomEmoji"
-        , "custom_emoji_id" A..= I.toS custom_emoji_id_
+        , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         ]
   toJSON TextEntityTypeMediaTimestamp
     { media_timestamp = media_timestamp_

@@ -37,7 +37,7 @@ instance AT.ToJSON SetFileGenerationProgress where
       }
         = A.object
           [ "@type"             A..= AT.String "setFileGenerationProgress"
-          , "generation_id"     A..= I.toS generation_id_
+          , "generation_id"     A..= fmap I.writeInt64  generation_id_
           , "expected_size"     A..= expected_size_
           , "local_prefix_size" A..= local_prefix_size_
           ]

@@ -63,7 +63,7 @@ instance AT.ToJSON ChatEvent where
     }
       = A.object
         [ "@type"     A..= AT.String "chatEvent"
-        , "id"        A..= I.toS _id_
+        , "id"        A..= fmap I.writeInt64  _id_
         , "date"      A..= date_
         , "member_id" A..= member_id_
         , "action"    A..= action_

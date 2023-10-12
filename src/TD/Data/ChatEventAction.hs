@@ -1056,8 +1056,8 @@ instance AT.ToJSON ChatEventAction where
     }
       = A.object
         [ "@type"              A..= AT.String "chatEventStickerSetChanged"
-        , "old_sticker_set_id" A..= I.toS old_sticker_set_id_
-        , "new_sticker_set_id" A..= I.toS new_sticker_set_id_
+        , "old_sticker_set_id" A..= fmap I.writeInt64  old_sticker_set_id_
+        , "new_sticker_set_id" A..= fmap I.writeInt64  new_sticker_set_id_
         ]
   toJSON ChatEventTitleChanged
     { old_title = old_title_
