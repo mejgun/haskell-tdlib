@@ -1,0 +1,50 @@
+module TD.Query.EditMessageMedia where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.InputMessageContent as InputMessageContent
+
+data EditMessageMedia -- ^ Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+  = EditMessageMedia
+    { chat_id               :: Maybe Int                                     -- ^ The chat the message belongs to
+    , message_id            :: Maybe Int                                     -- ^ Identifier of the message
+    , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none; for bots only
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    }
+  deriving (Eq)
+
+instance Show EditMessageMedia where
+  show
+    EditMessageMedia
+      { chat_id               = chat_id_
+      , message_id            = message_id_
+      , reply_markup          = reply_markup_
+      , input_message_content = input_message_content_
+      }
+        = "EditMessageMedia"
+          ++ I.cc
+          [ "chat_id"               `I.p` chat_id_
+          , "message_id"            `I.p` message_id_
+          , "reply_markup"          `I.p` reply_markup_
+          , "input_message_content" `I.p` input_message_content_
+          ]
+
+instance AT.ToJSON EditMessageMedia where
+  toJSON
+    EditMessageMedia
+      { chat_id               = chat_id_
+      , message_id            = message_id_
+      , reply_markup          = reply_markup_
+      , input_message_content = input_message_content_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "editMessageMedia"
+          , "chat_id"               A..= chat_id_
+          , "message_id"            A..= message_id_
+          , "reply_markup"          A..= reply_markup_
+          , "input_message_content" A..= input_message_content_
+          ]

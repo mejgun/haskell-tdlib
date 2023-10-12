@@ -1,0 +1,33 @@
+module TD.Query.GetRecentStickers where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data GetRecentStickers -- ^ Returns a list of recently used stickers
+  = GetRecentStickers
+    { is_attached :: Maybe Bool -- ^ Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
+    }
+  deriving (Eq)
+
+instance Show GetRecentStickers where
+  show
+    GetRecentStickers
+      { is_attached = is_attached_
+      }
+        = "GetRecentStickers"
+          ++ I.cc
+          [ "is_attached" `I.p` is_attached_
+          ]
+
+instance AT.ToJSON GetRecentStickers where
+  toJSON
+    GetRecentStickers
+      { is_attached = is_attached_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "getRecentStickers"
+          , "is_attached" A..= is_attached_
+          ]

@@ -1,0 +1,33 @@
+module TD.Query.PingProxy where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data PingProxy -- ^ Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
+  = PingProxy
+    { proxy_id :: Maybe Int -- ^ Proxy identifier. Use 0 to ping a Telegram server without a proxy
+    }
+  deriving (Eq)
+
+instance Show PingProxy where
+  show
+    PingProxy
+      { proxy_id = proxy_id_
+      }
+        = "PingProxy"
+          ++ I.cc
+          [ "proxy_id" `I.p` proxy_id_
+          ]
+
+instance AT.ToJSON PingProxy where
+  toJSON
+    PingProxy
+      { proxy_id = proxy_id_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "pingProxy"
+          , "proxy_id" A..= proxy_id_
+          ]

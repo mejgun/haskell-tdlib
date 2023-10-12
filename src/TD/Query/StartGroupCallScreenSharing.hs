@@ -1,0 +1,43 @@
+module TD.Query.StartGroupCallScreenSharing where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data StartGroupCallScreenSharing -- ^ Starts screen sharing in a joined group call. Returns join response payload for tgcalls
+  = StartGroupCallScreenSharing
+    { group_call_id   :: Maybe Int    -- ^ Group call identifier
+    , audio_source_id :: Maybe Int    -- ^ Screen sharing audio channel synchronization source identifier; received from tgcalls
+    , payload         :: Maybe T.Text -- ^ Group call join payload; received from tgcalls
+    }
+  deriving (Eq)
+
+instance Show StartGroupCallScreenSharing where
+  show
+    StartGroupCallScreenSharing
+      { group_call_id   = group_call_id_
+      , audio_source_id = audio_source_id_
+      , payload         = payload_
+      }
+        = "StartGroupCallScreenSharing"
+          ++ I.cc
+          [ "group_call_id"   `I.p` group_call_id_
+          , "audio_source_id" `I.p` audio_source_id_
+          , "payload"         `I.p` payload_
+          ]
+
+instance AT.ToJSON StartGroupCallScreenSharing where
+  toJSON
+    StartGroupCallScreenSharing
+      { group_call_id   = group_call_id_
+      , audio_source_id = audio_source_id_
+      , payload         = payload_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "startGroupCallScreenSharing"
+          , "group_call_id"   A..= group_call_id_
+          , "audio_source_id" A..= audio_source_id_
+          , "payload"         A..= payload_
+          ]

@@ -1,0 +1,39 @@
+module TD.Query.SetUserPersonalProfilePhoto where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.InputChatPhoto as InputChatPhoto
+
+data SetUserPersonalProfilePhoto -- ^ Changes a personal profile photo of a contact user
+  = SetUserPersonalProfilePhoto
+    { user_id :: Maybe Int                           -- ^ User identifier
+    , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
+    }
+  deriving (Eq)
+
+instance Show SetUserPersonalProfilePhoto where
+  show
+    SetUserPersonalProfilePhoto
+      { user_id = user_id_
+      , photo   = photo_
+      }
+        = "SetUserPersonalProfilePhoto"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
+          , "photo"   `I.p` photo_
+          ]
+
+instance AT.ToJSON SetUserPersonalProfilePhoto where
+  toJSON
+    SetUserPersonalProfilePhoto
+      { user_id = user_id_
+      , photo   = photo_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "setUserPersonalProfilePhoto"
+          , "user_id" A..= user_id_
+          , "photo"   A..= photo_
+          ]

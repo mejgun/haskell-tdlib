@@ -1,0 +1,33 @@
+module TD.Query.CheckAuthenticationCode where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data CheckAuthenticationCode -- ^ Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
+  = CheckAuthenticationCode
+    { code :: Maybe T.Text -- ^ Authentication code to check
+    }
+  deriving (Eq)
+
+instance Show CheckAuthenticationCode where
+  show
+    CheckAuthenticationCode
+      { code = code_
+      }
+        = "CheckAuthenticationCode"
+          ++ I.cc
+          [ "code" `I.p` code_
+          ]
+
+instance AT.ToJSON CheckAuthenticationCode where
+  toJSON
+    CheckAuthenticationCode
+      { code = code_
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkAuthenticationCode"
+          , "code"  A..= code_
+          ]

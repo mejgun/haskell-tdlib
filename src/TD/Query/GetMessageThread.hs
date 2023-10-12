@@ -1,0 +1,38 @@
+module TD.Query.GetMessageThread where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data GetMessageThread -- ^ Returns information about a message thread. Can be used only if message.can_get_message_thread == true
+  = GetMessageThread
+    { chat_id    :: Maybe Int -- ^ Chat identifier
+    , message_id :: Maybe Int -- ^ Identifier of the message
+    }
+  deriving (Eq)
+
+instance Show GetMessageThread where
+  show
+    GetMessageThread
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetMessageThread"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          ]
+
+instance AT.ToJSON GetMessageThread where
+  toJSON
+    GetMessageThread
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageThread"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]

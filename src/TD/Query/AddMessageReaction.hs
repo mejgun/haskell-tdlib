@@ -1,0 +1,54 @@
+module TD.Query.AddMessageReaction where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.ReactionType as ReactionType
+
+data AddMessageReaction -- ^ Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+  = AddMessageReaction
+    { chat_id                 :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs
+    , message_id              :: Maybe Int                       -- ^ Identifier of the message
+    , reaction_type           :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to add
+    , is_big                  :: Maybe Bool                      -- ^ Pass true if the reaction is added with a big animation
+    , update_recent_reactions :: Maybe Bool                      -- ^ Pass true if the reaction needs to be added to recent reactions
+    }
+  deriving (Eq)
+
+instance Show AddMessageReaction where
+  show
+    AddMessageReaction
+      { chat_id                 = chat_id_
+      , message_id              = message_id_
+      , reaction_type           = reaction_type_
+      , is_big                  = is_big_
+      , update_recent_reactions = update_recent_reactions_
+      }
+        = "AddMessageReaction"
+          ++ I.cc
+          [ "chat_id"                 `I.p` chat_id_
+          , "message_id"              `I.p` message_id_
+          , "reaction_type"           `I.p` reaction_type_
+          , "is_big"                  `I.p` is_big_
+          , "update_recent_reactions" `I.p` update_recent_reactions_
+          ]
+
+instance AT.ToJSON AddMessageReaction where
+  toJSON
+    AddMessageReaction
+      { chat_id                 = chat_id_
+      , message_id              = message_id_
+      , reaction_type           = reaction_type_
+      , is_big                  = is_big_
+      , update_recent_reactions = update_recent_reactions_
+      }
+        = A.object
+          [ "@type"                   A..= AT.String "addMessageReaction"
+          , "chat_id"                 A..= chat_id_
+          , "message_id"              A..= message_id_
+          , "reaction_type"           A..= reaction_type_
+          , "is_big"                  A..= is_big_
+          , "update_recent_reactions" A..= update_recent_reactions_
+          ]

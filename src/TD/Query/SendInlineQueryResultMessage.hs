@@ -1,0 +1,65 @@
+module TD.Query.SendInlineQueryResultMessage where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.MessageSendOptions as MessageSendOptions
+
+data SendInlineQueryResultMessage -- ^ Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
+  = SendInlineQueryResultMessage
+    { chat_id           :: Maybe Int                                   -- ^ Target chat
+    , message_thread_id :: Maybe Int                                   -- ^ If not 0, a message thread identifier in which the message will be sent
+    , reply_to          :: Maybe MessageReplyTo.MessageReplyTo         -- ^ Identifier of the replied message or story; pass null if none
+    , options           :: Maybe MessageSendOptions.MessageSendOptions -- ^ Options to be used to send the message; pass null to use default options
+    , query_id          :: Maybe Int                                   -- ^ Identifier of the inline query
+    , result_id         :: Maybe T.Text                                -- ^ Identifier of the inline result
+    , hide_via_bot      :: Maybe Bool                                  -- ^ Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+    }
+  deriving (Eq)
+
+instance Show SendInlineQueryResultMessage where
+  show
+    SendInlineQueryResultMessage
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      , reply_to          = reply_to_
+      , options           = options_
+      , query_id          = query_id_
+      , result_id         = result_id_
+      , hide_via_bot      = hide_via_bot_
+      }
+        = "SendInlineQueryResultMessage"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
+          , "reply_to"          `I.p` reply_to_
+          , "options"           `I.p` options_
+          , "query_id"          `I.p` query_id_
+          , "result_id"         `I.p` result_id_
+          , "hide_via_bot"      `I.p` hide_via_bot_
+          ]
+
+instance AT.ToJSON SendInlineQueryResultMessage where
+  toJSON
+    SendInlineQueryResultMessage
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      , reply_to          = reply_to_
+      , options           = options_
+      , query_id          = query_id_
+      , result_id         = result_id_
+      , hide_via_bot      = hide_via_bot_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "sendInlineQueryResultMessage"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          , "reply_to"          A..= reply_to_
+          , "options"           A..= options_
+          , "query_id"          A..= I.toS query_id_
+          , "result_id"         A..= result_id_
+          , "hide_via_bot"      A..= hide_via_bot_
+          ]

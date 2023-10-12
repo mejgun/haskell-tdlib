@@ -1,0 +1,43 @@
+module TD.Query.ProcessChatJoinRequest where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data ProcessChatJoinRequest -- ^ Handles a pending join request in a chat
+  = ProcessChatJoinRequest
+    { chat_id :: Maybe Int  -- ^ Chat identifier
+    , user_id :: Maybe Int  -- ^ Identifier of the user that sent the request
+    , approve :: Maybe Bool -- ^ Pass true to approve the request; pass false to decline it
+    }
+  deriving (Eq)
+
+instance Show ProcessChatJoinRequest where
+  show
+    ProcessChatJoinRequest
+      { chat_id = chat_id_
+      , user_id = user_id_
+      , approve = approve_
+      }
+        = "ProcessChatJoinRequest"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "user_id" `I.p` user_id_
+          , "approve" `I.p` approve_
+          ]
+
+instance AT.ToJSON ProcessChatJoinRequest where
+  toJSON
+    ProcessChatJoinRequest
+      { chat_id = chat_id_
+      , user_id = user_id_
+      , approve = approve_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "processChatJoinRequest"
+          , "chat_id" A..= chat_id_
+          , "user_id" A..= user_id_
+          , "approve" A..= approve_
+          ]

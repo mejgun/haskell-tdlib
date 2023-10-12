@@ -1,0 +1,34 @@
+module TD.Query.AddSavedNotificationSound where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.InputFile as InputFile
+
+data AddSavedNotificationSound -- ^ Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
+  = AddSavedNotificationSound
+    { sound :: Maybe InputFile.InputFile -- ^ Notification sound file to add
+    }
+  deriving (Eq)
+
+instance Show AddSavedNotificationSound where
+  show
+    AddSavedNotificationSound
+      { sound = sound_
+      }
+        = "AddSavedNotificationSound"
+          ++ I.cc
+          [ "sound" `I.p` sound_
+          ]
+
+instance AT.ToJSON AddSavedNotificationSound where
+  toJSON
+    AddSavedNotificationSound
+      { sound = sound_
+      }
+        = A.object
+          [ "@type" A..= AT.String "addSavedNotificationSound"
+          , "sound" A..= sound_
+          ]

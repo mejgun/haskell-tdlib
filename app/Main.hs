@@ -1,9 +1,6 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Main where
 
 import Control.Monad (when)
-import TD.Data.GeneralResult
 import TD.Lib
 import TD.Query.GetCurrentState
 import TD.Query.SetLogVerbosityLevel
@@ -25,8 +22,7 @@ main = do
       r <- receive c
       case r of
         Nothing -> return ()
-        Just result -> do
-          let ResultWithExtra res extra = result
+        Just (res, extra) -> do
           when (extra == Just x1) $ putStr "answer to SetVerbosityLevel: "
           when (extra == Just x2) $ putStr "answer to GetCurrentState: "
           print res

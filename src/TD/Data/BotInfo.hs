@@ -1,0 +1,130 @@
+module TD.Data.BotInfo where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.Photo as Photo
+import qualified TD.Data.Animation as Animation
+import qualified TD.Data.BotMenuButton as BotMenuButton
+import qualified TD.Data.BotCommand as BotCommand
+import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
+import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
+
+data BotInfo
+  = BotInfo -- ^ Contains information about a bot
+    { short_description                    :: Maybe T.Text                                          -- ^ The text that is shown on the bot's profile page and is sent together with the link when users share the bot
+    , description                          :: Maybe T.Text
+    , photo                                :: Maybe Photo.Photo                                     -- ^ Photo shown in the chat with the bot if the chat is empty; may be null
+    , animation                            :: Maybe Animation.Animation                             -- ^ Animation shown in the chat with the bot if the chat is empty; may be null
+    , menu_button                          :: Maybe BotMenuButton.BotMenuButton                     -- ^ Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
+    , commands                             :: Maybe [BotCommand.BotCommand]                         -- ^ List of the bot commands
+    , default_group_administrator_rights   :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+    , default_channel_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to channels; may be null
+    , edit_commands_link                   :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit bot commands; may be null
+    , edit_description_link                :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit bot description; may be null
+    , edit_description_media_link          :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit the photo or animation shown in the chat with the bot if the chat is empty; may be null
+    , edit_settings_link                   :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit bot settings; may be null
+    }
+  deriving (Eq)
+
+instance Show BotInfo where
+  show BotInfo
+    { short_description                    = short_description_
+    , description                          = description_
+    , photo                                = photo_
+    , animation                            = animation_
+    , menu_button                          = menu_button_
+    , commands                             = commands_
+    , default_group_administrator_rights   = default_group_administrator_rights_
+    , default_channel_administrator_rights = default_channel_administrator_rights_
+    , edit_commands_link                   = edit_commands_link_
+    , edit_description_link                = edit_description_link_
+    , edit_description_media_link          = edit_description_media_link_
+    , edit_settings_link                   = edit_settings_link_
+    }
+      = "BotInfo"
+        ++ I.cc
+        [ "short_description"                    `I.p` short_description_
+        , "description"                          `I.p` description_
+        , "photo"                                `I.p` photo_
+        , "animation"                            `I.p` animation_
+        , "menu_button"                          `I.p` menu_button_
+        , "commands"                             `I.p` commands_
+        , "default_group_administrator_rights"   `I.p` default_group_administrator_rights_
+        , "default_channel_administrator_rights" `I.p` default_channel_administrator_rights_
+        , "edit_commands_link"                   `I.p` edit_commands_link_
+        , "edit_description_link"                `I.p` edit_description_link_
+        , "edit_description_media_link"          `I.p` edit_description_media_link_
+        , "edit_settings_link"                   `I.p` edit_settings_link_
+        ]
+
+instance AT.FromJSON BotInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "botInfo" -> parseBotInfo v
+      _         -> mempty
+    
+    where
+      parseBotInfo :: A.Value -> AT.Parser BotInfo
+      parseBotInfo = A.withObject "BotInfo" $ \o -> do
+        short_description_                    <- o A..:?  "short_description"
+        description_                          <- o A..:?  "description"
+        photo_                                <- o A..:?  "photo"
+        animation_                            <- o A..:?  "animation"
+        menu_button_                          <- o A..:?  "menu_button"
+        commands_                             <- o A..:?  "commands"
+        default_group_administrator_rights_   <- o A..:?  "default_group_administrator_rights"
+        default_channel_administrator_rights_ <- o A..:?  "default_channel_administrator_rights"
+        edit_commands_link_                   <- o A..:?  "edit_commands_link"
+        edit_description_link_                <- o A..:?  "edit_description_link"
+        edit_description_media_link_          <- o A..:?  "edit_description_media_link"
+        edit_settings_link_                   <- o A..:?  "edit_settings_link"
+        pure $ BotInfo
+          { short_description                    = short_description_
+          , description                          = description_
+          , photo                                = photo_
+          , animation                            = animation_
+          , menu_button                          = menu_button_
+          , commands                             = commands_
+          , default_group_administrator_rights   = default_group_administrator_rights_
+          , default_channel_administrator_rights = default_channel_administrator_rights_
+          , edit_commands_link                   = edit_commands_link_
+          , edit_description_link                = edit_description_link_
+          , edit_description_media_link          = edit_description_media_link_
+          , edit_settings_link                   = edit_settings_link_
+          }
+
+instance AT.ToJSON BotInfo where
+  toJSON BotInfo
+    { short_description                    = short_description_
+    , description                          = description_
+    , photo                                = photo_
+    , animation                            = animation_
+    , menu_button                          = menu_button_
+    , commands                             = commands_
+    , default_group_administrator_rights   = default_group_administrator_rights_
+    , default_channel_administrator_rights = default_channel_administrator_rights_
+    , edit_commands_link                   = edit_commands_link_
+    , edit_description_link                = edit_description_link_
+    , edit_description_media_link          = edit_description_media_link_
+    , edit_settings_link                   = edit_settings_link_
+    }
+      = A.object
+        [ "@type"                                A..= AT.String "botInfo"
+        , "short_description"                    A..= short_description_
+        , "description"                          A..= description_
+        , "photo"                                A..= photo_
+        , "animation"                            A..= animation_
+        , "menu_button"                          A..= menu_button_
+        , "commands"                             A..= commands_
+        , "default_group_administrator_rights"   A..= default_group_administrator_rights_
+        , "default_channel_administrator_rights" A..= default_channel_administrator_rights_
+        , "edit_commands_link"                   A..= edit_commands_link_
+        , "edit_description_link"                A..= edit_description_link_
+        , "edit_description_media_link"          A..= edit_description_media_link_
+        , "edit_settings_link"                   A..= edit_settings_link_
+        ]

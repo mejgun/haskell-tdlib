@@ -1,0 +1,39 @@
+module TD.Query.AcceptCall where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.CallProtocol as CallProtocol
+
+data AcceptCall -- ^ Accepts an incoming call
+  = AcceptCall
+    { call_id  :: Maybe Int                       -- ^ Call identifier
+    , protocol :: Maybe CallProtocol.CallProtocol -- ^ The call protocols supported by the application
+    }
+  deriving (Eq)
+
+instance Show AcceptCall where
+  show
+    AcceptCall
+      { call_id  = call_id_
+      , protocol = protocol_
+      }
+        = "AcceptCall"
+          ++ I.cc
+          [ "call_id"  `I.p` call_id_
+          , "protocol" `I.p` protocol_
+          ]
+
+instance AT.ToJSON AcceptCall where
+  toJSON
+    AcceptCall
+      { call_id  = call_id_
+      , protocol = protocol_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "acceptCall"
+          , "call_id"  A..= call_id_
+          , "protocol" A..= protocol_
+          ]

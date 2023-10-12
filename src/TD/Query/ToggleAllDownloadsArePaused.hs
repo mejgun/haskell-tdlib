@@ -1,0 +1,33 @@
+module TD.Query.ToggleAllDownloadsArePaused where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data ToggleAllDownloadsArePaused -- ^ Changes pause state of all files in the file download list
+  = ToggleAllDownloadsArePaused
+    { are_paused :: Maybe Bool -- ^ Pass true to pause all downloads; pass false to unpause them
+    }
+  deriving (Eq)
+
+instance Show ToggleAllDownloadsArePaused where
+  show
+    ToggleAllDownloadsArePaused
+      { are_paused = are_paused_
+      }
+        = "ToggleAllDownloadsArePaused"
+          ++ I.cc
+          [ "are_paused" `I.p` are_paused_
+          ]
+
+instance AT.ToJSON ToggleAllDownloadsArePaused where
+  toJSON
+    ToggleAllDownloadsArePaused
+      { are_paused = are_paused_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "toggleAllDownloadsArePaused"
+          , "are_paused" A..= are_paused_
+          ]

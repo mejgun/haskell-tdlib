@@ -1,0 +1,55 @@
+module TD.Data.PageBlockCaption where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import {-# SOURCE #-} qualified TD.Data.RichText as RichText
+
+data PageBlockCaption
+  = PageBlockCaption -- ^ Contains a caption of an instant view web page block, consisting of a text and a trailing credit
+    { text   :: Maybe RichText.RichText -- ^ Content of the caption
+    , credit :: Maybe RichText.RichText -- ^ Block credit (like HTML tag <cite>)
+    }
+  deriving (Eq)
+
+instance Show PageBlockCaption where
+  show PageBlockCaption
+    { text   = text_
+    , credit = credit_
+    }
+      = "PageBlockCaption"
+        ++ I.cc
+        [ "text"   `I.p` text_
+        , "credit" `I.p` credit_
+        ]
+
+instance AT.FromJSON PageBlockCaption where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "pageBlockCaption" -> parsePageBlockCaption v
+      _                  -> mempty
+    
+    where
+      parsePageBlockCaption :: A.Value -> AT.Parser PageBlockCaption
+      parsePageBlockCaption = A.withObject "PageBlockCaption" $ \o -> do
+        text_   <- o A..:?  "text"
+        credit_ <- o A..:?  "credit"
+        pure $ PageBlockCaption
+          { text   = text_
+          , credit = credit_
+          }
+
+instance AT.ToJSON PageBlockCaption where
+  toJSON PageBlockCaption
+    { text   = text_
+    , credit = credit_
+    }
+      = A.object
+        [ "@type"  A..= AT.String "pageBlockCaption"
+        , "text"   A..= text_
+        , "credit" A..= credit_
+        ]

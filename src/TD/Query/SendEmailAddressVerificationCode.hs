@@ -1,0 +1,33 @@
+module TD.Query.SendEmailAddressVerificationCode where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data SendEmailAddressVerificationCode -- ^ Sends a code to verify an email address to be added to a user's Telegram Passport
+  = SendEmailAddressVerificationCode
+    { email_address :: Maybe T.Text -- ^ Email address
+    }
+  deriving (Eq)
+
+instance Show SendEmailAddressVerificationCode where
+  show
+    SendEmailAddressVerificationCode
+      { email_address = email_address_
+      }
+        = "SendEmailAddressVerificationCode"
+          ++ I.cc
+          [ "email_address" `I.p` email_address_
+          ]
+
+instance AT.ToJSON SendEmailAddressVerificationCode where
+  toJSON
+    SendEmailAddressVerificationCode
+      { email_address = email_address_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "sendEmailAddressVerificationCode"
+          , "email_address" A..= email_address_
+          ]

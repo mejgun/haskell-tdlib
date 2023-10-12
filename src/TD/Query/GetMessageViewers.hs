@@ -1,0 +1,38 @@
+module TD.Query.GetMessageViewers where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data GetMessageViewers -- ^ Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
+  = GetMessageViewers
+    { chat_id    :: Maybe Int -- ^ Chat identifier
+    , message_id :: Maybe Int -- ^ Identifier of the message
+    }
+  deriving (Eq)
+
+instance Show GetMessageViewers where
+  show
+    GetMessageViewers
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetMessageViewers"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          ]
+
+instance AT.ToJSON GetMessageViewers where
+  toJSON
+    GetMessageViewers
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageViewers"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]

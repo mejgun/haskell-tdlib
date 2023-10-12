@@ -1,0 +1,33 @@
+module TD.Query.GetSuggestedStickerSetName where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data GetSuggestedStickerSetName -- ^ Returns a suggested name for a new sticker set with a given title
+  = GetSuggestedStickerSetName
+    { title :: Maybe T.Text -- ^ Sticker set title; 1-64 characters
+    }
+  deriving (Eq)
+
+instance Show GetSuggestedStickerSetName where
+  show
+    GetSuggestedStickerSetName
+      { title = title_
+      }
+        = "GetSuggestedStickerSetName"
+          ++ I.cc
+          [ "title" `I.p` title_
+          ]
+
+instance AT.ToJSON GetSuggestedStickerSetName where
+  toJSON
+    GetSuggestedStickerSetName
+      { title = title_
+      }
+        = A.object
+          [ "@type" A..= AT.String "getSuggestedStickerSetName"
+          , "title" A..= title_
+          ]

@@ -1,0 +1,43 @@
+module TD.Query.GetUserProfilePhotos where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data GetUserProfilePhotos -- ^ Returns the profile photos of a user. Personal and public photo aren't returned
+  = GetUserProfilePhotos
+    { user_id :: Maybe Int -- ^ User identifier
+    , offset  :: Maybe Int -- ^ The number of photos to skip; must be non-negative
+    , limit   :: Maybe Int -- ^ The maximum number of photos to be returned; up to 100
+    }
+  deriving (Eq)
+
+instance Show GetUserProfilePhotos where
+  show
+    GetUserProfilePhotos
+      { user_id = user_id_
+      , offset  = offset_
+      , limit   = limit_
+      }
+        = "GetUserProfilePhotos"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
+          , "offset"  `I.p` offset_
+          , "limit"   `I.p` limit_
+          ]
+
+instance AT.ToJSON GetUserProfilePhotos where
+  toJSON
+    GetUserProfilePhotos
+      { user_id = user_id_
+      , offset  = offset_
+      , limit   = limit_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getUserProfilePhotos"
+          , "user_id" A..= user_id_
+          , "offset"  A..= offset_
+          , "limit"   A..= limit_
+          ]

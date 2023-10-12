@@ -1,0 +1,60 @@
+module TD.Query.EditMessageLiveLocation where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.ReplyMarkup as ReplyMarkup
+import qualified TD.Data.Location as Location
+
+data EditMessageLiveLocation -- ^ Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+  = EditMessageLiveLocation
+    { chat_id                :: Maybe Int                     -- ^ The chat the message belongs to
+    , message_id             :: Maybe Int                     -- ^ Identifier of the message
+    , reply_markup           :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none; for bots only
+    , location               :: Maybe Location.Location       -- ^ New location content of the message; pass null to stop sharing the live location
+    , heading                :: Maybe Int                     -- ^ The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+    , proximity_alert_radius :: Maybe Int                     -- ^ The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+    }
+  deriving (Eq)
+
+instance Show EditMessageLiveLocation where
+  show
+    EditMessageLiveLocation
+      { chat_id                = chat_id_
+      , message_id             = message_id_
+      , reply_markup           = reply_markup_
+      , location               = location_
+      , heading                = heading_
+      , proximity_alert_radius = proximity_alert_radius_
+      }
+        = "EditMessageLiveLocation"
+          ++ I.cc
+          [ "chat_id"                `I.p` chat_id_
+          , "message_id"             `I.p` message_id_
+          , "reply_markup"           `I.p` reply_markup_
+          , "location"               `I.p` location_
+          , "heading"                `I.p` heading_
+          , "proximity_alert_radius" `I.p` proximity_alert_radius_
+          ]
+
+instance AT.ToJSON EditMessageLiveLocation where
+  toJSON
+    EditMessageLiveLocation
+      { chat_id                = chat_id_
+      , message_id             = message_id_
+      , reply_markup           = reply_markup_
+      , location               = location_
+      , heading                = heading_
+      , proximity_alert_radius = proximity_alert_radius_
+      }
+        = A.object
+          [ "@type"                  A..= AT.String "editMessageLiveLocation"
+          , "chat_id"                A..= chat_id_
+          , "message_id"             A..= message_id_
+          , "reply_markup"           A..= reply_markup_
+          , "location"               A..= location_
+          , "heading"                A..= heading_
+          , "proximity_alert_radius" A..= proximity_alert_radius_
+          ]

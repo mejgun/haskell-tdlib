@@ -1,4 +1,3 @@
--- {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 
 module TD.Lib
@@ -14,6 +13,7 @@ where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Key as K
 import qualified Data.Aeson.KeyMap as KM
+import qualified Data.Aeson.Types as AT
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Lazy as BL
 import qualified Data.Text as T
@@ -21,7 +21,8 @@ import qualified Data.Time.Clock.System as Time
 import Foreign (Ptr, nullPtr)
 import Foreign.C.String (CString)
 import Foreign.C.Types ()
-import TD.Data.GeneralResult as GeneralResult (ResultWithExtra)
+import TD.GeneralResult (GeneralResult)
+import TD.Lib.Internal (Extra (..))
 
 foreign import ccall "libtdjson td_json_client_create" c_create :: IO Client
 
@@ -43,15 +44,14 @@ send c d = B.useAsCString enc (c_send c)
   where
     enc = BL.toStrict (A.encode d)
 
-sendWExtra :: (A.ToJSON a) => Client -> a -> IO String
+sendWExtra :: (A.ToJSON a) => Client -> a -> IO Extra
 sendWExtra c d = do
   extra <- getUnixTime
   B.useAsCString (enc extra) (c_send c)
-  return extra
+  pure $ Extra extra
   where
     enc :: String -> B.ByteString
-    enc xtr =
-      BL.toStrict $ A.encode (addExtra d xtr)
+    enc xtr = BL.toStrict $ A.encode (addExtra d xtr)
 
     addExtra :: (A.ToJSON a) => a -> String -> KM.KeyMap A.Value
     addExtra dd s =
@@ -66,17 +66,22 @@ sendWExtra c d = do
           str = (++) <$> s <*> ns
        in str
 
-receive :: Client -> IO (Maybe GeneralResult.ResultWithExtra)
+receive :: Client -> IO (Maybe (GeneralResult, Maybe Extra))
 receive c = dec $ c_receive c 1.0
   where
-    dec :: IO CString -> IO (Maybe GeneralResult.ResultWithExtra)
+    dec :: IO CString -> IO (Maybe (GeneralResult, Maybe Extra))
     dec ics = do
       cs <- ics
       if cs == nullPtr
-        then return Nothing
+        then pure Nothing
         else do
           -- B.packCString cs >>= print --DEBUG
-          A.decodeStrict <$> B.packCString cs
+          a <- A.decodeStrict <$> B.packCString cs
+          case a of
+            Nothing -> pure Nothing
+            (Just r) -> do
+              b <- A.decodeStrict <$> B.packCString cs
+              pure $ Just (r, b)
 
 destroy :: Client -> IO ()
 destroy = c_destroy

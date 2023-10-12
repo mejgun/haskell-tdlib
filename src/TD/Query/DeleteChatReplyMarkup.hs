@@ -1,0 +1,38 @@
+module TD.Query.DeleteChatReplyMarkup where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data DeleteChatReplyMarkup -- ^ Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
+  = DeleteChatReplyMarkup
+    { chat_id    :: Maybe Int -- ^ Chat identifier
+    , message_id :: Maybe Int -- ^ The message identifier of the used keyboard
+    }
+  deriving (Eq)
+
+instance Show DeleteChatReplyMarkup where
+  show
+    DeleteChatReplyMarkup
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "DeleteChatReplyMarkup"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          ]
+
+instance AT.ToJSON DeleteChatReplyMarkup where
+  toJSON
+    DeleteChatReplyMarkup
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "deleteChatReplyMarkup"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]

@@ -1,0 +1,33 @@
+module TD.Query.DeleteLanguagePack where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data DeleteLanguagePack -- ^ Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
+  = DeleteLanguagePack
+    { language_pack_id :: Maybe T.Text -- ^ Identifier of the language pack to delete
+    }
+  deriving (Eq)
+
+instance Show DeleteLanguagePack where
+  show
+    DeleteLanguagePack
+      { language_pack_id = language_pack_id_
+      }
+        = "DeleteLanguagePack"
+          ++ I.cc
+          [ "language_pack_id" `I.p` language_pack_id_
+          ]
+
+instance AT.ToJSON DeleteLanguagePack where
+  toJSON
+    DeleteLanguagePack
+      { language_pack_id = language_pack_id_
+      }
+        = A.object
+          [ "@type"            A..= AT.String "deleteLanguagePack"
+          , "language_pack_id" A..= language_pack_id_
+          ]

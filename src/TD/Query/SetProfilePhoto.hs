@@ -1,0 +1,39 @@
+module TD.Query.SetProfilePhoto where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.InputChatPhoto as InputChatPhoto
+
+data SetProfilePhoto -- ^ Changes a profile photo for the current user
+  = SetProfilePhoto
+    { photo     :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set
+    , is_public :: Maybe Bool                          -- ^ Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+    }
+  deriving (Eq)
+
+instance Show SetProfilePhoto where
+  show
+    SetProfilePhoto
+      { photo     = photo_
+      , is_public = is_public_
+      }
+        = "SetProfilePhoto"
+          ++ I.cc
+          [ "photo"     `I.p` photo_
+          , "is_public" `I.p` is_public_
+          ]
+
+instance AT.ToJSON SetProfilePhoto where
+  toJSON
+    SetProfilePhoto
+      { photo     = photo_
+      , is_public = is_public_
+      }
+        = A.object
+          [ "@type"     A..= AT.String "setProfilePhoto"
+          , "photo"     A..= photo_
+          , "is_public" A..= is_public_
+          ]

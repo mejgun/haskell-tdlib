@@ -1,0 +1,44 @@
+module TD.Query.SaveApplicationLogEvent where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.JsonValue as JsonValue
+
+data SaveApplicationLogEvent -- ^ Saves application log event on the server. Can be called before authorization
+  = SaveApplicationLogEvent
+    { _type   :: Maybe T.Text              -- ^ Event type
+    , chat_id :: Maybe Int                 -- ^ Optional chat identifier, associated with the event
+    , _data   :: Maybe JsonValue.JsonValue -- ^ The log event data
+    }
+  deriving (Eq)
+
+instance Show SaveApplicationLogEvent where
+  show
+    SaveApplicationLogEvent
+      { _type   = _type_
+      , chat_id = chat_id_
+      , _data   = _data_
+      }
+        = "SaveApplicationLogEvent"
+          ++ I.cc
+          [ "_type"   `I.p` _type_
+          , "chat_id" `I.p` chat_id_
+          , "_data"   `I.p` _data_
+          ]
+
+instance AT.ToJSON SaveApplicationLogEvent where
+  toJSON
+    SaveApplicationLogEvent
+      { _type   = _type_
+      , chat_id = chat_id_
+      , _data   = _data_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "saveApplicationLogEvent"
+          , "type"    A..= _type_
+          , "chat_id" A..= chat_id_
+          , "data"    A..= _data_
+          ]

@@ -1,0 +1,55 @@
+module TD.Data.MessagePositions where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.MessagePosition as MessagePosition
+
+data MessagePositions
+  = MessagePositions -- ^ Contains a list of message positions
+    { total_count :: Maybe Int                               -- ^ Total number of messages found
+    , positions   :: Maybe [MessagePosition.MessagePosition] -- ^ List of message positions
+    }
+  deriving (Eq)
+
+instance Show MessagePositions where
+  show MessagePositions
+    { total_count = total_count_
+    , positions   = positions_
+    }
+      = "MessagePositions"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "positions"   `I.p` positions_
+        ]
+
+instance AT.FromJSON MessagePositions where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "messagePositions" -> parseMessagePositions v
+      _                  -> mempty
+    
+    where
+      parseMessagePositions :: A.Value -> AT.Parser MessagePositions
+      parseMessagePositions = A.withObject "MessagePositions" $ \o -> do
+        total_count_ <- o A..:?  "total_count"
+        positions_   <- o A..:?  "positions"
+        pure $ MessagePositions
+          { total_count = total_count_
+          , positions   = positions_
+          }
+
+instance AT.ToJSON MessagePositions where
+  toJSON MessagePositions
+    { total_count = total_count_
+    , positions   = positions_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "messagePositions"
+        , "total_count" A..= total_count_
+        , "positions"   A..= positions_
+        ]

@@ -1,0 +1,49 @@
+module TD.Query.SendCallRating where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.CallProblem as CallProblem
+
+data SendCallRating -- ^ Sends a call rating
+  = SendCallRating
+    { call_id  :: Maybe Int                       -- ^ Call identifier
+    , rating   :: Maybe Int                       -- ^ Call rating; 1-5
+    , comment  :: Maybe T.Text                    -- ^ An optional user comment if the rating is less than 5
+    , problems :: Maybe [CallProblem.CallProblem] -- ^ List of the exact types of problems with the call, specified by the user
+    }
+  deriving (Eq)
+
+instance Show SendCallRating where
+  show
+    SendCallRating
+      { call_id  = call_id_
+      , rating   = rating_
+      , comment  = comment_
+      , problems = problems_
+      }
+        = "SendCallRating"
+          ++ I.cc
+          [ "call_id"  `I.p` call_id_
+          , "rating"   `I.p` rating_
+          , "comment"  `I.p` comment_
+          , "problems" `I.p` problems_
+          ]
+
+instance AT.ToJSON SendCallRating where
+  toJSON
+    SendCallRating
+      { call_id  = call_id_
+      , rating   = rating_
+      , comment  = comment_
+      , problems = problems_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "sendCallRating"
+          , "call_id"  A..= call_id_
+          , "rating"   A..= rating_
+          , "comment"  A..= comment_
+          , "problems" A..= problems_
+          ]

@@ -1,0 +1,38 @@
+module TD.Query.CreateSupergroupChat where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data CreateSupergroupChat -- ^ Returns an existing chat corresponding to a known supergroup or channel
+  = CreateSupergroupChat
+    { supergroup_id :: Maybe Int  -- ^ Supergroup or channel identifier
+    , force         :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+    }
+  deriving (Eq)
+
+instance Show CreateSupergroupChat where
+  show
+    CreateSupergroupChat
+      { supergroup_id = supergroup_id_
+      , force         = force_
+      }
+        = "CreateSupergroupChat"
+          ++ I.cc
+          [ "supergroup_id" `I.p` supergroup_id_
+          , "force"         `I.p` force_
+          ]
+
+instance AT.ToJSON CreateSupergroupChat where
+  toJSON
+    CreateSupergroupChat
+      { supergroup_id = supergroup_id_
+      , force         = force_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "createSupergroupChat"
+          , "supergroup_id" A..= supergroup_id_
+          , "force"         A..= force_
+          ]

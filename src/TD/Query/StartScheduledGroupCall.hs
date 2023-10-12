@@ -1,0 +1,33 @@
+module TD.Query.StartScheduledGroupCall where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data StartScheduledGroupCall -- ^ Starts a scheduled group call
+  = StartScheduledGroupCall
+    { group_call_id :: Maybe Int -- ^ Group call identifier
+    }
+  deriving (Eq)
+
+instance Show StartScheduledGroupCall where
+  show
+    StartScheduledGroupCall
+      { group_call_id = group_call_id_
+      }
+        = "StartScheduledGroupCall"
+          ++ I.cc
+          [ "group_call_id" `I.p` group_call_id_
+          ]
+
+instance AT.ToJSON StartScheduledGroupCall where
+  toJSON
+    StartScheduledGroupCall
+      { group_call_id = group_call_id_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "startScheduledGroupCall"
+          , "group_call_id" A..= group_call_id_
+          ]

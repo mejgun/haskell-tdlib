@@ -1,0 +1,38 @@
+module TD.Query.SetChatDescription where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data SetChatDescription -- ^ Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+  = SetChatDescription
+    { chat_id     :: Maybe Int    -- ^ Identifier of the chat
+    , description :: Maybe T.Text
+    }
+  deriving (Eq)
+
+instance Show SetChatDescription where
+  show
+    SetChatDescription
+      { chat_id     = chat_id_
+      , description = description_
+      }
+        = "SetChatDescription"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "description" `I.p` description_
+          ]
+
+instance AT.ToJSON SetChatDescription where
+  toJSON
+    SetChatDescription
+      { chat_id     = chat_id_
+      , description = description_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "setChatDescription"
+          , "chat_id"     A..= chat_id_
+          , "description" A..= description_
+          ]

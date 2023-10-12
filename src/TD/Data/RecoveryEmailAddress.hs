@@ -1,0 +1,47 @@
+module TD.Data.RecoveryEmailAddress where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data RecoveryEmailAddress
+  = RecoveryEmailAddress -- ^ Contains information about the current recovery email address
+    { recovery_email_address :: Maybe T.Text -- ^ Recovery email address
+    }
+  deriving (Eq)
+
+instance Show RecoveryEmailAddress where
+  show RecoveryEmailAddress
+    { recovery_email_address = recovery_email_address_
+    }
+      = "RecoveryEmailAddress"
+        ++ I.cc
+        [ "recovery_email_address" `I.p` recovery_email_address_
+        ]
+
+instance AT.FromJSON RecoveryEmailAddress where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "recoveryEmailAddress" -> parseRecoveryEmailAddress v
+      _                      -> mempty
+    
+    where
+      parseRecoveryEmailAddress :: A.Value -> AT.Parser RecoveryEmailAddress
+      parseRecoveryEmailAddress = A.withObject "RecoveryEmailAddress" $ \o -> do
+        recovery_email_address_ <- o A..:?  "recovery_email_address"
+        pure $ RecoveryEmailAddress
+          { recovery_email_address = recovery_email_address_
+          }
+
+instance AT.ToJSON RecoveryEmailAddress where
+  toJSON RecoveryEmailAddress
+    { recovery_email_address = recovery_email_address_
+    }
+      = A.object
+        [ "@type"                  A..= AT.String "recoveryEmailAddress"
+        , "recovery_email_address" A..= recovery_email_address_
+        ]

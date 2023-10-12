@@ -1,0 +1,38 @@
+module TD.Query.ToggleSupergroupJoinToSendMessages where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data ToggleSupergroupJoinToSendMessages -- ^ Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+  = ToggleSupergroupJoinToSendMessages
+    { supergroup_id         :: Maybe Int  -- ^ Identifier of the supergroup
+    , join_to_send_messages :: Maybe Bool -- ^ New value of join_to_send_messages
+    }
+  deriving (Eq)
+
+instance Show ToggleSupergroupJoinToSendMessages where
+  show
+    ToggleSupergroupJoinToSendMessages
+      { supergroup_id         = supergroup_id_
+      , join_to_send_messages = join_to_send_messages_
+      }
+        = "ToggleSupergroupJoinToSendMessages"
+          ++ I.cc
+          [ "supergroup_id"         `I.p` supergroup_id_
+          , "join_to_send_messages" `I.p` join_to_send_messages_
+          ]
+
+instance AT.ToJSON ToggleSupergroupJoinToSendMessages where
+  toJSON
+    ToggleSupergroupJoinToSendMessages
+      { supergroup_id         = supergroup_id_
+      , join_to_send_messages = join_to_send_messages_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "toggleSupergroupJoinToSendMessages"
+          , "supergroup_id"         A..= supergroup_id_
+          , "join_to_send_messages" A..= join_to_send_messages_
+          ]

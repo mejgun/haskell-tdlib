@@ -1,0 +1,62 @@
+module TD.Data.GroupCallParticipantVideoInfo where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.GroupCallVideoSourceGroup as GroupCallVideoSourceGroup
+
+data GroupCallParticipantVideoInfo
+  = GroupCallParticipantVideoInfo -- ^ Contains information about a group call participant's video channel
+    { source_groups :: Maybe [GroupCallVideoSourceGroup.GroupCallVideoSourceGroup] -- ^ List of synchronization source groups of the video
+    , endpoint_id   :: Maybe T.Text                                                -- ^ Video channel endpoint identifier
+    , is_paused     :: Maybe Bool                                                  -- ^ True, if the video is paused. This flag needs to be ignored, if new video frames are received
+    }
+  deriving (Eq)
+
+instance Show GroupCallParticipantVideoInfo where
+  show GroupCallParticipantVideoInfo
+    { source_groups = source_groups_
+    , endpoint_id   = endpoint_id_
+    , is_paused     = is_paused_
+    }
+      = "GroupCallParticipantVideoInfo"
+        ++ I.cc
+        [ "source_groups" `I.p` source_groups_
+        , "endpoint_id"   `I.p` endpoint_id_
+        , "is_paused"     `I.p` is_paused_
+        ]
+
+instance AT.FromJSON GroupCallParticipantVideoInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "groupCallParticipantVideoInfo" -> parseGroupCallParticipantVideoInfo v
+      _                               -> mempty
+    
+    where
+      parseGroupCallParticipantVideoInfo :: A.Value -> AT.Parser GroupCallParticipantVideoInfo
+      parseGroupCallParticipantVideoInfo = A.withObject "GroupCallParticipantVideoInfo" $ \o -> do
+        source_groups_ <- o A..:?  "source_groups"
+        endpoint_id_   <- o A..:?  "endpoint_id"
+        is_paused_     <- o A..:?  "is_paused"
+        pure $ GroupCallParticipantVideoInfo
+          { source_groups = source_groups_
+          , endpoint_id   = endpoint_id_
+          , is_paused     = is_paused_
+          }
+
+instance AT.ToJSON GroupCallParticipantVideoInfo where
+  toJSON GroupCallParticipantVideoInfo
+    { source_groups = source_groups_
+    , endpoint_id   = endpoint_id_
+    , is_paused     = is_paused_
+    }
+      = A.object
+        [ "@type"         A..= AT.String "groupCallParticipantVideoInfo"
+        , "source_groups" A..= source_groups_
+        , "endpoint_id"   A..= endpoint_id_
+        , "is_paused"     A..= is_paused_
+        ]

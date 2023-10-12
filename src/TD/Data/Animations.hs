@@ -1,0 +1,48 @@
+module TD.Data.Animations where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.Animation as Animation
+
+data Animations
+  = Animations -- ^ Represents a list of animations
+    { animations :: Maybe [Animation.Animation] -- ^ List of animations
+    }
+  deriving (Eq)
+
+instance Show Animations where
+  show Animations
+    { animations = animations_
+    }
+      = "Animations"
+        ++ I.cc
+        [ "animations" `I.p` animations_
+        ]
+
+instance AT.FromJSON Animations where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "animations" -> parseAnimations v
+      _            -> mempty
+    
+    where
+      parseAnimations :: A.Value -> AT.Parser Animations
+      parseAnimations = A.withObject "Animations" $ \o -> do
+        animations_ <- o A..:?  "animations"
+        pure $ Animations
+          { animations = animations_
+          }
+
+instance AT.ToJSON Animations where
+  toJSON Animations
+    { animations = animations_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "animations"
+        , "animations" A..= animations_
+        ]

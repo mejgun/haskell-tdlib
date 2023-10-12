@@ -1,0 +1,34 @@
+module TD.Query.DeletePassportElement where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.PassportElementType as PassportElementType
+
+data DeletePassportElement -- ^ Deletes a Telegram Passport element
+  = DeletePassportElement
+    { _type :: Maybe PassportElementType.PassportElementType -- ^ Element type
+    }
+  deriving (Eq)
+
+instance Show DeletePassportElement where
+  show
+    DeletePassportElement
+      { _type = _type_
+      }
+        = "DeletePassportElement"
+          ++ I.cc
+          [ "_type" `I.p` _type_
+          ]
+
+instance AT.ToJSON DeletePassportElement where
+  toJSON
+    DeletePassportElement
+      { _type = _type_
+      }
+        = A.object
+          [ "@type" A..= AT.String "deletePassportElement"
+          , "type"  A..= _type_
+          ]

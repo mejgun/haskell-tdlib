@@ -1,0 +1,47 @@
+module TD.Data.Text where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data Text
+  = Text -- ^ Contains some text
+    { text :: Maybe T.Text -- ^ Text
+    }
+  deriving (Eq)
+
+instance Show Text where
+  show Text
+    { text = text_
+    }
+      = "Text"
+        ++ I.cc
+        [ "text" `I.p` text_
+        ]
+
+instance AT.FromJSON Text where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "text" -> parseText v
+      _      -> mempty
+    
+    where
+      parseText :: A.Value -> AT.Parser Text
+      parseText = A.withObject "Text" $ \o -> do
+        text_ <- o A..:?  "text"
+        pure $ Text
+          { text = text_
+          }
+
+instance AT.ToJSON Text where
+  toJSON Text
+    { text = text_
+    }
+      = A.object
+        [ "@type" A..= AT.String "text"
+        , "text"  A..= text_
+        ]

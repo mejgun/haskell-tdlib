@@ -1,0 +1,48 @@
+module TD.Data.ChatAdministrators where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.ChatAdministrator as ChatAdministrator
+
+data ChatAdministrators
+  = ChatAdministrators -- ^ Represents a list of chat administrators
+    { administrators :: Maybe [ChatAdministrator.ChatAdministrator] -- ^ A list of chat administrators
+    }
+  deriving (Eq)
+
+instance Show ChatAdministrators where
+  show ChatAdministrators
+    { administrators = administrators_
+    }
+      = "ChatAdministrators"
+        ++ I.cc
+        [ "administrators" `I.p` administrators_
+        ]
+
+instance AT.FromJSON ChatAdministrators where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "chatAdministrators" -> parseChatAdministrators v
+      _                    -> mempty
+    
+    where
+      parseChatAdministrators :: A.Value -> AT.Parser ChatAdministrators
+      parseChatAdministrators = A.withObject "ChatAdministrators" $ \o -> do
+        administrators_ <- o A..:?  "administrators"
+        pure $ ChatAdministrators
+          { administrators = administrators_
+          }
+
+instance AT.ToJSON ChatAdministrators where
+  toJSON ChatAdministrators
+    { administrators = administrators_
+    }
+      = A.object
+        [ "@type"          A..= AT.String "chatAdministrators"
+        , "administrators" A..= administrators_
+        ]

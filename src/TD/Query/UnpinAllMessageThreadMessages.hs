@@ -1,0 +1,38 @@
+module TD.Query.UnpinAllMessageThreadMessages where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data UnpinAllMessageThreadMessages -- ^ Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+  = UnpinAllMessageThreadMessages
+    { chat_id           :: Maybe Int -- ^ Identifier of the chat
+    , message_thread_id :: Maybe Int -- ^ Message thread identifier in which messages will be unpinned
+    }
+  deriving (Eq)
+
+instance Show UnpinAllMessageThreadMessages where
+  show
+    UnpinAllMessageThreadMessages
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = "UnpinAllMessageThreadMessages"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
+          ]
+
+instance AT.ToJSON UnpinAllMessageThreadMessages where
+  toJSON
+    UnpinAllMessageThreadMessages
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "unpinAllMessageThreadMessages"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          ]

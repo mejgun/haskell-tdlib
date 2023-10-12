@@ -1,0 +1,33 @@
+module TD.Query.CheckRecoveryEmailAddressCode where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data CheckRecoveryEmailAddressCode -- ^ Checks the 2-step verification recovery email address verification code
+  = CheckRecoveryEmailAddressCode
+    { code :: Maybe T.Text -- ^ Verification code to check
+    }
+  deriving (Eq)
+
+instance Show CheckRecoveryEmailAddressCode where
+  show
+    CheckRecoveryEmailAddressCode
+      { code = code_
+      }
+        = "CheckRecoveryEmailAddressCode"
+          ++ I.cc
+          [ "code" `I.p` code_
+          ]
+
+instance AT.ToJSON CheckRecoveryEmailAddressCode where
+  toJSON
+    CheckRecoveryEmailAddressCode
+      { code = code_
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkRecoveryEmailAddressCode"
+          , "code"  A..= code_
+          ]

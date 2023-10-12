@@ -1,0 +1,33 @@
+module TD.Query.CheckPhoneNumberConfirmationCode where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data CheckPhoneNumberConfirmationCode -- ^ Checks phone number confirmation code
+  = CheckPhoneNumberConfirmationCode
+    { code :: Maybe T.Text -- ^ Confirmation code to check
+    }
+  deriving (Eq)
+
+instance Show CheckPhoneNumberConfirmationCode where
+  show
+    CheckPhoneNumberConfirmationCode
+      { code = code_
+      }
+        = "CheckPhoneNumberConfirmationCode"
+          ++ I.cc
+          [ "code" `I.p` code_
+          ]
+
+instance AT.ToJSON CheckPhoneNumberConfirmationCode where
+  toJSON
+    CheckPhoneNumberConfirmationCode
+      { code = code_
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkPhoneNumberConfirmationCode"
+          , "code"  A..= code_
+          ]

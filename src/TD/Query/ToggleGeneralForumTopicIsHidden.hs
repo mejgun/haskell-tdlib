@@ -1,0 +1,38 @@
+module TD.Query.ToggleGeneralForumTopicIsHidden where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
+import qualified TD.Lib.Internal as I
+
+data ToggleGeneralForumTopicIsHidden -- ^ Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+  = ToggleGeneralForumTopicIsHidden
+    { chat_id   :: Maybe Int  -- ^ Identifier of the chat
+    , is_hidden :: Maybe Bool -- ^ Pass true to hide and close the General topic; pass false to unhide it
+    }
+  deriving (Eq)
+
+instance Show ToggleGeneralForumTopicIsHidden where
+  show
+    ToggleGeneralForumTopicIsHidden
+      { chat_id   = chat_id_
+      , is_hidden = is_hidden_
+      }
+        = "ToggleGeneralForumTopicIsHidden"
+          ++ I.cc
+          [ "chat_id"   `I.p` chat_id_
+          , "is_hidden" `I.p` is_hidden_
+          ]
+
+instance AT.ToJSON ToggleGeneralForumTopicIsHidden where
+  toJSON
+    ToggleGeneralForumTopicIsHidden
+      { chat_id   = chat_id_
+      , is_hidden = is_hidden_
+      }
+        = A.object
+          [ "@type"     A..= AT.String "toggleGeneralForumTopicIsHidden"
+          , "chat_id"   A..= chat_id_
+          , "is_hidden" A..= is_hidden_
+          ]
