@@ -1,4 +1,7 @@
-module TD.Data.AutosaveSettingsException (AutosaveSettingsException(..)) where
+module TD.Data.AutosaveSettingsException
+  ( AutosaveSettingsException(..)    
+  , defaultAutosaveSettingsException 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON AutosaveSettingsException where
         , "chat_id"  A..= chat_id_
         , "settings" A..= settings_
         ]
+
+defaultAutosaveSettingsException :: AutosaveSettingsException
+defaultAutosaveSettingsException =
+  AutosaveSettingsException
+    { chat_id  = Nothing
+    , settings = Nothing
+    }
+

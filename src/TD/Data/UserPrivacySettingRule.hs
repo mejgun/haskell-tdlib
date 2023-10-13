@@ -1,4 +1,10 @@
-module TD.Data.UserPrivacySettingRule (UserPrivacySettingRule(..)) where
+module TD.Data.UserPrivacySettingRule
+  ( UserPrivacySettingRule(..)                       
+  , defaultUserPrivacySettingRuleAllowUsers          
+  , defaultUserPrivacySettingRuleAllowChatMembers    
+  , defaultUserPrivacySettingRuleRestrictUsers       
+  , defaultUserPrivacySettingRuleRestrictChatMembers 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -148,3 +154,28 @@ instance AT.ToJSON UserPrivacySettingRule where
         [ "@type"    A..= AT.String "userPrivacySettingRuleRestrictChatMembers"
         , "chat_ids" A..= chat_ids_
         ]
+
+defaultUserPrivacySettingRuleAllowUsers :: UserPrivacySettingRule
+defaultUserPrivacySettingRuleAllowUsers =
+  UserPrivacySettingRuleAllowUsers
+    { user_ids = Nothing
+    }
+
+defaultUserPrivacySettingRuleAllowChatMembers :: UserPrivacySettingRule
+defaultUserPrivacySettingRuleAllowChatMembers =
+  UserPrivacySettingRuleAllowChatMembers
+    { chat_ids = Nothing
+    }
+
+defaultUserPrivacySettingRuleRestrictUsers :: UserPrivacySettingRule
+defaultUserPrivacySettingRuleRestrictUsers =
+  UserPrivacySettingRuleRestrictUsers
+    { user_ids = Nothing
+    }
+
+defaultUserPrivacySettingRuleRestrictChatMembers :: UserPrivacySettingRule
+defaultUserPrivacySettingRuleRestrictChatMembers =
+  UserPrivacySettingRuleRestrictChatMembers
+    { chat_ids = Nothing
+    }
+

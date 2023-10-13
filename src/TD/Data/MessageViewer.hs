@@ -1,4 +1,7 @@
-module TD.Data.MessageViewer (MessageViewer(..)) where
+module TD.Data.MessageViewer
+  ( MessageViewer(..)    
+  , defaultMessageViewer 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON MessageViewer where
         , "user_id"   A..= user_id_
         , "view_date" A..= view_date_
         ]
+
+defaultMessageViewer :: MessageViewer
+defaultMessageViewer =
+  MessageViewer
+    { user_id   = Nothing
+    , view_date = Nothing
+    }
+

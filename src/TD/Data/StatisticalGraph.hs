@@ -1,4 +1,9 @@
-module TD.Data.StatisticalGraph (StatisticalGraph(..)) where
+module TD.Data.StatisticalGraph
+  ( StatisticalGraph(..)         
+  , defaultStatisticalGraphData  
+  , defaultStatisticalGraphAsync 
+  , defaultStatisticalGraphError 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -100,3 +105,23 @@ instance AT.ToJSON StatisticalGraph where
         [ "@type"         A..= AT.String "statisticalGraphError"
         , "error_message" A..= error_message_
         ]
+
+defaultStatisticalGraphData :: StatisticalGraph
+defaultStatisticalGraphData =
+  StatisticalGraphData
+    { json_data  = Nothing
+    , zoom_token = Nothing
+    }
+
+defaultStatisticalGraphAsync :: StatisticalGraph
+defaultStatisticalGraphAsync =
+  StatisticalGraphAsync
+    { token = Nothing
+    }
+
+defaultStatisticalGraphError :: StatisticalGraph
+defaultStatisticalGraphError =
+  StatisticalGraphError
+    { error_message = Nothing
+    }
+

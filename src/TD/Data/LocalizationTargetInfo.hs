@@ -1,4 +1,7 @@
-module TD.Data.LocalizationTargetInfo (LocalizationTargetInfo(..)) where
+module TD.Data.LocalizationTargetInfo
+  ( LocalizationTargetInfo(..)    
+  , defaultLocalizationTargetInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON LocalizationTargetInfo where
         [ "@type"          A..= AT.String "localizationTargetInfo"
         , "language_packs" A..= language_packs_
         ]
+
+defaultLocalizationTargetInfo :: LocalizationTargetInfo
+defaultLocalizationTargetInfo =
+  LocalizationTargetInfo
+    { language_packs = Nothing
+    }
+

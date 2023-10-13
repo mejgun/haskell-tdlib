@@ -1,4 +1,7 @@
-module TD.Data.CallbackQueryAnswer (CallbackQueryAnswer(..)) where
+module TD.Data.CallbackQueryAnswer
+  ( CallbackQueryAnswer(..)    
+  , defaultCallbackQueryAnswer 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON CallbackQueryAnswer where
         , "show_alert" A..= show_alert_
         , "url"        A..= url_
         ]
+
+defaultCallbackQueryAnswer :: CallbackQueryAnswer
+defaultCallbackQueryAnswer =
+  CallbackQueryAnswer
+    { text       = Nothing
+    , show_alert = Nothing
+    , url        = Nothing
+    }
+

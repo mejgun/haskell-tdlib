@@ -1,4 +1,7 @@
-module TD.Data.AvailableReactions (AvailableReactions(..)) where
+module TD.Data.AvailableReactions
+  ( AvailableReactions(..)    
+  , defaultAvailableReactions 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,3 +69,13 @@ instance AT.ToJSON AvailableReactions where
         , "popular_reactions"  A..= popular_reactions_
         , "allow_custom_emoji" A..= allow_custom_emoji_
         ]
+
+defaultAvailableReactions :: AvailableReactions
+defaultAvailableReactions =
+  AvailableReactions
+    { top_reactions      = Nothing
+    , recent_reactions   = Nothing
+    , popular_reactions  = Nothing
+    , allow_custom_emoji = Nothing
+    }
+

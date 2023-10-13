@@ -1,4 +1,7 @@
-module TD.Data.SentWebAppMessage (SentWebAppMessage(..)) where
+module TD.Data.SentWebAppMessage
+  ( SentWebAppMessage(..)    
+  , defaultSentWebAppMessage 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON SentWebAppMessage where
         [ "@type"             A..= AT.String "sentWebAppMessage"
         , "inline_message_id" A..= inline_message_id_
         ]
+
+defaultSentWebAppMessage :: SentWebAppMessage
+defaultSentWebAppMessage =
+  SentWebAppMessage
+    { inline_message_id = Nothing
+    }
+

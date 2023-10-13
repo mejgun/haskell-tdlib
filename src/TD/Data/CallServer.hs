@@ -1,4 +1,7 @@
-module TD.Data.CallServer (CallServer(..)) where
+module TD.Data.CallServer
+  ( CallServer(..)    
+  , defaultCallServer 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON CallServer where
         , "port"         A..= port_
         , "type"         A..= _type_
         ]
+
+defaultCallServer :: CallServer
+defaultCallServer =
+  CallServer
+    { _id          = Nothing
+    , ip_address   = Nothing
+    , ipv6_address = Nothing
+    , port         = Nothing
+    , _type        = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.ChatPhotoSticker (ChatPhotoSticker(..)) where
+module TD.Data.ChatPhotoSticker
+  ( ChatPhotoSticker(..)    
+  , defaultChatPhotoSticker 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON ChatPhotoSticker where
         , "type"            A..= _type_
         , "background_fill" A..= background_fill_
         ]
+
+defaultChatPhotoSticker :: ChatPhotoSticker
+defaultChatPhotoSticker =
+  ChatPhotoSticker
+    { _type           = Nothing
+    , background_fill = Nothing
+    }
+

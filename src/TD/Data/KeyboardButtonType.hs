@@ -1,4 +1,10 @@
-module TD.Data.KeyboardButtonType (KeyboardButtonType(..)) where
+module TD.Data.KeyboardButtonType
+  ( KeyboardButtonType(..)               
+  , defaultKeyboardButtonTypeRequestPoll 
+  , defaultKeyboardButtonTypeRequestUser 
+  , defaultKeyboardButtonTypeRequestChat 
+  , defaultKeyboardButtonTypeWebApp      
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -240,3 +246,42 @@ instance AT.ToJSON KeyboardButtonType where
         [ "@type" A..= AT.String "keyboardButtonTypeWebApp"
         , "url"   A..= url_
         ]
+
+defaultKeyboardButtonTypeRequestPoll :: KeyboardButtonType
+defaultKeyboardButtonTypeRequestPoll =
+  KeyboardButtonTypeRequestPoll
+    { force_regular = Nothing
+    , force_quiz    = Nothing
+    }
+
+defaultKeyboardButtonTypeRequestUser :: KeyboardButtonType
+defaultKeyboardButtonTypeRequestUser =
+  KeyboardButtonTypeRequestUser
+    { _id                      = Nothing
+    , restrict_user_is_bot     = Nothing
+    , user_is_bot              = Nothing
+    , restrict_user_is_premium = Nothing
+    , user_is_premium          = Nothing
+    }
+
+defaultKeyboardButtonTypeRequestChat :: KeyboardButtonType
+defaultKeyboardButtonTypeRequestChat =
+  KeyboardButtonTypeRequestChat
+    { _id                        = Nothing
+    , chat_is_channel            = Nothing
+    , restrict_chat_is_forum     = Nothing
+    , chat_is_forum              = Nothing
+    , restrict_chat_has_username = Nothing
+    , chat_has_username          = Nothing
+    , chat_is_created            = Nothing
+    , user_administrator_rights  = Nothing
+    , bot_administrator_rights   = Nothing
+    , bot_is_member              = Nothing
+    }
+
+defaultKeyboardButtonTypeWebApp :: KeyboardButtonType
+defaultKeyboardButtonTypeWebApp =
+  KeyboardButtonTypeWebApp
+    { url = Nothing
+    }
+

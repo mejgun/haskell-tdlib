@@ -1,4 +1,8 @@
-module TD.Data.DiceStickers (DiceStickers(..)) where
+module TD.Data.DiceStickers
+  ( DiceStickers(..)               
+  , defaultDiceStickersRegular     
+  , defaultDiceStickersSlotMachine 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -97,3 +101,20 @@ instance AT.ToJSON DiceStickers where
         , "center_reel" A..= center_reel_
         , "right_reel"  A..= right_reel_
         ]
+
+defaultDiceStickersRegular :: DiceStickers
+defaultDiceStickersRegular =
+  DiceStickersRegular
+    { sticker = Nothing
+    }
+
+defaultDiceStickersSlotMachine :: DiceStickers
+defaultDiceStickersSlotMachine =
+  DiceStickersSlotMachine
+    { background  = Nothing
+    , lever       = Nothing
+    , left_reel   = Nothing
+    , center_reel = Nothing
+    , right_reel  = Nothing
+    }
+

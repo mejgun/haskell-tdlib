@@ -1,4 +1,8 @@
-module TD.Data.StoryContent (StoryContent(..)) where
+module TD.Data.StoryContent
+  ( StoryContent(..)         
+  , defaultStoryContentPhoto 
+  , defaultStoryContentVideo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -85,3 +89,17 @@ instance AT.ToJSON StoryContent where
       = A.object
         [ "@type" A..= AT.String "storyContentUnsupported"
         ]
+
+defaultStoryContentPhoto :: StoryContent
+defaultStoryContentPhoto =
+  StoryContentPhoto
+    { photo = Nothing
+    }
+
+defaultStoryContentVideo :: StoryContent
+defaultStoryContentVideo =
+  StoryContentVideo
+    { video             = Nothing
+    , alternative_video = Nothing
+    }
+

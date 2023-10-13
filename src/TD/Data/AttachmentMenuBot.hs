@@ -1,4 +1,7 @@
-module TD.Data.AttachmentMenuBot (AttachmentMenuBot(..)) where
+module TD.Data.AttachmentMenuBot
+  ( AttachmentMenuBot(..)    
+  , defaultAttachmentMenuBot 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -159,3 +162,26 @@ instance AT.ToJSON AttachmentMenuBot where
         , "icon_color"             A..= icon_color_
         , "web_app_placeholder"    A..= web_app_placeholder_
         ]
+
+defaultAttachmentMenuBot :: AttachmentMenuBot
+defaultAttachmentMenuBot =
+  AttachmentMenuBot
+    { bot_user_id            = Nothing
+    , supports_self_chat     = Nothing
+    , supports_user_chats    = Nothing
+    , supports_bot_chats     = Nothing
+    , supports_group_chats   = Nothing
+    , supports_channel_chats = Nothing
+    , supports_settings      = Nothing
+    , request_write_access   = Nothing
+    , name                   = Nothing
+    , name_color             = Nothing
+    , default_icon           = Nothing
+    , ios_static_icon        = Nothing
+    , ios_animated_icon      = Nothing
+    , android_icon           = Nothing
+    , macos_icon             = Nothing
+    , icon_color             = Nothing
+    , web_app_placeholder    = Nothing
+    }
+

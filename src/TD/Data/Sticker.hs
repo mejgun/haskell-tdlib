@@ -1,4 +1,7 @@
-module TD.Data.Sticker (Sticker(..)) where
+module TD.Data.Sticker
+  ( Sticker(..)    
+  , defaultSticker 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -113,3 +116,19 @@ instance AT.ToJSON Sticker where
         , "thumbnail" A..= thumbnail_
         , "sticker"   A..= sticker_
         ]
+
+defaultSticker :: Sticker
+defaultSticker =
+  Sticker
+    { _id       = Nothing
+    , set_id    = Nothing
+    , width     = Nothing
+    , height    = Nothing
+    , emoji     = Nothing
+    , format    = Nothing
+    , full_type = Nothing
+    , outline   = Nothing
+    , thumbnail = Nothing
+    , sticker   = Nothing
+    }
+

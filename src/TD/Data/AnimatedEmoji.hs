@@ -1,4 +1,7 @@
-module TD.Data.AnimatedEmoji (AnimatedEmoji(..)) where
+module TD.Data.AnimatedEmoji
+  ( AnimatedEmoji(..)    
+  , defaultAnimatedEmoji 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON AnimatedEmoji where
         , "fitzpatrick_type" A..= fitzpatrick_type_
         , "sound"            A..= sound_
         ]
+
+defaultAnimatedEmoji :: AnimatedEmoji
+defaultAnimatedEmoji =
+  AnimatedEmoji
+    { sticker          = Nothing
+    , sticker_width    = Nothing
+    , sticker_height   = Nothing
+    , fitzpatrick_type = Nothing
+    , sound            = Nothing
+    }
+

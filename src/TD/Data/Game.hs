@@ -1,4 +1,7 @@
-module TD.Data.Game (Game(..)) where
+module TD.Data.Game
+  ( Game(..)    
+  , defaultGame 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -90,3 +93,16 @@ instance AT.ToJSON Game where
         , "photo"       A..= photo_
         , "animation"   A..= animation_
         ]
+
+defaultGame :: Game
+defaultGame =
+  Game
+    { _id         = Nothing
+    , short_name  = Nothing
+    , title       = Nothing
+    , text        = Nothing
+    , description = Nothing
+    , photo       = Nothing
+    , animation   = Nothing
+    }
+

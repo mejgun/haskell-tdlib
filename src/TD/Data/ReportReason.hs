@@ -1,4 +1,6 @@
-module TD.Data.ReportReason (ReportReason(..)) where
+module TD.Data.ReportReason
+  ( ReportReason(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -98,3 +100,4 @@ instance AT.ToJSON ReportReason where
       = A.object
         [ "@type" A..= AT.String "reportReasonCustom"
         ]
+

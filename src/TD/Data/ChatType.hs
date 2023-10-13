@@ -1,4 +1,10 @@
-module TD.Data.ChatType (ChatType(..)) where
+module TD.Data.ChatType
+  ( ChatType(..)              
+  , defaultChatTypePrivate    
+  , defaultChatTypeBasicGroup 
+  , defaultChatTypeSupergroup 
+  , defaultChatTypeSecret     
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -130,3 +136,30 @@ instance AT.ToJSON ChatType where
         , "secret_chat_id" A..= secret_chat_id_
         , "user_id"        A..= user_id_
         ]
+
+defaultChatTypePrivate :: ChatType
+defaultChatTypePrivate =
+  ChatTypePrivate
+    { user_id = Nothing
+    }
+
+defaultChatTypeBasicGroup :: ChatType
+defaultChatTypeBasicGroup =
+  ChatTypeBasicGroup
+    { basic_group_id = Nothing
+    }
+
+defaultChatTypeSupergroup :: ChatType
+defaultChatTypeSupergroup =
+  ChatTypeSupergroup
+    { supergroup_id = Nothing
+    , is_channel    = Nothing
+    }
+
+defaultChatTypeSecret :: ChatType
+defaultChatTypeSecret =
+  ChatTypeSecret
+    { secret_chat_id = Nothing
+    , user_id        = Nothing
+    }
+

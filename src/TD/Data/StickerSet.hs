@@ -1,4 +1,7 @@
-module TD.Data.StickerSet (StickerSet(..)) where
+module TD.Data.StickerSet
+  ( StickerSet(..)    
+  , defaultStickerSet 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -135,3 +138,22 @@ instance AT.ToJSON StickerSet where
         , "stickers"          A..= stickers_
         , "emojis"            A..= emojis_
         ]
+
+defaultStickerSet :: StickerSet
+defaultStickerSet =
+  StickerSet
+    { _id               = Nothing
+    , title             = Nothing
+    , name              = Nothing
+    , thumbnail         = Nothing
+    , thumbnail_outline = Nothing
+    , is_installed      = Nothing
+    , is_archived       = Nothing
+    , is_official       = Nothing
+    , sticker_format    = Nothing
+    , sticker_type      = Nothing
+    , is_viewed         = Nothing
+    , stickers          = Nothing
+    , emojis            = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.PageBlockTableCell (PageBlockTableCell(..)) where
+module TD.Data.PageBlockTableCell
+  ( PageBlockTableCell(..)    
+  , defaultPageBlockTableCell 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,3 +85,15 @@ instance AT.ToJSON PageBlockTableCell where
         , "align"     A..= align_
         , "valign"    A..= valign_
         ]
+
+defaultPageBlockTableCell :: PageBlockTableCell
+defaultPageBlockTableCell =
+  PageBlockTableCell
+    { text      = Nothing
+    , is_header = Nothing
+    , colspan   = Nothing
+    , rowspan   = Nothing
+    , align     = Nothing
+    , valign    = Nothing
+    }
+

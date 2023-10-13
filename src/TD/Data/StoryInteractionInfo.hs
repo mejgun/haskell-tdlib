@@ -1,4 +1,7 @@
-module TD.Data.StoryInteractionInfo (StoryInteractionInfo(..)) where
+module TD.Data.StoryInteractionInfo
+  ( StoryInteractionInfo(..)    
+  , defaultStoryInteractionInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON StoryInteractionInfo where
         , "view_count"             A..= view_count_
         , "recent_viewer_user_ids" A..= recent_viewer_user_ids_
         ]
+
+defaultStoryInteractionInfo :: StoryInteractionInfo
+defaultStoryInteractionInfo =
+  StoryInteractionInfo
+    { view_count             = Nothing
+    , recent_viewer_user_ids = Nothing
+    }
+

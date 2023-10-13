@@ -1,4 +1,7 @@
-module TD.Data.GroupCallParticipantVideoInfo (GroupCallParticipantVideoInfo(..)) where
+module TD.Data.GroupCallParticipantVideoInfo
+  ( GroupCallParticipantVideoInfo(..)    
+  , defaultGroupCallParticipantVideoInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON GroupCallParticipantVideoInfo where
         , "endpoint_id"   A..= endpoint_id_
         , "is_paused"     A..= is_paused_
         ]
+
+defaultGroupCallParticipantVideoInfo :: GroupCallParticipantVideoInfo
+defaultGroupCallParticipantVideoInfo =
+  GroupCallParticipantVideoInfo
+    { source_groups = Nothing
+    , endpoint_id   = Nothing
+    , is_paused     = Nothing
+    }
+

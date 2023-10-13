@@ -1,4 +1,8 @@
-module TD.Data.LanguagePackStringValue (LanguagePackStringValue(..)) where
+module TD.Data.LanguagePackStringValue
+  ( LanguagePackStringValue(..)              
+  , defaultLanguagePackStringValueOrdinary   
+  , defaultLanguagePackStringValuePluralized 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -112,3 +116,21 @@ instance AT.ToJSON LanguagePackStringValue where
       = A.object
         [ "@type" A..= AT.String "languagePackStringValueDeleted"
         ]
+
+defaultLanguagePackStringValueOrdinary :: LanguagePackStringValue
+defaultLanguagePackStringValueOrdinary =
+  LanguagePackStringValueOrdinary
+    { value = Nothing
+    }
+
+defaultLanguagePackStringValuePluralized :: LanguagePackStringValue
+defaultLanguagePackStringValuePluralized =
+  LanguagePackStringValuePluralized
+    { zero_value  = Nothing
+    , one_value   = Nothing
+    , two_value   = Nothing
+    , few_value   = Nothing
+    , many_value  = Nothing
+    , other_value = Nothing
+    }
+

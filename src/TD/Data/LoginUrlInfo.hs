@@ -1,4 +1,8 @@
-module TD.Data.LoginUrlInfo (LoginUrlInfo(..)) where
+module TD.Data.LoginUrlInfo
+  ( LoginUrlInfo(..)                       
+  , defaultLoginUrlInfoOpen                
+  , defaultLoginUrlInfoRequestConfirmation 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -97,3 +101,20 @@ instance AT.ToJSON LoginUrlInfo where
         , "bot_user_id"          A..= bot_user_id_
         , "request_write_access" A..= request_write_access_
         ]
+
+defaultLoginUrlInfoOpen :: LoginUrlInfo
+defaultLoginUrlInfoOpen =
+  LoginUrlInfoOpen
+    { url               = Nothing
+    , skip_confirmation = Nothing
+    }
+
+defaultLoginUrlInfoRequestConfirmation :: LoginUrlInfo
+defaultLoginUrlInfoRequestConfirmation =
+  LoginUrlInfoRequestConfirmation
+    { url                  = Nothing
+    , domain               = Nothing
+    , bot_user_id          = Nothing
+    , request_write_access = Nothing
+    }
+

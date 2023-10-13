@@ -1,4 +1,7 @@
-module TD.Data.StorageStatisticsByChat (StorageStatisticsByChat(..)) where
+module TD.Data.StorageStatisticsByChat
+  ( StorageStatisticsByChat(..)    
+  , defaultStorageStatisticsByChat 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,3 +69,13 @@ instance AT.ToJSON StorageStatisticsByChat where
         , "count"        A..= count_
         , "by_file_type" A..= by_file_type_
         ]
+
+defaultStorageStatisticsByChat :: StorageStatisticsByChat
+defaultStorageStatisticsByChat =
+  StorageStatisticsByChat
+    { chat_id      = Nothing
+    , size         = Nothing
+    , count        = Nothing
+    , by_file_type = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.ChatPermissions (ChatPermissions(..)) where
+module TD.Data.ChatPermissions
+  ( ChatPermissions(..)    
+  , defaultChatPermissions 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -135,3 +138,23 @@ instance AT.ToJSON ChatPermissions where
         , "can_pin_messages"          A..= can_pin_messages_
         , "can_manage_topics"         A..= can_manage_topics_
         ]
+
+defaultChatPermissions :: ChatPermissions
+defaultChatPermissions =
+  ChatPermissions
+    { can_send_basic_messages   = Nothing
+    , can_send_audios           = Nothing
+    , can_send_documents        = Nothing
+    , can_send_photos           = Nothing
+    , can_send_videos           = Nothing
+    , can_send_video_notes      = Nothing
+    , can_send_voice_notes      = Nothing
+    , can_send_polls            = Nothing
+    , can_send_other_messages   = Nothing
+    , can_add_web_page_previews = Nothing
+    , can_change_info           = Nothing
+    , can_invite_users          = Nothing
+    , can_pin_messages          = Nothing
+    , can_manage_topics         = Nothing
+    }
+

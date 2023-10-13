@@ -1,4 +1,7 @@
-module TD.Data.Photo (Photo(..)) where
+module TD.Data.Photo
+  ( Photo(..)    
+  , defaultPhoto 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON Photo where
         , "minithumbnail" A..= minithumbnail_
         , "sizes"         A..= sizes_
         ]
+
+defaultPhoto :: Photo
+defaultPhoto =
+  Photo
+    { has_stickers  = Nothing
+    , minithumbnail = Nothing
+    , sizes         = Nothing
+    }
+

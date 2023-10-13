@@ -1,4 +1,7 @@
-module TD.Data.ArchiveChatListSettings (ArchiveChatListSettings(..)) where
+module TD.Data.ArchiveChatListSettings
+  ( ArchiveChatListSettings(..)    
+  , defaultArchiveChatListSettings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON ArchiveChatListSettings where
         , "keep_unmuted_chats_archived"                   A..= keep_unmuted_chats_archived_
         , "keep_chats_from_folders_archived"              A..= keep_chats_from_folders_archived_
         ]
+
+defaultArchiveChatListSettings :: ArchiveChatListSettings
+defaultArchiveChatListSettings =
+  ArchiveChatListSettings
+    { archive_and_mute_new_chats_from_unknown_users = Nothing
+    , keep_unmuted_chats_archived                   = Nothing
+    , keep_chats_from_folders_archived              = Nothing
+    }
+

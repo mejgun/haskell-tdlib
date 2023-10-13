@@ -1,4 +1,7 @@
-module TD.Data.Address (Address(..)) where
+module TD.Data.Address
+  ( Address(..)    
+  , defaultAddress 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -80,3 +83,15 @@ instance AT.ToJSON Address where
         , "street_line2" A..= street_line2_
         , "postal_code"  A..= postal_code_
         ]
+
+defaultAddress :: Address
+defaultAddress =
+  Address
+    { country_code = Nothing
+    , state        = Nothing
+    , city         = Nothing
+    , street_line1 = Nothing
+    , street_line2 = Nothing
+    , postal_code  = Nothing
+    }
+

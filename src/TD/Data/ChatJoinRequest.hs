@@ -1,4 +1,7 @@
-module TD.Data.ChatJoinRequest (ChatJoinRequest(..)) where
+module TD.Data.ChatJoinRequest
+  ( ChatJoinRequest(..)    
+  , defaultChatJoinRequest 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON ChatJoinRequest where
         , "date"    A..= date_
         , "bio"     A..= bio_
         ]
+
+defaultChatJoinRequest :: ChatJoinRequest
+defaultChatJoinRequest =
+  ChatJoinRequest
+    { user_id = Nothing
+    , date    = Nothing
+    , bio     = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.TextParseMode (TextParseMode(..)) where
+module TD.Data.TextParseMode
+  ( TextParseMode(..)            
+  , defaultTextParseModeMarkdown 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,10 @@ instance AT.ToJSON TextParseMode where
       = A.object
         [ "@type" A..= AT.String "textParseModeHTML"
         ]
+
+defaultTextParseModeMarkdown :: TextParseMode
+defaultTextParseModeMarkdown =
+  TextParseModeMarkdown
+    { version = Nothing
+    }
+

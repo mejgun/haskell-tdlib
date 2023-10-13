@@ -1,4 +1,8 @@
-module TD.Data.InputStoryContent (InputStoryContent(..)) where
+module TD.Data.InputStoryContent
+  ( InputStoryContent(..)         
+  , defaultInputStoryContentPhoto 
+  , defaultInputStoryContentVideo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -97,3 +101,20 @@ instance AT.ToJSON InputStoryContent where
         , "duration"               A..= duration_
         , "is_animation"           A..= is_animation_
         ]
+
+defaultInputStoryContentPhoto :: InputStoryContent
+defaultInputStoryContentPhoto =
+  InputStoryContentPhoto
+    { photo                  = Nothing
+    , added_sticker_file_ids = Nothing
+    }
+
+defaultInputStoryContentVideo :: InputStoryContent
+defaultInputStoryContentVideo =
+  InputStoryContentVideo
+    { video                  = Nothing
+    , added_sticker_file_ids = Nothing
+    , duration               = Nothing
+    , is_animation           = Nothing
+    }
+

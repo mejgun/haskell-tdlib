@@ -1,4 +1,8 @@
-module TD.Data.PollType (PollType(..)) where
+module TD.Data.PollType
+  ( PollType(..)           
+  , defaultPollTypeRegular 
+  , defaultPollTypeQuiz    
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -76,3 +80,17 @@ instance AT.ToJSON PollType where
         , "correct_option_id" A..= correct_option_id_
         , "explanation"       A..= explanation_
         ]
+
+defaultPollTypeRegular :: PollType
+defaultPollTypeRegular =
+  PollTypeRegular
+    { allow_multiple_answers = Nothing
+    }
+
+defaultPollTypeQuiz :: PollType
+defaultPollTypeQuiz =
+  PollTypeQuiz
+    { correct_option_id = Nothing
+    , explanation       = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.ChatInviteLinkInfo (ChatInviteLinkInfo(..)) where
+module TD.Data.ChatInviteLinkInfo
+  ( ChatInviteLinkInfo(..)    
+  , defaultChatInviteLinkInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -110,3 +113,19 @@ instance AT.ToJSON ChatInviteLinkInfo where
         , "creates_join_request" A..= creates_join_request_
         , "is_public"            A..= is_public_
         ]
+
+defaultChatInviteLinkInfo :: ChatInviteLinkInfo
+defaultChatInviteLinkInfo =
+  ChatInviteLinkInfo
+    { chat_id              = Nothing
+    , accessible_for       = Nothing
+    , _type                = Nothing
+    , title                = Nothing
+    , photo                = Nothing
+    , description          = Nothing
+    , member_count         = Nothing
+    , member_user_ids      = Nothing
+    , creates_join_request = Nothing
+    , is_public            = Nothing
+    }
+

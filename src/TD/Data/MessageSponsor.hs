@@ -1,4 +1,7 @@
-module TD.Data.MessageSponsor (MessageSponsor(..)) where
+module TD.Data.MessageSponsor
+  ( MessageSponsor(..)    
+  , defaultMessageSponsor 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,3 +64,12 @@ instance AT.ToJSON MessageSponsor where
         , "photo" A..= photo_
         , "info"  A..= info_
         ]
+
+defaultMessageSponsor :: MessageSponsor
+defaultMessageSponsor =
+  MessageSponsor
+    { _type = Nothing
+    , photo = Nothing
+    , info  = Nothing
+    }
+

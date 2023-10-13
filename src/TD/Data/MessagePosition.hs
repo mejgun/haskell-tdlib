@@ -1,4 +1,7 @@
-module TD.Data.MessagePosition (MessagePosition(..)) where
+module TD.Data.MessagePosition
+  ( MessagePosition(..)    
+  , defaultMessagePosition 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON MessagePosition where
         , "message_id" A..= message_id_
         , "date"       A..= date_
         ]
+
+defaultMessagePosition :: MessagePosition
+defaultMessagePosition =
+  MessagePosition
+    { position   = Nothing
+    , message_id = Nothing
+    , date       = Nothing
+    }
+

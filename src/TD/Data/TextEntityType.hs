@@ -1,4 +1,11 @@
-module TD.Data.TextEntityType (TextEntityType(..)) where
+module TD.Data.TextEntityType
+  ( TextEntityType(..)                  
+  , defaultTextEntityTypePreCode        
+  , defaultTextEntityTypeTextUrl        
+  , defaultTextEntityTypeMentionName    
+  , defaultTextEntityTypeCustomEmoji    
+  , defaultTextEntityTypeMediaTimestamp 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -261,3 +268,34 @@ instance AT.ToJSON TextEntityType where
         [ "@type"           A..= AT.String "textEntityTypeMediaTimestamp"
         , "media_timestamp" A..= media_timestamp_
         ]
+
+defaultTextEntityTypePreCode :: TextEntityType
+defaultTextEntityTypePreCode =
+  TextEntityTypePreCode
+    { language = Nothing
+    }
+
+defaultTextEntityTypeTextUrl :: TextEntityType
+defaultTextEntityTypeTextUrl =
+  TextEntityTypeTextUrl
+    { url = Nothing
+    }
+
+defaultTextEntityTypeMentionName :: TextEntityType
+defaultTextEntityTypeMentionName =
+  TextEntityTypeMentionName
+    { user_id = Nothing
+    }
+
+defaultTextEntityTypeCustomEmoji :: TextEntityType
+defaultTextEntityTypeCustomEmoji =
+  TextEntityTypeCustomEmoji
+    { custom_emoji_id = Nothing
+    }
+
+defaultTextEntityTypeMediaTimestamp :: TextEntityType
+defaultTextEntityTypeMediaTimestamp =
+  TextEntityTypeMediaTimestamp
+    { media_timestamp = Nothing
+    }
+

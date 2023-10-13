@@ -1,4 +1,7 @@
-module TD.Data.InlineKeyboardButton (InlineKeyboardButton(..)) where
+module TD.Data.InlineKeyboardButton
+  ( InlineKeyboardButton(..)    
+  , defaultInlineKeyboardButton 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON InlineKeyboardButton where
         , "text"  A..= text_
         , "type"  A..= _type_
         ]
+
+defaultInlineKeyboardButton :: InlineKeyboardButton
+defaultInlineKeyboardButton =
+  InlineKeyboardButton
+    { text  = Nothing
+    , _type = Nothing
+    }
+

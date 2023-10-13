@@ -1,4 +1,7 @@
-module TD.Data.SponsoredMessage (SponsoredMessage(..)) where
+module TD.Data.SponsoredMessage
+  ( SponsoredMessage(..)    
+  , defaultSponsoredMessage 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -75,3 +78,14 @@ instance AT.ToJSON SponsoredMessage where
         , "sponsor"         A..= sponsor_
         , "additional_info" A..= additional_info_
         ]
+
+defaultSponsoredMessage :: SponsoredMessage
+defaultSponsoredMessage =
+  SponsoredMessage
+    { message_id      = Nothing
+    , is_recommended  = Nothing
+    , content         = Nothing
+    , sponsor         = Nothing
+    , additional_info = Nothing
+    }
+

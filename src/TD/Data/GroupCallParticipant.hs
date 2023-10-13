@@ -1,4 +1,7 @@
-module TD.Data.GroupCallParticipant (GroupCallParticipant(..)) where
+module TD.Data.GroupCallParticipant
+  ( GroupCallParticipant(..)    
+  , defaultGroupCallParticipant 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -166,3 +169,27 @@ instance AT.ToJSON GroupCallParticipant where
         , "volume_level"                    A..= volume_level_
         , "order"                           A..= order_
         ]
+
+defaultGroupCallParticipant :: GroupCallParticipant
+defaultGroupCallParticipant =
+  GroupCallParticipant
+    { participant_id                  = Nothing
+    , audio_source_id                 = Nothing
+    , screen_sharing_audio_source_id  = Nothing
+    , video_info                      = Nothing
+    , screen_sharing_video_info       = Nothing
+    , bio                             = Nothing
+    , is_current_user                 = Nothing
+    , is_speaking                     = Nothing
+    , is_hand_raised                  = Nothing
+    , can_be_muted_for_all_users      = Nothing
+    , can_be_unmuted_for_all_users    = Nothing
+    , can_be_muted_for_current_user   = Nothing
+    , can_be_unmuted_for_current_user = Nothing
+    , is_muted_for_all_users          = Nothing
+    , is_muted_for_current_user       = Nothing
+    , can_unmute_self                 = Nothing
+    , volume_level                    = Nothing
+    , order                           = Nothing
+    }
+

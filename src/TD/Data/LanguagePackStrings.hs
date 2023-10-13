@@ -1,4 +1,7 @@
-module TD.Data.LanguagePackStrings (LanguagePackStrings(..)) where
+module TD.Data.LanguagePackStrings
+  ( LanguagePackStrings(..)    
+  , defaultLanguagePackStrings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON LanguagePackStrings where
         [ "@type"   A..= AT.String "languagePackStrings"
         , "strings" A..= strings_
         ]
+
+defaultLanguagePackStrings :: LanguagePackStrings
+defaultLanguagePackStrings =
+  LanguagePackStrings
+    { strings = Nothing
+    }
+

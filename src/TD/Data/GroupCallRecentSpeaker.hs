@@ -1,4 +1,7 @@
-module TD.Data.GroupCallRecentSpeaker (GroupCallRecentSpeaker(..)) where
+module TD.Data.GroupCallRecentSpeaker
+  ( GroupCallRecentSpeaker(..)    
+  , defaultGroupCallRecentSpeaker 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON GroupCallRecentSpeaker where
         , "participant_id" A..= participant_id_
         , "is_speaking"    A..= is_speaking_
         ]
+
+defaultGroupCallRecentSpeaker :: GroupCallRecentSpeaker
+defaultGroupCallRecentSpeaker =
+  GroupCallRecentSpeaker
+    { participant_id = Nothing
+    , is_speaking    = Nothing
+    }
+

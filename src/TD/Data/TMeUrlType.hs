@@ -1,4 +1,10 @@
-module TD.Data.TMeUrlType (TMeUrlType(..)) where
+module TD.Data.TMeUrlType
+  ( TMeUrlType(..)              
+  , defaultTMeUrlTypeUser       
+  , defaultTMeUrlTypeSupergroup 
+  , defaultTMeUrlTypeChatInvite 
+  , defaultTMeUrlTypeStickerSet 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -117,3 +123,28 @@ instance AT.ToJSON TMeUrlType where
         [ "@type"          A..= AT.String "tMeUrlTypeStickerSet"
         , "sticker_set_id" A..= fmap I.writeInt64  sticker_set_id_
         ]
+
+defaultTMeUrlTypeUser :: TMeUrlType
+defaultTMeUrlTypeUser =
+  TMeUrlTypeUser
+    { user_id = Nothing
+    }
+
+defaultTMeUrlTypeSupergroup :: TMeUrlType
+defaultTMeUrlTypeSupergroup =
+  TMeUrlTypeSupergroup
+    { supergroup_id = Nothing
+    }
+
+defaultTMeUrlTypeChatInvite :: TMeUrlType
+defaultTMeUrlTypeChatInvite =
+  TMeUrlTypeChatInvite
+    { info = Nothing
+    }
+
+defaultTMeUrlTypeStickerSet :: TMeUrlType
+defaultTMeUrlTypeStickerSet =
+  TMeUrlTypeStickerSet
+    { sticker_set_id = Nothing
+    }
+

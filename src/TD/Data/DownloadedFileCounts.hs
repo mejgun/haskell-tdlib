@@ -1,4 +1,7 @@
-module TD.Data.DownloadedFileCounts (DownloadedFileCounts(..)) where
+module TD.Data.DownloadedFileCounts
+  ( DownloadedFileCounts(..)    
+  , defaultDownloadedFileCounts 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON DownloadedFileCounts where
         , "paused_count"    A..= paused_count_
         , "completed_count" A..= completed_count_
         ]
+
+defaultDownloadedFileCounts :: DownloadedFileCounts
+defaultDownloadedFileCounts =
+  DownloadedFileCounts
+    { active_count    = Nothing
+    , paused_count    = Nothing
+    , completed_count = Nothing
+    }
+

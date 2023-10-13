@@ -1,4 +1,11 @@
-module TD.Data.JsonValue (JsonValue(..)) where
+module TD.Data.JsonValue
+  ( JsonValue(..)           
+  , defaultJsonValueBoolean 
+  , defaultJsonValueNumber  
+  , defaultJsonValueString  
+  , defaultJsonValueArray   
+  , defaultJsonValueObject  
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -150,3 +157,34 @@ instance AT.ToJSON JsonValue where
         [ "@type"   A..= AT.String "jsonValueObject"
         , "members" A..= members_
         ]
+
+defaultJsonValueBoolean :: JsonValue
+defaultJsonValueBoolean =
+  JsonValueBoolean
+    { value = Nothing
+    }
+
+defaultJsonValueNumber :: JsonValue
+defaultJsonValueNumber =
+  JsonValueNumber
+    { _value = Nothing
+    }
+
+defaultJsonValueString :: JsonValue
+defaultJsonValueString =
+  JsonValueString
+    { __value = Nothing
+    }
+
+defaultJsonValueArray :: JsonValue
+defaultJsonValueArray =
+  JsonValueArray
+    { values = Nothing
+    }
+
+defaultJsonValueObject :: JsonValue
+defaultJsonValueObject =
+  JsonValueObject
+    { members = Nothing
+    }
+

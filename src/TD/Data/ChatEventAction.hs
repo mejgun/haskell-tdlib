@@ -1,4 +1,48 @@
-module TD.Data.ChatEventAction (ChatEventAction(..)) where
+module TD.Data.ChatEventAction
+  ( ChatEventAction(..)                                    
+  , defaultChatEventMessageEdited                          
+  , defaultChatEventMessageDeleted                         
+  , defaultChatEventMessagePinned                          
+  , defaultChatEventMessageUnpinned                        
+  , defaultChatEventPollStopped                            
+  , defaultChatEventMemberJoinedByInviteLink               
+  , defaultChatEventMemberJoinedByRequest                  
+  , defaultChatEventMemberInvited                          
+  , defaultChatEventMemberPromoted                         
+  , defaultChatEventMemberRestricted                       
+  , defaultChatEventAvailableReactionsChanged              
+  , defaultChatEventDescriptionChanged                     
+  , defaultChatEventLinkedChatChanged                      
+  , defaultChatEventLocationChanged                        
+  , defaultChatEventMessageAutoDeleteTimeChanged           
+  , defaultChatEventPermissionsChanged                     
+  , defaultChatEventPhotoChanged                           
+  , defaultChatEventSlowModeDelayChanged                   
+  , defaultChatEventStickerSetChanged                      
+  , defaultChatEventTitleChanged                           
+  , defaultChatEventUsernameChanged                        
+  , defaultChatEventActiveUsernamesChanged                 
+  , defaultChatEventHasProtectedContentToggled             
+  , defaultChatEventInvitesToggled                         
+  , defaultChatEventIsAllHistoryAvailableToggled           
+  , defaultChatEventHasAggressiveAntiSpamEnabledToggled    
+  , defaultChatEventSignMessagesToggled                    
+  , defaultChatEventInviteLinkEdited                       
+  , defaultChatEventInviteLinkRevoked                      
+  , defaultChatEventInviteLinkDeleted                      
+  , defaultChatEventVideoChatCreated                       
+  , defaultChatEventVideoChatEnded                         
+  , defaultChatEventVideoChatMuteNewParticipantsToggled    
+  , defaultChatEventVideoChatParticipantIsMutedToggled     
+  , defaultChatEventVideoChatParticipantVolumeLevelChanged 
+  , defaultChatEventIsForumToggled                         
+  , defaultChatEventForumTopicCreated                      
+  , defaultChatEventForumTopicEdited                       
+  , defaultChatEventForumTopicToggleIsClosed               
+  , defaultChatEventForumTopicToggleIsHidden               
+  , defaultChatEventForumTopicDeleted                      
+  , defaultChatEventForumTopicPinned                       
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -1236,3 +1280,282 @@ instance AT.ToJSON ChatEventAction where
         , "old_topic_info" A..= old_topic_info_
         , "new_topic_info" A..= new_topic_info_
         ]
+
+defaultChatEventMessageEdited :: ChatEventAction
+defaultChatEventMessageEdited =
+  ChatEventMessageEdited
+    { old_message = Nothing
+    , new_message = Nothing
+    }
+
+defaultChatEventMessageDeleted :: ChatEventAction
+defaultChatEventMessageDeleted =
+  ChatEventMessageDeleted
+    { message                             = Nothing
+    , can_report_anti_spam_false_positive = Nothing
+    }
+
+defaultChatEventMessagePinned :: ChatEventAction
+defaultChatEventMessagePinned =
+  ChatEventMessagePinned
+    { message = Nothing
+    }
+
+defaultChatEventMessageUnpinned :: ChatEventAction
+defaultChatEventMessageUnpinned =
+  ChatEventMessageUnpinned
+    { message = Nothing
+    }
+
+defaultChatEventPollStopped :: ChatEventAction
+defaultChatEventPollStopped =
+  ChatEventPollStopped
+    { message = Nothing
+    }
+
+defaultChatEventMemberJoinedByInviteLink :: ChatEventAction
+defaultChatEventMemberJoinedByInviteLink =
+  ChatEventMemberJoinedByInviteLink
+    { invite_link                 = Nothing
+    , via_chat_folder_invite_link = Nothing
+    }
+
+defaultChatEventMemberJoinedByRequest :: ChatEventAction
+defaultChatEventMemberJoinedByRequest =
+  ChatEventMemberJoinedByRequest
+    { approver_user_id = Nothing
+    , invite_link      = Nothing
+    }
+
+defaultChatEventMemberInvited :: ChatEventAction
+defaultChatEventMemberInvited =
+  ChatEventMemberInvited
+    { user_id = Nothing
+    , status  = Nothing
+    }
+
+defaultChatEventMemberPromoted :: ChatEventAction
+defaultChatEventMemberPromoted =
+  ChatEventMemberPromoted
+    { user_id    = Nothing
+    , old_status = Nothing
+    , new_status = Nothing
+    }
+
+defaultChatEventMemberRestricted :: ChatEventAction
+defaultChatEventMemberRestricted =
+  ChatEventMemberRestricted
+    { member_id  = Nothing
+    , old_status = Nothing
+    , new_status = Nothing
+    }
+
+defaultChatEventAvailableReactionsChanged :: ChatEventAction
+defaultChatEventAvailableReactionsChanged =
+  ChatEventAvailableReactionsChanged
+    { old_available_reactions = Nothing
+    , new_available_reactions = Nothing
+    }
+
+defaultChatEventDescriptionChanged :: ChatEventAction
+defaultChatEventDescriptionChanged =
+  ChatEventDescriptionChanged
+    { old_description = Nothing
+    , new_description = Nothing
+    }
+
+defaultChatEventLinkedChatChanged :: ChatEventAction
+defaultChatEventLinkedChatChanged =
+  ChatEventLinkedChatChanged
+    { old_linked_chat_id = Nothing
+    , new_linked_chat_id = Nothing
+    }
+
+defaultChatEventLocationChanged :: ChatEventAction
+defaultChatEventLocationChanged =
+  ChatEventLocationChanged
+    { old_location = Nothing
+    , new_location = Nothing
+    }
+
+defaultChatEventMessageAutoDeleteTimeChanged :: ChatEventAction
+defaultChatEventMessageAutoDeleteTimeChanged =
+  ChatEventMessageAutoDeleteTimeChanged
+    { old_message_auto_delete_time = Nothing
+    , new_message_auto_delete_time = Nothing
+    }
+
+defaultChatEventPermissionsChanged :: ChatEventAction
+defaultChatEventPermissionsChanged =
+  ChatEventPermissionsChanged
+    { old_permissions = Nothing
+    , new_permissions = Nothing
+    }
+
+defaultChatEventPhotoChanged :: ChatEventAction
+defaultChatEventPhotoChanged =
+  ChatEventPhotoChanged
+    { old_photo = Nothing
+    , new_photo = Nothing
+    }
+
+defaultChatEventSlowModeDelayChanged :: ChatEventAction
+defaultChatEventSlowModeDelayChanged =
+  ChatEventSlowModeDelayChanged
+    { old_slow_mode_delay = Nothing
+    , new_slow_mode_delay = Nothing
+    }
+
+defaultChatEventStickerSetChanged :: ChatEventAction
+defaultChatEventStickerSetChanged =
+  ChatEventStickerSetChanged
+    { old_sticker_set_id = Nothing
+    , new_sticker_set_id = Nothing
+    }
+
+defaultChatEventTitleChanged :: ChatEventAction
+defaultChatEventTitleChanged =
+  ChatEventTitleChanged
+    { old_title = Nothing
+    , new_title = Nothing
+    }
+
+defaultChatEventUsernameChanged :: ChatEventAction
+defaultChatEventUsernameChanged =
+  ChatEventUsernameChanged
+    { old_username = Nothing
+    , new_username = Nothing
+    }
+
+defaultChatEventActiveUsernamesChanged :: ChatEventAction
+defaultChatEventActiveUsernamesChanged =
+  ChatEventActiveUsernamesChanged
+    { old_usernames = Nothing
+    , new_usernames = Nothing
+    }
+
+defaultChatEventHasProtectedContentToggled :: ChatEventAction
+defaultChatEventHasProtectedContentToggled =
+  ChatEventHasProtectedContentToggled
+    { has_protected_content = Nothing
+    }
+
+defaultChatEventInvitesToggled :: ChatEventAction
+defaultChatEventInvitesToggled =
+  ChatEventInvitesToggled
+    { can_invite_users = Nothing
+    }
+
+defaultChatEventIsAllHistoryAvailableToggled :: ChatEventAction
+defaultChatEventIsAllHistoryAvailableToggled =
+  ChatEventIsAllHistoryAvailableToggled
+    { is_all_history_available = Nothing
+    }
+
+defaultChatEventHasAggressiveAntiSpamEnabledToggled :: ChatEventAction
+defaultChatEventHasAggressiveAntiSpamEnabledToggled =
+  ChatEventHasAggressiveAntiSpamEnabledToggled
+    { has_aggressive_anti_spam_enabled = Nothing
+    }
+
+defaultChatEventSignMessagesToggled :: ChatEventAction
+defaultChatEventSignMessagesToggled =
+  ChatEventSignMessagesToggled
+    { sign_messages = Nothing
+    }
+
+defaultChatEventInviteLinkEdited :: ChatEventAction
+defaultChatEventInviteLinkEdited =
+  ChatEventInviteLinkEdited
+    { old_invite_link = Nothing
+    , new_invite_link = Nothing
+    }
+
+defaultChatEventInviteLinkRevoked :: ChatEventAction
+defaultChatEventInviteLinkRevoked =
+  ChatEventInviteLinkRevoked
+    { invite_link = Nothing
+    }
+
+defaultChatEventInviteLinkDeleted :: ChatEventAction
+defaultChatEventInviteLinkDeleted =
+  ChatEventInviteLinkDeleted
+    { invite_link = Nothing
+    }
+
+defaultChatEventVideoChatCreated :: ChatEventAction
+defaultChatEventVideoChatCreated =
+  ChatEventVideoChatCreated
+    { group_call_id = Nothing
+    }
+
+defaultChatEventVideoChatEnded :: ChatEventAction
+defaultChatEventVideoChatEnded =
+  ChatEventVideoChatEnded
+    { group_call_id = Nothing
+    }
+
+defaultChatEventVideoChatMuteNewParticipantsToggled :: ChatEventAction
+defaultChatEventVideoChatMuteNewParticipantsToggled =
+  ChatEventVideoChatMuteNewParticipantsToggled
+    { mute_new_participants = Nothing
+    }
+
+defaultChatEventVideoChatParticipantIsMutedToggled :: ChatEventAction
+defaultChatEventVideoChatParticipantIsMutedToggled =
+  ChatEventVideoChatParticipantIsMutedToggled
+    { participant_id = Nothing
+    , is_muted       = Nothing
+    }
+
+defaultChatEventVideoChatParticipantVolumeLevelChanged :: ChatEventAction
+defaultChatEventVideoChatParticipantVolumeLevelChanged =
+  ChatEventVideoChatParticipantVolumeLevelChanged
+    { participant_id = Nothing
+    , volume_level   = Nothing
+    }
+
+defaultChatEventIsForumToggled :: ChatEventAction
+defaultChatEventIsForumToggled =
+  ChatEventIsForumToggled
+    { is_forum = Nothing
+    }
+
+defaultChatEventForumTopicCreated :: ChatEventAction
+defaultChatEventForumTopicCreated =
+  ChatEventForumTopicCreated
+    { topic_info = Nothing
+    }
+
+defaultChatEventForumTopicEdited :: ChatEventAction
+defaultChatEventForumTopicEdited =
+  ChatEventForumTopicEdited
+    { old_topic_info = Nothing
+    , new_topic_info = Nothing
+    }
+
+defaultChatEventForumTopicToggleIsClosed :: ChatEventAction
+defaultChatEventForumTopicToggleIsClosed =
+  ChatEventForumTopicToggleIsClosed
+    { topic_info = Nothing
+    }
+
+defaultChatEventForumTopicToggleIsHidden :: ChatEventAction
+defaultChatEventForumTopicToggleIsHidden =
+  ChatEventForumTopicToggleIsHidden
+    { topic_info = Nothing
+    }
+
+defaultChatEventForumTopicDeleted :: ChatEventAction
+defaultChatEventForumTopicDeleted =
+  ChatEventForumTopicDeleted
+    { topic_info = Nothing
+    }
+
+defaultChatEventForumTopicPinned :: ChatEventAction
+defaultChatEventForumTopicPinned =
+  ChatEventForumTopicPinned
+    { old_topic_info = Nothing
+    , new_topic_info = Nothing
+    }
+

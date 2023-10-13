@@ -1,4 +1,7 @@
-module TD.Data.EmojiCategories (EmojiCategories(..)) where
+module TD.Data.EmojiCategories
+  ( EmojiCategories(..)    
+  , defaultEmojiCategories 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON EmojiCategories where
         [ "@type"      A..= AT.String "emojiCategories"
         , "categories" A..= categories_
         ]
+
+defaultEmojiCategories :: EmojiCategories
+defaultEmojiCategories =
+  EmojiCategories
+    { categories = Nothing
+    }
+

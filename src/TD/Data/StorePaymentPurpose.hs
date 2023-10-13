@@ -1,4 +1,8 @@
-module TD.Data.StorePaymentPurpose (StorePaymentPurpose(..)) where
+module TD.Data.StorePaymentPurpose
+  ( StorePaymentPurpose(..)                       
+  , defaultStorePaymentPurposePremiumSubscription 
+  , defaultStorePaymentPurposeGiftedPremium       
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -90,3 +94,19 @@ instance AT.ToJSON StorePaymentPurpose where
         , "currency" A..= currency_
         , "amount"   A..= amount_
         ]
+
+defaultStorePaymentPurposePremiumSubscription :: StorePaymentPurpose
+defaultStorePaymentPurposePremiumSubscription =
+  StorePaymentPurposePremiumSubscription
+    { is_restore = Nothing
+    , is_upgrade = Nothing
+    }
+
+defaultStorePaymentPurposeGiftedPremium :: StorePaymentPurpose
+defaultStorePaymentPurposeGiftedPremium =
+  StorePaymentPurposeGiftedPremium
+    { user_id  = Nothing
+    , currency = Nothing
+    , amount   = Nothing
+    }
+

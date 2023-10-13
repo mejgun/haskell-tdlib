@@ -1,4 +1,7 @@
-module TD.Data.ChatEventLogFilters (ChatEventLogFilters(..)) where
+module TD.Data.ChatEventLogFilters
+  ( ChatEventLogFilters(..)    
+  , defaultChatEventLogFilters 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -128,3 +131,22 @@ instance AT.ToJSON ChatEventLogFilters where
         , "video_chat_changes"  A..= video_chat_changes_
         , "forum_changes"       A..= forum_changes_
         ]
+
+defaultChatEventLogFilters :: ChatEventLogFilters
+defaultChatEventLogFilters =
+  ChatEventLogFilters
+    { message_edits       = Nothing
+    , message_deletions   = Nothing
+    , message_pins        = Nothing
+    , member_joins        = Nothing
+    , member_leaves       = Nothing
+    , member_invites      = Nothing
+    , member_promotions   = Nothing
+    , member_restrictions = Nothing
+    , info_changes        = Nothing
+    , setting_changes     = Nothing
+    , invite_link_changes = Nothing
+    , video_chat_changes  = Nothing
+    , forum_changes       = Nothing
+    }
+

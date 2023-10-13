@@ -1,4 +1,9 @@
-module TD.Data.BackgroundType (BackgroundType(..)) where
+module TD.Data.BackgroundType
+  ( BackgroundType(..)             
+  , defaultBackgroundTypeWallpaper 
+  , defaultBackgroundTypePattern   
+  , defaultBackgroundTypeFill      
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -121,3 +126,26 @@ instance AT.ToJSON BackgroundType where
         [ "@type" A..= AT.String "backgroundTypeFill"
         , "fill"  A..= fill_
         ]
+
+defaultBackgroundTypeWallpaper :: BackgroundType
+defaultBackgroundTypeWallpaper =
+  BackgroundTypeWallpaper
+    { is_blurred = Nothing
+    , is_moving  = Nothing
+    }
+
+defaultBackgroundTypePattern :: BackgroundType
+defaultBackgroundTypePattern =
+  BackgroundTypePattern
+    { fill        = Nothing
+    , intensity   = Nothing
+    , is_inverted = Nothing
+    , is_moving   = Nothing
+    }
+
+defaultBackgroundTypeFill :: BackgroundType
+defaultBackgroundTypeFill =
+  BackgroundTypeFill
+    { fill = Nothing
+    }
+

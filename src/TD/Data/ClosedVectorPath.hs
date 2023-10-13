@@ -1,4 +1,7 @@
-module TD.Data.ClosedVectorPath (ClosedVectorPath(..)) where
+module TD.Data.ClosedVectorPath
+  ( ClosedVectorPath(..)    
+  , defaultClosedVectorPath 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON ClosedVectorPath where
         [ "@type"    A..= AT.String "closedVectorPath"
         , "commands" A..= commands_
         ]
+
+defaultClosedVectorPath :: ClosedVectorPath
+defaultClosedVectorPath =
+  ClosedVectorPath
+    { commands = Nothing
+    }
+

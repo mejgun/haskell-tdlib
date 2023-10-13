@@ -1,4 +1,7 @@
-module TD.Data.AutoDownloadSettings (AutoDownloadSettings(..)) where
+module TD.Data.AutoDownloadSettings
+  ( AutoDownloadSettings(..)    
+  , defaultAutoDownloadSettings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -100,3 +103,18 @@ instance AT.ToJSON AutoDownloadSettings where
         , "preload_stories"          A..= preload_stories_
         , "use_less_data_for_calls"  A..= use_less_data_for_calls_
         ]
+
+defaultAutoDownloadSettings :: AutoDownloadSettings
+defaultAutoDownloadSettings =
+  AutoDownloadSettings
+    { is_auto_download_enabled = Nothing
+    , max_photo_file_size      = Nothing
+    , max_video_file_size      = Nothing
+    , max_other_file_size      = Nothing
+    , video_upload_bitrate     = Nothing
+    , preload_large_videos     = Nothing
+    , preload_next_audio       = Nothing
+    , preload_stories          = Nothing
+    , use_less_data_for_calls  = Nothing
+    }
+

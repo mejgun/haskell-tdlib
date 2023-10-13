@@ -1,4 +1,7 @@
-module TD.Data.StickerSetInfo (StickerSetInfo(..)) where
+module TD.Data.StickerSetInfo
+  ( StickerSetInfo(..)    
+  , defaultStickerSetInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -134,3 +137,22 @@ instance AT.ToJSON StickerSetInfo where
         , "size"              A..= size_
         , "covers"            A..= covers_
         ]
+
+defaultStickerSetInfo :: StickerSetInfo
+defaultStickerSetInfo =
+  StickerSetInfo
+    { _id               = Nothing
+    , title             = Nothing
+    , name              = Nothing
+    , thumbnail         = Nothing
+    , thumbnail_outline = Nothing
+    , is_installed      = Nothing
+    , is_archived       = Nothing
+    , is_official       = Nothing
+    , sticker_format    = Nothing
+    , sticker_type      = Nothing
+    , is_viewed         = Nothing
+    , size              = Nothing
+    , covers            = Nothing
+    }
+

@@ -1,4 +1,9 @@
-module TD.Data.PassportElementErrorSource (PassportElementErrorSource(..)) where
+module TD.Data.PassportElementErrorSource
+  ( PassportElementErrorSource(..)                   
+  , defaultPassportElementErrorSourceDataField       
+  , defaultPassportElementErrorSourceTranslationFile 
+  , defaultPassportElementErrorSourceFile            
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -141,3 +146,22 @@ instance AT.ToJSON PassportElementErrorSource where
       = A.object
         [ "@type" A..= AT.String "passportElementErrorSourceFiles"
         ]
+
+defaultPassportElementErrorSourceDataField :: PassportElementErrorSource
+defaultPassportElementErrorSourceDataField =
+  PassportElementErrorSourceDataField
+    { field_name = Nothing
+    }
+
+defaultPassportElementErrorSourceTranslationFile :: PassportElementErrorSource
+defaultPassportElementErrorSourceTranslationFile =
+  PassportElementErrorSourceTranslationFile
+    { file_index = Nothing
+    }
+
+defaultPassportElementErrorSourceFile :: PassportElementErrorSource
+defaultPassportElementErrorSourceFile =
+  PassportElementErrorSourceFile
+    { file_index = Nothing
+    }
+

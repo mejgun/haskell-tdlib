@@ -1,4 +1,7 @@
-module TD.Data.BasicGroupFullInfo (BasicGroupFullInfo(..)) where
+module TD.Data.BasicGroupFullInfo
+  ( BasicGroupFullInfo(..)    
+  , defaultBasicGroupFullInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -98,3 +101,17 @@ instance AT.ToJSON BasicGroupFullInfo where
         , "invite_link"                     A..= invite_link_
         , "bot_commands"                    A..= bot_commands_
         ]
+
+defaultBasicGroupFullInfo :: BasicGroupFullInfo
+defaultBasicGroupFullInfo =
+  BasicGroupFullInfo
+    { photo                           = Nothing
+    , description                     = Nothing
+    , creator_user_id                 = Nothing
+    , members                         = Nothing
+    , can_hide_members                = Nothing
+    , can_toggle_aggressive_anti_spam = Nothing
+    , invite_link                     = Nothing
+    , bot_commands                    = Nothing
+    }
+

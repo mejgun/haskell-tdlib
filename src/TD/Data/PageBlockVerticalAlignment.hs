@@ -1,4 +1,6 @@
-module TD.Data.PageBlockVerticalAlignment (PageBlockVerticalAlignment(..)) where
+module TD.Data.PageBlockVerticalAlignment
+  ( PageBlockVerticalAlignment(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -42,3 +44,4 @@ instance AT.ToJSON PageBlockVerticalAlignment where
       = A.object
         [ "@type" A..= AT.String "pageBlockVerticalAlignmentBottom"
         ]
+

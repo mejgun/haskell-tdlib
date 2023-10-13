@@ -1,4 +1,7 @@
-module TD.Data.UserFullInfo (UserFullInfo(..)) where
+module TD.Data.UserFullInfo
+  ( UserFullInfo(..)    
+  , defaultUserFullInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -146,3 +149,24 @@ instance AT.ToJSON UserFullInfo where
         , "group_in_common_count"                        A..= group_in_common_count_
         , "bot_info"                                     A..= bot_info_
         ]
+
+defaultUserFullInfo :: UserFullInfo
+defaultUserFullInfo =
+  UserFullInfo
+    { personal_photo                               = Nothing
+    , photo                                        = Nothing
+    , public_photo                                 = Nothing
+    , is_blocked                                   = Nothing
+    , can_be_called                                = Nothing
+    , supports_video_calls                         = Nothing
+    , has_private_calls                            = Nothing
+    , has_private_forwards                         = Nothing
+    , has_restricted_voice_and_video_note_messages = Nothing
+    , has_pinned_stories                           = Nothing
+    , need_phone_number_privacy_exception          = Nothing
+    , bio                                          = Nothing
+    , premium_gift_options                         = Nothing
+    , group_in_common_count                        = Nothing
+    , bot_info                                     = Nothing
+    }
+

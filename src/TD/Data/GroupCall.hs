@@ -1,4 +1,7 @@
-module TD.Data.GroupCall (GroupCall(..)) where
+module TD.Data.GroupCall
+  ( GroupCall(..)    
+  , defaultGroupCall 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -186,3 +189,30 @@ instance AT.ToJSON GroupCall where
         , "is_video_recorded"                A..= is_video_recorded_
         , "duration"                         A..= duration_
         ]
+
+defaultGroupCall :: GroupCall
+defaultGroupCall =
+  GroupCall
+    { _id                              = Nothing
+    , title                            = Nothing
+    , scheduled_start_date             = Nothing
+    , enabled_start_notification       = Nothing
+    , is_active                        = Nothing
+    , is_rtmp_stream                   = Nothing
+    , is_joined                        = Nothing
+    , need_rejoin                      = Nothing
+    , can_be_managed                   = Nothing
+    , participant_count                = Nothing
+    , has_hidden_listeners             = Nothing
+    , loaded_all_participants          = Nothing
+    , recent_speakers                  = Nothing
+    , is_my_video_enabled              = Nothing
+    , is_my_video_paused               = Nothing
+    , can_enable_video                 = Nothing
+    , mute_new_participants            = Nothing
+    , can_toggle_mute_new_participants = Nothing
+    , record_duration                  = Nothing
+    , is_video_recorded                = Nothing
+    , duration                         = Nothing
+    }
+

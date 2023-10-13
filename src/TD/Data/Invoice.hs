@@ -1,4 +1,7 @@
-module TD.Data.Invoice (Invoice(..)) where
+module TD.Data.Invoice
+  ( Invoice(..)    
+  , defaultInvoice 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -130,3 +133,22 @@ instance AT.ToJSON Invoice where
         , "send_email_address_to_provider"         A..= send_email_address_to_provider_
         , "is_flexible"                            A..= is_flexible_
         ]
+
+defaultInvoice :: Invoice
+defaultInvoice =
+  Invoice
+    { currency                               = Nothing
+    , price_parts                            = Nothing
+    , max_tip_amount                         = Nothing
+    , suggested_tip_amounts                  = Nothing
+    , recurring_payment_terms_of_service_url = Nothing
+    , is_test                                = Nothing
+    , need_name                              = Nothing
+    , need_phone_number                      = Nothing
+    , need_email_address                     = Nothing
+    , need_shipping_address                  = Nothing
+    , send_phone_number_to_provider          = Nothing
+    , send_email_address_to_provider         = Nothing
+    , is_flexible                            = Nothing
+    }
+

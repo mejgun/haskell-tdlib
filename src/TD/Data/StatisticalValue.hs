@@ -1,4 +1,7 @@
-module TD.Data.StatisticalValue (StatisticalValue(..)) where
+module TD.Data.StatisticalValue
+  ( StatisticalValue(..)    
+  , defaultStatisticalValue 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON StatisticalValue where
         , "previous_value"         A..= previous_value_
         , "growth_rate_percentage" A..= growth_rate_percentage_
         ]
+
+defaultStatisticalValue :: StatisticalValue
+defaultStatisticalValue =
+  StatisticalValue
+    { value                  = Nothing
+    , previous_value         = Nothing
+    , growth_rate_percentage = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.CustomRequestResult (CustomRequestResult(..)) where
+module TD.Data.CustomRequestResult
+  ( CustomRequestResult(..)    
+  , defaultCustomRequestResult 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON CustomRequestResult where
         [ "@type"  A..= AT.String "customRequestResult"
         , "result" A..= result_
         ]
+
+defaultCustomRequestResult :: CustomRequestResult
+defaultCustomRequestResult =
+  CustomRequestResult
+    { result = Nothing
+    }
+

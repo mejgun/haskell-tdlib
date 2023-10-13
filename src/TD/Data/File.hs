@@ -1,4 +1,7 @@
-module TD.Data.File (File(..)) where
+module TD.Data.File
+  ( File(..)    
+  , defaultFile 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON File where
         , "local"         A..= local_
         , "remote"        A..= remote_
         ]
+
+defaultFile :: File
+defaultFile =
+  File
+    { _id           = Nothing
+    , size          = Nothing
+    , expected_size = Nothing
+    , local         = Nothing
+    , remote        = Nothing
+    }
+

@@ -1,4 +1,8 @@
-module TD.Data.EmailAddressResetState (EmailAddressResetState(..)) where
+module TD.Data.EmailAddressResetState
+  ( EmailAddressResetState(..)             
+  , defaultEmailAddressResetStateAvailable 
+  , defaultEmailAddressResetStatePending   
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -68,3 +72,16 @@ instance AT.ToJSON EmailAddressResetState where
         [ "@type"    A..= AT.String "emailAddressResetStatePending"
         , "reset_in" A..= reset_in_
         ]
+
+defaultEmailAddressResetStateAvailable :: EmailAddressResetState
+defaultEmailAddressResetStateAvailable =
+  EmailAddressResetStateAvailable
+    { wait_period = Nothing
+    }
+
+defaultEmailAddressResetStatePending :: EmailAddressResetState
+defaultEmailAddressResetStatePending =
+  EmailAddressResetStatePending
+    { reset_in = Nothing
+    }
+

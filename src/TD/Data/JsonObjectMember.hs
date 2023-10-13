@@ -1,4 +1,7 @@
-module TD.Data.JsonObjectMember (JsonObjectMember(..)) where
+module TD.Data.JsonObjectMember
+  ( JsonObjectMember(..)    
+  , defaultJsonObjectMember 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON JsonObjectMember where
         , "key"   A..= key_
         , "value" A..= value_
         ]
+
+defaultJsonObjectMember :: JsonObjectMember
+defaultJsonObjectMember =
+  JsonObjectMember
+    { key   = Nothing
+    , value = Nothing
+    }
+

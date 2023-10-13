@@ -1,4 +1,7 @@
-module TD.Data.ForumTopic (ForumTopic(..)) where
+module TD.Data.ForumTopic
+  ( ForumTopic(..)    
+  , defaultForumTopic 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -111,3 +114,19 @@ instance AT.ToJSON ForumTopic where
         , "notification_settings"       A..= notification_settings_
         , "draft_message"               A..= draft_message_
         ]
+
+defaultForumTopic :: ForumTopic
+defaultForumTopic =
+  ForumTopic
+    { info                        = Nothing
+    , last_message                = Nothing
+    , is_pinned                   = Nothing
+    , unread_count                = Nothing
+    , last_read_inbox_message_id  = Nothing
+    , last_read_outbox_message_id = Nothing
+    , unread_mention_count        = Nothing
+    , unread_reaction_count       = Nothing
+    , notification_settings       = Nothing
+    , draft_message               = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.Updates (Updates(..)) where
+module TD.Data.Updates
+  ( Updates(..)    
+  , defaultUpdates 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Updates where
         [ "@type"   A..= AT.String "updates"
         , "updates" A..= updates_
         ]
+
+defaultUpdates :: Updates
+defaultUpdates =
+  Updates
+    { updates = Nothing
+    }
+

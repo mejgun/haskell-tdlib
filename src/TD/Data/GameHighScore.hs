@@ -1,4 +1,7 @@
-module TD.Data.GameHighScore (GameHighScore(..)) where
+module TD.Data.GameHighScore
+  ( GameHighScore(..)    
+  , defaultGameHighScore 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON GameHighScore where
         , "user_id"  A..= user_id_
         , "score"    A..= score_
         ]
+
+defaultGameHighScore :: GameHighScore
+defaultGameHighScore =
+  GameHighScore
+    { position = Nothing
+    , user_id  = Nothing
+    , score    = Nothing
+    }
+

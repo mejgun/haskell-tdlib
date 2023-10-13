@@ -1,4 +1,7 @@
-module TD.Data.NotificationGroup (NotificationGroup(..)) where
+module TD.Data.NotificationGroup
+  ( NotificationGroup(..)    
+  , defaultNotificationGroup 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON NotificationGroup where
         , "total_count"   A..= total_count_
         , "notifications" A..= notifications_
         ]
+
+defaultNotificationGroup :: NotificationGroup
+defaultNotificationGroup =
+  NotificationGroup
+    { _id           = Nothing
+    , _type         = Nothing
+    , chat_id       = Nothing
+    , total_count   = Nothing
+    , notifications = Nothing
+    }
+

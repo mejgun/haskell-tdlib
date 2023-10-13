@@ -1,4 +1,7 @@
-module TD.Data.BankCardInfo (BankCardInfo(..)) where
+module TD.Data.BankCardInfo
+  ( BankCardInfo(..)    
+  , defaultBankCardInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON BankCardInfo where
         , "title"   A..= title_
         , "actions" A..= actions_
         ]
+
+defaultBankCardInfo :: BankCardInfo
+defaultBankCardInfo =
+  BankCardInfo
+    { title   = Nothing
+    , actions = Nothing
+    }
+

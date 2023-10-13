@@ -1,4 +1,7 @@
-module TD.Data.Call (Call(..)) where
+module TD.Data.Call
+  ( Call(..)    
+  , defaultCall 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON Call where
         , "is_video"    A..= is_video_
         , "state"       A..= state_
         ]
+
+defaultCall :: Call
+defaultCall =
+  Call
+    { _id         = Nothing
+    , user_id     = Nothing
+    , is_outgoing = Nothing
+    , is_video    = Nothing
+    , state       = Nothing
+    }
+

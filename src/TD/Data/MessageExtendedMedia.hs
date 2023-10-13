@@ -1,4 +1,10 @@
-module TD.Data.MessageExtendedMedia (MessageExtendedMedia(..)) where
+module TD.Data.MessageExtendedMedia
+  ( MessageExtendedMedia(..)               
+  , defaultMessageExtendedMediaPreview     
+  , defaultMessageExtendedMediaPhoto       
+  , defaultMessageExtendedMediaVideo       
+  , defaultMessageExtendedMediaUnsupported 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -162,3 +168,34 @@ instance AT.ToJSON MessageExtendedMedia where
         [ "@type"   A..= AT.String "messageExtendedMediaUnsupported"
         , "caption" A..= caption_
         ]
+
+defaultMessageExtendedMediaPreview :: MessageExtendedMedia
+defaultMessageExtendedMediaPreview =
+  MessageExtendedMediaPreview
+    { width         = Nothing
+    , height        = Nothing
+    , duration      = Nothing
+    , minithumbnail = Nothing
+    , caption       = Nothing
+    }
+
+defaultMessageExtendedMediaPhoto :: MessageExtendedMedia
+defaultMessageExtendedMediaPhoto =
+  MessageExtendedMediaPhoto
+    { photo   = Nothing
+    , caption = Nothing
+    }
+
+defaultMessageExtendedMediaVideo :: MessageExtendedMedia
+defaultMessageExtendedMediaVideo =
+  MessageExtendedMediaVideo
+    { video   = Nothing
+    , caption = Nothing
+    }
+
+defaultMessageExtendedMediaUnsupported :: MessageExtendedMedia
+defaultMessageExtendedMediaUnsupported =
+  MessageExtendedMediaUnsupported
+    { caption = Nothing
+    }
+

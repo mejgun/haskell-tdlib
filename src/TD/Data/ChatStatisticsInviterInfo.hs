@@ -1,4 +1,7 @@
-module TD.Data.ChatStatisticsInviterInfo (ChatStatisticsInviterInfo(..)) where
+module TD.Data.ChatStatisticsInviterInfo
+  ( ChatStatisticsInviterInfo(..)    
+  , defaultChatStatisticsInviterInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON ChatStatisticsInviterInfo where
         , "user_id"            A..= user_id_
         , "added_member_count" A..= added_member_count_
         ]
+
+defaultChatStatisticsInviterInfo :: ChatStatisticsInviterInfo
+defaultChatStatisticsInviterInfo =
+  ChatStatisticsInviterInfo
+    { user_id            = Nothing
+    , added_member_count = Nothing
+    }
+

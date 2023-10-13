@@ -1,4 +1,7 @@
-module TD.Data.MessageLink (MessageLink(..)) where
+module TD.Data.MessageLink
+  ( MessageLink(..)    
+  , defaultMessageLink 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON MessageLink where
         , "link"      A..= link_
         , "is_public" A..= is_public_
         ]
+
+defaultMessageLink :: MessageLink
+defaultMessageLink =
+  MessageLink
+    { link      = Nothing
+    , is_public = Nothing
+    }
+

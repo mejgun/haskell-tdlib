@@ -1,4 +1,7 @@
-module TD.Data.DateRange (DateRange(..)) where
+module TD.Data.DateRange
+  ( DateRange(..)    
+  , defaultDateRange 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON DateRange where
         , "start_date" A..= start_date_
         , "end_date"   A..= end_date_
         ]
+
+defaultDateRange :: DateRange
+defaultDateRange =
+  DateRange
+    { start_date = Nothing
+    , end_date   = Nothing
+    }
+

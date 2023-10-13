@@ -1,4 +1,11 @@
-module TD.Data.MessageForwardOrigin (MessageForwardOrigin(..)) where
+module TD.Data.MessageForwardOrigin
+  ( MessageForwardOrigin(..)                 
+  , defaultMessageForwardOriginUser          
+  , defaultMessageForwardOriginChat          
+  , defaultMessageForwardOriginHiddenUser    
+  , defaultMessageForwardOriginChannel       
+  , defaultMessageForwardOriginMessageImport 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -162,3 +169,37 @@ instance AT.ToJSON MessageForwardOrigin where
         [ "@type"       A..= AT.String "messageForwardOriginMessageImport"
         , "sender_name" A..= sender_name_
         ]
+
+defaultMessageForwardOriginUser :: MessageForwardOrigin
+defaultMessageForwardOriginUser =
+  MessageForwardOriginUser
+    { sender_user_id = Nothing
+    }
+
+defaultMessageForwardOriginChat :: MessageForwardOrigin
+defaultMessageForwardOriginChat =
+  MessageForwardOriginChat
+    { sender_chat_id   = Nothing
+    , author_signature = Nothing
+    }
+
+defaultMessageForwardOriginHiddenUser :: MessageForwardOrigin
+defaultMessageForwardOriginHiddenUser =
+  MessageForwardOriginHiddenUser
+    { sender_name = Nothing
+    }
+
+defaultMessageForwardOriginChannel :: MessageForwardOrigin
+defaultMessageForwardOriginChannel =
+  MessageForwardOriginChannel
+    { chat_id          = Nothing
+    , message_id       = Nothing
+    , author_signature = Nothing
+    }
+
+defaultMessageForwardOriginMessageImport :: MessageForwardOrigin
+defaultMessageForwardOriginMessageImport =
+  MessageForwardOriginMessageImport
+    { sender_name = Nothing
+    }
+

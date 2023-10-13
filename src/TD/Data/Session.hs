@@ -1,4 +1,7 @@
-module TD.Data.Session (Session(..)) where
+module TD.Data.Session
+  ( Session(..)    
+  , defaultSession 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -165,3 +168,27 @@ instance AT.ToJSON Session where
         , "country"                 A..= country_
         , "region"                  A..= region_
         ]
+
+defaultSession :: Session
+defaultSession =
+  Session
+    { _id                     = Nothing
+    , is_current              = Nothing
+    , is_password_pending     = Nothing
+    , can_accept_secret_chats = Nothing
+    , can_accept_calls        = Nothing
+    , _type                   = Nothing
+    , api_id                  = Nothing
+    , application_name        = Nothing
+    , application_version     = Nothing
+    , is_official_application = Nothing
+    , device_model            = Nothing
+    , platform                = Nothing
+    , system_version          = Nothing
+    , log_in_date             = Nothing
+    , last_active_date        = Nothing
+    , ip                      = Nothing
+    , country                 = Nothing
+    , region                  = Nothing
+    }
+

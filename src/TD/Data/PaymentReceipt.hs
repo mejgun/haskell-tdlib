@@ -1,4 +1,7 @@
-module TD.Data.PaymentReceipt (PaymentReceipt(..)) where
+module TD.Data.PaymentReceipt
+  ( PaymentReceipt(..)    
+  , defaultPaymentReceipt 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -120,3 +123,20 @@ instance AT.ToJSON PaymentReceipt where
         , "credentials_title"        A..= credentials_title_
         , "tip_amount"               A..= tip_amount_
         ]
+
+defaultPaymentReceipt :: PaymentReceipt
+defaultPaymentReceipt =
+  PaymentReceipt
+    { title                    = Nothing
+    , description              = Nothing
+    , photo                    = Nothing
+    , date                     = Nothing
+    , seller_bot_user_id       = Nothing
+    , payment_provider_user_id = Nothing
+    , invoice                  = Nothing
+    , order_info               = Nothing
+    , shipping_option          = Nothing
+    , credentials_title        = Nothing
+    , tip_amount               = Nothing
+    }
+

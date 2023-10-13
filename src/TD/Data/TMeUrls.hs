@@ -1,4 +1,7 @@
-module TD.Data.TMeUrls (TMeUrls(..)) where
+module TD.Data.TMeUrls
+  ( TMeUrls(..)    
+  , defaultTMeUrls 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON TMeUrls where
         [ "@type" A..= AT.String "tMeUrls"
         , "urls"  A..= urls_
         ]
+
+defaultTMeUrls :: TMeUrls
+defaultTMeUrls =
+  TMeUrls
+    { urls = Nothing
+    }
+

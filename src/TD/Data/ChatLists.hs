@@ -1,4 +1,7 @@
-module TD.Data.ChatLists (ChatLists(..)) where
+module TD.Data.ChatLists
+  ( ChatLists(..)    
+  , defaultChatLists 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON ChatLists where
         [ "@type"      A..= AT.String "chatLists"
         , "chat_lists" A..= chat_lists_
         ]
+
+defaultChatLists :: ChatLists
+defaultChatLists =
+  ChatLists
+    { chat_lists = Nothing
+    }
+

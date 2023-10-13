@@ -1,4 +1,7 @@
-module TD.Data.StorageStatisticsFast (StorageStatisticsFast(..)) where
+module TD.Data.StorageStatisticsFast
+  ( StorageStatisticsFast(..)    
+  , defaultStorageStatisticsFast 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -72,3 +75,14 @@ instance AT.ToJSON StorageStatisticsFast where
         , "language_pack_database_size" A..= language_pack_database_size_
         , "log_size"                    A..= log_size_
         ]
+
+defaultStorageStatisticsFast :: StorageStatisticsFast
+defaultStorageStatisticsFast =
+  StorageStatisticsFast
+    { files_size                  = Nothing
+    , file_count                  = Nothing
+    , database_size               = Nothing
+    , language_pack_database_size = Nothing
+    , log_size                    = Nothing
+    }
+

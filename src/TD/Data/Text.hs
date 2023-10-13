@@ -1,4 +1,7 @@
-module TD.Data.Text (Text(..)) where
+module TD.Data.Text
+  ( Text(..)    
+  , defaultText 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Text where
         [ "@type" A..= AT.String "text"
         , "text"  A..= text_
         ]
+
+defaultText :: Text
+defaultText =
+  Text
+    { text = Nothing
+    }
+

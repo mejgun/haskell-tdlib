@@ -1,4 +1,18 @@
-module TD.Data.InlineQueryResult (InlineQueryResult(..)) where
+module TD.Data.InlineQueryResult
+  ( InlineQueryResult(..)             
+  , defaultInlineQueryResultArticle   
+  , defaultInlineQueryResultContact   
+  , defaultInlineQueryResultLocation  
+  , defaultInlineQueryResultVenue     
+  , defaultInlineQueryResultGame      
+  , defaultInlineQueryResultAnimation 
+  , defaultInlineQueryResultAudio     
+  , defaultInlineQueryResultDocument  
+  , defaultInlineQueryResultPhoto     
+  , defaultInlineQueryResultSticker   
+  , defaultInlineQueryResultVideo     
+  , defaultInlineQueryResultVoiceNote 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -517,3 +531,104 @@ instance AT.ToJSON InlineQueryResult where
         , "voice_note" A..= voice_note_
         , "title"      A..= title_
         ]
+
+defaultInlineQueryResultArticle :: InlineQueryResult
+defaultInlineQueryResultArticle =
+  InlineQueryResultArticle
+    { _id         = Nothing
+    , url         = Nothing
+    , hide_url    = Nothing
+    , title       = Nothing
+    , description = Nothing
+    , thumbnail   = Nothing
+    }
+
+defaultInlineQueryResultContact :: InlineQueryResult
+defaultInlineQueryResultContact =
+  InlineQueryResultContact
+    { _id       = Nothing
+    , contact   = Nothing
+    , thumbnail = Nothing
+    }
+
+defaultInlineQueryResultLocation :: InlineQueryResult
+defaultInlineQueryResultLocation =
+  InlineQueryResultLocation
+    { _id       = Nothing
+    , location  = Nothing
+    , title     = Nothing
+    , thumbnail = Nothing
+    }
+
+defaultInlineQueryResultVenue :: InlineQueryResult
+defaultInlineQueryResultVenue =
+  InlineQueryResultVenue
+    { _id       = Nothing
+    , venue     = Nothing
+    , thumbnail = Nothing
+    }
+
+defaultInlineQueryResultGame :: InlineQueryResult
+defaultInlineQueryResultGame =
+  InlineQueryResultGame
+    { _id  = Nothing
+    , game = Nothing
+    }
+
+defaultInlineQueryResultAnimation :: InlineQueryResult
+defaultInlineQueryResultAnimation =
+  InlineQueryResultAnimation
+    { _id       = Nothing
+    , animation = Nothing
+    , title     = Nothing
+    }
+
+defaultInlineQueryResultAudio :: InlineQueryResult
+defaultInlineQueryResultAudio =
+  InlineQueryResultAudio
+    { _id   = Nothing
+    , audio = Nothing
+    }
+
+defaultInlineQueryResultDocument :: InlineQueryResult
+defaultInlineQueryResultDocument =
+  InlineQueryResultDocument
+    { _id         = Nothing
+    , document    = Nothing
+    , title       = Nothing
+    , description = Nothing
+    }
+
+defaultInlineQueryResultPhoto :: InlineQueryResult
+defaultInlineQueryResultPhoto =
+  InlineQueryResultPhoto
+    { _id         = Nothing
+    , photo       = Nothing
+    , title       = Nothing
+    , description = Nothing
+    }
+
+defaultInlineQueryResultSticker :: InlineQueryResult
+defaultInlineQueryResultSticker =
+  InlineQueryResultSticker
+    { _id     = Nothing
+    , sticker = Nothing
+    }
+
+defaultInlineQueryResultVideo :: InlineQueryResult
+defaultInlineQueryResultVideo =
+  InlineQueryResultVideo
+    { _id         = Nothing
+    , video       = Nothing
+    , title       = Nothing
+    , description = Nothing
+    }
+
+defaultInlineQueryResultVoiceNote :: InlineQueryResult
+defaultInlineQueryResultVoiceNote =
+  InlineQueryResultVoiceNote
+    { _id        = Nothing
+    , voice_note = Nothing
+    , title      = Nothing
+    }
+

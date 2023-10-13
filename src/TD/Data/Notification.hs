@@ -1,4 +1,7 @@
-module TD.Data.Notification (Notification(..)) where
+module TD.Data.Notification
+  ( Notification(..)    
+  , defaultNotification 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,3 +69,13 @@ instance AT.ToJSON Notification where
         , "is_silent" A..= is_silent_
         , "type"      A..= _type_
         ]
+
+defaultNotification :: Notification
+defaultNotification =
+  Notification
+    { _id       = Nothing
+    , date      = Nothing
+    , is_silent = Nothing
+    , _type     = Nothing
+    }
+

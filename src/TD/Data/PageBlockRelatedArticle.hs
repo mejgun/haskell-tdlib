@@ -1,4 +1,7 @@
-module TD.Data.PageBlockRelatedArticle (PageBlockRelatedArticle(..)) where
+module TD.Data.PageBlockRelatedArticle
+  ( PageBlockRelatedArticle(..)    
+  , defaultPageBlockRelatedArticle 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,3 +84,15 @@ instance AT.ToJSON PageBlockRelatedArticle where
         , "author"       A..= author_
         , "publish_date" A..= publish_date_
         ]
+
+defaultPageBlockRelatedArticle :: PageBlockRelatedArticle
+defaultPageBlockRelatedArticle =
+  PageBlockRelatedArticle
+    { url          = Nothing
+    , title        = Nothing
+    , description  = Nothing
+    , photo        = Nothing
+    , author       = Nothing
+    , publish_date = Nothing
+    }
+

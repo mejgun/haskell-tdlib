@@ -1,4 +1,7 @@
-module TD.Data.PersonalDetails (PersonalDetails(..)) where
+module TD.Data.PersonalDetails
+  ( PersonalDetails(..)    
+  , defaultPersonalDetails 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -109,3 +112,19 @@ instance AT.ToJSON PersonalDetails where
         , "country_code"           A..= country_code_
         , "residence_country_code" A..= residence_country_code_
         ]
+
+defaultPersonalDetails :: PersonalDetails
+defaultPersonalDetails =
+  PersonalDetails
+    { first_name             = Nothing
+    , middle_name            = Nothing
+    , last_name              = Nothing
+    , native_first_name      = Nothing
+    , native_middle_name     = Nothing
+    , native_last_name       = Nothing
+    , birthdate              = Nothing
+    , gender                 = Nothing
+    , country_code           = Nothing
+    , residence_country_code = Nothing
+    }
+

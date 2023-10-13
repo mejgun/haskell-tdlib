@@ -1,4 +1,7 @@
-module TD.Data.Point (Point(..)) where
+module TD.Data.Point
+  ( Point(..)    
+  , defaultPoint 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON Point where
         , "x"     A..= x_
         , "y"     A..= y_
         ]
+
+defaultPoint :: Point
+defaultPoint =
+  Point
+    { x = Nothing
+    , y = Nothing
+    }
+

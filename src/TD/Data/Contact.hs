@@ -1,4 +1,7 @@
-module TD.Data.Contact (Contact(..)) where
+module TD.Data.Contact
+  ( Contact(..)    
+  , defaultContact 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON Contact where
         , "vcard"        A..= vcard_
         , "user_id"      A..= user_id_
         ]
+
+defaultContact :: Contact
+defaultContact =
+  Contact
+    { phone_number = Nothing
+    , first_name   = Nothing
+    , last_name    = Nothing
+    , vcard        = Nothing
+    , user_id      = Nothing
+    }
+

@@ -1,4 +1,9 @@
-module TD.Data.NotificationType (NotificationType(..)) where
+module TD.Data.NotificationType
+  ( NotificationType(..)                  
+  , defaultNotificationTypeNewMessage     
+  , defaultNotificationTypeNewCall        
+  , defaultNotificationTypeNewPushMessage 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -139,3 +144,27 @@ instance AT.ToJSON NotificationType where
         , "is_outgoing" A..= is_outgoing_
         , "content"     A..= content_
         ]
+
+defaultNotificationTypeNewMessage :: NotificationType
+defaultNotificationTypeNewMessage =
+  NotificationTypeNewMessage
+    { message      = Nothing
+    , show_preview = Nothing
+    }
+
+defaultNotificationTypeNewCall :: NotificationType
+defaultNotificationTypeNewCall =
+  NotificationTypeNewCall
+    { call_id = Nothing
+    }
+
+defaultNotificationTypeNewPushMessage :: NotificationType
+defaultNotificationTypeNewPushMessage =
+  NotificationTypeNewPushMessage
+    { message_id  = Nothing
+    , sender_id   = Nothing
+    , sender_name = Nothing
+    , is_outgoing = Nothing
+    , content     = Nothing
+    }
+

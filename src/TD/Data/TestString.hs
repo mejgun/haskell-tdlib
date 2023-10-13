@@ -1,4 +1,7 @@
-module TD.Data.TestString (TestString(..)) where
+module TD.Data.TestString
+  ( TestString(..)    
+  , defaultTestString 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON TestString where
         [ "@type" A..= AT.String "testString"
         , "value" A..= value_
         ]
+
+defaultTestString :: TestString
+defaultTestString =
+  TestString
+    { value = Nothing
+    }
+

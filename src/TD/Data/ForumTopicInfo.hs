@@ -1,4 +1,7 @@
-module TD.Data.ForumTopicInfo (ForumTopicInfo(..)) where
+module TD.Data.ForumTopicInfo
+  ( ForumTopicInfo(..)    
+  , defaultForumTopicInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -103,3 +106,18 @@ instance AT.ToJSON ForumTopicInfo where
         , "is_closed"         A..= is_closed_
         , "is_hidden"         A..= is_hidden_
         ]
+
+defaultForumTopicInfo :: ForumTopicInfo
+defaultForumTopicInfo =
+  ForumTopicInfo
+    { message_thread_id = Nothing
+    , name              = Nothing
+    , icon              = Nothing
+    , creation_date     = Nothing
+    , creator_id        = Nothing
+    , is_general        = Nothing
+    , is_outgoing       = Nothing
+    , is_closed         = Nothing
+    , is_hidden         = Nothing
+    }
+

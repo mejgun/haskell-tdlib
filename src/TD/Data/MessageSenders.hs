@@ -1,4 +1,7 @@
-module TD.Data.MessageSenders (MessageSenders(..)) where
+module TD.Data.MessageSenders
+  ( MessageSenders(..)    
+  , defaultMessageSenders 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON MessageSenders where
         , "total_count" A..= total_count_
         , "senders"     A..= senders_
         ]
+
+defaultMessageSenders :: MessageSenders
+defaultMessageSenders =
+  MessageSenders
+    { total_count = Nothing
+    , senders     = Nothing
+    }
+

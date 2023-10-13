@@ -1,4 +1,7 @@
-module TD.Data.ProfilePhoto (ProfilePhoto(..)) where
+module TD.Data.ProfilePhoto
+  ( ProfilePhoto(..)    
+  , defaultProfilePhoto 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,3 +84,15 @@ instance AT.ToJSON ProfilePhoto where
         , "has_animation" A..= has_animation_
         , "is_personal"   A..= is_personal_
         ]
+
+defaultProfilePhoto :: ProfilePhoto
+defaultProfilePhoto =
+  ProfilePhoto
+    { _id           = Nothing
+    , small         = Nothing
+    , big           = Nothing
+    , minithumbnail = Nothing
+    , has_animation = Nothing
+    , is_personal   = Nothing
+    }
+

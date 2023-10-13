@@ -1,4 +1,7 @@
-module TD.Data.Stories (Stories(..)) where
+module TD.Data.Stories
+  ( Stories(..)    
+  , defaultStories 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON Stories where
         , "total_count" A..= total_count_
         , "stories"     A..= stories_
         ]
+
+defaultStories :: Stories
+defaultStories =
+  Stories
+    { total_count = Nothing
+    , stories     = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.PaymentResult (PaymentResult(..)) where
+module TD.Data.PaymentResult
+  ( PaymentResult(..)    
+  , defaultPaymentResult 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON PaymentResult where
         , "success"          A..= success_
         , "verification_url" A..= verification_url_
         ]
+
+defaultPaymentResult :: PaymentResult
+defaultPaymentResult =
+  PaymentResult
+    { success          = Nothing
+    , verification_url = Nothing
+    }
+

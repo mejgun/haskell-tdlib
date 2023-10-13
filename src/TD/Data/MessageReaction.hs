@@ -1,4 +1,7 @@
-module TD.Data.MessageReaction (MessageReaction(..)) where
+module TD.Data.MessageReaction
+  ( MessageReaction(..)    
+  , defaultMessageReaction 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -67,3 +70,13 @@ instance AT.ToJSON MessageReaction where
         , "is_chosen"         A..= is_chosen_
         , "recent_sender_ids" A..= recent_sender_ids_
         ]
+
+defaultMessageReaction :: MessageReaction
+defaultMessageReaction =
+  MessageReaction
+    { _type             = Nothing
+    , total_count       = Nothing
+    , is_chosen         = Nothing
+    , recent_sender_ids = Nothing
+    }
+

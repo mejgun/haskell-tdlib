@@ -1,4 +1,7 @@
-module TD.Data.BasicGroup (BasicGroup(..)) where
+module TD.Data.BasicGroup
+  ( BasicGroup(..)    
+  , defaultBasicGroup 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON BasicGroup where
         , "is_active"                 A..= is_active_
         , "upgraded_to_supergroup_id" A..= upgraded_to_supergroup_id_
         ]
+
+defaultBasicGroup :: BasicGroup
+defaultBasicGroup =
+  BasicGroup
+    { _id                       = Nothing
+    , member_count              = Nothing
+    , status                    = Nothing
+    , is_active                 = Nothing
+    , upgraded_to_supergroup_id = Nothing
+    }
+

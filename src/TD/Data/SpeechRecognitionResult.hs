@@ -1,4 +1,9 @@
-module TD.Data.SpeechRecognitionResult (SpeechRecognitionResult(..)) where
+module TD.Data.SpeechRecognitionResult
+  ( SpeechRecognitionResult(..)           
+  , defaultSpeechRecognitionResultPending 
+  , defaultSpeechRecognitionResultText    
+  , defaultSpeechRecognitionResultError   
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -94,3 +99,22 @@ instance AT.ToJSON SpeechRecognitionResult where
         [ "@type" A..= AT.String "speechRecognitionResultError"
         , "error" A..= _error_
         ]
+
+defaultSpeechRecognitionResultPending :: SpeechRecognitionResult
+defaultSpeechRecognitionResultPending =
+  SpeechRecognitionResultPending
+    { partial_text = Nothing
+    }
+
+defaultSpeechRecognitionResultText :: SpeechRecognitionResult
+defaultSpeechRecognitionResultText =
+  SpeechRecognitionResultText
+    { text = Nothing
+    }
+
+defaultSpeechRecognitionResultError :: SpeechRecognitionResult
+defaultSpeechRecognitionResultError =
+  SpeechRecognitionResultError
+    { _error = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.ChatInviteLinkCount (ChatInviteLinkCount(..)) where
+module TD.Data.ChatInviteLinkCount
+  ( ChatInviteLinkCount(..)    
+  , defaultChatInviteLinkCount 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON ChatInviteLinkCount where
         , "invite_link_count"         A..= invite_link_count_
         , "revoked_invite_link_count" A..= revoked_invite_link_count_
         ]
+
+defaultChatInviteLinkCount :: ChatInviteLinkCount
+defaultChatInviteLinkCount =
+  ChatInviteLinkCount
+    { user_id                   = Nothing
+    , invite_link_count         = Nothing
+    , revoked_invite_link_count = Nothing
+    }
+

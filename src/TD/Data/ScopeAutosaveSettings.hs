@@ -1,4 +1,7 @@
-module TD.Data.ScopeAutosaveSettings (ScopeAutosaveSettings(..)) where
+module TD.Data.ScopeAutosaveSettings
+  ( ScopeAutosaveSettings(..)    
+  , defaultScopeAutosaveSettings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON ScopeAutosaveSettings where
         , "autosave_videos"     A..= autosave_videos_
         , "max_video_file_size" A..= max_video_file_size_
         ]
+
+defaultScopeAutosaveSettings :: ScopeAutosaveSettings
+defaultScopeAutosaveSettings =
+  ScopeAutosaveSettings
+    { autosave_photos     = Nothing
+    , autosave_videos     = Nothing
+    , max_video_file_size = Nothing
+    }
+

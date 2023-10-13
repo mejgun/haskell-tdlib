@@ -1,4 +1,7 @@
-module TD.Data.TestInt (TestInt(..)) where
+module TD.Data.TestInt
+  ( TestInt(..)    
+  , defaultTestInt 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,10 @@ instance AT.ToJSON TestInt where
         [ "@type" A..= AT.String "testInt"
         , "value" A..= value_
         ]
+
+defaultTestInt :: TestInt
+defaultTestInt =
+  TestInt
+    { value = Nothing
+    }
+

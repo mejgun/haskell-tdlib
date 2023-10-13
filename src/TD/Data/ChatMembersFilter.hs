@@ -1,4 +1,7 @@
-module TD.Data.ChatMembersFilter (ChatMembersFilter(..)) where
+module TD.Data.ChatMembersFilter
+  ( ChatMembersFilter(..)           
+  , defaultChatMembersFilterMention 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -92,3 +95,10 @@ instance AT.ToJSON ChatMembersFilter where
       = A.object
         [ "@type" A..= AT.String "chatMembersFilterBots"
         ]
+
+defaultChatMembersFilterMention :: ChatMembersFilter
+defaultChatMembersFilterMention =
+  ChatMembersFilterMention
+    { message_thread_id = Nothing
+    }
+

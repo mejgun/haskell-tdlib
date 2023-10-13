@@ -1,4 +1,9 @@
-module TD.Data.ChatActionBar (ChatActionBar(..)) where
+module TD.Data.ChatActionBar
+  ( ChatActionBar(..)                  
+  , defaultChatActionBarReportSpam     
+  , defaultChatActionBarReportAddBlock 
+  , defaultChatActionBarJoinRequest    
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -146,3 +151,25 @@ instance AT.ToJSON ChatActionBar where
         , "is_channel"   A..= is_channel_
         , "request_date" A..= request_date_
         ]
+
+defaultChatActionBarReportSpam :: ChatActionBar
+defaultChatActionBarReportSpam =
+  ChatActionBarReportSpam
+    { can_unarchive = Nothing
+    }
+
+defaultChatActionBarReportAddBlock :: ChatActionBar
+defaultChatActionBarReportAddBlock =
+  ChatActionBarReportAddBlock
+    { can_unarchive = Nothing
+    , distance      = Nothing
+    }
+
+defaultChatActionBarJoinRequest :: ChatActionBar
+defaultChatActionBarJoinRequest =
+  ChatActionBarJoinRequest
+    { title        = Nothing
+    , is_channel   = Nothing
+    , request_date = Nothing
+    }
+

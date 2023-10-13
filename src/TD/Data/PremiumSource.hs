@@ -1,4 +1,9 @@
-module TD.Data.PremiumSource (PremiumSource(..)) where
+module TD.Data.PremiumSource
+  ( PremiumSource(..)                 
+  , defaultPremiumSourceLimitExceeded 
+  , defaultPremiumSourceFeature       
+  , defaultPremiumSourceLink          
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -103,3 +108,22 @@ instance AT.ToJSON PremiumSource where
       = A.object
         [ "@type" A..= AT.String "premiumSourceSettings"
         ]
+
+defaultPremiumSourceLimitExceeded :: PremiumSource
+defaultPremiumSourceLimitExceeded =
+  PremiumSourceLimitExceeded
+    { limit_type = Nothing
+    }
+
+defaultPremiumSourceFeature :: PremiumSource
+defaultPremiumSourceFeature =
+  PremiumSourceFeature
+    { feature = Nothing
+    }
+
+defaultPremiumSourceLink :: PremiumSource
+defaultPremiumSourceLink =
+  PremiumSourceLink
+    { referrer = Nothing
+    }
+

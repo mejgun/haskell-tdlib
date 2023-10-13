@@ -1,4 +1,7 @@
-module TD.Data.AttachmentMenuBotColor (AttachmentMenuBotColor(..)) where
+module TD.Data.AttachmentMenuBotColor
+  ( AttachmentMenuBotColor(..)    
+  , defaultAttachmentMenuBotColor 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON AttachmentMenuBotColor where
         , "light_color" A..= light_color_
         , "dark_color"  A..= dark_color_
         ]
+
+defaultAttachmentMenuBotColor :: AttachmentMenuBotColor
+defaultAttachmentMenuBotColor =
+  AttachmentMenuBotColor
+    { light_color = Nothing
+    , dark_color  = Nothing
+    }
+

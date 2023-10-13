@@ -1,4 +1,7 @@
-module TD.Data.Animations (Animations(..)) where
+module TD.Data.Animations
+  ( Animations(..)    
+  , defaultAnimations 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Animations where
         [ "@type"      A..= AT.String "animations"
         , "animations" A..= animations_
         ]
+
+defaultAnimations :: Animations
+defaultAnimations =
+  Animations
+    { animations = Nothing
+    }
+

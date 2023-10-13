@@ -1,4 +1,6 @@
-module TD.Data.NotificationGroupType (NotificationGroupType(..)) where
+module TD.Data.NotificationGroupType
+  ( NotificationGroupType(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +52,4 @@ instance AT.ToJSON NotificationGroupType where
       = A.object
         [ "@type" A..= AT.String "notificationGroupTypeCalls"
         ]
+

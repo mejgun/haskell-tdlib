@@ -1,4 +1,6 @@
-module TD.Data.FileType (FileType(..)) where
+module TD.Data.FileType
+  ( FileType(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -170,3 +172,4 @@ instance AT.ToJSON FileType where
       = A.object
         [ "@type" A..= AT.String "fileTypeWallpaper"
         ]
+

@@ -1,4 +1,8 @@
-module TD.Data.SuggestedAction (SuggestedAction(..)) where
+module TD.Data.SuggestedAction
+  ( SuggestedAction(..)                           
+  , defaultSuggestedActionConvertToBroadcastGroup 
+  , defaultSuggestedActionSetPassword             
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -124,3 +128,16 @@ instance AT.ToJSON SuggestedAction where
       = A.object
         [ "@type" A..= AT.String "suggestedActionSubscribeToAnnualPremium"
         ]
+
+defaultSuggestedActionConvertToBroadcastGroup :: SuggestedAction
+defaultSuggestedActionConvertToBroadcastGroup =
+  SuggestedActionConvertToBroadcastGroup
+    { supergroup_id = Nothing
+    }
+
+defaultSuggestedActionSetPassword :: SuggestedAction
+defaultSuggestedActionSetPassword =
+  SuggestedActionSetPassword
+    { authorization_delay = Nothing
+    }
+

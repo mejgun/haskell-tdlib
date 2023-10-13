@@ -1,4 +1,60 @@
-module TD.Data.MessageContent (MessageContent(..)) where
+module TD.Data.MessageContent
+  ( MessageContent(..)                         
+  , defaultMessageText                         
+  , defaultMessageAnimation                    
+  , defaultMessageAudio                        
+  , defaultMessageDocument                     
+  , defaultMessagePhoto                        
+  , defaultMessageSticker                      
+  , defaultMessageVideo                        
+  , defaultMessageVideoNote                    
+  , defaultMessageVoiceNote                    
+  , defaultMessageLocation                     
+  , defaultMessageVenue                        
+  , defaultMessageContact                      
+  , defaultMessageAnimatedEmoji                
+  , defaultMessageDice                         
+  , defaultMessageGame                         
+  , defaultMessagePoll                         
+  , defaultMessageStory                        
+  , defaultMessageInvoice                      
+  , defaultMessageCall                         
+  , defaultMessageVideoChatScheduled           
+  , defaultMessageVideoChatStarted             
+  , defaultMessageVideoChatEnded               
+  , defaultMessageInviteVideoChatParticipants  
+  , defaultMessageBasicGroupChatCreate         
+  , defaultMessageSupergroupChatCreate         
+  , defaultMessageChatChangeTitle              
+  , defaultMessageChatChangePhoto              
+  , defaultMessageChatAddMembers               
+  , defaultMessageChatDeleteMember             
+  , defaultMessageChatUpgradeTo                
+  , defaultMessageChatUpgradeFrom              
+  , defaultMessagePinMessage                   
+  , defaultMessageChatSetBackground            
+  , defaultMessageChatSetTheme                 
+  , defaultMessageChatSetMessageAutoDeleteTime 
+  , defaultMessageForumTopicCreated            
+  , defaultMessageForumTopicEdited             
+  , defaultMessageForumTopicIsClosedToggled    
+  , defaultMessageForumTopicIsHiddenToggled    
+  , defaultMessageSuggestProfilePhoto          
+  , defaultMessageCustomServiceAction          
+  , defaultMessageGameScore                    
+  , defaultMessagePaymentSuccessful            
+  , defaultMessagePaymentSuccessfulBot         
+  , defaultMessageGiftedPremium                
+  , defaultMessageUserShared                   
+  , defaultMessageChatShared                   
+  , defaultMessageWebsiteConnected             
+  , defaultMessageBotWriteAccessAllowed        
+  , defaultMessageWebAppDataSent               
+  , defaultMessageWebAppDataReceived           
+  , defaultMessagePassportDataSent             
+  , defaultMessagePassportDataReceived         
+  , defaultMessageProximityAlertTriggered      
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -1942,3 +1998,404 @@ instance AT.ToJSON MessageContent where
       = A.object
         [ "@type" A..= AT.String "messageUnsupported"
         ]
+
+defaultMessageText :: MessageContent
+defaultMessageText =
+  MessageText
+    { text     = Nothing
+    , web_page = Nothing
+    }
+
+defaultMessageAnimation :: MessageContent
+defaultMessageAnimation =
+  MessageAnimation
+    { animation   = Nothing
+    , caption     = Nothing
+    , has_spoiler = Nothing
+    , is_secret   = Nothing
+    }
+
+defaultMessageAudio :: MessageContent
+defaultMessageAudio =
+  MessageAudio
+    { audio   = Nothing
+    , caption = Nothing
+    }
+
+defaultMessageDocument :: MessageContent
+defaultMessageDocument =
+  MessageDocument
+    { document = Nothing
+    , caption  = Nothing
+    }
+
+defaultMessagePhoto :: MessageContent
+defaultMessagePhoto =
+  MessagePhoto
+    { photo       = Nothing
+    , caption     = Nothing
+    , has_spoiler = Nothing
+    , is_secret   = Nothing
+    }
+
+defaultMessageSticker :: MessageContent
+defaultMessageSticker =
+  MessageSticker
+    { sticker    = Nothing
+    , is_premium = Nothing
+    }
+
+defaultMessageVideo :: MessageContent
+defaultMessageVideo =
+  MessageVideo
+    { video       = Nothing
+    , caption     = Nothing
+    , has_spoiler = Nothing
+    , is_secret   = Nothing
+    }
+
+defaultMessageVideoNote :: MessageContent
+defaultMessageVideoNote =
+  MessageVideoNote
+    { video_note = Nothing
+    , is_viewed  = Nothing
+    , is_secret  = Nothing
+    }
+
+defaultMessageVoiceNote :: MessageContent
+defaultMessageVoiceNote =
+  MessageVoiceNote
+    { voice_note  = Nothing
+    , caption     = Nothing
+    , is_listened = Nothing
+    }
+
+defaultMessageLocation :: MessageContent
+defaultMessageLocation =
+  MessageLocation
+    { location               = Nothing
+    , live_period            = Nothing
+    , expires_in             = Nothing
+    , heading                = Nothing
+    , proximity_alert_radius = Nothing
+    }
+
+defaultMessageVenue :: MessageContent
+defaultMessageVenue =
+  MessageVenue
+    { venue = Nothing
+    }
+
+defaultMessageContact :: MessageContent
+defaultMessageContact =
+  MessageContact
+    { contact = Nothing
+    }
+
+defaultMessageAnimatedEmoji :: MessageContent
+defaultMessageAnimatedEmoji =
+  MessageAnimatedEmoji
+    { animated_emoji = Nothing
+    , emoji          = Nothing
+    }
+
+defaultMessageDice :: MessageContent
+defaultMessageDice =
+  MessageDice
+    { initial_state                  = Nothing
+    , final_state                    = Nothing
+    , emoji                          = Nothing
+    , value                          = Nothing
+    , success_animation_frame_number = Nothing
+    }
+
+defaultMessageGame :: MessageContent
+defaultMessageGame =
+  MessageGame
+    { game = Nothing
+    }
+
+defaultMessagePoll :: MessageContent
+defaultMessagePoll =
+  MessagePoll
+    { poll = Nothing
+    }
+
+defaultMessageStory :: MessageContent
+defaultMessageStory =
+  MessageStory
+    { story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    , via_mention          = Nothing
+    }
+
+defaultMessageInvoice :: MessageContent
+defaultMessageInvoice =
+  MessageInvoice
+    { title                 = Nothing
+    , description           = Nothing
+    , photo                 = Nothing
+    , currency              = Nothing
+    , total_amount          = Nothing
+    , start_parameter       = Nothing
+    , is_test               = Nothing
+    , need_shipping_address = Nothing
+    , receipt_message_id    = Nothing
+    , extended_media        = Nothing
+    }
+
+defaultMessageCall :: MessageContent
+defaultMessageCall =
+  MessageCall
+    { is_video       = Nothing
+    , discard_reason = Nothing
+    , duration       = Nothing
+    }
+
+defaultMessageVideoChatScheduled :: MessageContent
+defaultMessageVideoChatScheduled =
+  MessageVideoChatScheduled
+    { group_call_id = Nothing
+    , start_date    = Nothing
+    }
+
+defaultMessageVideoChatStarted :: MessageContent
+defaultMessageVideoChatStarted =
+  MessageVideoChatStarted
+    { group_call_id = Nothing
+    }
+
+defaultMessageVideoChatEnded :: MessageContent
+defaultMessageVideoChatEnded =
+  MessageVideoChatEnded
+    { duration = Nothing
+    }
+
+defaultMessageInviteVideoChatParticipants :: MessageContent
+defaultMessageInviteVideoChatParticipants =
+  MessageInviteVideoChatParticipants
+    { group_call_id = Nothing
+    , user_ids      = Nothing
+    }
+
+defaultMessageBasicGroupChatCreate :: MessageContent
+defaultMessageBasicGroupChatCreate =
+  MessageBasicGroupChatCreate
+    { title           = Nothing
+    , member_user_ids = Nothing
+    }
+
+defaultMessageSupergroupChatCreate :: MessageContent
+defaultMessageSupergroupChatCreate =
+  MessageSupergroupChatCreate
+    { title = Nothing
+    }
+
+defaultMessageChatChangeTitle :: MessageContent
+defaultMessageChatChangeTitle =
+  MessageChatChangeTitle
+    { title = Nothing
+    }
+
+defaultMessageChatChangePhoto :: MessageContent
+defaultMessageChatChangePhoto =
+  MessageChatChangePhoto
+    { _photo = Nothing
+    }
+
+defaultMessageChatAddMembers :: MessageContent
+defaultMessageChatAddMembers =
+  MessageChatAddMembers
+    { member_user_ids = Nothing
+    }
+
+defaultMessageChatDeleteMember :: MessageContent
+defaultMessageChatDeleteMember =
+  MessageChatDeleteMember
+    { user_id = Nothing
+    }
+
+defaultMessageChatUpgradeTo :: MessageContent
+defaultMessageChatUpgradeTo =
+  MessageChatUpgradeTo
+    { supergroup_id = Nothing
+    }
+
+defaultMessageChatUpgradeFrom :: MessageContent
+defaultMessageChatUpgradeFrom =
+  MessageChatUpgradeFrom
+    { title          = Nothing
+    , basic_group_id = Nothing
+    }
+
+defaultMessagePinMessage :: MessageContent
+defaultMessagePinMessage =
+  MessagePinMessage
+    { message_id = Nothing
+    }
+
+defaultMessageChatSetBackground :: MessageContent
+defaultMessageChatSetBackground =
+  MessageChatSetBackground
+    { old_background_message_id = Nothing
+    , background                = Nothing
+    }
+
+defaultMessageChatSetTheme :: MessageContent
+defaultMessageChatSetTheme =
+  MessageChatSetTheme
+    { theme_name = Nothing
+    }
+
+defaultMessageChatSetMessageAutoDeleteTime :: MessageContent
+defaultMessageChatSetMessageAutoDeleteTime =
+  MessageChatSetMessageAutoDeleteTime
+    { message_auto_delete_time = Nothing
+    , from_user_id             = Nothing
+    }
+
+defaultMessageForumTopicCreated :: MessageContent
+defaultMessageForumTopicCreated =
+  MessageForumTopicCreated
+    { name = Nothing
+    , icon = Nothing
+    }
+
+defaultMessageForumTopicEdited :: MessageContent
+defaultMessageForumTopicEdited =
+  MessageForumTopicEdited
+    { name                      = Nothing
+    , edit_icon_custom_emoji_id = Nothing
+    , icon_custom_emoji_id      = Nothing
+    }
+
+defaultMessageForumTopicIsClosedToggled :: MessageContent
+defaultMessageForumTopicIsClosedToggled =
+  MessageForumTopicIsClosedToggled
+    { is_closed = Nothing
+    }
+
+defaultMessageForumTopicIsHiddenToggled :: MessageContent
+defaultMessageForumTopicIsHiddenToggled =
+  MessageForumTopicIsHiddenToggled
+    { is_hidden = Nothing
+    }
+
+defaultMessageSuggestProfilePhoto :: MessageContent
+defaultMessageSuggestProfilePhoto =
+  MessageSuggestProfilePhoto
+    { _photo = Nothing
+    }
+
+defaultMessageCustomServiceAction :: MessageContent
+defaultMessageCustomServiceAction =
+  MessageCustomServiceAction
+    { _text = Nothing
+    }
+
+defaultMessageGameScore :: MessageContent
+defaultMessageGameScore =
+  MessageGameScore
+    { game_message_id = Nothing
+    , game_id         = Nothing
+    , score           = Nothing
+    }
+
+defaultMessagePaymentSuccessful :: MessageContent
+defaultMessagePaymentSuccessful =
+  MessagePaymentSuccessful
+    { invoice_chat_id    = Nothing
+    , invoice_message_id = Nothing
+    , currency           = Nothing
+    , total_amount       = Nothing
+    , is_recurring       = Nothing
+    , is_first_recurring = Nothing
+    , invoice_name       = Nothing
+    }
+
+defaultMessagePaymentSuccessfulBot :: MessageContent
+defaultMessagePaymentSuccessfulBot =
+  MessagePaymentSuccessfulBot
+    { currency                   = Nothing
+    , total_amount               = Nothing
+    , is_recurring               = Nothing
+    , is_first_recurring         = Nothing
+    , invoice_payload            = Nothing
+    , shipping_option_id         = Nothing
+    , order_info                 = Nothing
+    , telegram_payment_charge_id = Nothing
+    , provider_payment_charge_id = Nothing
+    }
+
+defaultMessageGiftedPremium :: MessageContent
+defaultMessageGiftedPremium =
+  MessageGiftedPremium
+    { gifter_user_id        = Nothing
+    , currency              = Nothing
+    , amount                = Nothing
+    , cryptocurrency        = Nothing
+    , cryptocurrency_amount = Nothing
+    , month_count           = Nothing
+    , sticker               = Nothing
+    }
+
+defaultMessageUserShared :: MessageContent
+defaultMessageUserShared =
+  MessageUserShared
+    { user_id   = Nothing
+    , button_id = Nothing
+    }
+
+defaultMessageChatShared :: MessageContent
+defaultMessageChatShared =
+  MessageChatShared
+    { chat_id   = Nothing
+    , button_id = Nothing
+    }
+
+defaultMessageWebsiteConnected :: MessageContent
+defaultMessageWebsiteConnected =
+  MessageWebsiteConnected
+    { domain_name = Nothing
+    }
+
+defaultMessageBotWriteAccessAllowed :: MessageContent
+defaultMessageBotWriteAccessAllowed =
+  MessageBotWriteAccessAllowed
+    { web_app = Nothing
+    }
+
+defaultMessageWebAppDataSent :: MessageContent
+defaultMessageWebAppDataSent =
+  MessageWebAppDataSent
+    { button_text = Nothing
+    }
+
+defaultMessageWebAppDataReceived :: MessageContent
+defaultMessageWebAppDataReceived =
+  MessageWebAppDataReceived
+    { button_text = Nothing
+    , _data       = Nothing
+    }
+
+defaultMessagePassportDataSent :: MessageContent
+defaultMessagePassportDataSent =
+  MessagePassportDataSent
+    { types = Nothing
+    }
+
+defaultMessagePassportDataReceived :: MessageContent
+defaultMessagePassportDataReceived =
+  MessagePassportDataReceived
+    { elements    = Nothing
+    , credentials = Nothing
+    }
+
+defaultMessageProximityAlertTriggered :: MessageContent
+defaultMessageProximityAlertTriggered =
+  MessageProximityAlertTriggered
+    { traveler_id = Nothing
+    , watcher_id  = Nothing
+    , distance    = Nothing
+    }
+

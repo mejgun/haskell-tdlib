@@ -1,4 +1,7 @@
-module TD.Data.MessageReplyInfo (MessageReplyInfo(..)) where
+module TD.Data.MessageReplyInfo
+  ( MessageReplyInfo(..)    
+  , defaultMessageReplyInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON MessageReplyInfo where
         , "last_read_outbox_message_id" A..= last_read_outbox_message_id_
         , "last_message_id"             A..= last_message_id_
         ]
+
+defaultMessageReplyInfo :: MessageReplyInfo
+defaultMessageReplyInfo =
+  MessageReplyInfo
+    { reply_count                 = Nothing
+    , recent_replier_ids          = Nothing
+    , last_read_inbox_message_id  = Nothing
+    , last_read_outbox_message_id = Nothing
+    , last_message_id             = Nothing
+    }
+

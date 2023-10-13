@@ -1,4 +1,7 @@
-module TD.Data.ChatAdministratorRights (ChatAdministratorRights(..)) where
+module TD.Data.ChatAdministratorRights
+  ( ChatAdministratorRights(..)    
+  , defaultChatAdministratorRights 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -121,3 +124,21 @@ instance AT.ToJSON ChatAdministratorRights where
         , "can_manage_video_chats" A..= can_manage_video_chats_
         , "is_anonymous"           A..= is_anonymous_
         ]
+
+defaultChatAdministratorRights :: ChatAdministratorRights
+defaultChatAdministratorRights =
+  ChatAdministratorRights
+    { can_manage_chat        = Nothing
+    , can_change_info        = Nothing
+    , can_post_messages      = Nothing
+    , can_edit_messages      = Nothing
+    , can_delete_messages    = Nothing
+    , can_invite_users       = Nothing
+    , can_restrict_members   = Nothing
+    , can_pin_messages       = Nothing
+    , can_manage_topics      = Nothing
+    , can_promote_members    = Nothing
+    , can_manage_video_chats = Nothing
+    , is_anonymous           = Nothing
+    }
+

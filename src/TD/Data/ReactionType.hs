@@ -1,4 +1,8 @@
-module TD.Data.ReactionType (ReactionType(..)) where
+module TD.Data.ReactionType
+  ( ReactionType(..)               
+  , defaultReactionTypeEmoji       
+  , defaultReactionTypeCustomEmoji 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -69,3 +73,16 @@ instance AT.ToJSON ReactionType where
         [ "@type"           A..= AT.String "reactionTypeCustomEmoji"
         , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         ]
+
+defaultReactionTypeEmoji :: ReactionType
+defaultReactionTypeEmoji =
+  ReactionTypeEmoji
+    { emoji = Nothing
+    }
+
+defaultReactionTypeCustomEmoji :: ReactionType
+defaultReactionTypeCustomEmoji =
+  ReactionTypeCustomEmoji
+    { custom_emoji_id = Nothing
+    }
+

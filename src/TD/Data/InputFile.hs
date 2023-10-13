@@ -1,4 +1,10 @@
-module TD.Data.InputFile (InputFile(..)) where
+module TD.Data.InputFile
+  ( InputFile(..)             
+  , defaultInputFileId        
+  , defaultInputFileRemote    
+  , defaultInputFileLocal     
+  , defaultInputFileGenerated 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -131,3 +137,30 @@ instance AT.ToJSON InputFile where
         , "conversion"    A..= conversion_
         , "expected_size" A..= expected_size_
         ]
+
+defaultInputFileId :: InputFile
+defaultInputFileId =
+  InputFileId
+    { _id = Nothing
+    }
+
+defaultInputFileRemote :: InputFile
+defaultInputFileRemote =
+  InputFileRemote
+    { __id = Nothing
+    }
+
+defaultInputFileLocal :: InputFile
+defaultInputFileLocal =
+  InputFileLocal
+    { path = Nothing
+    }
+
+defaultInputFileGenerated :: InputFile
+defaultInputFileGenerated =
+  InputFileGenerated
+    { original_path = Nothing
+    , conversion    = Nothing
+    , expected_size = Nothing
+    }
+

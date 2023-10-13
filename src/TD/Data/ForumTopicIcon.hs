@@ -1,4 +1,7 @@
-module TD.Data.ForumTopicIcon (ForumTopicIcon(..)) where
+module TD.Data.ForumTopicIcon
+  ( ForumTopicIcon(..)    
+  , defaultForumTopicIcon 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON ForumTopicIcon where
         , "color"           A..= color_
         , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         ]
+
+defaultForumTopicIcon :: ForumTopicIcon
+defaultForumTopicIcon =
+  ForumTopicIcon
+    { color           = Nothing
+    , custom_emoji_id = Nothing
+    }
+

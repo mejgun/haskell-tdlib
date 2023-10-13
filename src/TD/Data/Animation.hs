@@ -1,4 +1,7 @@
-module TD.Data.Animation (Animation(..)) where
+module TD.Data.Animation
+  ( Animation(..)    
+  , defaultAnimation 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -104,3 +107,18 @@ instance AT.ToJSON Animation where
         , "thumbnail"     A..= thumbnail_
         , "animation"     A..= animation_
         ]
+
+defaultAnimation :: Animation
+defaultAnimation =
+  Animation
+    { duration      = Nothing
+    , width         = Nothing
+    , height        = Nothing
+    , file_name     = Nothing
+    , mime_type     = Nothing
+    , has_stickers  = Nothing
+    , minithumbnail = Nothing
+    , thumbnail     = Nothing
+    , animation     = Nothing
+    }
+

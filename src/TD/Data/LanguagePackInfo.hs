@@ -1,4 +1,7 @@
-module TD.Data.LanguagePackInfo (LanguagePackInfo(..)) where
+module TD.Data.LanguagePackInfo
+  ( LanguagePackInfo(..)    
+  , defaultLanguagePackInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -129,3 +132,22 @@ instance AT.ToJSON LanguagePackInfo where
         , "local_string_count"      A..= local_string_count_
         , "translation_url"         A..= translation_url_
         ]
+
+defaultLanguagePackInfo :: LanguagePackInfo
+defaultLanguagePackInfo =
+  LanguagePackInfo
+    { _id                     = Nothing
+    , base_language_pack_id   = Nothing
+    , name                    = Nothing
+    , native_name             = Nothing
+    , plural_code             = Nothing
+    , is_official             = Nothing
+    , is_rtl                  = Nothing
+    , is_beta                 = Nothing
+    , is_installed            = Nothing
+    , total_string_count      = Nothing
+    , translated_string_count = Nothing
+    , local_string_count      = Nothing
+    , translation_url         = Nothing
+    }
+

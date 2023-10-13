@@ -1,4 +1,7 @@
-module TD.Data.UserLink (UserLink(..)) where
+module TD.Data.UserLink
+  ( UserLink(..)    
+  , defaultUserLink 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON UserLink where
         , "url"        A..= url_
         , "expires_in" A..= expires_in_
         ]
+
+defaultUserLink :: UserLink
+defaultUserLink =
+  UserLink
+    { url        = Nothing
+    , expires_in = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.PremiumLimit (PremiumLimit(..)) where
+module TD.Data.PremiumLimit
+  ( PremiumLimit(..)    
+  , defaultPremiumLimit 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON PremiumLimit where
         , "default_value" A..= default_value_
         , "premium_value" A..= premium_value_
         ]
+
+defaultPremiumLimit :: PremiumLimit
+defaultPremiumLimit =
+  PremiumLimit
+    { _type         = Nothing
+    , default_value = Nothing
+    , premium_value = Nothing
+    }
+

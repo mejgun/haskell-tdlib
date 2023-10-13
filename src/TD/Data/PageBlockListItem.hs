@@ -1,4 +1,7 @@
-module TD.Data.PageBlockListItem (PageBlockListItem(..)) where
+module TD.Data.PageBlockListItem
+  ( PageBlockListItem(..)    
+  , defaultPageBlockListItem 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON PageBlockListItem where
         , "label"       A..= label_
         , "page_blocks" A..= page_blocks_
         ]
+
+defaultPageBlockListItem :: PageBlockListItem
+defaultPageBlockListItem =
+  PageBlockListItem
+    { label       = Nothing
+    , page_blocks = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.Seconds (Seconds(..)) where
+module TD.Data.Seconds
+  ( Seconds(..)    
+  , defaultSeconds 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,10 @@ instance AT.ToJSON Seconds where
         [ "@type"   A..= AT.String "seconds"
         , "seconds" A..= seconds_
         ]
+
+defaultSeconds :: Seconds
+defaultSeconds =
+  Seconds
+    { seconds = Nothing
+    }
+

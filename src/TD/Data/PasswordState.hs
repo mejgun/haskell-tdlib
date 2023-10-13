@@ -1,4 +1,7 @@
-module TD.Data.PasswordState (PasswordState(..)) where
+module TD.Data.PasswordState
+  ( PasswordState(..)    
+  , defaultPasswordState 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -88,3 +91,16 @@ instance AT.ToJSON PasswordState where
         , "login_email_address_pattern"      A..= login_email_address_pattern_
         , "pending_reset_date"               A..= pending_reset_date_
         ]
+
+defaultPasswordState :: PasswordState
+defaultPasswordState =
+  PasswordState
+    { has_password                     = Nothing
+    , password_hint                    = Nothing
+    , has_recovery_email_address       = Nothing
+    , has_passport_data                = Nothing
+    , recovery_email_address_code_info = Nothing
+    , login_email_address_pattern      = Nothing
+    , pending_reset_date               = Nothing
+    }
+

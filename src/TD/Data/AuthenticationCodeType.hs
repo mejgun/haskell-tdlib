@@ -1,4 +1,14 @@
-module TD.Data.AuthenticationCodeType (AuthenticationCodeType(..)) where
+module TD.Data.AuthenticationCodeType
+  ( AuthenticationCodeType(..)                   
+  , defaultAuthenticationCodeTypeTelegramMessage 
+  , defaultAuthenticationCodeTypeSms             
+  , defaultAuthenticationCodeTypeCall            
+  , defaultAuthenticationCodeTypeFlashCall       
+  , defaultAuthenticationCodeTypeMissedCall      
+  , defaultAuthenticationCodeTypeFragment        
+  , defaultAuthenticationCodeTypeFirebaseAndroid 
+  , defaultAuthenticationCodeTypeFirebaseIos     
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -249,3 +259,57 @@ instance AT.ToJSON AuthenticationCodeType where
         , "push_timeout" A..= push_timeout_
         , "length"       A..= _length_
         ]
+
+defaultAuthenticationCodeTypeTelegramMessage :: AuthenticationCodeType
+defaultAuthenticationCodeTypeTelegramMessage =
+  AuthenticationCodeTypeTelegramMessage
+    { _length = Nothing
+    }
+
+defaultAuthenticationCodeTypeSms :: AuthenticationCodeType
+defaultAuthenticationCodeTypeSms =
+  AuthenticationCodeTypeSms
+    { _length = Nothing
+    }
+
+defaultAuthenticationCodeTypeCall :: AuthenticationCodeType
+defaultAuthenticationCodeTypeCall =
+  AuthenticationCodeTypeCall
+    { _length = Nothing
+    }
+
+defaultAuthenticationCodeTypeFlashCall :: AuthenticationCodeType
+defaultAuthenticationCodeTypeFlashCall =
+  AuthenticationCodeTypeFlashCall
+    { pattern = Nothing
+    }
+
+defaultAuthenticationCodeTypeMissedCall :: AuthenticationCodeType
+defaultAuthenticationCodeTypeMissedCall =
+  AuthenticationCodeTypeMissedCall
+    { phone_number_prefix = Nothing
+    , _length             = Nothing
+    }
+
+defaultAuthenticationCodeTypeFragment :: AuthenticationCodeType
+defaultAuthenticationCodeTypeFragment =
+  AuthenticationCodeTypeFragment
+    { url     = Nothing
+    , _length = Nothing
+    }
+
+defaultAuthenticationCodeTypeFirebaseAndroid :: AuthenticationCodeType
+defaultAuthenticationCodeTypeFirebaseAndroid =
+  AuthenticationCodeTypeFirebaseAndroid
+    { nonce   = Nothing
+    , _length = Nothing
+    }
+
+defaultAuthenticationCodeTypeFirebaseIos :: AuthenticationCodeType
+defaultAuthenticationCodeTypeFirebaseIos =
+  AuthenticationCodeTypeFirebaseIos
+    { receipt      = Nothing
+    , push_timeout = Nothing
+    , _length      = Nothing
+    }
+

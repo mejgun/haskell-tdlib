@@ -1,4 +1,7 @@
-module TD.Data.Document (Document(..)) where
+module TD.Data.Document
+  ( Document(..)    
+  , defaultDocument 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -76,3 +79,14 @@ instance AT.ToJSON Document where
         , "thumbnail"     A..= thumbnail_
         , "document"      A..= document_
         ]
+
+defaultDocument :: Document
+defaultDocument =
+  Document
+    { file_name     = Nothing
+    , mime_type     = Nothing
+    , minithumbnail = Nothing
+    , thumbnail     = Nothing
+    , document      = Nothing
+    }
+

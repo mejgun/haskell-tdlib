@@ -1,4 +1,7 @@
-module TD.Data.CountryInfo (CountryInfo(..)) where
+module TD.Data.CountryInfo
+  ( CountryInfo(..)    
+  , defaultCountryInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON CountryInfo where
         , "is_hidden"     A..= is_hidden_
         , "calling_codes" A..= calling_codes_
         ]
+
+defaultCountryInfo :: CountryInfo
+defaultCountryInfo =
+  CountryInfo
+    { country_code  = Nothing
+    , name          = Nothing
+    , english_name  = Nothing
+    , is_hidden     = Nothing
+    , calling_codes = Nothing
+    }
+

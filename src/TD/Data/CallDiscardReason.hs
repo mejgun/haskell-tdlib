@@ -1,4 +1,6 @@
-module TD.Data.CallDiscardReason (CallDiscardReason(..)) where
+module TD.Data.CallDiscardReason
+  ( CallDiscardReason(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +60,4 @@ instance AT.ToJSON CallDiscardReason where
       = A.object
         [ "@type" A..= AT.String "callDiscardReasonHungUp"
         ]
+

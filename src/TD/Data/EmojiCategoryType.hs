@@ -1,4 +1,6 @@
-module TD.Data.EmojiCategoryType (EmojiCategoryType(..)) where
+module TD.Data.EmojiCategoryType
+  ( EmojiCategoryType(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -42,3 +44,4 @@ instance AT.ToJSON EmojiCategoryType where
       = A.object
         [ "@type" A..= AT.String "emojiCategoryTypeChatPhoto"
         ]
+

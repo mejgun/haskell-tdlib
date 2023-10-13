@@ -1,4 +1,7 @@
-module TD.Data.LocalFile (LocalFile(..)) where
+module TD.Data.LocalFile
+  ( LocalFile(..)    
+  , defaultLocalFile 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -94,3 +97,17 @@ instance AT.ToJSON LocalFile where
         , "downloaded_prefix_size"   A..= downloaded_prefix_size_
         , "downloaded_size"          A..= downloaded_size_
         ]
+
+defaultLocalFile :: LocalFile
+defaultLocalFile =
+  LocalFile
+    { path                     = Nothing
+    , can_be_downloaded        = Nothing
+    , can_be_deleted           = Nothing
+    , is_downloading_active    = Nothing
+    , is_downloading_completed = Nothing
+    , download_offset          = Nothing
+    , downloaded_prefix_size   = Nothing
+    , downloaded_size          = Nothing
+    }
+

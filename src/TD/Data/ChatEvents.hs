@@ -1,4 +1,7 @@
-module TD.Data.ChatEvents (ChatEvents(..)) where
+module TD.Data.ChatEvents
+  ( ChatEvents(..)    
+  , defaultChatEvents 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON ChatEvents where
         [ "@type"  A..= AT.String "chatEvents"
         , "events" A..= events_
         ]
+
+defaultChatEvents :: ChatEvents
+defaultChatEvents =
+  ChatEvents
+    { events = Nothing
+    }
+

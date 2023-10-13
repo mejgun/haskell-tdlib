@@ -1,4 +1,8 @@
-module TD.Data.UserStatus (UserStatus(..)) where
+module TD.Data.UserStatus
+  ( UserStatus(..)           
+  , defaultUserStatusOnline  
+  , defaultUserStatusOffline 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -100,3 +104,16 @@ instance AT.ToJSON UserStatus where
       = A.object
         [ "@type" A..= AT.String "userStatusLastMonth"
         ]
+
+defaultUserStatusOnline :: UserStatus
+defaultUserStatusOnline =
+  UserStatusOnline
+    { expires = Nothing
+    }
+
+defaultUserStatusOffline :: UserStatus
+defaultUserStatusOffline =
+  UserStatusOffline
+    { was_online = Nothing
+    }
+

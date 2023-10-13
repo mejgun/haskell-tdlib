@@ -1,4 +1,7 @@
-module TD.Data.PassportSuitableElement (PassportSuitableElement(..)) where
+module TD.Data.PassportSuitableElement
+  ( PassportSuitableElement(..)    
+  , defaultPassportSuitableElement 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,3 +69,13 @@ instance AT.ToJSON PassportSuitableElement where
         , "is_translation_required" A..= is_translation_required_
         , "is_native_name_required" A..= is_native_name_required_
         ]
+
+defaultPassportSuitableElement :: PassportSuitableElement
+defaultPassportSuitableElement =
+  PassportSuitableElement
+    { _type                   = Nothing
+    , is_selfie_required      = Nothing
+    , is_translation_required = Nothing
+    , is_native_name_required = Nothing
+    }
+

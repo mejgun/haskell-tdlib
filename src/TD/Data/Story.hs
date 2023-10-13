@@ -1,4 +1,7 @@
-module TD.Data.Story (Story(..)) where
+module TD.Data.Story
+  ( Story(..)    
+  , defaultStory 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -146,3 +149,24 @@ instance AT.ToJSON Story where
         , "content"                  A..= content_
         , "caption"                  A..= caption_
         ]
+
+defaultStory :: Story
+defaultStory =
+  Story
+    { _id                      = Nothing
+    , sender_chat_id           = Nothing
+    , date                     = Nothing
+    , is_being_edited          = Nothing
+    , is_edited                = Nothing
+    , is_pinned                = Nothing
+    , is_visible_only_for_self = Nothing
+    , can_be_forwarded         = Nothing
+    , can_be_replied           = Nothing
+    , can_get_viewers          = Nothing
+    , has_expired_viewers      = Nothing
+    , interaction_info         = Nothing
+    , privacy_settings         = Nothing
+    , content                  = Nothing
+    , caption                  = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.PassportElementsWithErrors (PassportElementsWithErrors(..)) where
+module TD.Data.PassportElementsWithErrors
+  ( PassportElementsWithErrors(..)    
+  , defaultPassportElementsWithErrors 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON PassportElementsWithErrors where
         , "elements" A..= elements_
         , "errors"   A..= errors_
         ]
+
+defaultPassportElementsWithErrors :: PassportElementsWithErrors
+defaultPassportElementsWithErrors =
+  PassportElementsWithErrors
+    { elements = Nothing
+    , errors   = Nothing
+    }
+

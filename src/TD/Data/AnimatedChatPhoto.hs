@@ -1,4 +1,7 @@
-module TD.Data.AnimatedChatPhoto (AnimatedChatPhoto(..)) where
+module TD.Data.AnimatedChatPhoto
+  ( AnimatedChatPhoto(..)    
+  , defaultAnimatedChatPhoto 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON AnimatedChatPhoto where
         , "file"                 A..= file_
         , "main_frame_timestamp" A..= main_frame_timestamp_
         ]
+
+defaultAnimatedChatPhoto :: AnimatedChatPhoto
+defaultAnimatedChatPhoto =
+  AnimatedChatPhoto
+    { _length              = Nothing
+    , file                 = Nothing
+    , main_frame_timestamp = Nothing
+    }
+

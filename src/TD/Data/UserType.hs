@@ -1,4 +1,7 @@
-module TD.Data.UserType (UserType(..)) where
+module TD.Data.UserType
+  ( UserType(..)       
+  , defaultUserTypeBot 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -111,3 +114,16 @@ instance AT.ToJSON UserType where
       = A.object
         [ "@type" A..= AT.String "userTypeUnknown"
         ]
+
+defaultUserTypeBot :: UserType
+defaultUserTypeBot =
+  UserTypeBot
+    { can_be_edited                   = Nothing
+    , can_join_groups                 = Nothing
+    , can_read_all_group_messages     = Nothing
+    , is_inline                       = Nothing
+    , inline_query_placeholder        = Nothing
+    , need_location                   = Nothing
+    , can_be_added_to_attachment_menu = Nothing
+    }
+

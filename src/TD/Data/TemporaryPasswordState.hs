@@ -1,4 +1,7 @@
-module TD.Data.TemporaryPasswordState (TemporaryPasswordState(..)) where
+module TD.Data.TemporaryPasswordState
+  ( TemporaryPasswordState(..)    
+  , defaultTemporaryPasswordState 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON TemporaryPasswordState where
         , "has_password" A..= has_password_
         , "valid_for"    A..= valid_for_
         ]
+
+defaultTemporaryPasswordState :: TemporaryPasswordState
+defaultTemporaryPasswordState =
+  TemporaryPasswordState
+    { has_password = Nothing
+    , valid_for    = Nothing
+    }
+

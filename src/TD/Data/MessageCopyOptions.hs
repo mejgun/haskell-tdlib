@@ -1,4 +1,7 @@
-module TD.Data.MessageCopyOptions (MessageCopyOptions(..)) where
+module TD.Data.MessageCopyOptions
+  ( MessageCopyOptions(..)    
+  , defaultMessageCopyOptions 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON MessageCopyOptions where
         , "replace_caption" A..= replace_caption_
         , "new_caption"     A..= new_caption_
         ]
+
+defaultMessageCopyOptions :: MessageCopyOptions
+defaultMessageCopyOptions =
+  MessageCopyOptions
+    { send_copy       = Nothing
+    , replace_caption = Nothing
+    , new_caption     = Nothing
+    }
+

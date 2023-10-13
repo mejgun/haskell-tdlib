@@ -1,4 +1,7 @@
-module TD.Data.ThemeParameters (ThemeParameters(..)) where
+module TD.Data.ThemeParameters
+  ( ThemeParameters(..)    
+  , defaultThemeParameters 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -86,3 +89,16 @@ instance AT.ToJSON ThemeParameters where
         , "button_color"               A..= button_color_
         , "button_text_color"          A..= button_text_color_
         ]
+
+defaultThemeParameters :: ThemeParameters
+defaultThemeParameters =
+  ThemeParameters
+    { background_color           = Nothing
+    , secondary_background_color = Nothing
+    , text_color                 = Nothing
+    , hint_color                 = Nothing
+    , link_color                 = Nothing
+    , button_color               = Nothing
+    , button_text_color          = Nothing
+    }
+

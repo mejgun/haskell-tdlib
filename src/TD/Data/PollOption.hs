@@ -1,4 +1,7 @@
-module TD.Data.PollOption (PollOption(..)) where
+module TD.Data.PollOption
+  ( PollOption(..)    
+  , defaultPollOption 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON PollOption where
         , "is_chosen"       A..= is_chosen_
         , "is_being_chosen" A..= is_being_chosen_
         ]
+
+defaultPollOption :: PollOption
+defaultPollOption =
+  PollOption
+    { text            = Nothing
+    , voter_count     = Nothing
+    , vote_percentage = Nothing
+    , is_chosen       = Nothing
+    , is_being_chosen = Nothing
+    }
+

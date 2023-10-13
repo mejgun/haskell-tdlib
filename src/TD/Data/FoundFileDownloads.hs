@@ -1,4 +1,7 @@
-module TD.Data.FoundFileDownloads (FoundFileDownloads(..)) where
+module TD.Data.FoundFileDownloads
+  ( FoundFileDownloads(..)    
+  , defaultFoundFileDownloads 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,3 +64,12 @@ instance AT.ToJSON FoundFileDownloads where
         , "files"        A..= files_
         , "next_offset"  A..= next_offset_
         ]
+
+defaultFoundFileDownloads :: FoundFileDownloads
+defaultFoundFileDownloads =
+  FoundFileDownloads
+    { total_counts = Nothing
+    , files        = Nothing
+    , next_offset  = Nothing
+    }
+

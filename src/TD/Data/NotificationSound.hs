@@ -1,4 +1,7 @@
-module TD.Data.NotificationSound (NotificationSound(..)) where
+module TD.Data.NotificationSound
+  ( NotificationSound(..)    
+  , defaultNotificationSound 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,3 +84,15 @@ instance AT.ToJSON NotificationSound where
         , "data"     A..= _data_
         , "sound"    A..= sound_
         ]
+
+defaultNotificationSound :: NotificationSound
+defaultNotificationSound =
+  NotificationSound
+    { _id      = Nothing
+    , duration = Nothing
+    , date     = Nothing
+    , title    = Nothing
+    , _data    = Nothing
+    , sound    = Nothing
+    }
+

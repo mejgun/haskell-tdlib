@@ -1,4 +1,7 @@
-module TD.Data.ScopeNotificationSettings (ScopeNotificationSettings(..)) where
+module TD.Data.ScopeNotificationSettings
+  ( ScopeNotificationSettings(..)    
+  , defaultScopeNotificationSettings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -100,3 +103,18 @@ instance AT.ToJSON ScopeNotificationSettings where
         , "disable_pinned_message_notifications" A..= disable_pinned_message_notifications_
         , "disable_mention_notifications"        A..= disable_mention_notifications_
         ]
+
+defaultScopeNotificationSettings :: ScopeNotificationSettings
+defaultScopeNotificationSettings =
+  ScopeNotificationSettings
+    { mute_for                             = Nothing
+    , sound_id                             = Nothing
+    , show_preview                         = Nothing
+    , use_default_mute_stories             = Nothing
+    , mute_stories                         = Nothing
+    , story_sound_id                       = Nothing
+    , show_story_sender                    = Nothing
+    , disable_pinned_message_notifications = Nothing
+    , disable_mention_notifications        = Nothing
+    }
+

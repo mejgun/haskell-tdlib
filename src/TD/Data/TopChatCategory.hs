@@ -1,4 +1,6 @@
-module TD.Data.TopChatCategory (TopChatCategory(..)) where
+module TD.Data.TopChatCategory
+  ( TopChatCategory(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +76,4 @@ instance AT.ToJSON TopChatCategory where
       = A.object
         [ "@type" A..= AT.String "topChatCategoryForwardChats"
         ]
+

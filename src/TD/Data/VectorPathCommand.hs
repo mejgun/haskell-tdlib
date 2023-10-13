@@ -1,4 +1,8 @@
-module TD.Data.VectorPathCommand (VectorPathCommand(..)) where
+module TD.Data.VectorPathCommand
+  ( VectorPathCommand(..)                    
+  , defaultVectorPathCommandLine             
+  , defaultVectorPathCommandCubicBezierCurve 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -83,3 +87,18 @@ instance AT.ToJSON VectorPathCommand where
         , "end_control_point"   A..= end_control_point_
         , "end_point"           A..= end_point_
         ]
+
+defaultVectorPathCommandLine :: VectorPathCommand
+defaultVectorPathCommandLine =
+  VectorPathCommandLine
+    { end_point = Nothing
+    }
+
+defaultVectorPathCommandCubicBezierCurve :: VectorPathCommand
+defaultVectorPathCommandCubicBezierCurve =
+  VectorPathCommandCubicBezierCurve
+    { start_control_point = Nothing
+    , end_control_point   = Nothing
+    , end_point           = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.MaskPosition (MaskPosition(..)) where
+module TD.Data.MaskPosition
+  ( MaskPosition(..)    
+  , defaultMaskPosition 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,3 +69,13 @@ instance AT.ToJSON MaskPosition where
         , "y_shift" A..= y_shift_
         , "scale"   A..= scale_
         ]
+
+defaultMaskPosition :: MaskPosition
+defaultMaskPosition =
+  MaskPosition
+    { point   = Nothing
+    , x_shift = Nothing
+    , y_shift = Nothing
+    , scale   = Nothing
+    }
+

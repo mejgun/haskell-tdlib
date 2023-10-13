@@ -1,4 +1,7 @@
-module TD.Data.PaymentForm (PaymentForm(..)) where
+module TD.Data.PaymentForm
+  ( PaymentForm(..)    
+  , defaultPaymentForm 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -136,3 +139,22 @@ instance AT.ToJSON PaymentForm where
         , "product_description"        A..= product_description_
         , "product_photo"              A..= product_photo_
         ]
+
+defaultPaymentForm :: PaymentForm
+defaultPaymentForm =
+  PaymentForm
+    { _id                        = Nothing
+    , invoice                    = Nothing
+    , seller_bot_user_id         = Nothing
+    , payment_provider_user_id   = Nothing
+    , payment_provider           = Nothing
+    , additional_payment_options = Nothing
+    , saved_order_info           = Nothing
+    , saved_credentials          = Nothing
+    , can_save_credentials       = Nothing
+    , need_password              = Nothing
+    , product_title              = Nothing
+    , product_description        = Nothing
+    , product_photo              = Nothing
+    }
+

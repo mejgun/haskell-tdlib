@@ -1,4 +1,8 @@
-module TD.Data.InlineQueryResultsButtonType (InlineQueryResultsButtonType(..)) where
+module TD.Data.InlineQueryResultsButtonType
+  ( InlineQueryResultsButtonType(..)            
+  , defaultInlineQueryResultsButtonTypeStartBot 
+  , defaultInlineQueryResultsButtonTypeWebApp   
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -69,3 +73,16 @@ instance AT.ToJSON InlineQueryResultsButtonType where
         [ "@type" A..= AT.String "inlineQueryResultsButtonTypeWebApp"
         , "url"   A..= url_
         ]
+
+defaultInlineQueryResultsButtonTypeStartBot :: InlineQueryResultsButtonType
+defaultInlineQueryResultsButtonTypeStartBot =
+  InlineQueryResultsButtonTypeStartBot
+    { parameter = Nothing
+    }
+
+defaultInlineQueryResultsButtonTypeWebApp :: InlineQueryResultsButtonType
+defaultInlineQueryResultsButtonTypeWebApp =
+  InlineQueryResultsButtonTypeWebApp
+    { url = Nothing
+    }
+

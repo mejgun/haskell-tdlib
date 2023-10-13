@@ -1,4 +1,7 @@
-module TD.Data.VideoChat (VideoChat(..)) where
+module TD.Data.VideoChat
+  ( VideoChat(..)    
+  , defaultVideoChat 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON VideoChat where
         , "has_participants"       A..= has_participants_
         , "default_participant_id" A..= default_participant_id_
         ]
+
+defaultVideoChat :: VideoChat
+defaultVideoChat =
+  VideoChat
+    { group_call_id          = Nothing
+    , has_participants       = Nothing
+    , default_participant_id = Nothing
+    }
+

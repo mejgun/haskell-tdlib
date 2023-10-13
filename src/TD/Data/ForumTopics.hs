@@ -1,4 +1,7 @@
-module TD.Data.ForumTopics (ForumTopics(..)) where
+module TD.Data.ForumTopics
+  ( ForumTopics(..)    
+  , defaultForumTopics 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON ForumTopics where
         , "next_offset_message_id"        A..= next_offset_message_id_
         , "next_offset_message_thread_id" A..= next_offset_message_thread_id_
         ]
+
+defaultForumTopics :: ForumTopics
+defaultForumTopics =
+  ForumTopics
+    { total_count                   = Nothing
+    , topics                        = Nothing
+    , next_offset_date              = Nothing
+    , next_offset_message_id        = Nothing
+    , next_offset_message_thread_id = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.SavedCredentials (SavedCredentials(..)) where
+module TD.Data.SavedCredentials
+  ( SavedCredentials(..)    
+  , defaultSavedCredentials 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON SavedCredentials where
         , "id"    A..= _id_
         , "title" A..= title_
         ]
+
+defaultSavedCredentials :: SavedCredentials
+defaultSavedCredentials =
+  SavedCredentials
+    { _id   = Nothing
+    , title = Nothing
+    }
+

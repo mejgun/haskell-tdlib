@@ -1,4 +1,7 @@
-module TD.Data.SupergroupFullInfo (SupergroupFullInfo(..)) where
+module TD.Data.SupergroupFullInfo
+  ( SupergroupFullInfo(..)    
+  , defaultSupergroupFullInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -210,3 +213,33 @@ instance AT.ToJSON SupergroupFullInfo where
         , "upgraded_from_basic_group_id"     A..= upgraded_from_basic_group_id_
         , "upgraded_from_max_message_id"     A..= upgraded_from_max_message_id_
         ]
+
+defaultSupergroupFullInfo :: SupergroupFullInfo
+defaultSupergroupFullInfo =
+  SupergroupFullInfo
+    { photo                            = Nothing
+    , description                      = Nothing
+    , member_count                     = Nothing
+    , administrator_count              = Nothing
+    , restricted_count                 = Nothing
+    , banned_count                     = Nothing
+    , linked_chat_id                   = Nothing
+    , slow_mode_delay                  = Nothing
+    , slow_mode_delay_expires_in       = Nothing
+    , can_get_members                  = Nothing
+    , has_hidden_members               = Nothing
+    , can_hide_members                 = Nothing
+    , can_set_sticker_set              = Nothing
+    , can_set_location                 = Nothing
+    , can_get_statistics               = Nothing
+    , can_toggle_aggressive_anti_spam  = Nothing
+    , is_all_history_available         = Nothing
+    , has_aggressive_anti_spam_enabled = Nothing
+    , sticker_set_id                   = Nothing
+    , location                         = Nothing
+    , invite_link                      = Nothing
+    , bot_commands                     = Nothing
+    , upgraded_from_basic_group_id     = Nothing
+    , upgraded_from_max_message_id     = Nothing
+    }
+

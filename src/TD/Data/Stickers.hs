@@ -1,4 +1,7 @@
-module TD.Data.Stickers (Stickers(..)) where
+module TD.Data.Stickers
+  ( Stickers(..)    
+  , defaultStickers 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Stickers where
         [ "@type"    A..= AT.String "stickers"
         , "stickers" A..= stickers_
         ]
+
+defaultStickers :: Stickers
+defaultStickers =
+  Stickers
+    { stickers = Nothing
+    }
+

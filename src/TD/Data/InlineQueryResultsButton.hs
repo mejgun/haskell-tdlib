@@ -1,4 +1,7 @@
-module TD.Data.InlineQueryResultsButton (InlineQueryResultsButton(..)) where
+module TD.Data.InlineQueryResultsButton
+  ( InlineQueryResultsButton(..)    
+  , defaultInlineQueryResultsButton 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON InlineQueryResultsButton where
         , "text"  A..= text_
         , "type"  A..= _type_
         ]
+
+defaultInlineQueryResultsButton :: InlineQueryResultsButton
+defaultInlineQueryResultsButton =
+  InlineQueryResultsButton
+    { text  = Nothing
+    , _type = Nothing
+    }
+

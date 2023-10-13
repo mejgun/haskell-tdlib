@@ -1,4 +1,7 @@
-module TD.Data.UserPrivacySettingRules (UserPrivacySettingRules(..)) where
+module TD.Data.UserPrivacySettingRules
+  ( UserPrivacySettingRules(..)    
+  , defaultUserPrivacySettingRules 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON UserPrivacySettingRules where
         [ "@type" A..= AT.String "userPrivacySettingRules"
         , "rules" A..= rules_
         ]
+
+defaultUserPrivacySettingRules :: UserPrivacySettingRules
+defaultUserPrivacySettingRules =
+  UserPrivacySettingRules
+    { rules = Nothing
+    }
+

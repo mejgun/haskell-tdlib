@@ -1,4 +1,7 @@
-module TD.Data.Count (Count(..)) where
+module TD.Data.Count
+  ( Count(..)    
+  , defaultCount 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,10 @@ instance AT.ToJSON Count where
         [ "@type" A..= AT.String "count"
         , "count" A..= count_
         ]
+
+defaultCount :: Count
+defaultCount =
+  Count
+    { count = Nothing
+    }
+

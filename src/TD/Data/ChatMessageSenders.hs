@@ -1,4 +1,7 @@
-module TD.Data.ChatMessageSenders (ChatMessageSenders(..)) where
+module TD.Data.ChatMessageSenders
+  ( ChatMessageSenders(..)    
+  , defaultChatMessageSenders 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON ChatMessageSenders where
         [ "@type"   A..= AT.String "chatMessageSenders"
         , "senders" A..= senders_
         ]
+
+defaultChatMessageSenders :: ChatMessageSenders
+defaultChatMessageSenders =
+  ChatMessageSenders
+    { senders = Nothing
+    }
+

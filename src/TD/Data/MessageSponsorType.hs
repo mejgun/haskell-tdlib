@@ -1,4 +1,10 @@
-module TD.Data.MessageSponsorType (MessageSponsorType(..)) where
+module TD.Data.MessageSponsorType
+  ( MessageSponsorType(..)                  
+  , defaultMessageSponsorTypeBot            
+  , defaultMessageSponsorTypePublicChannel  
+  , defaultMessageSponsorTypePrivateChannel 
+  , defaultMessageSponsorTypeWebsite        
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -146,3 +152,32 @@ instance AT.ToJSON MessageSponsorType where
         , "url"   A..= url_
         , "name"  A..= name_
         ]
+
+defaultMessageSponsorTypeBot :: MessageSponsorType
+defaultMessageSponsorTypeBot =
+  MessageSponsorTypeBot
+    { bot_user_id = Nothing
+    , link        = Nothing
+    }
+
+defaultMessageSponsorTypePublicChannel :: MessageSponsorType
+defaultMessageSponsorTypePublicChannel =
+  MessageSponsorTypePublicChannel
+    { chat_id = Nothing
+    , link    = Nothing
+    }
+
+defaultMessageSponsorTypePrivateChannel :: MessageSponsorType
+defaultMessageSponsorTypePrivateChannel =
+  MessageSponsorTypePrivateChannel
+    { title       = Nothing
+    , invite_link = Nothing
+    }
+
+defaultMessageSponsorTypeWebsite :: MessageSponsorType
+defaultMessageSponsorTypeWebsite =
+  MessageSponsorTypeWebsite
+    { url  = Nothing
+    , name = Nothing
+    }
+

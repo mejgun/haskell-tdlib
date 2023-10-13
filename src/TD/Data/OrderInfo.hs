@@ -1,4 +1,7 @@
-module TD.Data.OrderInfo (OrderInfo(..)) where
+module TD.Data.OrderInfo
+  ( OrderInfo(..)    
+  , defaultOrderInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -67,3 +70,13 @@ instance AT.ToJSON OrderInfo where
         , "email_address"    A..= email_address_
         , "shipping_address" A..= shipping_address_
         ]
+
+defaultOrderInfo :: OrderInfo
+defaultOrderInfo =
+  OrderInfo
+    { name             = Nothing
+    , phone_number     = Nothing
+    , email_address    = Nothing
+    , shipping_address = Nothing
+    }
+

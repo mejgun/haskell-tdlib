@@ -1,4 +1,7 @@
-module TD.Data.Supergroup (Supergroup(..)) where
+module TD.Data.Supergroup
+  ( Supergroup(..)    
+  , defaultSupergroup 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -166,3 +169,27 @@ instance AT.ToJSON Supergroup where
         , "is_scam"               A..= is_scam_
         , "is_fake"               A..= is_fake_
         ]
+
+defaultSupergroup :: Supergroup
+defaultSupergroup =
+  Supergroup
+    { _id                   = Nothing
+    , usernames             = Nothing
+    , date                  = Nothing
+    , status                = Nothing
+    , member_count          = Nothing
+    , has_linked_chat       = Nothing
+    , has_location          = Nothing
+    , sign_messages         = Nothing
+    , join_to_send_messages = Nothing
+    , join_by_request       = Nothing
+    , is_slow_mode_enabled  = Nothing
+    , is_channel            = Nothing
+    , is_broadcast_group    = Nothing
+    , is_forum              = Nothing
+    , is_verified           = Nothing
+    , restriction_reason    = Nothing
+    , is_scam               = Nothing
+    , is_fake               = Nothing
+    }
+

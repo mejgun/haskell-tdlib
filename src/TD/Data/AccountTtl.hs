@@ -1,4 +1,7 @@
-module TD.Data.AccountTtl (AccountTtl(..)) where
+module TD.Data.AccountTtl
+  ( AccountTtl(..)    
+  , defaultAccountTtl 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,10 @@ instance AT.ToJSON AccountTtl where
         [ "@type" A..= AT.String "accountTtl"
         , "days"  A..= days_
         ]
+
+defaultAccountTtl :: AccountTtl
+defaultAccountTtl =
+  AccountTtl
+    { days = Nothing
+    }
+

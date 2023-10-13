@@ -1,4 +1,7 @@
-module TD.Data.RtmpUrl (RtmpUrl(..)) where
+module TD.Data.RtmpUrl
+  ( RtmpUrl(..)    
+  , defaultRtmpUrl 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON RtmpUrl where
         , "url"        A..= url_
         , "stream_key" A..= stream_key_
         ]
+
+defaultRtmpUrl :: RtmpUrl
+defaultRtmpUrl =
+  RtmpUrl
+    { url        = Nothing
+    , stream_key = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.TrendingStickerSets (TrendingStickerSets(..)) where
+module TD.Data.TrendingStickerSets
+  ( TrendingStickerSets(..)    
+  , defaultTrendingStickerSets 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON TrendingStickerSets where
         , "sets"        A..= sets_
         , "is_premium"  A..= is_premium_
         ]
+
+defaultTrendingStickerSets :: TrendingStickerSets
+defaultTrendingStickerSets =
+  TrendingStickerSets
+    { total_count = Nothing
+    , sets        = Nothing
+    , is_premium  = Nothing
+    }
+

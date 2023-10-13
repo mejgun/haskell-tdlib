@@ -1,4 +1,7 @@
-module TD.Data.ChatMessageSender (ChatMessageSender(..)) where
+module TD.Data.ChatMessageSender
+  ( ChatMessageSender(..)    
+  , defaultChatMessageSender 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON ChatMessageSender where
         , "sender"        A..= sender_
         , "needs_premium" A..= needs_premium_
         ]
+
+defaultChatMessageSender :: ChatMessageSender
+defaultChatMessageSender =
+  ChatMessageSender
+    { sender        = Nothing
+    , needs_premium = Nothing
+    }
+

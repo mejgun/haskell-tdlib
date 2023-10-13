@@ -1,4 +1,7 @@
-module TD.Data.BotInfo (BotInfo(..)) where
+module TD.Data.BotInfo
+  ( BotInfo(..)    
+  , defaultBotInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -128,3 +131,21 @@ instance AT.ToJSON BotInfo where
         , "edit_description_media_link"          A..= edit_description_media_link_
         , "edit_settings_link"                   A..= edit_settings_link_
         ]
+
+defaultBotInfo :: BotInfo
+defaultBotInfo =
+  BotInfo
+    { short_description                    = Nothing
+    , description                          = Nothing
+    , photo                                = Nothing
+    , animation                            = Nothing
+    , menu_button                          = Nothing
+    , commands                             = Nothing
+    , default_group_administrator_rights   = Nothing
+    , default_channel_administrator_rights = Nothing
+    , edit_commands_link                   = Nothing
+    , edit_description_link                = Nothing
+    , edit_description_media_link          = Nothing
+    , edit_settings_link                   = Nothing
+    }
+

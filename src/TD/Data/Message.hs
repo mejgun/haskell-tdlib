@@ -1,4 +1,7 @@
-module TD.Data.Message (Message(..)) where
+module TD.Data.Message
+  ( Message(..)    
+  , defaultMessage 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -313,3 +316,47 @@ instance AT.ToJSON Message where
         , "content"                       A..= content_
         , "reply_markup"                  A..= reply_markup_
         ]
+
+defaultMessage :: Message
+defaultMessage =
+  Message
+    { _id                           = Nothing
+    , sender_id                     = Nothing
+    , chat_id                       = Nothing
+    , sending_state                 = Nothing
+    , scheduling_state              = Nothing
+    , is_outgoing                   = Nothing
+    , is_pinned                     = Nothing
+    , can_be_edited                 = Nothing
+    , can_be_forwarded              = Nothing
+    , can_be_saved                  = Nothing
+    , can_be_deleted_only_for_self  = Nothing
+    , can_be_deleted_for_all_users  = Nothing
+    , can_get_added_reactions       = Nothing
+    , can_get_statistics            = Nothing
+    , can_get_message_thread        = Nothing
+    , can_get_viewers               = Nothing
+    , can_get_media_timestamp_links = Nothing
+    , can_report_reactions          = Nothing
+    , has_timestamped_media         = Nothing
+    , is_channel_post               = Nothing
+    , is_topic_message              = Nothing
+    , contains_unread_mention       = Nothing
+    , date                          = Nothing
+    , edit_date                     = Nothing
+    , forward_info                  = Nothing
+    , interaction_info              = Nothing
+    , unread_reactions              = Nothing
+    , reply_to                      = Nothing
+    , message_thread_id             = Nothing
+    , self_destruct_time            = Nothing
+    , self_destruct_in              = Nothing
+    , auto_delete_in                = Nothing
+    , via_bot_user_id               = Nothing
+    , author_signature              = Nothing
+    , media_album_id                = Nothing
+    , restriction_reason            = Nothing
+    , content                       = Nothing
+    , reply_markup                  = Nothing
+    }
+

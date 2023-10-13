@@ -1,4 +1,7 @@
-module TD.Data.AutoDownloadSettingsPresets (AutoDownloadSettingsPresets(..)) where
+module TD.Data.AutoDownloadSettingsPresets
+  ( AutoDownloadSettingsPresets(..)    
+  , defaultAutoDownloadSettingsPresets 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON AutoDownloadSettingsPresets where
         , "medium" A..= medium_
         , "high"   A..= high_
         ]
+
+defaultAutoDownloadSettingsPresets :: AutoDownloadSettingsPresets
+defaultAutoDownloadSettingsPresets =
+  AutoDownloadSettingsPresets
+    { low    = Nothing
+    , medium = Nothing
+    , high   = Nothing
+    }
+

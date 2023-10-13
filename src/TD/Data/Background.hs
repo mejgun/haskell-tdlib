@@ -1,4 +1,7 @@
-module TD.Data.Background (Background(..)) where
+module TD.Data.Background
+  ( Background(..)    
+  , defaultBackground 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,3 +85,15 @@ instance AT.ToJSON Background where
         , "document"   A..= document_
         , "type"       A..= _type_
         ]
+
+defaultBackground :: Background
+defaultBackground =
+  Background
+    { _id        = Nothing
+    , is_default = Nothing
+    , is_dark    = Nothing
+    , name       = Nothing
+    , document   = Nothing
+    , _type      = Nothing
+    }
+

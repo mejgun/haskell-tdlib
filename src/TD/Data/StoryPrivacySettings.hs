@@ -1,4 +1,8 @@
-module TD.Data.StoryPrivacySettings (StoryPrivacySettings(..)) where
+module TD.Data.StoryPrivacySettings
+  ( StoryPrivacySettings(..)                    
+  , defaultStoryPrivacySettingsContacts         
+  , defaultStoryPrivacySettingsSelectedContacts 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -84,3 +88,16 @@ instance AT.ToJSON StoryPrivacySettings where
         [ "@type"    A..= AT.String "storyPrivacySettingsSelectedContacts"
         , "user_ids" A..= user_ids_
         ]
+
+defaultStoryPrivacySettingsContacts :: StoryPrivacySettings
+defaultStoryPrivacySettingsContacts =
+  StoryPrivacySettingsContacts
+    { except_user_ids = Nothing
+    }
+
+defaultStoryPrivacySettingsSelectedContacts :: StoryPrivacySettings
+defaultStoryPrivacySettingsSelectedContacts =
+  StoryPrivacySettingsSelectedContacts
+    { user_ids = Nothing
+    }
+

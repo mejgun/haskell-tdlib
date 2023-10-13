@@ -1,4 +1,7 @@
-module TD.Data.MessageStatistics (MessageStatistics(..)) where
+module TD.Data.MessageStatistics
+  ( MessageStatistics(..)    
+  , defaultMessageStatistics 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON MessageStatistics where
         [ "@type"                     A..= AT.String "messageStatistics"
         , "message_interaction_graph" A..= message_interaction_graph_
         ]
+
+defaultMessageStatistics :: MessageStatistics
+defaultMessageStatistics =
+  MessageStatistics
+    { message_interaction_graph = Nothing
+    }
+

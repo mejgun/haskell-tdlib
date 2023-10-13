@@ -1,4 +1,7 @@
-module TD.Data.BotCommands (BotCommands(..)) where
+module TD.Data.BotCommands
+  ( BotCommands(..)    
+  , defaultBotCommands 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON BotCommands where
         , "bot_user_id" A..= bot_user_id_
         , "commands"    A..= commands_
         ]
+
+defaultBotCommands :: BotCommands
+defaultBotCommands =
+  BotCommands
+    { bot_user_id = Nothing
+    , commands    = Nothing
+    }
+

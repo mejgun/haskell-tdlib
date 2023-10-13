@@ -1,4 +1,7 @@
-module TD.Data.PhotoSize (PhotoSize(..)) where
+module TD.Data.PhotoSize
+  ( PhotoSize(..)    
+  , defaultPhotoSize 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON PhotoSize where
         , "height"            A..= height_
         , "progressive_sizes" A..= progressive_sizes_
         ]
+
+defaultPhotoSize :: PhotoSize
+defaultPhotoSize =
+  PhotoSize
+    { _type             = Nothing
+    , photo             = Nothing
+    , width             = Nothing
+    , height            = Nothing
+    , progressive_sizes = Nothing
+    }
+

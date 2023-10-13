@@ -1,4 +1,34 @@
-module TD.Data.PageBlock (PageBlock(..)) where
+module TD.Data.PageBlock
+  ( PageBlock(..)                   
+  , defaultPageBlockTitle           
+  , defaultPageBlockSubtitle        
+  , defaultPageBlockAuthorDate      
+  , defaultPageBlockHeader          
+  , defaultPageBlockSubheader       
+  , defaultPageBlockKicker          
+  , defaultPageBlockParagraph       
+  , defaultPageBlockPreformatted    
+  , defaultPageBlockFooter          
+  , defaultPageBlockAnchor          
+  , defaultPageBlockList            
+  , defaultPageBlockBlockQuote      
+  , defaultPageBlockPullQuote       
+  , defaultPageBlockAnimation       
+  , defaultPageBlockAudio           
+  , defaultPageBlockPhoto           
+  , defaultPageBlockVideo           
+  , defaultPageBlockVoiceNote       
+  , defaultPageBlockCover           
+  , defaultPageBlockEmbedded        
+  , defaultPageBlockEmbeddedPost    
+  , defaultPageBlockCollage         
+  , defaultPageBlockSlideshow       
+  , defaultPageBlockChatLink        
+  , defaultPageBlockTable           
+  , defaultPageBlockDetails         
+  , defaultPageBlockRelatedArticles 
+  , defaultPageBlockMap             
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -986,3 +1016,211 @@ instance AT.ToJSON PageBlock where
         , "height"   A..= height_
         , "caption"  A..= caption_
         ]
+
+defaultPageBlockTitle :: PageBlock
+defaultPageBlockTitle =
+  PageBlockTitle
+    { title = Nothing
+    }
+
+defaultPageBlockSubtitle :: PageBlock
+defaultPageBlockSubtitle =
+  PageBlockSubtitle
+    { subtitle = Nothing
+    }
+
+defaultPageBlockAuthorDate :: PageBlock
+defaultPageBlockAuthorDate =
+  PageBlockAuthorDate
+    { author       = Nothing
+    , publish_date = Nothing
+    }
+
+defaultPageBlockHeader :: PageBlock
+defaultPageBlockHeader =
+  PageBlockHeader
+    { header = Nothing
+    }
+
+defaultPageBlockSubheader :: PageBlock
+defaultPageBlockSubheader =
+  PageBlockSubheader
+    { subheader = Nothing
+    }
+
+defaultPageBlockKicker :: PageBlock
+defaultPageBlockKicker =
+  PageBlockKicker
+    { kicker = Nothing
+    }
+
+defaultPageBlockParagraph :: PageBlock
+defaultPageBlockParagraph =
+  PageBlockParagraph
+    { text = Nothing
+    }
+
+defaultPageBlockPreformatted :: PageBlock
+defaultPageBlockPreformatted =
+  PageBlockPreformatted
+    { text     = Nothing
+    , language = Nothing
+    }
+
+defaultPageBlockFooter :: PageBlock
+defaultPageBlockFooter =
+  PageBlockFooter
+    { footer = Nothing
+    }
+
+defaultPageBlockAnchor :: PageBlock
+defaultPageBlockAnchor =
+  PageBlockAnchor
+    { name = Nothing
+    }
+
+defaultPageBlockList :: PageBlock
+defaultPageBlockList =
+  PageBlockList
+    { items = Nothing
+    }
+
+defaultPageBlockBlockQuote :: PageBlock
+defaultPageBlockBlockQuote =
+  PageBlockBlockQuote
+    { text   = Nothing
+    , credit = Nothing
+    }
+
+defaultPageBlockPullQuote :: PageBlock
+defaultPageBlockPullQuote =
+  PageBlockPullQuote
+    { text   = Nothing
+    , credit = Nothing
+    }
+
+defaultPageBlockAnimation :: PageBlock
+defaultPageBlockAnimation =
+  PageBlockAnimation
+    { animation     = Nothing
+    , caption       = Nothing
+    , need_autoplay = Nothing
+    }
+
+defaultPageBlockAudio :: PageBlock
+defaultPageBlockAudio =
+  PageBlockAudio
+    { audio   = Nothing
+    , caption = Nothing
+    }
+
+defaultPageBlockPhoto :: PageBlock
+defaultPageBlockPhoto =
+  PageBlockPhoto
+    { photo   = Nothing
+    , caption = Nothing
+    , url     = Nothing
+    }
+
+defaultPageBlockVideo :: PageBlock
+defaultPageBlockVideo =
+  PageBlockVideo
+    { video         = Nothing
+    , caption       = Nothing
+    , need_autoplay = Nothing
+    , is_looped     = Nothing
+    }
+
+defaultPageBlockVoiceNote :: PageBlock
+defaultPageBlockVoiceNote =
+  PageBlockVoiceNote
+    { voice_note = Nothing
+    , caption    = Nothing
+    }
+
+defaultPageBlockCover :: PageBlock
+defaultPageBlockCover =
+  PageBlockCover
+    { cover = Nothing
+    }
+
+defaultPageBlockEmbedded :: PageBlock
+defaultPageBlockEmbedded =
+  PageBlockEmbedded
+    { url             = Nothing
+    , html            = Nothing
+    , poster_photo    = Nothing
+    , width           = Nothing
+    , height          = Nothing
+    , caption         = Nothing
+    , is_full_width   = Nothing
+    , allow_scrolling = Nothing
+    }
+
+defaultPageBlockEmbeddedPost :: PageBlock
+defaultPageBlockEmbeddedPost =
+  PageBlockEmbeddedPost
+    { url          = Nothing
+    , _author      = Nothing
+    , author_photo = Nothing
+    , date         = Nothing
+    , page_blocks  = Nothing
+    , caption      = Nothing
+    }
+
+defaultPageBlockCollage :: PageBlock
+defaultPageBlockCollage =
+  PageBlockCollage
+    { page_blocks = Nothing
+    , caption     = Nothing
+    }
+
+defaultPageBlockSlideshow :: PageBlock
+defaultPageBlockSlideshow =
+  PageBlockSlideshow
+    { page_blocks = Nothing
+    , caption     = Nothing
+    }
+
+defaultPageBlockChatLink :: PageBlock
+defaultPageBlockChatLink =
+  PageBlockChatLink
+    { _title   = Nothing
+    , _photo   = Nothing
+    , username = Nothing
+    }
+
+defaultPageBlockTable :: PageBlock
+defaultPageBlockTable =
+  PageBlockTable
+    { _caption    = Nothing
+    , cells       = Nothing
+    , is_bordered = Nothing
+    , is_striped  = Nothing
+    }
+
+defaultPageBlockDetails :: PageBlock
+defaultPageBlockDetails =
+  PageBlockDetails
+    { header      = Nothing
+    , page_blocks = Nothing
+    , is_open     = Nothing
+    }
+
+defaultPageBlockRelatedArticles :: PageBlock
+defaultPageBlockRelatedArticles =
+  PageBlockRelatedArticles
+    { header   = Nothing
+    , articles = Nothing
+    }
+
+defaultPageBlockMap :: PageBlock
+defaultPageBlockMap =
+  PageBlockMap
+    { location = Nothing
+    , zoom     = Nothing
+    , width    = Nothing
+    , height   = Nothing
+    , caption  = Nothing
+    }
+

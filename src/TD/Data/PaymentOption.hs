@@ -1,4 +1,7 @@
-module TD.Data.PaymentOption (PaymentOption(..)) where
+module TD.Data.PaymentOption
+  ( PaymentOption(..)    
+  , defaultPaymentOption 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON PaymentOption where
         , "title" A..= title_
         , "url"   A..= url_
         ]
+
+defaultPaymentOption :: PaymentOption
+defaultPaymentOption =
+  PaymentOption
+    { title = Nothing
+    , url   = Nothing
+    }
+

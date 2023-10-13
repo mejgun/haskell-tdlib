@@ -1,4 +1,6 @@
-module TD.Data.Ok (Ok(..)) where
+module TD.Data.Ok
+  ( Ok(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -26,3 +28,4 @@ instance AT.ToJSON Ok where
       = A.object
         [ "@type" A..= AT.String "ok"
         ]
+

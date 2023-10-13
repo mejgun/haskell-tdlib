@@ -1,4 +1,6 @@
-module TD.Data.PremiumFeature (PremiumFeature(..)) where
+module TD.Data.PremiumFeature
+  ( PremiumFeature(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -138,3 +140,4 @@ instance AT.ToJSON PremiumFeature where
       = A.object
         [ "@type" A..= AT.String "premiumFeatureRealTimeChatTranslation"
         ]
+

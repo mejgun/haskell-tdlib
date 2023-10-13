@@ -1,4 +1,31 @@
-module TD.Data.PushMessageContent (PushMessageContent(..)) where
+module TD.Data.PushMessageContent
+  ( PushMessageContent(..)                     
+  , defaultPushMessageContentHidden            
+  , defaultPushMessageContentAnimation         
+  , defaultPushMessageContentAudio             
+  , defaultPushMessageContentContact           
+  , defaultPushMessageContentDocument          
+  , defaultPushMessageContentGame              
+  , defaultPushMessageContentGameScore         
+  , defaultPushMessageContentInvoice           
+  , defaultPushMessageContentLocation          
+  , defaultPushMessageContentPhoto             
+  , defaultPushMessageContentPoll              
+  , defaultPushMessageContentSticker           
+  , defaultPushMessageContentStory             
+  , defaultPushMessageContentText              
+  , defaultPushMessageContentVideo             
+  , defaultPushMessageContentVideoNote         
+  , defaultPushMessageContentVoiceNote         
+  , defaultPushMessageContentChatAddMembers    
+  , defaultPushMessageContentChatChangeTitle   
+  , defaultPushMessageContentChatSetBackground 
+  , defaultPushMessageContentChatSetTheme      
+  , defaultPushMessageContentChatDeleteMember  
+  , defaultPushMessageContentRecurringPayment  
+  , defaultPushMessageContentMessageForwards   
+  , defaultPushMessageContentMediaAlbum        
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -902,3 +929,185 @@ instance AT.ToJSON PushMessageContent where
         , "has_audios"    A..= has_audios_
         , "has_documents" A..= has_documents_
         ]
+
+defaultPushMessageContentHidden :: PushMessageContent
+defaultPushMessageContentHidden =
+  PushMessageContentHidden
+    { is_pinned = Nothing
+    }
+
+defaultPushMessageContentAnimation :: PushMessageContent
+defaultPushMessageContentAnimation =
+  PushMessageContentAnimation
+    { animation = Nothing
+    , caption   = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentAudio :: PushMessageContent
+defaultPushMessageContentAudio =
+  PushMessageContentAudio
+    { audio     = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentContact :: PushMessageContent
+defaultPushMessageContentContact =
+  PushMessageContentContact
+    { name      = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentDocument :: PushMessageContent
+defaultPushMessageContentDocument =
+  PushMessageContentDocument
+    { document  = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentGame :: PushMessageContent
+defaultPushMessageContentGame =
+  PushMessageContentGame
+    { title     = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentGameScore :: PushMessageContent
+defaultPushMessageContentGameScore =
+  PushMessageContentGameScore
+    { title     = Nothing
+    , score     = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentInvoice :: PushMessageContent
+defaultPushMessageContentInvoice =
+  PushMessageContentInvoice
+    { price     = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentLocation :: PushMessageContent
+defaultPushMessageContentLocation =
+  PushMessageContentLocation
+    { is_live   = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentPhoto :: PushMessageContent
+defaultPushMessageContentPhoto =
+  PushMessageContentPhoto
+    { photo     = Nothing
+    , caption   = Nothing
+    , is_secret = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentPoll :: PushMessageContent
+defaultPushMessageContentPoll =
+  PushMessageContentPoll
+    { question   = Nothing
+    , is_regular = Nothing
+    , is_pinned  = Nothing
+    }
+
+defaultPushMessageContentSticker :: PushMessageContent
+defaultPushMessageContentSticker =
+  PushMessageContentSticker
+    { sticker   = Nothing
+    , emoji     = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentStory :: PushMessageContent
+defaultPushMessageContentStory =
+  PushMessageContentStory
+    { is_pinned = Nothing
+    }
+
+defaultPushMessageContentText :: PushMessageContent
+defaultPushMessageContentText =
+  PushMessageContentText
+    { text      = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentVideo :: PushMessageContent
+defaultPushMessageContentVideo =
+  PushMessageContentVideo
+    { video     = Nothing
+    , caption   = Nothing
+    , is_secret = Nothing
+    , is_pinned = Nothing
+    }
+
+defaultPushMessageContentVideoNote :: PushMessageContent
+defaultPushMessageContentVideoNote =
+  PushMessageContentVideoNote
+    { video_note = Nothing
+    , is_pinned  = Nothing
+    }
+
+defaultPushMessageContentVoiceNote :: PushMessageContent
+defaultPushMessageContentVoiceNote =
+  PushMessageContentVoiceNote
+    { voice_note = Nothing
+    , is_pinned  = Nothing
+    }
+
+defaultPushMessageContentChatAddMembers :: PushMessageContent
+defaultPushMessageContentChatAddMembers =
+  PushMessageContentChatAddMembers
+    { member_name     = Nothing
+    , is_current_user = Nothing
+    , is_returned     = Nothing
+    }
+
+defaultPushMessageContentChatChangeTitle :: PushMessageContent
+defaultPushMessageContentChatChangeTitle =
+  PushMessageContentChatChangeTitle
+    { title = Nothing
+    }
+
+defaultPushMessageContentChatSetBackground :: PushMessageContent
+defaultPushMessageContentChatSetBackground =
+  PushMessageContentChatSetBackground
+    { is_same = Nothing
+    }
+
+defaultPushMessageContentChatSetTheme :: PushMessageContent
+defaultPushMessageContentChatSetTheme =
+  PushMessageContentChatSetTheme
+    { theme_name = Nothing
+    }
+
+defaultPushMessageContentChatDeleteMember :: PushMessageContent
+defaultPushMessageContentChatDeleteMember =
+  PushMessageContentChatDeleteMember
+    { member_name     = Nothing
+    , is_current_user = Nothing
+    , is_left         = Nothing
+    }
+
+defaultPushMessageContentRecurringPayment :: PushMessageContent
+defaultPushMessageContentRecurringPayment =
+  PushMessageContentRecurringPayment
+    { amount = Nothing
+    }
+
+defaultPushMessageContentMessageForwards :: PushMessageContent
+defaultPushMessageContentMessageForwards =
+  PushMessageContentMessageForwards
+    { total_count = Nothing
+    }
+
+defaultPushMessageContentMediaAlbum :: PushMessageContent
+defaultPushMessageContentMediaAlbum =
+  PushMessageContentMediaAlbum
+    { total_count   = Nothing
+    , has_photos    = Nothing
+    , has_videos    = Nothing
+    , has_audios    = Nothing
+    , has_documents = Nothing
+    }
+

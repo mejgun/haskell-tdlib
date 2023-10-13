@@ -1,4 +1,6 @@
-module TD.Data.NotificationSettingsScope (NotificationSettingsScope(..)) where
+module TD.Data.NotificationSettingsScope
+  ( NotificationSettingsScope(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -42,3 +44,4 @@ instance AT.ToJSON NotificationSettingsScope where
       = A.object
         [ "@type" A..= AT.String "notificationSettingsScopeChannelChats"
         ]
+

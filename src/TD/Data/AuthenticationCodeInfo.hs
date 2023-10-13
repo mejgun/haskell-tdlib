@@ -1,4 +1,7 @@
-module TD.Data.AuthenticationCodeInfo (AuthenticationCodeInfo(..)) where
+module TD.Data.AuthenticationCodeInfo
+  ( AuthenticationCodeInfo(..)    
+  , defaultAuthenticationCodeInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -67,3 +70,13 @@ instance AT.ToJSON AuthenticationCodeInfo where
         , "next_type"    A..= next_type_
         , "timeout"      A..= timeout_
         ]
+
+defaultAuthenticationCodeInfo :: AuthenticationCodeInfo
+defaultAuthenticationCodeInfo =
+  AuthenticationCodeInfo
+    { phone_number = Nothing
+    , _type        = Nothing
+    , next_type    = Nothing
+    , timeout      = Nothing
+    }
+

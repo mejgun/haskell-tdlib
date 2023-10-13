@@ -1,4 +1,7 @@
-module TD.Data.ChatStatisticsMessageInteractionInfo (ChatStatisticsMessageInteractionInfo(..)) where
+module TD.Data.ChatStatisticsMessageInteractionInfo
+  ( ChatStatisticsMessageInteractionInfo(..)    
+  , defaultChatStatisticsMessageInteractionInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON ChatStatisticsMessageInteractionInfo where
         , "view_count"    A..= view_count_
         , "forward_count" A..= forward_count_
         ]
+
+defaultChatStatisticsMessageInteractionInfo :: ChatStatisticsMessageInteractionInfo
+defaultChatStatisticsMessageInteractionInfo =
+  ChatStatisticsMessageInteractionInfo
+    { message_id    = Nothing
+    , view_count    = Nothing
+    , forward_count = Nothing
+    }
+

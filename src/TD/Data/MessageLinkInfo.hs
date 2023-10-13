@@ -1,4 +1,7 @@
-module TD.Data.MessageLinkInfo (MessageLinkInfo(..)) where
+module TD.Data.MessageLinkInfo
+  ( MessageLinkInfo(..)    
+  , defaultMessageLinkInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -80,3 +83,15 @@ instance AT.ToJSON MessageLinkInfo where
         , "media_timestamp"   A..= media_timestamp_
         , "for_album"         A..= for_album_
         ]
+
+defaultMessageLinkInfo :: MessageLinkInfo
+defaultMessageLinkInfo =
+  MessageLinkInfo
+    { is_public         = Nothing
+    , chat_id           = Nothing
+    , message_thread_id = Nothing
+    , message           = Nothing
+    , media_timestamp   = Nothing
+    , for_album         = Nothing
+    }
+

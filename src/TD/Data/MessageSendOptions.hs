@@ -1,4 +1,7 @@
-module TD.Data.MessageSendOptions (MessageSendOptions(..)) where
+module TD.Data.MessageSendOptions
+  ( MessageSendOptions(..)    
+  , defaultMessageSendOptions 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -80,3 +83,15 @@ instance AT.ToJSON MessageSendOptions where
         , "scheduling_state"                       A..= scheduling_state_
         , "sending_id"                             A..= sending_id_
         ]
+
+defaultMessageSendOptions :: MessageSendOptions
+defaultMessageSendOptions =
+  MessageSendOptions
+    { disable_notification                   = Nothing
+    , from_background                        = Nothing
+    , protect_content                        = Nothing
+    , update_order_of_installed_sticker_sets = Nothing
+    , scheduling_state                       = Nothing
+    , sending_id                             = Nothing
+    }
+

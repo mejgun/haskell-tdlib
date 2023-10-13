@@ -1,4 +1,7 @@
-module TD.Data.Sessions (Sessions(..)) where
+module TD.Data.Sessions
+  ( Sessions(..)    
+  , defaultSessions 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON Sessions where
         , "sessions"                  A..= sessions_
         , "inactive_session_ttl_days" A..= inactive_session_ttl_days_
         ]
+
+defaultSessions :: Sessions
+defaultSessions =
+  Sessions
+    { sessions                  = Nothing
+    , inactive_session_ttl_days = Nothing
+    }
+

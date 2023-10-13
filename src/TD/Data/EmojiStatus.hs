@@ -1,4 +1,7 @@
-module TD.Data.EmojiStatus (EmojiStatus(..)) where
+module TD.Data.EmojiStatus
+  ( EmojiStatus(..)    
+  , defaultEmojiStatus 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON EmojiStatus where
         , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         , "expiration_date" A..= expiration_date_
         ]
+
+defaultEmojiStatus :: EmojiStatus
+defaultEmojiStatus =
+  EmojiStatus
+    { custom_emoji_id = Nothing
+    , expiration_date = Nothing
+    }
+

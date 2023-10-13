@@ -1,4 +1,7 @@
-module TD.Data.Proxy (Proxy(..)) where
+module TD.Data.Proxy
+  ( Proxy(..)    
+  , defaultProxy 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,3 +84,15 @@ instance AT.ToJSON Proxy where
         , "is_enabled"     A..= is_enabled_
         , "type"           A..= _type_
         ]
+
+defaultProxy :: Proxy
+defaultProxy =
+  Proxy
+    { _id            = Nothing
+    , server         = Nothing
+    , port           = Nothing
+    , last_used_date = Nothing
+    , is_enabled     = Nothing
+    , _type          = Nothing
+    }
+

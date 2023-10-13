@@ -1,4 +1,7 @@
-module TD.Data.ChatNotificationSettings (ChatNotificationSettings(..)) where
+module TD.Data.ChatNotificationSettings
+  ( ChatNotificationSettings(..)    
+  , defaultChatNotificationSettings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -149,3 +152,25 @@ instance AT.ToJSON ChatNotificationSettings where
         , "use_default_disable_mention_notifications"        A..= use_default_disable_mention_notifications_
         , "disable_mention_notifications"                    A..= disable_mention_notifications_
         ]
+
+defaultChatNotificationSettings :: ChatNotificationSettings
+defaultChatNotificationSettings =
+  ChatNotificationSettings
+    { use_default_mute_for                             = Nothing
+    , mute_for                                         = Nothing
+    , use_default_sound                                = Nothing
+    , sound_id                                         = Nothing
+    , use_default_show_preview                         = Nothing
+    , show_preview                                     = Nothing
+    , use_default_mute_stories                         = Nothing
+    , mute_stories                                     = Nothing
+    , use_default_story_sound                          = Nothing
+    , story_sound_id                                   = Nothing
+    , use_default_show_story_sender                    = Nothing
+    , show_story_sender                                = Nothing
+    , use_default_disable_pinned_message_notifications = Nothing
+    , disable_pinned_message_notifications             = Nothing
+    , use_default_disable_mention_notifications        = Nothing
+    , disable_mention_notifications                    = Nothing
+    }
+

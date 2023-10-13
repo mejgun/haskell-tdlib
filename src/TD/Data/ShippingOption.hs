@@ -1,4 +1,7 @@
-module TD.Data.ShippingOption (ShippingOption(..)) where
+module TD.Data.ShippingOption
+  ( ShippingOption(..)    
+  , defaultShippingOption 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON ShippingOption where
         , "title"       A..= title_
         , "price_parts" A..= price_parts_
         ]
+
+defaultShippingOption :: ShippingOption
+defaultShippingOption =
+  ShippingOption
+    { _id         = Nothing
+    , title       = Nothing
+    , price_parts = Nothing
+    }
+

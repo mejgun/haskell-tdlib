@@ -1,4 +1,9 @@
-module TD.Data.StickerFullType (StickerFullType(..)) where
+module TD.Data.StickerFullType
+  ( StickerFullType(..)               
+  , defaultStickerFullTypeRegular     
+  , defaultStickerFullTypeMask        
+  , defaultStickerFullTypeCustomEmoji 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -101,3 +106,23 @@ instance AT.ToJSON StickerFullType where
         , "custom_emoji_id"  A..= fmap I.writeInt64  custom_emoji_id_
         , "needs_repainting" A..= needs_repainting_
         ]
+
+defaultStickerFullTypeRegular :: StickerFullType
+defaultStickerFullTypeRegular =
+  StickerFullTypeRegular
+    { premium_animation = Nothing
+    }
+
+defaultStickerFullTypeMask :: StickerFullType
+defaultStickerFullTypeMask =
+  StickerFullTypeMask
+    { mask_position = Nothing
+    }
+
+defaultStickerFullTypeCustomEmoji :: StickerFullType
+defaultStickerFullTypeCustomEmoji =
+  StickerFullTypeCustomEmoji
+    { custom_emoji_id  = Nothing
+    , needs_repainting = Nothing
+    }
+

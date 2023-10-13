@@ -1,4 +1,7 @@
-module TD.Data.GroupCallVideoSourceGroup (GroupCallVideoSourceGroup(..)) where
+module TD.Data.GroupCallVideoSourceGroup
+  ( GroupCallVideoSourceGroup(..)    
+  , defaultGroupCallVideoSourceGroup 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON GroupCallVideoSourceGroup where
         , "semantics"  A..= semantics_
         , "source_ids" A..= source_ids_
         ]
+
+defaultGroupCallVideoSourceGroup :: GroupCallVideoSourceGroup
+defaultGroupCallVideoSourceGroup =
+  GroupCallVideoSourceGroup
+    { semantics  = Nothing
+    , source_ids = Nothing
+    }
+

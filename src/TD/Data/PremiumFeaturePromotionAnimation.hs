@@ -1,4 +1,7 @@
-module TD.Data.PremiumFeaturePromotionAnimation (PremiumFeaturePromotionAnimation(..)) where
+module TD.Data.PremiumFeaturePromotionAnimation
+  ( PremiumFeaturePromotionAnimation(..)    
+  , defaultPremiumFeaturePromotionAnimation 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON PremiumFeaturePromotionAnimation where
         , "feature"   A..= feature_
         , "animation" A..= animation_
         ]
+
+defaultPremiumFeaturePromotionAnimation :: PremiumFeaturePromotionAnimation
+defaultPremiumFeaturePromotionAnimation =
+  PremiumFeaturePromotionAnimation
+    { feature   = Nothing
+    , animation = Nothing
+    }
+

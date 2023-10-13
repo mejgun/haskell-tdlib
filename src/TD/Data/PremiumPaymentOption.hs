@@ -1,4 +1,7 @@
-module TD.Data.PremiumPaymentOption (PremiumPaymentOption(..)) where
+module TD.Data.PremiumPaymentOption
+  ( PremiumPaymentOption(..)    
+  , defaultPremiumPaymentOption 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,3 +84,15 @@ instance AT.ToJSON PremiumPaymentOption where
         , "store_product_id"    A..= store_product_id_
         , "payment_link"        A..= payment_link_
         ]
+
+defaultPremiumPaymentOption :: PremiumPaymentOption
+defaultPremiumPaymentOption =
+  PremiumPaymentOption
+    { currency            = Nothing
+    , amount              = Nothing
+    , discount_percentage = Nothing
+    , month_count         = Nothing
+    , store_product_id    = Nothing
+    , payment_link        = Nothing
+    }
+

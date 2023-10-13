@@ -1,4 +1,10 @@
-module TD.Data.InputChatPhoto (InputChatPhoto(..)) where
+module TD.Data.InputChatPhoto
+  ( InputChatPhoto(..)             
+  , defaultInputChatPhotoPrevious  
+  , defaultInputChatPhotoStatic    
+  , defaultInputChatPhotoAnimation 
+  , defaultInputChatPhotoSticker   
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -125,3 +131,29 @@ instance AT.ToJSON InputChatPhoto where
         [ "@type"   A..= AT.String "inputChatPhotoSticker"
         , "sticker" A..= sticker_
         ]
+
+defaultInputChatPhotoPrevious :: InputChatPhoto
+defaultInputChatPhotoPrevious =
+  InputChatPhotoPrevious
+    { chat_photo_id = Nothing
+    }
+
+defaultInputChatPhotoStatic :: InputChatPhoto
+defaultInputChatPhotoStatic =
+  InputChatPhotoStatic
+    { photo = Nothing
+    }
+
+defaultInputChatPhotoAnimation :: InputChatPhoto
+defaultInputChatPhotoAnimation =
+  InputChatPhotoAnimation
+    { animation            = Nothing
+    , main_frame_timestamp = Nothing
+    }
+
+defaultInputChatPhotoSticker :: InputChatPhoto
+defaultInputChatPhotoSticker =
+  InputChatPhotoSticker
+    { sticker = Nothing
+    }
+

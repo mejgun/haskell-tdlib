@@ -1,4 +1,6 @@
-module TD.Data.PremiumLimitType (PremiumLimitType(..)) where
+module TD.Data.PremiumLimitType
+  ( PremiumLimitType(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -122,3 +124,4 @@ instance AT.ToJSON PremiumLimitType where
       = A.object
         [ "@type" A..= AT.String "premiumLimitTypeActiveStoryCount"
         ]
+

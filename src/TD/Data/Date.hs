@@ -1,4 +1,7 @@
-module TD.Data.Date (Date(..)) where
+module TD.Data.Date
+  ( Date(..)    
+  , defaultDate 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON Date where
         , "month" A..= month_
         , "year"  A..= year_
         ]
+
+defaultDate :: Date
+defaultDate =
+  Date
+    { day   = Nothing
+    , month = Nothing
+    , year  = Nothing
+    }
+

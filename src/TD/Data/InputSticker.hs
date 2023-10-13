@@ -1,4 +1,7 @@
-module TD.Data.InputSticker (InputSticker(..)) where
+module TD.Data.InputSticker
+  ( InputSticker(..)    
+  , defaultInputSticker 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -68,3 +71,13 @@ instance AT.ToJSON InputSticker where
         , "mask_position" A..= mask_position_
         , "keywords"      A..= keywords_
         ]
+
+defaultInputSticker :: InputSticker
+defaultInputSticker =
+  InputSticker
+    { sticker       = Nothing
+    , emojis        = Nothing
+    , mask_position = Nothing
+    , keywords      = Nothing
+    }
+

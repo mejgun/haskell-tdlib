@@ -2,7 +2,10 @@
 
 ### 2.0.0 
 
-  * Parser&generator rewrited and moved to own repo
+  * Rewrited parser&generator (again) and moved to own repo
+  * Fix warnings (except partial-fields)
+  * Moved GeneralResult from TD.Data. to TD.
+  * Reduced GeneralResult constructors count
 
 ### 0.0.1 2020-04-20
 

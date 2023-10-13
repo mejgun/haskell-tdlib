@@ -1,4 +1,7 @@
-module TD.Data.InputPassportElementError (InputPassportElementError(..)) where
+module TD.Data.InputPassportElementError
+  ( InputPassportElementError(..)    
+  , defaultInputPassportElementError 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,3 +64,12 @@ instance AT.ToJSON InputPassportElementError where
         , "message" A..= message_
         , "source"  A..= source_
         ]
+
+defaultInputPassportElementError :: InputPassportElementError
+defaultInputPassportElementError =
+  InputPassportElementError
+    { _type   = Nothing
+    , message = Nothing
+    , source  = Nothing
+    }
+

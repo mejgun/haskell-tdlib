@@ -1,4 +1,8 @@
-module TD.Data.ResetPasswordResult (ResetPasswordResult(..)) where
+module TD.Data.ResetPasswordResult
+  ( ResetPasswordResult(..)            
+  , defaultResetPasswordResultPending  
+  , defaultResetPasswordResultDeclined 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -76,3 +80,16 @@ instance AT.ToJSON ResetPasswordResult where
         [ "@type"      A..= AT.String "resetPasswordResultDeclined"
         , "retry_date" A..= retry_date_
         ]
+
+defaultResetPasswordResultPending :: ResetPasswordResult
+defaultResetPasswordResultPending =
+  ResetPasswordResultPending
+    { pending_reset_date = Nothing
+    }
+
+defaultResetPasswordResultDeclined :: ResetPasswordResult
+defaultResetPasswordResultDeclined =
+  ResetPasswordResultDeclined
+    { retry_date = Nothing
+    }
+

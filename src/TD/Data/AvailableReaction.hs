@@ -1,4 +1,7 @@
-module TD.Data.AvailableReaction (AvailableReaction(..)) where
+module TD.Data.AvailableReaction
+  ( AvailableReaction(..)    
+  , defaultAvailableReaction 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON AvailableReaction where
         , "type"          A..= _type_
         , "needs_premium" A..= needs_premium_
         ]
+
+defaultAvailableReaction :: AvailableReaction
+defaultAvailableReaction =
+  AvailableReaction
+    { _type         = Nothing
+    , needs_premium = Nothing
+    }
+

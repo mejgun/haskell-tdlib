@@ -1,4 +1,7 @@
-module TD.Data.WebApp (WebApp(..)) where
+module TD.Data.WebApp
+  ( WebApp(..)    
+  , defaultWebApp 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -75,3 +78,14 @@ instance AT.ToJSON WebApp where
         , "photo"       A..= photo_
         , "animation"   A..= animation_
         ]
+
+defaultWebApp :: WebApp
+defaultWebApp =
+  WebApp
+    { short_name  = Nothing
+    , title       = Nothing
+    , description = Nothing
+    , photo       = Nothing
+    , animation   = Nothing
+    }
+

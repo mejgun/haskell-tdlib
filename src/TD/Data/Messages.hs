@@ -1,4 +1,7 @@
-module TD.Data.Messages (Messages(..)) where
+module TD.Data.Messages
+  ( Messages(..)    
+  , defaultMessages 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON Messages where
         , "total_count" A..= total_count_
         , "messages"    A..= messages_
         ]
+
+defaultMessages :: Messages
+defaultMessages =
+  Messages
+    { total_count = Nothing
+    , messages    = Nothing
+    }
+

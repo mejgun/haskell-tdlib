@@ -1,4 +1,7 @@
-module TD.Data.User (User(..)) where
+module TD.Data.User
+  ( User(..)    
+  , defaultUser 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -204,3 +207,32 @@ instance AT.ToJSON User where
         , "language_code"             A..= language_code_
         , "added_to_attachment_menu"  A..= added_to_attachment_menu_
         ]
+
+defaultUser :: User
+defaultUser =
+  User
+    { _id                       = Nothing
+    , first_name                = Nothing
+    , last_name                 = Nothing
+    , usernames                 = Nothing
+    , phone_number              = Nothing
+    , status                    = Nothing
+    , profile_photo             = Nothing
+    , emoji_status              = Nothing
+    , is_contact                = Nothing
+    , is_mutual_contact         = Nothing
+    , is_close_friend           = Nothing
+    , is_verified               = Nothing
+    , is_premium                = Nothing
+    , is_support                = Nothing
+    , restriction_reason        = Nothing
+    , is_scam                   = Nothing
+    , is_fake                   = Nothing
+    , has_active_stories        = Nothing
+    , has_unread_active_stories = Nothing
+    , have_access               = Nothing
+    , _type                     = Nothing
+    , language_code             = Nothing
+    , added_to_attachment_menu  = Nothing
+    }
+

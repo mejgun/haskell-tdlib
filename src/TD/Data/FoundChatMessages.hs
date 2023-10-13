@@ -1,4 +1,7 @@
-module TD.Data.FoundChatMessages (FoundChatMessages(..)) where
+module TD.Data.FoundChatMessages
+  ( FoundChatMessages(..)    
+  , defaultFoundChatMessages 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON FoundChatMessages where
         , "messages"             A..= messages_
         , "next_from_message_id" A..= next_from_message_id_
         ]
+
+defaultFoundChatMessages :: FoundChatMessages
+defaultFoundChatMessages =
+  FoundChatMessages
+    { total_count          = Nothing
+    , messages             = Nothing
+    , next_from_message_id = Nothing
+    }
+

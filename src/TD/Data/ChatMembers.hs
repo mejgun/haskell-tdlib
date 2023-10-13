@@ -1,4 +1,7 @@
-module TD.Data.ChatMembers (ChatMembers(..)) where
+module TD.Data.ChatMembers
+  ( ChatMembers(..)    
+  , defaultChatMembers 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON ChatMembers where
         , "total_count" A..= total_count_
         , "members"     A..= members_
         ]
+
+defaultChatMembers :: ChatMembers
+defaultChatMembers =
+  ChatMembers
+    { total_count = Nothing
+    , members     = Nothing
+    }
+

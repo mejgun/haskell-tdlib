@@ -1,4 +1,7 @@
-module TD.Data.PassportAuthorizationForm (PassportAuthorizationForm(..)) where
+module TD.Data.PassportAuthorizationForm
+  ( PassportAuthorizationForm(..)    
+  , defaultPassportAuthorizationForm 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON PassportAuthorizationForm where
         , "required_elements"  A..= required_elements_
         , "privacy_policy_url" A..= privacy_policy_url_
         ]
+
+defaultPassportAuthorizationForm :: PassportAuthorizationForm
+defaultPassportAuthorizationForm =
+  PassportAuthorizationForm
+    { _id                = Nothing
+    , required_elements  = Nothing
+    , privacy_policy_url = Nothing
+    }
+

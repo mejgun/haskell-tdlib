@@ -1,4 +1,8 @@
-module TD.Data.MessageFileType (MessageFileType(..)) where
+module TD.Data.MessageFileType
+  ( MessageFileType(..)           
+  , defaultMessageFileTypePrivate 
+  , defaultMessageFileTypeGroup   
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -77,3 +81,16 @@ instance AT.ToJSON MessageFileType where
       = A.object
         [ "@type" A..= AT.String "messageFileTypeUnknown"
         ]
+
+defaultMessageFileTypePrivate :: MessageFileType
+defaultMessageFileTypePrivate =
+  MessageFileTypePrivate
+    { name = Nothing
+    }
+
+defaultMessageFileTypeGroup :: MessageFileType
+defaultMessageFileTypeGroup =
+  MessageFileTypeGroup
+    { title = Nothing
+    }
+

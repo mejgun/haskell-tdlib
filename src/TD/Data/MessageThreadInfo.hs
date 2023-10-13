@@ -1,4 +1,7 @@
-module TD.Data.MessageThreadInfo (MessageThreadInfo(..)) where
+module TD.Data.MessageThreadInfo
+  ( MessageThreadInfo(..)    
+  , defaultMessageThreadInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,3 +85,15 @@ instance AT.ToJSON MessageThreadInfo where
         , "messages"             A..= messages_
         , "draft_message"        A..= draft_message_
         ]
+
+defaultMessageThreadInfo :: MessageThreadInfo
+defaultMessageThreadInfo =
+  MessageThreadInfo
+    { chat_id              = Nothing
+    , message_thread_id    = Nothing
+    , reply_info           = Nothing
+    , unread_message_count = Nothing
+    , messages             = Nothing
+    , draft_message        = Nothing
+    }
+

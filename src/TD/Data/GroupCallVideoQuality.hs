@@ -1,4 +1,6 @@
-module TD.Data.GroupCallVideoQuality (GroupCallVideoQuality(..)) where
+module TD.Data.GroupCallVideoQuality
+  ( GroupCallVideoQuality(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -42,3 +44,4 @@ instance AT.ToJSON GroupCallVideoQuality where
       = A.object
         [ "@type" A..= AT.String "groupCallVideoQualityFull"
         ]
+

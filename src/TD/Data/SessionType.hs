@@ -1,4 +1,6 @@
-module TD.Data.SessionType (SessionType(..)) where
+module TD.Data.SessionType
+  ( SessionType(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -154,3 +156,4 @@ instance AT.ToJSON SessionType where
       = A.object
         [ "@type" A..= AT.String "sessionTypeXbox"
         ]
+

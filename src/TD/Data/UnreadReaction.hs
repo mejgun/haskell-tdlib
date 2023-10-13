@@ -1,4 +1,7 @@
-module TD.Data.UnreadReaction (UnreadReaction(..)) where
+module TD.Data.UnreadReaction
+  ( UnreadReaction(..)    
+  , defaultUnreadReaction 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON UnreadReaction where
         , "sender_id" A..= sender_id_
         , "is_big"    A..= is_big_
         ]
+
+defaultUnreadReaction :: UnreadReaction
+defaultUnreadReaction =
+  UnreadReaction
+    { _type     = Nothing
+    , sender_id = Nothing
+    , is_big    = Nothing
+    }
+

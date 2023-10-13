@@ -1,4 +1,7 @@
-module TD.Data.VideoNote (VideoNote(..)) where
+module TD.Data.VideoNote
+  ( VideoNote(..)    
+  , defaultVideoNote 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -91,3 +94,16 @@ instance AT.ToJSON VideoNote where
         , "speech_recognition_result" A..= speech_recognition_result_
         , "video"                     A..= video_
         ]
+
+defaultVideoNote :: VideoNote
+defaultVideoNote =
+  VideoNote
+    { duration                  = Nothing
+    , waveform                  = Nothing
+    , _length                   = Nothing
+    , minithumbnail             = Nothing
+    , thumbnail                 = Nothing
+    , speech_recognition_result = Nothing
+    , video                     = Nothing
+    }
+

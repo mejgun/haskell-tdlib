@@ -1,4 +1,7 @@
-module TD.Data.PhoneNumberAuthenticationSettings (PhoneNumberAuthenticationSettings(..)) where
+module TD.Data.PhoneNumberAuthenticationSettings
+  ( PhoneNumberAuthenticationSettings(..)    
+  , defaultPhoneNumberAuthenticationSettings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,3 +84,15 @@ instance AT.ToJSON PhoneNumberAuthenticationSettings where
         , "firebase_authentication_settings" A..= firebase_authentication_settings_
         , "authentication_tokens"            A..= authentication_tokens_
         ]
+
+defaultPhoneNumberAuthenticationSettings :: PhoneNumberAuthenticationSettings
+defaultPhoneNumberAuthenticationSettings =
+  PhoneNumberAuthenticationSettings
+    { allow_flash_call                 = Nothing
+    , allow_missed_call                = Nothing
+    , is_current_phone_number          = Nothing
+    , allow_sms_retriever_api          = Nothing
+    , firebase_authentication_settings = Nothing
+    , authentication_tokens            = Nothing
+    }
+

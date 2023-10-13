@@ -1,4 +1,7 @@
-module TD.Data.TestBytes (TestBytes(..)) where
+module TD.Data.TestBytes
+  ( TestBytes(..)    
+  , defaultTestBytes 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON TestBytes where
         [ "@type" A..= AT.String "testBytes"
         , "value" A..= fmap I.writeBytes  value_
         ]
+
+defaultTestBytes :: TestBytes
+defaultTestBytes =
+  TestBytes
+    { value = Nothing
+    }
+

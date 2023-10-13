@@ -1,4 +1,10 @@
-module TD.Data.CallState (CallState(..)) where
+module TD.Data.CallState
+  ( CallState(..)             
+  , defaultCallStatePending   
+  , defaultCallStateReady     
+  , defaultCallStateDiscarded 
+  , defaultCallStateError     
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -201,3 +207,37 @@ instance AT.ToJSON CallState where
         [ "@type" A..= AT.String "callStateError"
         , "error" A..= _error_
         ]
+
+defaultCallStatePending :: CallState
+defaultCallStatePending =
+  CallStatePending
+    { is_created  = Nothing
+    , is_received = Nothing
+    }
+
+defaultCallStateReady :: CallState
+defaultCallStateReady =
+  CallStateReady
+    { protocol       = Nothing
+    , servers        = Nothing
+    , config         = Nothing
+    , encryption_key = Nothing
+    , emojis         = Nothing
+    , allow_p2p      = Nothing
+    }
+
+defaultCallStateDiscarded :: CallState
+defaultCallStateDiscarded =
+  CallStateDiscarded
+    { reason                 = Nothing
+    , need_rating            = Nothing
+    , need_debug_information = Nothing
+    , need_log               = Nothing
+    }
+
+defaultCallStateError :: CallState
+defaultCallStateError =
+  CallStateError
+    { _error = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.UserSupportInfo (UserSupportInfo(..)) where
+module TD.Data.UserSupportInfo
+  ( UserSupportInfo(..)    
+  , defaultUserSupportInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON UserSupportInfo where
         , "author"  A..= author_
         , "date"    A..= date_
         ]
+
+defaultUserSupportInfo :: UserSupportInfo
+defaultUserSupportInfo =
+  UserSupportInfo
+    { message = Nothing
+    , author  = Nothing
+    , date    = Nothing
+    }
+

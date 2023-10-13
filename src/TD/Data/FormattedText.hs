@@ -1,4 +1,7 @@
-module TD.Data.FormattedText (FormattedText(..)) where
+module TD.Data.FormattedText
+  ( FormattedText(..)    
+  , defaultFormattedText 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON FormattedText where
         , "text"     A..= text_
         , "entities" A..= entities_
         ]
+
+defaultFormattedText :: FormattedText
+defaultFormattedText =
+  FormattedText
+    { text     = Nothing
+    , entities = Nothing
+    }
+

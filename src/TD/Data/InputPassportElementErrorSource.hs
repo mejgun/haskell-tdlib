@@ -1,4 +1,15 @@
-module TD.Data.InputPassportElementErrorSource (InputPassportElementErrorSource(..)) where
+module TD.Data.InputPassportElementErrorSource
+  ( InputPassportElementErrorSource(..)                    
+  , defaultInputPassportElementErrorSourceUnspecified      
+  , defaultInputPassportElementErrorSourceDataField        
+  , defaultInputPassportElementErrorSourceFrontSide        
+  , defaultInputPassportElementErrorSourceReverseSide      
+  , defaultInputPassportElementErrorSourceSelfie           
+  , defaultInputPassportElementErrorSourceTranslationFile  
+  , defaultInputPassportElementErrorSourceTranslationFiles 
+  , defaultInputPassportElementErrorSourceFile             
+  , defaultInputPassportElementErrorSourceFiles            
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -245,3 +256,59 @@ instance AT.ToJSON InputPassportElementErrorSource where
         [ "@type"       A..= AT.String "inputPassportElementErrorSourceFiles"
         , "file_hashes" A..= fmap (fmap I.writeBytes ) file_hashes_
         ]
+
+defaultInputPassportElementErrorSourceUnspecified :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceUnspecified =
+  InputPassportElementErrorSourceUnspecified
+    { element_hash = Nothing
+    }
+
+defaultInputPassportElementErrorSourceDataField :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceDataField =
+  InputPassportElementErrorSourceDataField
+    { field_name = Nothing
+    , data_hash  = Nothing
+    }
+
+defaultInputPassportElementErrorSourceFrontSide :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceFrontSide =
+  InputPassportElementErrorSourceFrontSide
+    { file_hash = Nothing
+    }
+
+defaultInputPassportElementErrorSourceReverseSide :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceReverseSide =
+  InputPassportElementErrorSourceReverseSide
+    { file_hash = Nothing
+    }
+
+defaultInputPassportElementErrorSourceSelfie :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceSelfie =
+  InputPassportElementErrorSourceSelfie
+    { file_hash = Nothing
+    }
+
+defaultInputPassportElementErrorSourceTranslationFile :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceTranslationFile =
+  InputPassportElementErrorSourceTranslationFile
+    { file_hash = Nothing
+    }
+
+defaultInputPassportElementErrorSourceTranslationFiles :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceTranslationFiles =
+  InputPassportElementErrorSourceTranslationFiles
+    { file_hashes = Nothing
+    }
+
+defaultInputPassportElementErrorSourceFile :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceFile =
+  InputPassportElementErrorSourceFile
+    { file_hash = Nothing
+    }
+
+defaultInputPassportElementErrorSourceFiles :: InputPassportElementErrorSource
+defaultInputPassportElementErrorSourceFiles =
+  InputPassportElementErrorSourceFiles
+    { file_hashes = Nothing
+    }
+

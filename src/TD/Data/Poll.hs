@@ -1,4 +1,7 @@
-module TD.Data.Poll (Poll(..)) where
+module TD.Data.Poll
+  ( Poll(..)    
+  , defaultPoll 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -111,3 +114,19 @@ instance AT.ToJSON Poll where
         , "close_date"        A..= close_date_
         , "is_closed"         A..= is_closed_
         ]
+
+defaultPoll :: Poll
+defaultPoll =
+  Poll
+    { _id               = Nothing
+    , question          = Nothing
+    , options           = Nothing
+    , total_voter_count = Nothing
+    , recent_voter_ids  = Nothing
+    , is_anonymous      = Nothing
+    , _type             = Nothing
+    , open_period       = Nothing
+    , close_date        = Nothing
+    , is_closed         = Nothing
+    }
+

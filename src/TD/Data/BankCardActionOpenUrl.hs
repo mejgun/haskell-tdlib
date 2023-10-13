@@ -1,4 +1,7 @@
-module TD.Data.BankCardActionOpenUrl (BankCardActionOpenUrl(..)) where
+module TD.Data.BankCardActionOpenUrl
+  ( BankCardActionOpenUrl(..)    
+  , defaultBankCardActionOpenUrl 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON BankCardActionOpenUrl where
         , "text"  A..= text_
         , "url"   A..= url_
         ]
+
+defaultBankCardActionOpenUrl :: BankCardActionOpenUrl
+defaultBankCardActionOpenUrl =
+  BankCardActionOpenUrl
+    { text = Nothing
+    , url  = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.LabeledPricePart (LabeledPricePart(..)) where
+module TD.Data.LabeledPricePart
+  ( LabeledPricePart(..)    
+  , defaultLabeledPricePart 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON LabeledPricePart where
         , "label"  A..= label_
         , "amount" A..= amount_
         ]
+
+defaultLabeledPricePart :: LabeledPricePart
+defaultLabeledPricePart =
+  LabeledPricePart
+    { label  = Nothing
+    , amount = Nothing
+    }
+

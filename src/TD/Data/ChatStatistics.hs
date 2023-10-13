@@ -1,4 +1,8 @@
-module TD.Data.ChatStatistics (ChatStatistics(..)) where
+module TD.Data.ChatStatistics
+  ( ChatStatistics(..)              
+  , defaultChatStatisticsSupergroup 
+  , defaultChatStatisticsChannel    
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -278,3 +282,45 @@ instance AT.ToJSON ChatStatistics where
         , "instant_view_interaction_graph"   A..= instant_view_interaction_graph_
         , "recent_message_interactions"      A..= recent_message_interactions_
         ]
+
+defaultChatStatisticsSupergroup :: ChatStatistics
+defaultChatStatisticsSupergroup =
+  ChatStatisticsSupergroup
+    { period                = Nothing
+    , member_count          = Nothing
+    , message_count         = Nothing
+    , viewer_count          = Nothing
+    , sender_count          = Nothing
+    , member_count_graph    = Nothing
+    , join_graph            = Nothing
+    , join_by_source_graph  = Nothing
+    , language_graph        = Nothing
+    , message_content_graph = Nothing
+    , action_graph          = Nothing
+    , day_graph             = Nothing
+    , week_graph            = Nothing
+    , top_senders           = Nothing
+    , top_administrators    = Nothing
+    , top_inviters          = Nothing
+    }
+
+defaultChatStatisticsChannel :: ChatStatistics
+defaultChatStatisticsChannel =
+  ChatStatisticsChannel
+    { period                           = Nothing
+    , member_count                     = Nothing
+    , mean_view_count                  = Nothing
+    , mean_share_count                 = Nothing
+    , enabled_notifications_percentage = Nothing
+    , member_count_graph               = Nothing
+    , join_graph                       = Nothing
+    , mute_graph                       = Nothing
+    , view_count_by_hour_graph         = Nothing
+    , view_count_by_source_graph       = Nothing
+    , join_by_source_graph             = Nothing
+    , language_graph                   = Nothing
+    , message_interaction_graph        = Nothing
+    , instant_view_interaction_graph   = Nothing
+    , recent_message_interactions      = Nothing
+    }
+

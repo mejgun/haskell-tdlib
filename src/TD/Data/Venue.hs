@@ -1,4 +1,7 @@
-module TD.Data.Venue (Venue(..)) where
+module TD.Data.Venue
+  ( Venue(..)    
+  , defaultVenue 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,3 +84,15 @@ instance AT.ToJSON Venue where
         , "id"       A..= _id_
         , "type"     A..= _type_
         ]
+
+defaultVenue :: Venue
+defaultVenue =
+  Venue
+    { location = Nothing
+    , title    = Nothing
+    , address  = Nothing
+    , provider = Nothing
+    , _id      = Nothing
+    , _type    = Nothing
+    }
+

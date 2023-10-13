@@ -1,4 +1,7 @@
-module TD.Data.CallProtocol (CallProtocol(..)) where
+module TD.Data.CallProtocol
+  ( CallProtocol(..)    
+  , defaultCallProtocol 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,3 +76,14 @@ instance AT.ToJSON CallProtocol where
         , "max_layer"        A..= max_layer_
         , "library_versions" A..= library_versions_
         ]
+
+defaultCallProtocol :: CallProtocol
+defaultCallProtocol =
+  CallProtocol
+    { udp_p2p          = Nothing
+    , udp_reflector    = Nothing
+    , min_layer        = Nothing
+    , max_layer        = Nothing
+    , library_versions = Nothing
+    }
+

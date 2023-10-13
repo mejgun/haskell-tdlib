@@ -1,4 +1,7 @@
-module TD.Data.ImportedContacts (ImportedContacts(..)) where
+module TD.Data.ImportedContacts
+  ( ImportedContacts(..)    
+  , defaultImportedContacts 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,11 @@ instance AT.ToJSON ImportedContacts where
         , "user_ids"       A..= user_ids_
         , "importer_count" A..= importer_count_
         ]
+
+defaultImportedContacts :: ImportedContacts
+defaultImportedContacts =
+  ImportedContacts
+    { user_ids       = Nothing
+    , importer_count = Nothing
+    }
+

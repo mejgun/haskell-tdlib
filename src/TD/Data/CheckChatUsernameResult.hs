@@ -1,4 +1,6 @@
-module TD.Data.CheckChatUsernameResult (CheckChatUsernameResult(..)) where
+module TD.Data.CheckChatUsernameResult
+  ( CheckChatUsernameResult(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,3 +68,4 @@ instance AT.ToJSON CheckChatUsernameResult where
       = A.object
         [ "@type" A..= AT.String "checkChatUsernameResultPublicGroupsUnavailable"
         ]
+

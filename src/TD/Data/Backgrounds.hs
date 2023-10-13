@@ -1,4 +1,7 @@
-module TD.Data.Backgrounds (Backgrounds(..)) where
+module TD.Data.Backgrounds
+  ( Backgrounds(..)    
+  , defaultBackgrounds 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Backgrounds where
         [ "@type"       A..= AT.String "backgrounds"
         , "backgrounds" A..= backgrounds_
         ]
+
+defaultBackgrounds :: Backgrounds
+defaultBackgrounds =
+  Backgrounds
+    { backgrounds = Nothing
+    }
+

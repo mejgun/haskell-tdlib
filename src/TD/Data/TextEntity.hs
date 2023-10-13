@@ -1,4 +1,7 @@
-module TD.Data.TextEntity (TextEntity(..)) where
+module TD.Data.TextEntity
+  ( TextEntity(..)    
+  , defaultTextEntity 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON TextEntity where
         , "length" A..= _length_
         , "type"   A..= _type_
         ]
+
+defaultTextEntity :: TextEntity
+defaultTextEntity =
+  TextEntity
+    { offset  = Nothing
+    , _length = Nothing
+    , _type   = Nothing
+    }
+

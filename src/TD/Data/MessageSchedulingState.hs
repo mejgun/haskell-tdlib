@@ -1,4 +1,7 @@
-module TD.Data.MessageSchedulingState (MessageSchedulingState(..)) where
+module TD.Data.MessageSchedulingState
+  ( MessageSchedulingState(..)              
+  , defaultMessageSchedulingStateSendAtDate 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,10 @@ instance AT.ToJSON MessageSchedulingState where
       = A.object
         [ "@type" A..= AT.String "messageSchedulingStateSendWhenOnline"
         ]
+
+defaultMessageSchedulingStateSendAtDate :: MessageSchedulingState
+defaultMessageSchedulingStateSendAtDate =
+  MessageSchedulingStateSendAtDate
+    { send_date = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.Video (Video(..)) where
+module TD.Data.Video
+  ( Video(..)    
+  , defaultVideo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -111,3 +114,19 @@ instance AT.ToJSON Video where
         , "thumbnail"          A..= thumbnail_
         , "video"              A..= video_
         ]
+
+defaultVideo :: Video
+defaultVideo =
+  Video
+    { duration           = Nothing
+    , width              = Nothing
+    , height             = Nothing
+    , file_name          = Nothing
+    , mime_type          = Nothing
+    , has_stickers       = Nothing
+    , supports_streaming = Nothing
+    , minithumbnail      = Nothing
+    , thumbnail          = Nothing
+    , video              = Nothing
+    }
+

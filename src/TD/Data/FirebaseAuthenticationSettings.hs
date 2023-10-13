@@ -1,4 +1,7 @@
-module TD.Data.FirebaseAuthenticationSettings (FirebaseAuthenticationSettings(..)) where
+module TD.Data.FirebaseAuthenticationSettings
+  ( FirebaseAuthenticationSettings(..)       
+  , defaultFirebaseAuthenticationSettingsIos 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,11 @@ instance AT.ToJSON FirebaseAuthenticationSettings where
         , "device_token"   A..= device_token_
         , "is_app_sandbox" A..= is_app_sandbox_
         ]
+
+defaultFirebaseAuthenticationSettingsIos :: FirebaseAuthenticationSettings
+defaultFirebaseAuthenticationSettingsIos =
+  FirebaseAuthenticationSettingsIos
+    { device_token   = Nothing
+    , is_app_sandbox = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Data.PublicChatType (PublicChatType(..)) where
+module TD.Data.PublicChatType
+  ( PublicChatType(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +36,4 @@ instance AT.ToJSON PublicChatType where
       = A.object
         [ "@type" A..= AT.String "publicChatTypeIsLocationBased"
         ]
+

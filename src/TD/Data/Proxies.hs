@@ -1,4 +1,7 @@
-module TD.Data.Proxies (Proxies(..)) where
+module TD.Data.Proxies
+  ( Proxies(..)    
+  , defaultProxies 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Proxies where
         [ "@type"   A..= AT.String "proxies"
         , "proxies" A..= proxies_
         ]
+
+defaultProxies :: Proxies
+defaultProxies =
+  Proxies
+    { proxies = Nothing
+    }
+

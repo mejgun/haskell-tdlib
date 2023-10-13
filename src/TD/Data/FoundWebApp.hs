@@ -1,4 +1,7 @@
-module TD.Data.FoundWebApp (FoundWebApp(..)) where
+module TD.Data.FoundWebApp
+  ( FoundWebApp(..)    
+  , defaultFoundWebApp 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON FoundWebApp where
         , "request_write_access" A..= request_write_access_
         , "skip_confirmation"    A..= skip_confirmation_
         ]
+
+defaultFoundWebApp :: FoundWebApp
+defaultFoundWebApp =
+  FoundWebApp
+    { web_app              = Nothing
+    , request_write_access = Nothing
+    , skip_confirmation    = Nothing
+    }
+

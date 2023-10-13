@@ -1,4 +1,7 @@
-module TD.Data.ConnectedWebsite (ConnectedWebsite(..)) where
+module TD.Data.ConnectedWebsite
+  ( ConnectedWebsite(..)    
+  , defaultConnectedWebsite 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -101,3 +104,18 @@ instance AT.ToJSON ConnectedWebsite where
         , "ip"               A..= ip_
         , "location"         A..= location_
         ]
+
+defaultConnectedWebsite :: ConnectedWebsite
+defaultConnectedWebsite =
+  ConnectedWebsite
+    { _id              = Nothing
+    , domain_name      = Nothing
+    , bot_user_id      = Nothing
+    , browser          = Nothing
+    , platform         = Nothing
+    , log_in_date      = Nothing
+    , last_active_date = Nothing
+    , ip               = Nothing
+    , location         = Nothing
+    }
+

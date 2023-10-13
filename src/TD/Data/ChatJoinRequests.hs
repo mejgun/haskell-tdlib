@@ -1,4 +1,7 @@
-module TD.Data.ChatJoinRequests (ChatJoinRequests(..)) where
+module TD.Data.ChatJoinRequests
+  ( ChatJoinRequests(..)    
+  , defaultChatJoinRequests 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON ChatJoinRequests where
         , "total_count" A..= total_count_
         , "requests"    A..= requests_
         ]
+
+defaultChatJoinRequests :: ChatJoinRequests
+defaultChatJoinRequests =
+  ChatJoinRequests
+    { total_count = Nothing
+    , requests    = Nothing
+    }
+

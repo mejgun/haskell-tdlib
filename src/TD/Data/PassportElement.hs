@@ -1,4 +1,19 @@
-module TD.Data.PassportElement (PassportElement(..)) where
+module TD.Data.PassportElement
+  ( PassportElement(..)                         
+  , defaultPassportElementPersonalDetails       
+  , defaultPassportElementPassport              
+  , defaultPassportElementDriverLicense         
+  , defaultPassportElementIdentityCard          
+  , defaultPassportElementInternalPassport      
+  , defaultPassportElementAddress               
+  , defaultPassportElementUtilityBill           
+  , defaultPassportElementBankStatement         
+  , defaultPassportElementRentalAgreement       
+  , defaultPassportElementPassportRegistration  
+  , defaultPassportElementTemporaryRegistration 
+  , defaultPassportElementPhoneNumber           
+  , defaultPassportElementEmailAddress          
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -337,3 +352,82 @@ instance AT.ToJSON PassportElement where
         [ "@type"         A..= AT.String "passportElementEmailAddress"
         , "email_address" A..= email_address_
         ]
+
+defaultPassportElementPersonalDetails :: PassportElement
+defaultPassportElementPersonalDetails =
+  PassportElementPersonalDetails
+    { personal_details = Nothing
+    }
+
+defaultPassportElementPassport :: PassportElement
+defaultPassportElementPassport =
+  PassportElementPassport
+    { passport = Nothing
+    }
+
+defaultPassportElementDriverLicense :: PassportElement
+defaultPassportElementDriverLicense =
+  PassportElementDriverLicense
+    { driver_license = Nothing
+    }
+
+defaultPassportElementIdentityCard :: PassportElement
+defaultPassportElementIdentityCard =
+  PassportElementIdentityCard
+    { identity_card = Nothing
+    }
+
+defaultPassportElementInternalPassport :: PassportElement
+defaultPassportElementInternalPassport =
+  PassportElementInternalPassport
+    { internal_passport = Nothing
+    }
+
+defaultPassportElementAddress :: PassportElement
+defaultPassportElementAddress =
+  PassportElementAddress
+    { address = Nothing
+    }
+
+defaultPassportElementUtilityBill :: PassportElement
+defaultPassportElementUtilityBill =
+  PassportElementUtilityBill
+    { utility_bill = Nothing
+    }
+
+defaultPassportElementBankStatement :: PassportElement
+defaultPassportElementBankStatement =
+  PassportElementBankStatement
+    { bank_statement = Nothing
+    }
+
+defaultPassportElementRentalAgreement :: PassportElement
+defaultPassportElementRentalAgreement =
+  PassportElementRentalAgreement
+    { rental_agreement = Nothing
+    }
+
+defaultPassportElementPassportRegistration :: PassportElement
+defaultPassportElementPassportRegistration =
+  PassportElementPassportRegistration
+    { passport_registration = Nothing
+    }
+
+defaultPassportElementTemporaryRegistration :: PassportElement
+defaultPassportElementTemporaryRegistration =
+  PassportElementTemporaryRegistration
+    { temporary_registration = Nothing
+    }
+
+defaultPassportElementPhoneNumber :: PassportElement
+defaultPassportElementPhoneNumber =
+  PassportElementPhoneNumber
+    { phone_number = Nothing
+    }
+
+defaultPassportElementEmailAddress :: PassportElement
+defaultPassportElementEmailAddress =
+  PassportElementEmailAddress
+    { email_address = Nothing
+    }
+

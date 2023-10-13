@@ -1,4 +1,7 @@
-module TD.Data.InlineQueryResults (InlineQueryResults(..)) where
+module TD.Data.InlineQueryResults
+  ( InlineQueryResults(..)    
+  , defaultInlineQueryResults 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -68,3 +71,13 @@ instance AT.ToJSON InlineQueryResults where
         , "results"         A..= results_
         , "next_offset"     A..= next_offset_
         ]
+
+defaultInlineQueryResults :: InlineQueryResults
+defaultInlineQueryResults =
+  InlineQueryResults
+    { inline_query_id = Nothing
+    , button          = Nothing
+    , results         = Nothing
+    , next_offset     = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.DatabaseStatistics (DatabaseStatistics(..)) where
+module TD.Data.DatabaseStatistics
+  ( DatabaseStatistics(..)    
+  , defaultDatabaseStatistics 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON DatabaseStatistics where
         [ "@type"      A..= AT.String "databaseStatistics"
         , "statistics" A..= statistics_
         ]
+
+defaultDatabaseStatistics :: DatabaseStatistics
+defaultDatabaseStatistics =
+  DatabaseStatistics
+    { statistics = Nothing
+    }
+

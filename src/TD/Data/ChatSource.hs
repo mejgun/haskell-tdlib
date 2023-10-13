@@ -1,4 +1,7 @@
-module TD.Data.ChatSource (ChatSource(..)) where
+module TD.Data.ChatSource
+  ( ChatSource(..)                             
+  , defaultChatSourcePublicServiceAnnouncement 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,11 @@ instance AT.ToJSON ChatSource where
         , "type"  A..= _type_
         , "text"  A..= text_
         ]
+
+defaultChatSourcePublicServiceAnnouncement :: ChatSource
+defaultChatSourcePublicServiceAnnouncement =
+  ChatSourcePublicServiceAnnouncement
+    { _type = Nothing
+    , text  = Nothing
+    }
+

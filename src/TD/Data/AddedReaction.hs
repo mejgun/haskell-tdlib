@@ -1,4 +1,7 @@
-module TD.Data.AddedReaction (AddedReaction(..)) where
+module TD.Data.AddedReaction
+  ( AddedReaction(..)    
+  , defaultAddedReaction 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON AddedReaction where
         , "sender_id" A..= sender_id_
         , "date"      A..= date_
         ]
+
+defaultAddedReaction :: AddedReaction
+defaultAddedReaction =
+  AddedReaction
+    { _type     = Nothing
+    , sender_id = Nothing
+    , date      = Nothing
+    }
+

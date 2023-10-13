@@ -1,4 +1,7 @@
-module TD.Data.InputIdentityDocument (InputIdentityDocument(..)) where
+module TD.Data.InputIdentityDocument
+  ( InputIdentityDocument(..)    
+  , defaultInputIdentityDocument 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,3 +85,15 @@ instance AT.ToJSON InputIdentityDocument where
         , "selfie"          A..= selfie_
         , "translation"     A..= translation_
         ]
+
+defaultInputIdentityDocument :: InputIdentityDocument
+defaultInputIdentityDocument =
+  InputIdentityDocument
+    { number          = Nothing
+    , expiration_date = Nothing
+    , front_side      = Nothing
+    , reverse_side    = Nothing
+    , selfie          = Nothing
+    , translation     = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.ChatsNearby (ChatsNearby(..)) where
+module TD.Data.ChatsNearby
+  ( ChatsNearby(..)    
+  , defaultChatsNearby 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON ChatsNearby where
         , "users_nearby"       A..= users_nearby_
         , "supergroups_nearby" A..= supergroups_nearby_
         ]
+
+defaultChatsNearby :: ChatsNearby
+defaultChatsNearby =
+  ChatsNearby
+    { users_nearby       = Nothing
+    , supergroups_nearby = Nothing
+    }
+

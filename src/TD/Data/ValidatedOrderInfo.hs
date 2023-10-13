@@ -1,4 +1,7 @@
-module TD.Data.ValidatedOrderInfo (ValidatedOrderInfo(..)) where
+module TD.Data.ValidatedOrderInfo
+  ( ValidatedOrderInfo(..)    
+  , defaultValidatedOrderInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,3 +56,11 @@ instance AT.ToJSON ValidatedOrderInfo where
         , "order_info_id"    A..= order_info_id_
         , "shipping_options" A..= shipping_options_
         ]
+
+defaultValidatedOrderInfo :: ValidatedOrderInfo
+defaultValidatedOrderInfo =
+  ValidatedOrderInfo
+    { order_info_id    = Nothing
+    , shipping_options = Nothing
+    }
+

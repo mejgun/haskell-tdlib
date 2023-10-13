@@ -1,4 +1,7 @@
-module TD.Data.ConnectedWebsites (ConnectedWebsites(..)) where
+module TD.Data.ConnectedWebsites
+  ( ConnectedWebsites(..)    
+  , defaultConnectedWebsites 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON ConnectedWebsites where
         [ "@type"    A..= AT.String "connectedWebsites"
         , "websites" A..= websites_
         ]
+
+defaultConnectedWebsites :: ConnectedWebsites
+defaultConnectedWebsites =
+  ConnectedWebsites
+    { websites = Nothing
+    }
+

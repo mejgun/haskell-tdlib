@@ -1,4 +1,8 @@
-module TD.Data.CallServerType (CallServerType(..)) where
+module TD.Data.CallServerType
+  ( CallServerType(..)                     
+  , defaultCallServerTypeTelegramReflector 
+  , defaultCallServerTypeWebrtc            
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -98,3 +102,20 @@ instance AT.ToJSON CallServerType where
         , "supports_turn" A..= supports_turn_
         , "supports_stun" A..= supports_stun_
         ]
+
+defaultCallServerTypeTelegramReflector :: CallServerType
+defaultCallServerTypeTelegramReflector =
+  CallServerTypeTelegramReflector
+    { peer_tag = Nothing
+    , is_tcp   = Nothing
+    }
+
+defaultCallServerTypeWebrtc :: CallServerType
+defaultCallServerTypeWebrtc =
+  CallServerTypeWebrtc
+    { username      = Nothing
+    , password      = Nothing
+    , supports_turn = Nothing
+    , supports_stun = Nothing
+    }
+

@@ -1,4 +1,12 @@
-module TD.Data.AuthorizationState (AuthorizationState(..)) where
+module TD.Data.AuthorizationState
+  ( AuthorizationState(..)                               
+  , defaultAuthorizationStateWaitEmailAddress            
+  , defaultAuthorizationStateWaitEmailCode               
+  , defaultAuthorizationStateWaitCode                    
+  , defaultAuthorizationStateWaitOtherDeviceConfirmation 
+  , defaultAuthorizationStateWaitRegistration            
+  , defaultAuthorizationStateWaitPassword                
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -266,3 +274,47 @@ instance AT.ToJSON AuthorizationState where
       = A.object
         [ "@type" A..= AT.String "authorizationStateClosed"
         ]
+
+defaultAuthorizationStateWaitEmailAddress :: AuthorizationState
+defaultAuthorizationStateWaitEmailAddress =
+  AuthorizationStateWaitEmailAddress
+    { allow_apple_id  = Nothing
+    , allow_google_id = Nothing
+    }
+
+defaultAuthorizationStateWaitEmailCode :: AuthorizationState
+defaultAuthorizationStateWaitEmailCode =
+  AuthorizationStateWaitEmailCode
+    { allow_apple_id            = Nothing
+    , allow_google_id           = Nothing
+    , code_info                 = Nothing
+    , email_address_reset_state = Nothing
+    }
+
+defaultAuthorizationStateWaitCode :: AuthorizationState
+defaultAuthorizationStateWaitCode =
+  AuthorizationStateWaitCode
+    { _code_info = Nothing
+    }
+
+defaultAuthorizationStateWaitOtherDeviceConfirmation :: AuthorizationState
+defaultAuthorizationStateWaitOtherDeviceConfirmation =
+  AuthorizationStateWaitOtherDeviceConfirmation
+    { link = Nothing
+    }
+
+defaultAuthorizationStateWaitRegistration :: AuthorizationState
+defaultAuthorizationStateWaitRegistration =
+  AuthorizationStateWaitRegistration
+    { terms_of_service = Nothing
+    }
+
+defaultAuthorizationStateWaitPassword :: AuthorizationState
+defaultAuthorizationStateWaitPassword =
+  AuthorizationStateWaitPassword
+    { password_hint                  = Nothing
+    , has_recovery_email_address     = Nothing
+    , has_passport_data              = Nothing
+    , recovery_email_address_pattern = Nothing
+    }
+

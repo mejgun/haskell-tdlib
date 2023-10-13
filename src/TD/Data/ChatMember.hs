@@ -1,4 +1,7 @@
-module TD.Data.ChatMember (ChatMember(..)) where
+module TD.Data.ChatMember
+  ( ChatMember(..)    
+  , defaultChatMember 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -67,3 +70,13 @@ instance AT.ToJSON ChatMember where
         , "joined_chat_date" A..= joined_chat_date_
         , "status"           A..= status_
         ]
+
+defaultChatMember :: ChatMember
+defaultChatMember =
+  ChatMember
+    { member_id        = Nothing
+    , inviter_user_id  = Nothing
+    , joined_chat_date = Nothing
+    , status           = Nothing
+    }
+

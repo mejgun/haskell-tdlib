@@ -1,4 +1,7 @@
-module TD.Data.ChatPosition (ChatPosition(..)) where
+module TD.Data.ChatPosition
+  ( ChatPosition(..)    
+  , defaultChatPosition 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -67,3 +70,13 @@ instance AT.ToJSON ChatPosition where
         , "is_pinned" A..= is_pinned_
         , "source"    A..= source_
         ]
+
+defaultChatPosition :: ChatPosition
+defaultChatPosition =
+  ChatPosition
+    { list      = Nothing
+    , order     = Nothing
+    , is_pinned = Nothing
+    , source    = Nothing
+    }
+

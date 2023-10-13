@@ -1,4 +1,7 @@
-module TD.Data.MessageForwardInfo (MessageForwardInfo(..)) where
+module TD.Data.MessageForwardInfo
+  ( MessageForwardInfo(..)    
+  , defaultMessageForwardInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON MessageForwardInfo where
         , "from_chat_id"                     A..= from_chat_id_
         , "from_message_id"                  A..= from_message_id_
         ]
+
+defaultMessageForwardInfo :: MessageForwardInfo
+defaultMessageForwardInfo =
+  MessageForwardInfo
+    { origin                           = Nothing
+    , date                             = Nothing
+    , public_service_announcement_type = Nothing
+    , from_chat_id                     = Nothing
+    , from_message_id                  = Nothing
+    }
+

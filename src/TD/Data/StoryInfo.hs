@@ -1,4 +1,7 @@
-module TD.Data.StoryInfo (StoryInfo(..)) where
+module TD.Data.StoryInfo
+  ( StoryInfo(..)    
+  , defaultStoryInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON StoryInfo where
         , "date"                 A..= date_
         , "is_for_close_friends" A..= is_for_close_friends_
         ]
+
+defaultStoryInfo :: StoryInfo
+defaultStoryInfo =
+  StoryInfo
+    { story_id             = Nothing
+    , date                 = Nothing
+    , is_for_close_friends = Nothing
+    }
+

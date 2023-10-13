@@ -1,4 +1,7 @@
-module TD.Data.StoryVideo (StoryVideo(..)) where
+module TD.Data.StoryVideo
+  ( StoryVideo(..)    
+  , defaultStoryVideo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -103,3 +106,18 @@ instance AT.ToJSON StoryVideo where
         , "preload_prefix_size" A..= preload_prefix_size_
         , "video"               A..= video_
         ]
+
+defaultStoryVideo :: StoryVideo
+defaultStoryVideo =
+  StoryVideo
+    { duration            = Nothing
+    , width               = Nothing
+    , height              = Nothing
+    , has_stickers        = Nothing
+    , is_animation        = Nothing
+    , minithumbnail       = Nothing
+    , thumbnail           = Nothing
+    , preload_prefix_size = Nothing
+    , video               = Nothing
+    }
+

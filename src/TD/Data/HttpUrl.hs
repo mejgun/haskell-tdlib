@@ -1,4 +1,7 @@
-module TD.Data.HttpUrl (HttpUrl(..)) where
+module TD.Data.HttpUrl
+  ( HttpUrl(..)    
+  , defaultHttpUrl 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON HttpUrl where
         [ "@type" A..= AT.String "httpUrl"
         , "url"   A..= url_
         ]
+
+defaultHttpUrl :: HttpUrl
+defaultHttpUrl =
+  HttpUrl
+    { url = Nothing
+    }
+

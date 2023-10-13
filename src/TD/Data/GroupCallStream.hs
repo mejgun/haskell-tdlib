@@ -1,4 +1,7 @@
-module TD.Data.GroupCallStream (GroupCallStream(..)) where
+module TD.Data.GroupCallStream
+  ( GroupCallStream(..)    
+  , defaultGroupCallStream 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON GroupCallStream where
         , "scale"       A..= scale_
         , "time_offset" A..= time_offset_
         ]
+
+defaultGroupCallStream :: GroupCallStream
+defaultGroupCallStream =
+  GroupCallStream
+    { channel_id  = Nothing
+    , scale       = Nothing
+    , time_offset = Nothing
+    }
+

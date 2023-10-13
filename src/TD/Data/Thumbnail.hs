@@ -1,4 +1,7 @@
-module TD.Data.Thumbnail (Thumbnail(..)) where
+module TD.Data.Thumbnail
+  ( Thumbnail(..)    
+  , defaultThumbnail 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -67,3 +70,13 @@ instance AT.ToJSON Thumbnail where
         , "height" A..= height_
         , "file"   A..= file_
         ]
+
+defaultThumbnail :: Thumbnail
+defaultThumbnail =
+  Thumbnail
+    { format = Nothing
+    , width  = Nothing
+    , height = Nothing
+    , file   = Nothing
+    }
+

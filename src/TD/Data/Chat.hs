@@ -1,4 +1,7 @@
-module TD.Data.Chat (Chat(..)) where
+module TD.Data.Chat
+  ( Chat(..)    
+  , defaultChat 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -282,3 +285,42 @@ instance AT.ToJSON Chat where
         , "draft_message"                A..= draft_message_
         , "client_data"                  A..= client_data_
         ]
+
+defaultChat :: Chat
+defaultChat =
+  Chat
+    { _id                          = Nothing
+    , _type                        = Nothing
+    , title                        = Nothing
+    , photo                        = Nothing
+    , permissions                  = Nothing
+    , last_message                 = Nothing
+    , positions                    = Nothing
+    , message_sender_id            = Nothing
+    , has_protected_content        = Nothing
+    , is_translatable              = Nothing
+    , is_marked_as_unread          = Nothing
+    , is_blocked                   = Nothing
+    , has_scheduled_messages       = Nothing
+    , can_be_deleted_only_for_self = Nothing
+    , can_be_deleted_for_all_users = Nothing
+    , can_be_reported              = Nothing
+    , default_disable_notification = Nothing
+    , unread_count                 = Nothing
+    , last_read_inbox_message_id   = Nothing
+    , last_read_outbox_message_id  = Nothing
+    , unread_mention_count         = Nothing
+    , unread_reaction_count        = Nothing
+    , notification_settings        = Nothing
+    , available_reactions          = Nothing
+    , message_auto_delete_time     = Nothing
+    , background                   = Nothing
+    , theme_name                   = Nothing
+    , action_bar                   = Nothing
+    , video_chat                   = Nothing
+    , pending_join_requests        = Nothing
+    , reply_markup_message_id      = Nothing
+    , draft_message                = Nothing
+    , client_data                  = Nothing
+    }
+

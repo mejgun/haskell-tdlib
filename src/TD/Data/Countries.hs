@@ -1,4 +1,7 @@
-module TD.Data.Countries (Countries(..)) where
+module TD.Data.Countries
+  ( Countries(..)    
+  , defaultCountries 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Countries where
         [ "@type"     A..= AT.String "countries"
         , "countries" A..= countries_
         ]
+
+defaultCountries :: Countries
+defaultCountries =
+  Countries
+    { countries = Nothing
+    }
+

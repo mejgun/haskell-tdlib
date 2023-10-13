@@ -1,4 +1,7 @@
-module TD.Data.ThemeSettings (ThemeSettings(..)) where
+module TD.Data.ThemeSettings
+  ( ThemeSettings(..)    
+  , defaultThemeSettings 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON ThemeSettings where
         , "animate_outgoing_message_fill" A..= animate_outgoing_message_fill_
         , "outgoing_message_accent_color" A..= outgoing_message_accent_color_
         ]
+
+defaultThemeSettings :: ThemeSettings
+defaultThemeSettings =
+  ThemeSettings
+    { accent_color                  = Nothing
+    , background                    = Nothing
+    , outgoing_message_fill         = Nothing
+    , animate_outgoing_message_fill = Nothing
+    , outgoing_message_accent_color = Nothing
+    }
+

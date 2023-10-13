@@ -1,4 +1,7 @@
-module TD.Data.PushReceiverId (PushReceiverId(..)) where
+module TD.Data.PushReceiverId
+  ( PushReceiverId(..)    
+  , defaultPushReceiverId 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,10 @@ instance AT.ToJSON PushReceiverId where
         [ "@type" A..= AT.String "pushReceiverId"
         , "id"    A..= fmap I.writeInt64  _id_
         ]
+
+defaultPushReceiverId :: PushReceiverId
+defaultPushReceiverId =
+  PushReceiverId
+    { _id = Nothing
+    }
+

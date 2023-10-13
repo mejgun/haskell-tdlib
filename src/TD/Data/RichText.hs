@@ -1,4 +1,23 @@
-module TD.Data.RichText (RichText(..)) where
+module TD.Data.RichText
+  ( RichText(..)                 
+  , defaultRichTextPlain         
+  , defaultRichTextBold          
+  , defaultRichTextItalic        
+  , defaultRichTextUnderline     
+  , defaultRichTextStrikethrough 
+  , defaultRichTextFixed         
+  , defaultRichTextUrl           
+  , defaultRichTextEmailAddress  
+  , defaultRichTextSubscript     
+  , defaultRichTextSuperscript   
+  , defaultRichTextMarked        
+  , defaultRichTextPhoneNumber   
+  , defaultRichTextIcon          
+  , defaultRichTextReference     
+  , defaultRichTextAnchor        
+  , defaultRichTextAnchorLink    
+  , defaultRichTexts             
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -500,3 +519,116 @@ instance AT.ToJSON RichText where
         [ "@type" A..= AT.String "richTexts"
         , "texts" A..= texts_
         ]
+
+defaultRichTextPlain :: RichText
+defaultRichTextPlain =
+  RichTextPlain
+    { text = Nothing
+    }
+
+defaultRichTextBold :: RichText
+defaultRichTextBold =
+  RichTextBold
+    { _text = Nothing
+    }
+
+defaultRichTextItalic :: RichText
+defaultRichTextItalic =
+  RichTextItalic
+    { _text = Nothing
+    }
+
+defaultRichTextUnderline :: RichText
+defaultRichTextUnderline =
+  RichTextUnderline
+    { _text = Nothing
+    }
+
+defaultRichTextStrikethrough :: RichText
+defaultRichTextStrikethrough =
+  RichTextStrikethrough
+    { _text = Nothing
+    }
+
+defaultRichTextFixed :: RichText
+defaultRichTextFixed =
+  RichTextFixed
+    { _text = Nothing
+    }
+
+defaultRichTextUrl :: RichText
+defaultRichTextUrl =
+  RichTextUrl
+    { _text     = Nothing
+    , url       = Nothing
+    , is_cached = Nothing
+    }
+
+defaultRichTextEmailAddress :: RichText
+defaultRichTextEmailAddress =
+  RichTextEmailAddress
+    { _text         = Nothing
+    , email_address = Nothing
+    }
+
+defaultRichTextSubscript :: RichText
+defaultRichTextSubscript =
+  RichTextSubscript
+    { _text = Nothing
+    }
+
+defaultRichTextSuperscript :: RichText
+defaultRichTextSuperscript =
+  RichTextSuperscript
+    { _text = Nothing
+    }
+
+defaultRichTextMarked :: RichText
+defaultRichTextMarked =
+  RichTextMarked
+    { _text = Nothing
+    }
+
+defaultRichTextPhoneNumber :: RichText
+defaultRichTextPhoneNumber =
+  RichTextPhoneNumber
+    { _text        = Nothing
+    , phone_number = Nothing
+    }
+
+defaultRichTextIcon :: RichText
+defaultRichTextIcon =
+  RichTextIcon
+    { document = Nothing
+    , width    = Nothing
+    , height   = Nothing
+    }
+
+defaultRichTextReference :: RichText
+defaultRichTextReference =
+  RichTextReference
+    { _text       = Nothing
+    , anchor_name = Nothing
+    , url         = Nothing
+    }
+
+defaultRichTextAnchor :: RichText
+defaultRichTextAnchor =
+  RichTextAnchor
+    { name = Nothing
+    }
+
+defaultRichTextAnchorLink :: RichText
+defaultRichTextAnchorLink =
+  RichTextAnchorLink
+    { _text       = Nothing
+    , anchor_name = Nothing
+    , url         = Nothing
+    }
+
+defaultRichTexts :: RichText
+defaultRichTexts =
+  RichTexts
+    { texts = Nothing
+    }
+

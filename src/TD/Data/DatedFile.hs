@@ -1,4 +1,7 @@
-module TD.Data.DatedFile (DatedFile(..)) where
+module TD.Data.DatedFile
+  ( DatedFile(..)    
+  , defaultDatedFile 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON DatedFile where
         , "file"  A..= file_
         , "date"  A..= date_
         ]
+
+defaultDatedFile :: DatedFile
+defaultDatedFile =
+  DatedFile
+    { file = Nothing
+    , date = Nothing
+    }
+

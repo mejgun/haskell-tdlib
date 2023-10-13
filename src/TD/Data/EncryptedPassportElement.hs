@@ -1,4 +1,7 @@
-module TD.Data.EncryptedPassportElement (EncryptedPassportElement(..)) where
+module TD.Data.EncryptedPassportElement
+  ( EncryptedPassportElement(..)    
+  , defaultEncryptedPassportElement 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -104,3 +107,18 @@ instance AT.ToJSON EncryptedPassportElement where
         , "value"        A..= value_
         , "hash"         A..= hash_
         ]
+
+defaultEncryptedPassportElement :: EncryptedPassportElement
+defaultEncryptedPassportElement =
+  EncryptedPassportElement
+    { _type        = Nothing
+    , _data        = Nothing
+    , front_side   = Nothing
+    , reverse_side = Nothing
+    , selfie       = Nothing
+    , translation  = Nothing
+    , files        = Nothing
+    , value        = Nothing
+    , hash         = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.DeepLinkInfo (DeepLinkInfo(..)) where
+module TD.Data.DeepLinkInfo
+  ( DeepLinkInfo(..)    
+  , defaultDeepLinkInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON DeepLinkInfo where
         , "text"                    A..= text_
         , "need_update_application" A..= need_update_application_
         ]
+
+defaultDeepLinkInfo :: DeepLinkInfo
+defaultDeepLinkInfo =
+  DeepLinkInfo
+    { text                    = Nothing
+    , need_update_application = Nothing
+    }
+

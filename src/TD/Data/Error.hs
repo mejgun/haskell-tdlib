@@ -1,4 +1,7 @@
-module TD.Data.Error (Error(..)) where
+module TD.Data.Error
+  ( Error(..)    
+  , defaultError 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON Error where
         , "code"    A..= code_
         , "message" A..= message_
         ]
+
+defaultError :: Error
+defaultError =
+  Error
+    { code    = Nothing
+    , message = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Data.UserPrivacySetting (UserPrivacySetting(..)) where
+module TD.Data.UserPrivacySetting
+  ( UserPrivacySetting(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -98,3 +100,4 @@ instance AT.ToJSON UserPrivacySetting where
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
         ]
+

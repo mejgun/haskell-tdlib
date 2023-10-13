@@ -1,4 +1,7 @@
-module TD.Data.ChatList (ChatList(..)) where
+module TD.Data.ChatList
+  ( ChatList(..)          
+  , defaultChatListFolder 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,10 @@ instance AT.ToJSON ChatList where
         [ "@type"          A..= AT.String "chatListFolder"
         , "chat_folder_id" A..= chat_folder_id_
         ]
+
+defaultChatListFolder :: ChatList
+defaultChatListFolder =
+  ChatListFolder
+    { chat_folder_id = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.ChatFolder (ChatFolder(..)) where
+module TD.Data.ChatFolder
+  ( ChatFolder(..)    
+  , defaultChatFolder 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -137,3 +140,23 @@ instance AT.ToJSON ChatFolder where
         , "include_groups"       A..= include_groups_
         , "include_channels"     A..= include_channels_
         ]
+
+defaultChatFolder :: ChatFolder
+defaultChatFolder =
+  ChatFolder
+    { title                = Nothing
+    , icon                 = Nothing
+    , is_shareable         = Nothing
+    , pinned_chat_ids      = Nothing
+    , included_chat_ids    = Nothing
+    , excluded_chat_ids    = Nothing
+    , exclude_muted        = Nothing
+    , exclude_read         = Nothing
+    , exclude_archived     = Nothing
+    , include_contacts     = Nothing
+    , include_non_contacts = Nothing
+    , include_bots         = Nothing
+    , include_groups       = Nothing
+    , include_channels     = Nothing
+    }
+

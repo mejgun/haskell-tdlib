@@ -1,4 +1,7 @@
-module TD.Data.StorageStatistics (StorageStatistics(..)) where
+module TD.Data.StorageStatistics
+  ( StorageStatistics(..)    
+  , defaultStorageStatistics 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON StorageStatistics where
         , "count"   A..= count_
         , "by_chat" A..= by_chat_
         ]
+
+defaultStorageStatistics :: StorageStatistics
+defaultStorageStatistics =
+  StorageStatistics
+    { size    = Nothing
+    , count   = Nothing
+    , by_chat = Nothing
+    }
+

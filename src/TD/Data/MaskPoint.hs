@@ -1,4 +1,6 @@
-module TD.Data.MaskPoint (MaskPoint(..)) where
+module TD.Data.MaskPoint
+  ( MaskPoint(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +52,4 @@ instance AT.ToJSON MaskPoint where
       = A.object
         [ "@type" A..= AT.String "maskPointChin"
         ]
+

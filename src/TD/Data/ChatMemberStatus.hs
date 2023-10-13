@@ -1,4 +1,10 @@
-module TD.Data.ChatMemberStatus (ChatMemberStatus(..)) where
+module TD.Data.ChatMemberStatus
+  ( ChatMemberStatus(..)                 
+  , defaultChatMemberStatusCreator       
+  , defaultChatMemberStatusAdministrator 
+  , defaultChatMemberStatusRestricted    
+  , defaultChatMemberStatusBanned        
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -177,3 +183,34 @@ instance AT.ToJSON ChatMemberStatus where
         [ "@type"             A..= AT.String "chatMemberStatusBanned"
         , "banned_until_date" A..= banned_until_date_
         ]
+
+defaultChatMemberStatusCreator :: ChatMemberStatus
+defaultChatMemberStatusCreator =
+  ChatMemberStatusCreator
+    { custom_title = Nothing
+    , is_anonymous = Nothing
+    , is_member    = Nothing
+    }
+
+defaultChatMemberStatusAdministrator :: ChatMemberStatus
+defaultChatMemberStatusAdministrator =
+  ChatMemberStatusAdministrator
+    { custom_title  = Nothing
+    , can_be_edited = Nothing
+    , rights        = Nothing
+    }
+
+defaultChatMemberStatusRestricted :: ChatMemberStatus
+defaultChatMemberStatusRestricted =
+  ChatMemberStatusRestricted
+    { is_member             = Nothing
+    , restricted_until_date = Nothing
+    , permissions           = Nothing
+    }
+
+defaultChatMemberStatusBanned :: ChatMemberStatus
+defaultChatMemberStatusBanned =
+  ChatMemberStatusBanned
+    { banned_until_date = Nothing
+    }
+

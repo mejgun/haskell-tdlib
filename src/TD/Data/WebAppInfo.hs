@@ -1,4 +1,7 @@
-module TD.Data.WebAppInfo (WebAppInfo(..)) where
+module TD.Data.WebAppInfo
+  ( WebAppInfo(..)    
+  , defaultWebAppInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON WebAppInfo where
         , "launch_id" A..= fmap I.writeInt64  launch_id_
         , "url"       A..= url_
         ]
+
+defaultWebAppInfo :: WebAppInfo
+defaultWebAppInfo =
+  WebAppInfo
+    { launch_id = Nothing
+    , url       = Nothing
+    }
+

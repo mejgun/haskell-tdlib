@@ -1,4 +1,7 @@
-module TD.Data.EncryptedCredentials (EncryptedCredentials(..)) where
+module TD.Data.EncryptedCredentials
+  ( EncryptedCredentials(..)    
+  , defaultEncryptedCredentials 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON EncryptedCredentials where
         , "hash"   A..= fmap I.writeBytes  hash_
         , "secret" A..= fmap I.writeBytes  secret_
         ]
+
+defaultEncryptedCredentials :: EncryptedCredentials
+defaultEncryptedCredentials =
+  EncryptedCredentials
+    { _data  = Nothing
+    , hash   = Nothing
+    , secret = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.ChatInviteLink (ChatInviteLink(..)) where
+module TD.Data.ChatInviteLink
+  ( ChatInviteLink(..)    
+  , defaultChatInviteLink 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -122,3 +125,21 @@ instance AT.ToJSON ChatInviteLink where
         , "is_primary"                 A..= is_primary_
         , "is_revoked"                 A..= is_revoked_
         ]
+
+defaultChatInviteLink :: ChatInviteLink
+defaultChatInviteLink =
+  ChatInviteLink
+    { invite_link                = Nothing
+    , name                       = Nothing
+    , creator_user_id            = Nothing
+    , date                       = Nothing
+    , edit_date                  = Nothing
+    , expiration_date            = Nothing
+    , member_limit               = Nothing
+    , member_count               = Nothing
+    , pending_join_request_count = Nothing
+    , creates_join_request       = Nothing
+    , is_primary                 = Nothing
+    , is_revoked                 = Nothing
+    }
+

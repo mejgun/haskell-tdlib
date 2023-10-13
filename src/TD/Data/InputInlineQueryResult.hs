@@ -1,4 +1,18 @@
-module TD.Data.InputInlineQueryResult (InputInlineQueryResult(..)) where
+module TD.Data.InputInlineQueryResult
+  ( InputInlineQueryResult(..)             
+  , defaultInputInlineQueryResultAnimation 
+  , defaultInputInlineQueryResultArticle   
+  , defaultInputInlineQueryResultAudio     
+  , defaultInputInlineQueryResultContact   
+  , defaultInputInlineQueryResultDocument  
+  , defaultInputInlineQueryResultGame      
+  , defaultInputInlineQueryResultLocation  
+  , defaultInputInlineQueryResultPhoto     
+  , defaultInputInlineQueryResultSticker   
+  , defaultInputInlineQueryResultVenue     
+  , defaultInputInlineQueryResultVideo     
+  , defaultInputInlineQueryResultVoiceNote 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -909,3 +923,161 @@ instance AT.ToJSON InputInlineQueryResult where
         , "reply_markup"          A..= reply_markup_
         , "input_message_content" A..= input_message_content_
         ]
+
+defaultInputInlineQueryResultAnimation :: InputInlineQueryResult
+defaultInputInlineQueryResultAnimation =
+  InputInlineQueryResultAnimation
+    { _id                   = Nothing
+    , title                 = Nothing
+    , thumbnail_url         = Nothing
+    , thumbnail_mime_type   = Nothing
+    , video_url             = Nothing
+    , video_mime_type       = Nothing
+    , video_duration        = Nothing
+    , video_width           = Nothing
+    , video_height          = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultArticle :: InputInlineQueryResult
+defaultInputInlineQueryResultArticle =
+  InputInlineQueryResultArticle
+    { _id                   = Nothing
+    , url                   = Nothing
+    , hide_url              = Nothing
+    , title                 = Nothing
+    , description           = Nothing
+    , thumbnail_url         = Nothing
+    , thumbnail_width       = Nothing
+    , thumbnail_height      = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultAudio :: InputInlineQueryResult
+defaultInputInlineQueryResultAudio =
+  InputInlineQueryResultAudio
+    { _id                   = Nothing
+    , title                 = Nothing
+    , performer             = Nothing
+    , audio_url             = Nothing
+    , audio_duration        = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultContact :: InputInlineQueryResult
+defaultInputInlineQueryResultContact =
+  InputInlineQueryResultContact
+    { _id                   = Nothing
+    , contact               = Nothing
+    , thumbnail_url         = Nothing
+    , thumbnail_width       = Nothing
+    , thumbnail_height      = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultDocument :: InputInlineQueryResult
+defaultInputInlineQueryResultDocument =
+  InputInlineQueryResultDocument
+    { _id                   = Nothing
+    , title                 = Nothing
+    , description           = Nothing
+    , document_url          = Nothing
+    , mime_type             = Nothing
+    , thumbnail_url         = Nothing
+    , thumbnail_width       = Nothing
+    , thumbnail_height      = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultGame :: InputInlineQueryResult
+defaultInputInlineQueryResultGame =
+  InputInlineQueryResultGame
+    { _id             = Nothing
+    , game_short_name = Nothing
+    , reply_markup    = Nothing
+    }
+
+defaultInputInlineQueryResultLocation :: InputInlineQueryResult
+defaultInputInlineQueryResultLocation =
+  InputInlineQueryResultLocation
+    { _id                   = Nothing
+    , location              = Nothing
+    , live_period           = Nothing
+    , title                 = Nothing
+    , thumbnail_url         = Nothing
+    , thumbnail_width       = Nothing
+    , thumbnail_height      = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultPhoto :: InputInlineQueryResult
+defaultInputInlineQueryResultPhoto =
+  InputInlineQueryResultPhoto
+    { _id                   = Nothing
+    , title                 = Nothing
+    , description           = Nothing
+    , thumbnail_url         = Nothing
+    , photo_url             = Nothing
+    , photo_width           = Nothing
+    , photo_height          = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultSticker :: InputInlineQueryResult
+defaultInputInlineQueryResultSticker =
+  InputInlineQueryResultSticker
+    { _id                   = Nothing
+    , thumbnail_url         = Nothing
+    , sticker_url           = Nothing
+    , sticker_width         = Nothing
+    , sticker_height        = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultVenue :: InputInlineQueryResult
+defaultInputInlineQueryResultVenue =
+  InputInlineQueryResultVenue
+    { _id                   = Nothing
+    , venue                 = Nothing
+    , thumbnail_url         = Nothing
+    , thumbnail_width       = Nothing
+    , thumbnail_height      = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultVideo :: InputInlineQueryResult
+defaultInputInlineQueryResultVideo =
+  InputInlineQueryResultVideo
+    { _id                   = Nothing
+    , title                 = Nothing
+    , description           = Nothing
+    , thumbnail_url         = Nothing
+    , video_url             = Nothing
+    , mime_type             = Nothing
+    , video_width           = Nothing
+    , video_height          = Nothing
+    , video_duration        = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+
+defaultInputInlineQueryResultVoiceNote :: InputInlineQueryResult
+defaultInputInlineQueryResultVoiceNote =
+  InputInlineQueryResultVoiceNote
+    { _id                   = Nothing
+    , title                 = Nothing
+    , voice_note_url        = Nothing
+    , voice_note_duration   = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+

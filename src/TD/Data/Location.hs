@@ -1,4 +1,7 @@
-module TD.Data.Location (Location(..)) where
+module TD.Data.Location
+  ( Location(..)    
+  , defaultLocation 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,12 @@ instance AT.ToJSON Location where
         , "longitude"           A..= longitude_
         , "horizontal_accuracy" A..= horizontal_accuracy_
         ]
+
+defaultLocation :: Location
+defaultLocation =
+  Location
+    { latitude            = Nothing
+    , longitude           = Nothing
+    , horizontal_accuracy = Nothing
+    }
+

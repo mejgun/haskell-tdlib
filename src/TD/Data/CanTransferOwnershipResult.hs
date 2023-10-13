@@ -1,4 +1,8 @@
-module TD.Data.CanTransferOwnershipResult (CanTransferOwnershipResult(..)) where
+module TD.Data.CanTransferOwnershipResult
+  ( CanTransferOwnershipResult(..)                    
+  , defaultCanTransferOwnershipResultPasswordTooFresh 
+  , defaultCanTransferOwnershipResultSessionTooFresh  
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -84,3 +88,16 @@ instance AT.ToJSON CanTransferOwnershipResult where
         [ "@type"       A..= AT.String "canTransferOwnershipResultSessionTooFresh"
         , "retry_after" A..= retry_after_
         ]
+
+defaultCanTransferOwnershipResultPasswordTooFresh :: CanTransferOwnershipResult
+defaultCanTransferOwnershipResultPasswordTooFresh =
+  CanTransferOwnershipResultPasswordTooFresh
+    { retry_after = Nothing
+    }
+
+defaultCanTransferOwnershipResultSessionTooFresh :: CanTransferOwnershipResult
+defaultCanTransferOwnershipResultSessionTooFresh =
+  CanTransferOwnershipResultSessionTooFresh
+    { retry_after = Nothing
+    }
+

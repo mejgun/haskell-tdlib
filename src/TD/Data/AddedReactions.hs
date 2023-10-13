@@ -1,4 +1,7 @@
-module TD.Data.AddedReactions (AddedReactions(..)) where
+module TD.Data.AddedReactions
+  ( AddedReactions(..)    
+  , defaultAddedReactions 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,3 +63,12 @@ instance AT.ToJSON AddedReactions where
         , "reactions"   A..= reactions_
         , "next_offset" A..= next_offset_
         ]
+
+defaultAddedReactions :: AddedReactions
+defaultAddedReactions =
+  AddedReactions
+    { total_count = Nothing
+    , reactions   = Nothing
+    , next_offset = Nothing
+    }
+

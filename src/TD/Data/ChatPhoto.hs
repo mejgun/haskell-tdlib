@@ -1,4 +1,7 @@
-module TD.Data.ChatPhoto (ChatPhoto(..)) where
+module TD.Data.ChatPhoto
+  ( ChatPhoto(..)    
+  , defaultChatPhoto 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -90,3 +93,16 @@ instance AT.ToJSON ChatPhoto where
         , "small_animation" A..= small_animation_
         , "sticker"         A..= sticker_
         ]
+
+defaultChatPhoto :: ChatPhoto
+defaultChatPhoto =
+  ChatPhoto
+    { _id             = Nothing
+    , added_date      = Nothing
+    , minithumbnail   = Nothing
+    , sizes           = Nothing
+    , animation       = Nothing
+    , small_animation = Nothing
+    , sticker         = Nothing
+    }
+

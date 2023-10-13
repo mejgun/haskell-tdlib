@@ -1,4 +1,7 @@
-module TD.Data.ChatFolderInfo (ChatFolderInfo(..)) where
+module TD.Data.ChatFolderInfo
+  ( ChatFolderInfo(..)    
+  , defaultChatFolderInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +77,14 @@ instance AT.ToJSON ChatFolderInfo where
         , "is_shareable"        A..= is_shareable_
         , "has_my_invite_links" A..= has_my_invite_links_
         ]
+
+defaultChatFolderInfo :: ChatFolderInfo
+defaultChatFolderInfo =
+  ChatFolderInfo
+    { _id                 = Nothing
+    , title               = Nothing
+    , icon                = Nothing
+    , is_shareable        = Nothing
+    , has_my_invite_links = Nothing
+    }
+

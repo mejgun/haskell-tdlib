@@ -1,4 +1,9 @@
-module TD.Data.InputBackground (InputBackground(..)) where
+module TD.Data.InputBackground
+  ( InputBackground(..)            
+  , defaultInputBackgroundLocal    
+  , defaultInputBackgroundRemote   
+  , defaultInputBackgroundPrevious 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -93,3 +98,22 @@ instance AT.ToJSON InputBackground where
         [ "@type"      A..= AT.String "inputBackgroundPrevious"
         , "message_id" A..= message_id_
         ]
+
+defaultInputBackgroundLocal :: InputBackground
+defaultInputBackgroundLocal =
+  InputBackgroundLocal
+    { background = Nothing
+    }
+
+defaultInputBackgroundRemote :: InputBackground
+defaultInputBackgroundRemote =
+  InputBackgroundRemote
+    { background_id = Nothing
+    }
+
+defaultInputBackgroundPrevious :: InputBackground
+defaultInputBackgroundPrevious =
+  InputBackgroundPrevious
+    { message_id = Nothing
+    }
+

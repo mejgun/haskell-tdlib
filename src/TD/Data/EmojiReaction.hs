@@ -1,4 +1,7 @@
-module TD.Data.EmojiReaction (EmojiReaction(..)) where
+module TD.Data.EmojiReaction
+  ( EmojiReaction(..)    
+  , defaultEmojiReaction 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -109,3 +112,19 @@ instance AT.ToJSON EmojiReaction where
         , "around_animation"   A..= around_animation_
         , "center_animation"   A..= center_animation_
         ]
+
+defaultEmojiReaction :: EmojiReaction
+defaultEmojiReaction =
+  EmojiReaction
+    { emoji              = Nothing
+    , title              = Nothing
+    , is_active          = Nothing
+    , static_icon        = Nothing
+    , appear_animation   = Nothing
+    , select_animation   = Nothing
+    , activate_animation = Nothing
+    , effect_animation   = Nothing
+    , around_animation   = Nothing
+    , center_animation   = Nothing
+    }
+

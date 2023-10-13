@@ -1,4 +1,8 @@
-module TD.Data.MessageSendingState (MessageSendingState(..)) where
+module TD.Data.MessageSendingState
+  ( MessageSendingState(..)           
+  , defaultMessageSendingStatePending 
+  , defaultMessageSendingStateFailed  
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -97,3 +101,20 @@ instance AT.ToJSON MessageSendingState where
         , "need_another_sender" A..= need_another_sender_
         , "retry_after"         A..= retry_after_
         ]
+
+defaultMessageSendingStatePending :: MessageSendingState
+defaultMessageSendingStatePending =
+  MessageSendingStatePending
+    { sending_id = Nothing
+    }
+
+defaultMessageSendingStateFailed :: MessageSendingState
+defaultMessageSendingStateFailed =
+  MessageSendingStateFailed
+    { error_code          = Nothing
+    , error_message       = Nothing
+    , can_retry           = Nothing
+    , need_another_sender = Nothing
+    , retry_after         = Nothing
+    }
+

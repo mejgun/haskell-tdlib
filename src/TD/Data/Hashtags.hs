@@ -1,4 +1,7 @@
-module TD.Data.Hashtags (Hashtags(..)) where
+module TD.Data.Hashtags
+  ( Hashtags(..)    
+  , defaultHashtags 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON Hashtags where
         [ "@type"    A..= AT.String "hashtags"
         , "hashtags" A..= hashtags_
         ]
+
+defaultHashtags :: Hashtags
+defaultHashtags =
+  Hashtags
+    { hashtags = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Data.DraftMessage (DraftMessage(..)) where
+module TD.Data.DraftMessage
+  ( DraftMessage(..)    
+  , defaultDraftMessage 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON DraftMessage where
         , "date"                A..= date_
         , "input_message_text"  A..= input_message_text_
         ]
+
+defaultDraftMessage :: DraftMessage
+defaultDraftMessage =
+  DraftMessage
+    { reply_to_message_id = Nothing
+    , date                = Nothing
+    , input_message_text  = Nothing
+    }
+

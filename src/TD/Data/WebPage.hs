@@ -1,4 +1,7 @@
-module TD.Data.WebPage (WebPage(..)) where
+module TD.Data.WebPage
+  ( WebPage(..)    
+  , defaultWebPage 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -208,3 +211,32 @@ instance AT.ToJSON WebPage where
         , "story_id"             A..= story_id_
         , "instant_view_version" A..= instant_view_version_
         ]
+
+defaultWebPage :: WebPage
+defaultWebPage =
+  WebPage
+    { url                  = Nothing
+    , display_url          = Nothing
+    , _type                = Nothing
+    , site_name            = Nothing
+    , title                = Nothing
+    , description          = Nothing
+    , photo                = Nothing
+    , embed_url            = Nothing
+    , embed_type           = Nothing
+    , embed_width          = Nothing
+    , embed_height         = Nothing
+    , duration             = Nothing
+    , author               = Nothing
+    , animation            = Nothing
+    , audio                = Nothing
+    , document             = Nothing
+    , sticker              = Nothing
+    , video                = Nothing
+    , video_note           = Nothing
+    , voice_note           = Nothing
+    , story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    , instant_view_version = Nothing
+    }
+

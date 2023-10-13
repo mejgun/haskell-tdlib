@@ -1,4 +1,6 @@
-module TD.Data.ThumbnailFormat (ThumbnailFormat(..)) where
+module TD.Data.ThumbnailFormat
+  ( ThumbnailFormat(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,3 +76,4 @@ instance AT.ToJSON ThumbnailFormat where
       = A.object
         [ "@type" A..= AT.String "thumbnailFormatWebp"
         ]
+

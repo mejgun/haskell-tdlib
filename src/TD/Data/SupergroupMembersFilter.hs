@@ -1,4 +1,11 @@
-module TD.Data.SupergroupMembersFilter (SupergroupMembersFilter(..)) where
+module TD.Data.SupergroupMembersFilter
+  ( SupergroupMembersFilter(..)              
+  , defaultSupergroupMembersFilterContacts   
+  , defaultSupergroupMembersFilterSearch     
+  , defaultSupergroupMembersFilterRestricted 
+  , defaultSupergroupMembersFilterBanned     
+  , defaultSupergroupMembersFilterMention    
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -172,3 +179,35 @@ instance AT.ToJSON SupergroupMembersFilter where
       = A.object
         [ "@type" A..= AT.String "supergroupMembersFilterBots"
         ]
+
+defaultSupergroupMembersFilterContacts :: SupergroupMembersFilter
+defaultSupergroupMembersFilterContacts =
+  SupergroupMembersFilterContacts
+    { query = Nothing
+    }
+
+defaultSupergroupMembersFilterSearch :: SupergroupMembersFilter
+defaultSupergroupMembersFilterSearch =
+  SupergroupMembersFilterSearch
+    { query = Nothing
+    }
+
+defaultSupergroupMembersFilterRestricted :: SupergroupMembersFilter
+defaultSupergroupMembersFilterRestricted =
+  SupergroupMembersFilterRestricted
+    { query = Nothing
+    }
+
+defaultSupergroupMembersFilterBanned :: SupergroupMembersFilter
+defaultSupergroupMembersFilterBanned =
+  SupergroupMembersFilterBanned
+    { query = Nothing
+    }
+
+defaultSupergroupMembersFilterMention :: SupergroupMembersFilter
+defaultSupergroupMembersFilterMention =
+  SupergroupMembersFilterMention
+    { query             = Nothing
+    , message_thread_id = Nothing
+    }
+

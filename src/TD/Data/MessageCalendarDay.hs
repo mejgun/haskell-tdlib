@@ -1,4 +1,7 @@
-module TD.Data.MessageCalendarDay (MessageCalendarDay(..)) where
+module TD.Data.MessageCalendarDay
+  ( MessageCalendarDay(..)    
+  , defaultMessageCalendarDay 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON MessageCalendarDay where
         , "total_count" A..= total_count_
         , "message"     A..= message_
         ]
+
+defaultMessageCalendarDay :: MessageCalendarDay
+defaultMessageCalendarDay =
+  MessageCalendarDay
+    { total_count = Nothing
+    , message     = Nothing
+    }
+

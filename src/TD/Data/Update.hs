@@ -1,4 +1,119 @@
-module TD.Data.Update (Update(..)) where
+module TD.Data.Update
+  ( Update(..)                                  
+  , defaultUpdateAuthorizationState             
+  , defaultUpdateNewMessage                     
+  , defaultUpdateMessageSendAcknowledged        
+  , defaultUpdateMessageSendSucceeded           
+  , defaultUpdateMessageSendFailed              
+  , defaultUpdateMessageContent                 
+  , defaultUpdateMessageEdited                  
+  , defaultUpdateMessageIsPinned                
+  , defaultUpdateMessageInteractionInfo         
+  , defaultUpdateMessageContentOpened           
+  , defaultUpdateMessageMentionRead             
+  , defaultUpdateMessageUnreadReactions         
+  , defaultUpdateMessageLiveLocationViewed      
+  , defaultUpdateNewChat                        
+  , defaultUpdateChatTitle                      
+  , defaultUpdateChatPhoto                      
+  , defaultUpdateChatPermissions                
+  , defaultUpdateChatLastMessage                
+  , defaultUpdateChatPosition                   
+  , defaultUpdateChatReadInbox                  
+  , defaultUpdateChatReadOutbox                 
+  , defaultUpdateChatActionBar                  
+  , defaultUpdateChatAvailableReactions         
+  , defaultUpdateChatDraftMessage               
+  , defaultUpdateChatMessageSender              
+  , defaultUpdateChatMessageAutoDeleteTime      
+  , defaultUpdateChatNotificationSettings       
+  , defaultUpdateChatPendingJoinRequests        
+  , defaultUpdateChatReplyMarkup                
+  , defaultUpdateChatBackground                 
+  , defaultUpdateChatTheme                      
+  , defaultUpdateChatUnreadMentionCount         
+  , defaultUpdateChatUnreadReactionCount        
+  , defaultUpdateChatVideoChat                  
+  , defaultUpdateChatDefaultDisableNotification 
+  , defaultUpdateChatHasProtectedContent        
+  , defaultUpdateChatIsTranslatable             
+  , defaultUpdateChatIsMarkedAsUnread           
+  , defaultUpdateChatIsBlocked                  
+  , defaultUpdateChatHasScheduledMessages       
+  , defaultUpdateChatFolders                    
+  , defaultUpdateChatOnlineMemberCount          
+  , defaultUpdateForumTopicInfo                 
+  , defaultUpdateScopeNotificationSettings      
+  , defaultUpdateNotification                   
+  , defaultUpdateNotificationGroup              
+  , defaultUpdateActiveNotifications            
+  , defaultUpdateHavePendingNotifications       
+  , defaultUpdateDeleteMessages                 
+  , defaultUpdateChatAction                     
+  , defaultUpdateUserStatus                     
+  , defaultUpdateUser                           
+  , defaultUpdateBasicGroup                     
+  , defaultUpdateSupergroup                     
+  , defaultUpdateSecretChat                     
+  , defaultUpdateUserFullInfo                   
+  , defaultUpdateBasicGroupFullInfo             
+  , defaultUpdateSupergroupFullInfo             
+  , defaultUpdateServiceNotification            
+  , defaultUpdateFile                           
+  , defaultUpdateFileGenerationStart            
+  , defaultUpdateFileGenerationStop             
+  , defaultUpdateFileDownloads                  
+  , defaultUpdateFileAddedToDownloads           
+  , defaultUpdateFileDownload                   
+  , defaultUpdateFileRemovedFromDownloads       
+  , defaultUpdateCall                           
+  , defaultUpdateGroupCall                      
+  , defaultUpdateGroupCallParticipant           
+  , defaultUpdateNewCallSignalingData           
+  , defaultUpdateUserPrivacySettingRules        
+  , defaultUpdateUnreadMessageCount             
+  , defaultUpdateUnreadChatCount                
+  , defaultUpdateStory                          
+  , defaultUpdateStoryDeleted                   
+  , defaultUpdateChatActiveStories              
+  , defaultUpdateStoryListChatCount             
+  , defaultUpdateOption                         
+  , defaultUpdateStickerSet                     
+  , defaultUpdateInstalledStickerSets           
+  , defaultUpdateTrendingStickerSets            
+  , defaultUpdateRecentStickers                 
+  , defaultUpdateFavoriteStickers               
+  , defaultUpdateSavedAnimations                
+  , defaultUpdateSavedNotificationSounds        
+  , defaultUpdateSelectedBackground             
+  , defaultUpdateChatThemes                     
+  , defaultUpdateLanguagePackStrings            
+  , defaultUpdateConnectionState                
+  , defaultUpdateTermsOfService                 
+  , defaultUpdateUsersNearby                    
+  , defaultUpdateAttachmentMenuBots             
+  , defaultUpdateWebAppMessageSent              
+  , defaultUpdateActiveEmojiReactions           
+  , defaultUpdateDefaultReactionType            
+  , defaultUpdateDiceEmojis                     
+  , defaultUpdateAnimatedEmojiMessageClicked    
+  , defaultUpdateAnimationSearchParameters      
+  , defaultUpdateSuggestedActions               
+  , defaultUpdateAddChatMembersPrivacyForbidden 
+  , defaultUpdateAutosaveSettings               
+  , defaultUpdateNewInlineQuery                 
+  , defaultUpdateNewChosenInlineResult          
+  , defaultUpdateNewCallbackQuery               
+  , defaultUpdateNewInlineCallbackQuery         
+  , defaultUpdateNewShippingQuery               
+  , defaultUpdateNewPreCheckoutQuery            
+  , defaultUpdateNewCustomEvent                 
+  , defaultUpdateNewCustomQuery                 
+  , defaultUpdatePoll                           
+  , defaultUpdatePollAnswer                     
+  , defaultUpdateChatMember                     
+  , defaultUpdateNewChatJoinRequest             
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -3855,3 +3970,832 @@ instance AT.ToJSON Update where
         , "user_chat_id" A..= user_chat_id_
         , "invite_link"  A..= invite_link_
         ]
+
+defaultUpdateAuthorizationState :: Update
+defaultUpdateAuthorizationState =
+  UpdateAuthorizationState
+    { authorization_state = Nothing
+    }
+
+defaultUpdateNewMessage :: Update
+defaultUpdateNewMessage =
+  UpdateNewMessage
+    { message = Nothing
+    }
+
+defaultUpdateMessageSendAcknowledged :: Update
+defaultUpdateMessageSendAcknowledged =
+  UpdateMessageSendAcknowledged
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+
+defaultUpdateMessageSendSucceeded :: Update
+defaultUpdateMessageSendSucceeded =
+  UpdateMessageSendSucceeded
+    { message        = Nothing
+    , old_message_id = Nothing
+    }
+
+defaultUpdateMessageSendFailed :: Update
+defaultUpdateMessageSendFailed =
+  UpdateMessageSendFailed
+    { message        = Nothing
+    , old_message_id = Nothing
+    , error_code     = Nothing
+    , error_message  = Nothing
+    }
+
+defaultUpdateMessageContent :: Update
+defaultUpdateMessageContent =
+  UpdateMessageContent
+    { chat_id     = Nothing
+    , message_id  = Nothing
+    , new_content = Nothing
+    }
+
+defaultUpdateMessageEdited :: Update
+defaultUpdateMessageEdited =
+  UpdateMessageEdited
+    { chat_id      = Nothing
+    , message_id   = Nothing
+    , edit_date    = Nothing
+    , reply_markup = Nothing
+    }
+
+defaultUpdateMessageIsPinned :: Update
+defaultUpdateMessageIsPinned =
+  UpdateMessageIsPinned
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , is_pinned  = Nothing
+    }
+
+defaultUpdateMessageInteractionInfo :: Update
+defaultUpdateMessageInteractionInfo =
+  UpdateMessageInteractionInfo
+    { chat_id          = Nothing
+    , message_id       = Nothing
+    , interaction_info = Nothing
+    }
+
+defaultUpdateMessageContentOpened :: Update
+defaultUpdateMessageContentOpened =
+  UpdateMessageContentOpened
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+
+defaultUpdateMessageMentionRead :: Update
+defaultUpdateMessageMentionRead =
+  UpdateMessageMentionRead
+    { chat_id              = Nothing
+    , message_id           = Nothing
+    , unread_mention_count = Nothing
+    }
+
+defaultUpdateMessageUnreadReactions :: Update
+defaultUpdateMessageUnreadReactions =
+  UpdateMessageUnreadReactions
+    { chat_id               = Nothing
+    , message_id            = Nothing
+    , unread_reactions      = Nothing
+    , unread_reaction_count = Nothing
+    }
+
+defaultUpdateMessageLiveLocationViewed :: Update
+defaultUpdateMessageLiveLocationViewed =
+  UpdateMessageLiveLocationViewed
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+
+defaultUpdateNewChat :: Update
+defaultUpdateNewChat =
+  UpdateNewChat
+    { chat = Nothing
+    }
+
+defaultUpdateChatTitle :: Update
+defaultUpdateChatTitle =
+  UpdateChatTitle
+    { chat_id = Nothing
+    , title   = Nothing
+    }
+
+defaultUpdateChatPhoto :: Update
+defaultUpdateChatPhoto =
+  UpdateChatPhoto
+    { chat_id = Nothing
+    , photo   = Nothing
+    }
+
+defaultUpdateChatPermissions :: Update
+defaultUpdateChatPermissions =
+  UpdateChatPermissions
+    { chat_id     = Nothing
+    , permissions = Nothing
+    }
+
+defaultUpdateChatLastMessage :: Update
+defaultUpdateChatLastMessage =
+  UpdateChatLastMessage
+    { chat_id      = Nothing
+    , last_message = Nothing
+    , positions    = Nothing
+    }
+
+defaultUpdateChatPosition :: Update
+defaultUpdateChatPosition =
+  UpdateChatPosition
+    { chat_id  = Nothing
+    , position = Nothing
+    }
+
+defaultUpdateChatReadInbox :: Update
+defaultUpdateChatReadInbox =
+  UpdateChatReadInbox
+    { chat_id                    = Nothing
+    , last_read_inbox_message_id = Nothing
+    , unread_count               = Nothing
+    }
+
+defaultUpdateChatReadOutbox :: Update
+defaultUpdateChatReadOutbox =
+  UpdateChatReadOutbox
+    { chat_id                     = Nothing
+    , last_read_outbox_message_id = Nothing
+    }
+
+defaultUpdateChatActionBar :: Update
+defaultUpdateChatActionBar =
+  UpdateChatActionBar
+    { chat_id    = Nothing
+    , action_bar = Nothing
+    }
+
+defaultUpdateChatAvailableReactions :: Update
+defaultUpdateChatAvailableReactions =
+  UpdateChatAvailableReactions
+    { chat_id             = Nothing
+    , available_reactions = Nothing
+    }
+
+defaultUpdateChatDraftMessage :: Update
+defaultUpdateChatDraftMessage =
+  UpdateChatDraftMessage
+    { chat_id       = Nothing
+    , draft_message = Nothing
+    , positions     = Nothing
+    }
+
+defaultUpdateChatMessageSender :: Update
+defaultUpdateChatMessageSender =
+  UpdateChatMessageSender
+    { chat_id           = Nothing
+    , message_sender_id = Nothing
+    }
+
+defaultUpdateChatMessageAutoDeleteTime :: Update
+defaultUpdateChatMessageAutoDeleteTime =
+  UpdateChatMessageAutoDeleteTime
+    { chat_id                  = Nothing
+    , message_auto_delete_time = Nothing
+    }
+
+defaultUpdateChatNotificationSettings :: Update
+defaultUpdateChatNotificationSettings =
+  UpdateChatNotificationSettings
+    { chat_id               = Nothing
+    , notification_settings = Nothing
+    }
+
+defaultUpdateChatPendingJoinRequests :: Update
+defaultUpdateChatPendingJoinRequests =
+  UpdateChatPendingJoinRequests
+    { chat_id               = Nothing
+    , pending_join_requests = Nothing
+    }
+
+defaultUpdateChatReplyMarkup :: Update
+defaultUpdateChatReplyMarkup =
+  UpdateChatReplyMarkup
+    { chat_id                 = Nothing
+    , reply_markup_message_id = Nothing
+    }
+
+defaultUpdateChatBackground :: Update
+defaultUpdateChatBackground =
+  UpdateChatBackground
+    { chat_id    = Nothing
+    , background = Nothing
+    }
+
+defaultUpdateChatTheme :: Update
+defaultUpdateChatTheme =
+  UpdateChatTheme
+    { chat_id    = Nothing
+    , theme_name = Nothing
+    }
+
+defaultUpdateChatUnreadMentionCount :: Update
+defaultUpdateChatUnreadMentionCount =
+  UpdateChatUnreadMentionCount
+    { chat_id              = Nothing
+    , unread_mention_count = Nothing
+    }
+
+defaultUpdateChatUnreadReactionCount :: Update
+defaultUpdateChatUnreadReactionCount =
+  UpdateChatUnreadReactionCount
+    { chat_id               = Nothing
+    , unread_reaction_count = Nothing
+    }
+
+defaultUpdateChatVideoChat :: Update
+defaultUpdateChatVideoChat =
+  UpdateChatVideoChat
+    { chat_id    = Nothing
+    , video_chat = Nothing
+    }
+
+defaultUpdateChatDefaultDisableNotification :: Update
+defaultUpdateChatDefaultDisableNotification =
+  UpdateChatDefaultDisableNotification
+    { chat_id                      = Nothing
+    , default_disable_notification = Nothing
+    }
+
+defaultUpdateChatHasProtectedContent :: Update
+defaultUpdateChatHasProtectedContent =
+  UpdateChatHasProtectedContent
+    { chat_id               = Nothing
+    , has_protected_content = Nothing
+    }
+
+defaultUpdateChatIsTranslatable :: Update
+defaultUpdateChatIsTranslatable =
+  UpdateChatIsTranslatable
+    { chat_id         = Nothing
+    , is_translatable = Nothing
+    }
+
+defaultUpdateChatIsMarkedAsUnread :: Update
+defaultUpdateChatIsMarkedAsUnread =
+  UpdateChatIsMarkedAsUnread
+    { chat_id             = Nothing
+    , is_marked_as_unread = Nothing
+    }
+
+defaultUpdateChatIsBlocked :: Update
+defaultUpdateChatIsBlocked =
+  UpdateChatIsBlocked
+    { chat_id    = Nothing
+    , is_blocked = Nothing
+    }
+
+defaultUpdateChatHasScheduledMessages :: Update
+defaultUpdateChatHasScheduledMessages =
+  UpdateChatHasScheduledMessages
+    { chat_id                = Nothing
+    , has_scheduled_messages = Nothing
+    }
+
+defaultUpdateChatFolders :: Update
+defaultUpdateChatFolders =
+  UpdateChatFolders
+    { chat_folders            = Nothing
+    , main_chat_list_position = Nothing
+    }
+
+defaultUpdateChatOnlineMemberCount :: Update
+defaultUpdateChatOnlineMemberCount =
+  UpdateChatOnlineMemberCount
+    { chat_id             = Nothing
+    , online_member_count = Nothing
+    }
+
+defaultUpdateForumTopicInfo :: Update
+defaultUpdateForumTopicInfo =
+  UpdateForumTopicInfo
+    { chat_id = Nothing
+    , info    = Nothing
+    }
+
+defaultUpdateScopeNotificationSettings :: Update
+defaultUpdateScopeNotificationSettings =
+  UpdateScopeNotificationSettings
+    { scope                  = Nothing
+    , _notification_settings = Nothing
+    }
+
+defaultUpdateNotification :: Update
+defaultUpdateNotification =
+  UpdateNotification
+    { notification_group_id = Nothing
+    , notification          = Nothing
+    }
+
+defaultUpdateNotificationGroup :: Update
+defaultUpdateNotificationGroup =
+  UpdateNotificationGroup
+    { notification_group_id         = Nothing
+    , _type                         = Nothing
+    , chat_id                       = Nothing
+    , notification_settings_chat_id = Nothing
+    , notification_sound_id         = Nothing
+    , total_count                   = Nothing
+    , added_notifications           = Nothing
+    , removed_notification_ids      = Nothing
+    }
+
+defaultUpdateActiveNotifications :: Update
+defaultUpdateActiveNotifications =
+  UpdateActiveNotifications
+    { groups = Nothing
+    }
+
+defaultUpdateHavePendingNotifications :: Update
+defaultUpdateHavePendingNotifications =
+  UpdateHavePendingNotifications
+    { have_delayed_notifications    = Nothing
+    , have_unreceived_notifications = Nothing
+    }
+
+defaultUpdateDeleteMessages :: Update
+defaultUpdateDeleteMessages =
+  UpdateDeleteMessages
+    { chat_id      = Nothing
+    , message_ids  = Nothing
+    , is_permanent = Nothing
+    , from_cache   = Nothing
+    }
+
+defaultUpdateChatAction :: Update
+defaultUpdateChatAction =
+  UpdateChatAction
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , sender_id         = Nothing
+    , action            = Nothing
+    }
+
+defaultUpdateUserStatus :: Update
+defaultUpdateUserStatus =
+  UpdateUserStatus
+    { user_id = Nothing
+    , status  = Nothing
+    }
+
+defaultUpdateUser :: Update
+defaultUpdateUser =
+  UpdateUser
+    { user = Nothing
+    }
+
+defaultUpdateBasicGroup :: Update
+defaultUpdateBasicGroup =
+  UpdateBasicGroup
+    { basic_group = Nothing
+    }
+
+defaultUpdateSupergroup :: Update
+defaultUpdateSupergroup =
+  UpdateSupergroup
+    { supergroup = Nothing
+    }
+
+defaultUpdateSecretChat :: Update
+defaultUpdateSecretChat =
+  UpdateSecretChat
+    { secret_chat = Nothing
+    }
+
+defaultUpdateUserFullInfo :: Update
+defaultUpdateUserFullInfo =
+  UpdateUserFullInfo
+    { user_id        = Nothing
+    , user_full_info = Nothing
+    }
+
+defaultUpdateBasicGroupFullInfo :: Update
+defaultUpdateBasicGroupFullInfo =
+  UpdateBasicGroupFullInfo
+    { basic_group_id        = Nothing
+    , basic_group_full_info = Nothing
+    }
+
+defaultUpdateSupergroupFullInfo :: Update
+defaultUpdateSupergroupFullInfo =
+  UpdateSupergroupFullInfo
+    { supergroup_id        = Nothing
+    , supergroup_full_info = Nothing
+    }
+
+defaultUpdateServiceNotification :: Update
+defaultUpdateServiceNotification =
+  UpdateServiceNotification
+    { __type  = Nothing
+    , content = Nothing
+    }
+
+defaultUpdateFile :: Update
+defaultUpdateFile =
+  UpdateFile
+    { file = Nothing
+    }
+
+defaultUpdateFileGenerationStart :: Update
+defaultUpdateFileGenerationStart =
+  UpdateFileGenerationStart
+    { generation_id    = Nothing
+    , original_path    = Nothing
+    , destination_path = Nothing
+    , conversion       = Nothing
+    }
+
+defaultUpdateFileGenerationStop :: Update
+defaultUpdateFileGenerationStop =
+  UpdateFileGenerationStop
+    { generation_id = Nothing
+    }
+
+defaultUpdateFileDownloads :: Update
+defaultUpdateFileDownloads =
+  UpdateFileDownloads
+    { total_size      = Nothing
+    , total_count     = Nothing
+    , downloaded_size = Nothing
+    }
+
+defaultUpdateFileAddedToDownloads :: Update
+defaultUpdateFileAddedToDownloads =
+  UpdateFileAddedToDownloads
+    { file_download = Nothing
+    , counts        = Nothing
+    }
+
+defaultUpdateFileDownload :: Update
+defaultUpdateFileDownload =
+  UpdateFileDownload
+    { file_id       = Nothing
+    , complete_date = Nothing
+    , is_paused     = Nothing
+    , counts        = Nothing
+    }
+
+defaultUpdateFileRemovedFromDownloads :: Update
+defaultUpdateFileRemovedFromDownloads =
+  UpdateFileRemovedFromDownloads
+    { file_id = Nothing
+    , counts  = Nothing
+    }
+
+defaultUpdateCall :: Update
+defaultUpdateCall =
+  UpdateCall
+    { call = Nothing
+    }
+
+defaultUpdateGroupCall :: Update
+defaultUpdateGroupCall =
+  UpdateGroupCall
+    { group_call = Nothing
+    }
+
+defaultUpdateGroupCallParticipant :: Update
+defaultUpdateGroupCallParticipant =
+  UpdateGroupCallParticipant
+    { group_call_id = Nothing
+    , participant   = Nothing
+    }
+
+defaultUpdateNewCallSignalingData :: Update
+defaultUpdateNewCallSignalingData =
+  UpdateNewCallSignalingData
+    { call_id = Nothing
+    , _data   = Nothing
+    }
+
+defaultUpdateUserPrivacySettingRules :: Update
+defaultUpdateUserPrivacySettingRules =
+  UpdateUserPrivacySettingRules
+    { setting = Nothing
+    , rules   = Nothing
+    }
+
+defaultUpdateUnreadMessageCount :: Update
+defaultUpdateUnreadMessageCount =
+  UpdateUnreadMessageCount
+    { chat_list            = Nothing
+    , unread_count         = Nothing
+    , unread_unmuted_count = Nothing
+    }
+
+defaultUpdateUnreadChatCount :: Update
+defaultUpdateUnreadChatCount =
+  UpdateUnreadChatCount
+    { chat_list                      = Nothing
+    , total_count                    = Nothing
+    , unread_count                   = Nothing
+    , unread_unmuted_count           = Nothing
+    , marked_as_unread_count         = Nothing
+    , marked_as_unread_unmuted_count = Nothing
+    }
+
+defaultUpdateStory :: Update
+defaultUpdateStory =
+  UpdateStory
+    { story = Nothing
+    }
+
+defaultUpdateStoryDeleted :: Update
+defaultUpdateStoryDeleted =
+  UpdateStoryDeleted
+    { story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    }
+
+defaultUpdateChatActiveStories :: Update
+defaultUpdateChatActiveStories =
+  UpdateChatActiveStories
+    { active_stories = Nothing
+    }
+
+defaultUpdateStoryListChatCount :: Update
+defaultUpdateStoryListChatCount =
+  UpdateStoryListChatCount
+    { story_list = Nothing
+    , chat_count = Nothing
+    }
+
+defaultUpdateOption :: Update
+defaultUpdateOption =
+  UpdateOption
+    { name  = Nothing
+    , value = Nothing
+    }
+
+defaultUpdateStickerSet :: Update
+defaultUpdateStickerSet =
+  UpdateStickerSet
+    { sticker_set = Nothing
+    }
+
+defaultUpdateInstalledStickerSets :: Update
+defaultUpdateInstalledStickerSets =
+  UpdateInstalledStickerSets
+    { sticker_type    = Nothing
+    , sticker_set_ids = Nothing
+    }
+
+defaultUpdateTrendingStickerSets :: Update
+defaultUpdateTrendingStickerSets =
+  UpdateTrendingStickerSets
+    { sticker_type = Nothing
+    , sticker_sets = Nothing
+    }
+
+defaultUpdateRecentStickers :: Update
+defaultUpdateRecentStickers =
+  UpdateRecentStickers
+    { is_attached = Nothing
+    , sticker_ids = Nothing
+    }
+
+defaultUpdateFavoriteStickers :: Update
+defaultUpdateFavoriteStickers =
+  UpdateFavoriteStickers
+    { sticker_ids = Nothing
+    }
+
+defaultUpdateSavedAnimations :: Update
+defaultUpdateSavedAnimations =
+  UpdateSavedAnimations
+    { animation_ids = Nothing
+    }
+
+defaultUpdateSavedNotificationSounds :: Update
+defaultUpdateSavedNotificationSounds =
+  UpdateSavedNotificationSounds
+    { notification_sound_ids = Nothing
+    }
+
+defaultUpdateSelectedBackground :: Update
+defaultUpdateSelectedBackground =
+  UpdateSelectedBackground
+    { for_dark_theme = Nothing
+    , _background    = Nothing
+    }
+
+defaultUpdateChatThemes :: Update
+defaultUpdateChatThemes =
+  UpdateChatThemes
+    { chat_themes = Nothing
+    }
+
+defaultUpdateLanguagePackStrings :: Update
+defaultUpdateLanguagePackStrings =
+  UpdateLanguagePackStrings
+    { localization_target = Nothing
+    , language_pack_id    = Nothing
+    , strings             = Nothing
+    }
+
+defaultUpdateConnectionState :: Update
+defaultUpdateConnectionState =
+  UpdateConnectionState
+    { state = Nothing
+    }
+
+defaultUpdateTermsOfService :: Update
+defaultUpdateTermsOfService =
+  UpdateTermsOfService
+    { terms_of_service_id = Nothing
+    , terms_of_service    = Nothing
+    }
+
+defaultUpdateUsersNearby :: Update
+defaultUpdateUsersNearby =
+  UpdateUsersNearby
+    { users_nearby = Nothing
+    }
+
+defaultUpdateAttachmentMenuBots :: Update
+defaultUpdateAttachmentMenuBots =
+  UpdateAttachmentMenuBots
+    { bots = Nothing
+    }
+
+defaultUpdateWebAppMessageSent :: Update
+defaultUpdateWebAppMessageSent =
+  UpdateWebAppMessageSent
+    { web_app_launch_id = Nothing
+    }
+
+defaultUpdateActiveEmojiReactions :: Update
+defaultUpdateActiveEmojiReactions =
+  UpdateActiveEmojiReactions
+    { emojis = Nothing
+    }
+
+defaultUpdateDefaultReactionType :: Update
+defaultUpdateDefaultReactionType =
+  UpdateDefaultReactionType
+    { reaction_type = Nothing
+    }
+
+defaultUpdateDiceEmojis :: Update
+defaultUpdateDiceEmojis =
+  UpdateDiceEmojis
+    { emojis = Nothing
+    }
+
+defaultUpdateAnimatedEmojiMessageClicked :: Update
+defaultUpdateAnimatedEmojiMessageClicked =
+  UpdateAnimatedEmojiMessageClicked
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , sticker    = Nothing
+    }
+
+defaultUpdateAnimationSearchParameters :: Update
+defaultUpdateAnimationSearchParameters =
+  UpdateAnimationSearchParameters
+    { provider = Nothing
+    , emojis   = Nothing
+    }
+
+defaultUpdateSuggestedActions :: Update
+defaultUpdateSuggestedActions =
+  UpdateSuggestedActions
+    { added_actions   = Nothing
+    , removed_actions = Nothing
+    }
+
+defaultUpdateAddChatMembersPrivacyForbidden :: Update
+defaultUpdateAddChatMembersPrivacyForbidden =
+  UpdateAddChatMembersPrivacyForbidden
+    { chat_id  = Nothing
+    , user_ids = Nothing
+    }
+
+defaultUpdateAutosaveSettings :: Update
+defaultUpdateAutosaveSettings =
+  UpdateAutosaveSettings
+    { _scope   = Nothing
+    , settings = Nothing
+    }
+
+defaultUpdateNewInlineQuery :: Update
+defaultUpdateNewInlineQuery =
+  UpdateNewInlineQuery
+    { _id            = Nothing
+    , sender_user_id = Nothing
+    , user_location  = Nothing
+    , chat_type      = Nothing
+    , query          = Nothing
+    , offset         = Nothing
+    }
+
+defaultUpdateNewChosenInlineResult :: Update
+defaultUpdateNewChosenInlineResult =
+  UpdateNewChosenInlineResult
+    { sender_user_id    = Nothing
+    , user_location     = Nothing
+    , query             = Nothing
+    , result_id         = Nothing
+    , inline_message_id = Nothing
+    }
+
+defaultUpdateNewCallbackQuery :: Update
+defaultUpdateNewCallbackQuery =
+  UpdateNewCallbackQuery
+    { _id            = Nothing
+    , sender_user_id = Nothing
+    , chat_id        = Nothing
+    , message_id     = Nothing
+    , chat_instance  = Nothing
+    , payload        = Nothing
+    }
+
+defaultUpdateNewInlineCallbackQuery :: Update
+defaultUpdateNewInlineCallbackQuery =
+  UpdateNewInlineCallbackQuery
+    { _id               = Nothing
+    , sender_user_id    = Nothing
+    , inline_message_id = Nothing
+    , chat_instance     = Nothing
+    , payload           = Nothing
+    }
+
+defaultUpdateNewShippingQuery :: Update
+defaultUpdateNewShippingQuery =
+  UpdateNewShippingQuery
+    { _id              = Nothing
+    , sender_user_id   = Nothing
+    , invoice_payload  = Nothing
+    , shipping_address = Nothing
+    }
+
+defaultUpdateNewPreCheckoutQuery :: Update
+defaultUpdateNewPreCheckoutQuery =
+  UpdateNewPreCheckoutQuery
+    { _id                = Nothing
+    , sender_user_id     = Nothing
+    , currency           = Nothing
+    , total_amount       = Nothing
+    , _invoice_payload   = Nothing
+    , shipping_option_id = Nothing
+    , order_info         = Nothing
+    }
+
+defaultUpdateNewCustomEvent :: Update
+defaultUpdateNewCustomEvent =
+  UpdateNewCustomEvent
+    { event = Nothing
+    }
+
+defaultUpdateNewCustomQuery :: Update
+defaultUpdateNewCustomQuery =
+  UpdateNewCustomQuery
+    { _id     = Nothing
+    , __data  = Nothing
+    , timeout = Nothing
+    }
+
+defaultUpdatePoll :: Update
+defaultUpdatePoll =
+  UpdatePoll
+    { poll = Nothing
+    }
+
+defaultUpdatePollAnswer :: Update
+defaultUpdatePollAnswer =
+  UpdatePollAnswer
+    { poll_id    = Nothing
+    , voter_id   = Nothing
+    , option_ids = Nothing
+    }
+
+defaultUpdateChatMember :: Update
+defaultUpdateChatMember =
+  UpdateChatMember
+    { chat_id                     = Nothing
+    , actor_user_id               = Nothing
+    , date                        = Nothing
+    , invite_link                 = Nothing
+    , via_chat_folder_invite_link = Nothing
+    , old_chat_member             = Nothing
+    , new_chat_member             = Nothing
+    }
+
+defaultUpdateNewChatJoinRequest :: Update
+defaultUpdateNewChatJoinRequest =
+  UpdateNewChatJoinRequest
+    { chat_id      = Nothing
+    , request      = Nothing
+    , user_chat_id = Nothing
+    , invite_link  = Nothing
+    }
+

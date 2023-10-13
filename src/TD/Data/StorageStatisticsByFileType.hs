@@ -1,4 +1,7 @@
-module TD.Data.StorageStatisticsByFileType (StorageStatisticsByFileType(..)) where
+module TD.Data.StorageStatisticsByFileType
+  ( StorageStatisticsByFileType(..)    
+  , defaultStorageStatisticsByFileType 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,3 +62,12 @@ instance AT.ToJSON StorageStatisticsByFileType where
         , "size"      A..= size_
         , "count"     A..= count_
         ]
+
+defaultStorageStatisticsByFileType :: StorageStatisticsByFileType
+defaultStorageStatisticsByFileType =
+  StorageStatisticsByFileType
+    { file_type = Nothing
+    , size      = Nothing
+    , count     = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Data.MessageSource (MessageSource(..)) where
+module TD.Data.MessageSource
+  ( MessageSource(..) 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -98,3 +100,4 @@ instance AT.ToJSON MessageSource where
       = A.object
         [ "@type" A..= AT.String "messageSourceOther"
         ]
+

@@ -1,4 +1,7 @@
-module TD.Data.BotMenuButton (BotMenuButton(..)) where
+module TD.Data.BotMenuButton
+  ( BotMenuButton(..)    
+  , defaultBotMenuButton 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,11 @@ instance AT.ToJSON BotMenuButton where
         , "text"  A..= text_
         , "url"   A..= url_
         ]
+
+defaultBotMenuButton :: BotMenuButton
+defaultBotMenuButton =
+  BotMenuButton
+    { text = Nothing
+    , url  = Nothing
+    }
+

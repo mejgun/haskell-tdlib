@@ -1,4 +1,7 @@
-module TD.Data.Audio (Audio(..)) where
+module TD.Data.Audio
+  ( Audio(..)    
+  , defaultAudio 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -104,3 +107,18 @@ instance AT.ToJSON Audio where
         , "external_album_covers"     A..= external_album_covers_
         , "audio"                     A..= audio_
         ]
+
+defaultAudio :: Audio
+defaultAudio =
+  Audio
+    { duration                  = Nothing
+    , title                     = Nothing
+    , performer                 = Nothing
+    , file_name                 = Nothing
+    , mime_type                 = Nothing
+    , album_cover_minithumbnail = Nothing
+    , album_cover_thumbnail     = Nothing
+    , external_album_covers     = Nothing
+    , audio                     = Nothing
+    }
+

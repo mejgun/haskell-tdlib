@@ -1,4 +1,7 @@
-module TD.Data.PremiumState (PremiumState(..)) where
+module TD.Data.PremiumState
+  ( PremiumState(..)    
+  , defaultPremiumState 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,3 +64,12 @@ instance AT.ToJSON PremiumState where
         , "payment_options" A..= payment_options_
         , "animations"      A..= animations_
         ]
+
+defaultPremiumState :: PremiumState
+defaultPremiumState =
+  PremiumState
+    { state           = Nothing
+    , payment_options = Nothing
+    , animations      = Nothing
+    }
+

@@ -1,4 +1,10 @@
-module TD.Data.ReplyMarkup (ReplyMarkup(..)) where
+module TD.Data.ReplyMarkup
+  ( ReplyMarkup(..)                  
+  , defaultReplyMarkupRemoveKeyboard 
+  , defaultReplyMarkupForceReply     
+  , defaultReplyMarkupShowKeyboard   
+  , defaultReplyMarkupInlineKeyboard 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -161,3 +167,34 @@ instance AT.ToJSON ReplyMarkup where
         [ "@type" A..= AT.String "replyMarkupInlineKeyboard"
         , "rows"  A..= _rows_
         ]
+
+defaultReplyMarkupRemoveKeyboard :: ReplyMarkup
+defaultReplyMarkupRemoveKeyboard =
+  ReplyMarkupRemoveKeyboard
+    { is_personal = Nothing
+    }
+
+defaultReplyMarkupForceReply :: ReplyMarkup
+defaultReplyMarkupForceReply =
+  ReplyMarkupForceReply
+    { is_personal             = Nothing
+    , input_field_placeholder = Nothing
+    }
+
+defaultReplyMarkupShowKeyboard :: ReplyMarkup
+defaultReplyMarkupShowKeyboard =
+  ReplyMarkupShowKeyboard
+    { rows                    = Nothing
+    , is_persistent           = Nothing
+    , resize_keyboard         = Nothing
+    , one_time                = Nothing
+    , is_personal             = Nothing
+    , input_field_placeholder = Nothing
+    }
+
+defaultReplyMarkupInlineKeyboard :: ReplyMarkup
+defaultReplyMarkupInlineKeyboard =
+  ReplyMarkupInlineKeyboard
+    { _rows = Nothing
+    }
+

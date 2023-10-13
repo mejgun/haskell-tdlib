@@ -1,4 +1,7 @@
-module TD.Data.ChatFolderIcon (ChatFolderIcon(..)) where
+module TD.Data.ChatFolderIcon
+  ( ChatFolderIcon(..)    
+  , defaultChatFolderIcon 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,10 @@ instance AT.ToJSON ChatFolderIcon where
         [ "@type" A..= AT.String "chatFolderIcon"
         , "name"  A..= name_
         ]
+
+defaultChatFolderIcon :: ChatFolderIcon
+defaultChatFolderIcon =
+  ChatFolderIcon
+    { name = Nothing
+    }
+
