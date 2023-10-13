@@ -1,4 +1,7 @@
-module TD.Query.SaveApplicationLogEvent(SaveApplicationLogEvent(..)) where
+module TD.Query.SaveApplicationLogEvent
+  (SaveApplicationLogEvent(..)
+  , defaultSaveApplicationLogEvent
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON SaveApplicationLogEvent where
           , "chat_id" A..= chat_id_
           , "data"    A..= _data_
           ]
+
+defaultSaveApplicationLogEvent :: SaveApplicationLogEvent
+defaultSaveApplicationLogEvent =
+  SaveApplicationLogEvent
+    { _type   = Nothing
+    , chat_id = Nothing
+    , _data   = Nothing
+    }
+

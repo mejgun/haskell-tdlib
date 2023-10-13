@@ -1,4 +1,6 @@
-module TD.Query.GetMessageFileType(GetMessageFileType(..)) where
+module TD.Query.GetMessageFileType
+  (GetMessageFileType(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetMessageFileType where
           [ "@type"             A..= AT.String "getMessageFileType"
           , "message_file_head" A..= message_file_head_
           ]
+

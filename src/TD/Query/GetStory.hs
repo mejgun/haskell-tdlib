@@ -1,4 +1,7 @@
-module TD.Query.GetStory(GetStory(..)) where
+module TD.Query.GetStory
+  (GetStory(..)
+  , defaultGetStory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetStory where
           , "story_id"             A..= story_id_
           , "only_local"           A..= only_local_
           ]
+
+defaultGetStory :: GetStory
+defaultGetStory =
+  GetStory
+    { story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    , only_local           = Nothing
+    }
+

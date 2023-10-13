@@ -1,4 +1,7 @@
-module TD.Query.GetChatMessagePosition(GetChatMessagePosition(..)) where
+module TD.Query.GetChatMessagePosition
+  (GetChatMessagePosition(..)
+  , defaultGetChatMessagePosition
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON GetChatMessagePosition where
           , "filter"            A..= _filter_
           , "message_thread_id" A..= message_thread_id_
           ]
+
+defaultGetChatMessagePosition :: GetChatMessagePosition
+defaultGetChatMessagePosition =
+  GetChatMessagePosition
+    { chat_id           = Nothing
+    , message_id        = Nothing
+    , _filter           = Nothing
+    , message_thread_id = Nothing
+    }
+

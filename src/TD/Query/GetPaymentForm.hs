@@ -1,4 +1,7 @@
-module TD.Query.GetPaymentForm(GetPaymentForm(..)) where
+module TD.Query.GetPaymentForm
+  (GetPaymentForm(..)
+  , defaultGetPaymentForm
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON GetPaymentForm where
           , "input_invoice" A..= input_invoice_
           , "theme"         A..= theme_
           ]
+
+defaultGetPaymentForm :: GetPaymentForm
+defaultGetPaymentForm =
+  GetPaymentForm
+    { input_invoice = Nothing
+    , theme         = Nothing
+    }
+

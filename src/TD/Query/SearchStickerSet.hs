@@ -1,4 +1,6 @@
-module TD.Query.SearchStickerSet(SearchStickerSet(..)) where
+module TD.Query.SearchStickerSet
+  (SearchStickerSet(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SearchStickerSet where
           [ "@type" A..= AT.String "searchStickerSet"
           , "name"  A..= name_
           ]
+

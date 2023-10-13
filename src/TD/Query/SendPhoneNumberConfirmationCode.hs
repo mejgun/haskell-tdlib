@@ -1,4 +1,7 @@
-module TD.Query.SendPhoneNumberConfirmationCode(SendPhoneNumberConfirmationCode(..)) where
+module TD.Query.SendPhoneNumberConfirmationCode
+  (SendPhoneNumberConfirmationCode(..)
+  , defaultSendPhoneNumberConfirmationCode
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON SendPhoneNumberConfirmationCode where
           , "phone_number" A..= phone_number_
           , "settings"     A..= settings_
           ]
+
+defaultSendPhoneNumberConfirmationCode :: SendPhoneNumberConfirmationCode
+defaultSendPhoneNumberConfirmationCode =
+  SendPhoneNumberConfirmationCode
+    { hash         = Nothing
+    , phone_number = Nothing
+    , settings     = Nothing
+    }
+

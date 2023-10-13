@@ -1,4 +1,6 @@
-module TD.Query.GetAutosaveSettings(GetAutosaveSettings(..)) where
+module TD.Query.GetAutosaveSettings
+  (GetAutosaveSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetAutosaveSettings where
         = A.object
           [ "@type" A..= AT.String "getAutosaveSettings"
           ]
+

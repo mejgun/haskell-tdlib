@@ -1,4 +1,6 @@
-module TD.Query.JoinChatByInviteLink(JoinChatByInviteLink(..)) where
+module TD.Query.JoinChatByInviteLink
+  (JoinChatByInviteLink(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON JoinChatByInviteLink where
           [ "@type"       A..= AT.String "joinChatByInviteLink"
           , "invite_link" A..= invite_link_
           ]
+

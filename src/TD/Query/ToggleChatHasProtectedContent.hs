@@ -1,4 +1,7 @@
-module TD.Query.ToggleChatHasProtectedContent(ToggleChatHasProtectedContent(..)) where
+module TD.Query.ToggleChatHasProtectedContent
+  (ToggleChatHasProtectedContent(..)
+  , defaultToggleChatHasProtectedContent
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleChatHasProtectedContent where
           , "chat_id"               A..= chat_id_
           , "has_protected_content" A..= has_protected_content_
           ]
+
+defaultToggleChatHasProtectedContent :: ToggleChatHasProtectedContent
+defaultToggleChatHasProtectedContent =
+  ToggleChatHasProtectedContent
+    { chat_id               = Nothing
+    , has_protected_content = Nothing
+    }
+

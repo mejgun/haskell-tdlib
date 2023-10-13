@@ -1,4 +1,7 @@
-module TD.Query.GetMessageStatistics(GetMessageStatistics(..)) where
+module TD.Query.GetMessageStatistics
+  (GetMessageStatistics(..)
+  , defaultGetMessageStatistics
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetMessageStatistics where
           , "message_id" A..= message_id_
           , "is_dark"    A..= is_dark_
           ]
+
+defaultGetMessageStatistics :: GetMessageStatistics
+defaultGetMessageStatistics =
+  GetMessageStatistics
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , is_dark    = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.AnswerCustomQuery(AnswerCustomQuery(..)) where
+module TD.Query.AnswerCustomQuery
+  (AnswerCustomQuery(..)
+  , defaultAnswerCustomQuery
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON AnswerCustomQuery where
           , "custom_query_id" A..= fmap I.writeInt64  custom_query_id_
           , "data"            A..= _data_
           ]
+
+defaultAnswerCustomQuery :: AnswerCustomQuery
+defaultAnswerCustomQuery =
+  AnswerCustomQuery
+    { custom_query_id = Nothing
+    , _data           = Nothing
+    }
+

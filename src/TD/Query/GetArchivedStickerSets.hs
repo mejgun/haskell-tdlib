@@ -1,4 +1,7 @@
-module TD.Query.GetArchivedStickerSets(GetArchivedStickerSets(..)) where
+module TD.Query.GetArchivedStickerSets
+  (GetArchivedStickerSets(..)
+  , defaultGetArchivedStickerSets
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON GetArchivedStickerSets where
           , "offset_sticker_set_id" A..= fmap I.writeInt64  offset_sticker_set_id_
           , "limit"                 A..= limit_
           ]
+
+defaultGetArchivedStickerSets :: GetArchivedStickerSets
+defaultGetArchivedStickerSets =
+  GetArchivedStickerSets
+    { sticker_type          = Nothing
+    , offset_sticker_set_id = Nothing
+    , limit                 = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.SetChatMessageAutoDeleteTime(SetChatMessageAutoDeleteTime(..)) where
+module TD.Query.SetChatMessageAutoDeleteTime
+  (SetChatMessageAutoDeleteTime(..)
+  , defaultSetChatMessageAutoDeleteTime
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON SetChatMessageAutoDeleteTime where
           , "chat_id"                  A..= chat_id_
           , "message_auto_delete_time" A..= message_auto_delete_time_
           ]
+
+defaultSetChatMessageAutoDeleteTime :: SetChatMessageAutoDeleteTime
+defaultSetChatMessageAutoDeleteTime =
+  SetChatMessageAutoDeleteTime
+    { chat_id                  = Nothing
+    , message_auto_delete_time = Nothing
+    }
+

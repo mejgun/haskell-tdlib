@@ -1,4 +1,7 @@
-module TD.Query.DeleteChatFolderInviteLink(DeleteChatFolderInviteLink(..)) where
+module TD.Query.DeleteChatFolderInviteLink
+  (DeleteChatFolderInviteLink(..)
+  , defaultDeleteChatFolderInviteLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON DeleteChatFolderInviteLink where
           , "chat_folder_id" A..= chat_folder_id_
           , "invite_link"    A..= invite_link_
           ]
+
+defaultDeleteChatFolderInviteLink :: DeleteChatFolderInviteLink
+defaultDeleteChatFolderInviteLink =
+  DeleteChatFolderInviteLink
+    { chat_folder_id = Nothing
+    , invite_link    = Nothing
+    }
+

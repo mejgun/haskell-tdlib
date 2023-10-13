@@ -1,4 +1,7 @@
-module TD.Query.TranslateMessageText(TranslateMessageText(..)) where
+module TD.Query.TranslateMessageText
+  (TranslateMessageText(..)
+  , defaultTranslateMessageText
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON TranslateMessageText where
           , "message_id"       A..= message_id_
           , "to_language_code" A..= to_language_code_
           ]
+
+defaultTranslateMessageText :: TranslateMessageText
+defaultTranslateMessageText =
+  TranslateMessageText
+    { chat_id          = Nothing
+    , message_id       = Nothing
+    , to_language_code = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetSuggestedStickerSetName(GetSuggestedStickerSetName(..)) where
+module TD.Query.GetSuggestedStickerSetName
+  (GetSuggestedStickerSetName(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetSuggestedStickerSetName where
           [ "@type" A..= AT.String "getSuggestedStickerSetName"
           , "title" A..= title_
           ]
+

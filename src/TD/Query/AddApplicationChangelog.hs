@@ -1,4 +1,6 @@
-module TD.Query.AddApplicationChangelog(AddApplicationChangelog(..)) where
+module TD.Query.AddApplicationChangelog
+  (AddApplicationChangelog(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON AddApplicationChangelog where
           [ "@type"                        A..= AT.String "addApplicationChangelog"
           , "previous_application_version" A..= previous_application_version_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetChatFolderNewChats(GetChatFolderNewChats(..)) where
+module TD.Query.GetChatFolderNewChats
+  (GetChatFolderNewChats(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatFolderNewChats where
           [ "@type"          A..= AT.String "getChatFolderNewChats"
           , "chat_folder_id" A..= chat_folder_id_
           ]
+

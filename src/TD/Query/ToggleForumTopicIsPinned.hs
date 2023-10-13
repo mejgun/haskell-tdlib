@@ -1,4 +1,7 @@
-module TD.Query.ToggleForumTopicIsPinned(ToggleForumTopicIsPinned(..)) where
+module TD.Query.ToggleForumTopicIsPinned
+  (ToggleForumTopicIsPinned(..)
+  , defaultToggleForumTopicIsPinned
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON ToggleForumTopicIsPinned where
           , "message_thread_id" A..= message_thread_id_
           , "is_pinned"         A..= is_pinned_
           ]
+
+defaultToggleForumTopicIsPinned :: ToggleForumTopicIsPinned
+defaultToggleForumTopicIsPinned =
+  ToggleForumTopicIsPinned
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , is_pinned         = Nothing
+    }
+

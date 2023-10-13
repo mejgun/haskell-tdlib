@@ -1,4 +1,7 @@
-module TD.Query.SetMenuButton(SetMenuButton(..)) where
+module TD.Query.SetMenuButton
+  (SetMenuButton(..)
+  , defaultSetMenuButton
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetMenuButton where
           , "user_id"     A..= user_id_
           , "menu_button" A..= menu_button_
           ]
+
+defaultSetMenuButton :: SetMenuButton
+defaultSetMenuButton =
+  SetMenuButton
+    { user_id     = Nothing
+    , menu_button = Nothing
+    }
+

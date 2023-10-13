@@ -1,4 +1,6 @@
-module TD.Query.GetUser(GetUser(..)) where
+module TD.Query.GetUser
+  (GetUser(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetUser where
           [ "@type"   A..= AT.String "getUser"
           , "user_id" A..= user_id_
           ]
+

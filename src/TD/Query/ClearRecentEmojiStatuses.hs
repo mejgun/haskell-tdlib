@@ -1,4 +1,6 @@
-module TD.Query.ClearRecentEmojiStatuses(ClearRecentEmojiStatuses(..)) where
+module TD.Query.ClearRecentEmojiStatuses
+  (ClearRecentEmojiStatuses(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ClearRecentEmojiStatuses where
         = A.object
           [ "@type" A..= AT.String "clearRecentEmojiStatuses"
           ]
+

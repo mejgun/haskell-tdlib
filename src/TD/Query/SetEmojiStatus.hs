@@ -1,4 +1,6 @@
-module TD.Query.SetEmojiStatus(SetEmojiStatus(..)) where
+module TD.Query.SetEmojiStatus
+  (SetEmojiStatus(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetEmojiStatus where
           [ "@type"        A..= AT.String "setEmojiStatus"
           , "emoji_status" A..= emoji_status_
           ]
+

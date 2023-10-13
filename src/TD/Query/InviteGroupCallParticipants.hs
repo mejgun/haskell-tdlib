@@ -1,4 +1,7 @@
-module TD.Query.InviteGroupCallParticipants(InviteGroupCallParticipants(..)) where
+module TD.Query.InviteGroupCallParticipants
+  (InviteGroupCallParticipants(..)
+  , defaultInviteGroupCallParticipants
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON InviteGroupCallParticipants where
           , "group_call_id" A..= group_call_id_
           , "user_ids"      A..= user_ids_
           ]
+
+defaultInviteGroupCallParticipants :: InviteGroupCallParticipants
+defaultInviteGroupCallParticipants =
+  InviteGroupCallParticipants
+    { group_call_id = Nothing
+    , user_ids      = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.RequestAuthenticationPasswordRecovery(RequestAuthenticationPasswordRecovery(..)) where
+module TD.Query.RequestAuthenticationPasswordRecovery
+  (RequestAuthenticationPasswordRecovery(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON RequestAuthenticationPasswordRecovery where
         = A.object
           [ "@type" A..= AT.String "requestAuthenticationPasswordRecovery"
           ]
+

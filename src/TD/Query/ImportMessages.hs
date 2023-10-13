@@ -1,4 +1,7 @@
-module TD.Query.ImportMessages(ImportMessages(..)) where
+module TD.Query.ImportMessages
+  (ImportMessages(..)
+  , defaultImportMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON ImportMessages where
           , "message_file"   A..= message_file_
           , "attached_files" A..= attached_files_
           ]
+
+defaultImportMessages :: ImportMessages
+defaultImportMessages =
+  ImportMessages
+    { chat_id        = Nothing
+    , message_file   = Nothing
+    , attached_files = Nothing
+    }
+

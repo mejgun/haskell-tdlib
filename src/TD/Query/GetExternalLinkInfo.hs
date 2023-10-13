@@ -1,4 +1,6 @@
-module TD.Query.GetExternalLinkInfo(GetExternalLinkInfo(..)) where
+module TD.Query.GetExternalLinkInfo
+  (GetExternalLinkInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetExternalLinkInfo where
           [ "@type" A..= AT.String "getExternalLinkInfo"
           , "link"  A..= link_
           ]
+

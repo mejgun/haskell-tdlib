@@ -1,4 +1,6 @@
-module TD.Query.ConfirmQrCodeAuthentication(ConfirmQrCodeAuthentication(..)) where
+module TD.Query.ConfirmQrCodeAuthentication
+  (ConfirmQrCodeAuthentication(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON ConfirmQrCodeAuthentication where
           [ "@type" A..= AT.String "confirmQrCodeAuthentication"
           , "link"  A..= link_
           ]
+

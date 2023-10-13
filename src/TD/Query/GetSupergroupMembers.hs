@@ -1,4 +1,7 @@
-module TD.Query.GetSupergroupMembers(GetSupergroupMembers(..)) where
+module TD.Query.GetSupergroupMembers
+  (GetSupergroupMembers(..)
+  , defaultGetSupergroupMembers
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON GetSupergroupMembers where
           , "offset"        A..= offset_
           , "limit"         A..= limit_
           ]
+
+defaultGetSupergroupMembers :: GetSupergroupMembers
+defaultGetSupergroupMembers =
+  GetSupergroupMembers
+    { supergroup_id = Nothing
+    , _filter       = Nothing
+    , offset        = Nothing
+    , limit         = Nothing
+    }
+

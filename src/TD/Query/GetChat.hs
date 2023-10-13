@@ -1,4 +1,6 @@
-module TD.Query.GetChat(GetChat(..)) where
+module TD.Query.GetChat
+  (GetChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChat where
           [ "@type"   A..= AT.String "getChat"
           , "chat_id" A..= chat_id_
           ]
+

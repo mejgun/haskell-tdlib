@@ -1,4 +1,7 @@
-module TD.Query.SetUserPersonalProfilePhoto(SetUserPersonalProfilePhoto(..)) where
+module TD.Query.SetUserPersonalProfilePhoto
+  (SetUserPersonalProfilePhoto(..)
+  , defaultSetUserPersonalProfilePhoto
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetUserPersonalProfilePhoto where
           , "user_id" A..= user_id_
           , "photo"   A..= photo_
           ]
+
+defaultSetUserPersonalProfilePhoto :: SetUserPersonalProfilePhoto
+defaultSetUserPersonalProfilePhoto =
+  SetUserPersonalProfilePhoto
+    { user_id = Nothing
+    , photo   = Nothing
+    }
+

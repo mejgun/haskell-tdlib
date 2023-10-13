@@ -1,4 +1,6 @@
-module TD.Query.GetPremiumLimit(GetPremiumLimit(..)) where
+module TD.Query.GetPremiumLimit
+  (GetPremiumLimit(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetPremiumLimit where
           [ "@type"      A..= AT.String "getPremiumLimit"
           , "limit_type" A..= limit_type_
           ]
+

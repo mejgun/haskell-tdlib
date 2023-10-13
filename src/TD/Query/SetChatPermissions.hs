@@ -1,4 +1,7 @@
-module TD.Query.SetChatPermissions(SetChatPermissions(..)) where
+module TD.Query.SetChatPermissions
+  (SetChatPermissions(..)
+  , defaultSetChatPermissions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatPermissions where
           , "chat_id"     A..= chat_id_
           , "permissions" A..= permissions_
           ]
+
+defaultSetChatPermissions :: SetChatPermissions
+defaultSetChatPermissions =
+  SetChatPermissions
+    { chat_id     = Nothing
+    , permissions = Nothing
+    }
+

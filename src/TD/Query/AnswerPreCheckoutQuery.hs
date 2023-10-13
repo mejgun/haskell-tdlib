@@ -1,4 +1,7 @@
-module TD.Query.AnswerPreCheckoutQuery(AnswerPreCheckoutQuery(..)) where
+module TD.Query.AnswerPreCheckoutQuery
+  (AnswerPreCheckoutQuery(..)
+  , defaultAnswerPreCheckoutQuery
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON AnswerPreCheckoutQuery where
           , "pre_checkout_query_id" A..= fmap I.writeInt64  pre_checkout_query_id_
           , "error_message"         A..= error_message_
           ]
+
+defaultAnswerPreCheckoutQuery :: AnswerPreCheckoutQuery
+defaultAnswerPreCheckoutQuery =
+  AnswerPreCheckoutQuery
+    { pre_checkout_query_id = Nothing
+    , error_message         = Nothing
+    }
+

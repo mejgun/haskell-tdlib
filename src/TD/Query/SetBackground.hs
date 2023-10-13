@@ -1,4 +1,7 @@
-module TD.Query.SetBackground(SetBackground(..)) where
+module TD.Query.SetBackground
+  (SetBackground(..)
+  , defaultSetBackground
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON SetBackground where
           , "type"           A..= _type_
           , "for_dark_theme" A..= for_dark_theme_
           ]
+
+defaultSetBackground :: SetBackground
+defaultSetBackground =
+  SetBackground
+    { background     = Nothing
+    , _type          = Nothing
+    , for_dark_theme = Nothing
+    }
+

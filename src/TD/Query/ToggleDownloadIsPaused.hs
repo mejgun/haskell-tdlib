@@ -1,4 +1,7 @@
-module TD.Query.ToggleDownloadIsPaused(ToggleDownloadIsPaused(..)) where
+module TD.Query.ToggleDownloadIsPaused
+  (ToggleDownloadIsPaused(..)
+  , defaultToggleDownloadIsPaused
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleDownloadIsPaused where
           , "file_id"   A..= file_id_
           , "is_paused" A..= is_paused_
           ]
+
+defaultToggleDownloadIsPaused :: ToggleDownloadIsPaused
+defaultToggleDownloadIsPaused =
+  ToggleDownloadIsPaused
+    { file_id   = Nothing
+    , is_paused = Nothing
+    }
+

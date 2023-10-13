@@ -1,4 +1,6 @@
-module TD.Query.EnableProxy(EnableProxy(..)) where
+module TD.Query.EnableProxy
+  (EnableProxy(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON EnableProxy where
           [ "@type"    A..= AT.String "enableProxy"
           , "proxy_id" A..= proxy_id_
           ]
+

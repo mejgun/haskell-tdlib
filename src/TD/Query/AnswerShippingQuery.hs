@@ -1,4 +1,7 @@
-module TD.Query.AnswerShippingQuery(AnswerShippingQuery(..)) where
+module TD.Query.AnswerShippingQuery
+  (AnswerShippingQuery(..)
+  , defaultAnswerShippingQuery
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON AnswerShippingQuery where
           , "shipping_options"  A..= shipping_options_
           , "error_message"     A..= error_message_
           ]
+
+defaultAnswerShippingQuery :: AnswerShippingQuery
+defaultAnswerShippingQuery =
+  AnswerShippingQuery
+    { shipping_query_id = Nothing
+    , shipping_options  = Nothing
+    , error_message     = Nothing
+    }
+

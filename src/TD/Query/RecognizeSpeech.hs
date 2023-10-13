@@ -1,4 +1,7 @@
-module TD.Query.RecognizeSpeech(RecognizeSpeech(..)) where
+module TD.Query.RecognizeSpeech
+  (RecognizeSpeech(..)
+  , defaultRecognizeSpeech
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON RecognizeSpeech where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultRecognizeSpeech :: RecognizeSpeech
+defaultRecognizeSpeech =
+  RecognizeSpeech
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

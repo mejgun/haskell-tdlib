@@ -1,4 +1,6 @@
-module TD.Query.SearchUserByPhoneNumber(SearchUserByPhoneNumber(..)) where
+module TD.Query.SearchUserByPhoneNumber
+  (SearchUserByPhoneNumber(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SearchUserByPhoneNumber where
           [ "@type"        A..= AT.String "searchUserByPhoneNumber"
           , "phone_number" A..= phone_number_
           ]
+

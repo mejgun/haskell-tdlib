@@ -1,4 +1,7 @@
-module TD.Query.SendCallDebugInformation(SendCallDebugInformation(..)) where
+module TD.Query.SendCallDebugInformation
+  (SendCallDebugInformation(..)
+  , defaultSendCallDebugInformation
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SendCallDebugInformation where
           , "call_id"           A..= call_id_
           , "debug_information" A..= debug_information_
           ]
+
+defaultSendCallDebugInformation :: SendCallDebugInformation
+defaultSendCallDebugInformation =
+  SendCallDebugInformation
+    { call_id           = Nothing
+    , debug_information = Nothing
+    }
+

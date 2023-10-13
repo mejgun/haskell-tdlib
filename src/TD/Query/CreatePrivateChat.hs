@@ -1,4 +1,7 @@
-module TD.Query.CreatePrivateChat(CreatePrivateChat(..)) where
+module TD.Query.CreatePrivateChat
+  (CreatePrivateChat(..)
+  , defaultCreatePrivateChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON CreatePrivateChat where
           , "user_id" A..= user_id_
           , "force"   A..= force_
           ]
+
+defaultCreatePrivateChat :: CreatePrivateChat
+defaultCreatePrivateChat =
+  CreatePrivateChat
+    { user_id = Nothing
+    , force   = Nothing
+    }
+

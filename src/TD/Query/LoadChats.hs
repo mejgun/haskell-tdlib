@@ -1,4 +1,7 @@
-module TD.Query.LoadChats(LoadChats(..)) where
+module TD.Query.LoadChats
+  (LoadChats(..)
+  , defaultLoadChats
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON LoadChats where
           , "chat_list" A..= chat_list_
           , "limit"     A..= limit_
           ]
+
+defaultLoadChats :: LoadChats
+defaultLoadChats =
+  LoadChats
+    { chat_list = Nothing
+    , limit     = Nothing
+    }
+

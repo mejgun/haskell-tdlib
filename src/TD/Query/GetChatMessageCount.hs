@@ -1,4 +1,7 @@
-module TD.Query.GetChatMessageCount(GetChatMessageCount(..)) where
+module TD.Query.GetChatMessageCount
+  (GetChatMessageCount(..)
+  , defaultGetChatMessageCount
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON GetChatMessageCount where
           , "filter"       A..= _filter_
           , "return_local" A..= return_local_
           ]
+
+defaultGetChatMessageCount :: GetChatMessageCount
+defaultGetChatMessageCount =
+  GetChatMessageCount
+    { chat_id      = Nothing
+    , _filter      = Nothing
+    , return_local = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetSavedNotificationSound(GetSavedNotificationSound(..)) where
+module TD.Query.GetSavedNotificationSound
+  (GetSavedNotificationSound(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetSavedNotificationSound where
           [ "@type"                 A..= AT.String "getSavedNotificationSound"
           , "notification_sound_id" A..= fmap I.writeInt64  notification_sound_id_
           ]
+

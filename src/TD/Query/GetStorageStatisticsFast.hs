@@ -1,4 +1,6 @@
-module TD.Query.GetStorageStatisticsFast(GetStorageStatisticsFast(..)) where
+module TD.Query.GetStorageStatisticsFast
+  (GetStorageStatisticsFast(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetStorageStatisticsFast where
         = A.object
           [ "@type" A..= AT.String "getStorageStatisticsFast"
           ]
+

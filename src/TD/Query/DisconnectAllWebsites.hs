@@ -1,4 +1,6 @@
-module TD.Query.DisconnectAllWebsites(DisconnectAllWebsites(..)) where
+module TD.Query.DisconnectAllWebsites
+  (DisconnectAllWebsites(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON DisconnectAllWebsites where
         = A.object
           [ "@type" A..= AT.String "disconnectAllWebsites"
           ]
+

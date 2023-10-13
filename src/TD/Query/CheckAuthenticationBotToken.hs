@@ -1,4 +1,6 @@
-module TD.Query.CheckAuthenticationBotToken(CheckAuthenticationBotToken(..)) where
+module TD.Query.CheckAuthenticationBotToken
+  (CheckAuthenticationBotToken(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckAuthenticationBotToken where
           [ "@type" A..= AT.String "checkAuthenticationBotToken"
           , "token" A..= token_
           ]
+

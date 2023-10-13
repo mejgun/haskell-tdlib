@@ -1,4 +1,7 @@
-module TD.Query.DeleteForumTopic(DeleteForumTopic(..)) where
+module TD.Query.DeleteForumTopic
+  (DeleteForumTopic(..)
+  , defaultDeleteForumTopic
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON DeleteForumTopic where
           , "chat_id"           A..= chat_id_
           , "message_thread_id" A..= message_thread_id_
           ]
+
+defaultDeleteForumTopic :: DeleteForumTopic
+defaultDeleteForumTopic =
+  DeleteForumTopic
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

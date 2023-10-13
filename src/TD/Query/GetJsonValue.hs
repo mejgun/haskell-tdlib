@@ -1,4 +1,6 @@
-module TD.Query.GetJsonValue(GetJsonValue(..)) where
+module TD.Query.GetJsonValue
+  (GetJsonValue(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetJsonValue where
           [ "@type" A..= AT.String "getJsonValue"
           , "json"  A..= json_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetPremiumStickers(GetPremiumStickers(..)) where
+module TD.Query.GetPremiumStickers
+  (GetPremiumStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetPremiumStickers where
           [ "@type" A..= AT.String "getPremiumStickers"
           , "limit" A..= limit_
           ]
+

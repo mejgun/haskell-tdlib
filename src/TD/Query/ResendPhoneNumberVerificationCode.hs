@@ -1,4 +1,6 @@
-module TD.Query.ResendPhoneNumberVerificationCode(ResendPhoneNumberVerificationCode(..)) where
+module TD.Query.ResendPhoneNumberVerificationCode
+  (ResendPhoneNumberVerificationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ResendPhoneNumberVerificationCode where
         = A.object
           [ "@type" A..= AT.String "resendPhoneNumberVerificationCode"
           ]
+

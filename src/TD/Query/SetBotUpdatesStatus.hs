@@ -1,4 +1,7 @@
-module TD.Query.SetBotUpdatesStatus(SetBotUpdatesStatus(..)) where
+module TD.Query.SetBotUpdatesStatus
+  (SetBotUpdatesStatus(..)
+  , defaultSetBotUpdatesStatus
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetBotUpdatesStatus where
           , "pending_update_count" A..= pending_update_count_
           , "error_message"        A..= error_message_
           ]
+
+defaultSetBotUpdatesStatus :: SetBotUpdatesStatus
+defaultSetBotUpdatesStatus =
+  SetBotUpdatesStatus
+    { pending_update_count = Nothing
+    , error_message        = Nothing
+    }
+

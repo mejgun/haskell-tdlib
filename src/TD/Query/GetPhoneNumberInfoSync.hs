@@ -1,4 +1,7 @@
-module TD.Query.GetPhoneNumberInfoSync(GetPhoneNumberInfoSync(..)) where
+module TD.Query.GetPhoneNumberInfoSync
+  (GetPhoneNumberInfoSync(..)
+  , defaultGetPhoneNumberInfoSync
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetPhoneNumberInfoSync where
           , "language_code"       A..= language_code_
           , "phone_number_prefix" A..= phone_number_prefix_
           ]
+
+defaultGetPhoneNumberInfoSync :: GetPhoneNumberInfoSync
+defaultGetPhoneNumberInfoSync =
+  GetPhoneNumberInfoSync
+    { language_code       = Nothing
+    , phone_number_prefix = Nothing
+    }
+

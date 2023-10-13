@@ -1,4 +1,6 @@
-module TD.Query.DeleteProfilePhoto(DeleteProfilePhoto(..)) where
+module TD.Query.DeleteProfilePhoto
+  (DeleteProfilePhoto(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON DeleteProfilePhoto where
           [ "@type"            A..= AT.String "deleteProfilePhoto"
           , "profile_photo_id" A..= fmap I.writeInt64  profile_photo_id_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.CreateForumTopic(CreateForumTopic(..)) where
+module TD.Query.CreateForumTopic
+  (CreateForumTopic(..)
+  , defaultCreateForumTopic
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON CreateForumTopic where
           , "name"    A..= name_
           , "icon"    A..= icon_
           ]
+
+defaultCreateForumTopic :: CreateForumTopic
+defaultCreateForumTopic =
+  CreateForumTopic
+    { chat_id = Nothing
+    , name    = Nothing
+    , icon    = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.ToggleForumTopicIsClosed(ToggleForumTopicIsClosed(..)) where
+module TD.Query.ToggleForumTopicIsClosed
+  (ToggleForumTopicIsClosed(..)
+  , defaultToggleForumTopicIsClosed
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON ToggleForumTopicIsClosed where
           , "message_thread_id" A..= message_thread_id_
           , "is_closed"         A..= is_closed_
           ]
+
+defaultToggleForumTopicIsClosed :: ToggleForumTopicIsClosed
+defaultToggleForumTopicIsClosed =
+  ToggleForumTopicIsClosed
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , is_closed         = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.GetFileDownloadedPrefixSize(GetFileDownloadedPrefixSize(..)) where
+module TD.Query.GetFileDownloadedPrefixSize
+  (GetFileDownloadedPrefixSize(..)
+  , defaultGetFileDownloadedPrefixSize
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetFileDownloadedPrefixSize where
           , "file_id" A..= file_id_
           , "offset"  A..= offset_
           ]
+
+defaultGetFileDownloadedPrefixSize :: GetFileDownloadedPrefixSize
+defaultGetFileDownloadedPrefixSize =
+  GetFileDownloadedPrefixSize
+    { file_id = Nothing
+    , offset  = Nothing
+    }
+

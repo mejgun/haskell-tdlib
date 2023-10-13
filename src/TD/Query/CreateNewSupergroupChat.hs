@@ -1,4 +1,7 @@
-module TD.Query.CreateNewSupergroupChat(CreateNewSupergroupChat(..)) where
+module TD.Query.CreateNewSupergroupChat
+  (CreateNewSupergroupChat(..)
+  , defaultCreateNewSupergroupChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,3 +64,16 @@ instance AT.ToJSON CreateNewSupergroupChat where
           , "message_auto_delete_time" A..= message_auto_delete_time_
           , "for_import"               A..= for_import_
           ]
+
+defaultCreateNewSupergroupChat :: CreateNewSupergroupChat
+defaultCreateNewSupergroupChat =
+  CreateNewSupergroupChat
+    { title                    = Nothing
+    , is_forum                 = Nothing
+    , is_channel               = Nothing
+    , description              = Nothing
+    , location                 = Nothing
+    , message_auto_delete_time = Nothing
+    , for_import               = Nothing
+    }
+

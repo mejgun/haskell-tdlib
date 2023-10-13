@@ -1,4 +1,6 @@
-module TD.Query.AddCustomServerLanguagePack(AddCustomServerLanguagePack(..)) where
+module TD.Query.AddCustomServerLanguagePack
+  (AddCustomServerLanguagePack(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON AddCustomServerLanguagePack where
           [ "@type"            A..= AT.String "addCustomServerLanguagePack"
           , "language_pack_id" A..= language_pack_id_
           ]
+

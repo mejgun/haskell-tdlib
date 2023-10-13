@@ -1,4 +1,7 @@
-module TD.Query.GetGroupCallInviteLink(GetGroupCallInviteLink(..)) where
+module TD.Query.GetGroupCallInviteLink
+  (GetGroupCallInviteLink(..)
+  , defaultGetGroupCallInviteLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetGroupCallInviteLink where
           , "group_call_id"   A..= group_call_id_
           , "can_self_unmute" A..= can_self_unmute_
           ]
+
+defaultGetGroupCallInviteLink :: GetGroupCallInviteLink
+defaultGetGroupCallInviteLink =
+  GetGroupCallInviteLink
+    { group_call_id   = Nothing
+    , can_self_unmute = Nothing
+    }
+

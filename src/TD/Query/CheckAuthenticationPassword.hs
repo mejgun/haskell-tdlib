@@ -1,4 +1,6 @@
-module TD.Query.CheckAuthenticationPassword(CheckAuthenticationPassword(..)) where
+module TD.Query.CheckAuthenticationPassword
+  (CheckAuthenticationPassword(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckAuthenticationPassword where
           [ "@type"    A..= AT.String "checkAuthenticationPassword"
           , "password" A..= password_
           ]
+

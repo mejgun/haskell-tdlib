@@ -1,4 +1,7 @@
-module TD.Query.AddStickerToSet(AddStickerToSet(..)) where
+module TD.Query.AddStickerToSet
+  (AddStickerToSet(..)
+  , defaultAddStickerToSet
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON AddStickerToSet where
           , "name"    A..= name_
           , "sticker" A..= sticker_
           ]
+
+defaultAddStickerToSet :: AddStickerToSet
+defaultAddStickerToSet =
+  AddStickerToSet
+    { user_id = Nothing
+    , name    = Nothing
+    , sticker = Nothing
+    }
+

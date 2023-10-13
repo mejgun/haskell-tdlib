@@ -1,4 +1,7 @@
-module TD.Query.SendCustomRequest(SendCustomRequest(..)) where
+module TD.Query.SendCustomRequest
+  (SendCustomRequest(..)
+  , defaultSendCustomRequest
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SendCustomRequest where
           , "method"     A..= method_
           , "parameters" A..= parameters_
           ]
+
+defaultSendCustomRequest :: SendCustomRequest
+defaultSendCustomRequest =
+  SendCustomRequest
+    { method     = Nothing
+    , parameters = Nothing
+    }
+

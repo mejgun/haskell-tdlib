@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupJoinByRequest(ToggleSupergroupJoinByRequest(..)) where
+module TD.Query.ToggleSupergroupJoinByRequest
+  (ToggleSupergroupJoinByRequest(..)
+  , defaultToggleSupergroupJoinByRequest
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSupergroupJoinByRequest where
           , "supergroup_id"   A..= supergroup_id_
           , "join_by_request" A..= join_by_request_
           ]
+
+defaultToggleSupergroupJoinByRequest :: ToggleSupergroupJoinByRequest
+defaultToggleSupergroupJoinByRequest =
+  ToggleSupergroupJoinByRequest
+    { supergroup_id   = Nothing
+    , join_by_request = Nothing
+    }
+

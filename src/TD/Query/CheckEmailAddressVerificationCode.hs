@@ -1,4 +1,6 @@
-module TD.Query.CheckEmailAddressVerificationCode(CheckEmailAddressVerificationCode(..)) where
+module TD.Query.CheckEmailAddressVerificationCode
+  (CheckEmailAddressVerificationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckEmailAddressVerificationCode where
           [ "@type" A..= AT.String "checkEmailAddressVerificationCode"
           , "code"  A..= code_
           ]
+

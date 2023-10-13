@@ -1,4 +1,7 @@
-module TD.Query.SetBotInfoShortDescription(SetBotInfoShortDescription(..)) where
+module TD.Query.SetBotInfoShortDescription
+  (SetBotInfoShortDescription(..)
+  , defaultSetBotInfoShortDescription
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SetBotInfoShortDescription where
           , "language_code"     A..= language_code_
           , "short_description" A..= short_description_
           ]
+
+defaultSetBotInfoShortDescription :: SetBotInfoShortDescription
+defaultSetBotInfoShortDescription =
+  SetBotInfoShortDescription
+    { bot_user_id       = Nothing
+    , language_code     = Nothing
+    , short_description = Nothing
+    }
+

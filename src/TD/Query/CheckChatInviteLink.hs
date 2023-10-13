@@ -1,4 +1,6 @@
-module TD.Query.CheckChatInviteLink(CheckChatInviteLink(..)) where
+module TD.Query.CheckChatInviteLink
+  (CheckChatInviteLink(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckChatInviteLink where
           [ "@type"       A..= AT.String "checkChatInviteLink"
           , "invite_link" A..= invite_link_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.ProcessChatFolderNewChats(ProcessChatFolderNewChats(..)) where
+module TD.Query.ProcessChatFolderNewChats
+  (ProcessChatFolderNewChats(..)
+  , defaultProcessChatFolderNewChats
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ProcessChatFolderNewChats where
           , "chat_folder_id" A..= chat_folder_id_
           , "added_chat_ids" A..= added_chat_ids_
           ]
+
+defaultProcessChatFolderNewChats :: ProcessChatFolderNewChats
+defaultProcessChatFolderNewChats =
+  ProcessChatFolderNewChats
+    { chat_folder_id = Nothing
+    , added_chat_ids = Nothing
+    }
+

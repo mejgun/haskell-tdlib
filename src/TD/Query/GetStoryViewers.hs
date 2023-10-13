@@ -1,4 +1,7 @@
-module TD.Query.GetStoryViewers(GetStoryViewers(..)) where
+module TD.Query.GetStoryViewers
+  (GetStoryViewers(..)
+  , defaultGetStoryViewers
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON GetStoryViewers where
           , "offset_viewer" A..= offset_viewer_
           , "limit"         A..= limit_
           ]
+
+defaultGetStoryViewers :: GetStoryViewers
+defaultGetStoryViewers =
+  GetStoryViewers
+    { story_id      = Nothing
+    , offset_viewer = Nothing
+    , limit         = Nothing
+    }
+

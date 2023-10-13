@@ -1,4 +1,7 @@
-module TD.Query.RemoveTopChat(RemoveTopChat(..)) where
+module TD.Query.RemoveTopChat
+  (RemoveTopChat(..)
+  , defaultRemoveTopChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON RemoveTopChat where
           , "category" A..= category_
           , "chat_id"  A..= chat_id_
           ]
+
+defaultRemoveTopChat :: RemoveTopChat
+defaultRemoveTopChat =
+  RemoveTopChat
+    { category = Nothing
+    , chat_id  = Nothing
+    }
+

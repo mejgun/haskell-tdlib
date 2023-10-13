@@ -1,4 +1,6 @@
-module TD.Query.CreateChatFolder(CreateChatFolder(..)) where
+module TD.Query.CreateChatFolder
+  (CreateChatFolder(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CreateChatFolder where
           [ "@type"  A..= AT.String "createChatFolder"
           , "folder" A..= folder_
           ]
+

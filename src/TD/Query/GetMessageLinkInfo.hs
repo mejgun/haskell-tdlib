@@ -1,4 +1,6 @@
-module TD.Query.GetMessageLinkInfo(GetMessageLinkInfo(..)) where
+module TD.Query.GetMessageLinkInfo
+  (GetMessageLinkInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetMessageLinkInfo where
           [ "@type" A..= AT.String "getMessageLinkInfo"
           , "url"   A..= url_
           ]
+

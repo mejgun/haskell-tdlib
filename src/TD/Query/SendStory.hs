@@ -1,4 +1,7 @@
-module TD.Query.SendStory(SendStory(..)) where
+module TD.Query.SendStory
+  (SendStory(..)
+  , defaultSendStory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -57,3 +60,15 @@ instance AT.ToJSON SendStory where
           , "is_pinned"        A..= is_pinned_
           , "protect_content"  A..= protect_content_
           ]
+
+defaultSendStory :: SendStory
+defaultSendStory =
+  SendStory
+    { content          = Nothing
+    , caption          = Nothing
+    , privacy_settings = Nothing
+    , active_period    = Nothing
+    , is_pinned        = Nothing
+    , protect_content  = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.SetNetworkType(SetNetworkType(..)) where
+module TD.Query.SetNetworkType
+  (SetNetworkType(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetNetworkType where
           [ "@type" A..= AT.String "setNetworkType"
           , "type"  A..= _type_
           ]
+

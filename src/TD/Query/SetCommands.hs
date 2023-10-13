@@ -1,4 +1,7 @@
-module TD.Query.SetCommands(SetCommands(..)) where
+module TD.Query.SetCommands
+  (SetCommands(..)
+  , defaultSetCommands
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -42,3 +45,12 @@ instance AT.ToJSON SetCommands where
           , "language_code" A..= language_code_
           , "commands"      A..= commands_
           ]
+
+defaultSetCommands :: SetCommands
+defaultSetCommands =
+  SetCommands
+    { scope         = Nothing
+    , language_code = Nothing
+    , commands      = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.CreateSupergroupChat(CreateSupergroupChat(..)) where
+module TD.Query.CreateSupergroupChat
+  (CreateSupergroupChat(..)
+  , defaultCreateSupergroupChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON CreateSupergroupChat where
           , "supergroup_id" A..= supergroup_id_
           , "force"         A..= force_
           ]
+
+defaultCreateSupergroupChat :: CreateSupergroupChat
+defaultCreateSupergroupChat =
+  CreateSupergroupChat
+    { supergroup_id = Nothing
+    , force         = Nothing
+    }
+

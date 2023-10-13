@@ -1,4 +1,7 @@
-module TD.Query.SetFileGenerationProgress(SetFileGenerationProgress(..)) where
+module TD.Query.SetFileGenerationProgress
+  (SetFileGenerationProgress(..)
+  , defaultSetFileGenerationProgress
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON SetFileGenerationProgress where
           , "expected_size"     A..= expected_size_
           , "local_prefix_size" A..= local_prefix_size_
           ]
+
+defaultSetFileGenerationProgress :: SetFileGenerationProgress
+defaultSetFileGenerationProgress =
+  SetFileGenerationProgress
+    { generation_id     = Nothing
+    , expected_size     = Nothing
+    , local_prefix_size = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.DeletePassportElement(DeletePassportElement(..)) where
+module TD.Query.DeletePassportElement
+  (DeletePassportElement(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON DeletePassportElement where
           [ "@type" A..= AT.String "deletePassportElement"
           , "type"  A..= _type_
           ]
+

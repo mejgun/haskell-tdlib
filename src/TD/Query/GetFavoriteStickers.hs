@@ -1,4 +1,6 @@
-module TD.Query.GetFavoriteStickers(GetFavoriteStickers(..)) where
+module TD.Query.GetFavoriteStickers
+  (GetFavoriteStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetFavoriteStickers where
         = A.object
           [ "@type" A..= AT.String "getFavoriteStickers"
           ]
+

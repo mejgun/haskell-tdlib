@@ -1,4 +1,6 @@
-module TD.Query.GetThemeParametersJsonString(GetThemeParametersJsonString(..)) where
+module TD.Query.GetThemeParametersJsonString
+  (GetThemeParametersJsonString(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetThemeParametersJsonString where
           [ "@type" A..= AT.String "getThemeParametersJsonString"
           , "theme" A..= theme_
           ]
+

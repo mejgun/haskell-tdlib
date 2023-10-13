@@ -1,4 +1,7 @@
-module TD.Query.GetPassportElement(GetPassportElement(..)) where
+module TD.Query.GetPassportElement
+  (GetPassportElement(..)
+  , defaultGetPassportElement
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON GetPassportElement where
           , "type"     A..= _type_
           , "password" A..= password_
           ]
+
+defaultGetPassportElement :: GetPassportElement
+defaultGetPassportElement =
+  GetPassportElement
+    { _type    = Nothing
+    , password = Nothing
+    }
+

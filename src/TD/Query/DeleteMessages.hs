@@ -1,4 +1,7 @@
-module TD.Query.DeleteMessages(DeleteMessages(..)) where
+module TD.Query.DeleteMessages
+  (DeleteMessages(..)
+  , defaultDeleteMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON DeleteMessages where
           , "message_ids" A..= message_ids_
           , "revoke"      A..= revoke_
           ]
+
+defaultDeleteMessages :: DeleteMessages
+defaultDeleteMessages =
+  DeleteMessages
+    { chat_id     = Nothing
+    , message_ids = Nothing
+    , revoke      = Nothing
+    }
+

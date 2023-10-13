@@ -1,4 +1,7 @@
-module TD.Query.ToggleSessionCanAcceptSecretChats(ToggleSessionCanAcceptSecretChats(..)) where
+module TD.Query.ToggleSessionCanAcceptSecretChats
+  (ToggleSessionCanAcceptSecretChats(..)
+  , defaultToggleSessionCanAcceptSecretChats
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSessionCanAcceptSecretChats where
           , "session_id"              A..= fmap I.writeInt64  session_id_
           , "can_accept_secret_chats" A..= can_accept_secret_chats_
           ]
+
+defaultToggleSessionCanAcceptSecretChats :: ToggleSessionCanAcceptSecretChats
+defaultToggleSessionCanAcceptSecretChats =
+  ToggleSessionCanAcceptSecretChats
+    { session_id              = Nothing
+    , can_accept_secret_chats = Nothing
+    }
+

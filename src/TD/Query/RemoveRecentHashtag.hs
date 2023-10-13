@@ -1,4 +1,6 @@
-module TD.Query.RemoveRecentHashtag(RemoveRecentHashtag(..)) where
+module TD.Query.RemoveRecentHashtag
+  (RemoveRecentHashtag(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON RemoveRecentHashtag where
           [ "@type"   A..= AT.String "removeRecentHashtag"
           , "hashtag" A..= hashtag_
           ]
+

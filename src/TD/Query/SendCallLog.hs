@@ -1,4 +1,7 @@
-module TD.Query.SendCallLog(SendCallLog(..)) where
+module TD.Query.SendCallLog
+  (SendCallLog(..)
+  , defaultSendCallLog
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SendCallLog where
           , "call_id"  A..= call_id_
           , "log_file" A..= log_file_
           ]
+
+defaultSendCallLog :: SendCallLog
+defaultSendCallLog =
+  SendCallLog
+    { call_id  = Nothing
+    , log_file = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.ClearImportedContacts(ClearImportedContacts(..)) where
+module TD.Query.ClearImportedContacts
+  (ClearImportedContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ClearImportedContacts where
         = A.object
           [ "@type" A..= AT.String "clearImportedContacts"
           ]
+

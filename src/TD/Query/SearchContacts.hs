@@ -1,4 +1,7 @@
-module TD.Query.SearchContacts(SearchContacts(..)) where
+module TD.Query.SearchContacts
+  (SearchContacts(..)
+  , defaultSearchContacts
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SearchContacts where
           , "query" A..= query_
           , "limit" A..= limit_
           ]
+
+defaultSearchContacts :: SearchContacts
+defaultSearchContacts =
+  SearchContacts
+    { query = Nothing
+    , limit = Nothing
+    }
+

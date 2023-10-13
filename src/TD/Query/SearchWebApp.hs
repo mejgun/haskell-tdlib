@@ -1,4 +1,7 @@
-module TD.Query.SearchWebApp(SearchWebApp(..)) where
+module TD.Query.SearchWebApp
+  (SearchWebApp(..)
+  , defaultSearchWebApp
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SearchWebApp where
           , "bot_user_id"        A..= bot_user_id_
           , "web_app_short_name" A..= web_app_short_name_
           ]
+
+defaultSearchWebApp :: SearchWebApp
+defaultSearchWebApp =
+  SearchWebApp
+    { bot_user_id        = Nothing
+    , web_app_short_name = Nothing
+    }
+

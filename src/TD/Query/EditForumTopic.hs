@@ -1,4 +1,7 @@
-module TD.Query.EditForumTopic(EditForumTopic(..)) where
+module TD.Query.EditForumTopic
+  (EditForumTopic(..)
+  , defaultEditForumTopic
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +53,14 @@ instance AT.ToJSON EditForumTopic where
           , "edit_icon_custom_emoji" A..= edit_icon_custom_emoji_
           , "icon_custom_emoji_id"   A..= fmap I.writeInt64  icon_custom_emoji_id_
           ]
+
+defaultEditForumTopic :: EditForumTopic
+defaultEditForumTopic =
+  EditForumTopic
+    { chat_id                = Nothing
+    , message_thread_id      = Nothing
+    , name                   = Nothing
+    , edit_icon_custom_emoji = Nothing
+    , icon_custom_emoji_id   = Nothing
+    }
+

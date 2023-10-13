@@ -1,4 +1,6 @@
-module TD.Query.CheckPhoneNumberConfirmationCode(CheckPhoneNumberConfirmationCode(..)) where
+module TD.Query.CheckPhoneNumberConfirmationCode
+  (CheckPhoneNumberConfirmationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckPhoneNumberConfirmationCode where
           [ "@type" A..= AT.String "checkPhoneNumberConfirmationCode"
           , "code"  A..= code_
           ]
+

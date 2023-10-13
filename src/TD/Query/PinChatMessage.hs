@@ -1,4 +1,7 @@
-module TD.Query.PinChatMessage(PinChatMessage(..)) where
+module TD.Query.PinChatMessage
+  (PinChatMessage(..)
+  , defaultPinChatMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,13 @@ instance AT.ToJSON PinChatMessage where
           , "disable_notification" A..= disable_notification_
           , "only_for_self"        A..= only_for_self_
           ]
+
+defaultPinChatMessage :: PinChatMessage
+defaultPinChatMessage =
+  PinChatMessage
+    { chat_id              = Nothing
+    , message_id           = Nothing
+    , disable_notification = Nothing
+    , only_for_self        = Nothing
+    }
+

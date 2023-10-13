@@ -1,4 +1,7 @@
-module TD.Query.GetUserProfilePhotos(GetUserProfilePhotos(..)) where
+module TD.Query.GetUserProfilePhotos
+  (GetUserProfilePhotos(..)
+  , defaultGetUserProfilePhotos
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetUserProfilePhotos where
           , "offset"  A..= offset_
           , "limit"   A..= limit_
           ]
+
+defaultGetUserProfilePhotos :: GetUserProfilePhotos
+defaultGetUserProfilePhotos =
+  GetUserProfilePhotos
+    { user_id = Nothing
+    , offset  = Nothing
+    , limit   = Nothing
+    }
+

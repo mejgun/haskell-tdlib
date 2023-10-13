@@ -1,4 +1,6 @@
-module TD.Query.GetPreferredCountryLanguage(GetPreferredCountryLanguage(..)) where
+module TD.Query.GetPreferredCountryLanguage
+  (GetPreferredCountryLanguage(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetPreferredCountryLanguage where
           [ "@type"        A..= AT.String "getPreferredCountryLanguage"
           , "country_code" A..= country_code_
           ]
+

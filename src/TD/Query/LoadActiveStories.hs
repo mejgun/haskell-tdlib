@@ -1,4 +1,6 @@
-module TD.Query.LoadActiveStories(LoadActiveStories(..)) where
+module TD.Query.LoadActiveStories
+  (LoadActiveStories(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON LoadActiveStories where
           [ "@type"      A..= AT.String "loadActiveStories"
           , "story_list" A..= story_list_
           ]
+

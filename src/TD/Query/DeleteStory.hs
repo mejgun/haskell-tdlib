@@ -1,4 +1,6 @@
-module TD.Query.DeleteStory(DeleteStory(..)) where
+module TD.Query.DeleteStory
+  (DeleteStory(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON DeleteStory where
           [ "@type"    A..= AT.String "deleteStory"
           , "story_id" A..= story_id_
           ]
+

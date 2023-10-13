@@ -1,4 +1,7 @@
-module TD.Query.SendChatAction(SendChatAction(..)) where
+module TD.Query.SendChatAction
+  (SendChatAction(..)
+  , defaultSendChatAction
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SendChatAction where
           , "message_thread_id" A..= message_thread_id_
           , "action"            A..= action_
           ]
+
+defaultSendChatAction :: SendChatAction
+defaultSendChatAction =
+  SendChatAction
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , action            = Nothing
+    }
+

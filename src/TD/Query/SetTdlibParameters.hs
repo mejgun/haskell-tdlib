@@ -1,4 +1,7 @@
-module TD.Query.SetTdlibParameters(SetTdlibParameters(..)) where
+module TD.Query.SetTdlibParameters
+  (SetTdlibParameters(..)
+  , defaultSetTdlibParameters
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -106,3 +109,25 @@ instance AT.ToJSON SetTdlibParameters where
           , "enable_storage_optimizer" A..= enable_storage_optimizer_
           , "ignore_file_names"        A..= ignore_file_names_
           ]
+
+defaultSetTdlibParameters :: SetTdlibParameters
+defaultSetTdlibParameters =
+  SetTdlibParameters
+    { use_test_dc              = Nothing
+    , database_directory       = Nothing
+    , files_directory          = Nothing
+    , database_encryption_key  = Nothing
+    , use_file_database        = Nothing
+    , use_chat_info_database   = Nothing
+    , use_message_database     = Nothing
+    , use_secret_chats         = Nothing
+    , api_id                   = Nothing
+    , api_hash                 = Nothing
+    , system_language_code     = Nothing
+    , device_model             = Nothing
+    , system_version           = Nothing
+    , application_version      = Nothing
+    , enable_storage_optimizer = Nothing
+    , ignore_file_names        = Nothing
+    }
+

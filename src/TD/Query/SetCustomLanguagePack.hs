@@ -1,4 +1,7 @@
-module TD.Query.SetCustomLanguagePack(SetCustomLanguagePack(..)) where
+module TD.Query.SetCustomLanguagePack
+  (SetCustomLanguagePack(..)
+  , defaultSetCustomLanguagePack
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetCustomLanguagePack where
           , "info"    A..= info_
           , "strings" A..= strings_
           ]
+
+defaultSetCustomLanguagePack :: SetCustomLanguagePack
+defaultSetCustomLanguagePack =
+  SetCustomLanguagePack
+    { info    = Nothing
+    , strings = Nothing
+    }
+

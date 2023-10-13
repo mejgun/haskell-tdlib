@@ -1,4 +1,7 @@
-module TD.Query.BlockMessageSenderFromReplies(BlockMessageSenderFromReplies(..)) where
+module TD.Query.BlockMessageSenderFromReplies
+  (BlockMessageSenderFromReplies(..)
+  , defaultBlockMessageSenderFromReplies
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,13 @@ instance AT.ToJSON BlockMessageSenderFromReplies where
           , "delete_all_messages" A..= delete_all_messages_
           , "report_spam"         A..= report_spam_
           ]
+
+defaultBlockMessageSenderFromReplies :: BlockMessageSenderFromReplies
+defaultBlockMessageSenderFromReplies =
+  BlockMessageSenderFromReplies
+    { message_id          = Nothing
+    , delete_message      = Nothing
+    , delete_all_messages = Nothing
+    , report_spam         = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.DownloadFile(DownloadFile(..)) where
+module TD.Query.DownloadFile
+  (DownloadFile(..)
+  , defaultDownloadFile
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,3 +52,14 @@ instance AT.ToJSON DownloadFile where
           , "limit"       A..= limit_
           , "synchronous" A..= synchronous_
           ]
+
+defaultDownloadFile :: DownloadFile
+defaultDownloadFile =
+  DownloadFile
+    { file_id     = Nothing
+    , priority    = Nothing
+    , offset      = Nothing
+    , limit       = Nothing
+    , synchronous = Nothing
+    }
+

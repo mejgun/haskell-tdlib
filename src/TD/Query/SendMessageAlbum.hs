@@ -1,4 +1,7 @@
-module TD.Query.SendMessageAlbum(SendMessageAlbum(..)) where
+module TD.Query.SendMessageAlbum
+  (SendMessageAlbum(..)
+  , defaultSendMessageAlbum
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -57,3 +60,15 @@ instance AT.ToJSON SendMessageAlbum where
           , "input_message_contents" A..= input_message_contents_
           , "only_preview"           A..= only_preview_
           ]
+
+defaultSendMessageAlbum :: SendMessageAlbum
+defaultSendMessageAlbum =
+  SendMessageAlbum
+    { chat_id                = Nothing
+    , message_thread_id      = Nothing
+    , reply_to               = Nothing
+    , options                = Nothing
+    , input_message_contents = Nothing
+    , only_preview           = Nothing
+    }
+

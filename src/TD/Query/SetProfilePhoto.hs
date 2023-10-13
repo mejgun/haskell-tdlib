@@ -1,4 +1,7 @@
-module TD.Query.SetProfilePhoto(SetProfilePhoto(..)) where
+module TD.Query.SetProfilePhoto
+  (SetProfilePhoto(..)
+  , defaultSetProfilePhoto
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetProfilePhoto where
           , "photo"     A..= photo_
           , "is_public" A..= is_public_
           ]
+
+defaultSetProfilePhoto :: SetProfilePhoto
+defaultSetProfilePhoto =
+  SetProfilePhoto
+    { photo     = Nothing
+    , is_public = Nothing
+    }
+

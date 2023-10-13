@@ -1,4 +1,6 @@
-module TD.Query.TestUseUpdate(TestUseUpdate(..)) where
+module TD.Query.TestUseUpdate
+  (TestUseUpdate(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON TestUseUpdate where
         = A.object
           [ "@type" A..= AT.String "testUseUpdate"
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.UpgradeBasicGroupChatToSupergroupChat(UpgradeBasicGroupChatToSupergroupChat(..)) where
+module TD.Query.UpgradeBasicGroupChatToSupergroupChat
+  (UpgradeBasicGroupChatToSupergroupChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON UpgradeBasicGroupChatToSupergroupChat where
           [ "@type"   A..= AT.String "upgradeBasicGroupChatToSupergroupChat"
           , "chat_id" A..= chat_id_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.CanTransferOwnership(CanTransferOwnership(..)) where
+module TD.Query.CanTransferOwnership
+  (CanTransferOwnership(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON CanTransferOwnership where
         = A.object
           [ "@type" A..= AT.String "canTransferOwnership"
           ]
+

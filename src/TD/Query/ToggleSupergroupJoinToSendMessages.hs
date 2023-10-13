@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupJoinToSendMessages(ToggleSupergroupJoinToSendMessages(..)) where
+module TD.Query.ToggleSupergroupJoinToSendMessages
+  (ToggleSupergroupJoinToSendMessages(..)
+  , defaultToggleSupergroupJoinToSendMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSupergroupJoinToSendMessages where
           , "supergroup_id"         A..= supergroup_id_
           , "join_to_send_messages" A..= join_to_send_messages_
           ]
+
+defaultToggleSupergroupJoinToSendMessages :: ToggleSupergroupJoinToSendMessages
+defaultToggleSupergroupJoinToSendMessages =
+  ToggleSupergroupJoinToSendMessages
+    { supergroup_id         = Nothing
+    , join_to_send_messages = Nothing
+    }
+

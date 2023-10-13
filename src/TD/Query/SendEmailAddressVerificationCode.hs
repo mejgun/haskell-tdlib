@@ -1,4 +1,6 @@
-module TD.Query.SendEmailAddressVerificationCode(SendEmailAddressVerificationCode(..)) where
+module TD.Query.SendEmailAddressVerificationCode
+  (SendEmailAddressVerificationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SendEmailAddressVerificationCode where
           [ "@type"         A..= AT.String "sendEmailAddressVerificationCode"
           , "email_address" A..= email_address_
           ]
+

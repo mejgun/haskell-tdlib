@@ -1,4 +1,7 @@
-module TD.Query.StartGroupCallScreenSharing(StartGroupCallScreenSharing(..)) where
+module TD.Query.StartGroupCallScreenSharing
+  (StartGroupCallScreenSharing(..)
+  , defaultStartGroupCallScreenSharing
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON StartGroupCallScreenSharing where
           , "audio_source_id" A..= audio_source_id_
           , "payload"         A..= payload_
           ]
+
+defaultStartGroupCallScreenSharing :: StartGroupCallScreenSharing
+defaultStartGroupCallScreenSharing =
+  StartGroupCallScreenSharing
+    { group_call_id   = Nothing
+    , audio_source_id = Nothing
+    , payload         = Nothing
+    }
+

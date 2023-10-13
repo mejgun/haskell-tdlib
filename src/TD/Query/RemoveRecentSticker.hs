@@ -1,4 +1,7 @@
-module TD.Query.RemoveRecentSticker(RemoveRecentSticker(..)) where
+module TD.Query.RemoveRecentSticker
+  (RemoveRecentSticker(..)
+  , defaultRemoveRecentSticker
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON RemoveRecentSticker where
           , "is_attached" A..= is_attached_
           , "sticker"     A..= sticker_
           ]
+
+defaultRemoveRecentSticker :: RemoveRecentSticker
+defaultRemoveRecentSticker =
+  RemoveRecentSticker
+    { is_attached = Nothing
+    , sticker     = Nothing
+    }
+

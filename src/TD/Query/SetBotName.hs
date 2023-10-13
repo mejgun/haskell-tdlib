@@ -1,4 +1,7 @@
-module TD.Query.SetBotName(SetBotName(..)) where
+module TD.Query.SetBotName
+  (SetBotName(..)
+  , defaultSetBotName
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SetBotName where
           , "language_code" A..= language_code_
           , "name"          A..= name_
           ]
+
+defaultSetBotName :: SetBotName
+defaultSetBotName =
+  SetBotName
+    { bot_user_id   = Nothing
+    , language_code = Nothing
+    , name          = Nothing
+    }
+

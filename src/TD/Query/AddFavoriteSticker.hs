@@ -1,4 +1,6 @@
-module TD.Query.AddFavoriteSticker(AddFavoriteSticker(..)) where
+module TD.Query.AddFavoriteSticker
+  (AddFavoriteSticker(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON AddFavoriteSticker where
           [ "@type"   A..= AT.String "addFavoriteSticker"
           , "sticker" A..= sticker_
           ]
+

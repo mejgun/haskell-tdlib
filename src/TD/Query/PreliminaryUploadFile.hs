@@ -1,4 +1,7 @@
-module TD.Query.PreliminaryUploadFile(PreliminaryUploadFile(..)) where
+module TD.Query.PreliminaryUploadFile
+  (PreliminaryUploadFile(..)
+  , defaultPreliminaryUploadFile
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON PreliminaryUploadFile where
           , "file_type" A..= file_type_
           , "priority"  A..= priority_
           ]
+
+defaultPreliminaryUploadFile :: PreliminaryUploadFile
+defaultPreliminaryUploadFile =
+  PreliminaryUploadFile
+    { file      = Nothing
+    , file_type = Nothing
+    , priority  = Nothing
+    }
+

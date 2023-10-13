@@ -1,4 +1,6 @@
-module TD.Query.TerminateSession(TerminateSession(..)) where
+module TD.Query.TerminateSession
+  (TerminateSession(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON TerminateSession where
           [ "@type"      A..= AT.String "terminateSession"
           , "session_id" A..= fmap I.writeInt64  session_id_
           ]
+

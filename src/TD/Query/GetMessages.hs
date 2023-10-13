@@ -1,4 +1,7 @@
-module TD.Query.GetMessages(GetMessages(..)) where
+module TD.Query.GetMessages
+  (GetMessages(..)
+  , defaultGetMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetMessages where
           , "chat_id"     A..= chat_id_
           , "message_ids" A..= message_ids_
           ]
+
+defaultGetMessages :: GetMessages
+defaultGetMessages =
+  GetMessages
+    { chat_id     = Nothing
+    , message_ids = Nothing
+    }
+

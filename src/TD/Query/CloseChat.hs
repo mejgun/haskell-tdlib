@@ -1,4 +1,6 @@
-module TD.Query.CloseChat(CloseChat(..)) where
+module TD.Query.CloseChat
+  (CloseChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON CloseChat where
           [ "@type"   A..= AT.String "closeChat"
           , "chat_id" A..= chat_id_
           ]
+

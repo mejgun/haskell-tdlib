@@ -1,4 +1,7 @@
-module TD.Query.SetPinnedForumTopics(SetPinnedForumTopics(..)) where
+module TD.Query.SetPinnedForumTopics
+  (SetPinnedForumTopics(..)
+  , defaultSetPinnedForumTopics
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON SetPinnedForumTopics where
           , "chat_id"            A..= chat_id_
           , "message_thread_ids" A..= message_thread_ids_
           ]
+
+defaultSetPinnedForumTopics :: SetPinnedForumTopics
+defaultSetPinnedForumTopics =
+  SetPinnedForumTopics
+    { chat_id            = Nothing
+    , message_thread_ids = Nothing
+    }
+

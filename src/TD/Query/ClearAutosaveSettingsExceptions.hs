@@ -1,4 +1,6 @@
-module TD.Query.ClearAutosaveSettingsExceptions(ClearAutosaveSettingsExceptions(..)) where
+module TD.Query.ClearAutosaveSettingsExceptions
+  (ClearAutosaveSettingsExceptions(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ClearAutosaveSettingsExceptions where
         = A.object
           [ "@type" A..= AT.String "clearAutosaveSettingsExceptions"
           ]
+

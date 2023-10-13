@@ -1,4 +1,7 @@
-module TD.Query.AnswerCallbackQuery(AnswerCallbackQuery(..)) where
+module TD.Query.AnswerCallbackQuery
+  (AnswerCallbackQuery(..)
+  , defaultAnswerCallbackQuery
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +53,14 @@ instance AT.ToJSON AnswerCallbackQuery where
           , "url"               A..= url_
           , "cache_time"        A..= cache_time_
           ]
+
+defaultAnswerCallbackQuery :: AnswerCallbackQuery
+defaultAnswerCallbackQuery =
+  AnswerCallbackQuery
+    { callback_query_id = Nothing
+    , text              = Nothing
+    , show_alert        = Nothing
+    , url               = Nothing
+    , cache_time        = Nothing
+    }
+

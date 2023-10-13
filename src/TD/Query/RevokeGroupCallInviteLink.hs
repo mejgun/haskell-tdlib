@@ -1,4 +1,6 @@
-module TD.Query.RevokeGroupCallInviteLink(RevokeGroupCallInviteLink(..)) where
+module TD.Query.RevokeGroupCallInviteLink
+  (RevokeGroupCallInviteLink(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON RevokeGroupCallInviteLink where
           [ "@type"         A..= AT.String "revokeGroupCallInviteLink"
           , "group_call_id" A..= group_call_id_
           ]
+

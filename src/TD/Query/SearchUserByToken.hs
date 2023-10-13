@@ -1,4 +1,6 @@
-module TD.Query.SearchUserByToken(SearchUserByToken(..)) where
+module TD.Query.SearchUserByToken
+  (SearchUserByToken(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SearchUserByToken where
           [ "@type" A..= AT.String "searchUserByToken"
           , "token" A..= token_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.GetMessageLocally(GetMessageLocally(..)) where
+module TD.Query.GetMessageLocally
+  (GetMessageLocally(..)
+  , defaultGetMessageLocally
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetMessageLocally where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultGetMessageLocally :: GetMessageLocally
+defaultGetMessageLocally =
+  GetMessageLocally
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

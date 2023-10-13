@@ -1,4 +1,6 @@
-module TD.Query.SetAccountTtl(SetAccountTtl(..)) where
+module TD.Query.SetAccountTtl
+  (SetAccountTtl(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetAccountTtl where
           [ "@type" A..= AT.String "setAccountTtl"
           , "ttl"   A..= ttl_
           ]
+

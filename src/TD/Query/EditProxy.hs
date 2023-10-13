@@ -1,4 +1,7 @@
-module TD.Query.EditProxy(EditProxy(..)) where
+module TD.Query.EditProxy
+  (EditProxy(..)
+  , defaultEditProxy
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,14 @@ instance AT.ToJSON EditProxy where
           , "enable"   A..= enable_
           , "type"     A..= _type_
           ]
+
+defaultEditProxy :: EditProxy
+defaultEditProxy =
+  EditProxy
+    { proxy_id = Nothing
+    , server   = Nothing
+    , port     = Nothing
+    , enable   = Nothing
+    , _type    = Nothing
+    }
+

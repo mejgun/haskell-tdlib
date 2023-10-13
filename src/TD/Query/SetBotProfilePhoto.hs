@@ -1,4 +1,7 @@
-module TD.Query.SetBotProfilePhoto(SetBotProfilePhoto(..)) where
+module TD.Query.SetBotProfilePhoto
+  (SetBotProfilePhoto(..)
+  , defaultSetBotProfilePhoto
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetBotProfilePhoto where
           , "bot_user_id" A..= bot_user_id_
           , "photo"       A..= photo_
           ]
+
+defaultSetBotProfilePhoto :: SetBotProfilePhoto
+defaultSetBotProfilePhoto =
+  SetBotProfilePhoto
+    { bot_user_id = Nothing
+    , photo       = Nothing
+    }
+

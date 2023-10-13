@@ -1,4 +1,6 @@
-module TD.Query.GetCustomEmojiReactionAnimations(GetCustomEmojiReactionAnimations(..)) where
+module TD.Query.GetCustomEmojiReactionAnimations
+  (GetCustomEmojiReactionAnimations(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetCustomEmojiReactionAnimations where
         = A.object
           [ "@type" A..= AT.String "getCustomEmojiReactionAnimations"
           ]
+

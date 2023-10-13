@@ -1,4 +1,7 @@
-module TD.Query.ToggleUsernameIsActive(ToggleUsernameIsActive(..)) where
+module TD.Query.ToggleUsernameIsActive
+  (ToggleUsernameIsActive(..)
+  , defaultToggleUsernameIsActive
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON ToggleUsernameIsActive where
           , "username"  A..= username_
           , "is_active" A..= is_active_
           ]
+
+defaultToggleUsernameIsActive :: ToggleUsernameIsActive
+defaultToggleUsernameIsActive =
+  ToggleUsernameIsActive
+    { username  = Nothing
+    , is_active = Nothing
+    }
+

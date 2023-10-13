@@ -1,4 +1,6 @@
-module TD.Query.GetStorageStatistics(GetStorageStatistics(..)) where
+module TD.Query.GetStorageStatistics
+  (GetStorageStatistics(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetStorageStatistics where
           [ "@type"      A..= AT.String "getStorageStatistics"
           , "chat_limit" A..= chat_limit_
           ]
+

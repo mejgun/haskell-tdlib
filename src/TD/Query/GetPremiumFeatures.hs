@@ -1,4 +1,6 @@
-module TD.Query.GetPremiumFeatures(GetPremiumFeatures(..)) where
+module TD.Query.GetPremiumFeatures
+  (GetPremiumFeatures(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetPremiumFeatures where
           [ "@type"  A..= AT.String "getPremiumFeatures"
           , "source" A..= source_
           ]
+

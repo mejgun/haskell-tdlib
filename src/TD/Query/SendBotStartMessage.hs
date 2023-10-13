@@ -1,4 +1,7 @@
-module TD.Query.SendBotStartMessage(SendBotStartMessage(..)) where
+module TD.Query.SendBotStartMessage
+  (SendBotStartMessage(..)
+  , defaultSendBotStartMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SendBotStartMessage where
           , "chat_id"     A..= chat_id_
           , "parameter"   A..= parameter_
           ]
+
+defaultSendBotStartMessage :: SendBotStartMessage
+defaultSendBotStartMessage =
+  SendBotStartMessage
+    { bot_user_id = Nothing
+    , chat_id     = Nothing
+    , parameter   = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.RemoveSavedNotificationSound(RemoveSavedNotificationSound(..)) where
+module TD.Query.RemoveSavedNotificationSound
+  (RemoveSavedNotificationSound(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON RemoveSavedNotificationSound where
           [ "@type"                 A..= AT.String "removeSavedNotificationSound"
           , "notification_sound_id" A..= fmap I.writeInt64  notification_sound_id_
           ]
+

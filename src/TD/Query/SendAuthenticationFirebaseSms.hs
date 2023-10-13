@@ -1,4 +1,6 @@
-module TD.Query.SendAuthenticationFirebaseSms(SendAuthenticationFirebaseSms(..)) where
+module TD.Query.SendAuthenticationFirebaseSms
+  (SendAuthenticationFirebaseSms(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SendAuthenticationFirebaseSms where
           [ "@type" A..= AT.String "sendAuthenticationFirebaseSms"
           , "token" A..= token_
           ]
+

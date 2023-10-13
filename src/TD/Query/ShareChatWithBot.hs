@@ -1,4 +1,7 @@
-module TD.Query.ShareChatWithBot(ShareChatWithBot(..)) where
+module TD.Query.ShareChatWithBot
+  (ShareChatWithBot(..)
+  , defaultShareChatWithBot
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,3 +52,14 @@ instance AT.ToJSON ShareChatWithBot where
           , "shared_chat_id" A..= shared_chat_id_
           , "only_check"     A..= only_check_
           ]
+
+defaultShareChatWithBot :: ShareChatWithBot
+defaultShareChatWithBot =
+  ShareChatWithBot
+    { chat_id        = Nothing
+    , message_id     = Nothing
+    , button_id      = Nothing
+    , shared_chat_id = Nothing
+    , only_check     = Nothing
+    }
+

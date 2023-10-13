@@ -1,4 +1,6 @@
-module TD.Query.GetSupergroupFullInfo(GetSupergroupFullInfo(..)) where
+module TD.Query.GetSupergroupFullInfo
+  (GetSupergroupFullInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetSupergroupFullInfo where
           [ "@type"         A..= AT.String "getSupergroupFullInfo"
           , "supergroup_id" A..= supergroup_id_
           ]
+

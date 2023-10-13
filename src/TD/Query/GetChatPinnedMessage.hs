@@ -1,4 +1,6 @@
-module TD.Query.GetChatPinnedMessage(GetChatPinnedMessage(..)) where
+module TD.Query.GetChatPinnedMessage
+  (GetChatPinnedMessage(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatPinnedMessage where
           [ "@type"   A..= AT.String "getChatPinnedMessage"
           , "chat_id" A..= chat_id_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetAuthorizationState(GetAuthorizationState(..)) where
+module TD.Query.GetAuthorizationState
+  (GetAuthorizationState(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetAuthorizationState where
         = A.object
           [ "@type" A..= AT.String "getAuthorizationState"
           ]
+

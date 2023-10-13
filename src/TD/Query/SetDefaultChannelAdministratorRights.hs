@@ -1,4 +1,6 @@
-module TD.Query.SetDefaultChannelAdministratorRights(SetDefaultChannelAdministratorRights(..)) where
+module TD.Query.SetDefaultChannelAdministratorRights
+  (SetDefaultChannelAdministratorRights(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetDefaultChannelAdministratorRights where
           [ "@type"                                A..= AT.String "setDefaultChannelAdministratorRights"
           , "default_channel_administrator_rights" A..= default_channel_administrator_rights_
           ]
+

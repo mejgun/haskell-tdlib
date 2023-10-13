@@ -1,4 +1,7 @@
-module TD.Query.CloseStory(CloseStory(..)) where
+module TD.Query.CloseStory
+  (CloseStory(..)
+  , defaultCloseStory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON CloseStory where
           , "story_sender_chat_id" A..= story_sender_chat_id_
           , "story_id"             A..= story_id_
           ]
+
+defaultCloseStory :: CloseStory
+defaultCloseStory =
+  CloseStory
+    { story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    }
+

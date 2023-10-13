@@ -1,4 +1,7 @@
-module TD.Query.ReportStory(ReportStory(..)) where
+module TD.Query.ReportStory
+  (ReportStory(..)
+  , defaultReportStory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON ReportStory where
           , "reason"               A..= reason_
           , "text"                 A..= text_
           ]
+
+defaultReportStory :: ReportStory
+defaultReportStory =
+  ReportStory
+    { story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    , reason               = Nothing
+    , text                 = Nothing
+    }
+

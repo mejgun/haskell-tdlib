@@ -1,4 +1,6 @@
-module TD.Query.GetChatActiveStories(GetChatActiveStories(..)) where
+module TD.Query.GetChatActiveStories
+  (GetChatActiveStories(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatActiveStories where
           [ "@type"   A..= AT.String "getChatActiveStories"
           , "chat_id" A..= chat_id_
           ]
+

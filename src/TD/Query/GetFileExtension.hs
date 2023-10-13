@@ -1,4 +1,6 @@
-module TD.Query.GetFileExtension(GetFileExtension(..)) where
+module TD.Query.GetFileExtension
+  (GetFileExtension(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetFileExtension where
           [ "@type"     A..= AT.String "getFileExtension"
           , "mime_type" A..= mime_type_
           ]
+

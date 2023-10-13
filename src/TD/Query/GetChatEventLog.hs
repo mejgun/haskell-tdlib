@@ -1,4 +1,7 @@
-module TD.Query.GetChatEventLog(GetChatEventLog(..)) where
+module TD.Query.GetChatEventLog
+  (GetChatEventLog(..)
+  , defaultGetChatEventLog
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -56,3 +59,15 @@ instance AT.ToJSON GetChatEventLog where
           , "filters"       A..= filters_
           , "user_ids"      A..= user_ids_
           ]
+
+defaultGetChatEventLog :: GetChatEventLog
+defaultGetChatEventLog =
+  GetChatEventLog
+    { chat_id       = Nothing
+    , query         = Nothing
+    , from_event_id = Nothing
+    , limit         = Nothing
+    , filters       = Nothing
+    , user_ids      = Nothing
+    }
+

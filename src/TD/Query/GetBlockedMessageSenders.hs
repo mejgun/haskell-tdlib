@@ -1,4 +1,7 @@
-module TD.Query.GetBlockedMessageSenders(GetBlockedMessageSenders(..)) where
+module TD.Query.GetBlockedMessageSenders
+  (GetBlockedMessageSenders(..)
+  , defaultGetBlockedMessageSenders
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetBlockedMessageSenders where
           , "offset" A..= offset_
           , "limit"  A..= limit_
           ]
+
+defaultGetBlockedMessageSenders :: GetBlockedMessageSenders
+defaultGetBlockedMessageSenders =
+  GetBlockedMessageSenders
+    { offset = Nothing
+    , limit  = Nothing
+    }
+

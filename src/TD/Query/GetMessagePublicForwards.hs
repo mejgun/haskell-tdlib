@@ -1,4 +1,7 @@
-module TD.Query.GetMessagePublicForwards(GetMessagePublicForwards(..)) where
+module TD.Query.GetMessagePublicForwards
+  (GetMessagePublicForwards(..)
+  , defaultGetMessagePublicForwards
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON GetMessagePublicForwards where
           , "offset"     A..= offset_
           , "limit"      A..= limit_
           ]
+
+defaultGetMessagePublicForwards :: GetMessagePublicForwards
+defaultGetMessagePublicForwards =
+  GetMessagePublicForwards
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , offset     = Nothing
+    , limit      = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetLocalizationTargetInfo(GetLocalizationTargetInfo(..)) where
+module TD.Query.GetLocalizationTargetInfo
+  (GetLocalizationTargetInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetLocalizationTargetInfo where
           [ "@type"      A..= AT.String "getLocalizationTargetInfo"
           , "only_local" A..= only_local_
           ]
+

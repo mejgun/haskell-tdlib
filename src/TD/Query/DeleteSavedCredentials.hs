@@ -1,4 +1,6 @@
-module TD.Query.DeleteSavedCredentials(DeleteSavedCredentials(..)) where
+module TD.Query.DeleteSavedCredentials
+  (DeleteSavedCredentials(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON DeleteSavedCredentials where
         = A.object
           [ "@type" A..= AT.String "deleteSavedCredentials"
           ]
+

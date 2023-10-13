@@ -1,4 +1,6 @@
-module TD.Query.GetEmojiSuggestionsUrl(GetEmojiSuggestionsUrl(..)) where
+module TD.Query.GetEmojiSuggestionsUrl
+  (GetEmojiSuggestionsUrl(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetEmojiSuggestionsUrl where
           [ "@type"         A..= AT.String "getEmojiSuggestionsUrl"
           , "language_code" A..= language_code_
           ]
+

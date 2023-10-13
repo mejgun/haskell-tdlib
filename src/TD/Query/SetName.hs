@@ -1,4 +1,7 @@
-module TD.Query.SetName(SetName(..)) where
+module TD.Query.SetName
+  (SetName(..)
+  , defaultSetName
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetName where
           , "first_name" A..= first_name_
           , "last_name"  A..= last_name_
           ]
+
+defaultSetName :: SetName
+defaultSetName =
+  SetName
+    { first_name = Nothing
+    , last_name  = Nothing
+    }
+

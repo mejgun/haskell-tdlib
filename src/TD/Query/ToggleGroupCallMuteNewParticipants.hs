@@ -1,4 +1,7 @@
-module TD.Query.ToggleGroupCallMuteNewParticipants(ToggleGroupCallMuteNewParticipants(..)) where
+module TD.Query.ToggleGroupCallMuteNewParticipants
+  (ToggleGroupCallMuteNewParticipants(..)
+  , defaultToggleGroupCallMuteNewParticipants
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleGroupCallMuteNewParticipants where
           , "group_call_id"         A..= group_call_id_
           , "mute_new_participants" A..= mute_new_participants_
           ]
+
+defaultToggleGroupCallMuteNewParticipants :: ToggleGroupCallMuteNewParticipants
+defaultToggleGroupCallMuteNewParticipants =
+  ToggleGroupCallMuteNewParticipants
+    { group_call_id         = Nothing
+    , mute_new_participants = Nothing
+    }
+

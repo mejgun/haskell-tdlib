@@ -1,4 +1,7 @@
-module TD.Query.GetChatMessageCalendar(GetChatMessageCalendar(..)) where
+module TD.Query.GetChatMessageCalendar
+  (GetChatMessageCalendar(..)
+  , defaultGetChatMessageCalendar
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON GetChatMessageCalendar where
           , "filter"          A..= _filter_
           , "from_message_id" A..= from_message_id_
           ]
+
+defaultGetChatMessageCalendar :: GetChatMessageCalendar
+defaultGetChatMessageCalendar =
+  GetChatMessageCalendar
+    { chat_id         = Nothing
+    , _filter         = Nothing
+    , from_message_id = Nothing
+    }
+

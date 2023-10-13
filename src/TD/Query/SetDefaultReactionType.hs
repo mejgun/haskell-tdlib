@@ -1,4 +1,6 @@
-module TD.Query.SetDefaultReactionType(SetDefaultReactionType(..)) where
+module TD.Query.SetDefaultReactionType
+  (SetDefaultReactionType(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetDefaultReactionType where
           [ "@type"         A..= AT.String "setDefaultReactionType"
           , "reaction_type" A..= reaction_type_
           ]
+

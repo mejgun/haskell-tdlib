@@ -1,4 +1,7 @@
-module TD.Query.RemoveNotificationGroup(RemoveNotificationGroup(..)) where
+module TD.Query.RemoveNotificationGroup
+  (RemoveNotificationGroup(..)
+  , defaultRemoveNotificationGroup
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON RemoveNotificationGroup where
           , "notification_group_id" A..= notification_group_id_
           , "max_notification_id"   A..= max_notification_id_
           ]
+
+defaultRemoveNotificationGroup :: RemoveNotificationGroup
+defaultRemoveNotificationGroup =
+  RemoveNotificationGroup
+    { notification_group_id = Nothing
+    , max_notification_id   = Nothing
+    }
+

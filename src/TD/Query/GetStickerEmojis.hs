@@ -1,4 +1,6 @@
-module TD.Query.GetStickerEmojis(GetStickerEmojis(..)) where
+module TD.Query.GetStickerEmojis
+  (GetStickerEmojis(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetStickerEmojis where
           [ "@type"   A..= AT.String "getStickerEmojis"
           , "sticker" A..= sticker_
           ]
+

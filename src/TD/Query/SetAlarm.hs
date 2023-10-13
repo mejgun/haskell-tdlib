@@ -1,4 +1,6 @@
-module TD.Query.SetAlarm(SetAlarm(..)) where
+module TD.Query.SetAlarm
+  (SetAlarm(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON SetAlarm where
           [ "@type"   A..= AT.String "setAlarm"
           , "seconds" A..= seconds_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.ReadFilePart(ReadFilePart(..)) where
+module TD.Query.ReadFilePart
+  (ReadFilePart(..)
+  , defaultReadFilePart
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON ReadFilePart where
           , "offset"  A..= offset_
           , "count"   A..= count_
           ]
+
+defaultReadFilePart :: ReadFilePart
+defaultReadFilePart =
+  ReadFilePart
+    { file_id = Nothing
+    , offset  = Nothing
+    , count   = Nothing
+    }
+

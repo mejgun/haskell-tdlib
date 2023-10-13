@@ -1,4 +1,6 @@
-module TD.Query.GetDefaultMessageAutoDeleteTime(GetDefaultMessageAutoDeleteTime(..)) where
+module TD.Query.GetDefaultMessageAutoDeleteTime
+  (GetDefaultMessageAutoDeleteTime(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetDefaultMessageAutoDeleteTime where
         = A.object
           [ "@type" A..= AT.String "getDefaultMessageAutoDeleteTime"
           ]
+

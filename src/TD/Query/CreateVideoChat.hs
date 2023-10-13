@@ -1,4 +1,7 @@
-module TD.Query.CreateVideoChat(CreateVideoChat(..)) where
+module TD.Query.CreateVideoChat
+  (CreateVideoChat(..)
+  , defaultCreateVideoChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON CreateVideoChat where
           , "start_date"     A..= start_date_
           , "is_rtmp_stream" A..= is_rtmp_stream_
           ]
+
+defaultCreateVideoChat :: CreateVideoChat
+defaultCreateVideoChat =
+  CreateVideoChat
+    { chat_id        = Nothing
+    , title          = Nothing
+    , start_date     = Nothing
+    , is_rtmp_stream = Nothing
+    }
+

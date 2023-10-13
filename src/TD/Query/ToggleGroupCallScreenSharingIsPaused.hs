@@ -1,4 +1,7 @@
-module TD.Query.ToggleGroupCallScreenSharingIsPaused(ToggleGroupCallScreenSharingIsPaused(..)) where
+module TD.Query.ToggleGroupCallScreenSharingIsPaused
+  (ToggleGroupCallScreenSharingIsPaused(..)
+  , defaultToggleGroupCallScreenSharingIsPaused
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleGroupCallScreenSharingIsPaused where
           , "group_call_id" A..= group_call_id_
           , "is_paused"     A..= is_paused_
           ]
+
+defaultToggleGroupCallScreenSharingIsPaused :: ToggleGroupCallScreenSharingIsPaused
+defaultToggleGroupCallScreenSharingIsPaused =
+  ToggleGroupCallScreenSharingIsPaused
+    { group_call_id = Nothing
+    , is_paused     = Nothing
+    }
+

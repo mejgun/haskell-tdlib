@@ -1,4 +1,7 @@
-module TD.Query.AddMessageReaction(AddMessageReaction(..)) where
+module TD.Query.AddMessageReaction
+  (AddMessageReaction(..)
+  , defaultAddMessageReaction
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +53,14 @@ instance AT.ToJSON AddMessageReaction where
           , "is_big"                  A..= is_big_
           , "update_recent_reactions" A..= update_recent_reactions_
           ]
+
+defaultAddMessageReaction :: AddMessageReaction
+defaultAddMessageReaction =
+  AddMessageReaction
+    { chat_id                 = Nothing
+    , message_id              = Nothing
+    , reaction_type           = Nothing
+    , is_big                  = Nothing
+    , update_recent_reactions = Nothing
+    }
+

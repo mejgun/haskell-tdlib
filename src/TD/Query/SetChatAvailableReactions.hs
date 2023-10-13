@@ -1,4 +1,7 @@
-module TD.Query.SetChatAvailableReactions(SetChatAvailableReactions(..)) where
+module TD.Query.SetChatAvailableReactions
+  (SetChatAvailableReactions(..)
+  , defaultSetChatAvailableReactions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatAvailableReactions where
           , "chat_id"             A..= chat_id_
           , "available_reactions" A..= available_reactions_
           ]
+
+defaultSetChatAvailableReactions :: SetChatAvailableReactions
+defaultSetChatAvailableReactions =
+  SetChatAvailableReactions
+    { chat_id             = Nothing
+    , available_reactions = Nothing
+    }
+

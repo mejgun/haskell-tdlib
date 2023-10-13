@@ -1,4 +1,7 @@
-module TD.Query.ToggleChatIsMarkedAsUnread(ToggleChatIsMarkedAsUnread(..)) where
+module TD.Query.ToggleChatIsMarkedAsUnread
+  (ToggleChatIsMarkedAsUnread(..)
+  , defaultToggleChatIsMarkedAsUnread
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleChatIsMarkedAsUnread where
           , "chat_id"             A..= chat_id_
           , "is_marked_as_unread" A..= is_marked_as_unread_
           ]
+
+defaultToggleChatIsMarkedAsUnread :: ToggleChatIsMarkedAsUnread
+defaultToggleChatIsMarkedAsUnread =
+  ToggleChatIsMarkedAsUnread
+    { chat_id             = Nothing
+    , is_marked_as_unread = Nothing
+    }
+

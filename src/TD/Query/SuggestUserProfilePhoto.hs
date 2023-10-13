@@ -1,4 +1,7 @@
-module TD.Query.SuggestUserProfilePhoto(SuggestUserProfilePhoto(..)) where
+module TD.Query.SuggestUserProfilePhoto
+  (SuggestUserProfilePhoto(..)
+  , defaultSuggestUserProfilePhoto
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SuggestUserProfilePhoto where
           , "user_id" A..= user_id_
           , "photo"   A..= photo_
           ]
+
+defaultSuggestUserProfilePhoto :: SuggestUserProfilePhoto
+defaultSuggestUserProfilePhoto =
+  SuggestUserProfilePhoto
+    { user_id = Nothing
+    , photo   = Nothing
+    }
+

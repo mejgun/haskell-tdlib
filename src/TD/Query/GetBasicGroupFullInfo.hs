@@ -1,4 +1,6 @@
-module TD.Query.GetBasicGroupFullInfo(GetBasicGroupFullInfo(..)) where
+module TD.Query.GetBasicGroupFullInfo
+  (GetBasicGroupFullInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetBasicGroupFullInfo where
           [ "@type"          A..= AT.String "getBasicGroupFullInfo"
           , "basic_group_id" A..= basic_group_id_
           ]
+

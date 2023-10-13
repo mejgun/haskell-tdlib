@@ -1,4 +1,6 @@
-module TD.Query.ClearRecentReactions(ClearRecentReactions(..)) where
+module TD.Query.ClearRecentReactions
+  (ClearRecentReactions(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ClearRecentReactions where
         = A.object
           [ "@type" A..= AT.String "clearRecentReactions"
           ]
+

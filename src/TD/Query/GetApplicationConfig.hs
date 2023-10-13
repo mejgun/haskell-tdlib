@@ -1,4 +1,6 @@
-module TD.Query.GetApplicationConfig(GetApplicationConfig(..)) where
+module TD.Query.GetApplicationConfig
+  (GetApplicationConfig(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetApplicationConfig where
         = A.object
           [ "@type" A..= AT.String "getApplicationConfig"
           ]
+

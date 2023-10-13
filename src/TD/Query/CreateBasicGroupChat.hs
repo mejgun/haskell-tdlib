@@ -1,4 +1,7 @@
-module TD.Query.CreateBasicGroupChat(CreateBasicGroupChat(..)) where
+module TD.Query.CreateBasicGroupChat
+  (CreateBasicGroupChat(..)
+  , defaultCreateBasicGroupChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON CreateBasicGroupChat where
           , "basic_group_id" A..= basic_group_id_
           , "force"          A..= force_
           ]
+
+defaultCreateBasicGroupChat :: CreateBasicGroupChat
+defaultCreateBasicGroupChat =
+  CreateBasicGroupChat
+    { basic_group_id = Nothing
+    , force          = Nothing
+    }
+

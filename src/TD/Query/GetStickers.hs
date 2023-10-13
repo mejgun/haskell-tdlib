@@ -1,4 +1,7 @@
-module TD.Query.GetStickers(GetStickers(..)) where
+module TD.Query.GetStickers
+  (GetStickers(..)
+  , defaultGetStickers
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON GetStickers where
           , "limit"        A..= limit_
           , "chat_id"      A..= chat_id_
           ]
+
+defaultGetStickers :: GetStickers
+defaultGetStickers =
+  GetStickers
+    { sticker_type = Nothing
+    , query        = Nothing
+    , limit        = Nothing
+    , chat_id      = Nothing
+    }
+

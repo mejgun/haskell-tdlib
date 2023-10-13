@@ -1,4 +1,6 @@
-module TD.Query.GetApplicationDownloadLink(GetApplicationDownloadLink(..)) where
+module TD.Query.GetApplicationDownloadLink
+  (GetApplicationDownloadLink(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetApplicationDownloadLink where
         = A.object
           [ "@type" A..= AT.String "getApplicationDownloadLink"
           ]
+

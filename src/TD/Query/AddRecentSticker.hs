@@ -1,4 +1,7 @@
-module TD.Query.AddRecentSticker(AddRecentSticker(..)) where
+module TD.Query.AddRecentSticker
+  (AddRecentSticker(..)
+  , defaultAddRecentSticker
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON AddRecentSticker where
           , "is_attached" A..= is_attached_
           , "sticker"     A..= sticker_
           ]
+
+defaultAddRecentSticker :: AddRecentSticker
+defaultAddRecentSticker =
+  AddRecentSticker
+    { is_attached = Nothing
+    , sticker     = Nothing
+    }
+

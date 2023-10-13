@@ -1,4 +1,6 @@
-module TD.Query.GetPushReceiverId(GetPushReceiverId(..)) where
+module TD.Query.GetPushReceiverId
+  (GetPushReceiverId(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetPushReceiverId where
           [ "@type"   A..= AT.String "getPushReceiverId"
           , "payload" A..= payload_
           ]
+

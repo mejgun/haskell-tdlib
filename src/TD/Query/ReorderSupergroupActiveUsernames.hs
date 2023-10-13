@@ -1,4 +1,7 @@
-module TD.Query.ReorderSupergroupActiveUsernames(ReorderSupergroupActiveUsernames(..)) where
+module TD.Query.ReorderSupergroupActiveUsernames
+  (ReorderSupergroupActiveUsernames(..)
+  , defaultReorderSupergroupActiveUsernames
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON ReorderSupergroupActiveUsernames where
           , "supergroup_id" A..= supergroup_id_
           , "usernames"     A..= usernames_
           ]
+
+defaultReorderSupergroupActiveUsernames :: ReorderSupergroupActiveUsernames
+defaultReorderSupergroupActiveUsernames =
+  ReorderSupergroupActiveUsernames
+    { supergroup_id = Nothing
+    , usernames     = Nothing
+    }
+

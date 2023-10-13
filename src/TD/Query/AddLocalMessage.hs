@@ -1,4 +1,7 @@
-module TD.Query.AddLocalMessage(AddLocalMessage(..)) where
+module TD.Query.AddLocalMessage
+  (AddLocalMessage(..)
+  , defaultAddLocalMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,14 @@ instance AT.ToJSON AddLocalMessage where
           , "disable_notification"  A..= disable_notification_
           , "input_message_content" A..= input_message_content_
           ]
+
+defaultAddLocalMessage :: AddLocalMessage
+defaultAddLocalMessage =
+  AddLocalMessage
+    { chat_id               = Nothing
+    , sender_id             = Nothing
+    , reply_to              = Nothing
+    , disable_notification  = Nothing
+    , input_message_content = Nothing
+    }
+

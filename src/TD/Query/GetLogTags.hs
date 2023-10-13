@@ -1,4 +1,6 @@
-module TD.Query.GetLogTags(GetLogTags(..)) where
+module TD.Query.GetLogTags
+  (GetLogTags(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetLogTags where
         = A.object
           [ "@type" A..= AT.String "getLogTags"
           ]
+

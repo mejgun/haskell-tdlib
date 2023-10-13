@@ -1,4 +1,6 @@
-module TD.Query.DeleteChat(DeleteChat(..)) where
+module TD.Query.DeleteChat
+  (DeleteChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON DeleteChat where
           [ "@type"   A..= AT.String "deleteChat"
           , "chat_id" A..= chat_id_
           ]
+

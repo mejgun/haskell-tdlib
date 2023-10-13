@@ -1,4 +1,7 @@
-module TD.Query.GetInternalLink(GetInternalLink(..)) where
+module TD.Query.GetInternalLink
+  (GetInternalLink(..)
+  , defaultGetInternalLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetInternalLink where
           , "type"    A..= _type_
           , "is_http" A..= is_http_
           ]
+
+defaultGetInternalLink :: GetInternalLink
+defaultGetInternalLink =
+  GetInternalLink
+    { _type   = Nothing
+    , is_http = Nothing
+    }
+

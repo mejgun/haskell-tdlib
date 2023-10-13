@@ -1,4 +1,6 @@
-module TD.Query.GetSupportUser(GetSupportUser(..)) where
+module TD.Query.GetSupportUser
+  (GetSupportUser(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetSupportUser where
         = A.object
           [ "@type" A..= AT.String "getSupportUser"
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.TestReturnError(TestReturnError(..)) where
+module TD.Query.TestReturnError
+  (TestReturnError(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON TestReturnError where
           [ "@type" A..= AT.String "testReturnError"
           , "error" A..= _error_
           ]
+

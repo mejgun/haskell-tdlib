@@ -1,4 +1,6 @@
-module TD.Query.CloseWebApp(CloseWebApp(..)) where
+module TD.Query.CloseWebApp
+  (CloseWebApp(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON CloseWebApp where
           [ "@type"             A..= AT.String "closeWebApp"
           , "web_app_launch_id" A..= fmap I.writeInt64  web_app_launch_id_
           ]
+

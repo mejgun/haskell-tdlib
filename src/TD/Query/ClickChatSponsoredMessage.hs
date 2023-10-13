@@ -1,4 +1,7 @@
-module TD.Query.ClickChatSponsoredMessage(ClickChatSponsoredMessage(..)) where
+module TD.Query.ClickChatSponsoredMessage
+  (ClickChatSponsoredMessage(..)
+  , defaultClickChatSponsoredMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ClickChatSponsoredMessage where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultClickChatSponsoredMessage :: ClickChatSponsoredMessage
+defaultClickChatSponsoredMessage =
+  ClickChatSponsoredMessage
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

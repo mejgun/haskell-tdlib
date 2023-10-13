@@ -1,4 +1,6 @@
-module TD.Query.CanPurchasePremium(CanPurchasePremium(..)) where
+module TD.Query.CanPurchasePremium
+  (CanPurchasePremium(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CanPurchasePremium where
           [ "@type"   A..= AT.String "canPurchasePremium"
           , "purpose" A..= purpose_
           ]
+

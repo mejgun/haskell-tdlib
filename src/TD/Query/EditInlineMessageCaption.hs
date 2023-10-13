@@ -1,4 +1,7 @@
-module TD.Query.EditInlineMessageCaption(EditInlineMessageCaption(..)) where
+module TD.Query.EditInlineMessageCaption
+  (EditInlineMessageCaption(..)
+  , defaultEditInlineMessageCaption
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -42,3 +45,12 @@ instance AT.ToJSON EditInlineMessageCaption where
           , "reply_markup"      A..= reply_markup_
           , "caption"           A..= caption_
           ]
+
+defaultEditInlineMessageCaption :: EditInlineMessageCaption
+defaultEditInlineMessageCaption =
+  EditInlineMessageCaption
+    { inline_message_id = Nothing
+    , reply_markup      = Nothing
+    , caption           = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetChatFolderDefaultIconName(GetChatFolderDefaultIconName(..)) where
+module TD.Query.GetChatFolderDefaultIconName
+  (GetChatFolderDefaultIconName(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetChatFolderDefaultIconName where
           [ "@type"  A..= AT.String "getChatFolderDefaultIconName"
           , "folder" A..= folder_
           ]
+

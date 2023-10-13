@@ -1,4 +1,7 @@
-module TD.Query.GetMessageThreadHistory(GetMessageThreadHistory(..)) where
+module TD.Query.GetMessageThreadHistory
+  (GetMessageThreadHistory(..)
+  , defaultGetMessageThreadHistory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,3 +52,14 @@ instance AT.ToJSON GetMessageThreadHistory where
           , "offset"          A..= offset_
           , "limit"           A..= limit_
           ]
+
+defaultGetMessageThreadHistory :: GetMessageThreadHistory
+defaultGetMessageThreadHistory =
+  GetMessageThreadHistory
+    { chat_id         = Nothing
+    , message_id      = Nothing
+    , from_message_id = Nothing
+    , offset          = Nothing
+    , limit           = Nothing
+    }
+

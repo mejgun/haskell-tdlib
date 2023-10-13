@@ -1,4 +1,7 @@
-module TD.Query.CreateNewStickerSet(CreateNewStickerSet(..)) where
+module TD.Query.CreateNewStickerSet
+  (CreateNewStickerSet(..)
+  , defaultCreateNewStickerSet
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -68,3 +71,17 @@ instance AT.ToJSON CreateNewStickerSet where
           , "stickers"         A..= stickers_
           , "source"           A..= source_
           ]
+
+defaultCreateNewStickerSet :: CreateNewStickerSet
+defaultCreateNewStickerSet =
+  CreateNewStickerSet
+    { user_id          = Nothing
+    , title            = Nothing
+    , name             = Nothing
+    , sticker_format   = Nothing
+    , sticker_type     = Nothing
+    , needs_repainting = Nothing
+    , stickers         = Nothing
+    , source           = Nothing
+    }
+

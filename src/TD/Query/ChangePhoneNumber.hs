@@ -1,4 +1,7 @@
-module TD.Query.ChangePhoneNumber(ChangePhoneNumber(..)) where
+module TD.Query.ChangePhoneNumber
+  (ChangePhoneNumber(..)
+  , defaultChangePhoneNumber
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON ChangePhoneNumber where
           , "phone_number" A..= phone_number_
           , "settings"     A..= settings_
           ]
+
+defaultChangePhoneNumber :: ChangePhoneNumber
+defaultChangePhoneNumber =
+  ChangePhoneNumber
+    { phone_number = Nothing
+    , settings     = Nothing
+    }
+

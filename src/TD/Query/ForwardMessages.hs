@@ -1,4 +1,7 @@
-module TD.Query.ForwardMessages(ForwardMessages(..)) where
+module TD.Query.ForwardMessages
+  (ForwardMessages(..)
+  , defaultForwardMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,3 +68,17 @@ instance AT.ToJSON ForwardMessages where
           , "remove_caption"    A..= remove_caption_
           , "only_preview"      A..= only_preview_
           ]
+
+defaultForwardMessages :: ForwardMessages
+defaultForwardMessages =
+  ForwardMessages
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , from_chat_id      = Nothing
+    , message_ids       = Nothing
+    , options           = Nothing
+    , send_copy         = Nothing
+    , remove_caption    = Nothing
+    , only_preview      = Nothing
+    }
+

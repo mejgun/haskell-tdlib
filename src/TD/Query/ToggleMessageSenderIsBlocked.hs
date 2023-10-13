@@ -1,4 +1,7 @@
-module TD.Query.ToggleMessageSenderIsBlocked(ToggleMessageSenderIsBlocked(..)) where
+module TD.Query.ToggleMessageSenderIsBlocked
+  (ToggleMessageSenderIsBlocked(..)
+  , defaultToggleMessageSenderIsBlocked
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON ToggleMessageSenderIsBlocked where
           , "sender_id"  A..= sender_id_
           , "is_blocked" A..= is_blocked_
           ]
+
+defaultToggleMessageSenderIsBlocked :: ToggleMessageSenderIsBlocked
+defaultToggleMessageSenderIsBlocked =
+  ToggleMessageSenderIsBlocked
+    { sender_id  = Nothing
+    , is_blocked = Nothing
+    }
+

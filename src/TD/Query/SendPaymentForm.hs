@@ -1,4 +1,7 @@
-module TD.Query.SendPaymentForm(SendPaymentForm(..)) where
+module TD.Query.SendPaymentForm
+  (SendPaymentForm(..)
+  , defaultSendPaymentForm
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -57,3 +60,15 @@ instance AT.ToJSON SendPaymentForm where
           , "credentials"        A..= credentials_
           , "tip_amount"         A..= tip_amount_
           ]
+
+defaultSendPaymentForm :: SendPaymentForm
+defaultSendPaymentForm =
+  SendPaymentForm
+    { input_invoice      = Nothing
+    , payment_form_id    = Nothing
+    , order_info_id      = Nothing
+    , shipping_option_id = Nothing
+    , credentials        = Nothing
+    , tip_amount         = Nothing
+    }
+

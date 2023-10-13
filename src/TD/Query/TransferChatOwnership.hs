@@ -1,4 +1,7 @@
-module TD.Query.TransferChatOwnership(TransferChatOwnership(..)) where
+module TD.Query.TransferChatOwnership
+  (TransferChatOwnership(..)
+  , defaultTransferChatOwnership
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON TransferChatOwnership where
           , "user_id"  A..= user_id_
           , "password" A..= password_
           ]
+
+defaultTransferChatOwnership :: TransferChatOwnership
+defaultTransferChatOwnership =
+  TransferChatOwnership
+    { chat_id  = Nothing
+    , user_id  = Nothing
+    , password = Nothing
+    }
+

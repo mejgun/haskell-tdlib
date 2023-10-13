@@ -1,4 +1,7 @@
-module TD.Query.DeleteChatReplyMarkup(DeleteChatReplyMarkup(..)) where
+module TD.Query.DeleteChatReplyMarkup
+  (DeleteChatReplyMarkup(..)
+  , defaultDeleteChatReplyMarkup
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON DeleteChatReplyMarkup where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultDeleteChatReplyMarkup :: DeleteChatReplyMarkup
+defaultDeleteChatReplyMarkup =
+  DeleteChatReplyMarkup
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

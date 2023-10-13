@@ -1,4 +1,6 @@
-module TD.Query.SetUsername(SetUsername(..)) where
+module TD.Query.SetUsername
+  (SetUsername(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetUsername where
           [ "@type"    A..= AT.String "setUsername"
           , "username" A..= username_
           ]
+

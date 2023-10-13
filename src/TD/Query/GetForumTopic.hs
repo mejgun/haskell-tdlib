@@ -1,4 +1,7 @@
-module TD.Query.GetForumTopic(GetForumTopic(..)) where
+module TD.Query.GetForumTopic
+  (GetForumTopic(..)
+  , defaultGetForumTopic
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetForumTopic where
           , "chat_id"           A..= chat_id_
           , "message_thread_id" A..= message_thread_id_
           ]
+
+defaultGetForumTopic :: GetForumTopic
+defaultGetForumTopic =
+  GetForumTopic
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

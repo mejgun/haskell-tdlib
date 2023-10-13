@@ -1,4 +1,7 @@
-module TD.Query.GetGroupsInCommon(GetGroupsInCommon(..)) where
+module TD.Query.GetGroupsInCommon
+  (GetGroupsInCommon(..)
+  , defaultGetGroupsInCommon
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetGroupsInCommon where
           , "offset_chat_id" A..= offset_chat_id_
           , "limit"          A..= limit_
           ]
+
+defaultGetGroupsInCommon :: GetGroupsInCommon
+defaultGetGroupsInCommon =
+  GetGroupsInCommon
+    { user_id        = Nothing
+    , offset_chat_id = Nothing
+    , limit          = Nothing
+    }
+

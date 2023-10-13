@@ -1,4 +1,7 @@
-module TD.Query.CreateChatInviteLink(CreateChatInviteLink(..)) where
+module TD.Query.CreateChatInviteLink
+  (CreateChatInviteLink(..)
+  , defaultCreateChatInviteLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +53,14 @@ instance AT.ToJSON CreateChatInviteLink where
           , "member_limit"         A..= member_limit_
           , "creates_join_request" A..= creates_join_request_
           ]
+
+defaultCreateChatInviteLink :: CreateChatInviteLink
+defaultCreateChatInviteLink =
+  CreateChatInviteLink
+    { chat_id              = Nothing
+    , name                 = Nothing
+    , expiration_date      = Nothing
+    , member_limit         = Nothing
+    , creates_join_request = Nothing
+    }
+

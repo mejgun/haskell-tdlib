@@ -1,4 +1,7 @@
-module TD.Query.AcceptCall(AcceptCall(..)) where
+module TD.Query.AcceptCall
+  (AcceptCall(..)
+  , defaultAcceptCall
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON AcceptCall where
           , "call_id"  A..= call_id_
           , "protocol" A..= protocol_
           ]
+
+defaultAcceptCall :: AcceptCall
+defaultAcceptCall =
+  AcceptCall
+    { call_id  = Nothing
+    , protocol = Nothing
+    }
+

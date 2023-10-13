@@ -1,4 +1,7 @@
-module TD.Query.SetAuthenticationPhoneNumber(SetAuthenticationPhoneNumber(..)) where
+module TD.Query.SetAuthenticationPhoneNumber
+  (SetAuthenticationPhoneNumber(..)
+  , defaultSetAuthenticationPhoneNumber
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetAuthenticationPhoneNumber where
           , "phone_number" A..= phone_number_
           , "settings"     A..= settings_
           ]
+
+defaultSetAuthenticationPhoneNumber :: SetAuthenticationPhoneNumber
+defaultSetAuthenticationPhoneNumber =
+  SetAuthenticationPhoneNumber
+    { phone_number = Nothing
+    , settings     = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.RemoveChatActionBar(RemoveChatActionBar(..)) where
+module TD.Query.RemoveChatActionBar
+  (RemoveChatActionBar(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON RemoveChatActionBar where
           [ "@type"   A..= AT.String "removeChatActionBar"
           , "chat_id" A..= chat_id_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetFile(GetFile(..)) where
+module TD.Query.GetFile
+  (GetFile(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetFile where
           [ "@type"   A..= AT.String "getFile"
           , "file_id" A..= file_id_
           ]
+

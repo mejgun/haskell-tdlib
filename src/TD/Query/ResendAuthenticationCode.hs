@@ -1,4 +1,6 @@
-module TD.Query.ResendAuthenticationCode(ResendAuthenticationCode(..)) where
+module TD.Query.ResendAuthenticationCode
+  (ResendAuthenticationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ResendAuthenticationCode where
         = A.object
           [ "@type" A..= AT.String "resendAuthenticationCode"
           ]
+

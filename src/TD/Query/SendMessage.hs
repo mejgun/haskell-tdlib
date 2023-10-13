@@ -1,4 +1,7 @@
-module TD.Query.SendMessage(SendMessage(..)) where
+module TD.Query.SendMessage
+  (SendMessage(..)
+  , defaultSendMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,3 +61,15 @@ instance AT.ToJSON SendMessage where
           , "reply_markup"          A..= reply_markup_
           , "input_message_content" A..= input_message_content_
           ]
+
+defaultSendMessage :: SendMessage
+defaultSendMessage =
+  SendMessage
+    { chat_id               = Nothing
+    , message_thread_id     = Nothing
+    , reply_to              = Nothing
+    , options               = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+

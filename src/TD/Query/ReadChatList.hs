@@ -1,4 +1,6 @@
-module TD.Query.ReadChatList(ReadChatList(..)) where
+module TD.Query.ReadChatList
+  (ReadChatList(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON ReadChatList where
           [ "@type"     A..= AT.String "readChatList"
           , "chat_list" A..= chat_list_
           ]
+

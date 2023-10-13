@@ -1,4 +1,7 @@
-module TD.Query.SetStickerEmojis(SetStickerEmojis(..)) where
+module TD.Query.SetStickerEmojis
+  (SetStickerEmojis(..)
+  , defaultSetStickerEmojis
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetStickerEmojis where
           , "sticker" A..= sticker_
           , "emojis"  A..= emojis_
           ]
+
+defaultSetStickerEmojis :: SetStickerEmojis
+defaultSetStickerEmojis =
+  SetStickerEmojis
+    { sticker = Nothing
+    , emojis  = Nothing
+    }
+

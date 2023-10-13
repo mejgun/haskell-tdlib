@@ -1,4 +1,7 @@
-module TD.Query.ReadAllMessageThreadReactions(ReadAllMessageThreadReactions(..)) where
+module TD.Query.ReadAllMessageThreadReactions
+  (ReadAllMessageThreadReactions(..)
+  , defaultReadAllMessageThreadReactions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ReadAllMessageThreadReactions where
           , "chat_id"           A..= chat_id_
           , "message_thread_id" A..= message_thread_id_
           ]
+
+defaultReadAllMessageThreadReactions :: ReadAllMessageThreadReactions
+defaultReadAllMessageThreadReactions =
+  ReadAllMessageThreadReactions
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.ReorderChatFolders(ReorderChatFolders(..)) where
+module TD.Query.ReorderChatFolders
+  (ReorderChatFolders(..)
+  , defaultReorderChatFolders
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ReorderChatFolders where
           , "chat_folder_ids"         A..= chat_folder_ids_
           , "main_chat_list_position" A..= main_chat_list_position_
           ]
+
+defaultReorderChatFolders :: ReorderChatFolders
+defaultReorderChatFolders =
+  ReorderChatFolders
+    { chat_folder_ids         = Nothing
+    , main_chat_list_position = Nothing
+    }
+

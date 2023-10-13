@@ -1,4 +1,7 @@
-module TD.Query.ToggleGroupCallEnabledStartNotification(ToggleGroupCallEnabledStartNotification(..)) where
+module TD.Query.ToggleGroupCallEnabledStartNotification
+  (ToggleGroupCallEnabledStartNotification(..)
+  , defaultToggleGroupCallEnabledStartNotification
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleGroupCallEnabledStartNotification where
           , "group_call_id"              A..= group_call_id_
           , "enabled_start_notification" A..= enabled_start_notification_
           ]
+
+defaultToggleGroupCallEnabledStartNotification :: ToggleGroupCallEnabledStartNotification
+defaultToggleGroupCallEnabledStartNotification =
+  ToggleGroupCallEnabledStartNotification
+    { group_call_id              = Nothing
+    , enabled_start_notification = Nothing
+    }
+

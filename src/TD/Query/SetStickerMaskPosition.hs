@@ -1,4 +1,7 @@
-module TD.Query.SetStickerMaskPosition(SetStickerMaskPosition(..)) where
+module TD.Query.SetStickerMaskPosition
+  (SetStickerMaskPosition(..)
+  , defaultSetStickerMaskPosition
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetStickerMaskPosition where
           , "sticker"       A..= sticker_
           , "mask_position" A..= mask_position_
           ]
+
+defaultSetStickerMaskPosition :: SetStickerMaskPosition
+defaultSetStickerMaskPosition =
+  SetStickerMaskPosition
+    { sticker       = Nothing
+    , mask_position = Nothing
+    }
+

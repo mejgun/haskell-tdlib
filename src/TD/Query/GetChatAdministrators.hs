@@ -1,4 +1,6 @@
-module TD.Query.GetChatAdministrators(GetChatAdministrators(..)) where
+module TD.Query.GetChatAdministrators
+  (GetChatAdministrators(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatAdministrators where
           [ "@type"   A..= AT.String "getChatAdministrators"
           , "chat_id" A..= chat_id_
           ]
+

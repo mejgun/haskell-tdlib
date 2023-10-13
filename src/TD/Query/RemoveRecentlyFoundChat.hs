@@ -1,4 +1,6 @@
-module TD.Query.RemoveRecentlyFoundChat(RemoveRecentlyFoundChat(..)) where
+module TD.Query.RemoveRecentlyFoundChat
+  (RemoveRecentlyFoundChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON RemoveRecentlyFoundChat where
           [ "@type"   A..= AT.String "removeRecentlyFoundChat"
           , "chat_id" A..= chat_id_
           ]
+

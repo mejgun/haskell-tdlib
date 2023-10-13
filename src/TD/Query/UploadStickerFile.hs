@@ -1,4 +1,7 @@
-module TD.Query.UploadStickerFile(UploadStickerFile(..)) where
+module TD.Query.UploadStickerFile
+  (UploadStickerFile(..)
+  , defaultUploadStickerFile
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON UploadStickerFile where
           , "sticker_format" A..= sticker_format_
           , "sticker"        A..= sticker_
           ]
+
+defaultUploadStickerFile :: UploadStickerFile
+defaultUploadStickerFile =
+  UploadStickerFile
+    { user_id        = Nothing
+    , sticker_format = Nothing
+    , sticker        = Nothing
+    }
+

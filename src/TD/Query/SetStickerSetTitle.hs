@@ -1,4 +1,7 @@
-module TD.Query.SetStickerSetTitle(SetStickerSetTitle(..)) where
+module TD.Query.SetStickerSetTitle
+  (SetStickerSetTitle(..)
+  , defaultSetStickerSetTitle
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetStickerSetTitle where
           , "name"  A..= name_
           , "title" A..= title_
           ]
+
+defaultSetStickerSetTitle :: SetStickerSetTitle
+defaultSetStickerSetTitle =
+  SetStickerSetTitle
+    { name  = Nothing
+    , title = Nothing
+    }
+

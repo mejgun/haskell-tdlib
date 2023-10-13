@@ -1,4 +1,7 @@
-module TD.Query.GetGroupCallStreamSegment(GetGroupCallStreamSegment(..)) where
+module TD.Query.GetGroupCallStreamSegment
+  (GetGroupCallStreamSegment(..)
+  , defaultGetGroupCallStreamSegment
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +53,14 @@ instance AT.ToJSON GetGroupCallStreamSegment where
           , "channel_id"    A..= channel_id_
           , "video_quality" A..= video_quality_
           ]
+
+defaultGetGroupCallStreamSegment :: GetGroupCallStreamSegment
+defaultGetGroupCallStreamSegment =
+  GetGroupCallStreamSegment
+    { group_call_id = Nothing
+    , time_offset   = Nothing
+    , scale         = Nothing
+    , channel_id    = Nothing
+    , video_quality = Nothing
+    }
+

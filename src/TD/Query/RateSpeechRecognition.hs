@@ -1,4 +1,7 @@
-module TD.Query.RateSpeechRecognition(RateSpeechRecognition(..)) where
+module TD.Query.RateSpeechRecognition
+  (RateSpeechRecognition(..)
+  , defaultRateSpeechRecognition
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON RateSpeechRecognition where
           , "message_id" A..= message_id_
           , "is_good"    A..= is_good_
           ]
+
+defaultRateSpeechRecognition :: RateSpeechRecognition
+defaultRateSpeechRecognition =
+  RateSpeechRecognition
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , is_good    = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.PingProxy(PingProxy(..)) where
+module TD.Query.PingProxy
+  (PingProxy(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON PingProxy where
           [ "@type"    A..= AT.String "pingProxy"
           , "proxy_id" A..= proxy_id_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.OpenWebApp(OpenWebApp(..)) where
+module TD.Query.OpenWebApp
+  (OpenWebApp(..)
+  , defaultOpenWebApp
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -62,3 +65,16 @@ instance AT.ToJSON OpenWebApp where
           , "message_thread_id" A..= message_thread_id_
           , "reply_to"          A..= reply_to_
           ]
+
+defaultOpenWebApp :: OpenWebApp
+defaultOpenWebApp =
+  OpenWebApp
+    { chat_id           = Nothing
+    , bot_user_id       = Nothing
+    , url               = Nothing
+    , theme             = Nothing
+    , application_name  = Nothing
+    , message_thread_id = Nothing
+    , reply_to          = Nothing
+    }
+

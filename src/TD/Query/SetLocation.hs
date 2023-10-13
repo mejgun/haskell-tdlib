@@ -1,4 +1,6 @@
-module TD.Query.SetLocation(SetLocation(..)) where
+module TD.Query.SetLocation
+  (SetLocation(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetLocation where
           [ "@type"    A..= AT.String "setLocation"
           , "location" A..= location_
           ]
+

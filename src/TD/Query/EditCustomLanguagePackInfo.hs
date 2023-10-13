@@ -1,4 +1,6 @@
-module TD.Query.EditCustomLanguagePackInfo(EditCustomLanguagePackInfo(..)) where
+module TD.Query.EditCustomLanguagePackInfo
+  (EditCustomLanguagePackInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON EditCustomLanguagePackInfo where
           [ "@type" A..= AT.String "editCustomLanguagePackInfo"
           , "info"  A..= info_
           ]
+

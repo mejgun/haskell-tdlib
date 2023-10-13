@@ -1,4 +1,6 @@
-module TD.Query.CheckChangePhoneNumberCode(CheckChangePhoneNumberCode(..)) where
+module TD.Query.CheckChangePhoneNumberCode
+  (CheckChangePhoneNumberCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckChangePhoneNumberCode where
           [ "@type" A..= AT.String "checkChangePhoneNumberCode"
           , "code"  A..= code_
           ]
+

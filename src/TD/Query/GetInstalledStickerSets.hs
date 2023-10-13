@@ -1,4 +1,6 @@
-module TD.Query.GetInstalledStickerSets(GetInstalledStickerSets(..)) where
+module TD.Query.GetInstalledStickerSets
+  (GetInstalledStickerSets(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetInstalledStickerSets where
           [ "@type"        A..= AT.String "getInstalledStickerSets"
           , "sticker_type" A..= sticker_type_
           ]
+

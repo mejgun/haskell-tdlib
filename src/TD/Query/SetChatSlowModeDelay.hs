@@ -1,4 +1,7 @@
-module TD.Query.SetChatSlowModeDelay(SetChatSlowModeDelay(..)) where
+module TD.Query.SetChatSlowModeDelay
+  (SetChatSlowModeDelay(..)
+  , defaultSetChatSlowModeDelay
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON SetChatSlowModeDelay where
           , "chat_id"         A..= chat_id_
           , "slow_mode_delay" A..= slow_mode_delay_
           ]
+
+defaultSetChatSlowModeDelay :: SetChatSlowModeDelay
+defaultSetChatSlowModeDelay =
+  SetChatSlowModeDelay
+    { chat_id         = Nothing
+    , slow_mode_delay = Nothing
+    }
+

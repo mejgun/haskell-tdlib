@@ -1,4 +1,7 @@
-module TD.Query.GetPollVoters(GetPollVoters(..)) where
+module TD.Query.GetPollVoters
+  (GetPollVoters(..)
+  , defaultGetPollVoters
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,3 +52,14 @@ instance AT.ToJSON GetPollVoters where
           , "offset"     A..= offset_
           , "limit"      A..= limit_
           ]
+
+defaultGetPollVoters :: GetPollVoters
+defaultGetPollVoters =
+  GetPollVoters
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , option_id  = Nothing
+    , offset     = Nothing
+    , limit      = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.ToggleGroupCallParticipantIsMuted(ToggleGroupCallParticipantIsMuted(..)) where
+module TD.Query.ToggleGroupCallParticipantIsMuted
+  (ToggleGroupCallParticipantIsMuted(..)
+  , defaultToggleGroupCallParticipantIsMuted
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON ToggleGroupCallParticipantIsMuted where
           , "participant_id" A..= participant_id_
           , "is_muted"       A..= is_muted_
           ]
+
+defaultToggleGroupCallParticipantIsMuted :: ToggleGroupCallParticipantIsMuted
+defaultToggleGroupCallParticipantIsMuted =
+  ToggleGroupCallParticipantIsMuted
+    { group_call_id  = Nothing
+    , participant_id = Nothing
+    , is_muted       = Nothing
+    }
+

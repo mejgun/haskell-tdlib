@@ -1,4 +1,7 @@
-module TD.Query.ToggleChatIsPinned(ToggleChatIsPinned(..)) where
+module TD.Query.ToggleChatIsPinned
+  (ToggleChatIsPinned(..)
+  , defaultToggleChatIsPinned
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON ToggleChatIsPinned where
           , "chat_id"   A..= chat_id_
           , "is_pinned" A..= is_pinned_
           ]
+
+defaultToggleChatIsPinned :: ToggleChatIsPinned
+defaultToggleChatIsPinned =
+  ToggleChatIsPinned
+    { chat_list = Nothing
+    , chat_id   = Nothing
+    , is_pinned = Nothing
+    }
+

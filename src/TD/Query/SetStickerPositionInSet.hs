@@ -1,4 +1,7 @@
-module TD.Query.SetStickerPositionInSet(SetStickerPositionInSet(..)) where
+module TD.Query.SetStickerPositionInSet
+  (SetStickerPositionInSet(..)
+  , defaultSetStickerPositionInSet
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetStickerPositionInSet where
           , "sticker"  A..= sticker_
           , "position" A..= position_
           ]
+
+defaultSetStickerPositionInSet :: SetStickerPositionInSet
+defaultSetStickerPositionInSet =
+  SetStickerPositionInSet
+    { sticker  = Nothing
+    , position = Nothing
+    }
+

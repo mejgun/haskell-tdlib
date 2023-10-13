@@ -1,4 +1,7 @@
-module TD.Query.SetSupergroupUsername(SetSupergroupUsername(..)) where
+module TD.Query.SetSupergroupUsername
+  (SetSupergroupUsername(..)
+  , defaultSetSupergroupUsername
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetSupergroupUsername where
           , "supergroup_id" A..= supergroup_id_
           , "username"      A..= username_
           ]
+
+defaultSetSupergroupUsername :: SetSupergroupUsername
+defaultSetSupergroupUsername =
+  SetSupergroupUsername
+    { supergroup_id = Nothing
+    , username      = Nothing
+    }
+

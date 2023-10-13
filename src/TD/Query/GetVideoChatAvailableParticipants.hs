@@ -1,4 +1,6 @@
-module TD.Query.GetVideoChatAvailableParticipants(GetVideoChatAvailableParticipants(..)) where
+module TD.Query.GetVideoChatAvailableParticipants
+  (GetVideoChatAvailableParticipants(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetVideoChatAvailableParticipants where
           [ "@type"   A..= AT.String "getVideoChatAvailableParticipants"
           , "chat_id" A..= chat_id_
           ]
+

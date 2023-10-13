@@ -1,4 +1,6 @@
-module TD.Query.GetLogTagVerbosityLevel(GetLogTagVerbosityLevel(..)) where
+module TD.Query.GetLogTagVerbosityLevel
+  (GetLogTagVerbosityLevel(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetLogTagVerbosityLevel where
           [ "@type" A..= AT.String "getLogTagVerbosityLevel"
           , "tag"   A..= tag_
           ]
+

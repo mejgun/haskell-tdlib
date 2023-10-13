@@ -1,4 +1,6 @@
-module TD.Query.GetThemedEmojiStatuses(GetThemedEmojiStatuses(..)) where
+module TD.Query.GetThemedEmojiStatuses
+  (GetThemedEmojiStatuses(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetThemedEmojiStatuses where
         = A.object
           [ "@type" A..= AT.String "getThemedEmojiStatuses"
           ]
+

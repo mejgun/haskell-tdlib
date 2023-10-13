@@ -1,4 +1,7 @@
-module TD.Query.ToggleGroupCallIsMyVideoEnabled(ToggleGroupCallIsMyVideoEnabled(..)) where
+module TD.Query.ToggleGroupCallIsMyVideoEnabled
+  (ToggleGroupCallIsMyVideoEnabled(..)
+  , defaultToggleGroupCallIsMyVideoEnabled
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleGroupCallIsMyVideoEnabled where
           , "group_call_id"       A..= group_call_id_
           , "is_my_video_enabled" A..= is_my_video_enabled_
           ]
+
+defaultToggleGroupCallIsMyVideoEnabled :: ToggleGroupCallIsMyVideoEnabled
+defaultToggleGroupCallIsMyVideoEnabled =
+  ToggleGroupCallIsMyVideoEnabled
+    { group_call_id       = Nothing
+    , is_my_video_enabled = Nothing
+    }
+

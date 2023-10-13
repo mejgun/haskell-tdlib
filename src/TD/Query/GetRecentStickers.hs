@@ -1,4 +1,6 @@
-module TD.Query.GetRecentStickers(GetRecentStickers(..)) where
+module TD.Query.GetRecentStickers
+  (GetRecentStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetRecentStickers where
           [ "@type"       A..= AT.String "getRecentStickers"
           , "is_attached" A..= is_attached_
           ]
+

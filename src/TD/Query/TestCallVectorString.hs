@@ -1,4 +1,6 @@
-module TD.Query.TestCallVectorString(TestCallVectorString(..)) where
+module TD.Query.TestCallVectorString
+  (TestCallVectorString(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON TestCallVectorString where
           [ "@type" A..= AT.String "testCallVectorString"
           , "x"     A..= x_
           ]
+

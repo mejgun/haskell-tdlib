@@ -1,4 +1,7 @@
-module TD.Query.GetPassportAuthorizationForm(GetPassportAuthorizationForm(..)) where
+module TD.Query.GetPassportAuthorizationForm
+  (GetPassportAuthorizationForm(..)
+  , defaultGetPassportAuthorizationForm
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON GetPassportAuthorizationForm where
           , "public_key"  A..= public_key_
           , "nonce"       A..= nonce_
           ]
+
+defaultGetPassportAuthorizationForm :: GetPassportAuthorizationForm
+defaultGetPassportAuthorizationForm =
+  GetPassportAuthorizationForm
+    { bot_user_id = Nothing
+    , scope       = Nothing
+    , public_key  = Nothing
+    , nonce       = Nothing
+    }
+

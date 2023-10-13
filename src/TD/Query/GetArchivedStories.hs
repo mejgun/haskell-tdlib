@@ -1,4 +1,7 @@
-module TD.Query.GetArchivedStories(GetArchivedStories(..)) where
+module TD.Query.GetArchivedStories
+  (GetArchivedStories(..)
+  , defaultGetArchivedStories
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetArchivedStories where
           , "from_story_id" A..= from_story_id_
           , "limit"         A..= limit_
           ]
+
+defaultGetArchivedStories :: GetArchivedStories
+defaultGetArchivedStories =
+  GetArchivedStories
+    { from_story_id = Nothing
+    , limit         = Nothing
+    }
+

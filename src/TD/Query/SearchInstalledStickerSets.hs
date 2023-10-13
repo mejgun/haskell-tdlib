@@ -1,4 +1,7 @@
-module TD.Query.SearchInstalledStickerSets(SearchInstalledStickerSets(..)) where
+module TD.Query.SearchInstalledStickerSets
+  (SearchInstalledStickerSets(..)
+  , defaultSearchInstalledStickerSets
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON SearchInstalledStickerSets where
           , "query"        A..= query_
           , "limit"        A..= limit_
           ]
+
+defaultSearchInstalledStickerSets :: SearchInstalledStickerSets
+defaultSearchInstalledStickerSets =
+  SearchInstalledStickerSets
+    { sticker_type = Nothing
+    , query        = Nothing
+    , limit        = Nothing
+    }
+

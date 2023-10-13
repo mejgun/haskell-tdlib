@@ -1,4 +1,6 @@
-module TD.Query.GetChatFolderChatCount(GetChatFolderChatCount(..)) where
+module TD.Query.GetChatFolderChatCount
+  (GetChatFolderChatCount(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetChatFolderChatCount where
           [ "@type"  A..= AT.String "getChatFolderChatCount"
           , "folder" A..= folder_
           ]
+

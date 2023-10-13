@@ -1,4 +1,6 @@
-module TD.Query.GetFileMimeType(GetFileMimeType(..)) where
+module TD.Query.GetFileMimeType
+  (GetFileMimeType(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetFileMimeType where
           [ "@type"     A..= AT.String "getFileMimeType"
           , "file_name" A..= file_name_
           ]
+

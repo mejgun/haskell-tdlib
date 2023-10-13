@@ -1,4 +1,7 @@
-module TD.Query.ParseTextEntities(ParseTextEntities(..)) where
+module TD.Query.ParseTextEntities
+  (ParseTextEntities(..)
+  , defaultParseTextEntities
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON ParseTextEntities where
           , "text"       A..= text_
           , "parse_mode" A..= parse_mode_
           ]
+
+defaultParseTextEntities :: ParseTextEntities
+defaultParseTextEntities =
+  ParseTextEntities
+    { text       = Nothing
+    , parse_mode = Nothing
+    }
+

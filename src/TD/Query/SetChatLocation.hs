@@ -1,4 +1,7 @@
-module TD.Query.SetChatLocation(SetChatLocation(..)) where
+module TD.Query.SetChatLocation
+  (SetChatLocation(..)
+  , defaultSetChatLocation
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatLocation where
           , "chat_id"  A..= chat_id_
           , "location" A..= location_
           ]
+
+defaultSetChatLocation :: SetChatLocation
+defaultSetChatLocation =
+  SetChatLocation
+    { chat_id  = Nothing
+    , location = Nothing
+    }
+

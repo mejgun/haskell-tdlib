@@ -1,4 +1,7 @@
-module TD.Query.GetChatHistory(GetChatHistory(..)) where
+module TD.Query.GetChatHistory
+  (GetChatHistory(..)
+  , defaultGetChatHistory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,3 +52,14 @@ instance AT.ToJSON GetChatHistory where
           , "limit"           A..= limit_
           , "only_local"      A..= only_local_
           ]
+
+defaultGetChatHistory :: GetChatHistory
+defaultGetChatHistory =
+  GetChatHistory
+    { chat_id         = Nothing
+    , from_message_id = Nothing
+    , offset          = Nothing
+    , limit           = Nothing
+    , only_local      = Nothing
+    }
+

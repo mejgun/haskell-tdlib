@@ -1,4 +1,6 @@
-module TD.Query.AcceptTermsOfService(AcceptTermsOfService(..)) where
+module TD.Query.AcceptTermsOfService
+  (AcceptTermsOfService(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON AcceptTermsOfService where
           [ "@type"               A..= AT.String "acceptTermsOfService"
           , "terms_of_service_id" A..= terms_of_service_id_
           ]
+

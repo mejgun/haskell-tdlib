@@ -1,4 +1,6 @@
-module TD.Query.GetVideoChatRtmpUrl(GetVideoChatRtmpUrl(..)) where
+module TD.Query.GetVideoChatRtmpUrl
+  (GetVideoChatRtmpUrl(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetVideoChatRtmpUrl where
           [ "@type"   A..= AT.String "getVideoChatRtmpUrl"
           , "chat_id" A..= chat_id_
           ]
+

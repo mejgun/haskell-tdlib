@@ -1,4 +1,7 @@
-module TD.Query.AddFileToDownloads(AddFileToDownloads(..)) where
+module TD.Query.AddFileToDownloads
+  (AddFileToDownloads(..)
+  , defaultAddFileToDownloads
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,13 @@ instance AT.ToJSON AddFileToDownloads where
           , "message_id" A..= message_id_
           , "priority"   A..= priority_
           ]
+
+defaultAddFileToDownloads :: AddFileToDownloads
+defaultAddFileToDownloads =
+  AddFileToDownloads
+    { file_id    = Nothing
+    , chat_id    = Nothing
+    , message_id = Nothing
+    , priority   = Nothing
+    }
+

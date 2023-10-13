@@ -1,4 +1,6 @@
-module TD.Query.GetRecentlyVisitedTMeUrls(GetRecentlyVisitedTMeUrls(..)) where
+module TD.Query.GetRecentlyVisitedTMeUrls
+  (GetRecentlyVisitedTMeUrls(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetRecentlyVisitedTMeUrls where
           [ "@type"    A..= AT.String "getRecentlyVisitedTMeUrls"
           , "referrer" A..= referrer_
           ]
+

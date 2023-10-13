@@ -1,4 +1,6 @@
-module TD.Query.AddSavedNotificationSound(AddSavedNotificationSound(..)) where
+module TD.Query.AddSavedNotificationSound
+  (AddSavedNotificationSound(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON AddSavedNotificationSound where
           [ "@type" A..= AT.String "addSavedNotificationSound"
           , "sound" A..= sound_
           ]
+

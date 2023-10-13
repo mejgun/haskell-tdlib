@@ -1,4 +1,6 @@
-module TD.Query.SetBio(SetBio(..)) where
+module TD.Query.SetBio
+  (SetBio(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetBio where
           [ "@type" A..= AT.String "setBio"
           , "bio"   A..= bio_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetCreatedPublicChats(GetCreatedPublicChats(..)) where
+module TD.Query.GetCreatedPublicChats
+  (GetCreatedPublicChats(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetCreatedPublicChats where
           [ "@type" A..= AT.String "getCreatedPublicChats"
           , "type"  A..= _type_
           ]
+

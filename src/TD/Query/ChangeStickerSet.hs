@@ -1,4 +1,7 @@
-module TD.Query.ChangeStickerSet(ChangeStickerSet(..)) where
+module TD.Query.ChangeStickerSet
+  (ChangeStickerSet(..)
+  , defaultChangeStickerSet
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON ChangeStickerSet where
           , "is_installed" A..= is_installed_
           , "is_archived"  A..= is_archived_
           ]
+
+defaultChangeStickerSet :: ChangeStickerSet
+defaultChangeStickerSet =
+  ChangeStickerSet
+    { set_id       = Nothing
+    , is_installed = Nothing
+    , is_archived  = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.SetDefaultGroupAdministratorRights(SetDefaultGroupAdministratorRights(..)) where
+module TD.Query.SetDefaultGroupAdministratorRights
+  (SetDefaultGroupAdministratorRights(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetDefaultGroupAdministratorRights where
           [ "@type"                              A..= AT.String "setDefaultGroupAdministratorRights"
           , "default_group_administrator_rights" A..= default_group_administrator_rights_
           ]
+

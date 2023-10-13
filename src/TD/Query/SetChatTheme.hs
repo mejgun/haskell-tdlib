@@ -1,4 +1,7 @@
-module TD.Query.SetChatTheme(SetChatTheme(..)) where
+module TD.Query.SetChatTheme
+  (SetChatTheme(..)
+  , defaultSetChatTheme
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatTheme where
           , "chat_id"    A..= chat_id_
           , "theme_name" A..= theme_name_
           ]
+
+defaultSetChatTheme :: SetChatTheme
+defaultSetChatTheme =
+  SetChatTheme
+    { chat_id    = Nothing
+    , theme_name = Nothing
+    }
+

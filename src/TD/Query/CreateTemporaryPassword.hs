@@ -1,4 +1,7 @@
-module TD.Query.CreateTemporaryPassword(CreateTemporaryPassword(..)) where
+module TD.Query.CreateTemporaryPassword
+  (CreateTemporaryPassword(..)
+  , defaultCreateTemporaryPassword
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON CreateTemporaryPassword where
           , "password"  A..= password_
           , "valid_for" A..= valid_for_
           ]
+
+defaultCreateTemporaryPassword :: CreateTemporaryPassword
+defaultCreateTemporaryPassword =
+  CreateTemporaryPassword
+    { password  = Nothing
+    , valid_for = Nothing
+    }
+

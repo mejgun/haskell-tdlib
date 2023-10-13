@@ -1,4 +1,7 @@
-module TD.Query.DeleteChatMessagesBySender(DeleteChatMessagesBySender(..)) where
+module TD.Query.DeleteChatMessagesBySender
+  (DeleteChatMessagesBySender(..)
+  , defaultDeleteChatMessagesBySender
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON DeleteChatMessagesBySender where
           , "chat_id"   A..= chat_id_
           , "sender_id" A..= sender_id_
           ]
+
+defaultDeleteChatMessagesBySender :: DeleteChatMessagesBySender
+defaultDeleteChatMessagesBySender =
+  DeleteChatMessagesBySender
+    { chat_id   = Nothing
+    , sender_id = Nothing
+    }
+

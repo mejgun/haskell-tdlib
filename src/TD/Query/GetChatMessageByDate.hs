@@ -1,4 +1,7 @@
-module TD.Query.GetChatMessageByDate(GetChatMessageByDate(..)) where
+module TD.Query.GetChatMessageByDate
+  (GetChatMessageByDate(..)
+  , defaultGetChatMessageByDate
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetChatMessageByDate where
           , "chat_id" A..= chat_id_
           , "date"    A..= date_
           ]
+
+defaultGetChatMessageByDate :: GetChatMessageByDate
+defaultGetChatMessageByDate =
+  GetChatMessageByDate
+    { chat_id = Nothing
+    , date    = Nothing
+    }
+

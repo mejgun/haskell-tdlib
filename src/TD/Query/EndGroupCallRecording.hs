@@ -1,4 +1,6 @@
-module TD.Query.EndGroupCallRecording(EndGroupCallRecording(..)) where
+module TD.Query.EndGroupCallRecording
+  (EndGroupCallRecording(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON EndGroupCallRecording where
           [ "@type"         A..= AT.String "endGroupCallRecording"
           , "group_call_id" A..= group_call_id_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetAllPassportElements(GetAllPassportElements(..)) where
+module TD.Query.GetAllPassportElements
+  (GetAllPassportElements(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetAllPassportElements where
           [ "@type"    A..= AT.String "getAllPassportElements"
           , "password" A..= password_
           ]
+

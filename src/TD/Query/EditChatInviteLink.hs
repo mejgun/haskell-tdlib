@@ -1,4 +1,7 @@
-module TD.Query.EditChatInviteLink(EditChatInviteLink(..)) where
+module TD.Query.EditChatInviteLink
+  (EditChatInviteLink(..)
+  , defaultEditChatInviteLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,3 +58,15 @@ instance AT.ToJSON EditChatInviteLink where
           , "member_limit"         A..= member_limit_
           , "creates_join_request" A..= creates_join_request_
           ]
+
+defaultEditChatInviteLink :: EditChatInviteLink
+defaultEditChatInviteLink =
+  EditChatInviteLink
+    { chat_id              = Nothing
+    , invite_link          = Nothing
+    , name                 = Nothing
+    , expiration_date      = Nothing
+    , member_limit         = Nothing
+    , creates_join_request = Nothing
+    }
+

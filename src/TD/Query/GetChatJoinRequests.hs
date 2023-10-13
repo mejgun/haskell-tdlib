@@ -1,4 +1,7 @@
-module TD.Query.GetChatJoinRequests(GetChatJoinRequests(..)) where
+module TD.Query.GetChatJoinRequests
+  (GetChatJoinRequests(..)
+  , defaultGetChatJoinRequests
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,14 @@ instance AT.ToJSON GetChatJoinRequests where
           , "offset_request" A..= offset_request_
           , "limit"          A..= limit_
           ]
+
+defaultGetChatJoinRequests :: GetChatJoinRequests
+defaultGetChatJoinRequests =
+  GetChatJoinRequests
+    { chat_id        = Nothing
+    , invite_link    = Nothing
+    , query          = Nothing
+    , offset_request = Nothing
+    , limit          = Nothing
+    }
+

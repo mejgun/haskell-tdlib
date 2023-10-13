@@ -1,4 +1,7 @@
-module TD.Query.ReadAllMessageThreadMentions(ReadAllMessageThreadMentions(..)) where
+module TD.Query.ReadAllMessageThreadMentions
+  (ReadAllMessageThreadMentions(..)
+  , defaultReadAllMessageThreadMentions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ReadAllMessageThreadMentions where
           , "chat_id"           A..= chat_id_
           , "message_thread_id" A..= message_thread_id_
           ]
+
+defaultReadAllMessageThreadMentions :: ReadAllMessageThreadMentions
+defaultReadAllMessageThreadMentions =
+  ReadAllMessageThreadMentions
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

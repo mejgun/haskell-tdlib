@@ -1,4 +1,6 @@
-module TD.Query.GetChatAvailableMessageSenders(GetChatAvailableMessageSenders(..)) where
+module TD.Query.GetChatAvailableMessageSenders
+  (GetChatAvailableMessageSenders(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatAvailableMessageSenders where
           [ "@type"   A..= AT.String "getChatAvailableMessageSenders"
           , "chat_id" A..= chat_id_
           ]
+

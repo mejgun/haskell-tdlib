@@ -1,4 +1,7 @@
-module TD.Query.SetRecoveryEmailAddress(SetRecoveryEmailAddress(..)) where
+module TD.Query.SetRecoveryEmailAddress
+  (SetRecoveryEmailAddress(..)
+  , defaultSetRecoveryEmailAddress
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetRecoveryEmailAddress where
           , "password"                   A..= password_
           , "new_recovery_email_address" A..= new_recovery_email_address_
           ]
+
+defaultSetRecoveryEmailAddress :: SetRecoveryEmailAddress
+defaultSetRecoveryEmailAddress =
+  SetRecoveryEmailAddress
+    { password                   = Nothing
+    , new_recovery_email_address = Nothing
+    }
+

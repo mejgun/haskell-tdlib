@@ -1,4 +1,7 @@
-module TD.Query.AnswerWebAppQuery(AnswerWebAppQuery(..)) where
+module TD.Query.AnswerWebAppQuery
+  (AnswerWebAppQuery(..)
+  , defaultAnswerWebAppQuery
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON AnswerWebAppQuery where
           , "web_app_query_id" A..= web_app_query_id_
           , "result"           A..= result_
           ]
+
+defaultAnswerWebAppQuery :: AnswerWebAppQuery
+defaultAnswerWebAppQuery =
+  AnswerWebAppQuery
+    { web_app_query_id = Nothing
+    , result           = Nothing
+    }
+

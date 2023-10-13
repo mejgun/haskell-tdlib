@@ -1,4 +1,7 @@
-module TD.Query.SetLogTagVerbosityLevel(SetLogTagVerbosityLevel(..)) where
+module TD.Query.SetLogTagVerbosityLevel
+  (SetLogTagVerbosityLevel(..)
+  , defaultSetLogTagVerbosityLevel
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetLogTagVerbosityLevel where
           , "tag"                 A..= tag_
           , "new_verbosity_level" A..= new_verbosity_level_
           ]
+
+defaultSetLogTagVerbosityLevel :: SetLogTagVerbosityLevel
+defaultSetLogTagVerbosityLevel =
+  SetLogTagVerbosityLevel
+    { tag                 = Nothing
+    , new_verbosity_level = Nothing
+    }
+

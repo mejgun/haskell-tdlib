@@ -1,4 +1,7 @@
-module TD.Query.GetTopChats(GetTopChats(..)) where
+module TD.Query.GetTopChats
+  (GetTopChats(..)
+  , defaultGetTopChats
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetTopChats where
           , "category" A..= category_
           , "limit"    A..= limit_
           ]
+
+defaultGetTopChats :: GetTopChats
+defaultGetTopChats =
+  GetTopChats
+    { category = Nothing
+    , limit    = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.GetWebAppLinkUrl(GetWebAppLinkUrl(..)) where
+module TD.Query.GetWebAppLinkUrl
+  (GetWebAppLinkUrl(..)
+  , defaultGetWebAppLinkUrl
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,3 +64,16 @@ instance AT.ToJSON GetWebAppLinkUrl where
           , "application_name"   A..= application_name_
           , "allow_write_access" A..= allow_write_access_
           ]
+
+defaultGetWebAppLinkUrl :: GetWebAppLinkUrl
+defaultGetWebAppLinkUrl =
+  GetWebAppLinkUrl
+    { chat_id            = Nothing
+    , bot_user_id        = Nothing
+    , web_app_short_name = Nothing
+    , start_parameter    = Nothing
+    , theme              = Nothing
+    , application_name   = Nothing
+    , allow_write_access = Nothing
+    }
+

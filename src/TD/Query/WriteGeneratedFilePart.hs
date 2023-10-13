@@ -1,4 +1,7 @@
-module TD.Query.WriteGeneratedFilePart(WriteGeneratedFilePart(..)) where
+module TD.Query.WriteGeneratedFilePart
+  (WriteGeneratedFilePart(..)
+  , defaultWriteGeneratedFilePart
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON WriteGeneratedFilePart where
           , "offset"        A..= offset_
           , "data"          A..= fmap I.writeBytes  _data_
           ]
+
+defaultWriteGeneratedFilePart :: WriteGeneratedFilePart
+defaultWriteGeneratedFilePart =
+  WriteGeneratedFilePart
+    { generation_id = Nothing
+    , offset        = Nothing
+    , _data         = Nothing
+    }
+

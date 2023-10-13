@@ -1,4 +1,7 @@
-module TD.Query.GetChatMember(GetChatMember(..)) where
+module TD.Query.GetChatMember
+  (GetChatMember(..)
+  , defaultGetChatMember
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetChatMember where
           , "chat_id"   A..= chat_id_
           , "member_id" A..= member_id_
           ]
+
+defaultGetChatMember :: GetChatMember
+defaultGetChatMember =
+  GetChatMember
+    { chat_id   = Nothing
+    , member_id = Nothing
+    }
+

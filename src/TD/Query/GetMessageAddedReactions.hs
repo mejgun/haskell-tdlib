@@ -1,4 +1,7 @@
-module TD.Query.GetMessageAddedReactions(GetMessageAddedReactions(..)) where
+module TD.Query.GetMessageAddedReactions
+  (GetMessageAddedReactions(..)
+  , defaultGetMessageAddedReactions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,14 @@ instance AT.ToJSON GetMessageAddedReactions where
           , "offset"        A..= offset_
           , "limit"         A..= limit_
           ]
+
+defaultGetMessageAddedReactions :: GetMessageAddedReactions
+defaultGetMessageAddedReactions =
+  GetMessageAddedReactions
+    { chat_id       = Nothing
+    , message_id    = Nothing
+    , reaction_type = Nothing
+    , offset        = Nothing
+    , limit         = Nothing
+    }
+

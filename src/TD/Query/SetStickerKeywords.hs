@@ -1,4 +1,7 @@
-module TD.Query.SetStickerKeywords(SetStickerKeywords(..)) where
+module TD.Query.SetStickerKeywords
+  (SetStickerKeywords(..)
+  , defaultSetStickerKeywords
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetStickerKeywords where
           , "sticker"  A..= sticker_
           , "keywords" A..= keywords_
           ]
+
+defaultSetStickerKeywords :: SetStickerKeywords
+defaultSetStickerKeywords =
+  SetStickerKeywords
+    { sticker  = Nothing
+    , keywords = Nothing
+    }
+

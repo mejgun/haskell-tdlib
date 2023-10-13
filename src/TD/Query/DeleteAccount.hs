@@ -1,4 +1,7 @@
-module TD.Query.DeleteAccount(DeleteAccount(..)) where
+module TD.Query.DeleteAccount
+  (DeleteAccount(..)
+  , defaultDeleteAccount
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON DeleteAccount where
           , "reason"   A..= reason_
           , "password" A..= password_
           ]
+
+defaultDeleteAccount :: DeleteAccount
+defaultDeleteAccount =
+  DeleteAccount
+    { reason   = Nothing
+    , password = Nothing
+    }
+

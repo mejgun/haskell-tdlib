@@ -1,4 +1,6 @@
-module TD.Query.RemoveContacts(RemoveContacts(..)) where
+module TD.Query.RemoveContacts
+  (RemoveContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON RemoveContacts where
           [ "@type"    A..= AT.String "removeContacts"
           , "user_ids" A..= user_ids_
           ]
+

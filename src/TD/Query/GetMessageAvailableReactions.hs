@@ -1,4 +1,7 @@
-module TD.Query.GetMessageAvailableReactions(GetMessageAvailableReactions(..)) where
+module TD.Query.GetMessageAvailableReactions
+  (GetMessageAvailableReactions(..)
+  , defaultGetMessageAvailableReactions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetMessageAvailableReactions where
           , "message_id" A..= message_id_
           , "row_size"   A..= row_size_
           ]
+
+defaultGetMessageAvailableReactions :: GetMessageAvailableReactions
+defaultGetMessageAvailableReactions =
+  GetMessageAvailableReactions
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , row_size   = Nothing
+    }
+

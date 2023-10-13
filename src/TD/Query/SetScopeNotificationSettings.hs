@@ -1,4 +1,7 @@
-module TD.Query.SetScopeNotificationSettings(SetScopeNotificationSettings(..)) where
+module TD.Query.SetScopeNotificationSettings
+  (SetScopeNotificationSettings(..)
+  , defaultSetScopeNotificationSettings
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetScopeNotificationSettings where
           , "scope"                 A..= scope_
           , "notification_settings" A..= notification_settings_
           ]
+
+defaultSetScopeNotificationSettings :: SetScopeNotificationSettings
+defaultSetScopeNotificationSettings =
+  SetScopeNotificationSettings
+    { scope                 = Nothing
+    , notification_settings = Nothing
+    }
+

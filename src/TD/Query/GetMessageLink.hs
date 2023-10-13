@@ -1,4 +1,7 @@
-module TD.Query.GetMessageLink(GetMessageLink(..)) where
+module TD.Query.GetMessageLink
+  (GetMessageLink(..)
+  , defaultGetMessageLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,3 +52,14 @@ instance AT.ToJSON GetMessageLink where
           , "for_album"         A..= for_album_
           , "in_message_thread" A..= in_message_thread_
           ]
+
+defaultGetMessageLink :: GetMessageLink
+defaultGetMessageLink =
+  GetMessageLink
+    { chat_id           = Nothing
+    , message_id        = Nothing
+    , media_timestamp   = Nothing
+    , for_album         = Nothing
+    , in_message_thread = Nothing
+    }
+

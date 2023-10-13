@@ -1,4 +1,7 @@
-module TD.Query.EditMessageCaption(EditMessageCaption(..)) where
+module TD.Query.EditMessageCaption
+  (EditMessageCaption(..)
+  , defaultEditMessageCaption
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON EditMessageCaption where
           , "reply_markup" A..= reply_markup_
           , "caption"      A..= caption_
           ]
+
+defaultEditMessageCaption :: EditMessageCaption
+defaultEditMessageCaption =
+  EditMessageCaption
+    { chat_id      = Nothing
+    , message_id   = Nothing
+    , reply_markup = Nothing
+    , caption      = Nothing
+    }
+

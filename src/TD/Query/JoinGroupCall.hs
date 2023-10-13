@@ -1,4 +1,7 @@
-module TD.Query.JoinGroupCall(JoinGroupCall(..)) where
+module TD.Query.JoinGroupCall
+  (JoinGroupCall(..)
+  , defaultJoinGroupCall
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,3 +64,16 @@ instance AT.ToJSON JoinGroupCall where
           , "is_my_video_enabled" A..= is_my_video_enabled_
           , "invite_hash"         A..= invite_hash_
           ]
+
+defaultJoinGroupCall :: JoinGroupCall
+defaultJoinGroupCall =
+  JoinGroupCall
+    { group_call_id       = Nothing
+    , participant_id      = Nothing
+    , audio_source_id     = Nothing
+    , payload             = Nothing
+    , is_muted            = Nothing
+    , is_my_video_enabled = Nothing
+    , invite_hash         = Nothing
+    }
+

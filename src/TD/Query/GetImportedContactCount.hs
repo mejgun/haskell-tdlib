@@ -1,4 +1,6 @@
-module TD.Query.GetImportedContactCount(GetImportedContactCount(..)) where
+module TD.Query.GetImportedContactCount
+  (GetImportedContactCount(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetImportedContactCount where
         = A.object
           [ "@type" A..= AT.String "getImportedContactCount"
           ]
+

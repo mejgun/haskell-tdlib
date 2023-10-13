@@ -1,4 +1,7 @@
-module TD.Query.SetChatDiscussionGroup(SetChatDiscussionGroup(..)) where
+module TD.Query.SetChatDiscussionGroup
+  (SetChatDiscussionGroup(..)
+  , defaultSetChatDiscussionGroup
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON SetChatDiscussionGroup where
           , "chat_id"            A..= chat_id_
           , "discussion_chat_id" A..= discussion_chat_id_
           ]
+
+defaultSetChatDiscussionGroup :: SetChatDiscussionGroup
+defaultSetChatDiscussionGroup =
+  SetChatDiscussionGroup
+    { chat_id            = Nothing
+    , discussion_chat_id = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.GetChats(GetChats(..)) where
+module TD.Query.GetChats
+  (GetChats(..)
+  , defaultGetChats
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetChats where
           , "chat_list" A..= chat_list_
           , "limit"     A..= limit_
           ]
+
+defaultGetChats :: GetChats
+defaultGetChats =
+  GetChats
+    { chat_list = Nothing
+    , limit     = Nothing
+    }
+

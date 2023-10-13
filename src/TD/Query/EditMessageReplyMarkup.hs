@@ -1,4 +1,7 @@
-module TD.Query.EditMessageReplyMarkup(EditMessageReplyMarkup(..)) where
+module TD.Query.EditMessageReplyMarkup
+  (EditMessageReplyMarkup(..)
+  , defaultEditMessageReplyMarkup
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON EditMessageReplyMarkup where
           , "message_id"   A..= message_id_
           , "reply_markup" A..= reply_markup_
           ]
+
+defaultEditMessageReplyMarkup :: EditMessageReplyMarkup
+defaultEditMessageReplyMarkup =
+  EditMessageReplyMarkup
+    { chat_id      = Nothing
+    , message_id   = Nothing
+    , reply_markup = Nothing
+    }
+

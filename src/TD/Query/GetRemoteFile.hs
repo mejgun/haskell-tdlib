@@ -1,4 +1,7 @@
-module TD.Query.GetRemoteFile(GetRemoteFile(..)) where
+module TD.Query.GetRemoteFile
+  (GetRemoteFile(..)
+  , defaultGetRemoteFile
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON GetRemoteFile where
           , "remote_file_id" A..= remote_file_id_
           , "file_type"      A..= file_type_
           ]
+
+defaultGetRemoteFile :: GetRemoteFile
+defaultGetRemoteFile =
+  GetRemoteFile
+    { remote_file_id = Nothing
+    , file_type      = Nothing
+    }
+

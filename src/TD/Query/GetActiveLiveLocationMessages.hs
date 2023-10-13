@@ -1,4 +1,6 @@
-module TD.Query.GetActiveLiveLocationMessages(GetActiveLiveLocationMessages(..)) where
+module TD.Query.GetActiveLiveLocationMessages
+  (GetActiveLiveLocationMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetActiveLiveLocationMessages where
         = A.object
           [ "@type" A..= AT.String "getActiveLiveLocationMessages"
           ]
+

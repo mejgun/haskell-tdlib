@@ -1,4 +1,6 @@
-module TD.Query.DeleteLanguagePack(DeleteLanguagePack(..)) where
+module TD.Query.DeleteLanguagePack
+  (DeleteLanguagePack(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON DeleteLanguagePack where
           [ "@type"            A..= AT.String "deleteLanguagePack"
           , "language_pack_id" A..= language_pack_id_
           ]
+

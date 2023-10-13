@@ -1,4 +1,7 @@
-module TD.Query.RecoverAuthenticationPassword(RecoverAuthenticationPassword(..)) where
+module TD.Query.RecoverAuthenticationPassword
+  (RecoverAuthenticationPassword(..)
+  , defaultRecoverAuthenticationPassword
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON RecoverAuthenticationPassword where
           , "new_password"  A..= new_password_
           , "new_hint"      A..= new_hint_
           ]
+
+defaultRecoverAuthenticationPassword :: RecoverAuthenticationPassword
+defaultRecoverAuthenticationPassword =
+  RecoverAuthenticationPassword
+    { recovery_code = Nothing
+    , new_password  = Nothing
+    , new_hint      = Nothing
+    }
+

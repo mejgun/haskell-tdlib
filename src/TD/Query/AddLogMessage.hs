@@ -1,4 +1,7 @@
-module TD.Query.AddLogMessage(AddLogMessage(..)) where
+module TD.Query.AddLogMessage
+  (AddLogMessage(..)
+  , defaultAddLogMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON AddLogMessage where
           , "verbosity_level" A..= verbosity_level_
           , "text"            A..= text_
           ]
+
+defaultAddLogMessage :: AddLogMessage
+defaultAddLogMessage =
+  AddLogMessage
+    { verbosity_level = Nothing
+    , text            = Nothing
+    }
+

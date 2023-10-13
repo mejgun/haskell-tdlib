@@ -1,4 +1,6 @@
-module TD.Query.SetLoginEmailAddress(SetLoginEmailAddress(..)) where
+module TD.Query.SetLoginEmailAddress
+  (SetLoginEmailAddress(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetLoginEmailAddress where
           [ "@type"                   A..= AT.String "setLoginEmailAddress"
           , "new_login_email_address" A..= new_login_email_address_
           ]
+

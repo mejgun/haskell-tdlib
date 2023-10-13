@@ -1,4 +1,7 @@
-module TD.Query.ToggleSessionCanAcceptCalls(ToggleSessionCanAcceptCalls(..)) where
+module TD.Query.ToggleSessionCanAcceptCalls
+  (ToggleSessionCanAcceptCalls(..)
+  , defaultToggleSessionCanAcceptCalls
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSessionCanAcceptCalls where
           , "session_id"       A..= fmap I.writeInt64  session_id_
           , "can_accept_calls" A..= can_accept_calls_
           ]
+
+defaultToggleSessionCanAcceptCalls :: ToggleSessionCanAcceptCalls
+defaultToggleSessionCanAcceptCalls =
+  ToggleSessionCanAcceptCalls
+    { session_id       = Nothing
+    , can_accept_calls = Nothing
+    }
+

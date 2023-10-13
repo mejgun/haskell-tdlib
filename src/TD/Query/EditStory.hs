@@ -1,4 +1,7 @@
-module TD.Query.EditStory(EditStory(..)) where
+module TD.Query.EditStory
+  (EditStory(..)
+  , defaultEditStory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON EditStory where
           , "content"  A..= content_
           , "caption"  A..= caption_
           ]
+
+defaultEditStory :: EditStory
+defaultEditStory =
+  EditStory
+    { story_id = Nothing
+    , content  = Nothing
+    , caption  = Nothing
+    }
+

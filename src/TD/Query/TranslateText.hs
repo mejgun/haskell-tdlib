@@ -1,4 +1,7 @@
-module TD.Query.TranslateText(TranslateText(..)) where
+module TD.Query.TranslateText
+  (TranslateText(..)
+  , defaultTranslateText
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON TranslateText where
           , "text"             A..= text_
           , "to_language_code" A..= to_language_code_
           ]
+
+defaultTranslateText :: TranslateText
+defaultTranslateText =
+  TranslateText
+    { text             = Nothing
+    , to_language_code = Nothing
+    }
+

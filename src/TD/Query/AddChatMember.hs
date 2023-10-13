@@ -1,4 +1,7 @@
-module TD.Query.AddChatMember(AddChatMember(..)) where
+module TD.Query.AddChatMember
+  (AddChatMember(..)
+  , defaultAddChatMember
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON AddChatMember where
           , "user_id"       A..= user_id_
           , "forward_limit" A..= forward_limit_
           ]
+
+defaultAddChatMember :: AddChatMember
+defaultAddChatMember =
+  AddChatMember
+    { chat_id       = Nothing
+    , user_id       = Nothing
+    , forward_limit = Nothing
+    }
+

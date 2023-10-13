@@ -1,4 +1,7 @@
-module TD.Query.GetRepliedMessage(GetRepliedMessage(..)) where
+module TD.Query.GetRepliedMessage
+  (GetRepliedMessage(..)
+  , defaultGetRepliedMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetRepliedMessage where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultGetRepliedMessage :: GetRepliedMessage
+defaultGetRepliedMessage =
+  GetRepliedMessage
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

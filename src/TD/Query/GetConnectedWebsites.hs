@@ -1,4 +1,6 @@
-module TD.Query.GetConnectedWebsites(GetConnectedWebsites(..)) where
+module TD.Query.GetConnectedWebsites
+  (GetConnectedWebsites(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetConnectedWebsites where
         = A.object
           [ "@type" A..= AT.String "getConnectedWebsites"
           ]
+

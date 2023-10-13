@@ -1,4 +1,7 @@
-module TD.Query.ToggleGroupCallParticipantIsHandRaised(ToggleGroupCallParticipantIsHandRaised(..)) where
+module TD.Query.ToggleGroupCallParticipantIsHandRaised
+  (ToggleGroupCallParticipantIsHandRaised(..)
+  , defaultToggleGroupCallParticipantIsHandRaised
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON ToggleGroupCallParticipantIsHandRaised where
           , "participant_id" A..= participant_id_
           , "is_hand_raised" A..= is_hand_raised_
           ]
+
+defaultToggleGroupCallParticipantIsHandRaised :: ToggleGroupCallParticipantIsHandRaised
+defaultToggleGroupCallParticipantIsHandRaised =
+  ToggleGroupCallParticipantIsHandRaised
+    { group_call_id  = Nothing
+    , participant_id = Nothing
+    , is_hand_raised = Nothing
+    }
+

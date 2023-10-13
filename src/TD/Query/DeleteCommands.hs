@@ -1,4 +1,7 @@
-module TD.Query.DeleteCommands(DeleteCommands(..)) where
+module TD.Query.DeleteCommands
+  (DeleteCommands(..)
+  , defaultDeleteCommands
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON DeleteCommands where
           , "scope"         A..= scope_
           , "language_code" A..= language_code_
           ]
+
+defaultDeleteCommands :: DeleteCommands
+defaultDeleteCommands =
+  DeleteCommands
+    { scope         = Nothing
+    , language_code = Nothing
+    }
+

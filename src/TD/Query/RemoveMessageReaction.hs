@@ -1,4 +1,7 @@
-module TD.Query.RemoveMessageReaction(RemoveMessageReaction(..)) where
+module TD.Query.RemoveMessageReaction
+  (RemoveMessageReaction(..)
+  , defaultRemoveMessageReaction
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON RemoveMessageReaction where
           , "message_id"    A..= message_id_
           , "reaction_type" A..= reaction_type_
           ]
+
+defaultRemoveMessageReaction :: RemoveMessageReaction
+defaultRemoveMessageReaction =
+  RemoveMessageReaction
+    { chat_id       = Nothing
+    , message_id    = Nothing
+    , reaction_type = Nothing
+    }
+

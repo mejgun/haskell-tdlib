@@ -1,4 +1,7 @@
-module TD.Query.ProcessChatJoinRequest(ProcessChatJoinRequest(..)) where
+module TD.Query.ProcessChatJoinRequest
+  (ProcessChatJoinRequest(..)
+  , defaultProcessChatJoinRequest
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON ProcessChatJoinRequest where
           , "user_id" A..= user_id_
           , "approve" A..= approve_
           ]
+
+defaultProcessChatJoinRequest :: ProcessChatJoinRequest
+defaultProcessChatJoinRequest =
+  ProcessChatJoinRequest
+    { chat_id = Nothing
+    , user_id = Nothing
+    , approve = Nothing
+    }
+

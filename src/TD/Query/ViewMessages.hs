@@ -1,4 +1,7 @@
-module TD.Query.ViewMessages(ViewMessages(..)) where
+module TD.Query.ViewMessages
+  (ViewMessages(..)
+  , defaultViewMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON ViewMessages where
           , "source"      A..= source_
           , "force_read"  A..= force_read_
           ]
+
+defaultViewMessages :: ViewMessages
+defaultViewMessages =
+  ViewMessages
+    { chat_id     = Nothing
+    , message_ids = Nothing
+    , source      = Nothing
+    , force_read  = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.SetGroupCallParticipantVolumeLevel(SetGroupCallParticipantVolumeLevel(..)) where
+module TD.Query.SetGroupCallParticipantVolumeLevel
+  (SetGroupCallParticipantVolumeLevel(..)
+  , defaultSetGroupCallParticipantVolumeLevel
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SetGroupCallParticipantVolumeLevel where
           , "participant_id" A..= participant_id_
           , "volume_level"   A..= volume_level_
           ]
+
+defaultSetGroupCallParticipantVolumeLevel :: SetGroupCallParticipantVolumeLevel
+defaultSetGroupCallParticipantVolumeLevel =
+  SetGroupCallParticipantVolumeLevel
+    { group_call_id  = Nothing
+    , participant_id = Nothing
+    , volume_level   = Nothing
+    }
+

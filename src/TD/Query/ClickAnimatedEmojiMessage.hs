@@ -1,4 +1,7 @@
-module TD.Query.ClickAnimatedEmojiMessage(ClickAnimatedEmojiMessage(..)) where
+module TD.Query.ClickAnimatedEmojiMessage
+  (ClickAnimatedEmojiMessage(..)
+  , defaultClickAnimatedEmojiMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ClickAnimatedEmojiMessage where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultClickAnimatedEmojiMessage :: ClickAnimatedEmojiMessage
+defaultClickAnimatedEmojiMessage =
+  ClickAnimatedEmojiMessage
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

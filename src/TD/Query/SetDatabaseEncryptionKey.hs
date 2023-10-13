@@ -1,4 +1,6 @@
-module TD.Query.SetDatabaseEncryptionKey(SetDatabaseEncryptionKey(..)) where
+module TD.Query.SetDatabaseEncryptionKey
+  (SetDatabaseEncryptionKey(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetDatabaseEncryptionKey where
           [ "@type"              A..= AT.String "setDatabaseEncryptionKey"
           , "new_encryption_key" A..= fmap I.writeBytes  new_encryption_key_
           ]
+

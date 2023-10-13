@@ -1,4 +1,6 @@
-module TD.Query.GetMarkdownText(GetMarkdownText(..)) where
+module TD.Query.GetMarkdownText
+  (GetMarkdownText(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetMarkdownText where
           [ "@type" A..= AT.String "getMarkdownText"
           , "text"  A..= text_
           ]
+

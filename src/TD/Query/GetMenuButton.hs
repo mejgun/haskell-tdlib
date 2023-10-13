@@ -1,4 +1,6 @@
-module TD.Query.GetMenuButton(GetMenuButton(..)) where
+module TD.Query.GetMenuButton
+  (GetMenuButton(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetMenuButton where
           [ "@type"   A..= AT.String "getMenuButton"
           , "user_id" A..= user_id_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetChatScheduledMessages(GetChatScheduledMessages(..)) where
+module TD.Query.GetChatScheduledMessages
+  (GetChatScheduledMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatScheduledMessages where
           [ "@type"   A..= AT.String "getChatScheduledMessages"
           , "chat_id" A..= chat_id_
           ]
+

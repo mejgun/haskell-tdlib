@@ -1,4 +1,6 @@
-module TD.Query.GetPhoneNumberInfo(GetPhoneNumberInfo(..)) where
+module TD.Query.GetPhoneNumberInfo
+  (GetPhoneNumberInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetPhoneNumberInfo where
           [ "@type"               A..= AT.String "getPhoneNumberInfo"
           , "phone_number_prefix" A..= phone_number_prefix_
           ]
+

@@ -1,4 +1,6 @@
-module TD.Query.GetMe(GetMe(..)) where
+module TD.Query.GetMe
+  (GetMe(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetMe where
         = A.object
           [ "@type" A..= AT.String "getMe"
           ]
+

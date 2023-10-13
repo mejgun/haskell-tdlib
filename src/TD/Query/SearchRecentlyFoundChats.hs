@@ -1,4 +1,7 @@
-module TD.Query.SearchRecentlyFoundChats(SearchRecentlyFoundChats(..)) where
+module TD.Query.SearchRecentlyFoundChats
+  (SearchRecentlyFoundChats(..)
+  , defaultSearchRecentlyFoundChats
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SearchRecentlyFoundChats where
           , "query" A..= query_
           , "limit" A..= limit_
           ]
+
+defaultSearchRecentlyFoundChats :: SearchRecentlyFoundChats
+defaultSearchRecentlyFoundChats =
+  SearchRecentlyFoundChats
+    { query = Nothing
+    , limit = Nothing
+    }
+

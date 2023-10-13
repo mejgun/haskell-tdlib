@@ -1,4 +1,7 @@
-module TD.Query.OpenMessageContent(OpenMessageContent(..)) where
+module TD.Query.OpenMessageContent
+  (OpenMessageContent(..)
+  , defaultOpenMessageContent
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON OpenMessageContent where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultOpenMessageContent :: OpenMessageContent
+defaultOpenMessageContent =
+  OpenMessageContent
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

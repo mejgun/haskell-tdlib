@@ -1,4 +1,7 @@
-module TD.Query.SetUserSupportInfo(SetUserSupportInfo(..)) where
+module TD.Query.SetUserSupportInfo
+  (SetUserSupportInfo(..)
+  , defaultSetUserSupportInfo
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetUserSupportInfo where
           , "user_id" A..= user_id_
           , "message" A..= message_
           ]
+
+defaultSetUserSupportInfo :: SetUserSupportInfo
+defaultSetUserSupportInfo =
+  SetUserSupportInfo
+    { user_id = Nothing
+    , message = Nothing
+    }
+

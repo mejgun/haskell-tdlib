@@ -1,4 +1,6 @@
-module TD.Query.GetChatFolderInviteLinks(GetChatFolderInviteLinks(..)) where
+module TD.Query.GetChatFolderInviteLinks
+  (GetChatFolderInviteLinks(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatFolderInviteLinks where
           [ "@type"          A..= AT.String "getChatFolderInviteLinks"
           , "chat_folder_id" A..= chat_folder_id_
           ]
+

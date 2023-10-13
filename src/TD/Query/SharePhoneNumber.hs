@@ -1,4 +1,6 @@
-module TD.Query.SharePhoneNumber(SharePhoneNumber(..)) where
+module TD.Query.SharePhoneNumber
+  (SharePhoneNumber(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON SharePhoneNumber where
           [ "@type"   A..= AT.String "sharePhoneNumber"
           , "user_id" A..= user_id_
           ]
+

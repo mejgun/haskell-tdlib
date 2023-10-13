@@ -1,4 +1,6 @@
-module TD.Query.ResetAllNotificationSettings(ResetAllNotificationSettings(..)) where
+module TD.Query.ResetAllNotificationSettings
+  (ResetAllNotificationSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ResetAllNotificationSettings where
         = A.object
           [ "@type" A..= AT.String "resetAllNotificationSettings"
           ]
+

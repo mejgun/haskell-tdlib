@@ -1,4 +1,7 @@
-module TD.Query.AssignAppStoreTransaction(AssignAppStoreTransaction(..)) where
+module TD.Query.AssignAppStoreTransaction
+  (AssignAppStoreTransaction(..)
+  , defaultAssignAppStoreTransaction
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON AssignAppStoreTransaction where
           , "receipt" A..= fmap I.writeBytes  receipt_
           , "purpose" A..= purpose_
           ]
+
+defaultAssignAppStoreTransaction :: AssignAppStoreTransaction
+defaultAssignAppStoreTransaction =
+  AssignAppStoreTransaction
+    { receipt = Nothing
+    , purpose = Nothing
+    }
+

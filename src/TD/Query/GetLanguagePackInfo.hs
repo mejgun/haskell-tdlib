@@ -1,4 +1,6 @@
-module TD.Query.GetLanguagePackInfo(GetLanguagePackInfo(..)) where
+module TD.Query.GetLanguagePackInfo
+  (GetLanguagePackInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetLanguagePackInfo where
           [ "@type"            A..= AT.String "getLanguagePackInfo"
           , "language_pack_id" A..= language_pack_id_
           ]
+

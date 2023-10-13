@@ -1,4 +1,7 @@
-module TD.Query.SetChatDescription(SetChatDescription(..)) where
+module TD.Query.SetChatDescription
+  (SetChatDescription(..)
+  , defaultSetChatDescription
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatDescription where
           , "chat_id"     A..= chat_id_
           , "description" A..= description_
           ]
+
+defaultSetChatDescription :: SetChatDescription
+defaultSetChatDescription =
+  SetChatDescription
+    { chat_id     = Nothing
+    , description = Nothing
+    }
+

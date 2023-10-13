@@ -1,4 +1,7 @@
-module TD.Query.SetPollAnswer(SetPollAnswer(..)) where
+module TD.Query.SetPollAnswer
+  (SetPollAnswer(..)
+  , defaultSetPollAnswer
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON SetPollAnswer where
           , "message_id" A..= message_id_
           , "option_ids" A..= option_ids_
           ]
+
+defaultSetPollAnswer :: SetPollAnswer
+defaultSetPollAnswer =
+  SetPollAnswer
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , option_ids = Nothing
+    }
+

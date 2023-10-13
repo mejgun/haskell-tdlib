@@ -1,4 +1,7 @@
-module TD.Query.GetMapThumbnailFile(GetMapThumbnailFile(..)) where
+module TD.Query.GetMapThumbnailFile
+  (GetMapThumbnailFile(..)
+  , defaultGetMapThumbnailFile
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,3 +58,15 @@ instance AT.ToJSON GetMapThumbnailFile where
           , "scale"    A..= scale_
           , "chat_id"  A..= chat_id_
           ]
+
+defaultGetMapThumbnailFile :: GetMapThumbnailFile
+defaultGetMapThumbnailFile =
+  GetMapThumbnailFile
+    { location = Nothing
+    , zoom     = Nothing
+    , width    = Nothing
+    , height   = Nothing
+    , scale    = Nothing
+    , chat_id  = Nothing
+    }
+

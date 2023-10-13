@@ -1,4 +1,6 @@
-module TD.Query.SetLogVerbosityLevel(SetLogVerbosityLevel(..)) where
+module TD.Query.SetLogVerbosityLevel
+  (SetLogVerbosityLevel(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON SetLogVerbosityLevel where
           [ "@type"               A..= AT.String "setLogVerbosityLevel"
           , "new_verbosity_level" A..= new_verbosity_level_
           ]
+

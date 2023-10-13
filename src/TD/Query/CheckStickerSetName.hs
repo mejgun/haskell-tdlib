@@ -1,4 +1,6 @@
-module TD.Query.CheckStickerSetName(CheckStickerSetName(..)) where
+module TD.Query.CheckStickerSetName
+  (CheckStickerSetName(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckStickerSetName where
           [ "@type" A..= AT.String "checkStickerSetName"
           , "name"  A..= name_
           ]
+

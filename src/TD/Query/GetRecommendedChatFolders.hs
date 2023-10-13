@@ -1,4 +1,6 @@
-module TD.Query.GetRecommendedChatFolders(GetRecommendedChatFolders(..)) where
+module TD.Query.GetRecommendedChatFolders
+  (GetRecommendedChatFolders(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetRecommendedChatFolders where
         = A.object
           [ "@type" A..= AT.String "getRecommendedChatFolders"
           ]
+

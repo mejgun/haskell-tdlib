@@ -1,4 +1,7 @@
-module TD.Query.GetWebPageInstantView(GetWebPageInstantView(..)) where
+module TD.Query.GetWebPageInstantView
+  (GetWebPageInstantView(..)
+  , defaultGetWebPageInstantView
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetWebPageInstantView where
           , "url"        A..= url_
           , "force_full" A..= force_full_
           ]
+
+defaultGetWebPageInstantView :: GetWebPageInstantView
+defaultGetWebPageInstantView =
+  GetWebPageInstantView
+    { url        = Nothing
+    , force_full = Nothing
+    }
+

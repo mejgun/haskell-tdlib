@@ -1,4 +1,6 @@
-module TD.Query.GetAttachmentMenuBot(GetAttachmentMenuBot(..)) where
+module TD.Query.GetAttachmentMenuBot
+  (GetAttachmentMenuBot(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetAttachmentMenuBot where
           [ "@type"       A..= AT.String "getAttachmentMenuBot"
           , "bot_user_id" A..= bot_user_id_
           ]
+

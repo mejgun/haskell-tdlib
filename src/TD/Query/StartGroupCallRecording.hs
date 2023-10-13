@@ -1,4 +1,7 @@
-module TD.Query.StartGroupCallRecording(StartGroupCallRecording(..)) where
+module TD.Query.StartGroupCallRecording
+  (StartGroupCallRecording(..)
+  , defaultStartGroupCallRecording
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON StartGroupCallRecording where
           , "record_video"             A..= record_video_
           , "use_portrait_orientation" A..= use_portrait_orientation_
           ]
+
+defaultStartGroupCallRecording :: StartGroupCallRecording
+defaultStartGroupCallRecording =
+  StartGroupCallRecording
+    { group_call_id            = Nothing
+    , title                    = Nothing
+    , record_video             = Nothing
+    , use_portrait_orientation = Nothing
+    }
+

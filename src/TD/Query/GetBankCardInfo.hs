@@ -1,4 +1,6 @@
-module TD.Query.GetBankCardInfo(GetBankCardInfo(..)) where
+module TD.Query.GetBankCardInfo
+  (GetBankCardInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetBankCardInfo where
           [ "@type"            A..= AT.String "getBankCardInfo"
           , "bank_card_number" A..= bank_card_number_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.SendCallRating(SendCallRating(..)) where
+module TD.Query.SendCallRating
+  (SendCallRating(..)
+  , defaultSendCallRating
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON SendCallRating where
           , "comment"  A..= comment_
           , "problems" A..= problems_
           ]
+
+defaultSendCallRating :: SendCallRating
+defaultSendCallRating =
+  SendCallRating
+    { call_id  = Nothing
+    , rating   = Nothing
+    , comment  = Nothing
+    , problems = Nothing
+    }
+

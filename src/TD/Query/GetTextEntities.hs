@@ -1,4 +1,6 @@
-module TD.Query.GetTextEntities(GetTextEntities(..)) where
+module TD.Query.GetTextEntities
+  (GetTextEntities(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetTextEntities where
           [ "@type" A..= AT.String "getTextEntities"
           , "text"  A..= text_
           ]
+

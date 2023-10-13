@@ -1,4 +1,7 @@
-module TD.Query.CheckChatUsername(CheckChatUsername(..)) where
+module TD.Query.CheckChatUsername
+  (CheckChatUsername(..)
+  , defaultCheckChatUsername
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON CheckChatUsername where
           , "chat_id"  A..= chat_id_
           , "username" A..= username_
           ]
+
+defaultCheckChatUsername :: CheckChatUsername
+defaultCheckChatUsername =
+  CheckChatUsername
+    { chat_id  = Nothing
+    , username = Nothing
+    }
+

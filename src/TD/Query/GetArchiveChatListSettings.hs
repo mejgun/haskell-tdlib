@@ -1,4 +1,6 @@
-module TD.Query.GetArchiveChatListSettings(GetArchiveChatListSettings(..)) where
+module TD.Query.GetArchiveChatListSettings
+  (GetArchiveChatListSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetArchiveChatListSettings where
         = A.object
           [ "@type" A..= AT.String "getArchiveChatListSettings"
           ]
+

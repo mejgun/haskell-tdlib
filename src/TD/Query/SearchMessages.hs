@@ -1,4 +1,7 @@
-module TD.Query.SearchMessages(SearchMessages(..)) where
+module TD.Query.SearchMessages
+  (SearchMessages(..)
+  , defaultSearchMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -62,3 +65,16 @@ instance AT.ToJSON SearchMessages where
           , "min_date"  A..= min_date_
           , "max_date"  A..= max_date_
           ]
+
+defaultSearchMessages :: SearchMessages
+defaultSearchMessages =
+  SearchMessages
+    { chat_list = Nothing
+    , query     = Nothing
+    , offset    = Nothing
+    , limit     = Nothing
+    , _filter   = Nothing
+    , min_date  = Nothing
+    , max_date  = Nothing
+    }
+

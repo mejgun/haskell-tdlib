@@ -1,4 +1,6 @@
-module TD.Query.GetAutoDownloadSettingsPresets(GetAutoDownloadSettingsPresets(..)) where
+module TD.Query.GetAutoDownloadSettingsPresets
+  (GetAutoDownloadSettingsPresets(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetAutoDownloadSettingsPresets where
         = A.object
           [ "@type" A..= AT.String "getAutoDownloadSettingsPresets"
           ]
+

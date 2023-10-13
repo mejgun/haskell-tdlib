@@ -1,4 +1,6 @@
-module TD.Query.SynchronizeLanguagePack(SynchronizeLanguagePack(..)) where
+module TD.Query.SynchronizeLanguagePack
+  (SynchronizeLanguagePack(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SynchronizeLanguagePack where
           [ "@type"            A..= AT.String "synchronizeLanguagePack"
           , "language_pack_id" A..= language_pack_id_
           ]
+

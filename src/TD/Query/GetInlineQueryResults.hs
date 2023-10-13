@@ -1,4 +1,7 @@
-module TD.Query.GetInlineQueryResults(GetInlineQueryResults(..)) where
+module TD.Query.GetInlineQueryResults
+  (GetInlineQueryResults(..)
+  , defaultGetInlineQueryResults
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,14 @@ instance AT.ToJSON GetInlineQueryResults where
           , "query"         A..= query_
           , "offset"        A..= offset_
           ]
+
+defaultGetInlineQueryResults :: GetInlineQueryResults
+defaultGetInlineQueryResults =
+  GetInlineQueryResults
+    { bot_user_id   = Nothing
+    , chat_id       = Nothing
+    , user_location = Nothing
+    , query         = Nothing
+    , offset        = Nothing
+    }
+

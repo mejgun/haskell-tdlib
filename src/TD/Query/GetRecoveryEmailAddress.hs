@@ -1,4 +1,6 @@
-module TD.Query.GetRecoveryEmailAddress(GetRecoveryEmailAddress(..)) where
+module TD.Query.GetRecoveryEmailAddress
+  (GetRecoveryEmailAddress(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetRecoveryEmailAddress where
           [ "@type"    A..= AT.String "getRecoveryEmailAddress"
           , "password" A..= password_
           ]
+

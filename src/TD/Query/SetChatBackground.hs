@@ -1,4 +1,7 @@
-module TD.Query.SetChatBackground(SetChatBackground(..)) where
+module TD.Query.SetChatBackground
+  (SetChatBackground(..)
+  , defaultSetChatBackground
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON SetChatBackground where
           , "type"               A..= _type_
           , "dark_theme_dimming" A..= dark_theme_dimming_
           ]
+
+defaultSetChatBackground :: SetChatBackground
+defaultSetChatBackground =
+  SetChatBackground
+    { chat_id            = Nothing
+    , background         = Nothing
+    , _type              = Nothing
+    , dark_theme_dimming = Nothing
+    }
+

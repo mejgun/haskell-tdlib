@@ -1,4 +1,6 @@
-module TD.Query.ToggleAllDownloadsArePaused(ToggleAllDownloadsArePaused(..)) where
+module TD.Query.ToggleAllDownloadsArePaused
+  (ToggleAllDownloadsArePaused(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON ToggleAllDownloadsArePaused where
           [ "@type"      A..= AT.String "toggleAllDownloadsArePaused"
           , "are_paused" A..= are_paused_
           ]
+

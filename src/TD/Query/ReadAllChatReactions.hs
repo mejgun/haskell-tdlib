@@ -1,4 +1,6 @@
-module TD.Query.ReadAllChatReactions(ReadAllChatReactions(..)) where
+module TD.Query.ReadAllChatReactions
+  (ReadAllChatReactions(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON ReadAllChatReactions where
           [ "@type"   A..= AT.String "readAllChatReactions"
           , "chat_id" A..= chat_id_
           ]
+

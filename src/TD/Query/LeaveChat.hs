@@ -1,4 +1,6 @@
-module TD.Query.LeaveChat(LeaveChat(..)) where
+module TD.Query.LeaveChat
+  (LeaveChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON LeaveChat where
           [ "@type"   A..= AT.String "leaveChat"
           , "chat_id" A..= chat_id_
           ]
+

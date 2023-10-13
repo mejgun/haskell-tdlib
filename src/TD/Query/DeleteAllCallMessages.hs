@@ -1,4 +1,6 @@
-module TD.Query.DeleteAllCallMessages(DeleteAllCallMessages(..)) where
+module TD.Query.DeleteAllCallMessages
+  (DeleteAllCallMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON DeleteAllCallMessages where
           [ "@type"  A..= AT.String "deleteAllCallMessages"
           , "revoke" A..= revoke_
           ]
+

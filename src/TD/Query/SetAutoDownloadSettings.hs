@@ -1,4 +1,7 @@
-module TD.Query.SetAutoDownloadSettings(SetAutoDownloadSettings(..)) where
+module TD.Query.SetAutoDownloadSettings
+  (SetAutoDownloadSettings(..)
+  , defaultSetAutoDownloadSettings
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetAutoDownloadSettings where
           , "settings" A..= settings_
           , "type"     A..= _type_
           ]
+
+defaultSetAutoDownloadSettings :: SetAutoDownloadSettings
+defaultSetAutoDownloadSettings =
+  SetAutoDownloadSettings
+    { settings = Nothing
+    , _type    = Nothing
+    }
+

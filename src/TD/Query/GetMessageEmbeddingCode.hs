@@ -1,4 +1,7 @@
-module TD.Query.GetMessageEmbeddingCode(GetMessageEmbeddingCode(..)) where
+module TD.Query.GetMessageEmbeddingCode
+  (GetMessageEmbeddingCode(..)
+  , defaultGetMessageEmbeddingCode
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetMessageEmbeddingCode where
           , "message_id" A..= message_id_
           , "for_album"  A..= for_album_
           ]
+
+defaultGetMessageEmbeddingCode :: GetMessageEmbeddingCode
+defaultGetMessageEmbeddingCode =
+  GetMessageEmbeddingCode
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , for_album  = Nothing
+    }
+

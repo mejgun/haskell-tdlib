@@ -1,4 +1,7 @@
-module TD.Query.SetPassword(SetPassword(..)) where
+module TD.Query.SetPassword
+  (SetPassword(..)
+  , defaultSetPassword
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +53,14 @@ instance AT.ToJSON SetPassword where
           , "set_recovery_email_address" A..= set_recovery_email_address_
           , "new_recovery_email_address" A..= new_recovery_email_address_
           ]
+
+defaultSetPassword :: SetPassword
+defaultSetPassword =
+  SetPassword
+    { old_password               = Nothing
+    , new_password               = Nothing
+    , new_hint                   = Nothing
+    , set_recovery_email_address = Nothing
+    , new_recovery_email_address = Nothing
+    }
+

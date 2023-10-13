@@ -1,4 +1,7 @@
-module TD.Query.DeleteChatHistory(DeleteChatHistory(..)) where
+module TD.Query.DeleteChatHistory
+  (DeleteChatHistory(..)
+  , defaultDeleteChatHistory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON DeleteChatHistory where
           , "remove_from_chat_list" A..= remove_from_chat_list_
           , "revoke"                A..= revoke_
           ]
+
+defaultDeleteChatHistory :: DeleteChatHistory
+defaultDeleteChatHistory =
+  DeleteChatHistory
+    { chat_id               = Nothing
+    , remove_from_chat_list = Nothing
+    , revoke                = Nothing
+    }
+

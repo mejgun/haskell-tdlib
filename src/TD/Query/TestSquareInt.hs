@@ -1,4 +1,6 @@
-module TD.Query.TestSquareInt(TestSquareInt(..)) where
+module TD.Query.TestSquareInt
+  (TestSquareInt(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON TestSquareInt where
           [ "@type" A..= AT.String "testSquareInt"
           , "x"     A..= x_
           ]
+

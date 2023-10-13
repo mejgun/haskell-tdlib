@@ -1,4 +1,6 @@
-module TD.Query.ReorderActiveUsernames(ReorderActiveUsernames(..)) where
+module TD.Query.ReorderActiveUsernames
+  (ReorderActiveUsernames(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON ReorderActiveUsernames where
           [ "@type"     A..= AT.String "reorderActiveUsernames"
           , "usernames" A..= usernames_
           ]
+

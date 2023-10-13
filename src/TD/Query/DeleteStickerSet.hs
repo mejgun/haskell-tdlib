@@ -1,4 +1,6 @@
-module TD.Query.DeleteStickerSet(DeleteStickerSet(..)) where
+module TD.Query.DeleteStickerSet
+  (DeleteStickerSet(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON DeleteStickerSet where
           [ "@type" A..= AT.String "deleteStickerSet"
           , "name"  A..= name_
           ]
+

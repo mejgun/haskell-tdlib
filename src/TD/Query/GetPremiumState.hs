@@ -1,4 +1,6 @@
-module TD.Query.GetPremiumState(GetPremiumState(..)) where
+module TD.Query.GetPremiumState
+  (GetPremiumState(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetPremiumState where
         = A.object
           [ "@type" A..= AT.String "getPremiumState"
           ]
+

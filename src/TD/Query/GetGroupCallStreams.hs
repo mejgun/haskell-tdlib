@@ -1,4 +1,6 @@
-module TD.Query.GetGroupCallStreams(GetGroupCallStreams(..)) where
+module TD.Query.GetGroupCallStreams
+  (GetGroupCallStreams(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetGroupCallStreams where
           [ "@type"         A..= AT.String "getGroupCallStreams"
           , "group_call_id" A..= group_call_id_
           ]
+

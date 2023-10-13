@@ -1,4 +1,7 @@
-module TD.Query.SetPassportElementErrors(SetPassportElementErrors(..)) where
+module TD.Query.SetPassportElementErrors
+  (SetPassportElementErrors(..)
+  , defaultSetPassportElementErrors
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetPassportElementErrors where
           , "user_id" A..= user_id_
           , "errors"  A..= errors_
           ]
+
+defaultSetPassportElementErrors :: SetPassportElementErrors
+defaultSetPassportElementErrors =
+  SetPassportElementErrors
+    { user_id = Nothing
+    , errors  = Nothing
+    }
+

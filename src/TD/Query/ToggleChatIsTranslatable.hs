@@ -1,4 +1,7 @@
-module TD.Query.ToggleChatIsTranslatable(ToggleChatIsTranslatable(..)) where
+module TD.Query.ToggleChatIsTranslatable
+  (ToggleChatIsTranslatable(..)
+  , defaultToggleChatIsTranslatable
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleChatIsTranslatable where
           , "chat_id"         A..= chat_id_
           , "is_translatable" A..= is_translatable_
           ]
+
+defaultToggleChatIsTranslatable :: ToggleChatIsTranslatable
+defaultToggleChatIsTranslatable =
+  ToggleChatIsTranslatable
+    { chat_id         = Nothing
+    , is_translatable = Nothing
+    }
+

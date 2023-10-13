@@ -1,4 +1,7 @@
-module TD.Query.SetChatClientData(SetChatClientData(..)) where
+module TD.Query.SetChatClientData
+  (SetChatClientData(..)
+  , defaultSetChatClientData
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatClientData where
           , "chat_id"     A..= chat_id_
           , "client_data" A..= client_data_
           ]
+
+defaultSetChatClientData :: SetChatClientData
+defaultSetChatClientData =
+  SetChatClientData
+    { chat_id     = Nothing
+    , client_data = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.ToggleGroupCallIsMyVideoPaused(ToggleGroupCallIsMyVideoPaused(..)) where
+module TD.Query.ToggleGroupCallIsMyVideoPaused
+  (ToggleGroupCallIsMyVideoPaused(..)
+  , defaultToggleGroupCallIsMyVideoPaused
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleGroupCallIsMyVideoPaused where
           , "group_call_id"      A..= group_call_id_
           , "is_my_video_paused" A..= is_my_video_paused_
           ]
+
+defaultToggleGroupCallIsMyVideoPaused :: ToggleGroupCallIsMyVideoPaused
+defaultToggleGroupCallIsMyVideoPaused =
+  ToggleGroupCallIsMyVideoPaused
+    { group_call_id      = Nothing
+    , is_my_video_paused = Nothing
+    }
+

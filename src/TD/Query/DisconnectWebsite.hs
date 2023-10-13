@@ -1,4 +1,6 @@
-module TD.Query.DisconnectWebsite(DisconnectWebsite(..)) where
+module TD.Query.DisconnectWebsite
+  (DisconnectWebsite(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON DisconnectWebsite where
           [ "@type"      A..= AT.String "disconnectWebsite"
           , "website_id" A..= fmap I.writeInt64  website_id_
           ]
+

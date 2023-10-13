@@ -1,4 +1,7 @@
-module TD.Query.CreateCall(CreateCall(..)) where
+module TD.Query.CreateCall
+  (CreateCall(..)
+  , defaultCreateCall
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON CreateCall where
           , "protocol" A..= protocol_
           , "is_video" A..= is_video_
           ]
+
+defaultCreateCall :: CreateCall
+defaultCreateCall =
+  CreateCall
+    { user_id  = Nothing
+    , protocol = Nothing
+    , is_video = Nothing
+    }
+

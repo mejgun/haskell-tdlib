@@ -1,4 +1,6 @@
-module TD.Query.DeleteFile(DeleteFile(..)) where
+module TD.Query.DeleteFile
+  (DeleteFile(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON DeleteFile where
           [ "@type"   A..= AT.String "deleteFile"
           , "file_id" A..= file_id_
           ]
+

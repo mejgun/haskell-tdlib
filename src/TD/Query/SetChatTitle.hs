@@ -1,4 +1,7 @@
-module TD.Query.SetChatTitle(SetChatTitle(..)) where
+module TD.Query.SetChatTitle
+  (SetChatTitle(..)
+  , defaultSetChatTitle
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatTitle where
           , "chat_id" A..= chat_id_
           , "title"   A..= title_
           ]
+
+defaultSetChatTitle :: SetChatTitle
+defaultSetChatTitle =
+  SetChatTitle
+    { chat_id = Nothing
+    , title   = Nothing
+    }
+

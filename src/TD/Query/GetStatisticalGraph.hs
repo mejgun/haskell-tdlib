@@ -1,4 +1,7 @@
-module TD.Query.GetStatisticalGraph(GetStatisticalGraph(..)) where
+module TD.Query.GetStatisticalGraph
+  (GetStatisticalGraph(..)
+  , defaultGetStatisticalGraph
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON GetStatisticalGraph where
           , "token"   A..= token_
           , "x"       A..= x_
           ]
+
+defaultGetStatisticalGraph :: GetStatisticalGraph
+defaultGetStatisticalGraph =
+  GetStatisticalGraph
+    { chat_id = Nothing
+    , token   = Nothing
+    , x       = Nothing
+    }
+

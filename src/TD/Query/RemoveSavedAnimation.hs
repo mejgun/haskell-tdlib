@@ -1,4 +1,6 @@
-module TD.Query.RemoveSavedAnimation(RemoveSavedAnimation(..)) where
+module TD.Query.RemoveSavedAnimation
+  (RemoveSavedAnimation(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON RemoveSavedAnimation where
           [ "@type"     A..= AT.String "removeSavedAnimation"
           , "animation" A..= animation_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.TestProxy(TestProxy(..)) where
+module TD.Query.TestProxy
+  (TestProxy(..)
+  , defaultTestProxy
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,14 @@ instance AT.ToJSON TestProxy where
           , "dc_id"   A..= dc_id_
           , "timeout" A..= timeout_
           ]
+
+defaultTestProxy :: TestProxy
+defaultTestProxy =
+  TestProxy
+    { server  = Nothing
+    , port    = Nothing
+    , _type   = Nothing
+    , dc_id   = Nothing
+    , timeout = Nothing
+    }
+

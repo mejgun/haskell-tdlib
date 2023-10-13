@@ -1,4 +1,7 @@
-module TD.Query.GetBackgroundUrl(GetBackgroundUrl(..)) where
+module TD.Query.GetBackgroundUrl
+  (GetBackgroundUrl(..)
+  , defaultGetBackgroundUrl
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON GetBackgroundUrl where
           , "name"  A..= name_
           , "type"  A..= _type_
           ]
+
+defaultGetBackgroundUrl :: GetBackgroundUrl
+defaultGetBackgroundUrl =
+  GetBackgroundUrl
+    { name  = Nothing
+    , _type = Nothing
+    }
+

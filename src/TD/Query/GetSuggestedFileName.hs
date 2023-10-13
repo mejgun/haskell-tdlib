@@ -1,4 +1,7 @@
-module TD.Query.GetSuggestedFileName(GetSuggestedFileName(..)) where
+module TD.Query.GetSuggestedFileName
+  (GetSuggestedFileName(..)
+  , defaultGetSuggestedFileName
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetSuggestedFileName where
           , "file_id"   A..= file_id_
           , "directory" A..= directory_
           ]
+
+defaultGetSuggestedFileName :: GetSuggestedFileName
+defaultGetSuggestedFileName =
+  GetSuggestedFileName
+    { file_id   = Nothing
+    , directory = Nothing
+    }
+

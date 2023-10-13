@@ -1,4 +1,7 @@
-module TD.Query.RemoveAllFilesFromDownloads(RemoveAllFilesFromDownloads(..)) where
+module TD.Query.RemoveAllFilesFromDownloads
+  (RemoveAllFilesFromDownloads(..)
+  , defaultRemoveAllFilesFromDownloads
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON RemoveAllFilesFromDownloads where
           , "only_completed"    A..= only_completed_
           , "delete_from_cache" A..= delete_from_cache_
           ]
+
+defaultRemoveAllFilesFromDownloads :: RemoveAllFilesFromDownloads
+defaultRemoveAllFilesFromDownloads =
+  RemoveAllFilesFromDownloads
+    { only_active       = Nothing
+    , only_completed    = Nothing
+    , delete_from_cache = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.SetAutosaveSettings(SetAutosaveSettings(..)) where
+module TD.Query.SetAutosaveSettings
+  (SetAutosaveSettings(..)
+  , defaultSetAutosaveSettings
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetAutosaveSettings where
           , "scope"    A..= scope_
           , "settings" A..= settings_
           ]
+
+defaultSetAutosaveSettings :: SetAutosaveSettings
+defaultSetAutosaveSettings =
+  SetAutosaveSettings
+    { scope    = Nothing
+    , settings = Nothing
+    }
+

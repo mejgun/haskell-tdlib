@@ -1,4 +1,7 @@
-module TD.Query.ReorderInstalledStickerSets(ReorderInstalledStickerSets(..)) where
+module TD.Query.ReorderInstalledStickerSets
+  (ReorderInstalledStickerSets(..)
+  , defaultReorderInstalledStickerSets
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON ReorderInstalledStickerSets where
           , "sticker_type"    A..= sticker_type_
           , "sticker_set_ids" A..= fmap (fmap I.writeInt64 ) sticker_set_ids_
           ]
+
+defaultReorderInstalledStickerSets :: ReorderInstalledStickerSets
+defaultReorderInstalledStickerSets =
+  ReorderInstalledStickerSets
+    { sticker_type    = Nothing
+    , sticker_set_ids = Nothing
+    }
+

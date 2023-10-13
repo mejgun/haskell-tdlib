@@ -1,4 +1,7 @@
-module TD.Query.GetInlineGameHighScores(GetInlineGameHighScores(..)) where
+module TD.Query.GetInlineGameHighScores
+  (GetInlineGameHighScores(..)
+  , defaultGetInlineGameHighScores
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetInlineGameHighScores where
           , "inline_message_id" A..= inline_message_id_
           , "user_id"           A..= user_id_
           ]
+
+defaultGetInlineGameHighScores :: GetInlineGameHighScores
+defaultGetInlineGameHighScores =
+  GetInlineGameHighScores
+    { inline_message_id = Nothing
+    , user_id           = Nothing
+    }
+

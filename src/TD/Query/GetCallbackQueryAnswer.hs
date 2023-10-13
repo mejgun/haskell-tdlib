@@ -1,4 +1,7 @@
-module TD.Query.GetCallbackQueryAnswer(GetCallbackQueryAnswer(..)) where
+module TD.Query.GetCallbackQueryAnswer
+  (GetCallbackQueryAnswer(..)
+  , defaultGetCallbackQueryAnswer
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON GetCallbackQueryAnswer where
           , "message_id" A..= message_id_
           , "payload"    A..= payload_
           ]
+
+defaultGetCallbackQueryAnswer :: GetCallbackQueryAnswer
+defaultGetCallbackQueryAnswer =
+  GetCallbackQueryAnswer
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , payload    = Nothing
+    }
+

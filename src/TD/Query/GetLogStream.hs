@@ -1,4 +1,6 @@
-module TD.Query.GetLogStream(GetLogStream(..)) where
+module TD.Query.GetLogStream
+  (GetLogStream(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetLogStream where
         = A.object
           [ "@type" A..= AT.String "getLogStream"
           ]
+

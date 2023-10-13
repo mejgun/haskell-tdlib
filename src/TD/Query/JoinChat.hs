@@ -1,4 +1,6 @@
-module TD.Query.JoinChat(JoinChat(..)) where
+module TD.Query.JoinChat
+  (JoinChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON JoinChat where
           [ "@type"   A..= AT.String "joinChat"
           , "chat_id" A..= chat_id_
           ]
+

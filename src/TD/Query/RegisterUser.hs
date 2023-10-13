@@ -1,4 +1,7 @@
-module TD.Query.RegisterUser(RegisterUser(..)) where
+module TD.Query.RegisterUser
+  (RegisterUser(..)
+  , defaultRegisterUser
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON RegisterUser where
           , "first_name" A..= first_name_
           , "last_name"  A..= last_name_
           ]
+
+defaultRegisterUser :: RegisterUser
+defaultRegisterUser =
+  RegisterUser
+    { first_name = Nothing
+    , last_name  = Nothing
+    }
+

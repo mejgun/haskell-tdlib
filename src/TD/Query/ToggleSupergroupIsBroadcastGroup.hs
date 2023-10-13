@@ -1,4 +1,6 @@
-module TD.Query.ToggleSupergroupIsBroadcastGroup(ToggleSupergroupIsBroadcastGroup(..)) where
+module TD.Query.ToggleSupergroupIsBroadcastGroup
+  (ToggleSupergroupIsBroadcastGroup(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON ToggleSupergroupIsBroadcastGroup where
           [ "@type"         A..= AT.String "toggleSupergroupIsBroadcastGroup"
           , "supergroup_id" A..= supergroup_id_
           ]
+

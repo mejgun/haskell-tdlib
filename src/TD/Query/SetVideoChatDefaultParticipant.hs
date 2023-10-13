@@ -1,4 +1,7 @@
-module TD.Query.SetVideoChatDefaultParticipant(SetVideoChatDefaultParticipant(..)) where
+module TD.Query.SetVideoChatDefaultParticipant
+  (SetVideoChatDefaultParticipant(..)
+  , defaultSetVideoChatDefaultParticipant
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetVideoChatDefaultParticipant where
           , "chat_id"                A..= chat_id_
           , "default_participant_id" A..= default_participant_id_
           ]
+
+defaultSetVideoChatDefaultParticipant :: SetVideoChatDefaultParticipant
+defaultSetVideoChatDefaultParticipant =
+  SetVideoChatDefaultParticipant
+    { chat_id                = Nothing
+    , default_participant_id = Nothing
+    }
+

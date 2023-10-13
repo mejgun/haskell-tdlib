@@ -1,4 +1,7 @@
-module TD.Query.DiscardCall(DiscardCall(..)) where
+module TD.Query.DiscardCall
+  (DiscardCall(..)
+  , defaultDiscardCall
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,3 +52,14 @@ instance AT.ToJSON DiscardCall where
           , "is_video"        A..= is_video_
           , "connection_id"   A..= fmap I.writeInt64  connection_id_
           ]
+
+defaultDiscardCall :: DiscardCall
+defaultDiscardCall =
+  DiscardCall
+    { call_id         = Nothing
+    , is_disconnected = Nothing
+    , duration        = Nothing
+    , is_video        = Nothing
+    , connection_id   = Nothing
+    }
+

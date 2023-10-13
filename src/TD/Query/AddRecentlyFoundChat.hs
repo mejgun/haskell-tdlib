@@ -1,4 +1,6 @@
-module TD.Query.AddRecentlyFoundChat(AddRecentlyFoundChat(..)) where
+module TD.Query.AddRecentlyFoundChat
+  (AddRecentlyFoundChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON AddRecentlyFoundChat where
           [ "@type"   A..= AT.String "addRecentlyFoundChat"
           , "chat_id" A..= chat_id_
           ]
+

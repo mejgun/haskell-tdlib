@@ -1,4 +1,6 @@
-module TD.Query.GetSavedOrderInfo(GetSavedOrderInfo(..)) where
+module TD.Query.GetSavedOrderInfo
+  (GetSavedOrderInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetSavedOrderInfo where
         = A.object
           [ "@type" A..= AT.String "getSavedOrderInfo"
           ]
+

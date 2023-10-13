@@ -1,4 +1,7 @@
-module TD.Query.SetUserPrivacySettingRules(SetUserPrivacySettingRules(..)) where
+module TD.Query.SetUserPrivacySettingRules
+  (SetUserPrivacySettingRules(..)
+  , defaultSetUserPrivacySettingRules
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetUserPrivacySettingRules where
           , "setting" A..= setting_
           , "rules"   A..= rules_
           ]
+
+defaultSetUserPrivacySettingRules :: SetUserPrivacySettingRules
+defaultSetUserPrivacySettingRules =
+  SetUserPrivacySettingRules
+    { setting = Nothing
+    , rules   = Nothing
+    }
+

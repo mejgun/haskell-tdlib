@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupHasHiddenMembers(ToggleSupergroupHasHiddenMembers(..)) where
+module TD.Query.ToggleSupergroupHasHiddenMembers
+  (ToggleSupergroupHasHiddenMembers(..)
+  , defaultToggleSupergroupHasHiddenMembers
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSupergroupHasHiddenMembers where
           , "supergroup_id"      A..= supergroup_id_
           , "has_hidden_members" A..= has_hidden_members_
           ]
+
+defaultToggleSupergroupHasHiddenMembers :: ToggleSupergroupHasHiddenMembers
+defaultToggleSupergroupHasHiddenMembers =
+  ToggleSupergroupHasHiddenMembers
+    { supergroup_id      = Nothing
+    , has_hidden_members = Nothing
+    }
+

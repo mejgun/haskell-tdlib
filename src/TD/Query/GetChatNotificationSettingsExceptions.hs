@@ -1,4 +1,7 @@
-module TD.Query.GetChatNotificationSettingsExceptions(GetChatNotificationSettingsExceptions(..)) where
+module TD.Query.GetChatNotificationSettingsExceptions
+  (GetChatNotificationSettingsExceptions(..)
+  , defaultGetChatNotificationSettingsExceptions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetChatNotificationSettingsExceptions where
           , "scope"         A..= scope_
           , "compare_sound" A..= compare_sound_
           ]
+
+defaultGetChatNotificationSettingsExceptions :: GetChatNotificationSettingsExceptions
+defaultGetChatNotificationSettingsExceptions =
+  GetChatNotificationSettingsExceptions
+    { scope         = Nothing
+    , compare_sound = Nothing
+    }
+

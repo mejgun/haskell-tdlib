@@ -1,4 +1,7 @@
-module TD.Query.GetChatInviteLink(GetChatInviteLink(..)) where
+module TD.Query.GetChatInviteLink
+  (GetChatInviteLink(..)
+  , defaultGetChatInviteLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetChatInviteLink where
           , "chat_id"     A..= chat_id_
           , "invite_link" A..= invite_link_
           ]
+
+defaultGetChatInviteLink :: GetChatInviteLink
+defaultGetChatInviteLink =
+  GetChatInviteLink
+    { chat_id     = Nothing
+    , invite_link = Nothing
+    }
+

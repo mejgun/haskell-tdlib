@@ -1,4 +1,7 @@
-module TD.Query.GetLoginUrlInfo(GetLoginUrlInfo(..)) where
+module TD.Query.GetLoginUrlInfo
+  (GetLoginUrlInfo(..)
+  , defaultGetLoginUrlInfo
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetLoginUrlInfo where
           , "message_id" A..= message_id_
           , "button_id"  A..= button_id_
           ]
+
+defaultGetLoginUrlInfo :: GetLoginUrlInfo
+defaultGetLoginUrlInfo =
+  GetLoginUrlInfo
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , button_id  = Nothing
+    }
+

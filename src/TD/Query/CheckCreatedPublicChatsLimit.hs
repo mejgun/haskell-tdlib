@@ -1,4 +1,6 @@
-module TD.Query.CheckCreatedPublicChatsLimit(CheckCreatedPublicChatsLimit(..)) where
+module TD.Query.CheckCreatedPublicChatsLimit
+  (CheckCreatedPublicChatsLimit(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckCreatedPublicChatsLimit where
           [ "@type" A..= AT.String "checkCreatedPublicChatsLimit"
           , "type"  A..= _type_
           ]
+

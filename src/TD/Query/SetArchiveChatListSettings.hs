@@ -1,4 +1,6 @@
-module TD.Query.SetArchiveChatListSettings(SetArchiveChatListSettings(..)) where
+module TD.Query.SetArchiveChatListSettings
+  (SetArchiveChatListSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SetArchiveChatListSettings where
           [ "@type"    A..= AT.String "setArchiveChatListSettings"
           , "settings" A..= settings_
           ]
+

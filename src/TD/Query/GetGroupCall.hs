@@ -1,4 +1,6 @@
-module TD.Query.GetGroupCall(GetGroupCall(..)) where
+module TD.Query.GetGroupCall
+  (GetGroupCall(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetGroupCall where
           [ "@type"         A..= AT.String "getGroupCall"
           , "group_call_id" A..= group_call_id_
           ]
+

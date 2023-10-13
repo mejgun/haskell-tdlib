@@ -1,4 +1,7 @@
-module TD.Query.ToggleGeneralForumTopicIsHidden(ToggleGeneralForumTopicIsHidden(..)) where
+module TD.Query.ToggleGeneralForumTopicIsHidden
+  (ToggleGeneralForumTopicIsHidden(..)
+  , defaultToggleGeneralForumTopicIsHidden
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleGeneralForumTopicIsHidden where
           , "chat_id"   A..= chat_id_
           , "is_hidden" A..= is_hidden_
           ]
+
+defaultToggleGeneralForumTopicIsHidden :: ToggleGeneralForumTopicIsHidden
+defaultToggleGeneralForumTopicIsHidden =
+  ToggleGeneralForumTopicIsHidden
+    { chat_id   = Nothing
+    , is_hidden = Nothing
+    }
+

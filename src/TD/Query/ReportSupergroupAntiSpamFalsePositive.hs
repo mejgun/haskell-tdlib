@@ -1,4 +1,7 @@
-module TD.Query.ReportSupergroupAntiSpamFalsePositive(ReportSupergroupAntiSpamFalsePositive(..)) where
+module TD.Query.ReportSupergroupAntiSpamFalsePositive
+  (ReportSupergroupAntiSpamFalsePositive(..)
+  , defaultReportSupergroupAntiSpamFalsePositive
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ReportSupergroupAntiSpamFalsePositive where
           , "supergroup_id" A..= supergroup_id_
           , "message_id"    A..= message_id_
           ]
+
+defaultReportSupergroupAntiSpamFalsePositive :: ReportSupergroupAntiSpamFalsePositive
+defaultReportSupergroupAntiSpamFalsePositive =
+  ReportSupergroupAntiSpamFalsePositive
+    { supergroup_id = Nothing
+    , message_id    = Nothing
+    }
+

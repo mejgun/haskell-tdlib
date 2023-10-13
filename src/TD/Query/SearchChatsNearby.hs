@@ -1,4 +1,6 @@
-module TD.Query.SearchChatsNearby(SearchChatsNearby(..)) where
+module TD.Query.SearchChatsNearby
+  (SearchChatsNearby(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SearchChatsNearby where
           [ "@type"    A..= AT.String "searchChatsNearby"
           , "location" A..= location_
           ]
+

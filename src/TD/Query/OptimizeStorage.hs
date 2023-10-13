@@ -1,4 +1,7 @@
-module TD.Query.OptimizeStorage(OptimizeStorage(..)) where
+module TD.Query.OptimizeStorage
+  (OptimizeStorage(..)
+  , defaultOptimizeStorage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -70,3 +73,18 @@ instance AT.ToJSON OptimizeStorage where
           , "return_deleted_file_statistics" A..= return_deleted_file_statistics_
           , "chat_limit"                     A..= chat_limit_
           ]
+
+defaultOptimizeStorage :: OptimizeStorage
+defaultOptimizeStorage =
+  OptimizeStorage
+    { size                           = Nothing
+    , ttl                            = Nothing
+    , count                          = Nothing
+    , immunity_delay                 = Nothing
+    , file_types                     = Nothing
+    , chat_ids                       = Nothing
+    , exclude_chat_ids               = Nothing
+    , return_deleted_file_statistics = Nothing
+    , chat_limit                     = Nothing
+    }
+

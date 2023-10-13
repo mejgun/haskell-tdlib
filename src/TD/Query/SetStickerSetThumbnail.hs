@@ -1,4 +1,7 @@
-module TD.Query.SetStickerSetThumbnail(SetStickerSetThumbnail(..)) where
+module TD.Query.SetStickerSetThumbnail
+  (SetStickerSetThumbnail(..)
+  , defaultSetStickerSetThumbnail
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON SetStickerSetThumbnail where
           , "name"      A..= name_
           , "thumbnail" A..= thumbnail_
           ]
+
+defaultSetStickerSetThumbnail :: SetStickerSetThumbnail
+defaultSetStickerSetThumbnail =
+  SetStickerSetThumbnail
+    { user_id   = Nothing
+    , name      = Nothing
+    , thumbnail = Nothing
+    }
+

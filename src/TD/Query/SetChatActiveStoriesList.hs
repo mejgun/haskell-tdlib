@@ -1,4 +1,7 @@
-module TD.Query.SetChatActiveStoriesList(SetChatActiveStoriesList(..)) where
+module TD.Query.SetChatActiveStoriesList
+  (SetChatActiveStoriesList(..)
+  , defaultSetChatActiveStoriesList
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatActiveStoriesList where
           , "chat_id"    A..= chat_id_
           , "story_list" A..= story_list_
           ]
+
+defaultSetChatActiveStoriesList :: SetChatActiveStoriesList
+defaultSetChatActiveStoriesList =
+  SetChatActiveStoriesList
+    { chat_id    = Nothing
+    , story_list = Nothing
+    }
+

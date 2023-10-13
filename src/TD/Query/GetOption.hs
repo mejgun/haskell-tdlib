@@ -1,4 +1,6 @@
-module TD.Query.GetOption(GetOption(..)) where
+module TD.Query.GetOption
+  (GetOption(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetOption where
           [ "@type" A..= AT.String "getOption"
           , "name"  A..= name_
           ]
+

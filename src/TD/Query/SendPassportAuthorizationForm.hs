@@ -1,4 +1,7 @@
-module TD.Query.SendPassportAuthorizationForm(SendPassportAuthorizationForm(..)) where
+module TD.Query.SendPassportAuthorizationForm
+  (SendPassportAuthorizationForm(..)
+  , defaultSendPassportAuthorizationForm
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SendPassportAuthorizationForm where
           , "authorization_form_id" A..= authorization_form_id_
           , "types"                 A..= types_
           ]
+
+defaultSendPassportAuthorizationForm :: SendPassportAuthorizationForm
+defaultSendPassportAuthorizationForm =
+  SendPassportAuthorizationForm
+    { authorization_form_id = Nothing
+    , types                 = Nothing
+    }
+

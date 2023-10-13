@@ -1,4 +1,7 @@
-module TD.Query.GetExternalLink(GetExternalLink(..)) where
+module TD.Query.GetExternalLink
+  (GetExternalLink(..)
+  , defaultGetExternalLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetExternalLink where
           , "link"               A..= link_
           , "allow_write_access" A..= allow_write_access_
           ]
+
+defaultGetExternalLink :: GetExternalLink
+defaultGetExternalLink =
+  GetExternalLink
+    { link               = Nothing
+    , allow_write_access = Nothing
+    }
+

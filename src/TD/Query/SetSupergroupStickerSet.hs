@@ -1,4 +1,7 @@
-module TD.Query.SetSupergroupStickerSet(SetSupergroupStickerSet(..)) where
+module TD.Query.SetSupergroupStickerSet
+  (SetSupergroupStickerSet(..)
+  , defaultSetSupergroupStickerSet
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON SetSupergroupStickerSet where
           , "supergroup_id"  A..= supergroup_id_
           , "sticker_set_id" A..= fmap I.writeInt64  sticker_set_id_
           ]
+
+defaultSetSupergroupStickerSet :: SetSupergroupStickerSet
+defaultSetSupergroupStickerSet =
+  SetSupergroupStickerSet
+    { supergroup_id  = Nothing
+    , sticker_set_id = Nothing
+    }
+

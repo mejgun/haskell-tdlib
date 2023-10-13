@@ -1,4 +1,6 @@
-module TD.Query.GetChatSponsoredMessages(GetChatSponsoredMessages(..)) where
+module TD.Query.GetChatSponsoredMessages
+  (GetChatSponsoredMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatSponsoredMessages where
           [ "@type"   A..= AT.String "getChatSponsoredMessages"
           , "chat_id" A..= chat_id_
           ]
+

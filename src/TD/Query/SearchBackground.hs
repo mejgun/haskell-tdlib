@@ -1,4 +1,6 @@
-module TD.Query.SearchBackground(SearchBackground(..)) where
+module TD.Query.SearchBackground
+  (SearchBackground(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SearchBackground where
           [ "@type" A..= AT.String "searchBackground"
           , "name"  A..= name_
           ]
+

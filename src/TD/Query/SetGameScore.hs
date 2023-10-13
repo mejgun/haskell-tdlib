@@ -1,4 +1,7 @@
-module TD.Query.SetGameScore(SetGameScore(..)) where
+module TD.Query.SetGameScore
+  (SetGameScore(..)
+  , defaultSetGameScore
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -54,3 +57,15 @@ instance AT.ToJSON SetGameScore where
           , "score"        A..= score_
           , "force"        A..= force_
           ]
+
+defaultSetGameScore :: SetGameScore
+defaultSetGameScore =
+  SetGameScore
+    { chat_id      = Nothing
+    , message_id   = Nothing
+    , edit_message = Nothing
+    , user_id      = Nothing
+    , score        = Nothing
+    , force        = Nothing
+    }
+

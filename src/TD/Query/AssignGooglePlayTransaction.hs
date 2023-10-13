@@ -1,4 +1,7 @@
-module TD.Query.AssignGooglePlayTransaction(AssignGooglePlayTransaction(..)) where
+module TD.Query.AssignGooglePlayTransaction
+  (AssignGooglePlayTransaction(..)
+  , defaultAssignGooglePlayTransaction
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON AssignGooglePlayTransaction where
           , "purchase_token"   A..= purchase_token_
           , "purpose"          A..= purpose_
           ]
+
+defaultAssignGooglePlayTransaction :: AssignGooglePlayTransaction
+defaultAssignGooglePlayTransaction =
+  AssignGooglePlayTransaction
+    { package_name     = Nothing
+    , store_product_id = Nothing
+    , purchase_token   = Nothing
+    , purpose          = Nothing
+    }
+

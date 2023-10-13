@@ -1,4 +1,7 @@
-module TD.Query.RegisterDevice(RegisterDevice(..)) where
+module TD.Query.RegisterDevice
+  (RegisterDevice(..)
+  , defaultRegisterDevice
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON RegisterDevice where
           , "device_token"   A..= device_token_
           , "other_user_ids" A..= other_user_ids_
           ]
+
+defaultRegisterDevice :: RegisterDevice
+defaultRegisterDevice =
+  RegisterDevice
+    { device_token   = Nothing
+    , other_user_ids = Nothing
+    }
+

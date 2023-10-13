@@ -1,4 +1,6 @@
-module TD.Query.GetRecentlyOpenedChats(GetRecentlyOpenedChats(..)) where
+module TD.Query.GetRecentlyOpenedChats
+  (GetRecentlyOpenedChats(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetRecentlyOpenedChats where
           [ "@type" A..= AT.String "getRecentlyOpenedChats"
           , "limit" A..= limit_
           ]
+

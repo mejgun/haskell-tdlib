@@ -1,4 +1,7 @@
-module TD.Query.StopPoll(StopPoll(..)) where
+module TD.Query.StopPoll
+  (StopPoll(..)
+  , defaultStopPoll
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON StopPoll where
           , "message_id"   A..= message_id_
           , "reply_markup" A..= reply_markup_
           ]
+
+defaultStopPoll :: StopPoll
+defaultStopPoll =
+  StopPoll
+    { chat_id      = Nothing
+    , message_id   = Nothing
+    , reply_markup = Nothing
+    }
+

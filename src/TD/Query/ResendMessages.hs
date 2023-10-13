@@ -1,4 +1,7 @@
-module TD.Query.ResendMessages(ResendMessages(..)) where
+module TD.Query.ResendMessages
+  (ResendMessages(..)
+  , defaultResendMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ResendMessages where
           , "chat_id"     A..= chat_id_
           , "message_ids" A..= message_ids_
           ]
+
+defaultResendMessages :: ResendMessages
+defaultResendMessages =
+  ResendMessages
+    { chat_id     = Nothing
+    , message_ids = Nothing
+    }
+

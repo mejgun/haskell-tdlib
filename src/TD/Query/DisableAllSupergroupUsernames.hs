@@ -1,4 +1,6 @@
-module TD.Query.DisableAllSupergroupUsernames(DisableAllSupergroupUsernames(..)) where
+module TD.Query.DisableAllSupergroupUsernames
+  (DisableAllSupergroupUsernames(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON DisableAllSupergroupUsernames where
           [ "@type"         A..= AT.String "disableAllSupergroupUsernames"
           , "supergroup_id" A..= supergroup_id_
           ]
+

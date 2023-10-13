@@ -1,4 +1,7 @@
-module TD.Query.SetChatMessageSender(SetChatMessageSender(..)) where
+module TD.Query.SetChatMessageSender
+  (SetChatMessageSender(..)
+  , defaultSetChatMessageSender
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatMessageSender where
           , "chat_id"           A..= chat_id_
           , "message_sender_id" A..= message_sender_id_
           ]
+
+defaultSetChatMessageSender :: SetChatMessageSender
+defaultSetChatMessageSender =
+  SetChatMessageSender
+    { chat_id           = Nothing
+    , message_sender_id = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.CreateInvoiceLink(CreateInvoiceLink(..)) where
+module TD.Query.CreateInvoiceLink
+  (CreateInvoiceLink(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CreateInvoiceLink where
           [ "@type"   A..= AT.String "createInvoiceLink"
           , "invoice" A..= invoice_
           ]
+

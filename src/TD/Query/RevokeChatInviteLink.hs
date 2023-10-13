@@ -1,4 +1,7 @@
-module TD.Query.RevokeChatInviteLink(RevokeChatInviteLink(..)) where
+module TD.Query.RevokeChatInviteLink
+  (RevokeChatInviteLink(..)
+  , defaultRevokeChatInviteLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON RevokeChatInviteLink where
           , "chat_id"     A..= chat_id_
           , "invite_link" A..= invite_link_
           ]
+
+defaultRevokeChatInviteLink :: RevokeChatInviteLink
+defaultRevokeChatInviteLink =
+  RevokeChatInviteLink
+    { chat_id     = Nothing
+    , invite_link = Nothing
+    }
+

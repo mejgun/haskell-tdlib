@@ -1,4 +1,6 @@
-module TD.Query.CleanFileName(CleanFileName(..)) where
+module TD.Query.CleanFileName
+  (CleanFileName(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CleanFileName where
           [ "@type"     A..= AT.String "cleanFileName"
           , "file_name" A..= file_name_
           ]
+

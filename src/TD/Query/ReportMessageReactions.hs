@@ -1,4 +1,7 @@
-module TD.Query.ReportMessageReactions(ReportMessageReactions(..)) where
+module TD.Query.ReportMessageReactions
+  (ReportMessageReactions(..)
+  , defaultReportMessageReactions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON ReportMessageReactions where
           , "message_id" A..= message_id_
           , "sender_id"  A..= sender_id_
           ]
+
+defaultReportMessageReactions :: ReportMessageReactions
+defaultReportMessageReactions =
+  ReportMessageReactions
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , sender_id  = Nothing
+    }
+

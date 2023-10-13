@@ -1,4 +1,6 @@
-module TD.Query.GetBackgrounds(GetBackgrounds(..)) where
+module TD.Query.GetBackgrounds
+  (GetBackgrounds(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetBackgrounds where
           [ "@type"          A..= AT.String "getBackgrounds"
           , "for_dark_theme" A..= for_dark_theme_
           ]
+

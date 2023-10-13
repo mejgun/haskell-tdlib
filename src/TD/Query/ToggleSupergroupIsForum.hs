@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupIsForum(ToggleSupergroupIsForum(..)) where
+module TD.Query.ToggleSupergroupIsForum
+  (ToggleSupergroupIsForum(..)
+  , defaultToggleSupergroupIsForum
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSupergroupIsForum where
           , "supergroup_id" A..= supergroup_id_
           , "is_forum"      A..= is_forum_
           ]
+
+defaultToggleSupergroupIsForum :: ToggleSupergroupIsForum
+defaultToggleSupergroupIsForum =
+  ToggleSupergroupIsForum
+    { supergroup_id = Nothing
+    , is_forum      = Nothing
+    }
+

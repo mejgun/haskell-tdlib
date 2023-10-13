@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupHasAggressiveAntiSpamEnabled(ToggleSupergroupHasAggressiveAntiSpamEnabled(..)) where
+module TD.Query.ToggleSupergroupHasAggressiveAntiSpamEnabled
+  (ToggleSupergroupHasAggressiveAntiSpamEnabled(..)
+  , defaultToggleSupergroupHasAggressiveAntiSpamEnabled
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSupergroupHasAggressiveAntiSpamEnabled where
           , "supergroup_id"                    A..= supergroup_id_
           , "has_aggressive_anti_spam_enabled" A..= has_aggressive_anti_spam_enabled_
           ]
+
+defaultToggleSupergroupHasAggressiveAntiSpamEnabled :: ToggleSupergroupHasAggressiveAntiSpamEnabled
+defaultToggleSupergroupHasAggressiveAntiSpamEnabled =
+  ToggleSupergroupHasAggressiveAntiSpamEnabled
+    { supergroup_id                    = Nothing
+    , has_aggressive_anti_spam_enabled = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.CreateChatFolderInviteLink(CreateChatFolderInviteLink(..)) where
+module TD.Query.CreateChatFolderInviteLink
+  (CreateChatFolderInviteLink(..)
+  , defaultCreateChatFolderInviteLink
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON CreateChatFolderInviteLink where
           , "name"           A..= name_
           , "chat_ids"       A..= chat_ids_
           ]
+
+defaultCreateChatFolderInviteLink :: CreateChatFolderInviteLink
+defaultCreateChatFolderInviteLink =
+  CreateChatFolderInviteLink
+    { chat_folder_id = Nothing
+    , name           = Nothing
+    , chat_ids       = Nothing
+    }
+

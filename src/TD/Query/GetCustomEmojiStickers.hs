@@ -1,4 +1,6 @@
-module TD.Query.GetCustomEmojiStickers(GetCustomEmojiStickers(..)) where
+module TD.Query.GetCustomEmojiStickers
+  (GetCustomEmojiStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetCustomEmojiStickers where
           [ "@type"            A..= AT.String "getCustomEmojiStickers"
           , "custom_emoji_ids" A..= fmap (fmap I.writeInt64 ) custom_emoji_ids_
           ]
+

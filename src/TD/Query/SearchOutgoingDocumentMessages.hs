@@ -1,4 +1,7 @@
-module TD.Query.SearchOutgoingDocumentMessages(SearchOutgoingDocumentMessages(..)) where
+module TD.Query.SearchOutgoingDocumentMessages
+  (SearchOutgoingDocumentMessages(..)
+  , defaultSearchOutgoingDocumentMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SearchOutgoingDocumentMessages where
           , "query" A..= query_
           , "limit" A..= limit_
           ]
+
+defaultSearchOutgoingDocumentMessages :: SearchOutgoingDocumentMessages
+defaultSearchOutgoingDocumentMessages =
+  SearchOutgoingDocumentMessages
+    { query = Nothing
+    , limit = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetSuitableDiscussionChats(GetSuitableDiscussionChats(..)) where
+module TD.Query.GetSuitableDiscussionChats
+  (GetSuitableDiscussionChats(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetSuitableDiscussionChats where
         = A.object
           [ "@type" A..= AT.String "getSuitableDiscussionChats"
           ]
+

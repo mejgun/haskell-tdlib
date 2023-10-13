@@ -1,4 +1,7 @@
-module TD.Query.AddContact(AddContact(..)) where
+module TD.Query.AddContact
+  (AddContact(..)
+  , defaultAddContact
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON AddContact where
           , "contact"            A..= contact_
           , "share_phone_number" A..= share_phone_number_
           ]
+
+defaultAddContact :: AddContact
+defaultAddContact =
+  AddContact
+    { contact            = Nothing
+    , share_phone_number = Nothing
+    }
+

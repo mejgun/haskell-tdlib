@@ -1,4 +1,6 @@
-module TD.Query.HideSuggestedAction(HideSuggestedAction(..)) where
+module TD.Query.HideSuggestedAction
+  (HideSuggestedAction(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON HideSuggestedAction where
           [ "@type"  A..= AT.String "hideSuggestedAction"
           , "action" A..= action_
           ]
+

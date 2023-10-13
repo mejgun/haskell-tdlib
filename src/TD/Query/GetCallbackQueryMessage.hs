@@ -1,4 +1,7 @@
-module TD.Query.GetCallbackQueryMessage(GetCallbackQueryMessage(..)) where
+module TD.Query.GetCallbackQueryMessage
+  (GetCallbackQueryMessage(..)
+  , defaultGetCallbackQueryMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetCallbackQueryMessage where
           , "message_id"        A..= message_id_
           , "callback_query_id" A..= fmap I.writeInt64  callback_query_id_
           ]
+
+defaultGetCallbackQueryMessage :: GetCallbackQueryMessage
+defaultGetCallbackQueryMessage =
+  GetCallbackQueryMessage
+    { chat_id           = Nothing
+    , message_id        = Nothing
+    , callback_query_id = Nothing
+    }
+

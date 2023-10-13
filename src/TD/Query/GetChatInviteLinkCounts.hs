@@ -1,4 +1,6 @@
-module TD.Query.GetChatInviteLinkCounts(GetChatInviteLinkCounts(..)) where
+module TD.Query.GetChatInviteLinkCounts
+  (GetChatInviteLinkCounts(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetChatInviteLinkCounts where
           [ "@type"   A..= AT.String "getChatInviteLinkCounts"
           , "chat_id" A..= chat_id_
           ]
+

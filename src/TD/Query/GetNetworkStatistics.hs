@@ -1,4 +1,6 @@
-module TD.Query.GetNetworkStatistics(GetNetworkStatistics(..)) where
+module TD.Query.GetNetworkStatistics
+  (GetNetworkStatistics(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetNetworkStatistics where
           [ "@type"        A..= AT.String "getNetworkStatistics"
           , "only_current" A..= only_current_
           ]
+

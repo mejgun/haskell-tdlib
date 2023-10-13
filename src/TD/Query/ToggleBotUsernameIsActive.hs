@@ -1,4 +1,7 @@
-module TD.Query.ToggleBotUsernameIsActive(ToggleBotUsernameIsActive(..)) where
+module TD.Query.ToggleBotUsernameIsActive
+  (ToggleBotUsernameIsActive(..)
+  , defaultToggleBotUsernameIsActive
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON ToggleBotUsernameIsActive where
           , "username"    A..= username_
           , "is_active"   A..= is_active_
           ]
+
+defaultToggleBotUsernameIsActive :: ToggleBotUsernameIsActive
+defaultToggleBotUsernameIsActive =
+  ToggleBotUsernameIsActive
+    { bot_user_id = Nothing
+    , username    = Nothing
+    , is_active   = Nothing
+    }
+

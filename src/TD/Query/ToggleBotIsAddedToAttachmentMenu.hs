@@ -1,4 +1,7 @@
-module TD.Query.ToggleBotIsAddedToAttachmentMenu(ToggleBotIsAddedToAttachmentMenu(..)) where
+module TD.Query.ToggleBotIsAddedToAttachmentMenu
+  (ToggleBotIsAddedToAttachmentMenu(..)
+  , defaultToggleBotIsAddedToAttachmentMenu
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON ToggleBotIsAddedToAttachmentMenu where
           , "is_added"           A..= is_added_
           , "allow_write_access" A..= allow_write_access_
           ]
+
+defaultToggleBotIsAddedToAttachmentMenu :: ToggleBotIsAddedToAttachmentMenu
+defaultToggleBotIsAddedToAttachmentMenu =
+  ToggleBotIsAddedToAttachmentMenu
+    { bot_user_id        = Nothing
+    , is_added           = Nothing
+    , allow_write_access = Nothing
+    }
+

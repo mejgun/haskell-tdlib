@@ -1,4 +1,7 @@
-module TD.Query.ToggleChatDefaultDisableNotification(ToggleChatDefaultDisableNotification(..)) where
+module TD.Query.ToggleChatDefaultDisableNotification
+  (ToggleChatDefaultDisableNotification(..)
+  , defaultToggleChatDefaultDisableNotification
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleChatDefaultDisableNotification where
           , "chat_id"                      A..= chat_id_
           , "default_disable_notification" A..= default_disable_notification_
           ]
+
+defaultToggleChatDefaultDisableNotification :: ToggleChatDefaultDisableNotification
+defaultToggleChatDefaultDisableNotification =
+  ToggleChatDefaultDisableNotification
+    { chat_id                      = Nothing
+    , default_disable_notification = Nothing
+    }
+

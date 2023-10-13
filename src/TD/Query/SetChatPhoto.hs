@@ -1,4 +1,7 @@
-module TD.Query.SetChatPhoto(SetChatPhoto(..)) where
+module TD.Query.SetChatPhoto
+  (SetChatPhoto(..)
+  , defaultSetChatPhoto
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatPhoto where
           , "chat_id" A..= chat_id_
           , "photo"   A..= photo_
           ]
+
+defaultSetChatPhoto :: SetChatPhoto
+defaultSetChatPhoto =
+  SetChatPhoto
+    { chat_id = Nothing
+    , photo   = Nothing
+    }
+

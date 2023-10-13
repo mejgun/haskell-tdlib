@@ -1,4 +1,6 @@
-module TD.Query.CancelPreliminaryUploadFile(CancelPreliminaryUploadFile(..)) where
+module TD.Query.CancelPreliminaryUploadFile
+  (CancelPreliminaryUploadFile(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON CancelPreliminaryUploadFile where
           [ "@type"   A..= AT.String "cancelPreliminaryUploadFile"
           , "file_id" A..= file_id_
           ]
+

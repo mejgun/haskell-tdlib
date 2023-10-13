@@ -1,4 +1,7 @@
-module TD.Query.SetChatMemberStatus(SetChatMemberStatus(..)) where
+module TD.Query.SetChatMemberStatus
+  (SetChatMemberStatus(..)
+  , defaultSetChatMemberStatus
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON SetChatMemberStatus where
           , "member_id" A..= member_id_
           , "status"    A..= status_
           ]
+
+defaultSetChatMemberStatus :: SetChatMemberStatus
+defaultSetChatMemberStatus =
+  SetChatMemberStatus
+    { chat_id   = Nothing
+    , member_id = Nothing
+    , status    = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.OpenStory(OpenStory(..)) where
+module TD.Query.OpenStory
+  (OpenStory(..)
+  , defaultOpenStory
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON OpenStory where
           , "story_sender_chat_id" A..= story_sender_chat_id_
           , "story_id"             A..= story_id_
           ]
+
+defaultOpenStory :: OpenStory
+defaultOpenStory =
+  OpenStory
+    { story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    }
+

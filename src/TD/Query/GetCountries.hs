@@ -1,4 +1,6 @@
-module TD.Query.GetCountries(GetCountries(..)) where
+module TD.Query.GetCountries
+  (GetCountries(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetCountries where
         = A.object
           [ "@type" A..= AT.String "getCountries"
           ]
+

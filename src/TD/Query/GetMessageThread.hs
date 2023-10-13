@@ -1,4 +1,7 @@
-module TD.Query.GetMessageThread(GetMessageThread(..)) where
+module TD.Query.GetMessageThread
+  (GetMessageThread(..)
+  , defaultGetMessageThread
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetMessageThread where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultGetMessageThread :: GetMessageThread
+defaultGetMessageThread =
+  GetMessageThread
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

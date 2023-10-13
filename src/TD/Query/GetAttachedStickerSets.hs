@@ -1,4 +1,6 @@
-module TD.Query.GetAttachedStickerSets(GetAttachedStickerSets(..)) where
+module TD.Query.GetAttachedStickerSets
+  (GetAttachedStickerSets(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetAttachedStickerSets where
           [ "@type"   A..= AT.String "getAttachedStickerSets"
           , "file_id" A..= file_id_
           ]
+

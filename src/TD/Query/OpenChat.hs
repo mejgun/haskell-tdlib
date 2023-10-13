@@ -1,4 +1,6 @@
-module TD.Query.OpenChat(OpenChat(..)) where
+module TD.Query.OpenChat
+  (OpenChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON OpenChat where
           [ "@type"   A..= AT.String "openChat"
           , "chat_id" A..= chat_id_
           ]
+

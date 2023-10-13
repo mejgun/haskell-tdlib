@@ -1,4 +1,7 @@
-module TD.Query.SetOption(SetOption(..)) where
+module TD.Query.SetOption
+  (SetOption(..)
+  , defaultSetOption
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,3 +39,11 @@ instance AT.ToJSON SetOption where
           , "name"  A..= name_
           , "value" A..= value_
           ]
+
+defaultSetOption :: SetOption
+defaultSetOption =
+  SetOption
+    { name  = Nothing
+    , value = Nothing
+    }
+

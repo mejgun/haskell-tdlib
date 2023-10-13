@@ -1,4 +1,6 @@
-module TD.Query.UnpinAllChatMessages(UnpinAllChatMessages(..)) where
+module TD.Query.UnpinAllChatMessages
+  (UnpinAllChatMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON UnpinAllChatMessages where
           [ "@type"   A..= AT.String "unpinAllChatMessages"
           , "chat_id" A..= chat_id_
           ]
+

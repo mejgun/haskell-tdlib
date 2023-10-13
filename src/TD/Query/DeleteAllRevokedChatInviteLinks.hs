@@ -1,4 +1,7 @@
-module TD.Query.DeleteAllRevokedChatInviteLinks(DeleteAllRevokedChatInviteLinks(..)) where
+module TD.Query.DeleteAllRevokedChatInviteLinks
+  (DeleteAllRevokedChatInviteLinks(..)
+  , defaultDeleteAllRevokedChatInviteLinks
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON DeleteAllRevokedChatInviteLinks where
           , "chat_id"         A..= chat_id_
           , "creator_user_id" A..= creator_user_id_
           ]
+
+defaultDeleteAllRevokedChatInviteLinks :: DeleteAllRevokedChatInviteLinks
+defaultDeleteAllRevokedChatInviteLinks =
+  DeleteAllRevokedChatInviteLinks
+    { chat_id         = Nothing
+    , creator_user_id = Nothing
+    }
+

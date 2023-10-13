@@ -1,4 +1,7 @@
-module TD.Query.ToggleStoryIsPinned(ToggleStoryIsPinned(..)) where
+module TD.Query.ToggleStoryIsPinned
+  (ToggleStoryIsPinned(..)
+  , defaultToggleStoryIsPinned
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleStoryIsPinned where
           , "story_id"  A..= story_id_
           , "is_pinned" A..= is_pinned_
           ]
+
+defaultToggleStoryIsPinned :: ToggleStoryIsPinned
+defaultToggleStoryIsPinned =
+  ToggleStoryIsPinned
+    { story_id  = Nothing
+    , is_pinned = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetPremiumStickerExamples(GetPremiumStickerExamples(..)) where
+module TD.Query.GetPremiumStickerExamples
+  (GetPremiumStickerExamples(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetPremiumStickerExamples where
         = A.object
           [ "@type" A..= AT.String "getPremiumStickerExamples"
           ]
+

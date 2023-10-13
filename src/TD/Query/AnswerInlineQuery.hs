@@ -1,4 +1,7 @@
-module TD.Query.AnswerInlineQuery(AnswerInlineQuery(..)) where
+module TD.Query.AnswerInlineQuery
+  (AnswerInlineQuery(..)
+  , defaultAnswerInlineQuery
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -57,3 +60,15 @@ instance AT.ToJSON AnswerInlineQuery where
           , "cache_time"      A..= cache_time_
           , "next_offset"     A..= next_offset_
           ]
+
+defaultAnswerInlineQuery :: AnswerInlineQuery
+defaultAnswerInlineQuery =
+  AnswerInlineQuery
+    { inline_query_id = Nothing
+    , is_personal     = Nothing
+    , button          = Nothing
+    , results         = Nothing
+    , cache_time      = Nothing
+    , next_offset     = Nothing
+    }
+

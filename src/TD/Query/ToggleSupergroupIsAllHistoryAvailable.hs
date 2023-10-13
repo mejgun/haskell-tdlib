@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupIsAllHistoryAvailable(ToggleSupergroupIsAllHistoryAvailable(..)) where
+module TD.Query.ToggleSupergroupIsAllHistoryAvailable
+  (ToggleSupergroupIsAllHistoryAvailable(..)
+  , defaultToggleSupergroupIsAllHistoryAvailable
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSupergroupIsAllHistoryAvailable where
           , "supergroup_id"            A..= supergroup_id_
           , "is_all_history_available" A..= is_all_history_available_
           ]
+
+defaultToggleSupergroupIsAllHistoryAvailable :: ToggleSupergroupIsAllHistoryAvailable
+defaultToggleSupergroupIsAllHistoryAvailable =
+  ToggleSupergroupIsAllHistoryAvailable
+    { supergroup_id            = Nothing
+    , is_all_history_available = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.CheckAuthenticationPasswordRecoveryCode(CheckAuthenticationPasswordRecoveryCode(..)) where
+module TD.Query.CheckAuthenticationPasswordRecoveryCode
+  (CheckAuthenticationPasswordRecoveryCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckAuthenticationPasswordRecoveryCode where
           [ "@type"         A..= AT.String "checkAuthenticationPasswordRecoveryCode"
           , "recovery_code" A..= recovery_code_
           ]
+

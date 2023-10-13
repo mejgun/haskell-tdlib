@@ -1,4 +1,6 @@
-module TD.Query.GetContacts(GetContacts(..)) where
+module TD.Query.GetContacts
+  (GetContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetContacts where
         = A.object
           [ "@type" A..= AT.String "getContacts"
           ]
+

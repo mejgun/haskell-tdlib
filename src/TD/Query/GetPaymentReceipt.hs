@@ -1,4 +1,7 @@
-module TD.Query.GetPaymentReceipt(GetPaymentReceipt(..)) where
+module TD.Query.GetPaymentReceipt
+  (GetPaymentReceipt(..)
+  , defaultGetPaymentReceipt
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetPaymentReceipt where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultGetPaymentReceipt :: GetPaymentReceipt
+defaultGetPaymentReceipt =
+  GetPaymentReceipt
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.GetWebAppUrl(GetWebAppUrl(..)) where
+module TD.Query.GetWebAppUrl
+  (GetWebAppUrl(..)
+  , defaultGetWebAppUrl
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON GetWebAppUrl where
           , "theme"            A..= theme_
           , "application_name" A..= application_name_
           ]
+
+defaultGetWebAppUrl :: GetWebAppUrl
+defaultGetWebAppUrl =
+  GetWebAppUrl
+    { bot_user_id      = Nothing
+    , url              = Nothing
+    , theme            = Nothing
+    , application_name = Nothing
+    }
+

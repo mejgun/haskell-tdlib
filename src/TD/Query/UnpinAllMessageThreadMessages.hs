@@ -1,4 +1,7 @@
-module TD.Query.UnpinAllMessageThreadMessages(UnpinAllMessageThreadMessages(..)) where
+module TD.Query.UnpinAllMessageThreadMessages
+  (UnpinAllMessageThreadMessages(..)
+  , defaultUnpinAllMessageThreadMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON UnpinAllMessageThreadMessages where
           , "chat_id"           A..= chat_id_
           , "message_thread_id" A..= message_thread_id_
           ]
+
+defaultUnpinAllMessageThreadMessages :: UnpinAllMessageThreadMessages
+defaultUnpinAllMessageThreadMessages =
+  UnpinAllMessageThreadMessages
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

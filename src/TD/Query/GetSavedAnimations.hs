@@ -1,4 +1,6 @@
-module TD.Query.GetSavedAnimations(GetSavedAnimations(..)) where
+module TD.Query.GetSavedAnimations
+  (GetSavedAnimations(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetSavedAnimations where
         = A.object
           [ "@type" A..= AT.String "getSavedAnimations"
           ]
+

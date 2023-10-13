@@ -1,4 +1,6 @@
-module TD.Query.GetAnimatedEmoji(GetAnimatedEmoji(..)) where
+module TD.Query.GetAnimatedEmoji
+  (GetAnimatedEmoji(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetAnimatedEmoji where
           [ "@type" A..= AT.String "getAnimatedEmoji"
           , "emoji" A..= emoji_
           ]
+

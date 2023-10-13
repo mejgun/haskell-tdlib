@@ -1,4 +1,7 @@
-module TD.Query.GetChatInviteLinks(GetChatInviteLinks(..)) where
+module TD.Query.GetChatInviteLinks
+  (GetChatInviteLinks(..)
+  , defaultGetChatInviteLinks
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,3 +58,15 @@ instance AT.ToJSON GetChatInviteLinks where
           , "offset_invite_link" A..= offset_invite_link_
           , "limit"              A..= limit_
           ]
+
+defaultGetChatInviteLinks :: GetChatInviteLinks
+defaultGetChatInviteLinks =
+  GetChatInviteLinks
+    { chat_id            = Nothing
+    , creator_user_id    = Nothing
+    , is_revoked         = Nothing
+    , offset_date        = Nothing
+    , offset_invite_link = Nothing
+    , limit              = Nothing
+    }
+

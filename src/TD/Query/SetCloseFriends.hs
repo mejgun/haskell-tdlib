@@ -1,4 +1,6 @@
-module TD.Query.SetCloseFriends(SetCloseFriends(..)) where
+module TD.Query.SetCloseFriends
+  (SetCloseFriends(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON SetCloseFriends where
           [ "@type"    A..= AT.String "setCloseFriends"
           , "user_ids" A..= user_ids_
           ]
+

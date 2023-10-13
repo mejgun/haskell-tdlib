@@ -1,4 +1,7 @@
-module TD.Query.DeleteChatMessagesByDate(DeleteChatMessagesByDate(..)) where
+module TD.Query.DeleteChatMessagesByDate
+  (DeleteChatMessagesByDate(..)
+  , defaultDeleteChatMessagesByDate
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,3 +47,13 @@ instance AT.ToJSON DeleteChatMessagesByDate where
           , "max_date" A..= max_date_
           , "revoke"   A..= revoke_
           ]
+
+defaultDeleteChatMessagesByDate :: DeleteChatMessagesByDate
+defaultDeleteChatMessagesByDate =
+  DeleteChatMessagesByDate
+    { chat_id  = Nothing
+    , min_date = Nothing
+    , max_date = Nothing
+    , revoke   = Nothing
+    }
+

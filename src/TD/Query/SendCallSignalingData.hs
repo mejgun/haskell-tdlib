@@ -1,4 +1,7 @@
-module TD.Query.SendCallSignalingData(SendCallSignalingData(..)) where
+module TD.Query.SendCallSignalingData
+  (SendCallSignalingData(..)
+  , defaultSendCallSignalingData
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SendCallSignalingData where
           , "call_id" A..= call_id_
           , "data"    A..= fmap I.writeBytes  _data_
           ]
+
+defaultSendCallSignalingData :: SendCallSignalingData
+defaultSendCallSignalingData =
+  SendCallSignalingData
+    { call_id = Nothing
+    , _data   = Nothing
+    }
+

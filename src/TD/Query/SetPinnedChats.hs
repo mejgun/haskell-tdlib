@@ -1,4 +1,7 @@
-module TD.Query.SetPinnedChats(SetPinnedChats(..)) where
+module TD.Query.SetPinnedChats
+  (SetPinnedChats(..)
+  , defaultSetPinnedChats
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetPinnedChats where
           , "chat_list" A..= chat_list_
           , "chat_ids"  A..= chat_ids_
           ]
+
+defaultSetPinnedChats :: SetPinnedChats
+defaultSetPinnedChats =
+  SetPinnedChats
+    { chat_list = Nothing
+    , chat_ids  = Nothing
+    }
+

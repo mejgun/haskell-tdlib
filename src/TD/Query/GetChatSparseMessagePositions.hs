@@ -1,4 +1,7 @@
-module TD.Query.GetChatSparseMessagePositions(GetChatSparseMessagePositions(..)) where
+module TD.Query.GetChatSparseMessagePositions
+  (GetChatSparseMessagePositions(..)
+  , defaultGetChatSparseMessagePositions
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON GetChatSparseMessagePositions where
           , "from_message_id" A..= from_message_id_
           , "limit"           A..= limit_
           ]
+
+defaultGetChatSparseMessagePositions :: GetChatSparseMessagePositions
+defaultGetChatSparseMessagePositions =
+  GetChatSparseMessagePositions
+    { chat_id         = Nothing
+    , _filter         = Nothing
+    , from_message_id = Nothing
+    , limit           = Nothing
+    }
+

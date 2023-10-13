@@ -1,4 +1,7 @@
-module TD.Query.EditInlineMessageLiveLocation(EditInlineMessageLiveLocation(..)) where
+module TD.Query.EditInlineMessageLiveLocation
+  (EditInlineMessageLiveLocation(..)
+  , defaultEditInlineMessageLiveLocation
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -52,3 +55,14 @@ instance AT.ToJSON EditInlineMessageLiveLocation where
           , "heading"                A..= heading_
           , "proximity_alert_radius" A..= proximity_alert_radius_
           ]
+
+defaultEditInlineMessageLiveLocation :: EditInlineMessageLiveLocation
+defaultEditInlineMessageLiveLocation =
+  EditInlineMessageLiveLocation
+    { inline_message_id      = Nothing
+    , reply_markup           = Nothing
+    , location               = Nothing
+    , heading                = Nothing
+    , proximity_alert_radius = Nothing
+    }
+

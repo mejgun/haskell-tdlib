@@ -1,4 +1,6 @@
-module TD.Query.GetStickerSet(GetStickerSet(..)) where
+module TD.Query.GetStickerSet
+  (GetStickerSet(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetStickerSet where
           [ "@type"  A..= AT.String "getStickerSet"
           , "set_id" A..= fmap I.writeInt64  set_id_
           ]
+

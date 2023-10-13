@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupUsernameIsActive(ToggleSupergroupUsernameIsActive(..)) where
+module TD.Query.ToggleSupergroupUsernameIsActive
+  (ToggleSupergroupUsernameIsActive(..)
+  , defaultToggleSupergroupUsernameIsActive
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON ToggleSupergroupUsernameIsActive where
           , "username"      A..= username_
           , "is_active"     A..= is_active_
           ]
+
+defaultToggleSupergroupUsernameIsActive :: ToggleSupergroupUsernameIsActive
+defaultToggleSupergroupUsernameIsActive =
+  ToggleSupergroupUsernameIsActive
+    { supergroup_id = Nothing
+    , username      = Nothing
+    , is_active     = Nothing
+    }
+

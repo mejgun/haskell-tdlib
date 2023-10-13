@@ -1,4 +1,6 @@
-module TD.Query.GetPasswordState(GetPasswordState(..)) where
+module TD.Query.GetPasswordState
+  (GetPasswordState(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetPasswordState where
         = A.object
           [ "@type" A..= AT.String "getPasswordState"
           ]
+

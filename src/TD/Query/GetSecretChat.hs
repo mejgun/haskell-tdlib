@@ -1,4 +1,6 @@
-module TD.Query.GetSecretChat(GetSecretChat(..)) where
+module TD.Query.GetSecretChat
+  (GetSecretChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetSecretChat where
           [ "@type"          A..= AT.String "getSecretChat"
           , "secret_chat_id" A..= secret_chat_id_
           ]
+

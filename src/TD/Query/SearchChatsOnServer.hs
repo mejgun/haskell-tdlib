@@ -1,4 +1,7 @@
-module TD.Query.SearchChatsOnServer(SearchChatsOnServer(..)) where
+module TD.Query.SearchChatsOnServer
+  (SearchChatsOnServer(..)
+  , defaultSearchChatsOnServer
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SearchChatsOnServer where
           , "query" A..= query_
           , "limit" A..= limit_
           ]
+
+defaultSearchChatsOnServer :: SearchChatsOnServer
+defaultSearchChatsOnServer =
+  SearchChatsOnServer
+    { query = Nothing
+    , limit = Nothing
+    }
+

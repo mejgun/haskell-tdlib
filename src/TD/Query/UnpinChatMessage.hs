@@ -1,4 +1,7 @@
-module TD.Query.UnpinChatMessage(UnpinChatMessage(..)) where
+module TD.Query.UnpinChatMessage
+  (UnpinChatMessage(..)
+  , defaultUnpinChatMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON UnpinChatMessage where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultUnpinChatMessage :: UnpinChatMessage
+defaultUnpinChatMessage =
+  UnpinChatMessage
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

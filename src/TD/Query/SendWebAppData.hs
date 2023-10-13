@@ -1,4 +1,7 @@
-module TD.Query.SendWebAppData(SendWebAppData(..)) where
+module TD.Query.SendWebAppData
+  (SendWebAppData(..)
+  , defaultSendWebAppData
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SendWebAppData where
           , "button_text" A..= button_text_
           , "data"        A..= _data_
           ]
+
+defaultSendWebAppData :: SendWebAppData
+defaultSendWebAppData =
+  SendWebAppData
+    { bot_user_id = Nothing
+    , button_text = Nothing
+    , _data       = Nothing
+    }
+

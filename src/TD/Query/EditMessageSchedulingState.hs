@@ -1,4 +1,7 @@
-module TD.Query.EditMessageSchedulingState(EditMessageSchedulingState(..)) where
+module TD.Query.EditMessageSchedulingState
+  (EditMessageSchedulingState(..)
+  , defaultEditMessageSchedulingState
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON EditMessageSchedulingState where
           , "message_id"       A..= message_id_
           , "scheduling_state" A..= scheduling_state_
           ]
+
+defaultEditMessageSchedulingState :: EditMessageSchedulingState
+defaultEditMessageSchedulingState =
+  EditMessageSchedulingState
+    { chat_id          = Nothing
+    , message_id       = Nothing
+    , scheduling_state = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.SetChatDraftMessage(SetChatDraftMessage(..)) where
+module TD.Query.SetChatDraftMessage
+  (SetChatDraftMessage(..)
+  , defaultSetChatDraftMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SetChatDraftMessage where
           , "message_thread_id" A..= message_thread_id_
           , "draft_message"     A..= draft_message_
           ]
+
+defaultSetChatDraftMessage :: SetChatDraftMessage
+defaultSetChatDraftMessage =
+  SetChatDraftMessage
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , draft_message     = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.SearchEmojis(SearchEmojis(..)) where
+module TD.Query.SearchEmojis
+  (SearchEmojis(..)
+  , defaultSearchEmojis
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SearchEmojis where
           , "exact_match"          A..= exact_match_
           , "input_language_codes" A..= input_language_codes_
           ]
+
+defaultSearchEmojis :: SearchEmojis
+defaultSearchEmojis =
+  SearchEmojis
+    { text                 = Nothing
+    , exact_match          = Nothing
+    , input_language_codes = Nothing
+    }
+

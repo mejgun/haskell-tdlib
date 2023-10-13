@@ -1,4 +1,7 @@
-module TD.Query.SetChatNotificationSettings(SetChatNotificationSettings(..)) where
+module TD.Query.SetChatNotificationSettings
+  (SetChatNotificationSettings(..)
+  , defaultSetChatNotificationSettings
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetChatNotificationSettings where
           , "chat_id"               A..= chat_id_
           , "notification_settings" A..= notification_settings_
           ]
+
+defaultSetChatNotificationSettings :: SetChatNotificationSettings
+defaultSetChatNotificationSettings =
+  SetChatNotificationSettings
+    { chat_id               = Nothing
+    , notification_settings = Nothing
+    }
+

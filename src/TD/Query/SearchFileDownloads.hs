@@ -1,4 +1,7 @@
-module TD.Query.SearchFileDownloads(SearchFileDownloads(..)) where
+module TD.Query.SearchFileDownloads
+  (SearchFileDownloads(..)
+  , defaultSearchFileDownloads
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,3 +53,14 @@ instance AT.ToJSON SearchFileDownloads where
           , "offset"         A..= offset_
           , "limit"          A..= limit_
           ]
+
+defaultSearchFileDownloads :: SearchFileDownloads
+defaultSearchFileDownloads =
+  SearchFileDownloads
+    { query          = Nothing
+    , only_active    = Nothing
+    , only_completed = Nothing
+    , offset         = Nothing
+    , limit          = Nothing
+    }
+

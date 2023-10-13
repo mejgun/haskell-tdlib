@@ -1,4 +1,6 @@
-module TD.Query.GetMessageImportConfirmationText(GetMessageImportConfirmationText(..)) where
+module TD.Query.GetMessageImportConfirmationText
+  (GetMessageImportConfirmationText(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetMessageImportConfirmationText where
           [ "@type"   A..= AT.String "getMessageImportConfirmationText"
           , "chat_id" A..= chat_id_
           ]
+

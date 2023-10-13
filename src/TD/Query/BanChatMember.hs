@@ -1,4 +1,7 @@
-module TD.Query.BanChatMember(BanChatMember(..)) where
+module TD.Query.BanChatMember
+  (BanChatMember(..)
+  , defaultBanChatMember
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,3 +48,13 @@ instance AT.ToJSON BanChatMember where
           , "banned_until_date" A..= banned_until_date_
           , "revoke_messages"   A..= revoke_messages_
           ]
+
+defaultBanChatMember :: BanChatMember
+defaultBanChatMember =
+  BanChatMember
+    { chat_id           = Nothing
+    , member_id         = Nothing
+    , banned_until_date = Nothing
+    , revoke_messages   = Nothing
+    }
+

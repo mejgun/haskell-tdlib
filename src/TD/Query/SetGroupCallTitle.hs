@@ -1,4 +1,7 @@
-module TD.Query.SetGroupCallTitle(SetGroupCallTitle(..)) where
+module TD.Query.SetGroupCallTitle
+  (SetGroupCallTitle(..)
+  , defaultSetGroupCallTitle
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetGroupCallTitle where
           , "group_call_id" A..= group_call_id_
           , "title"         A..= title_
           ]
+
+defaultSetGroupCallTitle :: SetGroupCallTitle
+defaultSetGroupCallTitle =
+  SetGroupCallTitle
+    { group_call_id = Nothing
+    , title         = Nothing
+    }
+

@@ -1,4 +1,7 @@
-module TD.Query.GetChatPinnedStories(GetChatPinnedStories(..)) where
+module TD.Query.GetChatPinnedStories
+  (GetChatPinnedStories(..)
+  , defaultGetChatPinnedStories
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON GetChatPinnedStories where
           , "from_story_id" A..= from_story_id_
           , "limit"         A..= limit_
           ]
+
+defaultGetChatPinnedStories :: GetChatPinnedStories
+defaultGetChatPinnedStories =
+  GetChatPinnedStories
+    { chat_id       = Nothing
+    , from_story_id = Nothing
+    , limit         = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetWebPagePreview(GetWebPagePreview(..)) where
+module TD.Query.GetWebPagePreview
+  (GetWebPagePreview(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetWebPagePreview where
           [ "@type" A..= AT.String "getWebPagePreview"
           , "text"  A..= text_
           ]
+

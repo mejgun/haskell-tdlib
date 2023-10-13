@@ -1,4 +1,7 @@
-module TD.Query.SearchChatRecentLocationMessages(SearchChatRecentLocationMessages(..)) where
+module TD.Query.SearchChatRecentLocationMessages
+  (SearchChatRecentLocationMessages(..)
+  , defaultSearchChatRecentLocationMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON SearchChatRecentLocationMessages where
           , "chat_id" A..= chat_id_
           , "limit"   A..= limit_
           ]
+
+defaultSearchChatRecentLocationMessages :: SearchChatRecentLocationMessages
+defaultSearchChatRecentLocationMessages =
+  SearchChatRecentLocationMessages
+    { chat_id = Nothing
+    , limit   = Nothing
+    }
+

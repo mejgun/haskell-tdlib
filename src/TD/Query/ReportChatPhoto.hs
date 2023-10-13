@@ -1,4 +1,7 @@
-module TD.Query.ReportChatPhoto(ReportChatPhoto(..)) where
+module TD.Query.ReportChatPhoto
+  (ReportChatPhoto(..)
+  , defaultReportChatPhoto
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON ReportChatPhoto where
           , "reason"  A..= reason_
           , "text"    A..= text_
           ]
+
+defaultReportChatPhoto :: ReportChatPhoto
+defaultReportChatPhoto =
+  ReportChatPhoto
+    { chat_id = Nothing
+    , file_id = Nothing
+    , reason  = Nothing
+    , text    = Nothing
+    }
+

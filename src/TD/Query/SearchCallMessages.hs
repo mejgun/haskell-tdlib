@@ -1,4 +1,7 @@
-module TD.Query.SearchCallMessages(SearchCallMessages(..)) where
+module TD.Query.SearchCallMessages
+  (SearchCallMessages(..)
+  , defaultSearchCallMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SearchCallMessages where
           , "limit"       A..= limit_
           , "only_missed" A..= only_missed_
           ]
+
+defaultSearchCallMessages :: SearchCallMessages
+defaultSearchCallMessages =
+  SearchCallMessages
+    { offset      = Nothing
+    , limit       = Nothing
+    , only_missed = Nothing
+    }
+

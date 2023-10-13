@@ -1,4 +1,6 @@
-module TD.Query.ResendLoginEmailAddressCode(ResendLoginEmailAddressCode(..)) where
+module TD.Query.ResendLoginEmailAddressCode
+  (ResendLoginEmailAddressCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ResendLoginEmailAddressCode where
         = A.object
           [ "@type" A..= AT.String "resendLoginEmailAddressCode"
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.SearchSecretMessages(SearchSecretMessages(..)) where
+module TD.Query.SearchSecretMessages
+  (SearchSecretMessages(..)
+  , defaultSearchSecretMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,3 +54,14 @@ instance AT.ToJSON SearchSecretMessages where
           , "limit"   A..= limit_
           , "filter"  A..= _filter_
           ]
+
+defaultSearchSecretMessages :: SearchSecretMessages
+defaultSearchSecretMessages =
+  SearchSecretMessages
+    { chat_id = Nothing
+    , query   = Nothing
+    , offset  = Nothing
+    , limit   = Nothing
+    , _filter = Nothing
+    }
+

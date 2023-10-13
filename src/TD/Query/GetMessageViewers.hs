@@ -1,4 +1,7 @@
-module TD.Query.GetMessageViewers(GetMessageViewers(..)) where
+module TD.Query.GetMessageViewers
+  (GetMessageViewers(..)
+  , defaultGetMessageViewers
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON GetMessageViewers where
           , "chat_id"    A..= chat_id_
           , "message_id" A..= message_id_
           ]
+
+defaultGetMessageViewers :: GetMessageViewers
+defaultGetMessageViewers =
+  GetMessageViewers
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

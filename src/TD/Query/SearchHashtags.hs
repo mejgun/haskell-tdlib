@@ -1,4 +1,7 @@
-module TD.Query.SearchHashtags(SearchHashtags(..)) where
+module TD.Query.SearchHashtags
+  (SearchHashtags(..)
+  , defaultSearchHashtags
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SearchHashtags where
           , "prefix" A..= prefix_
           , "limit"  A..= limit_
           ]
+
+defaultSearchHashtags :: SearchHashtags
+defaultSearchHashtags =
+  SearchHashtags
+    { prefix = Nothing
+    , limit  = Nothing
+    }
+

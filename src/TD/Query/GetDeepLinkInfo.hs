@@ -1,4 +1,6 @@
-module TD.Query.GetDeepLinkInfo(GetDeepLinkInfo(..)) where
+module TD.Query.GetDeepLinkInfo
+  (GetDeepLinkInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetDeepLinkInfo where
           [ "@type" A..= AT.String "getDeepLinkInfo"
           , "link"  A..= link_
           ]
+

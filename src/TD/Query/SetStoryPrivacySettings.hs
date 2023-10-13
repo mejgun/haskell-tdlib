@@ -1,4 +1,7 @@
-module TD.Query.SetStoryPrivacySettings(SetStoryPrivacySettings(..)) where
+module TD.Query.SetStoryPrivacySettings
+  (SetStoryPrivacySettings(..)
+  , defaultSetStoryPrivacySettings
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetStoryPrivacySettings where
           , "story_id"         A..= story_id_
           , "privacy_settings" A..= privacy_settings_
           ]
+
+defaultSetStoryPrivacySettings :: SetStoryPrivacySettings
+defaultSetStoryPrivacySettings =
+  SetStoryPrivacySettings
+    { story_id         = Nothing
+    , privacy_settings = Nothing
+    }
+

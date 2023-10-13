@@ -1,4 +1,7 @@
-module TD.Query.EditMessageMedia(EditMessageMedia(..)) where
+module TD.Query.EditMessageMedia
+  (EditMessageMedia(..)
+  , defaultEditMessageMedia
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON EditMessageMedia where
           , "reply_markup"          A..= reply_markup_
           , "input_message_content" A..= input_message_content_
           ]
+
+defaultEditMessageMedia :: EditMessageMedia
+defaultEditMessageMedia =
+  EditMessageMedia
+    { chat_id               = Nothing
+    , message_id            = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+

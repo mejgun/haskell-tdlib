@@ -1,4 +1,6 @@
-module TD.Query.LeaveGroupCall(LeaveGroupCall(..)) where
+module TD.Query.LeaveGroupCall
+  (LeaveGroupCall(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON LeaveGroupCall where
           [ "@type"         A..= AT.String "leaveGroupCall"
           , "group_call_id" A..= group_call_id_
           ]
+

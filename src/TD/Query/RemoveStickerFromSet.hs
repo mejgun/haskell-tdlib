@@ -1,4 +1,6 @@
-module TD.Query.RemoveStickerFromSet(RemoveStickerFromSet(..)) where
+module TD.Query.RemoveStickerFromSet
+  (RemoveStickerFromSet(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON RemoveStickerFromSet where
           [ "@type"   A..= AT.String "removeStickerFromSet"
           , "sticker" A..= sticker_
           ]
+

@@ -1,4 +1,7 @@
-module TD.Query.ReportChat(ReportChat(..)) where
+module TD.Query.ReportChat
+  (ReportChat(..)
+  , defaultReportChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -46,3 +49,13 @@ instance AT.ToJSON ReportChat where
           , "reason"      A..= reason_
           , "text"        A..= text_
           ]
+
+defaultReportChat :: ReportChat
+defaultReportChat =
+  ReportChat
+    { chat_id     = Nothing
+    , message_ids = Nothing
+    , reason      = Nothing
+    , text        = Nothing
+    }
+

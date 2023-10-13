@@ -1,4 +1,6 @@
-module TD.Query.Destroy(Destroy(..)) where
+module TD.Query.Destroy
+  (Destroy(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON Destroy where
         = A.object
           [ "@type" A..= AT.String "destroy"
           ]
+

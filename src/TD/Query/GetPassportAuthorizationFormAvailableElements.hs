@@ -1,4 +1,7 @@
-module TD.Query.GetPassportAuthorizationFormAvailableElements(GetPassportAuthorizationFormAvailableElements(..)) where
+module TD.Query.GetPassportAuthorizationFormAvailableElements
+  (GetPassportAuthorizationFormAvailableElements(..)
+  , defaultGetPassportAuthorizationFormAvailableElements
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetPassportAuthorizationFormAvailableElements where
           , "authorization_form_id" A..= authorization_form_id_
           , "password"              A..= password_
           ]
+
+defaultGetPassportAuthorizationFormAvailableElements :: GetPassportAuthorizationFormAvailableElements
+defaultGetPassportAuthorizationFormAvailableElements =
+  GetPassportAuthorizationFormAvailableElements
+    { authorization_form_id = Nothing
+    , password              = Nothing
+    }
+

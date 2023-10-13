@@ -1,4 +1,6 @@
-module TD.Query.ImportContacts(ImportContacts(..)) where
+module TD.Query.ImportContacts
+  (ImportContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON ImportContacts where
           [ "@type"    A..= AT.String "importContacts"
           , "contacts" A..= contacts_
           ]
+

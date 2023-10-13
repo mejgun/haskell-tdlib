@@ -1,4 +1,7 @@
-module TD.Query.DeleteChatFolder(DeleteChatFolder(..)) where
+module TD.Query.DeleteChatFolder
+  (DeleteChatFolder(..)
+  , defaultDeleteChatFolder
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON DeleteChatFolder where
           , "chat_folder_id" A..= chat_folder_id_
           , "leave_chat_ids" A..= leave_chat_ids_
           ]
+
+defaultDeleteChatFolder :: DeleteChatFolder
+defaultDeleteChatFolder =
+  DeleteChatFolder
+    { chat_folder_id = Nothing
+    , leave_chat_ids = Nothing
+    }
+

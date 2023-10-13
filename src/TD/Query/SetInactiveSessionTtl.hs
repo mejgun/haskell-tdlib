@@ -1,4 +1,6 @@
-module TD.Query.SetInactiveSessionTtl(SetInactiveSessionTtl(..)) where
+module TD.Query.SetInactiveSessionTtl
+  (SetInactiveSessionTtl(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON SetInactiveSessionTtl where
           [ "@type"                     A..= AT.String "setInactiveSessionTtl"
           , "inactive_session_ttl_days" A..= inactive_session_ttl_days_
           ]
+

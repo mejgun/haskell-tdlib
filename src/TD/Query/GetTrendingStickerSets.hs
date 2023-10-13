@@ -1,4 +1,7 @@
-module TD.Query.GetTrendingStickerSets(GetTrendingStickerSets(..)) where
+module TD.Query.GetTrendingStickerSets
+  (GetTrendingStickerSets(..)
+  , defaultGetTrendingStickerSets
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON GetTrendingStickerSets where
           , "offset"       A..= offset_
           , "limit"        A..= limit_
           ]
+
+defaultGetTrendingStickerSets :: GetTrendingStickerSets
+defaultGetTrendingStickerSets =
+  GetTrendingStickerSets
+    { sticker_type = Nothing
+    , offset       = Nothing
+    , limit        = Nothing
+    }
+

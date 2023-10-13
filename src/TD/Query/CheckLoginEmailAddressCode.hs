@@ -1,4 +1,6 @@
-module TD.Query.CheckLoginEmailAddressCode(CheckLoginEmailAddressCode(..)) where
+module TD.Query.CheckLoginEmailAddressCode
+  (CheckLoginEmailAddressCode(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON CheckLoginEmailAddressCode where
           [ "@type" A..= AT.String "checkLoginEmailAddressCode"
           , "code"  A..= code_
           ]
+

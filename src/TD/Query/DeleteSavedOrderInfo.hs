@@ -1,4 +1,6 @@
-module TD.Query.DeleteSavedOrderInfo(DeleteSavedOrderInfo(..)) where
+module TD.Query.DeleteSavedOrderInfo
+  (DeleteSavedOrderInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON DeleteSavedOrderInfo where
         = A.object
           [ "@type" A..= AT.String "deleteSavedOrderInfo"
           ]
+

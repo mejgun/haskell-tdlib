@@ -1,4 +1,7 @@
-module TD.Query.SetCustomEmojiStickerSetThumbnail(SetCustomEmojiStickerSetThumbnail(..)) where
+module TD.Query.SetCustomEmojiStickerSetThumbnail
+  (SetCustomEmojiStickerSetThumbnail(..)
+  , defaultSetCustomEmojiStickerSetThumbnail
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON SetCustomEmojiStickerSetThumbnail where
           , "name"            A..= name_
           , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
           ]
+
+defaultSetCustomEmojiStickerSetThumbnail :: SetCustomEmojiStickerSetThumbnail
+defaultSetCustomEmojiStickerSetThumbnail =
+  SetCustomEmojiStickerSetThumbnail
+    { name            = Nothing
+    , custom_emoji_id = Nothing
+    }
+

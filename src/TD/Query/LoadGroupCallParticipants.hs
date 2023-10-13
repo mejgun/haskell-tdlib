@@ -1,4 +1,7 @@
-module TD.Query.LoadGroupCallParticipants(LoadGroupCallParticipants(..)) where
+module TD.Query.LoadGroupCallParticipants
+  (LoadGroupCallParticipants(..)
+  , defaultLoadGroupCallParticipants
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON LoadGroupCallParticipants where
           , "group_call_id" A..= group_call_id_
           , "limit"         A..= limit_
           ]
+
+defaultLoadGroupCallParticipants :: LoadGroupCallParticipants
+defaultLoadGroupCallParticipants =
+  LoadGroupCallParticipants
+    { group_call_id = Nothing
+    , limit         = Nothing
+    }
+

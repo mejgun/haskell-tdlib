@@ -1,4 +1,7 @@
-module TD.Query.GetLanguagePackStrings(GetLanguagePackStrings(..)) where
+module TD.Query.GetLanguagePackStrings
+  (GetLanguagePackStrings(..)
+  , defaultGetLanguagePackStrings
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON GetLanguagePackStrings where
           , "language_pack_id" A..= language_pack_id_
           , "keys"             A..= keys_
           ]
+
+defaultGetLanguagePackStrings :: GetLanguagePackStrings
+defaultGetLanguagePackStrings =
+  GetLanguagePackStrings
+    { language_pack_id = Nothing
+    , keys             = Nothing
+    }
+

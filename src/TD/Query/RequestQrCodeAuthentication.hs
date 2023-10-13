@@ -1,4 +1,6 @@
-module TD.Query.RequestQrCodeAuthentication(RequestQrCodeAuthentication(..)) where
+module TD.Query.RequestQrCodeAuthentication
+  (RequestQrCodeAuthentication(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON RequestQrCodeAuthentication where
           [ "@type"          A..= AT.String "requestQrCodeAuthentication"
           , "other_user_ids" A..= other_user_ids_
           ]
+

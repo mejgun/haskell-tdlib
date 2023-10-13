@@ -1,4 +1,7 @@
-module TD.Query.SearchStickers(SearchStickers(..)) where
+module TD.Query.SearchStickers
+  (SearchStickers(..)
+  , defaultSearchStickers
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -41,3 +44,12 @@ instance AT.ToJSON SearchStickers where
           , "emojis"       A..= emojis_
           , "limit"        A..= limit_
           ]
+
+defaultSearchStickers :: SearchStickers
+defaultSearchStickers =
+  SearchStickers
+    { sticker_type = Nothing
+    , emojis       = Nothing
+    , limit        = Nothing
+    }
+

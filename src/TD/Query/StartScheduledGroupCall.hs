@@ -1,4 +1,6 @@
-module TD.Query.StartScheduledGroupCall(StartScheduledGroupCall(..)) where
+module TD.Query.StartScheduledGroupCall
+  (StartScheduledGroupCall(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON StartScheduledGroupCall where
           [ "@type"         A..= AT.String "startScheduledGroupCall"
           , "group_call_id" A..= group_call_id_
           ]
+

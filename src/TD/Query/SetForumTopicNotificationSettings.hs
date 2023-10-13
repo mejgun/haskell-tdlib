@@ -1,4 +1,7 @@
-module TD.Query.SetForumTopicNotificationSettings(SetForumTopicNotificationSettings(..)) where
+module TD.Query.SetForumTopicNotificationSettings
+  (SetForumTopicNotificationSettings(..)
+  , defaultSetForumTopicNotificationSettings
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON SetForumTopicNotificationSettings where
           , "message_thread_id"     A..= message_thread_id_
           , "notification_settings" A..= notification_settings_
           ]
+
+defaultSetForumTopicNotificationSettings :: SetForumTopicNotificationSettings
+defaultSetForumTopicNotificationSettings =
+  SetForumTopicNotificationSettings
+    { chat_id               = Nothing
+    , message_thread_id     = Nothing
+    , notification_settings = Nothing
+    }
+

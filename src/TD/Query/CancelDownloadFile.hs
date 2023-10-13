@@ -1,4 +1,7 @@
-module TD.Query.CancelDownloadFile(CancelDownloadFile(..)) where
+module TD.Query.CancelDownloadFile
+  (CancelDownloadFile(..)
+  , defaultCancelDownloadFile
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON CancelDownloadFile where
           , "file_id"         A..= file_id_
           , "only_if_pending" A..= only_if_pending_
           ]
+
+defaultCancelDownloadFile :: CancelDownloadFile
+defaultCancelDownloadFile =
+  CancelDownloadFile
+    { file_id         = Nothing
+    , only_if_pending = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.RemoveBackground(RemoveBackground(..)) where
+module TD.Query.RemoveBackground
+  (RemoveBackground(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON RemoveBackground where
           [ "@type"         A..= AT.String "removeBackground"
           , "background_id" A..= fmap I.writeInt64  background_id_
           ]
+

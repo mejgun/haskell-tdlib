@@ -1,4 +1,7 @@
-module TD.Query.SendInlineQueryResultMessage(SendInlineQueryResultMessage(..)) where
+module TD.Query.SendInlineQueryResultMessage
+  (SendInlineQueryResultMessage(..)
+  , defaultSendInlineQueryResultMessage
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -62,3 +65,16 @@ instance AT.ToJSON SendInlineQueryResultMessage where
           , "result_id"         A..= result_id_
           , "hide_via_bot"      A..= hide_via_bot_
           ]
+
+defaultSendInlineQueryResultMessage :: SendInlineQueryResultMessage
+defaultSendInlineQueryResultMessage =
+  SendInlineQueryResultMessage
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , reply_to          = Nothing
+    , options           = Nothing
+    , query_id          = Nothing
+    , result_id         = Nothing
+    , hide_via_bot      = Nothing
+    }
+

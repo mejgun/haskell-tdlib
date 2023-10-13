@@ -1,4 +1,6 @@
-module TD.Query.GetDefaultProfilePhotoCustomEmojiStickers(GetDefaultProfilePhotoCustomEmojiStickers(..)) where
+module TD.Query.GetDefaultProfilePhotoCustomEmojiStickers
+  (GetDefaultProfilePhotoCustomEmojiStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON GetDefaultProfilePhotoCustomEmojiStickers where
         = A.object
           [ "@type" A..= AT.String "getDefaultProfilePhotoCustomEmojiStickers"
           ]
+

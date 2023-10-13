@@ -1,4 +1,7 @@
-module TD.Query.EditChatFolder(EditChatFolder(..)) where
+module TD.Query.EditChatFolder
+  (EditChatFolder(..)
+  , defaultEditChatFolder
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON EditChatFolder where
           , "chat_folder_id" A..= chat_folder_id_
           , "folder"         A..= folder_
           ]
+
+defaultEditChatFolder :: EditChatFolder
+defaultEditChatFolder =
+  EditChatFolder
+    { chat_folder_id = Nothing
+    , folder         = Nothing
+    }
+

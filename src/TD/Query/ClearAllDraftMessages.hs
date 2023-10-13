@@ -1,4 +1,6 @@
-module TD.Query.ClearAllDraftMessages(ClearAllDraftMessages(..)) where
+module TD.Query.ClearAllDraftMessages
+  (ClearAllDraftMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON ClearAllDraftMessages where
           [ "@type"                A..= AT.String "clearAllDraftMessages"
           , "exclude_secret_chats" A..= exclude_secret_chats_
           ]
+

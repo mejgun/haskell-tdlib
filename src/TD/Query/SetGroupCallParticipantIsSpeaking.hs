@@ -1,4 +1,7 @@
-module TD.Query.SetGroupCallParticipantIsSpeaking(SetGroupCallParticipantIsSpeaking(..)) where
+module TD.Query.SetGroupCallParticipantIsSpeaking
+  (SetGroupCallParticipantIsSpeaking(..)
+  , defaultSetGroupCallParticipantIsSpeaking
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,3 +42,12 @@ instance AT.ToJSON SetGroupCallParticipantIsSpeaking where
           , "audio_source"  A..= audio_source_
           , "is_speaking"   A..= is_speaking_
           ]
+
+defaultSetGroupCallParticipantIsSpeaking :: SetGroupCallParticipantIsSpeaking
+defaultSetGroupCallParticipantIsSpeaking =
+  SetGroupCallParticipantIsSpeaking
+    { group_call_id = Nothing
+    , audio_source  = Nothing
+    , is_speaking   = Nothing
+    }
+

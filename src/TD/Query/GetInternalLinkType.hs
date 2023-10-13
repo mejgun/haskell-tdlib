@@ -1,4 +1,6 @@
-module TD.Query.GetInternalLinkType(GetInternalLinkType(..)) where
+module TD.Query.GetInternalLinkType
+  (GetInternalLinkType(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetInternalLinkType where
           [ "@type" A..= AT.String "getInternalLinkType"
           , "link"  A..= link_
           ]
+

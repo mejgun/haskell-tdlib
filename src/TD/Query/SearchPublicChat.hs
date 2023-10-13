@@ -1,4 +1,6 @@
-module TD.Query.SearchPublicChat(SearchPublicChat(..)) where
+module TD.Query.SearchPublicChat
+  (SearchPublicChat(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON SearchPublicChat where
           [ "@type"    A..= AT.String "searchPublicChat"
           , "username" A..= username_
           ]
+

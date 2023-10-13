@@ -1,4 +1,6 @@
-module TD.Query.GetProxyLink(GetProxyLink(..)) where
+module TD.Query.GetProxyLink
+  (GetProxyLink(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON GetProxyLink where
           [ "@type"    A..= AT.String "getProxyLink"
           , "proxy_id" A..= proxy_id_
           ]
+

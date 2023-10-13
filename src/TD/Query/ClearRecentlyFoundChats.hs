@@ -1,4 +1,6 @@
-module TD.Query.ClearRecentlyFoundChats(ClearRecentlyFoundChats(..)) where
+module TD.Query.ClearRecentlyFoundChats
+  (ClearRecentlyFoundChats(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -18,3 +20,4 @@ instance AT.ToJSON ClearRecentlyFoundChats where
         = A.object
           [ "@type" A..= AT.String "clearRecentlyFoundChats"
           ]
+

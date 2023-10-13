@@ -1,4 +1,7 @@
-module TD.Query.FinishFileGeneration(FinishFileGeneration(..)) where
+module TD.Query.FinishFileGeneration
+  (FinishFileGeneration(..)
+  , defaultFinishFileGeneration
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -35,3 +38,11 @@ instance AT.ToJSON FinishFileGeneration where
           , "generation_id" A..= fmap I.writeInt64  generation_id_
           , "error"         A..= _error_
           ]
+
+defaultFinishFileGeneration :: FinishFileGeneration
+defaultFinishFileGeneration =
+  FinishFileGeneration
+    { generation_id = Nothing
+    , _error        = Nothing
+    }
+

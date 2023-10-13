@@ -1,4 +1,7 @@
-module TD.Query.GetForumTopics(GetForumTopics(..)) where
+module TD.Query.GetForumTopics
+  (GetForumTopics(..)
+  , defaultGetForumTopics
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,3 +58,15 @@ instance AT.ToJSON GetForumTopics where
           , "offset_message_thread_id" A..= offset_message_thread_id_
           , "limit"                    A..= limit_
           ]
+
+defaultGetForumTopics :: GetForumTopics
+defaultGetForumTopics =
+  GetForumTopics
+    { chat_id                  = Nothing
+    , query                    = Nothing
+    , offset_date              = Nothing
+    , offset_message_id        = Nothing
+    , offset_message_thread_id = Nothing
+    , limit                    = Nothing
+    }
+

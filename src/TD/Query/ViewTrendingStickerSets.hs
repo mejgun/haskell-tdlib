@@ -1,4 +1,6 @@
-module TD.Query.ViewTrendingStickerSets(ViewTrendingStickerSets(..)) where
+module TD.Query.ViewTrendingStickerSets
+  (ViewTrendingStickerSets(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -29,3 +31,4 @@ instance AT.ToJSON ViewTrendingStickerSets where
           [ "@type"           A..= AT.String "viewTrendingStickerSets"
           , "sticker_set_ids" A..= fmap (fmap I.writeInt64 ) sticker_set_ids_
           ]
+

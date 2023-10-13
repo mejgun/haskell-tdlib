@@ -1,4 +1,7 @@
-module TD.Query.ToggleSupergroupSignMessages(ToggleSupergroupSignMessages(..)) where
+module TD.Query.ToggleSupergroupSignMessages
+  (ToggleSupergroupSignMessages(..)
+  , defaultToggleSupergroupSignMessages
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -34,3 +37,11 @@ instance AT.ToJSON ToggleSupergroupSignMessages where
           , "supergroup_id" A..= supergroup_id_
           , "sign_messages" A..= sign_messages_
           ]
+
+defaultToggleSupergroupSignMessages :: ToggleSupergroupSignMessages
+defaultToggleSupergroupSignMessages =
+  ToggleSupergroupSignMessages
+    { supergroup_id = Nothing
+    , sign_messages = Nothing
+    }
+

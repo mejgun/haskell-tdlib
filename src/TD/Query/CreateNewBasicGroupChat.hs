@@ -1,4 +1,7 @@
-module TD.Query.CreateNewBasicGroupChat(CreateNewBasicGroupChat(..)) where
+module TD.Query.CreateNewBasicGroupChat
+  (CreateNewBasicGroupChat(..)
+  , defaultCreateNewBasicGroupChat
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -40,3 +43,12 @@ instance AT.ToJSON CreateNewBasicGroupChat where
           , "title"                    A..= title_
           , "message_auto_delete_time" A..= message_auto_delete_time_
           ]
+
+defaultCreateNewBasicGroupChat :: CreateNewBasicGroupChat
+defaultCreateNewBasicGroupChat =
+  CreateNewBasicGroupChat
+    { user_ids                 = Nothing
+    , title                    = Nothing
+    , message_auto_delete_time = Nothing
+    }
+

@@ -1,4 +1,6 @@
-module TD.Query.GetScopeNotificationSettings(GetScopeNotificationSettings(..)) where
+module TD.Query.GetScopeNotificationSettings
+  (GetScopeNotificationSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -30,3 +32,4 @@ instance AT.ToJSON GetScopeNotificationSettings where
           [ "@type" A..= AT.String "getScopeNotificationSettings"
           , "scope" A..= scope_
           ]
+
