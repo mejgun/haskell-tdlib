@@ -1,9 +1,7 @@
-module TD.Data.DownloadedFileCounts where
+module TD.Data.DownloadedFileCounts (DownloadedFileCounts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data DownloadedFileCounts
@@ -46,6 +44,7 @@ instance AT.FromJSON DownloadedFileCounts where
           , paused_count    = paused_count_
           , completed_count = completed_count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON DownloadedFileCounts where
   toJSON DownloadedFileCounts

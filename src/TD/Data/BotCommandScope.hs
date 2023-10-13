@@ -1,9 +1,7 @@
-module TD.Data.BotCommandScope where
+module TD.Data.BotCommandScope (BotCommandScope(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data BotCommandScope -- ^ Represents the scope to which bot commands are relevant
@@ -91,6 +89,7 @@ instance AT.FromJSON BotCommandScope where
           { chat_id = chat_id_
           , user_id = user_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON BotCommandScope where
   toJSON BotCommandScopeDefault

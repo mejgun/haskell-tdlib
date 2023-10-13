@@ -1,10 +1,7 @@
-module TD.Query.CancelPasswordReset where
+module TD.Query.CancelPasswordReset(CancelPasswordReset(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data CancelPasswordReset -- ^ Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
   = CancelPasswordReset

@@ -1,9 +1,7 @@
-module TD.Query.ToggleChatIsTranslatable where
+module TD.Query.ToggleChatIsTranslatable(ToggleChatIsTranslatable(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleChatIsTranslatable -- ^ Changes the translatable state of a chat; for Telegram Premium users only

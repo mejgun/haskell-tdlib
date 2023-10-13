@@ -1,9 +1,7 @@
-module TD.Query.EditMessageCaption where
+module TD.Query.EditMessageCaption(EditMessageCaption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.FormattedText as FormattedText

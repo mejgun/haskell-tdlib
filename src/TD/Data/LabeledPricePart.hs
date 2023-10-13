@@ -1,10 +1,9 @@
-module TD.Data.LabeledPricePart where
+module TD.Data.LabeledPricePart (LabeledPricePart(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data LabeledPricePart
   = LabeledPricePart -- ^ Portion of the price of a product (e.g., "delivery cost", "tax amount")
@@ -41,6 +40,7 @@ instance AT.FromJSON LabeledPricePart where
           { label  = label_
           , amount = amount_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LabeledPricePart where
   toJSON LabeledPricePart

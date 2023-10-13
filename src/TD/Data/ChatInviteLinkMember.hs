@@ -1,9 +1,7 @@
-module TD.Data.ChatInviteLinkMember where
+module TD.Data.ChatInviteLinkMember (ChatInviteLinkMember(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatInviteLinkMember
@@ -51,6 +49,7 @@ instance AT.FromJSON ChatInviteLinkMember where
           , via_chat_folder_invite_link = via_chat_folder_invite_link_
           , approver_user_id            = approver_user_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatInviteLinkMember where
   toJSON ChatInviteLinkMember

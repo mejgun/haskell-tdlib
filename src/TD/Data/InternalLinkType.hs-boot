@@ -1,4 +1,4 @@
-module TD.Data.InternalLinkType where
+module TD.Data.InternalLinkType (InternalLinkType) where
 
 import Data.Aeson.Types (FromJSON, ToJSON)
 

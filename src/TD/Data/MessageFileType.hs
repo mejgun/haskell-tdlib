@@ -1,10 +1,9 @@
-module TD.Data.MessageFileType where
+module TD.Data.MessageFileType (MessageFileType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data MessageFileType -- ^ Contains information about a file with messages exported from another app
   = MessageFileTypePrivate -- ^ The messages was exported from a private chat
@@ -57,6 +56,7 @@ instance AT.FromJSON MessageFileType where
         pure $ MessageFileTypeGroup
           { title = title_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageFileType where
   toJSON MessageFileTypePrivate

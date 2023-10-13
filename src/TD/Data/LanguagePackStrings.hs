@@ -1,9 +1,7 @@
-module TD.Data.LanguagePackStrings where
+module TD.Data.LanguagePackStrings (LanguagePackStrings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.LanguagePackString as LanguagePackString
 
@@ -37,6 +35,7 @@ instance AT.FromJSON LanguagePackStrings where
         pure $ LanguagePackStrings
           { strings = strings_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LanguagePackStrings where
   toJSON LanguagePackStrings

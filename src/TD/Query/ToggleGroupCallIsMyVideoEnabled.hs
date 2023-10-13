@@ -1,9 +1,7 @@
-module TD.Query.ToggleGroupCallIsMyVideoEnabled where
+module TD.Query.ToggleGroupCallIsMyVideoEnabled(ToggleGroupCallIsMyVideoEnabled(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleGroupCallIsMyVideoEnabled -- ^ Toggles whether current user's video is enabled

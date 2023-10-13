@@ -1,9 +1,7 @@
-module TD.Query.ToggleChatDefaultDisableNotification where
+module TD.Query.ToggleChatDefaultDisableNotification(ToggleChatDefaultDisableNotification(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleChatDefaultDisableNotification -- ^ Changes the value of the default disable_notification parameter, used when a message is sent to a chat

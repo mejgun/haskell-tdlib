@@ -1,10 +1,9 @@
-module TD.Query.SetAuthenticationEmailAddress where
+module TD.Query.SetAuthenticationEmailAddress(SetAuthenticationEmailAddress(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetAuthenticationEmailAddress -- ^ Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
   = SetAuthenticationEmailAddress

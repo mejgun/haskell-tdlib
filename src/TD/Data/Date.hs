@@ -1,9 +1,7 @@
-module TD.Data.Date where
+module TD.Data.Date (Date(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data Date
@@ -46,6 +44,7 @@ instance AT.FromJSON Date where
           , month = month_
           , year  = year_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Date where
   toJSON Date

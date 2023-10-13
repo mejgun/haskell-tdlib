@@ -1,9 +1,7 @@
-module TD.Data.MessagePositions where
+module TD.Data.MessagePositions (MessagePositions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessagePosition as MessagePosition
 
@@ -42,6 +40,7 @@ instance AT.FromJSON MessagePositions where
           { total_count = total_count_
           , positions   = positions_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessagePositions where
   toJSON MessagePositions

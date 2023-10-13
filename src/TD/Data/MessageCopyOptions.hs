@@ -1,9 +1,7 @@
-module TD.Data.MessageCopyOptions where
+module TD.Data.MessageCopyOptions (MessageCopyOptions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
@@ -47,6 +45,7 @@ instance AT.FromJSON MessageCopyOptions where
           , replace_caption = replace_caption_
           , new_caption     = new_caption_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageCopyOptions where
   toJSON MessageCopyOptions

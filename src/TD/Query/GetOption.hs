@@ -1,10 +1,9 @@
-module TD.Query.GetOption where
+module TD.Query.GetOption(GetOption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetOption -- ^ Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
   = GetOption

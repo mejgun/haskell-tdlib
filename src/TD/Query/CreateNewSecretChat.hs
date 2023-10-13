@@ -1,9 +1,7 @@
-module TD.Query.CreateNewSecretChat where
+module TD.Query.CreateNewSecretChat(CreateNewSecretChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data CreateNewSecretChat -- ^ Creates a new secret chat. Returns the newly created chat

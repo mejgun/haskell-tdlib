@@ -1,9 +1,7 @@
-module TD.Data.MessageInteractionInfo where
+module TD.Data.MessageInteractionInfo (MessageInteractionInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageReplyInfo as MessageReplyInfo
 import qualified TD.Data.MessageReaction as MessageReaction
@@ -53,6 +51,7 @@ instance AT.FromJSON MessageInteractionInfo where
           , reply_info    = reply_info_
           , reactions     = reactions_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageInteractionInfo where
   toJSON MessageInteractionInfo

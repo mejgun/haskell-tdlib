@@ -1,10 +1,9 @@
-module TD.Query.DeleteLanguagePack where
+module TD.Query.DeleteLanguagePack(DeleteLanguagePack(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data DeleteLanguagePack -- ^ Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
   = DeleteLanguagePack

@@ -1,10 +1,9 @@
-module TD.Query.CheckEmailAddressVerificationCode where
+module TD.Query.CheckEmailAddressVerificationCode(CheckEmailAddressVerificationCode(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CheckEmailAddressVerificationCode -- ^ Checks the email address verification code for Telegram Passport
   = CheckEmailAddressVerificationCode

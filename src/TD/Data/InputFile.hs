@@ -1,10 +1,9 @@
-module TD.Data.InputFile where
+module TD.Data.InputFile (InputFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data InputFile -- ^ Points to a file
   = InputFileId -- ^ A file defined by its unique ID
@@ -97,6 +96,7 @@ instance AT.FromJSON InputFile where
           , conversion    = conversion_
           , expected_size = expected_size_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputFile where
   toJSON InputFileId

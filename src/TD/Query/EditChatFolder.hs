@@ -1,9 +1,7 @@
-module TD.Query.EditChatFolder where
+module TD.Query.EditChatFolder(EditChatFolder(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
 

@@ -1,11 +1,10 @@
-module TD.Data.PageBlock where
+module TD.Data.PageBlock (PageBlock(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
-import {-# SOURCE #-} qualified TD.Data.RichText as RichText
+import qualified TD.Data.RichText as RichText
+import qualified Data.Text as T
 import {-# SOURCE #-} qualified TD.Data.PageBlockListItem as PageBlockListItem
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.PageBlockCaption as PageBlockCaption
@@ -706,6 +705,7 @@ instance AT.FromJSON PageBlock where
           , height   = height_
           , caption  = caption_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PageBlock where
   toJSON PageBlockTitle

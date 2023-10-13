@@ -1,10 +1,9 @@
-module TD.Data.GroupCallVideoSourceGroup where
+module TD.Data.GroupCallVideoSourceGroup (GroupCallVideoSourceGroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GroupCallVideoSourceGroup
   = GroupCallVideoSourceGroup -- ^ Describes a group of video synchronization source identifiers
@@ -41,6 +40,7 @@ instance AT.FromJSON GroupCallVideoSourceGroup where
           { semantics  = semantics_
           , source_ids = source_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON GroupCallVideoSourceGroup where
   toJSON GroupCallVideoSourceGroup

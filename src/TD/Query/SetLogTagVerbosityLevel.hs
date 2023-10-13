@@ -1,10 +1,9 @@
-module TD.Query.SetLogTagVerbosityLevel where
+module TD.Query.SetLogTagVerbosityLevel(SetLogTagVerbosityLevel(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetLogTagVerbosityLevel -- ^ Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
   = SetLogTagVerbosityLevel

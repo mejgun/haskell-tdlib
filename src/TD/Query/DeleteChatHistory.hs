@@ -1,9 +1,7 @@
-module TD.Query.DeleteChatHistory where
+module TD.Query.DeleteChatHistory(DeleteChatHistory(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data DeleteChatHistory -- ^ Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat

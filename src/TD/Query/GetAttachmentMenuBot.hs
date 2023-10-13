@@ -1,9 +1,7 @@
-module TD.Query.GetAttachmentMenuBot where
+module TD.Query.GetAttachmentMenuBot(GetAttachmentMenuBot(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetAttachmentMenuBot -- ^ Returns information about a bot that can be added to attachment menu

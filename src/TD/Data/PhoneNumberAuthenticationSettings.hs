@@ -1,11 +1,10 @@
-module TD.Data.PhoneNumberAuthenticationSettings where
+module TD.Data.PhoneNumberAuthenticationSettings (PhoneNumberAuthenticationSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FirebaseAuthenticationSettings as FirebaseAuthenticationSettings
+import qualified Data.Text as T
 
 data PhoneNumberAuthenticationSettings
   = PhoneNumberAuthenticationSettings -- ^ Contains settings for the authentication of the user's phone number
@@ -62,6 +61,7 @@ instance AT.FromJSON PhoneNumberAuthenticationSettings where
           , firebase_authentication_settings = firebase_authentication_settings_
           , authentication_tokens            = authentication_tokens_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PhoneNumberAuthenticationSettings where
   toJSON PhoneNumberAuthenticationSettings

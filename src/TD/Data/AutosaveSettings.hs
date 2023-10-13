@@ -1,9 +1,7 @@
-module TD.Data.AutosaveSettings where
+module TD.Data.AutosaveSettings (AutosaveSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
 import qualified TD.Data.AutosaveSettingsException as AutosaveSettingsException
@@ -53,6 +51,7 @@ instance AT.FromJSON AutosaveSettings where
           , channel_settings      = channel_settings_
           , exceptions            = exceptions_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AutosaveSettings where
   toJSON AutosaveSettings

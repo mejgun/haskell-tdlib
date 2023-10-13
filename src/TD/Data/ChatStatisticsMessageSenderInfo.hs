@@ -1,9 +1,7 @@
-module TD.Data.ChatStatisticsMessageSenderInfo where
+module TD.Data.ChatStatisticsMessageSenderInfo (ChatStatisticsMessageSenderInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatStatisticsMessageSenderInfo
@@ -46,6 +44,7 @@ instance AT.FromJSON ChatStatisticsMessageSenderInfo where
           , sent_message_count      = sent_message_count_
           , average_character_count = average_character_count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatStatisticsMessageSenderInfo where
   toJSON ChatStatisticsMessageSenderInfo

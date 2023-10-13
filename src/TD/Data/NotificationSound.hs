@@ -1,10 +1,9 @@
-module TD.Data.NotificationSound where
+module TD.Data.NotificationSound (NotificationSound(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.File as File
 
 data NotificationSound
@@ -62,6 +61,7 @@ instance AT.FromJSON NotificationSound where
           , _data    = _data_
           , sound    = sound_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON NotificationSound where
   toJSON NotificationSound

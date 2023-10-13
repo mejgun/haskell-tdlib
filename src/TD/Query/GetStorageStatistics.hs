@@ -1,9 +1,7 @@
-module TD.Query.GetStorageStatistics where
+module TD.Query.GetStorageStatistics(GetStorageStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetStorageStatistics -- ^ Returns storage usage statistics. Can be called before authorization

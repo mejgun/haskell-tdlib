@@ -1,9 +1,7 @@
-module TD.Data.FileDownload where
+module TD.Data.FileDownload (FileDownload(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Message as Message
 
@@ -57,6 +55,7 @@ instance AT.FromJSON FileDownload where
           , complete_date = complete_date_
           , is_paused     = is_paused_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON FileDownload where
   toJSON FileDownload

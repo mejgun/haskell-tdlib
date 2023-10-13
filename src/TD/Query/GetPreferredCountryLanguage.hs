@@ -1,10 +1,9 @@
-module TD.Query.GetPreferredCountryLanguage where
+module TD.Query.GetPreferredCountryLanguage(GetPreferredCountryLanguage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetPreferredCountryLanguage -- ^ Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
   = GetPreferredCountryLanguage

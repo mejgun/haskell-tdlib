@@ -1,9 +1,7 @@
-module TD.Data.ChatType where
+module TD.Data.ChatType (ChatType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatType -- ^ Describes the type of a chat
@@ -97,6 +95,7 @@ instance AT.FromJSON ChatType where
           { secret_chat_id = secret_chat_id_
           , user_id        = user_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatType where
   toJSON ChatTypePrivate

@@ -1,9 +1,7 @@
-module TD.Query.RemoveNotificationGroup where
+module TD.Query.RemoveNotificationGroup(RemoveNotificationGroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data RemoveNotificationGroup -- ^ Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user

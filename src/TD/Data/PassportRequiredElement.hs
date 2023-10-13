@@ -1,9 +1,7 @@
-module TD.Data.PassportRequiredElement where
+module TD.Data.PassportRequiredElement (PassportRequiredElement(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportSuitableElement as PassportSuitableElement
 
@@ -37,6 +35,7 @@ instance AT.FromJSON PassportRequiredElement where
         pure $ PassportRequiredElement
           { suitable_elements = suitable_elements_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PassportRequiredElement where
   toJSON PassportRequiredElement

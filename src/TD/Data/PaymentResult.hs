@@ -1,10 +1,9 @@
-module TD.Data.PaymentResult where
+module TD.Data.PaymentResult (PaymentResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data PaymentResult
   = PaymentResult -- ^ Contains the result of a payment request
@@ -41,6 +40,7 @@ instance AT.FromJSON PaymentResult where
           { success          = success_
           , verification_url = verification_url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PaymentResult where
   toJSON PaymentResult

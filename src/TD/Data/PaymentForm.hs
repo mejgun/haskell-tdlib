@@ -1,15 +1,14 @@
-module TD.Data.PaymentForm where
+module TD.Data.PaymentForm (PaymentForm(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Invoice as Invoice
 import qualified TD.Data.PaymentProvider as PaymentProvider
 import qualified TD.Data.PaymentOption as PaymentOption
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.SavedCredentials as SavedCredentials
+import qualified Data.Text as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Photo as Photo
 
@@ -103,6 +102,7 @@ instance AT.FromJSON PaymentForm where
           , product_description        = product_description_
           , product_photo              = product_photo_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PaymentForm where
   toJSON PaymentForm

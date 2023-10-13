@@ -1,10 +1,9 @@
-module TD.Query.GetChatInviteLink where
+module TD.Query.GetChatInviteLink(GetChatInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetChatInviteLink -- ^ Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
   = GetChatInviteLink

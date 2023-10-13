@@ -1,19 +1,28 @@
-module TD.Lib.Internal where
+module TD.Lib.Internal
+  ( Extra (..),
+    p,
+    cc,
+    readInt64,
+    writeInt64,
+    readBytes,
+    writeBytes,
+  )
+where
 
-import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as AT
-import qualified Data.ByteString as BS
-import qualified Data.ByteString.Base64 as B64
+import Data.Aeson qualified as A
+import Data.Aeson.Types qualified as AT
+import Data.ByteString qualified as BS
+import Data.ByteString.Base64 qualified as B64
 import Data.List (intercalate)
-import qualified Data.Text as T
-import qualified Data.Text.Encoding as TE
-import qualified Text.Read as TR (readMaybe)
+import Data.Text qualified as T
+import Data.Text.Encoding qualified as TE
 
 newtype Extra = Extra String
   deriving (Eq)
 
 instance AT.FromJSON Extra where
-  parseJSON v@(AT.Object obj) = Extra <$> obj A..: "@extra"
+  parseJSON (AT.Object obj) = Extra <$> obj A..: "@extra"
+  parseJSON _ = mempty
 
 p :: (Show a) => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -26,8 +35,8 @@ cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
 readInt64 :: String -> Int
 readInt64 = read
 
-readListInt64 :: Maybe [String] -> Maybe [Int]
-readListInt64 = fmap (map read)
+writeInt64 :: Int -> AT.Value
+writeInt64 = AT.String . T.pack . show
 
 -- decode base64 string as bytestring
 readBytes :: String -> BS.ByteString
@@ -36,6 +45,3 @@ readBytes = B64.decodeLenient . TE.encodeUtf8 . T.pack
 -- encode bytestring as base64 string
 writeBytes :: BS.ByteString -> AT.Value
 writeBytes x = AT.String . TE.decodeUtf8 $ B64.encode x
-
-writeInt64 :: Int -> AT.Value
-writeInt64 = AT.String . T.pack . show

@@ -1,10 +1,9 @@
-module TD.Data.PassportElementErrorSource where
+module TD.Data.PassportElementErrorSource (PassportElementErrorSource(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data PassportElementErrorSource -- ^ Contains the description of an error in a Telegram Passport element
   = PassportElementErrorSourceUnspecified -- ^ The element contains an error in an unspecified place. The error will be considered resolved when new data is added
@@ -94,6 +93,7 @@ instance AT.FromJSON PassportElementErrorSource where
         pure $ PassportElementErrorSourceFile
           { file_index = file_index_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PassportElementErrorSource where
   toJSON PassportElementErrorSourceUnspecified

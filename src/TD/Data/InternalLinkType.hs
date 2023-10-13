@@ -1,11 +1,10 @@
-module TD.Data.InternalLinkType where
+module TD.Data.InternalLinkType (InternalLinkType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import {-# SOURCE #-} qualified TD.Data.TargetChat as TargetChat
+import qualified Data.Text as T
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ProxyType as ProxyType
@@ -645,6 +644,7 @@ instance AT.FromJSON InternalLinkType where
           , web_app_short_name = web_app_short_name_
           , start_parameter    = start_parameter_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeActiveSessions

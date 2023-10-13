@@ -1,9 +1,7 @@
-module TD.Data.TrendingStickerSets where
+module TD.Data.TrendingStickerSets (TrendingStickerSets(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerSetInfo as StickerSetInfo
 
@@ -47,6 +45,7 @@ instance AT.FromJSON TrendingStickerSets where
           , sets        = sets_
           , is_premium  = is_premium_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TrendingStickerSets where
   toJSON TrendingStickerSets

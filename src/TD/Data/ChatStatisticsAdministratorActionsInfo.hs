@@ -1,9 +1,7 @@
-module TD.Data.ChatStatisticsAdministratorActionsInfo where
+module TD.Data.ChatStatisticsAdministratorActionsInfo (ChatStatisticsAdministratorActionsInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatStatisticsAdministratorActionsInfo
@@ -51,6 +49,7 @@ instance AT.FromJSON ChatStatisticsAdministratorActionsInfo where
           , banned_user_count     = banned_user_count_
           , restricted_user_count = restricted_user_count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatStatisticsAdministratorActionsInfo where
   toJSON ChatStatisticsAdministratorActionsInfo

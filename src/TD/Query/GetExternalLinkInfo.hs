@@ -1,10 +1,9 @@
-module TD.Query.GetExternalLinkInfo where
+module TD.Query.GetExternalLinkInfo(GetExternalLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetExternalLinkInfo -- ^ Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
   = GetExternalLinkInfo

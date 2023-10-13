@@ -1,9 +1,7 @@
-module TD.Query.PingProxy where
+module TD.Query.PingProxy(PingProxy(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data PingProxy -- ^ Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization

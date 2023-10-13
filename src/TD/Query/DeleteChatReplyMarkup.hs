@@ -1,9 +1,7 @@
-module TD.Query.DeleteChatReplyMarkup where
+module TD.Query.DeleteChatReplyMarkup(DeleteChatReplyMarkup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data DeleteChatReplyMarkup -- ^ Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed

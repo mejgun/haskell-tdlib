@@ -1,9 +1,7 @@
-module TD.Data.ArchiveChatListSettings where
+module TD.Data.ArchiveChatListSettings (ArchiveChatListSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ArchiveChatListSettings
@@ -46,6 +44,7 @@ instance AT.FromJSON ArchiveChatListSettings where
           , keep_unmuted_chats_archived                   = keep_unmuted_chats_archived_
           , keep_chats_from_folders_archived              = keep_chats_from_folders_archived_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ArchiveChatListSettings where
   toJSON ArchiveChatListSettings

@@ -1,9 +1,7 @@
-module TD.Query.GetForumTopicLink where
+module TD.Query.GetForumTopicLink(GetForumTopicLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetForumTopicLink -- ^ Returns an HTTPS link to a topic in a forum chat. This is an offline request

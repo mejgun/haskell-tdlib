@@ -1,9 +1,7 @@
-module TD.Query.GetBlockedMessageSenders where
+module TD.Query.GetBlockedMessageSenders(GetBlockedMessageSenders(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetBlockedMessageSenders -- ^ Returns users and chats that were blocked by the current user

@@ -1,10 +1,9 @@
-module TD.Query.SetName where
+module TD.Query.SetName(SetName(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetName -- ^ Changes the first and last name of the current user
   = SetName

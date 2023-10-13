@@ -1,10 +1,7 @@
-module TD.Data.NetworkType where
+module TD.Data.NetworkType (NetworkType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data NetworkType -- ^ Represents the type of a network
   = NetworkTypeNone -- ^ The network is not available
@@ -27,7 +24,7 @@ instance Show NetworkType where
       = "NetworkTypeOther"
 
 instance AT.FromJSON NetworkType where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -38,6 +35,7 @@ instance AT.FromJSON NetworkType where
       "networkTypeOther"         -> pure NetworkTypeOther
       _                          -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON NetworkType where
   toJSON NetworkTypeNone

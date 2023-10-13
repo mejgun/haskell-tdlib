@@ -1,9 +1,7 @@
-module TD.Query.GetChatMessageByDate where
+module TD.Query.GetChatMessageByDate(GetChatMessageByDate(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatMessageByDate -- ^ Returns the last message sent in a chat no later than the specified date

@@ -1,9 +1,7 @@
-module TD.Data.Countries where
+module TD.Data.Countries (Countries(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.CountryInfo as CountryInfo
 
@@ -37,6 +35,7 @@ instance AT.FromJSON Countries where
         pure $ Countries
           { countries = countries_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Countries where
   toJSON Countries

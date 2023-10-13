@@ -1,10 +1,9 @@
-module TD.Data.PaymentReceipt where
+module TD.Data.PaymentReceipt (PaymentReceipt(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Invoice as Invoice
@@ -91,6 +90,7 @@ instance AT.FromJSON PaymentReceipt where
           , credentials_title        = credentials_title_
           , tip_amount               = tip_amount_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PaymentReceipt where
   toJSON PaymentReceipt

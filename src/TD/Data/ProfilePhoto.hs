@@ -1,9 +1,7 @@
-module TD.Data.ProfilePhoto where
+module TD.Data.ProfilePhoto (ProfilePhoto(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.File as File
 import qualified TD.Data.Minithumbnail as Minithumbnail
@@ -63,6 +61,7 @@ instance AT.FromJSON ProfilePhoto where
           , has_animation = has_animation_
           , is_personal   = is_personal_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ProfilePhoto where
   toJSON ProfilePhoto

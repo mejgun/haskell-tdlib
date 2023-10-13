@@ -1,10 +1,9 @@
-module TD.Data.ValidatedOrderInfo where
+module TD.Data.ValidatedOrderInfo (ValidatedOrderInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ShippingOption as ShippingOption
 
 data ValidatedOrderInfo
@@ -42,6 +41,7 @@ instance AT.FromJSON ValidatedOrderInfo where
           { order_info_id    = order_info_id_
           , shipping_options = shipping_options_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ValidatedOrderInfo where
   toJSON ValidatedOrderInfo

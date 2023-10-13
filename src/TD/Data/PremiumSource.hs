@@ -1,12 +1,11 @@
-module TD.Data.PremiumSource where
+module TD.Data.PremiumSource (PremiumSource(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumLimitType as PremiumLimitType
 import qualified TD.Data.PremiumFeature as PremiumFeature
+import qualified Data.Text as T
 
 data PremiumSource -- ^ Describes a source from which the Premium features screen is opened
   = PremiumSourceLimitExceeded -- ^ A limit was exceeded
@@ -76,6 +75,7 @@ instance AT.FromJSON PremiumSource where
         pure $ PremiumSourceLink
           { referrer = referrer_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PremiumSource where
   toJSON PremiumSourceLimitExceeded

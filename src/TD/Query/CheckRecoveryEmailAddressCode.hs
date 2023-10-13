@@ -1,10 +1,9 @@
-module TD.Query.CheckRecoveryEmailAddressCode where
+module TD.Query.CheckRecoveryEmailAddressCode(CheckRecoveryEmailAddressCode(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CheckRecoveryEmailAddressCode -- ^ Checks the 2-step verification recovery email address verification code
   = CheckRecoveryEmailAddressCode

@@ -1,9 +1,7 @@
-module TD.Query.GetChatFolderChatsToLeave where
+module TD.Query.GetChatFolderChatsToLeave(GetChatFolderChatsToLeave(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatFolderChatsToLeave -- ^ Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted

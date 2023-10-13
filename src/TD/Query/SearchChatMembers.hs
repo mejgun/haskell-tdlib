@@ -1,10 +1,9 @@
-module TD.Query.SearchChatMembers where
+module TD.Query.SearchChatMembers(SearchChatMembers(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ChatMembersFilter as ChatMembersFilter
 
 data SearchChatMembers -- ^ Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels

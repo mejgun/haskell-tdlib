@@ -1,13 +1,11 @@
-module TD.Data.PremiumFeatures where
+module TD.Data.PremiumFeatures (PremiumFeatures(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumFeature as PremiumFeature
 import qualified TD.Data.PremiumLimit as PremiumLimit
-import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
+import qualified TD.Data.InternalLinkType as InternalLinkType
 
 data PremiumFeatures
   = PremiumFeatures -- ^ Contains information about features, available to Premium users
@@ -49,6 +47,7 @@ instance AT.FromJSON PremiumFeatures where
           , limits       = limits_
           , payment_link = payment_link_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PremiumFeatures where
   toJSON PremiumFeatures

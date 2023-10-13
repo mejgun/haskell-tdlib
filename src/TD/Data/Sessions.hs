@@ -1,9 +1,7 @@
-module TD.Data.Sessions where
+module TD.Data.Sessions (Sessions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Session as Session
 
@@ -42,6 +40,7 @@ instance AT.FromJSON Sessions where
           { sessions                  = sessions_
           , inactive_session_ttl_days = inactive_session_ttl_days_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Sessions where
   toJSON Sessions

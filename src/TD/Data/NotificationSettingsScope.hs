@@ -1,10 +1,7 @@
-module TD.Data.NotificationSettingsScope where
+module TD.Data.NotificationSettingsScope (NotificationSettingsScope(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data NotificationSettingsScope -- ^ Describes the types of chats to which notification settings are relevant
   = NotificationSettingsScopePrivateChats -- ^ Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
@@ -21,7 +18,7 @@ instance Show NotificationSettingsScope where
       = "NotificationSettingsScopeChannelChats"
 
 instance AT.FromJSON NotificationSettingsScope where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -30,6 +27,7 @@ instance AT.FromJSON NotificationSettingsScope where
       "notificationSettingsScopeChannelChats" -> pure NotificationSettingsScopeChannelChats
       _                                       -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON NotificationSettingsScope where
   toJSON NotificationSettingsScopePrivateChats

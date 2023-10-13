@@ -1,9 +1,7 @@
-module TD.Data.DiceStickers where
+module TD.Data.DiceStickers (DiceStickers(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Sticker as Sticker
 
@@ -74,6 +72,7 @@ instance AT.FromJSON DiceStickers where
           , center_reel = center_reel_
           , right_reel  = right_reel_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON DiceStickers where
   toJSON DiceStickersRegular

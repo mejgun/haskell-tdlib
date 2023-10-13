@@ -1,10 +1,9 @@
-module TD.Data.ChatActionBar where
+module TD.Data.ChatActionBar (ChatActionBar(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ChatActionBar -- ^ Describes actions which must be possible to do through a chat action bar
   = ChatActionBarReportSpam -- ^ The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
@@ -101,6 +100,7 @@ instance AT.FromJSON ChatActionBar where
           , is_channel   = is_channel_
           , request_date = request_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatActionBar where
   toJSON ChatActionBarReportSpam

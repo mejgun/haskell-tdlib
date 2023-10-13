@@ -1,11 +1,10 @@
-module TD.Data.InputSticker where
+module TD.Data.InputSticker (InputSticker(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
+import qualified Data.Text as T
 import qualified TD.Data.MaskPosition as MaskPosition
 
 data InputSticker
@@ -53,6 +52,7 @@ instance AT.FromJSON InputSticker where
           , mask_position = mask_position_
           , keywords      = keywords_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputSticker where
   toJSON InputSticker

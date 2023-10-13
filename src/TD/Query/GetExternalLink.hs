@@ -1,10 +1,9 @@
-module TD.Query.GetExternalLink where
+module TD.Query.GetExternalLink(GetExternalLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetExternalLink -- ^ Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
   = GetExternalLink

@@ -1,10 +1,9 @@
-module TD.Data.User where
+module TD.Data.User (User(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Usernames as Usernames
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
@@ -151,6 +150,7 @@ instance AT.FromJSON User where
           , language_code             = language_code_
           , added_to_attachment_menu  = added_to_attachment_menu_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON User where
   toJSON User

@@ -1,9 +1,7 @@
-module TD.Query.GetChatFolder where
+module TD.Query.GetChatFolder(GetChatFolder(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatFolder -- ^ Returns information about a chat folder by its identifier

@@ -1,9 +1,7 @@
-module TD.Data.ChatInviteLinkCounts where
+module TD.Data.ChatInviteLinkCounts (ChatInviteLinkCounts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatInviteLinkCount as ChatInviteLinkCount
 
@@ -37,6 +35,7 @@ instance AT.FromJSON ChatInviteLinkCounts where
         pure $ ChatInviteLinkCounts
           { invite_link_counts = invite_link_counts_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatInviteLinkCounts where
   toJSON ChatInviteLinkCounts

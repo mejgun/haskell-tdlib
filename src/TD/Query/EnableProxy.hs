@@ -1,9 +1,7 @@
-module TD.Query.EnableProxy where
+module TD.Query.EnableProxy(EnableProxy(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data EnableProxy -- ^ Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization

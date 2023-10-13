@@ -1,9 +1,7 @@
-module TD.Data.NetworkStatisticsEntry where
+module TD.Data.NetworkStatisticsEntry (NetworkStatisticsEntry(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FileType as FileType
 import qualified TD.Data.NetworkType as NetworkType
@@ -85,6 +83,7 @@ instance AT.FromJSON NetworkStatisticsEntry where
           , received_bytes = received_bytes_
           , duration       = duration_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON NetworkStatisticsEntry where
   toJSON NetworkStatisticsEntryFile

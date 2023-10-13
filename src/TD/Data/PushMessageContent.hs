@@ -1,11 +1,10 @@
-module TD.Data.PushMessageContent where
+module TD.Data.PushMessageContent (PushMessageContent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Animation as Animation
+import qualified Data.Text as T
 import qualified TD.Data.Audio as Audio
 import qualified TD.Data.Document as Document
 import qualified TD.Data.Photo as Photo
@@ -635,6 +634,7 @@ instance AT.FromJSON PushMessageContent where
           , has_audios    = has_audios_
           , has_documents = has_documents_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PushMessageContent where
   toJSON PushMessageContentHidden

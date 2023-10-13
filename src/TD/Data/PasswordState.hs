@@ -1,10 +1,9 @@
-module TD.Data.PasswordState where
+module TD.Data.PasswordState (PasswordState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 
 data PasswordState
@@ -67,6 +66,7 @@ instance AT.FromJSON PasswordState where
           , login_email_address_pattern      = login_email_address_pattern_
           , pending_reset_date               = pending_reset_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PasswordState where
   toJSON PasswordState

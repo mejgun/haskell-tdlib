@@ -1,9 +1,7 @@
-module TD.Data.MessageContent where
+module TD.Data.MessageContent (MessageContent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.WebPage as WebPage
@@ -19,6 +17,7 @@ import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
+import qualified Data.Text as T
 import qualified TD.Data.DiceStickers as DiceStickers
 import qualified TD.Data.Game as Game
 import qualified TD.Data.Poll as Poll
@@ -27,6 +26,7 @@ import qualified TD.Data.CallDiscardReason as CallDiscardReason
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
+import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.WebApp as WebApp
 import qualified TD.Data.PassportElementType as PassportElementType
@@ -1377,6 +1377,7 @@ instance AT.FromJSON MessageContent where
           , watcher_id  = watcher_id_
           , distance    = distance_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageContent where
   toJSON MessageText

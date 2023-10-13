@@ -1,9 +1,7 @@
-module TD.Data.Chats where
+module TD.Data.Chats (Chats(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data Chats
@@ -41,6 +39,7 @@ instance AT.FromJSON Chats where
           { total_count = total_count_
           , chat_ids    = chat_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Chats where
   toJSON Chats

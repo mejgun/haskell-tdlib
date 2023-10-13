@@ -1,11 +1,9 @@
-module TD.Data.PageBlockTableCell where
+module TD.Data.PageBlockTableCell (PageBlockTableCell(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
-import {-# SOURCE #-} qualified TD.Data.RichText as RichText
+import qualified TD.Data.RichText as RichText
 import qualified TD.Data.PageBlockHorizontalAlignment as PageBlockHorizontalAlignment
 import qualified TD.Data.PageBlockVerticalAlignment as PageBlockVerticalAlignment
 
@@ -64,6 +62,7 @@ instance AT.FromJSON PageBlockTableCell where
           , align     = align_
           , valign    = valign_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PageBlockTableCell where
   toJSON PageBlockTableCell

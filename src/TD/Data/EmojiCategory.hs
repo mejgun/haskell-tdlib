@@ -1,10 +1,9 @@
-module TD.Data.EmojiCategory where
+module TD.Data.EmojiCategory (EmojiCategory(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Sticker as Sticker
 
 data EmojiCategory
@@ -47,6 +46,7 @@ instance AT.FromJSON EmojiCategory where
           , icon   = icon_
           , emojis = emojis_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmojiCategory where
   toJSON EmojiCategory

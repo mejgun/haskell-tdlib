@@ -1,9 +1,7 @@
-module TD.Data.FoundWebApp where
+module TD.Data.FoundWebApp (FoundWebApp(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.WebApp as WebApp
 
@@ -47,6 +45,7 @@ instance AT.FromJSON FoundWebApp where
           , request_write_access = request_write_access_
           , skip_confirmation    = skip_confirmation_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON FoundWebApp where
   toJSON FoundWebApp

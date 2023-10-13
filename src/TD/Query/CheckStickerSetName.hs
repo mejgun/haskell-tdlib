@@ -1,10 +1,9 @@
-module TD.Query.CheckStickerSetName where
+module TD.Query.CheckStickerSetName(CheckStickerSetName(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CheckStickerSetName -- ^ Checks whether a name can be used for a new sticker set
   = CheckStickerSetName

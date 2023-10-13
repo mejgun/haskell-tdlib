@@ -1,9 +1,7 @@
-module TD.Data.ChatFolderInviteLinkInfo where
+module TD.Data.ChatFolderInviteLinkInfo (ChatFolderInviteLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
 
@@ -47,6 +45,7 @@ instance AT.FromJSON ChatFolderInviteLinkInfo where
           , missing_chat_ids = missing_chat_ids_
           , added_chat_ids   = added_chat_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatFolderInviteLinkInfo where
   toJSON ChatFolderInviteLinkInfo

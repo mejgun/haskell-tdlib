@@ -1,10 +1,7 @@
-module TD.Data.TopChatCategory where
+module TD.Data.TopChatCategory (TopChatCategory(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data TopChatCategory -- ^ Represents the categories of chats for which a list of frequently used chats can be retrieved
   = TopChatCategoryUsers -- ^ A category containing frequently used private chats with non-bot users
@@ -33,7 +30,7 @@ instance Show TopChatCategory where
       = "TopChatCategoryForwardChats"
 
 instance AT.FromJSON TopChatCategory where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -46,6 +43,7 @@ instance AT.FromJSON TopChatCategory where
       "topChatCategoryForwardChats" -> pure TopChatCategoryForwardChats
       _                             -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON TopChatCategory where
   toJSON TopChatCategoryUsers

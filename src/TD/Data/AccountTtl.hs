@@ -1,9 +1,7 @@
-module TD.Data.AccountTtl where
+module TD.Data.AccountTtl (AccountTtl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data AccountTtl
@@ -36,6 +34,7 @@ instance AT.FromJSON AccountTtl where
         pure $ AccountTtl
           { days = days_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AccountTtl where
   toJSON AccountTtl

@@ -1,9 +1,7 @@
-module TD.Data.Photo where
+module TD.Data.Photo (Photo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.PhotoSize as PhotoSize
@@ -48,6 +46,7 @@ instance AT.FromJSON Photo where
           , minithumbnail = minithumbnail_
           , sizes         = sizes_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Photo where
   toJSON Photo

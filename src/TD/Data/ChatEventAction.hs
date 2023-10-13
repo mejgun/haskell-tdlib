@@ -1,15 +1,14 @@
-module TD.Data.ChatEventAction where
+module TD.Data.ChatEventAction (ChatEventAction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Message as Message
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
+import qualified Data.Text as T
 import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPhoto as ChatPhoto
@@ -880,6 +879,7 @@ instance AT.FromJSON ChatEventAction where
           { old_topic_info = old_topic_info_
           , new_topic_info = new_topic_info_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatEventAction where
   toJSON ChatEventMessageEdited

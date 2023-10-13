@@ -1,9 +1,7 @@
-module TD.Data.Message where
+module TD.Data.Message (Message(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.MessageSendingState as MessageSendingState
@@ -12,6 +10,7 @@ import qualified TD.Data.MessageForwardInfo as MessageForwardInfo
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified Data.Text as T
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
@@ -230,6 +229,7 @@ instance AT.FromJSON Message where
           , content                       = content_
           , reply_markup                  = reply_markup_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Message where
   toJSON Message

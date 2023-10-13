@@ -1,10 +1,9 @@
-module TD.Query.GetBotName where
+module TD.Query.GetBotName(GetBotName(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetBotName -- ^ Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
   = GetBotName

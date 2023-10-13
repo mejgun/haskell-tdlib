@@ -1,10 +1,9 @@
-module TD.Query.GetLanguagePackStrings where
+module TD.Query.GetLanguagePackStrings(GetLanguagePackStrings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetLanguagePackStrings -- ^ Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
   = GetLanguagePackStrings

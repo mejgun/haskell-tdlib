@@ -1,9 +1,7 @@
-module TD.Query.SearchChatRecentLocationMessages where
+module TD.Query.SearchChatRecentLocationMessages(SearchChatRecentLocationMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data SearchChatRecentLocationMessages -- ^ Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user

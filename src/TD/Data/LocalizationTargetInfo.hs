@@ -1,9 +1,7 @@
-module TD.Data.LocalizationTargetInfo where
+module TD.Data.LocalizationTargetInfo (LocalizationTargetInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 
@@ -37,6 +35,7 @@ instance AT.FromJSON LocalizationTargetInfo where
         pure $ LocalizationTargetInfo
           { language_packs = language_packs_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LocalizationTargetInfo where
   toJSON LocalizationTargetInfo

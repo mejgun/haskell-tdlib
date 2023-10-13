@@ -1,10 +1,9 @@
-module TD.Query.CheckPasswordRecoveryCode where
+module TD.Query.CheckPasswordRecoveryCode(CheckPasswordRecoveryCode(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CheckPasswordRecoveryCode -- ^ Checks whether a 2-step verification password recovery code sent to an email address is valid
   = CheckPasswordRecoveryCode

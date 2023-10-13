@@ -1,12 +1,11 @@
-module TD.Data.MessageSponsor where
+module TD.Data.MessageSponsor (MessageSponsor(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSponsorType as MessageSponsorType
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
+import qualified Data.Text as T
 
 data MessageSponsor
   = MessageSponsor -- ^ Information about the sponsor of a message
@@ -48,6 +47,7 @@ instance AT.FromJSON MessageSponsor where
           , photo = photo_
           , info  = info_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageSponsor where
   toJSON MessageSponsor

@@ -1,9 +1,7 @@
-module TD.Data.ChatList where
+module TD.Data.ChatList (ChatList(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatList -- ^ Describes a list of chats
@@ -44,6 +42,7 @@ instance AT.FromJSON ChatList where
         pure $ ChatListFolder
           { chat_folder_id = chat_folder_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatList where
   toJSON ChatListMain

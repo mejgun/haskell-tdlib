@@ -1,10 +1,9 @@
-module TD.Query.SearchRecentlyFoundChats where
+module TD.Query.SearchRecentlyFoundChats(SearchRecentlyFoundChats(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SearchRecentlyFoundChats -- ^ Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
   = SearchRecentlyFoundChats

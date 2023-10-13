@@ -1,9 +1,7 @@
-module TD.Data.ChatBackground where
+module TD.Data.ChatBackground (ChatBackground(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Background as Background
 
@@ -42,6 +40,7 @@ instance AT.FromJSON ChatBackground where
           { background         = background_
           , dark_theme_dimming = dark_theme_dimming_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatBackground where
   toJSON ChatBackground

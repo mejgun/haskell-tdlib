@@ -1,11 +1,10 @@
-module TD.Query.GetInlineQueryResults where
+module TD.Query.GetInlineQueryResults(GetInlineQueryResults(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
+import qualified Data.Text as T
 
 data GetInlineQueryResults -- ^ Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
   = GetInlineQueryResults

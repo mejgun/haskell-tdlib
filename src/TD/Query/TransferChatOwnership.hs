@@ -1,10 +1,9 @@
-module TD.Query.TransferChatOwnership where
+module TD.Query.TransferChatOwnership(TransferChatOwnership(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data TransferChatOwnership -- ^ Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
   = TransferChatOwnership

@@ -1,10 +1,9 @@
-module TD.Data.PersonalDetails where
+module TD.Data.PersonalDetails (PersonalDetails(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Date as Date
 
 data PersonalDetails
@@ -82,6 +81,7 @@ instance AT.FromJSON PersonalDetails where
           , country_code           = country_code_
           , residence_country_code = residence_country_code_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PersonalDetails where
   toJSON PersonalDetails

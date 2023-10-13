@@ -1,9 +1,7 @@
-module TD.Data.Story where
+module TD.Data.Story (Story(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryInteractionInfo as StoryInteractionInfo
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
@@ -110,6 +108,7 @@ instance AT.FromJSON Story where
           , content                  = content_
           , caption                  = caption_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Story where
   toJSON Story

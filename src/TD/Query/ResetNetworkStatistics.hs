@@ -1,10 +1,7 @@
-module TD.Query.ResetNetworkStatistics where
+module TD.Query.ResetNetworkStatistics(ResetNetworkStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data ResetNetworkStatistics -- ^ Resets all network data usage statistics to zero. Can be called before authorization
   = ResetNetworkStatistics

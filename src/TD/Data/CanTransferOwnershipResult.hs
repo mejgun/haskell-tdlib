@@ -1,9 +1,7 @@
-module TD.Data.CanTransferOwnershipResult where
+module TD.Data.CanTransferOwnershipResult (CanTransferOwnershipResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data CanTransferOwnershipResult -- ^ Represents result of checking whether the current session can be used to transfer a chat ownership to another user
@@ -61,6 +59,7 @@ instance AT.FromJSON CanTransferOwnershipResult where
         pure $ CanTransferOwnershipResultSessionTooFresh
           { retry_after = retry_after_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CanTransferOwnershipResult where
   toJSON CanTransferOwnershipResultOk

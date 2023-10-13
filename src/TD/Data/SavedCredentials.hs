@@ -1,10 +1,9 @@
-module TD.Data.SavedCredentials where
+module TD.Data.SavedCredentials (SavedCredentials(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SavedCredentials
   = SavedCredentials -- ^ Contains information about saved payment credentials
@@ -41,6 +40,7 @@ instance AT.FromJSON SavedCredentials where
           { _id   = _id_
           , title = title_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON SavedCredentials where
   toJSON SavedCredentials

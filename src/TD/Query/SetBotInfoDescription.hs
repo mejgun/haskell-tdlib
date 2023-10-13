@@ -1,10 +1,9 @@
-module TD.Query.SetBotInfoDescription where
+module TD.Query.SetBotInfoDescription(SetBotInfoDescription(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetBotInfoDescription -- ^ Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
   = SetBotInfoDescription

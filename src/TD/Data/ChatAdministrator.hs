@@ -1,10 +1,9 @@
-module TD.Data.ChatAdministrator where
+module TD.Data.ChatAdministrator (ChatAdministrator(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ChatAdministrator
   = ChatAdministrator -- ^ Contains information about a chat administrator
@@ -46,6 +45,7 @@ instance AT.FromJSON ChatAdministrator where
           , custom_title = custom_title_
           , is_owner     = is_owner_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatAdministrator where
   toJSON ChatAdministrator

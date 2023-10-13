@@ -1,11 +1,10 @@
-module TD.Data.Session where
+module TD.Data.Session (Session(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.SessionType as SessionType
+import qualified Data.Text as T
 
 data Session
   = Session -- ^ Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
@@ -122,6 +121,7 @@ instance AT.FromJSON Session where
           , country                 = country_
           , region                  = region_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Session where
   toJSON Session

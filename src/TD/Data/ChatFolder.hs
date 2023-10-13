@@ -1,10 +1,9 @@
-module TD.Data.ChatFolder where
+module TD.Data.ChatFolder (ChatFolder(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ChatFolderIcon as ChatFolderIcon
 
 data ChatFolder
@@ -102,6 +101,7 @@ instance AT.FromJSON ChatFolder where
           , include_groups       = include_groups_
           , include_channels     = include_channels_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatFolder where
   toJSON ChatFolder

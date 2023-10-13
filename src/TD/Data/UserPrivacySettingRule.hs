@@ -1,9 +1,7 @@
-module TD.Data.UserPrivacySettingRule where
+module TD.Data.UserPrivacySettingRule (UserPrivacySettingRule(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data UserPrivacySettingRule -- ^ Represents a single rule for managing user privacy settings
@@ -103,6 +101,7 @@ instance AT.FromJSON UserPrivacySettingRule where
         pure $ UserPrivacySettingRuleRestrictChatMembers
           { chat_ids = chat_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON UserPrivacySettingRule where
   toJSON UserPrivacySettingRuleAllowAll

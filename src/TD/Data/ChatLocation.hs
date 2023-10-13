@@ -1,11 +1,10 @@
-module TD.Data.ChatLocation where
+module TD.Data.ChatLocation (ChatLocation(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
+import qualified Data.Text as T
 
 data ChatLocation
   = ChatLocation -- ^ Represents a location to which a chat is connected
@@ -42,6 +41,7 @@ instance AT.FromJSON ChatLocation where
           { location = location_
           , address  = address_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatLocation where
   toJSON ChatLocation

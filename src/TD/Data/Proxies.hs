@@ -1,9 +1,7 @@
-module TD.Data.Proxies where
+module TD.Data.Proxies (Proxies(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Proxy as Proxy
 
@@ -37,6 +35,7 @@ instance AT.FromJSON Proxies where
         pure $ Proxies
           { proxies = proxies_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Proxies where
   toJSON Proxies

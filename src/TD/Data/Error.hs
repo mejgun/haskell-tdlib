@@ -1,10 +1,9 @@
-module TD.Data.Error where
+module TD.Data.Error (Error(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data Error
   = Error -- ^ An object of this type can be returned on every function call, in case of an error
@@ -41,6 +40,7 @@ instance AT.FromJSON Error where
           { code    = code_
           , message = message_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Error where
   toJSON Error

@@ -1,10 +1,9 @@
-module TD.Query.SearchStickerSets where
+module TD.Query.SearchStickerSets(SearchStickerSets(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SearchStickerSets -- ^ Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
   = SearchStickerSets

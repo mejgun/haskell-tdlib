@@ -1,9 +1,7 @@
-module TD.Query.DownloadFile where
+module TD.Query.DownloadFile(DownloadFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data DownloadFile -- ^ Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates

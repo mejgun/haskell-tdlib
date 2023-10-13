@@ -1,11 +1,10 @@
-module TD.Query.ReportChat where
+module TD.Query.ReportChat(ReportChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReportReason as ReportReason
+import qualified Data.Text as T
 
 data ReportChat -- ^ Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
   = ReportChat

@@ -1,9 +1,7 @@
-module TD.Query.GetPollVoters where
+module TD.Query.GetPollVoters(GetPollVoters(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetPollVoters -- ^ Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib

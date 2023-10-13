@@ -1,10 +1,9 @@
-module TD.Data.ChatTheme where
+module TD.Data.ChatTheme (ChatTheme(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ThemeSettings as ThemeSettings
 
 data ChatTheme
@@ -47,6 +46,7 @@ instance AT.FromJSON ChatTheme where
           , light_settings = light_settings_
           , dark_settings  = dark_settings_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatTheme where
   toJSON ChatTheme

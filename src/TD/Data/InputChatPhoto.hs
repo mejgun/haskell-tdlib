@@ -1,9 +1,7 @@
-module TD.Data.InputChatPhoto where
+module TD.Data.InputChatPhoto (InputChatPhoto(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.ChatPhotoSticker as ChatPhotoSticker
@@ -94,6 +92,7 @@ instance AT.FromJSON InputChatPhoto where
         pure $ InputChatPhotoSticker
           { sticker = sticker_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputChatPhoto where
   toJSON InputChatPhotoPrevious

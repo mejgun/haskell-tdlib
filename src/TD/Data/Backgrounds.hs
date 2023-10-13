@@ -1,9 +1,7 @@
-module TD.Data.Backgrounds where
+module TD.Data.Backgrounds (Backgrounds(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Background as Background
 
@@ -37,6 +35,7 @@ instance AT.FromJSON Backgrounds where
         pure $ Backgrounds
           { backgrounds = backgrounds_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Backgrounds where
   toJSON Backgrounds

@@ -1,10 +1,9 @@
-module TD.Data.PaymentProvider where
+module TD.Data.PaymentProvider (PaymentProvider(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data PaymentProvider -- ^ Contains information about a payment provider
   = PaymentProviderSmartGlocal -- ^ Smart Glocal payment provider
@@ -85,6 +84,7 @@ instance AT.FromJSON PaymentProvider where
         pure $ PaymentProviderOther
           { url = url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PaymentProvider where
   toJSON PaymentProviderSmartGlocal

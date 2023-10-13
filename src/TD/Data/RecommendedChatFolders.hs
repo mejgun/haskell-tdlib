@@ -1,9 +1,7 @@
-module TD.Data.RecommendedChatFolders where
+module TD.Data.RecommendedChatFolders (RecommendedChatFolders(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.RecommendedChatFolder as RecommendedChatFolder
 
@@ -37,6 +35,7 @@ instance AT.FromJSON RecommendedChatFolders where
         pure $ RecommendedChatFolders
           { chat_folders = chat_folders_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON RecommendedChatFolders where
   toJSON RecommendedChatFolders

@@ -1,9 +1,7 @@
-module TD.Data.ThemeSettings where
+module TD.Data.ThemeSettings (ThemeSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Background as Background
 import qualified TD.Data.BackgroundFill as BackgroundFill
@@ -58,6 +56,7 @@ instance AT.FromJSON ThemeSettings where
           , animate_outgoing_message_fill = animate_outgoing_message_fill_
           , outgoing_message_accent_color = outgoing_message_accent_color_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ThemeSettings where
   toJSON ThemeSettings

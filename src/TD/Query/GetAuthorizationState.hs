@@ -1,10 +1,7 @@
-module TD.Query.GetAuthorizationState where
+module TD.Query.GetAuthorizationState(GetAuthorizationState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data GetAuthorizationState -- ^ Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
   = GetAuthorizationState

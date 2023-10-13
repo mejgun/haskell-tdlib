@@ -1,10 +1,9 @@
-module TD.Query.GetLanguagePackInfo where
+module TD.Query.GetLanguagePackInfo(GetLanguagePackInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetLanguagePackInfo -- ^ Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
   = GetLanguagePackInfo

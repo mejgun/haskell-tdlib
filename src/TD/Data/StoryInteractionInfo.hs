@@ -1,9 +1,7 @@
-module TD.Data.StoryInteractionInfo where
+module TD.Data.StoryInteractionInfo (StoryInteractionInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data StoryInteractionInfo
@@ -41,6 +39,7 @@ instance AT.FromJSON StoryInteractionInfo where
           { view_count             = view_count_
           , recent_viewer_user_ids = recent_viewer_user_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StoryInteractionInfo where
   toJSON StoryInteractionInfo

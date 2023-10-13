@@ -1,11 +1,10 @@
-module TD.Data.FoundMessages where
+module TD.Data.FoundMessages (FoundMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Message as Message
+import qualified Data.Text as T
 
 data FoundMessages
   = FoundMessages -- ^ Contains a list of messages found by a search
@@ -47,6 +46,7 @@ instance AT.FromJSON FoundMessages where
           , messages    = messages_
           , next_offset = next_offset_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON FoundMessages where
   toJSON FoundMessages

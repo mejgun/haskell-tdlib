@@ -1,10 +1,9 @@
-module TD.Data.PageBlockRelatedArticle where
+module TD.Data.PageBlockRelatedArticle (PageBlockRelatedArticle(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Photo as Photo
 
 data PageBlockRelatedArticle
@@ -62,6 +61,7 @@ instance AT.FromJSON PageBlockRelatedArticle where
           , author       = author_
           , publish_date = publish_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PageBlockRelatedArticle where
   toJSON PageBlockRelatedArticle

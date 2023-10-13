@@ -1,10 +1,9 @@
-module TD.Data.EncryptedCredentials where
+module TD.Data.EncryptedCredentials (EncryptedCredentials(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
 data EncryptedCredentials
   = EncryptedCredentials -- ^ Contains encrypted Telegram Passport data credentials
@@ -46,6 +45,7 @@ instance AT.FromJSON EncryptedCredentials where
           , hash   = hash_
           , secret = secret_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EncryptedCredentials where
   toJSON EncryptedCredentials

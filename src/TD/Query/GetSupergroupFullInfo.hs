@@ -1,9 +1,7 @@
-module TD.Query.GetSupergroupFullInfo where
+module TD.Query.GetSupergroupFullInfo(GetSupergroupFullInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetSupergroupFullInfo -- ^ Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute

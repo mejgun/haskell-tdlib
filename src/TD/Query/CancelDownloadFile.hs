@@ -1,9 +1,7 @@
-module TD.Query.CancelDownloadFile where
+module TD.Query.CancelDownloadFile(CancelDownloadFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data CancelDownloadFile -- ^ Stops the downloading of a file. If a file has already been downloaded, does nothing

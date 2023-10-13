@@ -1,9 +1,7 @@
-module TD.Query.GetPaymentForm where
+module TD.Query.GetPaymentForm(GetPaymentForm(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputInvoice as InputInvoice
 import qualified TD.Data.ThemeParameters as ThemeParameters

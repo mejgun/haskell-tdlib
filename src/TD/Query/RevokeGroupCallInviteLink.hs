@@ -1,9 +1,7 @@
-module TD.Query.RevokeGroupCallInviteLink where
+module TD.Query.RevokeGroupCallInviteLink(RevokeGroupCallInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data RevokeGroupCallInviteLink -- ^ Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag

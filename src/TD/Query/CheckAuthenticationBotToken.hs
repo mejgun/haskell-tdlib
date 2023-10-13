@@ -1,10 +1,9 @@
-module TD.Query.CheckAuthenticationBotToken where
+module TD.Query.CheckAuthenticationBotToken(CheckAuthenticationBotToken(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CheckAuthenticationBotToken -- ^ Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
   = CheckAuthenticationBotToken

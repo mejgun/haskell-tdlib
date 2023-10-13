@@ -1,10 +1,9 @@
-module TD.Data.ChatAction where
+module TD.Data.ChatAction (ChatAction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ChatAction -- ^ Describes the different types of activity in a chat
   = ChatActionTyping -- ^ The user is typing a message
@@ -157,6 +156,7 @@ instance AT.FromJSON ChatAction where
         pure $ ChatActionWatchingAnimations
           { emoji = emoji_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatAction where
   toJSON ChatActionTyping

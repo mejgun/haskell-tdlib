@@ -1,11 +1,10 @@
-module TD.Data.PremiumStatePaymentOption where
+module TD.Data.PremiumStatePaymentOption (PremiumStatePaymentOption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
+import qualified Data.Text as T
 
 data PremiumStatePaymentOption
   = PremiumStatePaymentOption -- ^ Describes an option for buying or upgrading Telegram Premium for self
@@ -52,6 +51,7 @@ instance AT.FromJSON PremiumStatePaymentOption where
           , is_upgrade          = is_upgrade_
           , last_transaction_id = last_transaction_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PremiumStatePaymentOption where
   toJSON PremiumStatePaymentOption

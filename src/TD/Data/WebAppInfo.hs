@@ -1,10 +1,9 @@
-module TD.Data.WebAppInfo where
+module TD.Data.WebAppInfo (WebAppInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data WebAppInfo
   = WebAppInfo -- ^ Contains information about a Web App
@@ -41,6 +40,7 @@ instance AT.FromJSON WebAppInfo where
           { launch_id = launch_id_
           , url       = url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON WebAppInfo where
   toJSON WebAppInfo

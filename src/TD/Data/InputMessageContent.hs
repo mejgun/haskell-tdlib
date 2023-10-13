@@ -1,13 +1,13 @@
-module TD.Data.InputMessageContent where
+module TD.Data.InputMessageContent (InputMessageContent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.InputThumbnail as InputThumbnail
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
 import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Contact as Contact
@@ -679,6 +679,7 @@ instance AT.FromJSON InputMessageContent where
           , in_game_share = in_game_share_
           , copy_options  = copy_options_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputMessageContent where
   toJSON InputMessageText

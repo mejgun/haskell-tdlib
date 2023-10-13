@@ -1,9 +1,7 @@
-module TD.Query.CloseWebApp where
+module TD.Query.CloseWebApp(CloseWebApp(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data CloseWebApp -- ^ Informs TDLib that a previously opened Web App was closed

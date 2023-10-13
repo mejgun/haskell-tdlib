@@ -1,9 +1,7 @@
-module TD.Query.BlockMessageSenderFromReplies where
+module TD.Query.BlockMessageSenderFromReplies(BlockMessageSenderFromReplies(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data BlockMessageSenderFromReplies -- ^ Blocks an original sender of a message in the Replies chat

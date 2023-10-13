@@ -1,10 +1,9 @@
-module TD.Data.PollOption where
+module TD.Data.PollOption (PollOption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data PollOption
   = PollOption -- ^ Describes one answer option of a poll
@@ -56,6 +55,7 @@ instance AT.FromJSON PollOption where
           , is_chosen       = is_chosen_
           , is_being_chosen = is_being_chosen_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PollOption where
   toJSON PollOption

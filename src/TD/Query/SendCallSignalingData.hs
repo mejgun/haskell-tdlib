@@ -1,10 +1,9 @@
-module TD.Query.SendCallSignalingData where
+module TD.Query.SendCallSignalingData(SendCallSignalingData(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
 data SendCallSignalingData -- ^ Sends call signaling data
   = SendCallSignalingData

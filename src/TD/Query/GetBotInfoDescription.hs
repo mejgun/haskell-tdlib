@@ -1,10 +1,9 @@
-module TD.Query.GetBotInfoDescription where
+module TD.Query.GetBotInfoDescription(GetBotInfoDescription(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetBotInfoDescription -- ^ Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
   = GetBotInfoDescription

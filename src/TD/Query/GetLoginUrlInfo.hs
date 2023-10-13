@@ -1,9 +1,7 @@
-module TD.Query.GetLoginUrlInfo where
+module TD.Query.GetLoginUrlInfo(GetLoginUrlInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetLoginUrlInfo -- ^ Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button

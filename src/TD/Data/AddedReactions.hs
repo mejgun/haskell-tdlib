@@ -1,11 +1,10 @@
-module TD.Data.AddedReactions where
+module TD.Data.AddedReactions (AddedReactions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.AddedReaction as AddedReaction
+import qualified Data.Text as T
 
 data AddedReactions
   = AddedReactions -- ^ Represents a list of reactions added to a message
@@ -47,6 +46,7 @@ instance AT.FromJSON AddedReactions where
           , reactions   = reactions_
           , next_offset = next_offset_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AddedReactions where
   toJSON AddedReactions

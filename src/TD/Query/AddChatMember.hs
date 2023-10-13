@@ -1,9 +1,7 @@
-module TD.Query.AddChatMember where
+module TD.Query.AddChatMember(AddChatMember(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data AddChatMember -- ^ Adds a new member to a chat. Members can't be added to private or secret chats

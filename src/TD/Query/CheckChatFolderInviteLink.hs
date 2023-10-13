@@ -1,10 +1,9 @@
-module TD.Query.CheckChatFolderInviteLink where
+module TD.Query.CheckChatFolderInviteLink(CheckChatFolderInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CheckChatFolderInviteLink -- ^ Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
   = CheckChatFolderInviteLink

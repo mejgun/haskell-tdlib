@@ -1065,7 +1065,7 @@ library
       src
   default-extensions:
       OverloadedStrings
-  ghc-options: -ltdjson
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wno-partial-fields -Wredundant-constraints
   extra-libraries:
       tdjson
   build-depends:
@@ -1077,7 +1077,7 @@ library
     , text
     , time
     , unordered-containers
-  default-language: Haskell2010
+  default-language: GHC2021
 
 executable haskell-tdlib-exe
   main-is: Main.hs
@@ -1089,11 +1089,11 @@ executable haskell-tdlib-exe
       DuplicateRecordFields
       NoFieldSelectors
       OverloadedStrings
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N -W -Wall -Werror
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wno-partial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -W -Wall -Werror
   build-depends:
       base >=4.7 && <5
     , haskell-tdlib
-  default-language: Haskell2010
+  default-language: GHC2021
 
 test-suite haskell-tdlib-test
   type: exitcode-stdio-1.0
@@ -1102,8 +1102,8 @@ test-suite haskell-tdlib-test
       Paths_haskell_tdlib
   hs-source-dirs:
       test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wno-partial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
     , haskell-tdlib
-  default-language: Haskell2010
+  default-language: GHC2021

@@ -1,10 +1,9 @@
-module TD.Data.StickerSetInfo where
+module TD.Data.StickerSetInfo (StickerSetInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.ClosedVectorPath as ClosedVectorPath
 import qualified TD.Data.StickerFormat as StickerFormat
@@ -101,6 +100,7 @@ instance AT.FromJSON StickerSetInfo where
           , size              = size_
           , covers            = covers_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StickerSetInfo where
   toJSON StickerSetInfo

@@ -1,9 +1,7 @@
-module TD.Data.ChatNotificationSettings where
+module TD.Data.ChatNotificationSettings (ChatNotificationSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatNotificationSettings
@@ -111,6 +109,7 @@ instance AT.FromJSON ChatNotificationSettings where
           , use_default_disable_mention_notifications        = use_default_disable_mention_notifications_
           , disable_mention_notifications                    = disable_mention_notifications_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatNotificationSettings where
   toJSON ChatNotificationSettings

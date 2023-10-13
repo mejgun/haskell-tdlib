@@ -1,9 +1,7 @@
-module TD.Query.GetChatAvailableMessageSenders where
+module TD.Query.GetChatAvailableMessageSenders(GetChatAvailableMessageSenders(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatAvailableMessageSenders -- ^ Returns list of message sender identifiers, which can be used to send messages in a chat

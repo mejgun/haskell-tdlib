@@ -1,10 +1,9 @@
-module TD.Query.TestProxy where
+module TD.Query.TestProxy(TestProxy(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ProxyType as ProxyType
 
 data TestProxy -- ^ Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization

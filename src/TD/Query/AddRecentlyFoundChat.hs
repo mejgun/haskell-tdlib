@@ -1,9 +1,7 @@
-module TD.Query.AddRecentlyFoundChat where
+module TD.Query.AddRecentlyFoundChat(AddRecentlyFoundChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data AddRecentlyFoundChat -- ^ Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first

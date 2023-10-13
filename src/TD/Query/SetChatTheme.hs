@@ -1,10 +1,9 @@
-module TD.Query.SetChatTheme where
+module TD.Query.SetChatTheme(SetChatTheme(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetChatTheme -- ^ Changes the chat theme. Supported only in private and secret chats
   = SetChatTheme

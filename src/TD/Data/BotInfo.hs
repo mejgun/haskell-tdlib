@@ -1,16 +1,15 @@
-module TD.Data.BotInfo where
+module TD.Data.BotInfo (BotInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.BotCommand as BotCommand
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
-import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
+import qualified TD.Data.InternalLinkType as InternalLinkType
 
 data BotInfo
   = BotInfo -- ^ Contains information about a bot
@@ -97,6 +96,7 @@ instance AT.FromJSON BotInfo where
           , edit_description_media_link          = edit_description_media_link_
           , edit_settings_link                   = edit_settings_link_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON BotInfo where
   toJSON BotInfo

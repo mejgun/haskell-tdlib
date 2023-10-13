@@ -1,9 +1,7 @@
-module TD.Data.EmojiStatus where
+module TD.Data.EmojiStatus (EmojiStatus(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data EmojiStatus
@@ -41,6 +39,7 @@ instance AT.FromJSON EmojiStatus where
           { custom_emoji_id = custom_emoji_id_
           , expiration_date = expiration_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmojiStatus where
   toJSON EmojiStatus

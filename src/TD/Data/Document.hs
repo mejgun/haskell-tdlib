@@ -1,10 +1,9 @@
-module TD.Data.Document where
+module TD.Data.Document (Document(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.File as File
@@ -59,6 +58,7 @@ instance AT.FromJSON Document where
           , thumbnail     = thumbnail_
           , document      = document_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Document where
   toJSON Document

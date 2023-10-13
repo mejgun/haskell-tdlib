@@ -10,14 +10,13 @@ module TD.Lib
   )
 where
 
-import qualified Data.Aeson as A
-import qualified Data.Aeson.Key as K
-import qualified Data.Aeson.KeyMap as KM
-import qualified Data.Aeson.Types as AT
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Lazy as BL
-import qualified Data.Text as T
-import qualified Data.Time.Clock.System as Time
+import Data.Aeson qualified as A
+import Data.Aeson.Key qualified as K
+import Data.Aeson.KeyMap qualified as KM
+import Data.ByteString qualified as B
+import Data.ByteString.Lazy qualified as BL
+import Data.Text qualified as T
+import Data.Time.Clock.System qualified as Time
 import Foreign (Ptr, nullPtr)
 import Foreign.C.String (CString)
 import Foreign.C.Types ()

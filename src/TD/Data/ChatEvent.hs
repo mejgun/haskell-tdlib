@@ -1,9 +1,7 @@
-module TD.Data.ChatEvent where
+module TD.Data.ChatEvent (ChatEvent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatEventAction as ChatEventAction
@@ -53,6 +51,7 @@ instance AT.FromJSON ChatEvent where
           , member_id = member_id_
           , action    = action_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatEvent where
   toJSON ChatEvent

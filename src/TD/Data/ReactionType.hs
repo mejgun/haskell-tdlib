@@ -1,10 +1,9 @@
-module TD.Data.ReactionType where
+module TD.Data.ReactionType (ReactionType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ReactionType -- ^ Describes type of message reaction
   = ReactionTypeEmoji -- ^ A reaction with an emoji
@@ -53,6 +52,7 @@ instance AT.FromJSON ReactionType where
         pure $ ReactionTypeCustomEmoji
           { custom_emoji_id = custom_emoji_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ReactionType where
   toJSON ReactionTypeEmoji

@@ -1,9 +1,7 @@
-module TD.Query.GetStory where
+module TD.Query.GetStory(GetStory(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetStory -- ^ Returns a story

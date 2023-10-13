@@ -1,10 +1,9 @@
-module TD.Data.EmailAddressAuthenticationCodeInfo where
+module TD.Data.EmailAddressAuthenticationCodeInfo (EmailAddressAuthenticationCodeInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data EmailAddressAuthenticationCodeInfo
   = EmailAddressAuthenticationCodeInfo -- ^ Information about the email address authentication code that was sent
@@ -41,6 +40,7 @@ instance AT.FromJSON EmailAddressAuthenticationCodeInfo where
           { email_address_pattern = email_address_pattern_
           , _length               = _length_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmailAddressAuthenticationCodeInfo where
   toJSON EmailAddressAuthenticationCodeInfo

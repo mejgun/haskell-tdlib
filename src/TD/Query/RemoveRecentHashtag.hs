@@ -1,10 +1,9 @@
-module TD.Query.RemoveRecentHashtag where
+module TD.Query.RemoveRecentHashtag(RemoveRecentHashtag(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data RemoveRecentHashtag -- ^ Removes a hashtag from the list of recently used hashtags
   = RemoveRecentHashtag

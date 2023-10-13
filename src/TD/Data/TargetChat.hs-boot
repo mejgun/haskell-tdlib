@@ -1,4 +1,4 @@
-module TD.Data.TargetChat where
+module TD.Data.TargetChat (TargetChat) where
 
 import Data.Aeson.Types (FromJSON, ToJSON)
 

@@ -1,11 +1,10 @@
-module TD.Data.MessageSponsorType where
+module TD.Data.MessageSponsorType (MessageSponsorType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
-import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
+import qualified TD.Data.InternalLinkType as InternalLinkType
+import qualified Data.Text as T
 
 data MessageSponsorType -- ^ Describes type of a message sponsor
   = MessageSponsorTypeBot -- ^ The sponsor is a bot
@@ -108,6 +107,7 @@ instance AT.FromJSON MessageSponsorType where
           { url  = url_
           , name = name_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageSponsorType where
   toJSON MessageSponsorTypeBot

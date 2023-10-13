@@ -1,10 +1,9 @@
-module TD.Query.SendAuthenticationFirebaseSms where
+module TD.Query.SendAuthenticationFirebaseSms(SendAuthenticationFirebaseSms(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SendAuthenticationFirebaseSms -- ^ Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
   = SendAuthenticationFirebaseSms

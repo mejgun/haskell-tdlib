@@ -1,9 +1,7 @@
-module TD.Query.UpgradeBasicGroupChatToSupergroupChat where
+module TD.Query.UpgradeBasicGroupChatToSupergroupChat(UpgradeBasicGroupChatToSupergroupChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data UpgradeBasicGroupChatToSupergroupChat -- ^ Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group

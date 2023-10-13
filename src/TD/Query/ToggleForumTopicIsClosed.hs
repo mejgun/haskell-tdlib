@@ -1,9 +1,7 @@
-module TD.Query.ToggleForumTopicIsClosed where
+module TD.Query.ToggleForumTopicIsClosed(ToggleForumTopicIsClosed(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleForumTopicIsClosed -- ^ Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic

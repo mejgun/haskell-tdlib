@@ -1,10 +1,9 @@
-module TD.Data.RemoteFile where
+module TD.Data.RemoteFile (RemoteFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data RemoteFile
   = RemoteFile -- ^ Represents a remote file
@@ -56,6 +55,7 @@ instance AT.FromJSON RemoteFile where
           , is_uploading_completed = is_uploading_completed_
           , uploaded_size          = uploaded_size_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON RemoteFile where
   toJSON RemoteFile

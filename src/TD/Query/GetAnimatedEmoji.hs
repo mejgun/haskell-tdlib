@@ -1,10 +1,9 @@
-module TD.Query.GetAnimatedEmoji where
+module TD.Query.GetAnimatedEmoji(GetAnimatedEmoji(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetAnimatedEmoji -- ^ Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
   = GetAnimatedEmoji

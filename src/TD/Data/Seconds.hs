@@ -1,9 +1,7 @@
-module TD.Data.Seconds where
+module TD.Data.Seconds (Seconds(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data Seconds
@@ -36,6 +34,7 @@ instance AT.FromJSON Seconds where
         pure $ Seconds
           { seconds = seconds_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Seconds where
   toJSON Seconds

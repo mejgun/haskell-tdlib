@@ -1,10 +1,9 @@
-module TD.Data.SpeechRecognitionResult where
+module TD.Data.SpeechRecognitionResult (SpeechRecognitionResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Error as Error
 
 data SpeechRecognitionResult -- ^ Describes result of speech recognition in a voice note
@@ -71,6 +70,7 @@ instance AT.FromJSON SpeechRecognitionResult where
         pure $ SpeechRecognitionResultError
           { _error = _error_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON SpeechRecognitionResult where
   toJSON SpeechRecognitionResultPending

@@ -1,9 +1,7 @@
-module TD.Data.GroupCallStream where
+module TD.Data.GroupCallStream (GroupCallStream(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GroupCallStream
@@ -46,6 +44,7 @@ instance AT.FromJSON GroupCallStream where
           , scale       = scale_
           , time_offset = time_offset_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON GroupCallStream where
   toJSON GroupCallStream

@@ -1,11 +1,10 @@
-module TD.Data.InputPassportElementError where
+module TD.Data.InputPassportElementError (InputPassportElementError(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
+import qualified Data.Text as T
 import qualified TD.Data.InputPassportElementErrorSource as InputPassportElementErrorSource
 
 data InputPassportElementError
@@ -48,6 +47,7 @@ instance AT.FromJSON InputPassportElementError where
           , message = message_
           , source  = source_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputPassportElementError where
   toJSON InputPassportElementError

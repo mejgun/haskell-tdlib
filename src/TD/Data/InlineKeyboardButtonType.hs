@@ -1,11 +1,11 @@
-module TD.Data.InlineKeyboardButtonType where
+module TD.Data.InlineKeyboardButtonType (InlineKeyboardButtonType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
-import {-# SOURCE #-} qualified TD.Data.TargetChat as TargetChat
+import qualified TD.Data.TargetChat as TargetChat
 
 data InlineKeyboardButtonType -- ^ Describes the type of an inline keyboard button
   = InlineKeyboardButtonTypeUrl -- ^ A button that opens a specified URL
@@ -162,6 +162,7 @@ instance AT.FromJSON InlineKeyboardButtonType where
         pure $ InlineKeyboardButtonTypeUser
           { user_id = user_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InlineKeyboardButtonType where
   toJSON InlineKeyboardButtonTypeUrl

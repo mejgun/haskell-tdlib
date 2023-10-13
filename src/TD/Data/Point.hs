@@ -1,9 +1,7 @@
-module TD.Data.Point where
+module TD.Data.Point (Point(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data Point
@@ -41,6 +39,7 @@ instance AT.FromJSON Point where
           { x = x_
           , y = y_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Point where
   toJSON Point

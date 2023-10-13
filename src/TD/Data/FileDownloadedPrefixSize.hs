@@ -1,9 +1,7 @@
-module TD.Data.FileDownloadedPrefixSize where
+module TD.Data.FileDownloadedPrefixSize (FileDownloadedPrefixSize(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data FileDownloadedPrefixSize
@@ -36,6 +34,7 @@ instance AT.FromJSON FileDownloadedPrefixSize where
         pure $ FileDownloadedPrefixSize
           { size = size_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON FileDownloadedPrefixSize where
   toJSON FileDownloadedPrefixSize

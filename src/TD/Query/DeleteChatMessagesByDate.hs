@@ -1,9 +1,7 @@
-module TD.Query.DeleteChatMessagesByDate where
+module TD.Query.DeleteChatMessagesByDate(DeleteChatMessagesByDate(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data DeleteChatMessagesByDate -- ^ Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted

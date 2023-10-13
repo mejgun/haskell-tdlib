@@ -1,10 +1,9 @@
-module TD.Data.CountryInfo where
+module TD.Data.CountryInfo (CountryInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CountryInfo
   = CountryInfo -- ^ Contains information about a country
@@ -56,6 +55,7 @@ instance AT.FromJSON CountryInfo where
           , is_hidden     = is_hidden_
           , calling_codes = calling_codes_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CountryInfo where
   toJSON CountryInfo

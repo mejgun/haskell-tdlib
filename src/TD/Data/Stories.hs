@@ -1,9 +1,7 @@
-module TD.Data.Stories where
+module TD.Data.Stories (Stories(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Story as Story
 
@@ -42,6 +40,7 @@ instance AT.FromJSON Stories where
           { total_count = total_count_
           , stories     = stories_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Stories where
   toJSON Stories

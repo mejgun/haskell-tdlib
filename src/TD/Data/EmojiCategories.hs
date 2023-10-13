@@ -1,9 +1,7 @@
-module TD.Data.EmojiCategories where
+module TD.Data.EmojiCategories (EmojiCategories(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmojiCategory as EmojiCategory
 
@@ -37,6 +35,7 @@ instance AT.FromJSON EmojiCategories where
         pure $ EmojiCategories
           { categories = categories_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmojiCategories where
   toJSON EmojiCategories

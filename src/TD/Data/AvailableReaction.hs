@@ -1,9 +1,7 @@
-module TD.Data.AvailableReaction where
+module TD.Data.AvailableReaction (AvailableReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
@@ -42,6 +40,7 @@ instance AT.FromJSON AvailableReaction where
           { _type         = _type_
           , needs_premium = needs_premium_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AvailableReaction where
   toJSON AvailableReaction

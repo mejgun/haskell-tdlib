@@ -1,9 +1,7 @@
-module TD.Data.StorageStatisticsByChat where
+module TD.Data.StorageStatisticsByChat (StorageStatisticsByChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StorageStatisticsByFileType as StorageStatisticsByFileType
 
@@ -52,6 +50,7 @@ instance AT.FromJSON StorageStatisticsByChat where
           , count        = count_
           , by_file_type = by_file_type_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StorageStatisticsByChat where
   toJSON StorageStatisticsByChat

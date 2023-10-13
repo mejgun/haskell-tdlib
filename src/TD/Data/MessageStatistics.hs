@@ -1,9 +1,7 @@
-module TD.Data.MessageStatistics where
+module TD.Data.MessageStatistics (MessageStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 
@@ -37,6 +35,7 @@ instance AT.FromJSON MessageStatistics where
         pure $ MessageStatistics
           { message_interaction_graph = message_interaction_graph_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageStatistics where
   toJSON MessageStatistics

@@ -1,9 +1,7 @@
-module TD.Data.BasicGroup where
+module TD.Data.BasicGroup (BasicGroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 
@@ -57,6 +55,7 @@ instance AT.FromJSON BasicGroup where
           , is_active                 = is_active_
           , upgraded_to_supergroup_id = upgraded_to_supergroup_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON BasicGroup where
   toJSON BasicGroup

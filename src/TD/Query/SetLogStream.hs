@@ -1,9 +1,7 @@
-module TD.Query.SetLogStream where
+module TD.Query.SetLogStream(SetLogStream(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.LogStream as LogStream
 

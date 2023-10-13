@@ -1,10 +1,9 @@
-module TD.Data.UserLink where
+module TD.Data.UserLink (UserLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data UserLink
   = UserLink -- ^ Contains an HTTPS URL, which can be used to get information about a user
@@ -41,6 +40,7 @@ instance AT.FromJSON UserLink where
           { url        = url_
           , expires_in = expires_in_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON UserLink where
   toJSON UserLink

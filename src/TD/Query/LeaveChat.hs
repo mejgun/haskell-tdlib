@@ -1,9 +1,7 @@
-module TD.Query.LeaveChat where
+module TD.Query.LeaveChat(LeaveChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data LeaveChat -- ^ Removes the current user from chat members. Private and secret chats can't be left using this method

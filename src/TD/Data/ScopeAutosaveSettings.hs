@@ -1,9 +1,7 @@
-module TD.Data.ScopeAutosaveSettings where
+module TD.Data.ScopeAutosaveSettings (ScopeAutosaveSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ScopeAutosaveSettings
@@ -46,6 +44,7 @@ instance AT.FromJSON ScopeAutosaveSettings where
           , autosave_videos     = autosave_videos_
           , max_video_file_size = max_video_file_size_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ScopeAutosaveSettings where
   toJSON ScopeAutosaveSettings

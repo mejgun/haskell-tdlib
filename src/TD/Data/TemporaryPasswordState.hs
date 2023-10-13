@@ -1,9 +1,7 @@
-module TD.Data.TemporaryPasswordState where
+module TD.Data.TemporaryPasswordState (TemporaryPasswordState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data TemporaryPasswordState
@@ -41,6 +39,7 @@ instance AT.FromJSON TemporaryPasswordState where
           { has_password = has_password_
           , valid_for    = valid_for_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TemporaryPasswordState where
   toJSON TemporaryPasswordState

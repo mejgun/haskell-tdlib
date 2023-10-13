@@ -1,10 +1,9 @@
-module TD.Data.AttachmentMenuBot where
+module TD.Data.AttachmentMenuBot (AttachmentMenuBot(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.AttachmentMenuBotColor as AttachmentMenuBotColor
 import qualified TD.Data.File as File
 
@@ -118,6 +117,7 @@ instance AT.FromJSON AttachmentMenuBot where
           , icon_color             = icon_color_
           , web_app_placeholder    = web_app_placeholder_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AttachmentMenuBot where
   toJSON AttachmentMenuBot

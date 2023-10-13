@@ -1,9 +1,7 @@
-module TD.Data.ResetPasswordResult where
+module TD.Data.ResetPasswordResult (ResetPasswordResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ResetPasswordResult -- ^ Represents result of 2-step verification password reset
@@ -57,6 +55,7 @@ instance AT.FromJSON ResetPasswordResult where
         pure $ ResetPasswordResultDeclined
           { retry_date = retry_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ResetPasswordResult where
   toJSON ResetPasswordResultOk

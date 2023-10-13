@@ -1,10 +1,7 @@
-module TD.Data.ReportReason where
+module TD.Data.ReportReason (ReportReason(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data ReportReason -- ^ Describes the reason why a chat is reported
   = ReportReasonSpam -- ^ The chat contains spam messages
@@ -42,7 +39,7 @@ instance Show ReportReason where
       = "ReportReasonCustom"
 
 instance AT.FromJSON ReportReason where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -58,6 +55,7 @@ instance AT.FromJSON ReportReason where
       "reportReasonCustom"            -> pure ReportReasonCustom
       _                               -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON ReportReason where
   toJSON ReportReasonSpam

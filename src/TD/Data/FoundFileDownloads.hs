@@ -1,12 +1,11 @@
-module TD.Data.FoundFileDownloads where
+module TD.Data.FoundFileDownloads (FoundFileDownloads(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.FileDownload as FileDownload
+import qualified Data.Text as T
 
 data FoundFileDownloads
   = FoundFileDownloads -- ^ Contains a list of downloaded files, found by a search
@@ -48,6 +47,7 @@ instance AT.FromJSON FoundFileDownloads where
           , files        = files_
           , next_offset  = next_offset_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON FoundFileDownloads where
   toJSON FoundFileDownloads

@@ -1,10 +1,9 @@
-module TD.Query.GetPhoneNumberInfoSync where
+module TD.Query.GetPhoneNumberInfoSync(GetPhoneNumberInfoSync(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetPhoneNumberInfoSync -- ^ Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
   = GetPhoneNumberInfoSync

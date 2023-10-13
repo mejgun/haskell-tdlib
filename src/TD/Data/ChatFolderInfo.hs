@@ -1,10 +1,9 @@
-module TD.Data.ChatFolderInfo where
+module TD.Data.ChatFolderInfo (ChatFolderInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ChatFolderIcon as ChatFolderIcon
 
 data ChatFolderInfo
@@ -57,6 +56,7 @@ instance AT.FromJSON ChatFolderInfo where
           , is_shareable        = is_shareable_
           , has_my_invite_links = has_my_invite_links_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatFolderInfo where
   toJSON ChatFolderInfo

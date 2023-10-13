@@ -1,10 +1,9 @@
-module TD.Data.LanguagePackStringValue where
+module TD.Data.LanguagePackStringValue (LanguagePackStringValue(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data LanguagePackStringValue -- ^ Represents the value of a string in a language pack
   = LanguagePackStringValueOrdinary -- ^ An ordinary language pack string
@@ -82,6 +81,7 @@ instance AT.FromJSON LanguagePackStringValue where
           , many_value  = many_value_
           , other_value = other_value_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LanguagePackStringValue where
   toJSON LanguagePackStringValueOrdinary

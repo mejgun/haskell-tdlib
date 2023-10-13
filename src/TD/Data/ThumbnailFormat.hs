@@ -1,10 +1,7 @@
-module TD.Data.ThumbnailFormat where
+module TD.Data.ThumbnailFormat (ThumbnailFormat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data ThumbnailFormat -- ^ Describes format of a thumbnail
   = ThumbnailFormatJpeg -- ^ The thumbnail is in JPEG format
@@ -33,7 +30,7 @@ instance Show ThumbnailFormat where
       = "ThumbnailFormatWebp"
 
 instance AT.FromJSON ThumbnailFormat where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -46,6 +43,7 @@ instance AT.FromJSON ThumbnailFormat where
       "thumbnailFormatWebp"  -> pure ThumbnailFormatWebp
       _                      -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON ThumbnailFormat where
   toJSON ThumbnailFormatJpeg

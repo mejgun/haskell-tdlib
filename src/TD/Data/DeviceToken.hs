@@ -1,10 +1,9 @@
-module TD.Data.DeviceToken where
+module TD.Data.DeviceToken (DeviceToken(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data DeviceToken -- ^ Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, the correct application platform must be specified and a valid server authentication data must be uploaded at https://my.telegram.org
   = DeviceTokenFirebaseCloudMessaging -- ^ A token for Firebase Cloud Messaging
@@ -258,6 +257,7 @@ instance AT.FromJSON DeviceToken where
           { token   = token_
           , encrypt = encrypt_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON DeviceToken where
   toJSON DeviceTokenFirebaseCloudMessaging

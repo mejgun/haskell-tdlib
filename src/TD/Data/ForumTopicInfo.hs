@@ -1,10 +1,9 @@
-module TD.Data.ForumTopicInfo where
+module TD.Data.ForumTopicInfo (ForumTopicInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified TD.Data.MessageSender as MessageSender
 
@@ -78,6 +77,7 @@ instance AT.FromJSON ForumTopicInfo where
           , is_closed         = is_closed_
           , is_hidden         = is_hidden_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ForumTopicInfo where
   toJSON ForumTopicInfo

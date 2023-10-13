@@ -1,9 +1,7 @@
-module TD.Data.SuggestedAction where
+module TD.Data.SuggestedAction (SuggestedAction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data SuggestedAction -- ^ Describes an action suggested to the current user
@@ -81,6 +79,7 @@ instance AT.FromJSON SuggestedAction where
         pure $ SuggestedActionSetPassword
           { authorization_delay = authorization_delay_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON SuggestedAction where
   toJSON SuggestedActionEnableArchiveAndMuteNewChats

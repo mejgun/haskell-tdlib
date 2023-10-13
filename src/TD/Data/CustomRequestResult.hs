@@ -1,10 +1,9 @@
-module TD.Data.CustomRequestResult where
+module TD.Data.CustomRequestResult (CustomRequestResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CustomRequestResult
   = CustomRequestResult -- ^ Contains the result of a custom request
@@ -36,6 +35,7 @@ instance AT.FromJSON CustomRequestResult where
         pure $ CustomRequestResult
           { result = result_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CustomRequestResult where
   toJSON CustomRequestResult

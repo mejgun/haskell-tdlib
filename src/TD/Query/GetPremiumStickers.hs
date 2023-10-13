@@ -1,9 +1,7 @@
-module TD.Query.GetPremiumStickers where
+module TD.Query.GetPremiumStickers(GetPremiumStickers(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetPremiumStickers -- ^ Returns premium stickers from regular sticker sets

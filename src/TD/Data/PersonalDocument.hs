@@ -1,9 +1,7 @@
-module TD.Data.PersonalDocument where
+module TD.Data.PersonalDocument (PersonalDocument(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.DatedFile as DatedFile
 
@@ -42,6 +40,7 @@ instance AT.FromJSON PersonalDocument where
           { files       = files_
           , translation = translation_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PersonalDocument where
   toJSON PersonalDocument

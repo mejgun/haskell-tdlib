@@ -1,12 +1,11 @@
-module TD.Data.InlineQueryResults where
+module TD.Data.InlineQueryResults (InlineQueryResults(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InlineQueryResultsButton as InlineQueryResultsButton
 import qualified TD.Data.InlineQueryResult as InlineQueryResult
+import qualified Data.Text as T
 
 data InlineQueryResults
   = InlineQueryResults -- ^ Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
@@ -53,6 +52,7 @@ instance AT.FromJSON InlineQueryResults where
           , results         = results_
           , next_offset     = next_offset_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InlineQueryResults where
   toJSON InlineQueryResults

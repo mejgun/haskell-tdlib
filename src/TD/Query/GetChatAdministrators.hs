@@ -1,9 +1,7 @@
-module TD.Query.GetChatAdministrators where
+module TD.Query.GetChatAdministrators(GetChatAdministrators(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatAdministrators -- ^ Returns a list of administrators of the chat with their custom titles

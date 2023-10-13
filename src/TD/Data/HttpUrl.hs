@@ -1,10 +1,9 @@
-module TD.Data.HttpUrl where
+module TD.Data.HttpUrl (HttpUrl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data HttpUrl
   = HttpUrl -- ^ Contains an HTTP URL
@@ -36,6 +35,7 @@ instance AT.FromJSON HttpUrl where
         pure $ HttpUrl
           { url = url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON HttpUrl where
   toJSON HttpUrl

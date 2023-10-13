@@ -1,9 +1,7 @@
-module TD.Query.ProcessChatFolderNewChats where
+module TD.Query.ProcessChatFolderNewChats(ProcessChatFolderNewChats(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ProcessChatFolderNewChats -- ^ Process new chats added to a shareable chat folder by its owner

@@ -1,11 +1,10 @@
-module TD.Data.ChatInviteLinkInfo where
+module TD.Data.ChatInviteLinkInfo (ChatInviteLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatType as ChatType
+import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
 
 data ChatInviteLinkInfo
@@ -83,6 +82,7 @@ instance AT.FromJSON ChatInviteLinkInfo where
           , creates_join_request = creates_join_request_
           , is_public            = is_public_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatInviteLinkInfo where
   toJSON ChatInviteLinkInfo

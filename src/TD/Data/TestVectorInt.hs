@@ -1,9 +1,7 @@
-module TD.Data.TestVectorInt where
+module TD.Data.TestVectorInt (TestVectorInt(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data TestVectorInt
@@ -36,6 +34,7 @@ instance AT.FromJSON TestVectorInt where
         pure $ TestVectorInt
           { value = value_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TestVectorInt where
   toJSON TestVectorInt

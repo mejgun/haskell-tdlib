@@ -1,9 +1,7 @@
-module TD.Data.DateRange where
+module TD.Data.DateRange (DateRange(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data DateRange
@@ -41,6 +39,7 @@ instance AT.FromJSON DateRange where
           { start_date = start_date_
           , end_date   = end_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON DateRange where
   toJSON DateRange

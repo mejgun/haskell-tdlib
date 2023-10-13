@@ -1,9 +1,7 @@
-module TD.Data.ChatEventLogFilters where
+module TD.Data.ChatEventLogFilters (ChatEventLogFilters(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatEventLogFilters
@@ -96,6 +94,7 @@ instance AT.FromJSON ChatEventLogFilters where
           , video_chat_changes  = video_chat_changes_
           , forum_changes       = forum_changes_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatEventLogFilters where
   toJSON ChatEventLogFilters

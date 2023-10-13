@@ -1,10 +1,9 @@
-module TD.Data.InlineQueryResultsButtonType where
+module TD.Data.InlineQueryResultsButtonType (InlineQueryResultsButtonType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data InlineQueryResultsButtonType -- ^ Represents a type of a button in results of inline query
   = InlineQueryResultsButtonTypeStartBot -- ^ Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
@@ -53,6 +52,7 @@ instance AT.FromJSON InlineQueryResultsButtonType where
         pure $ InlineQueryResultsButtonTypeWebApp
           { url = url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InlineQueryResultsButtonType where
   toJSON InlineQueryResultsButtonTypeStartBot

@@ -1,9 +1,7 @@
-module TD.Data.GroupCallRecentSpeaker where
+module TD.Data.GroupCallRecentSpeaker (GroupCallRecentSpeaker(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
@@ -42,6 +40,7 @@ instance AT.FromJSON GroupCallRecentSpeaker where
           { participant_id = participant_id_
           , is_speaking    = is_speaking_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON GroupCallRecentSpeaker where
   toJSON GroupCallRecentSpeaker

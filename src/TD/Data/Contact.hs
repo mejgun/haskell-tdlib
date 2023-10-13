@@ -1,10 +1,9 @@
-module TD.Data.Contact where
+module TD.Data.Contact (Contact(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data Contact
   = Contact -- ^ Describes a user contact
@@ -56,6 +55,7 @@ instance AT.FromJSON Contact where
           , vcard        = vcard_
           , user_id      = user_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Contact where
   toJSON Contact

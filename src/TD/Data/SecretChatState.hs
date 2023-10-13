@@ -1,10 +1,7 @@
-module TD.Data.SecretChatState where
+module TD.Data.SecretChatState (SecretChatState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data SecretChatState -- ^ Describes the current secret chat state
   = SecretChatStatePending -- ^ The secret chat is not yet created; waiting for the other user to get online
@@ -21,7 +18,7 @@ instance Show SecretChatState where
       = "SecretChatStateClosed"
 
 instance AT.FromJSON SecretChatState where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -30,6 +27,7 @@ instance AT.FromJSON SecretChatState where
       "secretChatStateClosed"  -> pure SecretChatStateClosed
       _                        -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON SecretChatState where
   toJSON SecretChatStatePending

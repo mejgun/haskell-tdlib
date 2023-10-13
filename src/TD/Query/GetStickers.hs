@@ -1,11 +1,10 @@
-module TD.Query.GetStickers where
+module TD.Query.GetStickers(GetStickers(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
+import qualified Data.Text as T
 
 data GetStickers -- ^ Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
   = GetStickers

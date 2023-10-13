@@ -1,9 +1,7 @@
-module TD.Data.MessageExtendedMedia where
+module TD.Data.MessageExtendedMedia (MessageExtendedMedia(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.FormattedText as FormattedText
@@ -121,6 +119,7 @@ instance AT.FromJSON MessageExtendedMedia where
         pure $ MessageExtendedMediaUnsupported
           { caption = caption_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageExtendedMedia where
   toJSON MessageExtendedMediaPreview

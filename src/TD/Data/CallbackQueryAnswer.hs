@@ -1,10 +1,9 @@
-module TD.Data.CallbackQueryAnswer where
+module TD.Data.CallbackQueryAnswer (CallbackQueryAnswer(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CallbackQueryAnswer
   = CallbackQueryAnswer -- ^ Contains a bot's answer to a callback query
@@ -46,6 +45,7 @@ instance AT.FromJSON CallbackQueryAnswer where
           , show_alert = show_alert_
           , url        = url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CallbackQueryAnswer where
   toJSON CallbackQueryAnswer

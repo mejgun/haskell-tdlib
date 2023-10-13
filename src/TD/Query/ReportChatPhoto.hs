@@ -1,11 +1,10 @@
-module TD.Query.ReportChatPhoto where
+module TD.Query.ReportChatPhoto(ReportChatPhoto(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReportReason as ReportReason
+import qualified Data.Text as T
 
 data ReportChatPhoto -- ^ Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
   = ReportChatPhoto

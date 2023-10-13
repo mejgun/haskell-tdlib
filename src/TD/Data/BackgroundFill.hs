@@ -1,9 +1,7 @@
-module TD.Data.BackgroundFill where
+module TD.Data.BackgroundFill (BackgroundFill(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data BackgroundFill -- ^ Describes a fill of a background
@@ -80,6 +78,7 @@ instance AT.FromJSON BackgroundFill where
         pure $ BackgroundFillFreeformGradient
           { colors = colors_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON BackgroundFill where
   toJSON BackgroundFillSolid

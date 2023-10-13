@@ -1,11 +1,10 @@
-module TD.Query.GetCommands where
+module TD.Query.GetCommands(GetCommands(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotCommandScope as BotCommandScope
+import qualified Data.Text as T
 
 data GetCommands -- ^ Returns list of commands supported by the bot for the given user scope and language; for bots only
   = GetCommands

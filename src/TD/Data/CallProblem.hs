@@ -1,10 +1,7 @@
-module TD.Data.CallProblem where
+module TD.Data.CallProblem (CallProblem(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data CallProblem -- ^ Describes the exact type of a problem with a call
   = CallProblemEcho -- ^ The user heard their own voice
@@ -39,7 +36,7 @@ instance Show CallProblem where
       = "CallProblemPixelatedVideo"
 
 instance AT.FromJSON CallProblem where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -54,6 +51,7 @@ instance AT.FromJSON CallProblem where
       "callProblemPixelatedVideo"  -> pure CallProblemPixelatedVideo
       _                            -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON CallProblem where
   toJSON CallProblemEcho

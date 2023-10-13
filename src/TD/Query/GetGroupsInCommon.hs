@@ -1,9 +1,7 @@
-module TD.Query.GetGroupsInCommon where
+module TD.Query.GetGroupsInCommon(GetGroupsInCommon(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetGroupsInCommon -- ^ Returns a list of common group chats with a given user. Chats are sorted by their type and creation date

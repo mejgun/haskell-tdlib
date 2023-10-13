@@ -1,9 +1,7 @@
-module TD.Query.GetGroupCall where
+module TD.Query.GetGroupCall(GetGroupCall(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetGroupCall -- ^ Returns information about a group call

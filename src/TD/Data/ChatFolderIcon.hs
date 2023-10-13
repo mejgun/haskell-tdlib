@@ -1,10 +1,9 @@
-module TD.Data.ChatFolderIcon where
+module TD.Data.ChatFolderIcon (ChatFolderIcon(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ChatFolderIcon
   = ChatFolderIcon -- ^ Represents an icon for a chat folder
@@ -36,6 +35,7 @@ instance AT.FromJSON ChatFolderIcon where
         pure $ ChatFolderIcon
           { name = name_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatFolderIcon where
   toJSON ChatFolderIcon

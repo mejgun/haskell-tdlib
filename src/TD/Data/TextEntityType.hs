@@ -1,10 +1,9 @@
-module TD.Data.TextEntityType where
+module TD.Data.TextEntityType (TextEntityType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data TextEntityType -- ^ Represents a part of the text which must be formatted differently
   = TextEntityTypeMention -- ^ A mention of a user, a supergroup, or a channel by their username
@@ -164,6 +163,7 @@ instance AT.FromJSON TextEntityType where
         pure $ TextEntityTypeMediaTimestamp
           { media_timestamp = media_timestamp_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TextEntityType where
   toJSON TextEntityTypeMention

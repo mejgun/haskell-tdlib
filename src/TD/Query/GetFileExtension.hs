@@ -1,10 +1,9 @@
-module TD.Query.GetFileExtension where
+module TD.Query.GetFileExtension(GetFileExtension(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetFileExtension -- ^ Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
   = GetFileExtension

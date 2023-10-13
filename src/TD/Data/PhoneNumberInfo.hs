@@ -1,11 +1,10 @@
-module TD.Data.PhoneNumberInfo where
+module TD.Data.PhoneNumberInfo (PhoneNumberInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.CountryInfo as CountryInfo
+import qualified Data.Text as T
 
 data PhoneNumberInfo
   = PhoneNumberInfo -- ^ Contains information about a phone number
@@ -52,6 +51,7 @@ instance AT.FromJSON PhoneNumberInfo where
           , formatted_phone_number = formatted_phone_number_
           , is_anonymous           = is_anonymous_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PhoneNumberInfo where
   toJSON PhoneNumberInfo

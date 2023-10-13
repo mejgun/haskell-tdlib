@@ -22,7 +22,19 @@ description:         Please see the README on GitHub at <https://github.com/mejg
 dependencies:
 - base >= 4.7 && < 5
 
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wno-partial-fields
+- -Wredundant-constraints
+
 library:
+  language:    GHC2021
   source-dirs: src
   extra-libraries: tdjson
   dependencies:
@@ -33,13 +45,12 @@ library:
   - text
   - containers
   - base64-bytestring
-  ghc-options:
-  - -ltdjson
   default-extensions:
   - OverloadedStrings
 
 executables:
   haskell-tdlib-exe:
+    language:    GHC2021
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -58,6 +69,7 @@ executables:
 
 tests:
   haskell-tdlib-test:
+    language:    GHC2021
     main:                Spec.hs
     source-dirs:         test
     ghc-options:

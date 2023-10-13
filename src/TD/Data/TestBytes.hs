@@ -1,10 +1,9 @@
-module TD.Data.TestBytes where
+module TD.Data.TestBytes (TestBytes(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
 data TestBytes
   = TestBytes -- ^ A simple object containing a sequence of bytes; for testing only
@@ -36,6 +35,7 @@ instance AT.FromJSON TestBytes where
         pure $ TestBytes
           { value = value_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TestBytes where
   toJSON TestBytes

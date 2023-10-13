@@ -1,10 +1,9 @@
-module TD.Query.WriteGeneratedFilePart where
+module TD.Query.WriteGeneratedFilePart(WriteGeneratedFilePart(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
 data WriteGeneratedFilePart -- ^ Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
   = WriteGeneratedFilePart

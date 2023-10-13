@@ -1,9 +1,7 @@
-module TD.Query.ChangeStickerSet where
+module TD.Query.ChangeStickerSet(ChangeStickerSet(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChangeStickerSet -- ^ Installs/uninstalls or activates/archives a sticker set

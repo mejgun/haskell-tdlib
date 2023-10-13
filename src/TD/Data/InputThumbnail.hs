@@ -1,9 +1,7 @@
-module TD.Data.InputThumbnail where
+module TD.Data.InputThumbnail (InputThumbnail(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
@@ -47,6 +45,7 @@ instance AT.FromJSON InputThumbnail where
           , width     = width_
           , height    = height_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputThumbnail where
   toJSON InputThumbnail

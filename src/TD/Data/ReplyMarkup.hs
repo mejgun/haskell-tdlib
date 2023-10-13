@@ -1,10 +1,9 @@
-module TD.Data.ReplyMarkup where
+module TD.Data.ReplyMarkup (ReplyMarkup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.KeyboardButton as KeyboardButton
 import qualified TD.Data.InlineKeyboardButton as InlineKeyboardButton
 
@@ -119,6 +118,7 @@ instance AT.FromJSON ReplyMarkup where
         pure $ ReplyMarkupInlineKeyboard
           { _rows = _rows_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ReplyMarkup where
   toJSON ReplyMarkupRemoveKeyboard

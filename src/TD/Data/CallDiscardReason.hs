@@ -1,10 +1,7 @@
-module TD.Data.CallDiscardReason where
+module TD.Data.CallDiscardReason (CallDiscardReason(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data CallDiscardReason -- ^ Describes the reason why a call was discarded
   = CallDiscardReasonEmpty -- ^ The call wasn't discarded, or the reason is unknown
@@ -27,7 +24,7 @@ instance Show CallDiscardReason where
       = "CallDiscardReasonHungUp"
 
 instance AT.FromJSON CallDiscardReason where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -38,6 +35,7 @@ instance AT.FromJSON CallDiscardReason where
       "callDiscardReasonHungUp"       -> pure CallDiscardReasonHungUp
       _                               -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON CallDiscardReason where
   toJSON CallDiscardReasonEmpty

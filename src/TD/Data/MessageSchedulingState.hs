@@ -1,9 +1,7 @@
-module TD.Data.MessageSchedulingState where
+module TD.Data.MessageSchedulingState (MessageSchedulingState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data MessageSchedulingState -- ^ Contains information about the time when a scheduled message will be sent
@@ -40,6 +38,7 @@ instance AT.FromJSON MessageSchedulingState where
         pure $ MessageSchedulingStateSendAtDate
           { send_date = send_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageSchedulingState where
   toJSON MessageSchedulingStateSendAtDate

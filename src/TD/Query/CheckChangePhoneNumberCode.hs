@@ -1,10 +1,9 @@
-module TD.Query.CheckChangePhoneNumberCode where
+module TD.Query.CheckChangePhoneNumberCode(CheckChangePhoneNumberCode(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CheckChangePhoneNumberCode -- ^ Checks the authentication code sent to confirm a new phone number of the user
   = CheckChangePhoneNumberCode

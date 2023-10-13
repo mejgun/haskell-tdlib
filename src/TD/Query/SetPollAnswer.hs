@@ -1,9 +1,7 @@
-module TD.Query.SetPollAnswer where
+module TD.Query.SetPollAnswer(SetPollAnswer(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data SetPollAnswer -- ^ Changes the user answer to a poll. A poll in quiz mode can be answered only once

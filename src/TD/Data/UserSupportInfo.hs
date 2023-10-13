@@ -1,11 +1,10 @@
-module TD.Data.UserSupportInfo where
+module TD.Data.UserSupportInfo (UserSupportInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
+import qualified Data.Text as T
 
 data UserSupportInfo
   = UserSupportInfo -- ^ Contains custom information about the user
@@ -47,6 +46,7 @@ instance AT.FromJSON UserSupportInfo where
           , author  = author_
           , date    = date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON UserSupportInfo where
   toJSON UserSupportInfo

@@ -1,10 +1,7 @@
-module TD.Data.SearchMessagesFilter where
+module TD.Data.SearchMessagesFilter (SearchMessagesFilter(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data SearchMessagesFilter -- ^ Represents a filter for message search results
   = SearchMessagesFilterEmpty -- ^ Returns all found messages, no filter is applied
@@ -63,7 +60,7 @@ instance Show SearchMessagesFilter where
       = "SearchMessagesFilterPinned"
 
 instance AT.FromJSON SearchMessagesFilter where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -86,6 +83,7 @@ instance AT.FromJSON SearchMessagesFilter where
       "searchMessagesFilterPinned"            -> pure SearchMessagesFilterPinned
       _                                       -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON SearchMessagesFilter where
   toJSON SearchMessagesFilterEmpty

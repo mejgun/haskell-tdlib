@@ -1,10 +1,9 @@
-module TD.Query.GetPassportAuthorizationFormAvailableElements where
+module TD.Query.GetPassportAuthorizationFormAvailableElements(GetPassportAuthorizationFormAvailableElements(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetPassportAuthorizationFormAvailableElements -- ^ Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
   = GetPassportAuthorizationFormAvailableElements

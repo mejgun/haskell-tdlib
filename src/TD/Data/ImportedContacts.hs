@@ -1,9 +1,7 @@
-module TD.Data.ImportedContacts where
+module TD.Data.ImportedContacts (ImportedContacts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ImportedContacts
@@ -41,6 +39,7 @@ instance AT.FromJSON ImportedContacts where
           { user_ids       = user_ids_
           , importer_count = importer_count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ImportedContacts where
   toJSON ImportedContacts

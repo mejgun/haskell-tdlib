@@ -1,9 +1,7 @@
-module TD.Data.ChatActiveStories where
+module TD.Data.ChatActiveStories (ChatActiveStories(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryList as StoryList
 import qualified TD.Data.StoryInfo as StoryInfo
@@ -58,6 +56,7 @@ instance AT.FromJSON ChatActiveStories where
           , max_read_story_id = max_read_story_id_
           , stories           = stories_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatActiveStories where
   toJSON ChatActiveStories

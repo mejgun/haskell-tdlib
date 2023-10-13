@@ -1,9 +1,7 @@
-module TD.Query.CloseStory where
+module TD.Query.CloseStory(CloseStory(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data CloseStory -- ^ Informs TDLib that a story is closed by the user

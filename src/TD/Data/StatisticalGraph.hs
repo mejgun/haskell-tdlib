@@ -1,10 +1,9 @@
-module TD.Data.StatisticalGraph where
+module TD.Data.StatisticalGraph (StatisticalGraph(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data StatisticalGraph -- ^ Describes a statistical graph
   = StatisticalGraphData -- ^ A graph data
@@ -75,6 +74,7 @@ instance AT.FromJSON StatisticalGraph where
         pure $ StatisticalGraphError
           { error_message = error_message_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StatisticalGraph where
   toJSON StatisticalGraphData

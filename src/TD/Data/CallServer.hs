@@ -1,10 +1,9 @@
-module TD.Data.CallServer where
+module TD.Data.CallServer (CallServer(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.CallServerType as CallServerType
 
 data CallServer
@@ -57,6 +56,7 @@ instance AT.FromJSON CallServer where
           , port         = port_
           , _type        = _type_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CallServer where
   toJSON CallServer

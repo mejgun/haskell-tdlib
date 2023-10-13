@@ -1,10 +1,7 @@
-module TD.Data.PremiumLimitType where
+module TD.Data.PremiumLimitType (PremiumLimitType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data PremiumLimitType -- ^ Describes type of a limit, increased for Premium users
   = PremiumLimitTypeSupergroupCount -- ^ The maximum number of joined supergroups and channels
@@ -51,7 +48,7 @@ instance Show PremiumLimitType where
       = "PremiumLimitTypeActiveStoryCount"
 
 instance AT.FromJSON PremiumLimitType where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -70,6 +67,7 @@ instance AT.FromJSON PremiumLimitType where
       "premiumLimitTypeActiveStoryCount"          -> pure PremiumLimitTypeActiveStoryCount
       _                                           -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON PremiumLimitType where
   toJSON PremiumLimitTypeSupergroupCount

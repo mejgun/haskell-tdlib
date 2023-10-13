@@ -1,9 +1,7 @@
-module TD.Query.GetGameHighScores where
+module TD.Query.GetGameHighScores(GetGameHighScores(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetGameHighScores -- ^ Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only

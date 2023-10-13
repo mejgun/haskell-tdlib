@@ -1,10 +1,9 @@
-module TD.Query.AddApplicationChangelog where
+module TD.Query.AddApplicationChangelog(AddApplicationChangelog(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data AddApplicationChangelog -- ^ Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
   = AddApplicationChangelog

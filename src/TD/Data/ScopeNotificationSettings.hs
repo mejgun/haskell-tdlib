@@ -1,9 +1,7 @@
-module TD.Data.ScopeNotificationSettings where
+module TD.Data.ScopeNotificationSettings (ScopeNotificationSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ScopeNotificationSettings
@@ -76,6 +74,7 @@ instance AT.FromJSON ScopeNotificationSettings where
           , disable_pinned_message_notifications = disable_pinned_message_notifications_
           , disable_mention_notifications        = disable_mention_notifications_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ScopeNotificationSettings where
   toJSON ScopeNotificationSettings

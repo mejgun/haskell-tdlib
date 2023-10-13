@@ -1,10 +1,9 @@
-module TD.Data.Invoice where
+module TD.Data.Invoice (Invoice(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.LabeledPricePart as LabeledPricePart
 
 data Invoice
@@ -97,6 +96,7 @@ instance AT.FromJSON Invoice where
           , send_email_address_to_provider         = send_email_address_to_provider_
           , is_flexible                            = is_flexible_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Invoice where
   toJSON Invoice

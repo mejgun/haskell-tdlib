@@ -1,10 +1,10 @@
-module TD.Data.VoiceNote where
+module TD.Data.VoiceNote (VoiceNote(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
+import qualified Data.Text as T
 import qualified TD.Data.SpeechRecognitionResult as SpeechRecognitionResult
 import qualified TD.Data.File as File
 
@@ -58,6 +58,7 @@ instance AT.FromJSON VoiceNote where
           , speech_recognition_result = speech_recognition_result_
           , voice                     = voice_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON VoiceNote where
   toJSON VoiceNote

@@ -1,9 +1,7 @@
-module TD.Query.OpenMessageContent where
+module TD.Query.OpenMessageContent(OpenMessageContent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data OpenMessageContent -- ^ Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed

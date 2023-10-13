@@ -1,4 +1,4 @@
-module TD.Data.PageBlock where
+module TD.Data.PageBlock (PageBlock) where
 
 import Data.Aeson.Types (FromJSON, ToJSON)
 

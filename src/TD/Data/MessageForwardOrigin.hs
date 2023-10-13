@@ -1,10 +1,9 @@
-module TD.Data.MessageForwardOrigin where
+module TD.Data.MessageForwardOrigin (MessageForwardOrigin(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data MessageForwardOrigin -- ^ Contains information about the origin of a forwarded message
   = MessageForwardOriginUser -- ^ The message was originally sent by a known user
@@ -119,6 +118,7 @@ instance AT.FromJSON MessageForwardOrigin where
         pure $ MessageForwardOriginMessageImport
           { sender_name = sender_name_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageForwardOrigin where
   toJSON MessageForwardOriginUser

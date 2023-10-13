@@ -1,11 +1,10 @@
-module TD.Query.TranslateText where
+module TD.Query.TranslateText(TranslateText(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
+import qualified Data.Text as T
 
 data TranslateText -- ^ Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
   = TranslateText

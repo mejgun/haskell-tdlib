@@ -1,10 +1,9 @@
-module TD.Data.JsonObjectMember where
+module TD.Data.JsonObjectMember (JsonObjectMember(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import {-# SOURCE #-} qualified TD.Data.JsonValue as JsonValue
 
 data JsonObjectMember
@@ -42,6 +41,7 @@ instance AT.FromJSON JsonObjectMember where
           { key   = key_
           , value = value_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON JsonObjectMember where
   toJSON JsonObjectMember

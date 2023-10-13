@@ -1,9 +1,7 @@
-module TD.Data.EmojiStatuses where
+module TD.Data.EmojiStatuses (EmojiStatuses(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data EmojiStatuses
@@ -36,6 +34,7 @@ instance AT.FromJSON EmojiStatuses where
         pure $ EmojiStatuses
           { custom_emoji_ids = custom_emoji_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmojiStatuses where
   toJSON EmojiStatuses

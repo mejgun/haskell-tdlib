@@ -1,9 +1,7 @@
-module TD.Data.ForumTopics where
+module TD.Data.ForumTopics (ForumTopics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ForumTopic as ForumTopic
 
@@ -57,6 +55,7 @@ instance AT.FromJSON ForumTopics where
           , next_offset_message_id        = next_offset_message_id_
           , next_offset_message_thread_id = next_offset_message_thread_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ForumTopics where
   toJSON ForumTopics

@@ -1,12 +1,10 @@
-module TD.Data.WebPageInstantView where
+module TD.Data.WebPageInstantView (WebPageInstantView(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
-import {-# SOURCE #-} qualified TD.Data.PageBlock as PageBlock
-import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
+import qualified TD.Data.PageBlock as PageBlock
+import qualified TD.Data.InternalLinkType as InternalLinkType
 
 data WebPageInstantView
   = WebPageInstantView -- ^ Describes an instant view page for a web page
@@ -63,6 +61,7 @@ instance AT.FromJSON WebPageInstantView where
           , is_full       = is_full_
           , feedback_link = feedback_link_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON WebPageInstantView where
   toJSON WebPageInstantView

@@ -1,9 +1,7 @@
-module TD.Query.ShareUserWithBot where
+module TD.Query.ShareUserWithBot(ShareUserWithBot(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ShareUserWithBot -- ^ Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot

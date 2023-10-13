@@ -1,9 +1,7 @@
-module TD.Data.TextEntities where
+module TD.Data.TextEntities (TextEntities(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.TextEntity as TextEntity
 
@@ -37,6 +35,7 @@ instance AT.FromJSON TextEntities where
         pure $ TextEntities
           { entities = entities_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TextEntities where
   toJSON TextEntities

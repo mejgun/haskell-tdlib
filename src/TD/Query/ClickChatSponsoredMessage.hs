@@ -1,9 +1,7 @@
-module TD.Query.ClickChatSponsoredMessage where
+module TD.Query.ClickChatSponsoredMessage(ClickChatSponsoredMessage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ClickChatSponsoredMessage -- ^ Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message

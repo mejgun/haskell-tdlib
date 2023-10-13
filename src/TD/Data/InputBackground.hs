@@ -1,9 +1,7 @@
-module TD.Data.InputBackground where
+module TD.Data.InputBackground (InputBackground(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
@@ -71,6 +69,7 @@ instance AT.FromJSON InputBackground where
         pure $ InputBackgroundPrevious
           { message_id = message_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputBackground where
   toJSON InputBackgroundLocal

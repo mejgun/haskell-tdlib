@@ -1,10 +1,9 @@
-module TD.Query.GetTextEntities where
+module TD.Query.GetTextEntities(GetTextEntities(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetTextEntities -- ^ Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
   = GetTextEntities

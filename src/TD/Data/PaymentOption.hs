@@ -1,10 +1,9 @@
-module TD.Data.PaymentOption where
+module TD.Data.PaymentOption (PaymentOption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data PaymentOption
   = PaymentOption -- ^ Describes an additional payment option
@@ -41,6 +40,7 @@ instance AT.FromJSON PaymentOption where
           { title = title_
           , url   = url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PaymentOption where
   toJSON PaymentOption

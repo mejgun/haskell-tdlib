@@ -1,10 +1,9 @@
-module TD.Data.ConnectedWebsite where
+module TD.Data.ConnectedWebsite (ConnectedWebsite(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ConnectedWebsite
   = ConnectedWebsite -- ^ Contains information about one website the current user is logged in with Telegram
@@ -76,6 +75,7 @@ instance AT.FromJSON ConnectedWebsite where
           , ip               = ip_
           , location         = location_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ConnectedWebsite where
   toJSON ConnectedWebsite

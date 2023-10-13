@@ -1,10 +1,9 @@
-module TD.Query.ReorderSupergroupActiveUsernames where
+module TD.Query.ReorderSupergroupActiveUsernames(ReorderSupergroupActiveUsernames(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ReorderSupergroupActiveUsernames -- ^ Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
   = ReorderSupergroupActiveUsernames

@@ -1,10 +1,9 @@
-module TD.Data.SupergroupMembersFilter where
+module TD.Data.SupergroupMembersFilter (SupergroupMembersFilter(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SupergroupMembersFilter -- ^ Specifies the kind of chat members to return in getSupergroupMembers
   = SupergroupMembersFilterRecent -- ^ Returns recently active users in reverse chronological order
@@ -121,6 +120,7 @@ instance AT.FromJSON SupergroupMembersFilter where
           { query             = query_
           , message_thread_id = message_thread_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON SupergroupMembersFilter where
   toJSON SupergroupMembersFilterRecent

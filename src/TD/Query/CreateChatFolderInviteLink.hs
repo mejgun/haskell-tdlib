@@ -1,10 +1,9 @@
-module TD.Query.CreateChatFolderInviteLink where
+module TD.Query.CreateChatFolderInviteLink(CreateChatFolderInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CreateChatFolderInviteLink -- ^ Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
   = CreateChatFolderInviteLink

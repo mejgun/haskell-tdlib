@@ -1,9 +1,7 @@
-module TD.Data.PushReceiverId where
+module TD.Data.PushReceiverId (PushReceiverId(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data PushReceiverId
@@ -36,6 +34,7 @@ instance AT.FromJSON PushReceiverId where
         pure $ PushReceiverId
           { _id = _id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PushReceiverId where
   toJSON PushReceiverId

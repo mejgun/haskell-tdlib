@@ -1,12 +1,12 @@
-module TD.Data.EncryptedPassportElement where
+module TD.Data.EncryptedPassportElement (EncryptedPassportElement(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
+import qualified Data.ByteString as BS
 import qualified TD.Data.DatedFile as DatedFile
+import qualified Data.Text as T
 
 data EncryptedPassportElement
   = EncryptedPassportElement -- ^ Contains information about an encrypted Telegram Passport element; for bots only
@@ -78,6 +78,7 @@ instance AT.FromJSON EncryptedPassportElement where
           , value        = value_
           , hash         = hash_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EncryptedPassportElement where
   toJSON EncryptedPassportElement

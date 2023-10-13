@@ -1,9 +1,7 @@
-module TD.Data.StorageStatisticsByFileType where
+module TD.Data.StorageStatisticsByFileType (StorageStatisticsByFileType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FileType as FileType
 
@@ -47,6 +45,7 @@ instance AT.FromJSON StorageStatisticsByFileType where
           , size      = size_
           , count     = count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StorageStatisticsByFileType where
   toJSON StorageStatisticsByFileType

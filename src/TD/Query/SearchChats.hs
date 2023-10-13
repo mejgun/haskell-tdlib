@@ -1,10 +1,9 @@
-module TD.Query.SearchChats where
+module TD.Query.SearchChats(SearchChats(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SearchChats -- ^ Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
   = SearchChats

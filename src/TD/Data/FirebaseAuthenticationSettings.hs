@@ -1,10 +1,9 @@
-module TD.Data.FirebaseAuthenticationSettings where
+module TD.Data.FirebaseAuthenticationSettings (FirebaseAuthenticationSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data FirebaseAuthenticationSettings -- ^ Contains settings for Firebase Authentication in the official applications
   = FirebaseAuthenticationSettingsAndroid -- ^ Settings for Firebase Authentication in the official Android application
@@ -45,6 +44,7 @@ instance AT.FromJSON FirebaseAuthenticationSettings where
           { device_token   = device_token_
           , is_app_sandbox = is_app_sandbox_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON FirebaseAuthenticationSettings where
   toJSON FirebaseAuthenticationSettingsAndroid

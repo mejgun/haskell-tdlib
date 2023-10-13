@@ -1,11 +1,9 @@
-module TD.Data.DraftMessage where
+module TD.Data.DraftMessage (DraftMessage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
-import {-# SOURCE #-} qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.InputMessageContent as InputMessageContent
 
 data DraftMessage
   = DraftMessage -- ^ Contains information about a message draft
@@ -47,6 +45,7 @@ instance AT.FromJSON DraftMessage where
           , date                = date_
           , input_message_text  = input_message_text_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON DraftMessage where
   toJSON DraftMessage

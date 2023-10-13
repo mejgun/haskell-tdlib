@@ -1,10 +1,9 @@
-module TD.Data.Audio where
+module TD.Data.Audio (Audio(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.File as File
@@ -79,6 +78,7 @@ instance AT.FromJSON Audio where
           , external_album_covers     = external_album_covers_
           , audio                     = audio_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Audio where
   toJSON Audio

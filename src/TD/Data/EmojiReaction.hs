@@ -1,10 +1,9 @@
-module TD.Data.EmojiReaction where
+module TD.Data.EmojiReaction (EmojiReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Sticker as Sticker
 
 data EmojiReaction
@@ -82,6 +81,7 @@ instance AT.FromJSON EmojiReaction where
           , around_animation   = around_animation_
           , center_animation   = center_animation_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmojiReaction where
   toJSON EmojiReaction

@@ -1,9 +1,7 @@
-module TD.Data.ChatsNearby where
+module TD.Data.ChatsNearby (ChatsNearby(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatNearby as ChatNearby
 
@@ -42,6 +40,7 @@ instance AT.FromJSON ChatsNearby where
           { users_nearby       = users_nearby_
           , supergroups_nearby = supergroups_nearby_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatsNearby where
   toJSON ChatsNearby

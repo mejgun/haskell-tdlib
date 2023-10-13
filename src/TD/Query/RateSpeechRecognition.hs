@@ -1,9 +1,7 @@
-module TD.Query.RateSpeechRecognition where
+module TD.Query.RateSpeechRecognition(RateSpeechRecognition(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data RateSpeechRecognition -- ^ Rates recognized speech in a video note or a voice note message

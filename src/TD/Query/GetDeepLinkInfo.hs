@@ -1,10 +1,9 @@
-module TD.Query.GetDeepLinkInfo where
+module TD.Query.GetDeepLinkInfo(GetDeepLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetDeepLinkInfo -- ^ Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
   = GetDeepLinkInfo

@@ -1,11 +1,10 @@
-module TD.Query.SetStickerKeywords where
+module TD.Query.SetStickerKeywords(SetStickerKeywords(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
+import qualified Data.Text as T
 
 data SetStickerKeywords -- ^ Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
   = SetStickerKeywords

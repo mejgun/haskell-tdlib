@@ -1,10 +1,9 @@
-module TD.Data.InputCredentials where
+module TD.Data.InputCredentials (InputCredentials(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data InputCredentials -- ^ Contains information about the payment method chosen by the user
   = InputCredentialsSaved -- ^ Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
@@ -92,6 +91,7 @@ instance AT.FromJSON InputCredentials where
         pure $ InputCredentialsGooglePay
           { _data = _data_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputCredentials where
   toJSON InputCredentialsSaved

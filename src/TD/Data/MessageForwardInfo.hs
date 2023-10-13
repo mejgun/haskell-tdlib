@@ -1,11 +1,10 @@
-module TD.Data.MessageForwardInfo where
+module TD.Data.MessageForwardInfo (MessageForwardInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageForwardOrigin as MessageForwardOrigin
+import qualified Data.Text as T
 
 data MessageForwardInfo
   = MessageForwardInfo -- ^ Contains information about a forwarded message
@@ -57,6 +56,7 @@ instance AT.FromJSON MessageForwardInfo where
           , from_chat_id                     = from_chat_id_
           , from_message_id                  = from_message_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageForwardInfo where
   toJSON MessageForwardInfo

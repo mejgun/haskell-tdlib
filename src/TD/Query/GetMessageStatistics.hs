@@ -1,9 +1,7 @@
-module TD.Query.GetMessageStatistics where
+module TD.Query.GetMessageStatistics(GetMessageStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetMessageStatistics -- ^ Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true

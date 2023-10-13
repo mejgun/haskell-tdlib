@@ -1,10 +1,9 @@
-module TD.Query.SearchCallMessages where
+module TD.Query.SearchCallMessages(SearchCallMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SearchCallMessages -- ^ Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
   = SearchCallMessages

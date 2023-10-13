@@ -1,10 +1,9 @@
-module TD.Data.LanguagePackInfo where
+module TD.Data.LanguagePackInfo (LanguagePackInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data LanguagePackInfo
   = LanguagePackInfo -- ^ Contains information about a language pack
@@ -96,6 +95,7 @@ instance AT.FromJSON LanguagePackInfo where
           , local_string_count      = local_string_count_
           , translation_url         = translation_url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LanguagePackInfo where
   toJSON LanguagePackInfo

@@ -1,9 +1,7 @@
-module TD.Data.ChatPermissions where
+module TD.Data.ChatPermissions (ChatPermissions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatPermissions
@@ -101,6 +99,7 @@ instance AT.FromJSON ChatPermissions where
           , can_pin_messages          = can_pin_messages_
           , can_manage_topics         = can_manage_topics_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatPermissions where
   toJSON ChatPermissions

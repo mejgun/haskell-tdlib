@@ -1,10 +1,7 @@
-module TD.Query.GetCustomEmojiReactionAnimations where
+module TD.Query.GetCustomEmojiReactionAnimations(GetCustomEmojiReactionAnimations(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data GetCustomEmojiReactionAnimations -- ^ Returns TGS stickers with generic animations for custom emoji reactions
   = GetCustomEmojiReactionAnimations

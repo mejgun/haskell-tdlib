@@ -1,10 +1,9 @@
-module TD.Data.InlineQueryResult where
+module TD.Data.InlineQueryResult (InlineQueryResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.Location as Location
@@ -375,6 +374,7 @@ instance AT.FromJSON InlineQueryResult where
           , voice_note = voice_note_
           , title      = title_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InlineQueryResult where
   toJSON InlineQueryResultArticle

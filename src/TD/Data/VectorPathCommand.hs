@@ -1,9 +1,7 @@
-module TD.Data.VectorPathCommand where
+module TD.Data.VectorPathCommand (VectorPathCommand(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Point as Point
 
@@ -64,6 +62,7 @@ instance AT.FromJSON VectorPathCommand where
           , end_control_point   = end_control_point_
           , end_point           = end_point_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON VectorPathCommand where
   toJSON VectorPathCommandLine

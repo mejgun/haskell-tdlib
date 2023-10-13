@@ -1,10 +1,9 @@
-module TD.Query.SearchUserByPhoneNumber where
+module TD.Query.SearchUserByPhoneNumber(SearchUserByPhoneNumber(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SearchUserByPhoneNumber -- ^ Searches a user by their phone number. Returns a 404 error if the user can't be found
   = SearchUserByPhoneNumber

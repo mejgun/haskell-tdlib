@@ -1,9 +1,7 @@
-module TD.Query.ReportSupergroupSpam where
+module TD.Query.ReportSupergroupSpam(ReportSupergroupSpam(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ReportSupergroupSpam -- ^ Reports messages in a supergroup as spam; requires administrator rights in the supergroup

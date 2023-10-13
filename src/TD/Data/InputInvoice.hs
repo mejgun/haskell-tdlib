@@ -1,10 +1,9 @@
-module TD.Data.InputInvoice where
+module TD.Data.InputInvoice (InputInvoice(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data InputInvoice -- ^ Describes an invoice to process
   = InputInvoiceMessage -- ^ An invoice from a message of the type messageInvoice
@@ -58,6 +57,7 @@ instance AT.FromJSON InputInvoice where
         pure $ InputInvoiceName
           { name = name_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputInvoice where
   toJSON InputInvoiceMessage

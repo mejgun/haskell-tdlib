@@ -1,10 +1,7 @@
-module TD.Query.GetActiveLiveLocationMessages where
+module TD.Query.GetActiveLiveLocationMessages(GetActiveLiveLocationMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data GetActiveLiveLocationMessages -- ^ Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
   = GetActiveLiveLocationMessages

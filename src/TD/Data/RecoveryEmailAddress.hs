@@ -1,10 +1,9 @@
-module TD.Data.RecoveryEmailAddress where
+module TD.Data.RecoveryEmailAddress (RecoveryEmailAddress(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data RecoveryEmailAddress
   = RecoveryEmailAddress -- ^ Contains information about the current recovery email address
@@ -36,6 +35,7 @@ instance AT.FromJSON RecoveryEmailAddress where
         pure $ RecoveryEmailAddress
           { recovery_email_address = recovery_email_address_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON RecoveryEmailAddress where
   toJSON RecoveryEmailAddress

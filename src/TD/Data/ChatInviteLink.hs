@@ -1,10 +1,9 @@
-module TD.Data.ChatInviteLink where
+module TD.Data.ChatInviteLink (ChatInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ChatInviteLink
   = ChatInviteLink -- ^ Contains a chat invite link
@@ -91,6 +90,7 @@ instance AT.FromJSON ChatInviteLink where
           , is_primary                 = is_primary_
           , is_revoked                 = is_revoked_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatInviteLink where
   toJSON ChatInviteLink

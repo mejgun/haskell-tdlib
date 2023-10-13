@@ -1,9 +1,7 @@
-module TD.Query.GetVideoChatRtmpUrl where
+module TD.Query.GetVideoChatRtmpUrl(GetVideoChatRtmpUrl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetVideoChatRtmpUrl -- ^ Returns RTMP URL for streaming to the chat; requires creator privileges

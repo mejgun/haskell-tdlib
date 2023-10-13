@@ -1,10 +1,9 @@
-module TD.Data.InlineKeyboardButton where
+module TD.Data.InlineKeyboardButton (InlineKeyboardButton(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.InlineKeyboardButtonType as InlineKeyboardButtonType
 
 data InlineKeyboardButton
@@ -42,6 +41,7 @@ instance AT.FromJSON InlineKeyboardButton where
           { text  = text_
           , _type = _type_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InlineKeyboardButton where
   toJSON InlineKeyboardButton

@@ -1,9 +1,7 @@
-module TD.Query.CancelPreliminaryUploadFile where
+module TD.Query.CancelPreliminaryUploadFile(CancelPreliminaryUploadFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data CancelPreliminaryUploadFile -- ^ Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined

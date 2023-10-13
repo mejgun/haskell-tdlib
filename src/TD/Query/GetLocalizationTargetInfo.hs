@@ -1,9 +1,7 @@
-module TD.Query.GetLocalizationTargetInfo where
+module TD.Query.GetLocalizationTargetInfo(GetLocalizationTargetInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetLocalizationTargetInfo -- ^ Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization

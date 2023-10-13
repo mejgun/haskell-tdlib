@@ -1,12 +1,11 @@
-module TD.Query.AnswerInlineQuery where
+module TD.Query.AnswerInlineQuery(AnswerInlineQuery(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InlineQueryResultsButton as InlineQueryResultsButton
 import qualified TD.Data.InputInlineQueryResult as InputInlineQueryResult
+import qualified Data.Text as T
 
 data AnswerInlineQuery -- ^ Sets the result of an inline query; for bots only
   = AnswerInlineQuery

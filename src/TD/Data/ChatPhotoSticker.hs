@@ -1,9 +1,7 @@
-module TD.Data.ChatPhotoSticker where
+module TD.Data.ChatPhotoSticker (ChatPhotoSticker(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatPhotoStickerType as ChatPhotoStickerType
 import qualified TD.Data.BackgroundFill as BackgroundFill
@@ -43,6 +41,7 @@ instance AT.FromJSON ChatPhotoSticker where
           { _type           = _type_
           , background_fill = background_fill_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatPhotoSticker where
   toJSON ChatPhotoSticker

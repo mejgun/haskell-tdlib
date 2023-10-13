@@ -1,10 +1,9 @@
-module TD.Query.SearchContacts where
+module TD.Query.SearchContacts(SearchContacts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SearchContacts -- ^ Searches for the specified query in the first names, last names and usernames of the known user contacts
   = SearchContacts

@@ -1,10 +1,10 @@
-module TD.Data.AuthenticationCodeType where
+module TD.Data.AuthenticationCodeType (AuthenticationCodeType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data AuthenticationCodeType -- ^ Provides information about the method by which an authentication code is delivered to the user
   = AuthenticationCodeTypeTelegramMessage -- ^ An authentication code is delivered via a private Telegram message, which can be viewed from another active session
@@ -180,6 +180,7 @@ instance AT.FromJSON AuthenticationCodeType where
           , push_timeout = push_timeout_
           , _length      = _length_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AuthenticationCodeType where
   toJSON AuthenticationCodeTypeTelegramMessage

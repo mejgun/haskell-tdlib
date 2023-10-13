@@ -1,9 +1,7 @@
-module TD.Data.ChatAvailableReactions where
+module TD.Data.ChatAvailableReactions (ChatAvailableReactions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
@@ -41,6 +39,7 @@ instance AT.FromJSON ChatAvailableReactions where
         pure $ ChatAvailableReactionsSome
           { reactions = reactions_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatAvailableReactions where
   toJSON ChatAvailableReactionsAll

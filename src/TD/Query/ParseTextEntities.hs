@@ -1,10 +1,9 @@
-module TD.Query.ParseTextEntities where
+module TD.Query.ParseTextEntities(ParseTextEntities(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.TextParseMode as TextParseMode
 
 data ParseTextEntities -- ^ Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously

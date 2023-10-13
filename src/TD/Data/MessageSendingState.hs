@@ -1,10 +1,9 @@
-module TD.Data.MessageSendingState where
+module TD.Data.MessageSendingState (MessageSendingState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data MessageSendingState -- ^ Contains information about the sending state of the message
   = MessageSendingStatePending -- ^ The message is being sent now, but has not yet been delivered to the server
@@ -73,6 +72,7 @@ instance AT.FromJSON MessageSendingState where
           , need_another_sender = need_another_sender_
           , retry_after         = retry_after_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageSendingState where
   toJSON MessageSendingStatePending

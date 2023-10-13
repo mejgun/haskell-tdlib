@@ -1,11 +1,10 @@
-module TD.Query.SearchMessages where
+module TD.Query.SearchMessages(SearchMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
+import qualified Data.Text as T
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 
 data SearchMessages -- ^ Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit

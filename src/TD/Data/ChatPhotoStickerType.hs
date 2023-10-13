@@ -1,9 +1,7 @@
-module TD.Data.ChatPhotoStickerType where
+module TD.Data.ChatPhotoStickerType (ChatPhotoStickerType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatPhotoStickerType -- ^ Describes type of a sticker, which was used to create a chat photo
@@ -58,6 +56,7 @@ instance AT.FromJSON ChatPhotoStickerType where
         pure $ ChatPhotoStickerTypeCustomEmoji
           { custom_emoji_id = custom_emoji_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatPhotoStickerType where
   toJSON ChatPhotoStickerTypeRegularOrMask

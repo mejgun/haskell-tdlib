@@ -1,10 +1,7 @@
-module TD.Query.GetSupportName where
+module TD.Query.GetSupportName(GetSupportName(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data GetSupportName -- ^ Returns localized name of the Telegram support user; for Telegram support only
   = GetSupportName

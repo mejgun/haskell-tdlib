@@ -1,9 +1,7 @@
-module TD.Data.MaskPosition where
+module TD.Data.MaskPosition (MaskPosition(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MaskPoint as MaskPoint
 
@@ -52,6 +50,7 @@ instance AT.FromJSON MaskPosition where
           , y_shift = y_shift_
           , scale   = scale_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MaskPosition where
   toJSON MaskPosition

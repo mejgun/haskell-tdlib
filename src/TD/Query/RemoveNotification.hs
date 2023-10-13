@@ -1,9 +1,7 @@
-module TD.Query.RemoveNotification where
+module TD.Query.RemoveNotification(RemoveNotification(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data RemoveNotification -- ^ Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user

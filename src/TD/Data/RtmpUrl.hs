@@ -1,10 +1,9 @@
-module TD.Data.RtmpUrl where
+module TD.Data.RtmpUrl (RtmpUrl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data RtmpUrl
   = RtmpUrl -- ^ Represents an RTMP URL
@@ -41,6 +40,7 @@ instance AT.FromJSON RtmpUrl where
           { url        = url_
           , stream_key = stream_key_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON RtmpUrl where
   toJSON RtmpUrl

@@ -1,10 +1,9 @@
-module TD.Query.ToggleUsernameIsActive where
+module TD.Query.ToggleUsernameIsActive(ToggleUsernameIsActive(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ToggleUsernameIsActive -- ^ Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
   = ToggleUsernameIsActive

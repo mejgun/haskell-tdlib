@@ -1,9 +1,7 @@
-module TD.Data.TextParseMode where
+module TD.Data.TextParseMode (TextParseMode(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data TextParseMode -- ^ Describes the way the text needs to be parsed for text entities
@@ -40,6 +38,7 @@ instance AT.FromJSON TextParseMode where
         pure $ TextParseModeMarkdown
           { version = version_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TextParseMode where
   toJSON TextParseModeMarkdown

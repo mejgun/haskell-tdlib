@@ -1,10 +1,9 @@
-module TD.Query.EditProxy where
+module TD.Query.EditProxy(EditProxy(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ProxyType as ProxyType
 
 data EditProxy -- ^ Edits an existing proxy server for network requests. Can be called before authorization

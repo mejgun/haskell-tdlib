@@ -1,10 +1,9 @@
-module TD.Data.PhotoSize where
+module TD.Data.PhotoSize (PhotoSize(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.File as File
 
 data PhotoSize
@@ -57,6 +56,7 @@ instance AT.FromJSON PhotoSize where
           , height            = height_
           , progressive_sizes = progressive_sizes_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PhotoSize where
   toJSON PhotoSize

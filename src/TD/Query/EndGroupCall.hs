@@ -1,9 +1,7 @@
-module TD.Query.EndGroupCall where
+module TD.Query.EndGroupCall(EndGroupCall(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data EndGroupCall -- ^ Ends a group call. Requires groupCall.can_be_managed

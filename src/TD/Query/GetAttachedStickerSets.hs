@@ -1,9 +1,7 @@
-module TD.Query.GetAttachedStickerSets where
+module TD.Query.GetAttachedStickerSets(GetAttachedStickerSets(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetAttachedStickerSets -- ^ Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets

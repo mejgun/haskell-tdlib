@@ -1,11 +1,10 @@
-module TD.Query.SearchStickers where
+module TD.Query.SearchStickers(SearchStickers(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
+import qualified Data.Text as T
 
 data SearchStickers -- ^ Searches for stickers from public sticker sets that correspond to any of the given emoji
   = SearchStickers

@@ -1,10 +1,10 @@
-module TD.Data.CallServerType where
+module TD.Data.CallServerType (CallServerType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
+import qualified Data.Text as T
 
 data CallServerType -- ^ Describes the type of a call server
   = CallServerTypeTelegramReflector -- ^ A Telegram call reflector
@@ -73,6 +73,7 @@ instance AT.FromJSON CallServerType where
           , supports_turn = supports_turn_
           , supports_stun = supports_stun_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CallServerType where
   toJSON CallServerTypeTelegramReflector

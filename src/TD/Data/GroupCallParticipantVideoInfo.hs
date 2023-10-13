@@ -1,11 +1,10 @@
-module TD.Data.GroupCallParticipantVideoInfo where
+module TD.Data.GroupCallParticipantVideoInfo (GroupCallParticipantVideoInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.GroupCallVideoSourceGroup as GroupCallVideoSourceGroup
+import qualified Data.Text as T
 
 data GroupCallParticipantVideoInfo
   = GroupCallParticipantVideoInfo -- ^ Contains information about a group call participant's video channel
@@ -47,6 +46,7 @@ instance AT.FromJSON GroupCallParticipantVideoInfo where
           , endpoint_id   = endpoint_id_
           , is_paused     = is_paused_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON GroupCallParticipantVideoInfo where
   toJSON GroupCallParticipantVideoInfo

@@ -1,10 +1,7 @@
-module TD.Data.CheckChatUsernameResult where
+module TD.Data.CheckChatUsernameResult (CheckChatUsernameResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data CheckChatUsernameResult -- ^ Represents result of checking whether a username can be set for a chat
   = CheckChatUsernameResultOk -- ^ The username can be set
@@ -30,7 +27,7 @@ instance Show CheckChatUsernameResult where
       = "CheckChatUsernameResultPublicGroupsUnavailable"
 
 instance AT.FromJSON CheckChatUsernameResult where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -42,6 +39,7 @@ instance AT.FromJSON CheckChatUsernameResult where
       "checkChatUsernameResultPublicGroupsUnavailable" -> pure CheckChatUsernameResultPublicGroupsUnavailable
       _                                                -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON CheckChatUsernameResult where
   toJSON CheckChatUsernameResultOk

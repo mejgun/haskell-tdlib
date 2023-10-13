@@ -1,10 +1,9 @@
-module TD.Query.SetSupergroupUsername where
+module TD.Query.SetSupergroupUsername(SetSupergroupUsername(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetSupergroupUsername -- ^ Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
   = SetSupergroupUsername

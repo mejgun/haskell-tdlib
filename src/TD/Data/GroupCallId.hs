@@ -1,9 +1,7 @@
-module TD.Data.GroupCallId where
+module TD.Data.GroupCallId (GroupCallId(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GroupCallId
@@ -36,6 +34,7 @@ instance AT.FromJSON GroupCallId where
         pure $ GroupCallId
           { _id = _id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON GroupCallId where
   toJSON GroupCallId

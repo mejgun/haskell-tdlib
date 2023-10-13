@@ -1,9 +1,7 @@
-module TD.Query.HideSuggestedAction where
+module TD.Query.HideSuggestedAction(HideSuggestedAction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.SuggestedAction as SuggestedAction
 

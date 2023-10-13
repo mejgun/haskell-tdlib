@@ -1,9 +1,7 @@
-module TD.Query.ToggleChatIsMarkedAsUnread where
+module TD.Query.ToggleChatIsMarkedAsUnread(ToggleChatIsMarkedAsUnread(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleChatIsMarkedAsUnread -- ^ Changes the marked as unread state of a chat

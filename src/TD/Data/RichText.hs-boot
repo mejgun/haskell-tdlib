@@ -1,4 +1,4 @@
-module TD.Data.RichText where
+module TD.Data.RichText (RichText) where
 
 import Data.Aeson.Types (FromJSON, ToJSON)
 

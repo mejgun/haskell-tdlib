@@ -1,10 +1,9 @@
-module TD.Data.VideoNote where
+module TD.Data.VideoNote (VideoNote(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.SpeechRecognitionResult as SpeechRecognitionResult
@@ -70,6 +69,7 @@ instance AT.FromJSON VideoNote where
           , speech_recognition_result = speech_recognition_result_
           , video                     = video_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON VideoNote where
   toJSON VideoNote

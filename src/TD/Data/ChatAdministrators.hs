@@ -1,9 +1,7 @@
-module TD.Data.ChatAdministrators where
+module TD.Data.ChatAdministrators (ChatAdministrators(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAdministrator as ChatAdministrator
 
@@ -37,6 +35,7 @@ instance AT.FromJSON ChatAdministrators where
         pure $ ChatAdministrators
           { administrators = administrators_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatAdministrators where
   toJSON ChatAdministrators

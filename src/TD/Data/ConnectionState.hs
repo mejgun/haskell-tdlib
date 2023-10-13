@@ -1,10 +1,7 @@
-module TD.Data.ConnectionState where
+module TD.Data.ConnectionState (ConnectionState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data ConnectionState -- ^ Describes the current state of the connection to Telegram servers
   = ConnectionStateWaitingForNetwork -- ^ Currently waiting for the network to become available. Use setNetworkType to change the available network type
@@ -27,7 +24,7 @@ instance Show ConnectionState where
       = "ConnectionStateReady"
 
 instance AT.FromJSON ConnectionState where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -38,6 +35,7 @@ instance AT.FromJSON ConnectionState where
       "connectionStateReady"             -> pure ConnectionStateReady
       _                                  -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON ConnectionState where
   toJSON ConnectionStateWaitingForNetwork

@@ -1,10 +1,9 @@
-module TD.Query.ProcessPushNotification where
+module TD.Query.ProcessPushNotification(ProcessPushNotification(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ProcessPushNotification -- ^ Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
   = ProcessPushNotification

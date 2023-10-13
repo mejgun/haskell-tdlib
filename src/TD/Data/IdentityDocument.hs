@@ -1,10 +1,9 @@
-module TD.Data.IdentityDocument where
+module TD.Data.IdentityDocument (IdentityDocument(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Date as Date
 import qualified TD.Data.DatedFile as DatedFile
 
@@ -63,6 +62,7 @@ instance AT.FromJSON IdentityDocument where
           , selfie          = selfie_
           , translation     = translation_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON IdentityDocument where
   toJSON IdentityDocument

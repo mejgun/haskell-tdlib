@@ -1,9 +1,7 @@
-module TD.Data.PollType where
+module TD.Data.PollType (PollType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
@@ -59,6 +57,7 @@ instance AT.FromJSON PollType where
           { correct_option_id = correct_option_id_
           , explanation       = explanation_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PollType where
   toJSON PollTypeRegular

@@ -1,9 +1,7 @@
-module TD.Data.ChatJoinRequestsInfo where
+module TD.Data.ChatJoinRequestsInfo (ChatJoinRequestsInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatJoinRequestsInfo
@@ -41,6 +39,7 @@ instance AT.FromJSON ChatJoinRequestsInfo where
           { total_count = total_count_
           , user_ids    = user_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatJoinRequestsInfo where
   toJSON ChatJoinRequestsInfo

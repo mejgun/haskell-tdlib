@@ -1,10 +1,7 @@
-module TD.Data.StickerType where
+module TD.Data.StickerType (StickerType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data StickerType -- ^ Describes type of a sticker
   = StickerTypeRegular -- ^ The sticker is a regular sticker
@@ -21,7 +18,7 @@ instance Show StickerType where
       = "StickerTypeCustomEmoji"
 
 instance AT.FromJSON StickerType where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -30,6 +27,7 @@ instance AT.FromJSON StickerType where
       "stickerTypeCustomEmoji" -> pure StickerTypeCustomEmoji
       _                        -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON StickerType where
   toJSON StickerTypeRegular

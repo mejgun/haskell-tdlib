@@ -1,10 +1,9 @@
-module TD.Query.EditForumTopic where
+module TD.Query.EditForumTopic(EditForumTopic(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data EditForumTopic -- ^ Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
   = EditForumTopic

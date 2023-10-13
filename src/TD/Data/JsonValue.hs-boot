@@ -1,4 +1,4 @@
-module TD.Data.JsonValue where
+module TD.Data.JsonValue (JsonValue) where
 
 import Data.Aeson.Types (FromJSON, ToJSON)
 

@@ -1,9 +1,7 @@
-module TD.Query.RemoveSavedNotificationSound where
+module TD.Query.RemoveSavedNotificationSound(RemoveSavedNotificationSound(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data RemoveSavedNotificationSound -- ^ Removes a notification sound from the list of saved notification sounds

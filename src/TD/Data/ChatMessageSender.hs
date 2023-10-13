@@ -1,9 +1,7 @@
-module TD.Data.ChatMessageSender where
+module TD.Data.ChatMessageSender (ChatMessageSender(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
@@ -42,6 +40,7 @@ instance AT.FromJSON ChatMessageSender where
           { sender        = sender_
           , needs_premium = needs_premium_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatMessageSender where
   toJSON ChatMessageSender

@@ -1,9 +1,7 @@
-module TD.Data.MessageReplyInfo where
+module TD.Data.MessageReplyInfo (MessageReplyInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
@@ -57,6 +55,7 @@ instance AT.FromJSON MessageReplyInfo where
           , last_read_outbox_message_id = last_read_outbox_message_id_
           , last_message_id             = last_message_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageReplyInfo where
   toJSON MessageReplyInfo

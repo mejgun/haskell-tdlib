@@ -1,9 +1,7 @@
-module TD.Query.GetProxyLink where
+module TD.Query.GetProxyLink(GetProxyLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetProxyLink -- ^ Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization

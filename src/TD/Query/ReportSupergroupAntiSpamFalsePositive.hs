@@ -1,9 +1,7 @@
-module TD.Query.ReportSupergroupAntiSpamFalsePositive where
+module TD.Query.ReportSupergroupAntiSpamFalsePositive(ReportSupergroupAntiSpamFalsePositive(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ReportSupergroupAntiSpamFalsePositive -- ^ Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true

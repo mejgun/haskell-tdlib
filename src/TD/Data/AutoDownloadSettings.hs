@@ -1,9 +1,7 @@
-module TD.Data.AutoDownloadSettings where
+module TD.Data.AutoDownloadSettings (AutoDownloadSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data AutoDownloadSettings
@@ -76,6 +74,7 @@ instance AT.FromJSON AutoDownloadSettings where
           , preload_stories          = preload_stories_
           , use_less_data_for_calls  = use_less_data_for_calls_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AutoDownloadSettings where
   toJSON AutoDownloadSettings

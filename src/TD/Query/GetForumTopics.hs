@@ -1,10 +1,9 @@
-module TD.Query.GetForumTopics where
+module TD.Query.GetForumTopics(GetForumTopics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetForumTopics -- ^ Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
   = GetForumTopics

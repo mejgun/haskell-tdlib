@@ -1,11 +1,10 @@
-module TD.Data.SupergroupFullInfo where
+module TD.Data.SupergroupFullInfo (SupergroupFullInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatPhoto as ChatPhoto
+import qualified Data.Text as T
 import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.BotCommands as BotCommands
@@ -155,6 +154,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , upgraded_from_basic_group_id     = upgraded_from_basic_group_id_
           , upgraded_from_max_message_id     = upgraded_from_max_message_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON SupergroupFullInfo where
   toJSON SupergroupFullInfo

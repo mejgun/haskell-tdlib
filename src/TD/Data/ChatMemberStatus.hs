@@ -1,10 +1,9 @@
-module TD.Data.ChatMemberStatus where
+module TD.Data.ChatMemberStatus (ChatMemberStatus(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.ChatPermissions as ChatPermissions
 
@@ -127,6 +126,7 @@ instance AT.FromJSON ChatMemberStatus where
         pure $ ChatMemberStatusBanned
           { banned_until_date = banned_until_date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatMemberStatus where
   toJSON ChatMemberStatusCreator

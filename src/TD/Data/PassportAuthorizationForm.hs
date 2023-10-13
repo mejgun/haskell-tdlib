@@ -1,11 +1,10 @@
-module TD.Data.PassportAuthorizationForm where
+module TD.Data.PassportAuthorizationForm (PassportAuthorizationForm(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportRequiredElement as PassportRequiredElement
+import qualified Data.Text as T
 
 data PassportAuthorizationForm
   = PassportAuthorizationForm -- ^ Contains information about a Telegram Passport authorization form that was requested
@@ -47,6 +46,7 @@ instance AT.FromJSON PassportAuthorizationForm where
           , required_elements  = required_elements_
           , privacy_policy_url = privacy_policy_url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PassportAuthorizationForm where
   toJSON PassportAuthorizationForm

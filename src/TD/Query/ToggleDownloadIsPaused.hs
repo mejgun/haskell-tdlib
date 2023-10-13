@@ -1,9 +1,7 @@
-module TD.Query.ToggleDownloadIsPaused where
+module TD.Query.ToggleDownloadIsPaused(ToggleDownloadIsPaused(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleDownloadIsPaused -- ^ Changes pause state of a file in the file download list

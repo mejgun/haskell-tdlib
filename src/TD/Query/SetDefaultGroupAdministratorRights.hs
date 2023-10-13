@@ -1,9 +1,7 @@
-module TD.Query.SetDefaultGroupAdministratorRights where
+module TD.Query.SetDefaultGroupAdministratorRights(SetDefaultGroupAdministratorRights(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 

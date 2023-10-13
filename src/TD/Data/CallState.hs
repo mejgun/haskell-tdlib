@@ -1,12 +1,12 @@
-module TD.Data.CallState where
+module TD.Data.CallState (CallState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.CallProtocol as CallProtocol
 import qualified TD.Data.CallServer as CallServer
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
 import qualified TD.Data.Error as Error
 
@@ -144,6 +144,7 @@ instance AT.FromJSON CallState where
         pure $ CallStateError
           { _error = _error_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CallState where
   toJSON CallStatePending

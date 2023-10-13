@@ -1,10 +1,9 @@
-module TD.Data.OrderInfo where
+module TD.Data.OrderInfo (OrderInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Address as Address
 
 data OrderInfo
@@ -52,6 +51,7 @@ instance AT.FromJSON OrderInfo where
           , email_address    = email_address_
           , shipping_address = shipping_address_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON OrderInfo where
   toJSON OrderInfo

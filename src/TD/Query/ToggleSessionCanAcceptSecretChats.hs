@@ -1,9 +1,7 @@
-module TD.Query.ToggleSessionCanAcceptSecretChats where
+module TD.Query.ToggleSessionCanAcceptSecretChats(ToggleSessionCanAcceptSecretChats(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleSessionCanAcceptSecretChats -- ^ Toggles whether a session can accept incoming secret chats

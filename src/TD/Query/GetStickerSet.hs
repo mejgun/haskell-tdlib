@@ -1,9 +1,7 @@
-module TD.Query.GetStickerSet where
+module TD.Query.GetStickerSet(GetStickerSet(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetStickerSet -- ^ Returns information about a sticker set by its identifier

@@ -1,9 +1,7 @@
-module TD.Query.GetMessageThread where
+module TD.Query.GetMessageThread(GetMessageThread(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetMessageThread -- ^ Returns information about a message thread. Can be used only if message.can_get_message_thread == true

@@ -1,9 +1,7 @@
-module TD.Data.ChatStatisticsInviterInfo where
+module TD.Data.ChatStatisticsInviterInfo (ChatStatisticsInviterInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatStatisticsInviterInfo
@@ -41,6 +39,7 @@ instance AT.FromJSON ChatStatisticsInviterInfo where
           { user_id            = user_id_
           , added_member_count = added_member_count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatStatisticsInviterInfo where
   toJSON ChatStatisticsInviterInfo

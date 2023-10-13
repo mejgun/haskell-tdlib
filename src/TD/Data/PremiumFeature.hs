@@ -1,10 +1,7 @@
-module TD.Data.PremiumFeature where
+module TD.Data.PremiumFeature (PremiumFeature(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data PremiumFeature -- ^ Describes a feature available to Premium users
   = PremiumFeatureIncreasedLimits -- ^ Increased limits
@@ -57,7 +54,7 @@ instance Show PremiumFeature where
       = "PremiumFeatureRealTimeChatTranslation"
 
 instance AT.FromJSON PremiumFeature where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -78,6 +75,7 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureRealTimeChatTranslation" -> pure PremiumFeatureRealTimeChatTranslation
       _                                       -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureIncreasedLimits

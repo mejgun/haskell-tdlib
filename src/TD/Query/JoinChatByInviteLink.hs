@@ -1,10 +1,9 @@
-module TD.Query.JoinChatByInviteLink where
+module TD.Query.JoinChatByInviteLink(JoinChatByInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data JoinChatByInviteLink -- ^ Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
   = JoinChatByInviteLink

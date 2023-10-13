@@ -1,9 +1,7 @@
-module TD.Query.GetChatListsToAddChat where
+module TD.Query.GetChatListsToAddChat(GetChatListsToAddChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatListsToAddChat -- ^ Returns chat lists to which the chat can be added. This is an offline request

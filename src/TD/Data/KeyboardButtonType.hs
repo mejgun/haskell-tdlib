@@ -1,11 +1,10 @@
-module TD.Data.KeyboardButtonType where
+module TD.Data.KeyboardButtonType (KeyboardButtonType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
+import qualified Data.Text as T
 
 data KeyboardButtonType -- ^ Describes a keyboard button type
   = KeyboardButtonTypeText -- ^ A simple button, with text that must be sent when the button is pressed
@@ -170,6 +169,7 @@ instance AT.FromJSON KeyboardButtonType where
         pure $ KeyboardButtonTypeWebApp
           { url = url_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON KeyboardButtonType where
   toJSON KeyboardButtonTypeText

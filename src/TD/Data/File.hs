@@ -1,9 +1,7 @@
-module TD.Data.File where
+module TD.Data.File (File(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.LocalFile as LocalFile
 import qualified TD.Data.RemoteFile as RemoteFile
@@ -58,6 +56,7 @@ instance AT.FromJSON File where
           , local         = local_
           , remote        = remote_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON File where
   toJSON File

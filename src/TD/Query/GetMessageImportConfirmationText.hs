@@ -1,9 +1,7 @@
-module TD.Query.GetMessageImportConfirmationText where
+module TD.Query.GetMessageImportConfirmationText(GetMessageImportConfirmationText(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetMessageImportConfirmationText -- ^ Returns a confirmation text to be shown to the user before starting message import

@@ -1,9 +1,7 @@
-module TD.Query.GetChatPinnedStories where
+module TD.Query.GetChatPinnedStories(GetChatPinnedStories(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatPinnedStories -- ^ Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib

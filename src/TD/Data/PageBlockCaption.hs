@@ -1,11 +1,9 @@
-module TD.Data.PageBlockCaption where
+module TD.Data.PageBlockCaption (PageBlockCaption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
-import {-# SOURCE #-} qualified TD.Data.RichText as RichText
+import qualified TD.Data.RichText as RichText
 
 data PageBlockCaption
   = PageBlockCaption -- ^ Contains a caption of an instant view web page block, consisting of a text and a trailing credit
@@ -42,6 +40,7 @@ instance AT.FromJSON PageBlockCaption where
           { text   = text_
           , credit = credit_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PageBlockCaption where
   toJSON PageBlockCaption

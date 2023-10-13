@@ -1,10 +1,7 @@
-module TD.Data.StickerFormat where
+module TD.Data.StickerFormat (StickerFormat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data StickerFormat -- ^ Describes format of a sticker
   = StickerFormatWebp -- ^ The sticker is an image in WEBP format
@@ -21,7 +18,7 @@ instance Show StickerFormat where
       = "StickerFormatWebm"
 
 instance AT.FromJSON StickerFormat where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -30,6 +27,7 @@ instance AT.FromJSON StickerFormat where
       "stickerFormatWebm" -> pure StickerFormatWebm
       _                   -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON StickerFormat where
   toJSON StickerFormatWebp

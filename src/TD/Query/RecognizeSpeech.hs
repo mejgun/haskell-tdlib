@@ -1,9 +1,7 @@
-module TD.Query.RecognizeSpeech where
+module TD.Query.RecognizeSpeech(RecognizeSpeech(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data RecognizeSpeech -- ^ Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized

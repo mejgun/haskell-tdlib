@@ -1,11 +1,10 @@
-module TD.Query.SearchInstalledStickerSets where
+module TD.Query.SearchInstalledStickerSets(SearchInstalledStickerSets(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
+import qualified Data.Text as T
 
 data SearchInstalledStickerSets -- ^ Searches for installed sticker sets by looking for specified query in their title and name
   = SearchInstalledStickerSets

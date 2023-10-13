@@ -1,10 +1,9 @@
-module TD.Query.SendBotStartMessage where
+module TD.Query.SendBotStartMessage(SendBotStartMessage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SendBotStartMessage -- ^ Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
   = SendBotStartMessage

@@ -1,9 +1,7 @@
-module TD.Data.ChatStatisticsMessageInteractionInfo where
+module TD.Data.ChatStatisticsMessageInteractionInfo (ChatStatisticsMessageInteractionInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ChatStatisticsMessageInteractionInfo
@@ -46,6 +44,7 @@ instance AT.FromJSON ChatStatisticsMessageInteractionInfo where
           , view_count    = view_count_
           , forward_count = forward_count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatStatisticsMessageInteractionInfo where
   toJSON ChatStatisticsMessageInteractionInfo

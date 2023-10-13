@@ -1,9 +1,7 @@
-module TD.Data.PassportSuitableElement where
+module TD.Data.PassportSuitableElement (PassportSuitableElement(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
 
@@ -52,6 +50,7 @@ instance AT.FromJSON PassportSuitableElement where
           , is_translation_required = is_translation_required_
           , is_native_name_required = is_native_name_required_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PassportSuitableElement where
   toJSON PassportSuitableElement

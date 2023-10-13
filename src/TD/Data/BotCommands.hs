@@ -1,9 +1,7 @@
-module TD.Data.BotCommands where
+module TD.Data.BotCommands (BotCommands(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotCommand as BotCommand
 
@@ -42,6 +40,7 @@ instance AT.FromJSON BotCommands where
           { bot_user_id = bot_user_id_
           , commands    = commands_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON BotCommands where
   toJSON BotCommands

@@ -1,9 +1,7 @@
-module TD.Query.SharePhoneNumber where
+module TD.Query.SharePhoneNumber(SharePhoneNumber(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data SharePhoneNumber -- ^ Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber

@@ -1,10 +1,9 @@
-module TD.Data.ChatSource where
+module TD.Data.ChatSource (ChatSource(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data ChatSource -- ^ Describes a reason why an external chat is shown in a chat list
   = ChatSourceMtprotoProxy -- ^ The chat is sponsored by the user's MTProxy server
@@ -45,6 +44,7 @@ instance AT.FromJSON ChatSource where
           { _type = _type_
           , text  = text_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatSource where
   toJSON ChatSourceMtprotoProxy

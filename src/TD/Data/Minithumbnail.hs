@@ -1,10 +1,9 @@
-module TD.Data.Minithumbnail where
+module TD.Data.Minithumbnail (Minithumbnail(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
 data Minithumbnail
   = Minithumbnail -- ^ Thumbnail image of a very poor quality and low resolution
@@ -46,6 +45,7 @@ instance AT.FromJSON Minithumbnail where
           , height = height_
           , _data  = _data_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Minithumbnail where
   toJSON Minithumbnail

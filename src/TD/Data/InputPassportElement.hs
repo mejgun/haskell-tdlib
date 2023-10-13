@@ -1,14 +1,13 @@
-module TD.Data.InputPassportElement where
+module TD.Data.InputPassportElement (InputPassportElement(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PersonalDetails as PersonalDetails
 import qualified TD.Data.InputIdentityDocument as InputIdentityDocument
 import qualified TD.Data.Address as Address
 import qualified TD.Data.InputPersonalDocument as InputPersonalDocument
+import qualified Data.Text as T
 
 data InputPassportElement -- ^ Contains information about a Telegram Passport element to be saved
   = InputPassportElementPersonalDetails -- ^ A Telegram Passport element to be saved containing the user's personal details
@@ -244,6 +243,7 @@ instance AT.FromJSON InputPassportElement where
         pure $ InputPassportElementEmailAddress
           { email_address = email_address_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputPassportElement where
   toJSON InputPassportElementPersonalDetails

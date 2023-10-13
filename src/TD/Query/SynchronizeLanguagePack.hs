@@ -1,10 +1,9 @@
-module TD.Query.SynchronizeLanguagePack where
+module TD.Query.SynchronizeLanguagePack(SynchronizeLanguagePack(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SynchronizeLanguagePack -- ^ Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
   = SynchronizeLanguagePack

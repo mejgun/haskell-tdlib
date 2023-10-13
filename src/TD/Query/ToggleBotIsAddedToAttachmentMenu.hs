@@ -1,9 +1,7 @@
-module TD.Query.ToggleBotIsAddedToAttachmentMenu where
+module TD.Query.ToggleBotIsAddedToAttachmentMenu(ToggleBotIsAddedToAttachmentMenu(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleBotIsAddedToAttachmentMenu -- ^ Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true

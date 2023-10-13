@@ -1,12 +1,11 @@
-module TD.Data.Supergroup where
+module TD.Data.Supergroup (Supergroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Usernames as Usernames
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
+import qualified Data.Text as T
 
 data Supergroup
   = Supergroup -- ^ Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
@@ -123,6 +122,7 @@ instance AT.FromJSON Supergroup where
           , is_scam               = is_scam_
           , is_fake               = is_fake_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Supergroup where
   toJSON Supergroup

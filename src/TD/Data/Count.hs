@@ -1,9 +1,7 @@
-module TD.Data.Count where
+module TD.Data.Count (Count(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data Count
@@ -36,6 +34,7 @@ instance AT.FromJSON Count where
         pure $ Count
           { count = count_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Count where
   toJSON Count

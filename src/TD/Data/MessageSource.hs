@@ -1,10 +1,7 @@
-module TD.Data.MessageSource where
+module TD.Data.MessageSource (MessageSource(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data MessageSource -- ^ Describes source of a message
   = MessageSourceChatHistory -- ^ The message is from a chat history
@@ -42,7 +39,7 @@ instance Show MessageSource where
       = "MessageSourceOther"
 
 instance AT.FromJSON MessageSource where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -58,6 +55,7 @@ instance AT.FromJSON MessageSource where
       "messageSourceOther"                -> pure MessageSourceOther
       _                                   -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageSource where
   toJSON MessageSourceChatHistory

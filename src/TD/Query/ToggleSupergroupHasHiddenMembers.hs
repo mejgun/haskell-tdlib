@@ -1,9 +1,7 @@
-module TD.Query.ToggleSupergroupHasHiddenMembers where
+module TD.Query.ToggleSupergroupHasHiddenMembers(ToggleSupergroupHasHiddenMembers(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleSupergroupHasHiddenMembers -- ^ Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true

@@ -1,9 +1,7 @@
-module TD.Query.ToggleChatHasProtectedContent where
+module TD.Query.ToggleChatHasProtectedContent(ToggleChatHasProtectedContent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleChatHasProtectedContent -- ^ Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges

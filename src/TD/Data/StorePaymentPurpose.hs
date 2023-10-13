@@ -1,10 +1,9 @@
-module TD.Data.StorePaymentPurpose where
+module TD.Data.StorePaymentPurpose (StorePaymentPurpose(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data StorePaymentPurpose -- ^ Describes a purpose of an in-store payment
   = StorePaymentPurposePremiumSubscription -- ^ The user subscribed to Telegram Premium
@@ -68,6 +67,7 @@ instance AT.FromJSON StorePaymentPurpose where
           , currency = currency_
           , amount   = amount_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StorePaymentPurpose where
   toJSON StorePaymentPurposePremiumSubscription

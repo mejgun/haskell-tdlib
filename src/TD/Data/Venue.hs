@@ -1,11 +1,10 @@
-module TD.Data.Venue where
+module TD.Data.Venue (Venue(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
+import qualified Data.Text as T
 
 data Venue
   = Venue -- ^ Describes a venue
@@ -62,6 +61,7 @@ instance AT.FromJSON Venue where
           , _id      = _id_
           , _type    = _type_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Venue where
   toJSON Venue

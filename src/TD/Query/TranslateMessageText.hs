@@ -1,10 +1,9 @@
-module TD.Query.TranslateMessageText where
+module TD.Query.TranslateMessageText(TranslateMessageText(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data TranslateMessageText -- ^ Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
   = TranslateMessageText

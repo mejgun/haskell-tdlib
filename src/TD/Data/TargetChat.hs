@@ -1,9 +1,7 @@
-module TD.Data.TargetChat where
+module TD.Data.TargetChat (TargetChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
 
@@ -73,6 +71,7 @@ instance AT.FromJSON TargetChat where
         pure $ TargetChatInternalLink
           { link = link_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TargetChat where
   toJSON TargetChatCurrent

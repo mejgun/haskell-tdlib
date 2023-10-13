@@ -1,9 +1,7 @@
-module TD.Query.GetMessageAvailableReactions where
+module TD.Query.GetMessageAvailableReactions(GetMessageAvailableReactions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetMessageAvailableReactions -- ^ Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message

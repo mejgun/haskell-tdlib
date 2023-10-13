@@ -1,9 +1,7 @@
-module TD.Query.ClickAnimatedEmojiMessage where
+module TD.Query.ClickAnimatedEmojiMessage(ClickAnimatedEmojiMessage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ClickAnimatedEmojiMessage -- ^ Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played

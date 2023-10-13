@@ -1,10 +1,10 @@
-module TD.Query.SetTdlibParameters where
+module TD.Query.SetTdlibParameters(SetTdlibParameters(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data SetTdlibParameters -- ^ Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
   = SetTdlibParameters

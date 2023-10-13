@@ -1,9 +1,7 @@
-module TD.Data.ConnectedWebsites where
+module TD.Data.ConnectedWebsites (ConnectedWebsites(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ConnectedWebsite as ConnectedWebsite
 
@@ -37,6 +35,7 @@ instance AT.FromJSON ConnectedWebsites where
         pure $ ConnectedWebsites
           { websites = websites_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ConnectedWebsites where
   toJSON ConnectedWebsites

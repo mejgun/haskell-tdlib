@@ -1,9 +1,7 @@
-module TD.Data.ChatPhoto where
+module TD.Data.ChatPhoto (ChatPhoto(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.PhotoSize as PhotoSize
@@ -70,6 +68,7 @@ instance AT.FromJSON ChatPhoto where
           , small_animation = small_animation_
           , sticker         = sticker_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatPhoto where
   toJSON ChatPhoto

@@ -1,9 +1,7 @@
-module TD.Data.ThemeParameters where
+module TD.Data.ThemeParameters (ThemeParameters(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ThemeParameters
@@ -66,6 +64,7 @@ instance AT.FromJSON ThemeParameters where
           , button_color               = button_color_
           , button_text_color          = button_text_color_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ThemeParameters where
   toJSON ThemeParameters

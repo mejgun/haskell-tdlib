@@ -1,9 +1,7 @@
-module TD.Data.DeepLinkInfo where
+module TD.Data.DeepLinkInfo (DeepLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
@@ -42,6 +40,7 @@ instance AT.FromJSON DeepLinkInfo where
           { text                    = text_
           , need_update_application = need_update_application_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON DeepLinkInfo where
   toJSON DeepLinkInfo

@@ -1,10 +1,9 @@
-module TD.Query.SearchFileDownloads where
+module TD.Query.SearchFileDownloads(SearchFileDownloads(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SearchFileDownloads -- ^ Searches for files in the file download list or recently downloaded files from the list
   = SearchFileDownloads

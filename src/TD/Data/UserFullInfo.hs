@@ -1,9 +1,7 @@
-module TD.Data.UserFullInfo where
+module TD.Data.UserFullInfo (UserFullInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.FormattedText as FormattedText
@@ -110,6 +108,7 @@ instance AT.FromJSON UserFullInfo where
           , group_in_common_count                        = group_in_common_count_
           , bot_info                                     = bot_info_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON UserFullInfo where
   toJSON UserFullInfo

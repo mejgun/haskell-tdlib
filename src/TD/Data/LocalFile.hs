@@ -1,10 +1,9 @@
-module TD.Data.LocalFile where
+module TD.Data.LocalFile (LocalFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data LocalFile
   = LocalFile -- ^ Represents a local file
@@ -71,6 +70,7 @@ instance AT.FromJSON LocalFile where
           , downloaded_prefix_size   = downloaded_prefix_size_
           , downloaded_size          = downloaded_size_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LocalFile where
   toJSON LocalFile

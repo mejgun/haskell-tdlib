@@ -1,9 +1,7 @@
-module TD.Data.MessageReaction where
+module TD.Data.MessageReaction (MessageReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.MessageSender as MessageSender
@@ -53,6 +51,7 @@ instance AT.FromJSON MessageReaction where
           , is_chosen         = is_chosen_
           , recent_sender_ids = recent_sender_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageReaction where
   toJSON MessageReaction

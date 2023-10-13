@@ -1,13 +1,12 @@
-module TD.Data.AuthorizationState where
+module TD.Data.AuthorizationState (AuthorizationState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 import qualified TD.Data.EmailAddressResetState as EmailAddressResetState
 import qualified TD.Data.AuthenticationCodeInfo as AuthenticationCodeInfo
+import qualified Data.Text as T
 import qualified TD.Data.TermsOfService as TermsOfService
 
 data AuthorizationState -- ^ Represents the current authorization state of the TDLib client
@@ -184,6 +183,7 @@ instance AT.FromJSON AuthorizationState where
           , has_passport_data              = has_passport_data_
           , recovery_email_address_pattern = recovery_email_address_pattern_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AuthorizationState where
   toJSON AuthorizationStateWaitTdlibParameters

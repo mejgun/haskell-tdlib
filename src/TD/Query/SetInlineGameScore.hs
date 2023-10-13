@@ -1,10 +1,9 @@
-module TD.Query.SetInlineGameScore where
+module TD.Query.SetInlineGameScore(SetInlineGameScore(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetInlineGameScore -- ^ Updates the game score of the specified user in a game; for bots only
   = SetInlineGameScore

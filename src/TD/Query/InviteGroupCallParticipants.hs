@@ -1,9 +1,7 @@
-module TD.Query.InviteGroupCallParticipants where
+module TD.Query.InviteGroupCallParticipants(InviteGroupCallParticipants(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data InviteGroupCallParticipants -- ^ Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats

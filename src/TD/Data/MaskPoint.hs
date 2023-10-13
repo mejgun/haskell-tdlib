@@ -1,10 +1,7 @@
-module TD.Data.MaskPoint where
+module TD.Data.MaskPoint (MaskPoint(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data MaskPoint -- ^ Part of the face, relative to which a mask is placed
   = MaskPointForehead -- ^ The mask is placed relatively to the forehead
@@ -24,7 +21,7 @@ instance Show MaskPoint where
       = "MaskPointChin"
 
 instance AT.FromJSON MaskPoint where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -34,6 +31,7 @@ instance AT.FromJSON MaskPoint where
       "maskPointChin"     -> pure MaskPointChin
       _                   -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON MaskPoint where
   toJSON MaskPointForehead

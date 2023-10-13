@@ -1,11 +1,10 @@
-module TD.Query.SetStickerEmojis where
+module TD.Query.SetStickerEmojis(SetStickerEmojis(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
+import qualified Data.Text as T
 
 data SetStickerEmojis -- ^ Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
   = SetStickerEmojis

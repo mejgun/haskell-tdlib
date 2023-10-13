@@ -1,10 +1,9 @@
-module TD.Query.AddChatFolderByInviteLink where
+module TD.Query.AddChatFolderByInviteLink(AddChatFolderByInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data AddChatFolderByInviteLink -- ^ Adds a chat folder by an invite link
   = AddChatFolderByInviteLink

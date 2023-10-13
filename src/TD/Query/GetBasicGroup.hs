@@ -1,9 +1,7 @@
-module TD.Query.GetBasicGroup where
+module TD.Query.GetBasicGroup(GetBasicGroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetBasicGroup -- ^ Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot

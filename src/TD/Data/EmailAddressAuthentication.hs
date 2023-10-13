@@ -1,10 +1,9 @@
-module TD.Data.EmailAddressAuthentication where
+module TD.Data.EmailAddressAuthentication (EmailAddressAuthentication(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data EmailAddressAuthentication -- ^ Contains authentication data for a email address
   = EmailAddressAuthenticationCode -- ^ An authentication code delivered to a user's email address
@@ -70,6 +69,7 @@ instance AT.FromJSON EmailAddressAuthentication where
         pure $ EmailAddressAuthenticationGoogleId
           { token = token_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmailAddressAuthentication where
   toJSON EmailAddressAuthenticationCode

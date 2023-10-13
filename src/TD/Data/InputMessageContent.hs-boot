@@ -1,4 +1,4 @@
-module TD.Data.InputMessageContent where
+module TD.Data.InputMessageContent (InputMessageContent) where
 
 import Data.Aeson.Types (FromJSON, ToJSON)
 

@@ -1,10 +1,7 @@
-module TD.Data.UserPrivacySetting where
+module TD.Data.UserPrivacySetting (UserPrivacySetting(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data UserPrivacySetting -- ^ Describes available user privacy settings
   = UserPrivacySettingShowStatus -- ^ A privacy setting for managing whether the user's online status is visible
@@ -42,7 +39,7 @@ instance Show UserPrivacySetting where
       = "UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
 
 instance AT.FromJSON UserPrivacySetting where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -58,6 +55,7 @@ instance AT.FromJSON UserPrivacySetting where
       "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages" -> pure UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
       _                                                         -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON UserPrivacySetting where
   toJSON UserPrivacySettingShowStatus

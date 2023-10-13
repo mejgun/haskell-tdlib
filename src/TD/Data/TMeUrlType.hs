@@ -1,9 +1,7 @@
-module TD.Data.TMeUrlType where
+module TD.Data.TMeUrlType (TMeUrlType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatInviteLinkInfo as ChatInviteLinkInfo
 
@@ -88,6 +86,7 @@ instance AT.FromJSON TMeUrlType where
         pure $ TMeUrlTypeStickerSet
           { sticker_set_id = sticker_set_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TMeUrlType where
   toJSON TMeUrlTypeUser

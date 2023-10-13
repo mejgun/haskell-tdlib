@@ -1,10 +1,9 @@
-module TD.Data.PageBlockListItem where
+module TD.Data.PageBlockListItem (PageBlockListItem(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import {-# SOURCE #-} qualified TD.Data.PageBlock as PageBlock
 
 data PageBlockListItem
@@ -42,6 +41,7 @@ instance AT.FromJSON PageBlockListItem where
           { label       = label_
           , page_blocks = page_blocks_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PageBlockListItem where
   toJSON PageBlockListItem

@@ -1,9 +1,7 @@
-module TD.Query.GetBasicGroupFullInfo where
+module TD.Query.GetBasicGroupFullInfo(GetBasicGroupFullInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetBasicGroupFullInfo -- ^ Returns full information about a basic group by its identifier

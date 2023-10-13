@@ -1,10 +1,9 @@
-module TD.Data.UserType where
+module TD.Data.UserType (UserType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data UserType -- ^ Represents the type of a user. The following types are possible: regular users, deleted users and bots
   = UserTypeRegular -- ^ A regular user
@@ -78,6 +77,7 @@ instance AT.FromJSON UserType where
           , need_location                   = need_location_
           , can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON UserType where
   toJSON UserTypeRegular

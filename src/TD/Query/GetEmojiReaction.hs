@@ -1,10 +1,9 @@
-module TD.Query.GetEmojiReaction where
+module TD.Query.GetEmojiReaction(GetEmojiReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetEmojiReaction -- ^ Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
   = GetEmojiReaction

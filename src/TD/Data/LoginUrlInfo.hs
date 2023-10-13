@@ -1,10 +1,9 @@
-module TD.Data.LoginUrlInfo where
+module TD.Data.LoginUrlInfo (LoginUrlInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data LoginUrlInfo -- ^ Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
   = LoginUrlInfoOpen -- ^ An HTTP URL needs to be open
@@ -73,6 +72,7 @@ instance AT.FromJSON LoginUrlInfo where
           , bot_user_id          = bot_user_id_
           , request_write_access = request_write_access_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LoginUrlInfo where
   toJSON LoginUrlInfoOpen

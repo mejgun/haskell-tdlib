@@ -1,8 +1,7 @@
-module TD.GeneralResult where
+module TD.GeneralResult (GeneralResult(..)) where
 
 import Control.Applicative (Alternative ((<|>)))
 import Data.Aeson (FromJSON (parseJSON))
-import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import qualified TD.Data.AccountTtl as AccountTtl
 import qualified TD.Data.AddedReactions as AddedReactions
@@ -343,7 +342,7 @@ data GeneralResult
  deriving (Eq, Show)
 
 instance T.FromJSON GeneralResult where
- parseJSON v@(T.Object obj) =
+ parseJSON v =
         ( AccountTtl                          <$> parseJSON v )
     <|> ( AddedReactions                      <$> parseJSON v )
     <|> ( AnimatedEmoji                       <$> parseJSON v )

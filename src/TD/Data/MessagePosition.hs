@@ -1,9 +1,7 @@
-module TD.Data.MessagePosition where
+module TD.Data.MessagePosition (MessagePosition(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data MessagePosition
@@ -46,6 +44,7 @@ instance AT.FromJSON MessagePosition where
           , message_id = message_id_
           , date       = date_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessagePosition where
   toJSON MessagePosition

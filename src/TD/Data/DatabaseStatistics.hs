@@ -1,10 +1,9 @@
-module TD.Data.DatabaseStatistics where
+module TD.Data.DatabaseStatistics (DatabaseStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data DatabaseStatistics
   = DatabaseStatistics -- ^ Contains database statistics
@@ -36,6 +35,7 @@ instance AT.FromJSON DatabaseStatistics where
         pure $ DatabaseStatistics
           { statistics = statistics_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON DatabaseStatistics where
   toJSON DatabaseStatistics

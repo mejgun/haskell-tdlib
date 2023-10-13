@@ -1,9 +1,7 @@
-module TD.Query.GetChatsForChatFolderInviteLink where
+module TD.Query.GetChatsForChatFolderInviteLink(GetChatsForChatFolderInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data GetChatsForChatFolderInviteLink -- ^ Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link

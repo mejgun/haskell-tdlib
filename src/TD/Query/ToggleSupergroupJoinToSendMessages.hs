@@ -1,9 +1,7 @@
-module TD.Query.ToggleSupergroupJoinToSendMessages where
+module TD.Query.ToggleSupergroupJoinToSendMessages(ToggleSupergroupJoinToSendMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data ToggleSupergroupJoinToSendMessages -- ^ Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right

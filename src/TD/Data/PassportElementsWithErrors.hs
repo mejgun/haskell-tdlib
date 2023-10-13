@@ -1,9 +1,7 @@
-module TD.Data.PassportElementsWithErrors where
+module TD.Data.PassportElementsWithErrors (PassportElementsWithErrors(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElement as PassportElement
 import qualified TD.Data.PassportElementError as PassportElementError
@@ -43,6 +41,7 @@ instance AT.FromJSON PassportElementsWithErrors where
           { elements = elements_
           , errors   = errors_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON PassportElementsWithErrors where
   toJSON PassportElementsWithErrors

@@ -1,10 +1,7 @@
-module TD.Data.PublicChatType where
+module TD.Data.PublicChatType (PublicChatType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data PublicChatType -- ^ Describes a type of public chats
   = PublicChatTypeHasUsername -- ^ The chat is public, because it has an active username
@@ -18,7 +15,7 @@ instance Show PublicChatType where
       = "PublicChatTypeIsLocationBased"
 
 instance AT.FromJSON PublicChatType where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -26,6 +23,7 @@ instance AT.FromJSON PublicChatType where
       "publicChatTypeIsLocationBased" -> pure PublicChatTypeIsLocationBased
       _                               -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON PublicChatType where
   toJSON PublicChatTypeHasUsername

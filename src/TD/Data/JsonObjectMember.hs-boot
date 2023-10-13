@@ -1,4 +1,4 @@
-module TD.Data.JsonObjectMember where
+module TD.Data.JsonObjectMember (JsonObjectMember) where
 
 import Data.Aeson.Types (FromJSON, ToJSON)
 

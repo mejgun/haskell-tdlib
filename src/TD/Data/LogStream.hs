@@ -1,10 +1,9 @@
-module TD.Data.LogStream where
+module TD.Data.LogStream (LogStream(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data LogStream -- ^ Describes a stream to which TDLib internal log is written
   = LogStreamDefault -- ^ The log is written to stderr or an OS specific log
@@ -54,6 +53,7 @@ instance AT.FromJSON LogStream where
           , max_file_size   = max_file_size_
           , redirect_stderr = redirect_stderr_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON LogStream where
   toJSON LogStreamDefault

@@ -1,9 +1,7 @@
-module TD.Data.ChatPhotos where
+module TD.Data.ChatPhotos (ChatPhotos(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatPhoto as ChatPhoto
 
@@ -42,6 +40,7 @@ instance AT.FromJSON ChatPhotos where
           { total_count = total_count_
           , photos      = photos_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON ChatPhotos where
   toJSON ChatPhotos

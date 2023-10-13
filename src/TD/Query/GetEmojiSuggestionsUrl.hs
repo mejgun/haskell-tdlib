@@ -1,10 +1,9 @@
-module TD.Query.GetEmojiSuggestionsUrl where
+module TD.Query.GetEmojiSuggestionsUrl(GetEmojiSuggestionsUrl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetEmojiSuggestionsUrl -- ^ Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
   = GetEmojiSuggestionsUrl

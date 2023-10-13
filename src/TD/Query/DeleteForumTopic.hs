@@ -1,9 +1,7 @@
-module TD.Query.DeleteForumTopic where
+module TD.Query.DeleteForumTopic(DeleteForumTopic(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data DeleteForumTopic -- ^ Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages

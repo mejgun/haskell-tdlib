@@ -1,11 +1,8 @@
-module TD.Query.ImportMessages where
+module TD.Query.ImportMessages(ImportMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.InputFile as InputFile
 
 data ImportMessages -- ^ Imports messages exported from another app

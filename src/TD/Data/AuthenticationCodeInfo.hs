@@ -1,10 +1,9 @@
-module TD.Data.AuthenticationCodeInfo where
+module TD.Data.AuthenticationCodeInfo (AuthenticationCodeInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.AuthenticationCodeType as AuthenticationCodeType
 
 data AuthenticationCodeInfo
@@ -52,6 +51,7 @@ instance AT.FromJSON AuthenticationCodeInfo where
           , next_type    = next_type_
           , timeout      = timeout_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON AuthenticationCodeInfo where
   toJSON AuthenticationCodeInfo

@@ -1,10 +1,7 @@
-module TD.Data.GroupCallVideoQuality where
+module TD.Data.GroupCallVideoQuality (GroupCallVideoQuality(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data GroupCallVideoQuality -- ^ Describes the quality of a group call video
   = GroupCallVideoQualityThumbnail -- ^ The worst available video quality
@@ -21,7 +18,7 @@ instance Show GroupCallVideoQuality where
       = "GroupCallVideoQualityFull"
 
 instance AT.FromJSON GroupCallVideoQuality where
-  parseJSON v@(AT.Object obj) = do
+  parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
@@ -30,6 +27,7 @@ instance AT.FromJSON GroupCallVideoQuality where
       "groupCallVideoQualityFull"      -> pure GroupCallVideoQualityFull
       _                                -> mempty
     
+  parseJSON _ = mempty
 
 instance AT.ToJSON GroupCallVideoQuality where
   toJSON GroupCallVideoQualityThumbnail

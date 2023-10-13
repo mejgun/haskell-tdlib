@@ -1,9 +1,7 @@
-module TD.Data.MessageReplyTo where
+module TD.Data.MessageReplyTo (MessageReplyTo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data MessageReplyTo -- ^ Contains information about the message or the story a message is replying to
@@ -63,6 +61,7 @@ instance AT.FromJSON MessageReplyTo where
           { story_sender_chat_id = story_sender_chat_id_
           , story_id             = story_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageReplyTo where
   toJSON MessageReplyToMessage

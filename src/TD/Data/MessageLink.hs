@@ -1,10 +1,9 @@
-module TD.Data.MessageLink where
+module TD.Data.MessageLink (MessageLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data MessageLink
   = MessageLink -- ^ Contains an HTTPS link to a message in a supergroup or channel, or a forum topic
@@ -41,6 +40,7 @@ instance AT.FromJSON MessageLink where
           { link      = link_
           , is_public = is_public_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageLink where
   toJSON MessageLink

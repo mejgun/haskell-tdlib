@@ -1,9 +1,7 @@
-module TD.Data.EmailAddressResetState where
+module TD.Data.EmailAddressResetState (EmailAddressResetState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data EmailAddressResetState -- ^ Describes reset state of a email address
@@ -53,6 +51,7 @@ instance AT.FromJSON EmailAddressResetState where
         pure $ EmailAddressResetStatePending
           { reset_in = reset_in_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON EmailAddressResetState where
   toJSON EmailAddressResetStateAvailable

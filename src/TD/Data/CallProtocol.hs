@@ -1,10 +1,9 @@
-module TD.Data.CallProtocol where
+module TD.Data.CallProtocol (CallProtocol(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data CallProtocol
   = CallProtocol -- ^ Specifies the supported call protocols
@@ -56,6 +55,7 @@ instance AT.FromJSON CallProtocol where
           , max_layer        = max_layer_
           , library_versions = library_versions_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON CallProtocol where
   toJSON CallProtocol

@@ -1,10 +1,9 @@
-module TD.Query.SetBotInfoShortDescription where
+module TD.Query.SetBotInfoShortDescription(SetBotInfoShortDescription(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SetBotInfoShortDescription -- ^ Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
   = SetBotInfoShortDescription

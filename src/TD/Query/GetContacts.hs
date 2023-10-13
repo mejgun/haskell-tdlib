@@ -1,10 +1,7 @@
-module TD.Query.GetContacts where
+module TD.Query.GetContacts(GetContacts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data GetContacts -- ^ Returns all contacts of the user
   = GetContacts

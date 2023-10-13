@@ -1,10 +1,9 @@
-module TD.Data.SentWebAppMessage where
+module TD.Data.SentWebAppMessage (SentWebAppMessage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data SentWebAppMessage
   = SentWebAppMessage -- ^ Information about the message sent by answerWebAppQuery
@@ -36,6 +35,7 @@ instance AT.FromJSON SentWebAppMessage where
         pure $ SentWebAppMessage
           { inline_message_id = inline_message_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON SentWebAppMessage where
   toJSON SentWebAppMessage

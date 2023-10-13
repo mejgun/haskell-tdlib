@@ -1,9 +1,7 @@
-module TD.Data.Users where
+module TD.Data.Users (Users(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data Users
@@ -41,6 +39,7 @@ instance AT.FromJSON Users where
           { total_count = total_count_
           , user_ids    = user_ids_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Users where
   toJSON Users

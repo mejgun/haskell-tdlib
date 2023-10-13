@@ -1,10 +1,9 @@
-module TD.Data.WebApp where
+module TD.Data.WebApp (WebApp(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Animation as Animation
 
@@ -58,6 +57,7 @@ instance AT.FromJSON WebApp where
           , photo       = photo_
           , animation   = animation_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON WebApp where
   toJSON WebApp

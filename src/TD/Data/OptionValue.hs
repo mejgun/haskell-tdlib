@@ -1,10 +1,9 @@
-module TD.Data.OptionValue where
+module TD.Data.OptionValue (OptionValue(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data OptionValue -- ^ Represents the value of an option
   = OptionValueBoolean -- ^ Represents a boolean option
@@ -74,6 +73,7 @@ instance AT.FromJSON OptionValue where
         pure $ OptionValueString
           { __value = __value_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON OptionValue where
   toJSON OptionValueBoolean

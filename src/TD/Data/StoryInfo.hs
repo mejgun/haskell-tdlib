@@ -1,9 +1,7 @@
-module TD.Data.StoryInfo where
+module TD.Data.StoryInfo (StoryInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data StoryInfo
@@ -46,6 +44,7 @@ instance AT.FromJSON StoryInfo where
           , date                 = date_
           , is_for_close_friends = is_for_close_friends_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StoryInfo where
   toJSON StoryInfo

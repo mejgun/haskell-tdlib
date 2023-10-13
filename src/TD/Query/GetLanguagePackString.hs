@@ -1,10 +1,9 @@
-module TD.Query.GetLanguagePackString where
+module TD.Query.GetLanguagePackString(GetLanguagePackString(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 data GetLanguagePackString -- ^ Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
   = GetLanguagePackString

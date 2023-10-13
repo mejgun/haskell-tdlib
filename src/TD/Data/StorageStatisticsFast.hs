@@ -1,9 +1,7 @@
-module TD.Data.StorageStatisticsFast where
+module TD.Data.StorageStatisticsFast (StorageStatisticsFast(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data StorageStatisticsFast
@@ -56,6 +54,7 @@ instance AT.FromJSON StorageStatisticsFast where
           , language_pack_database_size = language_pack_database_size_
           , log_size                    = log_size_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON StorageStatisticsFast where
   toJSON StorageStatisticsFast

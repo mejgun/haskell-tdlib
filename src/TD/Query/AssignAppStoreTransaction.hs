@@ -1,10 +1,9 @@
-module TD.Query.AssignAppStoreTransaction where
+module TD.Query.AssignAppStoreTransaction(AssignAppStoreTransaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
 
 data AssignAppStoreTransaction -- ^ Informs server about a purchase through App Store. For official applications only

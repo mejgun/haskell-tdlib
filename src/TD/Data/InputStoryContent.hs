@@ -1,9 +1,7 @@
-module TD.Data.InputStoryContent where
+module TD.Data.InputStoryContent (InputStoryContent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
@@ -74,6 +72,7 @@ instance AT.FromJSON InputStoryContent where
           , duration               = duration_
           , is_animation           = is_animation_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputStoryContent where
   toJSON InputStoryContentPhoto

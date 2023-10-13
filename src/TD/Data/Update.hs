@@ -1,12 +1,11 @@
-module TD.Data.Update where
+module TD.Data.Update (Update(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.AuthorizationState as AuthorizationState
 import qualified TD.Data.Message as Message
+import qualified Data.Text as T
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
@@ -45,6 +44,7 @@ import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.Call as Call
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallParticipant as GroupCallParticipant
+import qualified Data.ByteString as BS
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.ChatList as ChatList
@@ -2761,6 +2761,7 @@ instance AT.FromJSON Update where
           , user_chat_id = user_chat_id_
           , invite_link  = invite_link_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Update where
   toJSON UpdateAuthorizationState

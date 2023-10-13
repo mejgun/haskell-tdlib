@@ -1,10 +1,9 @@
-module TD.Data.Video where
+module TD.Data.Video (Video(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.File as File
@@ -84,6 +83,7 @@ instance AT.FromJSON Video where
           , thumbnail          = thumbnail_
           , video              = video_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON Video where
   toJSON Video

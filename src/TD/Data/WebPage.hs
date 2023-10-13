@@ -1,10 +1,9 @@
-module TD.Data.WebPage where
+module TD.Data.WebPage (WebPage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Animation as Animation
@@ -155,6 +154,7 @@ instance AT.FromJSON WebPage where
           , story_id             = story_id_
           , instant_view_version = instant_view_version_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON WebPage where
   toJSON WebPage

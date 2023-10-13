@@ -1,9 +1,7 @@
-module TD.Data.MessageSendOptions where
+module TD.Data.MessageSendOptions (MessageSendOptions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 
@@ -62,6 +60,7 @@ instance AT.FromJSON MessageSendOptions where
           , scheduling_state                       = scheduling_state_
           , sending_id                             = sending_id_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON MessageSendOptions where
   toJSON MessageSendOptions

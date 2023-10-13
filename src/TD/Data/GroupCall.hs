@@ -1,10 +1,9 @@
-module TD.Data.GroupCall where
+module TD.Data.GroupCall (GroupCall(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.GroupCallRecentSpeaker as GroupCallRecentSpeaker
 
 data GroupCall
@@ -137,6 +136,7 @@ instance AT.FromJSON GroupCall where
           , is_video_recorded                = is_video_recorded_
           , duration                         = duration_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON GroupCall where
   toJSON GroupCall

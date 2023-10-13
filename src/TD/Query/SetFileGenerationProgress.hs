@@ -1,9 +1,7 @@
-module TD.Query.SetFileGenerationProgress where
+module TD.Query.SetFileGenerationProgress(SetFileGenerationProgress(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 
 data SetFileGenerationProgress -- ^ Informs TDLib on a file generation progress

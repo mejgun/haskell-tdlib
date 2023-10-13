@@ -1,10 +1,7 @@
-module TD.Query.GetLogTags where
+module TD.Query.GetLogTags(GetLogTags(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
-import qualified TD.Lib.Internal as I
 
 data GetLogTags -- ^ Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
   = GetLogTags

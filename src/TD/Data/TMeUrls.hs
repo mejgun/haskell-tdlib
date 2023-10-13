@@ -1,9 +1,7 @@
-module TD.Data.TMeUrls where
+module TD.Data.TMeUrls (TMeUrls(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.TMeUrl as TMeUrl
 
@@ -37,6 +35,7 @@ instance AT.FromJSON TMeUrls where
         pure $ TMeUrls
           { urls = urls_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON TMeUrls where
   toJSON TMeUrls

@@ -1,12 +1,11 @@
-module TD.Data.InputInlineQueryResult where
+module TD.Data.InputInlineQueryResult (InputInlineQueryResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
-import qualified Data.Text as T
-import qualified Data.ByteString as BS
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
-import {-# SOURCE #-} qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.InputMessageContent as InputMessageContent
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
@@ -653,6 +652,7 @@ instance AT.FromJSON InputInlineQueryResult where
           , reply_markup          = reply_markup_
           , input_message_content = input_message_content_
           }
+  parseJSON _ = mempty
 
 instance AT.ToJSON InputInlineQueryResult where
   toJSON InputInlineQueryResultAnimation
