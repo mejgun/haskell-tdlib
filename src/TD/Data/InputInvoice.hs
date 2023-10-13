@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data InputInvoice -- ^ Describes an invoice to process
+-- | Describes an invoice to process
+data InputInvoice
   = InputInvoiceMessage -- ^ An invoice from a message of the type messageInvoice
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message
     , message_id :: Maybe Int -- ^ Message identifier

@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetGroupCallStreams -- ^ Returns information about available group call streams
+-- | Returns information about available group call streams
+data GetGroupCallStreams
   = GetGroupCallStreams
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetLogTagVerbosityLevel -- ^ Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
+-- | Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
+data SetLogTagVerbosityLevel
   = SetLogTagVerbosityLevel
     { tag                 :: Maybe T.Text -- ^ Logging tag to change verbosity level
     , new_verbosity_level :: Maybe Int    -- ^ New verbosity level; 1-1024

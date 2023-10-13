@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetMessageImportConfirmationText -- ^ Returns a confirmation text to be shown to the user before starting message import
+-- | Returns a confirmation text to be shown to the user before starting message import
+data GetMessageImportConfirmationText
   = GetMessageImportConfirmationText
     { chat_id :: Maybe Int -- ^ Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
     }

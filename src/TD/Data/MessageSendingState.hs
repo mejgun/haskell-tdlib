@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data MessageSendingState -- ^ Contains information about the sending state of the message
+-- | Contains information about the sending state of the message
+data MessageSendingState
   = MessageSendingStatePending -- ^ The message is being sent now, but has not yet been delivered to the server
     { sending_id :: Maybe Int -- ^ Non-persistent message sending identifier, specified by the application
     }

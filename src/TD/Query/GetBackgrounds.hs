@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetBackgrounds -- ^ Returns backgrounds installed by the user
+-- | Returns backgrounds installed by the user
+data GetBackgrounds
   = GetBackgrounds
     { for_dark_theme :: Maybe Bool -- ^ Pass true to order returned backgrounds for a dark theme
     }

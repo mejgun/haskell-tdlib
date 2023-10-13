@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CreateSupergroupChat -- ^ Returns an existing chat corresponding to a known supergroup or channel
+-- | Returns an existing chat corresponding to a known supergroup or channel
+data CreateSupergroupChat
   = CreateSupergroupChat
     { supergroup_id :: Maybe Int  -- ^ Supergroup or channel identifier
     , force         :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect

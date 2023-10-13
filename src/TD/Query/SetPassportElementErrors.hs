@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputPassportElementError as InputPassportElementError
 
-data SetPassportElementErrors -- ^ Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+-- | Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+data SetPassportElementErrors
   = SetPassportElementErrors
     { user_id :: Maybe Int                                                   -- ^ User identifier
     , errors  :: Maybe [InputPassportElementError.InputPassportElementError] -- ^ The errors

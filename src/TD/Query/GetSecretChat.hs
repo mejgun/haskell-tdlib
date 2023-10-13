@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetSecretChat -- ^ Returns information about a secret chat by its identifier. This is an offline request
+-- | Returns information about a secret chat by its identifier. This is an offline request
+data GetSecretChat
   = GetSecretChat
     { secret_chat_id :: Maybe Int -- ^ Secret chat identifier
     }

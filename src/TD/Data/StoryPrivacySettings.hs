@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data StoryPrivacySettings -- ^ Describes privacy settings of a story
+-- | Describes privacy settings of a story
+data StoryPrivacySettings
   = StoryPrivacySettingsEveryone -- ^ The story can be viewed by everyone
   | StoryPrivacySettingsContacts -- ^ The story can be viewed by all contacts except chosen users
     { except_user_ids :: Maybe [Int] -- ^ User identifiers of the contacts that can't see the story; always empty for non-owned stories

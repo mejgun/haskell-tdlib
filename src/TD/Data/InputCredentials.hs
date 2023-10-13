@@ -11,7 +11,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data InputCredentials -- ^ Contains information about the payment method chosen by the user
+-- | Contains information about the payment method chosen by the user
+data InputCredentials
   = InputCredentialsSaved -- ^ Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
     { saved_credentials_id :: Maybe T.Text -- ^ Identifier of the saved credentials
     }

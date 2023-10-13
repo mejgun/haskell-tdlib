@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data PinChatMessage -- ^ Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+-- | Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+data PinChatMessage
   = PinChatMessage
     { chat_id              :: Maybe Int  -- ^ Identifier of the chat
     , message_id           :: Maybe Int  -- ^ Identifier of the new pinned message

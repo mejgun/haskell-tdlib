@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data RemoveAllFilesFromDownloads -- ^ Removes all files from the file download list
+-- | Removes all files from the file download list
+data RemoveAllFilesFromDownloads
   = RemoveAllFilesFromDownloads
     { only_active       :: Maybe Bool -- ^ Pass true to remove only active downloads, including paused
     , only_completed    :: Maybe Bool -- ^ Pass true to remove only completed downloads

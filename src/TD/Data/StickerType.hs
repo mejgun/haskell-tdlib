@@ -5,7 +5,8 @@ module TD.Data.StickerType
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data StickerType -- ^ Describes type of a sticker
+-- | Describes type of a sticker
+data StickerType
   = StickerTypeRegular -- ^ The sticker is a regular sticker
   | StickerTypeMask -- ^ The sticker is a mask in WEBP format to be placed on photos or videos
   | StickerTypeCustomEmoji -- ^ The sticker is a custom emoji to be used inside message text and caption

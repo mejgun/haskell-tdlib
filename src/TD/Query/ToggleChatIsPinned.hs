@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
 
-data ToggleChatIsPinned -- ^ Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+-- | Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+data ToggleChatIsPinned
   = ToggleChatIsPinned
     { chat_list :: Maybe ChatList.ChatList -- ^ Chat list in which to change the pinned state of the chat
     , chat_id   :: Maybe Int               -- ^ Chat identifier

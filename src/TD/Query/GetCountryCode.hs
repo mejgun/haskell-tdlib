@@ -5,7 +5,8 @@ module TD.Query.GetCountryCode
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetCountryCode -- ^ Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
+-- | Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
+data GetCountryCode
   = GetCountryCode
   deriving (Eq)
 

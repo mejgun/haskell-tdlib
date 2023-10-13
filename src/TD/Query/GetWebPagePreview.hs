@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
-data GetWebPagePreview -- ^ Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
+-- | Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
+data GetWebPagePreview
   = GetWebPagePreview
     { text :: Maybe FormattedText.FormattedText -- ^ Message text with formatting
     }

@@ -5,7 +5,8 @@ module TD.Data.PassportElementType
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data PassportElementType -- ^ Contains the type of a Telegram Passport element
+-- | Contains the type of a Telegram Passport element
+data PassportElementType
   = PassportElementTypePersonalDetails -- ^ A Telegram Passport element containing the user's personal details
   | PassportElementTypePassport -- ^ A Telegram Passport element containing the user's passport
   | PassportElementTypeDriverLicense -- ^ A Telegram Passport element containing the user's driver license

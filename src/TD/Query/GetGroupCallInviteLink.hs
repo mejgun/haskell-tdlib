@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetGroupCallInviteLink -- ^ Returns invite link to a video chat in a public chat
+-- | Returns invite link to a video chat in a public chat
+data GetGroupCallInviteLink
   = GetGroupCallInviteLink
     { group_call_id   :: Maybe Int  -- ^ Group call identifier
     , can_self_unmute :: Maybe Bool -- ^ Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag

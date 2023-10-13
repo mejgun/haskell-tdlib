@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
 
-data GetChatFolderChatCount -- ^ Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
+-- | Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
+data GetChatFolderChatCount
   = GetChatFolderChatCount
     { folder :: Maybe ChatFolder.ChatFolder -- ^ The new chat folder
     }

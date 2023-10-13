@@ -16,7 +16,8 @@ import qualified Data.ByteString as BS
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
 import qualified TD.Data.Error as Error
 
-data CallState -- ^ Describes the current call state
+-- | Describes the current call state
+data CallState
   = CallStatePending -- ^ The call is pending, waiting to be accepted by a user
     { is_created  :: Maybe Bool -- ^ True, if the call has already been created by the server
     , is_received :: Maybe Bool -- ^ True, if the call has already been received by the other party

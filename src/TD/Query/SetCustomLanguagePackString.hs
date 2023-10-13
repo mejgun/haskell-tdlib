@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.LanguagePackString as LanguagePackString
 
-data SetCustomLanguagePackString -- ^ Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
+-- | Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
+data SetCustomLanguagePackString
   = SetCustomLanguagePackString
     { language_pack_id :: Maybe T.Text                                -- ^ Identifier of a previously added custom local language pack in the current localization target
     , new_string       :: Maybe LanguagePackString.LanguagePackString -- ^ New language pack string

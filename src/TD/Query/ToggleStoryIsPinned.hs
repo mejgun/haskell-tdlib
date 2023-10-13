@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleStoryIsPinned -- ^ Toggles whether a story is accessible after expiration
+-- | Toggles whether a story is accessible after expiration
+data ToggleStoryIsPinned
   = ToggleStoryIsPinned
     { story_id  :: Maybe Int  -- ^ Identifier of the story
     , is_pinned :: Maybe Bool -- ^ Pass true to make the story accessible after expiration; pass false to make it private

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data DeleteChatFolderInviteLink -- ^ Deletes an invite link for a chat folder
+-- | Deletes an invite link for a chat folder
+data DeleteChatFolderInviteLink
   = DeleteChatFolderInviteLink
     { chat_folder_id :: Maybe Int    -- ^ Chat folder identifier
     , invite_link    :: Maybe T.Text -- ^ Invite link to be deleted

@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data CheckChatInviteLink -- ^ Checks the validity of an invite link for a chat and returns information about the corresponding chat
+-- | Checks the validity of an invite link for a chat and returns information about the corresponding chat
+data CheckChatInviteLink
   = CheckChatInviteLink
     { invite_link :: Maybe T.Text -- ^ Invite link to be checked
     }

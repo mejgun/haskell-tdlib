@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 
-data GetChatMessageCount -- ^ Returns approximate number of messages of the specified type in the chat
+-- | Returns approximate number of messages of the specified type in the chat
+data GetChatMessageCount
   = GetChatMessageCount
     { chat_id      :: Maybe Int                                       -- ^ Identifier of the chat in which to count messages
     , _filter      :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content; searchMessagesFilterEmpty is unsupported in this function

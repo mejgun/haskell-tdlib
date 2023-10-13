@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SearchEmojis -- ^ Searches for emojis by keywords. Supported only if the file database is enabled
+-- | Searches for emojis by keywords. Supported only if the file database is enabled
+data SearchEmojis
   = SearchEmojis
     { text                 :: Maybe T.Text   -- ^ Text to search for
     , exact_match          :: Maybe Bool     -- ^ Pass true if only emojis, which exactly match the text, needs to be returned

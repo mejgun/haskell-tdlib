@@ -5,7 +5,8 @@ module TD.Query.GetArchiveChatListSettings
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetArchiveChatListSettings -- ^ Returns settings for automatic moving of chats to and from the Archive chat lists
+-- | Returns settings for automatic moving of chats to and from the Archive chat lists
+data GetArchiveChatListSettings
   = GetArchiveChatListSettings
   deriving (Eq)
 

@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetChatActiveStories -- ^ Returns the list of active stories posted by the given chat
+-- | Returns the list of active stories posted by the given chat
+data GetChatActiveStories
   = GetChatActiveStories
     { chat_id :: Maybe Int -- ^ Chat identifier
     }

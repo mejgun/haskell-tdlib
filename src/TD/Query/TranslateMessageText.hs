@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data TranslateMessageText -- ^ Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+-- | Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+data TranslateMessageText
   = TranslateMessageText
     { chat_id          :: Maybe Int    -- ^ Identifier of the chat to which the message belongs
     , message_id       :: Maybe Int    -- ^ Identifier of the message

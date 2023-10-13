@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.InputFile as InputFile
 
-data SetStickerSetThumbnail -- ^ Sets a sticker set thumbnail; for bots only
+-- | Sets a sticker set thumbnail; for bots only
+data SetStickerSetThumbnail
   = SetStickerSetThumbnail
     { user_id   :: Maybe Int                 -- ^ Sticker set owner
     , name      :: Maybe T.Text              -- ^ Sticker set name

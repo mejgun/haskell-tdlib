@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DeleteChatHistory -- ^ Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+-- | Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+data DeleteChatHistory
   = DeleteChatHistory
     { chat_id               :: Maybe Int  -- ^ Chat identifier
     , remove_from_chat_list :: Maybe Bool -- ^ Pass true to remove the chat from all chat lists

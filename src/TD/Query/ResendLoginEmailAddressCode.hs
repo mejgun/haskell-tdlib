@@ -5,7 +5,8 @@ module TD.Query.ResendLoginEmailAddressCode
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ResendLoginEmailAddressCode -- ^ Resends the login email address verification code
+-- | Resends the login email address verification code
+data ResendLoginEmailAddressCode
   = ResendLoginEmailAddressCode
   deriving (Eq)
 

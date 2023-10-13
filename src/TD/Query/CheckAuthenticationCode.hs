@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data CheckAuthenticationCode -- ^ Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
+-- | Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
+data CheckAuthenticationCode
   = CheckAuthenticationCode
     { code :: Maybe T.Text -- ^ Authentication code to check
     }

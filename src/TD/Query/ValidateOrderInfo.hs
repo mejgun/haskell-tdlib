@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputInvoice as InputInvoice
 import qualified TD.Data.OrderInfo as OrderInfo
 
-data ValidateOrderInfo -- ^ Validates the order information provided by a user and returns the available shipping options for a flexible invoice
+-- | Validates the order information provided by a user and returns the available shipping options for a flexible invoice
+data ValidateOrderInfo
   = ValidateOrderInfo
     { input_invoice :: Maybe InputInvoice.InputInvoice -- ^ The invoice
     , order_info    :: Maybe OrderInfo.OrderInfo       -- ^ The order information, provided by the user; pass null if empty

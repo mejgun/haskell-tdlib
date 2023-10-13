@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DownloadFile -- ^ Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
+-- | Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
+data DownloadFile
   = DownloadFile
     { file_id     :: Maybe Int  -- ^ Identifier of the file to download
     , priority    :: Maybe Int  -- ^ Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first

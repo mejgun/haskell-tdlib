@@ -5,7 +5,8 @@ module TD.Query.GetSavedNotificationSounds
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetSavedNotificationSounds -- ^ Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+-- | Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+data GetSavedNotificationSounds
   = GetSavedNotificationSounds
   deriving (Eq)
 

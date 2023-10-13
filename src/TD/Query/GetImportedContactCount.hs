@@ -5,7 +5,8 @@ module TD.Query.GetImportedContactCount
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetImportedContactCount -- ^ Returns the total number of imported contacts
+-- | Returns the total number of imported contacts
+data GetImportedContactCount
   = GetImportedContactCount
   deriving (Eq)
 

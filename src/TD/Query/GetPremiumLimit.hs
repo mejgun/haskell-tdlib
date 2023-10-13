@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumLimitType as PremiumLimitType
 
-data GetPremiumLimit -- ^ Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
+-- | Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
+data GetPremiumLimit
   = GetPremiumLimit
     { limit_type :: Maybe PremiumLimitType.PremiumLimitType -- ^ Type of the limit
     }

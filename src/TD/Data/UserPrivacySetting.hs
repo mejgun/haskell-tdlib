@@ -5,7 +5,8 @@ module TD.Data.UserPrivacySetting
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data UserPrivacySetting -- ^ Describes available user privacy settings
+-- | Describes available user privacy settings
+data UserPrivacySetting
   = UserPrivacySettingShowStatus -- ^ A privacy setting for managing whether the user's online status is visible
   | UserPrivacySettingShowProfilePhoto -- ^ A privacy setting for managing whether the user's profile photo is visible
   | UserPrivacySettingShowLinkInForwardedMessages -- ^ A privacy setting for managing whether a link to the user's account is included in forwarded messages

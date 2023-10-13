@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Contact as Contact
 
-data ImportContacts -- ^ Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
+-- | Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
+data ImportContacts
   = ImportContacts
     { contacts :: Maybe [Contact.Contact] -- ^ The list of contacts to import or edit; contacts' vCard are ignored and are not imported
     }

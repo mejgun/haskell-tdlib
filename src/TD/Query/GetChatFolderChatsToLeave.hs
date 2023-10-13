@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetChatFolderChatsToLeave -- ^ Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+-- | Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+data GetChatFolderChatsToLeave
   = GetChatFolderChatsToLeave
     { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
     }

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data TransferChatOwnership -- ^ Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+-- | Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+data TransferChatOwnership
   = TransferChatOwnership
     { chat_id  :: Maybe Int    -- ^ Chat identifier
     , user_id  :: Maybe Int    -- ^ Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user

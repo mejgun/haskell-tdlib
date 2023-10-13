@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data PaymentProvider -- ^ Contains information about a payment provider
+-- | Contains information about a payment provider
+data PaymentProvider
   = PaymentProviderSmartGlocal -- ^ Smart Glocal payment provider
     { public_token :: Maybe T.Text -- ^ Public payment token
     }

@@ -5,7 +5,8 @@ module TD.Query.GetContacts
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetContacts -- ^ Returns all contacts of the user
+-- | Returns all contacts of the user
+data GetContacts
   = GetContacts
   deriving (Eq)
 

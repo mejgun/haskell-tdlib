@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ClearAllDraftMessages -- ^ Clears message drafts in all chats
+-- | Clears message drafts in all chats
+data ClearAllDraftMessages
   = ClearAllDraftMessages
     { exclude_secret_chats :: Maybe Bool -- ^ Pass true to keep local message drafts in secret chats
     }

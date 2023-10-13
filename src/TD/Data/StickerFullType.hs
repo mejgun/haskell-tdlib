@@ -11,7 +11,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.File as File
 import qualified TD.Data.MaskPosition as MaskPosition
 
-data StickerFullType -- ^ Contains full information about sticker type
+-- | Contains full information about sticker type
+data StickerFullType
   = StickerFullTypeRegular -- ^ The sticker is a regular sticker
     { premium_animation :: Maybe File.File -- ^ Premium animation of the sticker; may be null. If present, only Telegram Premium users can use the sticker
     }

@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageAutoDeleteTime as MessageAutoDeleteTime
 
-data SetDefaultMessageAutoDeleteTime -- ^ Changes the default message auto-delete time for new chats
+-- | Changes the default message auto-delete time for new chats
+data SetDefaultMessageAutoDeleteTime
   = SetDefaultMessageAutoDeleteTime
     { message_auto_delete_time :: Maybe MessageAutoDeleteTime.MessageAutoDeleteTime -- ^ New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     }

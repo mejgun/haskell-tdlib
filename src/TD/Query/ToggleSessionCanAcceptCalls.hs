@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleSessionCanAcceptCalls -- ^ Toggles whether a session can accept incoming calls
+-- | Toggles whether a session can accept incoming calls
+data ToggleSessionCanAcceptCalls
   = ToggleSessionCanAcceptCalls
     { session_id       :: Maybe Int  -- ^ Session identifier
     , can_accept_calls :: Maybe Bool -- ^ Pass true to allow accepting incoming calls by the session; pass false otherwise

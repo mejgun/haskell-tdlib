@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.CallProtocol as CallProtocol
 
-data CreateCall -- ^ Creates a new call
+-- | Creates a new call
+data CreateCall
   = CreateCall
     { user_id  :: Maybe Int                       -- ^ Identifier of the user to be called
     , protocol :: Maybe CallProtocol.CallProtocol -- ^ The call protocols supported by the application

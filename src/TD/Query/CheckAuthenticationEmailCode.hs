@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmailAddressAuthentication as EmailAddressAuthentication
 
-data CheckAuthenticationEmailCode -- ^ Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+-- | Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+data CheckAuthenticationEmailCode
   = CheckAuthenticationEmailCode
     { code :: Maybe EmailAddressAuthentication.EmailAddressAuthentication -- ^ Email address authentication to check
     }

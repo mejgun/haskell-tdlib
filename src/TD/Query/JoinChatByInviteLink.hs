@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data JoinChatByInviteLink -- ^ Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+-- | Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+data JoinChatByInviteLink
   = JoinChatByInviteLink
     { invite_link :: Maybe T.Text -- ^ Invite link to use
     }

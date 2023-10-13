@@ -5,7 +5,8 @@ module TD.Data.GroupCallVideoQuality
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GroupCallVideoQuality -- ^ Describes the quality of a group call video
+-- | Describes the quality of a group call video
+data GroupCallVideoQuality
   = GroupCallVideoQualityThumbnail -- ^ The worst available video quality
   | GroupCallVideoQualityMedium -- ^ The medium video quality
   | GroupCallVideoQualityFull -- ^ The best available video quality

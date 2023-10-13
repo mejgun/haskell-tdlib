@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data MessageFileType -- ^ Contains information about a file with messages exported from another app
+-- | Contains information about a file with messages exported from another app
+data MessageFileType
   = MessageFileTypePrivate -- ^ The messages was exported from a private chat
     { name :: Maybe T.Text -- ^ Name of the other party; may be empty if unrecognized
     }

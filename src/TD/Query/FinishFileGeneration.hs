@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Error as Error
 
-data FinishFileGeneration -- ^ Finishes the file generation
+-- | Finishes the file generation
+data FinishFileGeneration
   = FinishFileGeneration
     { generation_id :: Maybe Int         -- ^ The identifier of the generation process
     , _error        :: Maybe Error.Error -- ^ If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded

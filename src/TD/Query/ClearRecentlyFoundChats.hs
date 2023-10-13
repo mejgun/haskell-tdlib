@@ -5,7 +5,8 @@ module TD.Query.ClearRecentlyFoundChats
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ClearRecentlyFoundChats -- ^ Clears the list of recently found chats
+-- | Clears the list of recently found chats
+data ClearRecentlyFoundChats
   = ClearRecentlyFoundChats
   deriving (Eq)
 

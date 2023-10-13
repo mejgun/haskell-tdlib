@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data SetSupergroupStickerSet -- ^ Changes the sticker set of a supergroup; requires can_change_info administrator right
+-- | Changes the sticker set of a supergroup; requires can_change_info administrator right
+data SetSupergroupStickerSet
   = SetSupergroupStickerSet
     { supergroup_id  :: Maybe Int -- ^ Identifier of the supergroup
     , sticker_set_id :: Maybe Int -- ^ New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set

@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ReportSupergroupSpam -- ^ Reports messages in a supergroup as spam; requires administrator rights in the supergroup
+-- | Reports messages in a supergroup as spam; requires administrator rights in the supergroup
+data ReportSupergroupSpam
   = ReportSupergroupSpam
     { supergroup_id :: Maybe Int   -- ^ Supergroup identifier
     , message_ids   :: Maybe [Int] -- ^ Identifiers of messages to report

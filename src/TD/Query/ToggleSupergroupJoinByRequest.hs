@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleSupergroupJoinByRequest -- ^ Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+-- | Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+data ToggleSupergroupJoinByRequest
   = ToggleSupergroupJoinByRequest
     { supergroup_id   :: Maybe Int  -- ^ Identifier of the channel
     , join_by_request :: Maybe Bool -- ^ New value of join_by_request

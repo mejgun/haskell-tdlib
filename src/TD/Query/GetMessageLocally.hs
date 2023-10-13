@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetMessageLocally -- ^ Returns information about a message, if it is available without sending network request. This is an offline request
+-- | Returns information about a message, if it is available without sending network request. This is an offline request
+data GetMessageLocally
   = GetMessageLocally
     { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
     , message_id :: Maybe Int -- ^ Identifier of the message to get

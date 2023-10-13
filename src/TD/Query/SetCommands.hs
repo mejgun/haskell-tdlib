@@ -10,7 +10,8 @@ import qualified TD.Data.BotCommandScope as BotCommandScope
 import qualified Data.Text as T
 import qualified TD.Data.BotCommand as BotCommand
 
-data SetCommands -- ^ Sets the list of commands supported by the bot for the given user scope and language; for bots only
+-- | Sets the list of commands supported by the bot for the given user scope and language; for bots only
+data SetCommands
   = SetCommands
     { scope         :: Maybe BotCommandScope.BotCommandScope -- ^ The scope to which the commands are relevant; pass null to change commands in the default bot command scope
     , language_code :: Maybe T.Text                          -- ^ A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands

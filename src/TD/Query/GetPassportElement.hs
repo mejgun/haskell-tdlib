@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
 import qualified Data.Text as T
 
-data GetPassportElement -- ^ Returns one of the available Telegram Passport elements
+-- | Returns one of the available Telegram Passport elements
+data GetPassportElement
   = GetPassportElement
     { _type    :: Maybe PassportElementType.PassportElementType -- ^ Telegram Passport element type
     , password :: Maybe T.Text                                  -- ^ The 2-step verification password of the current user

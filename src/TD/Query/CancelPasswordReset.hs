@@ -5,7 +5,8 @@ module TD.Query.CancelPasswordReset
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data CancelPasswordReset -- ^ Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
+-- | Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
+data CancelPasswordReset
   = CancelPasswordReset
   deriving (Eq)
 

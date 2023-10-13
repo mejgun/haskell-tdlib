@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data DeleteStickerSet -- ^ Deleted a sticker set; for bots only
+-- | Deleted a sticker set; for bots only
+data DeleteStickerSet
   = DeleteStickerSet
     { name :: Maybe T.Text -- ^ Sticker set name
     }

@@ -5,7 +5,8 @@ module TD.Data.EmojiCategoryType
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data EmojiCategoryType -- ^ Describes type of an emoji category
+-- | Describes type of an emoji category
+data EmojiCategoryType
   = EmojiCategoryTypeDefault -- ^ The category must be used by default
   | EmojiCategoryTypeEmojiStatus -- ^ The category must be used for emoji status selection
   | EmojiCategoryTypeChatPhoto -- ^ The category must be used for chat photo emoji selection

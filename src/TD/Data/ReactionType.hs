@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ReactionType -- ^ Describes type of message reaction
+-- | Describes type of message reaction
+data ReactionType
   = ReactionTypeEmoji -- ^ A reaction with an emoji
     { emoji :: Maybe T.Text -- ^ Text representation of the reaction
     }

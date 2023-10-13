@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ReplacePrimaryChatInviteLink -- ^ Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
+-- | Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
+data ReplacePrimaryChatInviteLink
   = ReplacePrimaryChatInviteLink
     { chat_id :: Maybe Int -- ^ Chat identifier
     }

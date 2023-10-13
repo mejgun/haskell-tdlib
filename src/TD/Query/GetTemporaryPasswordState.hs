@@ -5,7 +5,8 @@ module TD.Query.GetTemporaryPasswordState
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetTemporaryPasswordState -- ^ Returns information about the current temporary password
+-- | Returns information about the current temporary password
+data GetTemporaryPasswordState
   = GetTemporaryPasswordState
   deriving (Eq)
 

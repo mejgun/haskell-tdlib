@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
-data ImportMessages -- ^ Imports messages exported from another app
+-- | Imports messages exported from another app
+data ImportMessages
   = ImportMessages
     { chat_id        :: Maybe Int                   -- ^ Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
     , message_file   :: Maybe InputFile.InputFile   -- ^ File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded

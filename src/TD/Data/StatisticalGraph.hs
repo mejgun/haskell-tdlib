@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data StatisticalGraph -- ^ Describes a statistical graph
+-- | Describes a statistical graph
+data StatisticalGraph
   = StatisticalGraphData -- ^ A graph data
     { json_data  :: Maybe T.Text -- ^ Graph data in JSON format
     , zoom_token :: Maybe T.Text -- ^ If non-empty, a token which can be used to receive a zoomed in graph

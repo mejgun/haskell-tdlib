@@ -5,7 +5,8 @@ module TD.Data.CheckChatUsernameResult
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data CheckChatUsernameResult -- ^ Represents result of checking whether a username can be set for a chat
+-- | Represents result of checking whether a username can be set for a chat
+data CheckChatUsernameResult
   = CheckChatUsernameResultOk -- ^ The username can be set
   | CheckChatUsernameResultUsernameInvalid -- ^ The username is invalid
   | CheckChatUsernameResultUsernameOccupied -- ^ The username is occupied

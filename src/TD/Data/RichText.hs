@@ -25,7 +25,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.Document as Document
 
-data RichText -- ^ Describes a text object inside an instant-view web page
+-- | Describes a text object inside an instant-view web page
+data RichText
   = RichTextPlain -- ^ A plain text
     { text :: Maybe T.Text -- ^ Text
     }

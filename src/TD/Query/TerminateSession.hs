@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data TerminateSession -- ^ Terminates a session of the current user
+-- | Terminates a session of the current user
+data TerminateSession
   = TerminateSession
     { session_id :: Maybe Int -- ^ Session identifier
     }

@@ -5,7 +5,8 @@ module TD.Query.GetLogStream
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetLogStream -- ^ Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
+-- | Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
+data GetLogStream
   = GetLogStream
   deriving (Eq)
 

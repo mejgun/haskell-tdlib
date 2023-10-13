@@ -5,7 +5,8 @@ module TD.Data.SecretChatState
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data SecretChatState -- ^ Describes the current secret chat state
+-- | Describes the current secret chat state
+data SecretChatState
   = SecretChatStatePending -- ^ The secret chat is not yet created; waiting for the other user to get online
   | SecretChatStateReady -- ^ The secret chat is ready to use
   | SecretChatStateClosed -- ^ The secret chat is closed

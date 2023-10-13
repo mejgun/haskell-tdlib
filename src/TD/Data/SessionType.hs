@@ -5,7 +5,8 @@ module TD.Data.SessionType
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data SessionType -- ^ Represents the type of a session
+-- | Represents the type of a session
+data SessionType
   = SessionTypeAndroid -- ^ The session is running on an Android device
   | SessionTypeApple -- ^ The session is running on a generic Apple device
   | SessionTypeBrave -- ^ The session is running on the Brave browser

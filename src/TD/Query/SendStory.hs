@@ -10,7 +10,8 @@ import qualified TD.Data.InputStoryContent as InputStoryContent
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 
-data SendStory -- ^ Sends a new story. Returns a temporary story with identifier 0
+-- | Sends a new story. Returns a temporary story with identifier 0
+data SendStory
   = SendStory
     { content          :: Maybe InputStoryContent.InputStoryContent       -- ^ Content of the story
     , caption          :: Maybe FormattedText.FormattedText               -- ^ Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters

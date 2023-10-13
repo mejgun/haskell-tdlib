@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
-data SendCallLog -- ^ Sends log file for a call to Telegram servers
+-- | Sends log file for a call to Telegram servers
+data SendCallLog
   = SendCallLog
     { call_id  :: Maybe Int                 -- ^ Call identifier
     , log_file :: Maybe InputFile.InputFile -- ^ Call log file. Only inputFileLocal and inputFileGenerated are supported

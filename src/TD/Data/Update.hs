@@ -192,7 +192,8 @@ import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatMember as ChatMember
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
 
-data Update -- ^ Contains notifications about data changes
+-- | Contains notifications about data changes
+data Update
   = UpdateAuthorizationState -- ^ The user authorization state has changed
     { authorization_state :: Maybe AuthorizationState.AuthorizationState -- ^ New authorization state
     }

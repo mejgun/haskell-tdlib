@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Sticker as Sticker
 
-data DiceStickers -- ^ Contains animated stickers which must be used for dice animation rendering
+-- | Contains animated stickers which must be used for dice animation rendering
+data DiceStickers
   = DiceStickersRegular -- ^ A regular animated sticker
     { sticker :: Maybe Sticker.Sticker -- ^ The animated sticker with the dice animation
     }

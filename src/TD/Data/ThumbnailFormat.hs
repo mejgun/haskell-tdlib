@@ -5,7 +5,8 @@ module TD.Data.ThumbnailFormat
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ThumbnailFormat -- ^ Describes format of a thumbnail
+-- | Describes format of a thumbnail
+data ThumbnailFormat
   = ThumbnailFormatJpeg -- ^ The thumbnail is in JPEG format
   | ThumbnailFormatGif -- ^ The thumbnail is in static GIF format. It will be used only for some bot inline results
   | ThumbnailFormatMpeg4 -- ^ The thumbnail is in MPEG4 format. It will be used only for some animations and videos

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SearchWebApp -- ^ Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
+-- | Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
+data SearchWebApp
   = SearchWebApp
     { bot_user_id        :: Maybe Int    -- ^ Identifier of the target bot
     , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App

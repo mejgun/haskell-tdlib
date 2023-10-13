@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data InviteGroupCallParticipants -- ^ Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+-- | Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+data InviteGroupCallParticipants
   = InviteGroupCallParticipants
     { group_call_id :: Maybe Int   -- ^ Group call identifier
     , user_ids      :: Maybe [Int] -- ^ User identifiers. At most 10 users can be invited simultaneously

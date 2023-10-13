@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetChatTitle -- ^ Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+-- | Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+data SetChatTitle
   = SetChatTitle
     { chat_id :: Maybe Int    -- ^ Chat identifier
     , title   :: Maybe T.Text -- ^ New title of the chat; 1-128 characters

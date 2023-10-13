@@ -5,7 +5,8 @@ module TD.Query.GetForumTopicDefaultIcons
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetForumTopicDefaultIcons -- ^ Returns list of custom emojis, which can be used as forum topic icon by all users
+-- | Returns list of custom emojis, which can be used as forum topic icon by all users
+data GetForumTopicDefaultIcons
   = GetForumTopicDefaultIcons
   deriving (Eq)
 

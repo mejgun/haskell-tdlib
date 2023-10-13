@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
 
-data CreateChatFolder -- ^ Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
+-- | Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
+data CreateChatFolder
   = CreateChatFolder
     { folder :: Maybe ChatFolder.ChatFolder -- ^ The new chat folder
     }

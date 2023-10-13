@@ -35,7 +35,8 @@ import qualified TD.Data.Invoice as Invoice
 import qualified TD.Data.PollType as PollType
 import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
 
-data InputMessageContent -- ^ The content of a message to send
+-- | The content of a message to send
+data InputMessageContent
   = InputMessageText -- ^ A text message
     { text                     :: Maybe FormattedText.FormattedText -- ^ Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     , disable_web_page_preview :: Maybe Bool                        -- ^ True, if rich web page previews for URLs in the message text must be disabled

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data CreateChatFolderInviteLink -- ^ Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
+-- | Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
+data CreateChatFolderInviteLink
   = CreateChatFolderInviteLink
     { chat_folder_id :: Maybe Int    -- ^ Chat folder identifier
     , name           :: Maybe T.Text -- ^ Name of the link; 0-32 characters

@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetRecentlyVisitedTMeUrls -- ^ Returns t.me URLs recently visited by a newly registered user
+-- | Returns t.me URLs recently visited by a newly registered user
+data GetRecentlyVisitedTMeUrls
   = GetRecentlyVisitedTMeUrls
     { referrer :: Maybe T.Text -- ^ Google Play referrer to identify the user
     }

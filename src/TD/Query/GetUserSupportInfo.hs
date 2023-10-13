@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetUserSupportInfo -- ^ Returns support information for the given user; for Telegram support only
+-- | Returns support information for the given user; for Telegram support only
+data GetUserSupportInfo
   = GetUserSupportInfo
     { user_id :: Maybe Int -- ^ User identifier
     }

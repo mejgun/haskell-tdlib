@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ChatMembersFilter -- ^ Specifies the kind of chat members to return in searchChatMembers
+-- | Specifies the kind of chat members to return in searchChatMembers
+data ChatMembersFilter
   = ChatMembersFilterContacts -- ^ Returns contacts of the user
   | ChatMembersFilterAdministrators -- ^ Returns the owner and administrators
   | ChatMembersFilterMembers -- ^ Returns all chat members, including restricted chat members

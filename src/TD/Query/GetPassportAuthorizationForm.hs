@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetPassportAuthorizationForm -- ^ Returns a Telegram Passport authorization form for sharing data with a service
+-- | Returns a Telegram Passport authorization form for sharing data with a service
+data GetPassportAuthorizationForm
   = GetPassportAuthorizationForm
     { bot_user_id :: Maybe Int    -- ^ User identifier of the service's bot
     , scope       :: Maybe T.Text -- ^ Telegram Passport element types requested by the service

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetBotInfoShortDescription -- ^ Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
+-- | Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
+data SetBotInfoShortDescription
   = SetBotInfoShortDescription
     { bot_user_id       :: Maybe Int    -- ^ Identifier of the target bot
     , language_code     :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description

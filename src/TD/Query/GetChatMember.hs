@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
-data GetChatMember -- ^ Returns information about a single member of a chat
+-- | Returns information about a single member of a chat
+data GetChatMember
   = GetChatMember
     { chat_id   :: Maybe Int                         -- ^ Chat identifier
     , member_id :: Maybe MessageSender.MessageSender -- ^ Member identifier

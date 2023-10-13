@@ -5,7 +5,8 @@ module TD.Data.NetworkType
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data NetworkType -- ^ Represents the type of a network
+-- | Represents the type of a network
+data NetworkType
   = NetworkTypeNone -- ^ The network is not available
   | NetworkTypeMobile -- ^ A mobile network
   | NetworkTypeMobileRoaming -- ^ A mobile roaming network

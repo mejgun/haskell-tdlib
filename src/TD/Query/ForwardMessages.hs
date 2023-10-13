@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 
-data ForwardMessages -- ^ Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
+-- | Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
+data ForwardMessages
   = ForwardMessages
     { chat_id           :: Maybe Int                                   -- ^ Identifier of the chat to which to forward messages
     , message_thread_id :: Maybe Int                                   -- ^ If not 0, a message thread identifier in which the message will be sent; for forum threads only

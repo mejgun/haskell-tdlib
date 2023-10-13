@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data OptionValue -- ^ Represents the value of an option
+-- | Represents the value of an option
+data OptionValue
   = OptionValueBoolean -- ^ Represents a boolean option
     { value :: Maybe Bool -- ^ The value of the option
     }

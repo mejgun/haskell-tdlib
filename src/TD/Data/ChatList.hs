@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ChatList -- ^ Describes a list of chats
+-- | Describes a list of chats
+data ChatList
   = ChatListMain -- ^ A main list of chats
   | ChatListArchive -- ^ A list of chats usually located at the top of the main chat list. Unmuted chats are automatically moved from the Archive to the Main chat list when a new message arrives
   | ChatListFolder -- ^ A list of chats added to a chat folder

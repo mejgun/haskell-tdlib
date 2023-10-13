@@ -5,7 +5,8 @@ module TD.Data.FileType
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data FileType -- ^ Represents the type of a file
+-- | Represents the type of a file
+data FileType
   = FileTypeNone -- ^ The data is not a file
   | FileTypeAnimation -- ^ The file is an animation
   | FileTypeAudio -- ^ The file is an audio file

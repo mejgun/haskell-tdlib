@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
 import qualified Data.Text as T
 
-data GetInlineQueryResults -- ^ Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+-- | Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+data GetInlineQueryResults
   = GetInlineQueryResults
     { bot_user_id   :: Maybe Int               -- ^ Identifier of the target bot
     , chat_id       :: Maybe Int               -- ^ Identifier of the chat where the query was sent

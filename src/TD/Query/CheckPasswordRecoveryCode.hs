@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data CheckPasswordRecoveryCode -- ^ Checks whether a 2-step verification password recovery code sent to an email address is valid
+-- | Checks whether a 2-step verification password recovery code sent to an email address is valid
+data CheckPasswordRecoveryCode
   = CheckPasswordRecoveryCode
     { recovery_code :: Maybe T.Text -- ^ Recovery code to check
     }

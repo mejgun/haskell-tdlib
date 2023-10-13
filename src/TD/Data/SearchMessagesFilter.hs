@@ -5,7 +5,8 @@ module TD.Data.SearchMessagesFilter
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data SearchMessagesFilter -- ^ Represents a filter for message search results
+-- | Represents a filter for message search results
+data SearchMessagesFilter
   = SearchMessagesFilterEmpty -- ^ Returns all found messages, no filter is applied
   | SearchMessagesFilterAnimation -- ^ Returns only animation messages
   | SearchMessagesFilterAudio -- ^ Returns only audio messages

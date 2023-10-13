@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data SetPollAnswer -- ^ Changes the user answer to a poll. A poll in quiz mode can be answered only once
+-- | Changes the user answer to a poll. A poll in quiz mode can be answered only once
+data SetPollAnswer
   = SetPollAnswer
     { chat_id    :: Maybe Int   -- ^ Identifier of the chat to which the poll belongs
     , message_id :: Maybe Int   -- ^ Identifier of the message containing the poll

@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ProxyType as ProxyType
 
-data TestProxy -- ^ Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+-- | Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+data TestProxy
   = TestProxy
     { server  :: Maybe T.Text              -- ^ Proxy server IP address
     , port    :: Maybe Int                 -- ^ Proxy server port

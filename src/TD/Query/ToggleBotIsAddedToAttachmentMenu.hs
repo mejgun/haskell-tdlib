@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleBotIsAddedToAttachmentMenu -- ^ Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+-- | Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+data ToggleBotIsAddedToAttachmentMenu
   = ToggleBotIsAddedToAttachmentMenu
     { bot_user_id        :: Maybe Int  -- ^ Bot's user identifier
     , is_added           :: Maybe Bool -- ^ Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu

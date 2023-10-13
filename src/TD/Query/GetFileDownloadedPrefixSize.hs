@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetFileDownloadedPrefixSize -- ^ Returns file downloaded prefix size from a given offset, in bytes
+-- | Returns file downloaded prefix size from a given offset, in bytes
+data GetFileDownloadedPrefixSize
   = GetFileDownloadedPrefixSize
     { file_id :: Maybe Int -- ^ Identifier of the file
     , offset  :: Maybe Int -- ^ Offset from which downloaded prefix size needs to be calculated

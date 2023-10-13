@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CreatePrivateChat -- ^ Returns an existing chat corresponding to a given user
+-- | Returns an existing chat corresponding to a given user
+data CreatePrivateChat
   = CreatePrivateChat
     { user_id :: Maybe Int  -- ^ User identifier
     , force   :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect

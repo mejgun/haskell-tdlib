@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetPhoneNumberInfoSync -- ^ Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
+-- | Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
+data GetPhoneNumberInfoSync
   = GetPhoneNumberInfoSync
     { language_code       :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code for country information localization
     , phone_number_prefix :: Maybe T.Text -- ^ The phone number prefix

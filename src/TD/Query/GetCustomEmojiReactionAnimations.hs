@@ -5,7 +5,8 @@ module TD.Query.GetCustomEmojiReactionAnimations
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetCustomEmojiReactionAnimations -- ^ Returns TGS stickers with generic animations for custom emoji reactions
+-- | Returns TGS stickers with generic animations for custom emoji reactions
+data GetCustomEmojiReactionAnimations
   = GetCustomEmojiReactionAnimations
   deriving (Eq)
 

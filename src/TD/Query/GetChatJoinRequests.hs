@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
 
-data GetChatJoinRequests -- ^ Returns pending join requests in a chat
+-- | Returns pending join requests in a chat
+data GetChatJoinRequests
   = GetChatJoinRequests
     { chat_id        :: Maybe Int                             -- ^ Chat identifier
     , invite_link    :: Maybe T.Text                          -- ^ Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links

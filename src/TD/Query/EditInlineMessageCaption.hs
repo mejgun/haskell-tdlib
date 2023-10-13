@@ -10,7 +10,8 @@ import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.FormattedText as FormattedText
 
-data EditInlineMessageCaption -- ^ Edits the caption of an inline message sent via a bot; for bots only
+-- | Edits the caption of an inline message sent via a bot; for bots only
+data EditInlineMessageCaption
   = EditInlineMessageCaption
     { inline_message_id :: Maybe T.Text                      -- ^ Inline message identifier
     , reply_markup      :: Maybe ReplyMarkup.ReplyMarkup     -- ^ The new message reply markup; pass null if none

@@ -5,7 +5,8 @@ module TD.Query.LogOut
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data LogOut -- ^ Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
+-- | Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
+data LogOut
   = LogOut
   deriving (Eq)
 

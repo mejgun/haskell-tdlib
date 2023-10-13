@@ -24,7 +24,8 @@ import qualified TD.Data.Contact as Contact
 import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
 
-data InputInlineQueryResult -- ^ Represents a single result of an inline query; for bots only
+-- | Represents a single result of an inline query; for bots only
+data InputInlineQueryResult
   = InputInlineQueryResultAnimation -- ^ Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4 AVC video
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
     , title                 :: Maybe T.Text                                  -- ^ Title of the query result

@@ -5,7 +5,8 @@ module TD.Data.StoryList
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data StoryList -- ^ Describes a list of stories
+-- | Describes a list of stories
+data StoryList
   = StoryListMain -- ^ The list of stories, shown in the main chat list and folder chat lists
   | StoryListArchive -- ^ The list of stories, shown in the Arvhive chat list
   deriving (Eq)

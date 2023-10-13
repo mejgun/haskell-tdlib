@@ -5,7 +5,8 @@ module TD.Data.NotificationSettingsScope
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data NotificationSettingsScope -- ^ Describes the types of chats to which notification settings are relevant
+-- | Describes the types of chats to which notification settings are relevant
+data NotificationSettingsScope
   = NotificationSettingsScopePrivateChats -- ^ Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
   | NotificationSettingsScopeGroupChats -- ^ Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
   | NotificationSettingsScopeChannelChats -- ^ Notification settings applied to all channel chats when the corresponding chat setting has a default value

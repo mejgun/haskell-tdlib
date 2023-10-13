@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
 
-data EditChatFolder -- ^ Edits existing chat folder. Returns information about the edited chat folder
+-- | Edits existing chat folder. Returns information about the edited chat folder
+data EditChatFolder
   = EditChatFolder
     { chat_folder_id :: Maybe Int                   -- ^ Chat folder identifier
     , folder         :: Maybe ChatFolder.ChatFolder -- ^ The edited chat folder

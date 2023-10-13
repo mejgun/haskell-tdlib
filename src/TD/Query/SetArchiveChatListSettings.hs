@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ArchiveChatListSettings as ArchiveChatListSettings
 
-data SetArchiveChatListSettings -- ^ Changes settings for automatic moving of chats to and from the Archive chat lists
+-- | Changes settings for automatic moving of chats to and from the Archive chat lists
+data SetArchiveChatListSettings
   = SetArchiveChatListSettings
     { settings :: Maybe ArchiveChatListSettings.ArchiveChatListSettings -- ^ New settings
     }

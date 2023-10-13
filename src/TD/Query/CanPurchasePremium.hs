@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
 
-data CanPurchasePremium -- ^ Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+-- | Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+data CanPurchasePremium
   = CanPurchasePremium
     { purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose
     }

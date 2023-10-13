@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 
-data SetStoryPrivacySettings -- ^ Changes privacy settings of a previously sent story
+-- | Changes privacy settings of a previously sent story
+data SetStoryPrivacySettings
   = SetStoryPrivacySettings
     { story_id         :: Maybe Int                                       -- ^ Identifier of the story
     , privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The new privacy settigs for the story

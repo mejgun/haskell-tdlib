@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.BackgroundFill as BackgroundFill
 
-data BackgroundType -- ^ Describes the type of a background
+-- | Describes the type of a background
+data BackgroundType
   = BackgroundTypeWallpaper -- ^ A wallpaper in JPEG format
     { is_blurred :: Maybe Bool -- ^ True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
     , is_moving  :: Maybe Bool -- ^ True, if the background needs to be slightly moved when device is tilted

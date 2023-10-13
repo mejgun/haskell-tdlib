@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ShareUserWithBot -- ^ Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+-- | Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+data ShareUserWithBot
   = ShareUserWithBot
     { chat_id        :: Maybe Int  -- ^ Identifier of the chat with the bot
     , message_id     :: Maybe Int  -- ^ Identifier of the message with the button

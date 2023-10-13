@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
 import qualified TD.Data.NetworkType as NetworkType
 
-data SetAutoDownloadSettings -- ^ Sets auto-download settings
+-- | Sets auto-download settings
+data SetAutoDownloadSettings
   = SetAutoDownloadSettings
     { settings :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ New user auto-download settings
     , _type    :: Maybe NetworkType.NetworkType                   -- ^ Type of the network for which the new settings are relevant

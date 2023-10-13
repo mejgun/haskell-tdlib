@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleChatIsMarkedAsUnread -- ^ Changes the marked as unread state of a chat
+-- | Changes the marked as unread state of a chat
+data ToggleChatIsMarkedAsUnread
   = ToggleChatIsMarkedAsUnread
     { chat_id             :: Maybe Int  -- ^ Chat identifier
     , is_marked_as_unread :: Maybe Bool -- ^ New value of is_marked_as_unread

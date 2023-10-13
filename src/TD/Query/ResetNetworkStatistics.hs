@@ -5,7 +5,8 @@ module TD.Query.ResetNetworkStatistics
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ResetNetworkStatistics -- ^ Resets all network data usage statistics to zero. Can be called before authorization
+-- | Resets all network data usage statistics to zero. Can be called before authorization
+data ResetNetworkStatistics
   = ResetNetworkStatistics
   deriving (Eq)
 

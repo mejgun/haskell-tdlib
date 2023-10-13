@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data RemoveProxy -- ^ Removes a proxy server. Can be called before authorization
+-- | Removes a proxy server. Can be called before authorization
+data RemoveProxy
   = RemoveProxy
     { proxy_id :: Maybe Int -- ^ Proxy identifier
     }

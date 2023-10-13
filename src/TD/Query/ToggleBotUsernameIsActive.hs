@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ToggleBotUsernameIsActive -- ^ Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
+-- | Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
+data ToggleBotUsernameIsActive
   = ToggleBotUsernameIsActive
     { bot_user_id :: Maybe Int    -- ^ Identifier of the target bot
     , username    :: Maybe T.Text -- ^ The username to change

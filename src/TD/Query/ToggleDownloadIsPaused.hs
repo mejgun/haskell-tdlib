@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleDownloadIsPaused -- ^ Changes pause state of a file in the file download list
+-- | Changes pause state of a file in the file download list
+data ToggleDownloadIsPaused
   = ToggleDownloadIsPaused
     { file_id   :: Maybe Int  -- ^ Identifier of the downloaded file
     , is_paused :: Maybe Bool -- ^ Pass true if the download is paused

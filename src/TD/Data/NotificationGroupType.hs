@@ -5,7 +5,8 @@ module TD.Data.NotificationGroupType
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data NotificationGroupType -- ^ Describes the type of notifications in a notification group
+-- | Describes the type of notifications in a notification group
+data NotificationGroupType
   = NotificationGroupTypeMessages -- ^ A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
   | NotificationGroupTypeMentions -- ^ A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
   | NotificationGroupTypeSecretChat -- ^ A group containing a notification of type notificationTypeNewSecretChat

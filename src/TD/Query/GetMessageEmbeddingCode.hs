@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetMessageEmbeddingCode -- ^ Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
+-- | Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
+data GetMessageEmbeddingCode
   = GetMessageEmbeddingCode
     { chat_id    :: Maybe Int  -- ^ Identifier of the chat to which the message belongs
     , message_id :: Maybe Int  -- ^ Identifier of the message

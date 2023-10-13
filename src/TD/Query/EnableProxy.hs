@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data EnableProxy -- ^ Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
+-- | Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
+data EnableProxy
   = EnableProxy
     { proxy_id :: Maybe Int -- ^ Proxy identifier
     }

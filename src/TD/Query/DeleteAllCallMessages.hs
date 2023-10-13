@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DeleteAllCallMessages -- ^ Deletes all call messages
+-- | Deletes all call messages
+data DeleteAllCallMessages
   = DeleteAllCallMessages
     { revoke :: Maybe Bool -- ^ Pass true to delete the messages for all users
     }

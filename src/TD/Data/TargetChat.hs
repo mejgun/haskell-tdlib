@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
 
-data TargetChat -- ^ Describes the target chat to be opened
+-- | Describes the target chat to be opened
+data TargetChat
   = TargetChatCurrent -- ^ The currently opened chat needs to be kept
   | TargetChatChosen -- ^ The chat needs to be chosen by the user among chats of the specified types
     { allow_user_chats    :: Maybe Bool -- ^ True, if private chats with ordinary users are allowed

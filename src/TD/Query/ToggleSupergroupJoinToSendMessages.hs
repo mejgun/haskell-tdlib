@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleSupergroupJoinToSendMessages -- ^ Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+-- | Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+data ToggleSupergroupJoinToSendMessages
   = ToggleSupergroupJoinToSendMessages
     { supergroup_id         :: Maybe Int  -- ^ Identifier of the supergroup
     , join_to_send_messages :: Maybe Bool -- ^ New value of join_to_send_messages

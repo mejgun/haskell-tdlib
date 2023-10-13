@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SearchContacts -- ^ Searches for the specified query in the first names, last names and usernames of the known user contacts
+-- | Searches for the specified query in the first names, last names and usernames of the known user contacts
+data SearchContacts
   = SearchContacts
     { query :: Maybe T.Text -- ^ Query to search for; may be empty to return all contacts
     , limit :: Maybe Int    -- ^ The maximum number of users to be returned

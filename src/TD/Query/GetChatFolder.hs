@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetChatFolder -- ^ Returns information about a chat folder by its identifier
+-- | Returns information about a chat folder by its identifier
+data GetChatFolder
   = GetChatFolder
     { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
     }

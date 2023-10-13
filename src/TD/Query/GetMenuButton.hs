@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetMenuButton -- ^ Returns menu button set by the bot for the given user; for bots only
+-- | Returns menu button set by the bot for the given user; for bots only
+data GetMenuButton
   = GetMenuButton
     { user_id :: Maybe Int -- ^ Identifier of the user or 0 to get the default menu button
     }

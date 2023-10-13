@@ -10,7 +10,8 @@ import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
-data AddLocalMessage -- ^ Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
+-- | Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
+data AddLocalMessage
   = AddLocalMessage
     { chat_id               :: Maybe Int                                     -- ^ Target chat
     , sender_id             :: Maybe MessageSender.MessageSender             -- ^ Identifier of the sender of the message

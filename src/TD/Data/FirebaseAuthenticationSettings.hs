@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data FirebaseAuthenticationSettings -- ^ Contains settings for Firebase Authentication in the official applications
+-- | Contains settings for Firebase Authentication in the official applications
+data FirebaseAuthenticationSettings
   = FirebaseAuthenticationSettingsAndroid -- ^ Settings for Firebase Authentication in the official Android application
   | FirebaseAuthenticationSettingsIos -- ^ Settings for Firebase Authentication in the official iOS application
     { device_token   :: Maybe T.Text -- ^ Device token from Apple Push Notification service

@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.AccountTtl as AccountTtl
 
-data SetAccountTtl -- ^ Changes the period of inactivity after which the account of the current user will automatically be deleted
+-- | Changes the period of inactivity after which the account of the current user will automatically be deleted
+data SetAccountTtl
   = SetAccountTtl
     { ttl :: Maybe AccountTtl.AccountTtl -- ^ New account TTL
     }

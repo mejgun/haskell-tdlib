@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DeleteChatFolder -- ^ Deletes existing chat folder
+-- | Deletes existing chat folder
+data DeleteChatFolder
   = DeleteChatFolder
     { chat_folder_id :: Maybe Int   -- ^ Chat folder identifier
     , leave_chat_ids :: Maybe [Int] -- ^ Identifiers of the chats to leave. The chats must be pinned or always included in the folder

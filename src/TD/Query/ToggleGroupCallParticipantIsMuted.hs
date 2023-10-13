@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
-data ToggleGroupCallParticipantIsMuted -- ^ Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
+-- | Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
+data ToggleGroupCallParticipantIsMuted
   = ToggleGroupCallParticipantIsMuted
     { group_call_id  :: Maybe Int                         -- ^ Group call identifier
     , participant_id :: Maybe MessageSender.MessageSender -- ^ Participant identifier

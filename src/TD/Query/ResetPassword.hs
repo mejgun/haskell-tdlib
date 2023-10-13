@@ -5,7 +5,8 @@ module TD.Query.ResetPassword
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ResetPassword -- ^ Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
+-- | Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
+data ResetPassword
   = ResetPassword
   deriving (Eq)
 

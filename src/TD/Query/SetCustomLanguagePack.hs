@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified TD.Data.LanguagePackString as LanguagePackString
 
-data SetCustomLanguagePack -- ^ Adds or changes a custom local language pack to the current localization target
+-- | Adds or changes a custom local language pack to the current localization target
+data SetCustomLanguagePack
   = SetCustomLanguagePack
     { info    :: Maybe LanguagePackInfo.LanguagePackInfo       -- ^ Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     , strings :: Maybe [LanguagePackString.LanguagePackString] -- ^ Strings of the new language pack

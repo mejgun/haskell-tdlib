@@ -40,7 +40,8 @@ import qualified TD.Data.Video as Video
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
 
-data PushMessageContent -- ^ Contains content of a push message notification
+-- | Contains content of a push message notification
+data PushMessageContent
   = PushMessageContentHidden -- ^ A general message with hidden content
     { is_pinned :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
     }

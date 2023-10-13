@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
-data InputStoryContent -- ^ The content of a story to send
+-- | The content of a story to send
+data InputStoryContent
   = InputStoryContentPhoto -- ^ A photo story
     { photo                  :: Maybe InputFile.InputFile -- ^ Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920
     , added_sticker_file_ids :: Maybe [Int]               -- ^ File identifiers of the stickers added to the photo, if applicable

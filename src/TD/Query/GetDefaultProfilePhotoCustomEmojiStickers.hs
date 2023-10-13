@@ -5,7 +5,8 @@ module TD.Query.GetDefaultProfilePhotoCustomEmojiStickers
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetDefaultProfilePhotoCustomEmojiStickers -- ^ Returns default list of custom emoji stickers for placing on a profile photo
+-- | Returns default list of custom emoji stickers for placing on a profile photo
+data GetDefaultProfilePhotoCustomEmojiStickers
   = GetDefaultProfilePhotoCustomEmojiStickers
   deriving (Eq)
 

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetBotInfoDescription -- ^ Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
+-- | Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
+data SetBotInfoDescription
   = SetBotInfoDescription
     { bot_user_id   :: Maybe Int    -- ^ Identifier of the target bot
     , language_code :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description

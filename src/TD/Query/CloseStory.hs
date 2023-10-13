@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CloseStory -- ^ Informs TDLib that a story is closed by the user
+-- | Informs TDLib that a story is closed by the user
+data CloseStory
   = CloseStory
     { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story to close
     , story_id             :: Maybe Int -- ^ The identifier of the story

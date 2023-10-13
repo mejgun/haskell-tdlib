@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ThemeParameters as ThemeParameters
 
-data GetWebAppUrl -- ^ Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+-- | Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+data GetWebAppUrl
   = GetWebAppUrl
     { bot_user_id      :: Maybe Int                             -- ^ Identifier of the target bot
     , url              :: Maybe T.Text                          -- ^ The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button

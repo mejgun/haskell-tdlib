@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetPhoneNumberInfo -- ^ Returns information about a phone number by its prefix. Can be called before authorization
+-- | Returns information about a phone number by its prefix. Can be called before authorization
+data GetPhoneNumberInfo
   = GetPhoneNumberInfo
     { phone_number_prefix :: Maybe T.Text -- ^ The phone number prefix
     }

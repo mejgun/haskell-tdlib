@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.FormattedText as FormattedText
 
-data EditMessageCaption -- ^ Edits the message content caption. Returns the edited message after the edit is completed on the server side
+-- | Edits the message content caption. Returns the edited message after the edit is completed on the server side
+data EditMessageCaption
   = EditMessageCaption
     { chat_id      :: Maybe Int                         -- ^ The chat the message belongs to
     , message_id   :: Maybe Int                         -- ^ Identifier of the message

@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data SuggestedAction -- ^ Describes an action suggested to the current user
+-- | Describes an action suggested to the current user
+data SuggestedAction
   = SuggestedActionEnableArchiveAndMuteNewChats -- ^ Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
   | SuggestedActionCheckPassword -- ^ Suggests the user to check whether they still remember their 2-step verification password
   | SuggestedActionCheckPhoneNumber -- ^ Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible

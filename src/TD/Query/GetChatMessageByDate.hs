@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetChatMessageByDate -- ^ Returns the last message sent in a chat no later than the specified date
+-- | Returns the last message sent in a chat no later than the specified date
+data GetChatMessageByDate
   = GetChatMessageByDate
     { chat_id :: Maybe Int -- ^ Chat identifier
     , date    :: Maybe Int -- ^ Point in time (Unix timestamp) relative to which to search for messages

@@ -5,7 +5,8 @@ module TD.Query.ResendEmailAddressVerificationCode
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ResendEmailAddressVerificationCode -- ^ Resends the code to verify an email address to be added to a user's Telegram Passport
+-- | Resends the code to verify an email address to be added to a user's Telegram Passport
+data ResendEmailAddressVerificationCode
   = ResendEmailAddressVerificationCode
   deriving (Eq)
 

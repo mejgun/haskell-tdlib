@@ -5,7 +5,8 @@ module TD.Query.ResendPhoneNumberVerificationCode
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ResendPhoneNumberVerificationCode -- ^ Resends the code to verify a phone number to be added to a user's Telegram Passport
+-- | Resends the code to verify a phone number to be added to a user's Telegram Passport
+data ResendPhoneNumberVerificationCode
   = ResendPhoneNumberVerificationCode
   deriving (Eq)
 

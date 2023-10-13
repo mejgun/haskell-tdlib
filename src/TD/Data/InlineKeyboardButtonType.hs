@@ -16,7 +16,8 @@ import qualified Data.Text as T
 import qualified Data.ByteString as BS
 import qualified TD.Data.TargetChat as TargetChat
 
-data InlineKeyboardButtonType -- ^ Describes the type of an inline keyboard button
+-- | Describes the type of an inline keyboard button
+data InlineKeyboardButtonType
   = InlineKeyboardButtonTypeUrl -- ^ A button that opens a specified URL
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to open
     }

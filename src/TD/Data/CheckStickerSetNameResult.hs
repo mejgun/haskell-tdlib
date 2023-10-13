@@ -5,7 +5,8 @@ module TD.Data.CheckStickerSetNameResult
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data CheckStickerSetNameResult -- ^ Represents result of checking whether a name can be used for a new sticker set
+-- | Represents result of checking whether a name can be used for a new sticker set
+data CheckStickerSetNameResult
   = CheckStickerSetNameResultOk -- ^ The name can be set
   | CheckStickerSetNameResultNameInvalid -- ^ The name is invalid
   | CheckStickerSetNameResultNameOccupied -- ^ The name is occupied

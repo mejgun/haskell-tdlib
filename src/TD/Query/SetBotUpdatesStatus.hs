@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetBotUpdatesStatus -- ^ Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
+-- | Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
+data SetBotUpdatesStatus
   = SetBotUpdatesStatus
     { pending_update_count :: Maybe Int    -- ^ The number of pending updates
     , error_message        :: Maybe T.Text -- ^ The last error message

@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data TextParseMode -- ^ Describes the way the text needs to be parsed for text entities
+-- | Describes the way the text needs to be parsed for text entities
+data TextParseMode
   = TextParseModeMarkdown -- ^ The text uses Markdown-style formatting
     { version :: Maybe Int -- ^ Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
     }

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
 
-data SetUserPersonalProfilePhoto -- ^ Changes a personal profile photo of a contact user
+-- | Changes a personal profile photo of a contact user
+data SetUserPersonalProfilePhoto
   = SetUserPersonalProfilePhoto
     { user_id :: Maybe Int                           -- ^ User identifier
     , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function

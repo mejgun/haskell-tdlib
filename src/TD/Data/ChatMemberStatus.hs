@@ -13,7 +13,8 @@ import qualified Data.Text as T
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.ChatPermissions as ChatPermissions
 
-data ChatMemberStatus -- ^ Provides information about the status of a member in a chat
+-- | Provides information about the status of a member in a chat
+data ChatMemberStatus
   = ChatMemberStatusCreator -- ^ The user is the owner of the chat and has all the administrator privileges
     { custom_title :: Maybe T.Text -- ^ A custom title of the owner; 0-16 characters without emojis; applicable to supergroups only
     , is_anonymous :: Maybe Bool   -- ^ True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only

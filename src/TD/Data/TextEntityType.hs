@@ -12,7 +12,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data TextEntityType -- ^ Represents a part of the text which must be formatted differently
+-- | Represents a part of the text which must be formatted differently
+data TextEntityType
   = TextEntityTypeMention -- ^ A mention of a user, a supergroup, or a channel by their username
   | TextEntityTypeHashtag -- ^ A hashtag text, beginning with "#"
   | TextEntityTypeCashtag -- ^ A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")

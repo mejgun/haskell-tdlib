@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ClickAnimatedEmojiMessage -- ^ Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
+-- | Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
+data ClickAnimatedEmojiMessage
   = ClickAnimatedEmojiMessage
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message
     , message_id :: Maybe Int -- ^ Identifier of the clicked message

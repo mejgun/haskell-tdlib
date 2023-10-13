@@ -31,7 +31,8 @@ import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.Video as Video
 import qualified TD.Data.VoiceNote as VoiceNote
 
-data InlineQueryResult -- ^ Represents a single result of an inline query
+-- | Represents a single result of an inline query
+data InlineQueryResult
   = InlineQueryResultArticle -- ^ Represents a link to an article or web page
     { _id         :: Maybe T.Text              -- ^ Unique identifier of the query result
     , url         :: Maybe T.Text              -- ^ URL of the result, if it exists

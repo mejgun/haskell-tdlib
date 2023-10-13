@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetChatInviteLink -- ^ Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+-- | Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+data GetChatInviteLink
   = GetChatInviteLink
     { chat_id     :: Maybe Int    -- ^ Chat identifier
     , invite_link :: Maybe T.Text -- ^ Invite link to get

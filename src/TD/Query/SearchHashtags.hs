@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SearchHashtags -- ^ Searches for recently used hashtags by their prefix
+-- | Searches for recently used hashtags by their prefix
+data SearchHashtags
   = SearchHashtags
     { prefix :: Maybe T.Text -- ^ Hashtag prefix to search for
     , limit  :: Maybe Int    -- ^ The maximum number of hashtags to be returned

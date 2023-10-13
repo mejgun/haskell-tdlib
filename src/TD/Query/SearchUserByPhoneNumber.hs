@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SearchUserByPhoneNumber -- ^ Searches a user by their phone number. Returns a 404 error if the user can't be found
+-- | Searches a user by their phone number. Returns a 404 error if the user can't be found
+data SearchUserByPhoneNumber
   = SearchUserByPhoneNumber
     { phone_number :: Maybe T.Text -- ^ Phone number to search for
     }

@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data StorePaymentPurpose -- ^ Describes a purpose of an in-store payment
+-- | Describes a purpose of an in-store payment
+data StorePaymentPurpose
   = StorePaymentPurposePremiumSubscription -- ^ The user subscribed to Telegram Premium
     { is_restore :: Maybe Bool -- ^ Pass true if this is a restore of a Telegram Premium purchase; only for App Store
     , is_upgrade :: Maybe Bool -- ^ Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store

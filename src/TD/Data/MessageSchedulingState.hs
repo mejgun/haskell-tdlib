@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data MessageSchedulingState -- ^ Contains information about the time when a scheduled message will be sent
+-- | Contains information about the time when a scheduled message will be sent
+data MessageSchedulingState
   = MessageSchedulingStateSendAtDate -- ^ The message will be sent at the specified date
     { send_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the message will be sent. The date must be within 367 days in the future
     }

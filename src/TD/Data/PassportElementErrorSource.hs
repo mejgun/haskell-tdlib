@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data PassportElementErrorSource -- ^ Contains the description of an error in a Telegram Passport element
+-- | Contains the description of an error in a Telegram Passport element
+data PassportElementErrorSource
   = PassportElementErrorSourceUnspecified -- ^ The element contains an error in an unspecified place. The error will be considered resolved when new data is added
   | PassportElementErrorSourceDataField -- ^ One of the data fields contains an error. The error will be considered resolved when the value of the field changes
     { field_name :: Maybe T.Text -- ^ Field name

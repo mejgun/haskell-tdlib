@@ -5,7 +5,8 @@ module TD.Data.TopChatCategory
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data TopChatCategory -- ^ Represents the categories of chats for which a list of frequently used chats can be retrieved
+-- | Represents the categories of chats for which a list of frequently used chats can be retrieved
+data TopChatCategory
   = TopChatCategoryUsers -- ^ A category containing frequently used private chats with non-bot users
   | TopChatCategoryBots -- ^ A category containing frequently used private chats with bot users
   | TopChatCategoryGroups -- ^ A category containing frequently used basic groups and supergroups

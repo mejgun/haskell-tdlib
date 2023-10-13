@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DeleteAllRevokedChatInviteLinks -- ^ Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+-- | Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+data DeleteAllRevokedChatInviteLinks
   = DeleteAllRevokedChatInviteLinks
     { chat_id         :: Maybe Int -- ^ Chat identifier
     , creator_user_id :: Maybe Int -- ^ User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner

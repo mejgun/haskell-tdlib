@@ -13,7 +13,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ChatAction -- ^ Describes the different types of activity in a chat
+-- | Describes the different types of activity in a chat
+data ChatAction
   = ChatActionTyping -- ^ The user is typing a message
   | ChatActionRecordingVideo -- ^ The user is recording a video
   | ChatActionUploadingVideo -- ^ The user is uploading a video

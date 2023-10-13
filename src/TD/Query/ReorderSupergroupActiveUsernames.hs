@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ReorderSupergroupActiveUsernames -- ^ Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+-- | Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+data ReorderSupergroupActiveUsernames
   = ReorderSupergroupActiveUsernames
     { supergroup_id :: Maybe Int      -- ^ Identifier of the supergroup or channel
     , usernames     :: Maybe [T.Text] -- ^ The new order of active usernames. All currently active usernames must be specified

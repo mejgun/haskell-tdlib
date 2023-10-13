@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data LogStream -- ^ Describes a stream to which TDLib internal log is written
+-- | Describes a stream to which TDLib internal log is written
+data LogStream
   = LogStreamDefault -- ^ The log is written to stderr or an OS specific log
   | LogStreamFile -- ^ The log is written to a file
     { path            :: Maybe T.Text -- ^ Path to the file to where the internal TDLib log will be written

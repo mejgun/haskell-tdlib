@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetBankCardInfo -- ^ Returns information about a bank card
+-- | Returns information about a bank card
+data GetBankCardInfo
   = GetBankCardInfo
     { bank_card_number :: Maybe T.Text -- ^ The bank card number
     }

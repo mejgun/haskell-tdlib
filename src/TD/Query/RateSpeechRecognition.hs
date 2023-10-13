@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data RateSpeechRecognition -- ^ Rates recognized speech in a video note or a voice note message
+-- | Rates recognized speech in a video note or a voice note message
+data RateSpeechRecognition
   = RateSpeechRecognition
     { chat_id    :: Maybe Int  -- ^ Identifier of the chat to which the message belongs
     , message_id :: Maybe Int  -- ^ Identifier of the message

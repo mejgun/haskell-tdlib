@@ -5,7 +5,8 @@ module TD.Data.StickerFormat
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data StickerFormat -- ^ Describes format of a sticker
+-- | Describes format of a sticker
+data StickerFormat
   = StickerFormatWebp -- ^ The sticker is an image in WEBP format
   | StickerFormatTgs -- ^ The sticker is an animation in TGS format
   | StickerFormatWebm -- ^ The sticker is a video in WEBM format

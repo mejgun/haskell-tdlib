@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ReadFilePart -- ^ Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
+-- | Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
+data ReadFilePart
   = ReadFilePart
     { file_id :: Maybe Int -- ^ Identifier of the file. The file must be located in the TDLib file cache
     , offset  :: Maybe Int -- ^ The offset from which to read the file

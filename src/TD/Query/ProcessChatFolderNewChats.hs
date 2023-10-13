@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ProcessChatFolderNewChats -- ^ Process new chats added to a shareable chat folder by its owner
+-- | Process new chats added to a shareable chat folder by its owner
+data ProcessChatFolderNewChats
   = ProcessChatFolderNewChats
     { chat_folder_id :: Maybe Int   -- ^ Chat folder identifier
     , added_chat_ids :: Maybe [Int] -- ^ Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet

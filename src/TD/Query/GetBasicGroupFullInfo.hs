@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetBasicGroupFullInfo -- ^ Returns full information about a basic group by its identifier
+-- | Returns full information about a basic group by its identifier
+data GetBasicGroupFullInfo
   = GetBasicGroupFullInfo
     { basic_group_id :: Maybe Int -- ^ Basic group identifier
     }

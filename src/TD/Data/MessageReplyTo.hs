@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data MessageReplyTo -- ^ Contains information about the message or the story a message is replying to
+-- | Contains information about the message or the story a message is replying to
+data MessageReplyTo
   = MessageReplyToMessage -- ^ Describes a replied message
     { chat_id    :: Maybe Int -- ^ The identifier of the chat to which the replied message belongs; ignored for outgoing replies. For example, messages in the Replies chat are replies to messages in different chats
     , message_id :: Maybe Int -- ^ The identifier of the replied message

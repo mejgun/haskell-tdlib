@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SearchChatsOnServer -- ^ Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
+-- | Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
+data SearchChatsOnServer
   = SearchChatsOnServer
     { query :: Maybe T.Text -- ^ Query to search for
     , limit :: Maybe Int    -- ^ The maximum number of chats to be returned

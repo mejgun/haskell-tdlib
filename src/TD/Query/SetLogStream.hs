@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.LogStream as LogStream
 
-data SetLogStream -- ^ Sets new log stream for internal logging of TDLib. Can be called synchronously
+-- | Sets new log stream for internal logging of TDLib. Can be called synchronously
+data SetLogStream
   = SetLogStream
     { log_stream :: Maybe LogStream.LogStream -- ^ New log stream
     }

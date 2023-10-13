@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
-data ReportMessageReactions -- ^ Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+-- | Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+data ReportMessageReactions
   = ReportMessageReactions
     { chat_id    :: Maybe Int                         -- ^ Chat identifier
     , message_id :: Maybe Int                         -- ^ Message identifier

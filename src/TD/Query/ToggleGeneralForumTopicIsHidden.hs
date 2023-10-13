@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleGeneralForumTopicIsHidden -- ^ Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+-- | Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+data ToggleGeneralForumTopicIsHidden
   = ToggleGeneralForumTopicIsHidden
     { chat_id   :: Maybe Int  -- ^ Identifier of the chat
     , is_hidden :: Maybe Bool -- ^ Pass true to hide and close the General topic; pass false to unhide it

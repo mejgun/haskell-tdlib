@@ -12,7 +12,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SupergroupMembersFilter -- ^ Specifies the kind of chat members to return in getSupergroupMembers
+-- | Specifies the kind of chat members to return in getSupergroupMembers
+data SupergroupMembersFilter
   = SupergroupMembersFilterRecent -- ^ Returns recently active users in reverse chronological order
   | SupergroupMembersFilterContacts -- ^ Returns contacts of the user, which are members of the supergroup or channel
     { query :: Maybe T.Text -- ^ Query to search for

@@ -17,7 +17,8 @@ import qualified TD.Data.AuthenticationCodeInfo as AuthenticationCodeInfo
 import qualified Data.Text as T
 import qualified TD.Data.TermsOfService as TermsOfService
 
-data AuthorizationState -- ^ Represents the current authorization state of the TDLib client
+-- | Represents the current authorization state of the TDLib client
+data AuthorizationState
   = AuthorizationStateWaitTdlibParameters -- ^ Initialization parameters are needed. Call setTdlibParameters to provide them
   | AuthorizationStateWaitPhoneNumber -- ^ TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
   | AuthorizationStateWaitEmailAddress -- ^ TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed

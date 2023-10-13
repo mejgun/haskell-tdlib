@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetSuggestedStickerSetName -- ^ Returns a suggested name for a new sticker set with a given title
+-- | Returns a suggested name for a new sticker set with a given title
+data GetSuggestedStickerSetName
   = GetSuggestedStickerSetName
     { title :: Maybe T.Text -- ^ Sticker set title; 1-64 characters
     }

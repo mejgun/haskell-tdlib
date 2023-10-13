@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ChatPhotoStickerType -- ^ Describes type of a sticker, which was used to create a chat photo
+-- | Describes type of a sticker, which was used to create a chat photo
+data ChatPhotoStickerType
   = ChatPhotoStickerTypeRegularOrMask -- ^ Information about the sticker, which was used to create the chat photo
     { sticker_set_id :: Maybe Int -- ^ Sticker set identifier
     , sticker_id     :: Maybe Int -- ^ Identifier of the sticker in the set

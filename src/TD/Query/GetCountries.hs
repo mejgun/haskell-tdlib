@@ -5,7 +5,8 @@ module TD.Query.GetCountries
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetCountries -- ^ Returns information about existing countries. Can be called before authorization
+-- | Returns information about existing countries. Can be called before authorization
+data GetCountries
   = GetCountries
   deriving (Eq)
 

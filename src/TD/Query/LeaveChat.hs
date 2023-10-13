@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data LeaveChat -- ^ Removes the current user from chat members. Private and secret chats can't be left using this method
+-- | Removes the current user from chat members. Private and secret chats can't be left using this method
+data LeaveChat
   = LeaveChat
     { chat_id :: Maybe Int -- ^ Chat identifier
     }

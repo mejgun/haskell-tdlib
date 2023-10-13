@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
-data PollType -- ^ Describes the type of a poll
+-- | Describes the type of a poll
+data PollType
   = PollTypeRegular -- ^ A regular poll
     { allow_multiple_answers :: Maybe Bool -- ^ True, if multiple answer options can be chosen simultaneously
     }

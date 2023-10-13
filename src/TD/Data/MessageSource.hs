@@ -5,7 +5,8 @@ module TD.Data.MessageSource
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data MessageSource -- ^ Describes source of a message
+-- | Describes source of a message
+data MessageSource
   = MessageSourceChatHistory -- ^ The message is from a chat history
   | MessageSourceMessageThreadHistory -- ^ The message is from a message thread history
   | MessageSourceForumTopicHistory -- ^ The message is from a forum topic history

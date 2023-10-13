@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data EndGroupCallRecording -- ^ Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
+-- | Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
+data EndGroupCallRecording
   = EndGroupCallRecording
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }

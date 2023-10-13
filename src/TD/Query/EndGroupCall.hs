@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data EndGroupCall -- ^ Ends a group call. Requires groupCall.can_be_managed
+-- | Ends a group call. Requires groupCall.can_be_managed
+data EndGroupCall
   = EndGroupCall
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }

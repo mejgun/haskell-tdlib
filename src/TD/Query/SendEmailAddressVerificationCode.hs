@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SendEmailAddressVerificationCode -- ^ Sends a code to verify an email address to be added to a user's Telegram Passport
+-- | Sends a code to verify an email address to be added to a user's Telegram Passport
+data SendEmailAddressVerificationCode
   = SendEmailAddressVerificationCode
     { email_address :: Maybe T.Text -- ^ Email address
     }

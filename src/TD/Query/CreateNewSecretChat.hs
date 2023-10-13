@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CreateNewSecretChat -- ^ Creates a new secret chat. Returns the newly created chat
+-- | Creates a new secret chat. Returns the newly created chat
+data CreateNewSecretChat
   = CreateNewSecretChat
     { user_id :: Maybe Int -- ^ Identifier of the target user
     }

@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetChatStatistics -- ^ Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+-- | Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+data GetChatStatistics
   = GetChatStatistics
     { chat_id :: Maybe Int  -- ^ Chat identifier
     , is_dark :: Maybe Bool -- ^ Pass true if a dark theme is used by the application

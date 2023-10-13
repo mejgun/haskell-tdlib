@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
-data EditMessageReplyMarkup -- ^ Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+-- | Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+data EditMessageReplyMarkup
   = EditMessageReplyMarkup
     { chat_id      :: Maybe Int                     -- ^ The chat the message belongs to
     , message_id   :: Maybe Int                     -- ^ Identifier of the message

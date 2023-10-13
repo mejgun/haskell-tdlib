@@ -5,7 +5,8 @@ module TD.Data.CallDiscardReason
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data CallDiscardReason -- ^ Describes the reason why a call was discarded
+-- | Describes the reason why a call was discarded
+data CallDiscardReason
   = CallDiscardReasonEmpty -- ^ The call wasn't discarded, or the reason is unknown
   | CallDiscardReasonMissed -- ^ The call was ended before the conversation started. It was canceled by the caller or missed by the other party
   | CallDiscardReasonDeclined -- ^ The call was ended before the conversation started. It was declined by the other party

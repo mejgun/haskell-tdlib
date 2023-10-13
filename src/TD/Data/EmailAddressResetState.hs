@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data EmailAddressResetState -- ^ Describes reset state of a email address
+-- | Describes reset state of a email address
+data EmailAddressResetState
   = EmailAddressResetStateAvailable -- ^ Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
     { wait_period :: Maybe Int -- ^ Time required to wait before the email address can be reset; 0 if the user is subscribed to Telegram Premium
     }

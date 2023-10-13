@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data SetAlarm -- ^ Succeeds after a specified amount of time has passed. Can be called before initialization
+-- | Succeeds after a specified amount of time has passed. Can be called before initialization
+data SetAlarm
   = SetAlarm
     { seconds :: Maybe Double -- ^ Number of seconds before the function returns
     }

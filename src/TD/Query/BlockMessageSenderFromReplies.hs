@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data BlockMessageSenderFromReplies -- ^ Blocks an original sender of a message in the Replies chat
+-- | Blocks an original sender of a message in the Replies chat
+data BlockMessageSenderFromReplies
   = BlockMessageSenderFromReplies
     { message_id          :: Maybe Int  -- ^ The identifier of an incoming message in the Replies chat
     , delete_message      :: Maybe Bool -- ^ Pass true to delete the message

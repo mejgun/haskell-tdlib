@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmojiCategoryType as EmojiCategoryType
 
-data GetEmojiCategories -- ^ Returns available emojis categories
+-- | Returns available emojis categories
+data GetEmojiCategories
   = GetEmojiCategories
     { _type :: Maybe EmojiCategoryType.EmojiCategoryType -- ^ Type of emoji categories to return; pass null to get default emoji categories
     }

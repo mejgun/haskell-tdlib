@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CloseSecretChat -- ^ Closes a secret chat, effectively transferring its state to secretChatStateClosed
+-- | Closes a secret chat, effectively transferring its state to secretChatStateClosed
+data CloseSecretChat
   = CloseSecretChat
     { secret_chat_id :: Maybe Int -- ^ Secret chat identifier
     }

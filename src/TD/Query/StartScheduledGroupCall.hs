@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data StartScheduledGroupCall -- ^ Starts a scheduled group call
+-- | Starts a scheduled group call
+data StartScheduledGroupCall
   = StartScheduledGroupCall
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }

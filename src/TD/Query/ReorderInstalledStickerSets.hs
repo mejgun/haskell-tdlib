@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 
-data ReorderInstalledStickerSets -- ^ Changes the order of installed sticker sets
+-- | Changes the order of installed sticker sets
+data ReorderInstalledStickerSets
   = ReorderInstalledStickerSets
     { sticker_type    :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to reorder
     , sticker_set_ids :: Maybe [Int]                   -- ^ Identifiers of installed sticker sets in the new correct order

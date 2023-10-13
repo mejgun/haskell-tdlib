@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetSupergroupFullInfo -- ^ Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
+-- | Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
+data GetSupergroupFullInfo
   = GetSupergroupFullInfo
     { supergroup_id :: Maybe Int -- ^ Supergroup or channel identifier
     }

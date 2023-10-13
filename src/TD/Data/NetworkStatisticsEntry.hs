@@ -10,7 +10,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.FileType as FileType
 import qualified TD.Data.NetworkType as NetworkType
 
-data NetworkStatisticsEntry -- ^ Contains statistics about network usage
+-- | Contains statistics about network usage
+data NetworkStatisticsEntry
   = NetworkStatisticsEntryFile -- ^ Contains information about the total amount of data that was used to send and receive files
     { file_type      :: Maybe FileType.FileType       -- ^ Type of the file the data is part of; pass null if the data isn't related to files
     , network_type   :: Maybe NetworkType.NetworkType -- ^ Type of the network the data was sent through. Call setNetworkType to maintain the actual network type

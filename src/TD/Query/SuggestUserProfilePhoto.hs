@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
 
-data SuggestUserProfilePhoto -- ^ Suggests a profile photo to another regular user with common messages
+-- | Suggests a profile photo to another regular user with common messages
+data SuggestUserProfilePhoto
   = SuggestUserProfilePhoto
     { user_id :: Maybe Int                           -- ^ User identifier
     , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function

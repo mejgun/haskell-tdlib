@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 
-data GetTrendingStickerSets -- ^ Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
+-- | Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
+data GetTrendingStickerSets
   = GetTrendingStickerSets
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return
     , offset       :: Maybe Int                     -- ^ The offset from which to return the sticker sets; must be non-negative

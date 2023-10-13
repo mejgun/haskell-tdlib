@@ -12,7 +12,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.ChatPhotoSticker as ChatPhotoSticker
 
-data InputChatPhoto -- ^ Describes a photo to be set as a user profile or chat photo
+-- | Describes a photo to be set as a user profile or chat photo
+data InputChatPhoto
   = InputChatPhotoPrevious -- ^ A previously used profile photo of the current user
     { chat_photo_id :: Maybe Int -- ^ Identifier of the current user's profile photo to reuse
     }

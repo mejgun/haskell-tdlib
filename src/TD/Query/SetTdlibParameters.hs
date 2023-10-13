@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified Data.ByteString as BS
 
-data SetTdlibParameters -- ^ Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
+-- | Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
+data SetTdlibParameters
   = SetTdlibParameters
     { use_test_dc              :: Maybe Bool          -- ^ Pass true to use Telegram test environment instead of the production environment
     , database_directory       :: Maybe T.Text        -- ^ The path to the directory for the persistent database; if empty, the current working directory will be used

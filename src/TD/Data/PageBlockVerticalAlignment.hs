@@ -5,7 +5,8 @@ module TD.Data.PageBlockVerticalAlignment
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data PageBlockVerticalAlignment -- ^ Describes a Vertical alignment of a table cell content
+-- | Describes a Vertical alignment of a table cell content
+data PageBlockVerticalAlignment
   = PageBlockVerticalAlignmentTop -- ^ The content must be top-aligned
   | PageBlockVerticalAlignmentMiddle -- ^ The content must be middle-aligned
   | PageBlockVerticalAlignmentBottom -- ^ The content must be bottom-aligned

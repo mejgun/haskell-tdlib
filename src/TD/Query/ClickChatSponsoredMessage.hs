@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ClickChatSponsoredMessage -- ^ Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
+-- | Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
+data ClickChatSponsoredMessage
   = ClickChatSponsoredMessage
     { chat_id    :: Maybe Int -- ^ Chat identifier of the sponsored message
     , message_id :: Maybe Int -- ^ Identifier of the sponsored message

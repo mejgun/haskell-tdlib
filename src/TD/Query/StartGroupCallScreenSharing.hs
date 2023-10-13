@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data StartGroupCallScreenSharing -- ^ Starts screen sharing in a joined group call. Returns join response payload for tgcalls
+-- | Starts screen sharing in a joined group call. Returns join response payload for tgcalls
+data StartGroupCallScreenSharing
   = StartGroupCallScreenSharing
     { group_call_id   :: Maybe Int    -- ^ Group call identifier
     , audio_source_id :: Maybe Int    -- ^ Screen sharing audio channel synchronization source identifier; received from tgcalls

@@ -5,7 +5,8 @@ module TD.Query.DisableProxy
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data DisableProxy -- ^ Disables the currently enabled proxy. Can be called before authorization
+-- | Disables the currently enabled proxy. Can be called before authorization
+data DisableProxy
   = DisableProxy
   deriving (Eq)
 

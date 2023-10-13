@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageViewer as MessageViewer
 
-data GetStoryViewers -- ^ Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
+-- | Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
+data GetStoryViewers
   = GetStoryViewers
     { story_id      :: Maybe Int                         -- ^ Story identifier
     , offset_viewer :: Maybe MessageViewer.MessageViewer -- ^ A viewer from which to return next viewers; pass null to get results from the beginning

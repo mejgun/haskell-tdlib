@@ -16,7 +16,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified Data.ByteString as BS
 
-data AuthenticationCodeType -- ^ Provides information about the method by which an authentication code is delivered to the user
+-- | Provides information about the method by which an authentication code is delivered to the user
+data AuthenticationCodeType
   = AuthenticationCodeTypeTelegramMessage -- ^ An authentication code is delivered via a private Telegram message, which can be viewed from another active session
     { _length :: Maybe Int -- ^ Length of the code
     }

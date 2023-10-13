@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmailAddressAuthentication as EmailAddressAuthentication
 
-data CheckLoginEmailAddressCode -- ^ Checks the login email address authentication
+-- | Checks the login email address authentication
+data CheckLoginEmailAddressCode
   = CheckLoginEmailAddressCode
     { code :: Maybe EmailAddressAuthentication.EmailAddressAuthentication -- ^ Email address authentication to check
     }

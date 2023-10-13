@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ResetPasswordResult -- ^ Represents result of 2-step verification password reset
+-- | Represents result of 2-step verification password reset
+data ResetPasswordResult
   = ResetPasswordResultOk -- ^ The password was reset
   | ResetPasswordResultPending -- ^ The password reset request is pending
     { pending_reset_date :: Maybe Int -- ^ Point in time (Unix timestamp) after which the password can be reset immediately using resetPassword

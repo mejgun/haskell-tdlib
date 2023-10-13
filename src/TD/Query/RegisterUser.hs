@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data RegisterUser -- ^ Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+-- | Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+data RegisterUser
   = RegisterUser
     { first_name :: Maybe T.Text -- ^ The first name of the user; 1-64 characters
     , last_name  :: Maybe T.Text -- ^ The last name of the user; 0-64 characters

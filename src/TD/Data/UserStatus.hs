@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data UserStatus -- ^ Describes the last time the user was online
+-- | Describes the last time the user was online
+data UserStatus
   = UserStatusEmpty -- ^ The user status was never changed
   | UserStatusOnline -- ^ The user is online
     { expires :: Maybe Int -- ^ Point in time (Unix timestamp) when the user's online status will expire

@@ -5,7 +5,8 @@ module TD.Query.GetAccountTtl
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetAccountTtl -- ^ Returns the period of inactivity after which the account of the current user will automatically be deleted
+-- | Returns the period of inactivity after which the account of the current user will automatically be deleted
+data GetAccountTtl
   = GetAccountTtl
   deriving (Eq)
 

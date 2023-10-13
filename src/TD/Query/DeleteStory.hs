@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DeleteStory -- ^ Deletes a previously sent story
+-- | Deletes a previously sent story
+data DeleteStory
   = DeleteStory
     { story_id :: Maybe Int -- ^ Identifier of the story to delete
     }

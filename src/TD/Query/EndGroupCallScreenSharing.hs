@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data EndGroupCallScreenSharing -- ^ Ends screen sharing in a joined group call
+-- | Ends screen sharing in a joined group call
+data EndGroupCallScreenSharing
   = EndGroupCallScreenSharing
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }

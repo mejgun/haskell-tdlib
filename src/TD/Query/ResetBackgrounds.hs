@@ -5,7 +5,8 @@ module TD.Query.ResetBackgrounds
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ResetBackgrounds -- ^ Resets list of installed backgrounds to its default value
+-- | Resets list of installed backgrounds to its default value
+data ResetBackgrounds
   = ResetBackgrounds
   deriving (Eq)
 

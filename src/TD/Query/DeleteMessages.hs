@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DeleteMessages -- ^ Deletes messages
+-- | Deletes messages
+data DeleteMessages
   = DeleteMessages
     { chat_id     :: Maybe Int   -- ^ Chat identifier
     , message_ids :: Maybe [Int] -- ^ Identifiers of the messages to be deleted

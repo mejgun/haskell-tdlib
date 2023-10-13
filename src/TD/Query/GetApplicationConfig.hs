@@ -5,7 +5,8 @@ module TD.Query.GetApplicationConfig
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetApplicationConfig -- ^ Returns application config, provided by the server. Can be called before authorization
+-- | Returns application config, provided by the server. Can be called before authorization
+data GetApplicationConfig
   = GetApplicationConfig
   deriving (Eq)
 

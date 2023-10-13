@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ProxyType -- ^ Describes the type of a proxy server
+-- | Describes the type of a proxy server
+data ProxyType
   = ProxyTypeSocks5 -- ^ A SOCKS5 proxy server
     { username :: Maybe T.Text -- ^ Username for logging in; may be empty
     , password :: Maybe T.Text -- ^ Password for logging in; may be empty

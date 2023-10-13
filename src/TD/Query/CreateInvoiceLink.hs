@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
-data CreateInvoiceLink -- ^ Creates a link for the given invoice; for bots only
+-- | Creates a link for the given invoice; for bots only
+data CreateInvoiceLink
   = CreateInvoiceLink
     { invoice :: Maybe InputMessageContent.InputMessageContent -- ^ Information about the invoice of the type inputMessageInvoice
     }

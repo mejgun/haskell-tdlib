@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
 
-data AssignAppStoreTransaction -- ^ Informs server about a purchase through App Store. For official applications only
+-- | Informs server about a purchase through App Store. For official applications only
+data AssignAppStoreTransaction
   = AssignAppStoreTransaction
     { receipt :: Maybe BS.ByteString                           -- ^ App Store receipt
     , purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose

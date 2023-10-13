@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data MessageSender -- ^ Contains information about the sender of a message
+-- | Contains information about the sender of a message
+data MessageSender
   = MessageSenderUser -- ^ The message was sent by a known user
     { user_id :: Maybe Int -- ^ Identifier of the user that sent the message
     }

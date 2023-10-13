@@ -11,7 +11,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.Error as Error
 
-data SpeechRecognitionResult -- ^ Describes result of speech recognition in a voice note
+-- | Describes result of speech recognition in a voice note
+data SpeechRecognitionResult
   = SpeechRecognitionResultPending -- ^ The speech recognition is ongoing
     { partial_text :: Maybe T.Text -- ^ Partially recognized text
     }

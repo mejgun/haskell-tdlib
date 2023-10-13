@@ -15,7 +15,8 @@ import qualified TD.Data.ChatStatisticsAdministratorActionsInfo as ChatStatistic
 import qualified TD.Data.ChatStatisticsInviterInfo as ChatStatisticsInviterInfo
 import qualified TD.Data.ChatStatisticsMessageInteractionInfo as ChatStatisticsMessageInteractionInfo
 
-data ChatStatistics -- ^ Contains a detailed statistics about a chat
+-- | Contains a detailed statistics about a chat
+data ChatStatistics
   = ChatStatisticsSupergroup -- ^ A detailed statistics about a supergroup chat
     { period                :: Maybe DateRange.DateRange                                                             -- ^ A period to which the statistics applies
     , member_count          :: Maybe StatisticalValue.StatisticalValue                                               -- ^ Number of members in the chat

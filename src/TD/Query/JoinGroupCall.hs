@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Data.Text as T
 
-data JoinGroupCall -- ^ Joins an active group call. Returns join response payload for tgcalls
+-- | Joins an active group call. Returns join response payload for tgcalls
+data JoinGroupCall
   = JoinGroupCall
     { group_call_id       :: Maybe Int                         -- ^ Group call identifier
     , participant_id      :: Maybe MessageSender.MessageSender -- ^ Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only

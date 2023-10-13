@@ -5,7 +5,8 @@ module TD.Query.DisconnectAllWebsites
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data DisconnectAllWebsites -- ^ Disconnects all websites from the current user's Telegram account
+-- | Disconnects all websites from the current user's Telegram account
+data DisconnectAllWebsites
   = DisconnectAllWebsites
   deriving (Eq)
 

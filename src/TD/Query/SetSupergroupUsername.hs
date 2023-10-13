@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetSupergroupUsername -- ^ Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
+-- | Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
+data SetSupergroupUsername
   = SetSupergroupUsername
     { supergroup_id :: Maybe Int    -- ^ Identifier of the supergroup or channel
     , username      :: Maybe T.Text -- ^ New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username

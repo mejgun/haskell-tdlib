@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
-data RemoveRecentSticker -- ^ Removes a sticker from the list of recently used stickers
+-- | Removes a sticker from the list of recently used stickers
+data RemoveRecentSticker
   = RemoveRecentSticker
     { is_attached :: Maybe Bool                -- ^ Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
     , sticker     :: Maybe InputFile.InputFile -- ^ Sticker file to delete

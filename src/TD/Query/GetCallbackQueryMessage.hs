@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetCallbackQueryMessage -- ^ Returns information about a message with the callback button that originated a callback query; for bots only
+-- | Returns information about a message with the callback button that originated a callback query; for bots only
+data GetCallbackQueryMessage
   = GetCallbackQueryMessage
     { chat_id           :: Maybe Int -- ^ Identifier of the chat the message belongs to
     , message_id        :: Maybe Int -- ^ Message identifier

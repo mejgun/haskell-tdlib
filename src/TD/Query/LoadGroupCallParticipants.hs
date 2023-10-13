@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data LoadGroupCallParticipants -- ^ Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
+-- | Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
+data LoadGroupCallParticipants
   = LoadGroupCallParticipants
     { group_call_id :: Maybe Int -- ^ Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     , limit         :: Maybe Int -- ^ The maximum number of participants to load; up to 100

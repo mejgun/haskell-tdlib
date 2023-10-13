@@ -5,7 +5,8 @@ module TD.Query.GetApplicationDownloadLink
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetApplicationDownloadLink -- ^ Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+-- | Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+data GetApplicationDownloadLink
   = GetApplicationDownloadLink
   deriving (Eq)
 

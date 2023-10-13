@@ -5,7 +5,8 @@ module TD.Query.GetRecentInlineBots
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetRecentInlineBots -- ^ Returns up to 20 recently used inline bots in the order of their last usage
+-- | Returns up to 20 recently used inline bots in the order of their last usage
+data GetRecentInlineBots
   = GetRecentInlineBots
   deriving (Eq)
 

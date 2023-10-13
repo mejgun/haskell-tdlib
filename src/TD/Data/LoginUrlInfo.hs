@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data LoginUrlInfo -- ^ Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
+-- | Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
+data LoginUrlInfo
   = LoginUrlInfoOpen -- ^ An HTTP URL needs to be open
     { url               :: Maybe T.Text -- ^ The URL to open
     , skip_confirmation :: Maybe Bool   -- ^ True, if there is no need to show an ordinary open URL confirmation

@@ -5,7 +5,8 @@ module TD.Query.ResendPhoneNumberConfirmationCode
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ResendPhoneNumberConfirmationCode -- ^ Resends phone number confirmation code
+-- | Resends phone number confirmation code
+data ResendPhoneNumberConfirmationCode
   = ResendPhoneNumberConfirmationCode
   deriving (Eq)
 

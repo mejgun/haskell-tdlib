@@ -13,7 +13,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import {-# SOURCE #-} qualified TD.Data.JsonObjectMember as JsonObjectMember
 
-data JsonValue -- ^ Represents a JSON value
+-- | Represents a JSON value
+data JsonValue
   = JsonValueNull -- ^ Represents a null JSON value
   | JsonValueBoolean -- ^ Represents a boolean JSON value
     { value :: Maybe Bool -- ^ The value

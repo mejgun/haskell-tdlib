@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetStatisticalGraph -- ^ Loads an asynchronous or a zoomed in statistical graph
+-- | Loads an asynchronous or a zoomed in statistical graph
+data GetStatisticalGraph
   = GetStatisticalGraph
     { chat_id :: Maybe Int    -- ^ Chat identifier
     , token   :: Maybe T.Text -- ^ The token for graph loading

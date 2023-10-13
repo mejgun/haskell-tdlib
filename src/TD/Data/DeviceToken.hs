@@ -19,7 +19,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data DeviceToken -- ^ Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, the correct application platform must be specified and a valid server authentication data must be uploaded at https://my.telegram.org
+-- | Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, the correct application platform must be specified and a valid server authentication data must be uploaded at https://my.telegram.org
+data DeviceToken
   = DeviceTokenFirebaseCloudMessaging -- ^ A token for Firebase Cloud Messaging
     { token   :: Maybe T.Text -- ^ Device registration token; may be empty to deregister a device
     , encrypt :: Maybe Bool   -- ^ True, if push notifications must be additionally encrypted

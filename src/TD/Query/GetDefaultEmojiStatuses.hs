@@ -5,7 +5,8 @@ module TD.Query.GetDefaultEmojiStatuses
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetDefaultEmojiStatuses -- ^ Returns default emoji statuses
+-- | Returns default emoji statuses
+data GetDefaultEmojiStatuses
   = GetDefaultEmojiStatuses
   deriving (Eq)
 

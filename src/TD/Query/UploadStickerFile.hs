@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerFormat as StickerFormat
 import qualified TD.Data.InputFile as InputFile
 
-data UploadStickerFile -- ^ Uploads a file with a sticker; returns the uploaded file
+-- | Uploads a file with a sticker; returns the uploaded file
+data UploadStickerFile
   = UploadStickerFile
     { user_id        :: Maybe Int                         -- ^ Sticker file owner; ignored for regular users
     , sticker_format :: Maybe StickerFormat.StickerFormat -- ^ Sticker format

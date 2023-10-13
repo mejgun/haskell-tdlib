@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 import qualified Data.Text as T
 
-data SetStickerKeywords -- ^ Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+-- | Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+data SetStickerKeywords
   = SetStickerKeywords
     { sticker  :: Maybe InputFile.InputFile -- ^ Sticker
     , keywords :: Maybe [T.Text]            -- ^ List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker

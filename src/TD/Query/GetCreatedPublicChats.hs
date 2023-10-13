@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PublicChatType as PublicChatType
 
-data GetCreatedPublicChats -- ^ Returns a list of public chats of the specified type, owned by the user
+-- | Returns a list of public chats of the specified type, owned by the user
+data GetCreatedPublicChats
   = GetCreatedPublicChats
     { _type :: Maybe PublicChatType.PublicChatType -- ^ Type of the public chats to return
     }

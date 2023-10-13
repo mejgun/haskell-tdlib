@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetChatClientData -- ^ Changes application-specific data associated with a chat
+-- | Changes application-specific data associated with a chat
+data SetChatClientData
   = SetChatClientData
     { chat_id     :: Maybe Int    -- ^ Chat identifier
     , client_data :: Maybe T.Text -- ^ New value of client_data

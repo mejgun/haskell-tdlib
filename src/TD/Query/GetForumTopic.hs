@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetForumTopic -- ^ Returns information about a forum topic
+-- | Returns information about a forum topic
+data GetForumTopic
   = GetForumTopic
     { chat_id           :: Maybe Int -- ^ Identifier of the chat
     , message_thread_id :: Maybe Int -- ^ Message thread identifier of the forum topic

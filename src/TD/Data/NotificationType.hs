@@ -13,7 +13,8 @@ import qualified TD.Data.MessageSender as MessageSender
 import qualified Data.Text as T
 import qualified TD.Data.PushMessageContent as PushMessageContent
 
-data NotificationType -- ^ Contains detailed information about a notification
+-- | Contains detailed information about a notification
+data NotificationType
   = NotificationTypeNewMessage -- ^ New message was received
     { message      :: Maybe Message.Message -- ^ The message
     , show_preview :: Maybe Bool            -- ^ True, if message content must be displayed in notifications

@@ -47,7 +47,8 @@ import qualified TD.Data.PageBlockTableCell as PageBlockTableCell
 import qualified TD.Data.PageBlockRelatedArticle as PageBlockRelatedArticle
 import qualified TD.Data.Location as Location
 
-data PageBlock -- ^ Describes a block of an instant view web page
+-- | Describes a block of an instant view web page
+data PageBlock
   = PageBlockTitle -- ^ The title of a page
     { title :: Maybe RichText.RichText -- ^ Title
     }

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
-data SetStickerPositionInSet -- ^ Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+-- | Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+data SetStickerPositionInSet
   = SetStickerPositionInSet
     { sticker  :: Maybe InputFile.InputFile -- ^ Sticker
     , position :: Maybe Int                 -- ^ New position of the sticker in the set, 0-based

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 
-data GetChatNotificationSettingsExceptions -- ^ Returns list of chats with non-default notification settings for new messages
+-- | Returns list of chats with non-default notification settings for new messages
+data GetChatNotificationSettingsExceptions
   = GetChatNotificationSettingsExceptions
     { scope         :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ If specified, only chats from the scope will be returned; pass null to return chats from all scopes
     , compare_sound :: Maybe Bool                                                -- ^ Pass true to include in the response chats with only non-default sound

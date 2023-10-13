@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ProcessChatJoinRequests -- ^ Handles all pending join requests for a given link in a chat
+-- | Handles all pending join requests for a given link in a chat
+data ProcessChatJoinRequests
   = ProcessChatJoinRequests
     { chat_id     :: Maybe Int    -- ^ Chat identifier
     , invite_link :: Maybe T.Text -- ^ Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links

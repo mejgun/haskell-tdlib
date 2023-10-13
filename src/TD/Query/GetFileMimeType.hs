@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetFileMimeType -- ^ Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
+-- | Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
+data GetFileMimeType
   = GetFileMimeType
     { file_name :: Maybe T.Text -- ^ The name of the file or path to the file
     }

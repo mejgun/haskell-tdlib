@@ -5,7 +5,8 @@ module TD.Query.GetSupportUser
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetSupportUser -- ^ Returns a user that can be contacted to get support
+-- | Returns a user that can be contacted to get support
+data GetSupportUser
   = GetSupportUser
   deriving (Eq)
 

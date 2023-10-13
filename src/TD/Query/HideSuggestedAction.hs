@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.SuggestedAction as SuggestedAction
 
-data HideSuggestedAction -- ^ Hides a suggested action
+-- | Hides a suggested action
+data HideSuggestedAction
   = HideSuggestedAction
     { action :: Maybe SuggestedAction.SuggestedAction -- ^ Suggested action to hide
     }

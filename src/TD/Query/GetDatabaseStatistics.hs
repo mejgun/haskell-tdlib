@@ -5,7 +5,8 @@ module TD.Query.GetDatabaseStatistics
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetDatabaseStatistics -- ^ Returns database statistics
+-- | Returns database statistics
+data GetDatabaseStatistics
   = GetDatabaseStatistics
   deriving (Eq)
 

@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ProcessChatJoinRequest -- ^ Handles a pending join request in a chat
+-- | Handles a pending join request in a chat
+data ProcessChatJoinRequest
   = ProcessChatJoinRequest
     { chat_id :: Maybe Int  -- ^ Chat identifier
     , user_id :: Maybe Int  -- ^ Identifier of the user that sent the request

@@ -5,7 +5,8 @@ module TD.Data.ReportReason
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ReportReason -- ^ Describes the reason why a chat is reported
+-- | Describes the reason why a chat is reported
+data ReportReason
   = ReportReasonSpam -- ^ The chat contains spam messages
   | ReportReasonViolence -- ^ The chat promotes violence
   | ReportReasonPornography -- ^ The chat contains pornographic messages

@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetVideoChatAvailableParticipants -- ^ Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+-- | Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+data GetVideoChatAvailableParticipants
   = GetVideoChatAvailableParticipants
     { chat_id :: Maybe Int -- ^ Chat identifier
     }

@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ChatEventLogFilters as ChatEventLogFilters
 
-data GetChatEventLog -- ^ Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+-- | Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+data GetChatEventLog
   = GetChatEventLog
     { chat_id       :: Maybe Int                                     -- ^ Chat identifier
     , query         :: Maybe T.Text                                  -- ^ Search query by which to filter events

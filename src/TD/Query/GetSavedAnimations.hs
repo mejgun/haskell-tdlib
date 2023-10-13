@@ -5,7 +5,8 @@ module TD.Query.GetSavedAnimations
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetSavedAnimations -- ^ Returns saved animations
+-- | Returns saved animations
+data GetSavedAnimations
   = GetSavedAnimations
   deriving (Eq)
 

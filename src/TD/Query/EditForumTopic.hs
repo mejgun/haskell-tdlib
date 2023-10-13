@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data EditForumTopic -- ^ Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+-- | Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+data EditForumTopic
   = EditForumTopic
     { chat_id                :: Maybe Int    -- ^ Identifier of the chat
     , message_thread_id      :: Maybe Int    -- ^ Message thread identifier of the forum topic

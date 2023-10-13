@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data RemoveBackground -- ^ Removes background from the list of installed backgrounds
+-- | Removes background from the list of installed backgrounds
+data RemoveBackground
   = RemoveBackground
     { background_id :: Maybe Int -- ^ The background identifier
     }

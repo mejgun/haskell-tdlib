@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetUsername -- ^ Changes the editable username of the current user
+-- | Changes the editable username of the current user
+data SetUsername
   = SetUsername
     { username :: Maybe T.Text -- ^ The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     }

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data EditChatFolderInviteLink -- ^ Edits an invite link for a chat folder
+-- | Edits an invite link for a chat folder
+data EditChatFolderInviteLink
   = EditChatFolderInviteLink
     { chat_folder_id :: Maybe Int    -- ^ Chat folder identifier
     , invite_link    :: Maybe T.Text -- ^ Invite link to be edited

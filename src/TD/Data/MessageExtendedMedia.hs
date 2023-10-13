@@ -14,7 +14,8 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Video as Video
 
-data MessageExtendedMedia -- ^ Describes a media, which is attached to an invoice
+-- | Describes a media, which is attached to an invoice
+data MessageExtendedMedia
   = MessageExtendedMediaPreview -- ^ The media is hidden until the invoice is paid
     { width         :: Maybe Int                         -- ^ Media width; 0 if unknown
     , height        :: Maybe Int                         -- ^ Media height; 0 if unknown

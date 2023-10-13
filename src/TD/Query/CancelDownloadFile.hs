@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CancelDownloadFile -- ^ Stops the downloading of a file. If a file has already been downloaded, does nothing
+-- | Stops the downloading of a file. If a file has already been downloaded, does nothing
+data CancelDownloadFile
   = CancelDownloadFile
     { file_id         :: Maybe Int  -- ^ Identifier of a file to stop downloading
     , only_if_pending :: Maybe Bool -- ^ Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server

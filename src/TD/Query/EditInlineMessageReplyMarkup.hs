@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
-data EditInlineMessageReplyMarkup -- ^ Edits the reply markup of an inline message sent via a bot; for bots only
+-- | Edits the reply markup of an inline message sent via a bot; for bots only
+data EditInlineMessageReplyMarkup
   = EditInlineMessageReplyMarkup
     { inline_message_id :: Maybe T.Text                  -- ^ Inline message identifier
     , reply_markup      :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none

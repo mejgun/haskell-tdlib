@@ -5,7 +5,8 @@ module TD.Query.TestCallEmpty
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data TestCallEmpty -- ^ Does nothing; for testing only. This is an offline method. Can be called before authorization
+-- | Does nothing; for testing only. This is an offline method. Can be called before authorization
+data TestCallEmpty
   = TestCallEmpty
   deriving (Eq)
 

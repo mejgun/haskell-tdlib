@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data SetGroupCallParticipantIsSpeaking -- ^ Informs TDLib that speaking state of a participant of an active group has changed
+-- | Informs TDLib that speaking state of a participant of an active group has changed
+data SetGroupCallParticipantIsSpeaking
   = SetGroupCallParticipantIsSpeaking
     { group_call_id :: Maybe Int  -- ^ Group call identifier
     , audio_source  :: Maybe Int  -- ^ Group call participant's synchronization audio source identifier, or 0 for the current user

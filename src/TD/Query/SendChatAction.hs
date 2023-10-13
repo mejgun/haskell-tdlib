@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAction as ChatAction
 
-data SendChatAction -- ^ Sends a notification about user activity in a chat
+-- | Sends a notification about user activity in a chat
+data SendChatAction
   = SendChatAction
     { chat_id           :: Maybe Int                   -- ^ Chat identifier
     , message_thread_id :: Maybe Int                   -- ^ If not 0, a message thread identifier in which the action was performed

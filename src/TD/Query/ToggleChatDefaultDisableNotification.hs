@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleChatDefaultDisableNotification -- ^ Changes the value of the default disable_notification parameter, used when a message is sent to a chat
+-- | Changes the value of the default disable_notification parameter, used when a message is sent to a chat
+data ToggleChatDefaultDisableNotification
   = ToggleChatDefaultDisableNotification
     { chat_id                      :: Maybe Int  -- ^ Chat identifier
     , default_disable_notification :: Maybe Bool -- ^ New value of default_disable_notification

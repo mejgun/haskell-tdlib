@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DisableAllSupergroupUsernames -- ^ Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+-- | Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+data DisableAllSupergroupUsernames
   = DisableAllSupergroupUsernames
     { supergroup_id :: Maybe Int -- ^ Identifier of the supergroup or channel
     }

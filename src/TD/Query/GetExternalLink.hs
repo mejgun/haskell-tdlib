@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetExternalLink -- ^ Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
+-- | Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
+data GetExternalLink
   = GetExternalLink
     { link               :: Maybe T.Text -- ^ The HTTP link
     , allow_write_access :: Maybe Bool   -- ^ Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages

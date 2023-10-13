@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data RemoveRecentHashtag -- ^ Removes a hashtag from the list of recently used hashtags
+-- | Removes a hashtag from the list of recently used hashtags
+data RemoveRecentHashtag
   = RemoveRecentHashtag
     { hashtag :: Maybe T.Text -- ^ Hashtag to delete
     }

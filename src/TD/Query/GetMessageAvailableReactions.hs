@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetMessageAvailableReactions -- ^ Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+-- | Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+data GetMessageAvailableReactions
   = GetMessageAvailableReactions
     { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the message belongs
     , message_id :: Maybe Int -- ^ Identifier of the message

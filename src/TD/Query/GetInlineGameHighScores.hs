@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetInlineGameHighScores -- ^ Returns game high scores and some part of the high score table in the range of the specified user; for bots only
+-- | Returns game high scores and some part of the high score table in the range of the specified user; for bots only
+data GetInlineGameHighScores
   = GetInlineGameHighScores
     { inline_message_id :: Maybe T.Text -- ^ Inline message identifier
     , user_id           :: Maybe Int    -- ^ User identifier

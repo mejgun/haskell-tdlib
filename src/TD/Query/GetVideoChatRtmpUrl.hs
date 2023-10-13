@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetVideoChatRtmpUrl -- ^ Returns RTMP URL for streaming to the chat; requires creator privileges
+-- | Returns RTMP URL for streaming to the chat; requires creator privileges
+data GetVideoChatRtmpUrl
   = GetVideoChatRtmpUrl
     { chat_id :: Maybe Int -- ^ Chat identifier
     }

@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Point as Point
 
-data VectorPathCommand -- ^ Represents a vector path command
+-- | Represents a vector path command
+data VectorPathCommand
   = VectorPathCommandLine -- ^ A straight line to a given point
     { end_point :: Maybe Point.Point -- ^ The end point of the straight line
     }

@@ -9,7 +9,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data LanguagePackStringValue -- ^ Represents the value of a string in a language pack
+-- | Represents the value of a string in a language pack
+data LanguagePackStringValue
   = LanguagePackStringValueOrdinary -- ^ An ordinary language pack string
     { value :: Maybe T.Text -- ^ String value
     }

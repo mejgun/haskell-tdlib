@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SendWebAppData -- ^ Sends data received from a keyboardButtonTypeWebApp Web App to a bot
+-- | Sends data received from a keyboardButtonTypeWebApp Web App to a bot
+data SendWebAppData
   = SendWebAppData
     { bot_user_id :: Maybe Int    -- ^ Identifier of the target bot
     , button_text :: Maybe T.Text -- ^ Text of the keyboardButtonTypeWebApp button, which opened the Web App

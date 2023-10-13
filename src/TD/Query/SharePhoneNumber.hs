@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data SharePhoneNumber -- ^ Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
+-- | Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
+data SharePhoneNumber
   = SharePhoneNumber
     { user_id :: Maybe Int -- ^ Identifier of the user with whom to share the phone number. The user must be a mutual contact
     }

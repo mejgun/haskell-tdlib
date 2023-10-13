@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
-data ToggleMessageSenderIsBlocked -- ^ Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
+-- | Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
+data ToggleMessageSenderIsBlocked
   = ToggleMessageSenderIsBlocked
     { sender_id  :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender to block/unblock
     , is_blocked :: Maybe Bool                        -- ^ New value of is_blocked

@@ -5,7 +5,8 @@ module TD.Query.TerminateAllOtherSessions
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data TerminateAllOtherSessions -- ^ Terminates all other sessions of the current user
+-- | Terminates all other sessions of the current user
+data TerminateAllOtherSessions
   = TerminateAllOtherSessions
   deriving (Eq)
 

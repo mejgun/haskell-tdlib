@@ -10,7 +10,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.StoryVideo as StoryVideo
 
-data StoryContent -- ^ Contains the content of a story
+-- | Contains the content of a story
+data StoryContent
   = StoryContentPhoto -- ^ A photo story
     { photo :: Maybe Photo.Photo -- ^ The photo
     }

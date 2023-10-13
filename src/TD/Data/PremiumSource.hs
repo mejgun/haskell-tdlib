@@ -12,7 +12,8 @@ import qualified TD.Data.PremiumLimitType as PremiumLimitType
 import qualified TD.Data.PremiumFeature as PremiumFeature
 import qualified Data.Text as T
 
-data PremiumSource -- ^ Describes a source from which the Premium features screen is opened
+-- | Describes a source from which the Premium features screen is opened
+data PremiumSource
   = PremiumSourceLimitExceeded -- ^ A limit was exceeded
     { limit_type :: Maybe PremiumLimitType.PremiumLimitType -- ^ Type of the exceeded limit
     }

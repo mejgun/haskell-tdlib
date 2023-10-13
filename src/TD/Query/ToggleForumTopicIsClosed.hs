@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleForumTopicIsClosed -- ^ Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+-- | Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+data ToggleForumTopicIsClosed
   = ToggleForumTopicIsClosed
     { chat_id           :: Maybe Int  -- ^ Identifier of the chat
     , message_thread_id :: Maybe Int  -- ^ Message thread identifier of the forum topic

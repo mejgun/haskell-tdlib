@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
-data ChatAvailableReactions -- ^ Describes reactions available in the chat
+-- | Describes reactions available in the chat
+data ChatAvailableReactions
   = ChatAvailableReactionsAll -- ^ All reactions are available in the chat
   | ChatAvailableReactionsSome -- ^ Only specific reactions are available in the chat
     { reactions :: Maybe [ReactionType.ReactionType] -- ^ The list of reactions

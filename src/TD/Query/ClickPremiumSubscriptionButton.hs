@@ -5,7 +5,8 @@ module TD.Query.ClickPremiumSubscriptionButton
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ClickPremiumSubscriptionButton -- ^ Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+-- | Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+data ClickPremiumSubscriptionButton
   = ClickPremiumSubscriptionButton
   deriving (Eq)
 

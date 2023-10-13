@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data SetPinnedForumTopics -- ^ Changes the order of pinned forum topics
+-- | Changes the order of pinned forum topics
+data SetPinnedForumTopics
   = SetPinnedForumTopics
     { chat_id            :: Maybe Int   -- ^ Chat identifier
     , message_thread_ids :: Maybe [Int] -- ^ The new list of pinned forum topics

@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
-data SetUserSupportInfo -- ^ Sets support information for the given user; for Telegram support only
+-- | Sets support information for the given user; for Telegram support only
+data SetUserSupportInfo
   = SetUserSupportInfo
     { user_id :: Maybe Int                         -- ^ User identifier
     , message :: Maybe FormattedText.FormattedText -- ^ New information message

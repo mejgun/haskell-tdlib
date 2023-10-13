@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ChatActionBar -- ^ Describes actions which must be possible to do through a chat action bar
+-- | Describes actions which must be possible to do through a chat action bar
+data ChatActionBar
   = ChatActionBarReportSpam -- ^ The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     { can_unarchive :: Maybe Bool -- ^ If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     }

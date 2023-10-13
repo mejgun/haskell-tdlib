@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 
-data SetDefaultGroupAdministratorRights -- ^ Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
+-- | Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
+data SetDefaultGroupAdministratorRights
   = SetDefaultGroupAdministratorRights
     { default_group_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
     }

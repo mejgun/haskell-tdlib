@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ProxyType as ProxyType
 
-data EditProxy -- ^ Edits an existing proxy server for network requests. Can be called before authorization
+-- | Edits an existing proxy server for network requests. Can be called before authorization
+data EditProxy
   = EditProxy
     { proxy_id :: Maybe Int                 -- ^ Proxy identifier
     , server   :: Maybe T.Text              -- ^ Proxy server IP address

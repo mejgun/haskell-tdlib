@@ -58,7 +58,8 @@ import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 
-data ChatEventAction -- ^ Represents a chat event
+-- | Represents a chat event
+data ChatEventAction
   = ChatEventMessageEdited -- ^ A message was edited
     { old_message :: Maybe Message.Message -- ^ The original message before the edit
     , new_message :: Maybe Message.Message -- ^ The message after it was edited

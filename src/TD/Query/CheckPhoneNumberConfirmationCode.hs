@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data CheckPhoneNumberConfirmationCode -- ^ Checks phone number confirmation code
+-- | Checks phone number confirmation code
+data CheckPhoneNumberConfirmationCode
   = CheckPhoneNumberConfirmationCode
     { code :: Maybe T.Text -- ^ Confirmation code to check
     }

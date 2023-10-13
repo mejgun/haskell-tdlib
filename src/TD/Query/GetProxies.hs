@@ -5,7 +5,8 @@ module TD.Query.GetProxies
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetProxies -- ^ Returns list of proxies that are currently set up. Can be called before authorization
+-- | Returns list of proxies that are currently set up. Can be called before authorization
+data GetProxies
   = GetProxies
   deriving (Eq)
 

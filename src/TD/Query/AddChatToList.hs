@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
 
-data AddChatToList -- ^ Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
+-- | Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
+data AddChatToList
   = AddChatToList
     { chat_id   :: Maybe Int               -- ^ Chat identifier
     , chat_list :: Maybe ChatList.ChatList -- ^ The chat list. Use getChatListsToAddChat to get suitable chat lists

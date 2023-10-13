@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data ChatSource -- ^ Describes a reason why an external chat is shown in a chat list
+-- | Describes a reason why an external chat is shown in a chat list
+data ChatSource
   = ChatSourceMtprotoProxy -- ^ The chat is sponsored by the user's MTProxy server
   | ChatSourcePublicServiceAnnouncement -- ^ The chat contains a public service announcement
     { _type :: Maybe T.Text -- ^ The type of the announcement

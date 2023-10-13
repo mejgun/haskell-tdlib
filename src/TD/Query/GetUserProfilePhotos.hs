@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetUserProfilePhotos -- ^ Returns the profile photos of a user. Personal and public photo aren't returned
+-- | Returns the profile photos of a user. Personal and public photo aren't returned
+data GetUserProfilePhotos
   = GetUserProfilePhotos
     { user_id :: Maybe Int -- ^ User identifier
     , offset  :: Maybe Int -- ^ The number of photos to skip; must be non-negative

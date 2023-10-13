@@ -5,7 +5,8 @@ module TD.Query.ClearImportedContacts
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ClearImportedContacts -- ^ Clears all imported contacts, contact list remains unchanged
+-- | Clears all imported contacts, contact list remains unchanged
+data ClearImportedContacts
   = ClearImportedContacts
   deriving (Eq)
 

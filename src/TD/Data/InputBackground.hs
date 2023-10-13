@@ -10,7 +10,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
-data InputBackground -- ^ Contains information about background to set
+-- | Contains information about background to set
+data InputBackground
   = InputBackgroundLocal -- ^ A background from a local file
     { background :: Maybe InputFile.InputFile -- ^ Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
     }

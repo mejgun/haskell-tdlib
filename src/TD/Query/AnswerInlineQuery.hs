@@ -10,7 +10,8 @@ import qualified TD.Data.InlineQueryResultsButton as InlineQueryResultsButton
 import qualified TD.Data.InputInlineQueryResult as InputInlineQueryResult
 import qualified Data.Text as T
 
-data AnswerInlineQuery -- ^ Sets the result of an inline query; for bots only
+-- | Sets the result of an inline query; for bots only
+data AnswerInlineQuery
   = AnswerInlineQuery
     { inline_query_id :: Maybe Int                                               -- ^ Identifier of the inline query
     , is_personal     :: Maybe Bool                                              -- ^ Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query

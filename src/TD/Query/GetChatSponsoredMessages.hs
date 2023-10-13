@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetChatSponsoredMessages -- ^ Returns sponsored messages to be shown in a chat; for channel chats only
+-- | Returns sponsored messages to be shown in a chat; for channel chats only
+data GetChatSponsoredMessages
   = GetChatSponsoredMessages
     { chat_id :: Maybe Int -- ^ Identifier of the chat
     }

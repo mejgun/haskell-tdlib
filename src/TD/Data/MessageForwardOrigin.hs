@@ -12,7 +12,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data MessageForwardOrigin -- ^ Contains information about the origin of a forwarded message
+-- | Contains information about the origin of a forwarded message
+data MessageForwardOrigin
   = MessageForwardOriginUser -- ^ The message was originally sent by a known user
     { sender_user_id :: Maybe Int -- ^ Identifier of the user that originally sent the message
     }

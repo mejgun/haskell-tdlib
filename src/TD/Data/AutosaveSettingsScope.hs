@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data AutosaveSettingsScope -- ^ Describes scope of autosave settings
+-- | Describes scope of autosave settings
+data AutosaveSettingsScope
   = AutosaveSettingsScopePrivateChats -- ^ Autosave settings applied to all private chats without chat-specific settings
   | AutosaveSettingsScopeGroupChats -- ^ Autosave settings applied to all basic group and supergroup chats without chat-specific settings
   | AutosaveSettingsScopeChannelChats -- ^ Autosave settings applied to all channel chats without chat-specific settings

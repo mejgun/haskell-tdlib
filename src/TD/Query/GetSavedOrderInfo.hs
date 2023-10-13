@@ -5,7 +5,8 @@ module TD.Query.GetSavedOrderInfo
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetSavedOrderInfo -- ^ Returns saved order information. Returns a 404 error if there is no saved order information
+-- | Returns saved order information. Returns a 404 error if there is no saved order information
+data GetSavedOrderInfo
   = GetSavedOrderInfo
   deriving (Eq)
 

@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetBasicGroup -- ^ Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
+-- | Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
+data GetBasicGroup
   = GetBasicGroup
     { basic_group_id :: Maybe Int -- ^ Basic group identifier
     }

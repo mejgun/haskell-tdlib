@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetBlockedMessageSenders -- ^ Returns users and chats that were blocked by the current user
+-- | Returns users and chats that were blocked by the current user
+data GetBlockedMessageSenders
   = GetBlockedMessageSenders
     { offset :: Maybe Int -- ^ Number of users and chats to skip in the result; must be non-negative
     , limit  :: Maybe Int -- ^ The maximum number of users and chats to return; up to 100

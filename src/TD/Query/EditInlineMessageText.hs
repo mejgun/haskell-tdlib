@@ -10,7 +10,8 @@ import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
-data EditInlineMessageText -- ^ Edits the text of an inline text or game message sent via a bot; for bots only
+-- | Edits the text of an inline text or game message sent via a bot; for bots only
+data EditInlineMessageText
   = EditInlineMessageText
     { inline_message_id     :: Maybe T.Text                                  -- ^ Inline message identifier
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none

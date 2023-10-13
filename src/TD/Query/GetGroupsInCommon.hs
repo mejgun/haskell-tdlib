@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetGroupsInCommon -- ^ Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
+-- | Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
+data GetGroupsInCommon
   = GetGroupsInCommon
     { user_id        :: Maybe Int -- ^ User identifier
     , offset_chat_id :: Maybe Int -- ^ Chat identifier starting from which to return chats; use 0 for the first request

@@ -12,7 +12,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InternalLinkType as InternalLinkType
 import qualified Data.Text as T
 
-data MessageSponsorType -- ^ Describes type of a message sponsor
+-- | Describes type of a message sponsor
+data MessageSponsorType
   = MessageSponsorTypeBot -- ^ The sponsor is a bot
     { bot_user_id :: Maybe Int                               -- ^ User identifier of the bot
     , link        :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened when the sponsored message is clicked

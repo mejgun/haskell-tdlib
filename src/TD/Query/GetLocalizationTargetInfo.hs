@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetLocalizationTargetInfo -- ^ Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
+-- | Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
+data GetLocalizationTargetInfo
   = GetLocalizationTargetInfo
     { only_local :: Maybe Bool -- ^ Pass true to get only locally available information without sending network requests
     }

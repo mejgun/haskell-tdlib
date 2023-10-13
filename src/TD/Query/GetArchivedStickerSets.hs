@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 
-data GetArchivedStickerSets -- ^ Returns a list of archived sticker sets
+-- | Returns a list of archived sticker sets
+data GetArchivedStickerSets
   = GetArchivedStickerSets
     { sticker_type          :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return
     , offset_sticker_set_id :: Maybe Int                     -- ^ Identifier of the sticker set from which to return the result

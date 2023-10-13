@@ -10,7 +10,8 @@ import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.Location as Location
 
-data EditInlineMessageLiveLocation -- ^ Edits the content of a live location in an inline message sent via a bot; for bots only
+-- | Edits the content of a live location in an inline message sent via a bot; for bots only
+data EditInlineMessageLiveLocation
   = EditInlineMessageLiveLocation
     { inline_message_id      :: Maybe T.Text                  -- ^ Inline message identifier
     , reply_markup           :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none

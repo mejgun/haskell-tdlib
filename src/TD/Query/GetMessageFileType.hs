@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetMessageFileType -- ^ Returns information about a file with messages exported from another application
+-- | Returns information about a file with messages exported from another application
+data GetMessageFileType
   = GetMessageFileType
     { message_file_head :: Maybe T.Text -- ^ Beginning of the message file; up to 100 first lines
     }

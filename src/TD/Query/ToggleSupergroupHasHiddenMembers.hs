@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleSupergroupHasHiddenMembers -- ^ Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
+-- | Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
+data ToggleSupergroupHasHiddenMembers
   = ToggleSupergroupHasHiddenMembers
     { supergroup_id      :: Maybe Int  -- ^ Identifier of the supergroup
     , has_hidden_members :: Maybe Bool -- ^ New value of has_hidden_members

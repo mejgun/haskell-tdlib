@@ -5,7 +5,8 @@ module TD.Query.DeleteSavedOrderInfo
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data DeleteSavedOrderInfo -- ^ Deletes saved order information
+-- | Deletes saved order information
+data DeleteSavedOrderInfo
   = DeleteSavedOrderInfo
   deriving (Eq)
 

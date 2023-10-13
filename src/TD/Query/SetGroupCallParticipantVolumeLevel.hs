@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
-data SetGroupCallParticipantVolumeLevel -- ^ Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
+-- | Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
+data SetGroupCallParticipantVolumeLevel
   = SetGroupCallParticipantVolumeLevel
     { group_call_id  :: Maybe Int                         -- ^ Group call identifier
     , participant_id :: Maybe MessageSender.MessageSender -- ^ Participant identifier

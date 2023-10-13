@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ThemeParameters as ThemeParameters
 
-data GetThemeParametersJsonString -- ^ Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
+-- | Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
+data GetThemeParametersJsonString
   = GetThemeParametersJsonString
     { theme :: Maybe ThemeParameters.ThemeParameters -- ^ Theme parameters to convert to JSON
     }

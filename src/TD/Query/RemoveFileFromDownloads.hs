@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data RemoveFileFromDownloads -- ^ Removes a file from the file download list
+-- | Removes a file from the file download list
+data RemoveFileFromDownloads
   = RemoveFileFromDownloads
     { file_id           :: Maybe Int  -- ^ Identifier of the downloaded file
     , delete_from_cache :: Maybe Bool -- ^ Pass true to delete the file from the TDLib file cache

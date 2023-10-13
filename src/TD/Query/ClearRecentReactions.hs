@@ -5,7 +5,8 @@ module TD.Query.ClearRecentReactions
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data ClearRecentReactions -- ^ Clears the list of recently used reactions
+-- | Clears the list of recently used reactions
+data ClearRecentReactions
   = ClearRecentReactions
   deriving (Eq)
 

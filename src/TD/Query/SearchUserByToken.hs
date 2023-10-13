@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SearchUserByToken -- ^ Searches a user by a token from the user's link
+-- | Searches a user by a token from the user's link
+data SearchUserByToken
   = SearchUserByToken
     { token :: Maybe T.Text -- ^ Token to search for
     }

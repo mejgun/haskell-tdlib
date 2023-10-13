@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data GetChatInviteLinkCounts -- ^ Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+-- | Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+data GetChatInviteLinkCounts
   = GetChatInviteLinkCounts
     { chat_id :: Maybe Int -- ^ Chat identifier
     }

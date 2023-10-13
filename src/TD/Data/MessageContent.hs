@@ -90,7 +90,8 @@ import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
 import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
 import qualified TD.Data.MessageSender as MessageSender
 
-data MessageContent -- ^ Contains the content of a message
+-- | Contains the content of a message
+data MessageContent
   = MessageText -- ^ A text message
     { text     :: Maybe FormattedText.FormattedText -- ^ Text of the message
     , web_page :: Maybe WebPage.WebPage             -- ^ A preview of the web page that's mentioned in the text; may be null

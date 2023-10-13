@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.TopChatCategory as TopChatCategory
 
-data GetTopChats -- ^ Returns a list of frequently used chats. Supported only if the chat info database is enabled
+-- | Returns a list of frequently used chats. Supported only if the chat info database is enabled
+data GetTopChats
   = GetTopChats
     { category :: Maybe TopChatCategory.TopChatCategory -- ^ Category of chats to be returned
     , limit    :: Maybe Int                             -- ^ The maximum number of chats to be returned; up to 30

@@ -24,7 +24,8 @@ import qualified TD.Data.Address as Address
 import qualified TD.Data.InputPersonalDocument as InputPersonalDocument
 import qualified Data.Text as T
 
-data InputPassportElement -- ^ Contains information about a Telegram Passport element to be saved
+-- | Contains information about a Telegram Passport element to be saved
+data InputPassportElement
   = InputPassportElementPersonalDetails -- ^ A Telegram Passport element to be saved containing the user's personal details
     { personal_details :: Maybe PersonalDetails.PersonalDetails -- ^ Personal details of the user
     }

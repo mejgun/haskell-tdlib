@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
 
-data SetPinnedChats -- ^ Changes the order of pinned chats
+-- | Changes the order of pinned chats
+data SetPinnedChats
   = SetPinnedChats
     { chat_list :: Maybe ChatList.ChatList -- ^ Chat list in which to change the order of pinned chats
     , chat_ids  :: Maybe [Int]             -- ^ The new list of pinned chats

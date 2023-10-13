@@ -5,7 +5,8 @@ module TD.Query.GetRecentEmojiStatuses
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetRecentEmojiStatuses -- ^ Returns recent emoji statuses
+-- | Returns recent emoji statuses
+data GetRecentEmojiStatuses
   = GetRecentEmojiStatuses
   deriving (Eq)
 

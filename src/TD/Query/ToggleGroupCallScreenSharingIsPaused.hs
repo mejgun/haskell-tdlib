@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleGroupCallScreenSharingIsPaused -- ^ Pauses or unpauses screen sharing in a joined group call
+-- | Pauses or unpauses screen sharing in a joined group call
+data ToggleGroupCallScreenSharingIsPaused
   = ToggleGroupCallScreenSharingIsPaused
     { group_call_id :: Maybe Int  -- ^ Group call identifier
     , is_paused     :: Maybe Bool -- ^ Pass true to pause screen sharing; pass false to unpause it

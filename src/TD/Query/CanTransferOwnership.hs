@@ -5,7 +5,8 @@ module TD.Query.CanTransferOwnership
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data CanTransferOwnership -- ^ Checks whether the current session can be used to transfer a chat ownership to another user
+-- | Checks whether the current session can be used to transfer a chat ownership to another user
+data CanTransferOwnership
   = CanTransferOwnership
   deriving (Eq)
 

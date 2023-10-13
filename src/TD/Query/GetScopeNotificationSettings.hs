@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 
-data GetScopeNotificationSettings -- ^ Returns the notification settings for chats of a given type
+-- | Returns the notification settings for chats of a given type
+data GetScopeNotificationSettings
   = GetScopeNotificationSettings
     { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which to return the notification settings information
     }

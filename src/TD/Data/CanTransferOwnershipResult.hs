@@ -8,7 +8,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CanTransferOwnershipResult -- ^ Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+-- | Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+data CanTransferOwnershipResult
   = CanTransferOwnershipResultOk -- ^ The session can be used
   | CanTransferOwnershipResultPasswordNeeded -- ^ The 2-step verification needs to be enabled first
   | CanTransferOwnershipResultPasswordTooFresh -- ^ The 2-step verification was enabled recently, user needs to wait

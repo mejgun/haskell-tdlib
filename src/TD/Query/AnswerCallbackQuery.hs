@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data AnswerCallbackQuery -- ^ Sets the result of a callback query; for bots only
+-- | Sets the result of a callback query; for bots only
+data AnswerCallbackQuery
   = AnswerCallbackQuery
     { callback_query_id :: Maybe Int    -- ^ Identifier of the callback query
     , text              :: Maybe T.Text -- ^ Text of the answer

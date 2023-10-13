@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data SetStickerSetTitle -- ^ Sets a sticker set title; for bots only
+-- | Sets a sticker set title; for bots only
+data SetStickerSetTitle
   = SetStickerSetTitle
     { name  :: Maybe T.Text -- ^ Sticker set name
     , title :: Maybe T.Text -- ^ New sticker set title

@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumSource as PremiumSource
 
-data GetPremiumFeatures -- ^ Returns information about features, available to Premium users
+-- | Returns information about features, available to Premium users
+data GetPremiumFeatures
   = GetPremiumFeatures
     { source :: Maybe PremiumSource.PremiumSource -- ^ Source of the request; pass null if the method is called from some non-standard source
     }

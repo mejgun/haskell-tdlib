@@ -12,7 +12,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified Data.Text as T
 
-data KeyboardButtonType -- ^ Describes a keyboard button type
+-- | Describes a keyboard button type
+data KeyboardButtonType
   = KeyboardButtonTypeText -- ^ A simple button, with text that must be sent when the button is pressed
   | KeyboardButtonTypeRequestPhoneNumber -- ^ A button that sends the user's phone number when pressed; available only in private chats
   | KeyboardButtonTypeRequestLocation -- ^ A button that sends the user's location when pressed; available only in private chats

@@ -5,7 +5,8 @@ module TD.Query.GetLogVerbosityLevel
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetLogVerbosityLevel -- ^ Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+-- | Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+data GetLogVerbosityLevel
   = GetLogVerbosityLevel
   deriving (Eq)
 

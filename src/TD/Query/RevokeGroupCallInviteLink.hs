@@ -6,7 +6,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data RevokeGroupCallInviteLink -- ^ Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
+-- | Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
+data RevokeGroupCallInviteLink
   = RevokeGroupCallInviteLink
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }

@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data CreateBasicGroupChat -- ^ Returns an existing chat corresponding to a known basic group
+-- | Returns an existing chat corresponding to a known basic group
+data CreateBasicGroupChat
   = CreateBasicGroupChat
     { basic_group_id :: Maybe Int  -- ^ Basic group identifier
     , force          :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect

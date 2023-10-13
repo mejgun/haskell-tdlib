@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputStoryContent as InputStoryContent
 import qualified TD.Data.FormattedText as FormattedText
 
-data EditStory -- ^ Changes content and caption of a previously sent story
+-- | Changes content and caption of a previously sent story
+data EditStory
   = EditStory
     { story_id :: Maybe Int                                 -- ^ Identifier of the story to edit
     , content  :: Maybe InputStoryContent.InputStoryContent -- ^ New content of the story; pass null to keep the current content

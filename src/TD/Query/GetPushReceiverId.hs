@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data GetPushReceiverId -- ^ Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
+-- | Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
+data GetPushReceiverId
   = GetPushReceiverId
     { payload :: Maybe T.Text -- ^ JSON-encoded push notification payload
     }

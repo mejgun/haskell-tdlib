@@ -11,7 +11,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 import qualified Data.Text as T
 
-data CallbackQueryPayload -- ^ Represents a payload of a callback query
+-- | Represents a payload of a callback query
+data CallbackQueryPayload
   = CallbackQueryPayloadData -- ^ The payload for a general callback button
     { _data :: Maybe BS.ByteString -- ^ Data that was attached to the callback button
     }

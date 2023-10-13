@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 import qualified Data.Text as T
 
-data SetStickerEmojis -- ^ Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+-- | Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+data SetStickerEmojis
   = SetStickerEmojis
     { sticker :: Maybe InputFile.InputFile -- ^ Sticker
     , emojis  :: Maybe T.Text              -- ^ New string with 1-20 emoji corresponding to the sticker

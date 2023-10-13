@@ -5,7 +5,8 @@ module TD.Query.GetMe
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetMe -- ^ Returns the current user
+-- | Returns the current user
+data GetMe
   = GetMe
   deriving (Eq)
 

@@ -11,7 +11,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data InputFile -- ^ Points to a file
+-- | Points to a file
+data InputFile
   = InputFileId -- ^ A file defined by its unique ID
     { _id :: Maybe Int -- ^ Unique file identifier
     }

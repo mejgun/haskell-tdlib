@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
 
-data GetMapThumbnailFile -- ^ Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
+-- | Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
+data GetMapThumbnailFile
   = GetMapThumbnailFile
     { location :: Maybe Location.Location -- ^ Location of the map center
     , zoom     :: Maybe Int               -- ^ Map zoom level; 13-20

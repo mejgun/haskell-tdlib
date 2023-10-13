@@ -5,7 +5,8 @@ module TD.Data.CallProblem
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data CallProblem -- ^ Describes the exact type of a problem with a call
+-- | Describes the exact type of a problem with a call
+data CallProblem
   = CallProblemEcho -- ^ The user heard their own voice
   | CallProblemNoise -- ^ The user heard background noise
   | CallProblemInterruptions -- ^ The other side kept disappearing

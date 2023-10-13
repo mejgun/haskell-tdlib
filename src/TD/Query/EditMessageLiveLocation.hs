@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.Location as Location
 
-data EditMessageLiveLocation -- ^ Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+-- | Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+data EditMessageLiveLocation
   = EditMessageLiveLocation
     { chat_id                :: Maybe Int                     -- ^ The chat the message belongs to
     , message_id             :: Maybe Int                     -- ^ Identifier of the message

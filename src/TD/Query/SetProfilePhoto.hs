@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
 
-data SetProfilePhoto -- ^ Changes a profile photo for the current user
+-- | Changes a profile photo for the current user
+data SetProfilePhoto
   = SetProfilePhoto
     { photo     :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set
     , is_public :: Maybe Bool                          -- ^ Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings

@@ -5,7 +5,8 @@ module TD.Data.PremiumFeature
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data PremiumFeature -- ^ Describes a feature available to Premium users
+-- | Describes a feature available to Premium users
+data PremiumFeature
   = PremiumFeatureIncreasedLimits -- ^ Increased limits
   | PremiumFeatureIncreasedUploadFileSize -- ^ Increased maximum upload file size
   | PremiumFeatureImprovedDownloadSpeed -- ^ Improved download speed

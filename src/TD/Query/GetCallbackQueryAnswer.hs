@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
 
-data GetCallbackQueryAnswer -- ^ Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+-- | Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+data GetCallbackQueryAnswer
   = GetCallbackQueryAnswer
     { chat_id    :: Maybe Int                                       -- ^ Identifier of the chat with the message
     , message_id :: Maybe Int                                       -- ^ Identifier of the message from which the query originated

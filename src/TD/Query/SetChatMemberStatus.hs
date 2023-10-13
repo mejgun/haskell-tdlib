@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 
-data SetChatMemberStatus -- ^ Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+-- | Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+data SetChatMemberStatus
   = SetChatMemberStatus
     { chat_id   :: Maybe Int                               -- ^ Chat identifier
     , member_id :: Maybe MessageSender.MessageSender       -- ^ Member identifier. Chats can be only banned and unbanned in supergroups and channels

@@ -5,7 +5,8 @@ module TD.Query.GetPasswordState
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data GetPasswordState -- ^ Returns the current state of 2-step verification
+-- | Returns the current state of 2-step verification
+data GetPasswordState
   = GetPasswordState
   deriving (Eq)
 

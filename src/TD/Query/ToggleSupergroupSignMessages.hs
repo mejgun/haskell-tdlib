@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data ToggleSupergroupSignMessages -- ^ Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
+-- | Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
+data ToggleSupergroupSignMessages
   = ToggleSupergroupSignMessages
     { supergroup_id :: Maybe Int  -- ^ Identifier of the channel
     , sign_messages :: Maybe Bool -- ^ New value of sign_messages

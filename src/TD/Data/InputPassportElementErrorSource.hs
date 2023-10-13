@@ -17,7 +17,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 import qualified Data.Text as T
 
-data InputPassportElementErrorSource -- ^ Contains the description of an error in a Telegram Passport element; for bots only
+-- | Contains the description of an error in a Telegram Passport element; for bots only
+data InputPassportElementErrorSource
   = InputPassportElementErrorSourceUnspecified -- ^ The element contains an error in an unspecified place. The error will be considered resolved when new data is added
     { element_hash :: Maybe BS.ByteString -- ^ Current hash of the entire element
     }

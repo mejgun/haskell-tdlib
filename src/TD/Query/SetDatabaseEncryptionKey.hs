@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 
-data SetDatabaseEncryptionKey -- ^ Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
+-- | Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
+data SetDatabaseEncryptionKey
   = SetDatabaseEncryptionKey
     { new_encryption_key :: Maybe BS.ByteString -- ^ New encryption key
     }

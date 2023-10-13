@@ -9,7 +9,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReportReason as ReportReason
 import qualified Data.Text as T
 
-data ReportChatPhoto -- ^ Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
+-- | Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
+data ReportChatPhoto
   = ReportChatPhoto
     { chat_id :: Maybe Int                       -- ^ Chat identifier
     , file_id :: Maybe Int                       -- ^ Identifier of the photo to report. Only full photos from chatPhoto can be reported

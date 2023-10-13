@@ -9,7 +9,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data BackgroundFill -- ^ Describes a fill of a background
+-- | Describes a fill of a background
+data BackgroundFill
   = BackgroundFillSolid -- ^ Describes a solid fill of a background
     { color :: Maybe Int -- ^ A color of the background in the RGB24 format
     }

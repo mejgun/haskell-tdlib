@@ -7,7 +7,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data DiscardCall -- ^ Discards a call
+-- | Discards a call
+data DiscardCall
   = DiscardCall
     { call_id         :: Maybe Int  -- ^ Call identifier
     , is_disconnected :: Maybe Bool -- ^ Pass true if the user was disconnected

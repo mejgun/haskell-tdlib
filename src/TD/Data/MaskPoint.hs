@@ -5,7 +5,8 @@ module TD.Data.MaskPoint
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 
-data MaskPoint -- ^ Part of the face, relative to which a mask is placed
+-- | Part of the face, relative to which a mask is placed
+data MaskPoint
   = MaskPointForehead -- ^ The mask is placed relatively to the forehead
   | MaskPointEyes -- ^ The mask is placed relatively to the eyes
   | MaskPointMouth -- ^ The mask is placed relatively to the mouth

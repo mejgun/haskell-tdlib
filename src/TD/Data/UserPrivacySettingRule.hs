@@ -10,7 +10,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data UserPrivacySettingRule -- ^ Represents a single rule for managing user privacy settings
+-- | Represents a single rule for managing user privacy settings
+data UserPrivacySettingRule
   = UserPrivacySettingRuleAllowAll -- ^ A rule to allow all users to do something
   | UserPrivacySettingRuleAllowContacts -- ^ A rule to allow all contacts of the user to do something
   | UserPrivacySettingRuleAllowUsers -- ^ A rule to allow certain specified users to do something

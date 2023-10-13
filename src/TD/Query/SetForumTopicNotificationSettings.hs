@@ -8,7 +8,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 
-data SetForumTopicNotificationSettings -- ^ Changes the notification settings of a forum topic
+-- | Changes the notification settings of a forum topic
+data SetForumTopicNotificationSettings
   = SetForumTopicNotificationSettings
     { chat_id               :: Maybe Int                                               -- ^ Chat identifier
     , message_thread_id     :: Maybe Int                                               -- ^ Message thread identifier of the forum topic

@@ -7,7 +7,8 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.NetworkStatisticsEntry as NetworkStatisticsEntry
 
-data AddNetworkStatistics -- ^ Adds the specified data to data usage statistics. Can be called before authorization
+-- | Adds the specified data to data usage statistics. Can be called before authorization
+data AddNetworkStatistics
   = AddNetworkStatistics
     { entry :: Maybe NetworkStatisticsEntry.NetworkStatisticsEntry -- ^ The network statistics entry with the data to be added to statistics
     }

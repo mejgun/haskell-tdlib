@@ -9,7 +9,8 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
-data BotCommandScope -- ^ Represents the scope to which bot commands are relevant
+-- | Represents the scope to which bot commands are relevant
+data BotCommandScope
   = BotCommandScopeDefault -- ^ A scope covering all users
   | BotCommandScopeAllPrivateChats -- ^ A scope covering all private chats
   | BotCommandScopeAllGroupChats -- ^ A scope covering all group and supergroup chats
