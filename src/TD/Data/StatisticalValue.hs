@@ -1,7 +1,5 @@
 module TD.Data.StatisticalValue
-  ( StatisticalValue(..)    
-  , defaultStatisticalValue 
-  ) where
+  (StatisticalValue(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -48,25 +46,4 @@ instance AT.FromJSON StatisticalValue where
           , growth_rate_percentage = growth_rate_percentage_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StatisticalValue where
-  toJSON StatisticalValue
-    { value                  = value_
-    , previous_value         = previous_value_
-    , growth_rate_percentage = growth_rate_percentage_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "statisticalValue"
-        , "value"                  A..= value_
-        , "previous_value"         A..= previous_value_
-        , "growth_rate_percentage" A..= growth_rate_percentage_
-        ]
-
-defaultStatisticalValue :: StatisticalValue
-defaultStatisticalValue =
-  StatisticalValue
-    { value                  = Nothing
-    , previous_value         = Nothing
-    , growth_rate_percentage = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.DownloadedFileCounts
-  ( DownloadedFileCounts(..)    
-  , defaultDownloadedFileCounts 
-  ) where
+  (DownloadedFileCounts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -48,25 +46,4 @@ instance AT.FromJSON DownloadedFileCounts where
           , completed_count = completed_count_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON DownloadedFileCounts where
-  toJSON DownloadedFileCounts
-    { active_count    = active_count_
-    , paused_count    = paused_count_
-    , completed_count = completed_count_
-    }
-      = A.object
-        [ "@type"           A..= AT.String "downloadedFileCounts"
-        , "active_count"    A..= active_count_
-        , "paused_count"    A..= paused_count_
-        , "completed_count" A..= completed_count_
-        ]
-
-defaultDownloadedFileCounts :: DownloadedFileCounts
-defaultDownloadedFileCounts =
-  DownloadedFileCounts
-    { active_count    = Nothing
-    , paused_count    = Nothing
-    , completed_count = Nothing
-    }
 

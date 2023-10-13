@@ -1,7 +1,5 @@
 module TD.Data.StorageStatisticsFast
-  ( StorageStatisticsFast(..)    
-  , defaultStorageStatisticsFast 
-  ) where
+  (StorageStatisticsFast(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,31 +56,4 @@ instance AT.FromJSON StorageStatisticsFast where
           , log_size                    = log_size_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StorageStatisticsFast where
-  toJSON StorageStatisticsFast
-    { files_size                  = files_size_
-    , file_count                  = file_count_
-    , database_size               = database_size_
-    , language_pack_database_size = language_pack_database_size_
-    , log_size                    = log_size_
-    }
-      = A.object
-        [ "@type"                       A..= AT.String "storageStatisticsFast"
-        , "files_size"                  A..= files_size_
-        , "file_count"                  A..= file_count_
-        , "database_size"               A..= database_size_
-        , "language_pack_database_size" A..= language_pack_database_size_
-        , "log_size"                    A..= log_size_
-        ]
-
-defaultStorageStatisticsFast :: StorageStatisticsFast
-defaultStorageStatisticsFast =
-  StorageStatisticsFast
-    { files_size                  = Nothing
-    , file_count                  = Nothing
-    , database_size               = Nothing
-    , language_pack_database_size = Nothing
-    , log_size                    = Nothing
-    }
 

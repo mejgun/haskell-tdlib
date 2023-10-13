@@ -1,7 +1,5 @@
 module TD.Data.ForumTopic
-  ( ForumTopic(..)    
-  , defaultForumTopic 
-  ) where
+  (ForumTopic(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -87,46 +85,4 @@ instance AT.FromJSON ForumTopic where
           , draft_message               = draft_message_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ForumTopic where
-  toJSON ForumTopic
-    { info                        = info_
-    , last_message                = last_message_
-    , is_pinned                   = is_pinned_
-    , unread_count                = unread_count_
-    , last_read_inbox_message_id  = last_read_inbox_message_id_
-    , last_read_outbox_message_id = last_read_outbox_message_id_
-    , unread_mention_count        = unread_mention_count_
-    , unread_reaction_count       = unread_reaction_count_
-    , notification_settings       = notification_settings_
-    , draft_message               = draft_message_
-    }
-      = A.object
-        [ "@type"                       A..= AT.String "forumTopic"
-        , "info"                        A..= info_
-        , "last_message"                A..= last_message_
-        , "is_pinned"                   A..= is_pinned_
-        , "unread_count"                A..= unread_count_
-        , "last_read_inbox_message_id"  A..= last_read_inbox_message_id_
-        , "last_read_outbox_message_id" A..= last_read_outbox_message_id_
-        , "unread_mention_count"        A..= unread_mention_count_
-        , "unread_reaction_count"       A..= unread_reaction_count_
-        , "notification_settings"       A..= notification_settings_
-        , "draft_message"               A..= draft_message_
-        ]
-
-defaultForumTopic :: ForumTopic
-defaultForumTopic =
-  ForumTopic
-    { info                        = Nothing
-    , last_message                = Nothing
-    , is_pinned                   = Nothing
-    , unread_count                = Nothing
-    , last_read_inbox_message_id  = Nothing
-    , last_read_outbox_message_id = Nothing
-    , unread_mention_count        = Nothing
-    , unread_reaction_count       = Nothing
-    , notification_settings       = Nothing
-    , draft_message               = Nothing
-    }
 

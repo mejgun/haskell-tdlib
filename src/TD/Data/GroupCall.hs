@@ -1,7 +1,5 @@
 module TD.Data.GroupCall
-  ( GroupCall(..)    
-  , defaultGroupCall 
-  ) where
+  (GroupCall(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -140,79 +138,4 @@ instance AT.FromJSON GroupCall where
           , duration                         = duration_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GroupCall where
-  toJSON GroupCall
-    { _id                              = _id_
-    , title                            = title_
-    , scheduled_start_date             = scheduled_start_date_
-    , enabled_start_notification       = enabled_start_notification_
-    , is_active                        = is_active_
-    , is_rtmp_stream                   = is_rtmp_stream_
-    , is_joined                        = is_joined_
-    , need_rejoin                      = need_rejoin_
-    , can_be_managed                   = can_be_managed_
-    , participant_count                = participant_count_
-    , has_hidden_listeners             = has_hidden_listeners_
-    , loaded_all_participants          = loaded_all_participants_
-    , recent_speakers                  = recent_speakers_
-    , is_my_video_enabled              = is_my_video_enabled_
-    , is_my_video_paused               = is_my_video_paused_
-    , can_enable_video                 = can_enable_video_
-    , mute_new_participants            = mute_new_participants_
-    , can_toggle_mute_new_participants = can_toggle_mute_new_participants_
-    , record_duration                  = record_duration_
-    , is_video_recorded                = is_video_recorded_
-    , duration                         = duration_
-    }
-      = A.object
-        [ "@type"                            A..= AT.String "groupCall"
-        , "id"                               A..= _id_
-        , "title"                            A..= title_
-        , "scheduled_start_date"             A..= scheduled_start_date_
-        , "enabled_start_notification"       A..= enabled_start_notification_
-        , "is_active"                        A..= is_active_
-        , "is_rtmp_stream"                   A..= is_rtmp_stream_
-        , "is_joined"                        A..= is_joined_
-        , "need_rejoin"                      A..= need_rejoin_
-        , "can_be_managed"                   A..= can_be_managed_
-        , "participant_count"                A..= participant_count_
-        , "has_hidden_listeners"             A..= has_hidden_listeners_
-        , "loaded_all_participants"          A..= loaded_all_participants_
-        , "recent_speakers"                  A..= recent_speakers_
-        , "is_my_video_enabled"              A..= is_my_video_enabled_
-        , "is_my_video_paused"               A..= is_my_video_paused_
-        , "can_enable_video"                 A..= can_enable_video_
-        , "mute_new_participants"            A..= mute_new_participants_
-        , "can_toggle_mute_new_participants" A..= can_toggle_mute_new_participants_
-        , "record_duration"                  A..= record_duration_
-        , "is_video_recorded"                A..= is_video_recorded_
-        , "duration"                         A..= duration_
-        ]
-
-defaultGroupCall :: GroupCall
-defaultGroupCall =
-  GroupCall
-    { _id                              = Nothing
-    , title                            = Nothing
-    , scheduled_start_date             = Nothing
-    , enabled_start_notification       = Nothing
-    , is_active                        = Nothing
-    , is_rtmp_stream                   = Nothing
-    , is_joined                        = Nothing
-    , need_rejoin                      = Nothing
-    , can_be_managed                   = Nothing
-    , participant_count                = Nothing
-    , has_hidden_listeners             = Nothing
-    , loaded_all_participants          = Nothing
-    , recent_speakers                  = Nothing
-    , is_my_video_enabled              = Nothing
-    , is_my_video_paused               = Nothing
-    , can_enable_video                 = Nothing
-    , mute_new_participants            = Nothing
-    , can_toggle_mute_new_participants = Nothing
-    , record_duration                  = Nothing
-    , is_video_recorded                = Nothing
-    , duration                         = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.ConnectedWebsite
-  ( ConnectedWebsite(..)    
-  , defaultConnectedWebsite 
-  ) where
+  (ConnectedWebsite(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -79,43 +77,4 @@ instance AT.FromJSON ConnectedWebsite where
           , location         = location_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ConnectedWebsite where
-  toJSON ConnectedWebsite
-    { _id              = _id_
-    , domain_name      = domain_name_
-    , bot_user_id      = bot_user_id_
-    , browser          = browser_
-    , platform         = platform_
-    , log_in_date      = log_in_date_
-    , last_active_date = last_active_date_
-    , ip               = ip_
-    , location         = location_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "connectedWebsite"
-        , "id"               A..= fmap I.writeInt64  _id_
-        , "domain_name"      A..= domain_name_
-        , "bot_user_id"      A..= bot_user_id_
-        , "browser"          A..= browser_
-        , "platform"         A..= platform_
-        , "log_in_date"      A..= log_in_date_
-        , "last_active_date" A..= last_active_date_
-        , "ip"               A..= ip_
-        , "location"         A..= location_
-        ]
-
-defaultConnectedWebsite :: ConnectedWebsite
-defaultConnectedWebsite =
-  ConnectedWebsite
-    { _id              = Nothing
-    , domain_name      = Nothing
-    , bot_user_id      = Nothing
-    , browser          = Nothing
-    , platform         = Nothing
-    , log_in_date      = Nothing
-    , last_active_date = Nothing
-    , ip               = Nothing
-    , location         = Nothing
-    }
 

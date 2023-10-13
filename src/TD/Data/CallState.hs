@@ -1,10 +1,5 @@
 module TD.Data.CallState
-  ( CallState(..)             
-  , defaultCallStatePending   
-  , defaultCallStateReady     
-  , defaultCallStateDiscarded 
-  , defaultCallStateError     
-  ) where
+  (CallState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -152,93 +147,4 @@ instance AT.FromJSON CallState where
           { _error = _error_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CallState where
-  toJSON CallStatePending
-    { is_created  = is_created_
-    , is_received = is_received_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "callStatePending"
-        , "is_created"  A..= is_created_
-        , "is_received" A..= is_received_
-        ]
-  toJSON CallStateExchangingKeys
-      = A.object
-        [ "@type" A..= AT.String "callStateExchangingKeys"
-        ]
-  toJSON CallStateReady
-    { protocol       = protocol_
-    , servers        = servers_
-    , config         = config_
-    , encryption_key = encryption_key_
-    , emojis         = emojis_
-    , allow_p2p      = allow_p2p_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "callStateReady"
-        , "protocol"       A..= protocol_
-        , "servers"        A..= servers_
-        , "config"         A..= config_
-        , "encryption_key" A..= fmap I.writeBytes  encryption_key_
-        , "emojis"         A..= emojis_
-        , "allow_p2p"      A..= allow_p2p_
-        ]
-  toJSON CallStateHangingUp
-      = A.object
-        [ "@type" A..= AT.String "callStateHangingUp"
-        ]
-  toJSON CallStateDiscarded
-    { reason                 = reason_
-    , need_rating            = need_rating_
-    , need_debug_information = need_debug_information_
-    , need_log               = need_log_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "callStateDiscarded"
-        , "reason"                 A..= reason_
-        , "need_rating"            A..= need_rating_
-        , "need_debug_information" A..= need_debug_information_
-        , "need_log"               A..= need_log_
-        ]
-  toJSON CallStateError
-    { _error = _error_
-    }
-      = A.object
-        [ "@type" A..= AT.String "callStateError"
-        , "error" A..= _error_
-        ]
-
-defaultCallStatePending :: CallState
-defaultCallStatePending =
-  CallStatePending
-    { is_created  = Nothing
-    , is_received = Nothing
-    }
-
-defaultCallStateReady :: CallState
-defaultCallStateReady =
-  CallStateReady
-    { protocol       = Nothing
-    , servers        = Nothing
-    , config         = Nothing
-    , encryption_key = Nothing
-    , emojis         = Nothing
-    , allow_p2p      = Nothing
-    }
-
-defaultCallStateDiscarded :: CallState
-defaultCallStateDiscarded =
-  CallStateDiscarded
-    { reason                 = Nothing
-    , need_rating            = Nothing
-    , need_debug_information = Nothing
-    , need_log               = Nothing
-    }
-
-defaultCallStateError :: CallState
-defaultCallStateError =
-  CallStateError
-    { _error = Nothing
-    }
 

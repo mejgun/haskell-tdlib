@@ -1,7 +1,5 @@
 module TD.Data.EmailAddressAuthenticationCodeInfo
-  ( EmailAddressAuthenticationCodeInfo(..)    
-  , defaultEmailAddressAuthenticationCodeInfo 
-  ) where
+  (EmailAddressAuthenticationCodeInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON EmailAddressAuthenticationCodeInfo where
           , _length               = _length_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON EmailAddressAuthenticationCodeInfo where
-  toJSON EmailAddressAuthenticationCodeInfo
-    { email_address_pattern = email_address_pattern_
-    , _length               = _length_
-    }
-      = A.object
-        [ "@type"                 A..= AT.String "emailAddressAuthenticationCodeInfo"
-        , "email_address_pattern" A..= email_address_pattern_
-        , "length"                A..= _length_
-        ]
-
-defaultEmailAddressAuthenticationCodeInfo :: EmailAddressAuthenticationCodeInfo
-defaultEmailAddressAuthenticationCodeInfo =
-  EmailAddressAuthenticationCodeInfo
-    { email_address_pattern = Nothing
-    , _length               = Nothing
-    }
 

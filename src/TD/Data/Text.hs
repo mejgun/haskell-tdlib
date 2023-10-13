@@ -1,7 +1,5 @@
 module TD.Data.Text
-  ( Text(..)    
-  , defaultText 
-  ) where
+  (Text(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON Text where
           { text = text_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Text where
-  toJSON Text
-    { text = text_
-    }
-      = A.object
-        [ "@type" A..= AT.String "text"
-        , "text"  A..= text_
-        ]
-
-defaultText :: Text
-defaultText =
-  Text
-    { text = Nothing
-    }
 

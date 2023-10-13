@@ -1,7 +1,5 @@
 module TD.Data.PaymentResult
-  ( PaymentResult(..)    
-  , defaultPaymentResult 
-  ) where
+  (PaymentResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON PaymentResult where
           , verification_url = verification_url_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PaymentResult where
-  toJSON PaymentResult
-    { success          = success_
-    , verification_url = verification_url_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "paymentResult"
-        , "success"          A..= success_
-        , "verification_url" A..= verification_url_
-        ]
-
-defaultPaymentResult :: PaymentResult
-defaultPaymentResult =
-  PaymentResult
-    { success          = Nothing
-    , verification_url = Nothing
-    }
 

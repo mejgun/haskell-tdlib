@@ -1,7 +1,5 @@
 module TD.Data.VideoChat
-  ( VideoChat(..)    
-  , defaultVideoChat 
-  ) where
+  (VideoChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON VideoChat where
           , default_participant_id = default_participant_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON VideoChat where
-  toJSON VideoChat
-    { group_call_id          = group_call_id_
-    , has_participants       = has_participants_
-    , default_participant_id = default_participant_id_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "videoChat"
-        , "group_call_id"          A..= group_call_id_
-        , "has_participants"       A..= has_participants_
-        , "default_participant_id" A..= default_participant_id_
-        ]
-
-defaultVideoChat :: VideoChat
-defaultVideoChat =
-  VideoChat
-    { group_call_id          = Nothing
-    , has_participants       = Nothing
-    , default_participant_id = Nothing
-    }
 

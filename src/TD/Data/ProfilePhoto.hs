@@ -1,7 +1,5 @@
 module TD.Data.ProfilePhoto
-  ( ProfilePhoto(..)    
-  , defaultProfilePhoto 
-  ) where
+  (ProfilePhoto(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,34 +63,4 @@ instance AT.FromJSON ProfilePhoto where
           , is_personal   = is_personal_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ProfilePhoto where
-  toJSON ProfilePhoto
-    { _id           = _id_
-    , small         = small_
-    , big           = big_
-    , minithumbnail = minithumbnail_
-    , has_animation = has_animation_
-    , is_personal   = is_personal_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "profilePhoto"
-        , "id"            A..= fmap I.writeInt64  _id_
-        , "small"         A..= small_
-        , "big"           A..= big_
-        , "minithumbnail" A..= minithumbnail_
-        , "has_animation" A..= has_animation_
-        , "is_personal"   A..= is_personal_
-        ]
-
-defaultProfilePhoto :: ProfilePhoto
-defaultProfilePhoto =
-  ProfilePhoto
-    { _id           = Nothing
-    , small         = Nothing
-    , big           = Nothing
-    , minithumbnail = Nothing
-    , has_animation = Nothing
-    , is_personal   = Nothing
-    }
 

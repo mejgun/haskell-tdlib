@@ -1,7 +1,5 @@
 module TD.Data.Notification
-  ( Notification(..)    
-  , defaultNotification 
-  ) where
+  (Notification(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -54,28 +52,4 @@ instance AT.FromJSON Notification where
           , _type     = _type_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Notification where
-  toJSON Notification
-    { _id       = _id_
-    , date      = date_
-    , is_silent = is_silent_
-    , _type     = _type_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "notification"
-        , "id"        A..= _id_
-        , "date"      A..= date_
-        , "is_silent" A..= is_silent_
-        , "type"      A..= _type_
-        ]
-
-defaultNotification :: Notification
-defaultNotification =
-  Notification
-    { _id       = Nothing
-    , date      = Nothing
-    , is_silent = Nothing
-    , _type     = Nothing
-    }
 

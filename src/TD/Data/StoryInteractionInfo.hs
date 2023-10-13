@@ -1,7 +1,5 @@
 module TD.Data.StoryInteractionInfo
-  ( StoryInteractionInfo(..)    
-  , defaultStoryInteractionInfo 
-  ) where
+  (StoryInteractionInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,22 +41,4 @@ instance AT.FromJSON StoryInteractionInfo where
           , recent_viewer_user_ids = recent_viewer_user_ids_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StoryInteractionInfo where
-  toJSON StoryInteractionInfo
-    { view_count             = view_count_
-    , recent_viewer_user_ids = recent_viewer_user_ids_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "storyInteractionInfo"
-        , "view_count"             A..= view_count_
-        , "recent_viewer_user_ids" A..= recent_viewer_user_ids_
-        ]
-
-defaultStoryInteractionInfo :: StoryInteractionInfo
-defaultStoryInteractionInfo =
-  StoryInteractionInfo
-    { view_count             = Nothing
-    , recent_viewer_user_ids = Nothing
-    }
 

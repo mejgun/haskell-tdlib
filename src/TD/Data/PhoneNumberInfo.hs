@@ -1,7 +1,5 @@
 module TD.Data.PhoneNumberInfo
-  ( PhoneNumberInfo(..)    
-  , defaultPhoneNumberInfo 
-  ) where
+  (PhoneNumberInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON PhoneNumberInfo where
           , is_anonymous           = is_anonymous_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PhoneNumberInfo where
-  toJSON PhoneNumberInfo
-    { country                = country_
-    , country_calling_code   = country_calling_code_
-    , formatted_phone_number = formatted_phone_number_
-    , is_anonymous           = is_anonymous_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "phoneNumberInfo"
-        , "country"                A..= country_
-        , "country_calling_code"   A..= country_calling_code_
-        , "formatted_phone_number" A..= formatted_phone_number_
-        , "is_anonymous"           A..= is_anonymous_
-        ]
-
-defaultPhoneNumberInfo :: PhoneNumberInfo
-defaultPhoneNumberInfo =
-  PhoneNumberInfo
-    { country                = Nothing
-    , country_calling_code   = Nothing
-    , formatted_phone_number = Nothing
-    , is_anonymous           = Nothing
-    }
 

@@ -1,8 +1,5 @@
 module TD.Data.MessageReplyTo
-  ( MessageReplyTo(..)           
-  , defaultMessageReplyToMessage 
-  , defaultMessageReplyToStory   
-  ) where
+  (MessageReplyTo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -87,18 +84,4 @@ instance AT.ToJSON MessageReplyTo where
         , "story_sender_chat_id" A..= story_sender_chat_id_
         , "story_id"             A..= story_id_
         ]
-
-defaultMessageReplyToMessage :: MessageReplyTo
-defaultMessageReplyToMessage =
-  MessageReplyToMessage
-    { chat_id    = Nothing
-    , message_id = Nothing
-    }
-
-defaultMessageReplyToStory :: MessageReplyTo
-defaultMessageReplyToStory =
-  MessageReplyToStory
-    { story_sender_chat_id = Nothing
-    , story_id             = Nothing
-    }
 

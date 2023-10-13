@@ -1,7 +1,5 @@
 module TD.Data.TMeUrls
-  ( TMeUrls(..)    
-  , defaultTMeUrls 
-  ) where
+  (TMeUrls(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON TMeUrls where
           { urls = urls_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON TMeUrls where
-  toJSON TMeUrls
-    { urls = urls_
-    }
-      = A.object
-        [ "@type" A..= AT.String "tMeUrls"
-        , "urls"  A..= urls_
-        ]
-
-defaultTMeUrls :: TMeUrls
-defaultTMeUrls =
-  TMeUrls
-    { urls = Nothing
-    }
 

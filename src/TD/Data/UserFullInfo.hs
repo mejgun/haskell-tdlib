@@ -1,7 +1,5 @@
 module TD.Data.UserFullInfo
-  ( UserFullInfo(..)    
-  , defaultUserFullInfo 
-  ) where
+  (UserFullInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -112,61 +110,4 @@ instance AT.FromJSON UserFullInfo where
           , bot_info                                     = bot_info_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON UserFullInfo where
-  toJSON UserFullInfo
-    { personal_photo                               = personal_photo_
-    , photo                                        = photo_
-    , public_photo                                 = public_photo_
-    , is_blocked                                   = is_blocked_
-    , can_be_called                                = can_be_called_
-    , supports_video_calls                         = supports_video_calls_
-    , has_private_calls                            = has_private_calls_
-    , has_private_forwards                         = has_private_forwards_
-    , has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_
-    , has_pinned_stories                           = has_pinned_stories_
-    , need_phone_number_privacy_exception          = need_phone_number_privacy_exception_
-    , bio                                          = bio_
-    , premium_gift_options                         = premium_gift_options_
-    , group_in_common_count                        = group_in_common_count_
-    , bot_info                                     = bot_info_
-    }
-      = A.object
-        [ "@type"                                        A..= AT.String "userFullInfo"
-        , "personal_photo"                               A..= personal_photo_
-        , "photo"                                        A..= photo_
-        , "public_photo"                                 A..= public_photo_
-        , "is_blocked"                                   A..= is_blocked_
-        , "can_be_called"                                A..= can_be_called_
-        , "supports_video_calls"                         A..= supports_video_calls_
-        , "has_private_calls"                            A..= has_private_calls_
-        , "has_private_forwards"                         A..= has_private_forwards_
-        , "has_restricted_voice_and_video_note_messages" A..= has_restricted_voice_and_video_note_messages_
-        , "has_pinned_stories"                           A..= has_pinned_stories_
-        , "need_phone_number_privacy_exception"          A..= need_phone_number_privacy_exception_
-        , "bio"                                          A..= bio_
-        , "premium_gift_options"                         A..= premium_gift_options_
-        , "group_in_common_count"                        A..= group_in_common_count_
-        , "bot_info"                                     A..= bot_info_
-        ]
-
-defaultUserFullInfo :: UserFullInfo
-defaultUserFullInfo =
-  UserFullInfo
-    { personal_photo                               = Nothing
-    , photo                                        = Nothing
-    , public_photo                                 = Nothing
-    , is_blocked                                   = Nothing
-    , can_be_called                                = Nothing
-    , supports_video_calls                         = Nothing
-    , has_private_calls                            = Nothing
-    , has_private_forwards                         = Nothing
-    , has_restricted_voice_and_video_note_messages = Nothing
-    , has_pinned_stories                           = Nothing
-    , need_phone_number_privacy_exception          = Nothing
-    , bio                                          = Nothing
-    , premium_gift_options                         = Nothing
-    , group_in_common_count                        = Nothing
-    , bot_info                                     = Nothing
-    }
 

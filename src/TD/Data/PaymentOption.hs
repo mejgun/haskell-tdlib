@@ -1,7 +1,5 @@
 module TD.Data.PaymentOption
-  ( PaymentOption(..)    
-  , defaultPaymentOption 
-  ) where
+  (PaymentOption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON PaymentOption where
           , url   = url_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PaymentOption where
-  toJSON PaymentOption
-    { title = title_
-    , url   = url_
-    }
-      = A.object
-        [ "@type" A..= AT.String "paymentOption"
-        , "title" A..= title_
-        , "url"   A..= url_
-        ]
-
-defaultPaymentOption :: PaymentOption
-defaultPaymentOption =
-  PaymentOption
-    { title = Nothing
-    , url   = Nothing
-    }
 

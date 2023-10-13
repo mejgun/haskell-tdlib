@@ -1,7 +1,5 @@
 module TD.Data.LocalFile
-  ( LocalFile(..)    
-  , defaultLocalFile 
-  ) where
+  (LocalFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -74,40 +72,4 @@ instance AT.FromJSON LocalFile where
           , downloaded_size          = downloaded_size_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON LocalFile where
-  toJSON LocalFile
-    { path                     = path_
-    , can_be_downloaded        = can_be_downloaded_
-    , can_be_deleted           = can_be_deleted_
-    , is_downloading_active    = is_downloading_active_
-    , is_downloading_completed = is_downloading_completed_
-    , download_offset          = download_offset_
-    , downloaded_prefix_size   = downloaded_prefix_size_
-    , downloaded_size          = downloaded_size_
-    }
-      = A.object
-        [ "@type"                    A..= AT.String "localFile"
-        , "path"                     A..= path_
-        , "can_be_downloaded"        A..= can_be_downloaded_
-        , "can_be_deleted"           A..= can_be_deleted_
-        , "is_downloading_active"    A..= is_downloading_active_
-        , "is_downloading_completed" A..= is_downloading_completed_
-        , "download_offset"          A..= download_offset_
-        , "downloaded_prefix_size"   A..= downloaded_prefix_size_
-        , "downloaded_size"          A..= downloaded_size_
-        ]
-
-defaultLocalFile :: LocalFile
-defaultLocalFile =
-  LocalFile
-    { path                     = Nothing
-    , can_be_downloaded        = Nothing
-    , can_be_deleted           = Nothing
-    , is_downloading_active    = Nothing
-    , is_downloading_completed = Nothing
-    , download_offset          = Nothing
-    , downloaded_prefix_size   = Nothing
-    , downloaded_size          = Nothing
-    }
 

@@ -1,6 +1,6 @@
 module TD.Data.PageBlock (PageBlock) where
 
-import Data.Aeson.Types (FromJSON, ToJSON)
+import Data.Aeson.Types (FromJSON)
 
 data PageBlock
 
@@ -10,4 +10,4 @@ instance Show PageBlock
 
 instance FromJSON PageBlock
 
-instance ToJSON PageBlock
+

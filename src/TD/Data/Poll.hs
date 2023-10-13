@@ -1,7 +1,5 @@
 module TD.Data.Poll
-  ( Poll(..)    
-  , defaultPoll 
-  ) where
+  (Poll(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -87,46 +85,4 @@ instance AT.FromJSON Poll where
           , is_closed         = is_closed_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Poll where
-  toJSON Poll
-    { _id               = _id_
-    , question          = question_
-    , options           = options_
-    , total_voter_count = total_voter_count_
-    , recent_voter_ids  = recent_voter_ids_
-    , is_anonymous      = is_anonymous_
-    , _type             = _type_
-    , open_period       = open_period_
-    , close_date        = close_date_
-    , is_closed         = is_closed_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "poll"
-        , "id"                A..= fmap I.writeInt64  _id_
-        , "question"          A..= question_
-        , "options"           A..= options_
-        , "total_voter_count" A..= total_voter_count_
-        , "recent_voter_ids"  A..= recent_voter_ids_
-        , "is_anonymous"      A..= is_anonymous_
-        , "type"              A..= _type_
-        , "open_period"       A..= open_period_
-        , "close_date"        A..= close_date_
-        , "is_closed"         A..= is_closed_
-        ]
-
-defaultPoll :: Poll
-defaultPoll =
-  Poll
-    { _id               = Nothing
-    , question          = Nothing
-    , options           = Nothing
-    , total_voter_count = Nothing
-    , recent_voter_ids  = Nothing
-    , is_anonymous      = Nothing
-    , _type             = Nothing
-    , open_period       = Nothing
-    , close_date        = Nothing
-    , is_closed         = Nothing
-    }
 

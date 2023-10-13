@@ -1,7 +1,5 @@
 module TD.Data.Count
-  ( Count(..)    
-  , defaultCount 
-  ) where
+  (Count(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -38,19 +36,4 @@ instance AT.FromJSON Count where
           { count = count_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Count where
-  toJSON Count
-    { count = count_
-    }
-      = A.object
-        [ "@type" A..= AT.String "count"
-        , "count" A..= count_
-        ]
-
-defaultCount :: Count
-defaultCount =
-  Count
-    { count = Nothing
-    }
 

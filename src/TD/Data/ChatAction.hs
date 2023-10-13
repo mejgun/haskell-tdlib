@@ -1,12 +1,5 @@
 module TD.Data.ChatAction
-  ( ChatAction(..)                      
-  , defaultChatActionUploadingVideo     
-  , defaultChatActionUploadingVoiceNote 
-  , defaultChatActionUploadingPhoto     
-  , defaultChatActionUploadingDocument  
-  , defaultChatActionUploadingVideoNote 
-  , defaultChatActionWatchingAnimations 
-  ) where
+  (ChatAction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -246,40 +239,4 @@ instance AT.ToJSON ChatAction where
       = A.object
         [ "@type" A..= AT.String "chatActionCancel"
         ]
-
-defaultChatActionUploadingVideo :: ChatAction
-defaultChatActionUploadingVideo =
-  ChatActionUploadingVideo
-    { progress = Nothing
-    }
-
-defaultChatActionUploadingVoiceNote :: ChatAction
-defaultChatActionUploadingVoiceNote =
-  ChatActionUploadingVoiceNote
-    { progress = Nothing
-    }
-
-defaultChatActionUploadingPhoto :: ChatAction
-defaultChatActionUploadingPhoto =
-  ChatActionUploadingPhoto
-    { progress = Nothing
-    }
-
-defaultChatActionUploadingDocument :: ChatAction
-defaultChatActionUploadingDocument =
-  ChatActionUploadingDocument
-    { progress = Nothing
-    }
-
-defaultChatActionUploadingVideoNote :: ChatAction
-defaultChatActionUploadingVideoNote =
-  ChatActionUploadingVideoNote
-    { progress = Nothing
-    }
-
-defaultChatActionWatchingAnimations :: ChatAction
-defaultChatActionWatchingAnimations =
-  ChatActionWatchingAnimations
-    { emoji = Nothing
-    }
 

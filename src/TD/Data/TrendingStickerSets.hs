@@ -1,7 +1,5 @@
 module TD.Data.TrendingStickerSets
-  ( TrendingStickerSets(..)    
-  , defaultTrendingStickerSets 
-  ) where
+  (TrendingStickerSets(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON TrendingStickerSets where
           , is_premium  = is_premium_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON TrendingStickerSets where
-  toJSON TrendingStickerSets
-    { total_count = total_count_
-    , sets        = sets_
-    , is_premium  = is_premium_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "trendingStickerSets"
-        , "total_count" A..= total_count_
-        , "sets"        A..= sets_
-        , "is_premium"  A..= is_premium_
-        ]
-
-defaultTrendingStickerSets :: TrendingStickerSets
-defaultTrendingStickerSets =
-  TrendingStickerSets
-    { total_count = Nothing
-    , sets        = Nothing
-    , is_premium  = Nothing
-    }
 

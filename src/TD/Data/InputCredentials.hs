@@ -1,10 +1,5 @@
 module TD.Data.InputCredentials
-  ( InputCredentials(..)             
-  , defaultInputCredentialsSaved     
-  , defaultInputCredentialsNew       
-  , defaultInputCredentialsApplePay  
-  , defaultInputCredentialsGooglePay 
-  ) where
+  (InputCredentials(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -131,29 +126,4 @@ instance AT.ToJSON InputCredentials where
         [ "@type" A..= AT.String "inputCredentialsGooglePay"
         , "data"  A..= _data_
         ]
-
-defaultInputCredentialsSaved :: InputCredentials
-defaultInputCredentialsSaved =
-  InputCredentialsSaved
-    { saved_credentials_id = Nothing
-    }
-
-defaultInputCredentialsNew :: InputCredentials
-defaultInputCredentialsNew =
-  InputCredentialsNew
-    { _data      = Nothing
-    , allow_save = Nothing
-    }
-
-defaultInputCredentialsApplePay :: InputCredentials
-defaultInputCredentialsApplePay =
-  InputCredentialsApplePay
-    { _data = Nothing
-    }
-
-defaultInputCredentialsGooglePay :: InputCredentials
-defaultInputCredentialsGooglePay =
-  InputCredentialsGooglePay
-    { _data = Nothing
-    }
 

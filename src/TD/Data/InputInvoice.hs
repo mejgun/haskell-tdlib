@@ -1,8 +1,5 @@
 module TD.Data.InputInvoice
-  ( InputInvoice(..)           
-  , defaultInputInvoiceMessage 
-  , defaultInputInvoiceName    
-  ) where
+  (InputInvoice(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,17 +78,4 @@ instance AT.ToJSON InputInvoice where
         [ "@type" A..= AT.String "inputInvoiceName"
         , "name"  A..= name_
         ]
-
-defaultInputInvoiceMessage :: InputInvoice
-defaultInputInvoiceMessage =
-  InputInvoiceMessage
-    { chat_id    = Nothing
-    , message_id = Nothing
-    }
-
-defaultInputInvoiceName :: InputInvoice
-defaultInputInvoiceName =
-  InputInvoiceName
-    { name = Nothing
-    }
 

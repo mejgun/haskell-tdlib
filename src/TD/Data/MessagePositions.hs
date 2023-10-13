@@ -1,7 +1,5 @@
 module TD.Data.MessagePositions
-  ( MessagePositions(..)    
-  , defaultMessagePositions 
-  ) where
+  (MessagePositions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON MessagePositions where
           , positions   = positions_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessagePositions where
-  toJSON MessagePositions
-    { total_count = total_count_
-    , positions   = positions_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messagePositions"
-        , "total_count" A..= total_count_
-        , "positions"   A..= positions_
-        ]
-
-defaultMessagePositions :: MessagePositions
-defaultMessagePositions =
-  MessagePositions
-    { total_count = Nothing
-    , positions   = Nothing
-    }
 

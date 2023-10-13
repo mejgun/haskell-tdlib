@@ -1,7 +1,5 @@
 module TD.Data.UserType
-  ( UserType(..)       
-  , defaultUserTypeBot 
-  ) where
+  (UserType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,49 +80,4 @@ instance AT.FromJSON UserType where
           , can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON UserType where
-  toJSON UserTypeRegular
-      = A.object
-        [ "@type" A..= AT.String "userTypeRegular"
-        ]
-  toJSON UserTypeDeleted
-      = A.object
-        [ "@type" A..= AT.String "userTypeDeleted"
-        ]
-  toJSON UserTypeBot
-    { can_be_edited                   = can_be_edited_
-    , can_join_groups                 = can_join_groups_
-    , can_read_all_group_messages     = can_read_all_group_messages_
-    , is_inline                       = is_inline_
-    , inline_query_placeholder        = inline_query_placeholder_
-    , need_location                   = need_location_
-    , can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_
-    }
-      = A.object
-        [ "@type"                           A..= AT.String "userTypeBot"
-        , "can_be_edited"                   A..= can_be_edited_
-        , "can_join_groups"                 A..= can_join_groups_
-        , "can_read_all_group_messages"     A..= can_read_all_group_messages_
-        , "is_inline"                       A..= is_inline_
-        , "inline_query_placeholder"        A..= inline_query_placeholder_
-        , "need_location"                   A..= need_location_
-        , "can_be_added_to_attachment_menu" A..= can_be_added_to_attachment_menu_
-        ]
-  toJSON UserTypeUnknown
-      = A.object
-        [ "@type" A..= AT.String "userTypeUnknown"
-        ]
-
-defaultUserTypeBot :: UserType
-defaultUserTypeBot =
-  UserTypeBot
-    { can_be_edited                   = Nothing
-    , can_join_groups                 = Nothing
-    , can_read_all_group_messages     = Nothing
-    , is_inline                       = Nothing
-    , inline_query_placeholder        = Nothing
-    , need_location                   = Nothing
-    , can_be_added_to_attachment_menu = Nothing
-    }
 

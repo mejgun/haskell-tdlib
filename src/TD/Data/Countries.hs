@@ -1,7 +1,5 @@
 module TD.Data.Countries
-  ( Countries(..)    
-  , defaultCountries 
-  ) where
+  (Countries(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON Countries where
           { countries = countries_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Countries where
-  toJSON Countries
-    { countries = countries_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "countries"
-        , "countries" A..= countries_
-        ]
-
-defaultCountries :: Countries
-defaultCountries =
-  Countries
-    { countries = Nothing
-    }
 

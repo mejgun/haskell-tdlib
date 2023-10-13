@@ -1,7 +1,5 @@
 module TD.Data.ChatPhoto
-  ( ChatPhoto(..)    
-  , defaultChatPhoto 
-  ) where
+  (ChatPhoto(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -72,37 +70,4 @@ instance AT.FromJSON ChatPhoto where
           , sticker         = sticker_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatPhoto where
-  toJSON ChatPhoto
-    { _id             = _id_
-    , added_date      = added_date_
-    , minithumbnail   = minithumbnail_
-    , sizes           = sizes_
-    , animation       = animation_
-    , small_animation = small_animation_
-    , sticker         = sticker_
-    }
-      = A.object
-        [ "@type"           A..= AT.String "chatPhoto"
-        , "id"              A..= fmap I.writeInt64  _id_
-        , "added_date"      A..= added_date_
-        , "minithumbnail"   A..= minithumbnail_
-        , "sizes"           A..= sizes_
-        , "animation"       A..= animation_
-        , "small_animation" A..= small_animation_
-        , "sticker"         A..= sticker_
-        ]
-
-defaultChatPhoto :: ChatPhoto
-defaultChatPhoto =
-  ChatPhoto
-    { _id             = Nothing
-    , added_date      = Nothing
-    , minithumbnail   = Nothing
-    , sizes           = Nothing
-    , animation       = Nothing
-    , small_animation = Nothing
-    , sticker         = Nothing
-    }
 

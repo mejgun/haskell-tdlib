@@ -1,7 +1,5 @@
 module TD.Data.DeepLinkInfo
-  ( DeepLinkInfo(..)    
-  , defaultDeepLinkInfo 
-  ) where
+  (DeepLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON DeepLinkInfo where
           , need_update_application = need_update_application_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON DeepLinkInfo where
-  toJSON DeepLinkInfo
-    { text                    = text_
-    , need_update_application = need_update_application_
-    }
-      = A.object
-        [ "@type"                   A..= AT.String "deepLinkInfo"
-        , "text"                    A..= text_
-        , "need_update_application" A..= need_update_application_
-        ]
-
-defaultDeepLinkInfo :: DeepLinkInfo
-defaultDeepLinkInfo =
-  DeepLinkInfo
-    { text                    = Nothing
-    , need_update_application = Nothing
-    }
 

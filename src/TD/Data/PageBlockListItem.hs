@@ -1,7 +1,5 @@
 module TD.Data.PageBlockListItem
-  ( PageBlockListItem(..)    
-  , defaultPageBlockListItem 
-  ) where
+  (PageBlockListItem(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,22 +43,4 @@ instance AT.FromJSON PageBlockListItem where
           , page_blocks = page_blocks_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PageBlockListItem where
-  toJSON PageBlockListItem
-    { label       = label_
-    , page_blocks = page_blocks_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "pageBlockListItem"
-        , "label"       A..= label_
-        , "page_blocks" A..= page_blocks_
-        ]
-
-defaultPageBlockListItem :: PageBlockListItem
-defaultPageBlockListItem =
-  PageBlockListItem
-    { label       = Nothing
-    , page_blocks = Nothing
-    }
 

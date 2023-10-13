@@ -1,7 +1,5 @@
 module TD.Data.PremiumFeaturePromotionAnimation
-  ( PremiumFeaturePromotionAnimation(..)    
-  , defaultPremiumFeaturePromotionAnimation 
-  ) where
+  (PremiumFeaturePromotionAnimation(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,22 +43,4 @@ instance AT.FromJSON PremiumFeaturePromotionAnimation where
           , animation = animation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PremiumFeaturePromotionAnimation where
-  toJSON PremiumFeaturePromotionAnimation
-    { feature   = feature_
-    , animation = animation_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "premiumFeaturePromotionAnimation"
-        , "feature"   A..= feature_
-        , "animation" A..= animation_
-        ]
-
-defaultPremiumFeaturePromotionAnimation :: PremiumFeaturePromotionAnimation
-defaultPremiumFeaturePromotionAnimation =
-  PremiumFeaturePromotionAnimation
-    { feature   = Nothing
-    , animation = Nothing
-    }
 

@@ -1,8 +1,5 @@
 module TD.Data.DiceStickers
-  ( DiceStickers(..)               
-  , defaultDiceStickersRegular     
-  , defaultDiceStickersSlotMachine 
-  ) where
+  (DiceStickers(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -78,44 +75,4 @@ instance AT.FromJSON DiceStickers where
           , right_reel  = right_reel_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON DiceStickers where
-  toJSON DiceStickersRegular
-    { sticker = sticker_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "diceStickersRegular"
-        , "sticker" A..= sticker_
-        ]
-  toJSON DiceStickersSlotMachine
-    { background  = background_
-    , lever       = lever_
-    , left_reel   = left_reel_
-    , center_reel = center_reel_
-    , right_reel  = right_reel_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "diceStickersSlotMachine"
-        , "background"  A..= background_
-        , "lever"       A..= lever_
-        , "left_reel"   A..= left_reel_
-        , "center_reel" A..= center_reel_
-        , "right_reel"  A..= right_reel_
-        ]
-
-defaultDiceStickersRegular :: DiceStickers
-defaultDiceStickersRegular =
-  DiceStickersRegular
-    { sticker = Nothing
-    }
-
-defaultDiceStickersSlotMachine :: DiceStickers
-defaultDiceStickersSlotMachine =
-  DiceStickersSlotMachine
-    { background  = Nothing
-    , lever       = Nothing
-    , left_reel   = Nothing
-    , center_reel = Nothing
-    , right_reel  = Nothing
-    }
 

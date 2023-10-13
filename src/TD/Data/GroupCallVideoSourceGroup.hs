@@ -1,7 +1,5 @@
 module TD.Data.GroupCallVideoSourceGroup
-  ( GroupCallVideoSourceGroup(..)    
-  , defaultGroupCallVideoSourceGroup 
-  ) where
+  (GroupCallVideoSourceGroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON GroupCallVideoSourceGroup where
           , source_ids = source_ids_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GroupCallVideoSourceGroup where
-  toJSON GroupCallVideoSourceGroup
-    { semantics  = semantics_
-    , source_ids = source_ids_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "groupCallVideoSourceGroup"
-        , "semantics"  A..= semantics_
-        , "source_ids" A..= source_ids_
-        ]
-
-defaultGroupCallVideoSourceGroup :: GroupCallVideoSourceGroup
-defaultGroupCallVideoSourceGroup =
-  GroupCallVideoSourceGroup
-    { semantics  = Nothing
-    , source_ids = Nothing
-    }
 

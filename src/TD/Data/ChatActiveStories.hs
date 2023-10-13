@@ -1,7 +1,5 @@
 module TD.Data.ChatActiveStories
-  ( ChatActiveStories(..)    
-  , defaultChatActiveStories 
-  ) where
+  (ChatActiveStories(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,31 +58,4 @@ instance AT.FromJSON ChatActiveStories where
           , stories           = stories_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatActiveStories where
-  toJSON ChatActiveStories
-    { chat_id           = chat_id_
-    , list              = list_
-    , order             = order_
-    , max_read_story_id = max_read_story_id_
-    , stories           = stories_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "chatActiveStories"
-        , "chat_id"           A..= chat_id_
-        , "list"              A..= list_
-        , "order"             A..= order_
-        , "max_read_story_id" A..= max_read_story_id_
-        , "stories"           A..= stories_
-        ]
-
-defaultChatActiveStories :: ChatActiveStories
-defaultChatActiveStories =
-  ChatActiveStories
-    { chat_id           = Nothing
-    , list              = Nothing
-    , order             = Nothing
-    , max_read_story_id = Nothing
-    , stories           = Nothing
-    }
 

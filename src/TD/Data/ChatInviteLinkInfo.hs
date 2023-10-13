@@ -1,7 +1,5 @@
 module TD.Data.ChatInviteLinkInfo
-  ( ChatInviteLinkInfo(..)    
-  , defaultChatInviteLinkInfo 
-  ) where
+  (ChatInviteLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -86,46 +84,4 @@ instance AT.FromJSON ChatInviteLinkInfo where
           , is_public            = is_public_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatInviteLinkInfo where
-  toJSON ChatInviteLinkInfo
-    { chat_id              = chat_id_
-    , accessible_for       = accessible_for_
-    , _type                = _type_
-    , title                = title_
-    , photo                = photo_
-    , description          = description_
-    , member_count         = member_count_
-    , member_user_ids      = member_user_ids_
-    , creates_join_request = creates_join_request_
-    , is_public            = is_public_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "chatInviteLinkInfo"
-        , "chat_id"              A..= chat_id_
-        , "accessible_for"       A..= accessible_for_
-        , "type"                 A..= _type_
-        , "title"                A..= title_
-        , "photo"                A..= photo_
-        , "description"          A..= description_
-        , "member_count"         A..= member_count_
-        , "member_user_ids"      A..= member_user_ids_
-        , "creates_join_request" A..= creates_join_request_
-        , "is_public"            A..= is_public_
-        ]
-
-defaultChatInviteLinkInfo :: ChatInviteLinkInfo
-defaultChatInviteLinkInfo =
-  ChatInviteLinkInfo
-    { chat_id              = Nothing
-    , accessible_for       = Nothing
-    , _type                = Nothing
-    , title                = Nothing
-    , photo                = Nothing
-    , description          = Nothing
-    , member_count         = Nothing
-    , member_user_ids      = Nothing
-    , creates_join_request = Nothing
-    , is_public            = Nothing
-    }
 

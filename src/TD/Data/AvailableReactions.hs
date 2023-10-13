@@ -1,7 +1,5 @@
 module TD.Data.AvailableReactions
-  ( AvailableReactions(..)    
-  , defaultAvailableReactions 
-  ) where
+  (AvailableReactions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -54,28 +52,4 @@ instance AT.FromJSON AvailableReactions where
           , allow_custom_emoji = allow_custom_emoji_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AvailableReactions where
-  toJSON AvailableReactions
-    { top_reactions      = top_reactions_
-    , recent_reactions   = recent_reactions_
-    , popular_reactions  = popular_reactions_
-    , allow_custom_emoji = allow_custom_emoji_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "availableReactions"
-        , "top_reactions"      A..= top_reactions_
-        , "recent_reactions"   A..= recent_reactions_
-        , "popular_reactions"  A..= popular_reactions_
-        , "allow_custom_emoji" A..= allow_custom_emoji_
-        ]
-
-defaultAvailableReactions :: AvailableReactions
-defaultAvailableReactions =
-  AvailableReactions
-    { top_reactions      = Nothing
-    , recent_reactions   = Nothing
-    , popular_reactions  = Nothing
-    , allow_custom_emoji = Nothing
-    }
 

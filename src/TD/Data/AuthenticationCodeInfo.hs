@@ -1,7 +1,5 @@
 module TD.Data.AuthenticationCodeInfo
-  ( AuthenticationCodeInfo(..)    
-  , defaultAuthenticationCodeInfo 
-  ) where
+  (AuthenticationCodeInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON AuthenticationCodeInfo where
           , timeout      = timeout_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AuthenticationCodeInfo where
-  toJSON AuthenticationCodeInfo
-    { phone_number = phone_number_
-    , _type        = _type_
-    , next_type    = next_type_
-    , timeout      = timeout_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "authenticationCodeInfo"
-        , "phone_number" A..= phone_number_
-        , "type"         A..= _type_
-        , "next_type"    A..= next_type_
-        , "timeout"      A..= timeout_
-        ]
-
-defaultAuthenticationCodeInfo :: AuthenticationCodeInfo
-defaultAuthenticationCodeInfo =
-  AuthenticationCodeInfo
-    { phone_number = Nothing
-    , _type        = Nothing
-    , next_type    = Nothing
-    , timeout      = Nothing
-    }
 

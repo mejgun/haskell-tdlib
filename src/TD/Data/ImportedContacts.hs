@@ -1,7 +1,5 @@
 module TD.Data.ImportedContacts
-  ( ImportedContacts(..)    
-  , defaultImportedContacts 
-  ) where
+  (ImportedContacts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,22 +41,4 @@ instance AT.FromJSON ImportedContacts where
           , importer_count = importer_count_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ImportedContacts where
-  toJSON ImportedContacts
-    { user_ids       = user_ids_
-    , importer_count = importer_count_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "importedContacts"
-        , "user_ids"       A..= user_ids_
-        , "importer_count" A..= importer_count_
-        ]
-
-defaultImportedContacts :: ImportedContacts
-defaultImportedContacts =
-  ImportedContacts
-    { user_ids       = Nothing
-    , importer_count = Nothing
-    }
 

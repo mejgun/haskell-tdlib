@@ -1,7 +1,5 @@
 module TD.Data.BasicGroup
-  ( BasicGroup(..)    
-  , defaultBasicGroup 
-  ) where
+  (BasicGroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,31 +57,4 @@ instance AT.FromJSON BasicGroup where
           , upgraded_to_supergroup_id = upgraded_to_supergroup_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON BasicGroup where
-  toJSON BasicGroup
-    { _id                       = _id_
-    , member_count              = member_count_
-    , status                    = status_
-    , is_active                 = is_active_
-    , upgraded_to_supergroup_id = upgraded_to_supergroup_id_
-    }
-      = A.object
-        [ "@type"                     A..= AT.String "basicGroup"
-        , "id"                        A..= _id_
-        , "member_count"              A..= member_count_
-        , "status"                    A..= status_
-        , "is_active"                 A..= is_active_
-        , "upgraded_to_supergroup_id" A..= upgraded_to_supergroup_id_
-        ]
-
-defaultBasicGroup :: BasicGroup
-defaultBasicGroup =
-  BasicGroup
-    { _id                       = Nothing
-    , member_count              = Nothing
-    , status                    = Nothing
-    , is_active                 = Nothing
-    , upgraded_to_supergroup_id = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.ChatSource
-  ( ChatSource(..)                             
-  , defaultChatSourcePublicServiceAnnouncement 
-  ) where
+  (ChatSource(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,26 +47,4 @@ instance AT.FromJSON ChatSource where
           , text  = text_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatSource where
-  toJSON ChatSourceMtprotoProxy
-      = A.object
-        [ "@type" A..= AT.String "chatSourceMtprotoProxy"
-        ]
-  toJSON ChatSourcePublicServiceAnnouncement
-    { _type = _type_
-    , text  = text_
-    }
-      = A.object
-        [ "@type" A..= AT.String "chatSourcePublicServiceAnnouncement"
-        , "type"  A..= _type_
-        , "text"  A..= text_
-        ]
-
-defaultChatSourcePublicServiceAnnouncement :: ChatSource
-defaultChatSourcePublicServiceAnnouncement =
-  ChatSourcePublicServiceAnnouncement
-    { _type = Nothing
-    , text  = Nothing
-    }
 

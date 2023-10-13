@@ -1,9 +1,5 @@
 module TD.Data.EmailAddressAuthentication
-  ( EmailAddressAuthentication(..)            
-  , defaultEmailAddressAuthenticationCode     
-  , defaultEmailAddressAuthenticationAppleId  
-  , defaultEmailAddressAuthenticationGoogleId 
-  ) where
+  (EmailAddressAuthentication(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -99,22 +95,4 @@ instance AT.ToJSON EmailAddressAuthentication where
         [ "@type" A..= AT.String "emailAddressAuthenticationGoogleId"
         , "token" A..= token_
         ]
-
-defaultEmailAddressAuthenticationCode :: EmailAddressAuthentication
-defaultEmailAddressAuthenticationCode =
-  EmailAddressAuthenticationCode
-    { code = Nothing
-    }
-
-defaultEmailAddressAuthenticationAppleId :: EmailAddressAuthentication
-defaultEmailAddressAuthenticationAppleId =
-  EmailAddressAuthenticationAppleId
-    { token = Nothing
-    }
-
-defaultEmailAddressAuthenticationGoogleId :: EmailAddressAuthentication
-defaultEmailAddressAuthenticationGoogleId =
-  EmailAddressAuthenticationGoogleId
-    { token = Nothing
-    }
 

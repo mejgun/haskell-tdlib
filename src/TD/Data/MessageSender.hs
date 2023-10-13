@@ -1,8 +1,5 @@
 module TD.Data.MessageSender
-  ( MessageSender(..)        
-  , defaultMessageSenderUser 
-  , defaultMessageSenderChat 
-  ) where
+  (MessageSender(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,16 +70,4 @@ instance AT.ToJSON MessageSender where
         [ "@type"   A..= AT.String "messageSenderChat"
         , "chat_id" A..= chat_id_
         ]
-
-defaultMessageSenderUser :: MessageSender
-defaultMessageSenderUser =
-  MessageSenderUser
-    { user_id = Nothing
-    }
-
-defaultMessageSenderChat :: MessageSender
-defaultMessageSenderChat =
-  MessageSenderChat
-    { chat_id = Nothing
-    }
 

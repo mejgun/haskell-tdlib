@@ -1,7 +1,5 @@
 module TD.Data.ChatBackground
-  ( ChatBackground(..)    
-  , defaultChatBackground 
-  ) where
+  (ChatBackground(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON ChatBackground where
           , dark_theme_dimming = dark_theme_dimming_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatBackground where
-  toJSON ChatBackground
-    { background         = background_
-    , dark_theme_dimming = dark_theme_dimming_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "chatBackground"
-        , "background"         A..= background_
-        , "dark_theme_dimming" A..= dark_theme_dimming_
-        ]
-
-defaultChatBackground :: ChatBackground
-defaultChatBackground =
-  ChatBackground
-    { background         = Nothing
-    , dark_theme_dimming = Nothing
-    }
 

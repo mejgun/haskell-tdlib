@@ -1,6 +1,5 @@
 module TD.Data.NotificationSettingsScope
-  ( NotificationSettingsScope(..) 
-  ) where
+  (NotificationSettingsScope(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT

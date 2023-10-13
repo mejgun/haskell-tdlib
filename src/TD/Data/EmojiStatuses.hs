@@ -1,7 +1,5 @@
 module TD.Data.EmojiStatuses
-  ( EmojiStatuses(..)    
-  , defaultEmojiStatuses 
-  ) where
+  (EmojiStatuses(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -38,19 +36,4 @@ instance AT.FromJSON EmojiStatuses where
           { custom_emoji_ids = custom_emoji_ids_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON EmojiStatuses where
-  toJSON EmojiStatuses
-    { custom_emoji_ids = custom_emoji_ids_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "emojiStatuses"
-        , "custom_emoji_ids" A..= fmap (fmap I.writeInt64 ) custom_emoji_ids_
-        ]
-
-defaultEmojiStatuses :: EmojiStatuses
-defaultEmojiStatuses =
-  EmojiStatuses
-    { custom_emoji_ids = Nothing
-    }
 

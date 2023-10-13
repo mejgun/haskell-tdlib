@@ -1,13 +1,5 @@
 module TD.Data.InlineKeyboardButtonType
-  ( InlineKeyboardButtonType(..)                        
-  , defaultInlineKeyboardButtonTypeUrl                  
-  , defaultInlineKeyboardButtonTypeLoginUrl             
-  , defaultInlineKeyboardButtonTypeWebApp               
-  , defaultInlineKeyboardButtonTypeCallback             
-  , defaultInlineKeyboardButtonTypeCallbackWithPassword 
-  , defaultInlineKeyboardButtonTypeSwitchInline         
-  , defaultInlineKeyboardButtonTypeUser                 
-  ) where
+  (InlineKeyboardButtonType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -238,49 +230,4 @@ instance AT.ToJSON InlineKeyboardButtonType where
         [ "@type"   A..= AT.String "inlineKeyboardButtonTypeUser"
         , "user_id" A..= user_id_
         ]
-
-defaultInlineKeyboardButtonTypeUrl :: InlineKeyboardButtonType
-defaultInlineKeyboardButtonTypeUrl =
-  InlineKeyboardButtonTypeUrl
-    { url = Nothing
-    }
-
-defaultInlineKeyboardButtonTypeLoginUrl :: InlineKeyboardButtonType
-defaultInlineKeyboardButtonTypeLoginUrl =
-  InlineKeyboardButtonTypeLoginUrl
-    { url          = Nothing
-    , _id          = Nothing
-    , forward_text = Nothing
-    }
-
-defaultInlineKeyboardButtonTypeWebApp :: InlineKeyboardButtonType
-defaultInlineKeyboardButtonTypeWebApp =
-  InlineKeyboardButtonTypeWebApp
-    { url = Nothing
-    }
-
-defaultInlineKeyboardButtonTypeCallback :: InlineKeyboardButtonType
-defaultInlineKeyboardButtonTypeCallback =
-  InlineKeyboardButtonTypeCallback
-    { _data = Nothing
-    }
-
-defaultInlineKeyboardButtonTypeCallbackWithPassword :: InlineKeyboardButtonType
-defaultInlineKeyboardButtonTypeCallbackWithPassword =
-  InlineKeyboardButtonTypeCallbackWithPassword
-    { _data = Nothing
-    }
-
-defaultInlineKeyboardButtonTypeSwitchInline :: InlineKeyboardButtonType
-defaultInlineKeyboardButtonTypeSwitchInline =
-  InlineKeyboardButtonTypeSwitchInline
-    { query       = Nothing
-    , target_chat = Nothing
-    }
-
-defaultInlineKeyboardButtonTypeUser :: InlineKeyboardButtonType
-defaultInlineKeyboardButtonTypeUser =
-  InlineKeyboardButtonTypeUser
-    { user_id = Nothing
-    }
 

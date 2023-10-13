@@ -1,6 +1,5 @@
 module TD.Data.SecretChatState
-  ( SecretChatState(..) 
-  ) where
+  (SecretChatState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -31,18 +30,4 @@ instance AT.FromJSON SecretChatState where
       _                        -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON SecretChatState where
-  toJSON SecretChatStatePending
-      = A.object
-        [ "@type" A..= AT.String "secretChatStatePending"
-        ]
-  toJSON SecretChatStateReady
-      = A.object
-        [ "@type" A..= AT.String "secretChatStateReady"
-        ]
-  toJSON SecretChatStateClosed
-      = A.object
-        [ "@type" A..= AT.String "secretChatStateClosed"
-        ]
 

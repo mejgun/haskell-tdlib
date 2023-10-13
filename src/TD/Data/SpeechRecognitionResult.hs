@@ -1,9 +1,5 @@
 module TD.Data.SpeechRecognitionResult
-  ( SpeechRecognitionResult(..)           
-  , defaultSpeechRecognitionResultPending 
-  , defaultSpeechRecognitionResultText    
-  , defaultSpeechRecognitionResultError   
-  ) where
+  (SpeechRecognitionResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -77,45 +73,4 @@ instance AT.FromJSON SpeechRecognitionResult where
           { _error = _error_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON SpeechRecognitionResult where
-  toJSON SpeechRecognitionResultPending
-    { partial_text = partial_text_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "speechRecognitionResultPending"
-        , "partial_text" A..= partial_text_
-        ]
-  toJSON SpeechRecognitionResultText
-    { text = text_
-    }
-      = A.object
-        [ "@type" A..= AT.String "speechRecognitionResultText"
-        , "text"  A..= text_
-        ]
-  toJSON SpeechRecognitionResultError
-    { _error = _error_
-    }
-      = A.object
-        [ "@type" A..= AT.String "speechRecognitionResultError"
-        , "error" A..= _error_
-        ]
-
-defaultSpeechRecognitionResultPending :: SpeechRecognitionResult
-defaultSpeechRecognitionResultPending =
-  SpeechRecognitionResultPending
-    { partial_text = Nothing
-    }
-
-defaultSpeechRecognitionResultText :: SpeechRecognitionResult
-defaultSpeechRecognitionResultText =
-  SpeechRecognitionResultText
-    { text = Nothing
-    }
-
-defaultSpeechRecognitionResultError :: SpeechRecognitionResult
-defaultSpeechRecognitionResultError =
-  SpeechRecognitionResultError
-    { _error = Nothing
-    }
 

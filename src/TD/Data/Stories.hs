@@ -1,7 +1,5 @@
 module TD.Data.Stories
-  ( Stories(..)    
-  , defaultStories 
-  ) where
+  (Stories(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON Stories where
           , stories     = stories_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Stories where
-  toJSON Stories
-    { total_count = total_count_
-    , stories     = stories_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "stories"
-        , "total_count" A..= total_count_
-        , "stories"     A..= stories_
-        ]
-
-defaultStories :: Stories
-defaultStories =
-  Stories
-    { total_count = Nothing
-    , stories     = Nothing
-    }
 

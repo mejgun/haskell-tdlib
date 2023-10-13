@@ -1,7 +1,5 @@
 module TD.Data.Usernames
-  ( Usernames(..)    
-  , defaultUsernames 
-  ) where
+  (Usernames(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON Usernames where
           , editable_username  = editable_username_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Usernames where
-  toJSON Usernames
-    { active_usernames   = active_usernames_
-    , disabled_usernames = disabled_usernames_
-    , editable_username  = editable_username_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "usernames"
-        , "active_usernames"   A..= active_usernames_
-        , "disabled_usernames" A..= disabled_usernames_
-        , "editable_username"  A..= editable_username_
-        ]
-
-defaultUsernames :: Usernames
-defaultUsernames =
-  Usernames
-    { active_usernames   = Nothing
-    , disabled_usernames = Nothing
-    , editable_username  = Nothing
-    }
 

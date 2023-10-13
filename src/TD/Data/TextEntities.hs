@@ -1,7 +1,5 @@
 module TD.Data.TextEntities
-  ( TextEntities(..)    
-  , defaultTextEntities 
-  ) where
+  (TextEntities(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON TextEntities where
           { entities = entities_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON TextEntities where
-  toJSON TextEntities
-    { entities = entities_
-    }
-      = A.object
-        [ "@type"    A..= AT.String "textEntities"
-        , "entities" A..= entities_
-        ]
-
-defaultTextEntities :: TextEntities
-defaultTextEntities =
-  TextEntities
-    { entities = Nothing
-    }
 

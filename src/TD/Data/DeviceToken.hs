@@ -1,18 +1,5 @@
 module TD.Data.DeviceToken
-  ( DeviceToken(..)                          
-  , defaultDeviceTokenFirebaseCloudMessaging 
-  , defaultDeviceTokenApplePush              
-  , defaultDeviceTokenApplePushVoIP          
-  , defaultDeviceTokenWindowsPush            
-  , defaultDeviceTokenMicrosoftPush          
-  , defaultDeviceTokenMicrosoftPushVoIP      
-  , defaultDeviceTokenWebPush                
-  , defaultDeviceTokenSimplePush             
-  , defaultDeviceTokenUbuntuPush             
-  , defaultDeviceTokenBlackBerryPush         
-  , defaultDeviceTokenTizenPush              
-  , defaultDeviceTokenHuaweiPush             
-  ) where
+  (DeviceToken(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -373,83 +360,4 @@ instance AT.ToJSON DeviceToken where
         , "token"   A..= token_
         , "encrypt" A..= encrypt_
         ]
-
-defaultDeviceTokenFirebaseCloudMessaging :: DeviceToken
-defaultDeviceTokenFirebaseCloudMessaging =
-  DeviceTokenFirebaseCloudMessaging
-    { token   = Nothing
-    , encrypt = Nothing
-    }
-
-defaultDeviceTokenApplePush :: DeviceToken
-defaultDeviceTokenApplePush =
-  DeviceTokenApplePush
-    { device_token   = Nothing
-    , is_app_sandbox = Nothing
-    }
-
-defaultDeviceTokenApplePushVoIP :: DeviceToken
-defaultDeviceTokenApplePushVoIP =
-  DeviceTokenApplePushVoIP
-    { device_token   = Nothing
-    , is_app_sandbox = Nothing
-    , encrypt        = Nothing
-    }
-
-defaultDeviceTokenWindowsPush :: DeviceToken
-defaultDeviceTokenWindowsPush =
-  DeviceTokenWindowsPush
-    { access_token = Nothing
-    }
-
-defaultDeviceTokenMicrosoftPush :: DeviceToken
-defaultDeviceTokenMicrosoftPush =
-  DeviceTokenMicrosoftPush
-    { channel_uri = Nothing
-    }
-
-defaultDeviceTokenMicrosoftPushVoIP :: DeviceToken
-defaultDeviceTokenMicrosoftPushVoIP =
-  DeviceTokenMicrosoftPushVoIP
-    { channel_uri = Nothing
-    }
-
-defaultDeviceTokenWebPush :: DeviceToken
-defaultDeviceTokenWebPush =
-  DeviceTokenWebPush
-    { endpoint         = Nothing
-    , p256dh_base64url = Nothing
-    , auth_base64url   = Nothing
-    }
-
-defaultDeviceTokenSimplePush :: DeviceToken
-defaultDeviceTokenSimplePush =
-  DeviceTokenSimplePush
-    { endpoint = Nothing
-    }
-
-defaultDeviceTokenUbuntuPush :: DeviceToken
-defaultDeviceTokenUbuntuPush =
-  DeviceTokenUbuntuPush
-    { token = Nothing
-    }
-
-defaultDeviceTokenBlackBerryPush :: DeviceToken
-defaultDeviceTokenBlackBerryPush =
-  DeviceTokenBlackBerryPush
-    { token = Nothing
-    }
-
-defaultDeviceTokenTizenPush :: DeviceToken
-defaultDeviceTokenTizenPush =
-  DeviceTokenTizenPush
-    { reg_id = Nothing
-    }
-
-defaultDeviceTokenHuaweiPush :: DeviceToken
-defaultDeviceTokenHuaweiPush =
-  DeviceTokenHuaweiPush
-    { token   = Nothing
-    , encrypt = Nothing
-    }
 

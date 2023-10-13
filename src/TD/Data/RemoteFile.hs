@@ -1,7 +1,5 @@
 module TD.Data.RemoteFile
-  ( RemoteFile(..)    
-  , defaultRemoteFile 
-  ) where
+  (RemoteFile(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,31 +57,4 @@ instance AT.FromJSON RemoteFile where
           , uploaded_size          = uploaded_size_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON RemoteFile where
-  toJSON RemoteFile
-    { _id                    = _id_
-    , unique_id              = unique_id_
-    , is_uploading_active    = is_uploading_active_
-    , is_uploading_completed = is_uploading_completed_
-    , uploaded_size          = uploaded_size_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "remoteFile"
-        , "id"                     A..= _id_
-        , "unique_id"              A..= unique_id_
-        , "is_uploading_active"    A..= is_uploading_active_
-        , "is_uploading_completed" A..= is_uploading_completed_
-        , "uploaded_size"          A..= uploaded_size_
-        ]
-
-defaultRemoteFile :: RemoteFile
-defaultRemoteFile =
-  RemoteFile
-    { _id                    = Nothing
-    , unique_id              = Nothing
-    , is_uploading_active    = Nothing
-    , is_uploading_completed = Nothing
-    , uploaded_size          = Nothing
-    }
 

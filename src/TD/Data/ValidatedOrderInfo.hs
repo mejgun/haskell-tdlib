@@ -1,7 +1,5 @@
 module TD.Data.ValidatedOrderInfo
-  ( ValidatedOrderInfo(..)    
-  , defaultValidatedOrderInfo 
-  ) where
+  (ValidatedOrderInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,22 +43,4 @@ instance AT.FromJSON ValidatedOrderInfo where
           , shipping_options = shipping_options_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ValidatedOrderInfo where
-  toJSON ValidatedOrderInfo
-    { order_info_id    = order_info_id_
-    , shipping_options = shipping_options_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "validatedOrderInfo"
-        , "order_info_id"    A..= order_info_id_
-        , "shipping_options" A..= shipping_options_
-        ]
-
-defaultValidatedOrderInfo :: ValidatedOrderInfo
-defaultValidatedOrderInfo =
-  ValidatedOrderInfo
-    { order_info_id    = Nothing
-    , shipping_options = Nothing
-    }
 

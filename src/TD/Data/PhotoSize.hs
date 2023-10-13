@@ -1,7 +1,5 @@
 module TD.Data.PhotoSize
-  ( PhotoSize(..)    
-  , defaultPhotoSize 
-  ) where
+  (PhotoSize(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,31 +58,4 @@ instance AT.FromJSON PhotoSize where
           , progressive_sizes = progressive_sizes_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PhotoSize where
-  toJSON PhotoSize
-    { _type             = _type_
-    , photo             = photo_
-    , width             = width_
-    , height            = height_
-    , progressive_sizes = progressive_sizes_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "photoSize"
-        , "type"              A..= _type_
-        , "photo"             A..= photo_
-        , "width"             A..= width_
-        , "height"            A..= height_
-        , "progressive_sizes" A..= progressive_sizes_
-        ]
-
-defaultPhotoSize :: PhotoSize
-defaultPhotoSize =
-  PhotoSize
-    { _type             = Nothing
-    , photo             = Nothing
-    , width             = Nothing
-    , height            = Nothing
-    , progressive_sizes = Nothing
-    }
 

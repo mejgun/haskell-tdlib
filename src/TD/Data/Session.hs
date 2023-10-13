@@ -1,7 +1,5 @@
 module TD.Data.Session
-  ( Session(..)    
-  , defaultSession 
-  ) where
+  (Session(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -125,70 +123,4 @@ instance AT.FromJSON Session where
           , region                  = region_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Session where
-  toJSON Session
-    { _id                     = _id_
-    , is_current              = is_current_
-    , is_password_pending     = is_password_pending_
-    , can_accept_secret_chats = can_accept_secret_chats_
-    , can_accept_calls        = can_accept_calls_
-    , _type                   = _type_
-    , api_id                  = api_id_
-    , application_name        = application_name_
-    , application_version     = application_version_
-    , is_official_application = is_official_application_
-    , device_model            = device_model_
-    , platform                = platform_
-    , system_version          = system_version_
-    , log_in_date             = log_in_date_
-    , last_active_date        = last_active_date_
-    , ip                      = ip_
-    , country                 = country_
-    , region                  = region_
-    }
-      = A.object
-        [ "@type"                   A..= AT.String "session"
-        , "id"                      A..= fmap I.writeInt64  _id_
-        , "is_current"              A..= is_current_
-        , "is_password_pending"     A..= is_password_pending_
-        , "can_accept_secret_chats" A..= can_accept_secret_chats_
-        , "can_accept_calls"        A..= can_accept_calls_
-        , "type"                    A..= _type_
-        , "api_id"                  A..= api_id_
-        , "application_name"        A..= application_name_
-        , "application_version"     A..= application_version_
-        , "is_official_application" A..= is_official_application_
-        , "device_model"            A..= device_model_
-        , "platform"                A..= platform_
-        , "system_version"          A..= system_version_
-        , "log_in_date"             A..= log_in_date_
-        , "last_active_date"        A..= last_active_date_
-        , "ip"                      A..= ip_
-        , "country"                 A..= country_
-        , "region"                  A..= region_
-        ]
-
-defaultSession :: Session
-defaultSession =
-  Session
-    { _id                     = Nothing
-    , is_current              = Nothing
-    , is_password_pending     = Nothing
-    , can_accept_secret_chats = Nothing
-    , can_accept_calls        = Nothing
-    , _type                   = Nothing
-    , api_id                  = Nothing
-    , application_name        = Nothing
-    , application_version     = Nothing
-    , is_official_application = Nothing
-    , device_model            = Nothing
-    , platform                = Nothing
-    , system_version          = Nothing
-    , log_in_date             = Nothing
-    , last_active_date        = Nothing
-    , ip                      = Nothing
-    , country                 = Nothing
-    , region                  = Nothing
-    }
 

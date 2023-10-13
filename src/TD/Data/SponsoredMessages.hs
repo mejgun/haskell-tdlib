@@ -1,7 +1,5 @@
 module TD.Data.SponsoredMessages
-  ( SponsoredMessages(..)    
-  , defaultSponsoredMessages 
-  ) where
+  (SponsoredMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON SponsoredMessages where
           , messages_between = messages_between_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON SponsoredMessages where
-  toJSON SponsoredMessages
-    { messages         = messages_
-    , messages_between = messages_between_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "sponsoredMessages"
-        , "messages"         A..= messages_
-        , "messages_between" A..= messages_between_
-        ]
-
-defaultSponsoredMessages :: SponsoredMessages
-defaultSponsoredMessages =
-  SponsoredMessages
-    { messages         = Nothing
-    , messages_between = Nothing
-    }
 

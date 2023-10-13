@@ -1,7 +1,5 @@
 module TD.Data.ThemeSettings
-  ( ThemeSettings(..)    
-  , defaultThemeSettings 
-  ) where
+  (ThemeSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,31 +58,4 @@ instance AT.FromJSON ThemeSettings where
           , outgoing_message_accent_color = outgoing_message_accent_color_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ThemeSettings where
-  toJSON ThemeSettings
-    { accent_color                  = accent_color_
-    , background                    = background_
-    , outgoing_message_fill         = outgoing_message_fill_
-    , animate_outgoing_message_fill = animate_outgoing_message_fill_
-    , outgoing_message_accent_color = outgoing_message_accent_color_
-    }
-      = A.object
-        [ "@type"                         A..= AT.String "themeSettings"
-        , "accent_color"                  A..= accent_color_
-        , "background"                    A..= background_
-        , "outgoing_message_fill"         A..= outgoing_message_fill_
-        , "animate_outgoing_message_fill" A..= animate_outgoing_message_fill_
-        , "outgoing_message_accent_color" A..= outgoing_message_accent_color_
-        ]
-
-defaultThemeSettings :: ThemeSettings
-defaultThemeSettings =
-  ThemeSettings
-    { accent_color                  = Nothing
-    , background                    = Nothing
-    , outgoing_message_fill         = Nothing
-    , animate_outgoing_message_fill = Nothing
-    , outgoing_message_accent_color = Nothing
-    }
 

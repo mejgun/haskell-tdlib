@@ -1,7 +1,5 @@
 module TD.Data.Audio
-  ( Audio(..)    
-  , defaultAudio 
-  ) where
+  (Audio(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,43 +80,4 @@ instance AT.FromJSON Audio where
           , audio                     = audio_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Audio where
-  toJSON Audio
-    { duration                  = duration_
-    , title                     = title_
-    , performer                 = performer_
-    , file_name                 = file_name_
-    , mime_type                 = mime_type_
-    , album_cover_minithumbnail = album_cover_minithumbnail_
-    , album_cover_thumbnail     = album_cover_thumbnail_
-    , external_album_covers     = external_album_covers_
-    , audio                     = audio_
-    }
-      = A.object
-        [ "@type"                     A..= AT.String "audio"
-        , "duration"                  A..= duration_
-        , "title"                     A..= title_
-        , "performer"                 A..= performer_
-        , "file_name"                 A..= file_name_
-        , "mime_type"                 A..= mime_type_
-        , "album_cover_minithumbnail" A..= album_cover_minithumbnail_
-        , "album_cover_thumbnail"     A..= album_cover_thumbnail_
-        , "external_album_covers"     A..= external_album_covers_
-        , "audio"                     A..= audio_
-        ]
-
-defaultAudio :: Audio
-defaultAudio =
-  Audio
-    { duration                  = Nothing
-    , title                     = Nothing
-    , performer                 = Nothing
-    , file_name                 = Nothing
-    , mime_type                 = Nothing
-    , album_cover_minithumbnail = Nothing
-    , album_cover_thumbnail     = Nothing
-    , external_album_covers     = Nothing
-    , audio                     = Nothing
-    }
 

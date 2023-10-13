@@ -1,7 +1,5 @@
 module TD.Data.NotificationGroup
-  ( NotificationGroup(..)    
-  , defaultNotificationGroup 
-  ) where
+  (NotificationGroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,31 +58,4 @@ instance AT.FromJSON NotificationGroup where
           , notifications = notifications_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON NotificationGroup where
-  toJSON NotificationGroup
-    { _id           = _id_
-    , _type         = _type_
-    , chat_id       = chat_id_
-    , total_count   = total_count_
-    , notifications = notifications_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "notificationGroup"
-        , "id"            A..= _id_
-        , "type"          A..= _type_
-        , "chat_id"       A..= chat_id_
-        , "total_count"   A..= total_count_
-        , "notifications" A..= notifications_
-        ]
-
-defaultNotificationGroup :: NotificationGroup
-defaultNotificationGroup =
-  NotificationGroup
-    { _id           = Nothing
-    , _type         = Nothing
-    , chat_id       = Nothing
-    , total_count   = Nothing
-    , notifications = Nothing
-    }
 

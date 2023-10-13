@@ -1,7 +1,5 @@
 module TD.Data.AutosaveSettings
-  ( AutosaveSettings(..)    
-  , defaultAutosaveSettings 
-  ) where
+  (AutosaveSettings(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON AutosaveSettings where
           , exceptions            = exceptions_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AutosaveSettings where
-  toJSON AutosaveSettings
-    { private_chat_settings = private_chat_settings_
-    , group_settings        = group_settings_
-    , channel_settings      = channel_settings_
-    , exceptions            = exceptions_
-    }
-      = A.object
-        [ "@type"                 A..= AT.String "autosaveSettings"
-        , "private_chat_settings" A..= private_chat_settings_
-        , "group_settings"        A..= group_settings_
-        , "channel_settings"      A..= channel_settings_
-        , "exceptions"            A..= exceptions_
-        ]
-
-defaultAutosaveSettings :: AutosaveSettings
-defaultAutosaveSettings =
-  AutosaveSettings
-    { private_chat_settings = Nothing
-    , group_settings        = Nothing
-    , channel_settings      = Nothing
-    , exceptions            = Nothing
-    }
 

@@ -1,9 +1,5 @@
 module TD.Data.NotificationType
-  ( NotificationType(..)                  
-  , defaultNotificationTypeNewMessage     
-  , defaultNotificationTypeNewCall        
-  , defaultNotificationTypeNewPushMessage 
-  ) where
+  (NotificationType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -108,64 +104,4 @@ instance AT.FromJSON NotificationType where
           , content     = content_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON NotificationType where
-  toJSON NotificationTypeNewMessage
-    { message      = message_
-    , show_preview = show_preview_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "notificationTypeNewMessage"
-        , "message"      A..= message_
-        , "show_preview" A..= show_preview_
-        ]
-  toJSON NotificationTypeNewSecretChat
-      = A.object
-        [ "@type" A..= AT.String "notificationTypeNewSecretChat"
-        ]
-  toJSON NotificationTypeNewCall
-    { call_id = call_id_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "notificationTypeNewCall"
-        , "call_id" A..= call_id_
-        ]
-  toJSON NotificationTypeNewPushMessage
-    { message_id  = message_id_
-    , sender_id   = sender_id_
-    , sender_name = sender_name_
-    , is_outgoing = is_outgoing_
-    , content     = content_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "notificationTypeNewPushMessage"
-        , "message_id"  A..= message_id_
-        , "sender_id"   A..= sender_id_
-        , "sender_name" A..= sender_name_
-        , "is_outgoing" A..= is_outgoing_
-        , "content"     A..= content_
-        ]
-
-defaultNotificationTypeNewMessage :: NotificationType
-defaultNotificationTypeNewMessage =
-  NotificationTypeNewMessage
-    { message      = Nothing
-    , show_preview = Nothing
-    }
-
-defaultNotificationTypeNewCall :: NotificationType
-defaultNotificationTypeNewCall =
-  NotificationTypeNewCall
-    { call_id = Nothing
-    }
-
-defaultNotificationTypeNewPushMessage :: NotificationType
-defaultNotificationTypeNewPushMessage =
-  NotificationTypeNewPushMessage
-    { message_id  = Nothing
-    , sender_id   = Nothing
-    , sender_name = Nothing
-    , is_outgoing = Nothing
-    , content     = Nothing
-    }
 

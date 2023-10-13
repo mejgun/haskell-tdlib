@@ -1,6 +1,5 @@
 module TD.Data.PageBlockHorizontalAlignment
-  ( PageBlockHorizontalAlignment(..) 
-  ) where
+  (PageBlockHorizontalAlignment(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -31,18 +30,4 @@ instance AT.FromJSON PageBlockHorizontalAlignment where
       _                                    -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON PageBlockHorizontalAlignment where
-  toJSON PageBlockHorizontalAlignmentLeft
-      = A.object
-        [ "@type" A..= AT.String "pageBlockHorizontalAlignmentLeft"
-        ]
-  toJSON PageBlockHorizontalAlignmentCenter
-      = A.object
-        [ "@type" A..= AT.String "pageBlockHorizontalAlignmentCenter"
-        ]
-  toJSON PageBlockHorizontalAlignmentRight
-      = A.object
-        [ "@type" A..= AT.String "pageBlockHorizontalAlignmentRight"
-        ]
 

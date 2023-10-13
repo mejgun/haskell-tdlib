@@ -1,8 +1,5 @@
 module TD.Data.StoryContent
-  ( StoryContent(..)         
-  , defaultStoryContentPhoto 
-  , defaultStoryContentVideo 
-  ) where
+  (StoryContent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -68,39 +65,4 @@ instance AT.FromJSON StoryContent where
           , alternative_video = alternative_video_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StoryContent where
-  toJSON StoryContentPhoto
-    { photo = photo_
-    }
-      = A.object
-        [ "@type" A..= AT.String "storyContentPhoto"
-        , "photo" A..= photo_
-        ]
-  toJSON StoryContentVideo
-    { video             = video_
-    , alternative_video = alternative_video_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "storyContentVideo"
-        , "video"             A..= video_
-        , "alternative_video" A..= alternative_video_
-        ]
-  toJSON StoryContentUnsupported
-      = A.object
-        [ "@type" A..= AT.String "storyContentUnsupported"
-        ]
-
-defaultStoryContentPhoto :: StoryContent
-defaultStoryContentPhoto =
-  StoryContentPhoto
-    { photo = Nothing
-    }
-
-defaultStoryContentVideo :: StoryContent
-defaultStoryContentVideo =
-  StoryContentVideo
-    { video             = Nothing
-    , alternative_video = Nothing
-    }
 

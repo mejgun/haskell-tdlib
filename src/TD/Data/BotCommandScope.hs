@@ -1,9 +1,5 @@
 module TD.Data.BotCommandScope
-  ( BotCommandScope(..)                      
-  , defaultBotCommandScopeChat               
-  , defaultBotCommandScopeChatAdministrators 
-  , defaultBotCommandScopeChatMember         
-  ) where
+  (BotCommandScope(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -137,23 +133,4 @@ instance AT.ToJSON BotCommandScope where
         , "chat_id" A..= chat_id_
         , "user_id" A..= user_id_
         ]
-
-defaultBotCommandScopeChat :: BotCommandScope
-defaultBotCommandScopeChat =
-  BotCommandScopeChat
-    { chat_id = Nothing
-    }
-
-defaultBotCommandScopeChatAdministrators :: BotCommandScope
-defaultBotCommandScopeChatAdministrators =
-  BotCommandScopeChatAdministrators
-    { chat_id = Nothing
-    }
-
-defaultBotCommandScopeChatMember :: BotCommandScope
-defaultBotCommandScopeChatMember =
-  BotCommandScopeChatMember
-    { chat_id = Nothing
-    , user_id = Nothing
-    }
 

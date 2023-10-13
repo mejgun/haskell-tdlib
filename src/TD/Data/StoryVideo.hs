@@ -1,7 +1,5 @@
 module TD.Data.StoryVideo
-  ( StoryVideo(..)    
-  , defaultStoryVideo 
-  ) where
+  (StoryVideo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,43 +79,4 @@ instance AT.FromJSON StoryVideo where
           , video               = video_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StoryVideo where
-  toJSON StoryVideo
-    { duration            = duration_
-    , width               = width_
-    , height              = height_
-    , has_stickers        = has_stickers_
-    , is_animation        = is_animation_
-    , minithumbnail       = minithumbnail_
-    , thumbnail           = thumbnail_
-    , preload_prefix_size = preload_prefix_size_
-    , video               = video_
-    }
-      = A.object
-        [ "@type"               A..= AT.String "storyVideo"
-        , "duration"            A..= duration_
-        , "width"               A..= width_
-        , "height"              A..= height_
-        , "has_stickers"        A..= has_stickers_
-        , "is_animation"        A..= is_animation_
-        , "minithumbnail"       A..= minithumbnail_
-        , "thumbnail"           A..= thumbnail_
-        , "preload_prefix_size" A..= preload_prefix_size_
-        , "video"               A..= video_
-        ]
-
-defaultStoryVideo :: StoryVideo
-defaultStoryVideo =
-  StoryVideo
-    { duration            = Nothing
-    , width               = Nothing
-    , height              = Nothing
-    , has_stickers        = Nothing
-    , is_animation        = Nothing
-    , minithumbnail       = Nothing
-    , thumbnail           = Nothing
-    , preload_prefix_size = Nothing
-    , video               = Nothing
-    }
 

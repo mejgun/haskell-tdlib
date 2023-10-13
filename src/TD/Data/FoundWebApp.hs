@@ -1,7 +1,5 @@
 module TD.Data.FoundWebApp
-  ( FoundWebApp(..)    
-  , defaultFoundWebApp 
-  ) where
+  (FoundWebApp(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON FoundWebApp where
           , skip_confirmation    = skip_confirmation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON FoundWebApp where
-  toJSON FoundWebApp
-    { web_app              = web_app_
-    , request_write_access = request_write_access_
-    , skip_confirmation    = skip_confirmation_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "foundWebApp"
-        , "web_app"              A..= web_app_
-        , "request_write_access" A..= request_write_access_
-        , "skip_confirmation"    A..= skip_confirmation_
-        ]
-
-defaultFoundWebApp :: FoundWebApp
-defaultFoundWebApp =
-  FoundWebApp
-    { web_app              = Nothing
-    , request_write_access = Nothing
-    , skip_confirmation    = Nothing
-    }
 

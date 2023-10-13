@@ -1,7 +1,5 @@
 module TD.Data.DateRange
-  ( DateRange(..)    
-  , defaultDateRange 
-  ) where
+  (DateRange(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,22 +41,4 @@ instance AT.FromJSON DateRange where
           , end_date   = end_date_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON DateRange where
-  toJSON DateRange
-    { start_date = start_date_
-    , end_date   = end_date_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "dateRange"
-        , "start_date" A..= start_date_
-        , "end_date"   A..= end_date_
-        ]
-
-defaultDateRange :: DateRange
-defaultDateRange =
-  DateRange
-    { start_date = Nothing
-    , end_date   = Nothing
-    }
 

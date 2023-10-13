@@ -1,7 +1,5 @@
 module TD.Data.PassportElements
-  ( PassportElements(..)    
-  , defaultPassportElements 
-  ) where
+  (PassportElements(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON PassportElements where
           { elements = elements_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PassportElements where
-  toJSON PassportElements
-    { elements = elements_
-    }
-      = A.object
-        [ "@type"    A..= AT.String "passportElements"
-        , "elements" A..= elements_
-        ]
-
-defaultPassportElements :: PassportElements
-defaultPassportElements =
-  PassportElements
-    { elements = Nothing
-    }
 

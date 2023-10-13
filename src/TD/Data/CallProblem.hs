@@ -1,6 +1,5 @@
 module TD.Data.CallProblem
-  ( CallProblem(..) 
-  ) where
+  (CallProblem(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT

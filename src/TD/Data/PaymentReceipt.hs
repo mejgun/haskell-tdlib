@@ -1,7 +1,5 @@
 module TD.Data.PaymentReceipt
-  ( PaymentReceipt(..)    
-  , defaultPaymentReceipt 
-  ) where
+  (PaymentReceipt(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -94,49 +92,4 @@ instance AT.FromJSON PaymentReceipt where
           , tip_amount               = tip_amount_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PaymentReceipt where
-  toJSON PaymentReceipt
-    { title                    = title_
-    , description              = description_
-    , photo                    = photo_
-    , date                     = date_
-    , seller_bot_user_id       = seller_bot_user_id_
-    , payment_provider_user_id = payment_provider_user_id_
-    , invoice                  = invoice_
-    , order_info               = order_info_
-    , shipping_option          = shipping_option_
-    , credentials_title        = credentials_title_
-    , tip_amount               = tip_amount_
-    }
-      = A.object
-        [ "@type"                    A..= AT.String "paymentReceipt"
-        , "title"                    A..= title_
-        , "description"              A..= description_
-        , "photo"                    A..= photo_
-        , "date"                     A..= date_
-        , "seller_bot_user_id"       A..= seller_bot_user_id_
-        , "payment_provider_user_id" A..= payment_provider_user_id_
-        , "invoice"                  A..= invoice_
-        , "order_info"               A..= order_info_
-        , "shipping_option"          A..= shipping_option_
-        , "credentials_title"        A..= credentials_title_
-        , "tip_amount"               A..= tip_amount_
-        ]
-
-defaultPaymentReceipt :: PaymentReceipt
-defaultPaymentReceipt =
-  PaymentReceipt
-    { title                    = Nothing
-    , description              = Nothing
-    , photo                    = Nothing
-    , date                     = Nothing
-    , seller_bot_user_id       = Nothing
-    , payment_provider_user_id = Nothing
-    , invoice                  = Nothing
-    , order_info               = Nothing
-    , shipping_option          = Nothing
-    , credentials_title        = Nothing
-    , tip_amount               = Nothing
-    }
 

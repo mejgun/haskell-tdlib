@@ -1,7 +1,5 @@
 module TD.Data.MessageThreadInfo
-  ( MessageThreadInfo(..)    
-  , defaultMessageThreadInfo 
-  ) where
+  (MessageThreadInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,34 +64,4 @@ instance AT.FromJSON MessageThreadInfo where
           , draft_message        = draft_message_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageThreadInfo where
-  toJSON MessageThreadInfo
-    { chat_id              = chat_id_
-    , message_thread_id    = message_thread_id_
-    , reply_info           = reply_info_
-    , unread_message_count = unread_message_count_
-    , messages             = messages_
-    , draft_message        = draft_message_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "messageThreadInfo"
-        , "chat_id"              A..= chat_id_
-        , "message_thread_id"    A..= message_thread_id_
-        , "reply_info"           A..= reply_info_
-        , "unread_message_count" A..= unread_message_count_
-        , "messages"             A..= messages_
-        , "draft_message"        A..= draft_message_
-        ]
-
-defaultMessageThreadInfo :: MessageThreadInfo
-defaultMessageThreadInfo =
-  MessageThreadInfo
-    { chat_id              = Nothing
-    , message_thread_id    = Nothing
-    , reply_info           = Nothing
-    , unread_message_count = Nothing
-    , messages             = Nothing
-    , draft_message        = Nothing
-    }
 

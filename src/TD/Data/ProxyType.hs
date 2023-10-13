@@ -1,9 +1,5 @@
 module TD.Data.ProxyType
-  ( ProxyType(..)           
-  , defaultProxyTypeSocks5  
-  , defaultProxyTypeHttp    
-  , defaultProxyTypeMtproto 
-  ) where
+  (ProxyType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -120,25 +116,4 @@ instance AT.ToJSON ProxyType where
         [ "@type"  A..= AT.String "proxyTypeMtproto"
         , "secret" A..= secret_
         ]
-
-defaultProxyTypeSocks5 :: ProxyType
-defaultProxyTypeSocks5 =
-  ProxyTypeSocks5
-    { username = Nothing
-    , password = Nothing
-    }
-
-defaultProxyTypeHttp :: ProxyType
-defaultProxyTypeHttp =
-  ProxyTypeHttp
-    { username  = Nothing
-    , password  = Nothing
-    , http_only = Nothing
-    }
-
-defaultProxyTypeMtproto :: ProxyType
-defaultProxyTypeMtproto =
-  ProxyTypeMtproto
-    { secret = Nothing
-    }
 

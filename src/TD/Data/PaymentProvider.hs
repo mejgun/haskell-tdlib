@@ -1,9 +1,5 @@
 module TD.Data.PaymentProvider
-  ( PaymentProvider(..)               
-  , defaultPaymentProviderSmartGlocal 
-  , defaultPaymentProviderStripe      
-  , defaultPaymentProviderOther       
-  ) where
+  (PaymentProvider(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -91,54 +87,4 @@ instance AT.FromJSON PaymentProvider where
           { url = url_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PaymentProvider where
-  toJSON PaymentProviderSmartGlocal
-    { public_token = public_token_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "paymentProviderSmartGlocal"
-        , "public_token" A..= public_token_
-        ]
-  toJSON PaymentProviderStripe
-    { publishable_key      = publishable_key_
-    , need_country         = need_country_
-    , need_postal_code     = need_postal_code_
-    , need_cardholder_name = need_cardholder_name_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "paymentProviderStripe"
-        , "publishable_key"      A..= publishable_key_
-        , "need_country"         A..= need_country_
-        , "need_postal_code"     A..= need_postal_code_
-        , "need_cardholder_name" A..= need_cardholder_name_
-        ]
-  toJSON PaymentProviderOther
-    { url = url_
-    }
-      = A.object
-        [ "@type" A..= AT.String "paymentProviderOther"
-        , "url"   A..= url_
-        ]
-
-defaultPaymentProviderSmartGlocal :: PaymentProvider
-defaultPaymentProviderSmartGlocal =
-  PaymentProviderSmartGlocal
-    { public_token = Nothing
-    }
-
-defaultPaymentProviderStripe :: PaymentProvider
-defaultPaymentProviderStripe =
-  PaymentProviderStripe
-    { publishable_key      = Nothing
-    , need_country         = Nothing
-    , need_postal_code     = Nothing
-    , need_cardholder_name = Nothing
-    }
-
-defaultPaymentProviderOther :: PaymentProvider
-defaultPaymentProviderOther =
-  PaymentProviderOther
-    { url = Nothing
-    }
 

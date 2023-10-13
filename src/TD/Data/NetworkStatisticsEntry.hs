@@ -1,8 +1,5 @@
 module TD.Data.NetworkStatisticsEntry
-  ( NetworkStatisticsEntry(..)        
-  , defaultNetworkStatisticsEntryFile 
-  , defaultNetworkStatisticsEntryCall 
-  ) where
+  (NetworkStatisticsEntry(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -117,22 +114,4 @@ instance AT.ToJSON NetworkStatisticsEntry where
         , "received_bytes" A..= received_bytes_
         , "duration"       A..= duration_
         ]
-
-defaultNetworkStatisticsEntryFile :: NetworkStatisticsEntry
-defaultNetworkStatisticsEntryFile =
-  NetworkStatisticsEntryFile
-    { file_type      = Nothing
-    , network_type   = Nothing
-    , sent_bytes     = Nothing
-    , received_bytes = Nothing
-    }
-
-defaultNetworkStatisticsEntryCall :: NetworkStatisticsEntry
-defaultNetworkStatisticsEntryCall =
-  NetworkStatisticsEntryCall
-    { network_type   = Nothing
-    , sent_bytes     = Nothing
-    , received_bytes = Nothing
-    , duration       = Nothing
-    }
 

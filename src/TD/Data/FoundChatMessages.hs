@@ -1,7 +1,5 @@
 module TD.Data.FoundChatMessages
-  ( FoundChatMessages(..)    
-  , defaultFoundChatMessages 
-  ) where
+  (FoundChatMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON FoundChatMessages where
           , next_from_message_id = next_from_message_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON FoundChatMessages where
-  toJSON FoundChatMessages
-    { total_count          = total_count_
-    , messages             = messages_
-    , next_from_message_id = next_from_message_id_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "foundChatMessages"
-        , "total_count"          A..= total_count_
-        , "messages"             A..= messages_
-        , "next_from_message_id" A..= next_from_message_id_
-        ]
-
-defaultFoundChatMessages :: FoundChatMessages
-defaultFoundChatMessages =
-  FoundChatMessages
-    { total_count          = Nothing
-    , messages             = Nothing
-    , next_from_message_id = Nothing
-    }
 

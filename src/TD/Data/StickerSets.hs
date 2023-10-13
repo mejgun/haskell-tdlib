@@ -1,7 +1,5 @@
 module TD.Data.StickerSets
-  ( StickerSets(..)    
-  , defaultStickerSets 
-  ) where
+  (StickerSets(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON StickerSets where
           , sets        = sets_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StickerSets where
-  toJSON StickerSets
-    { total_count = total_count_
-    , sets        = sets_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "stickerSets"
-        , "total_count" A..= total_count_
-        , "sets"        A..= sets_
-        ]
-
-defaultStickerSets :: StickerSets
-defaultStickerSets =
-  StickerSets
-    { total_count = Nothing
-    , sets        = Nothing
-    }
 

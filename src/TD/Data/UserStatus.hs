@@ -1,8 +1,5 @@
 module TD.Data.UserStatus
-  ( UserStatus(..)           
-  , defaultUserStatusOnline  
-  , defaultUserStatusOffline 
-  ) where
+  (UserStatus(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,48 +70,4 @@ instance AT.FromJSON UserStatus where
           { was_online = was_online_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON UserStatus where
-  toJSON UserStatusEmpty
-      = A.object
-        [ "@type" A..= AT.String "userStatusEmpty"
-        ]
-  toJSON UserStatusOnline
-    { expires = expires_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "userStatusOnline"
-        , "expires" A..= expires_
-        ]
-  toJSON UserStatusOffline
-    { was_online = was_online_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "userStatusOffline"
-        , "was_online" A..= was_online_
-        ]
-  toJSON UserStatusRecently
-      = A.object
-        [ "@type" A..= AT.String "userStatusRecently"
-        ]
-  toJSON UserStatusLastWeek
-      = A.object
-        [ "@type" A..= AT.String "userStatusLastWeek"
-        ]
-  toJSON UserStatusLastMonth
-      = A.object
-        [ "@type" A..= AT.String "userStatusLastMonth"
-        ]
-
-defaultUserStatusOnline :: UserStatus
-defaultUserStatusOnline =
-  UserStatusOnline
-    { expires = Nothing
-    }
-
-defaultUserStatusOffline :: UserStatus
-defaultUserStatusOffline =
-  UserStatusOffline
-    { was_online = Nothing
-    }
 

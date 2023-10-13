@@ -1,8 +1,5 @@
 module TD.Data.CanTransferOwnershipResult
-  ( CanTransferOwnershipResult(..)                    
-  , defaultCanTransferOwnershipResultPasswordTooFresh 
-  , defaultCanTransferOwnershipResultSessionTooFresh  
-  ) where
+  (CanTransferOwnershipResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,40 +62,4 @@ instance AT.FromJSON CanTransferOwnershipResult where
           { retry_after = retry_after_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CanTransferOwnershipResult where
-  toJSON CanTransferOwnershipResultOk
-      = A.object
-        [ "@type" A..= AT.String "canTransferOwnershipResultOk"
-        ]
-  toJSON CanTransferOwnershipResultPasswordNeeded
-      = A.object
-        [ "@type" A..= AT.String "canTransferOwnershipResultPasswordNeeded"
-        ]
-  toJSON CanTransferOwnershipResultPasswordTooFresh
-    { retry_after = retry_after_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "canTransferOwnershipResultPasswordTooFresh"
-        , "retry_after" A..= retry_after_
-        ]
-  toJSON CanTransferOwnershipResultSessionTooFresh
-    { retry_after = retry_after_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "canTransferOwnershipResultSessionTooFresh"
-        , "retry_after" A..= retry_after_
-        ]
-
-defaultCanTransferOwnershipResultPasswordTooFresh :: CanTransferOwnershipResult
-defaultCanTransferOwnershipResultPasswordTooFresh =
-  CanTransferOwnershipResultPasswordTooFresh
-    { retry_after = Nothing
-    }
-
-defaultCanTransferOwnershipResultSessionTooFresh :: CanTransferOwnershipResult
-defaultCanTransferOwnershipResultSessionTooFresh =
-  CanTransferOwnershipResultSessionTooFresh
-    { retry_after = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.CallbackQueryAnswer
-  ( CallbackQueryAnswer(..)    
-  , defaultCallbackQueryAnswer 
-  ) where
+  (CallbackQueryAnswer(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON CallbackQueryAnswer where
           , url        = url_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CallbackQueryAnswer where
-  toJSON CallbackQueryAnswer
-    { text       = text_
-    , show_alert = show_alert_
-    , url        = url_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "callbackQueryAnswer"
-        , "text"       A..= text_
-        , "show_alert" A..= show_alert_
-        , "url"        A..= url_
-        ]
-
-defaultCallbackQueryAnswer :: CallbackQueryAnswer
-defaultCallbackQueryAnswer =
-  CallbackQueryAnswer
-    { text       = Nothing
-    , show_alert = Nothing
-    , url        = Nothing
-    }
 

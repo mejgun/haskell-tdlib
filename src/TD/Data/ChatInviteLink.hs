@@ -1,7 +1,5 @@
 module TD.Data.ChatInviteLink
-  ( ChatInviteLink(..)    
-  , defaultChatInviteLink 
-  ) where
+  (ChatInviteLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -94,52 +92,4 @@ instance AT.FromJSON ChatInviteLink where
           , is_revoked                 = is_revoked_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatInviteLink where
-  toJSON ChatInviteLink
-    { invite_link                = invite_link_
-    , name                       = name_
-    , creator_user_id            = creator_user_id_
-    , date                       = date_
-    , edit_date                  = edit_date_
-    , expiration_date            = expiration_date_
-    , member_limit               = member_limit_
-    , member_count               = member_count_
-    , pending_join_request_count = pending_join_request_count_
-    , creates_join_request       = creates_join_request_
-    , is_primary                 = is_primary_
-    , is_revoked                 = is_revoked_
-    }
-      = A.object
-        [ "@type"                      A..= AT.String "chatInviteLink"
-        , "invite_link"                A..= invite_link_
-        , "name"                       A..= name_
-        , "creator_user_id"            A..= creator_user_id_
-        , "date"                       A..= date_
-        , "edit_date"                  A..= edit_date_
-        , "expiration_date"            A..= expiration_date_
-        , "member_limit"               A..= member_limit_
-        , "member_count"               A..= member_count_
-        , "pending_join_request_count" A..= pending_join_request_count_
-        , "creates_join_request"       A..= creates_join_request_
-        , "is_primary"                 A..= is_primary_
-        , "is_revoked"                 A..= is_revoked_
-        ]
-
-defaultChatInviteLink :: ChatInviteLink
-defaultChatInviteLink =
-  ChatInviteLink
-    { invite_link                = Nothing
-    , name                       = Nothing
-    , creator_user_id            = Nothing
-    , date                       = Nothing
-    , edit_date                  = Nothing
-    , expiration_date            = Nothing
-    , member_limit               = Nothing
-    , member_count               = Nothing
-    , pending_join_request_count = Nothing
-    , creates_join_request       = Nothing
-    , is_primary                 = Nothing
-    , is_revoked                 = Nothing
-    }
 

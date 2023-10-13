@@ -1,11 +1,5 @@
 module TD.Data.MessageForwardOrigin
-  ( MessageForwardOrigin(..)                 
-  , defaultMessageForwardOriginUser          
-  , defaultMessageForwardOriginChat          
-  , defaultMessageForwardOriginHiddenUser    
-  , defaultMessageForwardOriginChannel       
-  , defaultMessageForwardOriginMessageImport 
-  ) where
+  (MessageForwardOrigin(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -127,80 +121,4 @@ instance AT.FromJSON MessageForwardOrigin where
           { sender_name = sender_name_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageForwardOrigin where
-  toJSON MessageForwardOriginUser
-    { sender_user_id = sender_user_id_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "messageForwardOriginUser"
-        , "sender_user_id" A..= sender_user_id_
-        ]
-  toJSON MessageForwardOriginChat
-    { sender_chat_id   = sender_chat_id_
-    , author_signature = author_signature_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "messageForwardOriginChat"
-        , "sender_chat_id"   A..= sender_chat_id_
-        , "author_signature" A..= author_signature_
-        ]
-  toJSON MessageForwardOriginHiddenUser
-    { sender_name = sender_name_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messageForwardOriginHiddenUser"
-        , "sender_name" A..= sender_name_
-        ]
-  toJSON MessageForwardOriginChannel
-    { chat_id          = chat_id_
-    , message_id       = message_id_
-    , author_signature = author_signature_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "messageForwardOriginChannel"
-        , "chat_id"          A..= chat_id_
-        , "message_id"       A..= message_id_
-        , "author_signature" A..= author_signature_
-        ]
-  toJSON MessageForwardOriginMessageImport
-    { sender_name = sender_name_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messageForwardOriginMessageImport"
-        , "sender_name" A..= sender_name_
-        ]
-
-defaultMessageForwardOriginUser :: MessageForwardOrigin
-defaultMessageForwardOriginUser =
-  MessageForwardOriginUser
-    { sender_user_id = Nothing
-    }
-
-defaultMessageForwardOriginChat :: MessageForwardOrigin
-defaultMessageForwardOriginChat =
-  MessageForwardOriginChat
-    { sender_chat_id   = Nothing
-    , author_signature = Nothing
-    }
-
-defaultMessageForwardOriginHiddenUser :: MessageForwardOrigin
-defaultMessageForwardOriginHiddenUser =
-  MessageForwardOriginHiddenUser
-    { sender_name = Nothing
-    }
-
-defaultMessageForwardOriginChannel :: MessageForwardOrigin
-defaultMessageForwardOriginChannel =
-  MessageForwardOriginChannel
-    { chat_id          = Nothing
-    , message_id       = Nothing
-    , author_signature = Nothing
-    }
-
-defaultMessageForwardOriginMessageImport :: MessageForwardOrigin
-defaultMessageForwardOriginMessageImport =
-  MessageForwardOriginMessageImport
-    { sender_name = Nothing
-    }
 

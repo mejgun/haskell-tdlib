@@ -1,7 +1,5 @@
 module TD.Data.DatabaseStatistics
-  ( DatabaseStatistics(..)    
-  , defaultDatabaseStatistics 
-  ) where
+  (DatabaseStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON DatabaseStatistics where
           { statistics = statistics_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON DatabaseStatistics where
-  toJSON DatabaseStatistics
-    { statistics = statistics_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "databaseStatistics"
-        , "statistics" A..= statistics_
-        ]
-
-defaultDatabaseStatistics :: DatabaseStatistics
-defaultDatabaseStatistics =
-  DatabaseStatistics
-    { statistics = Nothing
-    }
 

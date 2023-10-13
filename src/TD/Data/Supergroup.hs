@@ -1,7 +1,5 @@
 module TD.Data.Supergroup
-  ( Supergroup(..)    
-  , defaultSupergroup 
-  ) where
+  (Supergroup(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -126,70 +124,4 @@ instance AT.FromJSON Supergroup where
           , is_fake               = is_fake_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Supergroup where
-  toJSON Supergroup
-    { _id                   = _id_
-    , usernames             = usernames_
-    , date                  = date_
-    , status                = status_
-    , member_count          = member_count_
-    , has_linked_chat       = has_linked_chat_
-    , has_location          = has_location_
-    , sign_messages         = sign_messages_
-    , join_to_send_messages = join_to_send_messages_
-    , join_by_request       = join_by_request_
-    , is_slow_mode_enabled  = is_slow_mode_enabled_
-    , is_channel            = is_channel_
-    , is_broadcast_group    = is_broadcast_group_
-    , is_forum              = is_forum_
-    , is_verified           = is_verified_
-    , restriction_reason    = restriction_reason_
-    , is_scam               = is_scam_
-    , is_fake               = is_fake_
-    }
-      = A.object
-        [ "@type"                 A..= AT.String "supergroup"
-        , "id"                    A..= _id_
-        , "usernames"             A..= usernames_
-        , "date"                  A..= date_
-        , "status"                A..= status_
-        , "member_count"          A..= member_count_
-        , "has_linked_chat"       A..= has_linked_chat_
-        , "has_location"          A..= has_location_
-        , "sign_messages"         A..= sign_messages_
-        , "join_to_send_messages" A..= join_to_send_messages_
-        , "join_by_request"       A..= join_by_request_
-        , "is_slow_mode_enabled"  A..= is_slow_mode_enabled_
-        , "is_channel"            A..= is_channel_
-        , "is_broadcast_group"    A..= is_broadcast_group_
-        , "is_forum"              A..= is_forum_
-        , "is_verified"           A..= is_verified_
-        , "restriction_reason"    A..= restriction_reason_
-        , "is_scam"               A..= is_scam_
-        , "is_fake"               A..= is_fake_
-        ]
-
-defaultSupergroup :: Supergroup
-defaultSupergroup =
-  Supergroup
-    { _id                   = Nothing
-    , usernames             = Nothing
-    , date                  = Nothing
-    , status                = Nothing
-    , member_count          = Nothing
-    , has_linked_chat       = Nothing
-    , has_location          = Nothing
-    , sign_messages         = Nothing
-    , join_to_send_messages = Nothing
-    , join_by_request       = Nothing
-    , is_slow_mode_enabled  = Nothing
-    , is_channel            = Nothing
-    , is_broadcast_group    = Nothing
-    , is_forum              = Nothing
-    , is_verified           = Nothing
-    , restriction_reason    = Nothing
-    , is_scam               = Nothing
-    , is_fake               = Nothing
-    }
 

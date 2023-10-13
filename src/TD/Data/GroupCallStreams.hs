@@ -1,7 +1,5 @@
 module TD.Data.GroupCallStreams
-  ( GroupCallStreams(..)    
-  , defaultGroupCallStreams 
-  ) where
+  (GroupCallStreams(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON GroupCallStreams where
           { streams = streams_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GroupCallStreams where
-  toJSON GroupCallStreams
-    { streams = streams_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "groupCallStreams"
-        , "streams" A..= streams_
-        ]
-
-defaultGroupCallStreams :: GroupCallStreams
-defaultGroupCallStreams =
-  GroupCallStreams
-    { streams = Nothing
-    }
 

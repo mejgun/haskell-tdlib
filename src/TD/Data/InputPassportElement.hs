@@ -1,19 +1,5 @@
 module TD.Data.InputPassportElement
-  ( InputPassportElement(..)                         
-  , defaultInputPassportElementPersonalDetails       
-  , defaultInputPassportElementPassport              
-  , defaultInputPassportElementDriverLicense         
-  , defaultInputPassportElementIdentityCard          
-  , defaultInputPassportElementInternalPassport      
-  , defaultInputPassportElementAddress               
-  , defaultInputPassportElementUtilityBill           
-  , defaultInputPassportElementBankStatement         
-  , defaultInputPassportElementRentalAgreement       
-  , defaultInputPassportElementPassportRegistration  
-  , defaultInputPassportElementTemporaryRegistration 
-  , defaultInputPassportElementPhoneNumber           
-  , defaultInputPassportElementEmailAddress          
-  ) where
+  (InputPassportElement(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -353,82 +339,4 @@ instance AT.ToJSON InputPassportElement where
         [ "@type"         A..= AT.String "inputPassportElementEmailAddress"
         , "email_address" A..= email_address_
         ]
-
-defaultInputPassportElementPersonalDetails :: InputPassportElement
-defaultInputPassportElementPersonalDetails =
-  InputPassportElementPersonalDetails
-    { personal_details = Nothing
-    }
-
-defaultInputPassportElementPassport :: InputPassportElement
-defaultInputPassportElementPassport =
-  InputPassportElementPassport
-    { passport = Nothing
-    }
-
-defaultInputPassportElementDriverLicense :: InputPassportElement
-defaultInputPassportElementDriverLicense =
-  InputPassportElementDriverLicense
-    { driver_license = Nothing
-    }
-
-defaultInputPassportElementIdentityCard :: InputPassportElement
-defaultInputPassportElementIdentityCard =
-  InputPassportElementIdentityCard
-    { identity_card = Nothing
-    }
-
-defaultInputPassportElementInternalPassport :: InputPassportElement
-defaultInputPassportElementInternalPassport =
-  InputPassportElementInternalPassport
-    { internal_passport = Nothing
-    }
-
-defaultInputPassportElementAddress :: InputPassportElement
-defaultInputPassportElementAddress =
-  InputPassportElementAddress
-    { address = Nothing
-    }
-
-defaultInputPassportElementUtilityBill :: InputPassportElement
-defaultInputPassportElementUtilityBill =
-  InputPassportElementUtilityBill
-    { utility_bill = Nothing
-    }
-
-defaultInputPassportElementBankStatement :: InputPassportElement
-defaultInputPassportElementBankStatement =
-  InputPassportElementBankStatement
-    { bank_statement = Nothing
-    }
-
-defaultInputPassportElementRentalAgreement :: InputPassportElement
-defaultInputPassportElementRentalAgreement =
-  InputPassportElementRentalAgreement
-    { rental_agreement = Nothing
-    }
-
-defaultInputPassportElementPassportRegistration :: InputPassportElement
-defaultInputPassportElementPassportRegistration =
-  InputPassportElementPassportRegistration
-    { passport_registration = Nothing
-    }
-
-defaultInputPassportElementTemporaryRegistration :: InputPassportElement
-defaultInputPassportElementTemporaryRegistration =
-  InputPassportElementTemporaryRegistration
-    { temporary_registration = Nothing
-    }
-
-defaultInputPassportElementPhoneNumber :: InputPassportElement
-defaultInputPassportElementPhoneNumber =
-  InputPassportElementPhoneNumber
-    { phone_number = Nothing
-    }
-
-defaultInputPassportElementEmailAddress :: InputPassportElement
-defaultInputPassportElementEmailAddress =
-  InputPassportElementEmailAddress
-    { email_address = Nothing
-    }
 

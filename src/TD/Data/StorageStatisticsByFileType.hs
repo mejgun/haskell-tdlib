@@ -1,7 +1,5 @@
 module TD.Data.StorageStatisticsByFileType
-  ( StorageStatisticsByFileType(..)    
-  , defaultStorageStatisticsByFileType 
-  ) where
+  (StorageStatisticsByFileType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON StorageStatisticsByFileType where
           , count     = count_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StorageStatisticsByFileType where
-  toJSON StorageStatisticsByFileType
-    { file_type = file_type_
-    , size      = size_
-    , count     = count_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "storageStatisticsByFileType"
-        , "file_type" A..= file_type_
-        , "size"      A..= size_
-        , "count"     A..= count_
-        ]
-
-defaultStorageStatisticsByFileType :: StorageStatisticsByFileType
-defaultStorageStatisticsByFileType =
-  StorageStatisticsByFileType
-    { file_type = Nothing
-    , size      = Nothing
-    , count     = Nothing
-    }
 

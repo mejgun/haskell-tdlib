@@ -1,8 +1,5 @@
 module TD.Data.LoginUrlInfo
-  ( LoginUrlInfo(..)                       
-  , defaultLoginUrlInfoOpen                
-  , defaultLoginUrlInfoRequestConfirmation 
-  ) where
+  (LoginUrlInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -78,44 +75,4 @@ instance AT.FromJSON LoginUrlInfo where
           , request_write_access = request_write_access_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON LoginUrlInfo where
-  toJSON LoginUrlInfoOpen
-    { url               = url_
-    , skip_confirmation = skip_confirmation_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "loginUrlInfoOpen"
-        , "url"               A..= url_
-        , "skip_confirmation" A..= skip_confirmation_
-        ]
-  toJSON LoginUrlInfoRequestConfirmation
-    { url                  = url_
-    , domain               = domain_
-    , bot_user_id          = bot_user_id_
-    , request_write_access = request_write_access_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "loginUrlInfoRequestConfirmation"
-        , "url"                  A..= url_
-        , "domain"               A..= domain_
-        , "bot_user_id"          A..= bot_user_id_
-        , "request_write_access" A..= request_write_access_
-        ]
-
-defaultLoginUrlInfoOpen :: LoginUrlInfo
-defaultLoginUrlInfoOpen =
-  LoginUrlInfoOpen
-    { url               = Nothing
-    , skip_confirmation = Nothing
-    }
-
-defaultLoginUrlInfoRequestConfirmation :: LoginUrlInfo
-defaultLoginUrlInfoRequestConfirmation =
-  LoginUrlInfoRequestConfirmation
-    { url                  = Nothing
-    , domain               = Nothing
-    , bot_user_id          = Nothing
-    , request_write_access = Nothing
-    }
 

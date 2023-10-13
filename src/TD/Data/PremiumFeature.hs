@@ -1,6 +1,5 @@
 module TD.Data.PremiumFeature
-  ( PremiumFeature(..) 
-  ) where
+  (PremiumFeature(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT

@@ -1,7 +1,5 @@
 module TD.Data.Backgrounds
-  ( Backgrounds(..)    
-  , defaultBackgrounds 
-  ) where
+  (Backgrounds(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON Backgrounds where
           { backgrounds = backgrounds_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Backgrounds where
-  toJSON Backgrounds
-    { backgrounds = backgrounds_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "backgrounds"
-        , "backgrounds" A..= backgrounds_
-        ]
-
-defaultBackgrounds :: Backgrounds
-defaultBackgrounds =
-  Backgrounds
-    { backgrounds = Nothing
-    }
 

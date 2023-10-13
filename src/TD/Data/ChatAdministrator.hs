@@ -1,7 +1,5 @@
 module TD.Data.ChatAdministrator
-  ( ChatAdministrator(..)    
-  , defaultChatAdministrator 
-  ) where
+  (ChatAdministrator(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON ChatAdministrator where
           , is_owner     = is_owner_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatAdministrator where
-  toJSON ChatAdministrator
-    { user_id      = user_id_
-    , custom_title = custom_title_
-    , is_owner     = is_owner_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "chatAdministrator"
-        , "user_id"      A..= user_id_
-        , "custom_title" A..= custom_title_
-        , "is_owner"     A..= is_owner_
-        ]
-
-defaultChatAdministrator :: ChatAdministrator
-defaultChatAdministrator =
-  ChatAdministrator
-    { user_id      = Nothing
-    , custom_title = Nothing
-    , is_owner     = Nothing
-    }
 

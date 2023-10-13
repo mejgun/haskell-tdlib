@@ -1,7 +1,5 @@
 module TD.Data.ChatFolderInviteLinkInfo
-  ( ChatFolderInviteLinkInfo(..)    
-  , defaultChatFolderInviteLinkInfo 
-  ) where
+  (ChatFolderInviteLinkInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON ChatFolderInviteLinkInfo where
           , added_chat_ids   = added_chat_ids_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatFolderInviteLinkInfo where
-  toJSON ChatFolderInviteLinkInfo
-    { chat_folder_info = chat_folder_info_
-    , missing_chat_ids = missing_chat_ids_
-    , added_chat_ids   = added_chat_ids_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "chatFolderInviteLinkInfo"
-        , "chat_folder_info" A..= chat_folder_info_
-        , "missing_chat_ids" A..= missing_chat_ids_
-        , "added_chat_ids"   A..= added_chat_ids_
-        ]
-
-defaultChatFolderInviteLinkInfo :: ChatFolderInviteLinkInfo
-defaultChatFolderInviteLinkInfo =
-  ChatFolderInviteLinkInfo
-    { chat_folder_info = Nothing
-    , missing_chat_ids = Nothing
-    , added_chat_ids   = Nothing
-    }
 

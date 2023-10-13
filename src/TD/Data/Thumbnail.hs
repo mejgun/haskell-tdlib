@@ -1,7 +1,5 @@
 module TD.Data.Thumbnail
-  ( Thumbnail(..)    
-  , defaultThumbnail 
-  ) where
+  (Thumbnail(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON Thumbnail where
           , file   = file_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Thumbnail where
-  toJSON Thumbnail
-    { format = format_
-    , width  = width_
-    , height = height_
-    , file   = file_
-    }
-      = A.object
-        [ "@type"  A..= AT.String "thumbnail"
-        , "format" A..= format_
-        , "width"  A..= width_
-        , "height" A..= height_
-        , "file"   A..= file_
-        ]
-
-defaultThumbnail :: Thumbnail
-defaultThumbnail =
-  Thumbnail
-    { format = Nothing
-    , width  = Nothing
-    , height = Nothing
-    , file   = Nothing
-    }
 

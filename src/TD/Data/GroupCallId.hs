@@ -1,7 +1,5 @@
 module TD.Data.GroupCallId
-  ( GroupCallId(..)    
-  , defaultGroupCallId 
-  ) where
+  (GroupCallId(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -38,19 +36,4 @@ instance AT.FromJSON GroupCallId where
           { _id = _id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GroupCallId where
-  toJSON GroupCallId
-    { _id = _id_
-    }
-      = A.object
-        [ "@type" A..= AT.String "groupCallId"
-        , "id"    A..= _id_
-        ]
-
-defaultGroupCallId :: GroupCallId
-defaultGroupCallId =
-  GroupCallId
-    { _id = Nothing
-    }
 

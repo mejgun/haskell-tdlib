@@ -1,7 +1,5 @@
 module TD.Data.ChatTheme
-  ( ChatTheme(..)    
-  , defaultChatTheme 
-  ) where
+  (ChatTheme(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON ChatTheme where
           , dark_settings  = dark_settings_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatTheme where
-  toJSON ChatTheme
-    { name           = name_
-    , light_settings = light_settings_
-    , dark_settings  = dark_settings_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "chatTheme"
-        , "name"           A..= name_
-        , "light_settings" A..= light_settings_
-        , "dark_settings"  A..= dark_settings_
-        ]
-
-defaultChatTheme :: ChatTheme
-defaultChatTheme =
-  ChatTheme
-    { name           = Nothing
-    , light_settings = Nothing
-    , dark_settings  = Nothing
-    }
 

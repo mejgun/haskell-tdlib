@@ -1,7 +1,5 @@
 module TD.Data.UserLink
-  ( UserLink(..)    
-  , defaultUserLink 
-  ) where
+  (UserLink(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON UserLink where
           , expires_in = expires_in_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON UserLink where
-  toJSON UserLink
-    { url        = url_
-    , expires_in = expires_in_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "userLink"
-        , "url"        A..= url_
-        , "expires_in" A..= expires_in_
-        ]
-
-defaultUserLink :: UserLink
-defaultUserLink =
-  UserLink
-    { url        = Nothing
-    , expires_in = Nothing
-    }
 

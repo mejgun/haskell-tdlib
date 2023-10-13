@@ -1,7 +1,5 @@
 module TD.Data.AvailableReaction
-  ( AvailableReaction(..)    
-  , defaultAvailableReaction 
-  ) where
+  (AvailableReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON AvailableReaction where
           , needs_premium = needs_premium_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AvailableReaction where
-  toJSON AvailableReaction
-    { _type         = _type_
-    , needs_premium = needs_premium_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "availableReaction"
-        , "type"          A..= _type_
-        , "needs_premium" A..= needs_premium_
-        ]
-
-defaultAvailableReaction :: AvailableReaction
-defaultAvailableReaction =
-  AvailableReaction
-    { _type         = Nothing
-    , needs_premium = Nothing
-    }
 

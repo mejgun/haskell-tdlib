@@ -1,7 +1,5 @@
 module TD.Data.PassportElementError
-  ( PassportElementError(..)    
-  , defaultPassportElementError 
-  ) where
+  (PassportElementError(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,25 +49,4 @@ instance AT.FromJSON PassportElementError where
           , source  = source_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PassportElementError where
-  toJSON PassportElementError
-    { _type   = _type_
-    , message = message_
-    , source  = source_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "passportElementError"
-        , "type"    A..= _type_
-        , "message" A..= message_
-        , "source"  A..= source_
-        ]
-
-defaultPassportElementError :: PassportElementError
-defaultPassportElementError =
-  PassportElementError
-    { _type   = Nothing
-    , message = Nothing
-    , source  = Nothing
-    }
 

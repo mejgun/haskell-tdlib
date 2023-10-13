@@ -1,7 +1,5 @@
 module TD.Data.ChatInviteLinkCounts
-  ( ChatInviteLinkCounts(..)    
-  , defaultChatInviteLinkCounts 
-  ) where
+  (ChatInviteLinkCounts(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON ChatInviteLinkCounts where
           { invite_link_counts = invite_link_counts_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatInviteLinkCounts where
-  toJSON ChatInviteLinkCounts
-    { invite_link_counts = invite_link_counts_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "chatInviteLinkCounts"
-        , "invite_link_counts" A..= invite_link_counts_
-        ]
-
-defaultChatInviteLinkCounts :: ChatInviteLinkCounts
-defaultChatInviteLinkCounts =
-  ChatInviteLinkCounts
-    { invite_link_counts = Nothing
-    }
 

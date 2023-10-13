@@ -1,7 +1,5 @@
 module TD.Data.ChatAdministrators
-  ( ChatAdministrators(..)    
-  , defaultChatAdministrators 
-  ) where
+  (ChatAdministrators(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON ChatAdministrators where
           { administrators = administrators_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatAdministrators where
-  toJSON ChatAdministrators
-    { administrators = administrators_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "chatAdministrators"
-        , "administrators" A..= administrators_
-        ]
-
-defaultChatAdministrators :: ChatAdministrators
-defaultChatAdministrators =
-  ChatAdministrators
-    { administrators = Nothing
-    }
 

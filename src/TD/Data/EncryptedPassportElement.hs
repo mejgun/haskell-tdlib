@@ -1,7 +1,5 @@
 module TD.Data.EncryptedPassportElement
-  ( EncryptedPassportElement(..)    
-  , defaultEncryptedPassportElement 
-  ) where
+  (EncryptedPassportElement(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,43 +80,4 @@ instance AT.FromJSON EncryptedPassportElement where
           , hash         = hash_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON EncryptedPassportElement where
-  toJSON EncryptedPassportElement
-    { _type        = _type_
-    , _data        = _data_
-    , front_side   = front_side_
-    , reverse_side = reverse_side_
-    , selfie       = selfie_
-    , translation  = translation_
-    , files        = files_
-    , value        = value_
-    , hash         = hash_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "encryptedPassportElement"
-        , "type"         A..= _type_
-        , "data"         A..= fmap I.writeBytes  _data_
-        , "front_side"   A..= front_side_
-        , "reverse_side" A..= reverse_side_
-        , "selfie"       A..= selfie_
-        , "translation"  A..= translation_
-        , "files"        A..= files_
-        , "value"        A..= value_
-        , "hash"         A..= hash_
-        ]
-
-defaultEncryptedPassportElement :: EncryptedPassportElement
-defaultEncryptedPassportElement =
-  EncryptedPassportElement
-    { _type        = Nothing
-    , _data        = Nothing
-    , front_side   = Nothing
-    , reverse_side = Nothing
-    , selfie       = Nothing
-    , translation  = Nothing
-    , files        = Nothing
-    , value        = Nothing
-    , hash         = Nothing
-    }
 

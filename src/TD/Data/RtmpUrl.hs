@@ -1,7 +1,5 @@
 module TD.Data.RtmpUrl
-  ( RtmpUrl(..)    
-  , defaultRtmpUrl 
-  ) where
+  (RtmpUrl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON RtmpUrl where
           , stream_key = stream_key_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON RtmpUrl where
-  toJSON RtmpUrl
-    { url        = url_
-    , stream_key = stream_key_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "rtmpUrl"
-        , "url"        A..= url_
-        , "stream_key" A..= stream_key_
-        ]
-
-defaultRtmpUrl :: RtmpUrl
-defaultRtmpUrl =
-  RtmpUrl
-    { url        = Nothing
-    , stream_key = Nothing
-    }
 

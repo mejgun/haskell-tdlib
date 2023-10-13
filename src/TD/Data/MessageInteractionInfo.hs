@@ -1,7 +1,5 @@
 module TD.Data.MessageInteractionInfo
-  ( MessageInteractionInfo(..)    
-  , defaultMessageInteractionInfo 
-  ) where
+  (MessageInteractionInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON MessageInteractionInfo where
           , reactions     = reactions_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageInteractionInfo where
-  toJSON MessageInteractionInfo
-    { view_count    = view_count_
-    , forward_count = forward_count_
-    , reply_info    = reply_info_
-    , reactions     = reactions_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "messageInteractionInfo"
-        , "view_count"    A..= view_count_
-        , "forward_count" A..= forward_count_
-        , "reply_info"    A..= reply_info_
-        , "reactions"     A..= reactions_
-        ]
-
-defaultMessageInteractionInfo :: MessageInteractionInfo
-defaultMessageInteractionInfo =
-  MessageInteractionInfo
-    { view_count    = Nothing
-    , forward_count = Nothing
-    , reply_info    = Nothing
-    , reactions     = Nothing
-    }
 

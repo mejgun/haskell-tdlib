@@ -1,6 +1,5 @@
 module TD.Data.PageBlockVerticalAlignment
-  ( PageBlockVerticalAlignment(..) 
-  ) where
+  (PageBlockVerticalAlignment(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -31,18 +30,4 @@ instance AT.FromJSON PageBlockVerticalAlignment where
       _                                  -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON PageBlockVerticalAlignment where
-  toJSON PageBlockVerticalAlignmentTop
-      = A.object
-        [ "@type" A..= AT.String "pageBlockVerticalAlignmentTop"
-        ]
-  toJSON PageBlockVerticalAlignmentMiddle
-      = A.object
-        [ "@type" A..= AT.String "pageBlockVerticalAlignmentMiddle"
-        ]
-  toJSON PageBlockVerticalAlignmentBottom
-      = A.object
-        [ "@type" A..= AT.String "pageBlockVerticalAlignmentBottom"
-        ]
 

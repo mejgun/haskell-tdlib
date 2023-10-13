@@ -1,7 +1,5 @@
 module TD.Data.PageBlockCaption
-  ( PageBlockCaption(..)    
-  , defaultPageBlockCaption 
-  ) where
+  (PageBlockCaption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON PageBlockCaption where
           , credit = credit_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PageBlockCaption where
-  toJSON PageBlockCaption
-    { text   = text_
-    , credit = credit_
-    }
-      = A.object
-        [ "@type"  A..= AT.String "pageBlockCaption"
-        , "text"   A..= text_
-        , "credit" A..= credit_
-        ]
-
-defaultPageBlockCaption :: PageBlockCaption
-defaultPageBlockCaption =
-  PageBlockCaption
-    { text   = Nothing
-    , credit = Nothing
-    }
 

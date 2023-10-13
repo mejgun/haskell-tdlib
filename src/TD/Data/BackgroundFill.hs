@@ -1,9 +1,5 @@
 module TD.Data.BackgroundFill
-  ( BackgroundFill(..)                    
-  , defaultBackgroundFillSolid            
-  , defaultBackgroundFillGradient         
-  , defaultBackgroundFillFreeformGradient 
-  ) where
+  (BackgroundFill(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -112,24 +108,4 @@ instance AT.ToJSON BackgroundFill where
         [ "@type"  A..= AT.String "backgroundFillFreeformGradient"
         , "colors" A..= colors_
         ]
-
-defaultBackgroundFillSolid :: BackgroundFill
-defaultBackgroundFillSolid =
-  BackgroundFillSolid
-    { color = Nothing
-    }
-
-defaultBackgroundFillGradient :: BackgroundFill
-defaultBackgroundFillGradient =
-  BackgroundFillGradient
-    { top_color      = Nothing
-    , bottom_color   = Nothing
-    , rotation_angle = Nothing
-    }
-
-defaultBackgroundFillFreeformGradient :: BackgroundFill
-defaultBackgroundFillFreeformGradient =
-  BackgroundFillFreeformGradient
-    { colors = Nothing
-    }
 

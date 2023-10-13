@@ -1,8 +1,5 @@
 module TD.Data.ChatPhotoStickerType
-  ( ChatPhotoStickerType(..)                 
-  , defaultChatPhotoStickerTypeRegularOrMask 
-  , defaultChatPhotoStickerTypeCustomEmoji   
-  ) where
+  (ChatPhotoStickerType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -80,17 +77,4 @@ instance AT.ToJSON ChatPhotoStickerType where
         [ "@type"           A..= AT.String "chatPhotoStickerTypeCustomEmoji"
         , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         ]
-
-defaultChatPhotoStickerTypeRegularOrMask :: ChatPhotoStickerType
-defaultChatPhotoStickerTypeRegularOrMask =
-  ChatPhotoStickerTypeRegularOrMask
-    { sticker_set_id = Nothing
-    , sticker_id     = Nothing
-    }
-
-defaultChatPhotoStickerTypeCustomEmoji :: ChatPhotoStickerType
-defaultChatPhotoStickerTypeCustomEmoji =
-  ChatPhotoStickerTypeCustomEmoji
-    { custom_emoji_id = Nothing
-    }
 

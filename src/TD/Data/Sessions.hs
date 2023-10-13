@@ -1,7 +1,5 @@
 module TD.Data.Sessions
-  ( Sessions(..)    
-  , defaultSessions 
-  ) where
+  (Sessions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON Sessions where
           , inactive_session_ttl_days = inactive_session_ttl_days_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Sessions where
-  toJSON Sessions
-    { sessions                  = sessions_
-    , inactive_session_ttl_days = inactive_session_ttl_days_
-    }
-      = A.object
-        [ "@type"                     A..= AT.String "sessions"
-        , "sessions"                  A..= sessions_
-        , "inactive_session_ttl_days" A..= inactive_session_ttl_days_
-        ]
-
-defaultSessions :: Sessions
-defaultSessions =
-  Sessions
-    { sessions                  = Nothing
-    , inactive_session_ttl_days = Nothing
-    }
 

@@ -1,9 +1,5 @@
 module TD.Data.StatisticalGraph
-  ( StatisticalGraph(..)         
-  , defaultStatisticalGraphData  
-  , defaultStatisticalGraphAsync 
-  , defaultStatisticalGraphError 
-  ) where
+  (StatisticalGraph(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,48 +77,4 @@ instance AT.FromJSON StatisticalGraph where
           { error_message = error_message_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StatisticalGraph where
-  toJSON StatisticalGraphData
-    { json_data  = json_data_
-    , zoom_token = zoom_token_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "statisticalGraphData"
-        , "json_data"  A..= json_data_
-        , "zoom_token" A..= zoom_token_
-        ]
-  toJSON StatisticalGraphAsync
-    { token = token_
-    }
-      = A.object
-        [ "@type" A..= AT.String "statisticalGraphAsync"
-        , "token" A..= token_
-        ]
-  toJSON StatisticalGraphError
-    { error_message = error_message_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "statisticalGraphError"
-        , "error_message" A..= error_message_
-        ]
-
-defaultStatisticalGraphData :: StatisticalGraph
-defaultStatisticalGraphData =
-  StatisticalGraphData
-    { json_data  = Nothing
-    , zoom_token = Nothing
-    }
-
-defaultStatisticalGraphAsync :: StatisticalGraph
-defaultStatisticalGraphAsync =
-  StatisticalGraphAsync
-    { token = Nothing
-    }
-
-defaultStatisticalGraphError :: StatisticalGraph
-defaultStatisticalGraphError =
-  StatisticalGraphError
-    { error_message = Nothing
-    }
 

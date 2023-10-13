@@ -1,7 +1,5 @@
 module TD.Data.AnimatedEmoji
-  ( AnimatedEmoji(..)    
-  , defaultAnimatedEmoji 
-  ) where
+  (AnimatedEmoji(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,31 +58,4 @@ instance AT.FromJSON AnimatedEmoji where
           , sound            = sound_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AnimatedEmoji where
-  toJSON AnimatedEmoji
-    { sticker          = sticker_
-    , sticker_width    = sticker_width_
-    , sticker_height   = sticker_height_
-    , fitzpatrick_type = fitzpatrick_type_
-    , sound            = sound_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "animatedEmoji"
-        , "sticker"          A..= sticker_
-        , "sticker_width"    A..= sticker_width_
-        , "sticker_height"   A..= sticker_height_
-        , "fitzpatrick_type" A..= fitzpatrick_type_
-        , "sound"            A..= sound_
-        ]
-
-defaultAnimatedEmoji :: AnimatedEmoji
-defaultAnimatedEmoji =
-  AnimatedEmoji
-    { sticker          = Nothing
-    , sticker_width    = Nothing
-    , sticker_height   = Nothing
-    , fitzpatrick_type = Nothing
-    , sound            = Nothing
-    }
 

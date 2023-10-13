@@ -1,7 +1,5 @@
 module TD.Data.ChatStatisticsMessageSenderInfo
-  ( ChatStatisticsMessageSenderInfo(..)    
-  , defaultChatStatisticsMessageSenderInfo 
-  ) where
+  (ChatStatisticsMessageSenderInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -48,25 +46,4 @@ instance AT.FromJSON ChatStatisticsMessageSenderInfo where
           , average_character_count = average_character_count_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatStatisticsMessageSenderInfo where
-  toJSON ChatStatisticsMessageSenderInfo
-    { user_id                 = user_id_
-    , sent_message_count      = sent_message_count_
-    , average_character_count = average_character_count_
-    }
-      = A.object
-        [ "@type"                   A..= AT.String "chatStatisticsMessageSenderInfo"
-        , "user_id"                 A..= user_id_
-        , "sent_message_count"      A..= sent_message_count_
-        , "average_character_count" A..= average_character_count_
-        ]
-
-defaultChatStatisticsMessageSenderInfo :: ChatStatisticsMessageSenderInfo
-defaultChatStatisticsMessageSenderInfo =
-  ChatStatisticsMessageSenderInfo
-    { user_id                 = Nothing
-    , sent_message_count      = Nothing
-    , average_character_count = Nothing
-    }
 

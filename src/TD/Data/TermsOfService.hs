@@ -1,7 +1,5 @@
 module TD.Data.TermsOfService
-  ( TermsOfService(..)    
-  , defaultTermsOfService 
-  ) where
+  (TermsOfService(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON TermsOfService where
           , show_popup   = show_popup_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON TermsOfService where
-  toJSON TermsOfService
-    { text         = text_
-    , min_user_age = min_user_age_
-    , show_popup   = show_popup_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "termsOfService"
-        , "text"         A..= text_
-        , "min_user_age" A..= min_user_age_
-        , "show_popup"   A..= show_popup_
-        ]
-
-defaultTermsOfService :: TermsOfService
-defaultTermsOfService =
-  TermsOfService
-    { text         = Nothing
-    , min_user_age = Nothing
-    , show_popup   = Nothing
-    }
 

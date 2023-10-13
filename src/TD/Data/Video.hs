@@ -1,7 +1,5 @@
 module TD.Data.Video
-  ( Video(..)    
-  , defaultVideo 
-  ) where
+  (Video(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -87,46 +85,4 @@ instance AT.FromJSON Video where
           , video              = video_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Video where
-  toJSON Video
-    { duration           = duration_
-    , width              = width_
-    , height             = height_
-    , file_name          = file_name_
-    , mime_type          = mime_type_
-    , has_stickers       = has_stickers_
-    , supports_streaming = supports_streaming_
-    , minithumbnail      = minithumbnail_
-    , thumbnail          = thumbnail_
-    , video              = video_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "video"
-        , "duration"           A..= duration_
-        , "width"              A..= width_
-        , "height"             A..= height_
-        , "file_name"          A..= file_name_
-        , "mime_type"          A..= mime_type_
-        , "has_stickers"       A..= has_stickers_
-        , "supports_streaming" A..= supports_streaming_
-        , "minithumbnail"      A..= minithumbnail_
-        , "thumbnail"          A..= thumbnail_
-        , "video"              A..= video_
-        ]
-
-defaultVideo :: Video
-defaultVideo =
-  Video
-    { duration           = Nothing
-    , width              = Nothing
-    , height             = Nothing
-    , file_name          = Nothing
-    , mime_type          = Nothing
-    , has_stickers       = Nothing
-    , supports_streaming = Nothing
-    , minithumbnail      = Nothing
-    , thumbnail          = Nothing
-    , video              = Nothing
-    }
 

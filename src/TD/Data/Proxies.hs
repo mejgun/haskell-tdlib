@@ -1,7 +1,5 @@
 module TD.Data.Proxies
-  ( Proxies(..)    
-  , defaultProxies 
-  ) where
+  (Proxies(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON Proxies where
           { proxies = proxies_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Proxies where
-  toJSON Proxies
-    { proxies = proxies_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "proxies"
-        , "proxies" A..= proxies_
-        ]
-
-defaultProxies :: Proxies
-defaultProxies =
-  Proxies
-    { proxies = Nothing
-    }
 

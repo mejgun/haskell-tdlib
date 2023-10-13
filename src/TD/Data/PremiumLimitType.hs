@@ -1,6 +1,5 @@
 module TD.Data.PremiumLimitType
-  ( PremiumLimitType(..) 
-  ) where
+  (PremiumLimitType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT

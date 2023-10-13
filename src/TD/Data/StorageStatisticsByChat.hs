@@ -1,7 +1,5 @@
 module TD.Data.StorageStatisticsByChat
-  ( StorageStatisticsByChat(..)    
-  , defaultStorageStatisticsByChat 
-  ) where
+  (StorageStatisticsByChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -54,28 +52,4 @@ instance AT.FromJSON StorageStatisticsByChat where
           , by_file_type = by_file_type_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StorageStatisticsByChat where
-  toJSON StorageStatisticsByChat
-    { chat_id      = chat_id_
-    , size         = size_
-    , count        = count_
-    , by_file_type = by_file_type_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "storageStatisticsByChat"
-        , "chat_id"      A..= chat_id_
-        , "size"         A..= size_
-        , "count"        A..= count_
-        , "by_file_type" A..= by_file_type_
-        ]
-
-defaultStorageStatisticsByChat :: StorageStatisticsByChat
-defaultStorageStatisticsByChat =
-  StorageStatisticsByChat
-    { chat_id      = Nothing
-    , size         = Nothing
-    , count        = Nothing
-    , by_file_type = Nothing
-    }
 

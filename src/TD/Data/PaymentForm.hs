@@ -1,7 +1,5 @@
 module TD.Data.PaymentForm
-  ( PaymentForm(..)    
-  , defaultPaymentForm 
-  ) where
+  (PaymentForm(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -106,55 +104,4 @@ instance AT.FromJSON PaymentForm where
           , product_photo              = product_photo_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PaymentForm where
-  toJSON PaymentForm
-    { _id                        = _id_
-    , invoice                    = invoice_
-    , seller_bot_user_id         = seller_bot_user_id_
-    , payment_provider_user_id   = payment_provider_user_id_
-    , payment_provider           = payment_provider_
-    , additional_payment_options = additional_payment_options_
-    , saved_order_info           = saved_order_info_
-    , saved_credentials          = saved_credentials_
-    , can_save_credentials       = can_save_credentials_
-    , need_password              = need_password_
-    , product_title              = product_title_
-    , product_description        = product_description_
-    , product_photo              = product_photo_
-    }
-      = A.object
-        [ "@type"                      A..= AT.String "paymentForm"
-        , "id"                         A..= fmap I.writeInt64  _id_
-        , "invoice"                    A..= invoice_
-        , "seller_bot_user_id"         A..= seller_bot_user_id_
-        , "payment_provider_user_id"   A..= payment_provider_user_id_
-        , "payment_provider"           A..= payment_provider_
-        , "additional_payment_options" A..= additional_payment_options_
-        , "saved_order_info"           A..= saved_order_info_
-        , "saved_credentials"          A..= saved_credentials_
-        , "can_save_credentials"       A..= can_save_credentials_
-        , "need_password"              A..= need_password_
-        , "product_title"              A..= product_title_
-        , "product_description"        A..= product_description_
-        , "product_photo"              A..= product_photo_
-        ]
-
-defaultPaymentForm :: PaymentForm
-defaultPaymentForm =
-  PaymentForm
-    { _id                        = Nothing
-    , invoice                    = Nothing
-    , seller_bot_user_id         = Nothing
-    , payment_provider_user_id   = Nothing
-    , payment_provider           = Nothing
-    , additional_payment_options = Nothing
-    , saved_order_info           = Nothing
-    , saved_credentials          = Nothing
-    , can_save_credentials       = Nothing
-    , need_password              = Nothing
-    , product_title              = Nothing
-    , product_description        = Nothing
-    , product_photo              = Nothing
-    }
 

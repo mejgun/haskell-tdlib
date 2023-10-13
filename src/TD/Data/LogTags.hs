@@ -1,7 +1,5 @@
 module TD.Data.LogTags
-  ( LogTags(..)    
-  , defaultLogTags 
-  ) where
+  (LogTags(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON LogTags where
           { tags = tags_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON LogTags where
-  toJSON LogTags
-    { tags = tags_
-    }
-      = A.object
-        [ "@type" A..= AT.String "logTags"
-        , "tags"  A..= tags_
-        ]
-
-defaultLogTags :: LogTags
-defaultLogTags =
-  LogTags
-    { tags = Nothing
-    }
 

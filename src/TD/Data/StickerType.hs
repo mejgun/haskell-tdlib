@@ -1,6 +1,5 @@
 module TD.Data.StickerType
-  ( StickerType(..) 
-  ) where
+  (StickerType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT

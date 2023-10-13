@@ -1,7 +1,5 @@
 module TD.Data.FileDownload
-  ( FileDownload(..)    
-  , defaultFileDownload 
-  ) where
+  (FileDownload(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,31 +57,4 @@ instance AT.FromJSON FileDownload where
           , is_paused     = is_paused_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON FileDownload where
-  toJSON FileDownload
-    { file_id       = file_id_
-    , message       = message_
-    , add_date      = add_date_
-    , complete_date = complete_date_
-    , is_paused     = is_paused_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "fileDownload"
-        , "file_id"       A..= file_id_
-        , "message"       A..= message_
-        , "add_date"      A..= add_date_
-        , "complete_date" A..= complete_date_
-        , "is_paused"     A..= is_paused_
-        ]
-
-defaultFileDownload :: FileDownload
-defaultFileDownload =
-  FileDownload
-    { file_id       = Nothing
-    , message       = Nothing
-    , add_date      = Nothing
-    , complete_date = Nothing
-    , is_paused     = Nothing
-    }
 

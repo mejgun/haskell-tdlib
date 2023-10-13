@@ -1,7 +1,5 @@
 module TD.Data.ChatEvents
-  ( ChatEvents(..)    
-  , defaultChatEvents 
-  ) where
+  (ChatEvents(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON ChatEvents where
           { events = events_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatEvents where
-  toJSON ChatEvents
-    { events = events_
-    }
-      = A.object
-        [ "@type"  A..= AT.String "chatEvents"
-        , "events" A..= events_
-        ]
-
-defaultChatEvents :: ChatEvents
-defaultChatEvents =
-  ChatEvents
-    { events = Nothing
-    }
 

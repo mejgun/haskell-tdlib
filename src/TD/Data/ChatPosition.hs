@@ -1,7 +1,5 @@
 module TD.Data.ChatPosition
-  ( ChatPosition(..)    
-  , defaultChatPosition 
-  ) where
+  (ChatPosition(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON ChatPosition where
           , source    = source_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatPosition where
-  toJSON ChatPosition
-    { list      = list_
-    , order     = order_
-    , is_pinned = is_pinned_
-    , source    = source_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "chatPosition"
-        , "list"      A..= list_
-        , "order"     A..= fmap I.writeInt64  order_
-        , "is_pinned" A..= is_pinned_
-        , "source"    A..= source_
-        ]
-
-defaultChatPosition :: ChatPosition
-defaultChatPosition =
-  ChatPosition
-    { list      = Nothing
-    , order     = Nothing
-    , is_pinned = Nothing
-    , source    = Nothing
-    }
 

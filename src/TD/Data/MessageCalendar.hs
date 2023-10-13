@@ -1,7 +1,5 @@
 module TD.Data.MessageCalendar
-  ( MessageCalendar(..)    
-  , defaultMessageCalendar 
-  ) where
+  (MessageCalendar(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON MessageCalendar where
           , days        = days_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageCalendar where
-  toJSON MessageCalendar
-    { total_count = total_count_
-    , days        = days_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messageCalendar"
-        , "total_count" A..= total_count_
-        , "days"        A..= days_
-        ]
-
-defaultMessageCalendar :: MessageCalendar
-defaultMessageCalendar =
-  MessageCalendar
-    { total_count = Nothing
-    , days        = Nothing
-    }
 

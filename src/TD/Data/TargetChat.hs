@@ -1,8 +1,5 @@
 module TD.Data.TargetChat
-  ( TargetChat(..)                
-  , defaultTargetChatChosen       
-  , defaultTargetChatInternalLink 
-  ) where
+  (TargetChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -103,19 +100,4 @@ instance AT.ToJSON TargetChat where
         [ "@type" A..= AT.String "targetChatInternalLink"
         , "link"  A..= link_
         ]
-
-defaultTargetChatChosen :: TargetChat
-defaultTargetChatChosen =
-  TargetChatChosen
-    { allow_user_chats    = Nothing
-    , allow_bot_chats     = Nothing
-    , allow_group_chats   = Nothing
-    , allow_channel_chats = Nothing
-    }
-
-defaultTargetChatInternalLink :: TargetChat
-defaultTargetChatInternalLink =
-  TargetChatInternalLink
-    { link = Nothing
-    }
 

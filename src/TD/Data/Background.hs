@@ -1,7 +1,5 @@
 module TD.Data.Background
-  ( Background(..)    
-  , defaultBackground 
-  ) where
+  (Background(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,34 +64,4 @@ instance AT.FromJSON Background where
           , _type      = _type_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Background where
-  toJSON Background
-    { _id        = _id_
-    , is_default = is_default_
-    , is_dark    = is_dark_
-    , name       = name_
-    , document   = document_
-    , _type      = _type_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "background"
-        , "id"         A..= fmap I.writeInt64  _id_
-        , "is_default" A..= is_default_
-        , "is_dark"    A..= is_dark_
-        , "name"       A..= name_
-        , "document"   A..= document_
-        , "type"       A..= _type_
-        ]
-
-defaultBackground :: Background
-defaultBackground =
-  Background
-    { _id        = Nothing
-    , is_default = Nothing
-    , is_dark    = Nothing
-    , name       = Nothing
-    , document   = Nothing
-    , _type      = Nothing
-    }
 

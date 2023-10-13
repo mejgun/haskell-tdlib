@@ -1,7 +1,5 @@
 module TD.Data.BankCardInfo
-  ( BankCardInfo(..)    
-  , defaultBankCardInfo 
-  ) where
+  (BankCardInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -45,22 +43,4 @@ instance AT.FromJSON BankCardInfo where
           , actions = actions_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON BankCardInfo where
-  toJSON BankCardInfo
-    { title   = title_
-    , actions = actions_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "bankCardInfo"
-        , "title"   A..= title_
-        , "actions" A..= actions_
-        ]
-
-defaultBankCardInfo :: BankCardInfo
-defaultBankCardInfo =
-  BankCardInfo
-    { title   = Nothing
-    , actions = Nothing
-    }
 

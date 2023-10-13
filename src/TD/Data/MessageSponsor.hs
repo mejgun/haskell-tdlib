@@ -1,7 +1,5 @@
 module TD.Data.MessageSponsor
-  ( MessageSponsor(..)    
-  , defaultMessageSponsor 
-  ) where
+  (MessageSponsor(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,25 +49,4 @@ instance AT.FromJSON MessageSponsor where
           , info  = info_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageSponsor where
-  toJSON MessageSponsor
-    { _type = _type_
-    , photo = photo_
-    , info  = info_
-    }
-      = A.object
-        [ "@type" A..= AT.String "messageSponsor"
-        , "type"  A..= _type_
-        , "photo" A..= photo_
-        , "info"  A..= info_
-        ]
-
-defaultMessageSponsor :: MessageSponsor
-defaultMessageSponsor =
-  MessageSponsor
-    { _type = Nothing
-    , photo = Nothing
-    , info  = Nothing
-    }
 

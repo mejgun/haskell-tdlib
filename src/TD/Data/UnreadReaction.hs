@@ -1,7 +1,5 @@
 module TD.Data.UnreadReaction
-  ( UnreadReaction(..)    
-  , defaultUnreadReaction 
-  ) where
+  (UnreadReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON UnreadReaction where
           , is_big    = is_big_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON UnreadReaction where
-  toJSON UnreadReaction
-    { _type     = _type_
-    , sender_id = sender_id_
-    , is_big    = is_big_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "unreadReaction"
-        , "type"      A..= _type_
-        , "sender_id" A..= sender_id_
-        , "is_big"    A..= is_big_
-        ]
-
-defaultUnreadReaction :: UnreadReaction
-defaultUnreadReaction =
-  UnreadReaction
-    { _type     = Nothing
-    , sender_id = Nothing
-    , is_big    = Nothing
-    }
 

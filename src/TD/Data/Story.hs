@@ -1,7 +1,5 @@
 module TD.Data.Story
-  ( Story(..)    
-  , defaultStory 
-  ) where
+  (Story(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -112,61 +110,4 @@ instance AT.FromJSON Story where
           , caption                  = caption_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Story where
-  toJSON Story
-    { _id                      = _id_
-    , sender_chat_id           = sender_chat_id_
-    , date                     = date_
-    , is_being_edited          = is_being_edited_
-    , is_edited                = is_edited_
-    , is_pinned                = is_pinned_
-    , is_visible_only_for_self = is_visible_only_for_self_
-    , can_be_forwarded         = can_be_forwarded_
-    , can_be_replied           = can_be_replied_
-    , can_get_viewers          = can_get_viewers_
-    , has_expired_viewers      = has_expired_viewers_
-    , interaction_info         = interaction_info_
-    , privacy_settings         = privacy_settings_
-    , content                  = content_
-    , caption                  = caption_
-    }
-      = A.object
-        [ "@type"                    A..= AT.String "story"
-        , "id"                       A..= _id_
-        , "sender_chat_id"           A..= sender_chat_id_
-        , "date"                     A..= date_
-        , "is_being_edited"          A..= is_being_edited_
-        , "is_edited"                A..= is_edited_
-        , "is_pinned"                A..= is_pinned_
-        , "is_visible_only_for_self" A..= is_visible_only_for_self_
-        , "can_be_forwarded"         A..= can_be_forwarded_
-        , "can_be_replied"           A..= can_be_replied_
-        , "can_get_viewers"          A..= can_get_viewers_
-        , "has_expired_viewers"      A..= has_expired_viewers_
-        , "interaction_info"         A..= interaction_info_
-        , "privacy_settings"         A..= privacy_settings_
-        , "content"                  A..= content_
-        , "caption"                  A..= caption_
-        ]
-
-defaultStory :: Story
-defaultStory =
-  Story
-    { _id                      = Nothing
-    , sender_chat_id           = Nothing
-    , date                     = Nothing
-    , is_being_edited          = Nothing
-    , is_edited                = Nothing
-    , is_pinned                = Nothing
-    , is_visible_only_for_self = Nothing
-    , can_be_forwarded         = Nothing
-    , can_be_replied           = Nothing
-    , can_get_viewers          = Nothing
-    , has_expired_viewers      = Nothing
-    , interaction_info         = Nothing
-    , privacy_settings         = Nothing
-    , content                  = Nothing
-    , caption                  = Nothing
-    }
 

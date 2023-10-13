@@ -1,7 +1,5 @@
 module TD.Data.ChatStatisticsInviterInfo
-  ( ChatStatisticsInviterInfo(..)    
-  , defaultChatStatisticsInviterInfo 
-  ) where
+  (ChatStatisticsInviterInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,22 +41,4 @@ instance AT.FromJSON ChatStatisticsInviterInfo where
           , added_member_count = added_member_count_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatStatisticsInviterInfo where
-  toJSON ChatStatisticsInviterInfo
-    { user_id            = user_id_
-    , added_member_count = added_member_count_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "chatStatisticsInviterInfo"
-        , "user_id"            A..= user_id_
-        , "added_member_count" A..= added_member_count_
-        ]
-
-defaultChatStatisticsInviterInfo :: ChatStatisticsInviterInfo
-defaultChatStatisticsInviterInfo =
-  ChatStatisticsInviterInfo
-    { user_id            = Nothing
-    , added_member_count = Nothing
-    }
 

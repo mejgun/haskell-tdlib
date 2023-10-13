@@ -1,6 +1,6 @@
 module TD.Data.PageBlockListItem (PageBlockListItem) where
 
-import Data.Aeson.Types (FromJSON, ToJSON)
+import Data.Aeson.Types (FromJSON)
 
 data PageBlockListItem
 
@@ -10,4 +10,4 @@ instance Show PageBlockListItem
 
 instance FromJSON PageBlockListItem
 
-instance ToJSON PageBlockListItem
+

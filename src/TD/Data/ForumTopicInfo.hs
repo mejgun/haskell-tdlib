@@ -1,7 +1,5 @@
 module TD.Data.ForumTopicInfo
-  ( ForumTopicInfo(..)    
-  , defaultForumTopicInfo 
-  ) where
+  (ForumTopicInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -81,43 +79,4 @@ instance AT.FromJSON ForumTopicInfo where
           , is_hidden         = is_hidden_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ForumTopicInfo where
-  toJSON ForumTopicInfo
-    { message_thread_id = message_thread_id_
-    , name              = name_
-    , icon              = icon_
-    , creation_date     = creation_date_
-    , creator_id        = creator_id_
-    , is_general        = is_general_
-    , is_outgoing       = is_outgoing_
-    , is_closed         = is_closed_
-    , is_hidden         = is_hidden_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "forumTopicInfo"
-        , "message_thread_id" A..= message_thread_id_
-        , "name"              A..= name_
-        , "icon"              A..= icon_
-        , "creation_date"     A..= creation_date_
-        , "creator_id"        A..= creator_id_
-        , "is_general"        A..= is_general_
-        , "is_outgoing"       A..= is_outgoing_
-        , "is_closed"         A..= is_closed_
-        , "is_hidden"         A..= is_hidden_
-        ]
-
-defaultForumTopicInfo :: ForumTopicInfo
-defaultForumTopicInfo =
-  ForumTopicInfo
-    { message_thread_id = Nothing
-    , name              = Nothing
-    , icon              = Nothing
-    , creation_date     = Nothing
-    , creator_id        = Nothing
-    , is_general        = Nothing
-    , is_outgoing       = Nothing
-    , is_closed         = Nothing
-    , is_hidden         = Nothing
-    }
 

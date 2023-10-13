@@ -1,7 +1,5 @@
 module TD.Data.Game
-  ( Game(..)    
-  , defaultGame 
-  ) where
+  (Game(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -72,37 +70,4 @@ instance AT.FromJSON Game where
           , animation   = animation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Game where
-  toJSON Game
-    { _id         = _id_
-    , short_name  = short_name_
-    , title       = title_
-    , text        = text_
-    , description = description_
-    , photo       = photo_
-    , animation   = animation_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "game"
-        , "id"          A..= fmap I.writeInt64  _id_
-        , "short_name"  A..= short_name_
-        , "title"       A..= title_
-        , "text"        A..= text_
-        , "description" A..= description_
-        , "photo"       A..= photo_
-        , "animation"   A..= animation_
-        ]
-
-defaultGame :: Game
-defaultGame =
-  Game
-    { _id         = Nothing
-    , short_name  = Nothing
-    , title       = Nothing
-    , text        = Nothing
-    , description = Nothing
-    , photo       = Nothing
-    , animation   = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.FoundMessages
-  ( FoundMessages(..)    
-  , defaultFoundMessages 
-  ) where
+  (FoundMessages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON FoundMessages where
           , next_offset = next_offset_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON FoundMessages where
-  toJSON FoundMessages
-    { total_count = total_count_
-    , messages    = messages_
-    , next_offset = next_offset_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "foundMessages"
-        , "total_count" A..= total_count_
-        , "messages"    A..= messages_
-        , "next_offset" A..= next_offset_
-        ]
-
-defaultFoundMessages :: FoundMessages
-defaultFoundMessages =
-  FoundMessages
-    { total_count = Nothing
-    , messages    = Nothing
-    , next_offset = Nothing
-    }
 

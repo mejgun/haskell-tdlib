@@ -1,7 +1,5 @@
 module TD.Data.SentWebAppMessage
-  ( SentWebAppMessage(..)    
-  , defaultSentWebAppMessage 
-  ) where
+  (SentWebAppMessage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON SentWebAppMessage where
           { inline_message_id = inline_message_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON SentWebAppMessage where
-  toJSON SentWebAppMessage
-    { inline_message_id = inline_message_id_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "sentWebAppMessage"
-        , "inline_message_id" A..= inline_message_id_
-        ]
-
-defaultSentWebAppMessage :: SentWebAppMessage
-defaultSentWebAppMessage =
-  SentWebAppMessage
-    { inline_message_id = Nothing
-    }
 

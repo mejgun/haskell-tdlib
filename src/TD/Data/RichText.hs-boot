@@ -1,6 +1,6 @@
 module TD.Data.RichText (RichText) where
 
-import Data.Aeson.Types (FromJSON, ToJSON)
+import Data.Aeson.Types (FromJSON)
 
 data RichText
 
@@ -10,4 +10,4 @@ instance Show RichText
 
 instance FromJSON RichText
 
-instance ToJSON RichText
+

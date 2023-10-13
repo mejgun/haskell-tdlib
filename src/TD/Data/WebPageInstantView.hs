@@ -1,7 +1,5 @@
 module TD.Data.WebPageInstantView
-  ( WebPageInstantView(..)    
-  , defaultWebPageInstantView 
-  ) where
+  (WebPageInstantView(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,34 +63,4 @@ instance AT.FromJSON WebPageInstantView where
           , feedback_link = feedback_link_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON WebPageInstantView where
-  toJSON WebPageInstantView
-    { page_blocks   = page_blocks_
-    , view_count    = view_count_
-    , version       = version_
-    , is_rtl        = is_rtl_
-    , is_full       = is_full_
-    , feedback_link = feedback_link_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "webPageInstantView"
-        , "page_blocks"   A..= page_blocks_
-        , "view_count"    A..= view_count_
-        , "version"       A..= version_
-        , "is_rtl"        A..= is_rtl_
-        , "is_full"       A..= is_full_
-        , "feedback_link" A..= feedback_link_
-        ]
-
-defaultWebPageInstantView :: WebPageInstantView
-defaultWebPageInstantView =
-  WebPageInstantView
-    { page_blocks   = Nothing
-    , view_count    = Nothing
-    , version       = Nothing
-    , is_rtl        = Nothing
-    , is_full       = Nothing
-    , feedback_link = Nothing
-    }
 

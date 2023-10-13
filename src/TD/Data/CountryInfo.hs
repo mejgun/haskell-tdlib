@@ -1,7 +1,5 @@
 module TD.Data.CountryInfo
-  ( CountryInfo(..)    
-  , defaultCountryInfo 
-  ) where
+  (CountryInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,31 +57,4 @@ instance AT.FromJSON CountryInfo where
           , calling_codes = calling_codes_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CountryInfo where
-  toJSON CountryInfo
-    { country_code  = country_code_
-    , name          = name_
-    , english_name  = english_name_
-    , is_hidden     = is_hidden_
-    , calling_codes = calling_codes_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "countryInfo"
-        , "country_code"  A..= country_code_
-        , "name"          A..= name_
-        , "english_name"  A..= english_name_
-        , "is_hidden"     A..= is_hidden_
-        , "calling_codes" A..= calling_codes_
-        ]
-
-defaultCountryInfo :: CountryInfo
-defaultCountryInfo =
-  CountryInfo
-    { country_code  = Nothing
-    , name          = Nothing
-    , english_name  = Nothing
-    , is_hidden     = Nothing
-    , calling_codes = Nothing
-    }
 

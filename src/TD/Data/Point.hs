@@ -1,7 +1,5 @@
 module TD.Data.Point
-  ( Point(..)    
-  , defaultPoint 
-  ) where
+  (Point(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,22 +41,4 @@ instance AT.FromJSON Point where
           , y = y_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Point where
-  toJSON Point
-    { x = x_
-    , y = y_
-    }
-      = A.object
-        [ "@type" A..= AT.String "point"
-        , "x"     A..= x_
-        , "y"     A..= y_
-        ]
-
-defaultPoint :: Point
-defaultPoint =
-  Point
-    { x = Nothing
-    , y = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.ChatAvailableReactions
-  ( ChatAvailableReactions(..)        
-  , defaultChatAvailableReactionsSome 
-  ) where
+  (ChatAvailableReactions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -57,10 +55,4 @@ instance AT.ToJSON ChatAvailableReactions where
         [ "@type"     A..= AT.String "chatAvailableReactionsSome"
         , "reactions" A..= reactions_
         ]
-
-defaultChatAvailableReactionsSome :: ChatAvailableReactions
-defaultChatAvailableReactionsSome =
-  ChatAvailableReactionsSome
-    { reactions = Nothing
-    }
 

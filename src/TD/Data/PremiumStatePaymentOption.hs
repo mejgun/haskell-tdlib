@@ -1,7 +1,5 @@
 module TD.Data.PremiumStatePaymentOption
-  ( PremiumStatePaymentOption(..)    
-  , defaultPremiumStatePaymentOption 
-  ) where
+  (PremiumStatePaymentOption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON PremiumStatePaymentOption where
           , last_transaction_id = last_transaction_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PremiumStatePaymentOption where
-  toJSON PremiumStatePaymentOption
-    { payment_option      = payment_option_
-    , is_current          = is_current_
-    , is_upgrade          = is_upgrade_
-    , last_transaction_id = last_transaction_id_
-    }
-      = A.object
-        [ "@type"               A..= AT.String "premiumStatePaymentOption"
-        , "payment_option"      A..= payment_option_
-        , "is_current"          A..= is_current_
-        , "is_upgrade"          A..= is_upgrade_
-        , "last_transaction_id" A..= last_transaction_id_
-        ]
-
-defaultPremiumStatePaymentOption :: PremiumStatePaymentOption
-defaultPremiumStatePaymentOption =
-  PremiumStatePaymentOption
-    { payment_option      = Nothing
-    , is_current          = Nothing
-    , is_upgrade          = Nothing
-    , last_transaction_id = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.Sticker
-  ( Sticker(..)    
-  , defaultSticker 
-  ) where
+  (Sticker(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -89,46 +87,4 @@ instance AT.FromJSON Sticker where
           , sticker   = sticker_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Sticker where
-  toJSON Sticker
-    { _id       = _id_
-    , set_id    = set_id_
-    , width     = width_
-    , height    = height_
-    , emoji     = emoji_
-    , format    = format_
-    , full_type = full_type_
-    , outline   = outline_
-    , thumbnail = thumbnail_
-    , sticker   = sticker_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "sticker"
-        , "id"        A..= fmap I.writeInt64  _id_
-        , "set_id"    A..= fmap I.writeInt64  set_id_
-        , "width"     A..= width_
-        , "height"    A..= height_
-        , "emoji"     A..= emoji_
-        , "format"    A..= format_
-        , "full_type" A..= full_type_
-        , "outline"   A..= outline_
-        , "thumbnail" A..= thumbnail_
-        , "sticker"   A..= sticker_
-        ]
-
-defaultSticker :: Sticker
-defaultSticker =
-  Sticker
-    { _id       = Nothing
-    , set_id    = Nothing
-    , width     = Nothing
-    , height    = Nothing
-    , emoji     = Nothing
-    , format    = Nothing
-    , full_type = Nothing
-    , outline   = Nothing
-    , thumbnail = Nothing
-    , sticker   = Nothing
-    }
 

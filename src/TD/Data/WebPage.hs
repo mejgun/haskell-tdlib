@@ -1,7 +1,5 @@
 module TD.Data.WebPage
-  ( WebPage(..)    
-  , defaultWebPage 
-  ) where
+  (WebPage(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -158,85 +156,4 @@ instance AT.FromJSON WebPage where
           , instant_view_version = instant_view_version_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON WebPage where
-  toJSON WebPage
-    { url                  = url_
-    , display_url          = display_url_
-    , _type                = _type_
-    , site_name            = site_name_
-    , title                = title_
-    , description          = description_
-    , photo                = photo_
-    , embed_url            = embed_url_
-    , embed_type           = embed_type_
-    , embed_width          = embed_width_
-    , embed_height         = embed_height_
-    , duration             = duration_
-    , author               = author_
-    , animation            = animation_
-    , audio                = audio_
-    , document             = document_
-    , sticker              = sticker_
-    , video                = video_
-    , video_note           = video_note_
-    , voice_note           = voice_note_
-    , story_sender_chat_id = story_sender_chat_id_
-    , story_id             = story_id_
-    , instant_view_version = instant_view_version_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "webPage"
-        , "url"                  A..= url_
-        , "display_url"          A..= display_url_
-        , "type"                 A..= _type_
-        , "site_name"            A..= site_name_
-        , "title"                A..= title_
-        , "description"          A..= description_
-        , "photo"                A..= photo_
-        , "embed_url"            A..= embed_url_
-        , "embed_type"           A..= embed_type_
-        , "embed_width"          A..= embed_width_
-        , "embed_height"         A..= embed_height_
-        , "duration"             A..= duration_
-        , "author"               A..= author_
-        , "animation"            A..= animation_
-        , "audio"                A..= audio_
-        , "document"             A..= document_
-        , "sticker"              A..= sticker_
-        , "video"                A..= video_
-        , "video_note"           A..= video_note_
-        , "voice_note"           A..= voice_note_
-        , "story_sender_chat_id" A..= story_sender_chat_id_
-        , "story_id"             A..= story_id_
-        , "instant_view_version" A..= instant_view_version_
-        ]
-
-defaultWebPage :: WebPage
-defaultWebPage =
-  WebPage
-    { url                  = Nothing
-    , display_url          = Nothing
-    , _type                = Nothing
-    , site_name            = Nothing
-    , title                = Nothing
-    , description          = Nothing
-    , photo                = Nothing
-    , embed_url            = Nothing
-    , embed_type           = Nothing
-    , embed_width          = Nothing
-    , embed_height         = Nothing
-    , duration             = Nothing
-    , author               = Nothing
-    , animation            = Nothing
-    , audio                = Nothing
-    , document             = Nothing
-    , sticker              = Nothing
-    , video                = Nothing
-    , video_note           = Nothing
-    , voice_note           = Nothing
-    , story_sender_chat_id = Nothing
-    , story_id             = Nothing
-    , instant_view_version = Nothing
-    }
 

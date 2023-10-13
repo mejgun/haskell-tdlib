@@ -1,7 +1,5 @@
 module TD.Data.StickerSet
-  ( StickerSet(..)    
-  , defaultStickerSet 
-  ) where
+  (StickerSet(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -105,55 +103,4 @@ instance AT.FromJSON StickerSet where
           , emojis            = emojis_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StickerSet where
-  toJSON StickerSet
-    { _id               = _id_
-    , title             = title_
-    , name              = name_
-    , thumbnail         = thumbnail_
-    , thumbnail_outline = thumbnail_outline_
-    , is_installed      = is_installed_
-    , is_archived       = is_archived_
-    , is_official       = is_official_
-    , sticker_format    = sticker_format_
-    , sticker_type      = sticker_type_
-    , is_viewed         = is_viewed_
-    , stickers          = stickers_
-    , emojis            = emojis_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "stickerSet"
-        , "id"                A..= fmap I.writeInt64  _id_
-        , "title"             A..= title_
-        , "name"              A..= name_
-        , "thumbnail"         A..= thumbnail_
-        , "thumbnail_outline" A..= thumbnail_outline_
-        , "is_installed"      A..= is_installed_
-        , "is_archived"       A..= is_archived_
-        , "is_official"       A..= is_official_
-        , "sticker_format"    A..= sticker_format_
-        , "sticker_type"      A..= sticker_type_
-        , "is_viewed"         A..= is_viewed_
-        , "stickers"          A..= stickers_
-        , "emojis"            A..= emojis_
-        ]
-
-defaultStickerSet :: StickerSet
-defaultStickerSet =
-  StickerSet
-    { _id               = Nothing
-    , title             = Nothing
-    , name              = Nothing
-    , thumbnail         = Nothing
-    , thumbnail_outline = Nothing
-    , is_installed      = Nothing
-    , is_archived       = Nothing
-    , is_official       = Nothing
-    , sticker_format    = Nothing
-    , sticker_type      = Nothing
-    , is_viewed         = Nothing
-    , stickers          = Nothing
-    , emojis            = Nothing
-    }
 

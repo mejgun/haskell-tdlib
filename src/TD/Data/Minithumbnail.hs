@@ -1,7 +1,5 @@
 module TD.Data.Minithumbnail
-  ( Minithumbnail(..)    
-  , defaultMinithumbnail 
-  ) where
+  (Minithumbnail(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON Minithumbnail where
           , _data  = _data_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Minithumbnail where
-  toJSON Minithumbnail
-    { width  = width_
-    , height = height_
-    , _data  = _data_
-    }
-      = A.object
-        [ "@type"  A..= AT.String "minithumbnail"
-        , "width"  A..= width_
-        , "height" A..= height_
-        , "data"   A..= fmap I.writeBytes  _data_
-        ]
-
-defaultMinithumbnail :: Minithumbnail
-defaultMinithumbnail =
-  Minithumbnail
-    { width  = Nothing
-    , height = Nothing
-    , _data  = Nothing
-    }
 

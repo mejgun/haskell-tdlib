@@ -1,7 +1,5 @@
 module TD.Data.LogVerbosityLevel
-  ( LogVerbosityLevel(..)    
-  , defaultLogVerbosityLevel 
-  ) where
+  (LogVerbosityLevel(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -38,19 +36,4 @@ instance AT.FromJSON LogVerbosityLevel where
           { verbosity_level = verbosity_level_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON LogVerbosityLevel where
-  toJSON LogVerbosityLevel
-    { verbosity_level = verbosity_level_
-    }
-      = A.object
-        [ "@type"           A..= AT.String "logVerbosityLevel"
-        , "verbosity_level" A..= verbosity_level_
-        ]
-
-defaultLogVerbosityLevel :: LogVerbosityLevel
-defaultLogVerbosityLevel =
-  LogVerbosityLevel
-    { verbosity_level = Nothing
-    }
 

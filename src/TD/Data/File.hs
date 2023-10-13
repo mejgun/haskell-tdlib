@@ -1,7 +1,5 @@
 module TD.Data.File
-  ( File(..)    
-  , defaultFile 
-  ) where
+  (File(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,31 +58,4 @@ instance AT.FromJSON File where
           , remote        = remote_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON File where
-  toJSON File
-    { _id           = _id_
-    , size          = size_
-    , expected_size = expected_size_
-    , local         = local_
-    , remote        = remote_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "file"
-        , "id"            A..= _id_
-        , "size"          A..= size_
-        , "expected_size" A..= expected_size_
-        , "local"         A..= local_
-        , "remote"        A..= remote_
-        ]
-
-defaultFile :: File
-defaultFile =
-  File
-    { _id           = Nothing
-    , size          = Nothing
-    , expected_size = Nothing
-    , local         = Nothing
-    , remote        = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.MessageReaction
-  ( MessageReaction(..)    
-  , defaultMessageReaction 
-  ) where
+  (MessageReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON MessageReaction where
           , recent_sender_ids = recent_sender_ids_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageReaction where
-  toJSON MessageReaction
-    { _type             = _type_
-    , total_count       = total_count_
-    , is_chosen         = is_chosen_
-    , recent_sender_ids = recent_sender_ids_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "messageReaction"
-        , "type"              A..= _type_
-        , "total_count"       A..= total_count_
-        , "is_chosen"         A..= is_chosen_
-        , "recent_sender_ids" A..= recent_sender_ids_
-        ]
-
-defaultMessageReaction :: MessageReaction
-defaultMessageReaction =
-  MessageReaction
-    { _type             = Nothing
-    , total_count       = Nothing
-    , is_chosen         = Nothing
-    , recent_sender_ids = Nothing
-    }
 

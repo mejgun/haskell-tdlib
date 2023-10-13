@@ -1,7 +1,5 @@
 module TD.Data.VideoNote
-  ( VideoNote(..)    
-  , defaultVideoNote 
-  ) where
+  (VideoNote(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -73,37 +71,4 @@ instance AT.FromJSON VideoNote where
           , video                     = video_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON VideoNote where
-  toJSON VideoNote
-    { duration                  = duration_
-    , waveform                  = waveform_
-    , _length                   = _length_
-    , minithumbnail             = minithumbnail_
-    , thumbnail                 = thumbnail_
-    , speech_recognition_result = speech_recognition_result_
-    , video                     = video_
-    }
-      = A.object
-        [ "@type"                     A..= AT.String "videoNote"
-        , "duration"                  A..= duration_
-        , "waveform"                  A..= fmap I.writeBytes  waveform_
-        , "length"                    A..= _length_
-        , "minithumbnail"             A..= minithumbnail_
-        , "thumbnail"                 A..= thumbnail_
-        , "speech_recognition_result" A..= speech_recognition_result_
-        , "video"                     A..= video_
-        ]
-
-defaultVideoNote :: VideoNote
-defaultVideoNote =
-  VideoNote
-    { duration                  = Nothing
-    , waveform                  = Nothing
-    , _length                   = Nothing
-    , minithumbnail             = Nothing
-    , thumbnail                 = Nothing
-    , speech_recognition_result = Nothing
-    , video                     = Nothing
-    }
 

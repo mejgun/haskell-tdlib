@@ -1,7 +1,5 @@
 module TD.Data.AddedReaction
-  ( AddedReaction(..)    
-  , defaultAddedReaction 
-  ) where
+  (AddedReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON AddedReaction where
           , date      = date_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AddedReaction where
-  toJSON AddedReaction
-    { _type     = _type_
-    , sender_id = sender_id_
-    , date      = date_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "addedReaction"
-        , "type"      A..= _type_
-        , "sender_id" A..= sender_id_
-        , "date"      A..= date_
-        ]
-
-defaultAddedReaction :: AddedReaction
-defaultAddedReaction =
-  AddedReaction
-    { _type     = Nothing
-    , sender_id = Nothing
-    , date      = Nothing
-    }
 

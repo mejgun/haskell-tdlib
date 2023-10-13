@@ -1,7 +1,5 @@
 module TD.Data.RecommendedChatFolders
-  ( RecommendedChatFolders(..)    
-  , defaultRecommendedChatFolders 
-  ) where
+  (RecommendedChatFolders(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON RecommendedChatFolders where
           { chat_folders = chat_folders_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON RecommendedChatFolders where
-  toJSON RecommendedChatFolders
-    { chat_folders = chat_folders_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "recommendedChatFolders"
-        , "chat_folders" A..= chat_folders_
-        ]
-
-defaultRecommendedChatFolders :: RecommendedChatFolders
-defaultRecommendedChatFolders =
-  RecommendedChatFolders
-    { chat_folders = Nothing
-    }
 

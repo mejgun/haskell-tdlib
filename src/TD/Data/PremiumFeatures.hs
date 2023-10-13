@@ -1,7 +1,5 @@
 module TD.Data.PremiumFeatures
-  ( PremiumFeatures(..)    
-  , defaultPremiumFeatures 
-  ) where
+  (PremiumFeatures(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,25 +49,4 @@ instance AT.FromJSON PremiumFeatures where
           , payment_link = payment_link_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PremiumFeatures where
-  toJSON PremiumFeatures
-    { features     = features_
-    , limits       = limits_
-    , payment_link = payment_link_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "premiumFeatures"
-        , "features"     A..= features_
-        , "limits"       A..= limits_
-        , "payment_link" A..= payment_link_
-        ]
-
-defaultPremiumFeatures :: PremiumFeatures
-defaultPremiumFeatures =
-  PremiumFeatures
-    { features     = Nothing
-    , limits       = Nothing
-    , payment_link = Nothing
-    }
 

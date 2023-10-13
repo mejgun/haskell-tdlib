@@ -1,7 +1,5 @@
 module TD.Data.Animation
-  ( Animation(..)    
-  , defaultAnimation 
-  ) where
+  (Animation(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -82,43 +80,4 @@ instance AT.FromJSON Animation where
           , animation     = animation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Animation where
-  toJSON Animation
-    { duration      = duration_
-    , width         = width_
-    , height        = height_
-    , file_name     = file_name_
-    , mime_type     = mime_type_
-    , has_stickers  = has_stickers_
-    , minithumbnail = minithumbnail_
-    , thumbnail     = thumbnail_
-    , animation     = animation_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "animation"
-        , "duration"      A..= duration_
-        , "width"         A..= width_
-        , "height"        A..= height_
-        , "file_name"     A..= file_name_
-        , "mime_type"     A..= mime_type_
-        , "has_stickers"  A..= has_stickers_
-        , "minithumbnail" A..= minithumbnail_
-        , "thumbnail"     A..= thumbnail_
-        , "animation"     A..= animation_
-        ]
-
-defaultAnimation :: Animation
-defaultAnimation =
-  Animation
-    { duration      = Nothing
-    , width         = Nothing
-    , height        = Nothing
-    , file_name     = Nothing
-    , mime_type     = Nothing
-    , has_stickers  = Nothing
-    , minithumbnail = Nothing
-    , thumbnail     = Nothing
-    , animation     = Nothing
-    }
 

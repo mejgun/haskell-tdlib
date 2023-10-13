@@ -1,7 +1,5 @@
 module TD.Data.HttpUrl
-  ( HttpUrl(..)    
-  , defaultHttpUrl 
-  ) where
+  (HttpUrl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON HttpUrl where
           { url = url_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON HttpUrl where
-  toJSON HttpUrl
-    { url = url_
-    }
-      = A.object
-        [ "@type" A..= AT.String "httpUrl"
-        , "url"   A..= url_
-        ]
-
-defaultHttpUrl :: HttpUrl
-defaultHttpUrl =
-  HttpUrl
-    { url = Nothing
-    }
 

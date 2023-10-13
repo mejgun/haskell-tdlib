@@ -1,6 +1,5 @@
 module TD.Data.CallDiscardReason
-  ( CallDiscardReason(..) 
-  ) where
+  (CallDiscardReason(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,26 +38,4 @@ instance AT.FromJSON CallDiscardReason where
       _                               -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON CallDiscardReason where
-  toJSON CallDiscardReasonEmpty
-      = A.object
-        [ "@type" A..= AT.String "callDiscardReasonEmpty"
-        ]
-  toJSON CallDiscardReasonMissed
-      = A.object
-        [ "@type" A..= AT.String "callDiscardReasonMissed"
-        ]
-  toJSON CallDiscardReasonDeclined
-      = A.object
-        [ "@type" A..= AT.String "callDiscardReasonDeclined"
-        ]
-  toJSON CallDiscardReasonDisconnected
-      = A.object
-        [ "@type" A..= AT.String "callDiscardReasonDisconnected"
-        ]
-  toJSON CallDiscardReasonHungUp
-      = A.object
-        [ "@type" A..= AT.String "callDiscardReasonHungUp"
-        ]
 

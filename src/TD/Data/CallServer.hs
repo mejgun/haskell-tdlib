@@ -1,7 +1,5 @@
 module TD.Data.CallServer
-  ( CallServer(..)    
-  , defaultCallServer 
-  ) where
+  (CallServer(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,31 +58,4 @@ instance AT.FromJSON CallServer where
           , _type        = _type_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CallServer where
-  toJSON CallServer
-    { _id          = _id_
-    , ip_address   = ip_address_
-    , ipv6_address = ipv6_address_
-    , port         = port_
-    , _type        = _type_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "callServer"
-        , "id"           A..= fmap I.writeInt64  _id_
-        , "ip_address"   A..= ip_address_
-        , "ipv6_address" A..= ipv6_address_
-        , "port"         A..= port_
-        , "type"         A..= _type_
-        ]
-
-defaultCallServer :: CallServer
-defaultCallServer =
-  CallServer
-    { _id          = Nothing
-    , ip_address   = Nothing
-    , ipv6_address = Nothing
-    , port         = Nothing
-    , _type        = Nothing
-    }
 

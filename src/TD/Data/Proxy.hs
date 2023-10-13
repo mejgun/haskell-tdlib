@@ -1,7 +1,5 @@
 module TD.Data.Proxy
-  ( Proxy(..)    
-  , defaultProxy 
-  ) where
+  (Proxy(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,34 +63,4 @@ instance AT.FromJSON Proxy where
           , _type          = _type_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Proxy where
-  toJSON Proxy
-    { _id            = _id_
-    , server         = server_
-    , port           = port_
-    , last_used_date = last_used_date_
-    , is_enabled     = is_enabled_
-    , _type          = _type_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "proxy"
-        , "id"             A..= _id_
-        , "server"         A..= server_
-        , "port"           A..= port_
-        , "last_used_date" A..= last_used_date_
-        , "is_enabled"     A..= is_enabled_
-        , "type"           A..= _type_
-        ]
-
-defaultProxy :: Proxy
-defaultProxy =
-  Proxy
-    { _id            = Nothing
-    , server         = Nothing
-    , port           = Nothing
-    , last_used_date = Nothing
-    , is_enabled     = Nothing
-    , _type          = Nothing
-    }
 

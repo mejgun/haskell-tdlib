@@ -1,7 +1,5 @@
 module TD.Data.GroupCallParticipantVideoInfo
-  ( GroupCallParticipantVideoInfo(..)    
-  , defaultGroupCallParticipantVideoInfo 
-  ) where
+  (GroupCallParticipantVideoInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON GroupCallParticipantVideoInfo where
           , is_paused     = is_paused_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GroupCallParticipantVideoInfo where
-  toJSON GroupCallParticipantVideoInfo
-    { source_groups = source_groups_
-    , endpoint_id   = endpoint_id_
-    , is_paused     = is_paused_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "groupCallParticipantVideoInfo"
-        , "source_groups" A..= source_groups_
-        , "endpoint_id"   A..= endpoint_id_
-        , "is_paused"     A..= is_paused_
-        ]
-
-defaultGroupCallParticipantVideoInfo :: GroupCallParticipantVideoInfo
-defaultGroupCallParticipantVideoInfo =
-  GroupCallParticipantVideoInfo
-    { source_groups = Nothing
-    , endpoint_id   = Nothing
-    , is_paused     = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.MessageStatistics
-  ( MessageStatistics(..)    
-  , defaultMessageStatistics 
-  ) where
+  (MessageStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON MessageStatistics where
           { message_interaction_graph = message_interaction_graph_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageStatistics where
-  toJSON MessageStatistics
-    { message_interaction_graph = message_interaction_graph_
-    }
-      = A.object
-        [ "@type"                     A..= AT.String "messageStatistics"
-        , "message_interaction_graph" A..= message_interaction_graph_
-        ]
-
-defaultMessageStatistics :: MessageStatistics
-defaultMessageStatistics =
-  MessageStatistics
-    { message_interaction_graph = Nothing
-    }
 

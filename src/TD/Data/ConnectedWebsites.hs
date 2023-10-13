@@ -1,7 +1,5 @@
 module TD.Data.ConnectedWebsites
-  ( ConnectedWebsites(..)    
-  , defaultConnectedWebsites 
-  ) where
+  (ConnectedWebsites(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON ConnectedWebsites where
           { websites = websites_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ConnectedWebsites where
-  toJSON ConnectedWebsites
-    { websites = websites_
-    }
-      = A.object
-        [ "@type"    A..= AT.String "connectedWebsites"
-        , "websites" A..= websites_
-        ]
-
-defaultConnectedWebsites :: ConnectedWebsites
-defaultConnectedWebsites =
-  ConnectedWebsites
-    { websites = Nothing
-    }
 

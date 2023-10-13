@@ -1,7 +1,5 @@
 module TD.Data.PageBlockRelatedArticle
-  ( PageBlockRelatedArticle(..)    
-  , defaultPageBlockRelatedArticle 
-  ) where
+  (PageBlockRelatedArticle(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,34 +63,4 @@ instance AT.FromJSON PageBlockRelatedArticle where
           , publish_date = publish_date_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PageBlockRelatedArticle where
-  toJSON PageBlockRelatedArticle
-    { url          = url_
-    , title        = title_
-    , description  = description_
-    , photo        = photo_
-    , author       = author_
-    , publish_date = publish_date_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "pageBlockRelatedArticle"
-        , "url"          A..= url_
-        , "title"        A..= title_
-        , "description"  A..= description_
-        , "photo"        A..= photo_
-        , "author"       A..= author_
-        , "publish_date" A..= publish_date_
-        ]
-
-defaultPageBlockRelatedArticle :: PageBlockRelatedArticle
-defaultPageBlockRelatedArticle =
-  PageBlockRelatedArticle
-    { url          = Nothing
-    , title        = Nothing
-    , description  = Nothing
-    , photo        = Nothing
-    , author       = Nothing
-    , publish_date = Nothing
-    }
 

@@ -1,9 +1,5 @@
 module TD.Data.CallbackQueryPayload
-  ( CallbackQueryPayload(..)                    
-  , defaultCallbackQueryPayloadData             
-  , defaultCallbackQueryPayloadDataWithPassword 
-  , defaultCallbackQueryPayloadGame             
-  ) where
+  (CallbackQueryPayload(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -107,23 +103,4 @@ instance AT.ToJSON CallbackQueryPayload where
         [ "@type"           A..= AT.String "callbackQueryPayloadGame"
         , "game_short_name" A..= game_short_name_
         ]
-
-defaultCallbackQueryPayloadData :: CallbackQueryPayload
-defaultCallbackQueryPayloadData =
-  CallbackQueryPayloadData
-    { _data = Nothing
-    }
-
-defaultCallbackQueryPayloadDataWithPassword :: CallbackQueryPayload
-defaultCallbackQueryPayloadDataWithPassword =
-  CallbackQueryPayloadDataWithPassword
-    { password = Nothing
-    , _data    = Nothing
-    }
-
-defaultCallbackQueryPayloadGame :: CallbackQueryPayload
-defaultCallbackQueryPayloadGame =
-  CallbackQueryPayloadGame
-    { game_short_name = Nothing
-    }
 

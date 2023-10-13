@@ -1,7 +1,5 @@
 module TD.Data.Users
-  ( Users(..)    
-  , defaultUsers 
-  ) where
+  (Users(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,22 +41,4 @@ instance AT.FromJSON Users where
           , user_ids    = user_ids_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Users where
-  toJSON Users
-    { total_count = total_count_
-    , user_ids    = user_ids_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "users"
-        , "total_count" A..= total_count_
-        , "user_ids"    A..= user_ids_
-        ]
-
-defaultUsers :: Users
-defaultUsers =
-  Users
-    { total_count = Nothing
-    , user_ids    = Nothing
-    }
 

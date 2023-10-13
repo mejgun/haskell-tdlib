@@ -1,7 +1,5 @@
 module TD.Data.PremiumPaymentOption
-  ( PremiumPaymentOption(..)    
-  , defaultPremiumPaymentOption 
-  ) where
+  (PremiumPaymentOption(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,34 +63,4 @@ instance AT.FromJSON PremiumPaymentOption where
           , payment_link        = payment_link_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PremiumPaymentOption where
-  toJSON PremiumPaymentOption
-    { currency            = currency_
-    , amount              = amount_
-    , discount_percentage = discount_percentage_
-    , month_count         = month_count_
-    , store_product_id    = store_product_id_
-    , payment_link        = payment_link_
-    }
-      = A.object
-        [ "@type"               A..= AT.String "premiumPaymentOption"
-        , "currency"            A..= currency_
-        , "amount"              A..= amount_
-        , "discount_percentage" A..= discount_percentage_
-        , "month_count"         A..= month_count_
-        , "store_product_id"    A..= store_product_id_
-        , "payment_link"        A..= payment_link_
-        ]
-
-defaultPremiumPaymentOption :: PremiumPaymentOption
-defaultPremiumPaymentOption =
-  PremiumPaymentOption
-    { currency            = Nothing
-    , amount              = Nothing
-    , discount_percentage = Nothing
-    , month_count         = Nothing
-    , store_product_id    = Nothing
-    , payment_link        = Nothing
-    }
 

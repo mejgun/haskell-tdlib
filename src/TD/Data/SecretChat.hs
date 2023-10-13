@@ -1,7 +1,5 @@
 module TD.Data.SecretChat
-  ( SecretChat(..)    
-  , defaultSecretChat 
-  ) where
+  (SecretChat(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,34 +63,4 @@ instance AT.FromJSON SecretChat where
           , layer       = layer_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON SecretChat where
-  toJSON SecretChat
-    { _id         = _id_
-    , user_id     = user_id_
-    , state       = state_
-    , is_outbound = is_outbound_
-    , key_hash    = key_hash_
-    , layer       = layer_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "secretChat"
-        , "id"          A..= _id_
-        , "user_id"     A..= user_id_
-        , "state"       A..= state_
-        , "is_outbound" A..= is_outbound_
-        , "key_hash"    A..= fmap I.writeBytes  key_hash_
-        , "layer"       A..= layer_
-        ]
-
-defaultSecretChat :: SecretChat
-defaultSecretChat =
-  SecretChat
-    { _id         = Nothing
-    , user_id     = Nothing
-    , state       = Nothing
-    , is_outbound = Nothing
-    , key_hash    = Nothing
-    , layer       = Nothing
-    }
 

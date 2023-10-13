@@ -1,7 +1,5 @@
 module TD.Data.InlineQueryResults
-  ( InlineQueryResults(..)    
-  , defaultInlineQueryResults 
-  ) where
+  (InlineQueryResults(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -56,28 +54,4 @@ instance AT.FromJSON InlineQueryResults where
           , next_offset     = next_offset_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON InlineQueryResults where
-  toJSON InlineQueryResults
-    { inline_query_id = inline_query_id_
-    , button          = button_
-    , results         = results_
-    , next_offset     = next_offset_
-    }
-      = A.object
-        [ "@type"           A..= AT.String "inlineQueryResults"
-        , "inline_query_id" A..= fmap I.writeInt64  inline_query_id_
-        , "button"          A..= button_
-        , "results"         A..= results_
-        , "next_offset"     A..= next_offset_
-        ]
-
-defaultInlineQueryResults :: InlineQueryResults
-defaultInlineQueryResults =
-  InlineQueryResults
-    { inline_query_id = Nothing
-    , button          = Nothing
-    , results         = Nothing
-    , next_offset     = Nothing
-    }
 

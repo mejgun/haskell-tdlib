@@ -1,7 +1,5 @@
 module TD.Data.ChatsNearby
-  ( ChatsNearby(..)    
-  , defaultChatsNearby 
-  ) where
+  (ChatsNearby(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON ChatsNearby where
           , supergroups_nearby = supergroups_nearby_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatsNearby where
-  toJSON ChatsNearby
-    { users_nearby       = users_nearby_
-    , supergroups_nearby = supergroups_nearby_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "chatsNearby"
-        , "users_nearby"       A..= users_nearby_
-        , "supergroups_nearby" A..= supergroups_nearby_
-        ]
-
-defaultChatsNearby :: ChatsNearby
-defaultChatsNearby =
-  ChatsNearby
-    { users_nearby       = Nothing
-    , supergroups_nearby = Nothing
-    }
 

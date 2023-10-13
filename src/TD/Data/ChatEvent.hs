@@ -1,7 +1,5 @@
 module TD.Data.ChatEvent
-  ( ChatEvent(..)    
-  , defaultChatEvent 
-  ) where
+  (ChatEvent(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -55,28 +53,4 @@ instance AT.FromJSON ChatEvent where
           , action    = action_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatEvent where
-  toJSON ChatEvent
-    { _id       = _id_
-    , date      = date_
-    , member_id = member_id_
-    , action    = action_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "chatEvent"
-        , "id"        A..= fmap I.writeInt64  _id_
-        , "date"      A..= date_
-        , "member_id" A..= member_id_
-        , "action"    A..= action_
-        ]
-
-defaultChatEvent :: ChatEvent
-defaultChatEvent =
-  ChatEvent
-    { _id       = Nothing
-    , date      = Nothing
-    , member_id = Nothing
-    , action    = Nothing
-    }
 

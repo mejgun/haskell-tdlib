@@ -1,9 +1,5 @@
 module TD.Data.PassportElementErrorSource
-  ( PassportElementErrorSource(..)                   
-  , defaultPassportElementErrorSourceDataField       
-  , defaultPassportElementErrorSourceTranslationFile 
-  , defaultPassportElementErrorSourceFile            
-  ) where
+  (PassportElementErrorSource(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -100,69 +96,4 @@ instance AT.FromJSON PassportElementErrorSource where
           { file_index = file_index_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PassportElementErrorSource where
-  toJSON PassportElementErrorSourceUnspecified
-      = A.object
-        [ "@type" A..= AT.String "passportElementErrorSourceUnspecified"
-        ]
-  toJSON PassportElementErrorSourceDataField
-    { field_name = field_name_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "passportElementErrorSourceDataField"
-        , "field_name" A..= field_name_
-        ]
-  toJSON PassportElementErrorSourceFrontSide
-      = A.object
-        [ "@type" A..= AT.String "passportElementErrorSourceFrontSide"
-        ]
-  toJSON PassportElementErrorSourceReverseSide
-      = A.object
-        [ "@type" A..= AT.String "passportElementErrorSourceReverseSide"
-        ]
-  toJSON PassportElementErrorSourceSelfie
-      = A.object
-        [ "@type" A..= AT.String "passportElementErrorSourceSelfie"
-        ]
-  toJSON PassportElementErrorSourceTranslationFile
-    { file_index = file_index_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "passportElementErrorSourceTranslationFile"
-        , "file_index" A..= file_index_
-        ]
-  toJSON PassportElementErrorSourceTranslationFiles
-      = A.object
-        [ "@type" A..= AT.String "passportElementErrorSourceTranslationFiles"
-        ]
-  toJSON PassportElementErrorSourceFile
-    { file_index = file_index_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "passportElementErrorSourceFile"
-        , "file_index" A..= file_index_
-        ]
-  toJSON PassportElementErrorSourceFiles
-      = A.object
-        [ "@type" A..= AT.String "passportElementErrorSourceFiles"
-        ]
-
-defaultPassportElementErrorSourceDataField :: PassportElementErrorSource
-defaultPassportElementErrorSourceDataField =
-  PassportElementErrorSourceDataField
-    { field_name = Nothing
-    }
-
-defaultPassportElementErrorSourceTranslationFile :: PassportElementErrorSource
-defaultPassportElementErrorSourceTranslationFile =
-  PassportElementErrorSourceTranslationFile
-    { file_index = Nothing
-    }
-
-defaultPassportElementErrorSourceFile :: PassportElementErrorSource
-defaultPassportElementErrorSourceFile =
-  PassportElementErrorSourceFile
-    { file_index = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.SavedCredentials
-  ( SavedCredentials(..)    
-  , defaultSavedCredentials 
-  ) where
+  (SavedCredentials(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON SavedCredentials where
           , title = title_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON SavedCredentials where
-  toJSON SavedCredentials
-    { _id   = _id_
-    , title = title_
-    }
-      = A.object
-        [ "@type" A..= AT.String "savedCredentials"
-        , "id"    A..= _id_
-        , "title" A..= title_
-        ]
-
-defaultSavedCredentials :: SavedCredentials
-defaultSavedCredentials =
-  SavedCredentials
-    { _id   = Nothing
-    , title = Nothing
-    }
 

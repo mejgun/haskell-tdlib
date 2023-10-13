@@ -1,7 +1,5 @@
 module TD.Data.ChatPhotos
-  ( ChatPhotos(..)    
-  , defaultChatPhotos 
-  ) where
+  (ChatPhotos(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON ChatPhotos where
           , photos      = photos_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatPhotos where
-  toJSON ChatPhotos
-    { total_count = total_count_
-    , photos      = photos_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "chatPhotos"
-        , "total_count" A..= total_count_
-        , "photos"      A..= photos_
-        ]
-
-defaultChatPhotos :: ChatPhotos
-defaultChatPhotos =
-  ChatPhotos
-    { total_count = Nothing
-    , photos      = Nothing
-    }
 

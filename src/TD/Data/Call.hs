@@ -1,7 +1,5 @@
 module TD.Data.Call
-  ( Call(..)    
-  , defaultCall 
-  ) where
+  (Call(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,31 +57,4 @@ instance AT.FromJSON Call where
           , state       = state_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Call where
-  toJSON Call
-    { _id         = _id_
-    , user_id     = user_id_
-    , is_outgoing = is_outgoing_
-    , is_video    = is_video_
-    , state       = state_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "call"
-        , "id"          A..= _id_
-        , "user_id"     A..= user_id_
-        , "is_outgoing" A..= is_outgoing_
-        , "is_video"    A..= is_video_
-        , "state"       A..= state_
-        ]
-
-defaultCall :: Call
-defaultCall =
-  Call
-    { _id         = Nothing
-    , user_id     = Nothing
-    , is_outgoing = Nothing
-    , is_video    = Nothing
-    , state       = Nothing
-    }
 

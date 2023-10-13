@@ -1,7 +1,5 @@
 module TD.Data.BotInfo
-  ( BotInfo(..)    
-  , defaultBotInfo 
-  ) where
+  (BotInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -100,52 +98,4 @@ instance AT.FromJSON BotInfo where
           , edit_settings_link                   = edit_settings_link_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON BotInfo where
-  toJSON BotInfo
-    { short_description                    = short_description_
-    , description                          = description_
-    , photo                                = photo_
-    , animation                            = animation_
-    , menu_button                          = menu_button_
-    , commands                             = commands_
-    , default_group_administrator_rights   = default_group_administrator_rights_
-    , default_channel_administrator_rights = default_channel_administrator_rights_
-    , edit_commands_link                   = edit_commands_link_
-    , edit_description_link                = edit_description_link_
-    , edit_description_media_link          = edit_description_media_link_
-    , edit_settings_link                   = edit_settings_link_
-    }
-      = A.object
-        [ "@type"                                A..= AT.String "botInfo"
-        , "short_description"                    A..= short_description_
-        , "description"                          A..= description_
-        , "photo"                                A..= photo_
-        , "animation"                            A..= animation_
-        , "menu_button"                          A..= menu_button_
-        , "commands"                             A..= commands_
-        , "default_group_administrator_rights"   A..= default_group_administrator_rights_
-        , "default_channel_administrator_rights" A..= default_channel_administrator_rights_
-        , "edit_commands_link"                   A..= edit_commands_link_
-        , "edit_description_link"                A..= edit_description_link_
-        , "edit_description_media_link"          A..= edit_description_media_link_
-        , "edit_settings_link"                   A..= edit_settings_link_
-        ]
-
-defaultBotInfo :: BotInfo
-defaultBotInfo =
-  BotInfo
-    { short_description                    = Nothing
-    , description                          = Nothing
-    , photo                                = Nothing
-    , animation                            = Nothing
-    , menu_button                          = Nothing
-    , commands                             = Nothing
-    , default_group_administrator_rights   = Nothing
-    , default_channel_administrator_rights = Nothing
-    , edit_commands_link                   = Nothing
-    , edit_description_link                = Nothing
-    , edit_description_media_link          = Nothing
-    , edit_settings_link                   = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.WebApp
-  ( WebApp(..)    
-  , defaultWebApp 
-  ) where
+  (WebApp(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,31 +59,4 @@ instance AT.FromJSON WebApp where
           , animation   = animation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON WebApp where
-  toJSON WebApp
-    { short_name  = short_name_
-    , title       = title_
-    , description = description_
-    , photo       = photo_
-    , animation   = animation_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "webApp"
-        , "short_name"  A..= short_name_
-        , "title"       A..= title_
-        , "description" A..= description_
-        , "photo"       A..= photo_
-        , "animation"   A..= animation_
-        ]
-
-defaultWebApp :: WebApp
-defaultWebApp =
-  WebApp
-    { short_name  = Nothing
-    , title       = Nothing
-    , description = Nothing
-    , photo       = Nothing
-    , animation   = Nothing
-    }
 

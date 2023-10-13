@@ -1,7 +1,5 @@
 module TD.Data.Document
-  ( Document(..)    
-  , defaultDocument 
-  ) where
+  (Document(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -62,31 +60,4 @@ instance AT.FromJSON Document where
           , document      = document_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Document where
-  toJSON Document
-    { file_name     = file_name_
-    , mime_type     = mime_type_
-    , minithumbnail = minithumbnail_
-    , thumbnail     = thumbnail_
-    , document      = document_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "document"
-        , "file_name"     A..= file_name_
-        , "mime_type"     A..= mime_type_
-        , "minithumbnail" A..= minithumbnail_
-        , "thumbnail"     A..= thumbnail_
-        , "document"      A..= document_
-        ]
-
-defaultDocument :: Document
-defaultDocument =
-  Document
-    { file_name     = Nothing
-    , mime_type     = Nothing
-    , minithumbnail = Nothing
-    , thumbnail     = Nothing
-    , document      = Nothing
-    }
 

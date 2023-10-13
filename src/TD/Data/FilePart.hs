@@ -1,7 +1,5 @@
 module TD.Data.FilePart
-  ( FilePart(..)    
-  , defaultFilePart 
-  ) where
+  (FilePart(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON FilePart where
           { _data = _data_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON FilePart where
-  toJSON FilePart
-    { _data = _data_
-    }
-      = A.object
-        [ "@type" A..= AT.String "filePart"
-        , "data"  A..= fmap I.writeBytes  _data_
-        ]
-
-defaultFilePart :: FilePart
-defaultFilePart =
-  FilePart
-    { _data = Nothing
-    }
 

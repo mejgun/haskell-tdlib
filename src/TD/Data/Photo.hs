@@ -1,7 +1,5 @@
 module TD.Data.Photo
-  ( Photo(..)    
-  , defaultPhoto 
-  ) where
+  (Photo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON Photo where
           , sizes         = sizes_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Photo where
-  toJSON Photo
-    { has_stickers  = has_stickers_
-    , minithumbnail = minithumbnail_
-    , sizes         = sizes_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "photo"
-        , "has_stickers"  A..= has_stickers_
-        , "minithumbnail" A..= minithumbnail_
-        , "sizes"         A..= sizes_
-        ]
-
-defaultPhoto :: Photo
-defaultPhoto =
-  Photo
-    { has_stickers  = Nothing
-    , minithumbnail = Nothing
-    , sizes         = Nothing
-    }
 

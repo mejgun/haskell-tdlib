@@ -1,7 +1,5 @@
 module TD.Data.AutosaveSettingsScope
-  ( AutosaveSettingsScope(..)        
-  , defaultAutosaveSettingsScopeChat 
-  ) where
+  (AutosaveSettingsScope(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -72,10 +70,4 @@ instance AT.ToJSON AutosaveSettingsScope where
         [ "@type"   A..= AT.String "autosaveSettingsScopeChat"
         , "chat_id" A..= chat_id_
         ]
-
-defaultAutosaveSettingsScopeChat :: AutosaveSettingsScope
-defaultAutosaveSettingsScopeChat =
-  AutosaveSettingsScopeChat
-    { chat_id = Nothing
-    }
 

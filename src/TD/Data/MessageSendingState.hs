@@ -1,8 +1,5 @@
 module TD.Data.MessageSendingState
-  ( MessageSendingState(..)           
-  , defaultMessageSendingStatePending 
-  , defaultMessageSendingStateFailed  
-  ) where
+  (MessageSendingState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -78,44 +75,4 @@ instance AT.FromJSON MessageSendingState where
           , retry_after         = retry_after_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageSendingState where
-  toJSON MessageSendingStatePending
-    { sending_id = sending_id_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "messageSendingStatePending"
-        , "sending_id" A..= sending_id_
-        ]
-  toJSON MessageSendingStateFailed
-    { error_code          = error_code_
-    , error_message       = error_message_
-    , can_retry           = can_retry_
-    , need_another_sender = need_another_sender_
-    , retry_after         = retry_after_
-    }
-      = A.object
-        [ "@type"               A..= AT.String "messageSendingStateFailed"
-        , "error_code"          A..= error_code_
-        , "error_message"       A..= error_message_
-        , "can_retry"           A..= can_retry_
-        , "need_another_sender" A..= need_another_sender_
-        , "retry_after"         A..= retry_after_
-        ]
-
-defaultMessageSendingStatePending :: MessageSendingState
-defaultMessageSendingStatePending =
-  MessageSendingStatePending
-    { sending_id = Nothing
-    }
-
-defaultMessageSendingStateFailed :: MessageSendingState
-defaultMessageSendingStateFailed =
-  MessageSendingStateFailed
-    { error_code          = Nothing
-    , error_message       = Nothing
-    , can_retry           = Nothing
-    , need_another_sender = Nothing
-    , retry_after         = Nothing
-    }
 

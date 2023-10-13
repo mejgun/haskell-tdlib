@@ -1,8 +1,5 @@
 module TD.Data.ResetPasswordResult
-  ( ResetPasswordResult(..)            
-  , defaultResetPasswordResultPending  
-  , defaultResetPasswordResultDeclined 
-  ) where
+  (ResetPasswordResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -61,36 +58,4 @@ instance AT.FromJSON ResetPasswordResult where
           { retry_date = retry_date_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ResetPasswordResult where
-  toJSON ResetPasswordResultOk
-      = A.object
-        [ "@type" A..= AT.String "resetPasswordResultOk"
-        ]
-  toJSON ResetPasswordResultPending
-    { pending_reset_date = pending_reset_date_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "resetPasswordResultPending"
-        , "pending_reset_date" A..= pending_reset_date_
-        ]
-  toJSON ResetPasswordResultDeclined
-    { retry_date = retry_date_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "resetPasswordResultDeclined"
-        , "retry_date" A..= retry_date_
-        ]
-
-defaultResetPasswordResultPending :: ResetPasswordResult
-defaultResetPasswordResultPending =
-  ResetPasswordResultPending
-    { pending_reset_date = Nothing
-    }
-
-defaultResetPasswordResultDeclined :: ResetPasswordResult
-defaultResetPasswordResultDeclined =
-  ResetPasswordResultDeclined
-    { retry_date = Nothing
-    }
 

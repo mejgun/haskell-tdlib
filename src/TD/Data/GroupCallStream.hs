@@ -1,7 +1,5 @@
 module TD.Data.GroupCallStream
-  ( GroupCallStream(..)    
-  , defaultGroupCallStream 
-  ) where
+  (GroupCallStream(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -48,25 +46,4 @@ instance AT.FromJSON GroupCallStream where
           , time_offset = time_offset_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GroupCallStream where
-  toJSON GroupCallStream
-    { channel_id  = channel_id_
-    , scale       = scale_
-    , time_offset = time_offset_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "groupCallStream"
-        , "channel_id"  A..= channel_id_
-        , "scale"       A..= scale_
-        , "time_offset" A..= time_offset_
-        ]
-
-defaultGroupCallStream :: GroupCallStream
-defaultGroupCallStream =
-  GroupCallStream
-    { channel_id  = Nothing
-    , scale       = Nothing
-    , time_offset = Nothing
-    }
 

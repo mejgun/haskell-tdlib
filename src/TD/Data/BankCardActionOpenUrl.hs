@@ -1,7 +1,5 @@
 module TD.Data.BankCardActionOpenUrl
-  ( BankCardActionOpenUrl(..)    
-  , defaultBankCardActionOpenUrl 
-  ) where
+  (BankCardActionOpenUrl(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON BankCardActionOpenUrl where
           , url  = url_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON BankCardActionOpenUrl where
-  toJSON BankCardActionOpenUrl
-    { text = text_
-    , url  = url_
-    }
-      = A.object
-        [ "@type" A..= AT.String "bankCardActionOpenUrl"
-        , "text"  A..= text_
-        , "url"   A..= url_
-        ]
-
-defaultBankCardActionOpenUrl :: BankCardActionOpenUrl
-defaultBankCardActionOpenUrl =
-  BankCardActionOpenUrl
-    { text = Nothing
-    , url  = Nothing
-    }
 

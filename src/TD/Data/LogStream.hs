@@ -1,7 +1,5 @@
 module TD.Data.LogStream
-  ( LogStream(..)        
-  , defaultLogStreamFile 
-  ) where
+  (LogStream(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -79,12 +77,4 @@ instance AT.ToJSON LogStream where
       = A.object
         [ "@type" A..= AT.String "logStreamEmpty"
         ]
-
-defaultLogStreamFile :: LogStream
-defaultLogStreamFile =
-  LogStreamFile
-    { path            = Nothing
-    , max_file_size   = Nothing
-    , redirect_stderr = Nothing
-    }
 

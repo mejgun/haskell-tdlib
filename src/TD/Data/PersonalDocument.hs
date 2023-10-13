@@ -1,7 +1,5 @@
 module TD.Data.PersonalDocument
-  ( PersonalDocument(..)    
-  , defaultPersonalDocument 
-  ) where
+  (PersonalDocument(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON PersonalDocument where
           , translation = translation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PersonalDocument where
-  toJSON PersonalDocument
-    { files       = files_
-    , translation = translation_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "personalDocument"
-        , "files"       A..= files_
-        , "translation" A..= translation_
-        ]
-
-defaultPersonalDocument :: PersonalDocument
-defaultPersonalDocument =
-  PersonalDocument
-    { files       = Nothing
-    , translation = Nothing
-    }
 

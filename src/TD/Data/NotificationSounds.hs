@@ -1,7 +1,5 @@
 module TD.Data.NotificationSounds
-  ( NotificationSounds(..)    
-  , defaultNotificationSounds 
-  ) where
+  (NotificationSounds(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON NotificationSounds where
           { notification_sounds = notification_sounds_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON NotificationSounds where
-  toJSON NotificationSounds
-    { notification_sounds = notification_sounds_
-    }
-      = A.object
-        [ "@type"               A..= AT.String "notificationSounds"
-        , "notification_sounds" A..= notification_sounds_
-        ]
-
-defaultNotificationSounds :: NotificationSounds
-defaultNotificationSounds =
-  NotificationSounds
-    { notification_sounds = Nothing
-    }
 

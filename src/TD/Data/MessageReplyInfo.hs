@@ -1,7 +1,5 @@
 module TD.Data.MessageReplyInfo
-  ( MessageReplyInfo(..)    
-  , defaultMessageReplyInfo 
-  ) where
+  (MessageReplyInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -59,31 +57,4 @@ instance AT.FromJSON MessageReplyInfo where
           , last_message_id             = last_message_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageReplyInfo where
-  toJSON MessageReplyInfo
-    { reply_count                 = reply_count_
-    , recent_replier_ids          = recent_replier_ids_
-    , last_read_inbox_message_id  = last_read_inbox_message_id_
-    , last_read_outbox_message_id = last_read_outbox_message_id_
-    , last_message_id             = last_message_id_
-    }
-      = A.object
-        [ "@type"                       A..= AT.String "messageReplyInfo"
-        , "reply_count"                 A..= reply_count_
-        , "recent_replier_ids"          A..= recent_replier_ids_
-        , "last_read_inbox_message_id"  A..= last_read_inbox_message_id_
-        , "last_read_outbox_message_id" A..= last_read_outbox_message_id_
-        , "last_message_id"             A..= last_message_id_
-        ]
-
-defaultMessageReplyInfo :: MessageReplyInfo
-defaultMessageReplyInfo =
-  MessageReplyInfo
-    { reply_count                 = Nothing
-    , recent_replier_ids          = Nothing
-    , last_read_inbox_message_id  = Nothing
-    , last_read_outbox_message_id = Nothing
-    , last_message_id             = Nothing
-    }
 

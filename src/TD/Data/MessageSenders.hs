@@ -1,7 +1,5 @@
 module TD.Data.MessageSenders
-  ( MessageSenders(..)    
-  , defaultMessageSenders 
-  ) where
+  (MessageSenders(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON MessageSenders where
           , senders     = senders_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageSenders where
-  toJSON MessageSenders
-    { total_count = total_count_
-    , senders     = senders_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messageSenders"
-        , "total_count" A..= total_count_
-        , "senders"     A..= senders_
-        ]
-
-defaultMessageSenders :: MessageSenders
-defaultMessageSenders =
-  MessageSenders
-    { total_count = Nothing
-    , senders     = Nothing
-    }
 

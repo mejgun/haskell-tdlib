@@ -1,7 +1,5 @@
 module TD.Data.BotCommands
-  ( BotCommands(..)    
-  , defaultBotCommands 
-  ) where
+  (BotCommands(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON BotCommands where
           , commands    = commands_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON BotCommands where
-  toJSON BotCommands
-    { bot_user_id = bot_user_id_
-    , commands    = commands_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "botCommands"
-        , "bot_user_id" A..= bot_user_id_
-        , "commands"    A..= commands_
-        ]
-
-defaultBotCommands :: BotCommands
-defaultBotCommands =
-  BotCommands
-    { bot_user_id = Nothing
-    , commands    = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.Seconds
-  ( Seconds(..)    
-  , defaultSeconds 
-  ) where
+  (Seconds(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -38,19 +36,4 @@ instance AT.FromJSON Seconds where
           { seconds = seconds_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Seconds where
-  toJSON Seconds
-    { seconds = seconds_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "seconds"
-        , "seconds" A..= seconds_
-        ]
-
-defaultSeconds :: Seconds
-defaultSeconds =
-  Seconds
-    { seconds = Nothing
-    }
 

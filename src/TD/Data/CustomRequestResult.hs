@@ -1,7 +1,5 @@
 module TD.Data.CustomRequestResult
-  ( CustomRequestResult(..)    
-  , defaultCustomRequestResult 
-  ) where
+  (CustomRequestResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON CustomRequestResult where
           { result = result_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CustomRequestResult where
-  toJSON CustomRequestResult
-    { result = result_
-    }
-      = A.object
-        [ "@type"  A..= AT.String "customRequestResult"
-        , "result" A..= result_
-        ]
-
-defaultCustomRequestResult :: CustomRequestResult
-defaultCustomRequestResult =
-  CustomRequestResult
-    { result = Nothing
-    }
 

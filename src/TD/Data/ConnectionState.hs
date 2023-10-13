@@ -1,6 +1,5 @@
 module TD.Data.ConnectionState
-  ( ConnectionState(..) 
-  ) where
+  (ConnectionState(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,26 +38,4 @@ instance AT.FromJSON ConnectionState where
       _                                  -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON ConnectionState where
-  toJSON ConnectionStateWaitingForNetwork
-      = A.object
-        [ "@type" A..= AT.String "connectionStateWaitingForNetwork"
-        ]
-  toJSON ConnectionStateConnectingToProxy
-      = A.object
-        [ "@type" A..= AT.String "connectionStateConnectingToProxy"
-        ]
-  toJSON ConnectionStateConnecting
-      = A.object
-        [ "@type" A..= AT.String "connectionStateConnecting"
-        ]
-  toJSON ConnectionStateUpdating
-      = A.object
-        [ "@type" A..= AT.String "connectionStateUpdating"
-        ]
-  toJSON ConnectionStateReady
-      = A.object
-        [ "@type" A..= AT.String "connectionStateReady"
-        ]
 

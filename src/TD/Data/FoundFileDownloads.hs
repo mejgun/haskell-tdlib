@@ -1,7 +1,5 @@
 module TD.Data.FoundFileDownloads
-  ( FoundFileDownloads(..)    
-  , defaultFoundFileDownloads 
-  ) where
+  (FoundFileDownloads(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -51,25 +49,4 @@ instance AT.FromJSON FoundFileDownloads where
           , next_offset  = next_offset_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON FoundFileDownloads where
-  toJSON FoundFileDownloads
-    { total_counts = total_counts_
-    , files        = files_
-    , next_offset  = next_offset_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "foundFileDownloads"
-        , "total_counts" A..= total_counts_
-        , "files"        A..= files_
-        , "next_offset"  A..= next_offset_
-        ]
-
-defaultFoundFileDownloads :: FoundFileDownloads
-defaultFoundFileDownloads =
-  FoundFileDownloads
-    { total_counts = Nothing
-    , files        = Nothing
-    , next_offset  = Nothing
-    }
 

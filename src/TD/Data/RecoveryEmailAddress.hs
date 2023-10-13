@@ -1,7 +1,5 @@
 module TD.Data.RecoveryEmailAddress
-  ( RecoveryEmailAddress(..)    
-  , defaultRecoveryEmailAddress 
-  ) where
+  (RecoveryEmailAddress(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON RecoveryEmailAddress where
           { recovery_email_address = recovery_email_address_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON RecoveryEmailAddress where
-  toJSON RecoveryEmailAddress
-    { recovery_email_address = recovery_email_address_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "recoveryEmailAddress"
-        , "recovery_email_address" A..= recovery_email_address_
-        ]
-
-defaultRecoveryEmailAddress :: RecoveryEmailAddress
-defaultRecoveryEmailAddress =
-  RecoveryEmailAddress
-    { recovery_email_address = Nothing
-    }
 

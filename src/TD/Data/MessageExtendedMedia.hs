@@ -1,10 +1,5 @@
 module TD.Data.MessageExtendedMedia
-  ( MessageExtendedMedia(..)               
-  , defaultMessageExtendedMediaPreview     
-  , defaultMessageExtendedMediaPhoto       
-  , defaultMessageExtendedMediaVideo       
-  , defaultMessageExtendedMediaUnsupported 
-  ) where
+  (MessageExtendedMedia(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -127,76 +122,4 @@ instance AT.FromJSON MessageExtendedMedia where
           { caption = caption_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageExtendedMedia where
-  toJSON MessageExtendedMediaPreview
-    { width         = width_
-    , height        = height_
-    , duration      = duration_
-    , minithumbnail = minithumbnail_
-    , caption       = caption_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "messageExtendedMediaPreview"
-        , "width"         A..= width_
-        , "height"        A..= height_
-        , "duration"      A..= duration_
-        , "minithumbnail" A..= minithumbnail_
-        , "caption"       A..= caption_
-        ]
-  toJSON MessageExtendedMediaPhoto
-    { photo   = photo_
-    , caption = caption_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "messageExtendedMediaPhoto"
-        , "photo"   A..= photo_
-        , "caption" A..= caption_
-        ]
-  toJSON MessageExtendedMediaVideo
-    { video   = video_
-    , caption = caption_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "messageExtendedMediaVideo"
-        , "video"   A..= video_
-        , "caption" A..= caption_
-        ]
-  toJSON MessageExtendedMediaUnsupported
-    { caption = caption_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "messageExtendedMediaUnsupported"
-        , "caption" A..= caption_
-        ]
-
-defaultMessageExtendedMediaPreview :: MessageExtendedMedia
-defaultMessageExtendedMediaPreview =
-  MessageExtendedMediaPreview
-    { width         = Nothing
-    , height        = Nothing
-    , duration      = Nothing
-    , minithumbnail = Nothing
-    , caption       = Nothing
-    }
-
-defaultMessageExtendedMediaPhoto :: MessageExtendedMedia
-defaultMessageExtendedMediaPhoto =
-  MessageExtendedMediaPhoto
-    { photo   = Nothing
-    , caption = Nothing
-    }
-
-defaultMessageExtendedMediaVideo :: MessageExtendedMedia
-defaultMessageExtendedMediaVideo =
-  MessageExtendedMediaVideo
-    { video   = Nothing
-    , caption = Nothing
-    }
-
-defaultMessageExtendedMediaUnsupported :: MessageExtendedMedia
-defaultMessageExtendedMediaUnsupported =
-  MessageExtendedMediaUnsupported
-    { caption = Nothing
-    }
 

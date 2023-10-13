@@ -1,7 +1,5 @@
 module TD.Data.EmojiCategories
-  ( EmojiCategories(..)    
-  , defaultEmojiCategories 
-  ) where
+  (EmojiCategories(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON EmojiCategories where
           { categories = categories_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON EmojiCategories where
-  toJSON EmojiCategories
-    { categories = categories_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "emojiCategories"
-        , "categories" A..= categories_
-        ]
-
-defaultEmojiCategories :: EmojiCategories
-defaultEmojiCategories =
-  EmojiCategories
-    { categories = Nothing
-    }
 

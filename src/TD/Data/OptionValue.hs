@@ -1,9 +1,5 @@
 module TD.Data.OptionValue
-  ( OptionValue(..)           
-  , defaultOptionValueBoolean 
-  , defaultOptionValueInteger 
-  , defaultOptionValueString  
-  ) where
+  (OptionValue(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -107,22 +103,4 @@ instance AT.ToJSON OptionValue where
         [ "@type" A..= AT.String "optionValueString"
         , "value" A..= __value_
         ]
-
-defaultOptionValueBoolean :: OptionValue
-defaultOptionValueBoolean =
-  OptionValueBoolean
-    { value = Nothing
-    }
-
-defaultOptionValueInteger :: OptionValue
-defaultOptionValueInteger =
-  OptionValueInteger
-    { _value = Nothing
-    }
-
-defaultOptionValueString :: OptionValue
-defaultOptionValueString =
-  OptionValueString
-    { __value = Nothing
-    }
 

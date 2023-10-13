@@ -1,6 +1,5 @@
 module TD.Data.SessionType
-  ( SessionType(..) 
-  ) where
+  (SessionType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -87,74 +86,4 @@ instance AT.FromJSON SessionType where
       _                    -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON SessionType where
-  toJSON SessionTypeAndroid
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeAndroid"
-        ]
-  toJSON SessionTypeApple
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeApple"
-        ]
-  toJSON SessionTypeBrave
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeBrave"
-        ]
-  toJSON SessionTypeChrome
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeChrome"
-        ]
-  toJSON SessionTypeEdge
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeEdge"
-        ]
-  toJSON SessionTypeFirefox
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeFirefox"
-        ]
-  toJSON SessionTypeIpad
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeIpad"
-        ]
-  toJSON SessionTypeIphone
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeIphone"
-        ]
-  toJSON SessionTypeLinux
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeLinux"
-        ]
-  toJSON SessionTypeMac
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeMac"
-        ]
-  toJSON SessionTypeOpera
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeOpera"
-        ]
-  toJSON SessionTypeSafari
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeSafari"
-        ]
-  toJSON SessionTypeUbuntu
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeUbuntu"
-        ]
-  toJSON SessionTypeUnknown
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeUnknown"
-        ]
-  toJSON SessionTypeVivaldi
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeVivaldi"
-        ]
-  toJSON SessionTypeWindows
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeWindows"
-        ]
-  toJSON SessionTypeXbox
-      = A.object
-        [ "@type" A..= AT.String "sessionTypeXbox"
-        ]
 

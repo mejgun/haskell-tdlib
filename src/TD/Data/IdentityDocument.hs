@@ -1,7 +1,5 @@
 module TD.Data.IdentityDocument
-  ( IdentityDocument(..)    
-  , defaultIdentityDocument 
-  ) where
+  (IdentityDocument(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -66,34 +64,4 @@ instance AT.FromJSON IdentityDocument where
           , translation     = translation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON IdentityDocument where
-  toJSON IdentityDocument
-    { number          = number_
-    , expiration_date = expiration_date_
-    , front_side      = front_side_
-    , reverse_side    = reverse_side_
-    , selfie          = selfie_
-    , translation     = translation_
-    }
-      = A.object
-        [ "@type"           A..= AT.String "identityDocument"
-        , "number"          A..= number_
-        , "expiration_date" A..= expiration_date_
-        , "front_side"      A..= front_side_
-        , "reverse_side"    A..= reverse_side_
-        , "selfie"          A..= selfie_
-        , "translation"     A..= translation_
-        ]
-
-defaultIdentityDocument :: IdentityDocument
-defaultIdentityDocument =
-  IdentityDocument
-    { number          = Nothing
-    , expiration_date = Nothing
-    , front_side      = Nothing
-    , reverse_side    = Nothing
-    , selfie          = Nothing
-    , translation     = Nothing
-    }
 

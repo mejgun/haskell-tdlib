@@ -1,7 +1,5 @@
 module TD.Data.UserSupportInfo
-  ( UserSupportInfo(..)    
-  , defaultUserSupportInfo 
-  ) where
+  (UserSupportInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON UserSupportInfo where
           , date    = date_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON UserSupportInfo where
-  toJSON UserSupportInfo
-    { message = message_
-    , author  = author_
-    , date    = date_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "userSupportInfo"
-        , "message" A..= message_
-        , "author"  A..= author_
-        , "date"    A..= date_
-        ]
-
-defaultUserSupportInfo :: UserSupportInfo
-defaultUserSupportInfo =
-  UserSupportInfo
-    { message = Nothing
-    , author  = Nothing
-    , date    = Nothing
-    }
 

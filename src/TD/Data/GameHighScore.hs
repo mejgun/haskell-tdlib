@@ -1,7 +1,5 @@
 module TD.Data.GameHighScore
-  ( GameHighScore(..)    
-  , defaultGameHighScore 
-  ) where
+  (GameHighScore(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -48,25 +46,4 @@ instance AT.FromJSON GameHighScore where
           , score    = score_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GameHighScore where
-  toJSON GameHighScore
-    { position = position_
-    , user_id  = user_id_
-    , score    = score_
-    }
-      = A.object
-        [ "@type"    A..= AT.String "gameHighScore"
-        , "position" A..= position_
-        , "user_id"  A..= user_id_
-        , "score"    A..= score_
-        ]
-
-defaultGameHighScore :: GameHighScore
-defaultGameHighScore =
-  GameHighScore
-    { position = Nothing
-    , user_id  = Nothing
-    , score    = Nothing
-    }
 

@@ -1,9 +1,5 @@
 module TD.Data.ChatActionBar
-  ( ChatActionBar(..)                  
-  , defaultChatActionBarReportSpam     
-  , defaultChatActionBarReportAddBlock 
-  , defaultChatActionBarJoinRequest    
-  ) where
+  (ChatActionBar(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -107,70 +103,4 @@ instance AT.FromJSON ChatActionBar where
           , request_date = request_date_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatActionBar where
-  toJSON ChatActionBarReportSpam
-    { can_unarchive = can_unarchive_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "chatActionBarReportSpam"
-        , "can_unarchive" A..= can_unarchive_
-        ]
-  toJSON ChatActionBarReportUnrelatedLocation
-      = A.object
-        [ "@type" A..= AT.String "chatActionBarReportUnrelatedLocation"
-        ]
-  toJSON ChatActionBarInviteMembers
-      = A.object
-        [ "@type" A..= AT.String "chatActionBarInviteMembers"
-        ]
-  toJSON ChatActionBarReportAddBlock
-    { can_unarchive = can_unarchive_
-    , distance      = distance_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "chatActionBarReportAddBlock"
-        , "can_unarchive" A..= can_unarchive_
-        , "distance"      A..= distance_
-        ]
-  toJSON ChatActionBarAddContact
-      = A.object
-        [ "@type" A..= AT.String "chatActionBarAddContact"
-        ]
-  toJSON ChatActionBarSharePhoneNumber
-      = A.object
-        [ "@type" A..= AT.String "chatActionBarSharePhoneNumber"
-        ]
-  toJSON ChatActionBarJoinRequest
-    { title        = title_
-    , is_channel   = is_channel_
-    , request_date = request_date_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "chatActionBarJoinRequest"
-        , "title"        A..= title_
-        , "is_channel"   A..= is_channel_
-        , "request_date" A..= request_date_
-        ]
-
-defaultChatActionBarReportSpam :: ChatActionBar
-defaultChatActionBarReportSpam =
-  ChatActionBarReportSpam
-    { can_unarchive = Nothing
-    }
-
-defaultChatActionBarReportAddBlock :: ChatActionBar
-defaultChatActionBarReportAddBlock =
-  ChatActionBarReportAddBlock
-    { can_unarchive = Nothing
-    , distance      = Nothing
-    }
-
-defaultChatActionBarJoinRequest :: ChatActionBar
-defaultChatActionBarJoinRequest =
-  ChatActionBarJoinRequest
-    { title        = Nothing
-    , is_channel   = Nothing
-    , request_date = Nothing
-    }
 

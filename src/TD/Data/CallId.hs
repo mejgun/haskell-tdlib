@@ -1,7 +1,5 @@
 module TD.Data.CallId
-  ( CallId(..)    
-  , defaultCallId 
-  ) where
+  (CallId(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -38,19 +36,4 @@ instance AT.FromJSON CallId where
           { _id = _id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CallId where
-  toJSON CallId
-    { _id = _id_
-    }
-      = A.object
-        [ "@type" A..= AT.String "callId"
-        , "id"    A..= _id_
-        ]
-
-defaultCallId :: CallId
-defaultCallId =
-  CallId
-    { _id = Nothing
-    }
 

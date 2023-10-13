@@ -1,7 +1,5 @@
 module TD.Data.NetworkStatistics
-  ( NetworkStatistics(..)    
-  , defaultNetworkStatistics 
-  ) where
+  (NetworkStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON NetworkStatistics where
           , entries    = entries_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON NetworkStatistics where
-  toJSON NetworkStatistics
-    { since_date = since_date_
-    , entries    = entries_
-    }
-      = A.object
-        [ "@type"      A..= AT.String "networkStatistics"
-        , "since_date" A..= since_date_
-        , "entries"    A..= entries_
-        ]
-
-defaultNetworkStatistics :: NetworkStatistics
-defaultNetworkStatistics =
-  NetworkStatistics
-    { since_date = Nothing
-    , entries    = Nothing
-    }
 

@@ -1,7 +1,5 @@
 module TD.Data.Chats
-  ( Chats(..)    
-  , defaultChats 
-  ) where
+  (Chats(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,22 +41,4 @@ instance AT.FromJSON Chats where
           , chat_ids    = chat_ids_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Chats where
-  toJSON Chats
-    { total_count = total_count_
-    , chat_ids    = chat_ids_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "chats"
-        , "total_count" A..= total_count_
-        , "chat_ids"    A..= chat_ids_
-        ]
-
-defaultChats :: Chats
-defaultChats =
-  Chats
-    { total_count = Nothing
-    , chat_ids    = Nothing
-    }
 

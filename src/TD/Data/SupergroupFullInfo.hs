@@ -1,7 +1,5 @@
 module TD.Data.SupergroupFullInfo
-  ( SupergroupFullInfo(..)    
-  , defaultSupergroupFullInfo 
-  ) where
+  (SupergroupFullInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -158,88 +156,4 @@ instance AT.FromJSON SupergroupFullInfo where
           , upgraded_from_max_message_id     = upgraded_from_max_message_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON SupergroupFullInfo where
-  toJSON SupergroupFullInfo
-    { photo                            = photo_
-    , description                      = description_
-    , member_count                     = member_count_
-    , administrator_count              = administrator_count_
-    , restricted_count                 = restricted_count_
-    , banned_count                     = banned_count_
-    , linked_chat_id                   = linked_chat_id_
-    , slow_mode_delay                  = slow_mode_delay_
-    , slow_mode_delay_expires_in       = slow_mode_delay_expires_in_
-    , can_get_members                  = can_get_members_
-    , has_hidden_members               = has_hidden_members_
-    , can_hide_members                 = can_hide_members_
-    , can_set_sticker_set              = can_set_sticker_set_
-    , can_set_location                 = can_set_location_
-    , can_get_statistics               = can_get_statistics_
-    , can_toggle_aggressive_anti_spam  = can_toggle_aggressive_anti_spam_
-    , is_all_history_available         = is_all_history_available_
-    , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
-    , sticker_set_id                   = sticker_set_id_
-    , location                         = location_
-    , invite_link                      = invite_link_
-    , bot_commands                     = bot_commands_
-    , upgraded_from_basic_group_id     = upgraded_from_basic_group_id_
-    , upgraded_from_max_message_id     = upgraded_from_max_message_id_
-    }
-      = A.object
-        [ "@type"                            A..= AT.String "supergroupFullInfo"
-        , "photo"                            A..= photo_
-        , "description"                      A..= description_
-        , "member_count"                     A..= member_count_
-        , "administrator_count"              A..= administrator_count_
-        , "restricted_count"                 A..= restricted_count_
-        , "banned_count"                     A..= banned_count_
-        , "linked_chat_id"                   A..= linked_chat_id_
-        , "slow_mode_delay"                  A..= slow_mode_delay_
-        , "slow_mode_delay_expires_in"       A..= slow_mode_delay_expires_in_
-        , "can_get_members"                  A..= can_get_members_
-        , "has_hidden_members"               A..= has_hidden_members_
-        , "can_hide_members"                 A..= can_hide_members_
-        , "can_set_sticker_set"              A..= can_set_sticker_set_
-        , "can_set_location"                 A..= can_set_location_
-        , "can_get_statistics"               A..= can_get_statistics_
-        , "can_toggle_aggressive_anti_spam"  A..= can_toggle_aggressive_anti_spam_
-        , "is_all_history_available"         A..= is_all_history_available_
-        , "has_aggressive_anti_spam_enabled" A..= has_aggressive_anti_spam_enabled_
-        , "sticker_set_id"                   A..= fmap I.writeInt64  sticker_set_id_
-        , "location"                         A..= location_
-        , "invite_link"                      A..= invite_link_
-        , "bot_commands"                     A..= bot_commands_
-        , "upgraded_from_basic_group_id"     A..= upgraded_from_basic_group_id_
-        , "upgraded_from_max_message_id"     A..= upgraded_from_max_message_id_
-        ]
-
-defaultSupergroupFullInfo :: SupergroupFullInfo
-defaultSupergroupFullInfo =
-  SupergroupFullInfo
-    { photo                            = Nothing
-    , description                      = Nothing
-    , member_count                     = Nothing
-    , administrator_count              = Nothing
-    , restricted_count                 = Nothing
-    , banned_count                     = Nothing
-    , linked_chat_id                   = Nothing
-    , slow_mode_delay                  = Nothing
-    , slow_mode_delay_expires_in       = Nothing
-    , can_get_members                  = Nothing
-    , has_hidden_members               = Nothing
-    , can_hide_members                 = Nothing
-    , can_set_sticker_set              = Nothing
-    , can_set_location                 = Nothing
-    , can_get_statistics               = Nothing
-    , can_toggle_aggressive_anti_spam  = Nothing
-    , is_all_history_available         = Nothing
-    , has_aggressive_anti_spam_enabled = Nothing
-    , sticker_set_id                   = Nothing
-    , location                         = Nothing
-    , invite_link                      = Nothing
-    , bot_commands                     = Nothing
-    , upgraded_from_basic_group_id     = Nothing
-    , upgraded_from_max_message_id     = Nothing
-    }
 

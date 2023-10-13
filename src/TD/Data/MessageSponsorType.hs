@@ -1,10 +1,5 @@
 module TD.Data.MessageSponsorType
-  ( MessageSponsorType(..)                  
-  , defaultMessageSponsorTypeBot            
-  , defaultMessageSponsorTypePublicChannel  
-  , defaultMessageSponsorTypePrivateChannel 
-  , defaultMessageSponsorTypeWebsite        
-  ) where
+  (MessageSponsorType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -115,70 +110,4 @@ instance AT.FromJSON MessageSponsorType where
           , name = name_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON MessageSponsorType where
-  toJSON MessageSponsorTypeBot
-    { bot_user_id = bot_user_id_
-    , link        = link_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messageSponsorTypeBot"
-        , "bot_user_id" A..= bot_user_id_
-        , "link"        A..= link_
-        ]
-  toJSON MessageSponsorTypePublicChannel
-    { chat_id = chat_id_
-    , link    = link_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "messageSponsorTypePublicChannel"
-        , "chat_id" A..= chat_id_
-        , "link"    A..= link_
-        ]
-  toJSON MessageSponsorTypePrivateChannel
-    { title       = title_
-    , invite_link = invite_link_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messageSponsorTypePrivateChannel"
-        , "title"       A..= title_
-        , "invite_link" A..= invite_link_
-        ]
-  toJSON MessageSponsorTypeWebsite
-    { url  = url_
-    , name = name_
-    }
-      = A.object
-        [ "@type" A..= AT.String "messageSponsorTypeWebsite"
-        , "url"   A..= url_
-        , "name"  A..= name_
-        ]
-
-defaultMessageSponsorTypeBot :: MessageSponsorType
-defaultMessageSponsorTypeBot =
-  MessageSponsorTypeBot
-    { bot_user_id = Nothing
-    , link        = Nothing
-    }
-
-defaultMessageSponsorTypePublicChannel :: MessageSponsorType
-defaultMessageSponsorTypePublicChannel =
-  MessageSponsorTypePublicChannel
-    { chat_id = Nothing
-    , link    = Nothing
-    }
-
-defaultMessageSponsorTypePrivateChannel :: MessageSponsorType
-defaultMessageSponsorTypePrivateChannel =
-  MessageSponsorTypePrivateChannel
-    { title       = Nothing
-    , invite_link = Nothing
-    }
-
-defaultMessageSponsorTypeWebsite :: MessageSponsorType
-defaultMessageSponsorTypeWebsite =
-  MessageSponsorTypeWebsite
-    { url  = Nothing
-    , name = Nothing
-    }
 

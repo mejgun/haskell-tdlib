@@ -1,7 +1,5 @@
 module TD.Data.Updates
-  ( Updates(..)    
-  , defaultUpdates 
-  ) where
+  (Updates(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON Updates where
           { updates = updates_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Updates where
-  toJSON Updates
-    { updates = updates_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "updates"
-        , "updates" A..= updates_
-        ]
-
-defaultUpdates :: Updates
-defaultUpdates =
-  Updates
-    { updates = Nothing
-    }
 

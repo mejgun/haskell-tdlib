@@ -1,7 +1,5 @@
 module TD.Data.TestVectorInt
-  ( TestVectorInt(..)    
-  , defaultTestVectorInt 
-  ) where
+  (TestVectorInt(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -38,19 +36,4 @@ instance AT.FromJSON TestVectorInt where
           { value = value_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON TestVectorInt where
-  toJSON TestVectorInt
-    { value = value_
-    }
-      = A.object
-        [ "@type" A..= AT.String "testVectorInt"
-        , "value" A..= value_
-        ]
-
-defaultTestVectorInt :: TestVectorInt
-defaultTestVectorInt =
-  TestVectorInt
-    { value = Nothing
-    }
 

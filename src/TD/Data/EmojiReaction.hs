@@ -1,7 +1,5 @@
 module TD.Data.EmojiReaction
-  ( EmojiReaction(..)    
-  , defaultEmojiReaction 
-  ) where
+  (EmojiReaction(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -85,46 +83,4 @@ instance AT.FromJSON EmojiReaction where
           , center_animation   = center_animation_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON EmojiReaction where
-  toJSON EmojiReaction
-    { emoji              = emoji_
-    , title              = title_
-    , is_active          = is_active_
-    , static_icon        = static_icon_
-    , appear_animation   = appear_animation_
-    , select_animation   = select_animation_
-    , activate_animation = activate_animation_
-    , effect_animation   = effect_animation_
-    , around_animation   = around_animation_
-    , center_animation   = center_animation_
-    }
-      = A.object
-        [ "@type"              A..= AT.String "emojiReaction"
-        , "emoji"              A..= emoji_
-        , "title"              A..= title_
-        , "is_active"          A..= is_active_
-        , "static_icon"        A..= static_icon_
-        , "appear_animation"   A..= appear_animation_
-        , "select_animation"   A..= select_animation_
-        , "activate_animation" A..= activate_animation_
-        , "effect_animation"   A..= effect_animation_
-        , "around_animation"   A..= around_animation_
-        , "center_animation"   A..= center_animation_
-        ]
-
-defaultEmojiReaction :: EmojiReaction
-defaultEmojiReaction =
-  EmojiReaction
-    { emoji              = Nothing
-    , title              = Nothing
-    , is_active          = Nothing
-    , static_icon        = Nothing
-    , appear_animation   = Nothing
-    , select_animation   = Nothing
-    , activate_animation = Nothing
-    , effect_animation   = Nothing
-    , around_animation   = Nothing
-    , center_animation   = Nothing
-    }
 

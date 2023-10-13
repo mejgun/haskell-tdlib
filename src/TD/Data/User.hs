@@ -1,7 +1,5 @@
 module TD.Data.User
-  ( User(..)    
-  , defaultUser 
-  ) where
+  (User(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -154,85 +152,4 @@ instance AT.FromJSON User where
           , added_to_attachment_menu  = added_to_attachment_menu_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON User where
-  toJSON User
-    { _id                       = _id_
-    , first_name                = first_name_
-    , last_name                 = last_name_
-    , usernames                 = usernames_
-    , phone_number              = phone_number_
-    , status                    = status_
-    , profile_photo             = profile_photo_
-    , emoji_status              = emoji_status_
-    , is_contact                = is_contact_
-    , is_mutual_contact         = is_mutual_contact_
-    , is_close_friend           = is_close_friend_
-    , is_verified               = is_verified_
-    , is_premium                = is_premium_
-    , is_support                = is_support_
-    , restriction_reason        = restriction_reason_
-    , is_scam                   = is_scam_
-    , is_fake                   = is_fake_
-    , has_active_stories        = has_active_stories_
-    , has_unread_active_stories = has_unread_active_stories_
-    , have_access               = have_access_
-    , _type                     = _type_
-    , language_code             = language_code_
-    , added_to_attachment_menu  = added_to_attachment_menu_
-    }
-      = A.object
-        [ "@type"                     A..= AT.String "user"
-        , "id"                        A..= _id_
-        , "first_name"                A..= first_name_
-        , "last_name"                 A..= last_name_
-        , "usernames"                 A..= usernames_
-        , "phone_number"              A..= phone_number_
-        , "status"                    A..= status_
-        , "profile_photo"             A..= profile_photo_
-        , "emoji_status"              A..= emoji_status_
-        , "is_contact"                A..= is_contact_
-        , "is_mutual_contact"         A..= is_mutual_contact_
-        , "is_close_friend"           A..= is_close_friend_
-        , "is_verified"               A..= is_verified_
-        , "is_premium"                A..= is_premium_
-        , "is_support"                A..= is_support_
-        , "restriction_reason"        A..= restriction_reason_
-        , "is_scam"                   A..= is_scam_
-        , "is_fake"                   A..= is_fake_
-        , "has_active_stories"        A..= has_active_stories_
-        , "has_unread_active_stories" A..= has_unread_active_stories_
-        , "have_access"               A..= have_access_
-        , "type"                      A..= _type_
-        , "language_code"             A..= language_code_
-        , "added_to_attachment_menu"  A..= added_to_attachment_menu_
-        ]
-
-defaultUser :: User
-defaultUser =
-  User
-    { _id                       = Nothing
-    , first_name                = Nothing
-    , last_name                 = Nothing
-    , usernames                 = Nothing
-    , phone_number              = Nothing
-    , status                    = Nothing
-    , profile_photo             = Nothing
-    , emoji_status              = Nothing
-    , is_contact                = Nothing
-    , is_mutual_contact         = Nothing
-    , is_close_friend           = Nothing
-    , is_verified               = Nothing
-    , is_premium                = Nothing
-    , is_support                = Nothing
-    , restriction_reason        = Nothing
-    , is_scam                   = Nothing
-    , is_fake                   = Nothing
-    , has_active_stories        = Nothing
-    , has_unread_active_stories = Nothing
-    , have_access               = Nothing
-    , _type                     = Nothing
-    , language_code             = Nothing
-    , added_to_attachment_menu  = Nothing
-    }
 

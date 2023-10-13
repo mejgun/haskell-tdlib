@@ -1,7 +1,5 @@
 module TD.Data.GroupCallParticipant
-  ( GroupCallParticipant(..)    
-  , defaultGroupCallParticipant 
-  ) where
+  (GroupCallParticipant(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -126,70 +124,4 @@ instance AT.FromJSON GroupCallParticipant where
           , order                           = order_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON GroupCallParticipant where
-  toJSON GroupCallParticipant
-    { participant_id                  = participant_id_
-    , audio_source_id                 = audio_source_id_
-    , screen_sharing_audio_source_id  = screen_sharing_audio_source_id_
-    , video_info                      = video_info_
-    , screen_sharing_video_info       = screen_sharing_video_info_
-    , bio                             = bio_
-    , is_current_user                 = is_current_user_
-    , is_speaking                     = is_speaking_
-    , is_hand_raised                  = is_hand_raised_
-    , can_be_muted_for_all_users      = can_be_muted_for_all_users_
-    , can_be_unmuted_for_all_users    = can_be_unmuted_for_all_users_
-    , can_be_muted_for_current_user   = can_be_muted_for_current_user_
-    , can_be_unmuted_for_current_user = can_be_unmuted_for_current_user_
-    , is_muted_for_all_users          = is_muted_for_all_users_
-    , is_muted_for_current_user       = is_muted_for_current_user_
-    , can_unmute_self                 = can_unmute_self_
-    , volume_level                    = volume_level_
-    , order                           = order_
-    }
-      = A.object
-        [ "@type"                           A..= AT.String "groupCallParticipant"
-        , "participant_id"                  A..= participant_id_
-        , "audio_source_id"                 A..= audio_source_id_
-        , "screen_sharing_audio_source_id"  A..= screen_sharing_audio_source_id_
-        , "video_info"                      A..= video_info_
-        , "screen_sharing_video_info"       A..= screen_sharing_video_info_
-        , "bio"                             A..= bio_
-        , "is_current_user"                 A..= is_current_user_
-        , "is_speaking"                     A..= is_speaking_
-        , "is_hand_raised"                  A..= is_hand_raised_
-        , "can_be_muted_for_all_users"      A..= can_be_muted_for_all_users_
-        , "can_be_unmuted_for_all_users"    A..= can_be_unmuted_for_all_users_
-        , "can_be_muted_for_current_user"   A..= can_be_muted_for_current_user_
-        , "can_be_unmuted_for_current_user" A..= can_be_unmuted_for_current_user_
-        , "is_muted_for_all_users"          A..= is_muted_for_all_users_
-        , "is_muted_for_current_user"       A..= is_muted_for_current_user_
-        , "can_unmute_self"                 A..= can_unmute_self_
-        , "volume_level"                    A..= volume_level_
-        , "order"                           A..= order_
-        ]
-
-defaultGroupCallParticipant :: GroupCallParticipant
-defaultGroupCallParticipant =
-  GroupCallParticipant
-    { participant_id                  = Nothing
-    , audio_source_id                 = Nothing
-    , screen_sharing_audio_source_id  = Nothing
-    , video_info                      = Nothing
-    , screen_sharing_video_info       = Nothing
-    , bio                             = Nothing
-    , is_current_user                 = Nothing
-    , is_speaking                     = Nothing
-    , is_hand_raised                  = Nothing
-    , can_be_muted_for_all_users      = Nothing
-    , can_be_unmuted_for_all_users    = Nothing
-    , can_be_muted_for_current_user   = Nothing
-    , can_be_unmuted_for_current_user = Nothing
-    , is_muted_for_all_users          = Nothing
-    , is_muted_for_current_user       = Nothing
-    , can_unmute_self                 = Nothing
-    , volume_level                    = Nothing
-    , order                           = Nothing
-    }
 

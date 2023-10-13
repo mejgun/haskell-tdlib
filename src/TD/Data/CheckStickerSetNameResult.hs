@@ -1,6 +1,5 @@
 module TD.Data.CheckStickerSetNameResult
-  ( CheckStickerSetNameResult(..) 
-  ) where
+  (CheckStickerSetNameResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -31,18 +30,4 @@ instance AT.FromJSON CheckStickerSetNameResult where
       _                                       -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON CheckStickerSetNameResult where
-  toJSON CheckStickerSetNameResultOk
-      = A.object
-        [ "@type" A..= AT.String "checkStickerSetNameResultOk"
-        ]
-  toJSON CheckStickerSetNameResultNameInvalid
-      = A.object
-        [ "@type" A..= AT.String "checkStickerSetNameResultNameInvalid"
-        ]
-  toJSON CheckStickerSetNameResultNameOccupied
-      = A.object
-        [ "@type" A..= AT.String "checkStickerSetNameResultNameOccupied"
-        ]
 

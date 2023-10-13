@@ -1,7 +1,5 @@
 module TD.Data.AttachmentMenuBot
-  ( AttachmentMenuBot(..)    
-  , defaultAttachmentMenuBot 
-  ) where
+  (AttachmentMenuBot(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -121,67 +119,4 @@ instance AT.FromJSON AttachmentMenuBot where
           , web_app_placeholder    = web_app_placeholder_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AttachmentMenuBot where
-  toJSON AttachmentMenuBot
-    { bot_user_id            = bot_user_id_
-    , supports_self_chat     = supports_self_chat_
-    , supports_user_chats    = supports_user_chats_
-    , supports_bot_chats     = supports_bot_chats_
-    , supports_group_chats   = supports_group_chats_
-    , supports_channel_chats = supports_channel_chats_
-    , supports_settings      = supports_settings_
-    , request_write_access   = request_write_access_
-    , name                   = name_
-    , name_color             = name_color_
-    , default_icon           = default_icon_
-    , ios_static_icon        = ios_static_icon_
-    , ios_animated_icon      = ios_animated_icon_
-    , android_icon           = android_icon_
-    , macos_icon             = macos_icon_
-    , icon_color             = icon_color_
-    , web_app_placeholder    = web_app_placeholder_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "attachmentMenuBot"
-        , "bot_user_id"            A..= bot_user_id_
-        , "supports_self_chat"     A..= supports_self_chat_
-        , "supports_user_chats"    A..= supports_user_chats_
-        , "supports_bot_chats"     A..= supports_bot_chats_
-        , "supports_group_chats"   A..= supports_group_chats_
-        , "supports_channel_chats" A..= supports_channel_chats_
-        , "supports_settings"      A..= supports_settings_
-        , "request_write_access"   A..= request_write_access_
-        , "name"                   A..= name_
-        , "name_color"             A..= name_color_
-        , "default_icon"           A..= default_icon_
-        , "ios_static_icon"        A..= ios_static_icon_
-        , "ios_animated_icon"      A..= ios_animated_icon_
-        , "android_icon"           A..= android_icon_
-        , "macos_icon"             A..= macos_icon_
-        , "icon_color"             A..= icon_color_
-        , "web_app_placeholder"    A..= web_app_placeholder_
-        ]
-
-defaultAttachmentMenuBot :: AttachmentMenuBot
-defaultAttachmentMenuBot =
-  AttachmentMenuBot
-    { bot_user_id            = Nothing
-    , supports_self_chat     = Nothing
-    , supports_user_chats    = Nothing
-    , supports_bot_chats     = Nothing
-    , supports_group_chats   = Nothing
-    , supports_channel_chats = Nothing
-    , supports_settings      = Nothing
-    , request_write_access   = Nothing
-    , name                   = Nothing
-    , name_color             = Nothing
-    , default_icon           = Nothing
-    , ios_static_icon        = Nothing
-    , ios_animated_icon      = Nothing
-    , android_icon           = Nothing
-    , macos_icon             = Nothing
-    , icon_color             = Nothing
-    , web_app_placeholder    = Nothing
-    }
 

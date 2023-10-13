@@ -1,10 +1,5 @@
 module TD.Data.TMeUrlType
-  ( TMeUrlType(..)              
-  , defaultTMeUrlTypeUser       
-  , defaultTMeUrlTypeSupergroup 
-  , defaultTMeUrlTypeChatInvite 
-  , defaultTMeUrlTypeStickerSet 
-  ) where
+  (TMeUrlType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -94,58 +89,4 @@ instance AT.FromJSON TMeUrlType where
           { sticker_set_id = sticker_set_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON TMeUrlType where
-  toJSON TMeUrlTypeUser
-    { user_id = user_id_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "tMeUrlTypeUser"
-        , "user_id" A..= user_id_
-        ]
-  toJSON TMeUrlTypeSupergroup
-    { supergroup_id = supergroup_id_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "tMeUrlTypeSupergroup"
-        , "supergroup_id" A..= supergroup_id_
-        ]
-  toJSON TMeUrlTypeChatInvite
-    { info = info_
-    }
-      = A.object
-        [ "@type" A..= AT.String "tMeUrlTypeChatInvite"
-        , "info"  A..= info_
-        ]
-  toJSON TMeUrlTypeStickerSet
-    { sticker_set_id = sticker_set_id_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "tMeUrlTypeStickerSet"
-        , "sticker_set_id" A..= fmap I.writeInt64  sticker_set_id_
-        ]
-
-defaultTMeUrlTypeUser :: TMeUrlType
-defaultTMeUrlTypeUser =
-  TMeUrlTypeUser
-    { user_id = Nothing
-    }
-
-defaultTMeUrlTypeSupergroup :: TMeUrlType
-defaultTMeUrlTypeSupergroup =
-  TMeUrlTypeSupergroup
-    { supergroup_id = Nothing
-    }
-
-defaultTMeUrlTypeChatInvite :: TMeUrlType
-defaultTMeUrlTypeChatInvite =
-  TMeUrlTypeChatInvite
-    { info = Nothing
-    }
-
-defaultTMeUrlTypeStickerSet :: TMeUrlType
-defaultTMeUrlTypeStickerSet =
-  TMeUrlTypeStickerSet
-    { sticker_set_id = Nothing
-    }
 

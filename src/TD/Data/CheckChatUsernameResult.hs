@@ -1,6 +1,5 @@
 module TD.Data.CheckChatUsernameResult
-  ( CheckChatUsernameResult(..) 
-  ) where
+  (CheckChatUsernameResult(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -43,30 +42,4 @@ instance AT.FromJSON CheckChatUsernameResult where
       _                                                -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON CheckChatUsernameResult where
-  toJSON CheckChatUsernameResultOk
-      = A.object
-        [ "@type" A..= AT.String "checkChatUsernameResultOk"
-        ]
-  toJSON CheckChatUsernameResultUsernameInvalid
-      = A.object
-        [ "@type" A..= AT.String "checkChatUsernameResultUsernameInvalid"
-        ]
-  toJSON CheckChatUsernameResultUsernameOccupied
-      = A.object
-        [ "@type" A..= AT.String "checkChatUsernameResultUsernameOccupied"
-        ]
-  toJSON CheckChatUsernameResultUsernamePurchasable
-      = A.object
-        [ "@type" A..= AT.String "checkChatUsernameResultUsernamePurchasable"
-        ]
-  toJSON CheckChatUsernameResultPublicChatsTooMany
-      = A.object
-        [ "@type" A..= AT.String "checkChatUsernameResultPublicChatsTooMany"
-        ]
-  toJSON CheckChatUsernameResultPublicGroupsUnavailable
-      = A.object
-        [ "@type" A..= AT.String "checkChatUsernameResultPublicGroupsUnavailable"
-        ]
 

@@ -1,7 +1,5 @@
 module TD.Data.AddedReactions
-  ( AddedReactions(..)    
-  , defaultAddedReactions 
-  ) where
+  (AddedReactions(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -50,25 +48,4 @@ instance AT.FromJSON AddedReactions where
           , next_offset = next_offset_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON AddedReactions where
-  toJSON AddedReactions
-    { total_count = total_count_
-    , reactions   = reactions_
-    , next_offset = next_offset_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "addedReactions"
-        , "total_count" A..= total_count_
-        , "reactions"   A..= reactions_
-        , "next_offset" A..= next_offset_
-        ]
-
-defaultAddedReactions :: AddedReactions
-defaultAddedReactions =
-  AddedReactions
-    { total_count = Nothing
-    , reactions   = Nothing
-    , next_offset = Nothing
-    }
 

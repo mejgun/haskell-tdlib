@@ -1,6 +1,5 @@
 module TD.Data.Ok
-  ( Ok(..) 
-  ) where
+  (Ok(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -22,10 +21,4 @@ instance AT.FromJSON Ok where
       _    -> mempty
     
   parseJSON _ = mempty
-
-instance AT.ToJSON Ok where
-  toJSON Ok
-      = A.object
-        [ "@type" A..= AT.String "ok"
-        ]
 

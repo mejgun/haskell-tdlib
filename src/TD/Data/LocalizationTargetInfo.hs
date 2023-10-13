@@ -1,7 +1,5 @@
 module TD.Data.LocalizationTargetInfo
-  ( LocalizationTargetInfo(..)    
-  , defaultLocalizationTargetInfo 
-  ) where
+  (LocalizationTargetInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON LocalizationTargetInfo where
           { language_packs = language_packs_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON LocalizationTargetInfo where
-  toJSON LocalizationTargetInfo
-    { language_packs = language_packs_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "localizationTargetInfo"
-        , "language_packs" A..= language_packs_
-        ]
-
-defaultLocalizationTargetInfo :: LocalizationTargetInfo
-defaultLocalizationTargetInfo =
-  LocalizationTargetInfo
-    { language_packs = Nothing
-    }
 

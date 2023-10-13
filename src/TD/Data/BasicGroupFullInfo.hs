@@ -1,7 +1,5 @@
 module TD.Data.BasicGroupFullInfo
-  ( BasicGroupFullInfo(..)    
-  , defaultBasicGroupFullInfo 
-  ) where
+  (BasicGroupFullInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -78,40 +76,4 @@ instance AT.FromJSON BasicGroupFullInfo where
           , bot_commands                    = bot_commands_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON BasicGroupFullInfo where
-  toJSON BasicGroupFullInfo
-    { photo                           = photo_
-    , description                     = description_
-    , creator_user_id                 = creator_user_id_
-    , members                         = members_
-    , can_hide_members                = can_hide_members_
-    , can_toggle_aggressive_anti_spam = can_toggle_aggressive_anti_spam_
-    , invite_link                     = invite_link_
-    , bot_commands                    = bot_commands_
-    }
-      = A.object
-        [ "@type"                           A..= AT.String "basicGroupFullInfo"
-        , "photo"                           A..= photo_
-        , "description"                     A..= description_
-        , "creator_user_id"                 A..= creator_user_id_
-        , "members"                         A..= members_
-        , "can_hide_members"                A..= can_hide_members_
-        , "can_toggle_aggressive_anti_spam" A..= can_toggle_aggressive_anti_spam_
-        , "invite_link"                     A..= invite_link_
-        , "bot_commands"                    A..= bot_commands_
-        ]
-
-defaultBasicGroupFullInfo :: BasicGroupFullInfo
-defaultBasicGroupFullInfo =
-  BasicGroupFullInfo
-    { photo                           = Nothing
-    , description                     = Nothing
-    , creator_user_id                 = Nothing
-    , members                         = Nothing
-    , can_hide_members                = Nothing
-    , can_toggle_aggressive_anti_spam = Nothing
-    , invite_link                     = Nothing
-    , bot_commands                    = Nothing
-    }
 

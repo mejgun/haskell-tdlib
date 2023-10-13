@@ -1,7 +1,5 @@
 module TD.Data.StoryInfo
-  ( StoryInfo(..)    
-  , defaultStoryInfo 
-  ) where
+  (StoryInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -48,25 +46,4 @@ instance AT.FromJSON StoryInfo where
           , is_for_close_friends = is_for_close_friends_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StoryInfo where
-  toJSON StoryInfo
-    { story_id             = story_id_
-    , date                 = date_
-    , is_for_close_friends = is_for_close_friends_
-    }
-      = A.object
-        [ "@type"                A..= AT.String "storyInfo"
-        , "story_id"             A..= story_id_
-        , "date"                 A..= date_
-        , "is_for_close_friends" A..= is_for_close_friends_
-        ]
-
-defaultStoryInfo :: StoryInfo
-defaultStoryInfo =
-  StoryInfo
-    { story_id             = Nothing
-    , date                 = Nothing
-    , is_for_close_friends = Nothing
-    }
 

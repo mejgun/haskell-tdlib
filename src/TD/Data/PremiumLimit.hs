@@ -1,7 +1,5 @@
 module TD.Data.PremiumLimit
-  ( PremiumLimit(..)    
-  , defaultPremiumLimit 
-  ) where
+  (PremiumLimit(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON PremiumLimit where
           , premium_value = premium_value_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PremiumLimit where
-  toJSON PremiumLimit
-    { _type         = _type_
-    , default_value = default_value_
-    , premium_value = premium_value_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "premiumLimit"
-        , "type"          A..= _type_
-        , "default_value" A..= default_value_
-        , "premium_value" A..= premium_value_
-        ]
-
-defaultPremiumLimit :: PremiumLimit
-defaultPremiumLimit =
-  PremiumLimit
-    { _type         = Nothing
-    , default_value = Nothing
-    , premium_value = Nothing
-    }
 

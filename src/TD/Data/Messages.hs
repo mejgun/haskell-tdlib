@@ -1,7 +1,5 @@
 module TD.Data.Messages
-  ( Messages(..)    
-  , defaultMessages 
-  ) where
+  (Messages(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -44,22 +42,4 @@ instance AT.FromJSON Messages where
           , messages    = messages_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON Messages where
-  toJSON Messages
-    { total_count = total_count_
-    , messages    = messages_
-    }
-      = A.object
-        [ "@type"       A..= AT.String "messages"
-        , "total_count" A..= total_count_
-        , "messages"    A..= messages_
-        ]
-
-defaultMessages :: Messages
-defaultMessages =
-  Messages
-    { total_count = Nothing
-    , messages    = Nothing
-    }
 

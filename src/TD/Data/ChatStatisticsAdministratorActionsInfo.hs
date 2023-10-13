@@ -1,7 +1,5 @@
 module TD.Data.ChatStatisticsAdministratorActionsInfo
-  ( ChatStatisticsAdministratorActionsInfo(..)    
-  , defaultChatStatisticsAdministratorActionsInfo 
-  ) where
+  (ChatStatisticsAdministratorActionsInfo(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -53,28 +51,4 @@ instance AT.FromJSON ChatStatisticsAdministratorActionsInfo where
           , restricted_user_count = restricted_user_count_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatStatisticsAdministratorActionsInfo where
-  toJSON ChatStatisticsAdministratorActionsInfo
-    { user_id               = user_id_
-    , deleted_message_count = deleted_message_count_
-    , banned_user_count     = banned_user_count_
-    , restricted_user_count = restricted_user_count_
-    }
-      = A.object
-        [ "@type"                 A..= AT.String "chatStatisticsAdministratorActionsInfo"
-        , "user_id"               A..= user_id_
-        , "deleted_message_count" A..= deleted_message_count_
-        , "banned_user_count"     A..= banned_user_count_
-        , "restricted_user_count" A..= restricted_user_count_
-        ]
-
-defaultChatStatisticsAdministratorActionsInfo :: ChatStatisticsAdministratorActionsInfo
-defaultChatStatisticsAdministratorActionsInfo =
-  ChatStatisticsAdministratorActionsInfo
-    { user_id               = Nothing
-    , deleted_message_count = Nothing
-    , banned_user_count     = Nothing
-    , restricted_user_count = Nothing
-    }
 

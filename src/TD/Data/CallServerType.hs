@@ -1,8 +1,5 @@
 module TD.Data.CallServerType
-  ( CallServerType(..)                     
-  , defaultCallServerTypeTelegramReflector 
-  , defaultCallServerTypeWebrtc            
-  ) where
+  (CallServerType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -79,44 +76,4 @@ instance AT.FromJSON CallServerType where
           , supports_stun = supports_stun_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON CallServerType where
-  toJSON CallServerTypeTelegramReflector
-    { peer_tag = peer_tag_
-    , is_tcp   = is_tcp_
-    }
-      = A.object
-        [ "@type"    A..= AT.String "callServerTypeTelegramReflector"
-        , "peer_tag" A..= fmap I.writeBytes  peer_tag_
-        , "is_tcp"   A..= is_tcp_
-        ]
-  toJSON CallServerTypeWebrtc
-    { username      = username_
-    , password      = password_
-    , supports_turn = supports_turn_
-    , supports_stun = supports_stun_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "callServerTypeWebrtc"
-        , "username"      A..= username_
-        , "password"      A..= password_
-        , "supports_turn" A..= supports_turn_
-        , "supports_stun" A..= supports_stun_
-        ]
-
-defaultCallServerTypeTelegramReflector :: CallServerType
-defaultCallServerTypeTelegramReflector =
-  CallServerTypeTelegramReflector
-    { peer_tag = Nothing
-    , is_tcp   = Nothing
-    }
-
-defaultCallServerTypeWebrtc :: CallServerType
-defaultCallServerTypeWebrtc =
-  CallServerTypeWebrtc
-    { username      = Nothing
-    , password      = Nothing
-    , supports_turn = Nothing
-    , supports_stun = Nothing
-    }
 

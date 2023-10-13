@@ -1,7 +1,5 @@
 module TD.Data.TestBytes
-  ( TestBytes(..)    
-  , defaultTestBytes 
-  ) where
+  (TestBytes(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -39,19 +37,4 @@ instance AT.FromJSON TestBytes where
           { value = value_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON TestBytes where
-  toJSON TestBytes
-    { value = value_
-    }
-      = A.object
-        [ "@type" A..= AT.String "testBytes"
-        , "value" A..= fmap I.writeBytes  value_
-        ]
-
-defaultTestBytes :: TestBytes
-defaultTestBytes =
-  TestBytes
-    { value = Nothing
-    }
 

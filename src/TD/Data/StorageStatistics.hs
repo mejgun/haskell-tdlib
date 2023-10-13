@@ -1,7 +1,5 @@
 module TD.Data.StorageStatistics
-  ( StorageStatistics(..)    
-  , defaultStorageStatistics 
-  ) where
+  (StorageStatistics(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON StorageStatistics where
           , by_chat = by_chat_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON StorageStatistics where
-  toJSON StorageStatistics
-    { size    = size_
-    , count   = count_
-    , by_chat = by_chat_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "storageStatistics"
-        , "size"    A..= size_
-        , "count"   A..= count_
-        , "by_chat" A..= by_chat_
-        ]
-
-defaultStorageStatistics :: StorageStatistics
-defaultStorageStatistics =
-  StorageStatistics
-    { size    = Nothing
-    , count   = Nothing
-    , by_chat = Nothing
-    }
 

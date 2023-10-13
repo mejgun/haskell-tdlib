@@ -1,10 +1,5 @@
 module TD.Data.ChatType
-  ( ChatType(..)              
-  , defaultChatTypePrivate    
-  , defaultChatTypeBasicGroup 
-  , defaultChatTypeSupergroup 
-  , defaultChatTypeSecret     
-  ) where
+  (ChatType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -103,64 +98,4 @@ instance AT.FromJSON ChatType where
           , user_id        = user_id_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON ChatType where
-  toJSON ChatTypePrivate
-    { user_id = user_id_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "chatTypePrivate"
-        , "user_id" A..= user_id_
-        ]
-  toJSON ChatTypeBasicGroup
-    { basic_group_id = basic_group_id_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "chatTypeBasicGroup"
-        , "basic_group_id" A..= basic_group_id_
-        ]
-  toJSON ChatTypeSupergroup
-    { supergroup_id = supergroup_id_
-    , is_channel    = is_channel_
-    }
-      = A.object
-        [ "@type"         A..= AT.String "chatTypeSupergroup"
-        , "supergroup_id" A..= supergroup_id_
-        , "is_channel"    A..= is_channel_
-        ]
-  toJSON ChatTypeSecret
-    { secret_chat_id = secret_chat_id_
-    , user_id        = user_id_
-    }
-      = A.object
-        [ "@type"          A..= AT.String "chatTypeSecret"
-        , "secret_chat_id" A..= secret_chat_id_
-        , "user_id"        A..= user_id_
-        ]
-
-defaultChatTypePrivate :: ChatType
-defaultChatTypePrivate =
-  ChatTypePrivate
-    { user_id = Nothing
-    }
-
-defaultChatTypeBasicGroup :: ChatType
-defaultChatTypeBasicGroup =
-  ChatTypeBasicGroup
-    { basic_group_id = Nothing
-    }
-
-defaultChatTypeSupergroup :: ChatType
-defaultChatTypeSupergroup =
-  ChatTypeSupergroup
-    { supergroup_id = Nothing
-    , is_channel    = Nothing
-    }
-
-defaultChatTypeSecret :: ChatType
-defaultChatTypeSecret =
-  ChatTypeSecret
-    { secret_chat_id = Nothing
-    , user_id        = Nothing
-    }
 

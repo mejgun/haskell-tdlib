@@ -1,7 +1,5 @@
 module TD.Data.NotificationSound
-  ( NotificationSound(..)    
-  , defaultNotificationSound 
-  ) where
+  (NotificationSound(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -65,34 +63,4 @@ instance AT.FromJSON NotificationSound where
           , sound    = sound_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON NotificationSound where
-  toJSON NotificationSound
-    { _id      = _id_
-    , duration = duration_
-    , date     = date_
-    , title    = title_
-    , _data    = _data_
-    , sound    = sound_
-    }
-      = A.object
-        [ "@type"    A..= AT.String "notificationSound"
-        , "id"       A..= fmap I.writeInt64  _id_
-        , "duration" A..= duration_
-        , "date"     A..= date_
-        , "title"    A..= title_
-        , "data"     A..= _data_
-        , "sound"    A..= sound_
-        ]
-
-defaultNotificationSound :: NotificationSound
-defaultNotificationSound =
-  NotificationSound
-    { _id      = Nothing
-    , duration = Nothing
-    , date     = Nothing
-    , title    = Nothing
-    , _data    = Nothing
-    , sound    = Nothing
-    }
 

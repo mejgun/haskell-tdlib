@@ -1,7 +1,5 @@
 module TD.Data.EncryptedCredentials
-  ( EncryptedCredentials(..)    
-  , defaultEncryptedCredentials 
-  ) where
+  (EncryptedCredentials(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -49,25 +47,4 @@ instance AT.FromJSON EncryptedCredentials where
           , secret = secret_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON EncryptedCredentials where
-  toJSON EncryptedCredentials
-    { _data  = _data_
-    , hash   = hash_
-    , secret = secret_
-    }
-      = A.object
-        [ "@type"  A..= AT.String "encryptedCredentials"
-        , "data"   A..= fmap I.writeBytes  _data_
-        , "hash"   A..= fmap I.writeBytes  hash_
-        , "secret" A..= fmap I.writeBytes  secret_
-        ]
-
-defaultEncryptedCredentials :: EncryptedCredentials
-defaultEncryptedCredentials =
-  EncryptedCredentials
-    { _data  = Nothing
-    , hash   = Nothing
-    , secret = Nothing
-    }
 

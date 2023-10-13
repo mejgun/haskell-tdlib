@@ -1,6 +1,5 @@
 module TD.Data.EmojiCategoryType
-  ( EmojiCategoryType(..) 
-  ) where
+  (EmojiCategoryType(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
