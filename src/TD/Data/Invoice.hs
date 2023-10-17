@@ -16,6 +16,7 @@ data Invoice
     , max_tip_amount                         :: Maybe Int                                 -- ^ The maximum allowed amount of tip in the smallest units of the currency
     , suggested_tip_amounts                  :: Maybe [Int]                               -- ^ Suggested amounts of tip in the smallest units of the currency
     , recurring_payment_terms_of_service_url :: Maybe T.Text                              -- ^ An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
+    , terms_of_service_url                   :: Maybe T.Text                              -- ^ An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
     , is_test                                :: Maybe Bool                                -- ^ True, if the payment is a test payment
     , need_name                              :: Maybe Bool                                -- ^ True, if the user's name is needed for payment
     , need_phone_number                      :: Maybe Bool                                -- ^ True, if the user's phone number is needed for payment
@@ -34,6 +35,7 @@ instance I.ShortShow Invoice where
     , max_tip_amount                         = max_tip_amount_
     , suggested_tip_amounts                  = suggested_tip_amounts_
     , recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_
+    , terms_of_service_url                   = terms_of_service_url_
     , is_test                                = is_test_
     , need_name                              = need_name_
     , need_phone_number                      = need_phone_number_
@@ -50,6 +52,7 @@ instance I.ShortShow Invoice where
         , "max_tip_amount"                         `I.p` max_tip_amount_
         , "suggested_tip_amounts"                  `I.p` suggested_tip_amounts_
         , "recurring_payment_terms_of_service_url" `I.p` recurring_payment_terms_of_service_url_
+        , "terms_of_service_url"                   `I.p` terms_of_service_url_
         , "is_test"                                `I.p` is_test_
         , "need_name"                              `I.p` need_name_
         , "need_phone_number"                      `I.p` need_phone_number_
@@ -76,6 +79,7 @@ instance AT.FromJSON Invoice where
         max_tip_amount_                         <- o A..:?  "max_tip_amount"
         suggested_tip_amounts_                  <- o A..:?  "suggested_tip_amounts"
         recurring_payment_terms_of_service_url_ <- o A..:?  "recurring_payment_terms_of_service_url"
+        terms_of_service_url_                   <- o A..:?  "terms_of_service_url"
         is_test_                                <- o A..:?  "is_test"
         need_name_                              <- o A..:?  "need_name"
         need_phone_number_                      <- o A..:?  "need_phone_number"
@@ -90,6 +94,7 @@ instance AT.FromJSON Invoice where
           , max_tip_amount                         = max_tip_amount_
           , suggested_tip_amounts                  = suggested_tip_amounts_
           , recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_
+          , terms_of_service_url                   = terms_of_service_url_
           , is_test                                = is_test_
           , need_name                              = need_name_
           , need_phone_number                      = need_phone_number_
@@ -108,6 +113,7 @@ instance AT.ToJSON Invoice where
     , max_tip_amount                         = max_tip_amount_
     , suggested_tip_amounts                  = suggested_tip_amounts_
     , recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_
+    , terms_of_service_url                   = terms_of_service_url_
     , is_test                                = is_test_
     , need_name                              = need_name_
     , need_phone_number                      = need_phone_number_
@@ -124,6 +130,7 @@ instance AT.ToJSON Invoice where
         , "max_tip_amount"                         A..= max_tip_amount_
         , "suggested_tip_amounts"                  A..= suggested_tip_amounts_
         , "recurring_payment_terms_of_service_url" A..= recurring_payment_terms_of_service_url_
+        , "terms_of_service_url"                   A..= terms_of_service_url_
         , "is_test"                                A..= is_test_
         , "need_name"                              A..= need_name_
         , "need_phone_number"                      A..= need_phone_number_
@@ -142,6 +149,7 @@ defaultInvoice =
     , max_tip_amount                         = Nothing
     , suggested_tip_amounts                  = Nothing
     , recurring_payment_terms_of_service_url = Nothing
+    , terms_of_service_url                   = Nothing
     , is_test                                = Nothing
     , need_name                              = Nothing
     , need_phone_number                      = Nothing

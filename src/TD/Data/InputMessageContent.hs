@@ -8,6 +8,7 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.InputThumbnail as InputThumbnail
 import qualified Data.Text as T
+import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.ByteString as BS
 import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
@@ -48,14 +49,14 @@ data InputMessageContent
     , caption                        :: Maybe FormattedText.FormattedText   -- ^ Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
   | InputMessagePhoto -- ^ A photo message
-    { photo                  :: Maybe InputFile.InputFile           -- ^ Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
-    , thumbnail              :: Maybe InputThumbnail.InputThumbnail -- ^ Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
-    , added_sticker_file_ids :: Maybe [Int]                         -- ^ File identifiers of the stickers added to the photo, if applicable
-    , width                  :: Maybe Int                           -- ^ Photo width
-    , height                 :: Maybe Int                           -- ^ Photo height
-    , caption                :: Maybe FormattedText.FormattedText   -- ^ Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , self_destruct_time     :: Maybe Int                           -- ^ Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-    , has_spoiler            :: Maybe Bool                          -- ^ True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
+    { photo                  :: Maybe InputFile.InputFile                             -- ^ Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
+    , thumbnail              :: Maybe InputThumbnail.InputThumbnail                   -- ^ Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
+    , added_sticker_file_ids :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the photo, if applicable
+    , width                  :: Maybe Int                                             -- ^ Photo width
+    , height                 :: Maybe Int                                             -- ^ Photo height
+    , caption                :: Maybe FormattedText.FormattedText                     -- ^ Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , self_destruct_type     :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Photo self-destruct type; pass null if none; private chats only
+    , has_spoiler            :: Maybe Bool                                            -- ^ True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageSticker -- ^ A sticker message
     { sticker   :: Maybe InputFile.InputFile           -- ^ Sticker to be sent
@@ -65,16 +66,16 @@ data InputMessageContent
     , emoji     :: Maybe T.Text                        -- ^ Emoji used to choose the sticker
     }
   | InputMessageVideo -- ^ A video message
-    { video                  :: Maybe InputFile.InputFile           -- ^ Video to be sent
-    , thumbnail              :: Maybe InputThumbnail.InputThumbnail -- ^ Video thumbnail; pass null to skip thumbnail uploading
-    , added_sticker_file_ids :: Maybe [Int]                         -- ^ File identifiers of the stickers added to the video, if applicable
-    , duration               :: Maybe Int                           -- ^ Duration of the video, in seconds
-    , width                  :: Maybe Int                           -- ^ Video width
-    , height                 :: Maybe Int                           -- ^ Video height
-    , supports_streaming     :: Maybe Bool                          -- ^ True, if the video is supposed to be streamed
-    , caption                :: Maybe FormattedText.FormattedText   -- ^ Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , self_destruct_time     :: Maybe Int                           -- ^ Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-    , has_spoiler            :: Maybe Bool                          -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
+    { video                  :: Maybe InputFile.InputFile                             -- ^ Video to be sent
+    , thumbnail              :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
+    , added_sticker_file_ids :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the video, if applicable
+    , duration               :: Maybe Int                                             -- ^ Duration of the video, in seconds
+    , width                  :: Maybe Int                                             -- ^ Video width
+    , height                 :: Maybe Int                                             -- ^ Video height
+    , supports_streaming     :: Maybe Bool                                            -- ^ True, if the video is supposed to be streamed
+    , caption                :: Maybe FormattedText.FormattedText                     -- ^ Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , self_destruct_type     :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video self-destruct type; pass null if none; private chats only
+    , has_spoiler            :: Maybe Bool                                            -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageVideoNote -- ^ A video note message
     { video_note :: Maybe InputFile.InputFile           -- ^ Video note to be sent
@@ -213,7 +214,7 @@ instance I.ShortShow InputMessageContent where
     , width                  = width_
     , height                 = height_
     , caption                = caption_
-    , self_destruct_time     = self_destruct_time_
+    , self_destruct_type     = self_destruct_type_
     , has_spoiler            = has_spoiler_
     }
       = "InputMessagePhoto"
@@ -224,7 +225,7 @@ instance I.ShortShow InputMessageContent where
         , "width"                  `I.p` width_
         , "height"                 `I.p` height_
         , "caption"                `I.p` caption_
-        , "self_destruct_time"     `I.p` self_destruct_time_
+        , "self_destruct_type"     `I.p` self_destruct_type_
         , "has_spoiler"            `I.p` has_spoiler_
         ]
   shortShow InputMessageSticker
@@ -251,7 +252,7 @@ instance I.ShortShow InputMessageContent where
     , height                 = height_
     , supports_streaming     = supports_streaming_
     , caption                = caption_
-    , self_destruct_time     = self_destruct_time_
+    , self_destruct_type     = self_destruct_type_
     , has_spoiler            = has_spoiler_
     }
       = "InputMessageVideo"
@@ -264,7 +265,7 @@ instance I.ShortShow InputMessageContent where
         , "height"                 `I.p` height_
         , "supports_streaming"     `I.p` supports_streaming_
         , "caption"                `I.p` caption_
-        , "self_destruct_time"     `I.p` self_destruct_time_
+        , "self_destruct_type"     `I.p` self_destruct_type_
         , "has_spoiler"            `I.p` has_spoiler_
         ]
   shortShow InputMessageVideoNote
@@ -501,7 +502,7 @@ instance AT.FromJSON InputMessageContent where
         width_                  <- o A..:?  "width"
         height_                 <- o A..:?  "height"
         caption_                <- o A..:?  "caption"
-        self_destruct_time_     <- o A..:?  "self_destruct_time"
+        self_destruct_type_     <- o A..:?  "self_destruct_type"
         has_spoiler_            <- o A..:?  "has_spoiler"
         pure $ InputMessagePhoto
           { photo                  = photo_
@@ -510,7 +511,7 @@ instance AT.FromJSON InputMessageContent where
           , width                  = width_
           , height                 = height_
           , caption                = caption_
-          , self_destruct_time     = self_destruct_time_
+          , self_destruct_type     = self_destruct_type_
           , has_spoiler            = has_spoiler_
           }
       parseInputMessageSticker :: A.Value -> AT.Parser InputMessageContent
@@ -537,7 +538,7 @@ instance AT.FromJSON InputMessageContent where
         height_                 <- o A..:?  "height"
         supports_streaming_     <- o A..:?  "supports_streaming"
         caption_                <- o A..:?  "caption"
-        self_destruct_time_     <- o A..:?  "self_destruct_time"
+        self_destruct_type_     <- o A..:?  "self_destruct_type"
         has_spoiler_            <- o A..:?  "has_spoiler"
         pure $ InputMessageVideo
           { video                  = video_
@@ -548,7 +549,7 @@ instance AT.FromJSON InputMessageContent where
           , height                 = height_
           , supports_streaming     = supports_streaming_
           , caption                = caption_
-          , self_destruct_time     = self_destruct_time_
+          , self_destruct_type     = self_destruct_type_
           , has_spoiler            = has_spoiler_
           }
       parseInputMessageVideoNote :: A.Value -> AT.Parser InputMessageContent
@@ -753,7 +754,7 @@ instance AT.ToJSON InputMessageContent where
     , width                  = width_
     , height                 = height_
     , caption                = caption_
-    , self_destruct_time     = self_destruct_time_
+    , self_destruct_type     = self_destruct_type_
     , has_spoiler            = has_spoiler_
     }
       = A.object
@@ -764,7 +765,7 @@ instance AT.ToJSON InputMessageContent where
         , "width"                  A..= width_
         , "height"                 A..= height_
         , "caption"                A..= caption_
-        , "self_destruct_time"     A..= self_destruct_time_
+        , "self_destruct_type"     A..= self_destruct_type_
         , "has_spoiler"            A..= has_spoiler_
         ]
   toJSON InputMessageSticker
@@ -791,7 +792,7 @@ instance AT.ToJSON InputMessageContent where
     , height                 = height_
     , supports_streaming     = supports_streaming_
     , caption                = caption_
-    , self_destruct_time     = self_destruct_time_
+    , self_destruct_type     = self_destruct_type_
     , has_spoiler            = has_spoiler_
     }
       = A.object
@@ -804,7 +805,7 @@ instance AT.ToJSON InputMessageContent where
         , "height"                 A..= height_
         , "supports_streaming"     A..= supports_streaming_
         , "caption"                A..= caption_
-        , "self_destruct_time"     A..= self_destruct_time_
+        , "self_destruct_type"     A..= self_destruct_type_
         , "has_spoiler"            A..= has_spoiler_
         ]
   toJSON InputMessageVideoNote

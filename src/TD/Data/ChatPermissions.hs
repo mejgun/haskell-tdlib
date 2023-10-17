@@ -12,8 +12,8 @@ data ChatPermissions
     { can_send_basic_messages   :: Maybe Bool -- ^ True, if the user can send text messages, contacts, invoices, locations, and venues
     , can_send_audios           :: Maybe Bool -- ^ True, if the user can send music files
     , can_send_documents        :: Maybe Bool -- ^ True, if the user can send documents
-    , can_send_photos           :: Maybe Bool -- ^ True, if the user can send audio photos
-    , can_send_videos           :: Maybe Bool -- ^ True, if the user can send audio videos
+    , can_send_photos           :: Maybe Bool -- ^ True, if the user can send photos
+    , can_send_videos           :: Maybe Bool -- ^ True, if the user can send videos
     , can_send_video_notes      :: Maybe Bool -- ^ True, if the user can send video notes
     , can_send_voice_notes      :: Maybe Bool -- ^ True, if the user can send voice notes
     , can_send_polls            :: Maybe Bool -- ^ True, if the user can send polls

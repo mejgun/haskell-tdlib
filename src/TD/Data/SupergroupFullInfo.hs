@@ -30,6 +30,7 @@ data SupergroupFullInfo
     , can_toggle_aggressive_anti_spam  :: Maybe Bool                          -- ^ True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     , is_all_history_available         :: Maybe Bool                          -- ^ True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
     , has_aggressive_anti_spam_enabled :: Maybe Bool                          -- ^ True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
+    , has_pinned_stories               :: Maybe Bool                          -- ^ True, if the channel has pinned stories
     , sticker_set_id                   :: Maybe Int                           -- ^ Identifier of the supergroup sticker set; 0 if none
     , location                         :: Maybe ChatLocation.ChatLocation     -- ^ Location to which the supergroup is connected; may be null if none
     , invite_link                      :: Maybe ChatInviteLink.ChatInviteLink -- ^ Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
@@ -59,6 +60,7 @@ instance I.ShortShow SupergroupFullInfo where
     , can_toggle_aggressive_anti_spam  = can_toggle_aggressive_anti_spam_
     , is_all_history_available         = is_all_history_available_
     , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
+    , has_pinned_stories               = has_pinned_stories_
     , sticker_set_id                   = sticker_set_id_
     , location                         = location_
     , invite_link                      = invite_link_
@@ -86,6 +88,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "can_toggle_aggressive_anti_spam"  `I.p` can_toggle_aggressive_anti_spam_
         , "is_all_history_available"         `I.p` is_all_history_available_
         , "has_aggressive_anti_spam_enabled" `I.p` has_aggressive_anti_spam_enabled_
+        , "has_pinned_stories"               `I.p` has_pinned_stories_
         , "sticker_set_id"                   `I.p` sticker_set_id_
         , "location"                         `I.p` location_
         , "invite_link"                      `I.p` invite_link_
@@ -123,6 +126,7 @@ instance AT.FromJSON SupergroupFullInfo where
         can_toggle_aggressive_anti_spam_  <- o A..:?                       "can_toggle_aggressive_anti_spam"
         is_all_history_available_         <- o A..:?                       "is_all_history_available"
         has_aggressive_anti_spam_enabled_ <- o A..:?                       "has_aggressive_anti_spam_enabled"
+        has_pinned_stories_               <- o A..:?                       "has_pinned_stories"
         sticker_set_id_                   <- fmap I.readInt64 <$> o A..:?  "sticker_set_id"
         location_                         <- o A..:?                       "location"
         invite_link_                      <- o A..:?                       "invite_link"
@@ -148,6 +152,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , can_toggle_aggressive_anti_spam  = can_toggle_aggressive_anti_spam_
           , is_all_history_available         = is_all_history_available_
           , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
+          , has_pinned_stories               = has_pinned_stories_
           , sticker_set_id                   = sticker_set_id_
           , location                         = location_
           , invite_link                      = invite_link_

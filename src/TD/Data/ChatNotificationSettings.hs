@@ -16,7 +16,7 @@ data ChatNotificationSettings
     , use_default_show_preview                         :: Maybe Bool -- ^ If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
     , show_preview                                     :: Maybe Bool -- ^ True, if message content must be displayed in notifications
     , use_default_mute_stories                         :: Maybe Bool -- ^ If true, mute_stories is ignored and the value for the relevant type of chat is used instead
-    , mute_stories                                     :: Maybe Bool -- ^ True, if story notifications are received without sound
+    , mute_stories                                     :: Maybe Bool -- ^ True, if story notifications are disabled for the chat
     , use_default_story_sound                          :: Maybe Bool -- ^ If true, the value for the relevant type of chat is used instead of story_sound_id
     , story_sound_id                                   :: Maybe Int  -- ^ Identifier of the notification sound to be played for stories; 0 if sound is disabled
     , use_default_show_story_sender                    :: Maybe Bool -- ^ If true, show_story_sender is ignored and the value for the relevant type of chat is used instead

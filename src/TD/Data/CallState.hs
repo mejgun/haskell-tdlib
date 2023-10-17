@@ -28,7 +28,7 @@ data CallState
     }
   | CallStateHangingUp -- ^ The call is hanging up after discardCall has been called
   | CallStateDiscarded -- ^ The call has ended successfully
-    { reason                 :: Maybe CallDiscardReason.CallDiscardReason -- ^ The reason, why the call has ended
+    { reason                 :: Maybe CallDiscardReason.CallDiscardReason -- ^ The reason why the call has ended
     , need_rating            :: Maybe Bool                                -- ^ True, if the call rating must be sent to the server
     , need_debug_information :: Maybe Bool                                -- ^ True, if the call debug information must be sent to the server
     , need_log               :: Maybe Bool                                -- ^ True, if the call log must be sent to the server

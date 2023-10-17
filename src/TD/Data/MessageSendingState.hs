@@ -4,7 +4,7 @@ module TD.Data.MessageSendingState
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.Text as T
+import qualified TD.Data.Error as Error
 
 -- | Contains information about the sending state of the message
 data MessageSendingState
@@ -12,11 +12,10 @@ data MessageSendingState
     { sending_id :: Maybe Int -- ^ Non-persistent message sending identifier, specified by the application
     }
   | MessageSendingStateFailed -- ^ The message failed to be sent
-    { error_code          :: Maybe Int    -- ^ An error code; 0 if unknown
-    , error_message       :: Maybe T.Text -- ^ Error message
-    , can_retry           :: Maybe Bool   -- ^ True, if the message can be re-sent
-    , need_another_sender :: Maybe Bool   -- ^ True, if the message can be re-sent only on behalf of a different sender
-    , retry_after         :: Maybe Double -- ^ Time left before the message can be re-sent, in seconds. No update is sent when this field changes
+    { _error              :: Maybe Error.Error -- ^ The cause of the message sending failure
+    , can_retry           :: Maybe Bool        -- ^ True, if the message can be re-sent
+    , need_another_sender :: Maybe Bool        -- ^ True, if the message can be re-sent only on behalf of a different sender
+    , retry_after         :: Maybe Double      -- ^ Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     }
   deriving (Eq, Show)
 
@@ -29,16 +28,14 @@ instance I.ShortShow MessageSendingState where
         [ "sending_id" `I.p` sending_id_
         ]
   shortShow MessageSendingStateFailed
-    { error_code          = error_code_
-    , error_message       = error_message_
+    { _error              = _error_
     , can_retry           = can_retry_
     , need_another_sender = need_another_sender_
     , retry_after         = retry_after_
     }
       = "MessageSendingStateFailed"
         ++ I.cc
-        [ "error_code"          `I.p` error_code_
-        , "error_message"       `I.p` error_message_
+        [ "_error"              `I.p` _error_
         , "can_retry"           `I.p` can_retry_
         , "need_another_sender" `I.p` need_another_sender_
         , "retry_after"         `I.p` retry_after_
@@ -62,14 +59,12 @@ instance AT.FromJSON MessageSendingState where
           }
       parseMessageSendingStateFailed :: A.Value -> AT.Parser MessageSendingState
       parseMessageSendingStateFailed = A.withObject "MessageSendingStateFailed" $ \o -> do
-        error_code_          <- o A..:?  "error_code"
-        error_message_       <- o A..:?  "error_message"
+        _error_              <- o A..:?  "error"
         can_retry_           <- o A..:?  "can_retry"
         need_another_sender_ <- o A..:?  "need_another_sender"
         retry_after_         <- o A..:?  "retry_after"
         pure $ MessageSendingStateFailed
-          { error_code          = error_code_
-          , error_message       = error_message_
+          { _error              = _error_
           , can_retry           = can_retry_
           , need_another_sender = need_another_sender_
           , retry_after         = retry_after_

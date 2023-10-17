@@ -11,7 +11,7 @@ import qualified Data.Text as T
 -- | Checks whether a username can be set for a chat
 data CheckChatUsername
   = CheckChatUsername
-    { chat_id  :: Maybe Int    -- ^ Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+    { chat_id  :: Maybe Int    -- ^ Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
     , username :: Maybe T.Text -- ^ Username to be checked
     }
   deriving (Eq, Show)

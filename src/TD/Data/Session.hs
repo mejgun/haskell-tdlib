@@ -12,6 +12,7 @@ data Session
     { _id                     :: Maybe Int                     -- ^ Session identifier
     , is_current              :: Maybe Bool                    -- ^ True, if this session is the current session
     , is_password_pending     :: Maybe Bool                    -- ^ True, if a 2-step verification password is needed to complete authorization of the session
+    , is_unconfirmed          :: Maybe Bool                    -- ^ True, if the session wasn't confirmed from another session
     , can_accept_secret_chats :: Maybe Bool                    -- ^ True, if incoming secret chats can be accepted by the session
     , can_accept_calls        :: Maybe Bool                    -- ^ True, if incoming calls can be accepted by the session
     , _type                   :: Maybe SessionType.SessionType -- ^ Session type based on the system and application version, which can be used to display a corresponding icon
@@ -24,9 +25,8 @@ data Session
     , system_version          :: Maybe T.Text                  -- ^ Version of the operating system the application has been run or is running on, as provided by the application
     , log_in_date             :: Maybe Int                     -- ^ Point in time (Unix timestamp) when the user has logged in
     , last_active_date        :: Maybe Int                     -- ^ Point in time (Unix timestamp) when the session was last used
-    , ip                      :: Maybe T.Text                  -- ^ IP address from which the session was created, in human-readable format
-    , country                 :: Maybe T.Text                  -- ^ A two-letter country code for the country from which the session was created, based on the IP address
-    , region                  :: Maybe T.Text                  -- ^ Region code from which the session was created, based on the IP address
+    , ip_address              :: Maybe T.Text                  -- ^ IP address from which the session was created, in human-readable format
+    , location                :: Maybe T.Text                  -- ^ A human-readable description of the location from which the session was created, based on the IP address
     }
   deriving (Eq, Show)
 
@@ -35,6 +35,7 @@ instance I.ShortShow Session where
     { _id                     = _id_
     , is_current              = is_current_
     , is_password_pending     = is_password_pending_
+    , is_unconfirmed          = is_unconfirmed_
     , can_accept_secret_chats = can_accept_secret_chats_
     , can_accept_calls        = can_accept_calls_
     , _type                   = _type_
@@ -47,15 +48,15 @@ instance I.ShortShow Session where
     , system_version          = system_version_
     , log_in_date             = log_in_date_
     , last_active_date        = last_active_date_
-    , ip                      = ip_
-    , country                 = country_
-    , region                  = region_
+    , ip_address              = ip_address_
+    , location                = location_
     }
       = "Session"
         ++ I.cc
         [ "_id"                     `I.p` _id_
         , "is_current"              `I.p` is_current_
         , "is_password_pending"     `I.p` is_password_pending_
+        , "is_unconfirmed"          `I.p` is_unconfirmed_
         , "can_accept_secret_chats" `I.p` can_accept_secret_chats_
         , "can_accept_calls"        `I.p` can_accept_calls_
         , "_type"                   `I.p` _type_
@@ -68,9 +69,8 @@ instance I.ShortShow Session where
         , "system_version"          `I.p` system_version_
         , "log_in_date"             `I.p` log_in_date_
         , "last_active_date"        `I.p` last_active_date_
-        , "ip"                      `I.p` ip_
-        , "country"                 `I.p` country_
-        , "region"                  `I.p` region_
+        , "ip_address"              `I.p` ip_address_
+        , "location"                `I.p` location_
         ]
 
 instance AT.FromJSON Session where
@@ -87,6 +87,7 @@ instance AT.FromJSON Session where
         _id_                     <- fmap I.readInt64 <$> o A..:?  "id"
         is_current_              <- o A..:?                       "is_current"
         is_password_pending_     <- o A..:?                       "is_password_pending"
+        is_unconfirmed_          <- o A..:?                       "is_unconfirmed"
         can_accept_secret_chats_ <- o A..:?                       "can_accept_secret_chats"
         can_accept_calls_        <- o A..:?                       "can_accept_calls"
         _type_                   <- o A..:?                       "type"
@@ -99,13 +100,13 @@ instance AT.FromJSON Session where
         system_version_          <- o A..:?                       "system_version"
         log_in_date_             <- o A..:?                       "log_in_date"
         last_active_date_        <- o A..:?                       "last_active_date"
-        ip_                      <- o A..:?                       "ip"
-        country_                 <- o A..:?                       "country"
-        region_                  <- o A..:?                       "region"
+        ip_address_              <- o A..:?                       "ip_address"
+        location_                <- o A..:?                       "location"
         pure $ Session
           { _id                     = _id_
           , is_current              = is_current_
           , is_password_pending     = is_password_pending_
+          , is_unconfirmed          = is_unconfirmed_
           , can_accept_secret_chats = can_accept_secret_chats_
           , can_accept_calls        = can_accept_calls_
           , _type                   = _type_
@@ -118,9 +119,8 @@ instance AT.FromJSON Session where
           , system_version          = system_version_
           , log_in_date             = log_in_date_
           , last_active_date        = last_active_date_
-          , ip                      = ip_
-          , country                 = country_
-          , region                  = region_
+          , ip_address              = ip_address_
+          , location                = location_
           }
   parseJSON _ = mempty
 

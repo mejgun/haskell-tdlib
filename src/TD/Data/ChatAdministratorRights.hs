@@ -9,17 +9,20 @@ import qualified TD.Lib.Internal as I
 
 data ChatAdministratorRights
   = ChatAdministratorRights -- ^ Describes rights of the administrator
-    { can_manage_chat        :: Maybe Bool -- ^ True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+    { can_manage_chat        :: Maybe Bool -- ^ True, if the administrator can get chat event log, get chat boosts in channels, get channel members, report supergroup spam messages, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
     , can_change_info        :: Maybe Bool -- ^ True, if the administrator can change the chat title, photo, and other settings
-    , can_post_messages      :: Maybe Bool -- ^ True, if the administrator can create channel posts; applicable to channels only
+    , can_post_messages      :: Maybe Bool -- ^ True, if the administrator can create channel posts or view channel statistics; applicable to channels only
     , can_edit_messages      :: Maybe Bool -- ^ True, if the administrator can edit messages of other users and pin messages; applicable to channels only
     , can_delete_messages    :: Maybe Bool -- ^ True, if the administrator can delete messages of other users
     , can_invite_users       :: Maybe Bool -- ^ True, if the administrator can invite new users to the chat
-    , can_restrict_members   :: Maybe Bool -- ^ True, if the administrator can restrict, ban, or unban chat members; always true for channels
+    , can_restrict_members   :: Maybe Bool -- ^ True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels
     , can_pin_messages       :: Maybe Bool -- ^ True, if the administrator can pin messages; applicable to basic groups and supergroups only
     , can_manage_topics      :: Maybe Bool -- ^ True, if the administrator can manage topics; applicable to forum supergroups only
     , can_promote_members    :: Maybe Bool -- ^ True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     , can_manage_video_chats :: Maybe Bool -- ^ True, if the administrator can manage video chats
+    , can_post_stories       :: Maybe Bool -- ^ True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
+    , can_edit_stories       :: Maybe Bool -- ^ True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only
+    , can_delete_stories     :: Maybe Bool -- ^ True, if the administrator can delete stories posted by other users; applicable to channels only
     , is_anonymous           :: Maybe Bool -- ^ True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     }
   deriving (Eq, Show)
@@ -37,6 +40,9 @@ instance I.ShortShow ChatAdministratorRights where
     , can_manage_topics      = can_manage_topics_
     , can_promote_members    = can_promote_members_
     , can_manage_video_chats = can_manage_video_chats_
+    , can_post_stories       = can_post_stories_
+    , can_edit_stories       = can_edit_stories_
+    , can_delete_stories     = can_delete_stories_
     , is_anonymous           = is_anonymous_
     }
       = "ChatAdministratorRights"
@@ -52,6 +58,9 @@ instance I.ShortShow ChatAdministratorRights where
         , "can_manage_topics"      `I.p` can_manage_topics_
         , "can_promote_members"    `I.p` can_promote_members_
         , "can_manage_video_chats" `I.p` can_manage_video_chats_
+        , "can_post_stories"       `I.p` can_post_stories_
+        , "can_edit_stories"       `I.p` can_edit_stories_
+        , "can_delete_stories"     `I.p` can_delete_stories_
         , "is_anonymous"           `I.p` is_anonymous_
         ]
 
@@ -77,6 +86,9 @@ instance AT.FromJSON ChatAdministratorRights where
         can_manage_topics_      <- o A..:?  "can_manage_topics"
         can_promote_members_    <- o A..:?  "can_promote_members"
         can_manage_video_chats_ <- o A..:?  "can_manage_video_chats"
+        can_post_stories_       <- o A..:?  "can_post_stories"
+        can_edit_stories_       <- o A..:?  "can_edit_stories"
+        can_delete_stories_     <- o A..:?  "can_delete_stories"
         is_anonymous_           <- o A..:?  "is_anonymous"
         pure $ ChatAdministratorRights
           { can_manage_chat        = can_manage_chat_
@@ -90,6 +102,9 @@ instance AT.FromJSON ChatAdministratorRights where
           , can_manage_topics      = can_manage_topics_
           , can_promote_members    = can_promote_members_
           , can_manage_video_chats = can_manage_video_chats_
+          , can_post_stories       = can_post_stories_
+          , can_edit_stories       = can_edit_stories_
+          , can_delete_stories     = can_delete_stories_
           , is_anonymous           = is_anonymous_
           }
   parseJSON _ = mempty
@@ -107,6 +122,9 @@ instance AT.ToJSON ChatAdministratorRights where
     , can_manage_topics      = can_manage_topics_
     , can_promote_members    = can_promote_members_
     , can_manage_video_chats = can_manage_video_chats_
+    , can_post_stories       = can_post_stories_
+    , can_edit_stories       = can_edit_stories_
+    , can_delete_stories     = can_delete_stories_
     , is_anonymous           = is_anonymous_
     }
       = A.object
@@ -122,6 +140,9 @@ instance AT.ToJSON ChatAdministratorRights where
         , "can_manage_topics"      A..= can_manage_topics_
         , "can_promote_members"    A..= can_promote_members_
         , "can_manage_video_chats" A..= can_manage_video_chats_
+        , "can_post_stories"       A..= can_post_stories_
+        , "can_edit_stories"       A..= can_edit_stories_
+        , "can_delete_stories"     A..= can_delete_stories_
         , "is_anonymous"           A..= is_anonymous_
         ]
 
@@ -139,6 +160,9 @@ defaultChatAdministratorRights =
     , can_manage_topics      = Nothing
     , can_promote_members    = Nothing
     , can_manage_video_chats = Nothing
+    , can_post_stories       = Nothing
+    , can_edit_stories       = Nothing
+    , can_delete_stories     = Nothing
     , is_anonymous           = Nothing
     }
 

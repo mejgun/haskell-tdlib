@@ -20,6 +20,10 @@ data PremiumLimitType
   | PremiumLimitTypeChatFolderInviteLinkCount -- ^ The maximum number of invite links for a chat folder
   | PremiumLimitTypeShareableChatFolderCount -- ^ The maximum number of added shareable chat folders
   | PremiumLimitTypeActiveStoryCount -- ^ The maximum number of active stories
+  | PremiumLimitTypeWeeklySentStoryCount -- ^ The maximum number of stories sent per week
+  | PremiumLimitTypeMonthlySentStoryCount -- ^ The maximum number of stories sent per month
+  | PremiumLimitTypeStoryCaptionLength -- ^ The maximum length of captions of sent stories
+  | PremiumLimitTypeStorySuggestedReactionAreaCount -- ^ The maximum number of suggested reaction areas on a story
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumLimitType where
@@ -49,26 +53,38 @@ instance I.ShortShow PremiumLimitType where
       = "PremiumLimitTypeShareableChatFolderCount"
   shortShow PremiumLimitTypeActiveStoryCount
       = "PremiumLimitTypeActiveStoryCount"
+  shortShow PremiumLimitTypeWeeklySentStoryCount
+      = "PremiumLimitTypeWeeklySentStoryCount"
+  shortShow PremiumLimitTypeMonthlySentStoryCount
+      = "PremiumLimitTypeMonthlySentStoryCount"
+  shortShow PremiumLimitTypeStoryCaptionLength
+      = "PremiumLimitTypeStoryCaptionLength"
+  shortShow PremiumLimitTypeStorySuggestedReactionAreaCount
+      = "PremiumLimitTypeStorySuggestedReactionAreaCount"
 
 instance AT.FromJSON PremiumLimitType where
   parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "premiumLimitTypeSupergroupCount"           -> pure PremiumLimitTypeSupergroupCount
-      "premiumLimitTypePinnedChatCount"           -> pure PremiumLimitTypePinnedChatCount
-      "premiumLimitTypeCreatedPublicChatCount"    -> pure PremiumLimitTypeCreatedPublicChatCount
-      "premiumLimitTypeSavedAnimationCount"       -> pure PremiumLimitTypeSavedAnimationCount
-      "premiumLimitTypeFavoriteStickerCount"      -> pure PremiumLimitTypeFavoriteStickerCount
-      "premiumLimitTypeChatFolderCount"           -> pure PremiumLimitTypeChatFolderCount
-      "premiumLimitTypeChatFolderChosenChatCount" -> pure PremiumLimitTypeChatFolderChosenChatCount
-      "premiumLimitTypePinnedArchivedChatCount"   -> pure PremiumLimitTypePinnedArchivedChatCount
-      "premiumLimitTypeCaptionLength"             -> pure PremiumLimitTypeCaptionLength
-      "premiumLimitTypeBioLength"                 -> pure PremiumLimitTypeBioLength
-      "premiumLimitTypeChatFolderInviteLinkCount" -> pure PremiumLimitTypeChatFolderInviteLinkCount
-      "premiumLimitTypeShareableChatFolderCount"  -> pure PremiumLimitTypeShareableChatFolderCount
-      "premiumLimitTypeActiveStoryCount"          -> pure PremiumLimitTypeActiveStoryCount
-      _                                           -> mempty
+      "premiumLimitTypeSupergroupCount"                 -> pure PremiumLimitTypeSupergroupCount
+      "premiumLimitTypePinnedChatCount"                 -> pure PremiumLimitTypePinnedChatCount
+      "premiumLimitTypeCreatedPublicChatCount"          -> pure PremiumLimitTypeCreatedPublicChatCount
+      "premiumLimitTypeSavedAnimationCount"             -> pure PremiumLimitTypeSavedAnimationCount
+      "premiumLimitTypeFavoriteStickerCount"            -> pure PremiumLimitTypeFavoriteStickerCount
+      "premiumLimitTypeChatFolderCount"                 -> pure PremiumLimitTypeChatFolderCount
+      "premiumLimitTypeChatFolderChosenChatCount"       -> pure PremiumLimitTypeChatFolderChosenChatCount
+      "premiumLimitTypePinnedArchivedChatCount"         -> pure PremiumLimitTypePinnedArchivedChatCount
+      "premiumLimitTypeCaptionLength"                   -> pure PremiumLimitTypeCaptionLength
+      "premiumLimitTypeBioLength"                       -> pure PremiumLimitTypeBioLength
+      "premiumLimitTypeChatFolderInviteLinkCount"       -> pure PremiumLimitTypeChatFolderInviteLinkCount
+      "premiumLimitTypeShareableChatFolderCount"        -> pure PremiumLimitTypeShareableChatFolderCount
+      "premiumLimitTypeActiveStoryCount"                -> pure PremiumLimitTypeActiveStoryCount
+      "premiumLimitTypeWeeklySentStoryCount"            -> pure PremiumLimitTypeWeeklySentStoryCount
+      "premiumLimitTypeMonthlySentStoryCount"           -> pure PremiumLimitTypeMonthlySentStoryCount
+      "premiumLimitTypeStoryCaptionLength"              -> pure PremiumLimitTypeStoryCaptionLength
+      "premiumLimitTypeStorySuggestedReactionAreaCount" -> pure PremiumLimitTypeStorySuggestedReactionAreaCount
+      _                                                 -> mempty
     
   parseJSON _ = mempty
 
@@ -124,5 +140,21 @@ instance AT.ToJSON PremiumLimitType where
   toJSON PremiumLimitTypeActiveStoryCount
       = A.object
         [ "@type" A..= AT.String "premiumLimitTypeActiveStoryCount"
+        ]
+  toJSON PremiumLimitTypeWeeklySentStoryCount
+      = A.object
+        [ "@type" A..= AT.String "premiumLimitTypeWeeklySentStoryCount"
+        ]
+  toJSON PremiumLimitTypeMonthlySentStoryCount
+      = A.object
+        [ "@type" A..= AT.String "premiumLimitTypeMonthlySentStoryCount"
+        ]
+  toJSON PremiumLimitTypeStoryCaptionLength
+      = A.object
+        [ "@type" A..= AT.String "premiumLimitTypeStoryCaptionLength"
+        ]
+  toJSON PremiumLimitTypeStorySuggestedReactionAreaCount
+      = A.object
+        [ "@type" A..= AT.String "premiumLimitTypeStorySuggestedReactionAreaCount"
         ]
 

@@ -12,7 +12,7 @@ import qualified TD.Data.ProxyType as ProxyType
 -- | Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
 data TestProxy
   = TestProxy
-    { server  :: Maybe T.Text              -- ^ Proxy server IP address
+    { server  :: Maybe T.Text              -- ^ Proxy server domain or IP address
     , port    :: Maybe Int                 -- ^ Proxy server port
     , _type   :: Maybe ProxyType.ProxyType -- ^ Proxy type
     , dc_id   :: Maybe Int                 -- ^ Identifier of a datacenter with which to test connection

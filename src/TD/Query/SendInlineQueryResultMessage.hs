@@ -18,7 +18,7 @@ data SendInlineQueryResultMessage
     , reply_to          :: Maybe MessageReplyTo.MessageReplyTo         -- ^ Identifier of the replied message or story; pass null if none
     , options           :: Maybe MessageSendOptions.MessageSendOptions -- ^ Options to be used to send the message; pass null to use default options
     , query_id          :: Maybe Int                                   -- ^ Identifier of the inline query
-    , result_id         :: Maybe T.Text                                -- ^ Identifier of the inline result
+    , result_id         :: Maybe T.Text                                -- ^ Identifier of the inline query result
     , hide_via_bot      :: Maybe Bool                                  -- ^ Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
     }
   deriving (Eq, Show)

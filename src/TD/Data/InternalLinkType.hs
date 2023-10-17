@@ -13,7 +13,7 @@ import qualified TD.Data.ProxyType as ProxyType
 -- | Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 data InternalLinkType
   = InternalLinkTypeActiveSessions -- ^ The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
-  | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+  | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     { target_chat  :: Maybe TargetChat.TargetChat -- ^ Target chat to be opened
     , bot_username :: Maybe T.Text                -- ^ Username of the bot
     , url          :: Maybe T.Text                -- ^ URL to be passed to openWebApp
@@ -39,6 +39,9 @@ data InternalLinkType
     , administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Expected administrator rights for the bot; may be null
     }
   | InternalLinkTypeChangePhoneNumber -- ^ The link is a link to the change phone number section of the app
+  | InternalLinkTypeChatBoost -- ^ The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and canBoostChat to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
+    { url :: Maybe T.Text -- ^ URL to be passed to getChatBoostLinkInfo
+    }
   | InternalLinkTypeChatFolderInvite -- ^ The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
@@ -86,7 +89,7 @@ data InternalLinkType
     }
   | InternalLinkTypePrivacyAndSecuritySettings -- ^ The link is a link to the privacy and security section of the app settings
   | InternalLinkTypeProxy -- ^ The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
-    { server :: Maybe T.Text              -- ^ Proxy server IP address
+    { server :: Maybe T.Text              -- ^ Proxy server domain or IP address
     , port   :: Maybe Int                 -- ^ Proxy server port
     , _type  :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
     }
@@ -96,6 +99,10 @@ data InternalLinkType
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
   | InternalLinkTypeSettings -- ^ The link is a link to application settings
+  | InternalLinkTypeSideMenuBot -- ^ The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL
+    { bot_username :: Maybe T.Text -- ^ Username of the bot
+    , url          :: Maybe T.Text -- ^ URL to be passed to getWebAppUrl
+    }
   | InternalLinkTypeStickerSet -- ^ The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
     { sticker_set_name    :: Maybe T.Text -- ^ Name of the sticker set
     , expect_custom_emoji :: Maybe Bool   -- ^ True, if the sticker set is expected to contain custom emoji
@@ -123,7 +130,7 @@ data InternalLinkType
     , invite_hash    :: Maybe T.Text -- ^ If non-empty, invite hash to be used to join the video chat without being muted by administrators
     , is_live_stream :: Maybe Bool   -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
     }
-  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
+  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
     { bot_username       :: Maybe T.Text -- ^ Username of the bot that owns the Web App
     , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
     , start_parameter    :: Maybe T.Text -- ^ Start parameter to be passed to getWebAppLinkUrl
@@ -191,6 +198,13 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeChangePhoneNumber
       = "InternalLinkTypeChangePhoneNumber"
+  shortShow InternalLinkTypeChatBoost
+    { url = url_
+    }
+      = "InternalLinkTypeChatBoost"
+        ++ I.cc
+        [ "url" `I.p` url_
+        ]
   shortShow InternalLinkTypeChatFolderInvite
     { invite_link = invite_link_
     }
@@ -318,6 +332,15 @@ instance I.ShortShow InternalLinkType where
       = "InternalLinkTypeRestorePurchases"
   shortShow InternalLinkTypeSettings
       = "InternalLinkTypeSettings"
+  shortShow InternalLinkTypeSideMenuBot
+    { bot_username = bot_username_
+    , url          = url_
+    }
+      = "InternalLinkTypeSideMenuBot"
+        ++ I.cc
+        [ "bot_username" `I.p` bot_username_
+        , "url"          `I.p` url_
+        ]
   shortShow InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
     , expect_custom_emoji = expect_custom_emoji_
@@ -404,6 +427,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeBotStart"                              -> parseInternalLinkTypeBotStart v
       "internalLinkTypeBotStartInGroup"                       -> parseInternalLinkTypeBotStartInGroup v
       "internalLinkTypeChangePhoneNumber"                     -> pure InternalLinkTypeChangePhoneNumber
+      "internalLinkTypeChatBoost"                             -> parseInternalLinkTypeChatBoost v
       "internalLinkTypeChatFolderInvite"                      -> parseInternalLinkTypeChatFolderInvite v
       "internalLinkTypeChatFolderSettings"                    -> pure InternalLinkTypeChatFolderSettings
       "internalLinkTypeChatInvite"                            -> parseInternalLinkTypeChatInvite v
@@ -425,6 +449,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeQrCodeAuthentication"                  -> pure InternalLinkTypeQrCodeAuthentication
       "internalLinkTypeRestorePurchases"                      -> pure InternalLinkTypeRestorePurchases
       "internalLinkTypeSettings"                              -> pure InternalLinkTypeSettings
+      "internalLinkTypeSideMenuBot"                           -> parseInternalLinkTypeSideMenuBot v
       "internalLinkTypeStickerSet"                            -> parseInternalLinkTypeStickerSet v
       "internalLinkTypeStory"                                 -> parseInternalLinkTypeStory v
       "internalLinkTypeTheme"                                 -> parseInternalLinkTypeTheme v
@@ -487,6 +512,12 @@ instance AT.FromJSON InternalLinkType where
           { bot_username         = bot_username_
           , start_parameter      = start_parameter_
           , administrator_rights = administrator_rights_
+          }
+      parseInternalLinkTypeChatBoost :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeChatBoost = A.withObject "InternalLinkTypeChatBoost" $ \o -> do
+        url_ <- o A..:?  "url"
+        pure $ InternalLinkTypeChatBoost
+          { url = url_
           }
       parseInternalLinkTypeChatFolderInvite :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeChatFolderInvite = A.withObject "InternalLinkTypeChatFolderInvite" $ \o -> do
@@ -585,6 +616,14 @@ instance AT.FromJSON InternalLinkType where
         chat_username_ <- o A..:?  "chat_username"
         pure $ InternalLinkTypePublicChat
           { chat_username = chat_username_
+          }
+      parseInternalLinkTypeSideMenuBot :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeSideMenuBot = A.withObject "InternalLinkTypeSideMenuBot" $ \o -> do
+        bot_username_ <- o A..:?  "bot_username"
+        url_          <- o A..:?  "url"
+        pure $ InternalLinkTypeSideMenuBot
+          { bot_username = bot_username_
+          , url          = url_
           }
       parseInternalLinkTypeStickerSet :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeStickerSet = A.withObject "InternalLinkTypeStickerSet" $ \o -> do
@@ -712,6 +751,13 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeChangePhoneNumber
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeChangePhoneNumber"
+        ]
+  toJSON InternalLinkTypeChatBoost
+    { url = url_
+    }
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeChatBoost"
+        , "url"   A..= url_
         ]
   toJSON InternalLinkTypeChatFolderInvite
     { invite_link = invite_link_
@@ -855,6 +901,15 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeSettings
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeSettings"
+        ]
+  toJSON InternalLinkTypeSideMenuBot
+    { bot_username = bot_username_
+    , url          = url_
+    }
+      = A.object
+        [ "@type"        A..= AT.String "internalLinkTypeSideMenuBot"
+        , "bot_username" A..= bot_username_
+        , "url"          A..= url_
         ]
   toJSON InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_

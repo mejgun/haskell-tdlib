@@ -9,6 +9,7 @@ import qualified TD.Data.WebApp as WebApp
 data FoundWebApp
   = FoundWebApp -- ^ Contains information about a Web App found by its short name
     { web_app              :: Maybe WebApp.WebApp -- ^ The Web App
+    , supports_settings    :: Maybe Bool          -- ^ True, if the app supports "settings_button_pressed" event
     , request_write_access :: Maybe Bool          -- ^ True, if the user must be asked for the permission to the bot to send them messages
     , skip_confirmation    :: Maybe Bool          -- ^ True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden
     }
@@ -17,12 +18,14 @@ data FoundWebApp
 instance I.ShortShow FoundWebApp where
   shortShow FoundWebApp
     { web_app              = web_app_
+    , supports_settings    = supports_settings_
     , request_write_access = request_write_access_
     , skip_confirmation    = skip_confirmation_
     }
       = "FoundWebApp"
         ++ I.cc
         [ "web_app"              `I.p` web_app_
+        , "supports_settings"    `I.p` supports_settings_
         , "request_write_access" `I.p` request_write_access_
         , "skip_confirmation"    `I.p` skip_confirmation_
         ]
@@ -39,10 +42,12 @@ instance AT.FromJSON FoundWebApp where
       parseFoundWebApp :: A.Value -> AT.Parser FoundWebApp
       parseFoundWebApp = A.withObject "FoundWebApp" $ \o -> do
         web_app_              <- o A..:?  "web_app"
+        supports_settings_    <- o A..:?  "supports_settings"
         request_write_access_ <- o A..:?  "request_write_access"
         skip_confirmation_    <- o A..:?  "skip_confirmation"
         pure $ FoundWebApp
           { web_app              = web_app_
+          , supports_settings    = supports_settings_
           , request_write_access = request_write_access_
           , skip_confirmation    = skip_confirmation_
           }

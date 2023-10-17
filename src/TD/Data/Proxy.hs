@@ -10,7 +10,7 @@ import qualified TD.Data.ProxyType as ProxyType
 data Proxy
   = Proxy -- ^ Contains information about a proxy server
     { _id            :: Maybe Int                 -- ^ Unique identifier of the proxy
-    , server         :: Maybe T.Text              -- ^ Proxy server IP address
+    , server         :: Maybe T.Text              -- ^ Proxy server domain or IP address
     , port           :: Maybe Int                 -- ^ Proxy server port
     , last_used_date :: Maybe Int                 -- ^ Point in time (Unix timestamp) when the proxy was last used; 0 if never
     , is_enabled     :: Maybe Bool                -- ^ True, if the proxy is enabled now

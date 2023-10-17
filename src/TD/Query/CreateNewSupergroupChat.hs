@@ -18,7 +18,7 @@ data CreateNewSupergroupChat
     , description              :: Maybe T.Text
     , location                 :: Maybe ChatLocation.ChatLocation -- ^ Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     , message_auto_delete_time :: Maybe Int                       -- ^ Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-    , for_import               :: Maybe Bool                      -- ^ Pass true to create a supergroup for importing messages using importMessage
+    , for_import               :: Maybe Bool                      -- ^ Pass true to create a supergroup for importing messages using importMessages
     }
   deriving (Eq, Show)
 

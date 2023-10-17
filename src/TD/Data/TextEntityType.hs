@@ -36,7 +36,7 @@ data TextEntityType
     { custom_emoji_id :: Maybe Int -- ^ Unique identifier of the custom emoji
     }
   | TextEntityTypeMediaTimestamp -- ^ A media timestamp
-    { media_timestamp :: Maybe Int -- ^ Timestamp from which a video/audio/video note/voice note playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+    { media_timestamp :: Maybe Int -- ^ Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
     }
   deriving (Eq, Show)
 

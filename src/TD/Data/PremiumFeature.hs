@@ -17,11 +17,13 @@ data PremiumFeature
   | PremiumFeatureCustomEmoji -- ^ Allowed to use custom emoji stickers in message texts and captions
   | PremiumFeatureAdvancedChatManagement -- ^ Ability to change position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joined Telegram
   | PremiumFeatureProfileBadge -- ^ A badge in the user's profile
-  | PremiumFeatureEmojiStatus -- ^ A emoji status shown along with the user's name
+  | PremiumFeatureEmojiStatus -- ^ An emoji status shown along with the user's name
   | PremiumFeatureAnimatedProfilePhoto -- ^ Profile photo animation on message and chat screens
   | PremiumFeatureForumTopicIcon -- ^ The ability to set a custom emoji as a forum topic icon
   | PremiumFeatureAppIcons -- ^ Allowed to set a premium application icons
   | PremiumFeatureRealTimeChatTranslation -- ^ Allowed to translate chat messages real-time
+  | PremiumFeatureUpgradedStories -- ^ Allowed to use many additional features for stories
+  | PremiumFeatureChatBoost -- ^ The ability to boost chats
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -55,6 +57,10 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureAppIcons"
   shortShow PremiumFeatureRealTimeChatTranslation
       = "PremiumFeatureRealTimeChatTranslation"
+  shortShow PremiumFeatureUpgradedStories
+      = "PremiumFeatureUpgradedStories"
+  shortShow PremiumFeatureChatBoost
+      = "PremiumFeatureChatBoost"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -76,6 +82,8 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureForumTopicIcon"          -> pure PremiumFeatureForumTopicIcon
       "premiumFeatureAppIcons"                -> pure PremiumFeatureAppIcons
       "premiumFeatureRealTimeChatTranslation" -> pure PremiumFeatureRealTimeChatTranslation
+      "premiumFeatureUpgradedStories"         -> pure PremiumFeatureUpgradedStories
+      "premiumFeatureChatBoost"               -> pure PremiumFeatureChatBoost
       _                                       -> mempty
     
   parseJSON _ = mempty
@@ -140,5 +148,13 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureRealTimeChatTranslation
       = A.object
         [ "@type" A..= AT.String "premiumFeatureRealTimeChatTranslation"
+        ]
+  toJSON PremiumFeatureUpgradedStories
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureUpgradedStories"
+        ]
+  toJSON PremiumFeatureChatBoost
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureChatBoost"
         ]
 

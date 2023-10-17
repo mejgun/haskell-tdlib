@@ -6,12 +6,13 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.AuthorizationState as AuthorizationState
 import qualified TD.Data.Message as Message
-import qualified Data.Text as T
+import qualified TD.Data.Error as Error
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.Chat as Chat
+import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPosition as ChatPosition
@@ -23,6 +24,7 @@ import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatJoinRequestsInfo as ChatJoinRequestsInfo
 import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.VideoChat as VideoChat
+import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
@@ -50,6 +52,7 @@ import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.ChatList as ChatList
 import qualified TD.Data.Story as Story
+import qualified TD.Data.CanSendStoryResult as CanSendStoryResult
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.StoryList as StoryList
 import qualified TD.Data.OptionValue as OptionValue
@@ -62,6 +65,7 @@ import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified TD.Data.ConnectionState as ConnectionState
 import qualified TD.Data.TermsOfService as TermsOfService
 import qualified TD.Data.ChatNearby as ChatNearby
+import qualified TD.Data.UnconfirmedSession as UnconfirmedSession
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.Sticker as Sticker
@@ -97,8 +101,7 @@ data Update
   | UpdateMessageSendFailed -- ^ A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
     { message        :: Maybe Message.Message -- ^ The failed to send message
     , old_message_id :: Maybe Int             -- ^ The previous temporary message identifier
-    , error_code     :: Maybe Int             -- ^ An error code
-    , error_message  :: Maybe T.Text          -- ^ Error message
+    , _error         :: Maybe Error.Error     -- ^ The cause of the message sending failure
     }
   | UpdateMessageContent -- ^ The message content has changed
     { chat_id     :: Maybe Int                           -- ^ Chat identifier
@@ -242,9 +245,9 @@ data Update
     { chat_id             :: Maybe Int  -- ^ Chat identifier
     , is_marked_as_unread :: Maybe Bool -- ^ New value of is_marked_as_unread
     }
-  | UpdateChatIsBlocked -- ^ A chat was blocked or unblocked
-    { chat_id    :: Maybe Int  -- ^ Chat identifier
-    , is_blocked :: Maybe Bool -- ^ New value of is_blocked
+  | UpdateChatBlockList -- ^ A chat was blocked or unblocked
+    { chat_id    :: Maybe Int                 -- ^ Chat identifier
+    , block_list :: Maybe BlockList.BlockList -- ^ Block list to which the chat is added; may be null if none
     }
   | UpdateChatHasScheduledMessages -- ^ A chat's has_scheduled_messages field has changed
     { chat_id                :: Maybe Int  -- ^ Chat identifier
@@ -277,8 +280,8 @@ data Update
     , notification_settings_chat_id :: Maybe Int                                         -- ^ Chat identifier, which notification settings must be applied to the added notifications
     , notification_sound_id         :: Maybe Int                                         -- ^ Identifier of the notification sound to be played; 0 if sound is disabled
     , total_count                   :: Maybe Int                                         -- ^ Total number of unread notifications in the group, can be bigger than number of active notifications
-    , added_notifications           :: Maybe [Notification.Notification]                 -- ^ List of added group notifications, sorted by notification ID
-    , removed_notification_ids      :: Maybe [Int]                                       -- ^ Identifiers of removed group notifications, sorted by notification ID
+    , added_notifications           :: Maybe [Notification.Notification]                 -- ^ List of added group notifications, sorted by notification identifier
+    , removed_notification_ids      :: Maybe [Int]                                       -- ^ Identifiers of removed group notifications, sorted by notification identifier
     }
   | UpdateActiveNotifications -- ^ Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
     { groups :: Maybe [NotificationGroup.NotificationGroup] -- ^ Lists of active notification groups
@@ -400,12 +403,25 @@ data Update
     { story_sender_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int -- ^ Story identifier
     }
+  | UpdateStorySendSucceeded -- ^ A story has been successfully sent
+    { story        :: Maybe Story.Story -- ^ The sent story
+    , old_story_id :: Maybe Int         -- ^ The previous temporary story identifier
+    }
+  | UpdateStorySendFailed -- ^ A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
+    { story      :: Maybe Story.Story                           -- ^ The failed to send story
+    , _error     :: Maybe Error.Error                           -- ^ The cause of the story sending failure
+    , error_type :: Maybe CanSendStoryResult.CanSendStoryResult -- ^ Type of the error; may be null if unknown
+    }
   | UpdateChatActiveStories -- ^ The list of active stories posted by a specific chat has changed
     { active_stories :: Maybe ChatActiveStories.ChatActiveStories -- ^ The new list of active stories
     }
   | UpdateStoryListChatCount -- ^ Number of chats in a story list has changed
     { story_list :: Maybe StoryList.StoryList -- ^ The story list
     , chat_count :: Maybe Int                 -- ^ Approximate total number of chats with active stories in the list
+    }
+  | UpdateStoryStealthMode -- ^ Story stealth mode settings have changed
+    { active_until_date   :: Maybe Int -- ^ Point in time (Unix timestamp) until stealth mode is active; 0 if it is disabled
+    , cooldown_until_date :: Maybe Int -- ^ Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown
     }
   | UpdateOption -- ^ An option changed its value
     { name  :: Maybe T.Text                  -- ^ The option name
@@ -457,8 +473,11 @@ data Update
   | UpdateUsersNearby -- ^ The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
     { users_nearby :: Maybe [ChatNearby.ChatNearby] -- ^ The new list of users nearby
     }
-  | UpdateAttachmentMenuBots -- ^ The list of bots added to attachment menu has changed
-    { bots :: Maybe [AttachmentMenuBot.AttachmentMenuBot] -- ^ The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
+  | UpdateUnconfirmedSession -- ^ The first unconfirmed session has changed
+    { session :: Maybe UnconfirmedSession.UnconfirmedSession -- ^ The unconfirmed session; may be null if none
+    }
+  | UpdateAttachmentMenuBots -- ^ The list of bots added to attachment or side menu has changed
+    { bots :: Maybe [AttachmentMenuBot.AttachmentMenuBot] -- ^ The new list of bots. The bots must not be shown on scheduled messages screen
     }
   | UpdateWebAppMessageSent -- ^ A message was sent by an opened Web App, so the Web App needs to be closed
     { web_app_launch_id :: Maybe Int -- ^ Identifier of Web App launch
@@ -607,15 +626,13 @@ instance I.ShortShow Update where
   shortShow UpdateMessageSendFailed
     { message        = message_
     , old_message_id = old_message_id_
-    , error_code     = error_code_
-    , error_message  = error_message_
+    , _error         = _error_
     }
       = "UpdateMessageSendFailed"
         ++ I.cc
         [ "message"        `I.p` message_
         , "old_message_id" `I.p` old_message_id_
-        , "error_code"     `I.p` error_code_
-        , "error_message"  `I.p` error_message_
+        , "_error"         `I.p` _error_
         ]
   shortShow UpdateMessageContent
     { chat_id     = chat_id_
@@ -934,14 +951,14 @@ instance I.ShortShow Update where
         [ "chat_id"             `I.p` chat_id_
         , "is_marked_as_unread" `I.p` is_marked_as_unread_
         ]
-  shortShow UpdateChatIsBlocked
+  shortShow UpdateChatBlockList
     { chat_id    = chat_id_
-    , is_blocked = is_blocked_
+    , block_list = block_list_
     }
-      = "UpdateChatIsBlocked"
+      = "UpdateChatBlockList"
         ++ I.cc
         [ "chat_id"    `I.p` chat_id_
-        , "is_blocked" `I.p` is_blocked_
+        , "block_list" `I.p` block_list_
         ]
   shortShow UpdateChatHasScheduledMessages
     { chat_id                = chat_id_
@@ -1287,6 +1304,26 @@ instance I.ShortShow Update where
         [ "story_sender_chat_id" `I.p` story_sender_chat_id_
         , "story_id"             `I.p` story_id_
         ]
+  shortShow UpdateStorySendSucceeded
+    { story        = story_
+    , old_story_id = old_story_id_
+    }
+      = "UpdateStorySendSucceeded"
+        ++ I.cc
+        [ "story"        `I.p` story_
+        , "old_story_id" `I.p` old_story_id_
+        ]
+  shortShow UpdateStorySendFailed
+    { story      = story_
+    , _error     = _error_
+    , error_type = error_type_
+    }
+      = "UpdateStorySendFailed"
+        ++ I.cc
+        [ "story"      `I.p` story_
+        , "_error"     `I.p` _error_
+        , "error_type" `I.p` error_type_
+        ]
   shortShow UpdateChatActiveStories
     { active_stories = active_stories_
     }
@@ -1302,6 +1339,15 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "story_list" `I.p` story_list_
         , "chat_count" `I.p` chat_count_
+        ]
+  shortShow UpdateStoryStealthMode
+    { active_until_date   = active_until_date_
+    , cooldown_until_date = cooldown_until_date_
+    }
+      = "UpdateStoryStealthMode"
+        ++ I.cc
+        [ "active_until_date"   `I.p` active_until_date_
+        , "cooldown_until_date" `I.p` cooldown_until_date_
         ]
   shortShow UpdateOption
     { name  = name_
@@ -1416,6 +1462,13 @@ instance I.ShortShow Update where
       = "UpdateUsersNearby"
         ++ I.cc
         [ "users_nearby" `I.p` users_nearby_
+        ]
+  shortShow UpdateUnconfirmedSession
+    { session = session_
+    }
+      = "UpdateUnconfirmedSession"
+        ++ I.cc
+        [ "session" `I.p` session_
         ]
   shortShow UpdateAttachmentMenuBots
     { bots = bots_
@@ -1707,7 +1760,7 @@ instance AT.FromJSON Update where
       "updateChatHasProtectedContent"        -> parseUpdateChatHasProtectedContent v
       "updateChatIsTranslatable"             -> parseUpdateChatIsTranslatable v
       "updateChatIsMarkedAsUnread"           -> parseUpdateChatIsMarkedAsUnread v
-      "updateChatIsBlocked"                  -> parseUpdateChatIsBlocked v
+      "updateChatBlockList"                  -> parseUpdateChatBlockList v
       "updateChatHasScheduledMessages"       -> parseUpdateChatHasScheduledMessages v
       "updateChatFolders"                    -> parseUpdateChatFolders v
       "updateChatOnlineMemberCount"          -> parseUpdateChatOnlineMemberCount v
@@ -1744,8 +1797,11 @@ instance AT.FromJSON Update where
       "updateUnreadChatCount"                -> parseUpdateUnreadChatCount v
       "updateStory"                          -> parseUpdateStory v
       "updateStoryDeleted"                   -> parseUpdateStoryDeleted v
+      "updateStorySendSucceeded"             -> parseUpdateStorySendSucceeded v
+      "updateStorySendFailed"                -> parseUpdateStorySendFailed v
       "updateChatActiveStories"              -> parseUpdateChatActiveStories v
       "updateStoryListChatCount"             -> parseUpdateStoryListChatCount v
+      "updateStoryStealthMode"               -> parseUpdateStoryStealthMode v
       "updateOption"                         -> parseUpdateOption v
       "updateStickerSet"                     -> parseUpdateStickerSet v
       "updateInstalledStickerSets"           -> parseUpdateInstalledStickerSets v
@@ -1760,6 +1816,7 @@ instance AT.FromJSON Update where
       "updateConnectionState"                -> parseUpdateConnectionState v
       "updateTermsOfService"                 -> parseUpdateTermsOfService v
       "updateUsersNearby"                    -> parseUpdateUsersNearby v
+      "updateUnconfirmedSession"             -> parseUpdateUnconfirmedSession v
       "updateAttachmentMenuBots"             -> parseUpdateAttachmentMenuBots v
       "updateWebAppMessageSent"              -> parseUpdateWebAppMessageSent v
       "updateActiveEmojiReactions"           -> parseUpdateActiveEmojiReactions v
@@ -1817,13 +1874,11 @@ instance AT.FromJSON Update where
       parseUpdateMessageSendFailed = A.withObject "UpdateMessageSendFailed" $ \o -> do
         message_        <- o A..:?  "message"
         old_message_id_ <- o A..:?  "old_message_id"
-        error_code_     <- o A..:?  "error_code"
-        error_message_  <- o A..:?  "error_message"
+        _error_         <- o A..:?  "error"
         pure $ UpdateMessageSendFailed
           { message        = message_
           , old_message_id = old_message_id_
-          , error_code     = error_code_
-          , error_message  = error_message_
+          , _error         = _error_
           }
       parseUpdateMessageContent :: A.Value -> AT.Parser Update
       parseUpdateMessageContent = A.withObject "UpdateMessageContent" $ \o -> do
@@ -2109,13 +2164,13 @@ instance AT.FromJSON Update where
           { chat_id             = chat_id_
           , is_marked_as_unread = is_marked_as_unread_
           }
-      parseUpdateChatIsBlocked :: A.Value -> AT.Parser Update
-      parseUpdateChatIsBlocked = A.withObject "UpdateChatIsBlocked" $ \o -> do
+      parseUpdateChatBlockList :: A.Value -> AT.Parser Update
+      parseUpdateChatBlockList = A.withObject "UpdateChatBlockList" $ \o -> do
         chat_id_    <- o A..:?  "chat_id"
-        is_blocked_ <- o A..:?  "is_blocked"
-        pure $ UpdateChatIsBlocked
+        block_list_ <- o A..:?  "block_list"
+        pure $ UpdateChatBlockList
           { chat_id    = chat_id_
-          , is_blocked = is_blocked_
+          , block_list = block_list_
           }
       parseUpdateChatHasScheduledMessages :: A.Value -> AT.Parser Update
       parseUpdateChatHasScheduledMessages = A.withObject "UpdateChatHasScheduledMessages" $ \o -> do
@@ -2425,6 +2480,24 @@ instance AT.FromJSON Update where
           { story_sender_chat_id = story_sender_chat_id_
           , story_id             = story_id_
           }
+      parseUpdateStorySendSucceeded :: A.Value -> AT.Parser Update
+      parseUpdateStorySendSucceeded = A.withObject "UpdateStorySendSucceeded" $ \o -> do
+        story_        <- o A..:?  "story"
+        old_story_id_ <- o A..:?  "old_story_id"
+        pure $ UpdateStorySendSucceeded
+          { story        = story_
+          , old_story_id = old_story_id_
+          }
+      parseUpdateStorySendFailed :: A.Value -> AT.Parser Update
+      parseUpdateStorySendFailed = A.withObject "UpdateStorySendFailed" $ \o -> do
+        story_      <- o A..:?  "story"
+        _error_     <- o A..:?  "error"
+        error_type_ <- o A..:?  "error_type"
+        pure $ UpdateStorySendFailed
+          { story      = story_
+          , _error     = _error_
+          , error_type = error_type_
+          }
       parseUpdateChatActiveStories :: A.Value -> AT.Parser Update
       parseUpdateChatActiveStories = A.withObject "UpdateChatActiveStories" $ \o -> do
         active_stories_ <- o A..:?  "active_stories"
@@ -2438,6 +2511,14 @@ instance AT.FromJSON Update where
         pure $ UpdateStoryListChatCount
           { story_list = story_list_
           , chat_count = chat_count_
+          }
+      parseUpdateStoryStealthMode :: A.Value -> AT.Parser Update
+      parseUpdateStoryStealthMode = A.withObject "UpdateStoryStealthMode" $ \o -> do
+        active_until_date_   <- o A..:?  "active_until_date"
+        cooldown_until_date_ <- o A..:?  "cooldown_until_date"
+        pure $ UpdateStoryStealthMode
+          { active_until_date   = active_until_date_
+          , cooldown_until_date = cooldown_until_date_
           }
       parseUpdateOption :: A.Value -> AT.Parser Update
       parseUpdateOption = A.withObject "UpdateOption" $ \o -> do
@@ -2538,6 +2619,12 @@ instance AT.FromJSON Update where
         users_nearby_ <- o A..:?  "users_nearby"
         pure $ UpdateUsersNearby
           { users_nearby = users_nearby_
+          }
+      parseUpdateUnconfirmedSession :: A.Value -> AT.Parser Update
+      parseUpdateUnconfirmedSession = A.withObject "UpdateUnconfirmedSession" $ \o -> do
+        session_ <- o A..:?  "session"
+        pure $ UpdateUnconfirmedSession
+          { session = session_
           }
       parseUpdateAttachmentMenuBots :: A.Value -> AT.Parser Update
       parseUpdateAttachmentMenuBots = A.withObject "UpdateAttachmentMenuBots" $ \o -> do

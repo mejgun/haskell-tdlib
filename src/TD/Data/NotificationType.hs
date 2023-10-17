@@ -20,7 +20,7 @@ data NotificationType
     { call_id :: Maybe Int -- ^ Call identifier
     }
   | NotificationTypeNewPushMessage -- ^ New message was received through a push notification
-    { message_id  :: Maybe Int                                   -- ^ The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as a message to reply
+    { message_id  :: Maybe Int                                   -- ^ The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply
     , sender_id   :: Maybe MessageSender.MessageSender           -- ^ Identifier of the sender of the message. Corresponding user or chat may be inaccessible
     , sender_name :: Maybe T.Text                                -- ^ Name of the sender
     , is_outgoing :: Maybe Bool                                  -- ^ True, if the message is outgoing

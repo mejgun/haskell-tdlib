@@ -11,6 +11,7 @@ import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.Message as Message
 import qualified TD.Data.ChatPosition as ChatPosition
 import qualified TD.Data.MessageSender as MessageSender
+import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatBackground as ChatBackground
@@ -29,10 +30,10 @@ data Chat
     , last_message                 :: Maybe Message.Message                                   -- ^ Last message in the chat; may be null if none or unknown
     , positions                    :: Maybe [ChatPosition.ChatPosition]                       -- ^ Positions of the chat in chat lists
     , message_sender_id            :: Maybe MessageSender.MessageSender                       -- ^ Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
+    , block_list                   :: Maybe BlockList.BlockList                               -- ^ Block list to which the chat is added; may be null if none
     , has_protected_content        :: Maybe Bool                                              -- ^ True, if chat content can't be saved locally, forwarded, or copied
     , is_translatable              :: Maybe Bool                                              -- ^ True, if translation of all messages in the chat must be suggested to the user
     , is_marked_as_unread          :: Maybe Bool                                              -- ^ True, if the chat is marked as unread
-    , is_blocked                   :: Maybe Bool                                              -- ^ True, if the chat is blocked by the current user and private messages from the chat can't be received
     , has_scheduled_messages       :: Maybe Bool                                              -- ^ True, if the chat has scheduled messages
     , can_be_deleted_only_for_self :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
     , can_be_deleted_for_all_users :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted for all users
@@ -67,10 +68,10 @@ instance I.ShortShow Chat where
     , last_message                 = last_message_
     , positions                    = positions_
     , message_sender_id            = message_sender_id_
+    , block_list                   = block_list_
     , has_protected_content        = has_protected_content_
     , is_translatable              = is_translatable_
     , is_marked_as_unread          = is_marked_as_unread_
-    , is_blocked                   = is_blocked_
     , has_scheduled_messages       = has_scheduled_messages_
     , can_be_deleted_only_for_self = can_be_deleted_only_for_self_
     , can_be_deleted_for_all_users = can_be_deleted_for_all_users_
@@ -103,10 +104,10 @@ instance I.ShortShow Chat where
         , "last_message"                 `I.p` last_message_
         , "positions"                    `I.p` positions_
         , "message_sender_id"            `I.p` message_sender_id_
+        , "block_list"                   `I.p` block_list_
         , "has_protected_content"        `I.p` has_protected_content_
         , "is_translatable"              `I.p` is_translatable_
         , "is_marked_as_unread"          `I.p` is_marked_as_unread_
-        , "is_blocked"                   `I.p` is_blocked_
         , "has_scheduled_messages"       `I.p` has_scheduled_messages_
         , "can_be_deleted_only_for_self" `I.p` can_be_deleted_only_for_self_
         , "can_be_deleted_for_all_users" `I.p` can_be_deleted_for_all_users_
@@ -149,10 +150,10 @@ instance AT.FromJSON Chat where
         last_message_                 <- o A..:?  "last_message"
         positions_                    <- o A..:?  "positions"
         message_sender_id_            <- o A..:?  "message_sender_id"
+        block_list_                   <- o A..:?  "block_list"
         has_protected_content_        <- o A..:?  "has_protected_content"
         is_translatable_              <- o A..:?  "is_translatable"
         is_marked_as_unread_          <- o A..:?  "is_marked_as_unread"
-        is_blocked_                   <- o A..:?  "is_blocked"
         has_scheduled_messages_       <- o A..:?  "has_scheduled_messages"
         can_be_deleted_only_for_self_ <- o A..:?  "can_be_deleted_only_for_self"
         can_be_deleted_for_all_users_ <- o A..:?  "can_be_deleted_for_all_users"
@@ -183,10 +184,10 @@ instance AT.FromJSON Chat where
           , last_message                 = last_message_
           , positions                    = positions_
           , message_sender_id            = message_sender_id_
+          , block_list                   = block_list_
           , has_protected_content        = has_protected_content_
           , is_translatable              = is_translatable_
           , is_marked_as_unread          = is_marked_as_unread_
-          , is_blocked                   = is_blocked_
           , has_scheduled_messages       = has_scheduled_messages_
           , can_be_deleted_only_for_self = can_be_deleted_only_for_self_
           , can_be_deleted_for_all_users = can_be_deleted_for_all_users_

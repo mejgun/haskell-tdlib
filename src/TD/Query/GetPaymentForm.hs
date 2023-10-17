@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputInvoice as InputInvoice
 import qualified TD.Data.ThemeParameters as ThemeParameters
 
--- | Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+-- | Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
 data GetPaymentForm
   = GetPaymentForm
     { input_invoice :: Maybe InputInvoice.InputInvoice       -- ^ The invoice

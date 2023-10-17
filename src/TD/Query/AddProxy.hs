@@ -12,7 +12,7 @@ import qualified TD.Data.ProxyType as ProxyType
 -- | Adds a proxy server for network requests. Can be called before authorization
 data AddProxy
   = AddProxy
-    { server :: Maybe T.Text              -- ^ Proxy server IP address
+    { server :: Maybe T.Text              -- ^ Proxy server domain or IP address
     , port   :: Maybe Int                 -- ^ Proxy server port
     , enable :: Maybe Bool                -- ^ Pass true to immediately enable the proxy
     , _type  :: Maybe ProxyType.ProxyType -- ^ Proxy type

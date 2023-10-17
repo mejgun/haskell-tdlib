@@ -24,10 +24,15 @@ import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.CallId as CallId
 import qualified TD.Data.CallbackQueryAnswer as CallbackQueryAnswer
+import qualified TD.Data.CanBoostChatResult as CanBoostChatResult
+import qualified TD.Data.CanSendStoryResult as CanSendStoryResult
 import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResult
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
+import qualified TD.Data.ChatBoostLink as ChatBoostLink
+import qualified TD.Data.ChatBoostLinkInfo as ChatBoostLinkInfo
+import qualified TD.Data.ChatBoostStatus as ChatBoostStatus
 import qualified TD.Data.ChatEvents as ChatEvents
 import qualified TD.Data.ChatFolder as ChatFolder
 import qualified TD.Data.ChatFolderIcon as ChatFolderIcon
@@ -70,9 +75,11 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ForumTopic as ForumTopic
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.ForumTopics as ForumTopics
+import qualified TD.Data.FoundChatBoosts as FoundChatBoosts
 import qualified TD.Data.FoundChatMessages as FoundChatMessages
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
+import qualified TD.Data.FoundPositions as FoundPositions
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
 import qualified TD.Data.GroupCall as GroupCall
@@ -145,6 +152,7 @@ import qualified TD.Data.StorageStatistics as StorageStatistics
 import qualified TD.Data.StorageStatisticsFast as StorageStatisticsFast
 import qualified TD.Data.Stories as Stories
 import qualified TD.Data.Story as Story
+import qualified TD.Data.StoryViewers as StoryViewers
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
 import qualified TD.Data.TMeUrls as TMeUrls
@@ -193,10 +201,15 @@ data GeneralResult
     | BotMenuButton                      BotMenuButton.BotMenuButton
     | CallId                             CallId.CallId
     | CallbackQueryAnswer                CallbackQueryAnswer.CallbackQueryAnswer
+    | CanBoostChatResult                 CanBoostChatResult.CanBoostChatResult
+    | CanSendStoryResult                 CanSendStoryResult.CanSendStoryResult
     | CanTransferOwnershipResult         CanTransferOwnershipResult.CanTransferOwnershipResult
     | Chat                               Chat.Chat
     | ChatActiveStories                  ChatActiveStories.ChatActiveStories
     | ChatAdministrators                 ChatAdministrators.ChatAdministrators
+    | ChatBoostLink                      ChatBoostLink.ChatBoostLink
+    | ChatBoostLinkInfo                  ChatBoostLinkInfo.ChatBoostLinkInfo
+    | ChatBoostStatus                    ChatBoostStatus.ChatBoostStatus
     | ChatEvents                         ChatEvents.ChatEvents
     | ChatFolder                         ChatFolder.ChatFolder
     | ChatFolderIcon                     ChatFolderIcon.ChatFolderIcon
@@ -239,9 +252,11 @@ data GeneralResult
     | ForumTopic                         ForumTopic.ForumTopic
     | ForumTopicInfo                     ForumTopicInfo.ForumTopicInfo
     | ForumTopics                        ForumTopics.ForumTopics
+    | FoundChatBoosts                    FoundChatBoosts.FoundChatBoosts
     | FoundChatMessages                  FoundChatMessages.FoundChatMessages
     | FoundFileDownloads                 FoundFileDownloads.FoundFileDownloads
     | FoundMessages                      FoundMessages.FoundMessages
+    | FoundPositions                     FoundPositions.FoundPositions
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
     | GroupCall                          GroupCall.GroupCall
@@ -314,6 +329,7 @@ data GeneralResult
     | StorageStatisticsFast              StorageStatisticsFast.StorageStatisticsFast
     | Stories                            Stories.Stories
     | Story                              Story.Story
+    | StoryViewers                       StoryViewers.StoryViewers
     | Supergroup                         Supergroup.Supergroup
     | SupergroupFullInfo                 SupergroupFullInfo.SupergroupFullInfo
     | TMeUrls                            TMeUrls.TMeUrls
@@ -383,6 +399,10 @@ instance I.ShortShow GeneralResult where
     = "CallId" <> " (" <> I.shortShow v <> ")"
   shortShow (CallbackQueryAnswer v)
     = "CallbackQueryAnswer" <> " (" <> I.shortShow v <> ")"
+  shortShow (CanBoostChatResult v)
+    = "CanBoostChatResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (CanSendStoryResult v)
+    = "CanSendStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanTransferOwnershipResult v)
     = "CanTransferOwnershipResult" <> " (" <> I.shortShow v <> ")"
   shortShow (Chat v)
@@ -391,6 +411,12 @@ instance I.ShortShow GeneralResult where
     = "ChatActiveStories" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatAdministrators v)
     = "ChatAdministrators" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatBoostLink v)
+    = "ChatBoostLink" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatBoostLinkInfo v)
+    = "ChatBoostLinkInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatBoostStatus v)
+    = "ChatBoostStatus" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatEvents v)
     = "ChatEvents" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatFolder v)
@@ -475,12 +501,16 @@ instance I.ShortShow GeneralResult where
     = "ForumTopicInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (ForumTopics v)
     = "ForumTopics" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundChatBoosts v)
+    = "FoundChatBoosts" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundChatMessages v)
     = "FoundChatMessages" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundFileDownloads v)
     = "FoundFileDownloads" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundMessages v)
     = "FoundMessages" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundPositions v)
+    = "FoundPositions" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundWebApp v)
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
@@ -625,6 +655,8 @@ instance I.ShortShow GeneralResult where
     = "Stories" <> " (" <> I.shortShow v <> ")"
   shortShow (Story v)
     = "Story" <> " (" <> I.shortShow v <> ")"
+  shortShow (StoryViewers v)
+    = "StoryViewers" <> " (" <> I.shortShow v <> ")"
   shortShow (Supergroup v)
     = "Supergroup" <> " (" <> I.shortShow v <> ")"
   shortShow (SupergroupFullInfo v)
@@ -700,10 +732,15 @@ instance T.FromJSON GeneralResult where
     <|> ( BotMenuButton                       <$> parseJSON v )
     <|> ( CallId                              <$> parseJSON v )
     <|> ( CallbackQueryAnswer                 <$> parseJSON v )
+    <|> ( CanBoostChatResult                  <$> parseJSON v )
+    <|> ( CanSendStoryResult                  <$> parseJSON v )
     <|> ( CanTransferOwnershipResult          <$> parseJSON v )
     <|> ( Chat                                <$> parseJSON v )
     <|> ( ChatActiveStories                   <$> parseJSON v )
     <|> ( ChatAdministrators                  <$> parseJSON v )
+    <|> ( ChatBoostLink                       <$> parseJSON v )
+    <|> ( ChatBoostLinkInfo                   <$> parseJSON v )
+    <|> ( ChatBoostStatus                     <$> parseJSON v )
     <|> ( ChatEvents                          <$> parseJSON v )
     <|> ( ChatFolder                          <$> parseJSON v )
     <|> ( ChatFolderIcon                      <$> parseJSON v )
@@ -746,9 +783,11 @@ instance T.FromJSON GeneralResult where
     <|> ( ForumTopic                          <$> parseJSON v )
     <|> ( ForumTopicInfo                      <$> parseJSON v )
     <|> ( ForumTopics                         <$> parseJSON v )
+    <|> ( FoundChatBoosts                     <$> parseJSON v )
     <|> ( FoundChatMessages                   <$> parseJSON v )
     <|> ( FoundFileDownloads                  <$> parseJSON v )
     <|> ( FoundMessages                       <$> parseJSON v )
+    <|> ( FoundPositions                      <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
@@ -821,6 +860,7 @@ instance T.FromJSON GeneralResult where
     <|> ( StorageStatisticsFast               <$> parseJSON v )
     <|> ( Stories                             <$> parseJSON v )
     <|> ( Story                               <$> parseJSON v )
+    <|> ( StoryViewers                        <$> parseJSON v )
     <|> ( Supergroup                          <$> parseJSON v )
     <|> ( SupergroupFullInfo                  <$> parseJSON v )
     <|> ( TMeUrls                             <$> parseJSON v )

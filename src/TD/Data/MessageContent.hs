@@ -29,7 +29,7 @@ import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
-import qualified TD.Data.WebApp as WebApp
+import qualified TD.Data.BotWriteAccessAllowReason as BotWriteAccessAllowReason
 import qualified TD.Data.PassportElementType as PassportElementType
 import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
 import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
@@ -257,11 +257,8 @@ data MessageContent
     { chat_id   :: Maybe Int -- ^ Identifier of the shared chat
     , button_id :: Maybe Int -- ^ Identifier of the keyboard button with the request
     }
-  | MessageWebsiteConnected -- ^ The current user has connected a website by logging in using Telegram Login Widget on it
-    { domain_name :: Maybe T.Text -- ^ Domain name of the connected website
-    }
   | MessageBotWriteAccessAllowed -- ^ The user allowed the bot to send messages
-    { web_app :: Maybe WebApp.WebApp -- ^ Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
+    { reason :: Maybe BotWriteAccessAllowReason.BotWriteAccessAllowReason -- ^ The reason why the bot was allowed to write messages
     }
   | MessageWebAppDataSent -- ^ Data from a Web App has been sent to a bot
     { button_text :: Maybe T.Text -- ^ Text of the keyboardButtonTypeWebApp button, which opened the Web App
@@ -773,19 +770,12 @@ instance I.ShortShow MessageContent where
         [ "chat_id"   `I.p` chat_id_
         , "button_id" `I.p` button_id_
         ]
-  shortShow MessageWebsiteConnected
-    { domain_name = domain_name_
-    }
-      = "MessageWebsiteConnected"
-        ++ I.cc
-        [ "domain_name" `I.p` domain_name_
-        ]
   shortShow MessageBotWriteAccessAllowed
-    { web_app = web_app_
+    { reason = reason_
     }
       = "MessageBotWriteAccessAllowed"
         ++ I.cc
-        [ "web_app" `I.p` web_app_
+        [ "reason" `I.p` reason_
         ]
   shortShow MessageWebAppDataSent
     { button_text = button_text_
@@ -892,7 +882,6 @@ instance AT.FromJSON MessageContent where
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUserShared"                   -> parseMessageUserShared v
       "messageChatShared"                   -> parseMessageChatShared v
-      "messageWebsiteConnected"             -> parseMessageWebsiteConnected v
       "messageBotWriteAccessAllowed"        -> parseMessageBotWriteAccessAllowed v
       "messageWebAppDataSent"               -> parseMessageWebAppDataSent v
       "messageWebAppDataReceived"           -> parseMessageWebAppDataReceived v
@@ -1329,17 +1318,11 @@ instance AT.FromJSON MessageContent where
           { chat_id   = chat_id_
           , button_id = button_id_
           }
-      parseMessageWebsiteConnected :: A.Value -> AT.Parser MessageContent
-      parseMessageWebsiteConnected = A.withObject "MessageWebsiteConnected" $ \o -> do
-        domain_name_ <- o A..:?  "domain_name"
-        pure $ MessageWebsiteConnected
-          { domain_name = domain_name_
-          }
       parseMessageBotWriteAccessAllowed :: A.Value -> AT.Parser MessageContent
       parseMessageBotWriteAccessAllowed = A.withObject "MessageBotWriteAccessAllowed" $ \o -> do
-        web_app_ <- o A..:?  "web_app"
+        reason_ <- o A..:?  "reason"
         pure $ MessageBotWriteAccessAllowed
-          { web_app = web_app_
+          { reason = reason_
           }
       parseMessageWebAppDataSent :: A.Value -> AT.Parser MessageContent
       parseMessageWebAppDataSent = A.withObject "MessageWebAppDataSent" $ \o -> do

@@ -15,7 +15,7 @@ data ConnectedWebsite
     , platform         :: Maybe T.Text -- ^ Operating system the browser is running on
     , log_in_date      :: Maybe Int    -- ^ Point in time (Unix timestamp) when the user was logged in
     , last_active_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when obtained authorization was last used
-    , ip               :: Maybe T.Text -- ^ IP address from which the user was logged in, in human-readable format
+    , ip_address       :: Maybe T.Text -- ^ IP address from which the user was logged in, in human-readable format
     , location         :: Maybe T.Text -- ^ Human-readable description of a country and a region from which the user was logged in, based on the IP address
     }
   deriving (Eq, Show)
@@ -29,7 +29,7 @@ instance I.ShortShow ConnectedWebsite where
     , platform         = platform_
     , log_in_date      = log_in_date_
     , last_active_date = last_active_date_
-    , ip               = ip_
+    , ip_address       = ip_address_
     , location         = location_
     }
       = "ConnectedWebsite"
@@ -41,7 +41,7 @@ instance I.ShortShow ConnectedWebsite where
         , "platform"         `I.p` platform_
         , "log_in_date"      `I.p` log_in_date_
         , "last_active_date" `I.p` last_active_date_
-        , "ip"               `I.p` ip_
+        , "ip_address"       `I.p` ip_address_
         , "location"         `I.p` location_
         ]
 
@@ -63,7 +63,7 @@ instance AT.FromJSON ConnectedWebsite where
         platform_         <- o A..:?                       "platform"
         log_in_date_      <- o A..:?                       "log_in_date"
         last_active_date_ <- o A..:?                       "last_active_date"
-        ip_               <- o A..:?                       "ip"
+        ip_address_       <- o A..:?                       "ip_address"
         location_         <- o A..:?                       "location"
         pure $ ConnectedWebsite
           { _id              = _id_
@@ -73,7 +73,7 @@ instance AT.FromJSON ConnectedWebsite where
           , platform         = platform_
           , log_in_date      = log_in_date_
           , last_active_date = last_active_date_
-          , ip               = ip_
+          , ip_address       = ip_address_
           , location         = location_
           }
   parseJSON _ = mempty

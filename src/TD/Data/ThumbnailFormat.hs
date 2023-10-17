@@ -8,7 +8,7 @@ import qualified TD.Lib.Internal as I
 -- | Describes format of a thumbnail
 data ThumbnailFormat
   = ThumbnailFormatJpeg -- ^ The thumbnail is in JPEG format
-  | ThumbnailFormatGif -- ^ The thumbnail is in static GIF format. It will be used only for some bot inline results
+  | ThumbnailFormatGif -- ^ The thumbnail is in static GIF format. It will be used only for some bot inline query results
   | ThumbnailFormatMpeg4 -- ^ The thumbnail is in MPEG4 format. It will be used only for some animations and videos
   | ThumbnailFormatPng -- ^ The thumbnail is in PNG format. It will be used only for background patterns
   | ThumbnailFormatTgs -- ^ The thumbnail is in TGS format. It will be used only for TGS sticker sets

@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatPhoto as ChatPhoto
+import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
 import qualified TD.Data.BotInfo as BotInfo
@@ -14,7 +15,7 @@ data UserFullInfo
     { personal_photo                               :: Maybe ChatPhoto.ChatPhoto                         -- ^ User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     , photo                                        :: Maybe ChatPhoto.ChatPhoto                         -- ^ User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
     , public_photo                                 :: Maybe ChatPhoto.ChatPhoto                         -- ^ User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
-    , is_blocked                                   :: Maybe Bool                                        -- ^ True, if the user is blocked by the current user
+    , block_list                                   :: Maybe BlockList.BlockList                         -- ^ Block list to which the user is added; may be null if none
     , can_be_called                                :: Maybe Bool                                        -- ^ True, if the user can be called
     , supports_video_calls                         :: Maybe Bool                                        -- ^ True, if a video call can be created with the user
     , has_private_calls                            :: Maybe Bool                                        -- ^ True, if the user can't be called due to their privacy settings
@@ -34,7 +35,7 @@ instance I.ShortShow UserFullInfo where
     { personal_photo                               = personal_photo_
     , photo                                        = photo_
     , public_photo                                 = public_photo_
-    , is_blocked                                   = is_blocked_
+    , block_list                                   = block_list_
     , can_be_called                                = can_be_called_
     , supports_video_calls                         = supports_video_calls_
     , has_private_calls                            = has_private_calls_
@@ -52,7 +53,7 @@ instance I.ShortShow UserFullInfo where
         [ "personal_photo"                               `I.p` personal_photo_
         , "photo"                                        `I.p` photo_
         , "public_photo"                                 `I.p` public_photo_
-        , "is_blocked"                                   `I.p` is_blocked_
+        , "block_list"                                   `I.p` block_list_
         , "can_be_called"                                `I.p` can_be_called_
         , "supports_video_calls"                         `I.p` supports_video_calls_
         , "has_private_calls"                            `I.p` has_private_calls_
@@ -80,7 +81,7 @@ instance AT.FromJSON UserFullInfo where
         personal_photo_                               <- o A..:?  "personal_photo"
         photo_                                        <- o A..:?  "photo"
         public_photo_                                 <- o A..:?  "public_photo"
-        is_blocked_                                   <- o A..:?  "is_blocked"
+        block_list_                                   <- o A..:?  "block_list"
         can_be_called_                                <- o A..:?  "can_be_called"
         supports_video_calls_                         <- o A..:?  "supports_video_calls"
         has_private_calls_                            <- o A..:?  "has_private_calls"
@@ -96,7 +97,7 @@ instance AT.FromJSON UserFullInfo where
           { personal_photo                               = personal_photo_
           , photo                                        = photo_
           , public_photo                                 = public_photo_
-          , is_blocked                                   = is_blocked_
+          , block_list                                   = block_list_
           , can_be_called                                = can_be_called_
           , supports_video_calls                         = supports_video_calls_
           , has_private_calls                            = has_private_calls_

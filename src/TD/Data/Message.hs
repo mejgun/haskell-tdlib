@@ -8,53 +8,56 @@ import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.MessageSendingState as MessageSendingState
 import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 import qualified TD.Data.MessageForwardInfo as MessageForwardInfo
+import qualified TD.Data.MessageImportInfo as MessageImportInfo
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.Text as T
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
 data Message
   = Message -- ^ Describes a message
-    { _id                           :: Maybe Int                                           -- ^ Message identifier; unique for the chat to which the message belongs
-    , sender_id                     :: Maybe MessageSender.MessageSender                   -- ^ Identifier of the sender of the message
-    , chat_id                       :: Maybe Int                                           -- ^ Chat identifier
-    , sending_state                 :: Maybe MessageSendingState.MessageSendingState       -- ^ The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
-    , scheduling_state              :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ The scheduling state of the message; may be null if the message isn't scheduled
-    , is_outgoing                   :: Maybe Bool                                          -- ^ True, if the message is outgoing
-    , is_pinned                     :: Maybe Bool                                          -- ^ True, if the message is pinned
-    , can_be_edited                 :: Maybe Bool                                          -- ^ True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
-    , can_be_forwarded              :: Maybe Bool                                          -- ^ True, if the message can be forwarded
-    , can_be_saved                  :: Maybe Bool                                          -- ^ True, if content of the message can be saved locally or copied
-    , can_be_deleted_only_for_self  :: Maybe Bool                                          -- ^ True, if the message can be deleted only for the current user while other users will continue to see it
-    , can_be_deleted_for_all_users  :: Maybe Bool                                          -- ^ True, if the message can be deleted for all users
-    , can_get_added_reactions       :: Maybe Bool                                          -- ^ True, if the list of added reactions is available through getMessageAddedReactions
-    , can_get_statistics            :: Maybe Bool                                          -- ^ True, if the message statistics are available through getMessageStatistics
-    , can_get_message_thread        :: Maybe Bool                                          -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
-    , can_get_viewers               :: Maybe Bool                                          -- ^ True, if chat members already viewed the message can be received through getMessageViewers
-    , can_get_media_timestamp_links :: Maybe Bool                                          -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
-    , can_report_reactions          :: Maybe Bool                                          -- ^ True, if reactions on the message can be reported through reportMessageReactions
-    , has_timestamped_media         :: Maybe Bool                                          -- ^ True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
-    , is_channel_post               :: Maybe Bool                                          -- ^ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
-    , is_topic_message              :: Maybe Bool                                          -- ^ True, if the message is a forum topic message
-    , contains_unread_mention       :: Maybe Bool                                          -- ^ True, if the message contains an unread mention for the current user
-    , date                          :: Maybe Int                                           -- ^ Point in time (Unix timestamp) when the message was sent
-    , edit_date                     :: Maybe Int                                           -- ^ Point in time (Unix timestamp) when the message was last edited
-    , forward_info                  :: Maybe MessageForwardInfo.MessageForwardInfo         -- ^ Information about the initial message sender; may be null if none or unknown
-    , interaction_info              :: Maybe MessageInteractionInfo.MessageInteractionInfo -- ^ Information about interactions with the message; may be null if none
-    , unread_reactions              :: Maybe [UnreadReaction.UnreadReaction]               -- ^ Information about unread reactions added to the message
-    , reply_to                      :: Maybe MessageReplyTo.MessageReplyTo                 -- ^ Information about the message or the story this message is replying to; may be null if none
-    , message_thread_id             :: Maybe Int                                           -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
-    , self_destruct_time            :: Maybe Int                                           -- ^ The message's self-destruct time, in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
-    , self_destruct_in              :: Maybe Double                                        -- ^ Time left before the message self-destruct timer expires, in seconds. If the self-destruct timer isn't started yet, equals to the value of the self_destruct_time field
-    , auto_delete_in                :: Maybe Double                                        -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
-    , via_bot_user_id               :: Maybe Int                                           -- ^ If non-zero, the user identifier of the bot through which this message was sent
-    , author_signature              :: Maybe T.Text                                        -- ^ For channel posts and anonymous group messages, optional author signature
-    , media_album_id                :: Maybe Int                                           -- ^ Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
-    , restriction_reason            :: Maybe T.Text                                        -- ^ If non-empty, contains a human-readable description of the reason why access to this message must be restricted
-    , content                       :: Maybe MessageContent.MessageContent                 -- ^ Content of the message
-    , reply_markup                  :: Maybe ReplyMarkup.ReplyMarkup                       -- ^ Reply markup for the message; may be null if none
+    { _id                           :: Maybe Int                                             -- ^ Message identifier; unique for the chat to which the message belongs
+    , sender_id                     :: Maybe MessageSender.MessageSender                     -- ^ Identifier of the sender of the message
+    , chat_id                       :: Maybe Int                                             -- ^ Chat identifier
+    , sending_state                 :: Maybe MessageSendingState.MessageSendingState         -- ^ The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
+    , scheduling_state              :: Maybe MessageSchedulingState.MessageSchedulingState   -- ^ The scheduling state of the message; may be null if the message isn't scheduled
+    , is_outgoing                   :: Maybe Bool                                            -- ^ True, if the message is outgoing
+    , is_pinned                     :: Maybe Bool                                            -- ^ True, if the message is pinned
+    , can_be_edited                 :: Maybe Bool                                            -- ^ True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
+    , can_be_forwarded              :: Maybe Bool                                            -- ^ True, if the message can be forwarded
+    , can_be_saved                  :: Maybe Bool                                            -- ^ True, if content of the message can be saved locally or copied
+    , can_be_deleted_only_for_self  :: Maybe Bool                                            -- ^ True, if the message can be deleted only for the current user while other users will continue to see it
+    , can_be_deleted_for_all_users  :: Maybe Bool                                            -- ^ True, if the message can be deleted for all users
+    , can_get_added_reactions       :: Maybe Bool                                            -- ^ True, if the list of added reactions is available through getMessageAddedReactions
+    , can_get_statistics            :: Maybe Bool                                            -- ^ True, if the message statistics are available through getMessageStatistics
+    , can_get_message_thread        :: Maybe Bool                                            -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
+    , can_get_viewers               :: Maybe Bool                                            -- ^ True, if chat members already viewed the message can be received through getMessageViewers
+    , can_get_media_timestamp_links :: Maybe Bool                                            -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
+    , can_report_reactions          :: Maybe Bool                                            -- ^ True, if reactions on the message can be reported through reportMessageReactions
+    , has_timestamped_media         :: Maybe Bool                                            -- ^ True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
+    , is_channel_post               :: Maybe Bool                                            -- ^ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
+    , is_topic_message              :: Maybe Bool                                            -- ^ True, if the message is a forum topic message
+    , contains_unread_mention       :: Maybe Bool                                            -- ^ True, if the message contains an unread mention for the current user
+    , date                          :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was sent
+    , edit_date                     :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited
+    , forward_info                  :: Maybe MessageForwardInfo.MessageForwardInfo           -- ^ Information about the initial message sender; may be null if none or unknown
+    , import_info                   :: Maybe MessageImportInfo.MessageImportInfo             -- ^ Information about the initial message for messages created with importMessages; may be null if the message isn't imported
+    , interaction_info              :: Maybe MessageInteractionInfo.MessageInteractionInfo   -- ^ Information about interactions with the message; may be null if none
+    , unread_reactions              :: Maybe [UnreadReaction.UnreadReaction]                 -- ^ Information about unread reactions added to the message
+    , reply_to                      :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
+    , message_thread_id             :: Maybe Int                                             -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
+    , self_destruct_type            :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ The message's self-destruct type; may be null if none
+    , self_destruct_in              :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-desctruction isn't scheduled yet
+    , auto_delete_in                :: Maybe Double                                          -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
+    , via_bot_user_id               :: Maybe Int                                             -- ^ If non-zero, the user identifier of the bot through which this message was sent
+    , author_signature              :: Maybe T.Text                                          -- ^ For channel posts and anonymous group messages, optional author signature
+    , media_album_id                :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
+    , restriction_reason            :: Maybe T.Text                                          -- ^ If non-empty, contains a human-readable description of the reason why access to this message must be restricted
+    , content                       :: Maybe MessageContent.MessageContent                   -- ^ Content of the message
+    , reply_markup                  :: Maybe ReplyMarkup.ReplyMarkup                         -- ^ Reply markup for the message; may be null if none
     }
   deriving (Eq, Show)
 
@@ -85,11 +88,12 @@ instance I.ShortShow Message where
     , date                          = date_
     , edit_date                     = edit_date_
     , forward_info                  = forward_info_
+    , import_info                   = import_info_
     , interaction_info              = interaction_info_
     , unread_reactions              = unread_reactions_
     , reply_to                      = reply_to_
     , message_thread_id             = message_thread_id_
-    , self_destruct_time            = self_destruct_time_
+    , self_destruct_type            = self_destruct_type_
     , self_destruct_in              = self_destruct_in_
     , auto_delete_in                = auto_delete_in_
     , via_bot_user_id               = via_bot_user_id_
@@ -126,11 +130,12 @@ instance I.ShortShow Message where
         , "date"                          `I.p` date_
         , "edit_date"                     `I.p` edit_date_
         , "forward_info"                  `I.p` forward_info_
+        , "import_info"                   `I.p` import_info_
         , "interaction_info"              `I.p` interaction_info_
         , "unread_reactions"              `I.p` unread_reactions_
         , "reply_to"                      `I.p` reply_to_
         , "message_thread_id"             `I.p` message_thread_id_
-        , "self_destruct_time"            `I.p` self_destruct_time_
+        , "self_destruct_type"            `I.p` self_destruct_type_
         , "self_destruct_in"              `I.p` self_destruct_in_
         , "auto_delete_in"                `I.p` auto_delete_in_
         , "via_bot_user_id"               `I.p` via_bot_user_id_
@@ -177,11 +182,12 @@ instance AT.FromJSON Message where
         date_                          <- o A..:?                       "date"
         edit_date_                     <- o A..:?                       "edit_date"
         forward_info_                  <- o A..:?                       "forward_info"
+        import_info_                   <- o A..:?                       "import_info"
         interaction_info_              <- o A..:?                       "interaction_info"
         unread_reactions_              <- o A..:?                       "unread_reactions"
         reply_to_                      <- o A..:?                       "reply_to"
         message_thread_id_             <- o A..:?                       "message_thread_id"
-        self_destruct_time_            <- o A..:?                       "self_destruct_time"
+        self_destruct_type_            <- o A..:?                       "self_destruct_type"
         self_destruct_in_              <- o A..:?                       "self_destruct_in"
         auto_delete_in_                <- o A..:?                       "auto_delete_in"
         via_bot_user_id_               <- o A..:?                       "via_bot_user_id"
@@ -216,11 +222,12 @@ instance AT.FromJSON Message where
           , date                          = date_
           , edit_date                     = edit_date_
           , forward_info                  = forward_info_
+          , import_info                   = import_info_
           , interaction_info              = interaction_info_
           , unread_reactions              = unread_reactions_
           , reply_to                      = reply_to_
           , message_thread_id             = message_thread_id_
-          , self_destruct_time            = self_destruct_time_
+          , self_destruct_type            = self_destruct_type_
           , self_destruct_in              = self_destruct_in_
           , auto_delete_in                = auto_delete_in_
           , via_bot_user_id               = via_bot_user_id_

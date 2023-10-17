@@ -17,7 +17,7 @@ data UserType
     , is_inline                       :: Maybe Bool   -- ^ True, if the bot supports inline queries
     , inline_query_placeholder        :: Maybe T.Text -- ^ Placeholder for inline queries (displayed on the application input field)
     , need_location                   :: Maybe Bool   -- ^ True, if the location of the user is expected to be sent with every inline query to this bot
-    , can_be_added_to_attachment_menu :: Maybe Bool   -- ^ True, if the bot can be added to attachment menu
+    , can_be_added_to_attachment_menu :: Maybe Bool   -- ^ True, if the bot can be added to attachment or side menu
     }
   | UserTypeUnknown -- ^ No information on the user besides the user identifier is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type
   deriving (Eq, Show)

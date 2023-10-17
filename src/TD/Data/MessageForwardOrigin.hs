@@ -23,9 +23,6 @@ data MessageForwardOrigin
     , message_id       :: Maybe Int    -- ^ Message identifier of the original message
     , author_signature :: Maybe T.Text -- ^ Original post author signature
     }
-  | MessageForwardOriginMessageImport -- ^ The message was imported from an exported message history
-    { sender_name :: Maybe T.Text -- ^ Name of the sender
-    }
   deriving (Eq, Show)
 
 instance I.ShortShow MessageForwardOrigin where
@@ -63,25 +60,17 @@ instance I.ShortShow MessageForwardOrigin where
         , "message_id"       `I.p` message_id_
         , "author_signature" `I.p` author_signature_
         ]
-  shortShow MessageForwardOriginMessageImport
-    { sender_name = sender_name_
-    }
-      = "MessageForwardOriginMessageImport"
-        ++ I.cc
-        [ "sender_name" `I.p` sender_name_
-        ]
 
 instance AT.FromJSON MessageForwardOrigin where
   parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "messageForwardOriginUser"          -> parseMessageForwardOriginUser v
-      "messageForwardOriginChat"          -> parseMessageForwardOriginChat v
-      "messageForwardOriginHiddenUser"    -> parseMessageForwardOriginHiddenUser v
-      "messageForwardOriginChannel"       -> parseMessageForwardOriginChannel v
-      "messageForwardOriginMessageImport" -> parseMessageForwardOriginMessageImport v
-      _                                   -> mempty
+      "messageForwardOriginUser"       -> parseMessageForwardOriginUser v
+      "messageForwardOriginChat"       -> parseMessageForwardOriginChat v
+      "messageForwardOriginHiddenUser" -> parseMessageForwardOriginHiddenUser v
+      "messageForwardOriginChannel"    -> parseMessageForwardOriginChannel v
+      _                                -> mempty
     
     where
       parseMessageForwardOriginUser :: A.Value -> AT.Parser MessageForwardOrigin
@@ -113,12 +102,6 @@ instance AT.FromJSON MessageForwardOrigin where
           { chat_id          = chat_id_
           , message_id       = message_id_
           , author_signature = author_signature_
-          }
-      parseMessageForwardOriginMessageImport :: A.Value -> AT.Parser MessageForwardOrigin
-      parseMessageForwardOriginMessageImport = A.withObject "MessageForwardOriginMessageImport" $ \o -> do
-        sender_name_ <- o A..:?  "sender_name"
-        pure $ MessageForwardOriginMessageImport
-          { sender_name = sender_name_
           }
   parseJSON _ = mempty
 

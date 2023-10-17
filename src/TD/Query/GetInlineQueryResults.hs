@@ -16,7 +16,7 @@ data GetInlineQueryResults
     , chat_id       :: Maybe Int               -- ^ Identifier of the chat where the query was sent
     , user_location :: Maybe Location.Location -- ^ Location of the user; pass null if unknown or the bot doesn't need user's location
     , query         :: Maybe T.Text            -- ^ Text of the query
-    , offset        :: Maybe T.Text            -- ^ Offset of the first entry to return
+    , offset        :: Maybe T.Text            -- ^ Offset of the first entry to return; use empty string to get the first chunk of results
     }
   deriving (Eq, Show)
 
