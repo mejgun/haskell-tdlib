@@ -7,6 +7,7 @@ module TD.Lib
     receive,
     destroy,
     Client,
+    Extra,
   )
 where
 
