@@ -38,13 +38,13 @@ instance ShortShow Bool where
   shortShow = show
 
 instance ShortShow T.Text where
-  shortShow = T.unpack
+  shortShow x = "t\"" <> T.unpack x <> "\""
 
 instance ShortShow BS.ByteString where
-  shortShow = T.unpack . TE.decodeUtf8
+  shortShow x = "b\"" <> (T.unpack . TE.decodeUtf8) x <> "\""
 
 instance (ShortShow a) => ShortShow [a] where
-  shortShow xs = "[" <> (intercalate ", " (map shortShow xs)) <> "]"
+  shortShow xs = "[" <> intercalate ", " (map shortShow xs) <> "]"
 
 p :: (ShortShow a) => String -> Maybe a -> String
 p k (Just v) = k ++ " = " ++ shortShow v
